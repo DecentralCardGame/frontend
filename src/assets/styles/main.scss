@@ -1,0 +1,35 @@
+body {
+  background-color: rgb(0, 51, 76);
+  color: rgb(225, 224, 220);
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.content {
+  margin-top: 1em;
+}
+a {
+  color: rgb(225, 224, 220);
+}
+#app {
+  max-width: 800px;
+  margin: auto;
+}
+.lt, .rt, .rb, .lb {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.lt { border-width: 16px 16px 0 0; border-color: rgb(0, 108, 161) transparent transparent transparent; }
+.rt { border-width: 0 16px 16px 0; border-color: transparent rgb(0, 108, 161) transparent transparent; }
+.lb { border-width: 16px 0 0 16px; border-color: transparent transparent transparent rgb(0, 108, 161); }
+.rb { border-width: 0 0 16px 16px; border-color: transparent transparent rgb(0, 108, 161) transparent; }
+
+.lt, .rt { top: 0; }
+.lb, .rb { bottom: 0; }
+.lt, .lb { left: 0; }
+.rb, .rt { right: 0; }
