@@ -10,14 +10,14 @@ build site:
       - dist
 
 unit test:
-  image: node:6
+  image: node
   stage: test
   script:
     - npm install --progress=false
     - npm run unit
 
 e2e test:
-  image: node:6
+  image: node
   stage: test
   script:
     - npm install --progress=false
