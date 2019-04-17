@@ -2,28 +2,32 @@
   <content-container-component>
     <h2>Gallery</h2>
     <div class="gallery-view">
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
-      <card-component/>
+      <card-component
+        v-for="card in cards"
+        v-bind:key="card.id">
+      </card-component>
     </div>
   </content-container-component>
 </template>
 
 <script>
+import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
+
 export default {
   name: 'GalleryPage',
-  components: {CardComponent, ContentContainerComponent}
+  components: {CardComponent, ContentContainerComponent},
+  data () {
+    return {
+      cards: null
+    }
+  },
+  mounted () {
+    axios
+      .get('http://localhost:3000/')
+      .then(response => (this.cards = response.data))
+  }
 }
 </script>
 

@@ -1,14 +1,16 @@
 <template>
   <content-container-component>
-    <form>
+    <p v-if="$route.query.redirect">Bitte logge dich ein!</p>
+    <p v-if="loginError">Login fehlgeschlagen!</p>
+    <form @submit.prevent="login">
       <label>
         <b>Username: </b>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" v-model="username" placeholder="Enter Username" name="uname" required>
       </label>
       <br>
       <label>
         <b>Password: </b>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" v-model="password" placeholder="Enter Password" name="psw" required>
       </label>
 
       <button type="submit">Login</button>
@@ -24,7 +26,20 @@
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 export default {
   name: 'LoginPage',
-  components: {ContentContainerComponent}
+  components: {ContentContainerComponent},
+  data () {
+    return {
+      loginError: null,
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      // put real login functionality here!
+      this.$router.replace(this.$route.query.redirect || '/')
+    }
+  }
 }
 </script>
 
