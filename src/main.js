@@ -10,6 +10,10 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  data: {
+    apiURL: 'http://192.168.50.102:1317',
+    chainID: 'testCardchain'
+  },
   components: { App },
   template: '<App/>'
 })

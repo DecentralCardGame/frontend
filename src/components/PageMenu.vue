@@ -7,6 +7,7 @@
       <li><router-link to="/newcard">New Card</router-link></li>
       <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/login">Login</router-link></li>
+      <li><router-link to="/register">Registrieren</router-link></li>
     </ul>
   </nav>
 </template>

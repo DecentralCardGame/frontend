@@ -22,9 +22,9 @@ export class Condition {
 export class CardCondition extends Condition {
   private _CardPropertyId: CardPropertyId;
 
-  constructor(Comparator: Comparator, CardPropertyId) {
+  constructor(Comparator: Comparator, Cpid: CardIntPropertyId) {
     super(Comparator);
-    this._CardPropertyId = CardPropertyId;
+    this._CardPropertyId = Cpid;
   }
 
   get GetCardPropertyId() {
