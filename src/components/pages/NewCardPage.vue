@@ -1,36 +1,9 @@
 <template>
   <div class="card-generator-container">
     <content-container-component class="main-container">
-      <label>
-        <b>Card Name: </b>
-        <input type="text" v-model="cardname" placeholder="Enter Cards Name" name="cardname" required>
-      </label><br><br>
-      <label>
-        <b>Casting Costs: </b>
-        <input type="number" v-model="castcosts" placeholder="Enter Casting Costs" name="castcosts" required>
-      </label><br><br>
-      <label>
-        <b>Upload Image: </b>
-      </label><br><br>
-      <label>
-        <b>Card Rulings: </b>
-        <input type="text" v-model="rulings" placeholder="Enter Card Rulings" name="rulings" required>
-      </label><br><br>
-      <label>
-        <b>Flavor Text: </b>
-        <input type="text" v-model="cardtext" placeholder="Enter Flavor Text" name="cardtext" required>
-      </label>
+      <ncform :form-schema="formSchema" form-name="your-form-name" v-model="formSchema.value" @submit="submit()"></ncform>
     </content-container-component>
     <content-container-component class="sidebar-container">
-      <label>
-        <b>Card Tags: </b>
-        <input type="text" v-model="cardtags" placeholder="Enter Card Tags" name="cardtags" required>
-      </label>
-      <label>
-        <b>Authors Notes: </b>
-        <input type="text" v-model="cardtags" placeholder="Enter Authors Notes" name="cardtags" required>
-      </label>
-      <button>Submit</button>
     </content-container-component>
   </div>
 </template>
@@ -44,7 +17,30 @@ export default {
   data () {
     return {
       generatedContent: '',
-      cardID: 0
+      cardID: 0,
+      formSchema: {
+        type: 'object',
+        properties: {
+          cardName: {
+            type: 'string'
+          },
+          castingCosts: {
+            type: 'number'
+          },
+          rulings: {
+            type: 'text'
+          },
+          flavor: {
+            type: 'text'
+          },
+          tags: {
+            type: 'text'
+          },
+          notes: {
+            type: 'text'
+          }
+        }
+      }
     }
   },
   methods: {
