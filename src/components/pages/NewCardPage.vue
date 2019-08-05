@@ -11,6 +11,8 @@
 <script>
 import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
+import $RefParser from 'json-schema-ref-parser'
+
 export default {
   name: 'NewCardPage',
   components: {ContentContainerComponent},
@@ -42,6 +44,15 @@ export default {
         }
       }
     }
+  },
+  mounted () {
+    $RefParser.dereference('http://localhost:8000/cardschema.json', (err, api) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(api)
+      }
+    })
   },
   methods: {
     register () {
