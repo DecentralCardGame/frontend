@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
 .content {
-  background-color: rgb(0, 58, 86);
+  background-color: transparent;
   position: relative;
   padding: 1em;
 }

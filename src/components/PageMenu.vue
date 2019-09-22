@@ -1,14 +1,15 @@
 <template>
   <nav>
-    <span class="lt"></span><span class="rt"></span><span class="rb"></span><span class="lb"></span>
-
-    <ul>
-      <li><router-link to="/">Gallery</router-link></li>
-      <li><router-link to="/newcard">New Card</router-link></li>
-      <li><router-link to="/about">About</router-link></li>
-      <li><router-link to="/login">Login</router-link></li>
-      <li><router-link to="/register">Registrieren</router-link></li>
-    </ul>
+    <div class="content">
+      <img class="logo" src="../assets/logo.svg">
+      <ul>
+        <li><router-link to="/about">The Game</router-link></li>
+        <li><router-link to="/newcard">Card Creator</router-link></li>
+        <li><router-link to="/">Gallery</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
+        <li><router-link class="exposed" to="/register">Join</router-link></li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -20,11 +21,19 @@ export default {
 
 <style scoped>
   nav {
+    background-color: #12d1d1ff;
+    box-shadow: 0.5em 0.5em 0 #d61224ff;
     position: relative;
+    margin: 2em 5em;
+    transform: skewX(-15deg);
+  }
+  .content {
+    transform: skewX(15deg);
+    display: flex;
+    flex-flow: row;
   }
   ul {
     width: auto;
-    background-color: rgb(0, 58, 86);
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -35,14 +44,36 @@ export default {
     float: left;
   }
 
+  .logo {
+    position: relative;
+    display: inline-block;
+    margin: -1em 1em -2em;
+    user-select: none;
+    -webkit-user-drag: none;
+    width: 300px;
+    height: 100%;
+  }
+
   li a {
     display: block;
+    color: white;
+    border: 0.2em solid transparent;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1.2rem 1.2rem;
     text-decoration: none;
   }
 
+  li a.exposed {
+    transform: skewX(-15deg);
+    background-color: white;
+    color: black;
+    padding: 0.6em;
+    margin-top: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
   li a:hover {
-    background-color: rgb(0, 108, 161);
+    border-color: white;
   }
 </style>

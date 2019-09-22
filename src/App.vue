@@ -2,9 +2,11 @@
   <div id="app">
     <PageHeader/>
     <PageMenu/>
-    <div class="content">
-      <router-view/>
-    </div>
+    <main>
+      <div class="content">
+        <router-view/>
+      </div>
+    </main>
     <PageFooter/>
   </div>
 </template>

@@ -1,10 +1,32 @@
 <template>
   <div class="card-generator-container">
-    <content-container-component class="main-container">
-      <ncform :form-schema="formSchema" form-name="your-form-name" v-model="formSchema.value" @submit="submit()"></ncform>
-    </content-container-component>
-    <content-container-component class="sidebar-container">
-    </content-container-component>
+    <div class="progress">
+      <div class="progress-item">Name, Type, Tags and Rarity</div>
+      <div class="progress-item">Costs and Properties</div>
+      <div class="progress-item">Rulings and Abilities</div>
+      <div class="progress-item">Style, Flavor and Notes</div>
+      <div class="progress-item">Summary and Publish</div>
+    </div>
+    <div class="creator">
+      <p>Hey, my Name is
+        <input value="Card Name">
+        and I am the
+        <select>
+          <option>the</option>
+          <option>a</option>
+        </select>
+        <input value="Surname">.
+        My type is
+        <select>
+          <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
+        </select>.<br>
+        People like to tag me as ...<br>
+        <select>
+          <option>Legendary</option>
+        </select>
+        is my rarity.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -18,38 +40,16 @@ export default {
   components: {ContentContainerComponent},
   data () {
     return {
-      generatedContent: '',
-      cardID: 0,
-      formSchema: {
-        type: 'object',
-        properties: {
-          cardName: {
-            type: 'string'
-          },
-          castingCosts: {
-            type: 'number'
-          },
-          rulings: {
-            type: 'text'
-          },
-          flavor: {
-            type: 'text'
-          },
-          tags: {
-            type: 'text'
-          },
-          notes: {
-            type: 'text'
-          }
-        }
-      }
+      rules: {},
+      cardID: 0
     }
   },
   mounted () {
-    $RefParser.dereference('http://localhost:8000/cardschema.json', (err, api) => {
+    $RefParser.dereference('http://localhost:8000/cardSchema.json', (err, api) => {
       if (err) {
         console.log(err)
       } else {
+        this.rules = api
         console.log(api)
       }
     })
@@ -77,34 +77,36 @@ export default {
 </script>
 
 <style scoped>
-  input[type="text"], input[type="password"] {
+  input {
     background-color: transparent;
-    border: 1px solid rgb(0, 108, 161);
-    padding: 0.5em;
-    margin: 0.5em 0 0.5em;
-  }
-  button {
-    background-color: rgb(0, 108, 161);
     border: none;
-    width: 100%;
-    cursor: pointer;
-    padding: 1em;
+    border-bottom: 2px solid white;
+    color: white;
+    font-size: 1em;
+    font-family: "Museo", sans-serif;
   }
-.card-generator-container {
-  display: grid;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "main sidebar";
-}
-  .main-container {
-    grid-area: main;
-    background-color: rgb(0, 58, 86);
+
+  select {
+    background-color: transparent;
+    border: 2px solid white;
+    font-size: 1em;
+    color: white;
+    font-family: "Museo", sans-serif;
   }
-  .sidebar-container {
-    grid-area: sidebar;
-    background-color: rgb(0, 58, 86);
+
+  .creator {
+    text-shadow: none;
+  }
+
+  .progress {
+    display: flex;
+    font-size: 0.6em;
+    text-shadow: none;
+  }
+  .progress-item {
+    margin: 0.3em;
+    border: 4px solid white;
+    padding: 0.2em;
+    transform: skewX(-15deg);
   }
 </style>

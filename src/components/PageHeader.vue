@@ -1,8 +1,6 @@
 <template>
   <header>
-    <span class="lt"></span><span class="rt"></span><span class="rb"></span><span class="lb"></span>
-    <img src="../assets/logo.png" class="logo" alt="Decentral Card Network Logo  ">
-    <h1>Decentral Card Network</h1>
+    Discuss the latest News or simply join our growing Community. We would love to here your voice.
   </header>
 </template>
 
@@ -14,13 +12,10 @@ export default {
 
 <style scoped>
   header {
-    display: flex;
-    padding: 10px 15px;
-    margin: 30px 40px 30px 30px;
-    justify-content: center;
-    user-select: none;
-    cursor: default;
-    position: relative;
+    background-color: #001433ff;
+    text-align: center;
+    padding: 0.5em;
+    border-bottom: 0.4em solid white;
   }
   .logo {
     display: block;
