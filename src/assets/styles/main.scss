@@ -37,3 +37,9 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.creator {
+  line-height: 1.5em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
