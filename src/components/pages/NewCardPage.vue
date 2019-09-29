@@ -276,6 +276,7 @@ export default {
     text-shadow: none;
   }
   .progress-item {
+    cursor: pointer;
     margin: 0.3em;
     border: 4px solid white;
     padding: 0.2em;

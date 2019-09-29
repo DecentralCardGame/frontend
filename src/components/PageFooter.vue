@@ -3,6 +3,8 @@
     <div class="pre-footer">
       <div class="pre-footer-content">
         <p>Ok, ok I have read enough. I am ready to</p>
+        <button>Join</button>
+        <p>this awesome community and have tons of fun.</p>
       </div>
     </div>
     <footer>
@@ -37,37 +39,12 @@
             to here your voice.</p>
           <img width="80%" align="center" src="../assets/logo.svg">
         </div>
-        <div>
-          <h2>Terms and Conditions</h2>
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </div>
+      <div class="footer-terms">
+        <h2>Terms and Conditions</h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
-        </div>
-      </div>
-      <div class="footer-menu footer-menu-sm">
-        <ul>
-          <li>
-            <a href="https://github.com/DecentralCardGame" target="_blank"><i class="fab fa-github"></i></a>
-          </li>
-          <li>
-            <a href="https://t.me/DecentralCardNetwork" target="_blank"><i class="fab fa-telegram"></i></a>
-          </li>
-          <li>
-            <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-menu">
-        <ul>
-          <li>
-            <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf" target="_blank"><i class="fas fa-file"></i> Whitepaper</a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-users"></i> Team</a>
-          </li>
-        </ul>
-      </div>
-      <div>
+          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
       </div>
     </footer>
   </div>
@@ -90,14 +67,29 @@ export default {
   }
 
   .pre-footer {
-    padding: 0.7em;
+    padding: 0.3em;
     background-color: #001433ff;
     text-shadow: 1px 1px 0 #12d1d1ff;
   }
 
   .pre-footer-content {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
     margin: auto;
-    max-width: 70vw;
+    max-width: 80vw;
+  }
+
+  .pre-footer-content p {
+    padding: 0.2em;
+    margin: 0 1em;
+  }
+
+  .pre-footer-content button {
+    font-weight: bolder;
+    font-size: 3em;
+    margin: -0.5em 0;
   }
 
   .content {
@@ -107,6 +99,16 @@ export default {
     display: grid;
     width: 100%;
     grid-template-columns: 50% 50%;
+  }
+
+  .footer-terms {
+    margin: auto;
+    max-width: 70vw;
+    width: 100%;
+    padding-bottom: 2em;
+  }
+  .footer-terms h2 {
+    font-size: 200%;
   }
 
   ul.menu {
@@ -135,9 +137,6 @@ export default {
     justify-content: center;
   }
 
-  .footer-menu-sm i {
-    font-size: 2em;
-  }
   .footer-menu ul {
     list-style-type: none;
     margin: 0;
