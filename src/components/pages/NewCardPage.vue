@@ -30,50 +30,32 @@
         <div v-if="activeStep == 1">
           As I am quite awesome my costs are the following:
           <select v-model="model.cost.lumber">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.lumber)" :value="n">{{n}}</option>
           </select> Lumber,
           <select v-model="model.cost.food">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.food)" :value="n">{{n}}</option>
           </select> Food,
           <select v-model="model.cost.iron">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.iron)" :value="n">{{n}}</option>
           </select> Iron,
           <select v-model="model.cost.mana">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.mana)" :value="n">{{n}}</option>
           </select> Mana,
           <select v-model="model.cost.energy">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.energy)" :value="n">{{n}}</option>
           </select> Energy,
           <select v-model="model.cost.generic">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.generic)" :value="n">{{n}}</option>
           </select> Generic,
           All it needs are <select v-model="model.ticks">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
+          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select> Ticks, to get me rolling. I have an
           attack of <select v-model="model.attack">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
+          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select> and I sadly die
           after someone suckerpunchs
           me for <select v-model="model.defense">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
+          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select>
           damage.
         </div>
@@ -89,6 +71,28 @@
           following event: <select>
           <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
         </select>.
+        </div>
+        <div v-if="activeStep == 3">
+          Everybody needs a face,
+          so do I, pls <button>Upload Image</button>.<br>
+          My flavor is best expressed by
+          the following sentences:
+          <input v-model="model.description" value="Card Name">.
+          I would like to give the
+          council proper intel:
+          <input v-model="model.notes" value="Card Name">.
+        </div>
+        <div v-if="activeStep == 4">
+          Uh, uh, uh. I like my looks,
+          i like my feels, let us get some
+          victorieeessss.
+          Seriously,
+          thanks for creating and being
+          part of the community.
+          Be brave and publish me!
+          Or save my awesome looks for later purposes.
+          <button>Publish</button>
+          <button>Save As Draft</button>
         </div>
       </div>
       <div class="col-visual">
@@ -123,7 +127,7 @@
             <tspan x="105" y="192">{{ model.tags }}</tspan>
           </text>
           <text v-if="activeStep > 2" y="139" x="87" transform="skewX(-17)" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
-            <tspan x="85" y="139">fll me with knowledge up to</tspan>
+            <tspan x="85" y="139">{{ model.description }}</tspan>
           </text>
           <text v-if="activeStep > 2"  y="176" x="141" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="4" font-family="Museo 700" stroke-width="0">
             <tspan x="141" y="176">periodic</tspan>
@@ -226,6 +230,16 @@ export default {
       }
     })
   },
+  computed: {
+    remainingCosts () {
+      return 32 - this.model.cost.lumber -
+              this.model.cost.food -
+              this.model.cost.iron -
+              this.model.cost.mana -
+              this.model.cost.energy -
+              this.model.cost.generic
+    }
+  },
   methods: {
     register () {
       axios.post(
@@ -243,6 +257,13 @@ export default {
           'content': this.generatedContent,
           'cardid': this.cardID
         }).then(response => (this.cards = response.data))
+    },
+    getNumbers (start, stop, min) {
+      if (min >= stop) {
+        return new Array(min + 1 - start).fill(start).map((n, i) => n + i)
+      } else {
+        return new Array(stop + 1 - start).fill(start).map((n, i) => n + i)
+      }
     }
   }
 }
@@ -264,6 +285,11 @@ export default {
     font-size: 1em;
     color: white;
     font-family: "Museo", sans-serif;
+  }
+
+  select option {
+    color: white;
+    background-color: red;
   }
 
   .creator {

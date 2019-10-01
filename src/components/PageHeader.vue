@@ -1,6 +1,7 @@
 <template>
   <header>
-    Discuss the latest News or simply join our growing Community. We would love to here your voice.
+    <p>Discuss the latest News or simply join our growing Community. We would love to here your voice.</p>
+    <button>My Account</button>
   </header>
 </template>
 
@@ -12,22 +13,18 @@ export default {
 
 <style scoped>
   header {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 2em;
+    margin-left: 2em;
+    margin-right: 5em;
+  }
+  p {
+    width: auto;
     background-color: #001433ff;
     text-align: center;
     padding: 0.5em;
-    border-bottom: 0.4em solid white;
-  }
-  .logo {
-    display: block;
-    height: 52px;
-    margin-right: 20px;
-  }
-  h1 {
-    display: block;
-    padding: 0;
-    margin: 1em 0;
-    line-height: 1em;
-    font-weight: 700;
-    font-size: 28px;
+    border-right: 5px solid white;
+    box-shadow: 5px 5px 0 white;
   }
 </style>
