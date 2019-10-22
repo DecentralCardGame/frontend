@@ -1,7 +1,7 @@
 <template>
   <header>
     <p>Discuss the latest News or simply join our growing Community. We would love to here your voice.</p>
-    <button>My Account</button>
+    <router-link to="/me"><button>My Account</button></router-link>
   </header>
 </template>
 

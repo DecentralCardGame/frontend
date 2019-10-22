@@ -3,7 +3,8 @@
     <div class="pre-footer">
       <div class="pre-footer-content">
         <p>Ok, ok I have read enough. I am ready to</p>
-        <button>Join</button>
+        <router-link class="exposed" to="/register"><button>Join</button></router-link>
+
         <p>this awesome community and have tons of fun.</p>
       </div>
     </div>
@@ -12,24 +13,24 @@
       <div class="content">
         <ul class="menu">
           <li>
-            <h2>The Game</h2>
-            Rules, Ideas and historical Context.
+            <router-link to="/about"><h2>The Game</h2>
+            Rules, Ideas and historical Context.</router-link>
           </li>
           <li>
-            <h2>Card Creator</h2>
-            Get creative and rule the world.
+            <router-link to="/newcard"><h2>Card Creator</h2>
+              Get creative and rule the world.</router-link>
           </li>
           <li>
-            <h2>Gallery</h2>
-            See what is out there.
+            <router-link to="/"><h2>Gallery</h2>
+              See what is out there.</router-link>
           </li>
           <li>
-            <h2>Community</h2>
-            Get in touch. Not physical, thooo.
+            <router-link to="/"><h2>Community</h2>
+              Get in touch. Not physical, thooo.</router-link>
           </li>
           <li>
-            <h2>About Us</h2>
-            We are pretty handsome.
+            <router-link to="/"><h2>About Us</h2>
+              We are pretty handsome.</router-link>
           </li>
         </ul>
         <div class="other">
@@ -113,6 +114,11 @@ export default {
 
   ul.menu {
     list-style-type: none;
+  }
+
+  ul.menu a {
+    color: white;
+    text-decoration: none;
   }
 
   li {

@@ -3,7 +3,6 @@
     Become a member of our community today.<br>
     Start creating your own universe or simply<br>
     enjoy the cards of others.<br>
-    <button>Test</button>
   </div>
 </template>
 

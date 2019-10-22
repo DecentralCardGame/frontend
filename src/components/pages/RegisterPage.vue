@@ -1,13 +1,15 @@
 <template>
   <content-container-component>
+    <h2>Join the Experience</h2><br>
+    <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p><br>
     <form @submit.prevent="register">
       <label>
-        <b>Alias: </b>
+        <b>Username: </b>
         <input type="text" v-model="alias" placeholder="Enter Username" name="uname" required>
       </label>
       <br>
       <label>
-        <b>Key: </b>
+        <b>Cosmos Public-Key: </b>
         <input type="text" v-model="key" placeholder="Enter Key" name="key" required>
       </label>
       <br>
@@ -15,8 +17,8 @@
         <b>Password: </b>
         <input type="password" v-model="password" placeholder="Enter Password" name="psw" required>
       </label>
-      <br>
-      <button type="submit">Registrieren</button>
+      <br><br>
+      <button type="submit">Register</button>
     </form>
   </content-container-component>
 </template>

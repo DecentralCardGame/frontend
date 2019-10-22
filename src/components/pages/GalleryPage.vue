@@ -1,13 +1,12 @@
 <template>
-  <content-container-component>
-    <h2>Gallery</h2>
     <div class="gallery-view">
-      <card-component
-        v-for="card in cards"
-        v-bind:key="card.id">
-      </card-component>
+      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
     </div>
-  </content-container-component>
 </template>
 
 <script>
@@ -20,13 +19,41 @@ export default {
   components: {CardComponent, ContentContainerComponent},
   data () {
     return {
-      cards: null
+      cards: null,
+      sampleCard: {
+        name: 'Name',
+        description: '',
+        ability: '',
+        notes: '',
+        article: 'the',
+        surname: 'Surname',
+        type: 'No Type',
+        tags: [],
+        cost: {
+          lumber: 0,
+          food: 0,
+          iron: 0,
+          mana: 0,
+          energy: 0,
+          generic: 0
+        },
+        ticks: 0,
+        defense: 0,
+        attack: 0
+      }
     }
   },
   mounted () {
-    axios
-      .get(this.apiURL + '/cardservice/cards')
-      .then(response => (this.cards = response.data))
+    axios.get('http://78.46.200.30/cardservice/cards ')
+      .then(res => {
+        console.log(res)
+
+        let cardData = res.data.data
+
+        cardData.forEach(function (card) {
+          this.cards.add('ELEMENT')
+        })
+      })
   }
 }
 </script>
@@ -34,11 +61,9 @@ export default {
 <style scoped>
 .gallery-view {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
-  height: 50vh;
-  overflow-y: scroll;
 }
 </style>

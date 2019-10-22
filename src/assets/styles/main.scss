@@ -38,8 +38,26 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  transition: background-color 200ms;
+  background-color: lightgray;
+}
+
 .creator {
   line-height: 1.5em;
   display: grid;
   grid-template-columns: 2fr 1fr;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 1em;
+  font-family: "Museo", sans-serif;
+}
+
+input::placeholder {
+  color: lightgray;
 }
