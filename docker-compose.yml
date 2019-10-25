@@ -3,20 +3,7 @@ services:
 
   goat:
     build: .
-    command: npm run build
+    command: npm run dev
     container_name: goat
     ports:
       - 8080:8080
-
-  herd:
-    image: nginx:latest
-    container_name: herd
-    depends_on:
-      - goat
-    volumes:
-      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - 8080:8080
-      - 81:81
-      - 443:443
-    command: /bin/bash -c "exec nginx -g 'daemon off;'"
