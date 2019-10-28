@@ -9,13 +9,13 @@
       </label>
       <br>
       <label>
-        <b>Cosmos Public-Key: </b>
-        <input type="text" v-model="key" placeholder="Enter Key" name="key" required>
+        <b>Password: </b>
+        <input type="password" v-model="password" placeholder="Enter Password" name="psw">
       </label>
       <br>
       <label>
-        <b>Password: </b>
-        <input type="password" v-model="password" placeholder="Enter Password" name="psw" required>
+        <b>E-Mail: </b>
+        <input type="email" v-model="password" placeholder="Enter E-Mail" name="mail">
       </label>
       <br><br>
       <button type="submit">Register</button>
@@ -26,6 +26,8 @@
 <script>
 import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
+import { signTx } from 'signcosmostx/signStuff'
+
 export default {
   name: 'RegisterPage',
   components: {ContentContainerComponent},
@@ -33,27 +35,37 @@ export default {
     return {
       alias: '',
       key: '',
-      password: ''
+      password: '',
+      mail: ''
     }
   },
   methods: {
     register () {
-      axios.post(
-        this.apiURL + '/cardservice/create_user',
-        {
-          'base_req': {
-            'from': this.key,
-            'password': this.password,
-            'chain_id': this.chainID,
-            'sequence': '0',
-            'account_number': '0',
-            'gas': 'auto',
-            'gas_adjustment': '1.5'
-          },
-          'new_user': this.key,
-          'creator': this.key,
-          'alias': this.alias
-        }).then(response => (this.cards = response.data))
+      this.$http.get('auth/accounts/cosmos1yxcm56r8sxq284yzed7fv92l706uhejha04dv3')
+        .then(userdata => {
+          this.$http.put(
+            'cardservice/create_user',
+            {
+              'base_req': {
+                'from': 'cosmos1yxcm56r8sxq284yzed7fv92l706uhejha04dv3',
+                'chain_id': 'testCardchain',
+                'gas': 'auto',
+                'gas_adjustment': '1.5'
+              },
+              'new_user': JSON.parse(localStorage.keyPair).address,
+              'creator': 'cosmos1yxcm56r8sxq284yzed7fv92l706uhejha04dv3',
+              'alias': this.alias
+            }).then(response => {
+            let signed = signTx(response.data, 'truck romance enrich dwarf birth dance seminar position indoor across rude coach club abstract peasant high ribbon laugh phrase lottery lonely shell wrestle afford', 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
+
+            this.$http.post('txs', {
+              'tx': signed.value,
+              'mode': 'block'
+            }).then(response => {
+              console.log(response)
+            })
+          })
+        })
     }
   }
 }

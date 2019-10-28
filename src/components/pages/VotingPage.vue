@@ -64,7 +64,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     axios.get('http://78.46.200.30/cardservice/votable_cards/' + localStorage.cosmosAddress)
       .then(res => (console.log(res)))
   },
@@ -72,23 +72,23 @@ export default {
     vote (cardid, type) {
       console.log('THROWOUT')
 
-      axios.get('http://78.46.200.30/auth/accounts/' + localStorage.cosmosAddress)
+      axios.get('http://78.46.200.30/auth/accounts/' + JSON.parse(localStorage.keyPair).address)
         .then(userdata => {
           console.log(userdata)
           axios.put(
             'http://78.46.200.30/cardservice/vote_card',
             {
               'base_req': {
-                'from': localStorage.cosmosAddress,
+                'from': JSON.parse(localStorage.keyPair).address,
                 'chain_id': 'testCardchain',
                 'gas': 'auto',
                 'gas_adjustment': '1.5'
               },
-              'voter': localStorage.cosmosAddress,
+              'voter': JSON.parse(localStorage.keyPair).address,
               'votetype': type,
               'cardid': '' + cardid
             }).then(response => {
-            let signed = signTx(response.data, localStorage.cosmosMnemonic, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
+            let signed = signTx(response.data, JSON.parse(localStorage.keyPair).secret, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
 
             console.log(signed)
 

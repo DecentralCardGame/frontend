@@ -144,7 +144,6 @@ export default {
       axios.post(
         this.apiURL + '/cardservice/transfer_card',
         {
-
           'base_req': {
             'from': 'globally fetched users key',
             'chain_id': this.chainID,

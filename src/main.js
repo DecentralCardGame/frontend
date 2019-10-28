@@ -6,8 +6,15 @@ import Notifications from 'vue-notification'
 import VueSwing from 'vue-swing'
 import App from './App'
 import router from './router'
+import * as axios from 'axios'
 
 Vue.config.productionTip = false
+
+const base = axios.create({
+  baseURL: 'http://78.46.200.30'
+})
+
+Vue.prototype.$http = base
 
 Vue.use(vueNcform)
 Vue.use(Notifications)

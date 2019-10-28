@@ -208,23 +208,23 @@ export default {
       return [1, 2, 3, 4, 5]
     },
     buyCardScheme () {
-      axios.get('http://78.46.200.30/auth/accounts/' + localStorage.cosmosAddress)
+      this.$http.get('auth/accounts/' + JSON.parse(localStorage.keyPair).address)
         .then(userdata => {
-          axios.post('http://78.46.200.30/cardservice/buy_card_scheme', {
+          this.$http.post('cardservice/buy_card_scheme', {
             'base_req': {
-              'from': localStorage.cosmosAddress,
+              'from': JSON.parse(localStorage.keyPair).address,
               'chain_id': 'testCardchain',
               'gas': 'auto',
               'gas_adjustment': '1.5'
             },
             'amount': '800credits',
-            'buyer': localStorage.cosmosAddress
+            'buyer': JSON.parse(localStorage.keyPair).address
           }).then(response => {
-            let signed = signTx(response.data, localStorage.cosmosMnemonic, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
+            let signed = signTx(response.data, JSON.parse(localStorage.keyPair).secret, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
 
             console.log(signed)
 
-            axios.post('http://78.46.200.30/txs', {
+            this.$http.post('txs', {
               'tx': signed.value,
               'mode': 'block'
             }).then(response => {
@@ -273,27 +273,27 @@ export default {
 
       let request = {
         'base_req': {
-          'from': localStorage.cosmosAddress,
+          'from': JSON.parse(localStorage.keyPair).address,
           'chain_id': 'testCardchain',
           'gas': 'auto',
           'gas_adjustment': '1.5'
         },
-        'owner': localStorage.cosmosAddress,
+        'owner': JSON.parse(localStorage.keyPair).address,
         'content': JSON.stringify(newCard),
         'cardid': '1'
       }
 
-      axios.get('http://78.46.200.30/auth/accounts/' + localStorage.cosmosAddress)
+      this.$http.get('auth/accounts/' + localStorage.JSON.parse(localStorage.keyPair).address)
         .then(userdata => {
           console.log(userdata)
-          axios.put(
-            'http://78.46.200.30/cardservice/save_card_content',
+          this.$http.put(
+            'cardservice/save_card_content',
             request).then(response => {
-            let signed = signTx(response.data, localStorage.cosmosMnemonic, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
+            let signed = signTx(response.data, JSON.parse(localStorage.keyPair).secret, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
 
             console.log(signed)
 
-            axios.post('http://78.46.200.30/txs', {
+            this.$http.post('txs', {
               'tx': signed.value,
               'mode': 'block'
             }).then(response => {
