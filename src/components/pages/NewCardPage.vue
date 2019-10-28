@@ -124,7 +124,7 @@ import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
 
 // eslint-disable-next-line no-unused-vars
-import { signTx } from 'signcosmostx/signStuff'
+import { generateAndBroadcastTx } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -208,30 +208,19 @@ export default {
       return [1, 2, 3, 4, 5]
     },
     buyCardScheme () {
-      this.$http.get('auth/accounts/' + JSON.parse(localStorage.keyPair).address)
-        .then(userdata => {
-          this.$http.post('cardservice/buy_card_scheme', {
-            'base_req': {
-              'from': JSON.parse(localStorage.keyPair).address,
-              'chain_id': 'testCardchain',
-              'gas': 'auto',
-              'gas_adjustment': '1.5'
-            },
-            'amount': '800credits',
-            'buyer': JSON.parse(localStorage.keyPair).address
-          }).then(response => {
-            let signed = signTx(response.data, JSON.parse(localStorage.keyPair).secret, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
+      let reqBody = {
+        'base_req': {
+          'from': JSON.parse(localStorage.keyPair).address,
+          'chain_id': 'testCardchain',
+          'gas': 'auto',
+          'gas_adjustment': '1.5'
+        },
+        'amount': '800credits',
+        'buyer': JSON.parse(localStorage.keyPair).address
+      }
 
-            console.log(signed)
-
-            this.$http.post('txs', {
-              'tx': signed.value,
-              'mode': 'block'
-            }).then(response => {
-              console.log(response)
-            })
-          })
-        })
+      generateAndBroadcastTx(this.$http, 'cardservice/buy_card_scheme', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret, 'post')
+        .then(console.log)
     },
     generateCostArray () {
       let finalArr = []
@@ -271,7 +260,7 @@ export default {
         }
       }
 
-      let request = {
+      let reqBody = {
         'base_req': {
           'from': JSON.parse(localStorage.keyPair).address,
           'chain_id': 'testCardchain',
@@ -281,26 +270,10 @@ export default {
         'owner': JSON.parse(localStorage.keyPair).address,
         'content': JSON.stringify(newCard),
         'cardid': '1'
-      }
+      } // TODO automate cardid
 
-      this.$http.get('auth/accounts/' + localStorage.JSON.parse(localStorage.keyPair).address)
-        .then(userdata => {
-          console.log(userdata)
-          this.$http.put(
-            'cardservice/save_card_content',
-            request).then(response => {
-            let signed = signTx(response.data, JSON.parse(localStorage.keyPair).secret, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
-
-            console.log(signed)
-
-            this.$http.post('txs', {
-              'tx': signed.value,
-              'mode': 'block'
-            }).then(response => {
-              console.log(response)
-            })
-          })
-        })
+      generateAndBroadcastTx(this.$http, 'cardservice/save_card_content', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret)
+        .then(console.log)
     }
   },
   saveDraft () {

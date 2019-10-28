@@ -87,7 +87,6 @@ export default {
 
       generateAndBroadcastTx(this.$http, 'cardservice/vote_card', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret)
         .then(console.log)
-
     }
   }
 }
