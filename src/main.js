@@ -15,8 +15,6 @@ const base = axios.create({
   altURL: 'http://78.46.200.30'
 })
 
-// altURL: 'http://78.46.200.30'
-
 Vue.prototype.$http = base
 
 Vue.use(vueNcform)

@@ -44,7 +44,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://78.46.200.30/cardservice/cards ')
+    this.$http.get('cardservice/cards ')
       .then(res => {
         console.log(res)
 

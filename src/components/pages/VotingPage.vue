@@ -75,8 +75,8 @@ export default {
       this.$http.get('auth/accounts/' + JSON.parse(localStorage.keyPair).address)
         .then(userdata => {
           console.log(userdata)
-          axios.put(
-            'http://78.46.200.30/cardservice/vote_card',
+          this.$http.put(
+            'cardservice/vote_card',
             {
               'base_req': {
                 'from': JSON.parse(localStorage.keyPair).address,
@@ -92,7 +92,7 @@ export default {
 
             console.log(signed)
 
-            axios.post('http://78.46.200.30/txs', {
+            this.$http.post('txs', {
               'tx': signed.value,
               'mode': 'block'
             }).then(response => {
