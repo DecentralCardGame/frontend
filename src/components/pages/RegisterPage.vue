@@ -15,7 +15,7 @@
       <br>
       <label>
         <b>E-Mail: </b>
-        <input type="email" v-model="password" placeholder="Enter E-Mail" name="mail">
+        <input type="email" v-model="email" placeholder="Enter E-Mail" name="mail">
       </label>
       <br><br>
       <button type="submit">Register</button>
