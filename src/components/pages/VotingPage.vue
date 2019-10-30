@@ -65,14 +65,14 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://78.46.200.30/cardservice/votable_cards/' + localStorage.cosmosAddress)
+    this.$http.get('cardservice/votable_cards/' + JSON.parse(localStorage.keyPair).address)
       .then(res => (console.log(res)))
   },
   methods: {
     vote (cardid, type) {
       console.log('THROWOUT')
 
-      axios.get('http://78.46.200.30/auth/accounts/' + JSON.parse(localStorage.keyPair).address)
+      this.$http.get('auth/accounts/' + JSON.parse(localStorage.keyPair).address)
         .then(userdata => {
           console.log(userdata)
           axios.put(

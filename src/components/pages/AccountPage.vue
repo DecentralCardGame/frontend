@@ -21,13 +21,15 @@ export default {
     }
   },
   mounted () {
-    this.mnemonic = localStorage.cosmosMnemonic
-    this.address = localStorage.cosmosAddress
+    this.mnemonic = JSON.parse(localStorage.keyPair).secret
+    this.address = JSON.parse(localStorage.keyPair).address
   },
   methods: {
     save () {
-      localStorage.cosmosMnemonic = this.mnemonic
-      localStorage.cosmosAddress = this.address
+      localStorage.keyPair.secret = this.mnemonic
+      localStorage.keyPair.address = this.address
+      localStorage.keyPair.privateKey = 'messed up'
+      localStorage.keyPair.publicKey = 'messed up'
     }
   }
 }

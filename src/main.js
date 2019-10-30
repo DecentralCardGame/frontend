@@ -11,8 +11,11 @@ import * as axios from 'axios'
 Vue.config.productionTip = false
 
 const base = axios.create({
-  baseURL: 'http://78.46.200.30'
+  baseURL: 'http://v220190910354396996.luckysrv.de',
+  altURL: 'http://78.46.200.30'
 })
+
+// altURL: 'http://78.46.200.30'
 
 Vue.prototype.$http = base
 
