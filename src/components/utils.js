@@ -11,6 +11,10 @@ export function generateAndBroadcastTx (http, route, from, reqBody, mnemonic) {
             'tx': signed.value,
             'mode': 'block'
           })
+          .catch(e => {
+            console.log(e);
+            console.log(e.response.data.error)
+          });
         })
     })
 }

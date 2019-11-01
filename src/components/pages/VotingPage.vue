@@ -24,6 +24,7 @@ import VueSwing from 'vue-swing'
 
 // eslint-disable-next-line no-unused-vars
 import { signTx } from 'signcosmostx/signStuff'
+import { generateAndBroadcastTx } from '../utils.js'
 
 export default {
   name: 'VotingPage',
@@ -72,34 +73,21 @@ export default {
     vote (cardid, type) {
       console.log('THROWOUT')
 
-      this.$http.get('auth/accounts/' + JSON.parse(localStorage.keyPair).address)
-        .then(userdata => {
-          console.log(userdata)
-          this.$http.put(
-            'cardservice/vote_card',
-            {
-              'base_req': {
-                'from': JSON.parse(localStorage.keyPair).address,
-                'chain_id': 'testCardchain',
-                'gas': 'auto',
-                'gas_adjustment': '1.5'
-              },
-              'voter': JSON.parse(localStorage.keyPair).address,
-              'votetype': type,
-              'cardid': '' + cardid
-            }).then(response => {
-            let signed = signTx(response.data, JSON.parse(localStorage.keyPair).secret, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
+      let reqBody = {
+        'base_req': {
+          'from': JSON.parse(localStorage.keyPair).address,
+          'chain_id': 'testCardchain',
+          'gas': 'auto',
+          'gas_adjustment': '1.5'
+        },
+        'voter': JSON.parse(localStorage.keyPair).address,
+        'votetype': type,
+        'cardid': '' + cardid
+      }
 
-            console.log(signed)
+      generateAndBroadcastTx(this.$http, 'cardservice/vote_card', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret)
+        .then(console.log)
 
-            this.$http.post('txs', {
-              'tx': signed.value,
-              'mode': 'block'
-            }).then(response => {
-              console.log(response)
-            })
-          })
-        })
     }
   }
 }
