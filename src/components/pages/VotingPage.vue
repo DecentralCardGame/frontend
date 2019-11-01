@@ -66,7 +66,7 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('cardservice/votable_cards/' + JSON.parse(localStorage.keyPair).address)
+    this.$http.get('cardservice/votable_cards/' + localStorage.address)
       .then(res => (console.log(res)))
   },
   methods: {
@@ -75,17 +75,17 @@ export default {
 
       let reqBody = {
         'base_req': {
-          'from': JSON.parse(localStorage.keyPair).address,
+          'from': localStorage.address,
           'chain_id': 'testCardchain',
           'gas': 'auto',
           'gas_adjustment': '1.5'
         },
-        'voter': JSON.parse(localStorage.keyPair).address,
+        'voter': localStorage.address,
         'votetype': type,
         'cardid': '' + cardid
       }
 
-      generateAndBroadcastTx(this.$http, 'cardservice/vote_card', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret)
+      generateAndBroadcastTx(this.$http, 'cardservice/vote_card', localStorage.address, reqBody, localStorage.mnemonic)
         .then(console.log)
     }
   }

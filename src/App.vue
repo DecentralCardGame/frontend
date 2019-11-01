@@ -22,7 +22,9 @@ export default {
   name: 'App',
   components: {PageFooter, PageMenu, PageHeader},
   mounted () {
-    localStorage.keyPair = JSON.stringify(createKey())
+    let newKeypair = createKey()
+    localStorage.address = newKeypair.address
+    localStorage.mnemonic = newKeypair.secret
   }
 }
 </script>

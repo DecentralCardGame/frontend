@@ -49,10 +49,12 @@ export default {
           'gas': 'auto',
           'gas_adjustment': '1.5'
         },
-        'new_user': JSON.parse(localStorage.keyPair).address,
+        'new_user': localStorage.address,
         'creator': process.env.VUE_APP_CREATOR_ADDRESS,
         'alias': this.alias
       }
+
+      console.log(reqBody)
 
       generateAndBroadcastTx(this.$http, 'cardservice/create_user', process.env.VUE_APP_CREATOR_ADDRESS, reqBody, process.env.VUE_APP_CREATOR_MNEMONIC)
         .then(console.log)

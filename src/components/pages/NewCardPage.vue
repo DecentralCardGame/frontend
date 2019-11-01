@@ -124,7 +124,7 @@ import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
 
 // eslint-disable-next-line no-unused-vars
-import { generateAndBroadcastTx } from '../utils.js'
+import { generateAndBroadcastTx, saveContentToUnusedCardScheme } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -210,16 +210,16 @@ export default {
     buyCardScheme () {
       let reqBody = {
         'base_req': {
-          'from': JSON.parse(localStorage.keyPair).address,
+          'from': localStorage.address,
           'chain_id': 'testCardchain',
           'gas': 'auto',
           'gas_adjustment': '1.5'
         },
         'amount': '800credits',
-        'buyer': JSON.parse(localStorage.keyPair).address
+        'buyer': localStorage.address
       }
 
-      generateAndBroadcastTx(this.$http, 'cardservice/buy_card_scheme', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret, 'post')
+      generateAndBroadcastTx(this.$http, 'cardservice/buy_card_scheme', localStorage.address, reqBody, localStorage.mnemonic, 'post')
         .then(console.log)
     },
     generateCostArray () {
@@ -260,20 +260,9 @@ export default {
         }
       }
 
-      let reqBody = {
-        'base_req': {
-          'from': JSON.parse(localStorage.keyPair).address,
-          'chain_id': 'testCardchain',
-          'gas': 'auto',
-          'gas_adjustment': '1.5'
-        },
-        'owner': JSON.parse(localStorage.keyPair).address,
-        'content': JSON.stringify(newCard),
-        'cardid': '1'
-      } // TODO automate cardid
-
-      generateAndBroadcastTx(this.$http, 'cardservice/save_card_content', JSON.parse(localStorage.keyPair).address, reqBody, JSON.parse(localStorage.keyPair).secret)
-        .then(console.log)
+      saveContentToUnusedCardScheme(this.$http, localStorage.address, localStorage.mnemonic, newCard)
+      // generateAndBroadcastTx(this.$http, 'cardservice/save_card_content', localStorage.address, reqBody, localStorage.mnemonic)
+      // .then(console.log)
     }
   },
   saveDraft () {
