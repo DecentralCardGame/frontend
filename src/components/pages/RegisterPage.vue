@@ -26,7 +26,8 @@
 <script>
 // import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import { signTx } from 'signcosmostx/signStuff'
+
+import { generateAndBroadcastTx } from '../utils.js'
 
 export default {
   name: 'RegisterPage',
@@ -53,30 +54,10 @@ export default {
         'alias': this.alias
       }
 
-      console.log(process.env.VUE_APP_CREATOR_ADDRESS)
-      console.log(process.env.VUE_APP_CREATOR_MNEMONIC)
-
-      generateAndBroadcastTx(this.$http, reqBody)
-        .then(response => {console.log(response)})
+      generateAndBroadcastTx(this.$http, 'cardservice/create_user', process.env.VUE_APP_CREATOR_ADDRESS, reqBody, process.env.VUE_APP_CREATOR_MNEMONIC)
+        .then(console.log)
     }
   }
-}
-
-function generateAndBroadcastTx (http, reqBody) {
-  return http.get('auth/accounts/' + process.env.VUE_APP_CREATOR_ADDRESS)
-    .then(userdata => {
-      return http.put('cardservice/create_user', reqBody)
-        .then((response) => {
-          console.log(process.env.VUE_APP_CREATOR_MNEMONIC)
-
-          let signed = signTx(response.data, process.env.VUE_APP_CREATOR_MNEMONIC, 'testCardchain', userdata.data.value.account_number, userdata.data.value.sequence)
-
-          return http.post('txs', {
-            'tx': signed.value,
-            'mode': 'block'
-          })
-        })
-    })
 }
 
 </script>

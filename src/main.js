@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 const base = axios.create({
   localURL: 'localhost:8080',
-  baseURL: 'http://v220190910354396996.luckysrv.de',
+  baseURL: process.env.VUE_APP_BLOCKCHAIN_API,
   altURL: 'http://78.46.200.30'
 })
 
