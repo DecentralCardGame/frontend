@@ -124,7 +124,7 @@ import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
 
 // eslint-disable-next-line no-unused-vars
-import { generateAndBroadcastTx, saveContentToUnusedCardScheme } from '../utils.js'
+import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -208,19 +208,20 @@ export default {
       return [1, 2, 3, 4, 5]
     },
     buyCardScheme () {
-      let reqBody = {
-        'base_req': {
-          'from': localStorage.address,
-          'chain_id': 'testCardchain',
-          'gas': 'auto',
-          'gas_adjustment': '1.5'
-        },
-        'amount': '800credits',
-        'buyer': localStorage.address
-      }
+      buyCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, 666) // TODO magic number 666 should be changed
+        .then(res => {
+          console.log('here some info should pop up that the scheme was bought successfully')
+        })
+        .catch(err => {
+          if (err.message === 'not enough credits') {
+            console.log('here some overlay should pop up informing the user that he is broke')
+          } else {
+            console.error(err)
+          }
+        })
 
-      generateAndBroadcastTx(this.$http, 'cardservice/buy_card_scheme', localStorage.address, reqBody, localStorage.mnemonic, 'post')
-        .then(console.log)
+      // generateAndBroadcastTx(this.$http, 'cardservice/buy_card_scheme', localStorage.address, reqBody, localStorage.mnemonic, 'post')
+      //  .then(console.log)
     },
     generateCostArray () {
       let finalArr = []
@@ -260,9 +261,17 @@ export default {
         }
       }
 
-      saveContentToUnusedCardScheme(this.$http, localStorage.address, localStorage.mnemonic, newCard)
-      // generateAndBroadcastTx(this.$http, 'cardservice/save_card_content', localStorage.address, reqBody, localStorage.mnemonic)
-      // .then(console.log)
+      saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard, 5) // TODO the 5 should not be a magical number
+        .then(res => {
+          console.log('here some info should pop up that card was saved successfully')
+        })
+        .catch(err => {
+          if (err.message === 'no cards available') {
+            console.log('here some overlay should pop up informing the user that they need to buy a card scheme')
+          } else {
+            console.error(err)
+          }
+        })
     }
   },
   saveDraft () {
