@@ -20,7 +20,7 @@
 <script>
 import CardComponent from '../CardComponent'
 import VueSwing from 'vue-swing'
-import axios from 'axios'
+// import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
 import { signTx } from 'signcosmostx/signStuff'

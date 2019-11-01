@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 
