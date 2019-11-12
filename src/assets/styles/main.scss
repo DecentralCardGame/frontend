@@ -61,3 +61,36 @@ input {
 input::placeholder {
   color: lightgray;
 }
+
+.fail-notification {
+  padding: 10px;
+  margin: 0 5px 5px;
+  border-left: 5px solid #FF3C3C;
+  font-size: 16px;
+  color: #FFFFFF;
+  background: #D61224;
+  width: '500%';
+  duration: 20000
+}
+
+.info-notification {
+  padding: 10px;
+  margin: 0 5px 5px;
+  border-left: 5px solid #FFACAC;
+  font-size: 16px;
+  color: #FFFFFF;
+  background: #F29121;
+  width: 500;
+  duration: 20000
+}
+
+.success-notification {
+  padding: 10px;
+  margin: 0 5px 5px;
+  border-left: 5px solid #001433;
+  font-size: 16px;
+  color: #FFFFFF;
+  background: #12D1D1;
+  width: 500;
+  duration: 20000
+}

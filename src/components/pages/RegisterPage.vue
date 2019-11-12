@@ -27,7 +27,7 @@
 // import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 
-import { generateAndBroadcastTx } from '../utils.js'
+import { generateAndBroadcastTx, notify } from '../utils.js'
 
 export default {
   name: 'RegisterPage',
@@ -58,6 +58,7 @@ export default {
 
       generateAndBroadcastTx(this.$http, 'cardservice/create_user', process.env.VUE_APP_CREATOR_ADDRESS, reqBody, process.env.VUE_APP_CREATOR_MNEMONIC)
         .then(console.log)
+        .then(_ => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
     }
   }
 }

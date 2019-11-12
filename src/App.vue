@@ -7,7 +7,9 @@
         <router-view/>
       </div>
     </main>
-    <notifications group="foo" />
+    <notifications group="success" position="bottom right" classes="success-notification"/>
+    <notifications group="info" position="bottom right" classes="info-notification"/>
+    <notifications group="fail" position="bottom right" classes="fail-notification"/>
     <PageFooter/>
   </div>
 </template>

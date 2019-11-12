@@ -124,7 +124,7 @@ import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
 
 // eslint-disable-next-line no-unused-vars
-import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../utils.js'
+import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx, notify } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -261,13 +261,13 @@ export default {
         }
       }
 
-      saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard, 5) // TODO the 5 should not be a magical number
+      saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard) // TODO the 5 should not be a magical number
         .then(res => {
           console.log('here some info should pop up that card was saved successfully')
         })
         .catch(err => {
           if (err.message === 'no cards available') {
-            console.log('here some overlay should pop up informing the user that they need to buy a card scheme')
+            notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
           } else {
             console.error(err)
           }
