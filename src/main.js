@@ -11,8 +11,8 @@ import * as axios from 'axios'
 Vue.config.productionTip = false
 
 const base = axios.create({
-  localURL: 'localhost:1317',
   baseURL: process.env.VUE_APP_BLOCKCHAIN_API,
+  localURL: 'localhost:1317',
   altURL: 'http://78.46.200.30'
 })
 
@@ -22,13 +22,15 @@ Vue.use(vueNcform)
 Vue.use(Notifications)
 Vue.component('vue-swing', VueSwing)
 
+Vue.component('modal', {
+  template: '#modal-template'
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   data: {
-    apiURL: 'http://v220190910354396996.luckysrv.de:1500',
-    chainID: 'testCardchain'
   },
   components: { App },
   template: '<App/>'
