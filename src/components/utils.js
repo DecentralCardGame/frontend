@@ -114,6 +114,10 @@ function getAccInfo (http, address) {
     .catch(handleGetError(R.__, address))
 }
 
+function getGameInfo (http) {
+  return http.get('cardservice/cardchain_info/')
+}
+
 const handleGetAcc = R.curry(handleGetAccCurryMe)
 function handleGetAccCurryMe (res, address) {
   if (res.data === '') {
@@ -126,7 +130,7 @@ function handleGetAccCurryMe (res, address) {
 
 const handleGetError = R.curry(handleGetErrorCurryMe)
 function handleGetErrorCurryMe (res, address) {
-  if (res.response.data.error) {
+  if (res.response) {
     notify.fail('OH SHIT', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error(res.response.data.error)
   } else {
@@ -135,25 +139,25 @@ function handleGetErrorCurryMe (res, address) {
 }
 
 export const notify = {
-  fail: function (title, text) {
+  fail: R.curry(function (title, text) {
     Vue.notify({
       group: 'fail',
       title: title,
       text: text
     })
-  },
-  success: function (title, text) {
+  }),
+  success: R.curry(function (title, text) {
     Vue.notify({
       group: 'success',
       title: title,
       text: text
     })
-  },
-  info: function (title, text) {
+  }),
+  info: R.curry(function (title, text) {
     Vue.notify({
       group: 'info',
       title: title,
       text: text
     })
-  }
+  })
 }

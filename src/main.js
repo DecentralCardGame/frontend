@@ -12,8 +12,7 @@ Vue.config.productionTip = false
 
 const base = axios.create({
   baseURL: process.env.VUE_APP_BLOCKCHAIN_API,
-  localURL: 'localhost:1317',
-  altURL: 'http://78.46.200.30'
+  localURL: 'localhost:1317'
 })
 
 Vue.prototype.$http = base
@@ -21,10 +20,6 @@ Vue.prototype.$http = base
 Vue.use(vueNcform)
 Vue.use(Notifications)
 Vue.component('vue-swing', VueSwing)
-
-Vue.component('modal', {
-  template: '#modal-template'
-})
 
 /* eslint-disable no-new */
 new Vue({

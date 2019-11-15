@@ -23,6 +23,8 @@ import { createKey } from 'signcosmostx/signStuff'
 export default {
   name: 'App',
   components: {PageFooter, PageMenu, PageHeader},
+  data () {
+  },
   mounted () {
     let newKeypair = createKey()
     localStorage.address = newKeypair.address
