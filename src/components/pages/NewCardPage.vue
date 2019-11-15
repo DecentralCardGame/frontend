@@ -116,7 +116,7 @@
               class="btn"
               @click="showModal"> Buy Card Scheme </button>
             <modal
-              v-show="isModalVisible"
+              v-if="isModalVisible"
               @close="closeModal"
             />
           </div>
@@ -138,7 +138,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
@@ -209,23 +208,6 @@ export default {
     },
     closeModal () {
       this.isModalVisible = false
-    },
-    register () {
-      axios.post(
-        this.apiURL + '/cardservice/save_card_content',
-        {
-          'base_req': {
-            'from': 'globally fetched users key',
-            'chain_id': this.chainID,
-            'sequence': '2',
-            'account_number': '0',
-            'gas': 'auto',
-            'gas_adjustment': '1.5'
-          },
-          'owner': 'globally fetched users key',
-          'content': this.generatedContent,
-          'cardid': this.cardID
-        }).then(response => (this.cards = response.data))
     },
     getNumbers (start, stop, min) {
       /* if (min >= stop) {

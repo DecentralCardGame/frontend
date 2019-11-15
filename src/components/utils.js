@@ -108,14 +108,14 @@ function getUserInfo (http, address) {
     .catch(handleGetError(R.__, address))
 }
 
-function getAccInfo (http, address) {
+export function getAccInfo (http, address) {
   return http.get('auth/accounts/' + address)
     .then(handleGetAcc(R.__, address))
     .catch(handleGetError(R.__, address))
 }
 
-function getGameInfo (http) {
-  return http.get('cardservice/cardchain_info/')
+export function getGameInfo (http) {
+  return http.get('cardservice/cardchain_info')
 }
 
 const handleGetAcc = R.curry(handleGetAccCurryMe)

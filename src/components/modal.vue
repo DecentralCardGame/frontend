@@ -1,11 +1,25 @@
 <script>
 // import * as R from 'ramda'
-import { buyCardSchemeTx, notify } from './utils.js'
+import { buyCardSchemeTx, notify, getGameInfo, getAccInfo } from './utils.js'
 
 export default {
   name: 'modal',
+  data () {
+    return {
+      currentPrice: -1,
+      creditsAvailable: -1
+    }
+  },
   mounted () {
-    // get all the infos
+    getGameInfo(this.$http)
+      .then(res => {
+        this.currentPrice = res.data.amount + res.data.denom
+      })
+    getAccInfo(this.$http, localStorage.address)
+      .then(res => {
+        let coins = res.data.value.coins[0]
+        this.creditsAvailable = coins.amount + coins.denom
+      })
   },
   methods: {
     close () {
@@ -39,8 +53,7 @@ export default {
           id="modalTitle"
         >
           <slot name="header">
-            This is the default tile!
-
+            Card Scheme Auction
             <button
               type="button"
               class="btn-close"
@@ -56,12 +69,14 @@ export default {
           id="modalDescription"
         >
           <slot name="body">
-            I'm the default body!
+            Currently a scheme costs: {{currentPrice}}
+          <br>
+            You have: {{creditsAvailable}}
           </slot>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            I'm the default footer!
+            Your bid:
 
             <button
               type="button"
@@ -77,6 +92,7 @@ export default {
     </div>
   </transition>
 </template>
+
 <style>
   .modal-backdrop {
     position: fixed;
