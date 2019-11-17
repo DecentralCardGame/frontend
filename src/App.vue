@@ -24,6 +24,8 @@ export default {
   name: 'App',
   components: {PageFooter, PageMenu, PageHeader},
   data () {
+    return {
+    }
   },
   mounted () {
     let newKeypair = createKey()

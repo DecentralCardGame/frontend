@@ -7,6 +7,7 @@ export default {
   data () {
     return {
       currentPrice: -1,
+      currentBid: -1,
       creditsAvailable: -1
     }
   },
@@ -14,6 +15,7 @@ export default {
     getGameInfo(this.$http)
       .then(res => {
         this.currentPrice = res.data.amount + res.data.denom
+        this.currentBid = this.currentPrice
       })
     getAccInfo(this.$http, localStorage.address)
       .then(res => {
@@ -69,24 +71,22 @@ export default {
           id="modalDescription"
         >
           <slot name="body">
-            Currently a scheme costs: {{currentPrice}}
+            Current price: {{currentPrice}}
           <br>
             You have: {{creditsAvailable}}
           </slot>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            Your bid:
-
-            <button
+            Your bid: {{currentBid}}
+          </slot>
+          <button
               type="button"
-              class="btn-green"
+              class="btn-teal"
               @click="buyCardScheme"
-              aria-label="Close modal"
-            >
+              aria-label="Close modal">
               BUY
             </button>
-          </slot>
         </footer>
       </div>
     </div>
@@ -122,13 +122,13 @@ export default {
 
   .modal-header {
     border-bottom: 1px solid #eeeeee;
-    color: #4AAE9B;
+    color: #12D1D1;
     justify-content: space-between;
   }
 
   .modal-footer {
     border-top: 1px solid #eeeeee;
-    justify-content: flex-end;
+    justify-content: flex;
   }
 
   .modal-body {
@@ -141,7 +141,7 @@ export default {
     padding: 20px;
     cursor: pointer;
     font-weight: bold;
-    color: #4AAE9B;
+    color: #12D1D1;
     background: transparent;
   }
 
@@ -150,5 +150,13 @@ export default {
     background: #4AAE9B;
     border: 1px solid #4AAE9B;
     border-radius: 2px;
+  }
+
+  .btn-teal {
+    color: white;
+    background: #12D1D1;
+    border: 1px solid #12D1D1;
+    border-radius: 2px;
+    justify-content: flex;
   }
 </style>

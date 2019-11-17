@@ -121,7 +121,7 @@ export function getGameInfo (http) {
 const handleGetAcc = R.curry(handleGetAccCurryMe)
 function handleGetAccCurryMe (res, address) {
   if (res.data === '') {
-    notify.fail('OH SHIT', address + ' is not registered. Please click Join and register in the blockchain.')
+    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error('account ' + address + ' is not registered')
   } else {
     return res
@@ -131,7 +131,7 @@ function handleGetAccCurryMe (res, address) {
 const handleGetError = R.curry(handleGetErrorCurryMe)
 function handleGetErrorCurryMe (res, address) {
   if (res.response) {
-    notify.fail('OH SHIT', address + ' is not registered. Please click Join and register in the blockchain.')
+    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error(res.response.data.error)
   } else {
     throw new Error(res)
