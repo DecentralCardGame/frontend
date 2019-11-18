@@ -82,7 +82,7 @@
     <text v-if="activeStep >= 2 && displayNotes" y="233" x="124" transform="skewX(-17)" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
       <tspan x="124" y="233">{{ model.notes }}</tspan>
     </text>
-    <image v-bind:xlink:href="imageURL" height="200" width="200"/>
+    <image v-bind:xlink:href="imageURL" width="100" height="200" class="cardImage"/>
   </svg>
 </template>
 

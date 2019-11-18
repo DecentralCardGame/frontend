@@ -1,0 +1,3 @@
+[submodule "src/cardSchema"]
+	path = src/cardSchema
+	url = https://github.com/DecentralCardGame/cardSchema.git

@@ -82,7 +82,7 @@
           Everybody needs a face,
           so do I, pls
           <input type="file" @change="onFileChange" />
-          <button>Upload Image</button>.<br>
+          <button>Upload Image (ja sicher)</button>.<br>
           My flavor is best expressed by
           the following sentences:
           <input v-model="model.description" value="Card Name">.
@@ -127,7 +127,7 @@
       <div class="col-visual">
         <CardComponent v-bind:model="model"
                        v-bind:active-step="activeStep"
-                       v-bind:imageUrl="cardImageUrl"
+                       v-bind:imageURL="cardImageUrl"
                         v-bind:display-notes="true">
         </CardComponent>
       </div>
@@ -258,7 +258,7 @@ export default {
 
       saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
         .then(res => {
-          console.log('here some info should pop up that card was saved successfully')
+          notify.succes('EPIC WIN', 'You have successfully published this card.')
         })
         .catch(err => {
           if (err.message === 'no cards available') {
@@ -267,15 +267,15 @@ export default {
             console.error(err)
           }
         })
+    },
+    saveDraft () {
+      localStorage.cardDraft = JSON.stringify(this.model)
+    },
+    onFileChange (e) {
+      const file = e.target.files[0]
+      this.cardImageUrl = URL.createObjectURL(file)
+      console.log(this.cardImageUrl)
     }
-  },
-  saveDraft () {
-    localStorage.cardDraft = JSON.stringify(this.model)
-  },
-  onFileChange (e) {
-    const file = e.target.files[0]
-    this.cardImageUrl = URL.createObjectURL(file)
-    // this.$emit("cardImageUrl", this.cardImageUrl);
   }
 }
 </script>
