@@ -19,6 +19,7 @@
     <path d="M34 216h137V15H34z" fill="#12d1d1"/>
     <path d="M35 128h135v-24H35zM58 212h89v-12H58zM35 195h135v-11H35z" fill="none" stroke="#000"/>
     <path d="M139 177h19v-6h-19z" fill="none"/>
+    <image preserveAspectRatio="xMinYMin slice" v-bind:xlink:href="imageURL" y="40" x="53"  width="100" height="60" class="cardImage"/>
     <text y="119" x="47" style="-inkscape-font-specification:Museo-700" text-anchor="middle" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
       <tspan x="100" y="119">{{ model.name }} {{ model.article }} {{ model.surname }}</tspan>
     </text>
@@ -82,7 +83,6 @@
     <text v-if="activeStep >= 2 && displayNotes" y="233" x="124" transform="skewX(-17)" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
       <tspan x="124" y="233">{{ model.notes }}</tspan>
     </text>
-    <image v-bind:xlink:href="imageURL" width="100" height="200" class="cardImage"/>
   </svg>
 </template>
 
