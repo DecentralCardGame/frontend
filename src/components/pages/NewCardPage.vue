@@ -10,7 +10,7 @@
     <div class="creator">
       <div class="col-settings">
         <div v-if="activeStep == 0"><br>
-          Hey, my Name is   <input v-model="model.name" value="Card Name">
+          Hey, my Name is <input v-model="model.name" value="Card Name">
           and I am the
           <select v-model="model.article">
             <option>the</option>
@@ -59,24 +59,28 @@
         </select>
           damage.
         </div>
-        <!-- <div v-if="activeStep == 2">
+        <div v-if="activeStep == 2"><br>
           My first ability is<select>
-          <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
+          <option v-for="type in rules.oneOf[3].properties.Headquarter.properties.Abilities.items.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
         </select>.
           This event gets me started:
           <select>
-            <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
+            <option v-for="type in rules.oneOf[3].properties.Headquarter.properties.Abilities.items.oneOf[1].properties.TriggeredAbility.properties.Cause.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
           </select>.
           This ability unleashs the
           following event: <select>
-          <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
-        </select>.
-        </div> -->
-        <div v-if="activeStep == 2"><br>
-          My ability is:
-          <textarea class="ability"  v-model="model.ability" >
+          <option v-for="type in rules.oneOf[3].properties.Headquarter.properties.Abilities.items.oneOf[1].properties.TriggeredAbility.properties.Effects.items.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
+        </select>
 
-          </textarea>
+          <b>Funny Debug Output begins here:</b>
+          <p>You selected the {{ model.type }} type. You can apply
+            {{ rules.oneOf[0].properties[model.type].properties.Effects.minItems }}
+            to
+            {{ rules.oneOf[0].properties[model.type].properties.Effects.maxItems }}
+            effects to the card.
+          </p>
+          <hr>
+          <p>&#65291; Add another property</p>
         </div>
         <div v-if="activeStep == 3"><br>
           Everybody needs a face,
@@ -211,12 +215,11 @@ export default {
       this.isModalVisible = false
     },
     getNumbers (start, stop, min) {
-      /* if (min >= stop) {
+      if (min >= stop) {
         return new Array(min + 1 - start).fill(start).map((n, i) => n + i)
       } else {
         return new Array(stop + 1 - start).fill(start).map((n, i) => n + i)
-      } */
-      return [1, 2, 3, 4, 5]
+      }
     },
     generateCostArray () {
       let finalArr = []
