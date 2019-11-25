@@ -94,7 +94,7 @@ function broadcast (http, signedTx) {
     return res
   }).catch(err => {
     console.error(err.response.data)
-    throw new Error(err)
+    throw err
   })
 }
 
