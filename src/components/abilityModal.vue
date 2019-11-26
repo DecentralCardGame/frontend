@@ -1,22 +1,24 @@
 <script>
 // import * as R from 'ramda'
-import { notify } from './utils.js'
 
 export default {
   name: 'modal',
   data () {
     return {
-      yes: 1
     }
   },
-  mounted () {
-    console.log('yes')
+  props: {
+    picked: 'none',
+    dialog: Object,
+    abilities: Array
   },
   methods: {
     close () {
       this.$emit('close')
     },
-    buyCardScheme () {
+    addAbility () {
+      this.abilities.push(this.picked)
+      console.log(this.abilities, 'yes')
       this.$emit('close')
     }
   }
@@ -35,7 +37,7 @@ export default {
           id="modalTitle"
         >
           <slot name="header">
-            Add new ability
+            {{dialog.title}}
             <button
               type="button"
               class="btn-close"
@@ -51,21 +53,25 @@ export default {
           id="modalDescription"
         >
           <slot name="body">
-            select: {{something}}
+            {{dialog.description}}
           <br>
-            for real: {{everything}}
+            <div v-for="option in dialog.options">
+              <input type="radio" v-model="picked" name="profileImg" :value="option"> {{option}}
+            </div>
+
           </slot>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            Your choice: {{yes}}
+            {{ picked }}
+            <br>
           </slot>
           <button
               type="button"
               class="btn-teal"
-              @click="buyCardScheme"
+              @click="addAbility"
               aria-label="Close modal">
-              YES
+              Add
             </button>
         </footer>
       </div>

@@ -40,14 +40,13 @@ export default {
       buyCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentBid)
         .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
         .catch(err => {
-          if(err.response.data.error) {
+          if (err.response.data.error) {
             var errData = JSON.parse(err.response.data.error)
-            if(errData.length > 0) {
+            if (errData.length > 0) {
               var errLog = JSON.parse(errData[0].log)
               console.log(errLog)
               notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
-            }
-            else {
+            } else {
               console.error(errData)
               notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
             }
