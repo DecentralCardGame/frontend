@@ -56,7 +56,7 @@ export default {
             {{dialog.description}}
           <br>
             <div v-for="option in dialog.options">
-              <input type="radio" v-model="picked" name="profileImg" :value="option"> {{option}}
+              <input type="radio" v-model="picked" :value="option.name"> {{option.title}} - {{option.description}}
             </div>
 
           </slot>

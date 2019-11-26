@@ -157,7 +157,16 @@ export default {
         title: 'New Ability',
         description: 'pick a type:',
         type: 'radio',
-        options: ['Activated Ability', 'Triggered Ability']
+        options: [{
+            name: 'activatedAbility',
+            title: 'Activated Ability',
+            description: 'This ability can be activated anytime by paying its cost.'
+          },
+          {
+            name: 'triggeredAbility',
+            title: 'Triggered Ability',
+            description: 'This ability is triggered by an event.'
+          }]
       },
       abilityMock: {
         name: 'Add Ability',
