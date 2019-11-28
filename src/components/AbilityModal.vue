@@ -1,29 +1,3 @@
-<script>
-// import * as R from 'ramda'
-
-export default {
-  name: 'modal',
-  data () {
-    return {
-    }
-  },
-  props: {
-    picked: 'none',
-    dialog: Object,
-    abilities: Array
-  },
-  methods: {
-    close () {
-      this.$emit('close')
-    },
-    addAbility () {
-      this.abilities.push(this.picked)
-      console.log(this.abilities, 'yes')
-      this.$emit('close')
-    }
-  }
-}
-</script>
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
@@ -78,6 +52,33 @@ export default {
     </div>
   </transition>
 </template>
+
+<script>
+// import * as R from 'ramda'
+
+export default {
+  name: 'modal',
+  data () {
+    return {
+    }
+  },
+  props: {
+    picked: 'none',
+    dialog: Object,
+    scheme: Object,
+    abilities: Array
+  },
+  methods: {
+    close () {
+      this.$emit('close')
+    },
+    addAbility () {
+      this.abilities.push(this.scheme[this.picked])
+      this.$emit('close')
+    }
+  }
+}
+</script>
 
 <style>
   .modal-backdrop {
