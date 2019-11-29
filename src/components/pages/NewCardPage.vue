@@ -179,28 +179,31 @@ export default {
           description: 'By paying a cost and effect is unleashed.',
           interaction: [
             {pre: 'Pay ', btn: 'Cost', post: 'to ', type: 'cost'},
-            {pre: ' unleash ', btn: 'an Effect', post: '.', type: 'effect'}],
-          },
+            {pre: ' unleash ', btn: 'an Effect', post: '.', type: 'effect'}]
+        },
         cost: {
           title: 'Cost',
           description: 'A Cost is an amount of ressources which must be paid.',
           dialog: {
             title: 'Define Cost',
-            description: 'check the types:',
-            type: 'radio',
+            description: 'enter a value or MARK IT ZERO:',
+            type: 'value',
             options: [{
               name: 'mana',
               title: 'Mana',
+              value: 0,
               description: ''
             },
             {
               name: 'food',
               title: 'Food',
+              value: 0,
               description: ''
             },
             {
               name: 'lumber',
               title: 'Lumber',
+              value: 0,
               description: ''
             }]
           }

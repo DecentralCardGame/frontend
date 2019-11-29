@@ -29,10 +29,19 @@
           <slot name="body">
             {{dialog.description}}
           <br>
-            <div v-for="option in dialog.options">
-              <input type="radio" v-model="picked" :value="option.name"> {{option.title}} - {{option.description}}
-            </div>
+            <div v-for="(option, index) in dialog.options">
 
+              <input v-if="dialog.type==='value'" type='text'
+                v-model="option.value" id="index" v-bind:option.value="option.value"
+                placeholder="0" @keypress="isNumber($event)"
+                style="display: inline;color:black;height:50px;text-align: right"
+                size=1
+              />
+
+              <input v-if="dialog.type==='radio'" type="radio"  v-model="picked" id="index" :value="option.name"> 
+              <label for="index">{{option.title}}</label>
+              <span v-if="option.description"> - {{option.description}} </span>
+            </div>
           </slot>
         </section>
         <footer class="modal-footer">
@@ -73,8 +82,18 @@ export default {
       this.$emit('close')
     },
     addAbility () {
+      console.log(this.dialog.options)
       this.abilities.push(this.scheme[this.picked])
       this.$emit('close')
+    },
+    isNumber: function (evt) {
+      evt = evt || window.event
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault()
+      } else {
+        return true
+      }
     }
   }
 }
