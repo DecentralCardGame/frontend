@@ -38,13 +38,13 @@
                 size=1
               />
 
-              <input v-if="dialog.type==='checkbox'" type="checkbox" 
+              <input v-if="dialog.type==='checkbox'" type="checkbox"
                 v-model="option.value" id="index" :value="option.name"
               >
-              
-              <input v-if="dialog.type==='radio'" type="radio" 
+
+              <input v-if="dialog.type==='radio'" type="radio"
                 v-model="option.value" id="index" :value="option.name"
-              > 
+              >
 
               <label for="index">{{option.title}}</label>
 
@@ -91,20 +91,29 @@ export default {
       this.$emit('close')
     },
     addAbility () {
-      //console.log("picked: ", picked)
-      
+      console.log("dialog options: ", this.dialog.options)
+
       if(this.dialog.options[0].value === 'triggeredAbility' || this.dialog.options[0].value === 'activatedAbility') {
         this.abilities.push(this.elements[this.dialog.options[0].value])
         console.log('abilities: ', this.abilities)
-      } else if(this.dialog.type === 'multivalue') {
-        this.ability = 'bla'
-        console.log("bla")
       }
+      else if(this.dialog.type === 'multivalue') {
+        this.currentNode.type = this.dialog.type
+        this.currentNode.values = []
+        var label = ''
 
+        this.dialog.options.forEach((item,index) => {
+            if(item.value) {
+              this.currentNode.values.push({name: item.name, amount: item.value})
+              if(index !== 0) label += ', '
+              label += item.value + ' ' + item.title
+            }
+        })
 
-      console.log("dialog options: ", this.dialog.options)
-      console.log("picked value: ", this.dialog.options[0].value)
-      console.log("corresponding element: ", this.elements[this.dialog.options[0].value])
+        this.currentNode.interaction[0] = {pre: 'Pay ', btn: label, post: 'to ', type: 'cost'}
+
+        console.log("current node: ", this.currentNode)
+      }
 
       this.$emit('close')
     },

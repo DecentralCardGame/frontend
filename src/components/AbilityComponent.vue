@@ -4,6 +4,7 @@
       v-if="isAbilityModalVisible"
       v-bind:dialog="dialog"
       v-bind:elements="elements"
+      v-bind:currentNode="ability"
       v-bind:abilities="abilities"
       @close="closeAbilityModal"
     />
