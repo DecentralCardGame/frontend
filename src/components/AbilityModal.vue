@@ -31,15 +31,23 @@
           <br>
             <div v-for="(option, index) in dialog.options">
 
-              <input v-if="dialog.type==='value'" type='text'
+              <input v-if="dialog.type==='multivalue'" type='text'
                 v-model="option.value" id="index" v-bind:option.value="option.value"
                 placeholder="0" @keypress="isNumber($event)"
                 style="display: inline;color:black;height:50px;text-align: right"
                 size=1
               />
 
-              <input v-if="dialog.type==='radio'" type="radio"  v-model="picked" id="index" :value="option.name"> 
+              <input v-if="dialog.type==='checkbox'" type="checkbox" 
+                v-model="option.value" id="index" :value="option.name"
+              >
+              
+              <input v-if="dialog.type==='radio'" type="radio" 
+                v-model="option.value" id="index" :value="option.name"
+              > 
+
               <label for="index">{{option.title}}</label>
+
               <span v-if="option.description"> - {{option.description}} </span>
             </div>
           </slot>
@@ -63,7 +71,7 @@
 </template>
 
 <script>
-// import * as R from 'ramda'
+import * as R from 'ramda'
 
 export default {
   name: 'modal',
@@ -72,9 +80,10 @@ export default {
     }
   },
   props: {
-    picked: 'none',
+    picked: Object,
     dialog: Object,
-    scheme: Object,
+    elements: Object,
+    currentNode: Object,
     abilities: Array
   },
   methods: {
@@ -82,8 +91,21 @@ export default {
       this.$emit('close')
     },
     addAbility () {
-      console.log(this.dialog.options)
-      this.abilities.push(this.scheme[this.picked])
+      //console.log("picked: ", picked)
+      
+      if(this.dialog.options[0].value === 'triggeredAbility' || this.dialog.options[0].value === 'activatedAbility') {
+        this.abilities.push(this.elements[this.dialog.options[0].value])
+        console.log('abilities: ', this.abilities)
+      } else if(this.dialog.type === 'multivalue') {
+        this.ability = 'bla'
+        console.log("bla")
+      }
+
+
+      console.log("dialog options: ", this.dialog.options)
+      console.log("picked value: ", this.dialog.options[0].value)
+      console.log("corresponding element: ", this.elements[this.dialog.options[0].value])
+
       this.$emit('close')
     },
     isNumber: function (evt) {

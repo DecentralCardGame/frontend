@@ -64,21 +64,20 @@
             <button
               type="button"
               class="btn"
-              @click="showAbilityModal"> New Ability </button>
+              @click="showAbilityModal(abilities)"> New Ability </button>
             <AbilityModal
               v-if="isAbilityModalVisible"
               v-bind:dialog="abilityDialog"
-              v-bind:scheme="abilityScheme"
+              v-bind:elements="abilityElements"
               v-bind:abilities="abilities"
               @close="closeAbilityModal"
             />
           </template>
           <div v-for="ability in abilities">
             <AbilityComponent
-              v-bind:elements="elements"
               v-bind:ability="ability"
               v-bind:dialog="abilityDialog"
-              v-bind:scheme="abilityScheme"
+              v-bind:elements="abilityElements"
               v-bind:abilities="abilities"
             />
           </div>
@@ -158,6 +157,7 @@ export default {
       isBuySchemeModalVisible: false,
       activeStep: 0,
       abilities: [],
+      currentNode: Object,
       abilityDialog: {
         title: 'New Ability',
         description: 'pick a type:',
@@ -173,7 +173,7 @@ export default {
           description: 'An event unleashes an effect.'
         }]
       },
-      elements: {
+      abilityElements: {
         activatedAbility: {
           title: 'Activated Ability',
           description: 'By paying a cost and effect is unleashed.',
@@ -187,7 +187,7 @@ export default {
           dialog: {
             title: 'Define Cost',
             description: 'enter a value or MARK IT ZERO:',
-            type: 'value',
+            type: 'multivalue',
             options: [{
               name: 'mana',
               title: 'Mana',
@@ -206,7 +206,10 @@ export default {
               value: 0,
               description: ''
             }]
-          }
+          },
+          interaction: [
+            {pre: 'yes ', btn: 'pups', post: 'to ', type: 'cost'}
+          ]
         },
         effect: {
           title: 'Effect',
@@ -231,6 +234,66 @@ export default {
               description: 'create an object'
             }]
           }
+        },
+        event: {
+          title: 'Event',
+          description: 'An Event is something hat has happened.',
+          dialog: {
+            title: 'Define Event',
+            description: 'check the types:',
+            type: 'radio',
+            options: [{
+              name: 'zonechange',
+              title: 'Zone Change',
+              description: 'An object was moved to another zone.'
+            },
+            {
+              name: 'manipulation',
+              title: 'Manipulation',
+              description: 'An object or location or HQ is manipulated.'
+            },
+            {
+              name: 'creation',
+              title: 'Creation',
+              description: 'An object or location was created.'
+            }]
+          }
+
+        },
+        zone: {
+          title: 'Zone',
+          description: 'A zone is a place of the game.',
+          dialog: {
+            title: 'Pick Zone',
+            description: 'pick the appropriate zone',
+            type: 'radio',
+            options: [{
+              name: 'field',
+              title: 'Field',
+              description: 'This is the realm of alive creatures and active machines.'
+            },
+            {
+              name: 'hand',
+              title: 'Hand',
+              description: 'The hand of a player.'
+            },
+            {
+              name: 'dust',
+              title: 'Dust',
+              description: 'Destroyed machines and killed creatures move to the dust.'
+            },
+            {
+              name: 'deck',
+              title: 'Deck',
+              description: 'The deck contains your available cards.'
+            },
+            {
+              name: 'void',
+              title: 'Void',
+              description: 'The void is the ultimate nothingness. Finally removed from the game.'
+            }]
+          }
+
         }
       },
       abilityScheme: {
@@ -334,7 +397,8 @@ export default {
     closeBuySchemeModal () {
       this.isBuySchemeModalVisible = false
     },
-    showAbilityModal () {
+    showAbilityModal (currentNode) {
+      this.currentNode = currentNode
       this.isAbilityModalVisible = true
     },
     closeAbilityModal () {

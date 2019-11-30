@@ -3,7 +3,7 @@
     <AbilityModal
       v-if="isAbilityModalVisible"
       v-bind:dialog="dialog"
-      v-bind:scheme="scheme"
+      v-bind:elements="elements"
       v-bind:abilities="abilities"
       @close="closeAbilityModal"
     />
@@ -26,7 +26,6 @@ export default {
     elements: Object,
     ability: Object,
     dialog: Object,
-    scheme: Object,
     abilities: Array
   },
   data () {
@@ -40,7 +39,7 @@ export default {
   },
   methods: {
     showAbilityModal (entry) {
-      console.log(entry)
+      console.log(entry.type)
       this.dialog = this.elements[entry.type].dialog
       this.isAbilityModalVisible = true
     },
