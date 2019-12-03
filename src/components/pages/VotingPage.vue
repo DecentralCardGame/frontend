@@ -13,6 +13,9 @@
           <CardComponent  v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
         </div>
       </vue-swing>
+      <button @click="vote(1, 'fair_enough')">Fair Enough</button>
+      <button @click="vote(1, 'overpowered')">Overpowered</button>
+      <button @click="vote(1, 'underpowered')">Underpowered</button>
     </div>
   </div>
 </template>
@@ -94,7 +97,7 @@ export default {
 
 <style scoped>
 .box {
-  position: absolute;
+  position: relative;
 }
 .voter {
   min-height: 100vh;

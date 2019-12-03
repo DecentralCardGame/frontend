@@ -7,9 +7,6 @@ import VueSwing from 'vue-swing'
 import App from './App'
 import router from './router'
 import * as axios from 'axios'
-import cardSchema from './cardSchema/cardSchema'
-
-console.log(cardSchema)
 
 Vue.config.productionTip = false
 

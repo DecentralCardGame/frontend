@@ -10,51 +10,53 @@
     <div class="creator">
       <div class="col-settings">
         <div v-if="activeStep == 0"><br>
-          Hey, my Name is <input v-model="model.name" value="Card Name">
+          Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name">
           and I am the
-          <select v-model="model.article">
+          <select @change="saveDraft" v-model="model.article">
             <option>the</option>
             <option>a</option>
           </select>
-          <input v-model="model.surname" value="Surname">.
+          <input @change="saveDraft" v-model="model.surname" value="Surname">.
           My type is
-          <select v-model="model.type">
+          <select @change="saveDraft" v-model="model.type">
             <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
           </select>.<br>
           People like to tag me as ...<br>
-          <select>
+          <select @change="saveDraft">
+            <option>Common</option>
+            <option>Rare</option>
             <option>Legendary</option>
           </select>
           is my rarity.
         </div>
         <div v-if="activeStep == 1"><br>
           As I am quite awesome my costs are the following:
-          <select v-model="model.cost.lumber">
+          <select @change="saveDraft" v-model="model.cost.lumber">
             <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.lumber)" :value="n">{{n}}</option>
           </select> Lumber,
-          <select v-model="model.cost.food">
+          <select @change="saveDraft" v-model="model.cost.food">
             <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.food)" :value="n">{{n}}</option>
           </select> Food,
-          <select v-model="model.cost.iron">
+          <select @change="saveDraft" v-model="model.cost.iron">
             <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.iron)" :value="n">{{n}}</option>
           </select> Iron,
-          <select v-model="model.cost.mana">
+          <select @change="saveDraft" v-model="model.cost.mana">
             <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.mana)" :value="n">{{n}}</option>
           </select> Mana,
-          <select v-model="model.cost.energy">
+          <select @change="saveDraft" v-model="model.cost.energy">
             <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.energy)" :value="n">{{n}}</option>
           </select> Energy,
-          <select v-model="model.cost.generic">
+          <select @change="saveDraft" v-model="model.cost.generic">
             <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.generic)" :value="n">{{n}}</option>
           </select> Generic,
-          All it needs are <select v-model="model.ticks">
+          All it needs are <select @change="saveDraft" v-model="model.ticks">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select> Ticks, to get me rolling. I have an
-          attack of <select v-model="model.attack">
+          attack of <select @change="saveDraft" v-model="model.attack">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select> and I sadly die
           after someone suckerpunchs
-          me for <select v-model="model.defense">
+          me for <select @change="saveDraft" v-model="model.defense">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select>
           damage.
@@ -85,14 +87,14 @@
         <div v-if="activeStep == 3"><br>
           Everybody needs a face,
           so do I, pls
-          <input type="file" @change="onFileChange" />
-          <button>Upload Image (ja sicher)</button>.<br>
+          <input type="file" name="file" id="file" class="inputfile" @change="onFileChange" />
+          <label for="file" class="button-file">Choose a file</label>
           My flavor is best expressed by
           the following sentences:
-          <input v-model="model.description" value="Card Name">.
+          <input @change="saveDraft" v-model="model.description" value="Card Name">.
           I would like to give the
           council proper intel:
-          <input v-model="model.notes" value="Card Name">.
+          <input @change="saveDraft" v-model="model.notes" value="Card Name">.
         </div>
         <div v-if="activeStep == 4"><br>
           Uh, uh, uh. I like my looks,
@@ -105,6 +107,7 @@
           Or save my awesome looks for later purposes.
           <br><br>
           <button @click="saveSubmit()">Publish</button>
+          <button @click="downloadCard()">Download</button>
           <button @click="saveDraft()">Save As Draft</button>
         </div>
         <br>
@@ -129,7 +132,7 @@
       </div>
 
       <div class="col-visual">
-        <CardComponent v-bind:model="model"
+        <CardComponent id="card" v-bind:model="model"
                        v-bind:active-step="activeStep"
                        v-bind:imageURL="cardImageUrl"
                         v-bind:display-notes="true">
@@ -147,6 +150,7 @@ import ContentContainerComponent from '@/components/ContentContainerComponent'
 import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
 import modal from '../modal.vue'
+import { saveAs } from 'file-saver'
 
 // eslint-disable-next-line no-unused-vars
 import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx, notify } from '../utils.js'
@@ -273,11 +277,16 @@ export default {
     },
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)
+      console.log('DRAFT SAVED')
     },
     onFileChange (e) {
       const file = e.target.files[0]
       this.cardImageUrl = URL.createObjectURL(file)
       console.log(this.cardImageUrl)
+    },
+    downloadCard () {
+      var blob = new Blob([document.getElementById('card').outerHTML], {type: 'text/plain;charset=utf-8'})
+      saveAs(blob, 'card.svg')
     }
   }
 }
@@ -312,6 +321,20 @@ export default {
     border: 4px solid white;
     padding: 0.2em;
     transform: skewX(-15deg);
+  }
+
+  .button-file {
+    background-color: white;
+    color: black;
+    font-size: 120%;
+    padding: 0.1em 1em;
+    box-shadow: 7px 7px 0 black;
+    border: none;
+    cursor: pointer;
+  }
+
+  .inputfile {
+    display: none;
   }
 
   .ability {
