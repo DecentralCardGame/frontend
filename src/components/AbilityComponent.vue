@@ -3,9 +3,7 @@
     <AbilityModal
       v-if="isAbilityModalVisible"
       v-bind:dialog="dialog"
-      v-bind:elements="elements"
-      v-bind:currentNode="ability"
-      v-bind:abilities="abilities"
+      v-bind:ability="ability"
       @close="closeAbilityModal"
     />
     <div v-for="entry in ability.interaction" class="ability" >
@@ -19,15 +17,16 @@
 
 <script>
 import AbilityModal from './AbilityModal.vue'
+import { filterSelection, resolveParagraph } from './utils.js'
 
 export default {
   name: 'AbilityComponent',
   components: {AbilityModal},
   props: {
     elements: Object,
-    ability: Object,
+    currentNode: Object,
     dialog: Object,
-    abilities: Array
+    ability: Object
   },
   data () {
     return {

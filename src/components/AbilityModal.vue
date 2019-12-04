@@ -46,6 +46,10 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
+              <input v-if="dialog.type==='root'" type="radio"
+                v-model="option.value" id="index" :value="option.name"
+              >
+
               <label for="index">{{option.title}}</label>
 
               <span v-if="option.description"> - {{option.description}} </span>
@@ -72,6 +76,7 @@
 
 <script>
 import * as R from 'ramda'
+import { filterSelection, filterProperties, resolveParagraph, copy } from './utils.js'
 
 export default {
   name: 'modal',
@@ -82,7 +87,7 @@ export default {
   props: {
     picked: Object,
     dialog: Object,
-    elements: Object,
+    options: Object,
     currentNode: Object,
     abilities: Array
   },
@@ -91,28 +96,45 @@ export default {
       this.$emit('close')
     },
     addAbility () {
-      console.log("dialog options: ", this.dialog.options)
+      
 
-      if(this.dialog.options[0].value === 'triggeredAbility' || this.dialog.options[0].value === 'activatedAbility') {
-        this.abilities.push(this.elements[this.dialog.options[0].value])
-        console.log('abilities: ', this.abilities)
-      }
-      else if(this.dialog.type === 'multivalue') {
+      console.log("dialog options: ", this.dialog.options)
+      console.log("type:", this.dialog.type)
+
+      // if (this.dialog.options[0].value === 'triggeredAbility' || this.dialog.options[0].value === 'activatedAbility') {
+      if (this.dialog.type === 'root') {
+        let selection = filterSelection(this.dialog.options).option.value
+        let properties = filterProperties(this.options, selection)
+        let newAbility = {}
+        newAbility[resolveParagraph(selection)] = copy(properties.properties)[resolveParagraph(selection)]
+
+        newAbility.interaction = createInteraction(newAbility[resolveParagraph(selection)].description)
+
+        this.abilities.push(newAbility)
+
+        console.log("newAbility: ", newAbility)
+
+      } else if (this.dialog.type === 'multivalue') {
         this.currentNode.type = this.dialog.type
         this.currentNode.values = []
         var label = ''
 
-        this.dialog.options.forEach((item,index) => {
-            if(item.value) {
-              this.currentNode.values.push({name: item.name, amount: item.value})
-              if(index !== 0) label += ', '
-              label += item.value + ' ' + item.title
-            }
+        this.dialog.options.forEach((item, index) => {
+          if (item.value) {
+            this.currentNode.values.push({name: item.name, amount: item.value})
+            if (index !== 0) label += ', '
+            label += item.value + ' ' + item.title
+          }
         })
 
         this.currentNode.interaction[0] = {pre: 'Pay ', btn: label, post: 'to ', type: 'cost'}
 
         console.log("current node: ", this.currentNode)
+      } else if (this.dialog.type === 'radio') {
+        this.currentNode.interaction = this.elements[this.dialog.options[0].value].interaction
+        console.log(this.dialog.options[0].value)
+      } else {
+        console.log ('this type is not else ifed: ', this.dialog.type)
       }
 
       this.$emit('close')
@@ -128,6 +150,35 @@ export default {
     }
   }
 }
+
+function createInteraction(description) {
+  let text = description
+  let regex=/([§]+)([a-z,A-Z]+)/g
+  text = text.replace(regex, "$1%$2§");
+  text = text.split('§')
+
+  console.log(text)
+
+  let interaction = []
+
+  text.forEach(entry => {
+
+    if (entry[0] === '%') {
+      interaction[interaction.length-1].btn = entry.slice(1)
+    } else {
+      interaction.push({pre: entry, btn: ''})
+    }
+  })
+
+  if (interaction[interaction.length-1].btn === '') {
+    interaction[interaction.length-2].post = interaction[interaction.length-1].pre
+    interaction.splice(-1,1)
+  }
+
+  console.log('result: ',interaction)
+  return interaction
+}
+
 </script>
 
 <style>

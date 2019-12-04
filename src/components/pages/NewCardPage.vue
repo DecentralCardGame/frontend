@@ -64,11 +64,12 @@
             <button
               type="button"
               class="btn"
-              @click="showAbilityModal(abilities)"> New Ability </button>
+              @click="showAbilityModal('root')"> New Ability </button>
+
             <AbilityModal
               v-if="isAbilityModalVisible"
               v-bind:dialog="abilityDialog"
-              v-bind:elements="abilityElements"
+              v-bind:options="abilityOptions"
               v-bind:abilities="abilities"
               @close="closeAbilityModal"
             />
@@ -77,7 +78,6 @@
             <AbilityComponent
               v-bind:ability="ability"
               v-bind:dialog="abilityDialog"
-              v-bind:elements="abilityElements"
               v-bind:abilities="abilities"
             />
           </div>
@@ -146,7 +146,7 @@ import AbilityModal from '../AbilityModal.vue'
 import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
-import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx, notify, sampleImg } from '../utils.js'
+import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx, notify, sampleImg, resolveParagraph } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -157,190 +157,9 @@ export default {
       isBuySchemeModalVisible: false,
       activeStep: 0,
       abilities: [],
+      abilityOptions: {},
       currentNode: Object,
-      abilityDialog: {
-        title: 'New Ability',
-        description: 'pick a type:',
-        type: 'radio',
-        options: [{
-          name: 'activatedAbility',
-          title: 'Activated Ability',
-          description: 'By paying a cost an effect is unleashed.'
-        },
-        {
-          name: 'triggeredAbility',
-          title: 'Triggered Ability',
-          description: 'An event unleashes an effect.'
-        }]
-      },
-      abilityElements: {
-        activatedAbility: {
-          title: 'Activated Ability',
-          description: 'By paying a cost and effect is unleashed.',
-          interaction: [
-            {pre: 'Pay ', btn: 'Cost', post: 'to ', type: 'cost'},
-            {pre: ' unleash ', btn: 'an Effect', post: '.', type: 'effect'}]
-        },
-        cost: {
-          title: 'Cost',
-          description: 'A Cost is an amount of ressources which must be paid.',
-          dialog: {
-            title: 'Define Cost',
-            description: 'enter a value or MARK IT ZERO:',
-            type: 'multivalue',
-            options: [{
-              name: 'mana',
-              title: 'Mana',
-              value: 0,
-              description: ''
-            },
-            {
-              name: 'food',
-              title: 'Food',
-              value: 0,
-              description: ''
-            },
-            {
-              name: 'lumber',
-              title: 'Lumber',
-              value: 0,
-              description: ''
-            }]
-          },
-          interaction: [
-            {pre: 'yes ', btn: 'pups', post: 'to ', type: 'cost'}
-          ]
-        },
-        effect: {
-          title: 'Effect',
-          description: 'An Effect changes something.',
-          dialog: {
-            title: 'Define Cost',
-            description: 'check the types:',
-            type: 'radio',
-            options: [{
-              name: 'manipulation',
-              title: 'Manipulation',
-              description: 'change a property of an object, location or HQ'
-            },
-            {
-              name: 'production',
-              title: 'Production',
-              description: 'produces a ressource'
-            },
-            {
-              name: 'create',
-              title: 'Create',
-              description: 'create an object'
-            }]
-          }
-        },
-        event: {
-          title: 'Event',
-          description: 'An Event is something hat has happened.',
-          dialog: {
-            title: 'Define Event',
-            description: 'check the types:',
-            type: 'radio',
-            options: [{
-              name: 'zonechange',
-              title: 'Zone Change',
-              description: 'An object was moved to another zone.'
-            },
-            {
-              name: 'manipulation',
-              title: 'Manipulation',
-              description: 'An object or location or HQ is manipulated.'
-            },
-            {
-              name: 'creation',
-              title: 'Creation',
-              description: 'An object or location was created.'
-            }]
-          }
-
-        },
-        zone: {
-          title: 'Zone',
-          description: 'A zone is a place of the game.',
-          dialog: {
-            title: 'Pick Zone',
-            description: 'pick the appropriate zone',
-            type: 'radio',
-            options: [{
-              name: 'field',
-              title: 'Field',
-              description: 'This is the realm of alive creatures and active machines.'
-            },
-            {
-              name: 'hand',
-              title: 'Hand',
-              description: 'The hand of a player.'
-            },
-            {
-              name: 'dust',
-              title: 'Dust',
-              description: 'Destroyed machines and killed creatures move to the dust.'
-            },
-            {
-              name: 'deck',
-              title: 'Deck',
-              description: 'The deck contains your available cards.'
-            },
-            {
-              name: 'void',
-              title: 'Void',
-              description: 'The void is the ultimate nothingness. Finally removed from the game.'
-            }]
-          }
-
-        }
-      },
-      abilityScheme: {
-        name: 'Add Ability',
-        description: 'Add a new ability to the card. Pick the type of ability from the following list:',
-        pickOne: ['activatedAbility', 'triggeredAbility'],
-        activatedAbility: {
-          name: 'Activated Ability',
-          description: 'By paying a cost and effect is unleashed.',
-          interaction: [
-            {pre: 'Pay ', btn: 'Cost', post: 'to ', type: 'cost'},
-            {pre: ' unleash ', btn: 'an Effect', post: '.', type: 'effect'}],
-          mustFill: ['cost', 'effect'],
-          optional: [],
-          cost: {
-
-          },
-          effect: {
-            name: 'Effect',
-            description: 'An Effect changes something in the game. Hitpoints of an object, or let\'s you draw cards.',
-            pickOne: ['move', 'draw'],
-            move: {
-              name: 'Zone Move',
-              description: 'This effect moves a card to another zone. For example from the field to the owner\'s hand.',
-              mustFill: ['from', 'to', 'validTarget', 'validOwner'],
-              validTarget: ['object', 'location', 'card in hand', 'top card of deck'],
-              validOwner: ['self', 'ally', 'opponent', 'any'],
-              from: ['field', 'hand', 'deck', 'dust pile'],
-              to: ['field', 'hand', 'deck', 'dust pile']
-            },
-            draw: {
-              name: 'Draw Card',
-              description: 'This effect let\'s a player draw cards',
-              mustFill: ['amount', 'validTarget'],
-              validTarget: ['self', 'ally', 'opponent', 'any'],
-              amount: 'number'
-            }
-          }
-        },
-        triggeredAbility: {
-          name: 'dummy Trigger',
-          description: 'Whenever {an event} happens, unleash {an effect}',
-          interaction: [
-            {pre: 'Whenever an ', btn: 'Event', post: 'happens, ', type: 'event'},
-            {pre: 'unleash ', btn: 'an Effect', post: '.', type: 'effect'}]
-        }
-      },
+      abilityDialog: {},
       cardImageUrl: sampleImg,
       model: {
         name: 'Name',
@@ -376,7 +195,7 @@ export default {
         console.log(err)
       } else {
         this.rules = api
-        console.log(api)
+        console.log("rules: ", api)
       }
     })
   },
@@ -397,9 +216,46 @@ export default {
     closeBuySchemeModal () {
       this.isBuySchemeModalVisible = false
     },
-    showAbilityModal (currentNode) {
-      this.currentNode = currentNode
+    showAbilityModal (type) {
       this.isAbilityModalVisible = true
+
+      if (type === 'root') {
+        if(this.model.type === 'No Type') {
+          this.model.type = 'Entity'
+        }
+
+        this.rules.oneOf.forEach((cardType, index) => {
+          
+          if(cardType.properties[this.model.type]) {
+            
+            let options = cardType.properties[this.model.type].properties.Abilities.items.oneOf
+
+            let dialog = {
+              title: 'New Ability',
+              description: 'Pick an ability type:',
+              type: 'root',
+              options: []
+            }
+
+            options.forEach(option => {
+              dialog.options.push({
+                name: option.description,
+                title: option.title,
+                description: option.properties[resolveParagraph(option.description)].description
+              })
+            })
+
+            console.log("dialog: ", dialog)
+            this.abilityOptions = options
+            this.abilityDialog = dialog
+          } else {
+            console.log('oh shit, cardtype not found')
+          }
+        })
+
+        
+      }
+      
     },
     closeAbilityModal () {
       this.isAbilityModalVisible = false
