@@ -71,6 +71,7 @@
               v-bind:dialog="abilityDialog"
               v-bind:options="abilityOptions"
               v-bind:abilities="abilities"
+              v-bind:currentNode="currentNode"
               @close="closeAbilityModal"
             />
           </template>
@@ -79,6 +80,7 @@
               v-bind:ability="ability"
               v-bind:dialog="abilityDialog"
               v-bind:abilities="abilities"
+              v-bind:currentNode="currentNode"
             />
           </div>
         </div>
@@ -158,7 +160,7 @@ export default {
       activeStep: 0,
       abilities: [],
       abilityOptions: {},
-      currentNode: Object,
+      currentNode: {shiat: 'fux'},
       abilityDialog: {},
       cardImageUrl: sampleImg,
       model: {
@@ -248,14 +250,18 @@ export default {
             console.log("dialog: ", dialog)
             this.abilityOptions = options
             this.abilityDialog = dialog
+            this.currentNode = {shiot: 'fux'}
+            
           } else {
             console.log('oh shit, cardtype not found')
+            this.currentNode = {shiatsu: 'fuox'}
+            
           }
         })
-
-        
+      } else {
+        console.log('WTF')
       }
-      
+      console.log('currentNode: ', this.currentNode)
     },
     closeAbilityModal () {
       this.isAbilityModalVisible = false

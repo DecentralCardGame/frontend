@@ -46,6 +46,11 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
+              <button v-if="dialog.type==='enum'" type="enumbtn"
+                v-model="option.value" @click="addToArray(index, arrayCount)" id="index" :value="option.name">
+                {{option.name}} {{arrayCount[index]}}
+              </button>
+
               <input v-if="dialog.type==='root'" type="radio"
                 v-model="option.value" id="index" :value="option.name"
               >
@@ -82,6 +87,7 @@ export default {
   name: 'modal',
   data () {
     return {
+      arrayCount: [0,0,0,0,0,0]
     }
   },
   props: {
@@ -91,24 +97,27 @@ export default {
     currentNode: Object,
     abilities: Array
   },
+  mounted: () => {
+    console.log('currentNode: ', this.currentNode)
+    //this.arrayCount = [0,0,0,0,0,0]
+    //console.log('arrCo: ',this.arrayCount)
+  },
   methods: {
     close () {
       this.$emit('close')
     },
     addAbility () {
       
-
       console.log("dialog options: ", this.dialog.options)
       console.log("type:", this.dialog.type)
 
-      // if (this.dialog.options[0].value === 'triggeredAbility' || this.dialog.options[0].value === 'activatedAbility') {
       if (this.dialog.type === 'root') {
         let selection = filterSelection(this.dialog.options).option.value
         let properties = filterProperties(this.options, selection)
         let newAbility = {}
         newAbility[resolveParagraph(selection)] = copy(properties.properties)[resolveParagraph(selection)]
-
         newAbility.interaction = createInteraction(newAbility[resolveParagraph(selection)].description)
+        newAbility.name = resolveParagraph(selection)
 
         this.abilities.push(newAbility)
 
@@ -130,14 +139,22 @@ export default {
         this.currentNode.interaction[0] = {pre: 'Pay ', btn: label, post: 'to ', type: 'cost'}
 
         console.log("current node: ", this.currentNode)
+      } else if (this.dialog.type === 'enum') {
+        console.log('yes')
+        console.log(this.dialog.options)
+        this.currentNode = this.dialog.options
+        console.log(this.currentNode)
       } else if (this.dialog.type === 'radio') {
-        this.currentNode.interaction = this.elements[this.dialog.options[0].value].interaction
-        console.log(this.dialog.options[0].value)
+
       } else {
-        console.log ('this type is not else ifed: ', this.dialog.type)
+        console.log ('this type is unkown: ', this.dialog.type)
       }
 
       this.$emit('close')
+    },
+    addToArray(id, array) {
+      console.log(this.arrayCount)
+      this.arrayCount[id] += 1
     },
     isNumber: function (evt) {
       evt = evt || window.event
