@@ -1,88 +1,203 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="700" v-bind:viewBox="viewBox" version="1">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="700" v-bind:viewBox="viewBox" >
+    <defs/>
     <defs>
-      <clipPath id="d">
-        <path d="M0 0h1920v2800H0z"/>
-      </clipPath>
-      <clipPath id="b">
-        <path d="M0 0h1920v2800H0z"/>
-      </clipPath>
-      <clipPath id="c">
-        <path d="M1433 2384h64v-36h-64z"/>
-      </clipPath>
-      <clipPath id="a">
-        <path d="M1150 2115h349v214h-349z"/>
+      <clipPath>
+        <circle cx="5.5" cy="5.5" r="5" class="cls-1"/>
       </clipPath>
     </defs>
-    <path v-if="displayNotes" d="M50 222l-6 63 17-5 22 5 19-3 44 9 18-3 11 3-7-76-118 4z" fill="#12d1d1"/>
-    <path d="M38 20v201h135l6-201z" fill="#fff"/>
-    <path d="M34 216h137V15H34z" fill="#12d1d1"/>
-    <path d="M35 128h135v-24H35zM58 212h89v-12H58zM35 195h135v-11H35z" fill="none" stroke="#000"/>
-    <path d="M139 177h19v-6h-19z" fill="none"/>
-    <image preserveAspectRatio="xMinYMin slice" v-bind:xlink:href="imageURL" y="40" x="53"  width="100" height="60" class="cardImage"/>
-    <text y="119" x="47" style="-inkscape-font-specification:Museo-700" text-anchor="middle" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
-      <tspan x="100" y="119">{{ model.name }} {{ model.article }} {{ model.surname }}</tspan>
-    </text>
-    <text y="208" x="80" style="-inkscape-font-specification:Museo-700" text-anchor="middle" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
-      <tspan x="100" y="208">{{ model.type }}</tspan>
-    </text>
-    <path v-if="displayNotes" d="M45 220l-5 62 16-5 22 5 19-2 44 9 18-3 12 3-7-69-119-3z" fill="#fff"/>
-    <text y="192" x="40" style="-inkscape-font-specification:Museo-700" text-anchor="middle" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
-      <tspan x="105" y="192">{{ model.tags }}</tspan>
-    </text>
-    <text inline-size="180" v-if="activeStep > 1" y="139" x="87" transform="skewX(-17)" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
-      <tspan x="85" y="139">{{ model.ability + " " + model.description }}</tspan>
-    </text>
-    <text v-if="activeStep > 2"  y="176" x="141" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="4" font-family="Museo 700" stroke-width="0">
-      <tspan x="141" y="176">periodic</tspan>
-    </text>
-    <path v-if="activeStep >= 1" d="M141 19l-4 7 8 1-7 8 11-8-6-3 2-5z" fill="#fff"/>
-    <g v-if="activeStep >= 1"  clip-path="url(#b)" transform="matrix(.30788 0 0 -.30788 -305 755)">
-      <g clip-path="url(#c)">
-        <text transform="matrix(1 0 0 -1 1447 2356)" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="28" font-family="Museo 700" fill="#d61224">
-          <tspan x="0" y="0">{{ model.cost.energy }}</tspan>
-        </text>
+    <g>
+      <g>
+        <path id="line1313" fill="none" stroke="#ffb300" stroke-linecap="round" stroke-linejoin="round" d="M101 190.9v-20" class="cls-1"/>
+        <rect id="rect1315" width="154" height="240" x="0" y="0" fill="#020007" fill-opacity="1" class="cls-2" rx="8"/>
+        <path id="path1317" fill="#001433" d="M140.3 132.3h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z" class="cls-3"/>
+        <path id="polygon1319" fill="#001433" d="M149.3 134.1l2 7.1H1.3l2.1-7.1-2.1-7.2h150z" class="cls-3"/>
+        <path id="path1321" fill="none" stroke="#d99941" d="M4.3 138.7v93.1a4 4 0 004 4h136a4 4 0 004-4v-93.1" class="cls-4"/>
+        <path id="polygon1325" fill="#a37331" d="M141.2 136.6h6.1l-6.1 3.9z" class="cls-6"/>
+        <path id="polygon1327" fill="#a37331" d="M11.4 136.6H5.3l6.1 3.9z" class="cls-6"/>
+        <rect id="rect1329" width="134" height="100" x="9.3" y="131.2" fill="#fffefc" fill-opacity="1" class="cls-7" rx="4"/>
+        <path id="polygon1331" fill="#d99941" d="M143.3 131.6v7H9.3v-14h134z"/>
+        <path id="polygon1333" fill="#ffdfa1" d="M147.3 129.6v7H5.3v-14h142z"/>
+        <path id="rect1335" fill="#a37331" d="M3.8 140.6h1v.6h-1z" class="cls-6"/>
+        <path id="rect1337" fill="#a37331" d="M147.8 140.6h1v.6h-1z" class="cls-6"/>
+        <path id="path1339" fill="#001433" d="M140.3 19h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z" class="cls-3"/>
+        <rect id="rect1341" width="134" height="100" x="9.3" y="18.1" fill="#f2f2f2" class="cls-7" />
+        <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:xlink:href="imageURL" x="9.3" y="18.1" width="134" height="100" rx="4" class="cardImage"/>
+        <path id="rect1343" fill="#d99941" fill-opacity="1" d="M9.3 233.1h134v5.3H9.3z"/>
+        <path id="line1347" fill="none" stroke="#d99941" stroke-width="1" d="M60.5 225.9H15.4" class="cls-4"/>
+        <path id="line1349" fill="none" stroke="#d99941" stroke-width=".7" d="M111 225.9H89.6" class="cls-4"/>
+        <path id="path1351" fill="none" stroke="#1b1464" d="M148.3 108.4V28" class="cls-10"/>
+        <path id="path1353" fill="none" stroke="#1b1464" d="M4.3 28v80.4" class="cls-10"/>
+        <path id="path1355" fill="none" stroke="#1b1464" d="M148.3 111.4v-2" class="cls-10"/>
+        <path id="path1357" fill="none" stroke="#1b1464" d="M4.3 109.4v2" class="cls-10"/>
+        <path id="path1359" fill="none" stroke="#1b1464" d="M148.3 113.4v-1" class="cls-10"/>
+        <path id="path1361" fill="none" stroke="#1b1464" d="M4.3 112.4v1" class="cls-10"/>
+        <path id="path1363" fill="none" stroke="#1b1464" d="M148.3 25v2" class="cls-10"/>
+        <path id="path1365" fill="none" stroke="#1b1464" d="M4.3 27v-2" class="cls-10"/>
+        <path id="path1367" fill="none" stroke="#1b1464" d="M148.3 23v1" class="cls-10"/>
+        <path id="path1369" fill="none" stroke="#1b1464" d="M4.3 24v-1" class="cls-10"/>
+        <path id="path1371" fill="#001433" d="M19.9 33a70.3 70.3 0 0113.7-11.3c-3-6.7-5-12-5.4-14.6L5.5 6 3.1 25.7z" class="cls-3"/>
+        <path id="polygon1373" fill="#ffdaa6" d="M19.1 32.1l13.7-11.2-5.4-14.7-22.7-1-2.4 19.7z"/>
+        <path id="polygon1375" fill="#001433" d="M145.8 118.1l4.6-2.3-1.3 3.3-3.3 1.8z" class="cls-3"/>
+        <path id="polygon1377" fill="#001433" d="M150.4 121.3l1.5.3-1.1 1.5-2-.5z" class="cls-3"/>
+        <path id="polygon1379" fill="#001433" d="M8.5 116.3l-4.6-.9 2.2 4 3.2.5z" class="cls-3"/>
+        <path id="polygon1381" fill="#001433" d="M2.9 119.4H1l.9 2.5 3.2-.3z" class="cls-3"/>
+        <path id="line1349-2" fill="#6c6c6c" fill-opacity="1" stroke="#6c6c6c" stroke-opacity="1" stroke-width=".4" d="M126.9 228.3v-5.9" class="cls-4"/>
       </g>
     </g>
-    <path v-if="activeStep >= 1"  d="M82 20l-8 5 1 5 8 3 3-2 2-4-2-3h-7l-2 3 3 2 3 1 1-2-1-2-2 1 1 1M90 30l1-4 14 1 1-5h-7v8zM116 25l-7 2 1 3 3 3h8l-3-6 2-3h2l2-2-3-1h-2l-2-1-2 1 2 2zM128 32l-2-2 3-8 2-2 1 3 4 7-3 3-3-1z" fill="none" stroke="#fff" stroke-width="1.5393999999999999"/>
-    <g v-if="activeStep >= 1" clip-path="url(#d)" transform="matrix(.30788 0 0 -.30788 -305 755)">
-      <path d="M1488 2367l12-3v-12l-10-2-8 5-1 10 6 16 23 4 1-15h-15l4 18s15 1 18-3 1-31 1-31l-32 7z" fill="none" stroke="#fff" stroke-width="5"/>
+    <g transform="translate(113.3 3.7)">
+      <g>
+        <circle id="circle833" cx="5.5" cy="5.5" r="5" fill="none" stroke="#d99941" class="cls-2"/>
+        <circle id="circle835" cx="5.5" cy="5.5" r="5" fill="#ffdfa1" class="cls-3"/>
+        <g id="g839" class="cls-4" clip-path="url(#clip-path)">
+          <path id="polyline837" fill="none" stroke="#d99941" d="M8.4 1.4L6.6 4.1h2l-4.9 6.1L4.8 6l-2.4-.1L4.9.8" class="cls-2"/>
+        </g>
+        <circle id="circle841" cx="5.5" cy="5.5" r="5" fill="none" stroke="#d99941" class="cls-2"/>
+      </g>
     </g>
-    <text v-if="activeStep >= 1" y="31" x="80" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="9" font-family="Museo 700" fill="#f29121" stroke-width="0">
-      <tspan x="80" y="31">{{ model.cost.lumber }}</tspan>
-    </text>
-    <text v-if="activeStep >= 1"  y="30" x="97" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="9" font-family="Museo 700" fill="#001433" stroke-width="0">
-      <tspan x="97" y="30">{{ model.cost.food }}</tspan>
-    </text>
-    <text v-if="activeStep >= 1"  y="30" x="128" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="9" font-family="Museo 700" stroke-width="0">
-      <tspan x="128" y="30">{{ model.cost.mana }}</tspan>
-    </text>
-    <text v-if="activeStep >= 1"  y="31" x="113" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="9" font-family="Museo 700" stroke-width="0">
-      <tspan x="113" y="31">{{ model.cost.iron }}</tspan>
-    </text>
-    <text v-if="activeStep >= 1" t y="28" x="156" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="9" font-family="Museo 700" stroke-width="0">
-      <tspan x="156" y="28">{{ model.cost.generic }}</tspan>
-    </text>
-    <path v-if="activeStep >= 1" d="M46 8L25 19l10 17h14l13-10 3-15z" fill="#d61224"/>
-    <path v-if="activeStep >= 1" d="M44 6L23 18l11 16h13l13-10 3-14z" fill="#fff"/>
-    <path v-if="activeStep >= 1" d="M44 6L23 18l11 16h13l13-10 3-14z" fill="none" stroke="#fff" stroke-width=".61576"/>
-    <text v-if="activeStep >= 1"  y="28" x="38" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="23" font-family="Museo 700" fill="#d61224" stroke-width="0">
-      <tspan x="38" y="28">{{ model.ticks }}</tspan>
-    </text>
-    <path v-if="activeStep >= 1" d="M41 104l-1-10 7-3 2 3 4-3 2 3 4-3 3 3 2 12-6 3-3-3 3-4-3 1-1 3h-3l-1-2h-2v2l-3 1-2-2z" fill="#d61224"/>
-    <path v-if="activeStep >= 1" d="M39 102v-9l6-3 2 3 5-3 1 3 4-4 3 4 3 12-7 2-3-2 3-4h-3l-1 3-3 1-1-3h-2v3l-2 1-3-2z" fill="#fff"/>
-    <path v-if="activeStep >= 1" d="M39 102v-9l6-3 2 3 5-3 1 3 4-4 3 4 3 12-7 2-3-2 3-4h-3l-1 3-3 1-1-3h-2v3l-2 1-3-2z" fill="none" stroke="#fff" stroke-width=".30788"/>
-    <text v-if="activeStep >= 1" y="100" x="46" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="10" font-family="Museo 700" fill="#d61224" stroke-width="0">
-      <tspan x="46" y="100">{{ model.attack }}</tspan>
-    </text>
-    <path v-if="activeStep >= 1" d="M150 93l-3-3-4 2-2 4 7 10 4 4 14-11v-8l-5-2-4 2-4 3v2z" fill="#d61224"/>
-    <path v-if="activeStep >= 1" d="M148 91l-3-3-4 1-3 5 8 10 4 4 14-11v-8l-5-2-4 2-4 3-1 1z" fill="#fff"/>
-    <text v-if="activeStep >= 1" y="98" x="152" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="9" font-family="Museo 700" fill="#d61224" stroke-width="0">
-      <tspan x="152" y="98">{{ model.defense }}</tspan>
-    </text>
-    <text v-if="activeStep >= 2 && displayNotes" y="233" x="124" transform="skewX(-17)" style="-inkscape-font-specification:Museo-700" font-weight="600" font-size="7" font-family="Museo 700" stroke-width="0">
-      <tspan x="124" y="233">{{ model.notes }}</tspan>
-    </text>
+    <g id="Ebene_2-7" data-name="Ebene 2" transform="translate(95.8 3.5)">
+      <g id="Ebene_1-2-5" data-name="Ebene 1">
+        <circle id="circle867" cx="5.5" cy="6" r="5" fill="#ffdfa1" stroke="#d99941" class="cls-1"/>
+        <path id="polyline869" fill="none" stroke="#d99941" d="M11.7 1.5h-1.5V0" class="cls-2"/>
+        <path id="line871" fill="none" stroke="#d99941" d="M7.3 4.3l3.1-3" class="cls-2"/>
+        <path id="rect873" fill="#d99941" d="M7.6 7.3h1v1h-1z" class="cls-3"/>
+        <path id="rect875" fill="#d99941" d="M6 8.6h1v1H6z" class="cls-3"/>
+      </g>
+    </g>
+    <g id="Ebene_2-35" data-name="Ebene 2" transform="translate(130.1 3.7)">
+      <g id="Ebene_1-2-62" data-name="Ebene 1">
+        <circle id="circle899" cx="5.5" cy="5.5" r="5" fill="#ffdfa1" stroke="#d99941" class="cls-1"/>
+        <path id="polyline901" fill="none" stroke="#d99941" d="M7.9 4.1L5.5 5.5 3.1 4.1" class="cls-2"/>
+        <path id="polyline903" fill="none" stroke="#d99941" d="M7.7 7.7L5.5 5.5 3.3 7.7" class="cls-2"/>
+        <path id="line905" fill="none" stroke="#d99941" d="M5.5 2.6v2.9" class="cls-2"/>
+      </g>
+    </g>
+    <g id="Ebene_2-9" data-name="Ebene 2" transform="translate(62.7 4.4)">
+      <g id="Ebene_1-2-1" data-name="Ebene 1">
+        <path id="polygon928" fill="#ffdfa1" stroke="#d99941" d="M8.1.5h-5L.6 4.8l2.5 4.4h5l2.5-4.4z" class="cls-1"/>
+        <circle id="circle930" cx="5.6" cy="4.8" r="2" fill="#ffdfa1" stroke="#d99941" class="cls-1"/>
+      </g>
+    </g>
+    <g id="Ebene_2-2" data-name="Ebene 2" transform="translate(46 3.7)">
+      <g id="Ebene_1-2-7" data-name="Ebene 1">
+        <circle id="circle951" cx="5.5" cy="5.5" r="5" fill="#ffdfa1" stroke="#d99941" class="cls-1"/>
+        <path id="polyline953" fill="none" stroke="#d99941" d="M7.7 4.7L5.5 6.8 3.3 4.7" class="cls-2"/>
+        <path id="line955" fill="none" stroke="#d99941" d="M5.5 10.3V3.1" class="cls-2"/>
+      </g>
+    </g>
+    <g id="Ebene_2-0" data-name="Ebene 2" transform="translate(79.7 3.7)">
+      <g id="Ebene_1-2-9" data-name="Ebene 1">
+        <circle id="circle977" cx="5.5" cy="5.5" r="5" fill="#ffdfa1" stroke="#d99941" class="cls-1"/>
+        <path id="path979" fill="#d99941" d="M6 10.5H5A4.5 4.5 0 00.5 6V5A4.5 4.5 0 005 .5h1A4.5 4.5 0 0010.5 5v1A4.5 4.5 0 006 10.5zm-3.2-5a5.5 5.5 0 012.7 2.7 5.5 5.5 0 012.7-2.7 5.5 5.5 0 01-2.7-2.7 5.5 5.5 0 01-2.7 2.7z" class="cls-2"/>
+      </g>
+    </g>
+    <g id="Ebene_2-36" data-name="Ebene 2" transform="translate(17.4 180)">
+      <g id="Ebene_1-2-0" data-name="Ebene 1">
+        <rect id="rect1000" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
+        <path id="line1002" fill="none" stroke="#d99941" d="M.7 5.8h9.8" class="cls-1"/>
+        <path id="line1004" fill="none" stroke="#d99941" d="M2.4 3.9v1.8" class="cls-1"/>
+        <path id="line1006" fill="none" stroke="#d99941" d="M8.3 3.9v1.8" class="cls-1"/>
+        <path id="line1008" fill="none" stroke="#d99941" d="M5.5 3.9v1.8" class="cls-1"/>
+      </g>
+    </g>
+    <g id="Ebene_2-6" data-name="Ebene 2" transform="translate(17.3 146.1)">
+      <g id="Ebene_1-2-2" data-name="Ebene 1">
+        <rect id="rect1032" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
+        <path id="line1034" fill="none" stroke="#d99941" d="M5.5 6.5v-6" class="cls-1"/>
+        <path id="line1036" fill="none" stroke="#d99941" d="M5.5 8.5v-1" class="cls-1"/>
+        <path id="line1038" fill="none" stroke="#d99941" d="M2.3 4.4l1.4 1.7" class="cls-1"/>
+        <path id="line1040" fill="none" stroke="#d99941" d="M8.7 4.4L7.3 6.1" class="cls-1"/>
+      </g>
+    </g>
+    <text id="text2236" x="17" y="24.1" fill="#000" fill-opacity="1" stroke="none" stroke-width=".5" font-family="Montserrat" font-size="19.5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2234" x="17" y="24.1" stroke-width=".5" font-family="Montserrat" font-size="19.5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.ticks }}</tspan>
+  </text>
+    <g id="g2312">
+      <g id="g2278" fill-opacity="1" stroke="none" font-stretch="normal" font-style="normal" font-variant="normal" letter-spacing="0" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
+        <g id="g2603" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-weight="700" text-anchor="end" transform="translate(0 -.7)">
+          <text id="text2236-1-6" x="51.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" xml:space="preserve">
+          <tspan id="tspan2234-9-8" x="51.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.lumber }}</tspan>
+        </text>
+          <text id="text2236-1" x="51.1" y="13.3" fill="#0cf" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" xml:space="preserve">
+          <tspan id="tspan2234-9" x="51.1" y="13.3" fill="#0cf" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.lumber }}</tspan>
+        </text>
+        </g>
+        <text id="text2527" x="79" y="237.4" fill="#fff" stroke-width=".1" font-family="Solway" font-size="4.6" font-weight="300" style="line-height:1.25;-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" xml:space="preserve">
+        <tspan id="tspan2525" x="79" y="237.4" fill="#fff" fill-opacity="1" stroke-width=".1" font-family="Solway" font-size="4.6" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.tags }}</tspan>
+      </text>
+      </g>
+    </g>
+    <g id="g2312-6" transform="translate(25.7 -.6)">
+      <g id="g2278-4" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
+        <text id="text2236-1-6-2" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-8-2" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.iron }}</tspan>
+      </text>
+        <text id="text2236-1-7" x="43.1" y="13.3" fill="#0cf" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-6" x="43.1" y="13.3" fill="#0cf" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.iron }}</tspan>
+      </text>
+      </g>
+    </g>
+    <g id="g2312-1" transform="translate(42.9 -.8)">
+      <g id="g2278-8" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
+        <text id="text2236-1-6-5" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-8-1" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.food }}</tspan>
+      </text>
+        <text id="text2236-1-1" x="43.1" y="13.3" fill="#0cf" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-3" x="43.1" y="13.3" fill="#0cf" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.food }}</tspan>
+      </text>
+      </g>
+    </g>
+    <g id="g2312-0" transform="translate(58.8 -.7)">
+      <g id="g2278-6" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
+        <text id="text2236-1-6-4" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-8-4" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.mana }}</tspan>
+      </text>
+        <text id="text2236-1-75" x="43.1" y="13.3" fill="#0cf" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-38" x="43.1" y="13.3" fill="#0cf" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.mana }}</tspan>
+      </text>
+      </g>
+    </g>
+    <g id="g2312-2" transform="translate(77.1 -.8)">
+      <g id="g2278-7" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
+        <text id="text2236-1-6-3" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-8-5" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.energy }}</tspan>
+      </text>
+        <text id="text2236-1-3" x="43.1" y="13.3" fill="#0cf" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-7" x="43.1" y="13.3" fill="#0cf" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.energy }}</tspan>
+      </text>
+      </g>
+    </g>
+    <g id="g2312-4" transform="translate(93 -.7)">
+      <g id="g2278-80" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
+        <text id="text2236-1-6-0" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-8-16" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.generic }}</tspan>
+      </text>
+        <text id="text2236-1-4" x="43.1" y="13.3" fill="#0cf" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
+        <tspan id="tspan2234-9-5" x="43.1" y="13.3" fill="#0cf" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.generic }}</tspan>
+      </text>
+      </g>
+    </g>
+    <text id="text2410" x="81.2" y="127.4" fill="#000" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2408" x="81.2" y="127.4" stroke-width=".3" font-family="Montserrat" font-size="12.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.name }} {{ model.article }} {{ model.surname }}</tspan>
+  </text>
+    <text id="text2410-9" x="33" y="141.1" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Solway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
+    <tspan id="tspan2430" x="33" y="141.1" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Solway, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr">Lorem ipsum dolor sit amet, consetetur</tspan>
+  </text>
+    <text id="text2410-9-6" x="33.3" y="174.7" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Solway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
+    <tspan id="tspan2430-9" x="33.3" y="174.7" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Solway, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr">Lorem ipsum dolor sit amet, consetetur</tspan>
+  </text>
+    <text id="text2495" x="75.1" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Solway" font-size="8.6" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2493" x="75.1" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke-width=".2" font-family="Solway" font-size="8.6" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.type }}</tspan>
+  </text>
+    <text id="text2495-3" x="76.9" y="200.9" fill="#d99941" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2493-1" x="76.9" y="200.9" fill="#d99941" fill-opacity="1" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.description }}</tspan>
+  </text>
+    <text id="text2236-11" x="126.5" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2234-91" x="126.5" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.attack }}</tspan>
+  </text>
+    <text id="text2236-11-3" x="127.5" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2234-91-7" x="127.5" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" writing-mode="lr-tb">{{ model.defense }}</tspan>
+  </text>
   </svg>
 </template>
 
@@ -166,4 +281,16 @@ img {
   width: 100%;
   height: auto;
 }
+
+.cls-1{fill:#ffdfa1;stroke:#d99941}
+.cls-10,.cls-4{fill:none}
+.cls-3{fill:#001433}
+.cls-4{stroke:#d99941}
+.cls-5{fill:#d99941}
+.cls-6{fill:#a37331}
+.cls-7{fill:#f2f2f2}
+.cls-10{stroke:#1b1464}
+.cost{stroke:#d99941;fill:none}
+.cost-fill {fill:#d99941}
+
 </style>
