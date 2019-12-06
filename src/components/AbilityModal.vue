@@ -87,7 +87,7 @@ export default {
   name: 'modal',
   data () {
     return {
-      arrayCount: [0,0,0,0,0,0]
+      arrayCount: [0, 0, 0, 0, 0, 0]
     }
   },
   props: {
@@ -106,9 +106,8 @@ export default {
       this.$emit('close')
     },
     addAbility () {
-      
-      console.log("dialog options: ", this.dialog.options)
-      console.log("type:", this.dialog.type)
+      console.log('dialog options: ', this.dialog.options)
+      console.log('type:', this.dialog.type)
 
       if (this.dialog.type === 'root') {
         let selection = filterSelection(this.dialog.options).option.value
@@ -124,12 +123,11 @@ export default {
         this.writeNode(resolveParagraph(selection), {})
         this.writeNode('name', resolveParagraph(selection))
 
-        console.log("newAbility: ", newAbility)
-        console.log("currentNode: ", this.currentNode)
-
+        console.log('newAbility: ', newAbility)
+        console.log('currentNode: ', this.currentNode)
       } else if (this.dialog.type === 'multivalue') {
         this.writeNode('type', this.dialog.type)
-      
+
         var label = ''
 
         this.dialog.options.forEach((item, index) => {
@@ -140,16 +138,14 @@ export default {
           }
         })
 
-        console.log("current node: ", this.currentNode)
-
+        console.log('current node: ', this.currentNode)
       } else if (this.dialog.type === 'enum') {
-        
-        console.log("current node: ", this.currentNode)
-        
+        console.log('current node: ', this.currentNode)
+
         let pickedEnums = []
-        
+
         this.arrayCount.forEach((item, idx) => {
-          for(var i = 0; i < item; i++) {
+          for (var i = 0; i < item; i++) {
             pickedEnums.push(this.dialog.enum[idx])
           }
         })
@@ -158,40 +154,34 @@ export default {
         let entryOfChoice = 0
         this.ability.interaction[entryOfChoice].btn.label = pickedEnums
 
-        console.log("current node: ", this.currentNode)
-        console.log("ability: ", this.ability)
-
+        console.log('current node: ', this.currentNode)
+        console.log('ability: ', this.ability)
       } else if (this.dialog.type === 'radio') {
-
         console.log('abilitäten:', this.ability)
-        console.log("current node: ", this.currentNode)
+        console.log('current node: ', this.currentNode)
 
         let selection = filterSelection(this.dialog.options).option.value
-        //let properties = filterProperties(this.options, selection)
-        
+        // let properties = filterProperties(this.options, selection)
+
         console.log('select: ', selection)
-        //console.log('proppis:', properties)
-        
+        // console.log('proppis:', properties)
 
         this.writeNode('interaction', createInteraction(selection))
-        
-
-
       } else {
-        console.log ('this type is unkown: ', this.dialog.type)
+        console.log('this type is unkown: ', this.dialog.type)
       }
 
       this.$emit('close')
     },
-    addToArray(id, array) {
+    addToArray (id, array) {
       console.log(this.arrayCount)
       this.arrayCount[id] += 1
     },
-    setNode(reference) {
+    setNode (reference) {
       this.currentNode = reference
       this.$emit('update:currentNode', this.currentNode)
     },
-    writeNode(prop, data) {
+    writeNode (prop, data) {
       this.currentNode[prop] = data
       this.$emit('update:currentNode', this.currentNode)
     },
@@ -207,10 +197,10 @@ export default {
   }
 }
 
-function createInteraction(description) {
+function createInteraction (description) {
   let text = description
-  let regex=/([§]+)([a-z,A-Z]+)/g
-  text = text.replace(regex, "$1%$2§");
+  let regex = /([§]+)([a-z,A-Z]+)/g
+  text = text.replace(regex, '$1%$2§')
   text = text.split('§')
 
   console.log(text)
@@ -218,9 +208,8 @@ function createInteraction(description) {
   let interaction = []
 
   text.forEach(entry => {
-
     if (entry[0] === '%') {
-      interaction[interaction.length-1].btn = {
+      interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
         type: entry.slice(1)
       }
@@ -229,12 +218,12 @@ function createInteraction(description) {
     }
   })
 
-  if (interaction[interaction.length-1].btn.type === null) {
-    interaction[interaction.length-2].post = interaction[interaction.length-1].pre
-    interaction.splice(-1,1)
+  if (interaction[interaction.length - 1].btn.type === null) {
+    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
+    interaction.splice(-1, 1)
   }
 
-  console.log('created Interaction: ',interaction)
+  console.log('created Interaction: ', interaction)
   return interaction
 }
 

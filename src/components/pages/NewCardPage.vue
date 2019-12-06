@@ -75,16 +75,12 @@
               v-bind:options="abilityOptions"
               v-bind:ability="ability"
               v-bind:abilities="abilities"
-              v-bind:currentNode="currentNode"3
-￼ Star0 Fork0DecentralCardGame/frontend
- Code Issues 0 Pull requests 2 Actions Projects 1 Wiki Security Insights Settings
-￼Dismiss
-Label issues and pull requests for new co
+              v-bind:currentNode="currentNode"
               v-on:update:currentNode="currentNode = $event"
               @close="closeAbilityModal"
             />
           </template>
-          <div v-for="ability in abilities">
+          <div v-bind:key="ability.ability" v-for="ability in abilities">
             <AbilityComponent
               v-bind:rules="rules"
               v-bind:ability="ability"
@@ -156,7 +152,6 @@ import CardComponent from '../CardComponent'
 import BuySchemeModal from '../BuySchemeModal.vue'
 import AbilityModal from '../AbilityModal.vue'
 import AbilityComponent from '../AbilityComponent.vue'
-import modal from '../modal.vue'
 import { saveAs } from 'file-saver'
 
 // eslint-disable-next-line no-unused-vars
@@ -210,7 +205,7 @@ export default {
         console.log(err)
       } else {
         this.rules = api
-        console.log("rules: ", api)
+        console.log('rules: ', api)
       }
     })
   },
@@ -235,23 +230,22 @@ export default {
       this.isAbilityModalVisible = true
 
       if (type === 'root') {
-        if(this.model.type === 'No Type') {
+        if (this.model.type === 'No Type') {
           this.model.type = 'Entity'
         }
 
         var path = ['oneOf']
         this.rules.oneOf.forEach((cardType, index) => {
-          
-          if(cardType.properties[this.model.type]) {
+          if (cardType.properties[this.model.type]) {
             path.push(index, 'properties', this.model.type, 'properties', 'Abilities', 'items', 'oneOf')
             this.currentNode.path = path
 
-            console.log('cardtype: ', cardType)            
+            console.log('cardtype: ', cardType)
             let options = cardType.properties[this.model.type].properties.Abilities.items.oneOf
             console.log('options', options)
 
             R.path(path, this.rules)
-            console.log('path: ', this.currentNode.path )
+            console.log('path: ', this.currentNode.path)
 
             let dialog = {
               title: 'New Ability',
