@@ -110,63 +110,13 @@ export default {
       console.log('type:', this.dialog.type)
 
       if (this.dialog.type === 'root') {
-        let selection = filterSelection(this.dialog.options).option.value
-        let properties = filterProperties(this.options, selection)
-        let newAbility = {}
-        newAbility[resolveParagraph(selection)] = copy(properties.properties)[resolveParagraph(selection)]
-        newAbility.interaction = createInteraction(newAbility[resolveParagraph(selection)].description)
-        newAbility.name = resolveParagraph(selection)
-        newAbility.path = this.currentNode.path
-
-        this.abilities.push(newAbility)
-        this.currentNode = {}
-        this.writeNode(resolveParagraph(selection), {})
-        this.writeNode('name', resolveParagraph(selection))
-
-        console.log('newAbility: ', newAbility)
-        console.log('currentNode: ', this.currentNode)
+        this.handleCreateAbility()
       } else if (this.dialog.type === 'multivalue') {
-        this.writeNode('type', this.dialog.type)
-
-        var label = ''
-
-        this.dialog.options.forEach((item, index) => {
-          if (item.value) {
-            this.currentNode.values.push({name: item.name, amount: item.value})
-            if (index !== 0) label += ', '
-            label += item.value + ' ' + item.title
-          }
-        })
-
-        console.log('current node: ', this.currentNode)
+        this.handleMultiValueInteraction()
       } else if (this.dialog.type === 'enum') {
-        console.log('current node: ', this.currentNode)
-
-        let pickedEnums = []
-
-        this.arrayCount.forEach((item, idx) => {
-          for (var i = 0; i < item; i++) {
-            pickedEnums.push(this.dialog.enum[idx])
-          }
-        })
-
-        this.writeNode('Cost', pickedEnums)
-        let entryOfChoice = 0
-        this.ability.interaction[entryOfChoice].btn.label = pickedEnums
-
-        console.log('current node: ', this.currentNode)
-        console.log('ability: ', this.ability)
+        this.handleEnumInteraction()
       } else if (this.dialog.type === 'radio') {
-        console.log('abilitäten:', this.ability)
-        console.log('current node: ', this.currentNode)
-
-        let selection = filterSelection(this.dialog.options).option.value
-        // let properties = filterProperties(this.options, selection)
-
-        console.log('select: ', selection)
-        // console.log('proppis:', properties)
-
-        this.writeNode('interaction', createInteraction(selection))
+        this.handleRadioInteraction()
       } else {
         console.log('this type is unkown: ', this.dialog.type)
       }
@@ -185,6 +135,111 @@ export default {
       this.currentNode[prop] = data
       this.$emit('update:currentNode', this.currentNode)
     },
+    handleMultiValueInteraction() {
+      this.writeNode('type', this.dialog.type)
+
+      var label = ''
+
+      this.dialog.options.forEach((item, index) => {
+        if (item.value) {
+          this.currentNode.values.push({name: item.name, amount: item.value})
+          if (index !== 0) label += ', '
+          label += item.value + ' ' + item.title
+        }
+      })
+
+      console.log('current node: ', this.currentNode)
+    },
+    handleEnumInteraction () {
+      console.log('current node: ', this.currentNode)
+
+      let pickedEnums = ''
+
+      this.arrayCount.forEach((item, idx) => {
+        if(item > 0) {
+          pickedEnums += item + ' ' + this.dialog.enum[idx] + ', '
+        }
+      })
+      pickedEnums = R.dropLast(2, pickedEnums)
+
+      this.writeNode('Cost', pickedEnums)
+      let entryOfChoice = 0
+      this.ability.interaction[entryOfChoice].btn.label = pickedEnums
+
+      console.log('current node: ', this.currentNode)
+      console.log('ability: ', this.ability)
+    },
+    handleRadioInteraction () {
+      console.log('abilitäten:', this.ability)
+      console.log('current node: ', this.currentNode)
+
+      let selection = filterSelection(this.dialog.options).option.value
+      // let properties = filterProperties(this.options, selection)
+      let newInteraction = this.createInteraction(selection)
+
+      console.log('select: ', selection)
+
+      // console.log('proppis:', properties)
+
+      this.ability.interaction[this.currentNode.interactionId] = newInteraction
+
+
+
+      console.log(this.ability.interaction[this.currentNode.interactionId])
+      //newInteraction = 
+      this.writeNode('interaction', this.ability.interaction[this.currentNode.interactionId])
+    },
+    handleCreateAbility() {
+      let selection = filterSelection(this.dialog.options)
+      let properties = filterProperties(this.options, selection.option.value)
+      let abilityName = resolveParagraph(selection.option.value)
+
+      this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
+
+      let newAbility = {}
+      newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.rules).properties) // R.clone(R.path(this.currentNode.path, this.rules))
+      newAbility.interaction = this.createInteraction(R.path(this.currentNode.path, this.rules).description)
+      newAbility.name = abilityName
+      newAbility.path = this.currentNode.path
+
+      this.abilities.push(R.clone(newAbility))
+      this.currentNode = this.abilities[this.abilities.length - 1]
+      this.writeNode(abilityName, {})
+      this.writeNode('name', abilityName)
+
+      console.log('newAbility: ', newAbility)
+      console.log('currentNode: ', this.currentNode)
+    },
+    createInteraction (description) {
+      let text = description
+      let regex = /([§]+)([a-z,A-Z]+)/g
+      text = text.replace(regex, '$1%$2§')
+      text = text.split('§')
+
+      console.log(text)
+
+      let interaction = []
+
+      text.forEach(entry => {
+        if (entry[0] === '%') {
+          interaction[interaction.length - 1].btn = {
+            label: entry.slice(1),
+            type: entry.slice(1),
+            path: R.append(entry.slice(1), R.append('properties', this.currentNode.path))
+          }
+        } else {
+          interaction.push({pre: entry, btn: {label: '', type: null, path: null}})
+        }
+      })
+
+      if (interaction[interaction.length - 1].btn.type === null) {
+        interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
+        interaction.splice(-1, 1)
+      }
+
+      console.log('created Interaction: ', interaction)
+      return interaction
+    },
     isNumber: function (evt) {
       evt = evt || window.event
       var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -197,34 +252,12 @@ export default {
   }
 }
 
-function createInteraction (description) {
-  let text = description
-  let regex = /([§]+)([a-z,A-Z]+)/g
-  text = text.replace(regex, '$1%$2§')
-  text = text.split('§')
-
-  console.log(text)
-
-  let interaction = []
-
-  text.forEach(entry => {
-    if (entry[0] === '%') {
-      interaction[interaction.length - 1].btn = {
-        label: entry.slice(1),
-        type: entry.slice(1)
-      }
-    } else {
-      interaction.push({pre: entry, btn: {label: '', type: null}})
-    }
-  })
-
-  if (interaction[interaction.length - 1].btn.type === null) {
-    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
-    interaction.splice(-1, 1)
+function shallowClone(obj) {
+  let clone = {}
+  for (var prop in obj) {
+    clone[prop] = {}
   }
-
-  console.log('created Interaction: ', interaction)
-  return interaction
+  return clone
 }
 
 </script>

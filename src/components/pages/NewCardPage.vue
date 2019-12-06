@@ -244,7 +244,6 @@ export default {
             let options = cardType.properties[this.model.type].properties.Abilities.items.oneOf
             console.log('options', options)
 
-            R.path(path, this.rules)
             console.log('path: ', this.currentNode.path)
 
             let dialog = {
@@ -272,6 +271,8 @@ export default {
       console.log('currentNode: ', this.currentNode)
     },
     closeAbilityModal () {
+      console.log('ability after close modal: ', this.ability)
+      console.log('curNode after close modal: ', this.currentNode)
       this.isAbilityModalVisible = false
     },
     getNumbers (start, stop, min) {

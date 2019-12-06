@@ -185,10 +185,6 @@ export function filterProperties(options, target) {
   return found
 }
 
-export function copy(obj) {
-  return JSON.parse(JSON.stringify(obj))
-}
-
 export function resolveParagraph(key) {
   if(key[0] === '§') {
     return key.slice(1)
