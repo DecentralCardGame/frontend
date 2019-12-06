@@ -1,5 +1,7 @@
 # decentralized-card-game-frontend
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/347bef75-370d-4cf9-a3b4-fbf228640bd5/deploy-status)](https://app.netlify.com/sites/zen-villani-3ad5c0/deploys)
+
 > Frontend for the decentralized Card-Game
 
 ## Build Setup
