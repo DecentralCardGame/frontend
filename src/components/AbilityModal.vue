@@ -91,16 +91,15 @@ export default {
     }
   },
   props: {
+    rules: Object,
     picked: Object,
     dialog: Object,
-    options: Object,
+    options: Array,
     currentNode: Object,
+    ability: Object,
     abilities: Array
   },
   mounted: () => {
-    console.log('currentNode: ', this.currentNode)
-    //this.arrayCount = [0,0,0,0,0,0]
-    //console.log('arrCo: ',this.arrayCount)
   },
   methods: {
     close () {
@@ -118,14 +117,19 @@ export default {
         newAbility[resolveParagraph(selection)] = copy(properties.properties)[resolveParagraph(selection)]
         newAbility.interaction = createInteraction(newAbility[resolveParagraph(selection)].description)
         newAbility.name = resolveParagraph(selection)
+        newAbility.path = this.currentNode.path
 
         this.abilities.push(newAbility)
+        this.currentNode = {}
+        this.writeNode(resolveParagraph(selection), {})
+        this.writeNode('name', resolveParagraph(selection))
 
         console.log("newAbility: ", newAbility)
+        console.log("currentNode: ", this.currentNode)
 
       } else if (this.dialog.type === 'multivalue') {
-        this.currentNode.type = this.dialog.type
-        this.currentNode.values = []
+        this.writeNode('type', this.dialog.type)
+      
         var label = ''
 
         this.dialog.options.forEach((item, index) => {
@@ -136,15 +140,42 @@ export default {
           }
         })
 
-        this.currentNode.interaction[0] = {pre: 'Pay ', btn: label, post: 'to ', type: 'cost'}
+        console.log("current node: ", this.currentNode)
+
+      } else if (this.dialog.type === 'enum') {
+        
+        console.log("current node: ", this.currentNode)
+        
+        let pickedEnums = []
+        
+        this.arrayCount.forEach((item, idx) => {
+          for(var i = 0; i < item; i++) {
+            pickedEnums.push(this.dialog.enum[idx])
+          }
+        })
+
+        this.writeNode('Cost', pickedEnums)
+        let entryOfChoice = 0
+        this.ability.interaction[entryOfChoice].btn.label = pickedEnums
 
         console.log("current node: ", this.currentNode)
-      } else if (this.dialog.type === 'enum') {
-        console.log('yes')
-        console.log(this.dialog.options)
-        this.currentNode = this.dialog.options
-        console.log(this.currentNode)
+        console.log("ability: ", this.ability)
+
       } else if (this.dialog.type === 'radio') {
+
+        console.log('abilitäten:', this.ability)
+        console.log("current node: ", this.currentNode)
+
+        let selection = filterSelection(this.dialog.options).option.value
+        //let properties = filterProperties(this.options, selection)
+        
+        console.log('select: ', selection)
+        //console.log('proppis:', properties)
+        
+
+        this.writeNode('interaction', createInteraction(selection))
+        
+
 
       } else {
         console.log ('this type is unkown: ', this.dialog.type)
@@ -155,6 +186,14 @@ export default {
     addToArray(id, array) {
       console.log(this.arrayCount)
       this.arrayCount[id] += 1
+    },
+    setNode(reference) {
+      this.currentNode = reference
+      this.$emit('update:currentNode', this.currentNode)
+    },
+    writeNode(prop, data) {
+      this.currentNode[prop] = data
+      this.$emit('update:currentNode', this.currentNode)
     },
     isNumber: function (evt) {
       evt = evt || window.event
@@ -181,18 +220,21 @@ function createInteraction(description) {
   text.forEach(entry => {
 
     if (entry[0] === '%') {
-      interaction[interaction.length-1].btn = entry.slice(1)
+      interaction[interaction.length-1].btn = {
+        label: entry.slice(1),
+        type: entry.slice(1)
+      }
     } else {
-      interaction.push({pre: entry, btn: ''})
+      interaction.push({pre: entry, btn: {label: '', type: null}})
     }
   })
 
-  if (interaction[interaction.length-1].btn === '') {
+  if (interaction[interaction.length-1].btn.type === null) {
     interaction[interaction.length-2].post = interaction[interaction.length-1].pre
     interaction.splice(-1,1)
   }
 
-  console.log('result: ',interaction)
+  console.log('created Interaction: ',interaction)
   return interaction
 }
 

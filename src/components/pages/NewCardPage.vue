@@ -68,19 +68,24 @@
 
             <AbilityModal
               v-if="isAbilityModalVisible"
+              v-bind:rules="rules"
               v-bind:dialog="abilityDialog"
               v-bind:options="abilityOptions"
+              v-bind:ability="ability"
               v-bind:abilities="abilities"
               v-bind:currentNode="currentNode"
+              v-on:update:currentNode="currentNode = $event"
               @close="closeAbilityModal"
             />
           </template>
           <div v-for="ability in abilities">
             <AbilityComponent
+              v-bind:rules="rules"
               v-bind:ability="ability"
               v-bind:dialog="abilityDialog"
               v-bind:abilities="abilities"
               v-bind:currentNode="currentNode"
+              v-on:update:currentNode="currentNode = $event"
             />
           </div>
         </div>
@@ -132,14 +137,12 @@
                         v-bind:display-notes="true">
         </CardComponent>
       </div>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
+import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
@@ -158,9 +161,10 @@ export default {
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
       activeStep: 0,
+      ability: {},
       abilities: [],
       abilityOptions: {},
-      currentNode: {shiat: 'fux'},
+      currentNode: {init: 'yes'},
       abilityDialog: {},
       cardImageUrl: sampleImg,
       model: {
@@ -226,11 +230,19 @@ export default {
           this.model.type = 'Entity'
         }
 
+        var path = ['oneOf']
         this.rules.oneOf.forEach((cardType, index) => {
           
           if(cardType.properties[this.model.type]) {
-            
+            path.push(index, 'properties', this.model.type, 'properties', 'Abilities', 'items', 'oneOf')
+            this.currentNode.path = path
+
+            console.log('cardtype: ', cardType)            
             let options = cardType.properties[this.model.type].properties.Abilities.items.oneOf
+            console.log('options', options)
+
+            R.path(path, this.rules)
+            console.log('path: ', this.currentNode.path )
 
             let dialog = {
               title: 'New Ability',
@@ -247,19 +259,12 @@ export default {
               })
             })
 
-            console.log("dialog: ", dialog)
             this.abilityOptions = options
             this.abilityDialog = dialog
-            this.currentNode = {shiot: 'fux'}
-            
-          } else {
-            console.log('oh shit, cardtype not found')
-            this.currentNode = {shiatsu: 'fuox'}
-            
           }
         })
       } else {
-        console.log('WTF')
+        console.log('modal type: ', type)
       }
       console.log('currentNode: ', this.currentNode)
     },
