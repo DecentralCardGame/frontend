@@ -62,27 +62,7 @@
           damage.
         </div>
         <div v-if="activeStep == 2"><br>
-          My first ability is<select>
-          <option v-for="type in rules.oneOf[3].properties.Headquarter.properties.Abilities.items.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
-        </select>.
-          This event gets me started:
-          <select>
-            <option v-for="type in rules.oneOf[3].properties.Headquarter.properties.Abilities.items.oneOf[1].properties.TriggeredAbility.properties.Cause.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
-          </select>.
-          This ability unleashs the
-          following event: <select>
-          <option v-for="type in rules.oneOf[3].properties.Headquarter.properties.Abilities.items.oneOf[1].properties.TriggeredAbility.properties.Effects.items.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
-        </select>
-
-          <b>Funny Debug Output begins here:</b>
-          <p>You selected the {{ model.type }} type. You can apply
-            {{ rules.oneOf[0].properties[model.type].properties.Effects.minItems }}
-            to
-            {{ rules.oneOf[0].properties[model.type].properties.Effects.maxItems }}
-            effects to the card.
-          </p>
-          <hr>
-          <p>&#65291; Add another property</p>
+          
         </div>
         <div v-if="activeStep == 3"><br>
           Everybody needs a face,
