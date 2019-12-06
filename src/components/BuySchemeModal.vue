@@ -3,7 +3,7 @@
 import { buyCardSchemeTx, notify, getGameInfo, getAccInfo } from './utils.js'
 
 export default {
-  name: 'modal',
+  name: 'buySchemeModal',
   data () {
     return {
       currentPrice: -1,
@@ -15,12 +15,20 @@ export default {
     getGameInfo(this.$http)
       .then(res => {
         this.currentPrice = res.data.amount + res.data.denom
-        this.currentBid = this.currentPrice
+        this.currentBid = res.data.amount
+      })
+      .catch(res => {
+        this.close()
+        return res
       })
     getAccInfo(this.$http, localStorage.address)
       .then(res => {
         let coins = res.data.value.coins[0]
         this.creditsAvailable = coins.amount + coins.denom
+      })
+      .catch(res => {
+        this.close()
+        return res
       })
   },
   methods: {
@@ -29,15 +37,33 @@ export default {
     },
     buyCardScheme () {
       this.$emit('close')
-      buyCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, 666) // TODO magic number 666 should be changed
+      buyCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentBid)
         .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
         .catch(err => {
-          if (err.message === 'not enough credits') {
-            notify.success('BROKE', 'Damn. you so broke, get some coins.')
+          if (err.response.data.error) {
+            var errData = JSON.parse(err.response.data.error)
+            if (errData.length > 0) {
+              var errLog = JSON.parse(errData[0].log)
+              console.log(errLog)
+              notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
+            } else {
+              console.error(errData)
+              notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
+            }
           } else {
             console.error(err)
+            notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
           }
         })
+    },
+    isNumber: function (evt) {
+      evt = evt || window.event
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault()
+      } else {
+        return true
+      }
     }
   }
 }
@@ -78,7 +104,14 @@ export default {
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            Your bid: {{currentBid}}
+            Your bid: &nbsp;
+            <input type='text'
+              v-model="currentBid"
+              :placeholder="[[ currentBid ]]"
+              @keypress="isNumber($event)"
+              style="display: inline;color:black;height:50px;text-align: right"
+              size=2
+            /> credits
           </slot>
           <button
               type="button"
@@ -94,6 +127,21 @@ export default {
 </template>
 
 <style>
+  ::-webkit-input-placeholder { /* Edge */
+    color: red;
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+  }
+
+  ::placeholder {
+    color: red;
+  }
+  .input {
+    color: black
+  }
+
   .modal-backdrop {
     position: fixed;
     top: 0;

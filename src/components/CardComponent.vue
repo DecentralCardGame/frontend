@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios' // TODO remove this and use utils.js
 
 export default {
   name: 'CardComponent',
