@@ -268,7 +268,7 @@ export default {
       } else {
         console.log('modal type: ', type)
       }
-      console.log('currentNode: ', this.currentNode)
+      console.log('currentNode on showAbilityModal: ', this.currentNode)
     },
     closeAbilityModal () {
       console.log('ability after close modal: ', this.ability)

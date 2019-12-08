@@ -2,8 +2,10 @@
   <div>
     <AbilityModal
       v-if="isAbilityModalVisible"
+      v-bind:rules="rules"
       v-bind:dialog="dialog"
       v-bind:currentNode="currentNode"
+      v-on:update:currentNode="currentNode = $event"
       v-bind:ability="ability"
       @close="closeAbilityModal"
     />
@@ -44,7 +46,7 @@ export default {
     showAbilityModal (ability, btn, index)  {
       // first set current node to clicked node
       this.writeNode('interactionId', index)
-      console.log('currentNode: ', this.currentNode)
+      console.log('currentNode on showAbilityModal in AbilityComponent: ', this.currentNode)
       console.log('ability:', ability)
       console.log('btn before type: ', btn)
       console.log('rules: ', this.rules)
@@ -73,6 +75,7 @@ export default {
             for (var prop in enums) {
               dialog.options.push({
                 name: enums[prop],
+                path: [], // TODO YES
                 title: enums[prop],
                 description: ''
               })
@@ -81,7 +84,7 @@ export default {
             console.log("dialog: ", dialog)
             this.dialog = dialog
 
-            this.setNode(ability[ability.name])
+            //this.setNode(ability[ability.name])
 
           } else if (node.items.oneOf) {
             console.log('items.oneOf')
@@ -96,8 +99,10 @@ export default {
             }
 
             for (var prop in options) {
+              let propName = options[prop].required[0]
               dialog.options.push({
                 name: options[prop].description,
+                path: ['items', 'oneOf', prop, 'properties', propName],
                 title: options[prop].title,
                 description: options[prop].description
               })
@@ -111,30 +116,30 @@ export default {
           console.log('object!')
 
           if(R.all(x => x.type === 'integer', node.properties)) {
-            let enums = R.keys(node.properties)
+            let keys = R.keys(node.properties)
 
             let dialog = {
               title: btn.type,
               description: 'choose your destiny:',
-              type: 'enum',
+              type: 'integerList',
               options: [],
-              enum: enums
+              entries: keys
             }
 
-            for (var prop in enums) {
+            for (var prop in keys) {
               dialog.options.push({
-                name: enums[prop],
-                title: enums[prop],
+                name: keys[prop],
+                title: keys[prop],
                 description: ''
               })
             }
 
             this.dialog = dialog
 
-            this.setNode(ability[ability.name])
+            //this.setNode(ability[ability.name])
 
-            console.log(dialog)
-            console.log(ability[ability.name])
+            console.log('dialog: ', dialog)
+            
 
           } else {
             console.error('object yes, further ideas no')
@@ -146,7 +151,8 @@ export default {
         console.error('node.type not defined')
       }
 
-
+      console.log('ability at end of showAbilityModal in AbilityComponent: ', this.ability)
+      console.log('currentNode at end of showAbilityModal in AbilityComponent: ', this.currentNode)
       this.isAbilityModalVisible = true
     },
     setNode(reference) {
@@ -158,6 +164,7 @@ export default {
       this.$emit('update:currentNode', this.currentNode)
     },
     closeAbilityModal () {
+      console.log('currentNode on closeAbilityModal in AbilityComponent: ', this.currentNode)
       this.isAbilityModalVisible = false
     }
   }
