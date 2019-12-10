@@ -44,21 +44,18 @@ export default {
   },
   methods: {
     showAbilityModal (ability, btn, index)  {
+      console.log('entering showAbilityModal with btn and obj: ', btn, R.path(btn.schemaPath, this.rules))
+
       // first set current node to clicked node
       this.writeNode('interactionId', index)
-      console.log('currentNode on showAbilityModal in AbilityComponent: ', this.currentNode)
-      console.log('ability:', ability)
-      console.log('btn before type: ', btn)
-      console.log('rules: ', this.rules)
-      console.log('yes:', R.path(btn.path, this.rules))
-
-      // then find out what type of modal is about to be opened
-      let node = R.path(btn.path, this.rules)
+      let node = R.path(btn.schemaPath, this.rules)
       console.log('node: ', node)
 
       // depending on type, create dialog
       if (node.type) {
-        if (node.type === 'array') {
+        switch (node.type) {
+        case 'array':
+
           if (node.items.enum) {
 
             let enums = node.items.enum
@@ -75,16 +72,14 @@ export default {
             for (var prop in enums) {
               dialog.options.push({
                 name: enums[prop],
-                path: [], // TODO YES
+                schemaPath: [], // TODO YES
+                abilityPath: [],
                 title: enums[prop],
                 description: ''
               })
             }
 
-            console.log("dialog: ", dialog)
             this.dialog = dialog
-
-            //this.setNode(ability[ability.name])
 
           } else if (node.items.oneOf) {
             console.log('items.oneOf')
@@ -102,17 +97,17 @@ export default {
               let propName = options[prop].required[0]
               dialog.options.push({
                 name: options[prop].description,
-                path: ['items', 'oneOf', prop, 'properties', propName],
+                schemaPath: ['items', 'oneOf', prop, 'properties', propName],
+                abilityPath: [propName],
                 title: options[prop].title,
                 description: options[prop].description
               })
             }
 
-            console.log("dialog: ", dialog)
             this.dialog = dialog
           }
-
-        } else if (node.type === 'object') {
+          break
+        case 'object': 
           console.log('object!')
 
           if(R.all(x => x.type === 'integer', node.properties)) {
@@ -129,6 +124,8 @@ export default {
             for (var prop in keys) {
               dialog.options.push({
                 name: keys[prop],
+                schemaPath: [],
+                abilityPath: [],
                 title: keys[prop],
                 description: ''
               })
@@ -136,23 +133,38 @@ export default {
 
             this.dialog = dialog
 
-            //this.setNode(ability[ability.name])
-
-            console.log('dialog: ', dialog)
-            
-
           } else {
             console.error('object yes, further ideas no')
           }
-        } else {
+          break
+        case 'boolean':
+          console.log('boolean!')
+
+            let dialog = {
+              title: btn.type,
+              description: 'choose your destiny:',
+              type: 'checkbox',
+              options: [{
+                name: 'marius hat gefailed',
+                schemaPath: [],
+                abilitPath: [],
+                title: 'Yes',
+                description: 'Marius hat keine Description Property hinzugefügt'
+              }]
+            }
+
+            this.dialog = dialog
+          break
+        default: 
           console.error('node.type is unknown')
+          break
         }
+        console.log('created dialog: ', this.dialog)
+
       } else {
         console.error('node.type not defined')
       }
 
-      console.log('ability at end of showAbilityModal in AbilityComponent: ', this.ability)
-      console.log('currentNode at end of showAbilityModal in AbilityComponent: ', this.currentNode)
       this.isAbilityModalVisible = true
     },
     setNode(reference) {

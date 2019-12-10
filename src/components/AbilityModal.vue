@@ -108,18 +108,24 @@ export default {
     addAbility () {
       console.log('type:', this.dialog.type)
 
-      if (this.dialog.type === 'root') {
-        this.handleCreateAbility()
-      } else if (this.dialog.type === 'multivalue') {
-        this.handleMultiValueInteraction()
-      } else if (this.dialog.type === 'integerList') {
-        this.handleIntegerListInteraction()
-      } else if (this.dialog.type === 'radio') {
-        this.handleRadioInteraction()
-      } else {
-        console.log('this type is unkown: ', this.dialog.type)
+      switch (this.dialog.type) {
+        case 'root':
+          this.handleCreateAbility()
+          break
+        case 'multivalue':
+          this.handleMultiValueInteraction()
+          break
+        case 'integerList':
+          this.handleIntegerListInteraction()
+          break
+        case 'radio':
+          this.handleRadioInteraction()
+          break
+        case 'checkbox':
+          this.handleCheckboxInteraction()
+        default:
+          console.error('this type is unkown: ', this.dialog.type)
       }
-
       this.$emit('close')
     },
     addToArray (id, array) {
@@ -134,21 +140,19 @@ export default {
       this.currentNode[prop] = data
       this.$emit('update:currentNode', this.currentNode)
     },
-    handleMultiValueInteraction() {
-      this.writeNode('type', this.dialog.type)
+    handleCheckboxInteraction () {
+      
+      let selection = filterSelection(this.dialog.options).option.value
+      console.log('selection: ', selection)
 
-      var label = ''
+      let btn = this.ability.interaction[this.currentNode.interactionId].btn
+      console.log('btn: ', btn)
 
-      this.dialog.options.forEach((item, index) => {
-        if (item.value) {
-          this.currentNode.values.push({name: item.name, amount: item.value})
-          if (index !== 0) label += ', '
-          label += item.value + ' ' + item.title
-        }
-      })
-
-      console.log('current node: ', this.currentNode)
+      let path = R.concat(btn.schemaPath, filterSelection(this.dialog.options).option.schemaPath)
+      console.log('path: ', path)
+      console.log('obj :', R.path(path, this.rules))
     },
+
     handleIntegerListInteraction () {
       console.log('current node: ', this.currentNode)
 
@@ -163,7 +167,7 @@ export default {
       })
       labels = R.dropLast(2, labels)
 
-      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.path)
+      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
       console.log('currentProperty: ', currentProperty)
 
       // this.writeNode(currentProperty, labels)
@@ -177,29 +181,46 @@ export default {
       console.log('ability: ', this.ability)
     },
     handleRadioInteraction () {
-      console.log('abilitäten:', this.ability)
-      console.log('current node: ', this.currentNode)
-
-      let selection = filterSelection(this.dialog.options).option.value
+      console.log('ability: ', this.ability)
+      let option = filterSelection(this.dialog.options).option
+      let selection = option.value
+      let optionPath = option.schemaPath
+      
       console.log('selection: ', selection)
-
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       console.log('btn: ', btn)
 
-      let path = R.concat(btn.path, filterSelection(this.dialog.options).option.path)
+      let path = R.concat(btn.schemaPath, optionPath)
       console.log('path: ', path)
-      console.log('effects:', R.path(path, this.rules))
+      console.log('obj:', R.path(path, this.rules))
 
-      let newInteraction = createInteraction(selection, path) // path from dialog?
-      console.log('new Interaction: ', newInteraction)
-
+      let newInteraction = createInteraction(selection, path, btn.abilityPath)
+      
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
-      
+
+      console.log(R.path(path, this.rules))
+      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(path, this.rules).properties) 
       
       console.log('ability in handleRadioInteraction: ', this.ability)
       //this.writeNode('interaction', this.currentNode.interaction[this.currentNode.interactionId])
+    },
+    handleMultiValueInteraction () {
+      // TODO NEEDS FIXING
+      this.writeNode('type', this.dialog.type)
+
+      var label = ''
+
+      this.dialog.options.forEach((item, index) => {
+        if (item.value) {
+          this.currentNode.values.push({name: item.name, amount: item.value})
+          if (index !== 0) label += ', '
+          label += item.value + ' ' + item.title
+        }
+      })
+
+      console.log('current node: ', this.currentNode)
     },
     handleCreateAbility() {
       let selection = filterSelection(this.dialog.options)
@@ -210,7 +231,7 @@ export default {
 
       let newAbility = {}
       newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.rules).properties) // R.clone(R.path(this.currentNode.path, this.rules))
-      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.rules).description, this.currentNode.path)
+      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.rules).description, this.currentNode.path, [abilityName])
       newAbility.name = abilityName
       newAbility.path = this.currentNode.path
 
@@ -221,13 +242,6 @@ export default {
 
       console.log('newAbility: ', newAbility)
       console.log('currentNode: ', this.currentNode)
-    },
-    updateInteraction (description) {
-      return {
-        label: description,
-        type: '',
-        path: []
-      }
     },
     isNumber: function (evt) {
       evt = evt || window.event
@@ -241,7 +255,7 @@ export default {
   }
 }
 
-function createInteraction (description, path) {
+function createInteraction (description, schemaPath, abilityPath) {
   let text = description
   let regex = /([§]+)([a-z,A-Z]+)/g
   text = text.replace(regex, '$1%$2§')
@@ -255,7 +269,9 @@ function createInteraction (description, path) {
       interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
         type: entry.slice(1),
-        path: R.append(entry.slice(1), R.append('properties', path))
+        schemaPath: R.append(entry.slice(1), R.append('properties', schemaPath)),
+        //schemaPath: schemaPath,
+        abilityPath: R.append(entry.slice(1), abilityPath)
       }
     } else {
       interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})

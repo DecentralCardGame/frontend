@@ -253,9 +253,11 @@ export default {
               options: []
             }
 
-            options.forEach(option => {
+            options.forEach((option, index) => {
               dialog.options.push({
                 name: option.description,
+                schemaPath: ['items', 'oneOf', index, 'properties', option.description],
+                abilityPath: [option.description],
                 title: option.title,
                 description: option.properties[resolveParagraph(option.description)].description
               })
