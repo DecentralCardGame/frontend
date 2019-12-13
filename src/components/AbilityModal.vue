@@ -141,7 +141,7 @@ export default {
       this.$emit('update:currentNode', this.currentNode)
     },
     handleCheckboxInteraction () {
-      
+
       let selection = filterSelection(this.dialog.options).option.value
       console.log('selection: ', selection)
 
@@ -171,7 +171,7 @@ export default {
       console.log('currentProperty: ', currentProperty)
 
       // this.writeNode(currentProperty, labels)
-      
+
       this.ability.interaction[this.currentNode.interactionId].btn.label = labels
 
       let path = R.slice(10, Infinity, this.currentNode.path)
@@ -185,24 +185,25 @@ export default {
       let option = filterSelection(this.dialog.options).option
       let selection = option.value
       let optionPath = option.schemaPath
-      
+
       console.log('selection: ', selection)
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       console.log('btn: ', btn)
 
-      let path = R.concat(btn.schemaPath, optionPath)
+      let path = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
       console.log('path: ', path)
+      console.log('optionPath: ', optionPath)
       console.log('obj:', R.path(path, this.rules))
 
       let newInteraction = createInteraction(selection, path, btn.abilityPath)
-      
+
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
       console.log(R.path(path, this.rules))
-      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(path, this.rules).properties) 
-      
+      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(path, this.rules).properties)
+
       console.log('ability in handleRadioInteraction: ', this.ability)
       //this.writeNode('interaction', this.currentNode.interaction[this.currentNode.interactionId])
     },
@@ -265,7 +266,7 @@ function createInteraction (description, schemaPath, abilityPath) {
 
   text.forEach(entry => {
     if (entry[0] === '%') {
-      
+
       interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
         type: entry.slice(1),
@@ -289,12 +290,12 @@ function createInteraction (description, schemaPath, abilityPath) {
 
 function updateInteraction(ability, id, newInteraction) {
   if (id > 0) {
-    ability.interaction[id-1].post += ability.interaction[id].pre 
+    ability.interaction[id-1].post += ability.interaction[id].pre
   }
   if (id < ability.interaction.length-1) {
     ability.interaction[id+1].pre += ability.interaction[id].post
   }
-      
+
   ability.interaction = R.remove(id, 1, ability.interaction)
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
 }
