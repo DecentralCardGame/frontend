@@ -51,6 +51,11 @@
                 {{option.name}} {{arrayCount[index]}}
               </button>
 
+              <button v-if="dialog.type==='integer'" type="integerbtn"
+                v-model="option.value" @click="count+=1-2*index" id="index" :value="option.name">
+                {{option.name}}
+              </button>
+
               <input v-if="dialog.type==='root'" type="radio"
                 v-model="option.value" id="index" :value="option.name"
               >
@@ -58,6 +63,9 @@
               <label for="index">{{option.title}}</label>
 
               <span v-if="option.description"> - {{option.description}} </span>
+            </div>
+            <div>
+              <span v-if ="dialog.type==='integer'"> {{count}} </span>
             </div>
           </slot>
         </section>
@@ -87,7 +95,8 @@ export default {
   name: 'modal',
   data () {
     return {
-      arrayCount: [0, 0, 0, 0, 0, 0]
+      arrayCount: [0, 0, 0, 0, 0, 0],
+      count: 0
     }
   },
   props: {
@@ -118,6 +127,9 @@ export default {
         case 'integerList':
           this.handleIntegerListInteraction()
           break
+        case 'integer':
+          this.handleIntegerInteraction()
+          break
         case 'radio':
           this.handleRadioInteraction()
           break
@@ -143,17 +155,22 @@ export default {
       this.$emit('update:currentNode', this.currentNode)
     },
     handleCheckboxInteraction () {
-      let selection = filterSelection(this.dialog.options).option.value
-      console.log('selection: ', selection)
+      
+      console.log('dialog: ', this.dialog)
 
+      if (!this.dialog.options[0].value) {
+        this.dialog.options[0].value = false
+      }
+      
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
-      console.log('btn: ', btn)
 
-      let path = R.concat(btn.schemaPath, filterSelection(this.dialog.options).option.schemaPath)
-      console.log('path: ', path)
-      console.log('obj :', R.path(path, this.rules))
+      // update interaction
+      this.ability.interaction[this.currentNode.interactionId].btn.label = this.dialog.options[0].value
+
+      // update ability TODO [0].abilityPath is not set
+      //R.path(btn.abilityPath, this.ability)[R.last(this.dialog.options[0].abilityPath)] = this.dialog.options[0].value
+      R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
     },
-
     handleIntegerListInteraction () {
       console.log('current node: ', this.currentNode)
 
@@ -177,6 +194,22 @@ export default {
 
       let path = R.slice(10, Infinity, this.currentNode.path)
       R.path(path, this.ability)[currentProperty] = values
+
+      console.log('current node: ', this.currentNode)
+      console.log('ability: ', this.ability)
+    },
+    handleIntegerInteraction () {
+      console.log('current node: ', this.currentNode)
+
+      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
+      console.log('currentProperty: ', currentProperty)
+
+      // this.writeNode(currentProperty, labels)
+
+      this.ability.interaction[this.currentNode.interactionId].btn.label = this.count
+
+      let path = R.slice(10, Infinity, this.currentNode.path)
+      R.path(path, this.ability)[currentProperty] = this.count
 
       console.log('current node: ', this.currentNode)
       console.log('ability: ', this.ability)

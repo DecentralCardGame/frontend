@@ -117,7 +117,7 @@ export default {
             let options = node.oneOf
 
             let dialog = {
-              title: btn.type,
+              title: btn.type, 
               description: 'choose your destiny:',
               type: 'radio',
               options: []
@@ -169,20 +169,46 @@ export default {
         case 'boolean':
           console.log('boolean!')
 
-            let dialog = {
-              title: btn.type,
-              description: 'choose your destiny:',
-              type: 'checkbox',
-              options: [{
-                name: 'marius hat gefailed',
-                schemaPath: [],
-                abilitPath: [],
-                title: 'Yes',
-                description: 'Marius hat keine Description Property hinzugefügt'
-              }]
-            }
+          let dialog = {
+            title: btn.type,
+            description: 'choose your destiny:',
+            type: 'checkbox',
+            options: [{
+              name: 'marius hat gefailed',
+              schemaPath: [],
+              abilityPath: [],
+              title: 'Yes',
+              description: 'Marius hat keine Description Property hinzugefügt'
+            }]
+          }
 
-            this.dialog = dialog
+          this.dialog = dialog
+          break
+        case 'integer':
+          console.log('integer!')
+
+          dialog = {
+            title: btn.type,
+            description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
+            type: 'integer',
+            options: [{
+              name: 'MORE!',
+              schemaPath: [],
+              abilityPath: [],
+              title: '',
+              description: ''
+            },
+            {
+              name: 'LESS..',
+              schemaPath: [],
+              abilityPath: [],
+              title: '',
+              description: ''
+            }
+            ]
+          }
+
+          this.dialog = dialog   
           break
         default: 
           console.error('node.type is unknown')
