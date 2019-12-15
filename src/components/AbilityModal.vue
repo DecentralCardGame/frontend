@@ -81,7 +81,7 @@
 
 <script>
 import * as R from 'ramda'
-import { filterSelection, filterProperties, resolveParagraph, copy } from './utils.js'
+import { filterSelection, resolveParagraph } from './utils.js' // filterProperties (currently removed, maybe forever?)
 
 export default {
   name: 'modal',
@@ -123,8 +123,10 @@ export default {
           break
         case 'checkbox':
           this.handleCheckboxInteraction()
+          break
         default:
           console.error('this type is unkown: ', this.dialog.type)
+          break
       }
       this.$emit('close')
     },
@@ -141,7 +143,6 @@ export default {
       this.$emit('update:currentNode', this.currentNode)
     },
     handleCheckboxInteraction () {
-
       let selection = filterSelection(this.dialog.options).option.value
       console.log('selection: ', selection)
 
@@ -161,7 +162,7 @@ export default {
 
       this.arrayCount.forEach((item, idx) => {
         values[this.dialog.entries[idx]] = item
-        if(item > 0) {
+        if (item > 0) {
           labels += item + ' ' + this.dialog.entries[idx] + ', '
         }
       })
@@ -198,34 +199,33 @@ export default {
 
       let newInteraction = createInteraction(selection, path, btn.abilityPath)
 
-
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
       console.log(R.path(path, this.rules))
       R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(path, this.rules).properties)
 
       console.log('ability in handleRadioInteraction: ', this.ability)
-      //this.writeNode('interaction', this.currentNode.interaction[this.currentNode.interactionId])
+      // this.writeNode('interaction', this.currentNode.interaction[this.currentNode.interactionId])
     },
     handleMultiValueInteraction () {
       // TODO NEEDS FIXING
       this.writeNode('type', this.dialog.type)
 
-      var label = ''
+      // var label = ''
 
       this.dialog.options.forEach((item, index) => {
         if (item.value) {
           this.currentNode.values.push({name: item.name, amount: item.value})
-          if (index !== 0) label += ', '
-          label += item.value + ' ' + item.title
+          // if (index !== 0) label += ', '
+          // label += item.value + ' ' + item.title
         }
       })
 
       console.log('current node: ', this.currentNode)
     },
-    handleCreateAbility() {
+    handleCreateAbility () {
       let selection = filterSelection(this.dialog.options)
-      let properties = filterProperties(this.options, selection.option.value)
+      // let properties = filterProperties(this.options, selection.option.value)
       let abilityName = resolveParagraph(selection.option.value)
 
       this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
@@ -266,12 +266,11 @@ function createInteraction (description, schemaPath, abilityPath) {
 
   text.forEach(entry => {
     if (entry[0] === '%') {
-
       interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
         type: entry.slice(1),
         schemaPath: R.append(entry.slice(1), R.append('properties', schemaPath)),
-        //schemaPath: schemaPath,
+        // schemaPath: schemaPath,
         abilityPath: R.append(entry.slice(1), abilityPath)
       }
     } else {
@@ -288,19 +287,19 @@ function createInteraction (description, schemaPath, abilityPath) {
   return interaction
 }
 
-function updateInteraction(ability, id, newInteraction) {
+function updateInteraction (ability, id, newInteraction) {
   if (id > 0) {
-    ability.interaction[id-1].post += ability.interaction[id].pre
+    ability.interaction[id - 1].post += ability.interaction[id].pre
   }
-  if (id < ability.interaction.length-1) {
-    ability.interaction[id+1].pre += ability.interaction[id].post
+  if (id < ability.interaction.length - 1) {
+    ability.interaction[id + 1].pre += ability.interaction[id].post
   }
 
   ability.interaction = R.remove(id, 1, ability.interaction)
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
 }
 
-function shallowClone(obj) {
+function shallowClone (obj) {
   let clone = {}
   for (var prop in obj) {
     clone[prop] = {}

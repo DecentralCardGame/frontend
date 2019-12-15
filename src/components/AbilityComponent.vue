@@ -110,29 +110,37 @@ export default {
         case 'object': 
           console.log('object!')
 
-          if(R.all(x => x.type === 'integer', node.properties)) {
-            let keys = R.keys(node.properties)
+          // oneOf 
+          if(R.has('oneOf', node)) {
+            console.log('has oneOf')
+          }
 
-            let dialog = {
-              title: btn.type,
-              description: 'choose your destiny:',
-              type: 'integerList',
-              options: [],
-              entries: keys
+          if(node.properties) {
+            // this is a terminal case, pick integers
+            if(R.all(x => x.type === 'integer', node.properties)) {
+              let keys = R.keys(node.properties)
+
+              let dialog = {
+                title: btn.type,
+                description: 'choose your destiny:',
+                type: 'integerList',
+                options: [],
+                entries: keys
+              }
+
+              for (var prop in keys) {
+                dialog.options.push({
+                  name: keys[prop],
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: keys[prop],
+                  description: ''
+                })
+              }
+
+              this.dialog = dialog
+
             }
-
-            for (var prop in keys) {
-              dialog.options.push({
-                name: keys[prop],
-                schemaPath: [],
-                abilityPath: [],
-                title: keys[prop],
-                description: ''
-              })
-            }
-
-            this.dialog = dialog
-
           } else {
             console.error('object yes, further ideas no')
           }
