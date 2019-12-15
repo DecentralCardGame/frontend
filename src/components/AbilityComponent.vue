@@ -108,15 +108,37 @@ export default {
           }
           break
         case 'object': 
-          console.log('object!')
+          console.log('object case picked')
 
-          // oneOf 
+          // this is the typical case, where 1 item is selected
           if(R.has('oneOf', node)) {
             console.log('has oneOf')
-          }
 
-          if(node.properties) {
-            // this is a terminal case, pick integers
+            let options = node.oneOf
+
+            let dialog = {
+              title: btn.type,
+              description: 'choose your destiny:',
+              type: 'radio',
+              options: []
+            }
+
+            for (var prop in options) {
+              let propName = options[prop].required[0]
+              dialog.options.push({
+                name: options[prop].description,
+                schemaPath: ['oneOf', prop, 'properties', propName],
+                abilityPath: [propName],
+                title: options[prop].title,
+                description: options[prop].description
+              })
+            }
+
+            this.dialog = dialog
+
+          // this is a terminal case, pick integers
+          } else if(R.has('properties', node)) {
+            
             if(R.all(x => x.type === 'integer', node.properties)) {
               let keys = R.keys(node.properties)
 
@@ -139,7 +161,6 @@ export default {
               }
 
               this.dialog = dialog
-
             }
           } else {
             console.error('object yes, further ideas no')
