@@ -110,7 +110,7 @@ export default {
         case 'object': 
           console.log('object case picked')
 
-          // this is the typical case, where 1 item is selected
+          // this is the typical non-terminal case, where 1 item is selected
           if(R.has('oneOf', node)) {
             console.log('has oneOf')
 
@@ -166,6 +166,8 @@ export default {
             console.error('object yes, further ideas no')
           }
           break
+
+        // this is a terminal case, yes or no
         case 'boolean':
           console.log('boolean!')
 
@@ -184,6 +186,8 @@ export default {
 
           this.dialog = dialog
           break
+
+        // this is a terminal case, specify an integer
         case 'integer':
           console.log('integer!')
 
@@ -210,6 +214,34 @@ export default {
 
           this.dialog = dialog   
           break
+
+        // this is a terminal case, pick one of the strings
+        case 'string':
+          console.log('string!')
+
+          let strings = node.enum
+
+          dialog = {
+            title: btn.type,
+            description: 'pick one of the following:',
+            type: 'string',
+            options: [],
+            entries: strings
+          }
+
+          for (var prop in strings) {
+            dialog.options.push({
+              name: strings[prop],
+              schemaPath: [],
+              abilityPath: [],
+              title: strings[prop],
+              description: ''
+            })
+          }
+
+          this.dialog = dialog
+          break
+
         default: 
           console.error('node.type is unknown')
           break

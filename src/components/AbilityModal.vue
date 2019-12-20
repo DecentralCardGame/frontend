@@ -46,6 +46,10 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
+              <input v-if="dialog.type==='string'" type="radio"
+                v-model="option.value" id="index" :value="option.name"
+              >
+
               <button v-if="dialog.type==='integerList'" type="enumbtn"
                 v-model="option.value" @click="addToArray(index, arrayCount)" id="index" :value="option.name">
                 {{option.name}} {{arrayCount[index]}}
@@ -132,6 +136,9 @@ export default {
           break
         case 'radio':
           this.handleRadioInteraction()
+          break
+        case 'string':
+          this.handleStringInteraction()
           break
         case 'checkbox':
           this.handleCheckboxInteraction()
@@ -225,20 +232,19 @@ export default {
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       console.log('btn: ', btn)
 
-      let path = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
-      console.log('path: ', path)
+      let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
+      let schemaPath2 = R.dropLast(0, R.concat(btn.schemaPath, optionPath)) // TODO CLEAN THIS MESS UP
+      console.log('schemaPath: ', schemaPath)
       console.log('optionPath: ', optionPath)
-      console.log('obj:', R.path(path, this.rules))
+      console.log('obj at path:', R.path(schemaPath, this.rules))
 
-      let newInteraction = createInteraction(selection, path, btn.abilityPath)
+      let newInteraction = createInteraction(selection, schemaPath2, btn.abilityPath, this.rules)
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      console.log(R.path(path, this.rules))
-      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(path, this.rules).properties)
+      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(schemaPath, this.rules).properties)
 
       console.log('ability in handleRadioInteraction: ', this.ability)
-      // this.writeNode('interaction', this.currentNode.interaction[this.currentNode.interactionId])
     },
     handleMultiValueInteraction () {
       // TODO NEEDS FIXING
@@ -265,7 +271,7 @@ export default {
 
       let newAbility = {}
       newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.rules).properties) // R.clone(R.path(this.currentNode.path, this.rules))
-      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.rules).description, this.currentNode.path, [abilityName])
+      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.rules).description, this.currentNode.path, [abilityName], this.rules)
       newAbility.name = abilityName
       newAbility.path = this.currentNode.path
 
@@ -289,8 +295,9 @@ export default {
   }
 }
 
-function createInteraction (description, schemaPath, abilityPath) {
-  let text = description
+function createInteraction (description, schemaPath, abilityPath, rules) {
+  // let text = description
+  let text = R.path(schemaPath, rules).description
   let regex = /([§]+)([a-z,A-Z]+)/g
   text = text.replace(regex, '$1%$2§')
   text = text.split('§')
