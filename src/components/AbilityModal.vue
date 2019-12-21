@@ -100,7 +100,8 @@ export default {
   data () {
     return {
       arrayCount: [0, 0, 0, 0, 0, 0],
-      count: 0
+      selectedCount: 0,
+      selectedString: ''
     }
   },
   props: {
@@ -213,10 +214,10 @@ export default {
 
       // this.writeNode(currentProperty, labels)
 
-      this.ability.interaction[this.currentNode.interactionId].btn.label = this.count
+      this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedCount
 
       let path = R.slice(10, Infinity, this.currentNode.path)
-      R.path(path, this.ability)[currentProperty] = this.count
+      R.path(path, this.ability)[currentProperty] = this.selectedCount
 
       console.log('current node: ', this.currentNode)
       console.log('ability: ', this.ability)
@@ -245,6 +246,19 @@ export default {
       R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(schemaPath, this.rules).properties)
 
       console.log('ability in handleRadioInteraction: ', this.ability)
+    },
+    handleStringInteraction () {
+      let option = filterSelection(this.dialog.options).option
+      let selection = option.value
+      let optionPath = option.schemaPath
+
+      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
+      console.log('currentProperty: ', currentProperty)
+
+      this.ability.interaction[this.currentNode.interactionId].btn.label = selection
+
+      let path = R.slice(10, Infinity, this.currentNode.path)
+      R.path(path, this.ability)[currentProperty] = selection
     },
     handleMultiValueInteraction () {
       // TODO NEEDS FIXING
@@ -296,8 +310,16 @@ export default {
 }
 
 function createInteraction (description, schemaPath, abilityPath, rules) {
+
+  if (isTerminal(R.path(R.dropLast(2, schemaPath), rules))) {
+    console.log('is terminal!')
+    schemaPath = R.dropLast(2, schemaPath)
+  }
+
   // let text = description
   let text = R.path(schemaPath, rules).description
+  console.log('text: ', text)
+
   let regex = /([§]+)([a-z,A-Z]+)/g
   text = text.replace(regex, '$1%$2§')
   text = text.split('§')
@@ -306,6 +328,14 @@ function createInteraction (description, schemaPath, abilityPath, rules) {
 
   text.forEach(entry => {
     if (entry[0] === '%') {
+      // % is the marker for a button after regex, now check if it is terminal:
+      let buttonPath = R.append(entry.slice(1), R.append('properties', schemaPath))
+      let buttonObj = R.path(buttonPath, rules)
+      
+      if (isTerminal(buttonObj)) {
+        console.log('button is terminal!')
+      }
+
       interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
         type: entry.slice(1),
@@ -337,6 +367,29 @@ function updateInteraction (ability, id, newInteraction) {
 
   ability.interaction = R.remove(id, 1, ability.interaction)
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
+}
+
+function isTerminal(node) {
+  console.log('node to be checked: ', node)
+
+  if( node.description === '§ActivatedAbility') {
+    return false
+  }
+  if( node.description === '§TriggeredAbility') {
+    return false
+  }
+  if (node.type === 'object') {
+    
+    if (R.has('oneOf', node)) {
+      return false
+    }
+  }
+  if (node.type === 'array') {
+    if (R.has('oneOf', node.items)) {
+      return false
+    }
+  }
+  return true
 }
 
 function shallowClone (obj) {

@@ -81,6 +81,7 @@ export default {
 
             this.dialog = dialog
 
+          // this is an array radio case, where 1 item is added
           } else if (node.items.oneOf) {
             console.log('items.oneOf')
 
@@ -110,7 +111,7 @@ export default {
         case 'object': 
           console.log('object case picked')
 
-          // this is the typical non-terminal case, where 1 item is selected
+          // this is the typical radio case, where 1 item is selected
           if(R.has('oneOf', node)) {
             console.log('has oneOf')
 
