@@ -27,7 +27,7 @@ import VueSwing from 'vue-swing'
 
 // eslint-disable-next-line no-unused-vars
 import { signTx } from 'signcosmostx/signStuff'
-import { generateAndBroadcastTx } from '../utils.js'
+import { generateAndBroadcastTx } from '../cardChain.js'
 
 export default {
   name: 'VotingPage',
