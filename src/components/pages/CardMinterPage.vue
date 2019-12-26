@@ -1,18 +1,15 @@
 <template>
     <div class="gallery-view">
-      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
-      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
-      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
-      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
-      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
-      <CardComponent v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+      <div v-for="(card, index) in cardJson">
+        <CardComponent v-bind:model="card" ></CardComponent>
+      </div>
     </div>
 </template>
 
 <script>
-// import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
+import cardJson from '../utils.js'
 
 export default {
   name: 'CardMinter',
