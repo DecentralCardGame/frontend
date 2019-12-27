@@ -111,7 +111,7 @@ export const cardJson = [
   },
   {
     "name": "Steam Saw Mill",
-    "type": "Location",
+    "type": "Place",
     "health": 6,
     "attack": 0,
     "speed": 4,
@@ -130,7 +130,7 @@ export const cardJson = [
   },
   {
     "name": "Steam Processor",
-    "type": "Location",
+    "type": "Place",
     "health": 7,
     "attack": 0,
     "speed": 4,
@@ -163,12 +163,12 @@ export const cardJson = [
     },
     "abilities": [],
     "tag": [],
-    "text": "Periodic - repair target location by 2 HP",
+    "text": "Periodic - repair target Place by 2 HP",
     "image": "repairbot"
   },
   {
     "name": "Reprocessor",
-    "type": "Location",
+    "type": "Place",
     "health": 3,
     "attack": 0,
     "speed": 6,
@@ -187,7 +187,7 @@ export const cardJson = [
   },
   {
     "name": "Coal Power Plant",
-    "type": "Location",
+    "type": "Place",
     "health": 7,
     "attack": 0,
     "speed": 6,
@@ -220,7 +220,7 @@ export const cardJson = [
     },
     "abilities": [],
     "tag": [],
-    "text": "Whenever Hurrwig blocks an attack on a location, Hurrwig gets +3/+3",
+    "text": "Whenever Hurrwig blocks an attack on a Place, Hurrwig gets +3/+3",
     "image": "hurrwig"
   },
   {
@@ -263,7 +263,7 @@ export const cardJson = [
   },
   {
     "name": "Farm",
-    "type": "Location",
+    "type": "Place",
     "health": 7,
     "attack": 0,
     "speed": 4,
@@ -282,7 +282,7 @@ export const cardJson = [
   },
   {
     "name": "Mining Site",
-    "type": "Location",
+    "type": "Place",
     "health": 7,
     "attack": 0,
     "speed": 4,
