@@ -1,7 +1,7 @@
 <template>
     <div class="gallery-view">
       <div v-for="(card, index) in sampleCards">
-        <CardComponent v-bind:model="card" ></CardComponent>
+        <CardComponent v-bind:model="card" v-bind:imageURL="'../assets/cardImg/' + card.image + '.png'" ></CardComponent>
       </div>
     </div>
 </template>

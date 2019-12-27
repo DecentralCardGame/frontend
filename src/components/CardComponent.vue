@@ -97,26 +97,6 @@
         <path id="path979" fill="#d99941" d="M6 10.5H5A4.5 4.5 0 00.5 6V5A4.5 4.5 0 005 .5h1A4.5 4.5 0 0010.5 5v1A4.5 4.5 0 006 10.5zm-3.2-5a5.5 5.5 0 012.7 2.7 5.5 5.5 0 012.7-2.7 5.5 5.5 0 01-2.7-2.7 5.5 5.5 0 01-2.7 2.7z" class="cls-2"/>
       </g>
     </g>
-    <!-- Ability icon 1 -->
-    <g v-show="model.abilities[0]" id="Ebene_2-36" data-name="Ebene 2" transform="translate(17.4 180)">
-      <g id="Ebene_1-2-0" data-name="Ebene 1">
-        <rect id="rect1000" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
-        <path id="line1002" fill="none" stroke="#d99941" d="M.7 5.8h9.8" class="cls-1"/>
-        <path id="line1004" fill="none" stroke="#d99941" d="M2.4 3.9v1.8" class="cls-1"/>
-        <path id="line1006" fill="none" stroke="#d99941" d="M8.3 3.9v1.8" class="cls-1"/>
-        <path id="line1008" fill="none" stroke="#d99941" d="M5.5 3.9v1.8" class="cls-1"/>
-      </g>
-    </g>
-    <!-- Ability icon 2 -->
-    <g v-show="model.abilities[1]" id="Ebene_2-6" data-name="Ebene 2" transform="translate(17.3 146.1)">
-      <g id="Ebene_1-2-2" data-name="Ebene 1">
-        <rect id="rect1032" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
-        <path id="line1034" fill="none" stroke="#d99941" d="M5.5 6.5v-6" class="cls-1"/>
-        <path id="line1036" fill="none" stroke="#d99941" d="M5.5 8.5v-1" class="cls-1"/>
-        <path id="line1038" fill="none" stroke="#d99941" d="M2.3 4.4l1.4 1.7" class="cls-1"/>
-        <path id="line1040" fill="none" stroke="#d99941" d="M8.7 4.4L7.3 6.1" class="cls-1"/>
-      </g>
-    </g>
     <!-- Speed -->
     <text id="text2236" x="17" y="24.1" fill="#000" fill-opacity="1" stroke="none" stroke-width=".5" font-family="Montserrat" font-size="19.5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
     <tspan id="tspan2234" x="17" y="24.1" stroke-width=".5" font-family="Montserrat" font-size="19.5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.speed }}</tspan>
@@ -198,17 +178,38 @@
     <text id="text2410" x="81.2" y="127.4" fill="#000" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
     <tspan id="tspan2408" x="81.2" y="127.4" stroke-width=".3" font-family="Montserrat" font-size="12.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.name }} {{ model.article }} {{ model.surname }}</tspan>
   </text>
+      <!-- Ability icon 1 -->
+    <g v-for="(ability, index) in model.abilities" id="Ebene_2-36" data-name="Ebene 2" :transform="'translate(17.4 ' + (146.1+index*24) + ')'">
+      <g id="Ebene_1-2-0" data-name="Ebene 1">
+        <rect id="rect1000" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
+        <path id="line1002" fill="none" stroke="#d99941" d="M.7 5.8h9.8" class="cls-1"/>
+        <path id="line1004" fill="none" stroke="#d99941" d="M2.4 3.9v1.8" class="cls-1"/>
+        <path id="line1006" fill="none" stroke="#d99941" d="M8.3 3.9v1.8" class="cls-1"/>
+        <path id="line1008" fill="none" stroke="#d99941" d="M5.5 3.9v1.8" class="cls-1"/>
+      </g>
+    </g>
+    <!-- Ability icon 2
+    <g v-show="model.abilities[1]" id="Ebene_2-6" data-name="Ebene 2" transform="translate(17.3 146.1)">
+      <g id="Ebene_1-2-2" data-name="Ebene 1">
+        <rect id="rect1032" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
+        <path id="line1034" fill="none" stroke="#d99941" d="M5.5 6.5v-6" class="cls-1"/>
+        <path id="line1036" fill="none" stroke="#d99941" d="M5.5 8.5v-1" class="cls-1"/>
+        <path id="line1038" fill="none" stroke="#d99941" d="M2.3 4.4l1.4 1.7" class="cls-1"/>
+        <path id="line1040" fill="none" stroke="#d99941" d="M8.7 4.4L7.3 6.1" class="cls-1"/>
+      </g>
+    </g>
+     -->
   <!-- human readable text of the abilities -->
-    <text v-for="ability in model.abilities" id="text2410-9" x="33" y="141.1" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Solway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
-    <tspan id="tspan2430" x="33" y="141.1" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Solway, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr"> {{ability.cardText}} </tspan>
+    <text v-for="(ability, index) in model.abilities" id="text2410-9" x="33" :y="141.1 + index*24" inline-size="18" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Solway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
+    <tspan id="tspan2430" x="33" :y="141.1 + index*24" inline-size="18" stroke-width=".1" font-family="Solway" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Solway, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr"> {{ability.cardText}} </tspan>
   </text>
   <!-- The type of the card (entity, location, HQ) -->
     <text id="text2495" x="75.1" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Solway" font-size="8.6" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
     <tspan id="tspan2493" x="75.1" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke-width=".2" font-family="Solway" font-size="8.6" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.type }}</tspan>
   </text>
   <!-- Flavor text -->
-    <text id="text2495-3" x="76.9" y="200.9" fill="#d99941" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2493-1" x="76.9" y="200.9" fill="#d99941" fill-opacity="1" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.text }}</tspan>
+    <text v-for="(text, index) in textToSvg(model.text)" id="text2495-3" x="76.9" :y="model.abilities.length*24 + 156.9 + index*10" fill="#d99941" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2493-1" x="76.9" :y="model.abilities.length*24 + 156.9 + index*10" fill="#d99941" fill-opacity="1" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ text }}</tspan>
   </text>
   <!-- Defense -->
     <text id="text2236-11" x="126.5" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
@@ -222,7 +223,7 @@
 </template>
 
 <script>
-import axios from 'axios' // TODO remove this and use utils.js
+import * as R from 'ramda'
 
 export default {
   name: 'CardComponent',
@@ -258,39 +259,21 @@ export default {
     }
   },
   methods: {
-    vote (voteType) {
-      axios.put(
-        this.apiURL + '/cardservice/vote_card',
-        {
-          'base_req': {
-            'from': 'globally fetched users key',
-            'chain_id': this.chainID,
-            'sequence': '18',
-            'account_number': '0',
-            'gas': 'auto',
-            'gas_adjustment': '1.5'
-          },
-          'voter': 'globally fetched users key',
-          'votetype': voteType,
-          'cardid': this.cardID
-        }).then(response => (this.cards = response.data))
-    },
-    transfer (reciever) {
-      axios.post(
-        this.apiURL + '/cardservice/transfer_card',
-        {
-          'base_req': {
-            'from': 'globally fetched users key',
-            'chain_id': this.chainID,
-            'sequence': '2',
-            'account_number': '0',
-            'gas': 'auto',
-            'gas_adjustment': '1.5'
-          },
-          'sender': 'globally fetched users key',
-          'receiver': reciever,
-          'cardid': this.cardID
-        }).then(response => (this.cards = response.data))
+    textToSvg (text) {
+      console.log(this.imageURL)
+      let maxLength = 50
+      let lines = ['']
+      let words = text.split(' ')
+
+      words.forEach(function(word) {
+        if(R.last(lines).length + word.length > maxLength) {
+          lines.push(word + ' ')
+
+        } else {
+          lines[lines.length - 1] = R.concat(lines[lines.length - 1], word + ' ')
+        }
+      })
+      return lines
     }
   }
 }

@@ -46,7 +46,7 @@ export const cardJson = [
       "food": 1,
       "generic": 1
     },
-    "abilities": [{"cardText": "test ability"}],
+    "abilities": [{"cardText": "test ability"}, {"cardText": "test ability 2"}],
     "tag": ["crazy", "motherfucking", "bus"],
     "text": "Whenever a creature with tag 'pupil' enters the field, schoolbus gets a chu chu counter. Remove a chu chu counter: Schoolbus deals attack to target unit equal to the number of chu chu counters on it.",
     "image": "schoolbus"
