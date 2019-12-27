@@ -1,6 +1,6 @@
 <template>
     <div class="gallery-view">
-      <div v-for="(card, index) in cardJson">
+      <div v-for="(card, index) in sampleCards">
         <CardComponent v-bind:model="card" ></CardComponent>
       </div>
     </div>
@@ -9,13 +9,14 @@
 <script>
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
-import cardJson from '../utils.js'
+import {cardJson} from '../utils.js'
 
 export default {
   name: 'CardMinter',
   components: {CardComponent, ContentContainerComponent},
   data () {
     return {
+      sampleCards: cardJson,
       cards: null,
       sampleCard: {
         name: 'Name',
@@ -41,22 +42,14 @@ export default {
     }
   },
   mounted () {
-    this.$http.get('cardservice/cards ')
-      .then(res => {
-        console.log(res)
-
-        let cardData = res.data.data
-
-        cardData.forEach(function (card) {
-          this.cards.add('ELEMENT')
-        })
-      })
+    console.log(this.sampleCards)
   }
 }
 </script>
 
 <style scoped>
 .gallery-view {
+  text-shadow: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;

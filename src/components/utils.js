@@ -40,13 +40,14 @@ export const cardJson = [
     "speed": 5,
     "cost":{
       "lumber": 2,
-      "metal": 3,
+      "iron": 3,
       "mana": 1,
       "energy": 1,
       "food": 1,
-      "generic": 0
+      "generic": 1
     },
-    "tag": [],
+    "abilities": [{"cardText": "test ability"}],
+    "tag": ["crazy", "motherfucking", "bus"],
     "text": "Whenever a creature with tag 'pupil' enters the field, schoolbus gets a chu chu counter. Remove a chu chu counter: Schoolbus deals attack to target unit equal to the number of chu chu counters on it.",
     "image": "schoolbus"
   },
@@ -58,15 +59,16 @@ export const cardJson = [
     "speed": 6,
     "cost":{
       "lumber": 0,
-      "metal": 0,
+      "iron": 0,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
-    "text": 
-      "Produce - Energy 3, Metal 2, Food 1. Periodic - draw a card. Starting cards in hand: 5. 3 Energy, 1 Metal: create a 0/1 Metal Bot with tag 'scrap'.",
+    "text":
+      "Produce - Energy 3, iron 2, Food 1. Periodic - draw a card. Starting cards in hand: 5. 3 Energy, 1 iron: create a 0/1 iron Bot with tag 'scrap'.",
     "image": "blasturn"
   },
   {
@@ -77,14 +79,15 @@ export const cardJson = [
     "speed": 6,
     "cost":{
       "lumber": 0,
-      "metal": 0,
+      "iron": 0,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
-    "text": "Produce - Energy 2, Metal 2, Lumber 2. Periodic - draw a card. Starting cards in hand: 7",
+    "text": "Produce - Energy 2, Iron 2, Lumber 2. Periodic - draw a card. Starting cards in hand: 7",
     "image": "valgurio"
   },
   {
@@ -94,13 +97,14 @@ export const cardJson = [
     "attack": 0,
     "speed": 4,
     "cost":{
-      "lumber": 0,
-      "metal": 0,
-      "mana": 0,
+      "lumber": 1,
+      "iron": 0,
+      "mana": 2,
       "energy": 0,
-      "food": 0,
+      "food": 1,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Produce - Mana 2, Food 1, Lumber 1. Periodic - draw a card. Starting cards in hand: 5.",
     "image": "talla"
@@ -113,12 +117,13 @@ export const cardJson = [
     "speed": 4,
     "cost":{
       "lumber": 0,
-      "metal": 2,
+      "iron": 2,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Produce - 2 Lumber",
     "image": "steamsawmill"
@@ -131,12 +136,13 @@ export const cardJson = [
     "speed": 4,
     "cost":{
       "lumber": 0,
-      "metal": 4,
+      "iron": 4,
       "mana": 0,
       "energy": 5,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Whenever an Energy is added to your resource depot, add an additional Energy to it. 3 Energy: draw a card.",
     "image": "steamprocessor"
@@ -149,12 +155,13 @@ export const cardJson = [
     "speed": 5,
     "cost":{
       "lumber": 0,
-      "metal": 2,
+      "iron": 2,
       "mana": 0,
       "energy": 2,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Periodic - repair target location by 2 HP",
     "image": "repairbot"
@@ -167,12 +174,13 @@ export const cardJson = [
     "speed": 6,
     "cost":{
       "lumber": 0,
-      "metal": 5,
+      "iron": 5,
       "mana": 0,
       "energy": 2,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "5 energy: return target card from your dust pile to your hand",
     "image": "reprocessor"
@@ -185,12 +193,13 @@ export const cardJson = [
     "speed": 6,
     "cost":{
       "lumber": 0,
-      "metal": 3,
+      "iron": 3,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "2 Lumber: add 3 Energy",
     "image": "coalplant"
@@ -203,12 +212,13 @@ export const cardJson = [
     "speed": 4,
     "cost":{
       "lumber": 0,
-      "metal": 0,
+      "iron": 0,
       "mana": 0,
       "energy": 0,
       "food": 3,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Whenever Hurrwig blocks an attack on a location, Hurrwig gets +3/+3",
     "image": "hurrwig"
@@ -221,12 +231,13 @@ export const cardJson = [
     "speed": 5,
     "cost":{
       "lumber": 2,
-      "metal": 3,
+      "iron": 3,
       "mana": 0,
       "energy": 0,
       "food": 3,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "3 Energy: deal 2 attack to any object.",
     "image": "loerden"
@@ -239,12 +250,13 @@ export const cardJson = [
     "speed": 6,
     "cost":{
       "lumber": 0,
-      "metal": 3,
+      "iron": 3,
       "mana": 0,
       "energy": 0,
       "food": 4,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Whenever an object with tag 'bot' is destroyed, return it to your hand.",
     "image": "ulrich"
@@ -257,12 +269,13 @@ export const cardJson = [
     "speed": 4,
     "cost":{
       "lumber": 2,
-      "metal": 0,
+      "iron": 0,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Produce - 4 Food",
     "image": "farm"
@@ -275,14 +288,15 @@ export const cardJson = [
     "speed": 4,
     "cost":{
       "lumber": 0,
-      "metal": 2,
+      "iron": 2,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
-    "text": "Produce - 4 Metal",
+    "text": "Produce - 4 Iron",
     "image": "miningsite"
   },
   {
@@ -293,14 +307,15 @@ export const cardJson = [
     "speed": 6,
     "cost":{
       "lumber": 0,
-      "metal": 4,
+      "iron": 4,
       "mana": 0,
       "energy": 2,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
-    "text": "4 Metal, 2 Energy: Create a copy of Replicator.",
+    "text": "4 Iron, 2 Energy: Create a copy of Replicator.",
     "image": "replicator"
   },
   {
@@ -311,12 +326,13 @@ export const cardJson = [
     "speed": 8,
     "cost":{
       "lumber": 0,
-      "metal": 5,
+      "iron": 5,
       "mana": 0,
       "energy": 3,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Whenever Combat Bot attacks, you may pay 3 Energy to deal 5 damage to any target.",
     "image": "combatbot"
@@ -329,12 +345,13 @@ export const cardJson = [
     "speed": 5,
     "cost":{
       "lumber": 0,
-      "metal": 3,
+      "iron": 3,
       "mana": 0,
       "energy": 0,
       "food": 0,
       "generic": 0
     },
+    "abilities": [],
     "tag": [],
     "text": "Target object gets +3 damage, +5 HP and gets the ability: regeneration (whenever this object receives damage, gain the same amount of health back.",
     "image": "exoskeleton"

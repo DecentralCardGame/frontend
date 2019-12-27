@@ -49,14 +49,14 @@
           <select @change="saveDraft" v-model="model.cost.generic">
             <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.generic)" :value="n">{{n}}</option>
           </select> Generic,
-          All it needs are <select @change="saveDraft" v-model="model.ticks">
+          All it needs are <select @change="saveDraft" v-model="model.speed">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select> Ticks, to get me rolling. I have an
           attack of <select @change="saveDraft" v-model="model.attack">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select> and I sadly die
           after someone suckerpunchs
-          me for <select @change="saveDraft" v-model="model.defense">
+          me for <select @change="saveDraft" v-model="model.health">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
         </select>
           damage.
@@ -98,7 +98,7 @@
           <label for="file" class="button-file">Choose a file</label>
           My flavor is best expressed by
           the following sentences:
-          <input @change="saveDraft" v-model="model.description" value="Card Name">.
+          <input @change="saveDraft" v-model="model.text" value="Card Name">.
           I would like to give the
           council proper intel:
           <input @change="saveDraft" v-model="model.notes" value="Card Name">.
@@ -174,8 +174,8 @@ export default {
       cardImageUrl: sampleImg,
       model: {
         name: 'Name',
-        description: '',
-        ability: '',
+        text: '',
+        abilities: [],
         notes: '',
         article: 'the',
         surname: 'Surname',
@@ -189,8 +189,8 @@ export default {
           energy: 0,
           generic: 0
         },
-        ticks: 0,
-        defense: 0,
+        speed: 0,
+        health: 0,
         attack: 0
       },
       rules: {},
@@ -316,9 +316,9 @@ export default {
         [this.model.type]: {
           'Name': this.model.name,
           'Tag': this.model.tags,
-          'Taxt': this.model.description,
+          'Text': this.model.text,
           'Cost': costArray,
-          'CastSpeed': this.model.ticks,
+          'CastSpeed': this.model.speed,
           'Effects': {}
         }
       }
