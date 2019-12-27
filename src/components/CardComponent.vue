@@ -45,13 +45,13 @@
         <path id="line1349-2" fill="#6c6c6c" fill-opacity="1" stroke="#6c6c6c" stroke-opacity="1" stroke-width=".4" d="M126.9 228.3v-5.9" class="cls-4"/>
       </g>
     </g>
-    <g transform="translate(46 3.7)">
-      <!-- Energy symbol -->
-      <g v-show="model.cost.energy">
-        <circle id="circle833" cx="5.5" cy="5.5" r="5" fill="none" stroke="#d99941" class="cls-2"/>
+    <!-- Energy symbol -->
+    <g v-show="model.cost.energy" id="Ebene_2-7" data-name="Ebene 2" transform="translate(46 3.7)">
+      <g>
         <circle id="circle835" cx="5.5" cy="5.5" r="5" fill="#ffdfa1" class="cls-3"/>
+        <circle id="circle833" cx="5.5" cy="5.5" r="5" fill="#ffdfa1" stroke="#d99941" class="cls-2"/>
         <g id="g839" class="cls-4" clip-path="url(#clip-path)">
-          <path id="polyline837" fill="none" stroke="#d99941" d="M8.4 1.4L6.6 4.1h2l-4.9 6.1L4.8 6l-2.4-.1L4.9.8" class="cls-2"/>
+          <path id="polyline837" fill="#ffdfa1" stroke="#d99941" d="M8.4 1.4L6.6 4.1h2l-4.9 6.1L4.8 6l-2.4-.1L4.9.8" class="cls-2"/>
         </g>
         <circle id="circle841" cx="5.5" cy="5.5" r="5" fill="none" stroke="#d99941" class="cls-2"/>
       </g>
@@ -208,8 +208,8 @@
     <tspan id="tspan2493" x="75.1" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke-width=".2" font-family="Solway" font-size="8.6" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.type }}</tspan>
   </text>
   <!-- Flavor text -->
-    <text v-for="(text, index) in textToSvg(model.text)" id="text2495-3" x="76.9" :y="model.abilities.length*24 + 156.9 + index*10" fill="#d99941" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2493-1" x="76.9" :y="model.abilities.length*24 + 156.9 + index*10" fill="#d99941" fill-opacity="1" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ text }}</tspan>
+    <text v-for="(text, index) in textToSvg(model.text)" id="text2495-3" x="76.9" :y="model.abilities.length*24 + 156.9 + index*6" fill="#d99941" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2493-1" x="76.9" :y="model.abilities.length*24 + 156.9 + index*6" fill="#d99941" fill-opacity="1" stroke-width=".1" font-family="Solway" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Solway, Light';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ text }}</tspan>
   </text>
   <!-- Defense -->
     <text id="text2236-11" x="126.5" y="228.6" fill="#6c6c6c" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
