@@ -37,7 +37,7 @@ export const cardJson = [
     "type": "Object",
     "health": 1,
     "attack": 1,
-    "speed": 5,
+    "speed": 13,
     "cost":{
       "lumber": 2,
       "iron": 3,
