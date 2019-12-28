@@ -1,7 +1,7 @@
 <template>
     <div class="gallery-view">
       <div v-for="(card, index) in sampleCards">
-        <CardComponent v-bind:model="card" v-bind:imageURL="'../assets/cardImg/' + card.image + '.png'" ></CardComponent>
+        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[card.image]" ></CardComponent>
       </div>
     </div>
 </template>
@@ -9,7 +9,9 @@
 <script>
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
-import {cardJson} from '../utils.js'
+import { cardJson } from '../utils.js'
+
+import * as imgs from '../../assets/cardImg/base64img.js'
 
 export default {
   name: 'CardMinter',
@@ -17,6 +19,7 @@ export default {
   data () {
     return {
       sampleCards: cardJson,
+      cardImgs: imgs,
       cards: null,
       sampleCard: {
         name: 'Name',

@@ -23,6 +23,7 @@
         <path id="path1339" fill="#001433" d="M140.3 19h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z" class="cls-3"/>
         <!-- text box background -->
         <rect id="rect1341" width="134" height="100" x="9.3" y="18.1" fill="#f2f2f2" class="cls-7" />
+        <!-- image -->
         <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:xlink:href="imageURL" x="9.3" y="18.1" width="134" height="100" rx="4" class="cardImage"/>
         <!-- tag box -->
         <path id="rect1343" fill="#1B1464" fill-opacity="1" d="M9.3 233.1h134v5.3H9.3z"/>
@@ -197,8 +198,8 @@
     <tspan id="tspan2408" x="81.2" y="127.4" stroke-width=".3" font-family="Solway" font-size="10.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.name }} {{ model.article }} {{ model.surname }}</tspan>
   </text>
   <!-- Speed -->
-    <text id="text2236" x="17" y="24.1" font-family="Montserrat" font-size="19.5" font-style="black" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2234" x="17" y="24.1" font-family="Montserrat" font-size="19.5" font-style="black" text-anchor="middle" writing-mode="lr-tb">{{ model.speed }}</tspan>
+    <text id="text2236" x="17" y="24.1" font-family="Montserrat" font-size="19.5"  stroke="black" stroke-width="0.8" font-style="normal" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2234" x="17" y="24.1" font-family="Montserrat" font-size="19.5" font-style="normal" text-anchor="middle" writing-mode="lr-tb">{{ model.speed }}</tspan>
   </text>
   <!-- Tags -->
     <text v-for="(tag, index) in model.tag" id="text2527" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" stroke-width=".1" font-family="Montserrat" font-size="4.6"  letter-spacing="1" text-anchor="start" xml:space="preserve">
@@ -265,7 +266,6 @@ export default {
   },
   methods: {
     textToSvg (text) {
-      console.log(this.imageURL)
       if(!text) return text
 
       let maxLength = 45
