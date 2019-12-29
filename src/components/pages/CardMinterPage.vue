@@ -1,6 +1,6 @@
 <template>
     <div class="gallery-view">
-      <div v-for="(card, index) in sampleCards">
+      <div v-for="(card) in sampleCards">
         <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[card.image]" ></CardComponent>
       </div>
     </div>

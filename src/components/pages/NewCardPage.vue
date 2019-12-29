@@ -32,7 +32,7 @@
         <div v-if="activeStep == 1"><br>
           As I am quite awesome my costs are the following:
           <select @change="saveDraft" v-model="model.cost.lumber">
-            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.lumber)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.lumber)" :value="n">{{n}}</option>
           </select> Lumber,
           <select @change="saveDraft" v-model="model.cost.food">
             <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.food)" :value="n">{{n}}</option>
@@ -212,6 +212,13 @@ export default {
   },
   computed: {
     remainingCosts () {
+      if (!this.model.cost.lumber) this.model.cost.lumber = 0
+      if (!this.model.cost.food ) this.model.cost.food = 0
+      if (!this.model.cost.iron ) this.model.cost.iron = 0
+      if (!this.model.cost.mana ) this.model.cost.mana = 0
+      if (!this.model.cost.energy ) this.model.cost.energy = 0
+      if (!this.model.cost.generic) this.model.cost.generic = 0
+
       return 32 - this.model.cost.lumber -
               this.model.cost.food -
               this.model.cost.iron -
