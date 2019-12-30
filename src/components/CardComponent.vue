@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="700" v-bind:viewBox="viewBox" >
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" v-bind:viewBox="viewBox" >
     <defs/>
     <defs>
       <clipPath>
@@ -24,7 +24,7 @@
         <!-- text box background -->
         <rect id="rect1341" width="134" height="100" x="9.3" y="18.1" fill="#f2f2f2" class="cls-7" />
         <!-- image -->
-        <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:xlink:href="imageURL" x="9.3" y="18.1" width="134" height="100" rx="4" class="cardImage"/>
+        <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:href="imageURL" x="9.3" y="18.1" width="134" height="100" rx="4" class="cardImage"/>
         <!-- tag box -->
         <path id="rect1343" fill="#1B1464" fill-opacity="1" d="M9.3 233.1h134v5.3H9.3z"/>
         <!-- attack - type - health lines --> 
