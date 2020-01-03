@@ -200,10 +200,10 @@ export default {
 
       this.ability.interaction[this.currentNode.interactionId].btn.label = labels
 
-      let path = R.slice(10, Infinity, this.currentNode.path)
-      R.path(path, this.ability)[currentProperty] = values
+      // let path = R.slice(10, Infinity, this.currentNode.path)
+      let btn = this.ability.interaction[this.currentNode.interactionId].btn
+      R.path(btn.abilityPath, this.ability)[currentProperty] = values
 
-      console.log('current node: ', this.currentNode)
       console.log('ability: ', this.ability)
     },
     handleIntegerInteraction () {
