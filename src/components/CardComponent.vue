@@ -258,7 +258,7 @@ export default {
   computed: {
     viewBox () {
       if (!this.displayNotes) {
-        return '0 0 210 240'
+        return '0 0 154 240'
       } else {
         return '0 0 210 297'
       }

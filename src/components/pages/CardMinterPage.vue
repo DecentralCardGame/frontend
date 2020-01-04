@@ -35,22 +35,23 @@ export default {
   methods: {
     bundleSVGs () {      
       let svgMain = document.createElement("svg");
-      // svgMain.setAttribute('viewbox', '0 0 630 720')
-      // svgMain.setAttribute('width', '1570')
-      // svgMain.setAttribute('height', '2600')
+      // svgMain.setAttribute('viewbox', '0 0 210 600')
+      // svgMain.setAttribute('width', 210)
+      // svgMain.setAttribute('height', 297)
 
       for (let i = 0; i < Math.min(this.sampleCards.length, 9); i++) {
 
         let svg = document.getElementById('card'+i)
         
-        svg.setAttribute('width', '300')
+        // svg.setAttribute('width', '154')
 
         // svg.setAttribute('transform','translate(' + 520*(i%3) + ',' + (850*Math.floor(i/3)-850) + ')');  // works for plain svg
 
-        svg.setAttribute('transform','translate(' + (-65*(i%3)) + ',' + (80*Math.floor(i/3)) + ')');
+        // svg.setAttribute('transform','translate(' + 154 + ',' + 250 + ')');
 
         svgMain.appendChild(svg)
       }
+
 
 
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
