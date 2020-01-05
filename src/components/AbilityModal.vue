@@ -56,7 +56,7 @@
               </button>
 
               <button v-if="dialog.type==='integer'" type="integerbtn"
-                v-model="option.value" @click="count+=1-2*index" id="index" :value="option.name">
+                v-model="option.value" @click="selectedCount+=1-2*index" id="index" :value="option.name">
                 {{option.name}}
               </button>
 
@@ -69,7 +69,7 @@
               <span v-if="option.description"> - {{option.description}} </span>
             </div>
             <div>
-              <span v-if ="dialog.type==='integer'"> {{count}} </span>
+              <span v-if ="dialog.type==='integer'"> {{selectedCount}} </span>
             </div>
           </slot>
         </section>
@@ -200,7 +200,6 @@ export default {
 
       this.ability.interaction[this.currentNode.interactionId].btn.label = labels
 
-      // let path = R.slice(10, Infinity, this.currentNode.path)
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       R.path(btn.abilityPath, this.ability)[currentProperty] = values
 
@@ -216,10 +215,9 @@ export default {
 
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedCount
 
-      let path = R.slice(10, Infinity, this.currentNode.path)
-      R.path(path, this.ability)[currentProperty] = this.selectedCount
-
-      console.log('current node: ', this.currentNode)
+      let btn = this.ability.interaction[this.currentNode.interactionId].btn
+      R.path(btn.abilityPath, this.ability)[currentProperty] = this.selectedCount
+      
       console.log('ability: ', this.ability)
     },
     handleRadioInteraction () {
@@ -235,9 +233,9 @@ export default {
 
       let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
       let schemaPath2 = R.dropLast(0, R.concat(btn.schemaPath, optionPath)) // TODO CLEAN THIS MESS UP
-      console.log('schemaPath: ', schemaPath)
+      console.log('schemaPath: ', schemaPath2)
       console.log('optionPath: ', optionPath)
-      console.log('obj at path:', R.path(schemaPath, this.rules))
+      console.log('obj at path:', R.path(schemaPath2, this.rules))
 
       let newInteraction = createInteraction(selection, schemaPath2, btn.abilityPath, this.rules)
 
@@ -378,9 +376,12 @@ function isTerminal(node) {
   if( node.description === '§TriggeredAbility') {
     return false
   }
+  if (node.required && node.required.length == 1 && node.properties[node.required[0]]) {
+    return false
+  }
   if (node.type === 'object') {
-    
     if (R.has('oneOf', node)) {
+      console.log('simple oneof case')
       return false
     }
   }
