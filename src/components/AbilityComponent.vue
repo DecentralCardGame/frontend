@@ -54,13 +54,15 @@ export default {
       // depending on type, create dialog
       if (node.type) {
         switch (node.type) {
+
         case 'array':
 
           if (node.items.enum) {
+            this.writeNode('modalType', 'items.enum')
+            console.log('modalType: items.enums: ', enums)
 
             let enums = node.items.enum
 
-            console.log('enums: ', enums)
             let dialog = {
               title: btn.type,
               description: 'choose your destiny:',
@@ -83,7 +85,8 @@ export default {
 
           // this is an array radio case, where 1 item is added
           } else if (node.items.oneOf) {
-            console.log('items.oneOf')
+            this.writeNode('modalType', 'items.oneOf')
+            console.log('modalType: items.oneOf')
 
             let options = node.items.oneOf
 
@@ -98,7 +101,7 @@ export default {
               let propName = options[prop].required[0]
               dialog.options.push({
                 name: options[prop].description,
-                schemaPath: ['items', 'oneOf', prop, 'properties', propName],
+                schemaPath: ['items', 'oneOf', prop],
                 abilityPath: [propName],
                 title: options[prop].title,
                 description: options[prop].description
@@ -108,12 +111,13 @@ export default {
             this.dialog = dialog
           }
           break
+
         case 'object': 
-          console.log('object case picked')
 
           // this is the typical radio case, where 1 item is selected
           if(R.has('oneOf', node)) {
-            console.log('has oneOf')
+            this.writeNode('modalType', 'object.oneOf')
+            console.log('modalType: object.oneOf')
 
             let options = node.oneOf
 
@@ -139,6 +143,8 @@ export default {
 
           // this is a terminal case, pick integers
           } else if(R.has('properties', node)) {
+            this.writeNode('modalType', 'object.integers')
+            console.log('modalType: object.integers')
             
             if(R.all(x => x.type === 'integer', node.properties)) {
               let keys = R.keys(node.properties)
@@ -170,7 +176,9 @@ export default {
 
         // this is a terminal case, yes or no
         case 'boolean':
-          console.log('boolean!')
+
+          this.writeNode('modalType', 'boolean')
+          console.log('modalType: boolean')
 
           let dialog = {
             title: btn.type,
@@ -181,7 +189,7 @@ export default {
               schemaPath: [],
               abilityPath: [],
               title: 'Yes',
-              description: 'Marius hat keine Description Property hinzugefügt'
+              description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
             }]
           }
 
@@ -190,7 +198,9 @@ export default {
 
         // this is a terminal case, specify an integer
         case 'integer':
-          console.log('integer!')
+
+          this.writeNode('modalType', 'integer')
+          console.log('modalType: integer')
 
           dialog = {
             title: btn.type,
@@ -218,7 +228,9 @@ export default {
 
         // this is a terminal case, pick one of the strings
         case 'string':
-          console.log('string!')
+
+          this.writeNode('modalType', 'string')
+          console.log('modalType: string')
 
           let strings = node.enum
 

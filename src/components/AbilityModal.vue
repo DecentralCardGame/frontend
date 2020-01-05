@@ -222,22 +222,27 @@ export default {
     },
     handleRadioInteraction () {
       console.log('ability: ', this.ability)
+      let btn = this.ability.interaction[this.currentNode.interactionId].btn
       let option = filterSelection(this.dialog.options).option
       let selection = option.value
       let optionPath = option.schemaPath
+      let clickedPath = R.concat(btn.schemaPath, optionPath)
 
       console.log('selection: ', selection)
-
-      let btn = this.ability.interaction[this.currentNode.interactionId].btn
+      console.log('obj at clickedPath:', R.path(clickedPath, this.rules))
+      
       console.log('btn: ', btn)
 
+      let depth = deepness(R.path(clickedPath, this.rules))
+      console.log(depth)
+
       let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
-      let schemaPath2 = R.dropLast(0, R.concat(btn.schemaPath, optionPath)) // TODO CLEAN THIS MESS UP
+      let schemaPath2 = R.dropLast(2-depth, clickedPath) // TODO CLEAN THIS MESS UP
       console.log('schemaPath: ', schemaPath2)
       console.log('optionPath: ', optionPath)
       console.log('obj at path:', R.path(schemaPath2, this.rules))
 
-      let newInteraction = createInteraction(selection, schemaPath2, btn.abilityPath, this.rules)
+      let newInteraction = createInteraction(selection, clickedPath, btn.abilityPath, this.rules)
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
@@ -308,11 +313,11 @@ export default {
 }
 
 function createInteraction (description, schemaPath, abilityPath, rules) {
-
+  /*
   if (isTerminal(R.path(R.dropLast(2, schemaPath), rules))) {
     console.log('is terminal!')
     schemaPath = R.dropLast(2, schemaPath)
-  }
+  }*/
 
   // let text = description
   let text = R.path(schemaPath, rules).description
@@ -338,7 +343,6 @@ function createInteraction (description, schemaPath, abilityPath, rules) {
         label: entry.slice(1),
         type: entry.slice(1),
         schemaPath: R.append(entry.slice(1), R.append('properties', schemaPath)),
-        // schemaPath: schemaPath,
         abilityPath: R.append(entry.slice(1), abilityPath)
       }
     } else {
@@ -365,6 +369,27 @@ function updateInteraction (ability, id, newInteraction) {
 
   ability.interaction = R.remove(id, 1, ability.interaction)
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
+}
+
+function deepness(node) {
+  console.log('deepness of node to be checked: ', node)
+
+  if( node.description === '§ActivatedAbility') {
+    return 2
+  }
+  if( node.description === '§TriggeredAbility') {
+    return 2
+  }
+  if (R.has('items', node)) {
+    if (R.has('oneOf', node.items)) {
+      return 2
+    }
+  }
+  if (R.has('oneOf', node)) {
+      return 1
+  }
+  console.log('terminal node, deepness is 0')
+  return 0
 }
 
 function isTerminal(node) {
