@@ -1,7 +1,8 @@
 <template>
   <div>
     <AbilityModal
-      v-if="isAbilityModalVisible"
+      ref="abilityModal"
+      v-show="isAbilityModalVisible"
       v-bind:rules="rules"
       v-bind:dialog="dialog"
       v-bind:currentNode="currentNode"
@@ -43,235 +44,247 @@ export default {
   computed: {
   },
   methods: {
-    showAbilityModal (ability, btn, index)  {
-      console.log('entering showAbilityModal with btn and obj: ', btn, R.path(btn.schemaPath, this.rules))
-
+    showAbilityModal (ability, btn, index) {
       // first set current node to clicked node
       this.writeNode('interactionId', index)
       let node = R.path(btn.schemaPath, this.rules)
-      console.log('node: ', node)
+
+      console.log('entering showAbilityModal with btn: ', btn, ' and node: ', node)
+
+      let thereWillBeModal = true
 
       // depending on type, create dialog
       if (node.type) {
         switch (node.type) {
+          case 'array':
 
-        case 'array':
+            if (node.items.enum) {
+              this.writeNode('modalType', 'items.enum')
+              console.log('modalType: items.enums: ', enums)
 
-          if (node.items.enum) {
-            this.writeNode('modalType', 'items.enum')
-            console.log('modalType: items.enums: ', enums)
-
-            let enums = node.items.enum
-
-            let dialog = {
-              title: btn.type,
-              description: 'choose your destiny:',
-              type: 'enum',
-              options: [],
-              enum: enums
-            }
-
-            for (var prop in enums) {
-              dialog.options.push({
-                name: enums[prop],
-                schemaPath: [], // TODO YES
-                abilityPath: [],
-                title: enums[prop],
-                description: ''
-              })
-            }
-
-            this.dialog = dialog
-
-          // this is an array radio case, where 1 item is added
-          } else if (node.items.oneOf) {
-            this.writeNode('modalType', 'items.oneOf')
-            console.log('modalType: items.oneOf')
-
-            let options = node.items.oneOf
-
-            let dialog = {
-              title: btn.type,
-              description: 'choose your destiny:',
-              type: 'radio',
-              options: []
-            }
-
-            for (var prop in options) {
-              let propName = options[prop].required[0]
-              dialog.options.push({
-                name: options[prop].description,
-                schemaPath: ['items', 'oneOf', prop],
-                abilityPath: [propName],
-                title: options[prop].title,
-                description: options[prop].description
-              })
-            }
-
-            this.dialog = dialog
-          }
-          break
-
-        case 'object': 
-
-          // this is the typical radio case, where 1 item is selected
-          if(R.has('oneOf', node)) {
-            this.writeNode('modalType', 'object.oneOf')
-            console.log('modalType: object.oneOf')
-
-            let options = node.oneOf
-
-            let dialog = {
-              title: btn.type, 
-              description: 'choose your destiny:',
-              type: 'radio',
-              options: []
-            }
-
-            for (var prop in options) {
-              let propName = options[prop].required[0]
-              dialog.options.push({
-                name: options[prop].description,
-                schemaPath: ['oneOf', prop, 'properties', propName],
-                abilityPath: [propName],
-                title: options[prop].title,
-                description: options[prop].description
-              })
-            }
-
-            this.dialog = dialog
-
-          // this is a terminal case, pick integers
-          } else if(R.has('properties', node)) {
-            this.writeNode('modalType', 'object.integers')
-            console.log('modalType: object.integers')
-            
-            if(R.all(x => x.type === 'integer', node.properties)) {
-              let keys = R.keys(node.properties)
+              let enums = node.items.enum
 
               let dialog = {
                 title: btn.type,
                 description: 'choose your destiny:',
-                type: 'integerList',
+                type: 'enum',
                 options: [],
-                entries: keys
+                enum: enums
               }
 
-              for (var prop in keys) {
+              for (let prop in enums) {
                 dialog.options.push({
-                  name: keys[prop],
-                  schemaPath: [],
+                  name: enums[prop],
+                  schemaPath: [], // TODO YES
                   abilityPath: [],
-                  title: keys[prop],
+                  title: enums[prop],
                   description: ''
                 })
               }
 
               this.dialog = dialog
+
+            // this is an array radio case, where 1 item is added
+            } else if (node.items.oneOf) {
+              this.writeNode('modalType', 'items.oneOf')
+              console.log('modalType: items.oneOf')
+
+              let options = node.items.oneOf
+
+              let dialog = {
+                title: btn.type,
+                description: 'choose your destiny:',
+                type: 'radio',
+                options: []
+              }
+
+              for (let prop in options) {
+                let propName = options[prop].required[0]
+                dialog.options.push({
+                  name: options[prop].description,
+                  schemaPath: ['items', 'oneOf', prop],
+                  abilityPath: [propName],
+                  title: options[prop].title,
+                  description: options[prop].description
+                })
+              }
+
+              this.dialog = dialog
             }
-          } else {
-            console.error('object yes, further ideas no')
-          }
-          break
+            break
 
-        // this is a terminal case, yes or no
-        case 'boolean':
+        case 'object': 
 
-          this.writeNode('modalType', 'boolean')
-          console.log('modalType: boolean')
+          // this is the typical radio case, where 1 item is selected
+            if (R.has('oneOf', node)) {
+              this.writeNode('modalType', 'object.oneOf')
+              console.log('modalType: object.oneOf')
 
-          let dialog = {
-            title: btn.type,
-            description: 'choose your destiny:',
-            type: 'checkbox',
-            options: [{
-              name: 'marius hat gefailed',
-              schemaPath: [],
-              abilityPath: [],
-              title: 'Yes',
-              description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
-            }]
-          }
+              let options = node.oneOf
 
-          this.dialog = dialog
-          break
+              let dialog = {
+                title: btn.type,
+                description: 'choose your destiny:',
+                type: 'radio',
+                options: []
+              }
 
-        // this is a terminal case, specify an integer
-        case 'integer':
+              for (let prop in options) {
+                let propName = options[prop].required[0]
+                dialog.options.push({
+                  name: options[prop].description,
+                  schemaPath: ['oneOf', prop, 'properties', propName],
+                  abilityPath: [propName],
+                  title: options[prop].title,
+                  description: options[prop].description
+                })
+              }
 
-          this.writeNode('modalType', 'integer')
-          console.log('modalType: integer')
+              this.dialog = dialog
 
-          dialog = {
-            title: btn.type,
-            description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
-            type: 'integer',
-            options: [{
-              name: 'MORE!',
-              schemaPath: [],
-              abilityPath: [],
-              title: '',
-              description: ''
-            },
-            {
-              name: 'LESS..',
-              schemaPath: [],
-              abilityPath: [],
-              title: '',
-              description: ''
+            } else if (R.has('properties', node)) {
+            // this is a terminal case, pick integers
+              if (R.all(props => props.type === 'integer', R.values(node.properties))) {
+                this.writeNode('modalType', 'object.integers')
+                console.log('modalType: object.integers')
+
+                let keys = R.keys(node.properties)
+
+                let dialog = {
+                  title: btn.type,
+                  description: 'choose your destiny:',
+                  type: 'integerList',
+                  options: [],
+                  entries: keys
+                }
+
+                for (let prop in keys) {
+                  dialog.options.push({
+                    name: keys[prop],
+                    schemaPath: [],
+                    abilityPath: [],
+                    title: keys[prop],
+                    description: ''
+                  })
+                }
+
+                this.dialog = dialog
+
+              // this is a typical case for not showing a modal, still we want to call addAbility
+              } else {
+                this.writeNode('modalType', 'object.noInteraction')
+                console.log('modalType: object.noInteraction')
+
+                thereWillBeModal = false
+
+                this.dialog = {
+                  type: 'noDialog'
+                }
+
+                this.$refs.abilityModal.addAbility()
+              }
+            } else {
+              console.error('object yes, but has no properties?!?')
             }
-            ]
-          }
+            break
 
-          this.dialog = dialog   
-          break
+          // this is a terminal case, yes or no
+          case 'boolean':
 
-        // this is a terminal case, pick one of the strings
-        case 'string':
+            this.writeNode('modalType', 'boolean')
+            console.log('modalType: boolean')
 
-          this.writeNode('modalType', 'string')
-          console.log('modalType: string')
+            let dialog = {
+              title: btn.type,
+              description: 'choose your destiny:',
+              type: 'checkbox',
+              options: [{
+                name: 'marius hat gefailed',
+                schemaPath: [],
+                abilityPath: [],
+                title: 'Yes',
+                description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
+              }]
+            }
 
-          let strings = node.enum
+            this.dialog = dialog
+            break
 
-          dialog = {
-            title: btn.type,
-            description: 'pick one of the following:',
-            type: 'string',
-            options: [],
-            entries: strings
-          }
+          // this is a terminal case, specify an integer
+          case 'integer':
 
-          for (var prop in strings) {
-            dialog.options.push({
-              name: strings[prop],
-              schemaPath: [],
-              abilityPath: [],
-              title: strings[prop],
-              description: ''
-            })
-          }
+            this.writeNode('modalType', 'integer')
+            console.log('modalType: integer')
 
-          this.dialog = dialog
-          break
+            dialog = {
+              title: btn.type,
+              description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
+              type: 'integer',
+              options: [{
+                name: 'MORE!',
+                schemaPath: [],
+                abilityPath: [],
+                title: '',
+                description: ''
+              },
+              {
+                name: 'LESS..',
+                schemaPath: [],
+                abilityPath: [],
+                title: '',
+                description: ''
+              }
+              ]
+            }
 
-        default: 
-          console.error('node.type is unknown')
-          break
+            this.dialog = dialog
+            break
+
+          // this is a terminal case, pick one of the strings
+          case 'string':
+
+            this.writeNode('modalType', 'string')
+            console.log('modalType: string')
+
+            let strings = node.enum
+
+            dialog = {
+              title: btn.type,
+              description: 'pick one of the following:',
+              type: 'string',
+              options: [],
+              entries: strings
+            }
+
+            for (let prop in strings) {
+              dialog.options.push({
+                name: strings[prop],
+                schemaPath: [],
+                abilityPath: [],
+                title: strings[prop],
+                description: ''
+              })
+            }
+
+            this.dialog = dialog
+            break
+
+          default:
+            console.error('node.type is unknown')
+            break
         }
         console.log('created dialog: ', this.dialog)
-
       } else {
         console.error('node.type not defined')
       }
 
-      this.isAbilityModalVisible = true
+      this.isAbilityModalVisible = thereWillBeModal
     },
-    setNode(reference) {
+    setNode (reference) {
       this.currentNode = reference
       this.$emit('update:currentNode', this.currentNode)
     },
-    writeNode(prop, data) {
+    writeNode (prop, data) {
       this.currentNode[prop] = data
       this.$emit('update:currentNode', this.currentNode)
     },

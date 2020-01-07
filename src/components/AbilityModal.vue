@@ -144,6 +144,9 @@ export default {
         case 'checkbox':
           this.handleCheckboxInteraction()
           break
+        case 'noDialog':
+          this.handleNoModal()
+          break
         default:
           console.error('this type is unkown: ', this.dialog.type)
           break
@@ -248,7 +251,19 @@ export default {
 
       R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(schemaPath, this.rules).properties)
 
-      console.log('ability in handleRadioInteraction: ', this.ability)
+      console.log('ability after handleRadioInteraction: ', this.ability)
+    },
+    handleNoModal () {
+      console.log('ability at handleNoModal: ', this.ability)
+
+      let btn = this.ability.interaction[this.currentNode.interactionId].btn
+      console.log('btn: ', btn)
+      let newInteraction = createInteraction('', btn.schemaPath, btn.abilityPath, this.rules)
+
+      updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
+
+      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
+
     },
     handleStringInteraction () {
       let option = filterSelection(this.dialog.options).option
@@ -334,10 +349,6 @@ function createInteraction (description, schemaPath, abilityPath, rules) {
       // % is the marker for a button after regex, now check if it is terminal:
       let buttonPath = R.append(entry.slice(1), R.append('properties', schemaPath))
       let buttonObj = R.path(buttonPath, rules)
-      
-      if (isTerminal(buttonObj)) {
-        console.log('button is terminal!')
-      }
 
       interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
