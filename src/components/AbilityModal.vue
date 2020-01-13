@@ -239,14 +239,21 @@ export default {
       let depth = deepness(R.path(clickedPath, this.rules))
       console.log(depth)
 
-      let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
-      let schemaPath2 = R.dropLast(2-depth, clickedPath) // TODO CLEAN THIS MESS UP
-      console.log('schemaPath: ', schemaPath2)
+      //let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
+      let schemaPath = R.dropLast(2-depth, clickedPath) // TODO CLEAN THIS MESS UP
+      console.log('schemaPath: ', schemaPath)
       console.log('optionPath: ', optionPath)
-      console.log('obj at path:', R.path(schemaPath2, this.rules))
+      console.log('obj at path:', R.path(schemaPath, this.rules))
+      console.log('btn.abilityPath: ', btn.abilityPath)
+      console.log('option.abilityPath: ', option.abilityPath)
 
-      let newInteraction = createInteraction(selection, clickedPath, btn.abilityPath, this.rules)
-
+      let newInteraction
+      if (this.currentNode.modalType === 'object.oneOf') {
+        newInteraction = createInteraction(selection, clickedPath, R.concat(btn.abilityPath, option.abilityPath), this.rules)
+      } else {
+        newInteraction = createInteraction(selection, clickedPath, btn.abilityPath, this.rules)
+      }
+      
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
       R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(schemaPath, this.rules).properties)
@@ -383,7 +390,7 @@ function updateInteraction (ability, id, newInteraction) {
 }
 
 function deepness(node) {
-  console.log('deepness of node to be checked: ', node)
+  console.log('node whose deepness is checked: ', node)
 
   if( node.description === '§ActivatedAbility') {
     return 2
@@ -397,6 +404,9 @@ function deepness(node) {
     }
   }
   if (R.has('oneOf', node)) {
+      return 1
+  }
+    if (R.has('properties', node)) {
       return 1
   }
   console.log('terminal node, deepness is 0')
