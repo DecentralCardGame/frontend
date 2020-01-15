@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div v-cloak @drop.prevent="dropIt" @dragover.prevent>
     <button
       type="button" class="btn" @click="bundleSVGs()"> Download Print Sheet 
     </button>
   
     <div class="gallery-view">
-      <div v-for="(card, index) in sampleCards">
-        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[card.image]" v-bind:id="'card'+index" ></CardComponent>
+      <div v-for="(card, index) in cards" v-cloak @drop.prevent="addFile($event, index)" @dragover.prevent>
+        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index" ></CardComponent>
       </div>
     </div>
   </div>
@@ -16,8 +16,8 @@
 import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
-import { cardJson } from '../utils.js'
-import * as imgs from '../../assets/cardImg/base64img.js'
+import { cardJson, sampleImg } from '../utils.js'
+//import * as imgs from '../../assets/cardImg/base64img.js'
 
 
 export default {
@@ -25,12 +25,14 @@ export default {
   components: {CardComponent, ContentContainerComponent},
   data () {
     return {
-      sampleCards: cardJson,
-      cardImgs: imgs
+      cards: [cardJson[0]], //cardJson,
+      cardImgs: [
+        sampleImg
+      ]
     }
   },
   mounted () {
-    console.log(this.sampleCards)
+    
   },
   methods: {
     bundleSVGs () {      
@@ -39,7 +41,7 @@ export default {
       // svgMain.setAttribute('width', 210)
       // svgMain.setAttribute('height', 297)
 
-      for (let i = 0; i < Math.min(this.sampleCards.length, 9); i++) {
+      for (let i = 0; i < Math.min(this.cards.length, 9); i++) {
 
         let svg = document.getElementById('card'+i)
         
@@ -52,11 +54,48 @@ export default {
         svgMain.appendChild(svg)
       }
 
-
-
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
       var blob = new Blob([svgMain.outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
+    },
+    addFile(e, index) {
+    
+      let file = e.dataTransfer.files[0]
+      let cardImageUrl = URL.createObjectURL(file)
+
+      console.log('file: ', file)
+      this.cardImgs.splice(index, 1, cardImageUrl)
+
+      console.log(this.cardImgs)
+    },
+    dropIt(drop) {
+      
+      let file = drop.dataTransfer.files[0]
+
+      let that = this
+
+      if(file.type === 'application/json') {
+        console.log('json!')
+        var reader = new FileReader()
+        reader.onloadend = function(data) {
+          let newCards = JSON.parse(this.result)
+
+          that.cards = []
+          that.cardImgs = Array(newCards.length).fill(sampleImg)
+          that.cardImgs.push({})     
+
+          newCards.forEach(function(card) {
+            that.cards.push(card)
+          })
+          
+          console.log(that.cards)
+        }
+        reader.readAsText(file)
+      } else {
+        console.log('no json')
+        console.log(file)
+      }
+      
     }
   }
 }
