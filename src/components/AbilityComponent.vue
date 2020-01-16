@@ -22,7 +22,7 @@
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
-import { filterSelection, resolveParagraph } from './utils.js'
+import { } from './utils.js'
 
 export default {
   name: 'AbilityComponent',
@@ -60,9 +60,9 @@ export default {
 
             if (node.items.enum) {
               this.writeNode('modalType', 'items.enum')
-              console.log('modalType: items.enums: ', enums)
 
               let enums = node.items.enum
+              console.log('modalType: items.enums: ', enums)
 
               let dialog = {
                 title: btn.type,
@@ -113,8 +113,7 @@ export default {
             }
             break
 
-        case 'object': 
-
+          case 'object':
           // this is the typical radio case, where 1 item is selected
             if (R.has('oneOf', node)) {
               this.writeNode('modalType', 'object.oneOf')
@@ -141,7 +140,6 @@ export default {
               }
 
               this.dialog = dialog
-
             } else if (R.has('properties', node)) {
             // this is a terminal case, pick integers
               if (R.all(props => props.type === 'integer', R.values(node.properties))) {
