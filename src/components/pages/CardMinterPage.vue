@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import * as R from 'ramda'
+import htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
@@ -35,7 +37,33 @@ export default {
     
   },
   methods: {
-    bundleSVGs () {      
+    bundleSVGs () {
+
+      let that = this
+
+      htmlToImage.toCanvas(document.getElementById('card0'))
+      .then(function (canvas) {
+        canvas.width = 1530;
+        canvas.height = 2400;
+        let ctx = canvas.getContext('2d')
+
+        let cardids = R.map(x => 'card'+x, R.range(0,Math.min(9, that.cards.length)))
+        let canvases = []
+        
+        cardids.forEach(function(id) {
+          canvases.push(htmlToImage.toCanvas(document.getElementById(id)))
+        })
+
+        Promise.all(canvases).then(function(canvasen) {
+          canvasen.forEach(function(canvasae, index) {
+            ctx.drawImage(canvasae, 510*(index%3), 800*Math.floor(index/3))
+          })
+        }).then(x => {
+          download(canvas, 'cards.png');
+        })
+      });
+
+      /*
       let svgMain = document.createElement("svg");
       // svgMain.setAttribute('viewbox', '0 0 210 600')
       // svgMain.setAttribute('width', 210)
@@ -57,16 +85,18 @@ export default {
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
       var blob = new Blob([svgMain.outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
+      */
     },
     addFile(e, index) {
-    
+      
       let file = e.dataTransfer.files[0]
-      let cardImageUrl = URL.createObjectURL(file)
 
-      console.log('file: ', file)
-      this.cardImgs.splice(index, 1, cardImageUrl)
+      if(file.type === 'image/png' || file.type === 'image/jpg') {
+        let cardImageUrl = URL.createObjectURL(file)        
+        this.cardImgs.splice(index, 1, cardImageUrl)
+      }
 
-      console.log(this.cardImgs)
+
     },
     dropIt(drop) {
       
@@ -87,8 +117,6 @@ export default {
           newCards.forEach(function(card) {
             that.cards.push(card)
           })
-          
-          console.log(that.cards)
         }
         reader.readAsText(file)
       } else {
@@ -100,6 +128,30 @@ export default {
   }
 }
 
+function download(canvas, filename) {
+  /// create an "off-screen" anchor tag
+  var lnk = document.createElement('a'), e;
+
+  /// the key here is to set the download attribute of the a tag
+  lnk.download = filename;
+
+  /// convert canvas content to data-uri for link. When download
+  /// attribute is set the content pointed to by link will be
+  /// pushed as "download" in HTML5 capable browsers
+  lnk.href = canvas.toDataURL("image/png;base64");
+
+  /// create a "fake" click-event to trigger the download
+  if (document.createEvent) {
+    e = document.createEvent("MouseEvents");
+    e.initMouseEvent("click", true, true, window,
+                     0, 0, 0, 0, 0, false, false, false,
+                     false, 0, null);
+
+    lnk.dispatchEvent(e);
+  } else if (lnk.fireEvent) {
+    lnk.fireEvent("onclick");
+  }
+}
 </script>
 
 <style scoped>
