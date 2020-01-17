@@ -57,6 +57,17 @@ export default {
         Promise.all(canvases).then(function(canvasen) {
           canvasen.forEach(function(canvasae, index) {
             ctx.drawImage(canvasae, 510*(index%3), 800*Math.floor(index/3))
+
+            /*
+            console.log(that.cardImgs[index])
+            if(that.cardImgs[index]) {
+              var image = new Image()
+              image.onload = function() {
+                ctx.drawImage(image, 310*(index%3), 500*Math.floor(index/3))
+              }
+              image.src = that.cardImgs[index]
+            }
+            */
           })
         }).then(x => {
           download(canvas, 'cards.png');
@@ -88,15 +99,17 @@ export default {
       */
     },
     addFile(e, index) {
-      
+      let that = this
       let file = e.dataTransfer.files[0]
 
-      if(file.type === 'image/png' || file.type === 'image/jpg') {
-        let cardImageUrl = URL.createObjectURL(file)        
-        this.cardImgs.splice(index, 1, cardImageUrl)
+      if(file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
+        const reader = new FileReader()
+        reader.onloadend = function() {
+          that.cardImgs.splice(index, 1, reader.result)
+        }
+        reader.onerror = error => console.error(error)
+        reader.readAsDataURL(file)
       }
-
-
     },
     dropIt(drop) {
       
@@ -120,8 +133,7 @@ export default {
         }
         reader.readAsText(file)
       } else {
-        console.log('no json')
-        console.log(file)
+        console.log('no json: ', file)
       }
       
     }
