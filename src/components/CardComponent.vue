@@ -22,14 +22,12 @@
         <path id="polygon1333" fill="#ffdfa1" d="M147.3 129.6v7H5.3v-14h142z"/>
         <path id="rect1335" fill="#a37331" d="M3.8 140.6h1v.6h-1z" class="cls-6"/>
         <path id="rect1337" fill="#a37331" d="M147.8 140.6h1v.6h-1z" class="cls-6"/>
-
-        <!-- card image -->
-        <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:href="imageURL" x="9.3" y="18.1" width="134" height="100" rx="4" class="cardImage"/>
-        
         <!-- card image background -->
-        <mask id="myMask">
-        <path id="path1339" fill="black" d="M140.3 19h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z"/>
+        <mask id="imgMask">
+        <path id="path1339" fill="white" d="M140.3 19h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z"/>
          </mask>
+        <!-- card image -->
+        <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:href="imageURL" x="9.3" y="18.1" width="134" height="100" rx="4" class="cardImage" mask="url(#imgMask)"/>
         
         <!-- text box background -->
         <!--rect id="rect1341" width="134" height="100" x="9.3" y="18.1" fill="#f2f2f2" class="cls-7" /-->
