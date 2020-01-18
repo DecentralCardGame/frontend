@@ -1,12 +1,13 @@
 <template>
   <div v-cloak @drop.prevent="dropIt" @dragover.prevent>
+    What the hell is this? <br>
+    Well, you can drop cards in json format here to display them and drop jpgs or pngs on the cards to give them images. If you are happy with the cards you can download by clicking on them or create a print sheet of 9 cards by clicking 
     <button
       type="button" class="btn" @click="bundleSVGs()"> Download Print Sheet 
     </button>
-  
     <div class="gallery-view">
-      <div v-for="(card, index) in cards" v-cloak @drop.prevent="addFile($event, index)" @dragover.prevent>
-        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index" ></CardComponent>
+      <div v-for="(card, index) in cards" v-cloak @drop.prevent="addImage($event, index)" @dragover.prevent v-on:click="saveSingleCard(index)">
+        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
       </div>
     </div>
   </div>
@@ -15,12 +16,10 @@
 <script>
 import * as R from 'ramda'
 import htmlToImage from 'html-to-image';
-import { saveAs } from 'file-saver'
+//import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 import { cardJson, sampleImg } from '../utils.js'
-//import * as imgs from '../../assets/cardImg/base64img.js'
-
 
 export default {
   name: 'CardMinter',
@@ -38,13 +37,12 @@ export default {
   },
   methods: {
     bundleSVGs () {
-
       let that = this
 
       htmlToImage.toCanvas(document.getElementById('card0'))
       .then(function (canvas) {
-        canvas.width = 1530;
-        canvas.height = 2400;
+        canvas.width = 1530
+        canvas.height = 2400
         let ctx = canvas.getContext('2d')
 
         let cardids = R.map(x => 'card'+x, R.range(0,Math.min(9, that.cards.length)))
@@ -57,17 +55,6 @@ export default {
         Promise.all(canvases).then(function(canvasen) {
           canvasen.forEach(function(canvasae, index) {
             ctx.drawImage(canvasae, 510*(index%3), 800*Math.floor(index/3))
-
-            /*
-            console.log(that.cardImgs[index])
-            if(that.cardImgs[index]) {
-              var image = new Image()
-              image.onload = function() {
-                ctx.drawImage(image, 310*(index%3), 500*Math.floor(index/3))
-              }
-              image.src = that.cardImgs[index]
-            }
-            */
           })
         }).then(x => {
           download(canvas, 'cards.png');
@@ -85,9 +72,7 @@ export default {
         let svg = document.getElementById('card'+i)
         
         // svg.setAttribute('width', '154')
-
         // svg.setAttribute('transform','translate(' + 520*(i%3) + ',' + (850*Math.floor(i/3)-850) + ')');  // works for plain svg
-
         // svg.setAttribute('transform','translate(' + 154 + ',' + 250 + ')');
 
         svgMain.appendChild(svg)
@@ -98,7 +83,17 @@ export default {
       saveAs(blob, 'card.svg')
       */
     },
-    addFile(e, index) {
+    saveSingleCard(index) {
+      let that = this
+
+      htmlToImage.toCanvas(document.getElementById('card'+index))
+      .then(function (canvas) {
+        let ctx = canvas.getContext('2d')
+        ctx.drawImage(canvas, 0, 0)
+        download(canvas, that.cards[index].name+'.png');
+      })
+    },
+    addImage(e, index) {
       let that = this
       let file = e.dataTransfer.files[0]
 
@@ -112,30 +107,46 @@ export default {
       }
     },
     dropIt(drop) {
-      
-      let file = drop.dataTransfer.files[0]
+      let json
+      let images = []
+
+      R.forEach(function(file) {
+        if(file.type === 'application/json') {
+          json = file
+        } else if(file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
+          images.push(file)
+        } 
+      }, drop.dataTransfer.files)
+
+      if(json === null) {
+        console.log('no json')
+        return
+      }
 
       let that = this
 
-      if(file.type === 'application/json') {
-        console.log('json!')
-        var reader = new FileReader()
-        reader.onloadend = function(data) {
-          let newCards = JSON.parse(this.result)
+      var reader = new FileReader()
+      reader.onloadend = function() {
+        let newCards = JSON.parse(this.result)
 
-          that.cards = []
-          that.cardImgs = Array(newCards.length).fill(sampleImg)
-          that.cardImgs.push({})     
+        that.cards = []
+        that.cardImgs = Array(newCards.length).fill(sampleImg)
+        //that.cardImgs.push({})     
 
-          newCards.forEach(function(card) {
-            that.cards.push(card)
-          })
-        }
-        reader.readAsText(file)
-      } else {
-        console.log('no json: ', file)
+        newCards.forEach(function(card) {
+          that.cards.push(card)
+        })
       }
-      
+      reader.readAsText(json)
+
+      R.forEach(function(image) {
+        const reader = new FileReader()
+        reader.onloadend = function() {
+          that.cardImgs.splice(0, 0, reader.result)
+        }
+        reader.onerror = error => console.error(error)
+        reader.readAsDataURL(image)
+      }, images)
     }
   }
 }
