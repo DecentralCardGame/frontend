@@ -46,8 +46,8 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
-              <input v-if="dialog.type==='string'" type="radio"
-                v-model="option.value" id="index" :value="option.name"
+              <input v-if="dialog.type==='string'" type='text' placeholder="enter text"
+                v-model="option.value"
               >
 
               <button v-if="dialog.type==='integerList'" type="enumbtn"

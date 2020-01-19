@@ -236,11 +236,40 @@ export default {
             this.dialog = dialog
             break
 
-          // this is a terminal case, pick one of the strings
+          // this is a terminal case, enter a string
           case 'string':
 
             this.writeNode('modalType', 'string')
             console.log('modalType: string')
+
+            
+
+            dialog = {
+              title: btn.type,
+              description: 'please let me know:',
+              type: 'string',
+              options: [],
+              entries: strings
+            }
+
+            for (let prop in strings) {
+              dialog.options.push({
+                name: strings[prop],
+                schemaPath: [],
+                abilityPath: [],
+                title: strings[prop],
+                description: ''
+              })
+            }
+
+            this.dialog = dialog
+            break
+
+          // this is a terminal case, pick one of the strings
+          case 'stringFromList':
+
+            this.writeNode('modalType', 'stringFromList')
+            console.log('modalType: stringFromList')
 
             let strings = node.enum
 
