@@ -257,7 +257,7 @@ export default {
     },
     handleNoModal () {
       console.log('ability at handleNoModal: ', this.ability)
-      let option = filterSelection(this.dialog.options).option
+      // let option = filterSelection(this.dialog.options).option
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       console.log('btn: ', btn)
@@ -265,7 +265,8 @@ export default {
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
+      R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
+      console.log('ability after handleNoModal: ', this.ability)
     },
     handleStringInteraction () {
       let option = filterSelection(this.dialog.options).option
