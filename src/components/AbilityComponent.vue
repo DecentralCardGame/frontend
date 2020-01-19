@@ -175,9 +175,7 @@ export default {
 
                 thereWillBeModal = false
 
-                this.dialog = {
-                  type: 'noDialog'
-                }
+                this.dialog.type = 'noDialog'
 
                 this.$refs.abilityModal.addAbility()
               }
