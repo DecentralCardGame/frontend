@@ -51,12 +51,12 @@
               >
 
               <button v-if="dialog.type==='integerList'" type="enumbtn"
-                @click="addToArray(index, arrayCount)" id="index" :value="option.name">
-                {{option.name}} {{arrayCount[index]}}
+                @click="arrayCount.splice(index, 1, arrayCount[index] + 1)" id="index">
+                {{arrayCount[index]}}
               </button>
 
               <button v-if="dialog.type==='integer'" type="integerbtn"
-                @click="selectedCount+=1-2*index" id="index" :value="option.name">
+                @click="selectedCount += 1 - 2 * index" id="index">
                 {{option.name}}
               </button>
 
@@ -152,10 +152,6 @@ export default {
           break
       }
       this.$emit('close')
-    },
-    addToArray (id, array) {
-      console.log(this.arrayCount)
-      this.arrayCount[id] += 1
     },
     setNode (reference) {
       this.currentNode = reference
