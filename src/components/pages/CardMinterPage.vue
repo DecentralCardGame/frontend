@@ -103,7 +103,7 @@ export default {
       }
     },
     dropIt (drop) {
-      let json
+      let json = null
       let images = []
 
       R.forEach(function (file) {

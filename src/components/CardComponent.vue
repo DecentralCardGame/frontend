@@ -179,7 +179,7 @@
       </g>
     </g>
     <!-- Ability icon 1 -->
-    <g v-for="(ability, index) in model.abilities" v-bind:key="index" id="Ebene_2-36" data-name="Ebene 2" :transform="'translate(17.4 ' + (146.1+index*20) + ')'">
+    <g v-for="(ability, index) in model.abilities" v-bind:key="'icon'+index" id="Ebene_2-36" data-name="Ebene 2" :transform="'translate(17.4 ' + (146.1+index*20) + ')'">
       <g id="Ebene_1-2-0" data-name="Ebene 1">
         <rect id="rect1000" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
         <path id="line1002" fill="none" stroke="#d99941" d="M.7 5.8h9.8" class="cls-1"/>
@@ -208,11 +208,11 @@
     <tspan id="tspan2234" x="17" y="24.1" font-family="Montserrat" font-size="19.5" font-style="normal" text-anchor="middle" writing-mode="lr-tb">{{ model.speed }}</tspan>
   </text>
   <!-- Tags -->
-    <text v-for="(tag, index) in model.tag" v-bind:key="index" id="text2527" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" stroke-width=".1" font-family="Montserrat" font-size="4.6"  letter-spacing="1" text-anchor="start" xml:space="preserve">
+    <text v-for="(tag, index) in model.tag" v-bind:key="'tag'+index" id="text2527" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" stroke-width=".1" font-family="Montserrat" font-size="4.6"  letter-spacing="1" text-anchor="start" xml:space="preserve">
     <tspan id="tspan2525" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" fill-opacity="1" stroke-width=".1" font-family="Montserrat" font-size="4.6" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ tag.toUpperCase() }}</tspan>
   </text>
   <!-- human readable text of the abilities -->
-    <text v-for="(ability, index) in model.abilities" v-bind:key="index" id="text2410-9" x="33" :y="141.1 + index*20" inline-size="18" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
+    <text v-for="(ability, index) in model.abilities" v-bind:key="'abilityText'+index" id="text2410-9" x="33" :y="141.1 + index*20" inline-size="18" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
     <tspan id="tspan2430" x="33" :y="141.1 + index*20" inline-size="18" stroke-width=".1" font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Montserrat, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr"> {{ability.cardText}} </tspan>
   </text>
   <!-- Type -->
@@ -220,7 +220,7 @@
     <tspan id="tspan2493" x="75.1" y="228.6" fill="#312B6C" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ model.type.toUpperCase() }}</tspan>
   </text>
   <!-- Flavor text -->
-    <text v-for="(text, index) in textToSvg(model.text)" v-bind:key="index" id="text2495-3" x="76.9" :y="model.abilities.length*20 + 156.9 + index*6" fill="#000000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <text v-for="(text, index) in textToSvg(model.text)" v-bind:key="'flavorLine'+index" id="text2495-3" x="76.9" :y="model.abilities.length*20 + 156.9 + index*6" fill="#000000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
     <tspan id="tspan2493-1" x="76.9" :y="model.abilities.length*20 + 156.9 + index*6" fill="#000000" fill-opacity="1" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ text }}</tspan>
   </text>
   <!-- Attack -->
