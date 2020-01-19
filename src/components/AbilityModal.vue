@@ -29,10 +29,10 @@
           <slot name="body">
             {{dialog.description}}
           <br>
-            <div v-for="(option, index) in dialog.options">
+            <div v-for="(option, index) in dialog.options" v-bind:key="index">
 
               <input v-if="dialog.type==='multivalue'" type='text'
-                v-model="option.value" id="index" v-bind:option.value="option.value"
+                v-model="option.value" id="index"
                 placeholder="0" @keypress="isNumber($event)"
                 style="display: inline;color:black;height:50px;text-align: right"
                 size=1
@@ -51,12 +51,12 @@
               >
 
               <button v-if="dialog.type==='integerList'" type="enumbtn"
-                v-model="option.value" @click="addToArray(index, arrayCount)" id="index" :value="option.name">
+                @click="addToArray(index, arrayCount)" id="index" :value="option.name">
                 {{option.name}} {{arrayCount[index]}}
               </button>
 
               <button v-if="dialog.type==='integer'" type="integerbtn"
-                v-model="option.value" @click="selectedCount+=1-2*index" id="index" :value="option.name">
+                @click="selectedCount+=1-2*index" id="index" :value="option.name">
                 {{option.name}}
               </button>
 
@@ -166,20 +166,19 @@ export default {
       this.$emit('update:currentNode', this.currentNode)
     },
     handleCheckboxInteraction () {
-      
       console.log('dialog: ', this.dialog)
 
       if (!this.dialog.options[0].value) {
         this.dialog.options[0].value = false
       }
-      
+
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
 
       // update interaction
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.dialog.options[0].value
 
       // update ability TODO [0].abilityPath is not set
-      //R.path(btn.abilityPath, this.ability)[R.last(this.dialog.options[0].abilityPath)] = this.dialog.options[0].value
+      // R.path(btn.abilityPath, this.ability)[R.last(this.dialog.options[0].abilityPath)] = this.dialog.options[0].value
       R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
     },
     handleIntegerListInteraction () {
@@ -206,6 +205,7 @@ export default {
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       R.path(btn.abilityPath, this.ability)[currentProperty] = values
 
+      this.arrayCount = [0, 0, 0, 0, 0, 0]
       console.log('ability: ', this.ability)
     },
     handleIntegerInteraction () {
@@ -220,7 +220,7 @@ export default {
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       R.path(btn.abilityPath, this.ability)[currentProperty] = this.selectedCount
-      
+
       console.log('ability: ', this.ability)
     },
     handleRadioInteraction () {
@@ -233,14 +233,13 @@ export default {
 
       console.log('selection: ', selection)
       console.log('obj at clickedPath:', R.path(clickedPath, this.rules))
-      
       console.log('btn: ', btn)
 
       let depth = deepness(R.path(clickedPath, this.rules))
       console.log(depth)
 
-      //let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
-      let schemaPath = R.dropLast(2-depth, clickedPath) // TODO CLEAN THIS MESS UP
+      // let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
+      let schemaPath = R.dropLast(2 - depth, clickedPath) // TODO CLEAN THIS MESS UP
       console.log('schemaPath: ', schemaPath)
       console.log('optionPath: ', optionPath)
       console.log('obj at path:', R.path(schemaPath, this.rules))
@@ -253,7 +252,7 @@ export default {
       } else {
         newInteraction = createInteraction(selection, clickedPath, btn.abilityPath, this.rules)
       }
-      
+
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
       R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(schemaPath, this.rules).properties)
@@ -262,6 +261,7 @@ export default {
     },
     handleNoModal () {
       console.log('ability at handleNoModal: ', this.ability)
+      let option = filterSelection(this.dialog.options).option
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       console.log('btn: ', btn)
@@ -270,12 +270,11 @@ export default {
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
       R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
-
     },
     handleStringInteraction () {
       let option = filterSelection(this.dialog.options).option
       let selection = option.value
-      let optionPath = option.schemaPath
+      // let optionPath = option.schemaPath
 
       let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
       console.log('currentProperty: ', currentProperty)
@@ -335,12 +334,6 @@ export default {
 }
 
 function createInteraction (description, schemaPath, abilityPath, rules) {
-  /*
-  if (isTerminal(R.path(R.dropLast(2, schemaPath), rules))) {
-    console.log('is terminal!')
-    schemaPath = R.dropLast(2, schemaPath)
-  }*/
-
   // let text = description
   let text = R.path(schemaPath, rules).description
   console.log('text: ', text)
@@ -355,12 +348,11 @@ function createInteraction (description, schemaPath, abilityPath, rules) {
     if (entry[0] === '%') {
       // % is the marker for a button after regex, now check if it is terminal:
       let buttonPath = R.append(entry.slice(1), R.append('properties', schemaPath))
-      let buttonObj = R.path(buttonPath, rules)
 
       interaction[interaction.length - 1].btn = {
         label: entry.slice(1),
         type: entry.slice(1),
-        schemaPath: R.append(entry.slice(1), R.append('properties', schemaPath)),
+        schemaPath: buttonPath,
         abilityPath: R.append(entry.slice(1), abilityPath)
       }
     } else {
@@ -389,13 +381,13 @@ function updateInteraction (ability, id, newInteraction) {
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
 }
 
-function deepness(node) {
+function deepness (node) {
   console.log('node whose deepness is checked: ', node)
 
-  if( node.description === '§ActivatedAbility') {
+  if (node.description === '§ActivatedAbility') {
     return 2
   }
-  if( node.description === '§TriggeredAbility') {
+  if (node.description === '§TriggeredAbility') {
     return 2
   }
   if (R.has('items', node)) {
@@ -404,39 +396,13 @@ function deepness(node) {
     }
   }
   if (R.has('oneOf', node)) {
-      return 1
+    return 1
   }
-    if (R.has('properties', node)) {
-      return 1
+  if (R.has('properties', node)) {
+    return 1
   }
   console.log('terminal node, deepness is 0')
   return 0
-}
-
-function isTerminal(node) {
-  console.log('node to be checked: ', node)
-
-  if( node.description === '§ActivatedAbility') {
-    return false
-  }
-  if( node.description === '§TriggeredAbility') {
-    return false
-  }
-  if (node.required && node.required.length == 1 && node.properties[node.required[0]]) {
-    return false
-  }
-  if (node.type === 'object') {
-    if (R.has('oneOf', node)) {
-      console.log('simple oneof case')
-      return false
-    }
-  }
-  if (node.type === 'array') {
-    if (R.has('oneOf', node.items)) {
-      return false
-    }
-  }
-  return true
 }
 
 function shallowClone (obj) {

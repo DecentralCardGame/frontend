@@ -145,7 +145,7 @@
 </template>
 
 <script>
-import * as R from 'ramda'
+// import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
@@ -180,7 +180,7 @@ export default {
         article: 'the',
         surname: 'Surname',
         type: 'No Type',
-        tags: [],
+        tag: [],
         cost: {
           lumber: 0,
           food: 0,
@@ -212,13 +212,14 @@ export default {
   },
   computed: {
     remainingCosts () {
+      /*
       if (!this.model.cost.lumber) this.model.cost.lumber = 0
       if (!this.model.cost.food ) this.model.cost.food = 0
       if (!this.model.cost.iron ) this.model.cost.iron = 0
       if (!this.model.cost.mana ) this.model.cost.mana = 0
       if (!this.model.cost.energy ) this.model.cost.energy = 0
       if (!this.model.cost.generic) this.model.cost.generic = 0
-
+      */
       return 32 - this.model.cost.lumber -
               this.model.cost.food -
               this.model.cost.iron -
@@ -322,7 +323,7 @@ export default {
       let newCard = {
         [this.model.type]: {
           'Name': this.model.name,
-          'Tag': this.model.tags,
+          'Tag': this.model.tag,
           'Text': this.model.text,
           'Cost': costArray,
           'CastSpeed': this.model.speed,

@@ -10,7 +10,7 @@
       v-bind:ability="ability"
       @close="closeAbilityModal"
     />
-    <div v-for="(entry, index) in ability.interaction" class="ability" >
+    <div v-for="(entry, index) in ability.interaction" class="ability" v-bind:key="index">
       {{entry.pre}}
       <div class="clickable-option" @click="showAbilityModal(ability, entry.btn, index)"> {{entry.btn.label}} </div>
       {{entry.post}}
