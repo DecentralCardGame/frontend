@@ -46,8 +46,8 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
-              <input v-if="dialog.type==='string'" type='text' placeholder="enter text"
-                v-model="option.value"
+              <input v-if="dialog.type==='string'" style="display: inline;color:black;height:50px" placeholder="enter text"
+                v-model="selectedString"
               >
 
               <button v-if="dialog.type==='integerList'" type="enumbtn"
@@ -269,17 +269,19 @@ export default {
       console.log('ability after handleNoModal: ', this.ability)
     },
     handleStringInteraction () {
-      let option = filterSelection(this.dialog.options).option
-      let selection = option.value
-      // let optionPath = option.schemaPath
+      console.log('current node: ', this.currentNode)
 
       let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
       console.log('currentProperty: ', currentProperty)
 
-      this.ability.interaction[this.currentNode.interactionId].btn.label = selection
+      // this.writeNode(currentProperty, labels)
 
-      let path = R.slice(10, Infinity, this.currentNode.path)
-      R.path(path, this.ability)[currentProperty] = selection
+      this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedString
+
+      let btn = this.ability.interaction[this.currentNode.interactionId].btn
+      R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
+
+      console.log('ability: ', this.ability)
     },
     handleMultiValueInteraction () {
       // TODO NEEDS FIXING

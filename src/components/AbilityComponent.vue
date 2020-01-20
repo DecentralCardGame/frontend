@@ -242,24 +242,18 @@ export default {
             this.writeNode('modalType', 'string')
             console.log('modalType: string')
 
-            
-
             dialog = {
               title: btn.type,
               description: 'please let me know:',
               type: 'string',
-              options: [],
-              entries: strings
-            }
-
-            for (let prop in strings) {
-              dialog.options.push({
-                name: strings[prop],
+              options: [{
+                name: 'yes',
                 schemaPath: [],
                 abilityPath: [],
-                title: strings[prop],
-                description: ''
-              })
+                title: 'stringö',
+                description: 'aaa'
+              }],
+              entries: []
             }
 
             this.dialog = dialog
