@@ -46,7 +46,11 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
-              <input v-if="dialog.type==='string'" style="display: inline;color:black;height:50px" placeholder="enter text"
+              <input v-if="dialog.type==='stringEnum'" type="radio"
+                v-model="selectedString" id="index" :value="option.name"
+              >
+
+              <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px" placeholder="enter text"
                 v-model="selectedString"
               >
 
@@ -138,7 +142,10 @@ export default {
         case 'radio':
           this.handleRadioInteraction()
           break
-        case 'string':
+        case 'stringEnum':
+          this.handleStringInteraction()
+          break
+        case 'stringEnter':
           this.handleStringInteraction()
           break
         case 'checkbox':
@@ -274,8 +281,6 @@ export default {
       let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
       console.log('currentProperty: ', currentProperty)
 
-      // this.writeNode(currentProperty, labels)
-
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedString
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
@@ -284,7 +289,7 @@ export default {
       console.log('ability: ', this.ability)
     },
     handleMultiValueInteraction () {
-      // TODO NEEDS FIXING
+      // TODO NEEDS FIXING or maybe remove it?
       this.writeNode('type', this.dialog.type)
 
       // var label = ''

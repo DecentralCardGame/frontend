@@ -236,57 +236,60 @@ export default {
             this.dialog = dialog
             break
 
-          // this is a terminal case, enter a string
+          // this is a terminal case, enter a string or pick one if enums are present
           case 'string':
 
-            this.writeNode('modalType', 'string')
-            console.log('modalType: string')
+            if(node.enum) {
+              this.writeNode('modalType', 'stringEnum')
+              console.log('modalType: stringEnum')
 
-            dialog = {
-              title: btn.type,
-              description: 'please let me know:',
-              type: 'string',
-              options: [{
-                name: 'yes',
-                schemaPath: [],
-                abilityPath: [],
-                title: 'stringö',
-                description: 'aaa'
-              }],
-              entries: []
+              let strings = node.enum
+
+              dialog = {
+                title: btn.type,
+                description: 'pick one of the following:',
+                type: 'stringEnum',
+                options: [],
+                entries: strings
+              }
+
+              for (let prop in strings) {
+                dialog.options.push({
+                  name: strings[prop],
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: strings[prop],
+                  description: ''
+                })
+              }
+
+              this.dialog = dialog
+              break
+
+            } else {
+              this.writeNode('modalType', 'stringEnter')
+              console.log('modalType: stringEnter')
+
+              //let bla = R.path(btn.schemaPath, this.rules)
+              //debugger;
+
+              dialog = {
+                title: btn.type,
+                description: 'please let me know:',
+                type: 'stringEnter',
+                options: [{
+                  name: 'yes',
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: btn.type,
+                  description: ''
+                }],
+                entries: []
+              }
+
+              this.dialog = dialog
+              break
             }
-
-            this.dialog = dialog
-            break
-
-          // this is a terminal case, pick one of the strings
-          case 'stringFromList':
-
-            this.writeNode('modalType', 'stringFromList')
-            console.log('modalType: stringFromList')
-
-            let strings = node.enum
-
-            dialog = {
-              title: btn.type,
-              description: 'pick one of the following:',
-              type: 'string',
-              options: [],
-              entries: strings
-            }
-
-            for (let prop in strings) {
-              dialog.options.push({
-                name: strings[prop],
-                schemaPath: [],
-                abilityPath: [],
-                title: strings[prop],
-                description: ''
-              })
-            }
-
-            this.dialog = dialog
-            break
 
           default:
             console.error('node.type is unknown')
