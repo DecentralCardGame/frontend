@@ -180,9 +180,8 @@ export default {
       // update interaction
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.dialog.options[0].value
 
-      // update ability TODO [0].abilityPath is not set
-      // R.path(btn.abilityPath, this.ability)[R.last(this.dialog.options[0].abilityPath)] = this.dialog.options[0].value
-      R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
+      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
+      this.attachToAbility(btn.abilityPath, this.dialog.options[o].value)
     },
     handleIntegerListInteraction () {
       console.log('current node: ', this.currentNode)
@@ -201,13 +200,13 @@ export default {
       let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
       console.log('currentProperty: ', currentProperty)
 
-      // this.writeNode(currentProperty, labels)
-
       this.ability.interaction[this.currentNode.interactionId].btn.label = labels
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
-      R.path(btn.abilityPath, this.ability)[currentProperty] = values
 
+      // R.path(btn.abilityPath, this.ability)[currentProperty] = values
+      this.attachToAbility(R.concat(btn.abilityPath, [currentProperty]), values)
+      // reset arrayCount
       this.arrayCount = [0, 0, 0, 0, 0, 0]
       console.log('ability: ', this.ability)
     },
@@ -217,14 +216,15 @@ export default {
       let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
       console.log('currentProperty: ', currentProperty)
 
-      // this.writeNode(currentProperty, labels)
-
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedCount
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
-      R.path(btn.abilityPath, this.ability)[currentProperty] = this.selectedCount
 
-      console.log('ability: ', this.ability)
+      // R.path(btn.abilityPath, this.ability)[currentProperty] = this.selectedCount
+      this.attachToAbility(R.concat(btn.abilityPath, [currentProperty]), this.selectedCount)
+      // reset selectedCount
+      // this.selectedCount = 0
+      console.log('ability after handleInteger: ', this.ability)
     },
     handleRadioInteraction () {
       console.log('ability: ', this.ability)
@@ -258,8 +258,7 @@ export default {
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      this.attachToAbilityAt(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.rules).properties))
-
+      this.attachToAbility(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.rules).properties))
       console.log('ability after handleRadioInteraction: ', this.ability)
     },
     handleNoModal () {
@@ -272,7 +271,8 @@ export default {
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
+      //R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
+      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.rules).properties))
       console.log('ability after handleNoModal: ', this.ability)
     },
     handleStringInteraction () {
@@ -286,7 +286,7 @@ export default {
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
 
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
-      attachToAbilityAt(R.dropLast(1, btn.abilityPath).push(currentproperty), this.selectedString)
+      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(currentproperty), this.selectedString)
       console.log('ability after handleStringINteraction: ', this.ability)
     },
     handleCreateAbility () {
@@ -319,7 +319,7 @@ export default {
         return true
       }
     },
-    attachToAbilityAt (path, object) {
+    attachToAbility (path, object) {
       this.ability = R.assocPath(path, object, this.ability)
     }
   }
