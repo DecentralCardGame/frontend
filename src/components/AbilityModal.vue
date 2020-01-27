@@ -258,7 +258,7 @@ export default {
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      R.path(btn.abilityPath, this.ability)[R.last(option.abilityPath)] = shallowClone(R.path(schemaPath, this.rules).properties)
+      attachToAbilityAt(R.append(btn.abilityPath, R.last(option.abilityPath)), shallowClone(R.path(schemaPath, this.rules).properties))
 
       console.log('ability after handleRadioInteraction: ', this.ability)
     },
@@ -287,22 +287,6 @@ export default {
       R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
 
       console.log('ability: ', this.ability)
-    },
-    handleMultiValueInteraction () {
-      // TODO NEEDS FIXING or maybe remove it?
-      this.writeNode('type', this.dialog.type)
-
-      // var label = ''
-
-      this.dialog.options.forEach((item, index) => {
-        if (item.value) {
-          this.currentNode.values.push({name: item.name, amount: item.value})
-          // if (index !== 0) label += ', '
-          // label += item.value + ' ' + item.title
-        }
-      })
-
-      console.log('current node: ', this.currentNode)
     },
     handleCreateAbility () {
       let selection = filterSelection(this.dialog.options)
@@ -334,6 +318,10 @@ export default {
         return true
       }
     }
+  },
+  attachToAbilityAt(path, object) {
+
+  R.path(R.dropLast(1, path), this.ability)[R.last(path)] = object
   }
 }
 
