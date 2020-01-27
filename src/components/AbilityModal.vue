@@ -258,7 +258,7 @@ export default {
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      attachToAbilityAt(R.append(btn.abilityPath, R.last(option.abilityPath)), shallowClone(R.path(schemaPath, this.rules).properties))
+      this.attachToAbilityAt(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.rules).properties))
 
       console.log('ability after handleRadioInteraction: ', this.ability)
     },
@@ -284,9 +284,10 @@ export default {
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedString
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
-      R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
 
-      console.log('ability: ', this.ability)
+      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
+      attachToAbilityAt(R.dropLast(1, btn.abilityPath).push(currentproperty), this.selectedString)
+      console.log('ability after handleStringINteraction: ', this.ability)
     },
     handleCreateAbility () {
       let selection = filterSelection(this.dialog.options)
@@ -317,11 +318,10 @@ export default {
       } else {
         return true
       }
+    },
+    attachToAbilityAt (path, object) {
+      this.ability = R.assocPath(path, object, this.ability)
     }
-  },
-  attachToAbilityAt(path, object) {
-
-  R.path(R.dropLast(1, path), this.ability)[R.last(path)] = object
   }
 }
 

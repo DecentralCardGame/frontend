@@ -239,7 +239,7 @@ export default {
           // this is a terminal case, enter a string or pick one if enums are present
           case 'string':
 
-            if(node.enum) {
+            if (node.enum) {
               this.writeNode('modalType', 'stringEnum')
               console.log('modalType: stringEnum')
 
@@ -265,13 +265,9 @@ export default {
 
               this.dialog = dialog
               break
-
             } else {
               this.writeNode('modalType', 'stringEnter')
               console.log('modalType: stringEnter')
-
-              //let bla = R.path(btn.schemaPath, this.rules)
-              //debugger;
 
               dialog = {
                 title: btn.type,
