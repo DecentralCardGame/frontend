@@ -57,7 +57,7 @@ export default {
           })
         })
 
-      /*
+      /* old svg code
       let svgMain = document.createElement("svg");
       // svgMain.setAttribute('viewbox', '0 0 210 600')
       // svgMain.setAttribute('width', 210)
@@ -94,18 +94,16 @@ export default {
       let file = e.dataTransfer.files[0]
 
       if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
-        const reader = new FileReader()
-        reader.onloadend = function () {
-          that.cardImgs.splice(index, 1, reader.result)
-        }
-        reader.onerror = error => console.error(error)
-        reader.readAsDataURL(file)
+        uploadImg(file, function (result) {
+          that.cardImgs.splice(index, 1, result)
+        })
       }
     },
     dropIt (drop) {
       let json = null
       let images = []
 
+      // sort images and json
       R.forEach(function (file) {
         if (file.type === 'application/json') {
           json = file
@@ -121,6 +119,7 @@ export default {
 
       let that = this
 
+      // read json
       var reader = new FileReader()
       reader.onloadend = function () {
         let newCards = JSON.parse(this.result)
@@ -135,16 +134,48 @@ export default {
       }
       reader.readAsText(json)
 
-      R.forEach(function (image) {
-        const reader = new FileReader()
-        reader.onloadend = function () {
-          that.cardImgs.splice(0, 0, reader.result)
-        }
-        reader.onerror = error => console.error(error)
-        reader.readAsDataURL(image)
+      // read images
+      R.forEachObjIndexed(function (image, index) {
+        uploadImg(image, function (result) {
+          that.cardImgs.splice(index, 1, result)
+        })
       }, images)
     }
   }
+}
+
+function uploadImg (file, saveCallback) {
+  const reader = new FileReader()
+
+  reader.onload = function (readerEvent) {
+    var image = new Image()
+    image.onload = function (imageEvent) {
+      // Resize the image
+      let canvas = document.createElement('canvas')
+      let maxSize = 100
+      let width = image.width
+      let height = image.height
+      if (width > height) {
+        if (width > maxSize) {
+          height *= maxSize / width
+          width = maxSize
+        }
+      } else {
+        if (height > maxSize) {
+          width *= maxSize / height
+          height = maxSize
+        }
+      }
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d').drawImage(image, 0, 0, width, height)
+      let dataUrl = canvas.toDataURL('image/jpeg')
+      saveCallback(dataUrl)
+    }
+    image.src = readerEvent.target.result
+  }
+  reader.onerror = error => console.error(error)
+  reader.readAsDataURL(file)
 }
 
 function download (canvas, filename) {
