@@ -33,8 +33,11 @@ export default {
   },
   methods: {
     bundleSVGs () {
-      let that = this
+      
 
+      /*
+      // alternate jpg/png based code
+      let that = this
       var canvas = document.createElement('canvas');
       canvas.width = 1530
       canvas.height = 2400
@@ -46,46 +49,19 @@ export default {
       cardids.forEach(function (id, index) {
         canvases.push(htmlToImage.toCanvas(document.getElementById(id)).then(x => {
           ctx.drawImage(x, 510 * (index % 3), 800 * Math.floor(index / 3))
-        }))
+        }).catch(
+        console.error
+      ))
+        
+      
       })
       Promise.all(canvases)
       .then(x => {
         download(canvas, 'cards.jpg')
       })
-      
-      /*
-      function drawit (index) {
-        return htmlToImage.toCanvas(document.getElementById(cardids[index])).then(x => {
-          
-          console.log(index, x)
-          ctx.drawImage(x, 510 * (index % 3), 800 * Math.floor(index / 3))
-          return index+1
-        })
-      }
-      
-      drawit(0)
-      .then(
-        drawit
-      ).then(
-        drawit
-      ).then(
-        drawit
-      ).then(
-        drawit
-      ).then(
-        drawit
-      ).then(
-        drawit
-      ).then(
-        drawit
-      ).then(
-        drawit
-      ).then(_ => {
-        download(canvas, 'cards.jpg')
-      })
       */
 
-      /* old svg code
+      // old svg code
       let svgMain = document.createElement("svg");
       // svgMain.setAttribute('viewbox', '0 0 210 600')
       // svgMain.setAttribute('width', 210)
@@ -105,7 +81,7 @@ export default {
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
       var blob = new Blob([svgMain.outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
-      */
+      
     },
     saveSingleCard (index) {
       let that = this
