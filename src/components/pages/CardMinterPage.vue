@@ -152,7 +152,7 @@ function uploadImg (file, saveCallback) {
     image.onload = function (imageEvent) {
       // Resize the image
       let canvas = document.createElement('canvas')
-      let maxSize = 400
+      let maxSize = 800
       let width = image.width
       let height = image.height
       if (width > height) {
