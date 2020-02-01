@@ -16,6 +16,7 @@
 <script>
 import * as R from 'ramda'
 import htmlToImage from 'html-to-image'
+import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 import { sampleCard, sampleImg } from '../utils.js'
@@ -33,8 +34,6 @@ export default {
   },
   methods: {
     bundleSVGs () {
-      
-
       /*
       // alternate jpg/png based code
       let that = this
@@ -42,7 +41,7 @@ export default {
       canvas.width = 1530
       canvas.height = 2400
       let ctx = canvas.getContext('2d')
-      
+
       let cardids = R.map(x => 'card' + x, R.range(0, Math.min(9, that.cards.length)))
       let canvases = []
 
@@ -52,8 +51,7 @@ export default {
         }).catch(
         console.error
       ))
-        
-      
+
       })
       Promise.all(canvases)
       .then(x => {
@@ -62,18 +60,17 @@ export default {
       */
 
       // old svg code
-      let svgMain = document.createElement("svg");
+      let svgMain = document.createElement('svg')
       // svgMain.setAttribute('viewbox', '0 0 210 600')
       // svgMain.setAttribute('width', 210)
       // svgMain.setAttribute('height', 297)
 
       for (let i = 0; i < Math.min(this.cards.length, 9); i++) {
-
-        let svg = document.getElementById('card'+i)
+        let svg = document.getElementById('card' + i)
 
         // svg.setAttribute('width', '154')
-        // svg.setAttribute('transform','translate(' + 520*(i%3) + ',' + (850*Math.floor(i/3)-850) + ')');  // works for plain svg
-        // svg.setAttribute('transform','translate(' + 154 + ',' + 250 + ')');
+        // svg.setAttribute('transform','translate(' + 520*(i%3) + ',' + (850*Math.floor(i/3)-850) + ')')  // works for plain svg
+        // svg.setAttribute('transform','translate(' + 154 + ',' + 250 + ')')
 
         svgMain.appendChild(svg)
       }
@@ -81,7 +78,6 @@ export default {
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
       var blob = new Blob([svgMain.outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
-      
     },
     saveSingleCard (index) {
       let that = this

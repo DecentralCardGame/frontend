@@ -181,7 +181,7 @@ export default {
       this.ability.interaction[this.currentNode.interactionId].btn.label = this.dialog.options[0].value
 
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
-      this.attachToAbility(btn.abilityPath, this.dialog.options[o].value)
+      this.attachToAbility(btn.abilityPath, this.dialog.options[0].value)
     },
     handleIntegerListInteraction () {
       console.log('current node: ', this.currentNode)
@@ -271,7 +271,7 @@ export default {
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      //R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
+      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
       this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.rules).properties))
       console.log('ability after handleNoModal: ', this.ability)
     },
@@ -286,7 +286,7 @@ export default {
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
 
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
-      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(currentproperty), this.selectedString)
+      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(currentProperty), this.selectedString)
       console.log('ability after handleStringINteraction: ', this.ability)
     },
     handleCreateAbility () {
