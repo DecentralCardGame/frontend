@@ -35,27 +35,55 @@ export default {
     bundleSVGs () {
       let that = this
 
-      htmlToImage.toCanvas(document.getElementById('card0'))
-        .then(function (canvas) {
-          canvas.width = 1530
-          canvas.height = 2400
-          let ctx = canvas.getContext('2d')
+      var canvas = document.createElement('canvas');
+      canvas.width = 1530
+      canvas.height = 2400
+      let ctx = canvas.getContext('2d')
+      
+      let cardids = R.map(x => 'card' + x, R.range(0, Math.min(9, that.cards.length)))
+      let canvases = []
 
-          let cardids = R.map(x => 'card' + x, R.range(0, Math.min(9, that.cards.length)))
-          let canvases = []
-
-          cardids.forEach(function (id) {
-            canvases.push(htmlToImage.toCanvas(document.getElementById(id)))
-          })
-
-          Promise.all(canvases).then(function (canvasen) {
-            canvasen.forEach(function (canvasae, index) {
-              ctx.drawImage(canvasae, 510 * (index % 3), 800 * Math.floor(index / 3))
-            })
-          }).then(x => {
-            download(canvas, 'cards.png')
-          })
+      cardids.forEach(function (id, index) {
+        canvases.push(htmlToImage.toCanvas(document.getElementById(id)).then(x => {
+          ctx.drawImage(x, 510 * (index % 3), 800 * Math.floor(index / 3))
+        }))
+      })
+      Promise.all(canvases)
+      .then(x => {
+        download(canvas, 'cards.jpg')
+      })
+      
+      /*
+      function drawit (index) {
+        return htmlToImage.toCanvas(document.getElementById(cardids[index])).then(x => {
+          
+          console.log(index, x)
+          ctx.drawImage(x, 510 * (index % 3), 800 * Math.floor(index / 3))
+          return index+1
         })
+      }
+      
+      drawit(0)
+      .then(
+        drawit
+      ).then(
+        drawit
+      ).then(
+        drawit
+      ).then(
+        drawit
+      ).then(
+        drawit
+      ).then(
+        drawit
+      ).then(
+        drawit
+      ).then(
+        drawit
+      ).then(_ => {
+        download(canvas, 'cards.jpg')
+      })
+      */
 
       /* old svg code
       let svgMain = document.createElement("svg");
@@ -152,7 +180,7 @@ function uploadImg (file, saveCallback) {
     image.onload = function (imageEvent) {
       // Resize the image
       let canvas = document.createElement('canvas')
-      let maxSize = 100
+      let maxSize = 400
       let width = image.width
       let height = image.height
       if (width > height) {
@@ -189,7 +217,7 @@ function download (canvas, filename) {
   /// convert canvas content to data-uri for link. When download
   /// attribute is set the content pointed to by link will be
   /// pushed as "download" in HTML5 capable browsers
-  lnk.href = canvas.toDataURL('image/png;base64')
+  lnk.href = canvas.toDataURL('image/jpeg;base64')
 
   /// create a "fake" click-event to trigger the download
   if (document.createEvent) {
