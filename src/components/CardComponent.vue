@@ -209,7 +209,7 @@
   </text>
   <!-- Tags -->
     <text v-for="(tag, index) in model.tag" v-bind:key="'tag'+index" id="text2527" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" stroke-width=".1" font-family="Montserrat" font-size="4.6"  letter-spacing="1" text-anchor="start" xml:space="preserve">
-    <tspan id="tspan2525" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" fill-opacity="1" stroke-width=".1" font-family="Montserrat" font-size="4.6" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ tag.toUpperCase() }}</tspan>
+    <tspan id="tspan2525" :x="75 + index*46 - (model.tag.length - 1)*23" y="237.4" fill="#FFDAA6" fill-opacity="1" stroke-width=".1" font-family="Montserrat" font-size="4.6" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ (tag || '').toUpperCase() }}</tspan>
   </text>
   <!-- Human readable text of the abilities -->
     <text v-for="(ability, index) in model.abilities" v-bind:key="'abilityText'+index" id="text2410-9" x="33" :y="141.1 + index*20" inline-size="18" fill="#000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve">
@@ -217,7 +217,7 @@
   </text>
   <!-- Type -->
     <text id="text2495" x="75.1" y="228.6" fill="#312B6C" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" letter-spacing="1" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2493" x="75.1" y="228.6" fill="#312B6C" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ model.type.toUpperCase() }}</tspan>
+    <tspan id="tspan2493" x="75.1" y="228.6" fill="#312B6C" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ (model.type || '').toUpperCase() }}</tspan>
   </text>
   <!-- Flavor text -->
     <text v-for="(text, index) in textToSvg(model.text)" v-bind:key="'flavorLine'+index" id="text2495-3" x="76.9" :y="model.abilities.length*20 + 156.9 + index*8" fill="#000000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">

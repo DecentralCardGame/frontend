@@ -32,25 +32,25 @@
         <div v-if="activeStep == 1"><br>
           As I am quite awesome my costs are the following:
           <select @change="saveDraft" v-model="model.cost.lumber">
-            <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.lumber)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select> Lumber,
           <select @change="saveDraft" v-model="model.cost.food">
-            <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.food)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select> Food,
           <select @change="saveDraft" v-model="model.cost.iron">
-            <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.iron)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select> Iron,
           <select @change="saveDraft" v-model="model.cost.mana">
-            <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.mana)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select> Mana,
           <select @change="saveDraft" v-model="model.cost.energy">
-            <option v-bind:key="n" v-for="n in getNumbers(1, this.remainingCosts, this.model.cost.energy)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select> Energy,
           <select @change="saveDraft" v-model="model.cost.generic">
-            <option v-bind:key="n" v-for="n in getNumbers(1,this.remainingCosts, this.model.cost.generic)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select> Generic,
           All it needs are <select @change="saveDraft" v-model="model.speed">
-          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
+          <option v-bind:key="n" v-for="n in getNumbers(0,20,0)" :value="n">{{n}}</option>
         </select> Ticks, to get me rolling. I have an
           attack of <select @change="saveDraft" v-model="model.attack">
           <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
@@ -333,7 +333,7 @@ export default {
 
       saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
         .then(res => {
-          notify.succes('EPIC WIN', 'You have successfully published this card.')
+          notify.success('EPIC WIN', 'You have successfully published this card.')
         })
         .catch(err => {
           if (err.message === 'no cards available') {
