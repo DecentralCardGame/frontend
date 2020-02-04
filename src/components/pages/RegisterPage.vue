@@ -2,6 +2,7 @@
   <content-container-component>
     <h2>Join the Experience</h2><br>
     <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p><br>
+    <p>CURRENTLY THIS DOES NOT REGISTER YOUR EMAIL, IT ONLY REGISTERS YOUR ADDRESS IN THE BLOCKCHAIN. YOU CAN ENTER WHATEVER YOU WANT, IT DOESN'T MATTER, BUT IT DOES REGISTER YOUR ADDRESS IN OUR BLOCKCHAIN. <p><br>
     <form @submit.prevent="register">
       <label>
         <b>Username: </b>
