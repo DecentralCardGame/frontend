@@ -19,9 +19,21 @@
           <input @change="saveDraft" v-model="model.surname" value="Surname">.
           My type is
           <select @change="saveDraft" v-model="model.type">
-            <option v-for="type in rules.oneOf" v-bind:key="type.required[0]">{{ type.required[0] }}</option>
+            <option v-for="type in rules.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
           </select>.<br>
-          People like to tag me as ...<br>
+          People like to tag me as 
+          <select @change="saveDraft" v-model="model.tag[0]">
+            <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
+          </select>
+          <span v-show="model.tag && model.tag[0]"> , </span>
+          <select v-show="model.tag && model.tag[0]" @change="saveDraft" v-model="model.tag[1]">
+            <option v-for="tag in getTags(1)" v-bind:key="tag"> {{ tag }} </option>
+          </select>
+          <span v-show="model.tag && model.tag[1]"> and </span>
+          <select v-show="model.tag && model.tag[1]" @change="saveDraft" v-model="model.tag[2]">
+            <option v-for="tag in getTags(2)" v-bind:key="tag"> {{ tag }} </option>
+          </select>
+          .<br>
           <select @change="saveDraft">
             <option>Common</option>
             <option>Rare</option>
@@ -145,7 +157,7 @@
 </template>
 
 <script>
-// import * as R from 'ramda'
+import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
@@ -211,22 +223,6 @@ export default {
     })
   },
   computed: {
-    remainingCosts () {
-      /*
-      if (!this.model.cost.lumber) this.model.cost.lumber = 0
-      if (!this.model.cost.food ) this.model.cost.food = 0
-      if (!this.model.cost.iron ) this.model.cost.iron = 0
-      if (!this.model.cost.mana ) this.model.cost.mana = 0
-      if (!this.model.cost.energy ) this.model.cost.energy = 0
-      if (!this.model.cost.generic) this.model.cost.generic = 0
-      */
-      return 32 - this.model.cost.lumber -
-              this.model.cost.food -
-              this.model.cost.iron -
-              this.model.cost.mana -
-              this.model.cost.energy -
-              this.model.cost.generic
-    }
   },
   methods: {
     showBuySchemeModal () {
@@ -293,41 +289,30 @@ export default {
         return new Array(stop + 1 - start).fill(start).map((n, i) => n + i)
       }
     },
-    generateCostArray () {
-      let finalArr = []
-
-      for (let i = 0; i < this.model.cost.energy; i++) {
-        finalArr.push('ENERGY')
+    getTags (idx) {
+      if (this.rules.oneOf) {
+        let usedTags = []
+        if (this.model.tag[idx]) {
+          usedTags = R.without(this.model.tag[idx], this.model.tag)
+        } 
+        return R.append('', R.without(usedTags, this.rules.oneOf[0].properties.Action.properties.Tags.items.enum))
       }
-      for (let i = 0; i < this.model.cost.food; i++) {
-        finalArr.push('FOOD')
-      }
-      for (let i = 0; i < this.model.cost.generic; i++) {
-        finalArr.push('GENERIC')
-      }
-      for (let i = 0; i < this.model.cost.iron; i++) {
-        finalArr.push('IRON')
-      }
-      for (let i = 0; i < this.model.cost.lumber; i++) {
-        finalArr.push('LUMBER')
-      }
-      for (let i = 0; i < this.model.cost.mana; i++) {
-        finalArr.push('MANA')
-      }
-
-      return finalArr
+      return []
     },
     saveSubmit () {
-      let costArray = this.generateCostArray()
       // eslint-disable-next-line no-unused-vars
       let newCard = {
         [this.model.type]: {
           'Name': this.model.name,
-          'Tag': this.model.tag,
+          'Tags': this.model.tag,
           'Text': this.model.text,
-          'Cost': costArray,
+          'Cost': this.model.cost,
           'CastSpeed': this.model.speed,
-          'Effects': {}
+          'Effects': {},
+          'Abilities': {},
+          'AbilitySpeed': this.model.speed,
+          'Health': this.model.health,
+          'Attack': this.model.attack
         }
       }
 
@@ -355,7 +340,8 @@ export default {
     downloadCard () {
       var blob = new Blob([document.getElementById('card').outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
-    }
+    },
+
   }
 }
 </script>

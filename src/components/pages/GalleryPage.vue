@@ -52,16 +52,10 @@ export default {
             'health': card.Health || 0,
             'attack': card.Attack || 0,
             'speed': card.CastSpeed,
-            'cost': {
-              'lumber': 2,
-              'iron': 3,
-              'mana': 1,
-              'energy': 1,
-              'food': 1,
-              'generic': 1
-            },
-            'abilities': [],
-            'tag': card.Tag,
+            'cost': card.Cost,
+            'abilities': card.Abilities,
+            'effects': card.Effects,
+            'tag': card.Tags,
             'text': card.Text,
             'image': ''
           }
