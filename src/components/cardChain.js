@@ -86,6 +86,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
 
 function broadcast (http, signedTx) {
   console.log('broadcasting: ', signedTx)
+  notify.info('BROADCASTING', 'Transaction successfully created, sending it now into the blockchain.')
   return http.post('txs', {
     'tx': signedTx.value,
     'mode': 'block'
@@ -150,7 +151,8 @@ export const notify = {
     Vue.notify({
       group: 'success',
       title: title,
-      text: text
+      text: text,
+      duration: 5000
     })
   }),
   info: R.curry(function (title, text) {

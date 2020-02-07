@@ -21,7 +21,7 @@
           <select @change="saveDraft" v-model="model.type">
             <option v-for="type in rules.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
           </select>.<br>
-          People like to tag me as 
+          People like to tag me as
           <select @change="saveDraft" v-model="model.tag[0]">
             <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
           </select>
@@ -106,7 +106,7 @@
         <div v-if="activeStep == 3"><br>
           Everybody needs a face,
           so do I, pls
-          <input type="file" name="file" id="file" class="inputfile" @change="onFileChange" />
+          <input type="file" name="file" id="file" class="inputfile" @change="uploadImage" />
           <label for="file" class="button-file">Choose a file</label>
           My flavor is best expressed by
           the following sentences:
@@ -294,12 +294,14 @@ export default {
         let usedTags = []
         if (this.model.tag[idx]) {
           usedTags = R.without(this.model.tag[idx], this.model.tag)
-        } 
+        }
         return R.append('', R.without(usedTags, this.rules.oneOf[0].properties.Action.properties.Tags.items.enum))
       }
       return []
     },
     saveSubmit () {
+      console.log(this.cardImageUrl)
+
       // eslint-disable-next-line no-unused-vars
       let newCard = {
         [this.model.type]: {
@@ -313,7 +315,8 @@ export default {
           'AbilitySpeed': this.model.speed,
           'Health': this.model.health,
           'Attack': this.model.attack
-        }
+        },
+        image: this.cardImageUrl
       }
 
       saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
@@ -332,16 +335,54 @@ export default {
       localStorage.cardDraft = JSON.stringify(this.model)
       console.log('DRAFT SAVED')
     },
-    onFileChange (e) {
+    uploadImage (event) {
+      console.log(event)
+      let that = this
+      let file = event.target.files[0]
+
+      const reader = new FileReader()
+
+      reader.onload = function (readerEvent) {
+        var image = new Image()
+        image.onload = function (imageEvent) {
+          // Resize the image
+          let canvas = document.createElement('canvas')
+          let maxSize = 800
+          let width = image.width
+          let height = image.height
+          if (width > height) {
+            if (width > maxSize) {
+              height *= maxSize / width
+              width = maxSize
+            }
+          } else {
+            if (height > maxSize) {
+              width *= maxSize / height
+              height = maxSize
+            }
+          }
+          canvas.width = width
+          canvas.height = height
+          canvas.getContext('2d').drawImage(image, 0, 0, width, height)
+          let dataUrl = canvas.toDataURL('image/jpeg')
+          let saveCallback = function (x) { that.cardImageUrl = x }
+          saveCallback(dataUrl)
+        }
+        image.src = readerEvent.target.result
+      }
+      reader.onerror = error => console.error(error)
+      reader.readAsDataURL(file)
+
+      /* old func
       const file = e.target.files[0]
       this.cardImageUrl = URL.createObjectURL(file)
       console.log(this.cardImageUrl)
+      */
     },
     downloadCard () {
       var blob = new Blob([document.getElementById('card').outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
-    },
-
+    }
   }
 }
 </script>

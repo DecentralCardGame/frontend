@@ -2,7 +2,7 @@
   <div>
     <div class="gallery-view">
       <div v-for="(card, index) in cards" v-bind:key="index">
-        <CardComponent v-bind:model="card" v-bind:imageURL="sampleImage" v-bind:id="'card'+index"></CardComponent>
+        <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index"></CardComponent>
       </div>
     </div>
   </div>
@@ -30,7 +30,6 @@ export default {
     this.$http.get('cardservice/cards')
       .then(res => {
         // console.log(res)
-
         let relevantCards = R.filter(item => item.Content, R.map(item => JSON.parse(item), res.data))
 
         let contentLens = R.lensProp('Content')
@@ -39,12 +38,10 @@ export default {
 
         relevantCards.forEach(function (card) {
           let cardType = R.keys(card.Content)
-          console.log(cardType[0])
           if (cardType) {
             card = R.merge(card, card.Content[cardType[0]])
-            console.log(card)
           }
-          console.log(card)
+          // console.log(card)
 
           let parsedCard = {
             'name': card.Name,
@@ -57,9 +54,10 @@ export default {
             'effects': card.Effects,
             'tag': card.Tags,
             'text': card.Text,
-            'image': ''
+            'image': card.Content.image
           }
           that.cards.push(parsedCard)
+          console.log(parsedCard)
         })
       })
   },
