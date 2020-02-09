@@ -274,8 +274,7 @@ export default {
     tagLength () {
       if (this.model.tag) {
         return R.length(R.filter(x => x, this.model.tag))
-      }
-      else {
+      } else {
         return 0
       }
     },
@@ -322,6 +321,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 img {
   width: 100%;
   height: auto;

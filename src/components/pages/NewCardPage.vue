@@ -65,7 +65,7 @@
           <option v-bind:key="n" v-for="n in getNumbers(0,20,0)" :value="n">{{n}}</option>
         </select> Ticks, to get me rolling. I have an
           attack of <select @change="saveDraft" v-model="model.attack">
-          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
+          <option v-bind:key="n" v-for="n in getNumbers(0,32,0)" :value="n">{{n}}</option>
         </select> and I sadly die
           after someone suckerpunchs
           me for <select @change="saveDraft" v-model="model.health">
