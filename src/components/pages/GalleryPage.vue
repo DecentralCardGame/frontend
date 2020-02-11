@@ -71,6 +71,7 @@ export default {
 
 <style scoped>
 .gallery-view {
+  text-shadow: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;

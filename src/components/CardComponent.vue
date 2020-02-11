@@ -321,7 +321,7 @@ export default {
 </script>
 
 <style scoped>
-
+text-shadow: none;
 
 img {
   width: 100%;

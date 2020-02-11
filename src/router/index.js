@@ -8,6 +8,7 @@ import RegisterPage from '@/components/pages/RegisterPage'
 import VotingPage from '../components/pages/VotingPage'
 import AccountPage from '../components/pages/AccountPage'
 import CardMinter from '../components/pages/CardMinterPage'
+import Utility from '../components/pages/Utility'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/cardminter',
       name: 'CardMinter',
       component: CardMinter
+    },
+    {
+      path: '/utility',
+      name: 'Utility',
+      component: Utility
     }
   ]
 })
