@@ -1,0 +1,160 @@
+{
+  "definitions": {
+    "action": {
+      "type": "object",
+      "properties": {
+        "Cost": {
+          "$ref": "ressourcesSchema.json"
+        },
+        "CastSpeed": {
+          "$ref": "propertySchema.json#/speedModifier"
+        },
+        "Name": {
+          "$ref": "propertySchema.json#/name"
+        },
+        "Tags": {
+          "$ref": "standards.json#/tags"
+        },
+        "Text": {
+          "$ref": "propertySchema.json#/text"
+        },
+        "Effects": {
+          "$ref": "standards.json#/effects"
+        }
+      },
+      "required": ["Cost","CastSpeed","Name","Tags","Text","Effects"],
+      "additionalProperties": false
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "propertySchema.json#/name"
+        },
+        "Tags": {
+          "$ref": "standards.json#/tags"
+        },
+        "Text": {
+          "$ref": "propertySchema.json#/text"
+        },
+        "Attack": {
+          "$ref": "propertySchema.json#/attack"
+        },
+        "Cost": {
+          "$ref": "ressourcesSchema.json"
+        },
+        "CastSpeed": {
+          "$ref": "propertySchema.json#/speedModifier"
+        },
+        "Abilities": {
+          "$ref": "standards.json#/abilities"
+        },
+        "AbilitySpeed": {
+          "$ref": "propertySchema.json#/speedModifier"
+        },
+        "Health": {
+          "$ref": "propertySchema.json#/health"
+        }
+      },
+      "required": ["Name","Tags","Text","Attack","Cost","CastSpeed","Abilities","AbilitySpeed","Health"],
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "propertySchema.json#/name"
+        },
+        "Tags": {
+          "$ref": "standards.json#/tags"
+        },
+        "Text": {
+          "$ref": "propertySchema.json#/text"
+        },
+        "Cost": {
+          "$ref": "ressourcesSchema.json"
+        },
+        "CastSpeed": {
+          "$ref": "propertySchema.json#/speedModifier"
+        },
+        "Abilities": {
+          "$ref": "standards.json#/abilities"
+        },
+        "AbilitySpeed": {
+          "$ref": "propertySchema.json#/speedModifier"
+        },
+        "Health": {
+          "$ref": "propertySchema.json#/health"
+        }
+      },
+      "required": ["Name","Tags","Text","Cost","CastSpeed","Abilities","AbilitySpeed","Health"],
+      "additionalProperties": false
+    },
+    "headquarter": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "$ref": "propertySchema.json#/name"
+        },
+        "Tags": {
+          "$ref": "standards.json#/tags"
+        },
+        "Text": {
+          "$ref": "propertySchema.json#/text"
+        },
+        "Abilities": {
+          "$ref": "standards.json#/abilities"
+        },
+        "AbilitySpeed": {
+          "$ref": "propertySchema.json#/speedModifier"
+        },
+        "Health": {
+          "$ref": "propertySchema.json#/health"
+        },
+        "UniqueName": {
+          "$ref": "propertySchema.json#/uniqueName"
+        }
+      },
+      "required": ["Name","Tags","Text","Abilities","AbilitySpeed","Health","UniqueName"],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "Action": {
+          "$ref": "#/definitions/action"
+        }
+      },
+      "required":["Action"],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/entity"
+        }
+      },
+      "required":["Entity"],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "Location": {
+          "$ref": "#/definitions/location"
+        }
+      },
+      "required":["Location"],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "Headquarter": {
+          "$ref": "#/definitions/headquarter"
+        }
+      },
+      "required":["Headquarter"],
+      "additionalProperties": false
+    }
+  ]
+}

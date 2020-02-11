@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "Energy": {
+      "$ref": "standards.json#/int"
+    },
+    "Food": {
+      "$ref": "standards.json#/int"
+    },
+    "Generic": {
+      "$ref": "standards.json#/int"
+    },
+    "Lumber": {
+      "$ref": "standards.json#/int"
+    },
+    "Mana": {
+      "$ref": "standards.json#/int"
+    },
+    "Metal": {
+      "$ref": "standards.json#/int"
+    }
+  },
+  "additionalProperties": false,
+  "description": "§Energy, §Food, §Lumber, §Mana, §Metal, §Generic"
+}

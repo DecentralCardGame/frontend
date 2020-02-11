@@ -7,6 +7,7 @@
 <script>
 // import * as R from 'ramda'
 import $RefParser from 'json-schema-ref-parser'
+import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 
 export default {
@@ -23,6 +24,16 @@ export default {
       } else {
         this.rules = api
         console.log('rules: ', api)
+        // saveAs(api, 'api.json')
+
+        function download(content, fileName, contentType) {
+          var a = document.createElement("a");
+          var file = new Blob([content], {type: contentType});
+          a.href = URL.createObjectURL(file);
+          a.download = fileName;
+          a.click();
+        }
+        download(JSON.stringify(api), 'cardrules.json', 'text/plain');
       }
     })
   },

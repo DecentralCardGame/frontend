@@ -1,0 +1,4 @@
+{
+  "type": "string",
+  "enum": ["FARM","FIRE","KNIGHT","MAGIC","MILITANT","PRIMITIVE","RANGE","SPIRITUAL","TACTIC"]
+}
