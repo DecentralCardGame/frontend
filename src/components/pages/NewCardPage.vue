@@ -213,7 +213,7 @@ export default {
     if (localStorage.cardDraft) {
       this.model = JSON.parse(localStorage.cardDraft)
     }
-    $RefParser.dereference('https://gracious-hopper-f1dfd1.netlify.com/cardSchema.json', (err, api) => {
+    $RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
       if (err) {
         console.log(err)
       } else {

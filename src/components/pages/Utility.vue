@@ -9,6 +9,7 @@
 import $RefParser from 'json-schema-ref-parser'
 import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
+import * as yes from '../../cardObject/schema/cardSchema.json'
 
 export default {
   name: 'Utility',
@@ -18,12 +19,21 @@ export default {
     }
   },
   mounted () {
+    $RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
+      if (err) {
+        console.log(err)
+      } else {
+        
+        console.log('rules: ', api)
+      }
+    })
+    /*
     $RefParser.dereference('https://gracious-hopper-f1dfd1.netlify.com/cardSchema.json', (err, api) => {
       if (err) {
         console.log(err)
       } else {
         this.rules = api
-        console.log('rules: ', api)
+        
         // saveAs(api, 'api.json')
 
         function download(content, fileName, contentType) {
@@ -36,6 +46,7 @@ export default {
         download(JSON.stringify(api), 'cardrules.json', 'text/plain');
       }
     })
+    */
   },
   methods: {
   }
