@@ -41,7 +41,7 @@ export default {
           if (cardType) {
             card = R.merge(card, card.Content[cardType[0]])
           }
-          // console.log(card)
+          console.log(card)
 
           let parsedCard = {
             'name': card.Name,
@@ -57,7 +57,7 @@ export default {
             'image': card.Content.image
           }
           that.cards.push(parsedCard)
-          console.log(parsedCard)
+          // console.log('parsedCard: ', parsedCard)
         })
       })
   },

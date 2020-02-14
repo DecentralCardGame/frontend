@@ -1,15 +1,13 @@
 <template>
   <div v-cloak @drop.prevent="dropIt" @dragover.prevent>
-    
+
   </div>
 </template>
 
 <script>
 // import * as R from 'ramda'
 import $RefParser from 'json-schema-ref-parser'
-import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import * as yes from '../../cardObject/schema/cardSchema.json'
 
 export default {
   name: 'Utility',
@@ -23,7 +21,6 @@ export default {
       if (err) {
         console.log(err)
       } else {
-        
         console.log('rules: ', api)
       }
     })
@@ -33,7 +30,7 @@ export default {
         console.log(err)
       } else {
         this.rules = api
-        
+
         // saveAs(api, 'api.json')
 
         function download(content, fileName, contentType) {

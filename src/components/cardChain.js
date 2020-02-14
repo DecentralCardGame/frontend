@@ -2,6 +2,28 @@ import { signTx } from 'signcosmostx/signStuff'
 import Vue from 'vue'
 import * as R from 'ramda'
 
+export function parseCard (rawCard) {
+  let contentLens = R.lensProp('Content')
+  let parseContent = item => R.set(contentLens, JSON.parse(atob(item.Content)), item)
+  let card = parseContent(rawCard)
+  let cardType = R.keys(card.Content)
+  card = R.merge(card, card.Content[cardType[0]])
+
+  return {
+    'name': card.Name,
+    'type': cardType[0],
+    'health': card.Health || 0,
+    'attack': card.Attack || 0,
+    'speed': card.CastSpeed,
+    'cost': card.Cost,
+    'abilities': card.Abilities,
+    'effects': card.Effects,
+    'tag': card.Tags,
+    'text': card.Text,
+    'image': card.Content.image
+  }
+}
+
 export function generateAndBroadcastTx (http, route, from, reqBody, mnemonic, method = 'put') {
   let httpRequest
   switch (method) {
@@ -74,7 +96,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
       }
     })
     .then(req => {
-      return Promise.all([getAccInfo(http, address), saveCardContent(http, req)])
+      return Promise.all([getAccInfo(http, address), saveCardContentGenerateTx(http, req)])
         .then(res => {
           let accData = res[0].data.value
           let rawTx = res[1].data
@@ -84,8 +106,29 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
     })
 }
 
+export function voteCard (http, address, mnemonic, cardid, voteType) {
+  let req = {
+    'base_req': {
+      'from': address,
+      'chain_id': 'testCardchain',
+      'gas': 'auto',
+      'gas_adjustment': '1.5'
+    },
+    'voter': address,
+    'votetype': voteType,
+    'cardid': '' + cardid
+  }
+
+  return Promise.all([getAccInfo(http, address), voteCardGenerateTx(http, req)])
+    .then(res => {
+      let accData = res[0].data.value
+      let rawTx = res[1].data
+      let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
+      return broadcast(http, signed)
+    })
+}
+
 function broadcast (http, signedTx) {
-  console.log('broadcasting: ', signedTx)
   notify.info('BROADCASTING', 'Transaction successfully created, sending it now into the blockchain.')
   return http.post('txs', {
     'tx': signedTx.value,
@@ -99,7 +142,11 @@ function broadcast (http, signedTx) {
   })
 }
 
-function saveCardContent (http, reqBody) {
+function voteCardGenerateTx (http, reqBody) {
+  return http.put('cardservice/vote_card', reqBody)
+}
+
+function saveCardContentGenerateTx (http, reqBody) {
   return http.put('cardservice/save_card_content', reqBody)
 }
 
@@ -115,8 +162,15 @@ export function getAccInfo (http, address) {
     .catch(handleGetError(R.__, address))
 }
 
+export function getVotableCards (http, address) {
+  return http.get('cardservice/votable_cards/' + address)
+    .then(handleGetAcc(R.__, address))
+    .catch(handleGetAcc(R.__, address))
+}
+
 export function getGameInfo (http) {
   return http.get('cardservice/cardchain_info')
+    .catch(handleGetError(R.__, ''))
 }
 
 const handleGetAcc = R.curry(handleGetAccCurryMe)
@@ -124,6 +178,9 @@ function handleGetAccCurryMe (res, address) {
   if (res.data === '') {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error('account ' + address + ' is not registered')
+  } else if (res.response) {
+    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+    throw new Error(res.response.data.error)
   } else {
     return res
   }
@@ -132,7 +189,7 @@ function handleGetAccCurryMe (res, address) {
 const handleGetError = R.curry(handleGetErrorCurryMe)
 function handleGetErrorCurryMe (res, address) {
   if (res.response) {
-    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+    notify.fail('YOU SHALL NOT PASS!', 'Bad things happened: ' + res.response.data.error)
     throw new Error(res.response.data.error)
   } else {
     throw new Error(res)

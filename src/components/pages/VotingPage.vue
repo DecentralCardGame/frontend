@@ -9,9 +9,10 @@
         :config="config"
         class="card"
       >
-        <div class="box">
-          <CardComponent  v-bind:model="sampleCard" v-bind:active-step="3"></CardComponent>
+        <div class="box" v-if="card.name">
+          <CardComponent v-bind:model="card" v-bind:imageURL="card.image"></CardComponent>
         </div>
+        <span v-if="!card.name"> Es gibt leider nix zu voten </span>
       </vue-swing>
       <button @click="vote(1, 'fair_enough')">Fair Enough</button>
       <button @click="vote(1, 'overpowered')">Overpowered</button>
@@ -21,20 +22,21 @@
 </template>
 
 <script>
+import * as R from 'ramda'
 import CardComponent from '../CardComponent'
 import VueSwing from 'vue-swing'
-// import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
 import { signTx } from 'signcosmostx/signStuff'
-import { generateAndBroadcastTx } from '../cardChain.js'
+import { parseCard, getVotableCards, generateAndBroadcastTx } from '../cardChain.js'
 
 export default {
   name: 'VotingPage',
   components: {CardComponent},
   data () {
     return {
-      cards: [],
+      voteRights: [],
+      card: {},
       config: {
         allowedDirections: [
           VueSwing.Direction.UP,
@@ -44,33 +46,25 @@ export default {
         ],
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
-      },
-      sampleCard: {
-        name: 'Name',
-        description: '',
-        ability: '',
-        notes: '',
-        article: 'the',
-        surname: 'Surname',
-        type: 'No Type',
-        tags: [],
-        cost: {
-          lumber: 0,
-          food: 0,
-          iron: 0,
-          mana: 0,
-          energy: 0,
-          generic: 0
-        },
-        ticks: 0,
-        defense: 0,
-        attack: 0
       }
     }
   },
   mounted () {
-    this.$http.get('cardservice/votable_cards/' + localStorage.address)
-      .then(res => (console.log(res)))
+    getVotableCards(this.$http, localStorage.address)
+      .then(res => {
+        if (res.data) {
+          if (res.data.length > 0) {
+          this.voteRights = res.data
+          this.$http.get('cardservice/cards/' + R.last(this.voteRights).CardId)
+            .then(res => {
+              this.card = parseCard(res.data.value)
+            })
+          } else {
+            console.log(res.data)
+            console.log('yes')
+          }
+        }
+      })
   },
   methods: {
     vote (cardid, type) {
@@ -97,6 +91,7 @@ export default {
 
 <style scoped>
 .box {
+  text-shadow: none;
   position: relative;
 }
 .voter {
