@@ -54,7 +54,8 @@ export default {
             'effects': card.Effects,
             'tag': card.Tags,
             'text': card.Text,
-            'image': card.Content.image
+            'image': card.Content.image,
+            'nerflevel': card.Nerflevel
           }
           that.cards.push(parsedCard)
           // console.log('parsedCard: ', parsedCard)

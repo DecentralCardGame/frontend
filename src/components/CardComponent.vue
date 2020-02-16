@@ -205,7 +205,7 @@
   </text>
   <!-- Speed -->
     <text id="text2236" x="17" y="24.1" font-family="Montserrat" font-size="19.5"  stroke="black" stroke-width="0.8" font-style="normal" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2234" x="17" y="24.1" font-family="Montserrat" font-size="19.5" font-style="normal" text-anchor="middle" writing-mode="lr-tb">{{ model.speed }}</tspan>
+    <tspan id="tspan2234" x="17" y="24.1" font-family="Montserrat" font-size="19.5" font-style="normal" text-anchor="middle" writing-mode="lr-tb">{{ Math.max(1, model.speed + (model.nerflevel ? model.nerflevel : 0))}}</tspan>
   </text>
   <!-- Tags -->
     <text v-for="(tag, index) in model.tag" v-bind:key="'tag'+index" id="text2527" :x="75 + index*46 - (tagLength() - 1)*23" y="237.4" fill="#FFDAA6" stroke-width=".1" font-family="Montserrat" font-size="4.6"  letter-spacing="1" text-anchor="start" xml:space="preserve">
@@ -245,10 +245,7 @@ export default {
       type: String,
       default: null
     },
-    activeStep: {
-      type: Number,
-      default: 3
-    },
+    nerflevel: Number,
     displayNotes: {
       type: Boolean,
       default: false
