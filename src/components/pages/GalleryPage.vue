@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import * as R from 'ramda'
+// import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
+import { parseCard } from '../cardChain.js'
 import { sampleImg } from '../utils.js'
 
 export default {
@@ -25,40 +26,10 @@ export default {
     }
   },
   mounted () {
-    let that = this
-
     this.$http.get('cardservice/cards')
       .then(res => {
-        // console.log(res)
-        let relevantCards = R.filter(item => item.Content, R.map(item => JSON.parse(item), res.data))
-
-        let contentLens = R.lensProp('Content')
-        let parseContent = item => R.set(contentLens, JSON.parse(atob(item.Content)), item)
-        relevantCards = R.map(parseContent, relevantCards)
-
-        relevantCards.forEach(function (card) {
-          let cardType = R.keys(card.Content)
-          if (cardType) {
-            card = R.merge(card, card.Content[cardType[0]])
-          }
-          console.log(card)
-
-          let parsedCard = {
-            'name': card.Name,
-            'type': cardType[0],
-            'health': card.Health || 0,
-            'attack': card.Attack || 0,
-            'speed': card.CastSpeed,
-            'cost': card.Cost,
-            'abilities': card.Abilities,
-            'effects': card.Effects,
-            'tag': card.Tags,
-            'text': card.Text,
-            'image': card.Content.image,
-            'nerflevel': card.Nerflevel
-          }
-          that.cards.push(parsedCard)
-          // console.log('parsedCard: ', parsedCard)
+        res.data.forEach(card => {
+          this.cards.push(parseCard(JSON.parse(card)))
         })
       })
   },

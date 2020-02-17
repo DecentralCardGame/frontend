@@ -106,7 +106,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
     })
 }
 
-export function voteCard (http, address, mnemonic, cardid, voteType) {
+export function voteCardTx (http, address, mnemonic, cardid, voteType) {
   let req = {
     'base_req': {
       'from': address,
@@ -135,11 +135,21 @@ function broadcast (http, signedTx) {
     'mode': 'block'
   }).then(res => {
     console.log('tx successfull broadcasted', res)
+    getTx(http, res.data.txhash)
+      .then(x => { console.log(x) })
     return res
   }).catch(err => {
-    console.error(err.response.data)
+    if (err.response) {
+      console.error(err.response.data)
+    } else {
+      console.error(err)
+    }
     throw err
   })
+}
+
+function getTx (http, hash) {
+  return http.get('txs/' + hash)
 }
 
 function voteCardGenerateTx (http, reqBody) {

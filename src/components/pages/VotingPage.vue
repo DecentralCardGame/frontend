@@ -2,21 +2,24 @@
   <div>
     <h2>Card Voting</h2>
     <div class="voter">
-      <vue-swing
-        @throwoutup="vote(1, 'fair_enough')"
-        @throwoutright="vote(1, 'overpowered')"
-        @throwoutleft="vote(1, 'underpowered')"
-        :config="config"
-        class="card"
-      >
-        <div class="box" v-if="card.name">
-          <CardComponent v-bind:model="card" v-bind:imageURL="card.image"></CardComponent>
+        <div class="box" v-if="votingActive">
+          <vue-swing
+          @throwoutup="vote(1, 'fair_enough')"
+          @throwoutright="vote(1, 'overpowered')"
+          @throwoutleft="vote(1, 'underpowered')"
+          :config="config"
+          class="card">
+          <CardComponent v-bind:model="currentCard" v-bind:imageURL="currentCard.image"></CardComponent>
+          </vue-swing>
+          <button @click="vote(1, 'fair_enough')">Fair Enough</button>
+          <button @click="vote(1, 'overpowered')">Overpowered</button>
+          <button @click="vote(1, 'underpowered')">Underpowered</button>
         </div>
-        <span v-if="!card.name"> Es gibt leider nix zu voten </span>
-      </vue-swing>
-      <button @click="vote(1, 'fair_enough')">Fair Enough</button>
-      <button @click="vote(1, 'overpowered')">Overpowered</button>
-      <button @click="vote(1, 'underpowered')">Underpowered</button>
+        <div v-if="!votingActive">
+        <span>You cannot vote on cards.</span>
+        <span>This is either because you are not registered or you have already voted on all cards.</span><br>
+        <span>Come back tomorrow if you have already registered to get more voting rights or join today.</span>
+        </div>
     </div>
   </div>
 </template>
@@ -28,15 +31,17 @@ import VueSwing from 'vue-swing'
 
 // eslint-disable-next-line no-unused-vars
 import { signTx } from 'signcosmostx/signStuff'
-import { parseCard, getVotableCards, generateAndBroadcastTx } from '../cardChain.js'
+import { parseCard, getVotableCards, voteCardTx } from '../cardChain.js'
 
 export default {
   name: 'VotingPage',
   components: {CardComponent},
   data () {
     return {
+      votingActive: false,
       voteRights: [],
-      card: {},
+      cards: Array,
+      currentCard: {},
       config: {
         allowedDirections: [
           VueSwing.Direction.UP,
@@ -53,16 +58,30 @@ export default {
     getVotableCards(this.$http, localStorage.address)
       .then(res => {
         if (res.data) {
-          if (res.data.length > 0) {
           this.voteRights = res.data
-          this.$http.get('cardservice/cards/' + R.last(this.voteRights).CardId)
-            .then(res => {
-              this.card = parseCard(res.data.value)
+
+          if (res.data.length > 0) {
+            console.log(this.voteRights)
+
+            
+            R.takeLast(2, this.voteRights).forEach(voteRight => {
+              this.$http.get('cardservice/cards/' + voteRight.CardId).then(res => {
+                this.cards = []
+                this.cards.push(parseCard(res.data.value))
+                R.last(this.cards).id = voteRight.CardId
+                console.log('cardes', this.cards)
+
+                if (R.isEmpty(this.currentCard)) {
+                  this.showNextCard()
+                }
+              })
             })
           } else {
-            console.log(res.data)
-            console.log('yes')
+            this.votingActive = false
           }
+        } else {
+          this.votingActive = false
+          console.error('getVotableCards returned non-readable data: ', res)
         }
       })
   },
@@ -70,20 +89,24 @@ export default {
     vote (cardid, type) {
       console.log('THROWOUT')
 
-      let reqBody = {
-        'base_req': {
-          'from': localStorage.address,
-          'chain_id': 'testCardchain',
-          'gas': 'auto',
-          'gas_adjustment': '1.5'
-        },
-        'voter': localStorage.address,
-        'votetype': type,
-        'cardid': '' + cardid
-      }
+      voteCardTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentCard.id, type)
 
-      generateAndBroadcastTx(this.$http, 'cardservice/vote_card', localStorage.address, reqBody, localStorage.mnemonic)
-        .then(console.log)
+      if (R.isEmpty(this.cards)) {
+        getVotableCards(this.$http, localStorage.address)
+      } else {
+        this.showNextCard()
+      }
+    },
+    getNextCard () {
+
+    },
+    showNextCard () {
+      this.votingActive = true
+      if (R.isEmpty(this.cards)) {
+        this.votingActive = false
+      }
+      this.currentCard = R.last(this.cards)
+      this.cards = R.dropLast(this.cards)
     }
   }
 }
