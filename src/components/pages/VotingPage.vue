@@ -75,7 +75,6 @@ export default {
                 this.showNextCard()
               })
             this.getNextCard()
-            
           } else {
             this.votingActive = false
           }
@@ -85,8 +84,7 @@ export default {
           console.log('no more voting rights')
         } else if (res.unregistered === true) {
           this.unregistered = true
-        }
-        else {
+        } else {
           this.votingActive = false
           console.error('getVotableCards returned non-readable data: ', res)
         }
@@ -95,7 +93,7 @@ export default {
   methods: {
     vote (cardid, type) {
       console.log('vote cast for cardid', cardid, 'voted: ', type)
-      
+
       this.getNextCard()
       voteCardTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentCard.id, type)
 

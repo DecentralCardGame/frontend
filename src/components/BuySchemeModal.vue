@@ -1,6 +1,7 @@
 <script>
 // import * as R from 'ramda'
-import { buyCardSchemeTx, notify, getGameInfo, getAccInfo } from './cardChain.js'
+import { buyCardSchemeTx, getGameInfo, getAccInfo } from './cardChain.js'
+import { notify } from './utils.js'
 
 export default {
   name: 'buySchemeModal',

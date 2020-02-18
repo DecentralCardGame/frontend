@@ -27,8 +27,8 @@
 <script>
 // import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-
-import { generateAndBroadcastTx, notify } from '../cardChain.js'
+import { generateAndBroadcastTx } from '../cardChain.js'
+import { notify } from '../utils.js'
 
 export default {
   name: 'RegisterPage',

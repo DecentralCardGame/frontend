@@ -1,5 +1,5 @@
 import { signTx } from 'signcosmostx/signStuff'
-import Vue from 'vue'
+import { notify } from './utils.js'
 import * as R from 'ramda'
 
 export function parseCard (rawCard) {
@@ -206,31 +206,4 @@ function handleGetErrorCurryMe (res, address) {
   } else {
     throw new Error(res)
   }
-}
-
-export const notify = {
-  fail: R.curry(function (title, text) {
-    Vue.notify({
-      group: 'fail',
-      title: title,
-      text: text,
-      duration: 5000
-    })
-  }),
-  success: R.curry(function (title, text) {
-    Vue.notify({
-      group: 'success',
-      title: title,
-      text: text,
-      duration: 5000
-    })
-  }),
-  info: R.curry(function (title, text) {
-    Vue.notify({
-      group: 'info',
-      title: title,
-      text: text,
-      duration: 5000
-    })
-  })
 }

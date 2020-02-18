@@ -1,3 +1,32 @@
+import Vue from 'vue'
+import * as R from 'ramda'
+
+export const notify = {
+  fail: R.curry(function (title, text) {
+    Vue.notify({
+      group: 'fail',
+      title: title,
+      text: text,
+      duration: 5000
+    })
+  }),
+  success: R.curry(function (title, text) {
+    Vue.notify({
+      group: 'success',
+      title: title,
+      text: text,
+      duration: 5000
+    })
+  }),
+  info: R.curry(function (title, text) {
+    Vue.notify({
+      group: 'info',
+      title: title,
+      text: text,
+      duration: 5000
+    })
+  })
+}
 
 export function filterSelection (options) {
   let found = {}
