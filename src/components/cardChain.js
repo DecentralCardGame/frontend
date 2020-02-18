@@ -141,6 +141,7 @@ function broadcast (http, signedTx) {
   }).catch(err => {
     if (err.response) {
       console.error(err.response.data)
+      notify.fail('EPIC FAIL', err.response.data)
     } else {
       console.error(err)
     }
@@ -190,7 +191,8 @@ function handleGetAccCurryMe (res, address) {
     throw new Error('account ' + address + ' is not registered')
   } else if (res.response) {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    throw new Error(res.response.data.error)
+    console.error(res.response.data.error)
+    return { unregistered: true }
   } else {
     return res
   }
@@ -211,7 +213,8 @@ export const notify = {
     Vue.notify({
       group: 'fail',
       title: title,
-      text: text
+      text: text,
+      duration: 5000
     })
   }),
   success: R.curry(function (title, text) {
@@ -226,7 +229,8 @@ export const notify = {
     Vue.notify({
       group: 'info',
       title: title,
-      text: text
+      text: text,
+      duration: 5000
     })
   })
 }

@@ -74,7 +74,7 @@ input::placeholder {
   border-left: 5px solid #FF3C3C;
   font-size: 16px;
   color: #FFFFFF;
-  background: #D61224;
+  background: #D61224 !important;
 }
 
 .info-notification {
@@ -83,7 +83,7 @@ input::placeholder {
   border-left: 5px solid #FFACAC;
   font-size: 16px;
   color: #FFFFFF;
-  background: #F29121;
+  background: #F29121 !important;
 }
 
 .success-notification {
@@ -92,7 +92,7 @@ input::placeholder {
   border-left: 5px solid #0ea54b;
   font-size: 16px;
   color: #FFFFFF;
-  background: #25d612;
+  background: #25d612 !important;
 }
 
 /* modal fun begins here */

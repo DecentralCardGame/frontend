@@ -16,9 +16,14 @@
           <button @click="vote(1, 'underpowered')">Underpowered</button>
         </div>
         <div v-if="!votingActive">
-        <span>You cannot vote on cards.</span>
-        <span>This is either because you are not registered or you have already voted on all cards.</span><br>
-        <span>Come back tomorrow if you have already registered to get more voting rights or join today.</span>
+          <span>You cannot vote on cards.</span>
+          <div v-if="noMoreVotesLeft">
+            <span>You have already voted on all cards. Come back tomorrow to vote again.</span>
+          </div>
+          <div v-if="unregistered">
+            <span>You are not registered. To vote on cards you have to register, press the Join button to register.</span>
+            <span>Afer registering it might take a few seconds until your account becomes active.</span>
+          </div>
         </div>
     </div>
   </div>
@@ -38,9 +43,11 @@ export default {
   components: {CardComponent},
   data () {
     return {
+      unregistered: false,
       votingActive: false,
+      noMoreVotesLeft: false,
       voteRights: [],
-      cards: Array,
+      cards: [],
       currentCard: {},
       config: {
         allowedDirections: [
@@ -60,26 +67,26 @@ export default {
         if (res.data) {
           this.voteRights = res.data
 
-          if (res.data.length > 0) {
-            console.log(this.voteRights)
+          if (this.voteRights.length > 0) {
+            console.log('voteRights:', this.voteRights)
 
-            
-            R.takeLast(2, this.voteRights).forEach(voteRight => {
-              this.$http.get('cardservice/cards/' + voteRight.CardId).then(res => {
-                this.cards = []
-                this.cards.push(parseCard(res.data.value))
-                R.last(this.cards).id = voteRight.CardId
-                console.log('cardes', this.cards)
-
-                if (R.isEmpty(this.currentCard)) {
-                  this.showNextCard()
-                }
+            this.getNextCard()
+              .then(res => {
+                this.showNextCard()
               })
-            })
+            this.getNextCard()
+            
           } else {
             this.votingActive = false
           }
-        } else {
+        } else if (res.data === null) {
+          this.votingActive = false
+          this.noMoreVotesLeft = true
+          console.log('no more voting rights')
+        } else if (res.unregistered === true) {
+          this.unregistered = true
+        }
+        else {
           this.votingActive = false
           console.error('getVotableCards returned non-readable data: ', res)
         }
@@ -87,18 +94,36 @@ export default {
   },
   methods: {
     vote (cardid, type) {
-      console.log('THROWOUT')
-
+      console.log('vote cast for cardid', cardid, 'voted: ', type)
+      
+      this.getNextCard()
       voteCardTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentCard.id, type)
 
       if (R.isEmpty(this.cards)) {
-        getVotableCards(this.$http, localStorage.address)
+        if (!R.isEmpty(this.voteRights)) {
+          this.getNextCard()
+            .then(this.showNextCard())
+        } else {
+          this.votingActive = false
+          this.noMoreVotesLeft = true
+        }
       } else {
         this.showNextCard()
       }
     },
     getNextCard () {
+      console.log('votingRights.length:', this.voteRights.length)
+      if (this.voteRights.length > 0) {
+        let nextCard = R.last(this.voteRights)
+        this.voteRights = R.dropLast(1, this.voteRights)
 
+        return this.$http.get('cardservice/cards/' + nextCard.CardId).then(res => {
+          this.cards.push(parseCard(res.data.value))
+          R.last(this.cards).id = nextCard.CardId
+        })
+      } else {
+        console.error('no cards left')
+      }
     },
     showNextCard () {
       this.votingActive = true
@@ -106,7 +131,7 @@ export default {
         this.votingActive = false
       }
       this.currentCard = R.last(this.cards)
-      this.cards = R.dropLast(this.cards)
+      this.cards = R.dropLast(1, this.cards)
     }
   }
 }
