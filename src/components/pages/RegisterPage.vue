@@ -2,11 +2,11 @@
   <content-container-component>
     <h2>Join the Experience</h2><br>
     <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p><br>
-    <p>CURRENTLY THIS DOES NOT REGISTER YOUR EMAIL, IT ONLY REGISTERS YOUR ADDRESS IN THE BLOCKCHAIN. YOU CAN ENTER WHATEVER YOU WANT, IT DOESN'T MATTER, BUT IT DOES REGISTER YOUR ADDRESS IN OUR BLOCKCHAIN. <p><br>
+    <p>AT THE MOMENT E-MAIL SIGNUP IS NOT IMPLEMENTED - JUST PRESS REGISTER TO ACTIVATE YOUR ACCOUNT ON THE BLOCKCHAIN <p><br>
     <form @submit.prevent="register">
       <label>
         <b>Username: </b>
-        <input type="text" v-model="alias" placeholder="Enter Username" name="uname" required>
+        <input type="text" v-model="alias" placeholder="Enter Username" name="uname"> <!--required-->
       </label>
       <br>
       <label>
