@@ -3,24 +3,41 @@ import { notify } from './utils.js'
 import * as R from 'ramda'
 
 export function parseCard (rawCard) {
-  let contentLens = R.lensProp('Content')
-  let parseContent = item => R.set(contentLens, JSON.parse(atob(item.Content)), item)
-  let card = parseContent(rawCard)
-  let cardType = R.keys(card.Content)
-  card = R.merge(card, card.Content[cardType[0]])
+  console.log(rawCard)
+  if (rawCard.Content) {
+    let contentLens = R.lensProp('Content')
+    let parseContent = item => R.set(contentLens, JSON.parse(atob(item.Content)), item)
+    let card = parseContent(rawCard)
+    let cardType = R.keys(card.Content)
+    card = R.merge(card, card.Content[cardType[0]])
 
-  return {
-    'name': card.Name,
-    'type': cardType[0],
-    'health': card.Health || 0,
-    'attack': card.Attack || 0,
-    'speed': card.CastSpeed,
-    'cost': card.Cost,
-    'abilities': card.Abilities,
-    'effects': card.Effects,
-    'tag': card.Tags,
-    'text': card.Text,
-    'image': card.Content.image
+    return {
+      'name': card.Name,
+      'type': cardType[0],
+      'health': card.Health || 0,
+      'attack': card.Attack || 0,
+      'speed': card.CastSpeed,
+      'cost': card.Cost,
+      'abilities': card.Abilities,
+      'effects': card.Effects,
+      'tag': card.Tags,
+      'text': card.Text,
+      'image': card.Content.image
+    }
+  } else {
+    return {
+      'name': 'empty',
+      'type': null,
+      'health': 0,
+      'attack': 0,
+      'speed': 0,
+      'cost': {},
+      'abilities': null,
+      'effects': null,
+      'tag': null,
+      'text': '',
+      'image': null
+    }
   }
 }
 
@@ -207,3 +224,64 @@ function handleGetErrorCurryMe (res, address) {
     throw new Error(res)
   }
 }
+
+/*
+type Transaction = () => Promise<any>
+
+class EventLoop {
+  isRunning = false
+  queue: Transaction[] = []
+
+  enqueue(fn: Transaction) {
+    this.queue.push(fn)
+
+    if (!this.isRunning) {
+      this.run()
+    }
+  }
+
+  private run() {
+    this.isRunning = true
+
+    const transaction = this.queue.splice(0, 1)[0]
+
+    if (transaction === undefined) {
+      this.isRunning = false
+      return
+    }
+
+    transaction().finally(() => this.run())
+  }
+}
+
+const txLoop = new EventLoop()
+
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const tx1 = () => new Promise(resolve => {
+  sleep(2000).then(() => {
+    console.log('tx1 finished')
+    resolve()
+  })
+})
+
+const tx2 = () => new Promise(resolve => {
+  sleep(1000).then(() => {
+    console.log('tx2 finished')
+    resolve()
+  })
+})
+
+const tx3 = () => new Promise(resolve => {
+  sleep(10).then(() => {
+    console.log('tx3 finished')
+    resolve()
+  })
+})
+
+txLoop.enqueue(tx1)
+txLoop.enqueue(tx2)
+txLoop.enqueue(tx3)
+*/
