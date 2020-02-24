@@ -9,7 +9,7 @@
 </template>
 
 <script>
-// import * as R from 'ramda'
+import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 import { parseCard } from '../cardChain.js'
@@ -28,8 +28,9 @@ export default {
   mounted () {
     this.$http.get('cardservice/cards')
       .then(res => {
-        res.data.forEach(card => {
-          this.cards.push(parseCard(JSON.parse(card)))
+        let relevantCards = R.filter(item => item.Content, R.map(item => JSON.parse(item), res.data))
+        relevantCards.forEach(card => {
+          this.cards.push(parseCard(card))
         })
       })
   },
