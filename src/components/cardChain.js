@@ -136,6 +136,7 @@ export function voteCardTx (http, address, mnemonic, cardid, voteType) {
     'cardid': '' + cardid
   }
 
+  txLoop.enqueue(() => {
   return Promise.all([getAccInfo(http, address), voteCardGenerateTx(http, req)])
     .then(res => {
       let accData = res[0].data.value
@@ -143,6 +144,7 @@ export function voteCardTx (http, address, mnemonic, cardid, voteType) {
       let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
       return broadcast(http, signed)
     })
+  })
 }
 
 function broadcast (http, signedTx) {
@@ -225,63 +227,32 @@ function handleGetErrorCurryMe (res, address) {
   }
 }
 
-/*
-type Transaction = () => Promise<any>
-
-class EventLoop {
+class BlockchainInterface {
   isRunning = false
-  queue: Transaction[] = []
+  queue = []
 
-  enqueue(fn: Transaction) {
-    this.queue.push(fn)
+  enqueue (transaction) {
+    this.queue.push(transaction)
 
     if (!this.isRunning) {
       this.run()
     }
   }
 
-  private run() {
+  run () {
     this.isRunning = true
 
-    const transaction = this.queue.splice(0, 1)[0]
+    if (!R.isEmpty(this.queue)) {
 
-    if (transaction === undefined) {
+      const transaction = this.queue[0]
+      this.queue = R.drop(1, this.queue)
+      
+      transaction().finally(() => this.run())
+    } else {
       this.isRunning = false
       return
     }
-
-    transaction().finally(() => this.run())
   }
 }
 
-const txLoop = new EventLoop()
-
-function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-const tx1 = () => new Promise(resolve => {
-  sleep(2000).then(() => {
-    console.log('tx1 finished')
-    resolve()
-  })
-})
-
-const tx2 = () => new Promise(resolve => {
-  sleep(1000).then(() => {
-    console.log('tx2 finished')
-    resolve()
-  })
-})
-
-const tx3 = () => new Promise(resolve => {
-  sleep(10).then(() => {
-    console.log('tx3 finished')
-    resolve()
-  })
-})
-
-txLoop.enqueue(tx1)
-txLoop.enqueue(tx2)
-txLoop.enqueue(tx3)
-*/
+const txLoop = new BlockchainInterface()
