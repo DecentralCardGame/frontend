@@ -206,6 +206,10 @@ export function getAccInfo (http, address) {
     .catch(handleGetError(R.__, address))
 }
 
+export function getCard (http, id) {
+  return http.get('cardservice/cards/' + id)
+}
+
 export function getVotableCards (http, address) {
   return http.get('cardservice/votable_cards/' + address)
     .then(handleGetAcc(R.__, address))

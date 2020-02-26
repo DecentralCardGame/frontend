@@ -12,7 +12,7 @@
 import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
-import { parseCard } from '../cardChain.js'
+import { parseCard, getCard } from '../cardChain.js'
 import { sampleImg } from '../utils.js'
 
 export default {
@@ -26,6 +26,10 @@ export default {
     }
   },
   mounted () {
+    
+
+    this.fillPage()
+    
     this.$http.get('cardservice/cards')
       .then(res => {
         let relevantCards = R.filter(item => item.Content, R.map(item => JSON.parse(item), res.data))
@@ -37,6 +41,11 @@ export default {
   methods: {
     getSampleImg () {
       return sampleImg
+    },
+    fillPage () {
+      const getCardById = R.curry(getCard)(this.$http, R.__)
+      let cardes = R.times(getCardById, 5);
+      console.log(cardes)
     }
   }
 }
