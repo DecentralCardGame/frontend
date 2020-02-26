@@ -168,7 +168,7 @@ import { saveAs } from 'file-saver'
 
 // eslint-disable-next-line no-unused-vars
 import { generateAndBroadcastTx, buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, resolveParagraph, notify } from '../utils.js'
+import { sampleImg, resolveParagraph } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -320,16 +320,6 @@ export default {
       }
 
       saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
-        .then(res => {
-          notify.success('EPIC WIN', 'You have successfully published this card.')
-        })
-        .catch(err => {
-          if (err.message === 'no cards available') {
-            notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
-          } else {
-            console.error(err)
-          }
-        })
     },
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)

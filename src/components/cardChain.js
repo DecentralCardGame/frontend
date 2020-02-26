@@ -98,7 +98,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
       let freeCardSchemes = userInfo.data.value.OwnedCardSchemes
 
       if (!freeCardSchemes) {
-        throw new Error('no cards available')
+        notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
       } else {
         let reqBody = {
           'base_req': {
@@ -115,13 +115,22 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
       }
     })
     .then(req => {
-      return Promise.all([getAccInfo(http, address), saveCardContentGenerateTx(http, req)])
-        .then(res => {
-          let accData = res[0].data.value
-          let rawTx = res[1].data
-          let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
-          return broadcast(http, signed)
-        })
+      txLoop.enqueue(_ => {
+        return Promise.all([getAccInfo(http, address), saveCardContentGenerateTx(http, req)])
+          .then(res => {
+            let accData = res[0].data.value
+            let rawTx = res[1].data
+            let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
+            return broadcast(http, signed)
+              .then(res => {
+                notify.success('EPIC WIN', 'You have successfully published this card.')
+              })
+              .catch(err => {
+                notify.fail('FAIL HARD', err.message)
+                console.error(err)
+              })
+          })
+      })
     })
 }
 
@@ -138,7 +147,7 @@ export function voteCardTx (http, address, mnemonic, cardid, voteType) {
     'cardid': '' + cardid
   }
 
-  txLoop.enqueue(() => {
+  txLoop.enqueue(_ => {
     return Promise.all([getAccInfo(http, address), voteCardGenerateTx(http, req)])
       .then(res => {
         let accData = res[0].data.value
@@ -251,7 +260,7 @@ class BlockchainInterface {
       const transaction = this.queue[0]
       this.queue = R.drop(1, this.queue)
 
-      transaction().finally(() => this.run())
+      transaction().finally(_ => this.run())
     } else {
       this.isRunning = false
     }
