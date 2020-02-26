@@ -22,7 +22,8 @@ export function parseCard (rawCard) {
       'effects': card.Effects,
       'tag': card.Tags,
       'text': card.Text,
-      'image': card.Content.image
+      'image': card.Content.image,
+      'nerflevel': parseInt(card.Nerflevel)
     }
   } else {
     return {
@@ -36,7 +37,8 @@ export function parseCard (rawCard) {
       'effects': null,
       'tag': null,
       'text': '',
-      'image': null
+      'image': null,
+      'nerflevel': 0
     }
   }
 }
@@ -137,13 +139,16 @@ export function voteCardTx (http, address, mnemonic, cardid, voteType) {
   }
 
   txLoop.enqueue(() => {
-  return Promise.all([getAccInfo(http, address), voteCardGenerateTx(http, req)])
-    .then(res => {
-      let accData = res[0].data.value
-      let rawTx = res[1].data
-      let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
-      return broadcast(http, signed)
-    })
+    return Promise.all([getAccInfo(http, address), voteCardGenerateTx(http, req)])
+      .then(res => {
+        let accData = res[0].data.value
+        let rawTx = res[1].data
+        let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
+        return broadcast(http, signed)
+          .then(() => {
+            notify.success('VOTED', 'Vote Transaction successfull!')
+          })
+      })
   })
 }
 
@@ -243,14 +248,12 @@ class BlockchainInterface {
     this.isRunning = true
 
     if (!R.isEmpty(this.queue)) {
-
       const transaction = this.queue[0]
       this.queue = R.drop(1, this.queue)
-      
+
       transaction().finally(() => this.run())
     } else {
       this.isRunning = false
-      return
     }
   }
 }
