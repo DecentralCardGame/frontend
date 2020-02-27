@@ -10,15 +10,19 @@
       <g>
         <path id="line1313" fill="none" stroke="#ffb300" stroke-linecap="round" stroke-linejoin="round" d="M101 190.9v-20" class="cls-1"/>
         <!-- background of whole card -->
-        <rect id="rect1315" width="154" height="240" x="0" y="0" fill="#5300FF" fill-opacity="1" class="cls-2" rx="8"/>
+        <rect id="rect1315" width="154" height="240" x="0" y="0" fill="#5f6069" fill-opacity="1" class="cls-2" rx="8"/>
+        
         <path id="path1317" fill="#001433" d="M140.3 132.3h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z" class="cls-3"/>
         <path id="polygon1319" fill="#001433" d="M149.3 134.1l2 7.1H1.3l2.1-7.1-2.1-7.2h150z" class="cls-banderole-back"/>
+
         <path id="path1321" fill="none" stroke="#d99941" d="M4.3 138.7v93.1a4 4 0 004 4h136a4 4 0 004-4v-93.1" class="cls-4"/>
         <path id="polygon1325" fill="#a37331" d="M141.2 136.6h6.1l-6.1 3.9z" class="cls-6"/>
         <path id="polygon1327" fill="#a37331" d="M11.4 136.6H5.3l6.1 3.9z" class="cls-6"/>
         <rect id="rect1329" width="134" height="100" x="9.3" y="131.2" fill="#fffefc" fill-opacity="1" class="cls-7" rx="4"/>
         <path id="polygon1331" fill="#d99941" d="M143.3 131.6v7H9.3v-14h134z"/>
+        <!-- title box -->
         <path id="polygon1333" fill="#ffdfa1" d="M147.3 129.6v7H5.3v-14h142z"/>
+        
         <path id="rect1335" fill="#a37331" d="M3.8 140.6h1v.6h-1z" class="cls-6"/>
         <path id="rect1337" fill="#a37331" d="M147.8 140.6h1v.6h-1z" class="cls-6"/>
         <!-- card image background -->
@@ -32,21 +36,21 @@
         <!--rect id="rect1341" width="134" height="100" x="9.3" y="18.1" fill="#f2f2f2" class="cls-7" /-->
 
         <!-- tag box -->
-        <path id="rect1343" fill="#1B1464" fill-opacity="1" d="M9.3 233.1h134v5.3H9.3z"/>
+        <path id="rect1343" fill="#001433" fill-opacity="1" d="M9.3 233.1h134v5.3H9.3z"/>
         <!-- attack - type - health lines -->
         <path id="line1347" fill="none" stroke="#d99941" stroke-width="1" d="M56 226H28" class="cls-4"/>
         <path id="line1349" fill="none" stroke="#d99941" stroke-width="1" d="M123 226H95" class="cls-4"/>
-
-        <path id="path1351" fill="none" stroke="#1b1464" d="M148.3 108.4V28" class="cls-10"/>
-        <path id="path1353" fill="none" stroke="#1b1464" d="M4.3 28v80.4" class="cls-10"/>
-        <path id="path1355" fill="none" stroke="#1b1464" d="M148.3 111.4v-2" class="cls-10"/>
-        <path id="path1357" fill="none" stroke="#1b1464" d="M4.3 109.4v2" class="cls-10"/>
-        <path id="path1359" fill="none" stroke="#1b1464" d="M148.3 113.4v-1" class="cls-10"/>
-        <path id="path1361" fill="none" stroke="#1b1464" d="M4.3 112.4v1" class="cls-10"/>
-        <path id="path1363" fill="none" stroke="#1b1464" d="M148.3 25v2" class="cls-10"/>
-        <path id="path1365" fill="none" stroke="#1b1464" d="M4.3 27v-2" class="cls-10"/>
-        <path id="path1367" fill="none" stroke="#1b1464" d="M148.3 23v1" class="cls-10"/>
-        <path id="path1369" fill="none" stroke="#1b1464" d="M4.3 24v-1" class="cls-10"/>
+        <!-- upper border lines -->
+        <path id="path1351" fill="none" stroke="none" d="M148.3 108.4V28" class="cls-10"/>
+        <path id="path1353" fill="none" stroke="none" d="M4.3 28v80.4" class="cls-10"/>
+        <path id="path1355" fill="none" stroke="none" d="M148.3 111.4v-2" class="cls-10"/>
+        <path id="path1357" fill="none" stroke="none" d="M4.3 109.4v2" class="cls-10"/>
+        <path id="path1359" fill="none" stroke="none" d="M148.3 113.4v-1" class="cls-10"/>
+        <path id="path1361" fill="none" stroke="none" d="M4.3 112.4v1" class="cls-10"/>
+        <path id="path1363" fill="none" stroke="none" d="M148.3 25v2" class="cls-10"/>
+        <path id="path1365" fill="none" stroke="none" d="M4.3 27v-2" class="cls-10"/>
+        <path id="path1367" fill="none" stroke="none" d="M148.3 23v1" class="cls-10"/>
+        <path id="path1369" fill="none" stroke="none" d="M4.3 24v-1" class="cls-10"/>
         <path id="path1371" fill="#001433" d="M19.9 33a70.3 70.3 0 0113.7-11.3c-3-6.7-5-12-5.4-14.6L5.5 6 3.1 25.7z" class="cls-3"/>
         <path id="polygon1373" fill="#ffdaa6" d="M19.1 32.1l13.7-11.2-5.4-14.7-22.7-1-2.4 19.7z"/>
         <path id="polygon1375" fill="#001433" d="M145.8 118.1l4.6-2.3-1.3 3.3-3.3 1.8z" class="cls-3"/>
@@ -216,20 +220,20 @@
     <tspan id="tspan2430" x="33" :y="141.1 + index*20" inline-size="18" stroke-width=".1" font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Montserrat, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr"> {{ability.cardText}} </tspan>
   </text>
   <!-- Type -->
-    <text id="text2495" x="75.1" y="228.6" fill="#312B6C" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" letter-spacing="1" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2493" x="75.1" y="228.6" fill="#312B6C" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ (model.type || '').toUpperCase() }}</tspan>
+    <text id="text2495" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" letter-spacing="1" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2493" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ (model.type || '').toUpperCase() }}</tspan>
   </text>
   <!-- Flavor text -->
     <text v-for="(text, index) in textToSvg(model.text)" v-bind:key="'flavorLine'+index" id="text2495-3" x="76.9" :y="abilitiesLength()*20 + 156.9 + index*8" fill="#000000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
     <tspan id="tspan2493-1" x="76.9" :y="abilitiesLength()*20 + 156.9 + index*8" fill="#000000" fill-opacity="1" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ text }}</tspan>
   </text>
   <!-- Attack -->
-    <text v-show="model.attack || model.type==='Entity'" id="text2236-11" x="23" y="228.6" fill="#312B6C" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2234-91" x="23" y="228.6" fill="#312B6C" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.attack }}</tspan>
+    <text v-show="model.attack || model.type==='Entity'" id="text2236-11" x="23" y="228.6" fill="#001433" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2234-91" x="23" y="228.6" fill="#001433" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.attack }}</tspan>
   </text>
   <!-- Health -->
-    <text v-show="model.health" id="text2236-11-3" x="128" y="228.6" fill="#312B6C" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2234-91-7" x="128" y="228.6" fill="#312B6C" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" writing-mode="lr-tb">{{ model.health }}</tspan>
+    <text v-show="model.health" id="text2236-11-3" x="128" y="228.6" fill="#001433" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+    <tspan id="tspan2234-91-7" x="128" y="228.6" fill="#001433" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" writing-mode="lr-tb">{{ model.health }}</tspan>
   </text>
   </svg>
 </template>
@@ -337,7 +341,7 @@ img {
 .cls-5{fill:#d99941}
 .cls-6{fill:#a37331}
 .cls-7{fill:#f2f2f2}
-.cls-10{stroke:#1b1464}
+.cls-10{stroke:#001433}
 .cost{stroke:#d99941;fill:none}
 .cost-fill {fill:#d99941}
 
