@@ -4,6 +4,10 @@
       <div v-for="(card, index) in cards" v-bind:key="index">
         <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index"></CardComponent>
       </div>
+      <div>
+        <button v-if="currentId > 1" @click="prevPage">back</button>
+        <button v-if="!forwardStop" @click="nextPage">next</button>
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +19,8 @@ import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard } from '../cardChain.js'
 import { sampleImg } from '../utils.js'
 
+const cardsPerPage = 3
+
 export default {
   name: 'GalleryPage',
   components: {CardComponent, ContentContainerComponent},
@@ -22,30 +28,70 @@ export default {
     return {
       cards: [],
       cardImgs: [],
-      sampleImage: sampleImg
+      sampleImage: sampleImg,
+      browsingForward: true,
+      currentId: 1,
+      pageStartId: 1,
+      forwardStop: false
     }
   },
   mounted () {
-    
-
     this.fillPage()
-    
-    this.$http.get('cardservice/cards')
-      .then(res => {
-        let relevantCards = R.filter(item => item.Content, R.map(item => JSON.parse(item), res.data))
-        relevantCards.forEach(card => {
-          this.cards.push(parseCard(card))
-        })
-      })
   },
   methods: {
     getSampleImg () {
       return sampleImg
     },
+    getNextCard () {
+      if (this.currentId === 1 && !this.browsingForward) return
+
+      getCard(this.$http, this.currentId)
+        .then(res => {
+          let card = res.data.value
+          if (card.Content) {
+            this.cards.push(parseCard(card))
+          } else {
+            this.getNextCard()
+            console.log('yeth: ', res)
+          }
+        })
+        .catch(res => {
+          // if (browsingForward) this.forwardStop = true
+          console.error(res)
+        })
+
+      if (this.browsingForward) {
+        this.currentId++
+      } else {
+        if (this.currentId > 1) {
+          this.currentId--
+        } 
+      }
+    },
     fillPage () {
-      const getCardById = R.curry(getCard)(this.$http, R.__)
-      let cardes = R.times(getCardById, 5);
-      console.log(cardes)
+      Promise.all(R.times(this.getNextCard, cardsPerPage))
+        .catch(reqs => {
+          R.all(x => x)([3, 3, 3, 3])
+        })
+    },
+    nextPage () {
+      console.log('pageStartid: ', this.pageStartId, 'currentId:', this.currentId)
+
+      this.browsingForward = true
+      this.pageStartId = this.currentId
+
+      this.cards = []
+      this.fillPage()
+    },
+    prevPage () {
+      console.log('pageid: ', this.pageStartId, 'currentId:', this.currentId)
+
+      this.browsingForward = false
+      this.pageStartId = this.currentId
+      this.forwardStop = false
+
+      this.cards = []
+      this.fillPage()
     }
   }
 }

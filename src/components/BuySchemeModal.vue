@@ -15,8 +15,8 @@ export default {
   mounted () {
     getGameInfo(this.$http)
       .then(res => {
-        this.currentPrice = res.data.amount + res.data.denom + 1 // TODO actually this should work wtihout the + 1, maybe something is wrong in the blockchain?
-        this.currentBid = res.data.amount
+        this.currentPrice = parseInt(res.data.amount) + 1 + res.data.denom // TODO actually this should work wtihout the + 1, maybe something is wrong in the blockchain?
+        this.currentBid = parseInt(res.data.amount) + 1
       })
       .catch(res => {
         this.close()

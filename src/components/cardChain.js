@@ -3,7 +3,7 @@ import { notify } from './utils.js'
 import * as R from 'ramda'
 
 export function parseCard (rawCard) {
-  console.log(rawCard)
+  console.log('parsing card: ', rawCard)
   if (rawCard.Content) {
     let contentLens = R.lensProp('Content')
     let parseContent = item => R.set(contentLens, JSON.parse(atob(item.Content)), item)
