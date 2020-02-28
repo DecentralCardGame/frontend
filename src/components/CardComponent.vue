@@ -11,7 +11,7 @@
         <path id="line1313" fill="none" stroke="#ffb300" stroke-linecap="round" stroke-linejoin="round" d="M101 190.9v-20" class="cls-1"/>
         <!-- background of whole card -->
         <rect id="rect1315" width="154" height="240" x="0" y="0" fill="#5f6069" fill-opacity="1" class="cls-2" rx="8"/>
-        
+
         <path id="path1317" fill="#001433" d="M140.3 132.3h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z" class="cls-3"/>
         <path id="polygon1319" fill="#001433" d="M149.3 134.1l2 7.1H1.3l2.1-7.1-2.1-7.2h150z" class="cls-banderole-back"/>
 
@@ -22,7 +22,7 @@
         <path id="polygon1331" fill="#d99941" d="M143.3 131.6v7H9.3v-14h134z"/>
         <!-- title box -->
         <path id="polygon1333" fill="#ffdfa1" d="M147.3 129.6v7H5.3v-14h142z"/>
-        
+
         <path id="rect1335" fill="#a37331" d="M3.8 140.6h1v.6h-1z" class="cls-6"/>
         <path id="rect1337" fill="#a37331" d="M147.8 140.6h1v.6h-1z" class="cls-6"/>
         <!-- card image background -->

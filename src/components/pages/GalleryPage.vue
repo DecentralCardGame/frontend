@@ -19,7 +19,7 @@ import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard } from '../cardChain.js'
 import { sampleImg } from '../utils.js'
 
-const cardsPerPage = 3
+const cardsPerPage = 4
 
 export default {
   name: 'GalleryPage',
@@ -65,7 +65,7 @@ export default {
       } else {
         if (this.currentId > 1) {
           this.currentId--
-        } 
+        }
       }
     },
     fillPage () {

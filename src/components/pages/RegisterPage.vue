@@ -21,6 +21,12 @@
       <br><br>
       <button type="submit">Register</button>
     </form>
+    <br>
+    <h2>Join the Community</h2><br>
+    <p>To join forces with other designers, players or trolls it is best to join our Discord server. Also to find someone to teach you the game!</p><br>
+    <form action="https://discord.gg/yPA3aKe">
+      <button type="submit">Join Discord</Button>
+    </form>
   </content-container-component>
 </template>
 
@@ -63,9 +69,7 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
-
 </style>
