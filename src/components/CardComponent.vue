@@ -205,7 +205,7 @@
      -->
   <!-- Title of the card -->
     <text id="text2410" x="81.2" y="127.4" fill="#000" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Solway" font-size="10.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2408" x="81.2" y="127.4" stroke-width=".3" font-family="Solway" font-size="10.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.name }} {{ model.article }} {{ model.surname }}</tspan>
+    <tspan id="tspan2408" x="81.2" y="127.4" stroke-width=".3" font-family="Solway" font-size="10.7" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb">{{ model.name }}</tspan>
   </text>
   <!-- Speed -->
     <text id="text2236" x="17" y="24.1" font-family="Montserrat" font-size="19.5"  stroke="black" stroke-width="0.8" font-style="normal" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">

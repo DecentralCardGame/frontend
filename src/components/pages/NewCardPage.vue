@@ -10,13 +10,7 @@
     <div class="creator">
       <div class="col-settings">
         <div v-if="activeStep == 0"><br>
-          Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name">
-          and I am the
-          <select @change="saveDraft" v-model="model.article">
-            <option>the</option>
-            <option>a</option>
-          </select>
-          <input @change="saveDraft" v-model="model.surname" value="Surname">.
+          Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name"><br>
           My type is
           <select @change="saveDraft" v-model="model.type">
             <option v-for="type in rules.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
