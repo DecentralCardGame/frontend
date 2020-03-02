@@ -221,7 +221,7 @@
   </text>
   <!-- Type -->
     <text id="text2495" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" letter-spacing="1" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-    <tspan id="tspan2493" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ (model.type || '').toUpperCase() }}</tspan>
+    <tspan id="tspan2493" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ getType() }}</tspan>
   </text>
   <!-- Flavor text -->
     <text v-for="(text, index) in textToSvg(model.text)" v-bind:key="'flavorLine'+index" id="text2495-3" x="76.9" :y="abilitiesLength()*20 + 156.9 + index*8" fill="#000000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
@@ -272,6 +272,9 @@ export default {
     }
   },
   methods: {
+    getType () {
+      return this.$cardSchema.definitions[this.model.type.toLowerCase()].properties.DisplayName
+    },
     getNerfedSpeed () {
       let speed = Math.max(1, this.model.speed + (this.model.nerflevel ? this.model.nerflevel : 0))
       return speed

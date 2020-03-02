@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import $RefParser from 'json-schema-ref-parser'
 import Vue from 'vue'
 import vueNcform from '@ncform/ncform'
 import Notifications from 'vue-notification'
@@ -29,4 +30,13 @@ new Vue({
   },
   components: { App },
   template: '<App/>'
+})
+
+$RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
+  if (err) {
+    console.log(err)
+  } else {
+    Vue.prototype.$cardSchema = api
+    console.log('cardSchema: ', api)
+  }
 })
