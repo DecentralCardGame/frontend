@@ -5,8 +5,8 @@
         <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index"></CardComponent>
       </div>
       <div>
-        <button v-if="currentId > 1" @click="prevPage">back</button>
-        <button v-if="!forwardStop" @click="nextPage">next</button>
+        <button v-show="currentId > 1" @click="prevPage">back</button>
+        <button v-show="!forwardStop" @click="nextPage">next</button>
       </div>
     </div>
   </div>

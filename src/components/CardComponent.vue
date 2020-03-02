@@ -115,7 +115,7 @@
     </g>
     <!-- Ressource cost -->
     <!-- Energy cost text -->
-    <g v-show="model.cost.energy && !(model.type==='HQ')" id="g2312">
+    <g v-show="model.cost.energy && !(model.type==='Headquarter')" id="g2312">
       <g id="g2278" fill-opacity="1" stroke="none" font-stretch="normal" font-style="normal" font-variant="normal" letter-spacing="0" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
         <g id="g2603" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-weight="700" text-anchor="end" transform="translate(0 -.7)">
           <text id="text2236-1-6" x="51.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" xml:space="preserve">
@@ -128,7 +128,7 @@
       </g>
     </g>
     <!-- Iron cost text -->
-    <g v-show="model.cost.iron && !(model.type==='HQ')" id="g2312-6" transform="translate(25.7 -.6)">
+    <g v-show="model.cost.iron && !(model.type==='Headquarter')" id="g2312-6" transform="translate(25.7 -.6)">
       <g id="g2278-4" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
         <text id="text2236-1-6-2" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
         <tspan id="tspan2234-9-8-2" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.iron }}</tspan>
@@ -139,7 +139,7 @@
       </g>
     </g>
     <!-- Lumber cost text -->
-    <g v-show="model.cost.lumber && !(model.type==='HQ')" id="g2312-1" transform="translate(42.9 -.8)">
+    <g v-show="model.cost.lumber && !(model.type==='Headquarter')" id="g2312-1" transform="translate(42.9 -.8)">
       <g id="g2278-8" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
         <text id="text2236-1-6-5" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
         <tspan id="tspan2234-9-8-1" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.lumber }}</tspan>
@@ -150,7 +150,7 @@
       </g>
     </g>
     <!-- Food cost text -->
-    <g v-show="model.cost.food && !(model.type==='HQ')" id="g2312-0" transform="translate(58.8 -.7)">
+    <g v-show="model.cost.food && !(model.type==='Headquarter')" id="g2312-0" transform="translate(58.8 -.7)">
       <g id="g2278-6" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
         <text id="text2236-1-6-4" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
         <tspan id="tspan2234-9-8-4" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.food }}</tspan>
@@ -161,7 +161,7 @@
       </g>
     </g>
     <!-- Mana cost text -->
-    <g v-show="model.cost.mana && !(model.type==='HQ')" id="g2312-2" transform="translate(77.1 -.8)">
+    <g v-show="model.cost.mana && !(model.type==='Headquarter')" id="g2312-2" transform="translate(77.1 -.8)">
       <g id="g2278-7" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
         <text id="text2236-1-6-3" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
         <tspan id="tspan2234-9-8-5" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.mana }}</tspan>
@@ -172,7 +172,7 @@
       </g>
     </g>
     <!-- Generic cost text -->
-    <g v-show="model.cost.generic && !(model.type==='HQ')" id="g2312-4" transform="translate(93 -.7)">
+    <g v-show="model.cost.generic && !(model.type==='Headquarter')" id="g2312-4" transform="translate(93 -.7)">
       <g id="g2278-80" fill-opacity="1" stroke="none" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb">
         <text id="text2236-1-6-0" x="43.7" y="13.9" fill="red" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" xml:space="preserve">
         <tspan id="tspan2234-9-8-16" x="43.7" y="13.9" fill="red" stroke-width=".3" font-family="Montserrat" font-size="12.3" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.cost.generic }}</tspan>
