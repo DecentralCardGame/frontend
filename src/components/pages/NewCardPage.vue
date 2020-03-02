@@ -19,12 +19,12 @@
           <select @change="saveDraft" v-model="model.tag[0]">
             <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
           </select>
-          <span v-show="model.tag && model.tag[0]"> , </span>
-          <select v-show="model.tag && model.tag[0]" @change="saveDraft" v-model="model.tag[1]">
+          <span v-if="model.tag && model.tag[0]"> , </span>
+          <select v-if="model.tag && model.tag[0]" @change="saveDraft" v-model="model.tag[1]">
             <option v-for="tag in getTags(1)" v-bind:key="tag"> {{ tag }} </option>
           </select>
-          <span v-show="model.tag && model.tag[1]"> and </span>
-          <select v-show="model.tag && model.tag[1]" @change="saveDraft" v-model="model.tag[2]">
+          <span v-if="model.tag && model.tag[1]"> and </span>
+          <select v-if="model.tag && model.tag[1]" @change="saveDraft" v-model="model.tag[2]">
             <option v-for="tag in getTags(2)" v-bind:key="tag"> {{ tag }} </option>
           </select>
           .<br>
@@ -285,12 +285,20 @@ export default {
       }
     },
     getTags (idx) {
-      if (this.rules.oneOf) {
+      if (this.$cardSchema.oneOf) {
         let usedTags = []
         if (this.model.tag[idx]) {
+          // all tags already used except self
           usedTags = R.without(this.model.tag[idx], this.model.tag)
         }
-        return R.append('', R.without(usedTags, this.rules.oneOf[0].properties.Action.properties.Tags.items.enum))
+        if (R.length(R.filter(x => x, this.model.tag)) === idx + 1) {
+          // if this is the last dropdown allow to select nothing
+          return R.append('', R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum))
+        } else {
+          // otherwise nothing is not an option (user must remove the last one and not one in the middle)
+          return R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum)
+        }
+        
       }
       return []
     },
