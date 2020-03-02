@@ -109,7 +109,6 @@ export default {
     }
   },
   props: {
-    rules: Object,
     picked: Object,
     dialog: Object,
     options: Array,
@@ -235,30 +234,30 @@ export default {
       let clickedPath = R.concat(btn.schemaPath, optionPath)
 
       console.log('selection: ', selection)
-      console.log('obj at clickedPath:', R.path(clickedPath, this.rules))
+      console.log('obj at clickedPath:', R.path(clickedPath, this.$cardSchema))
       console.log('btn: ', btn)
 
-      let depth = deepness(R.path(clickedPath, this.rules))
+      let depth = deepness(R.path(clickedPath, this.$cardSchema))
       console.log(depth)
 
       // let schemaPath = R.dropLast(2, R.concat(btn.schemaPath, optionPath))
       let schemaPath = R.dropLast(2 - depth, clickedPath) // TODO CLEAN THIS MESS UP
       console.log('schemaPath: ', schemaPath)
       console.log('optionPath: ', optionPath)
-      console.log('obj at path:', R.path(schemaPath, this.rules))
+      console.log('obj at path:', R.path(schemaPath, this.$cardSchema))
       console.log('btn.abilityPath: ', btn.abilityPath)
       console.log('option.abilityPath: ', option.abilityPath)
 
       let newInteraction
       if (this.currentNode.modalType === 'object.oneOf') {
-        newInteraction = createInteraction(selection, clickedPath, R.concat(btn.abilityPath, option.abilityPath), this.rules)
+        newInteraction = createInteraction(selection, clickedPath, R.concat(btn.abilityPath, option.abilityPath), this.$cardSchema)
       } else {
-        newInteraction = createInteraction(selection, clickedPath, btn.abilityPath, this.rules)
+        newInteraction = createInteraction(selection, clickedPath, btn.abilityPath, this.$cardSchema)
       }
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      this.attachToAbility(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.rules).properties))
+      this.attachToAbility(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.$cardSchema).properties))
       console.log('ability after handleRadioInteraction: ', this.ability)
     },
     handleNoModal () {
@@ -267,12 +266,12 @@ export default {
 
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       console.log('btn: ', btn)
-      let newInteraction = createInteraction('', btn.schemaPath, btn.abilityPath, this.rules)
+      let newInteraction = createInteraction('', btn.schemaPath, btn.abilityPath, this.$cardSchema)
 
       updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
 
-      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.rules).properties)
-      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.rules).properties))
+      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties)
+      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties))
       console.log('ability after handleNoModal: ', this.ability)
     },
     handleStringInteraction () {
@@ -297,8 +296,8 @@ export default {
       this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
 
       let newAbility = {}
-      newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.rules).properties) // R.clone(R.path(this.currentNode.path, this.rules))
-      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.rules).description, this.currentNode.path, [abilityName], this.rules)
+      newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.$cardSchema).properties) // R.clone(R.path(this.currentNode.path, this.$cardSchema))
+      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.$cardSchema).description, this.currentNode.path, [abilityName], this.$cardSchema)
       newAbility.name = abilityName
       newAbility.path = this.currentNode.path
 

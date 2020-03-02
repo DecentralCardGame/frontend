@@ -13,7 +13,7 @@
           Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name"><br>
           My type is
           <select @change="saveDraft" v-model="model.type">
-            <option v-for="type in rules.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
+            <option v-for="type in $cardSchema.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
           </select>.<br>
           People like to tag me as
           <select @change="saveDraft" v-model="model.tag[0]">
@@ -77,7 +77,6 @@
             use the flavor text to write down your abilities
             <AbilityModal
               v-if="isAbilityModalVisible"
-              v-bind:rules="rules"
               v-bind:dialog="abilityDialog"
               v-bind:options="abilityOptions"
               v-bind:ability="ability"
@@ -89,7 +88,6 @@
           </template>
           <div v-bind:key="ability.ability" v-for="ability in abilities">
             <AbilityComponent
-              v-bind:rules="rules"
               v-bind:ability="ability"
               v-bind:dialog="abilityDialog"
               v-bind:abilities="abilities"
@@ -154,7 +152,6 @@
 <script>
 import * as R from 'ramda'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import $RefParser from 'json-schema-ref-parser'
 import CardComponent from '../CardComponent'
 import BuySchemeModal from '../BuySchemeModal.vue'
 import AbilityModal from '../AbilityModal.vue'
@@ -200,7 +197,6 @@ export default {
         health: 0,
         attack: 0
       },
-      rules: {},
       cardID: 0
     }
   },
@@ -208,14 +204,6 @@ export default {
     if (localStorage.cardDraft) {
       this.model = JSON.parse(localStorage.cardDraft)
     }
-    $RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
-      if (err) {
-        console.log(err)
-      } else {
-        this.rules = api
-        console.log('rules: ', api)
-      }
-    })
   },
   computed: {
   },
@@ -235,7 +223,7 @@ export default {
         }
 
         var path = ['oneOf']
-        this.rules.oneOf.forEach((cardType, index) => {
+        this.$cardSchema.oneOf.forEach((cardType, index) => {
           if (cardType.properties[this.model.type]) {
             path.push(index, 'properties', this.model.type, 'properties', 'Abilities', 'items', 'oneOf')
             this.currentNode.path = path
@@ -298,7 +286,6 @@ export default {
           // otherwise nothing is not an option (user must remove the last one and not one in the middle)
           return R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum)
         }
-        
       }
       return []
     },

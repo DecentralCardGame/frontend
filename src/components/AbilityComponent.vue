@@ -3,7 +3,6 @@
     <AbilityModal
       ref="abilityModal"
       v-show="isAbilityModalVisible"
-      v-bind:rules="rules"
       v-bind:dialog="dialog"
       v-bind:currentNode="currentNode"
       v-on:update:currentNode="currentNode = $event"
@@ -28,7 +27,6 @@ export default {
   name: 'AbilityComponent',
   components: {AbilityModal},
   props: {
-    rules: Object,
     elements: Object,
     currentNode: Object,
     dialog: Object,
@@ -47,7 +45,7 @@ export default {
     showAbilityModal (ability, btn, index) {
       // first set current node to clicked node
       this.writeNode('interactionId', index)
-      let node = R.path(btn.schemaPath, this.rules)
+      let node = R.path(btn.schemaPath, this.$cardSchema)
 
       console.log('entering showAbilityModal with btn: ', btn, ' and node: ', node)
 
