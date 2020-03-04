@@ -22,21 +22,27 @@ Vue.use(vueNcform)
 Vue.use(Notifications)
 Vue.component('vue-swing', VueSwing)
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  data: {
-  },
-  components: { App },
-  template: '<App/>'
-})
+function loadVue () {
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    router,
+    data: {
+    },
+    components: { App },
+    template: '<App/>'
+  })
+}
 
-$RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
-  if (err) {
-    console.log(err)
-  } else {
-    Vue.prototype.$cardSchema = api
-    console.log('cardSchema: ', api)
-  }
-})
+Vue.prototype.$cardSchema = new Promise(
+  function (resolve, reject) {
+    $RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(api)
+        loadVue()
+        console.log('cardSchema: ', api)
+      }
+    })
+  })

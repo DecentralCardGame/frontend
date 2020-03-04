@@ -1,6 +1,6 @@
 <template>
   <header>
-    <p><a href="https://discord.gg/yPA3aKe" id="Discordlink">Discuss the latest News or simply join our growing Community. We would love to here your voice.</a></p>
+    <p><a href="https://discord.gg/yPA3aKe" id="Discordlink">Discuss the latest News or simply join our growing Community. We would love to hear your voice.</a></p>
     <router-link to="/me"><button>My Account</button></router-link>
   </header>
 </template>
