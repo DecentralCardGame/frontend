@@ -12,9 +12,11 @@
         <!-- background of whole card -->
         <rect id="rect1315" width="154" height="240" x="0" y="0" fill="#5f6069" fill-opacity="1" class="cls-2" rx="8"/>
 
+        <!-- text box shadow -->
         <path id="path1317" fill="#001433" d="M140.3 132.3h-126a4 4 0 00-4 4v92a4 4 0 004 4q62.4-1.4 126 0a4 4 0 004-4q-1.5-46.6 0-92a4 4 0 00-4-4z" class="cls-3"/>
+        <!-- title banner wedges -->
         <path id="polygon1319" fill="#001433" d="M149.3 134.1l2 7.1H1.3l2.1-7.1-2.1-7.2h150z" class="cls-banderole-back"/>
-
+        <!-- lower border lines -->
         <path id="path1321" fill="none" stroke="#d99941" d="M4.3 138.7v93.1a4 4 0 004 4h136a4 4 0 004-4v-93.1" class="cls-4"/>
         <path id="polygon1325" fill="#a37331" d="M141.2 136.6h6.1l-6.1 3.9z" class="cls-6"/>
         <path id="polygon1327" fill="#a37331" d="M11.4 136.6H5.3l6.1 3.9z" class="cls-6"/>
@@ -43,6 +45,7 @@
         <!-- upper border lines -->
         <path id="path1351" fill="none" stroke="none" d="M148.3 108.4V28" class="cls-10"/>
         <path id="path1353" fill="none" stroke="none" d="M4.3 28v80.4" class="cls-10"/>
+        <!-- upper line begin end dashes -->
         <path id="path1355" fill="none" stroke="none" d="M148.3 111.4v-2" class="cls-10"/>
         <path id="path1357" fill="none" stroke="none" d="M4.3 109.4v2" class="cls-10"/>
         <path id="path1359" fill="none" stroke="none" d="M148.3 113.4v-1" class="cls-10"/>
@@ -51,8 +54,10 @@
         <path id="path1365" fill="none" stroke="none" d="M4.3 27v-2" class="cls-10"/>
         <path id="path1367" fill="none" stroke="none" d="M148.3 23v1" class="cls-10"/>
         <path id="path1369" fill="none" stroke="none" d="M4.3 24v-1" class="cls-10"/>
+        <!-- speed box pentagon -->
         <path id="path1371" fill="#001433" d="M19.9 33a70.3 70.3 0 0113.7-11.3c-3-6.7-5-12-5.4-14.6L5.5 6 3.1 25.7z" class="cls-3"/>
         <path id="polygon1373" fill="#ffdaa6" d="M19.1 32.1l13.7-11.2-5.4-14.7-22.7-1-2.4 19.7z"/>
+        <!-- upper cut shadows -->
         <path id="polygon1375" fill="#001433" d="M145.8 118.1l4.6-2.3-1.3 3.3-3.3 1.8z" class="cls-3"/>
         <path id="polygon1377" fill="#001433" d="M150.4 121.3l1.5.3-1.1 1.5-2-.5z" class="cls-3"/>
         <path id="polygon1379" fill="#001433" d="M8.5 116.3l-4.6-.9 2.2 4 3.2.5z" class="cls-3"/>
