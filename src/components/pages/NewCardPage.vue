@@ -185,7 +185,7 @@ export default {
         article: 'the',
         surname: 'Surname',
         type: 'No Type',
-        tag: [],
+        tag: [''],
         cost: {
           lumber: 0,
           food: 0,
