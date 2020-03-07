@@ -1,5 +1,5 @@
 <template>
-<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1" @mousedown="opaque = 1" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1" @click="opaque = 1" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
     <g id="Ebene_2">
       <!-- card image -->
       <mask id="imgMask">
@@ -265,10 +265,10 @@ export default {
   },
   methods: {
     getType () {
-      if (this.$cardSchema) {
-        return this.$cardSchema.definitions[this.model.type.toLowerCase()].properties.DisplayName.toUpperCase()
+      if (this.model.type === 'No Type') {
+        return ''
       } else {
-        console.log('type cannot be loaded')
+        return this.$cardSchema.definitions[this.model.type.toLowerCase()].properties.DisplayName.toUpperCase()
       }
     },
     getNerfedSpeed () {

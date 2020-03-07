@@ -34,7 +34,7 @@ function loadVue () {
   })
 }
 
-Vue.prototype.$cardSchema = new Promise(
+new Promise(
   function (resolve, reject) {
     $RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
       if (err) {
