@@ -314,7 +314,6 @@ export default {
     },
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)
-      console.log('DRAFT SAVED')
     },
     uploadImage (event) {
       console.log(event)

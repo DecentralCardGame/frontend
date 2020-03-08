@@ -1,5 +1,5 @@
 <template>
-<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1" @mousedown="opaque = 1" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
     <g id="Ebene_2">
       <!-- card image -->
       <mask id="imgMask">
@@ -11,7 +11,7 @@
           <!-- text box -->
           <path d="M143.3,227.2C143.3,229.408 141.508,231.2 139.3,231.2L13.3,231.2C11.092,231.2 9.3,229.408 9.3,227.2L9.3,135.2L143.3,135.2L143.3,227.2Z" style="fill:rgb(255,254,252);"/>
     </g>
-    <g id="Ebene1" :opacity=opaque >    
+    <g id="Ebene1" :opacity=opaque >
         <g id="_-Abgerundetes-Rechteck-1" serif:id="(Abgerundetes Rechteck)" transform="matrix(1,0,0,0.967974,1.38778e-17,0)">
           <!-- ressource top box -->
           <path d="M146,0C150.415,0 154,3.585 154,8L154,18.725L0,18.725L0,8C0,3.585 3.585,0 8,0L146,0Z" style="fill:white;"/>
@@ -211,8 +211,8 @@
         <tspan id="tspan2430" x="33" :y="141.1 + index*20" inline-size="18" stroke-width=".1" font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" style="-inkscape-font-specification:'Montserrat, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr"> {{ability.cardText}} </tspan>
       </text>
       <!-- Type -->
-        <text id="text2495" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" letter-spacing="1" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-        <tspan id="tspan2493" x="75.1" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ getType() }}</tspan>
+        <text id="text2495" x="76.9" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" letter-spacing="1" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+        <tspan id="tspan2493" x="76.9" y="228.6" fill="#001433" fill-opacity="1" font-family="Montserrat" font-size="6.6" font-stretch="expanded" font-style="medium" text-anchor="middle" writing-mode="lr-tb">{{ getType() }}</tspan>
       </text>
       <!-- Flavor text -->
         <text v-for="(text, index) in textToSvg(model.text)" v-bind:key="'flavorLine'+index" id="text2495-3" x="76.9" :y="abilitiesLength()*20 + 156.9 + index*8" fill="#000000" fill-opacity="1" stroke="none" stroke-width=".1" font-family="Montserrat" font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
@@ -249,7 +249,7 @@ export default {
   },
   data () {
     return {
-      opaque: 0.5
+      opaque: 1
     }
   },
   mounted: () => {
@@ -265,7 +265,11 @@ export default {
   },
   methods: {
     getType () {
-      return this.$cardSchema.definitions[this.model.type.toLowerCase()].properties.DisplayName
+      if (this.$cardSchema) {
+        return this.$cardSchema.definitions[this.model.type.toLowerCase()].properties.DisplayName.toUpperCase()
+      } else {
+        console.log('type cannot be loaded')
+      }
     },
     getNerfedSpeed () {
       let speed = Math.max(1, this.model.speed + (this.model.nerflevel ? this.model.nerflevel : 0))
