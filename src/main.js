@@ -41,8 +41,11 @@ Vue.prototype.$cardSchema = new Promise(
         reject(err)
       } else {
         resolve(api)
-        loadVue()
         console.log('cardSchema: ', api)
       }
     })
+  })
+  .then(schema => {
+    Vue.prototype.$cardSchema = schema
+    loadVue()
   })

@@ -167,6 +167,7 @@ export default {
   components: {CardComponent, ContentContainerComponent, AbilityComponent, BuySchemeModal, AbilityModal},
   data () {
     return {
+      cardSchema: Object,
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
       activeStep: 0,
