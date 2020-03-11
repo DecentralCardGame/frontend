@@ -268,7 +268,12 @@ export default {
       if (this.model.type === 'No Type') {
         return ''
       } else {
-        return this.$cardSchema.definitions[this.model.type.toLowerCase()].properties.DisplayName.toUpperCase()
+        let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]
+        if (type) {
+          return type.properties.DisplayName.toUpperCase()
+        } else {
+          console.error('Invalid card type. Must be one of the following: ' + R.keys(this.$cardSchema.definitions))
+        }
       }
     },
     getNerfedSpeed () {
