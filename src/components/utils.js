@@ -61,7 +61,7 @@ export function resolveParagraph (key) {
 
 export const sampleCard = {
   'name': 'Schoolbus',
-  'type': 'Object',
+  'type': 'entity',
   'health': 1,
   'attack': 1,
   'speed': 13,

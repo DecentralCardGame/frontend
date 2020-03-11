@@ -7,7 +7,7 @@
     </button>
     <div class="gallery-view">
       <div v-for="(card, index) in cards" v-cloak @drop.prevent="addImage($event, index)" @dragover.prevent v-on:click="saveSingleCard(index)" v-bind:key="index">
-        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
+        <CardComponent width="100%" height="100%" v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
       </div>
     </div>
   </div>
@@ -67,6 +67,7 @@ export default {
 
       for (let i = 0; i < Math.min(this.cards.length, 9); i++) {
         let svg = document.getElementById('card' + i)
+        svg.setAttribute('width', '29%')
 
         // svg.setAttribute('width', '154')
         // svg.setAttribute('transform','translate(' + 520*(i%3) + ',' + (850*Math.floor(i/3)-850) + ')')  // works for plain svg
@@ -77,17 +78,28 @@ export default {
 
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
       var blob = new Blob([svgMain.outerHTML], {type: 'text/plain;charset=utf-8'})
-      saveAs(blob, 'card.svg')
+      saveAs(blob, 'cardes.svg')
     },
     saveSingleCard (index) {
       let that = this
 
+      let clickedCard = document.getElementById('card' + index)
+      // console.log(clickedCard)
+
+      var blob = new Blob([clickedCard.outerHTML], {type: 'text/plain;charset=utf-8'})
+      saveAs(blob, 'card.svg')
+
+      /* doesn't work for inexplicable reasons 
       htmlToImage.toCanvas(document.getElementById('card' + index))
         .then(function (canvas) {
           let ctx = canvas.getContext('2d')
           ctx.drawImage(canvas, 0, 0)
           download(canvas, that.cards[index].name + '.png')
         })
+        .catch(err => {
+          console.log('error in htmlToImage.toCanvas', err)
+        })
+      */
     },
     addImage (e, index) {
       let that = this
