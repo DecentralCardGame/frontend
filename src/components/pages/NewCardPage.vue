@@ -279,12 +279,14 @@ export default {
         if (this.model.tag[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.tag[idx], this.model.tag)
+        } else {
+          return []
         }
+        // if this is the last dropdown, allow to select nothing
         if (R.length(R.filter(x => x, this.model.tag)) === idx + 1) {
-          // if this is the last dropdown allow to select nothing
           return R.append('', R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum))
         } else {
-          // otherwise nothing is not an option (user must remove the last one and not one in the middle)
+          // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
           return R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum)
         }
       }
