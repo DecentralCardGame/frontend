@@ -16,15 +16,16 @@
             <option v-for="type in $cardSchema.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
           </select>.<br>
           People like to tag me as
-          <select @change="saveDraft" v-model="model.tag[0]">
+          <select @change="updateTags" v-model="model.tagDummy">
             <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
           </select>
           <span v-if="model.tag && model.tag[0]"> , </span>
-          <select v-if="model.tag && model.tag[0]" @change="saveDraft" v-model="model.tag[1]">
+          <select v-if="model.tag && model.tag[0]" @change="updateTags" v-model="model.tag[1]">
             <option v-for="tag in getTags(1)" v-bind:key="tag"> {{ tag }} </option>
           </select>
           <span v-if="model.tag && model.tag[1]"> and </span>
-          <select v-if="model.tag && model.tag[1]" @change="saveDraft" v-model="model.tag[2]">
+          <select v-if="model.tag && model.tag[1]" @change="updateTags
+          " v-model="model.tag[2]">
             <option v-for="tag in getTags(2)" v-bind:key="tag"> {{ tag }} </option>
           </select>
           .<br>
@@ -185,7 +186,8 @@ export default {
         article: 'the',
         surname: 'Surname',
         type: 'No Type',
-        tag: [''],
+        tag: [],
+        tagDummy: '',
         cost: {
           lumber: 0,
           food: 0,
@@ -276,21 +278,30 @@ export default {
     getTags (idx) {
       if (this.$cardSchema.oneOf) {
         let usedTags = []
+        let allTags = this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum
+
         if (this.model.tag[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.tag[idx], this.model.tag)
-        } else {
-          return []
         }
         // if this is the last dropdown, allow to select nothing
         if (R.length(R.filter(x => x, this.model.tag)) === idx + 1) {
-          return R.append('', R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum))
+          return R.append('', R.without(usedTags, allTags))
         } else {
           // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
-          return R.without(usedTags, this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum)
+          return R.without(usedTags, allTags)
         }
+      } else {
+        console.error('shit cardschema not available')
+        return []
       }
-      return []
+    },
+    updateTags () {
+      if (!this.model.tag) {
+        this.model.tag = []
+      }
+      this.model.tag.splice(0, 1, this.model.tagDummy)
+      this.saveDraft()
     },
     saveSubmit () {
       console.log(this.cardImageUrl)

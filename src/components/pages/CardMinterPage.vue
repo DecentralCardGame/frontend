@@ -15,7 +15,7 @@
 
 <script>
 import * as R from 'ramda'
-import htmlToImage from 'html-to-image'
+// import htmlToImage from 'html-to-image'
 import { saveAs } from 'file-saver'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
@@ -81,20 +81,18 @@ export default {
       saveAs(blob, 'cardes.svg')
     },
     saveSingleCard (index) {
-      let that = this
-
       let clickedCard = document.getElementById('card' + index)
       // console.log(clickedCard)
 
       var blob = new Blob([clickedCard.outerHTML], {type: 'text/plain;charset=utf-8'})
       saveAs(blob, 'card.svg')
 
-      /* doesn't work for inexplicable reasons 
+      /* doesn't work for inexplicable reasons
       htmlToImage.toCanvas(document.getElementById('card' + index))
-        .then(function (canvas) {
+        .then(canvas => {
           let ctx = canvas.getContext('2d')
           ctx.drawImage(canvas, 0, 0)
-          download(canvas, that.cards[index].name + '.png')
+          download(canvas, this.cards[index].name + '.png')
         })
         .catch(err => {
           console.log('error in htmlToImage.toCanvas', err)
@@ -189,7 +187,7 @@ function uploadImg (file, saveCallback) {
   reader.onerror = error => console.error(error)
   reader.readAsDataURL(file)
 }
-
+/*
 function download (canvas, filename) {
   /// create an "off-screen" anchor tag
   var lnk = document.createElement('a')
@@ -212,7 +210,7 @@ function download (canvas, filename) {
   } else if (lnk.fireEvent) {
     lnk.fireEvent('onclick')
   }
-}
+} */
 </script>
 
 <style scoped>
