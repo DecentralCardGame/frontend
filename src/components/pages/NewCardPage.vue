@@ -37,36 +37,31 @@
           is my rarity.
         </div>
         <div v-if="activeStep == 1"><br>
-          As I am quite awesome my costs are the following:
-          <select @change="saveDraft" v-model="model.cost.lumber">
+          As I am quite awesome to get me rolling you need to invest:
+          <select @change="saveDraft" v-model="model.speed">
             <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Lumber,
-          <select @change="saveDraft" v-model="model.cost.food">
-            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Food,
-          <select @change="saveDraft" v-model="model.cost.iron">
-            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Iron,
-          <select @change="saveDraft" v-model="model.cost.mana">
-            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Mana,
-          <select @change="saveDraft" v-model="model.cost.energy">
-            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Energy,
-          <select @change="saveDraft" v-model="model.cost.generic">
-            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Generic,
-          All it needs are <select @change="saveDraft" v-model="model.speed">
-          <option v-bind:key="n" v-for="n in getNumbers(0,20,0)" :value="n">{{n}}</option>
-        </select> Ticks, to get me rolling. I have an
-          attack of <select @change="saveDraft" v-model="model.attack">
-          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
-        </select> and I sadly die
-          after someone suckerpunchs
-          me for <select @change="saveDraft" v-model="model.health">
-          <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
-        </select>
-          damage.
+          </select> Ressources. <br>
+          My classes are: <br>
+          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.lumber">
+          <label for="checkbox"> Lumber </label> <br>
+          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.food">
+          <label for="checkbox"> Food </label> <br>
+          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.iron">
+          <label for="checkbox"> Iron </label> <br>
+          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.mana">
+          <label for="checkbox"> Mana </label> <br>
+          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.energy">
+          <label for="checkbox"> Energy </label> <br>
+          <span v-if="model.type==='Entity'"> I have an attack of</span>
+          <select v-if="model.type==='Entity'" @change="saveDraft" v-model="model.attack">
+            <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
+          </select>
+          <span v-if="model.type==='Entity'"> and </span>
+          <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for</span>
+          <select v-if="model.type!=='Action'" @change="saveDraft" v-model="model.health">
+            <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
+          </select>
+          <span v-if="model.type!=='Action'"> damage. </span>
         </div>
         <div v-if="activeStep == 2"><br>
           <template>
