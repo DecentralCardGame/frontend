@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="gallery-view">
-      <div v-for="(card, index) in cards" v-bind:key="index">
-        <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index"></CardComponent>
+      <div v-for="(card, index) in cards" v-bind:key="index" width="75%">
+        <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index" width="75%"></CardComponent>
       </div>
       <div>
         <button v-show="currentId > 1" @click="prevPage">back</button>

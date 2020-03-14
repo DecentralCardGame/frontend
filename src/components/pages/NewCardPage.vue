@@ -156,7 +156,7 @@ import { saveAs } from 'file-saver'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, resolveParagraph } from '../utils.js'
+import { sampleImg, emptyCard, resolveParagraph } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -324,7 +324,9 @@ export default {
       saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
         .then(res => {
           if (res === 'success') {
+            this.model = emptyCard
             localStorage.cardDraft = ''
+            console.log('card sucessfully pushed, now cardCreator should be resetted')
           }
         })
     },
@@ -361,7 +363,7 @@ export default {
           canvas.height = height
           canvas.getContext('2d').drawImage(image, 0, 0, width, height)
           let dataUrl = canvas.toDataURL('image/jpeg')
-          let saveCallback = function (x) { 
+          let saveCallback = function (x) {
             that.cardImageUrl = x
             localStorage.cardImg = JSON.stringify(x)
           }

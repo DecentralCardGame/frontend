@@ -17,33 +17,6 @@ export default {
     }
   },
   mounted () {
-    $RefParser.dereference('/static/cardSchema/cardSchema.json', (err, api) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('rules: ', api)
-      }
-    })
-    /*
-    $RefParser.dereference('https://gracious-hopper-f1dfd1.netlify.com/cardSchema.json', (err, api) => {
-      if (err) {
-        console.log(err)
-      } else {
-        this.rules = api
-
-        // saveAs(api, 'api.json')
-
-        function download(content, fileName, contentType) {
-          var a = document.createElement("a");
-          var file = new Blob([content], {type: contentType});
-          a.href = URL.createObjectURL(file);
-          a.download = fileName;
-          a.click();
-        }
-        download(JSON.stringify(api), 'cardrules.json', 'text/plain');
-      }
-    })
-    */
   },
   methods: {
   }
