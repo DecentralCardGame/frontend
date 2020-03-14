@@ -202,6 +202,9 @@ export default {
     if (localStorage.cardDraft) {
       this.model = JSON.parse(localStorage.cardDraft)
     }
+    if (localStorage.cardImg) {
+      this.cardImageUrl = JSON.parse(localStorage.cardImg)
+    }
   },
   computed: {
   },
@@ -319,6 +322,11 @@ export default {
       }
 
       saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
+        .then(res => {
+          if (res === 'success') {
+            localStorage.cardDraft = ''
+          }
+        })
     },
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)
@@ -353,19 +361,16 @@ export default {
           canvas.height = height
           canvas.getContext('2d').drawImage(image, 0, 0, width, height)
           let dataUrl = canvas.toDataURL('image/jpeg')
-          let saveCallback = function (x) { that.cardImageUrl = x }
+          let saveCallback = function (x) { 
+            that.cardImageUrl = x
+            localStorage.cardImg = JSON.stringify(x)
+          }
           saveCallback(dataUrl)
         }
         image.src = readerEvent.target.result
       }
       reader.onerror = error => console.error(error)
       reader.readAsDataURL(file)
-
-      /* old func
-      const file = e.target.files[0]
-      this.cardImageUrl = URL.createObjectURL(file)
-      console.log(this.cardImageUrl)
-      */
     },
     downloadCard () {
       var blob = new Blob([document.getElementById('card').outerHTML], {type: 'text/plain;charset=utf-8'})

@@ -124,6 +124,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
             return broadcast(http, signed)
               .then(res => {
                 notify.success('EPIC WIN', 'You have successfully published this card.')
+                return 'success'
               })
               .catch(err => {
                 notify.fail('FAIL HARD', err.message)
@@ -238,7 +239,7 @@ function handleGetAccCurryMe (res, address) {
 const handleGetError = R.curry(handleGetErrorCurryMe)
 function handleGetErrorCurryMe (res, address) {
   if (res.response) {
-    notify.fail('YOU SHALL NOT PASS!', 'Bad things happened: ' + res.response.data.error)
+    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error(res.response.data.error)
   } else {
     throw new Error(res)
