@@ -7,7 +7,7 @@
     </button>
     <div class="gallery-view">
       <div v-for="(card, index) in cards" v-cloak @drop.prevent="addImage($event, index)" @dragover.prevent v-on:click="saveSingleCard(index)" v-bind:key="index">
-        <CardComponent width="100%" height="100%" v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
+        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
       </div>
     </div>
   </div>
@@ -15,8 +15,8 @@
 
 <script>
 import * as R from 'ramda'
-import htmlToImage from 'html-to-image'
 import { saveAs } from 'file-saver'
+import * as svg1 from 'save-svg-as-png'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 import { sampleCard, sampleImg } from '../utils.js'
@@ -82,21 +82,7 @@ export default {
     },
     saveSingleCard (index) {
       let clickedCard = document.getElementById('card' + index)
-      // console.log(clickedCard)
-
-      // var blob = new Blob([clickedCard.outerHTML], {type: 'text/plain;charset=utf-8'})
-      // saveAs(blob, 'card.svg')
-
-      // doesn't work for inexplicable reasons
-      htmlToImage.toCanvas(clickedCard)
-        .then(canvas => {
-          let ctx = canvas.getContext('2d')
-          ctx.drawImage(canvas, 0, 0)
-          download(canvas, this.cards[index].name + '.png')
-        })
-        .catch(err => {
-          console.log('error in htmlToImage.toCanvas', err)
-        })
+      svg1.saveSvgAsPng(clickedCard, this.cards[index].name + '.png')
     },
     addImage (e, index) {
       let that = this
@@ -185,30 +171,6 @@ function uploadImg (file, saveCallback) {
   }
   reader.onerror = error => console.error(error)
   reader.readAsDataURL(file)
-}
-
-function download (canvas, filename) {
-  /// create an "off-screen" anchor tag
-  var lnk = document.createElement('a')
-  var e
-
-  /// the key here is to set the download attribute of the a tag
-  lnk.download = filename
-
-  /// convert canvas content to data-uri for link. When download
-  /// attribute is set the content pointed to by link will be
-  /// pushed as "download" in HTML5 capable browsers
-  lnk.href = canvas.toDataURL('image/jpeg;base64')
-
-  /// create a "fake" click-event to trigger the download
-  if (document.createEvent) {
-    e = document.createEvent('MouseEvents')
-    e.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
-
-    lnk.dispatchEvent(e)
-  } else if (lnk.fireEvent) {
-    lnk.fireEvent('onclick')
-  }
 }
 </script>
 
