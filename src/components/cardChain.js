@@ -6,7 +6,7 @@ export function parseCard (rawCard) {
   console.log('parsing card: ', rawCard)
   if (rawCard.Content) {
     let contentLens = R.lensProp('Content')
-    let parseContent = item => R.set(contentLens, JSON.parse(atob(item.Content)), item)
+    let parseContent = item => R.set(contentLens, JSON.parse(b64DecodeUnicode(item.Content)), item)
     let card = parseContent(rawCard)
     let cardType = R.keys(card.Content)
     card = R.merge(card, card.Content[cardType[0]])
@@ -245,6 +245,13 @@ function handleGetErrorCurryMe (res, address) {
   } else {
     throw new Error(res)
   }
+}
+
+function b64DecodeUnicode (str) {
+  // Going backwards: from bytestream, to percent-encoding, to original string.
+  return decodeURIComponent(atob(str).split('').map(c => {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+  }).join(''))
 }
 
 class BlockchainInterface {
