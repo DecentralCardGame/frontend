@@ -92,7 +92,7 @@ export function buyCardSchemeTx (http, address, mnemonic, maxBid) {
     })
 }
 
-export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardContent) {
+export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardContent, onSuccessCallback) {
   return getUserInfo(http, address)
     .then(userInfo => {
       let freeCardSchemes = userInfo.data.value.OwnedCardSchemes
@@ -123,8 +123,9 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
             let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
             return broadcast(http, signed)
               .then(res => {
+                console.log('broadcast response:', res)
                 notify.success('EPIC WIN', 'You have successfully published this card.')
-                return 'success'
+                onSuccessCallback()
               })
               .catch(err => {
                 notify.fail('FAIL HARD', err.message)
@@ -170,7 +171,7 @@ function broadcast (http, signedTx) {
   }).then(res => {
     console.log('tx successfull broadcasted', res)
     getTx(http, res.data.txhash)
-      .then(x => { console.log(x) })
+      .then(tx => { console.log('looked up tx:', tx) })
     return res
   }).catch(err => {
     if (err.response) {

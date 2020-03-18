@@ -9,7 +9,7 @@
           @throwoutleft="vote(1, 'underpowered')"
           :config="config"
           class="card">
-          <CardComponent v-bind:model="currentCard" v-bind:imageURL="currentCard.image"></CardComponent>
+          <CardComponent width="50%" v-bind:model="currentCard" v-bind:imageURL="currentCard.image"></CardComponent>
           </vue-swing>
           <button @click="vote(1, 'fair_enough')">Fair Enough</button>
           <button @click="vote(1, 'overpowered')">Overpowered</button>

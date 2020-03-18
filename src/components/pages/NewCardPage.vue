@@ -302,8 +302,6 @@ export default {
       this.saveDraft()
     },
     saveSubmit () {
-      console.log(this.cardImageUrl)
-
       // eslint-disable-next-line no-unused-vars
       let newCard = {
         [this.model.type]: {
@@ -321,14 +319,13 @@ export default {
         image: this.cardImageUrl
       }
 
-      saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard)
-        .then(res => {
-          if (res === 'success') {
-            this.model = emptyCard
-            localStorage.cardDraft = ''
-            console.log('card sucessfully pushed, now cardCreator should be resetted')
-          }
-        })
+      saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard, _ => {
+        localStorage.cardDraft = ''
+        localStorage.cardImg = ''
+        this.model = emptyCard
+        this.cardImageUrl = sampleImg
+        console.log('card sucessfully pushed, now cardCreator should be resetted')
+      })
     },
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)
