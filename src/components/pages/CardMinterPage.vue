@@ -82,7 +82,7 @@ export default {
     },
     saveSingleCard (index) {
       let clickedCard = document.getElementById('card' + index)
-      svg1.saveSvgAsPng(clickedCard, this.cards[index].name + '.png')
+      svg1.saveSvgAsPng(clickedCard, this.cards[index].name + '.png', {scale: 5})
     },
     addImage (e, index) {
       let that = this
