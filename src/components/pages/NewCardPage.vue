@@ -37,10 +37,12 @@
           is my rarity.
         </div>
         <div v-if="activeStep == 1"><br>
-          As I am quite awesome to get me rolling you need to invest:
+          <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
+          <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
           <select @change="saveDraft" v-model="model.speed">
             <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> Ressources. <br>
+          </select> 
+          <span v-if="model.type!=='Headquarter'">Ressources. </span><br>
           My classes are: <br>
           <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.lumber">
           <label for="checkbox"> Lumber </label> <br>
