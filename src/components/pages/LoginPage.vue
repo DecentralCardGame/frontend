@@ -43,8 +43,18 @@ export default {
   },
   methods: {
     login () {
-      // put real login functionality here!
-      this.$router.replace(this.$route.query.redirect || '/')
+      const request = {
+        username: this.username,
+        password: this.password
+      }
+      console.log(request)
+      this.$http.post('http://localhost:1323/login', request)
+        .then((res) => {
+          const decryptedMnemonicBytes = this.CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
+          const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8));
+
+          console.log(decryptedMnemonic.toString())
+        })
     }
   }
 }

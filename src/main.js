@@ -5,6 +5,7 @@ import Vue from 'vue'
 import vueNcform from '@ncform/ncform'
 import Notifications from 'vue-notification'
 import VueSwing from 'vue-swing'
+import VueCryptojs from 'vue-cryptojs'
 import App from './App'
 import router from './router'
 import * as axios from 'axios'
@@ -20,6 +21,7 @@ Vue.prototype.$http = base
 
 Vue.use(vueNcform)
 Vue.use(Notifications)
+Vue.use(VueCryptojs)
 Vue.component('vue-swing', VueSwing)
 
 function loadVue () {
