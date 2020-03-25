@@ -6,7 +6,7 @@
     <form @submit.prevent="register">
       <label>
         <b>Username: </b>
-        <input type="text" v-model="alias" placeholder="Enter Username" name="uname"> <!--required-->
+        <input type="text" v-model="username" placeholder="Enter Username" name="uname"> <!--required-->
       </label>
       <br>
       <label>
@@ -16,8 +16,13 @@
       <br>
       <label>
         <b>E-Mail: </b>
-        <input type="mail" v-model="mail" placeholder="Enter E-Mail" name="mail">
+        <input type="mail" v-model="email" placeholder="Enter E-Mail" name="mail">
       </label>
+    <br>
+    <label>
+      <b>Mnemonic: </b>
+      <input type="text" v-model="mnemonic" placeholder="Enter Mnemonic" name="mail">
+    </label>
       <br><br>
       <button type="submit">Register</button>
     </form>
@@ -42,9 +47,10 @@ export default {
   data () {
     return {
       alias: '',
-      key: '',
+      username: '',
       password: '',
-      mail: ''
+      email: '',
+      mnemonic: ''
     }
   },
   methods: {
@@ -61,7 +67,18 @@ export default {
         'alias': this.alias
       }
 
-      console.log(reqBody)
+      const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.password).toString()
+      const post = {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+        mnemonic: encryptedMnemonic
+      }
+
+      this.$http.post('http://localhost:1323/register', post)
+        .then((res) => {
+          console.log(res)
+        })
 
       generateAndBroadcastTx(this.$http, 'cardservice/create_user', process.env.VUE_APP_CREATOR_ADDRESS, reqBody, process.env.VUE_APP_CREATOR_MNEMONIC)
         .then(console.log)
