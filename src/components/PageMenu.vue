@@ -7,8 +7,8 @@
         <li><router-link to="/newcard">Card Creator</router-link></li>
         <li><router-link to="/">Gallery</router-link></li>
         <li><router-link to="/vote">Voting</router-link></li>
-        <li><router-link to="/login">Login</router-link></li>
-        <li><router-link class="exposed" to="/register">Join</router-link></li>>
+        <li v-if="!$store.getters.loggedIn" ><router-link to="/login">Login</router-link></li>
+        <li v-if="!$store.getters.loggedIn" ><router-link class="exposed" to="/register">Join</router-link></li>
       </ul>
     </div>
   </nav>

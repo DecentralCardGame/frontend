@@ -51,9 +51,10 @@ export default {
       this.$http.post('http://localhost:1323/login', request)
         .then((res) => {
           const decryptedMnemonicBytes = this.CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
-          const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8));
-
-          console.log(decryptedMnemonic.toString())
+          const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8))
+          this.$store.commit('setUserToken', res.data.token)
+          this.$store.commit('setUserMnemonic', decryptedMnemonic)
+          this.$router.push('me')
         })
     }
   }

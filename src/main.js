@@ -8,6 +8,7 @@ import VueSwing from 'vue-swing'
 import VueCryptojs from 'vue-cryptojs'
 import App from './App'
 import router from './router'
+import store from './store'
 import * as axios from 'axios'
 
 Vue.config.productionTip = false
@@ -31,6 +32,7 @@ function loadVue () {
     router,
     data: {
     },
+    store,
     components: { App },
     template: '<App/>'
   })
