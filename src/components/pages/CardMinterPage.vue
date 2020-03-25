@@ -1,7 +1,7 @@
 <template>
   <div v-cloak @drop.prevent="dropIt" @dragover.prevent>
     What the hell is this? <br>
-    Well, you can drop cards in json format here to display them and drop jpgs or pngs on the cards to give them images. If you are happy with the cards you can download by clicking on them or create a print sheet of 9 cards by clicking
+    Well, you can drop cards in json format here to display them and drop jpgs or pngs on the cards to give them images. If you are happy with the cards you can download by clicking on them or create a print sheet of 9 cards by clicking. Optimal resolution is 780 x 500 pixel.
     <button
       type="button" class="btn" @click="bundleSVGs()">Download Print Sheet
     </button>
