@@ -76,13 +76,22 @@ export default {
       }
 
       this.$http.post('http://localhost:1323/register', post)
-        .then((res) => {
-          console.log(res)
+        .catch(() => {
+          this.$notify({
+            group: 'fail',
+            title: 'Backend regsitration failed!'
+          })
         })
 
       generateAndBroadcastTx(this.$http, 'cardservice/create_user', process.env.VUE_APP_CREATOR_ADDRESS, reqBody, process.env.VUE_APP_CREATOR_MNEMONIC)
         .then(console.log)
         .then(_ => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
+        .catch(() => {
+          this.$notify({
+            group: 'fail',
+            title: 'Registration failed!'
+          })
+        })
 
       this.$router.push('login')
     }

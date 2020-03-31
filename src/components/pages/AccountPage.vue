@@ -36,6 +36,10 @@ export default {
     },
     logout () {
       this.$store.commit('logout')
+      this.$notify({
+        group: 'success',
+        title: 'Logout successful!'
+      })
       this.$router.push('login')
     }
   }

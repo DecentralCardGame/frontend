@@ -41,18 +41,18 @@
           <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
           <select @change="saveDraft" v-model="model.speed">
             <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
-          </select> 
+          </select>
           <span v-if="model.type!=='Headquarter'">Ressources. </span><br>
           My classes are: <br>
-          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.lumber">
+          <input @change="saveDraft" type="checkbox" v-model="model.cost.lumber">
           <label for="checkbox"> Lumber </label> <br>
-          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.food">
+          <input @change="saveDraft" type="checkbox" v-model="model.cost.food">
           <label for="checkbox"> Food </label> <br>
-          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.iron">
+          <input @change="saveDraft" type="checkbox" v-model="model.cost.iron">
           <label for="checkbox"> Iron </label> <br>
-          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.mana">
+          <input @change="saveDraft" type="checkbox" v-model="model.cost.mana">
           <label for="checkbox"> Mana </label> <br>
-          <input @change="saveDraft" type="checkbox" id="checkbox" v-model="model.cost.energy">
+          <input @change="saveDraft" type="checkbox" v-model="model.cost.energy">
           <label for="checkbox"> Energy </label> <br>
           <span v-if="model.type==='Entity'"> I have an attack of</span>
           <select v-if="model.type==='Entity'" @change="saveDraft" v-model="model.attack">
