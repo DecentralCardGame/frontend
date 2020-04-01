@@ -8,7 +8,7 @@
       <image preserveAspectRatio="xMinYMin slice" align="xMidYMid" v-bind:href="imageURL" x="0" y="0" width="154" height="240" rx="8" class="cardImage" mask="url(#imgMask)"/>
     </g>
     <!-- text box -->
-    <g :opacity=opaque*0.9 transform="matrix(0.986969,0,0,1,1.66464,-0.992511)">
+    <g :opacity=opaque*0.8 transform="matrix(0.986969,0,0,1,1.66464,-0.992511)">
         <g id="Ebene4">
             <path d="M4.33,138.7L4.33,231.81C4.33,234.004 6.136,235.81 8.33,235.81L144.33,235.81C146.524,235.81 148.33,234.004 148.33,231.81L148.33,138.7" style="fill:white;fill-rule:nonzero;stroke:white;stroke-width:1px;"/>
         </g>
