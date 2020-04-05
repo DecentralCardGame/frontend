@@ -38,7 +38,7 @@
 <script>
 // import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import { generateAndBroadcastTx } from '../cardChain.js'
+import { registerAcc } from '../cardChain.js'
 import { notify } from '../utils.js'
 
 export default {
@@ -55,17 +55,6 @@ export default {
   },
   methods: {
     register () {
-      let reqBody = {
-        'base_req': {
-          'from': process.env.VUE_APP_CREATOR_ADDRESS,
-          'chain_id': 'testCardchain',
-          'gas': 'auto',
-          'gas_adjustment': '1.5'
-        },
-        'new_user': localStorage.address,
-        'creator': process.env.VUE_APP_CREATOR_ADDRESS,
-        'alias': this.alias
-      }
 
       const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.password).toString()
       const post = {
@@ -79,19 +68,11 @@ export default {
         .catch(() => {
           this.$notify({
             group: 'fail',
-            title: 'Backend regsitration failed!'
+            title: 'Backend registration failed!'
           })
         })
 
-      generateAndBroadcastTx(this.$http, 'cardservice/create_user', process.env.VUE_APP_CREATOR_ADDRESS, reqBody, process.env.VUE_APP_CREATOR_MNEMONIC)
-        .then(console.log)
-        .then(_ => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
-        .catch(() => {
-          this.$notify({
-            group: 'fail',
-            title: 'Registration failed!'
-          })
-        })
+      registerAcc(this.$http, this.alias)
 
       this.$router.push('login')
     }

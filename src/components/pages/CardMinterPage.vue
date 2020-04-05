@@ -6,7 +6,7 @@
       type="button" class="btn" @click="bundleSVGs()">Download Print Sheet
     </button>
     <div class="gallery-view">
-      <div v-for="(card, index) in cards" v-cloak @drop.prevent="addImage($event, index)" @dragover.prevent v-on:click="saveSingleCard(index)" v-bind:key="index">
+      <div v-for="(card, index) in cards" v-cloak @drop.prevent="addImage($event, index)" @dragover.prevent v-bind:key="index">
         <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
       </div>
     </div>

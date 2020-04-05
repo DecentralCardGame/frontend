@@ -1,5 +1,5 @@
-<template>
-<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1" @click="opaque = 1" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+<template id="theCardSvg">
+<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1; clicked = false" @click="opaque = 1; if(clicked) {saveSingleCard()}; clicked = true" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
     <!-- card image -->
     <g id="Ebene_2">
       <mask id="imgMask">
@@ -229,6 +229,7 @@
 
 <script>
 import * as R from 'ramda'
+import * as svg1 from 'save-svg-as-png'
 
 export default {
   name: 'CardComponent',
@@ -246,7 +247,8 @@ export default {
   },
   data () {
     return {
-      opaque: 1
+      opaque: 1,
+      clicked: false
     }
   },
   mounted: () => {
@@ -321,6 +323,12 @@ export default {
         }
       })
       return lines
+    },
+    saveSingleCard () {
+      let clickedCard = document.getElementById('theCardSvg')
+      console.log(clickedCard)
+      console.log('clicked: ', this.clicked)
+      svg1.saveSvgAsPng(clickedCard, this.model.name + '.png', {scale: 5})
     }
   }
 }

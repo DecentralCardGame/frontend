@@ -1,4 +1,5 @@
-import { signTx } from 'signcosmostx/signStuff'
+import { signTx, createWalletFromMnemonic } from '@tendermint/sig';
+
 import { notify } from './utils.js'
 import * as R from 'ramda'
 
@@ -67,6 +68,66 @@ export function generateAndBroadcastTx (http, route, from, reqBody, mnemonic, me
           console.log(err.response.data.error)
         })
     })
+}
+
+export function registerAcc (http, alias) {
+
+  let reqBody = {
+    'base_req': {
+      'from': process.env.VUE_APP_CREATOR_ADDRESS,
+      'chain_id': 'testCardchain',
+      'gas': 'auto',
+      'gas_adjustment': '1.5'
+    },
+    'new_user': process.env.VUE_APP_CREATOR_ADDRESS, //localStorage.address,
+    'creator': process.env.VUE_APP_CREATOR_ADDRESS,
+    'alias': 'lourdi'
+  }
+
+  return Promise.all([getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
+  .then(responses => {
+    console.log('accstuff: ', responses[0].data.result.value)
+    let accData = responses[0].data.result.value
+    let rawTx = responses[1].data
+
+    console.log('rawtx: ', rawTx)    
+
+    const wallet = createWalletFromMnemonic(process.env.VUE_APP_CREATOR_MNEMONIC)
+
+    const signMeta = {
+      account_number: accData.account_number.toString(),
+      chain_id:       process.env.VUE_APP_CHAIN_ID,
+      sequence:       accData.sequence.toString()
+    };
+
+    let unsignedTx = {
+      msg: rawTx.value.msg,
+      fee: rawTx.value.fee,
+      memo: rawTx.value.memo
+    }
+
+    console.log('unsigned tx:', JSON.stringify(unsignedTx))
+
+    //let signed = signTx(rawTx, process.env.VUE_APP_CREATOR_MNEMONIC, 'testCardchain', accData.account_number, accData.sequence)
+    let signed = signTx(unsignedTx, signMeta, wallet)
+
+    console.log('signed tx: ', signed)
+
+    let finalTx = {
+      type:"cosmos-sdk/StdTx",
+      value: signed
+    };
+
+    return broadcast(http, finalTx)
+      .then(console.log)
+      .then(_ => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
+      .catch(() => {
+        this.$notify({
+          group: 'fail',
+          title: 'Registration failed!'
+        })
+    })
+  })
 }
 
 export function buyCardSchemeTx (http, address, mnemonic, maxBid) {

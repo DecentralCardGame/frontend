@@ -19,6 +19,9 @@ import PageHeader from '@/components/PageHeader'
 import PageMenu from '@/components/PageMenu'
 import PageFooter from '@/components/PageFooter'
 import { createKey } from 'signcosmostx/signStuff'
+import { entropyToMnemonic } from 'bip39'
+import * as Random from  'randombytes'
+import * as cosmossig from '@tendermint/sig';
 
 export default {
   name: 'App',
@@ -28,9 +31,20 @@ export default {
     }
   },
   mounted () {
-    let newKeypair = createKey()
-    localStorage.address = newKeypair.address
-    localStorage.mnemonic = newKeypair.secret
+    
+    let entropySize = 24 * 11 - 8;
+    let entropy = Random(entropySize / 8);
+    let mnemonic = entropyToMnemonic(entropy);
+
+    const wallet = cosmossig.createWalletFromMnemonic(mnemonic)
+
+    console.log(cosmossig)
+
+    //let newKeypair = createKey()
+    localStorage.address = cosmossig.createAddress(wallet.publicKey)
+    localStorage.mnemonic = mnemonic
+    console.log(localStorage.mnemonic)
+    console.log(localStorage.address)
   }
 }
 </script>
