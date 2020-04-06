@@ -46,7 +46,7 @@ export default {
         username: this.username,
         password: this.password
       }
-      this.$http.post('http://localhost:1323/login', request)
+      this.$hottub.post('/login', request)
         .then((res) => {
           console.log(res)
           if (res.status !== 200) {

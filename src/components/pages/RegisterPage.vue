@@ -75,7 +75,7 @@ export default {
         mnemonic: encryptedMnemonic
       }
 
-      this.$http.post('http://localhost:1323/register', post)
+      this.$hottub.post('/register', post)
         .catch(() => {
           this.$notify({
             group: 'fail',
