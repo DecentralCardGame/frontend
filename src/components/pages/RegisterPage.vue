@@ -38,8 +38,9 @@
 <script>
 // import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import { registerAcc } from '../cardChain.js'
+import { registerAcc, generateMnemonic } from '../cardChain.js'
 import { notify } from '../utils.js'
+import { createWalletFromMnemonic, createAddress } from '@tendermint/sig';
 
 export default {
   name: 'RegisterPage',
@@ -55,7 +56,19 @@ export default {
   },
   methods: {
     register () {
+      if (!this.mnemonic) {
+        this.mnemonic = generateMnemonic()
+      }
+      else {
+        // TODO check if user has entered a serious mnemonic
+      }
 
+      let wallet = createWalletFromMnemonic(this.mnemonic)
+
+      localStorage.wallet = wallet
+      localStorage.address = wallet.address
+      localStorage.mnemonic = this.mnemonic
+      
       const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.password).toString()
       const post = {
         email: this.email,

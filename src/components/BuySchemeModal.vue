@@ -15,19 +15,26 @@ export default {
   mounted () {
     getGameInfo(this.$http)
       .then(res => {
-        this.currentPrice = parseInt(res.data.amount) + 1 + res.data.denom // TODO actually this should work wtihout the + 1, maybe something is wrong in the blockchain?
-        this.currentBid = parseInt(res.data.amount) + 1
+        console.log(res)
+        this.currentPrice = parseInt(res.data.result.amount) + 1 + res.data.result.denom // TODO actually this should work wtihout the + 1, maybe something is wrong in the blockchain?
+        this.currentBid = parseInt(res.data.result.amount) + 1
+        console.log(this.currentPrice)
       })
       .catch(res => {
+        console.error(res)
         this.close()
         return res
       })
     getAccInfo(this.$http, localStorage.address)
       .then(res => {
-        let coins = res.data.value.coins[0]
+        if(!res.data.result.value.coins[0]) {
+          console.error('no coins available for', localStorage.address)
+        }
+        let coins = res.data.result.value.coins[0]
         this.creditsAvailable = coins.amount + coins.denom
       })
       .catch(res => {
+        console.error(res)
         this.close()
         return res
       })
@@ -41,6 +48,7 @@ export default {
       buyCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentBid)
         .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
         .catch(err => {
+          console.error(err)
           if (err.response.data.error) {
             var errData = JSON.parse(err.response.data.error)
             if (errData.length > 0) {

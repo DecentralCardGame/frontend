@@ -1,7 +1,11 @@
+import { entropyToMnemonic } from 'bip39'
+import * as Random from  'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig';
 
-import { notify } from './utils.js'
 import * as R from 'ramda'
+
+import { notify } from './utils.js'
+
 
 export function parseCard (rawCard) {
   console.log('parsing card: ', rawCard)
@@ -44,6 +48,12 @@ export function parseCard (rawCard) {
   }
 }
 
+export function generateMnemonic() {
+  let entropySize = 24 * 11 - 8;
+  let entropy = Random(entropySize / 8);
+  return entropyToMnemonic(entropy);
+}
+
 export function generateAndBroadcastTx (http, route, from, reqBody, mnemonic, method = 'put') {
   let httpRequest
   switch (method) {
@@ -79,7 +89,7 @@ export function registerAcc (http, alias) {
       'gas': 'auto',
       'gas_adjustment': '1.5'
     },
-    'new_user': process.env.VUE_APP_CREATOR_ADDRESS, //localStorage.address,
+    'new_user': localStorage.address,
     'creator': process.env.VUE_APP_CREATOR_ADDRESS,
     'alias': 'lourdi'
   }
@@ -286,6 +296,7 @@ export function getGameInfo (http) {
 
 const handleGetAcc = R.curry(handleGetAccCurryMe)
 function handleGetAccCurryMe (res, address) {
+  console.log('handleGetAcc')
   if (res.data === '') {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error('account ' + address + ' is not registered')
