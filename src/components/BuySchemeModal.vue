@@ -15,10 +15,8 @@ export default {
   mounted () {
     getGameInfo(this.$http)
       .then(res => {
-        console.log(res)
-        this.currentPrice = parseInt(res.data.result.amount) + 1 + res.data.result.denom // TODO actually this should work wtihout the + 1, maybe something is wrong in the blockchain?
-        this.currentBid = parseInt(res.data.result.amount) + 1
-        console.log(this.currentPrice)
+        this.currentPrice = res.cardSchemePrice.amount + res.cardSchemePrice.denom
+        this.currentBid = res.cardSchemePrice.amount
       })
       .catch(res => {
         console.error(res)
@@ -26,11 +24,20 @@ export default {
         return res
       })
     getAccInfo(this.$http, localStorage.address)
-      .then(res => {
-        if(!res.data.result.value.coins[0]) {
+      .then(acc => {
+        
+        if(!acc) {
           console.error('no coins available for', localStorage.address)
         }
-        let coins = res.data.result.value.coins[0]
+        console.log(acc)
+
+        let coins = {}
+        for(let i = 0; i <= acc.coins.length; i++) {
+          if (acc.coins[i].denom = 'credits') {
+            coins = acc.coins[i]
+            break
+          } 
+        }
         this.creditsAvailable = coins.amount + coins.denom
       })
       .catch(res => {

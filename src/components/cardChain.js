@@ -96,8 +96,8 @@ export function registerAcc (http, alias) {
 
   return Promise.all([getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
   .then(responses => {
-    console.log('accstuff: ', responses[0].data.result.value)
-    let accData = responses[0].data.result.value
+    
+    let accData = responses[0]
     let rawTx = responses[1].data
 
     console.log('rawtx: ', rawTx)    
@@ -291,21 +291,31 @@ export function getVotableCards (http, address) {
 
 export function getGameInfo (http) {
   return http.get('cardservice/cardchain_info')
+    .then(res => {
+      console.log('gameinfo: ', res)
+      return {
+        cardSchemePrice: res.data.result
+      }
+    })
     .catch(handleGetError(R.__, ''))
 }
 
 const handleGetAcc = R.curry(handleGetAccCurryMe)
 function handleGetAccCurryMe (res, address) {
-  console.log('handleGetAcc')
+  console.log('handleGetAcc', res)
   if (res.data === '') {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     throw new Error('account ' + address + ' is not registered')
   } else if (res.response) {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     console.error(res.response.data.error)
-    return { unregistered: true }
+    throw new Error('account ' + address + ' is not registered')
   } else {
-    return res
+    return {
+      coins: res.data.result.value.coins,
+      account_number: res.data.result.value.account_number,
+      sequence: res.data.result.value.sequence
+      }
   }
 }
 
