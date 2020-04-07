@@ -35,8 +35,7 @@ import CardComponent from '../CardComponent'
 import VueSwing from 'vue-swing'
 
 // eslint-disable-next-line no-unused-vars
-import { signTx } from 'signcosmostx/signStuff'
-import { parseCard, getVotableCards, voteCardTx } from '../cardChain.js'
+import { parseCard, getCard, getVotableCards, voteCardTx } from '../cardChain.js'
 
 export default {
   name: 'VotingPage',
@@ -64,8 +63,9 @@ export default {
   mounted () {
     getVotableCards(this.$http, localStorage.address)
       .then(res => {
-        if (res.data) {
-          this.voteRights = res.data
+        console.log('getVotableCards:', res)
+        if (res.votables) {
+          this.voteRights = res.votables
 
           if (this.voteRights.length > 0) {
             console.log('voteRights:', this.voteRights)
@@ -78,7 +78,7 @@ export default {
           } else {
             this.votingActive = false
           }
-        } else if (res.data === null) {
+        } else if (res.votables === null) {
           this.votingActive = false
           this.noMoreVotesLeft = true
           console.log('no more voting rights')
@@ -115,10 +115,11 @@ export default {
         let nextCard = R.last(this.voteRights)
         this.voteRights = R.dropLast(1, this.voteRights)
 
-        return this.$http.get('cardservice/cards/' + nextCard.CardId).then(res => {
-          this.cards.push(parseCard(res.data.value))
-          R.last(this.cards).id = nextCard.CardId
-        })
+        return getCard(this.$http, nextCard.CardId)
+          .then(res => {
+            this.cards.push(parseCard(res.card))
+            R.last(this.cards).id = nextCard.CardId
+          })
       } else {
         console.error('no cards left')
       }

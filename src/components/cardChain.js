@@ -54,30 +54,35 @@ export function generateMnemonic() {
   return entropyToMnemonic(entropy);
 }
 
-export function generateAndBroadcastTx (http, route, from, reqBody, mnemonic, method = 'put') {
-  let httpRequest
-  switch (method) {
-    case 'put':
-      httpRequest = http.put
-      break
-    case 'post':
-      httpRequest = http.post
-      break
+function sign(rawTx, accData, wallet) {
+  console.log('rawtx: ', rawTx)
+  console.log('accData', accData)
+
+  const signMeta = {
+    account_number: accData.account_number.toString(),
+    chain_id:       process.env.VUE_APP_CHAIN_ID,
+    sequence:       accData.sequence.toString()
+  };
+
+  let unsignedTx = {
+    msg: rawTx.value.msg,
+    fee: rawTx.value.fee,
+    memo: rawTx.value.memo
   }
 
-  return Promise.all([getAccInfo(http, from), httpRequest(route, reqBody)])
-    .then(responses => {
-      let accData = responses[0].data.value
-      let rawTx = responses[1].data
+  console.log('unsigned tx:', unsignedTx)
+  console.log(signMeta)
+  console.log(localStorage.wallet.address)
+  console.log(localStorage.address)
 
-      let signed = signTx(rawTx, mnemonic, 'testCardchain', accData.account_number, accData.sequence)
+  let signed = signTx(unsignedTx, signMeta, wallet)
 
-      return broadcast(http, signed)
-        .catch(err => {
-          console.log(err)
-          console.log(err.response.data.error)
-        })
-    })
+  console.log('signed tx: ', signed)
+
+  return {
+    type:"cosmos-sdk/StdTx",
+    value: signed
+  };
 }
 
 export function registerAcc (http, alias) {
@@ -91,44 +96,20 @@ export function registerAcc (http, alias) {
     },
     'new_user': localStorage.address,
     'creator': process.env.VUE_APP_CREATOR_ADDRESS,
-    'alias': 'lourdi'
+    'alias': alias
   }
 
   return Promise.all([getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
   .then(responses => {
-    
     let accData = responses[0]
     let rawTx = responses[1].data
 
-    console.log('rawtx: ', rawTx)    
+    let wallet = createWalletFromMnemonic(process.env.VUE_APP_CREATOR_MNEMONIC)
 
-    const wallet = createWalletFromMnemonic(process.env.VUE_APP_CREATOR_MNEMONIC)
+    console.log('accDatayes:', responses)
+    let signedTx = sign(rawTx, accData, wallet)
 
-    const signMeta = {
-      account_number: accData.account_number.toString(),
-      chain_id:       process.env.VUE_APP_CHAIN_ID,
-      sequence:       accData.sequence.toString()
-    };
-
-    let unsignedTx = {
-      msg: rawTx.value.msg,
-      fee: rawTx.value.fee,
-      memo: rawTx.value.memo
-    }
-
-    console.log('unsigned tx:', JSON.stringify(unsignedTx))
-
-    //let signed = signTx(rawTx, process.env.VUE_APP_CREATOR_MNEMONIC, 'testCardchain', accData.account_number, accData.sequence)
-    let signed = signTx(unsignedTx, signMeta, wallet)
-
-    console.log('signed tx: ', signed)
-
-    let finalTx = {
-      type:"cosmos-sdk/StdTx",
-      value: signed
-    };
-
-    return broadcast(http, finalTx)
+    return broadcast(http, signedTx)
       .then(console.log)
       .then(_ => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
       .catch(() => {
@@ -154,22 +135,25 @@ export function buyCardSchemeTx (http, address, mnemonic, maxBid) {
 
   return Promise.all([getAccInfo(http, address), http.post('cardservice/buy_card_scheme', reqBody)])
     .then(responses => {
-      let accData = responses[0].data.value
+      let accData = responses[0]
       let rawTx = responses[1].data
 
-      let signed = signTx(rawTx, mnemonic, 'testCardchain', accData.account_number, accData.sequence)
+      let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+  
+      let signedTx = sign(rawTx, accData, wallet)
 
-      return broadcast(http, signed)
+      return broadcast(http, signedTx)
     })
 }
 
 export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardContent, onSuccessCallback) {
   return getUserInfo(http, address)
-    .then(userInfo => {
-      let freeCardSchemes = userInfo.data.value.OwnedCardSchemes
+    .then(user => {
+      console.log('user:',user)
 
-      if (!freeCardSchemes) {
+      if (!user.ownedCardSchemes) {
         notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
+        throw new Error('account ' + address + ' does not own card schemes')
       } else {
         let reqBody = {
           'base_req': {
@@ -180,7 +164,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
           },
           'owner': localStorage.address,
           'content': JSON.stringify(cardContent),
-          'cardid': freeCardSchemes[0]
+          'cardid': user.ownedCardSchemes[0]
         }
         return reqBody
       }
@@ -188,11 +172,15 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
     .then(req => {
       txLoop.enqueue(_ => {
         return Promise.all([getAccInfo(http, address), saveCardContentGenerateTx(http, req)])
-          .then(res => {
-            let accData = res[0].data.value
-            let rawTx = res[1].data
-            let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
-            return broadcast(http, signed)
+          .then(responses => {
+            let accData = responses[0]
+            let rawTx = responses[1].data
+        
+            let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+  
+            let signedTx = sign(rawTx, accData, wallet)
+
+            return broadcast(http, signedTx)
               .then(res => {
                 console.log('broadcast response:', res)
                 notify.success('EPIC WIN', 'You have successfully published this card.')
@@ -205,6 +193,7 @@ export function saveContentToUnusedCardSchemeTx (http, address, mnemonic, cardCo
           })
       })
     })
+    .catch()
 }
 
 export function voteCardTx (http, address, mnemonic, cardid, voteType) {
@@ -222,11 +211,15 @@ export function voteCardTx (http, address, mnemonic, cardid, voteType) {
 
   txLoop.enqueue(_ => {
     return Promise.all([getAccInfo(http, address), voteCardGenerateTx(http, req)])
-      .then(res => {
-        let accData = res[0].data.value
-        let rawTx = res[1].data
-        let signed = signTx(rawTx, mnemonic, process.env.VUE_APP_CHAIN_ID, accData.account_number, accData.sequence)
-        return broadcast(http, signed)
+      .then(responses => {
+        let accData = responses[0]
+        let rawTx = responses[1].data
+        
+        let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+  
+        let signedTx = sign(rawTx, accData, wallet)
+
+        return broadcast(http, signedTx)
           .then(() => {
             notify.success('VOTED', 'Vote Transaction successfull!')
           })
@@ -257,58 +250,52 @@ function broadcast (http, signedTx) {
 
 function getTx (http, hash) {
   return http.get('txs/' + hash)
+    .catch(handleGetError)
 }
 
 function voteCardGenerateTx (http, reqBody) {
   return http.put('cardservice/vote_card', reqBody)
+    .catch(handlePutError)
 }
 
 function saveCardContentGenerateTx (http, reqBody) {
   return http.put('cardservice/save_card_content', reqBody)
+    .catch(handlePutError)
 }
 
 function getUserInfo (http, address) {
   return http.get('cardservice/user/' + address)
-    .then(handleGetAcc(R.__, address))
-    .catch(handleGetError(R.__, address))
+    .catch(handleGetError)
+    .then(handleGetUser(R.__, address))
+}
+
+const handleGetUser = R.curry(handleGetUserCurryMe)
+function handleGetUserCurryMe (res, address) {
+  console.log('handleGetUser', res)
+  if (res.data.result.Alias === '') {
+    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+    throw new Error('account ' + address + ' is not registered')
+  } else {
+    return {
+      alias: res.data.result.Alias,
+      ownedCardSchemes: res.data.result.OwnedCardSchemes,
+      ownedCards: res.data.result.OwnedCard,
+      voteRights: res.data.result.VoteRights
+      }
+  }
 }
 
 export function getAccInfo (http, address) {
   return http.get('auth/accounts/' + address)
+    .catch(handleGetError)
     .then(handleGetAcc(R.__, address))
-    .catch(handleGetError(R.__, address))
-}
-
-export function getCard (http, id) {
-  return http.get('cardservice/cards/' + id)
-}
-
-export function getVotableCards (http, address) {
-  return http.get('cardservice/votable_cards/' + address)
-    .then(handleGetAcc(R.__, address))
-    .catch(handleGetAcc(R.__, address))
-}
-
-export function getGameInfo (http) {
-  return http.get('cardservice/cardchain_info')
-    .then(res => {
-      console.log('gameinfo: ', res)
-      return {
-        cardSchemePrice: res.data.result
-      }
-    })
-    .catch(handleGetError(R.__, ''))
 }
 
 const handleGetAcc = R.curry(handleGetAccCurryMe)
 function handleGetAccCurryMe (res, address) {
   console.log('handleGetAcc', res)
-  if (res.data === '') {
+  if (res.data.result.value.address === '') {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    throw new Error('account ' + address + ' is not registered')
-  } else if (res.response) {
-    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    console.error(res.response.data.error)
     throw new Error('account ' + address + ' is not registered')
   } else {
     return {
@@ -319,13 +306,75 @@ function handleGetAccCurryMe (res, address) {
   }
 }
 
-const handleGetError = R.curry(handleGetErrorCurryMe)
-function handleGetErrorCurryMe (res, address) {
-  if (res.response) {
-    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    throw new Error(res.response.data.error)
+export function getCard (http, id) {
+  return http.get('cardservice/cards/' + id)
+    .catch(handleGetError)
+    .then(handleGetCard(R.__, id))
+}
+
+const handleGetCard = R.curry(handleGetCardCurryMe)
+function handleGetCardCurryMe (res, cardId) {
+  console.log('handleGetCard', res)
+  if (!res.data.result) {
+    notify.fail('WTF', 'A card was looked up that does not exist in the blockchain.')
+    throw new Error('Card with ' + cardId + ' does not exist.')
   } else {
+    return {
+      card: res.data.result
+      }
+  }
+}
+
+export function getVotableCards (http, address) {
+  return http.get('cardservice/votable_cards/' + address)
+    .catch(handleGetError)
+    .then(handleGetVotableCards(R.__, address))
+}
+
+export function getGameInfo (http) {
+  return http.get('cardservice/cardchain_info')
+    .then(res => {
+      console.log('gameinfo: ', res)
+      return {
+        cardSchemePrice: res.data.result
+      }
+    })
+    .catch(handleGetError)
+}
+
+const handleGetVotableCards = R.curry(handleGetVotableCardsCurryMe)
+function handleGetVotableCardsCurryMe (res, address) {
+  console.log('handleGetVotableCards', res)
+  if (res.data.result === null) {
+    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+    return {
+      unregistered: true
+    }
+  } else {
+    return {
+      votables: res.data.result
+    }
+  }
+}
+
+function handleGetError (res) {
+  if (res.data) {
+    notify.fail('OH SHIT', 'Something went terribly wrong.')
+    throw new Error(res.data)
+  } else {
+    notify.fail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
     throw new Error(res)
+  }
+}
+
+function handlePutError (err) {
+  console.log('puterror', err.response)
+  if (err.response.data) {
+    notify.fail('OH SHIT', err.response.data.error)
+    throw new Error(err.response.data)
+  } else {
+    notify.fail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
+    throw new Error(err)
   }
 }
 

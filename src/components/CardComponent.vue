@@ -264,7 +264,7 @@ export default {
   },
   methods: {
     getType () {
-      if (this.model.type === 'No Type') {
+      if (this.model.type === 'No Type' || !this.model.type) {
         return ''
       } else {
         let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]

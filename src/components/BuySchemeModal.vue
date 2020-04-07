@@ -25,14 +25,19 @@ export default {
       })
     getAccInfo(this.$http, localStorage.address)
       .then(acc => {
-        
-        if(!acc) {
-          console.error('no coins available for', localStorage.address)
+
+        if (acc.alias == '') {
+          notify.fail('NOT LOGGED IN', 'please login or register')
+          throw new Error('unregistered account: ', localStorage.address)
         }
-        console.log(acc)
+        
+        if (!acc || !acc.coins) {
+          notify.fail('NOT LOGGED IN', 'please login or register')
+          throw new Error('no coins available for', localStorage.address)
+        }
 
         let coins = {}
-        for(let i = 0; i <= acc.coins.length; i++) {
+        for(let i = 0; i < acc.coins.length; i++) {
           if (acc.coins[i].denom = 'credits') {
             coins = acc.coins[i]
             break

@@ -85,7 +85,7 @@ export default {
           })
         })
 
-      registerAcc(this.$http, this.alias)
+      registerAcc(this.$http, this.username)
 
       this.$router.push('login')
     }
