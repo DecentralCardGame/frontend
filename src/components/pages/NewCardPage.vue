@@ -39,7 +39,7 @@
         <div v-if="activeStep == 1"><br>
           <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
           <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
-          <select @change="saveDraft" v-model="model.speed">
+          <select @change="saveDraft" v-model="model.cost.amount">
             <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select>
           <span v-if="model.type!=='Headquarter'">Ressources. </span><br>
@@ -56,12 +56,12 @@
           <label for="checkbox"> Energy </label> <br>
           <span v-if="model.type==='Entity'"> I have an attack of</span>
           <select v-if="model.type==='Entity'" @change="saveDraft" v-model="model.attack">
-            <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,32,0)" :value="n">{{n}}</option>
           </select>
           <span v-if="model.type==='Entity'"> and </span>
           <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for</span>
           <select v-if="model.type!=='Action'" @change="saveDraft" v-model="model.health">
-            <option v-bind:key="n" v-for="n in getNumbers(1,32,0)" :value="n">{{n}}</option>
+            <option v-bind:key="n" v-for="n in getNumbers(0,32,0)" :value="n">{{n}}</option>
           </select>
           <span v-if="model.type!=='Action'"> damage. </span>
         </div>
@@ -158,7 +158,7 @@ import { saveAs } from 'file-saver'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, emptyCard, resolveParagraph } from '../utils.js'
+import { sampleImg, emptyCard, resolveParagraph, notify } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -186,14 +186,13 @@ export default {
         tag: [],
         tagDummy: '',
         cost: {
-          lumber: 0,
-          food: 0,
-          iron: 0,
-          mana: 0,
-          energy: 0,
-          generic: 0
+          lumber: false,
+          food: false,
+          iron: false,
+          mana: false,
+          energy: false,
+          amount: -1
         },
-        speed: 0,
         health: 0,
         attack: 0
       },
@@ -304,29 +303,75 @@ export default {
       this.saveDraft()
     },
     saveSubmit () {
+      if (!this.model.name) {
+        notify.fail('No Name', 'Card has no name, please enter a name.')
+        return
+      }
+      if (!this.model.type || this.model.type === 'No Type') {
+        notify.fail('Wrong Type', 'please pick a type')
+        return
+      }
+      if (!this.model.name) {
+        notify.fail('No Name', 'Card has no name, please enter a name.')
+        return
+      }
+
       // eslint-disable-next-line no-unused-vars
       let newCard = {
-        [this.model.type]: {
-          'Name': this.model.name,
-          'Tags': this.model.tag,
-          'Text': this.model.text,
-          'Cost': this.model.cost,
-          'CastSpeed': this.model.speed,
-          'Effects': {},
-          'Abilities': {},
-          'AbilitySpeed': this.model.speed,
-          'Health': this.model.health,
-          'Attack': this.model.attack
+        model: {
+          [this.model.type]: {
+            'Name': this.model.name,
+            'Tags': this.model.tag,
+            'Text': this.model.text,
+            'CostType': {
+              'Lumber': this.model.cost.lumber,
+              'Energy': this.model.cost.energy,
+              'Food': this.model.cost.food,
+              'Metal': this.model.cost.iron,
+              'Mana': this.model.cost.mana
+            }
+          }
         },
         image: this.cardImageUrl
       }
 
-      saveContentToUnusedCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, newCard, _ => {
+      console.log('model', this.model)
+
+      if (this.model.type !== 'Headquarter') {
+        if (R.isNil(this.model.cost.amount)) {
+          notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
+          return
+        }
+        newCard.model[this.model.type].CastingCost = this.model.cost.amount
+      }
+      if (this.model.type !== 'Action') {
+        if (R.isNil(this.model.health)) {
+          notify.fail('No Health', 'Card has no health, please pick a number.')
+          return
+        }
+        newCard.model[this.model.type].Health = this.model.health
+      } 
+      if (this.model.type === 'Entity') {
+        if (R.isNil(this.model.attack)) {
+          notify.fail('No Attack', 'Card has no Attack, please pick a number.')
+          return
+        }
+        newCard.model[this.model.type].Abilities = [{"TriggeredAbility":{"Cause":{"TimeEventListener":{"TimeEvent":"TICKSTART"}},"Effects":[{"ProductionEffect":{"ProductionAmount":1,"ProductionType":{"Food":true}}}]}}]
+        newCard.model[this.model.type].Attack = this.model.attack
+      } else if (this.model.type === 'Headquarter') {
+        newCard.model[this.model.type].UniqueName = this.model.name,
+        newCard.model[this.model.type].Abilities = [{"TriggeredAbility":{"Cause":{"TimeEventListener":{"TimeEvent":"TICKSTART"}},"Effects":[{"ProductionEffect":{"ProductionAmount":1,"ProductionType":{"Food":true}}}]}}]
+      } else {
+        newCard.model[this.model.type].Abilities = [{"TriggeredAbility":{"Cause":{"TimeEventListener":{"TimeEvent":"TICKSTART"}},"Effects":[{"ProductionEffect":{"ProductionAmount":1,"ProductionType":{"Food":true}}}]}}]       
+      }
+
+      console.log(JSON.stringify(newCard.model))
+
+      saveContentToUnusedCardSchemeTx(this.$http, newCard, _ => {
         localStorage.cardDraft = ''
         localStorage.cardImg = ''
         this.model = emptyCard
         this.cardImageUrl = sampleImg
-        console.log('card sucessfully pushed, now cardCreator should be resetted')
       })
     },
     saveDraft () {

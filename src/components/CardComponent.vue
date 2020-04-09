@@ -197,7 +197,7 @@
       </text>
       <!-- Ressource Cost -->
       <text id="text2236" x="23.5" y="14.1" font-family="Montserrat" font-size="14.5"  stroke="black" stroke-width="0.8" font-style="normal" letter-spacing="0" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
-        <tspan id="tspan2234" x="23.5" y="14.1" font-family="Montserrat" font-size="14.5" font-style="normal" text-anchor="middle" writing-mode="lr-tb">{{ getNerfedSpeed() }}</tspan>
+        <tspan id="tspan2234" x="23.5" y="14.1" font-family="Montserrat" font-size="14.5" font-style="normal" text-anchor="middle" writing-mode="lr-tb">{{ getNerfedCost() }}</tspan>
       </text>
       <!-- Tags -->
       <text v-for="(tag, index) in model.tag" v-bind:key="'tag'+index" id="text2527" :x="75 + index*46 - (tagLength() - 1)*23" y="237.4" fill="#FFDAA6" stroke-width=".1" font-family="Montserrat" font-size="4.6"  letter-spacing="1" text-anchor="start" xml:space="preserve">
@@ -220,7 +220,7 @@
         <tspan id="tspan2234-91" x="23" y="228.6" fill="#001433" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb">{{ model.attack }}</tspan>
       </text>
       <!-- Health -->
-        <text v-show="model.health && model.type !== 'Action'" id="text2236-11-3" x="128" y="228.6" fill="#001433" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
+        <text v-show="model.type !== 'Action'" id="text2236-11-3" x="128" y="228.6" fill="#001433" fill-opacity="1" stroke="none" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve">
         <tspan id="tspan2234-91-7" x="131" y="228.6" fill="#001433" fill-opacity="1" stroke-width=".2" font-family="Montserrat" font-size="9" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" writing-mode="lr-tb">{{ model.health }}</tspan>
       </text>
     </g>
@@ -264,20 +264,24 @@ export default {
   },
   methods: {
     getType () {
+      console.log(this.model.type)
       if (this.model.type === 'No Type' || !this.model.type) {
         return ''
       } else {
         let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]
         if (type) {
-          return type.properties.DisplayName.toUpperCase()
+          return type.properties.DisplayName.enum[0].toUpperCase()
         } else {
           console.error('Invalid card type. Must be one of the following: ' + R.keys(this.$cardSchema.definitions))
         }
       }
     },
-    getNerfedSpeed () {
-      let speed = Math.max(1, this.model.speed + (this.model.nerflevel ? this.model.nerflevel : 0))
-      return speed
+    getNerfedCost () {
+      if (this.model.cost.amount < 0) {
+        return '-'
+      }
+      let cost = Math.max(0, this.model.cost.amount + (this.model.nerflevel ? this.model.nerflevel : 0))
+      return cost
     },
     tagLength () {
       if (this.model.tag) {

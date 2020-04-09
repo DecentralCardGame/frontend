@@ -25,23 +25,22 @@ export default {
       })
     getAccInfo(this.$http, localStorage.address)
       .then(acc => {
-
-        if (acc.alias == '') {
+        if (acc.alias === '') {
           notify.fail('NOT LOGGED IN', 'please login or register')
           throw new Error('unregistered account: ', localStorage.address)
         }
-        
+
         if (!acc || !acc.coins) {
           notify.fail('NOT LOGGED IN', 'please login or register')
           throw new Error('no coins available for', localStorage.address)
         }
 
         let coins = {}
-        for(let i = 0; i < acc.coins.length; i++) {
-          if (acc.coins[i].denom = 'credits') {
+        for (let i = 0; i < acc.coins.length; i++) {
+          if (acc.coins[i].denom === 'credits') {
             coins = acc.coins[i]
             break
-          } 
+          }
         }
         this.creditsAvailable = coins.amount + coins.denom
       })
@@ -57,25 +56,7 @@ export default {
     },
     buyCardScheme () {
       this.$emit('close')
-      buyCardSchemeTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentBid)
-        .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
-        .catch(err => {
-          console.error(err)
-          if (err.response.data.error) {
-            var errData = JSON.parse(err.response.data.error)
-            if (errData.length > 0) {
-              var errLog = JSON.parse(errData[0].log)
-              console.log(errLog)
-              notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
-            } else {
-              console.error(errData)
-              notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-            }
-          } else {
-            console.error(err)
-            notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-          }
-        })
+      buyCardSchemeTx(this.$http, this.currentBid)
     },
     isNumber: function (evt) {
       evt = evt || window.event

@@ -36,6 +36,7 @@ import VueSwing from 'vue-swing'
 
 // eslint-disable-next-line no-unused-vars
 import { parseCard, getCard, getVotableCards, voteCardTx } from '../cardChain.js'
+import { notify } from '../utils.js'
 
 export default {
   name: 'VotingPage',
@@ -89,13 +90,16 @@ export default {
           console.error('getVotableCards returned non-readable data: ', res)
         }
       })
+      .catch(res => {
+        notify.fail('OH NOES', res)
+      })
   },
   methods: {
     vote (cardid, type) {
       console.log('vote cast for cardid', cardid, 'voted: ', type)
 
       this.getNextCard()
-      voteCardTx(this.$http, localStorage.address, localStorage.mnemonic, this.currentCard.id, type)
+      voteCardTx(this.$http, this.currentCard.id, type)
 
       if (R.isEmpty(this.cards)) {
         if (!R.isEmpty(this.voteRights)) {
@@ -117,8 +121,13 @@ export default {
 
         return getCard(this.$http, nextCard.CardId)
           .then(res => {
-            this.cards.push(parseCard(res.card))
-            R.last(this.cards).id = nextCard.CardId
+            let parsedCard = parseCard(res.card)
+            if (parsedCard.Content) {
+              this.cards.push(parsedCard)
+              R.last(this.cards).id = nextCard.CardId
+            } else {
+              // yes?
+            }
           })
       } else {
         console.error('no cards left')

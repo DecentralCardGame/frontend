@@ -47,11 +47,11 @@ export default {
 
       getCard(this.$http, this.currentId)
         .then(res => {
-          let card = res.data.value
+          let card = res.card
           if (card.Content) {
             this.cards.push(parseCard(card))
           } else {
-            this.getNextCard()
+            // this.getNextCard()
             console.log('yeth: ', res)
           }
         })
