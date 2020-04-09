@@ -17,8 +17,12 @@ const base = axios.create({
   baseURL: process.env.VUE_APP_BLOCKCHAIN_API,
   localURL: 'localhost:1317'
 })
+const authAPI = axios.create({
+  baseURL: 'http://localhost:1323'
+})
 
 Vue.prototype.$http = base
+Vue.prototype.$hottub = authAPI
 
 Vue.use(vueNcform)
 Vue.use(Notifications)
