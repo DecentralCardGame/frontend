@@ -78,10 +78,7 @@ export default {
 
       this.$http.post('http://localhost:1323/register', post)
         .catch(() => {
-          this.$notify({
-            group: 'fail',
-            title: 'Backend registration failed!'
-          })
+          notify.fail('Backend registration failed!')
         })
 
       registerAccTx(this.$http, this.username)

@@ -327,12 +327,12 @@ export default {
               'Lumber': this.model.cost.lumber,
               'Energy': this.model.cost.energy,
               'Food': this.model.cost.food,
-              'Metal': this.model.cost.iron,
+              'Iron': this.model.cost.iron,
               'Mana': this.model.cost.mana
             }
           }
         },
-        image: this.cardImageUrl
+        image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
 
       console.log('model', this.model)
@@ -343,6 +343,7 @@ export default {
           return
         }
         newCard.model[this.model.type].CastingCost = this.model.cost.amount
+        newCard.model[this.model.type].Abilities = []
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.health)) {
@@ -350,19 +351,17 @@ export default {
           return
         }
         newCard.model[this.model.type].Health = this.model.health
-      } 
+      }
       if (this.model.type === 'Entity') {
         if (R.isNil(this.model.attack)) {
           notify.fail('No Attack', 'Card has no Attack, please pick a number.')
           return
         }
-        newCard.model[this.model.type].Abilities = [{"TriggeredAbility":{"Cause":{"TimeEventListener":{"TimeEvent":"TICKSTART"}},"Effects":[{"ProductionEffect":{"ProductionAmount":1,"ProductionType":{"Food":true}}}]}}]
+        newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Attack = this.model.attack
       } else if (this.model.type === 'Headquarter') {
-        newCard.model[this.model.type].UniqueName = this.model.name,
-        newCard.model[this.model.type].Abilities = [{"TriggeredAbility":{"Cause":{"TimeEventListener":{"TimeEvent":"TICKSTART"}},"Effects":[{"ProductionEffect":{"ProductionAmount":1,"ProductionType":{"Food":true}}}]}}]
-      } else {
-        newCard.model[this.model.type].Abilities = [{"TriggeredAbility":{"Cause":{"TimeEventListener":{"TimeEvent":"TICKSTART"}},"Effects":[{"ProductionEffect":{"ProductionAmount":1,"ProductionType":{"Food":true}}}]}}]       
+        newCard.model[this.model.type].UniqueName = this.model.name
+        newCard.model[this.model.type].Abilities = []
       }
 
       console.log(JSON.stringify(newCard.model))

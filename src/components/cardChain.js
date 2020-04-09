@@ -14,18 +14,19 @@ export function parseCard (rawCard) {
     let cardType = R.keys(card.Content)
     card = R.merge(card, card.Content[cardType[0]])
 
+    console.log('card', card)
+
     return {
       'name': card.Name,
       'type': cardType[0],
       'health': card.Health || 0,
       'attack': card.Attack || 0,
-      'speed': card.CastSpeed,
-      'cost': card.Cost,
+      'cost': card.CastingCost,
       'abilities': card.Abilities,
       'effects': card.Effects,
       'tag': card.Tags,
       'text': card.Text,
-      'image': card.Content.image,
+      'image': card.Image,
       'nerflevel': parseInt(card.Nerflevel)
     }
   } else {
@@ -142,25 +143,25 @@ export function buyCardSchemeTx (http, maxBid) {
 
         let signedTx = sign(rawTx, accData, wallet)
 
-        return broadcast(http, signedTx)        
-        .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
-        .catch(err => {
-          console.error(err)
-          if (err.response.data.error) {
-            var errData = JSON.parse(err.response.data.error)
-            if (errData.length > 0) {
-              var errLog = JSON.parse(errData[0].log)
-              console.log(errLog)
-              notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
+        return broadcast(http, signedTx)
+          .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
+          .catch(err => {
+            console.error(err)
+            if (err.response.data.error) {
+              var errData = JSON.parse(err.response.data.error)
+              if (errData.length > 0) {
+                var errLog = JSON.parse(errData[0].log)
+                console.log(errLog)
+                notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
+              } else {
+                console.error(errData)
+                notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
+              }
             } else {
-              console.error(errData)
+              console.error(err)
               notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
             }
-          } else {
-            console.error(err)
-            notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-          }
-        })
+          })
       })
   })
 }
@@ -189,7 +190,7 @@ export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) 
     })
     .then(req => {
       txLoop.enqueue(_ => {
-        console.log('req:',req)
+        console.log('req:', req)
         return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
           .then(responses => {
             let accData = responses[0]
@@ -359,17 +360,19 @@ function handleGetCardCurryMe (res, cardId) {
 }
 
 export function getVotableCards (http, address) {
+  console.log(address)
   if (validAddress(address)) {
     return http.get('cardservice/votable_cards/' + address)
       .catch(handleGetError)
       .then(handleGetVotableCards(R.__, address))
   } else {
-    return Promise.reject('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.')
+    return Promise.reject(new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.'))
   }
 }
 
 const handleGetVotableCards = R.curry(handleGetVotableCardsCurryMe)
 function handleGetVotableCardsCurryMe (res, address) {
+  console.log('res', res)
   if (res.data.result === null) {
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     return {

@@ -122,7 +122,8 @@ export default {
         return getCard(this.$http, nextCard.CardId)
           .then(res => {
             let parsedCard = parseCard(res.card)
-            if (parsedCard.Content) {
+            console.log('currentCard', parsedCard)
+            if (parsedCard) {
               this.cards.push(parsedCard)
               R.last(this.cards).id = nextCard.CardId
             } else {
