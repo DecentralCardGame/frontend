@@ -116,9 +116,6 @@
           Be brave and publish me!
           Or save my awesome looks for later purposes.
           <br><br>
-          <button @click="saveSubmit()">Publish</button>
-          <button @click="downloadCard()">Download</button>
-          <button @click="saveDraft()">Save As Draft</button>
           <template>
             <button
               type="button"
@@ -129,6 +126,7 @@
               @close="closeBuySchemeModal"
             />
           </template>
+          <button @click="saveSubmit()">Publish</button>
         </div>
         <br>
         <button v-if="activeStep > 0" @click="activeStep--">back</button>
@@ -416,10 +414,6 @@ export default {
       }
       reader.onerror = error => console.error(error)
       reader.readAsDataURL(file)
-    },
-    downloadCard () {
-      var blob = new Blob([document.getElementById('card').outerHTML], {type: 'text/plain;charset=utf-8'})
-      saveAs(blob, 'card.svg')
     }
   }
 }
