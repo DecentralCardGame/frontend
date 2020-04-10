@@ -1,6 +1,7 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
+  VUE_APP_AUTH_API: '"http://localhost:1323"',
   VUE_APP_BLOCKCHAIN_API: '"https://cardchain.crowdcontrol.network"',
   VUE_APP_CHAIN_ID: '"testCardchain"',
   VUE_APP_CREATOR_ADDRESS: '"cosmos178x4cwg7zuppfgypdd7c0wy0kp304wad9v0awe"',

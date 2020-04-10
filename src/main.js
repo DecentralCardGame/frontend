@@ -18,7 +18,7 @@ const base = axios.create({
   localURL: 'localhost:1317'
 })
 const authAPI = axios.create({
-  baseURL: 'http://localhost:1323'
+  baseURL: process.env.VUE_APP_AUTH_API
 })
 
 Vue.prototype.$http = base

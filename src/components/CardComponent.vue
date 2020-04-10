@@ -270,14 +270,14 @@ export default {
       } else {
         let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]
         if (type) {
-          return type.properties.DisplayName.enum[0].toUpperCase()
+          return type.properties.DisplayName.toUpperCase()
         } else {
           console.error('Invalid card type. Must be one of the following: ' + R.keys(this.$cardSchema.definitions))
         }
       }
     },
     getNerfedCost () {
-      if (this.model.cost.amount < 0) {
+      if (!this.model.cost.amount || this.model.cost.amount < 0) {
         return '-'
       }
       let cost = Math.max(0, this.model.cost.amount + (this.model.nerflevel ? this.model.nerflevel : 0))
