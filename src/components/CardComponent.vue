@@ -264,7 +264,6 @@ export default {
   },
   methods: {
     getType () {
-      console.log(this.model.type)
       if (this.model.type === 'No Type' || !this.model.type) {
         return ''
       } else {
@@ -277,7 +276,7 @@ export default {
       }
     },
     getNerfedCost () {
-      if (!this.model.cost.amount || this.model.cost.amount < 0) {
+      if (R.isNil(this.model.cost.amount) || this.model.cost.amount < 0) {
         return '-'
       }
       let cost = Math.max(0, this.model.cost.amount + (this.model.nerflevel ? this.model.nerflevel : 0))
