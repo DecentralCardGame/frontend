@@ -21,7 +21,7 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "axios": "^0.18.0",
     "buffer": "^5.5.0",
-    "cardobject": "DecentralCardGame/cardobject.git#v0.1.11",
+    "cardobject": "DecentralCardGame/cardobject.git#v0.1.10",
     "file-saver": "^2.0.2",
     "json-schema-ref-parser": "^7.1.0",
     "ramda": "^0.26.1",
