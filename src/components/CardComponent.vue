@@ -269,7 +269,7 @@ export default {
       } else {
         let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]
         if (type) {
-          return type.properties.DisplayName.toUpperCase()
+          return type.properties.DisplayName.enum[0].toUpperCase()
         } else {
           console.error('Invalid card type. Must be one of the following: ' + R.keys(this.$cardSchema.definitions))
         }
