@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "Energy": {
+      "type": "boolean"
+    },
+    "Food": {
+      "type": "boolean"
+    },
+    "Generic": {
+      "type": "boolean"
+    },
+    "Lumber": {
+      "type": "boolean"
+    },
+    "Mana": {
+      "type": "boolean"
+    },
+    "Iron": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "description": "§Energy, §Food, §Lumber, §Mana, §Iron, §Generic"
+}
