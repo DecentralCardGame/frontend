@@ -1,5 +1,4 @@
 <script>
-// import * as R from 'ramda'
 import { buyCardSchemeTx, getGameInfo, getAccInfo } from './cardChain.js'
 import { notify } from './utils.js'
 

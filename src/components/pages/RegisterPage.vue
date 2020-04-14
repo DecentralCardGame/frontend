@@ -40,7 +40,7 @@
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import { registerAccTx, generateMnemonic } from '../cardChain.js'
 import { notify } from '../utils.js'
-import { createWalletFromMnemonic } from '@tendermint/sig'
+import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {
   name: 'RegisterPage',
