@@ -25,7 +25,7 @@ a {
 
 main {
   font-size: 32px;
-  text-shadow: 3px 3px 0px #00000080;
+  text-shadow: 3px 3px 0 #00000080;
   max-width: 70vw;
   margin: auto;
 }
@@ -116,7 +116,7 @@ input::placeholder {
 
 .modal-container {
   width: 300px;
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 20px 30px;
   background-color: #FFACAC;
   border-radius: 2px;

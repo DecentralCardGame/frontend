@@ -143,7 +143,7 @@ function uploadImg (file, saveCallback) {
 
   reader.onload = function (readerEvent) {
     var image = new Image()
-    image.onload = function (/*imageEvent*/) {
+    image.onload = function () {
       // Resize the image
       let canvas = document.createElement('canvas')
       let maxSize = 800

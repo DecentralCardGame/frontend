@@ -1,7 +1,7 @@
 import * as R from 'ramda'
 import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
-import { signTx, createWalletFromMnemonic } from '@tendermint/sig'
+import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 import { notify } from './utils.js'
 
