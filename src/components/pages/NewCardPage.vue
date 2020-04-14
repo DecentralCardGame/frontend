@@ -356,7 +356,6 @@ export default {
         newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Attack = this.model.attack
       } else if (this.model.type === 'Headquarter') {
-        newCard.model[this.model.type].UniqueName = this.model.name
         newCard.model[this.model.type].Abilities = []
       }
 
