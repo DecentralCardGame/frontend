@@ -183,7 +183,7 @@ export default {
             break
 
           // this is a terminal case, yes or no
-          case 'boolean':
+          case 'boolean': {
 
             this.writeNode('modalType', 'boolean')
             console.log('modalType: boolean')
@@ -203,14 +203,14 @@ export default {
 
             this.dialog = dialog
             break
-
+          }
           // this is a terminal case, specify an integer
           case 'integer':
 
             this.writeNode('modalType', 'integer')
             console.log('modalType: integer')
 
-            dialog = {
+            var dialog = {
               title: btn.type,
               description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
               type: 'integer',

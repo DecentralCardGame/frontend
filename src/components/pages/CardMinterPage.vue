@@ -17,13 +17,12 @@
 import * as R from 'ramda'
 import { saveAs } from 'file-saver'
 import * as svg1 from 'save-svg-as-png'
-import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 import { sampleCard, sampleImg } from '../utils.js'
 
 export default {
   name: 'CardMinter',
-  components: {CardComponent, ContentContainerComponent},
+  components: {CardComponent},
   data () {
     return {
       cards: [sampleCard],
@@ -144,7 +143,7 @@ function uploadImg (file, saveCallback) {
 
   reader.onload = function (readerEvent) {
     var image = new Image()
-    image.onload = function (imageEvent) {
+    image.onload = function (/*imageEvent*/) {
       // Resize the image
       let canvas = document.createElement('canvas')
       let maxSize = 800

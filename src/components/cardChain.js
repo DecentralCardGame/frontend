@@ -97,7 +97,7 @@ export function registerAccTx (http, alias) {
     'alias': alias
   }
 
-  txLoop.enqueue(_ => {
+  txLoop.enqueue(() => {
     return Promise.all([getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
       .then(responses => {
         let accData = responses[0]
@@ -110,7 +110,7 @@ export function registerAccTx (http, alias) {
 
         return broadcast(http, signedTx)
           .then(console.log)
-          .then(_ => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
+          .then(() => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
           .catch(() => {
             this.$notify({
               group: 'fail',
@@ -133,7 +133,7 @@ export function buyCardSchemeTx (http, maxBid) {
     'buyer': localStorage.address
   }
 
-  txLoop.enqueue(_ => {
+  txLoop.enqueue(() => {
     return Promise.all([getAccInfo(http, localStorage.address), http.post('cardservice/buy_card_scheme', reqBody)])
       .then(responses => {
         let accData = responses[0]
@@ -144,7 +144,7 @@ export function buyCardSchemeTx (http, maxBid) {
         let signedTx = sign(rawTx, accData, wallet)
 
         return broadcast(http, signedTx)
-          .then(_ => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
+          .then(() => { notify.success('EPIC WIN', 'You have successfully bought a card scheme.') })
           .catch(err => {
             console.error(err)
             if (err.response.data.error) {
@@ -189,7 +189,7 @@ export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) 
       }
     })
     .then(req => {
-      txLoop.enqueue(_ => {
+      txLoop.enqueue(() => {
         console.log('req:', req)
         return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
           .then(responses => {
@@ -228,7 +228,7 @@ export function voteCardTx (http, cardid, voteType) {
     'cardid': '' + cardid
   }
 
-  txLoop.enqueue(_ => {
+  txLoop.enqueue(() => {
     return Promise.all([getAccInfo(http, localStorage.address), voteCardGenerateTx(http, req)])
       .then(responses => {
         let accData = responses[0]
@@ -451,7 +451,7 @@ class BlockchainInterface {
       const transaction = this.queue[0]
       this.queue = R.drop(1, this.queue)
 
-      transaction().finally(_ => this.run())
+      transaction().finally(() => this.run())
     } else {
       this.isRunning = false
     }

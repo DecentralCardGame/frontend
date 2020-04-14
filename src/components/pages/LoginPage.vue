@@ -29,10 +29,9 @@
 
 <script>
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import CardComponent from '../CardComponent'
 export default {
   name: 'LoginPage',
-  components: {CardComponent, ContentContainerComponent},
+  components: {ContentContainerComponent},
   data () {
     return {
       loginError: null,

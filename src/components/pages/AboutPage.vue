@@ -10,10 +10,9 @@
 </template>
 
 <script>
-import ContentComponent from '@/components/ContentContainerComponent'
 export default {
   name: 'AboutPage',
-  components: {ContentComponent}
+  components: {}
 }
 </script>
 

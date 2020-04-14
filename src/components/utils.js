@@ -43,7 +43,7 @@ export function filterSelection (options) {
 
 export function filterProperties (options, target) {
   let found = {}
-  options.forEach((item, idx) => {
+  options.forEach((item/*, idx*/) => {
     if (item.description === target) {
       found = item
     }
