@@ -147,12 +147,10 @@
 
 <script>
 import * as R from 'ramda'
-import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '../CardComponent'
 import BuySchemeModal from '../BuySchemeModal.vue'
 import AbilityModal from '../AbilityModal.vue'
 import AbilityComponent from '../AbilityComponent.vue'
-import { saveAs } from 'file-saver'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
@@ -160,7 +158,7 @@ import { sampleImg, emptyCard, resolveParagraph, notify } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
-  components: {CardComponent, ContentContainerComponent, AbilityComponent, BuySchemeModal, AbilityModal},
+  components: {CardComponent, AbilityComponent, BuySchemeModal, AbilityModal},
   data () {
     return {
       cardSchema: Object,
@@ -364,7 +362,7 @@ export default {
 
       console.log(JSON.stringify(newCard.model))
 
-      saveContentToUnusedCardSchemeTx(this.$http, newCard, _ => {
+      saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
         localStorage.cardDraft = ''
         localStorage.cardImg = ''
         this.model = emptyCard
@@ -383,7 +381,7 @@ export default {
 
       reader.onload = function (readerEvent) {
         var image = new Image()
-        image.onload = function (imageEvent) {
+        image.onload = function () {
           // Resize the image
           let canvas = document.createElement('canvas')
           let maxSize = 800

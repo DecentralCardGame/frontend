@@ -14,7 +14,6 @@
 
 <script>
 import * as R from 'ramda'
-import ContentContainerComponent from '@/components/ContentContainerComponent'
 import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard } from '../cardChain.js'
 import { sampleImg } from '../utils.js'
@@ -23,7 +22,7 @@ const cardsPerPage = 4
 
 export default {
   name: 'GalleryPage',
-  components: {CardComponent, ContentContainerComponent},
+  components: {CardComponent},
   data () {
     return {
       cards: [],
@@ -73,7 +72,7 @@ export default {
     },
     fillPage () {
       Promise.all(R.times(this.getNextCard, cardsPerPage))
-        .catch(reqs => {
+        .catch(() => {
           R.all(x => x)([3, 3, 3, 3])
         })
     },

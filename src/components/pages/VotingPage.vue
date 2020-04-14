@@ -72,7 +72,7 @@ export default {
             console.log('voteRights:', this.voteRights)
 
             this.getNextCard()
-              .then(res => {
+              .then(() => {
                 this.showNextCard()
               })
             this.getNextCard()
