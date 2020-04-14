@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import $RefParser from 'json-schema-ref-parser'
 import Vue from 'vue'
-import vueNcform from '@ncform/ncform'
 import Notifications from 'vue-notification'
 import VueSwing from 'vue-swing'
 import VueCryptojs from 'vue-cryptojs'
@@ -24,7 +23,6 @@ const authAPI = axios.create({
 Vue.prototype.$http = base
 Vue.prototype.$hottub = authAPI
 
-Vue.use(vueNcform)
 Vue.use(Notifications)
 Vue.use(VueCryptojs)
 Vue.component('vue-swing', VueSwing)
