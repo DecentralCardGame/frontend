@@ -35,7 +35,7 @@ export default new Router({
     },
     {
       path: '/register',
-      name: 'Registrieren',
+      name: 'Register',
       component: RegisterPage
     },
     {

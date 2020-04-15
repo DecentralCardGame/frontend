@@ -29,8 +29,6 @@ export default {
       cardImgs: [sampleImg]
     }
   },
-  mounted () {
-  },
   methods: {
     bundleSVGs () {
       /*

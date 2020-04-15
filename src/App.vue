@@ -22,12 +22,6 @@ import PageFooter from '@/components/PageFooter'
 export default {
   name: 'App',
   components: {PageFooter, PageMenu, PageHeader},
-  data () {
-    return {
-    }
-  },
-  mounted () {
-  }
 }
 </script>
 

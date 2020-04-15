@@ -131,9 +131,7 @@
         <br>
         <button v-if="activeStep > 0" @click="activeStep--">back</button>
         <button v-if="activeStep < 4" @click="activeStep++">next</button>
-
       </div>
-
       <div class="col-visual">
         <CardComponent id="card" v-bind:model="model"
                        v-bind:active-step="activeStep"

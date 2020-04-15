@@ -36,7 +36,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import ContentContainerComponent from '@/components/ContentContainerComponent'
 import { registerAccTx, generateMnemonic } from '../cardChain.js'
 import { notify } from '../utils.js'

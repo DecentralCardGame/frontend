@@ -116,8 +116,6 @@ export default {
     ability: Object,
     abilities: Array
   },
-  mounted: () => {
-  },
   methods: {
     close () {
       this.$emit('close')
@@ -403,7 +401,6 @@ function shallowClone (obj) {
   }
   return clone
 }
-
 </script>
 
 <style>

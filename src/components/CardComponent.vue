@@ -251,8 +251,6 @@ export default {
       clicked: false
     }
   },
-  mounted: () => {
-  },
   computed: {
     viewBox () {
       if (!this.displayNotes) {
@@ -338,8 +336,6 @@ export default {
 </script>
 
 <style scoped>
-text-shadow: none;
-
 img {
   width: 100%;
   height: auto;
