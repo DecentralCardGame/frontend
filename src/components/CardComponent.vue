@@ -1,5 +1,5 @@
 <template id="theCardSvg">
-<svg @mouseenter="opaque = 0" @mouseleave="opaque = 1; clicked = false" @click="opaque = 1; if(clicked) {saveSingleCard()}; clicked = true" width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+<svg @mouseenter="cardmouseenter" @mouseleave="cardmouselave" @click="cardmouseclick" width="100%" height="100%" viewBox="0 0 154 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
     <!-- card image -->
     <g id="Ebene_2">
       <mask id="imgMask">
@@ -261,6 +261,20 @@ export default {
     }
   },
   methods: {
+    cardmouselave() {
+      this.opaque = 1;
+      this.clicked = false;
+    },
+    cardmouseclick() {
+      this.opaque = 1;
+      if (this.clicked) {
+        this.saveSingleCard()
+      }
+      this.clicked = true
+    },
+    cardmouseenter() {
+      this.opaque = 0;
+    },
     getType () {
       if (this.model.type === 'No Type' || !this.model.type) {
         return ''

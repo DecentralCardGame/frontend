@@ -178,7 +178,6 @@ export default {
 
   .modal-footer {
     border-top: 1px solid #eeeeee;
-    justify-content: flex;
   }
 
   .modal-body {
@@ -207,6 +206,5 @@ export default {
     background: #12D1D1;
     border: 1px solid #12D1D1;
     border-radius: 2px;
-    justify-content: flex;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="content">
-      <img class="logo" src="../assets/logo.svg">
+      <img alt="Crowd Control" class="logo" src="../assets/logo.svg">
       <ul>
         <li><router-link to="/about">The Game</router-link></li>
         <li><router-link to="/newcard">Card Creator</router-link></li>
@@ -55,10 +55,8 @@ export default {
       transform: skewX(-15deg);
       background-color: white;
       color: black;
-      padding: 0.6em;
       margin-top: 0.5em;
-      padding-left: 2em;
-      padding-right: 2em;
+      padding: 0.6em 2em;
     }
     &:hover {
       border-color: white;

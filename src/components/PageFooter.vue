@@ -38,7 +38,7 @@
           simply join our growing<br>
           Community. We would love<br>
             to here your voice.</p>
-          <img width="80%" align="center" src="../assets/logo.svg">
+          <img alt="Crowd Control" width="80%" src="../assets/logo.svg">
         </div>
       </div>
       <div class="footer-terms">
