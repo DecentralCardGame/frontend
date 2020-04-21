@@ -288,10 +288,10 @@ export default {
       }
     },
     getNerfedCost () {
-      if (R.isNil(this.model.cost.amount) || this.model.cost.amount < 0) {
+      if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
         return '-'
       }
-      let cost = Math.max(0, this.model.cost.amount + (this.model.nerflevel ? this.model.nerflevel : 0))
+      let cost = Math.max(0, this.model.costAmount + (this.model.nerflevel ? this.model.nerflevel : 0))
       return cost
     },
     tagLength () {

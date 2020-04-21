@@ -39,7 +39,7 @@
         <div v-if="activeStep == 1">
           <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
           <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
-          <select @change="saveDraft" v-model="model.cost.amount">
+          <select @change="saveDraft" v-model="model.costAmount">
             <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
           </select>
           <span v-if="model.type!=='Headquarter'">Ressources. </span><br>
@@ -184,9 +184,9 @@ export default {
           food: false,
           iron: false,
           mana: false,
-          energy: false,
-          amount: -1
+          energy: false
         },
+        costAmount: -1,
         health: 0,
         attack: 0
       },
@@ -318,11 +318,11 @@ export default {
             'Tags': this.model.tag,
             'Text': this.model.text,
             'CostType': {
-              'Lumber': this.model.cost.lumber,
-              'Energy': this.model.cost.energy,
-              'Food': this.model.cost.food,
-              'Iron': this.model.cost.iron,
-              'Mana': this.model.cost.mana
+              'Lumber': this.model.cost.lumber == true,
+              'Energy': this.model.cost.energy == true,
+              'Food': this.model.cost.food == true,
+              'Iron': this.model.cost.iron == true,
+              'Mana': this.model.cost.mana == true
             }
           }
         },
@@ -332,11 +332,11 @@ export default {
       console.log('model', this.model)
 
       if (this.model.type !== 'Headquarter') {
-        if (R.isNil(this.model.cost.amount)) {
+        if (R.isNil(this.model.costAmount)) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
         }
-        newCard.model[this.model.type].CastingCost = this.model.cost.amount
+        newCard.model[this.model.type].CastingCost = this.model.costAmount
         
       }
       if (this.model.type !== 'Action') {
