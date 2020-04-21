@@ -21,7 +21,6 @@ const authAPI = axios.create({
 Vue.prototype.$http = base
 Vue.prototype.$hottub = authAPI
 
-
 Vue.use(Notifications)
 Vue.use(VueCryptojs)
 Vue.component('vue-swing', VueSwing)

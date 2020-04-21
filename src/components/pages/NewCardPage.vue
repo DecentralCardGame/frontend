@@ -9,7 +9,7 @@
     </div>
     <div class="creator">
       <div class="col-settings">
-        <div v-if="activeStep == 0"><br>
+        <div v-if="activeStep == 0">
           Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name"><br>
           My type is
           <select @change="saveDraft" v-model="model.type">
@@ -36,7 +36,7 @@
           </select>
           is my rarity.
         </div>
-        <div v-if="activeStep == 1"><br>
+        <div v-if="activeStep == 1">
           <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
           <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
           <select @change="saveDraft" v-model="model.cost.amount">
@@ -65,7 +65,7 @@
           </select>
           <span v-if="model.type!=='Action'"> damage. </span>
         </div>
-        <div v-if="activeStep == 2"><br>
+        <div v-if="activeStep == 2">
           <template>
             THIS IS NOT FUNCTIONAL YET
             <button
@@ -94,7 +94,7 @@
             />
           </div>
         </div>
-        <div v-if="activeStep == 3"><br>
+        <div v-if="activeStep == 3">
           Everybody needs a face,
           so do I, pls
           <input type="file" name="file" id="file" class="inputfile" @change="uploadImage" />
@@ -436,6 +436,7 @@ export default {
     display: flex;
     font-size: 0.6em;
     text-shadow: none;
+    margin-bottom: 1.5em;
   }
   .progress-item {
     cursor: pointer;
@@ -448,7 +449,6 @@ export default {
   .button-file {
     background-color: white;
     color: black;
-    font-size: 120%;
     padding: 0.1em 1em;
     box-shadow: 7px 7px 0 black;
     border: none;
@@ -457,6 +457,10 @@ export default {
 
   .inputfile {
     display: none;
+  }
+
+  .col-settings {
+    padding: 0 2em 0 0;
   }
 
   .ability {
