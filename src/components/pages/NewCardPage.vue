@@ -355,6 +355,8 @@ export default {
         newCard.model[this.model.type].Attack = this.model.attack
       } else if (this.model.type === 'Headquarter') {
         newCard.model[this.model.type].Abilities = []
+        newCard.model[this.model.type].Growth = 0
+        newCard.model[this.model.type].Wisdom = 0      
       }
 
       console.log(JSON.stringify(newCard.model))
