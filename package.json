@@ -10,18 +10,10 @@
   },
   "dependencies": {
     "@tendermint/sig": "^0.4.1",
-<<<<<<< HEAD
-    "@vue/test-utils": "^1.0.0-beta.29",
-    "axios": "^0.18.0",
-    "bip39": "^3.0.2",
-    "buffer": "^5.5.0",
-    "cardobject": "DecentralCardGame/cardobject.git#v0.1.11",
-=======
     "cardobject": "DecentralCardGame/cardobject.git#v0.1.12",
     "axios": "^0.19.2",
     "bip39": "^3.0.2",
     "core-js": "^3.6.4",
->>>>>>> vue-upgrade
     "file-saver": "^2.0.2",
     "json-schema-ref-parser": "^8.0.0",
     "ramda": "^0.27.0",
