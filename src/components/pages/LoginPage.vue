@@ -29,10 +29,9 @@
 
 <script>
 import ContentContainerComponent from '@/components/ContentContainerComponent'
-import CardComponent from '../CardComponent'
 export default {
   name: 'LoginPage',
-  components: {CardComponent, ContentContainerComponent},
+  components: {ContentContainerComponent},
   data () {
     return {
       loginError: null,
@@ -78,5 +77,7 @@ export default {
 </script>
 
 <style scoped>
-
+input {
+  margin-bottom: 0.3em;
+}
 </style>

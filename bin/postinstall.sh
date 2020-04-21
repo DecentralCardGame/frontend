@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm -rf ./static/cardSchema
-cp -R ./node_modules/cardobject/schema ./static/cardSchema
+rm -rf ./public/cardSchema
+cp -R ./node_modules/cardobject/schema ./public/cardSchema

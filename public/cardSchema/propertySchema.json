@@ -1,0 +1,26 @@
+{
+	"attack": {
+		"$ref": "standards.json#/int"
+	},
+	"costSum": {
+		"$ref": "standards.json#/int"
+	},
+	"growth": {
+		"$ref": "standards.json#/int"
+	},
+	"health": {
+		"$ref": "standards.json#/int"
+	},
+	"name": {
+		"$ref": "standards.json#/string"
+	},
+	"costAmount": {
+		"$ref": "standards.json#/int"
+	},
+	"text": {
+		"$ref": "standards.json#/string"
+	},
+	"wisdom": {
+		"$ref": "standards.json#/int"
+	}
+}

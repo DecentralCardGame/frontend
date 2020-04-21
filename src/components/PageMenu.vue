@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="content">
-      <img class="logo" src="../assets/logo.svg">
+      <img alt="Crowd Control" class="logo" src="../assets/logo.svg">
       <ul>
         <li><router-link to="/about">The Game</router-link></li>
         <li><router-link to="/newcard">Card Creator</router-link></li>
@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   nav {
     background-color: #12d1d1ff;
     box-shadow: 0.5em 0.5em 0 #d61224ff;
@@ -43,6 +43,24 @@ export default {
 
   li {
     float: left;
+    a {
+      display: block;
+      color: white;
+      border: 0.2em solid transparent;
+      text-align: center;
+      padding: 1.2rem 1.2rem;
+      text-decoration: none;
+    }
+    &.exposed {
+      transform: skewX(-15deg);
+      background-color: white;
+      color: black;
+      margin-top: 0.5em;
+      padding: 0.6em 2em;
+    }
+    &:hover {
+      border-color: white;
+    }
   }
 
   .logo {
@@ -53,28 +71,5 @@ export default {
     -webkit-user-drag: none;
     width: 300px;
     height: 100%;
-  }
-
-  li a {
-    display: block;
-    color: white;
-    border: 0.2em solid transparent;
-    text-align: center;
-    padding: 1.2rem 1.2rem;
-    text-decoration: none;
-  }
-
-  li a.exposed {
-    transform: skewX(-15deg);
-    background-color: white;
-    color: black;
-    padding: 0.6em;
-    margin-top: 0.5em;
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-
-  li a:hover {
-    border-color: white;
   }
 </style>

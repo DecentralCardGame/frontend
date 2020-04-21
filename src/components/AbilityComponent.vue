@@ -14,14 +14,12 @@
       <div class="clickable-option" @click="showAbilityModal(ability, entry.btn, index)"> {{entry.btn.label}} </div>
       {{entry.post}}
     </div>
-
   </div>
 </template>
 
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
-import { } from './utils.js'
 
 export default {
   name: 'AbilityComponent',
@@ -36,10 +34,6 @@ export default {
     return {
       isAbilityModalVisible: false
     }
-  },
-  mounted: () => {
-  },
-  computed: {
   },
   methods: {
     showAbilityModal (ability, btn, index) {
@@ -183,12 +177,12 @@ export default {
             break
 
           // this is a terminal case, yes or no
-          case 'boolean':
+          case 'boolean': {
 
             this.writeNode('modalType', 'boolean')
             console.log('modalType: boolean')
 
-            let dialog = {
+            this.dialog = {
               title: btn.type,
               description: 'choose your destiny:',
               type: 'checkbox',
@@ -199,18 +193,16 @@ export default {
                 title: 'Yes',
                 description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
               }]
-            }
-
-            this.dialog = dialog
+            };
             break
-
+          }
           // this is a terminal case, specify an integer
           case 'integer':
 
             this.writeNode('modalType', 'integer')
             console.log('modalType: integer')
 
-            dialog = {
+            this.dialog = {
               title: btn.type,
               description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
               type: 'integer',
@@ -221,17 +213,15 @@ export default {
                 title: '',
                 description: ''
               },
-              {
-                name: 'LESS..',
-                schemaPath: [],
-                abilityPath: [],
-                title: '',
-                description: ''
-              }
+                {
+                  name: 'LESS..',
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: '',
+                  description: ''
+                }
               ]
             }
-
-            this.dialog = dialog
             break
 
           // this is a terminal case, enter a string or pick one if enums are present
@@ -243,7 +233,7 @@ export default {
 
               let strings = node.enum
 
-              dialog = {
+              this.dialog = {
                 title: btn.type,
                 description: 'pick one of the following:',
                 type: 'stringEnum',
@@ -252,7 +242,7 @@ export default {
               }
 
               for (let prop in strings) {
-                dialog.options.push({
+                this.dialog.options.push({
                   name: strings[prop],
                   schemaPath: [],
                   abilityPath: [],
@@ -261,13 +251,12 @@ export default {
                 })
               }
 
-              this.dialog = dialog
               break
             } else {
               this.writeNode('modalType', 'stringEnter')
               console.log('modalType: stringEnter')
 
-              dialog = {
+              this.dialog = {
                 title: btn.type,
                 description: 'please let me know:',
                 type: 'stringEnter',
@@ -280,8 +269,6 @@ export default {
                 }],
                 entries: []
               }
-
-              this.dialog = dialog
               break
             }
 

@@ -6,6 +6,8 @@
         <router-link class="exposed" to="/register"><button>Join</button></router-link>
 
         <p>this awesome community and have tons of fun.</p>
+        <div class="triangle-pre"></div>
+        <div class="square-pre"></div>
       </div>
     </div>
     <footer>
@@ -38,7 +40,7 @@
           simply join our growing<br>
           Community. We would love<br>
             to here your voice.</p>
-          <img width="80%" align="center" src="../assets/logo.svg">
+          <img alt="Crowd Control" width="80%" src="../assets/logo.svg">
         </div>
       </div>
       <div class="footer-terms">
@@ -136,6 +138,23 @@ export default {
     right: 0;
     border-top: 300px solid #f29121ff;
     border-left: 100px solid transparent;
+  }
+
+  .triangle-pre {
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 150px;
+    border-top: 60px solid #f29121ff;
+    border-left: 20px solid transparent;
+  }
+
+  .square-pre {
+    position: absolute;
+    width: 150px;
+    height: 52px;
+    right: 0;
+    background-color: #f29121ff;
   }
 
   .footer-menu {

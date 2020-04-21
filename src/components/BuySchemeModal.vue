@@ -1,5 +1,62 @@
+<template>
+  <transition name="modal-fade">
+    <div class="modal-backdrop">
+      <div class="modal"
+           role="dialog"
+           aria-labelledby="modalTitle"
+           aria-describedby="modalDescription"
+      >
+        <header
+                class="modal-header"
+                id="modalTitle"
+        >
+          <slot name="header">
+            Card Scheme Auction
+            <button
+                    type="button"
+                    class="btn-close"
+                    @click="close"
+                    aria-label="Close modal"
+            >
+              x
+            </button>
+          </slot>
+        </header>
+        <section
+                class="modal-body"
+                id="modalDescription"
+        >
+          <slot name="body">
+            Current price: {{currentPrice}}
+            <br>
+            You have: {{creditsAvailable}}
+          </slot>
+        </section>
+        <footer class="modal-footer">
+          <slot name="footer">
+            Your bid: &nbsp;
+            <input type='text'
+                   v-model="currentBid"
+                   :placeholder="[[ currentBid ]]"
+                   @keypress="isNumber($event)"
+                   style="display: inline;color:black;height:50px;text-align: right"
+                   size=2
+            /> credits
+          </slot>
+          <button
+                  type="button"
+                  class="btn-teal"
+                  @click="buyCardScheme"
+                  aria-label="Close modal">
+            BUY
+          </button>
+        </footer>
+      </div>
+    </div>
+  </transition>
+</template>
+
 <script>
-// import * as R from 'ramda'
 import { buyCardSchemeTx, getGameInfo, getAccInfo } from './cardChain.js'
 import { notify } from './utils.js'
 
@@ -70,63 +127,6 @@ export default {
   }
 }
 </script>
-<template>
-  <transition name="modal-fade">
-    <div class="modal-backdrop">
-      <div class="modal"
-        role="dialog"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDescription"
-      >
-        <header
-          class="modal-header"
-          id="modalTitle"
-        >
-          <slot name="header">
-            Card Scheme Auction
-            <button
-              type="button"
-              class="btn-close"
-              @click="close"
-              aria-label="Close modal"
-            >
-              x
-            </button>
-          </slot>
-        </header>
-        <section
-          class="modal-body"
-          id="modalDescription"
-        >
-          <slot name="body">
-            Current price: {{currentPrice}}
-          <br>
-            You have: {{creditsAvailable}}
-          </slot>
-        </section>
-        <footer class="modal-footer">
-          <slot name="footer">
-            Your bid: &nbsp;
-            <input type='text'
-              v-model="currentBid"
-              :placeholder="[[ currentBid ]]"
-              @keypress="isNumber($event)"
-              style="display: inline;color:black;height:50px;text-align: right"
-              size=2
-            /> credits
-          </slot>
-          <button
-              type="button"
-              class="btn-teal"
-              @click="buyCardScheme"
-              aria-label="Close modal">
-              BUY
-            </button>
-        </footer>
-      </div>
-    </div>
-  </transition>
-</template>
 
 <style>
   ::-webkit-input-placeholder { /* Edge */
@@ -178,7 +178,6 @@ export default {
 
   .modal-footer {
     border-top: 1px solid #eeeeee;
-    justify-content: flex;
   }
 
   .modal-body {
@@ -207,6 +206,5 @@ export default {
     background: #12D1D1;
     border: 1px solid #12D1D1;
     border-radius: 2px;
-    justify-content: flex;
   }
 </style>
