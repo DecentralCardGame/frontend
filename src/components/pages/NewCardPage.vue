@@ -310,12 +310,11 @@ export default {
         return
       }
 
-      // eslint-disable-next-line no-unused-vars
       let newCard = {
         model: {
           [this.model.type]: {
             'Name': this.model.name,
-            'Tags': this.model.tag,
+            'Tags': R.reject(R.isNil, this.model.tag),
             'Text': this.model.text,
             'CostType': {
               'Lumber': this.model.cost.lumber == true,
@@ -332,7 +331,7 @@ export default {
       console.log('model', this.model)
 
       if (this.model.type !== 'Headquarter') {
-        if (R.isNil(this.model.costAmount)) {
+        if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
         }

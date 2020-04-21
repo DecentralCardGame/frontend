@@ -26,7 +26,7 @@ export function parseCard (rawCard) {
       'effects': card.Effects,
       'tag': card.Tags,
       'text': card.Text,
-      'image': card.Image,
+      'image': b64DecodeUnicode(card.Image),
       'nerflevel': parseInt(card.Nerflevel)
     }
   } else {
