@@ -341,13 +341,14 @@ export default {
           return
         }
         newCard.model[this.model.type].CastingCost = this.model.cost.amount
-        newCard.model[this.model.type].Abilities = []
+        
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.health)) {
           notify.fail('No Health', 'Card has no health, please pick a number.')
           return
         }
+        newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Health = this.model.health
       }
       if (this.model.type === 'Entity') {
@@ -360,6 +361,19 @@ export default {
       } else if (this.model.type === 'Headquarter') {
         newCard.model[this.model.type].UniqueName = this.model.name
         newCard.model[this.model.type].Abilities = []
+      } else if (this.model.type === 'Action') {
+        newCard.model[this.model.type].Effects = []
+      }
+
+      if (!this.model.tag[0]) {
+        console.log('tags:', this.model.tag)
+        notify.fail('No Tags', 'Card has no Tag, please pick at least one tag.')
+        return
+      }
+      if (!this.model.text[0]) {
+        console.log('tags:', this.model.tag)
+        notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
+        return
       }
 
       console.log(JSON.stringify(newCard.model))
