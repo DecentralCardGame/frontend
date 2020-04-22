@@ -341,8 +341,6 @@ export default {
     },
     saveSingleCard () {
       let clickedCard = document.getElementById('theCardSvg')
-      console.log(clickedCard)
-      console.log('clicked: ', this.clicked)
       svg1.saveSvgAsPng(clickedCard, this.model.name + '.png', {scale: 5})
     }
   }

@@ -327,9 +327,6 @@ export default {
         },
         image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
-
-      console.log('model', this.model)
-
       if (this.model.type !== 'Headquarter') {
         if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
@@ -362,18 +359,13 @@ export default {
       }
 
       if (!this.model.tag[0]) {
-        console.log('tags:', this.model.tag)
         notify.fail('No Tags', 'Card has no Tag, please pick at least one tag.')
         return
       }
       if (!this.model.text[0]) {
-        console.log('tags:', this.model.tag)
         notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
       }
-       
-
-      console.log(JSON.stringify(newCard.model))
 
       saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
         localStorage.cardDraft = ''
@@ -386,7 +378,6 @@ export default {
       localStorage.cardDraft = JSON.stringify(this.model)
     },
     uploadImage (event) {
-      console.log(event)
       let that = this
       let file = event.target.files[0]
 
