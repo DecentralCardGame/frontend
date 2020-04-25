@@ -1,14 +1,16 @@
 {
-  "name": "frontend-upgrade",
+  "name": "CrowdControl",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "bin/postinstall.sh"
   },
   "dependencies": {
     "@tendermint/sig": "^0.4.1",
+    "cardobject": "DecentralCardGame/cardobject.git#v0.1.12",
     "axios": "^0.19.2",
     "bip39": "^3.0.2",
     "core-js": "^3.6.4",

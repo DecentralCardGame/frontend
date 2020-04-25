@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="550" v-bind:viewBox="viewBox" >
+  <svg xmlns="http://www.w3.org/2000/svg" width="550" v-bind:viewBox="viewBox" >
     <defs/>
     <defs>
       <clipPath>
@@ -341,8 +341,6 @@ export default {
 </script>
 
 <style scoped>
-text-shadow: none;
-
 img {
   width: 100%;
   height: auto;

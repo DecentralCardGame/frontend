@@ -18,6 +18,6 @@ export default {
 <style scoped>
 .hero {
   margin: 4em 0;
-  font-size: 24px;
+  text-shadow: 3px 3px 0 #00000080;
 }
 </style>

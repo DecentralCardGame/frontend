@@ -5,6 +5,9 @@
 	"costSum": {
 		"$ref": "standards.json#/int"
 	},
+	"growth": {
+		"$ref": "standards.json#/int"
+	},
 	"health": {
 		"$ref": "standards.json#/int"
 	},
@@ -17,7 +20,7 @@
 	"text": {
 		"$ref": "standards.json#/string"
 	},
-	"uniqueName": {
-		"$ref": "standards.json#/string"
+	"wisdom": {
+		"$ref": "standards.json#/int"
 	}
 }

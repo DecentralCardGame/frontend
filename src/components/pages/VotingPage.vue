@@ -33,8 +33,6 @@
 import * as R from 'ramda'
 import CardComponent from '../CardComponent'
 import VueSwing from 'vue-swing'
-
-// eslint-disable-next-line no-unused-vars
 import { parseCard, getCard, getVotableCards, voteCardTx } from '../cardChain.js'
 import { notify } from '../utils.js'
 

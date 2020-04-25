@@ -14,14 +14,12 @@
       <div class="clickable-option" @click="showAbilityModal(ability, entry.btn, index)"> {{entry.btn.label}} </div>
       {{entry.post}}
     </div>
-
   </div>
 </template>
 
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
-import { } from './utils.js'
 
 export default {
   name: 'AbilityComponent',
@@ -36,10 +34,6 @@ export default {
     return {
       isAbilityModalVisible: false
     }
-  },
-  mounted: () => {
-  },
-  computed: {
   },
   methods: {
     showAbilityModal (ability, btn, index) {

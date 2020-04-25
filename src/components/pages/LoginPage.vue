@@ -77,5 +77,7 @@ export default {
 </script>
 
 <style scoped>
-
+input {
+  margin-bottom: 0.3em;
+}
 </style>

@@ -7,9 +7,6 @@
     "Food": {
       "type": "boolean"
     },
-    "Generic": {
-      "type": "boolean"
-    },
     "Lumber": {
       "type": "boolean"
     },
