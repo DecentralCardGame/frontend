@@ -18,7 +18,7 @@ import * as R from 'ramda'
 import { saveAs } from 'file-saver'
 import * as svg1 from 'save-svg-as-png'
 import CardComponent from '@/components/CardComponent'
-import { sampleCard, sampleImg } from '../utils.js'
+import { sampleCard, sampleImg, uploadImg } from '../utils.js'
 
 export default {
   name: 'CardMinter',
@@ -31,32 +31,6 @@ export default {
   },
   methods: {
     bundleSVGs () {
-      /*
-      // alternate jpg/png based code
-      let that = this
-      var canvas = document.createElement('canvas');
-      canvas.width = 1530
-      canvas.height = 2400
-      let ctx = canvas.getContext('2d')
-
-      let cardids = R.map(x => 'card' + x, R.range(0, Math.min(9, that.cards.length)))
-      let canvases = []
-
-      cardids.forEach(function (id, index) {
-        canvases.push(htmlToImage.toCanvas(document.getElementById(id)).then(x => {
-          ctx.drawImage(x, 510 * (index % 3), 800 * Math.floor(index / 3))
-        }).catch(
-        console.error
-      ))
-
-      })
-      Promise.all(canvases)
-      .then(x => {
-        download(canvas, 'cards.jpg')
-      })
-      */
-
-      // old svg code
       let svgMain = document.createElement('svg')
       // svgMain.setAttribute('viewbox', '0 0 210 600')
       // svgMain.setAttribute('width', 210)
@@ -86,7 +60,7 @@ export default {
       let file = e.dataTransfer.files[0]
 
       if (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg') {
-        uploadImg(file, function (result) {
+        uploadImg(file, (result) => {
           that.cardImgs.splice(index, 1, result)
         })
       }
@@ -116,26 +90,25 @@ export default {
       reader.onloadend = function () {
         let newCards = JSON.parse(this.result)
 
-        that.cards = []
-        that.cardImgs = Array(newCards.length).fill(sampleImg)
-        // that.cardImgs.push({})
+        this.cards = []
+        this.cardImgs = Array(newCards.length).fill(sampleImg)
 
-        newCards.forEach(function (card) {
+        newCards.forEach(card => {
           that.cards.push(card)
         })
       }
       reader.readAsText(json)
 
       // read images
-      R.forEachObjIndexed(function (image, index) {
-        uploadImg(image, function (result) {
-          that.cardImgs.splice(index, 1, result)
+      R.forEachObjIndexed( (image, index) => {
+        uploadImg(image, (result) => {
+          this.cardImgs.splice(index, 1, result)
         })
       }, images)
     }
   }
 }
-
+/*
 function uploadImg (file, saveCallback) {
   const reader = new FileReader()
 
@@ -168,7 +141,7 @@ function uploadImg (file, saveCallback) {
   }
   reader.onerror = error => console.error(error)
   reader.readAsDataURL(file)
-}
+}*/
 </script>
 
 <style scoped>

@@ -28,9 +28,9 @@ export const notify = {
   })
 }
 
-export function uploadImg (event, callback) {
-  console.log(event)
-  let file = event.target.files[0]
+export function uploadImg (file, callback) {
+  //console.log(event)
+  //let file = event.target.files[0]
 
   const reader = new FileReader()
 
@@ -39,7 +39,7 @@ export function uploadImg (event, callback) {
     image.onload = function () {
       // Resize the image
       let canvas = document.createElement('canvas')
-      let maxSize = 800
+      let maxSize = 780
       let width = image.width
       let height = image.height
       if (height > maxSize) {
@@ -48,8 +48,8 @@ export function uploadImg (event, callback) {
       }
       // centering
       let widthAdjust = 0
-      if (width > 513) {
-        widthAdjust = (width - 513) / 2
+      if (width > 500) {
+        widthAdjust = (width - 500) / 2
       }
       canvas.width = width
       canvas.height = height

@@ -97,7 +97,7 @@
         <div v-if="activeStep == 3">
           Everybody needs a face,
           so do I, pls
-          <input type="file" name="file" id="file" class="inputfile" @change="uploadImage" />
+          <input type="file" name="file" id="file" class="inputfile" @change="inputFile" />
           <label for="file" class="button-file">Choose a file</label>
           My flavor is best expressed by
           the following sentences:
@@ -371,10 +371,11 @@ export default {
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)
     },
-    uploadImage (event) {
-      uploadImg(event, (x) => {
-        this.cardImageUrl = x
-        localStorage.cardImg = JSON.stringify(x)
+    inputFile (event) {
+      let file = event.target.files[0]
+      uploadImg(file, (result) => {
+        this.cardImageUrl = result
+        localStorage.cardImg = JSON.stringify(result)
       })
     }
   }
