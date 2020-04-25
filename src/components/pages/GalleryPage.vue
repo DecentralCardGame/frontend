@@ -2,7 +2,7 @@
   <div>
     <div class="gallery-view">
       <div v-for="(card, index) in cards" v-bind:key="index" width="75%">
-        <CardComponent v-bind:model="card" v-bind:imageURL="card.Image" v-bind:id="'card'+index" width="75%"></CardComponent>
+        <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index" width="75%"></CardComponent>
       </div>
       <div>
         <button v-show="currentId > 1" @click="prevPage">back</button>
