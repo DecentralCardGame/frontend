@@ -154,7 +154,7 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, emptyCard, resolveParagraph, notify } from '../utils.js'
+import { sampleImg, emptyCard, resolveParagraph, notify, uploadImg } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -373,45 +373,10 @@ export default {
       localStorage.cardDraft = JSON.stringify(this.model)
     },
     uploadImage (event) {
-      console.log(event)
-      let that = this
-      let file = event.target.files[0]
-
-      const reader = new FileReader()
-
-      reader.onload = function (readerEvent) {
-        var image = new Image()
-        image.onload = function () {
-          // Resize the image
-          let canvas = document.createElement('canvas')
-          let maxSize = 800
-          let width = image.width
-          let height = image.height
-          if (width > height) {
-            if (width > maxSize) {
-              height *= maxSize / width
-              width = maxSize
-            }
-          } else {
-            if (height > maxSize) {
-              width *= maxSize / height
-              height = maxSize
-            }
-          }
-          canvas.width = width
-          canvas.height = height
-          canvas.getContext('2d').drawImage(image, 0, 0, width, height)
-          let dataUrl = canvas.toDataURL('image/jpeg')
-          let saveCallback = function (x) {
-            that.cardImageUrl = x
-            localStorage.cardImg = JSON.stringify(x)
-          }
-          saveCallback(dataUrl)
-        }
-        image.src = readerEvent.target.result
-      }
-      reader.onerror = error => console.error(error)
-      reader.readAsDataURL(file)
+      uploadImg(event, (x) => {
+        this.cardImageUrl = x
+        localStorage.cardImg = JSON.stringify(x)
+      })
     }
   }
 }
