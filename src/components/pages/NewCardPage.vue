@@ -414,7 +414,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   select {
     background-color: transparent;
     border: 2px solid white;
@@ -437,6 +437,10 @@ export default {
     font-size: 0.6em;
     text-shadow: none;
     margin-bottom: 1.5em;
+
+    @media (max-width: 480px) {
+      flex-flow: column;
+    }
   }
   .progress-item {
     cursor: pointer;

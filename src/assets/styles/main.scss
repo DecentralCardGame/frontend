@@ -32,9 +32,12 @@ main {
   text-shadow: 3px 3px 0 #00000080;
   max-width: 70vw;
   margin: auto;
+}
 
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
+  main {
     max-width: 100%;
+    padding: 0.5em;
   }
 }
 
@@ -57,6 +60,15 @@ button:hover {
   line-height: 1.5em;
   display: grid;
   grid-template-columns: 2fr 1fr;
+}
+
+
+@media (max-width: 480px) {
+  .creator {
+    line-height: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 input {
