@@ -2,7 +2,10 @@
   <nav>
     <div class="content">
       <img alt="Crowd Control" class="logo" src="../assets/logo.svg">
-      <ul>
+      <div class="menu-button" v-on:click="displayMenu = !displayMenu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </div>
+      <ul v-bind:class="showMenuClass">
         <li><router-link to="/about">The Game</router-link></li>
         <li><router-link to="/newcard">Card Creator</router-link></li>
         <li><router-link to="/">Gallery</router-link></li>
@@ -16,7 +19,21 @@
 
 <script>
 export default {
-  name: 'PageMenu'
+  name: 'PageMenu',
+  data () {
+    return {
+      displayMenu: false
+    }
+  },
+  computed: {
+    showMenuClass () {
+      if (this.displayMenu) {
+        return ""
+      } else {
+        return "hide-menu"
+      }
+    }
+  },
 }
 </script>
 
@@ -102,7 +119,22 @@ export default {
 
     @media (max-width: 480px) {
       margin: 1em auto;
-      width: 50%;
+      width: 30%;
+    }
+  }
+
+  .menu-button {
+    @media (min-width: 480px) {
+      display: none;
+    }
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  .hide-menu {
+    @media (max-width: 480px) {
+      display: none;
     }
   }
 </style>
