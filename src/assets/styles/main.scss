@@ -17,6 +17,10 @@ body {
   line-height: 1.2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 }
 
 a {
@@ -28,6 +32,10 @@ main {
   text-shadow: 3px 3px 0 #00000080;
   max-width: 70vw;
   margin: auto;
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
 }
 
 button {

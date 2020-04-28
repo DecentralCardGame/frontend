@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .footer-container {
     margin-top: 1em;
   }
@@ -67,6 +67,10 @@ export default {
   footer {
     background-color: #12d1d1ff;
     text-shadow: 0.1em 0.1em 0 #0d9393ff;
+
+    @media (max-width: 480px) {
+      padding: 1em;
+    }
   }
 
   .pre-footer {
@@ -82,6 +86,10 @@ export default {
     justify-content: center;
     margin: auto;
     max-width: 80vw;
+    @media (max-width: 480px) {
+      max-width: 100%;
+      flex-flow: column;
+    }
   }
 
   .pre-footer-content p {
@@ -93,6 +101,11 @@ export default {
     font-weight: bolder;
     font-size: 3em;
     margin: -0.5em 0;
+
+    @media (max-width: 480px) {
+      margin: 0;
+      font-size: 2em;
+    }
   }
 
   .content {
@@ -102,6 +115,11 @@ export default {
     display: grid;
     width: 100%;
     grid-template-columns: 50% 50%;
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
   }
 
   .footer-terms {
@@ -109,6 +127,10 @@ export default {
     max-width: 70vw;
     width: 100%;
     padding-bottom: 2em;
+
+    @media (max-width: 480px) {
+      max-width: 100%;
+    }
   }
   .footer-terms h2 {
     font-size: 200%;
@@ -138,6 +160,10 @@ export default {
     right: 0;
     border-top: 300px solid #f29121ff;
     border-left: 100px solid transparent;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .triangle-pre {
@@ -147,6 +173,10 @@ export default {
     right: 150px;
     border-top: 60px solid #f29121ff;
     border-left: 20px solid transparent;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .square-pre {
@@ -155,6 +185,10 @@ export default {
     height: 52px;
     right: 0;
     background-color: #f29121ff;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .footer-menu {
