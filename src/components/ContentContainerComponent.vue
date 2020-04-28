@@ -11,10 +11,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .content {
   background-color: transparent;
   position: relative;
   padding: 1em;
+
+  @media (max-width: 480px) {
+    padding: 1em 0;
+  }
 }
 </style>
