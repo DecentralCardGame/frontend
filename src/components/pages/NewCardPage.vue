@@ -333,7 +333,7 @@ export default {
           return
         }
         newCard.model[this.model.type].CastingCost = this.model.costAmount
-        
+
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.health)) {
@@ -414,6 +414,7 @@ export default {
 
     @media (max-width: 480px) {
       flex-flow: column;
+      font-size: 1em;
     }
   }
   .progress-item {
