@@ -28,6 +28,41 @@ export const notify = {
   })
 }
 
+export function uploadImg (file, callback) {
+  //console.log(event)
+  //let file = event.target.files[0]
+
+  const reader = new FileReader()
+
+  reader.onload = function (readerEvent) {
+    var image = new Image()
+    image.onload = function () {
+      // Resize the image
+      let canvas = document.createElement('canvas')
+      let maxSize = 780
+      let width = image.width
+      let height = image.height
+      if (height > maxSize) {
+          width *= maxSize / height
+          height = maxSize
+      }
+      // centering
+      let widthAdjust = 0
+      if (width > 500) {
+        widthAdjust = (width - 500) / 2
+      }
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d').drawImage(image, -widthAdjust, 0, width, height)
+      let dataUrl = canvas.toDataURL('image/jpeg')
+      callback(dataUrl)
+    }
+    image.src = readerEvent.target.result
+  }
+  reader.onerror = error => console.error(error)
+  reader.readAsDataURL(file)
+}
+
 export function filterSelection (options) {
   let found = {}
   options.forEach((item, idx) => {
