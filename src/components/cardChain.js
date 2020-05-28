@@ -18,7 +18,13 @@ export function parseCard (rawCard) {
       'type': cardType[0],
       'health': card.Health || 0,
       'attack': card.Attack || 0,
-      'cost': card.CostType,
+      'cost': {
+        'lumber': card.CostType.Lumber,
+        'food': card.CostType.Food,
+        'iron': card.CostType.Iron,
+        'mana': card.CostType.Mana,
+        'energy': card.CostType.Energy
+      },
       'costAmount': card.CastingCost,
       'abilities': card.Abilities,
       'effects': card.Effects,
