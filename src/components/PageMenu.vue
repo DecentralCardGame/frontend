@@ -1,14 +1,19 @@
 <template>
   <nav>
     <div class="content">
-      <img alt="Crowd Control" class="logo" src="../assets/logo.svg">
-      <ul>
+      <router-link to="/" class="logo">
+        <img alt="Crowd Control" src="../assets/logo.svg">
+      </router-link>
+      <div class="menu-button" v-on:click="displayMenu = !displayMenu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </div>
+      <ul v-bind:class="showMenuClass">
         <li><router-link to="/about">The Game</router-link></li>
         <li><router-link to="/newcard">Card Creator</router-link></li>
         <li><router-link to="/">Gallery</router-link></li>
-        <li><router-link to="/vote">Voting</router-link></li>
-        <li v-if="!$store.getters.loggedIn" ><router-link to="/login">Login</router-link></li>
-        <li v-if="!$store.getters.loggedIn" ><router-link class="exposed" to="/register">Join</router-link></li>
+        <li v-if="$store.getters.loggedIn"><router-link to="/vote">Voting</router-link></li>
+        <li v-if="!$store.getters.loggedIn"><router-link to="/login">Login</router-link></li>
+        <li v-if="!$store.getters.loggedIn"><router-link class="exposed" to="/register">Join</router-link></li>
       </ul>
     </div>
   </nav>
@@ -16,23 +21,52 @@
 
 <script>
 export default {
-  name: 'PageMenu'
+  name: 'PageMenu',
+  data () {
+    return {
+      displayMenu: false
+    }
+  },
+  computed: {
+    showMenuClass () {
+      if (this.displayMenu) {
+        return ""
+      } else {
+        return "hide-menu"
+      }
+    }
+  },
 }
 </script>
 
 <style scoped lang="scss">
+  @import "src/assets/styles/variables";
+
   nav {
-    background-color: #12d1d1ff;
-    box-shadow: 0.5em 0.5em 0 #d61224ff;
+    background-color: $blue;
+    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $red;
     position: relative;
-    margin: 2em 5em;
+    margin: 2.5rem 5rem;
     transform: skewX(-15deg);
+
+    @media (max-width: 480px) {
+      transform: skewX(0);
+      margin: 0;
+    }
   }
+
   .content {
     transform: skewX(15deg);
     display: flex;
     flex-flow: row;
+
+    @media (max-width: 480px) {
+      transform: skewX(0);
+      display: flex;
+      flex-flow: column;
+    }
   }
+
   ul {
     width: auto;
     list-style-type: none;
@@ -43,23 +77,37 @@ export default {
 
   li {
     float: left;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+
     a {
+      padding: 1.5rem;
       display: block;
-      color: white;
-      border: 0.2em solid transparent;
+      color: $white;
       text-align: center;
-      padding: 1.2rem 1.2rem;
+      background: linear-gradient(to right, $white 50%, $blue 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      transition: all $animation-duration ease-out;
       text-decoration: none;
+      &:hover {
+        transition: all 0.1s;
+        border-color: $white;
+        background-position: left bottom;
+        color: $red;
+      }
     }
     &.exposed {
       transform: skewX(-15deg);
-      background-color: white;
-      color: black;
-      margin-top: 0.5em;
-      padding: 0.6em 2em;
-    }
-    &:hover {
-      border-color: white;
+      background-color: $white;
+      a {
+        color: $black;
+      }
+
+      @media (max-width: 480px) {
+        transform: skewX(0deg);
+      }
     }
   }
 
@@ -71,5 +119,26 @@ export default {
     -webkit-user-drag: none;
     width: 300px;
     height: 100%;
+
+
+    @media (max-width: 480px) {
+      margin: 1em auto;
+      width: 30%;
+    }
+  }
+
+  .menu-button {
+    @media (min-width: 480px) {
+      display: none;
+    }
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  .hide-menu {
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 </style>

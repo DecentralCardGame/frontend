@@ -15,9 +15,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import "src/assets/styles/variables";
+
 .hero {
-  margin: 4em 0;
-  text-shadow: 3px 3px 0 #00000080;
+  margin: 4rem 0;
+
+  @media (max-width: 480px) {
+    margin: 0;
+  }
 }
 </style>

@@ -25,6 +25,6 @@ export default {
 }
 </script>
 
-<style>
-  @import "assets/styles/main.scss";
+<style lang="sass">
+  @import "assets/styles/main.scss"
 </style>

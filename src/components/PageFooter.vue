@@ -59,20 +59,36 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import "src/assets/styles/variables";
+
   .footer-container {
-    margin-top: 1em;
+    margin-top: 1rem;
   }
 
   footer {
-    background-color: #12d1d1ff;
-    text-shadow: 0.1em 0.1em 0 #0d9393ff;
+    background-color: $blue;
+    // text-shadow: 0.1em 0.1em 0 #0d9393ff;
+    text-shadow: 0.1em 0.1em 0 darken($blue, 5%);
+
+    @media (max-width: 480px) {
+      padding: 1rem;
+    }
+
+    ::selection {
+      background-color: $red;
+      color: white;
+    }
+  }
+
+  img {
+    user-select: none;
   }
 
   .pre-footer {
-    padding: 0.3em;
-    background-color: #001433ff;
-    text-shadow: 1px 1px 0 #12d1d1ff;
+    padding: 0.5rem;
+    background-color: $dark-blue;
+    text-shadow: 0.1em 0.1em 0 darken($dark-blue, 5%);
   }
 
   .pre-footer-content {
@@ -82,36 +98,53 @@ export default {
     justify-content: center;
     margin: auto;
     max-width: 80vw;
+    @media (max-width: 480px) {
+      max-width: 100%;
+      flex-flow: column;
+    }
   }
 
   .pre-footer-content p {
-    padding: 0.2em;
-    margin: 0 1em;
+    margin: 0 1.5rem;
   }
 
   .pre-footer-content button {
-    font-weight: bolder;
-    font-size: 3em;
+    font-weight: $font-weight;
+    font-size: 3rem;
     margin: -0.5em 0;
+
+    @media (max-width: 480px) {
+      margin: 0;
+      font-size: 2em;
+    }
   }
 
   .content {
     margin: auto;
-    padding-top: 4em;
+    padding-top: 4rem;
     max-width: 70vw;
     display: grid;
     width: 100%;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
   }
 
   .footer-terms {
     margin: auto;
     max-width: 70vw;
     width: 100%;
-    padding-bottom: 2em;
+    padding-bottom: 2rem;
+
+    @media (max-width: 480px) {
+      max-width: 100%;
+    }
   }
   .footer-terms h2 {
-    font-size: 200%;
+    font-size: 2em;
   }
 
   ul.menu {
@@ -119,7 +152,7 @@ export default {
   }
 
   ul.menu a {
-    color: white;
+    color: $white;
     text-decoration: none;
   }
 
@@ -128,7 +161,7 @@ export default {
   }
 
   .menu h2 {
-    font-size: 200%;
+    font-size: 2em;
   }
 
   .triangle {
@@ -136,8 +169,12 @@ export default {
     width: 0;
     height: 0;
     right: 0;
-    border-top: 300px solid #f29121ff;
+    border-top: 300px solid $orange;
     border-left: 100px solid transparent;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .triangle-pre {
@@ -145,16 +182,24 @@ export default {
     width: 0;
     height: 0;
     right: 150px;
-    border-top: 60px solid #f29121ff;
+    border-top: 3.5rem solid #f29121ff;
     border-left: 20px solid transparent;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .square-pre {
     position: absolute;
     width: 150px;
-    height: 52px;
+    height: 3.5rem;
     right: 0;
     background-color: #f29121ff;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .footer-menu {
@@ -176,21 +221,21 @@ export default {
   .footer-menu li a {
     display: block;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1rem 1rem;
     text-decoration: none;
   }
 
   .other {
-    font-size: 200%;
+    font-size: 2em;
   }
 
   .other > img {
-    margin-top: 1em;
+    margin-top: 2rem;
   }
 
   .footer-copyright {
-    border-top: 1px solid white;
-    padding: 1em 0 1em 0;
+    border-top: $border-thickness solid $white;
+    padding: 1rem 0 1rem 0;
     text-align: center;
   }
 </style>
