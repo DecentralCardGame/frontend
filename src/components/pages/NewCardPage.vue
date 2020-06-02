@@ -1,11 +1,11 @@
 <template>
   <div class="card-generator-container">
     <div class="progress">
-      <div @click="activeStep = 0" class="progress-item">Name, Type, Tags and Rarity</div>
-      <div @click="activeStep = 1" class="progress-item">Costs and Properties</div>
-      <div @click="activeStep = 2" class="progress-item">Rulings and Abilities</div>
-      <div @click="activeStep = 3" class="progress-item">Style, Flavor and Notes</div>
-      <div @click="activeStep = 4" class="progress-item">Summary and Publish</div>
+      <div @click="activeStep = 0" v-bind:class="classStepPassed(0)">Name, Type, Tags and Rarity</div>
+      <div @click="activeStep = 1" v-bind:class="classStepPassed(1)">Costs and Properties</div>
+      <div @click="activeStep = 2" v-bind:class="classStepPassed(2)">Rulings and Abilities</div>
+      <div @click="activeStep = 3" v-bind:class="classStepPassed(3)">Style, Flavor and Notes</div>
+      <div @click="activeStep = 4" v-bind:class="classStepPassed(4)">Summary and Publish</div>
     </div>
     <div class="creator">
       <div class="col-settings">
@@ -383,6 +383,13 @@ export default {
         this.cardImageUrl = result
         localStorage.cardImg = JSON.stringify(result)
       })
+    },
+    classStepPassed (n) {
+      let exportClass = "progress-item";
+      if (this.activeStep > n) {
+        exportClass += " progress-item-active"
+      }
+      return exportClass
     }
   }
 }
@@ -423,6 +430,10 @@ export default {
     border: 4px solid white;
     padding: 0.2em;
     transform: skewX(-15deg);
+
+    &.progress-item-active {
+      background-color: rgba(255,255,255,0.3);
+    }
   }
 
   .button-file {
