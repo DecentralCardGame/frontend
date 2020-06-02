@@ -28,10 +28,8 @@
 </template>
 
 <script>
-import ContentContainerComponent from '@/components/ContentContainerComponent'
 export default {
   name: 'LoginPage',
-  components: {ContentContainerComponent},
   data () {
     return {
       loginError: null,

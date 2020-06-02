@@ -36,14 +36,12 @@
 </template>
 
 <script>
-import ContentContainerComponent from '@/components/ContentContainerComponent'
 import { registerAccTx, generateMnemonic } from '../cardChain.js'
 import { notify } from '../utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {
   name: 'RegisterPage',
-  components: {ContentContainerComponent},
   data () {
     return {
       alias: '',
