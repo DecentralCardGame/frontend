@@ -40,3 +40,21 @@ input {
 input::placeholder {
   color: lightgray;
 }
+
+input[type="checkbox"]  {
+  height: 25px;
+  width: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 2px solid $white;
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-color: $white;
+}
