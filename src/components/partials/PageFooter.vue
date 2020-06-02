@@ -3,51 +3,74 @@
     <div class="pre-footer">
       <div class="pre-footer-content">
         <p>Ok, ok I have read enough. I am ready to</p>
-        <router-link class="exposed" to="/register"><button>Join</button></router-link>
+        <router-link
+          class="exposed"
+          to="/register"
+        >
+          <button>Join</button>
+        </router-link>
 
         <p>this awesome community and have tons of fun.</p>
-        <div class="triangle-pre"></div>
-        <div class="square-pre"></div>
+        <div class="triangle-pre" />
+        <div class="square-pre" />
       </div>
     </div>
     <footer>
-      <div class="triangle"></div>
+      <div class="triangle" />
       <div class="content">
         <ul class="menu">
           <li>
-            <router-link to="/about"><h2>The Game</h2>
-            Rules, Ideas and historical Context.</router-link>
+            <router-link to="/about">
+              <h2>The Game</h2>
+              Rules, Ideas and historical Context.
+            </router-link>
           </li>
           <li>
-            <router-link to="/newcard"><h2>Card Creator</h2>
-              Get creative and rule the world.</router-link>
+            <router-link to="/newcard">
+              <h2>Card Creator</h2>
+              Get creative and rule the world.
+            </router-link>
           </li>
           <li>
-            <router-link to="/"><h2>Gallery</h2>
-              See what is out there.</router-link>
+            <router-link to="/">
+              <h2>Gallery</h2>
+              See what is out there.
+            </router-link>
           </li>
           <li>
-            <router-link to="/"><h2>Community</h2>
-              Get in touch. Not physical, thooo.</router-link>
+            <router-link to="/">
+              <h2>Community</h2>
+              Get in touch. Not physical, thooo.
+            </router-link>
           </li>
           <li>
-            <router-link to="/"><h2>About Us</h2>
-              We are pretty handsome.</router-link>
+            <router-link to="/">
+              <h2>About Us</h2>
+              We are pretty handsome.
+            </router-link>
           </li>
         </ul>
         <div class="other">
-          <p>Discuss the latest News or<br>
-          simply join our growing<br>
-          Community. We would love<br>
-            to here your voice.</p>
-          <img alt="Crowd Control" width="80%" src="../../assets/logo.svg">
+          <p>
+            Discuss the latest News or<br>
+            simply join our growing<br>
+            Community. We would love<br>
+            to here your voice.
+          </p>
+          <img
+            alt="Crowd Control"
+            width="80%"
+            src="../../assets/logo.svg"
+          >
         </div>
       </div>
       <div class="footer-terms">
         <h2>Terms and Conditions</h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
+          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+        </p>
       </div>
     </footer>
   </div>

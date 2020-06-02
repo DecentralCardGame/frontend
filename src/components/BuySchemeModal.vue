@@ -1,53 +1,56 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <div class="modal"
-           role="dialog"
-           aria-labelledby="modalTitle"
-           aria-describedby="modalDescription"
+      <div
+        class="modal"
+        role="dialog"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
       >
         <header
-                class="modal-header"
-                id="modalTitle"
+          id="modalTitle"
+          class="modal-header"
         >
           <slot name="header">
             Card Scheme Auction
             <button
-                    type="button"
-                    class="btn-close"
-                    @click="close"
-                    aria-label="Close modal"
+              type="button"
+              class="btn-close"
+              aria-label="Close modal"
+              @click="close"
             >
               x
             </button>
           </slot>
         </header>
         <section
-                class="modal-body"
-                id="modalDescription"
+          id="modalDescription"
+          class="modal-body"
         >
           <slot name="body">
-            Current price: {{currentPrice}}
+            Current price: {{ currentPrice }}
             <br>
-            You have: {{creditsAvailable}}
+            You have: {{ creditsAvailable }}
           </slot>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
             Your bid: &nbsp;
-            <input type='text'
-                   v-model="currentBid"
-                   :placeholder="[[ currentBid ]]"
-                   @keypress="isNumber($event)"
-                   style="display: inline;color:black;height:50px;text-align: right"
-                   size=2
-            /> credits
+            <input
+              v-model="currentBid"
+              type="text"
+              :placeholder="[[ currentBid ]]"
+              style="display: inline;color:black;height:50px;text-align: right"
+              size="2"
+              @keypress="isNumber($event)"
+            > credits
           </slot>
           <button
-                  type="button"
-                  class="btn-teal"
-                  @click="buyCardScheme"
-                  aria-label="Close modal">
+            type="button"
+            class="btn-teal"
+            aria-label="Close modal"
+            @click="buyCardScheme"
+          >
             BUY
           </button>
         </footer>
@@ -61,7 +64,7 @@ import { buyCardSchemeTx, getGameInfo, getAccInfo } from './cardChain.js'
 import { notify } from './utils.js'
 
 export default {
-  name: 'buySchemeModal',
+  name: 'BuySchemeModal',
   data () {
     return {
       currentPrice: -1,

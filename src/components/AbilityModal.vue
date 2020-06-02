@@ -1,79 +1,113 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <div class="modal"
+      <div
+        class="modal"
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
         <header
-          class="modal-header"
           id="modalTitle"
+          class="modal-header"
         >
           <slot name="header">
-            {{dialog.title}}
+            {{ dialog.title }}
             <button
               type="button"
               class="btn-close"
-              @click="close"
               aria-label="Close modal"
+              @click="close"
             >
               x
             </button>
           </slot>
         </header>
         <section
-          class="modal-body"
           id="modalDescription"
+          class="modal-body"
         >
           <slot name="body">
-            {{dialog.description}}
-          <br>
-            <div v-for="(option, index) in dialog.options" v-bind:key="index">
-
-              <input v-if="dialog.type==='multivalue'" type='text'
-                v-model="option.value" id="index"
-                placeholder="0" @keypress="isNumber($event)"
+            {{ dialog.description }}
+            <br>
+            <div
+              v-for="(option, index) in dialog.options"
+              :key="index"
+            >
+              <input
+                v-if="dialog.type==='multivalue'"
+                id="index"
+                v-model="option.value"
+                type="text"
+                placeholder="0"
                 style="display: inline;color:black;height:50px;text-align: right"
-                size=1
-              />
-
-              <input v-if="dialog.type==='checkbox'" type="checkbox"
-                v-model="option.value" id="index" :value="option.name"
+                size="1"
+                @keypress="isNumber($event)"
               >
 
-              <input v-if="dialog.type==='radio'" type="radio"
-                v-model="option.value" id="index" :value="option.name"
+              <input
+                v-if="dialog.type==='checkbox'"
+                id="index"
+                v-model="option.value"
+                type="checkbox"
+                :value="option.name"
               >
 
-              <input v-if="dialog.type==='stringEnum'" type="radio"
-                v-model="selectedString" id="index" :value="option.name"
+              <input
+                v-if="dialog.type==='radio'"
+                id="index"
+                v-model="option.value"
+                type="radio"
+                :value="option.name"
               >
 
-              <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px" placeholder="enter text"
+              <input
+                v-if="dialog.type==='stringEnum'"
+                id="index"
                 v-model="selectedString"
+                type="radio"
+                :value="option.name"
               >
 
-              <button v-if="dialog.type==='integerList'" type="enumbtn"
-                @click="arrayCount.splice(index, 1, arrayCount[index] + 1)" id="index">
-                {{arrayCount[index]}}
-              </button>
-
-              <button v-if="dialog.type==='integer'" type="integerbtn"
-                @click="selectedCount += 1 - 2 * index" id="index">
-                {{option.name}}
-              </button>
-
-              <input v-if="dialog.type==='root'" type="radio"
-                v-model="option.value" id="index" :value="option.name"
+              <input
+                v-if="dialog.type==='stringEnter'"
+                v-model="selectedString"
+                style="display: inline;color:black;height:50px"
+                placeholder="enter text"
               >
 
-              <label for="index">{{option.title}}</label>
+              <button
+                v-if="dialog.type==='integerList'"
+                id="index"
+                type="enumbtn"
+                @click="arrayCount.splice(index, 1, arrayCount[index] + 1)"
+              >
+                {{ arrayCount[index] }}
+              </button>
 
-              <span v-if="option.description"> - {{option.description}} </span>
+              <button
+                v-if="dialog.type==='integer'"
+                id="index"
+                type="integerbtn"
+                @click="selectedCount += 1 - 2 * index"
+              >
+                {{ option.name }}
+              </button>
+
+              <input
+                v-if="dialog.type==='root'"
+                id="index"
+                v-model="option.value"
+                type="radio"
+                :value="option.name"
+              >
+
+              <label for="index">{{ option.title }}</label>
+
+              <span v-if="option.description"> - {{ option.description }} </span>
             </div>
             <div>
-              <span v-if ="dialog.type==='integer'"> {{selectedCount}} </span>
+              <span v-if="dialog.type==='integer'"> {{ selectedCount }} </span>
             </div>
           </slot>
         </section>
@@ -83,12 +117,13 @@
             <br>
           </slot>
           <button
-              type="button"
-              class="btn-teal"
-              @click="addAbility"
-              aria-label="Close modal">
-              Add
-            </button>
+            type="button"
+            class="btn-teal"
+            aria-label="Close modal"
+            @click="addAbility"
+          >
+            Add
+          </button>
         </footer>
       </div>
     </div>
@@ -100,14 +135,7 @@ import * as R from 'ramda'
 import { filterSelection, resolveParagraph } from './utils.js' // filterProperties (currently removed, maybe forever?)
 
 export default {
-  name: 'modal',
-  data () {
-    return {
-      arrayCount: [0, 0, 0, 0, 0, 0],
-      selectedCount: 0,
-      selectedString: ''
-    }
-  },
+  name: 'Modal',
   props: {
     picked: Object,
     dialog: Object,
@@ -115,6 +143,13 @@ export default {
     currentNode: Object,
     ability: Object,
     abilities: Array
+  },
+  data () {
+    return {
+      arrayCount: [0, 0, 0, 0, 0, 0],
+      selectedCount: 0,
+      selectedString: ''
+    }
   },
   methods: {
     close () {
