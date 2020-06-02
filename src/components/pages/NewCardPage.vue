@@ -339,7 +339,6 @@ export default {
           return
         }
         newCard.model[this.model.type].CastingCost = this.model.costAmount
-
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.health)) {
