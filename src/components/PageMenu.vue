@@ -1,7 +1,9 @@
 <template>
   <nav>
     <div class="content">
-      <img alt="Crowd Control" class="logo" src="../assets/logo.svg">
+      <router-link to="/" class="logo">
+        <img alt="Crowd Control" src="../assets/logo.svg">
+      </router-link>
       <div class="menu-button" v-on:click="displayMenu = !displayMenu">
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </div>
@@ -42,7 +44,7 @@ export default {
 
   nav {
     background-color: $blue;
-    box-shadow: 0.5rem 0.5rem 0 $red;
+    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $red;
     position: relative;
     margin: 2.5rem 5rem;
     transform: skewX(-15deg);
@@ -75,22 +77,25 @@ export default {
 
   li {
     float: left;
-
     @media (max-width: 480px) {
       width: 100%;
     }
 
     a {
+      padding: 1.5rem;
       display: block;
       color: $white;
-      border: $border-thickness solid transparent;
       text-align: center;
-      padding: 1.2rem 1.2rem;
+      background: linear-gradient(to right, $white 50%, $blue 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      transition: all $animation-duration ease-out;
       text-decoration: none;
-      transition: all 0.1s;
       &:hover {
         transition: all 0.1s;
         border-color: $white;
+        background-position: left bottom;
+        color: $red;
       }
     }
     &.exposed {

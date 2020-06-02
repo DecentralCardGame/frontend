@@ -27,7 +27,7 @@ a {
 
 main {
   font-size: 32px;
-  text-shadow: 3px 3px 0 #00000080;
+  text-shadow: 0.1em 0.1em 0 #00000080;
   max-width: 70vw;
   margin: auto;
 }
@@ -39,6 +39,11 @@ main {
     max-width: 100%;
     padding: 0.5em;
   }
+}
+
+::selection {
+  background-color: $blue;
+  color: white;
 }
 
 @import "forms";

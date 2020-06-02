@@ -45,3 +45,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+// CUSTOM
+
+*:focus {
+  outline: none;
+}

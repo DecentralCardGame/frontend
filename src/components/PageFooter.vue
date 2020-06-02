@@ -74,6 +74,15 @@ export default {
     @media (max-width: 480px) {
       padding: 1rem;
     }
+
+    ::selection {
+      background-color: $red;
+      color: white;
+    }
+  }
+
+  img {
+    user-select: none;
   }
 
   .pre-footer {
