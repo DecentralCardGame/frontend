@@ -37,6 +37,6 @@ export default {
 }
 </script>
 
-<style lang="sass">
-  @import "assets/styles/main.scss"
+<style lang="scss">
+  @import "assets/styles/main.scss";
 </style>
