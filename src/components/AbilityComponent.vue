@@ -1,18 +1,27 @@
 <template>
   <div>
     <AbilityModal
-      ref="abilityModal"
       v-show="isAbilityModalVisible"
-      v-bind:dialog="dialog"
-      v-bind:currentNode="currentNode"
-      v-on:update:currentNode="currentNode = $event"
-      v-bind:ability="ability"
+      ref="abilityModal"
+      :dialog="dialog"
+      :current-node="currentNode"
+      :ability="ability"
+      @update:currentNode="currentNode = $event"
       @close="closeAbilityModal"
     />
-    <div v-for="(entry, index) in ability.interaction" class="ability" v-bind:key="index">
-      {{entry.pre}}
-      <div class="clickable-option" @click="showAbilityModal(ability, entry.btn, index)"> {{entry.btn.label}} </div>
-      {{entry.post}}
+    <div
+      v-for="(entry, index) in ability.interaction"
+      :key="index"
+      class="ability"
+    >
+      {{ entry.pre }}
+      <div
+        class="clickable-option"
+        @click="showAbilityModal(ability, entry.btn, index)"
+      >
+        {{ entry.btn.label }}
+      </div>
+      {{ entry.post }}
     </div>
   </div>
 </template>

@@ -3,5 +3,11 @@ module.exports = {
     webpackBundleAnalyzer: {
       openAnalyzer: false
     }
+  },
+  devServer: {
+    host: 'localhost',
+    watchOptions: {
+      poll: true
+    }
   }
 };

@@ -2,29 +2,43 @@
   <div>
     <h2>Card Voting</h2>
     <div class="voter">
-        <div class="box" v-if="votingActive">
-          <vue-swing
+      <div
+        v-if="votingActive"
+        class="box"
+      >
+        <vue-swing
+          :config="config"
+          class="card"
           @throwoutup="vote(1, 'fair_enough')"
           @throwoutright="vote(1, 'overpowered')"
           @throwoutleft="vote(1, 'underpowered')"
-          :config="config"
-          class="card">
-          <CardComponent width="50%" v-bind:model="currentCard" v-bind:imageURL="currentCard.image"></CardComponent>
-          </vue-swing>
-          <button @click="vote(1, 'fair_enough')">Fair Enough</button>
-          <button @click="vote(1, 'overpowered')">Overpowered</button>
-          <button @click="vote(1, 'underpowered')">Underpowered</button>
+        >
+          <CardComponent
+            width="50%"
+            :model="currentCard"
+            :image-u-r-l="currentCard.image"
+          />
+        </vue-swing>
+        <button @click="vote(1, 'fair_enough')">
+          Fair Enough
+        </button>
+        <button @click="vote(1, 'overpowered')">
+          Overpowered
+        </button>
+        <button @click="vote(1, 'underpowered')">
+          Underpowered
+        </button>
+      </div>
+      <div v-if="!votingActive">
+        <span>You cannot vote on cards.</span>
+        <div v-if="noMoreVotesLeft">
+          <span>You have already voted on all cards. Come back tomorrow to vote again.</span>
         </div>
-        <div v-if="!votingActive">
-          <span>You cannot vote on cards.</span>
-          <div v-if="noMoreVotesLeft">
-            <span>You have already voted on all cards. Come back tomorrow to vote again.</span>
-          </div>
-          <div v-if="unregistered">
-            <span>You are not registered. To vote on cards you have to register, press the Join button to register.</span>
-            <span>Afer registering it might take a few seconds until your account becomes active.</span>
-          </div>
+        <div v-if="unregistered">
+          <span>You are not registered. To vote on cards you have to register, press the Join button to register.</span>
+          <span>Afer registering it might take a few seconds until your account becomes active.</span>
         </div>
+      </div>
     </div>
   </div>
 </template>

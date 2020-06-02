@@ -1,67 +1,120 @@
 <template>
   <div class="card-generator-container">
     <div class="progress">
-      <div @click="activeStep = 0" class="progress-item">Name, Type, Tags and Rarity</div>
-      <div @click="activeStep = 1" class="progress-item">Costs and Properties</div>
-      <div @click="activeStep = 2" class="progress-item">Rulings and Abilities</div>
-      <div @click="activeStep = 3" class="progress-item">Style, Flavor and Notes</div>
-      <div @click="activeStep = 4" class="progress-item">Summary and Publish</div>
+      <div
+        :class="classStepPassed(0)"
+        @click="activeStep = 0"
+      >
+        Name, Type, Tags and Rarity
+      </div>
+      <div
+        :class="classStepPassed(1)"
+        @click="activeStep = 1"
+      >
+        Costs and Properties
+      </div>
+      <div
+        :class="classStepPassed(2)"
+        @click="activeStep = 2"
+      >
+        Rulings and Abilities
+      </div>
+      <div
+        :class="classStepPassed(3)"
+        @click="activeStep = 3"
+      >
+        Style, Flavor and Notes
+      </div>
+      <div
+        :class="classStepPassed(4)"
+        @click="activeStep = 4"
+      >
+        Summary and Publish
+      </div>
     </div>
     <div class="creator">
-      <div class="col-settings">
+      <div class="creator-text">
         <div v-if="activeStep == 0">
-          Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name"><br>
-          My type is
-          <select @change="saveDraft" v-model="model.type">
-            <option v-for="type in $cardSchema.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
-          </select>.<br>
-          People like to tag me as
-          <select @change="updateTags" v-model="model.tagDummy">
-            <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
-          </select>
-          <span v-if="model.tag && model.tag[0]"> , </span>
-          <select v-if="model.tag && model.tag[0]" @change="updateTags" v-model="model.tag[1]">
-            <option v-for="tag in getTags(1)" v-bind:key="tag"> {{ tag }} </option>
-          </select>
-          <span v-if="model.tag && model.tag[1]"> and </span>
-          <select v-if="model.tag && model.tag[1]" @change="updateTags
-          " v-model="model.tag[2]">
-            <option v-for="tag in getTags(2)" v-bind:key="tag"> {{ tag }} </option>
-          </select>
-          .<br>
-          <select @change="saveDraft">
-            <option>Common</option>
-            <option>Rare</option>
-            <option>Legendary</option>
-          </select>
-          is my rarity.
+          Hey, my Name is<br>
+          My type is<br>
+          People like to tag me as<br>
+          My rarity is
         </div>
         <div v-if="activeStep == 1">
           <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
           <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
-          <select @change="saveDraft" v-model="model.costAmount">
-            <option v-bind:key="n" v-for="n in getNumbers(0,30,0)" :value="n">{{n}}</option>
+          <select
+            v-model="model.costAmount"
+            @change="saveDraft"
+          >
+            <option
+              v-for="n in getNumbers(0,30,0)"
+              :key="n"
+              :value="n"
+            >
+              {{ n }}
+            </option>
           </select>
           <span v-if="model.type!=='Headquarter'">Ressources. </span><br>
           My classes are: <br>
-          <input @change="saveDraft" type="checkbox" v-model="model.cost.lumber">
+          <input
+            v-model="model.cost.lumber"
+            type="checkbox"
+            @change="saveDraft"
+          >
           <label for="checkbox"> Lumber </label> <br>
-          <input @change="saveDraft" type="checkbox" v-model="model.cost.food">
+          <input
+            v-model="model.cost.food"
+            type="checkbox"
+            @change="saveDraft"
+          >
           <label for="checkbox"> Food </label> <br>
-          <input @change="saveDraft" type="checkbox" v-model="model.cost.iron">
+          <input
+            v-model="model.cost.iron"
+            type="checkbox"
+            @change="saveDraft"
+          >
           <label for="checkbox"> Iron </label> <br>
-          <input @change="saveDraft" type="checkbox" v-model="model.cost.mana">
+          <input
+            v-model="model.cost.mana"
+            type="checkbox"
+            @change="saveDraft"
+          >
           <label for="checkbox"> Mana </label> <br>
-          <input @change="saveDraft" type="checkbox" v-model="model.cost.energy">
+          <input
+            v-model="model.cost.energy"
+            type="checkbox"
+            @change="saveDraft"
+          >
           <label for="checkbox"> Energy </label> <br>
           <span v-if="model.type==='Entity'"> I have an attack of</span>
-          <select v-if="model.type==='Entity'" @change="saveDraft" v-model="model.attack">
-            <option v-bind:key="n" v-for="n in getNumbers(0,32,0)" :value="n">{{n}}</option>
+          <select
+            v-if="model.type==='Entity'"
+            v-model="model.attack"
+            @change="saveDraft"
+          >
+            <option
+              v-for="n in getNumbers(0,32,0)"
+              :key="n"
+              :value="n"
+            >
+              {{ n }}
+            </option>
           </select>
           <span v-if="model.type==='Entity'"> and </span>
           <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for</span>
-          <select v-if="model.type!=='Action'" @change="saveDraft" v-model="model.health">
-            <option v-bind:key="n" v-for="n in getNumbers(0,32,0)" :value="n">{{n}}</option>
+          <select
+            v-if="model.type!=='Action'"
+            v-model="model.health"
+            @change="saveDraft"
+          >
+            <option
+              v-for="n in getNumbers(0,32,0)"
+              :key="n"
+              :value="n"
+            >
+              {{ n }}
+            </option>
           </select>
           <span v-if="model.type!=='Action'"> damage. </span>
         </div>
@@ -71,42 +124,66 @@
             <button
               type="button"
               class="btn"
-              @click="showAbilityModal('root')"> New Ability </button>
+              @click="showAbilityModal('root')"
+            >
+              New Ability
+            </button>
             use the flavor text to write down your abilities
             <AbilityModal
               v-if="isAbilityModalVisible"
-              v-bind:dialog="abilityDialog"
-              v-bind:options="abilityOptions"
-              v-bind:ability="ability"
-              v-bind:abilities="abilities"
-              v-bind:currentNode="currentNode"
-              v-on:update:currentNode="currentNode = $event"
+              :dialog="abilityDialog"
+              :options="abilityOptions"
+              :ability="ability"
+              :abilities="abilities"
+              :current-node="currentNode"
+              @update:currentNode="currentNode = $event"
               @close="closeAbilityModal"
             />
           </template>
-          <div v-bind:key="ability.ability" v-for="ability in abilities">
+          <div
+            v-for="ability in abilities"
+            :key="ability.ability"
+          >
             <AbilityComponent
-              v-bind:ability="ability"
-              v-bind:dialog="abilityDialog"
-              v-bind:abilities="abilities"
-              v-bind:currentNode="currentNode"
-              v-on:update:currentNode="currentNode = $event"
+              :ability="ability"
+              :dialog="abilityDialog"
+              :abilities="abilities"
+              :current-node="currentNode"
+              @update:currentNode="currentNode = $event"
             />
           </div>
         </div>
         <div v-if="activeStep == 3">
           Everybody needs a face,
           so do I, pls
-          <input type="file" name="file" id="file" class="inputfile" @change="inputFile" />
-          <label for="file" class="button-file">Choose a file</label>
+          <input
+            id="file"
+            type="file"
+            name="file"
+            class="inputfile"
+            @change="inputFile"
+          >
+          <label
+            for="file"
+            class="button-file"
+          >Choose a file</label>
           My flavor is best expressed by
           the following sentences:
-          <input @change="saveDraft" v-model="model.text" value="Card Name">.
+          <input
+            v-model="model.text"
+            value="Card Name"
+            @change="saveDraft"
+          >.
           I would like to give the
           council proper intel:
-          <input @change="saveDraft" v-model="model.notes" value="Card Name">.
+          <input
+            v-model="model.notes"
+            value="Card Name"
+            @change="saveDraft"
+          >.
         </div>
-        <div v-if="activeStep == 4"><br>
+        <div v-if="activeStep == 4">
+          <br>
           Uh, uh, uh. I like my looks,
           i like my feels, let us get some
           victorieeessss.
@@ -120,24 +197,106 @@
             <button
               type="button"
               class="btn"
-              @click="showBuySchemeModal"> Buy Card Scheme </button>
+              @click="showBuySchemeModal"
+            >
+              Buy Card Scheme
+            </button>
             <BuySchemeModal
               v-if="isBuySchemeModalVisible"
               @close="closeBuySchemeModal"
             />
           </template>
-          <button @click="saveSubmit()">Publish</button>
+          <button @click="saveSubmit()">
+            Publish
+          </button>
         </div>
-        <br>
-        <button v-if="activeStep > 0" @click="activeStep--">back</button>
-        <button v-if="activeStep < 4" @click="activeStep++">next</button>
+        <button
+          v-if="activeStep > 0"
+          @click="activeStep--"
+        >
+          back
+        </button>
+        <button
+          v-if="activeStep < 4"
+          @click="activeStep++"
+        >
+          next
+        </button>
       </div>
-      <div class="col-visual">
-        <CardComponent id="card" v-bind:model="model"
-                       v-bind:active-step="activeStep"
-                       v-bind:imageURL="cardImageUrl"
-                        v-bind:display-notes="true">
-        </CardComponent>
+      <div class="creator-input">
+        <div v-if="activeStep == 0">
+          <input
+            v-model="model.name"
+            value="Card Name"
+            @change="saveDraft"
+          >
+          <br>
+          <select
+            v-model="model.type"
+            @change="saveDraft"
+          >
+            <option
+              v-for="type in $cardSchema.oneOf"
+              :key="type.required[0]"
+            >
+              {{ type.required[0] }}
+            </option>
+          </select>
+          <br>
+          <select
+            v-model="model.tagDummy"
+            @change="updateTags"
+          >
+            <option
+              v-for="tag in getTags(0)"
+              :key="tag"
+            >
+              {{ tag }}
+            </option>
+          </select>
+          <span v-if="model.tag && model.tag[0]"> , </span>
+          <select
+            v-if="model.tag && model.tag[0]"
+            v-model="model.tag[1]"
+            @change="updateTags"
+          >
+            <option
+              v-for="tag in getTags(1)"
+              :key="tag"
+            >
+              {{ tag }}
+            </option>
+          </select>
+          <span v-if="model.tag && model.tag[1]" />
+          <select
+            v-if="model.tag && model.tag[1]"
+            v-model="model.tag[2]"
+            @change="updateTags
+            "
+          >
+            <option
+              v-for="tag in getTags(2)"
+              :key="tag"
+            >
+              {{ tag }}
+            </option>
+          </select>
+          <br>
+          <select @change="saveDraft">
+            <option>Common</option>
+            <option>Rare</option>
+            <option>Legendary</option>
+          </select>
+        </div>
+      </div>
+      <div class="creator-preview">
+        <CardComponent
+          id="card"
+          :model="model"
+          :active-step="activeStep"
+          :image-u-r-l="cardImageUrl"
+          :display-notes="true"
+        />
       </div>
     </div>
   </div>
@@ -193,6 +352,8 @@ export default {
       cardID: 0
     }
   },
+  computed: {
+  },
   mounted () {
     if (localStorage.cardDraft) {
       this.model = JSON.parse(localStorage.cardDraft)
@@ -200,8 +361,6 @@ export default {
     if (localStorage.cardImg) {
       this.cardImageUrl = JSON.parse(localStorage.cardImg)
     }
-  },
-  computed: {
   },
   methods: {
     showBuySchemeModal () {
@@ -382,34 +541,57 @@ export default {
         this.cardImageUrl = result
         localStorage.cardImg = JSON.stringify(result)
       })
+    },
+    classStepPassed (n) {
+      let exportClass = "progress-item";
+      if (this.activeStep > n) {
+        exportClass += " progress-item-active"
+      }
+      return exportClass
     }
   }
 }
 </script>
 
-<style scoped>
-  select {
-    background-color: transparent;
-    border: 2px solid white;
-    font-size: 1em;
-    color: white;
-    font-family: "Museo", sans-serif;
-  }
-
-  select option {
-    color: white;
-    background-color: red;
-  }
-
+<style scoped lang="scss">
   .creator {
+    line-height: 1.5em;
     text-shadow: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "creator-text creator-input creator-preview";
   }
+
+
+  @media (max-width: 480px) {
+    .creator {
+      line-height: 1.5em;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .creator-text {
+    grid-area: creator-text;
+    padding: 0 2em 0 0;
+  }
+
+  .creator-input { grid-area: creator-input; }
+
+  .creator-preview { grid-area: creator-preview; }
 
   .progress {
     display: flex;
-    font-size: 0.6em;
+    font-size: 1rem;
     text-shadow: none;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 480px) {
+      flex-flow: column;
+      font-size: 1em;
+    }
   }
   .progress-item {
     cursor: pointer;
@@ -417,6 +599,10 @@ export default {
     border: 4px solid white;
     padding: 0.2em;
     transform: skewX(-15deg);
+
+    &.progress-item-active {
+      background-color: rgba(255,255,255,0.3);
+    }
   }
 
   .button-file {
@@ -430,10 +616,6 @@ export default {
 
   .inputfile {
     display: none;
-  }
-
-  .col-settings {
-    padding: 0 2em 0 0;
   }
 
   .ability {

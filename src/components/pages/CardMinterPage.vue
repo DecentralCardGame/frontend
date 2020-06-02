@@ -1,13 +1,32 @@
 <template>
-  <div v-cloak @drop.prevent="dropIt" @dragover.prevent>
+  <div
+    v-cloak
+    @drop.prevent="dropIt"
+    @dragover.prevent
+  >
     What the hell is this? <br>
     Well, you can drop cards in json format here to display them and drop jpgs or pngs on the cards to give them images. If you are happy with the cards you can download by clicking on them or create a print sheet of 9 cards by clicking. Optimal resolution is 780 x 500 pixel.
     <button
-      type="button" class="btn" @click="bundleSVGs()">Download Print Sheet
+      type="button"
+      class="btn"
+      @click="bundleSVGs()"
+    >
+      Download Print Sheet
     </button>
     <div class="gallery-view">
-      <div v-for="(card, index) in cards" v-cloak @drop.prevent="addImage($event, index)" @dragover.prevent v-on:click="saveSingleCard(index)" v-bind:key="index">
-        <CardComponent v-bind:model="card" v-bind:imageURL="cardImgs[index]" v-bind:id="'card'+index"></CardComponent>
+      <div
+        v-for="(card, index) in cards"
+        v-cloak
+        :key="index"
+        @drop.prevent="addImage($event, index)"
+        @dragover.prevent
+        @click="saveSingleCard(index)"
+      >
+        <CardComponent
+          :id="'card'+index"
+          :model="card"
+          :image-u-r-l="cardImgs[index]"
+        />
       </div>
     </div>
   </div>
