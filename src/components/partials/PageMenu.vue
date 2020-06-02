@@ -2,7 +2,7 @@
   <nav>
     <div class="content">
       <router-link to="/" class="logo">
-        <img alt="Crowd Control" src="../assets/logo.svg">
+        <img alt="Crowd Control" src="../../assets/logo.svg">
       </router-link>
       <div class="menu-button" v-on:click="displayMenu = !displayMenu">
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "src/assets/styles/variables";
+  @import "../../assets/styles/variables";
 
   nav {
     background-color: $blue;

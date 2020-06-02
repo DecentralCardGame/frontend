@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import PageHeader from '@/components/PageHeader'
-import PageMenu from '@/components/PageMenu'
-import PageFooter from '@/components/PageFooter'
+import PageHeader from '@/components/partials/PageHeader'
+import PageMenu from '@/components/partials/PageMenu'
+import PageFooter from '@/components/partials/PageFooter'
 
 export default {
   name: 'App',

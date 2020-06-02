@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "src/assets/styles/variables";
+  @import "../../assets/styles/variables";
 
   header {
     background-color: $dark-blue;
