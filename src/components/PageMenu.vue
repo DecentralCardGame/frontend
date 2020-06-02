@@ -10,8 +10,8 @@
         <li><router-link to="/newcard">Card Creator</router-link></li>
         <li><router-link to="/">Gallery</router-link></li>
         <li v-if="$store.getters.loggedIn"><router-link to="/vote">Voting</router-link></li>
-        <li v-if="!$store.getters.loggedIn" class="exposed"><router-link to="/login">Login</router-link></li>
-        <li v-if="!$store.getters.loggedIn" class="exposed"><router-link class="exposed" to="/register">Join</router-link></li>
+        <li v-if="!$store.getters.loggedIn"><router-link to="/login">Login</router-link></li>
+        <li v-if="!$store.getters.loggedIn"><router-link class="exposed" to="/register">Join</router-link></li>
       </ul>
     </div>
   </nav>
@@ -38,11 +38,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "src/assets/styles/variables";
+
   nav {
-    background-color: #12d1d1ff;
-    box-shadow: 0.5em 0.5em 0 #d61224ff;
+    background-color: $blue;
+    box-shadow: 0.5rem 0.5rem 0 $red;
     position: relative;
-    margin: 2em 5em;
+    margin: 2.5rem 5rem;
     transform: skewX(-15deg);
 
     @media (max-width: 480px) {
@@ -80,25 +82,22 @@ export default {
 
     a {
       display: block;
-      color: white;
-      border: 0.2em solid transparent;
+      color: $white;
+      border: $border-thickness solid transparent;
       text-align: center;
       padding: 1.2rem 1.2rem;
       text-decoration: none;
-      transition: background-color 0.1s;
+      transition: all 0.1s;
       &:hover {
         transition: all 0.1s;
-        border-color: white;
-        &.exposed {
-          border-color: black;
-        }
+        border-color: $white;
       }
     }
     &.exposed {
       transform: skewX(-15deg);
-      background-color: white;
+      background-color: $white;
       a {
-        color: black;
+        color: $black;
       }
 
       @media (max-width: 480px) {

@@ -3,6 +3,14 @@ $font-family: "Roboto Slab", sans-serif; // Roboto Slab
 $font-weight: 700;
 $line-height: 1.2;
 
+$border-thickness: 2px;
+$border-thickness-bold: $border-thickness * 2;
+
+$black: black;
 $white: white;
-$red: red;
+$red: #d61224ff;
 $orange: #f29121ff;
+$blue: #12d1d1ff;
+$dark-blue: #001433ff;
+
+$skew: -15deg;

@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+@import "reset";
 @import "variables";
-
-* {
-  margin: 0;
-  padding: 0;
-}
 
 body {
   background: $orange url("assets/background.svg") no-repeat;
@@ -25,7 +21,7 @@ body {
 }
 
 a {
-  color: rgb(225, 224, 220); // ?
+  color: $white;
 }
 
 main {
