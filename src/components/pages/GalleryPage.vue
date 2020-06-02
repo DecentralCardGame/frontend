@@ -69,11 +69,10 @@ export default {
           let card = res.card
           if (card.Content) {
             this.cards.push(parseCard(card))
-            console.log('pushed: ', R.last(this.cards))
           } else if (!card.Owner) {
-            console.log('card without content and owner: ', res)
+            console.error('card without content and owner: ', res)
           } else {
-            console.log('card without content: ', res)
+            console.error('card without content: ', res)
           }
         })
         .catch(res => {
@@ -83,7 +82,6 @@ export default {
       this.currentId++
     },
     fillPage () {
-      console.log(this.currentId)
       if (this.pageId + cardsPerPage >= this.cardList.length) this.browsingForward = false
       else this.browsingForward = true
       if (this.pageId <= 0) this.browsingBackward = false
@@ -98,7 +96,6 @@ export default {
       this.fillPage()
     },
     prevPage () {
-      console.log('prevPage Id:', this.currentId)
       this.pageId -= cardsPerPage
       this.currentId = 0
       this.cards = []
