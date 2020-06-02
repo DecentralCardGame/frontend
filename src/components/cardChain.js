@@ -338,6 +338,30 @@ function handleGetCardCurryMe (res, cardId) {
   }
 }
 
+export function getCardList (http, type) {
+  if (type != 'scheme' && type != 'prototype' && type != 'counciled' && type != 'trial' && type != 'permanent' && type != '') {
+    throw new Error('CardList type invalid: ' + type)
+  }
+  return http.get('cardservice/cardList' + (type ? '/'+type : ''))
+    .catch(handleGetError)
+    .then(handleGetCardList(R.__, type))
+}
+
+const handleGetCardList = R.curry(handleGetCardListCurryMe)
+function handleGetCardListCurryMe (res, type) {
+  if (res.data.result === '') {
+    throw new Error('CardList Empty: ' + res)
+  }
+  if (!res.data.result) {
+    notify.fail('WTF', 'A proper cardList was not returned by the blockchain.')
+    throw new Error('CardList with type ' + type + ' did not return a proper result: ' + res)
+  } else {
+    return {
+      cardList: res.data.result
+    }
+  }
+}
+
 export function getVotableCards (http, address) {
   if (validAddress(address)) {
     return http.get('cardservice/votable_cards/' + address)

@@ -5,8 +5,8 @@
         <CardComponent v-bind:model="card" v-bind:imageURL="card.image" v-bind:id="'card'+index" width="75%"></CardComponent>
       </div>
       <div>
-        <button v-show="currentId > 1" @click="prevPage">back</button>
-        <button v-show="!forwardStop" @click="nextPage">next</button>
+        <button v-show="browsingBackward" @click="prevPage">back</button>
+        <button v-show="browsingForward" @click="nextPage">next</button>
       </div>
     </div>
   </div>
@@ -15,36 +15,47 @@
 <script>
 import * as R from 'ramda'
 import CardComponent from '@/components/CardComponent'
-import { parseCard, getCard } from '../cardChain.js'
+import { parseCard, getCard, getCardList } from '../cardChain.js'
 import { sampleImg } from '../utils.js'
 
-const cardsPerPage = 4
+const cardsPerPage = 2
 
 export default {
   name: 'GalleryPage',
   components: {CardComponent},
   data () {
     return {
+      pageId: 0,
+      currentId: 0,
+      cardList: [],
       cards: [],
       cardImgs: [],
       sampleImage: sampleImg,
       browsingForward: true,
-      currentId: 1,
-      pageStartId: 1,
-      forwardStop: false
+      browsingBackward: true,
     }
   },
   mounted () {
-    this.fillPage()
+    this.getPrototypeCardList()
+      .then(() => {
+        this.fillPage()
+      })
   },
   methods: {
     getSampleImg () {
       return sampleImg
     },
+    getPrototypeCardList () {
+      return getCardList(this.$http, 'prototype')
+        .then(res => {
+          this.cardList = res.cardList
+          console.log(this.cardList)
+        })
+    },
     getNextCard () {
-      if (this.currentId === 1 && !this.browsingForward) return
+      if (this.pageId + this.currentId >= this.cardList.length) return
 
-      getCard(this.$http, this.currentId)
+      getCard(this.$http, this.cardList[this.pageId + this.currentId])
         .then(res => {
           let card = res.card
           if (card.Content) {
@@ -54,44 +65,33 @@ export default {
             console.log('card without content and owner: ', res)
           } else {
             console.log('card without content: ', res)
-            this.getNextCard()
           }
         })
         .catch(res => {
-          // if (browsingForward) this.forwardStop = true
           console.error(res)
         })
 
-      if (this.browsingForward) {
-        this.currentId++
-      } else {
-        if (this.currentId > 1) {
-          this.currentId--
-        }
-      }
+      this.currentId++
     },
     fillPage () {
+      console.log(this.currentId)
+      if (this.pageId + cardsPerPage >= this.cardList.length) this.browsingForward = false
+      else this.browsingForward = true
+      if (this.pageId <= 0) this.browsingBackward = false
+      else this.browsingBackward = true
+
       Promise.all(R.times(this.getNextCard, cardsPerPage))
-        .catch(() => {
-          R.all(x => x)([3, 3, 3, 3])
-        })
     },
     nextPage () {
-      console.log('pageStartid: ', this.pageStartId, 'currentId:', this.currentId)
-
-      this.browsingForward = true
-      this.pageStartId = this.currentId
-
+      this.pageId += cardsPerPage
+      this.currentId = 0
       this.cards = []
       this.fillPage()
     },
     prevPage () {
-      console.log('pageid: ', this.pageStartId, 'currentId:', this.currentId)
-
-      this.browsingForward = false
-      this.pageStartId = this.currentId
-      this.forwardStop = false
-
+      console.log('prevPage Id:', this.currentId)
+      this.pageId -= cardsPerPage
+      this.currentId = 0
       this.cards = []
       this.fillPage()
     }
