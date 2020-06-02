@@ -27,9 +27,13 @@ button {
   border: none;
   cursor: pointer;
   position: relative;
+  transition: all $animation-duration ease-out;
   &:after {
     z-index: -1;
-    background-color: $white;
+    background: linear-gradient(to right, $red 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all $animation-duration ease-out;
     content: '';
     display: block;
     position: absolute;
@@ -43,7 +47,7 @@ button {
   &:hover {
     color: $white;
     &:after {
-      background-color: $red;
+      background-position: left bottom;
     }
   }
 }
