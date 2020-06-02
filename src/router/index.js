@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import GalleryPage from '@/components/pages/GalleryPage'
-import NewCardPage from '@/components/pages/NewCardPage'
-import AboutPage from '@/components/pages/AboutPage'
-import LoginPage from '@/components/pages/LoginPage'
-import RegisterPage from '@/components/pages/RegisterPage'
-import VotingPage from '../components/pages/VotingPage'
-import AccountPage from '../components/pages/AccountPage'
-import CardMinter from '../components/pages/CardMinterPage'
+const GalleryPage = () => import('@/components/pages/GalleryPage')
+const NewCardPage = () => import('@/components/pages/NewCardPage')
+const AboutPage = () => import('@/components/pages/AboutPage')
+const LoginPage = () => import('@/components/pages/LoginPage')
+const RegisterPage = () => import('@/components/pages/RegisterPage')
+const VotingPage = () => import('../components/pages/VotingPage')
+const AccountPage = () => import('../components/pages/AccountPage')
+const CardMinter = () => import('../components/pages/CardMinterPage')
 
 Vue.use(Router)
 
