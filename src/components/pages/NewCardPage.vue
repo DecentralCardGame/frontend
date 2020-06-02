@@ -8,33 +8,12 @@
       <div @click="activeStep = 4" v-bind:class="classStepPassed(4)">Summary and Publish</div>
     </div>
     <div class="creator">
-      <div class="col-settings">
-        <div v-if="activeStep == 0">
-          Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name"><br>
-          My type is
-          <select @change="saveDraft" v-model="model.type">
-            <option v-for="type in $cardSchema.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
-          </select>.<br>
-          People like to tag me as
-          <select @change="updateTags" v-model="model.tagDummy">
-            <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
-          </select>
-          <span v-if="model.tag && model.tag[0]"> , </span>
-          <select v-if="model.tag && model.tag[0]" @change="updateTags" v-model="model.tag[1]">
-            <option v-for="tag in getTags(1)" v-bind:key="tag"> {{ tag }} </option>
-          </select>
-          <span v-if="model.tag && model.tag[1]"> and </span>
-          <select v-if="model.tag && model.tag[1]" @change="updateTags
-          " v-model="model.tag[2]">
-            <option v-for="tag in getTags(2)" v-bind:key="tag"> {{ tag }} </option>
-          </select>
-          .<br>
-          <select @change="saveDraft">
-            <option>Common</option>
-            <option>Rare</option>
-            <option>Legendary</option>
-          </select>
-          is my rarity.
+      <div class="creator-text">
+      <div v-if="activeStep == 0">
+          Hey, my Name is<br>
+          My type is<br>
+          People like to tag me as<br>
+          My rarity is
         </div>
         <div v-if="activeStep == 1">
           <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
@@ -128,12 +107,39 @@
           </template>
           <button @click="saveSubmit()">Publish</button>
         </div>
-        <br>
         <button v-if="activeStep > 0" @click="activeStep--">back</button>
         <button v-if="activeStep < 4" @click="activeStep++">next</button>
       </div>
-      <div class="col-visual">
-        <CardComponent id="card" v-bind:model="model"
+      <div class="creator-input">
+        <div v-if="activeStep == 0">
+          <input @change="saveDraft" v-model="model.name" value="Card Name">
+          <br>
+          <select @change="saveDraft" v-model="model.type">
+            <option v-for="type in $cardSchema.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
+          </select>
+          <br>
+          <select @change="updateTags" v-model="model.tagDummy">
+            <option v-for="tag in getTags(0)" v-bind:key="tag"> {{ tag }} </option>
+          </select>
+          <span v-if="model.tag && model.tag[0]"> , </span>
+          <select v-if="model.tag && model.tag[0]" @change="updateTags" v-model="model.tag[1]">
+            <option v-for="tag in getTags(1)" v-bind:key="tag"> {{ tag }} </option>
+          </select>
+          <span v-if="model.tag && model.tag[1]"></span>
+          <select v-if="model.tag && model.tag[1]" @change="updateTags
+          " v-model="model.tag[2]">
+            <option v-for="tag in getTags(2)" v-bind:key="tag"> {{ tag }} </option>
+          </select>
+          <br>
+          <select @change="saveDraft">
+            <option>Common</option>
+            <option>Rare</option>
+            <option>Legendary</option>
+          </select>
+        </div>
+      </div>
+      <div class="creator-preview">
+      <CardComponent id="card" v-bind:model="model"
                        v-bind:active-step="activeStep"
                        v-bind:imageURL="cardImageUrl"
                         v-bind:display-notes="true">
@@ -396,28 +402,39 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  select {
-    background-color: transparent;
-    border: 2px solid white;
-    font-size: 1em;
-    color: white;
-    font-family: "Museo", sans-serif;
-  }
-
-  select option {
-    color: white;
-    background-color: red;
-  }
-
   .creator {
+    line-height: 1.5em;
     text-shadow: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "creator-text creator-input creator-preview";
   }
+
+
+  @media (max-width: 480px) {
+    .creator {
+      line-height: 1.5em;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .creator-text {
+    grid-area: creator-text;
+    padding: 0 2em 0 0;
+  }
+
+  .creator-input { grid-area: creator-input; }
+
+  .creator-preview { grid-area: creator-preview; }
 
   .progress {
     display: flex;
-    font-size: 0.6em;
+    font-size: 1rem;
     text-shadow: none;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5r em;
 
     @media (max-width: 480px) {
       flex-flow: column;
@@ -447,10 +464,6 @@ export default {
 
   .inputfile {
     display: none;
-  }
-
-  .col-settings {
-    padding: 0 2em 0 0;
   }
 
   .ability {
