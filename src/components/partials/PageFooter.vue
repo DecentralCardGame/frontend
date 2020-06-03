@@ -11,9 +11,9 @@
         </router-link>
 
         <p>this awesome community and have tons of fun.</p>
-        <div class="triangle-pre" />
-        <div class="square-pre" />
       </div>
+      <div class="triangle-pre" />
+      <div class="square-pre" />
     </div>
     <footer>
       <div class="triangle" />
@@ -109,7 +109,9 @@ export default {
   }
 
   .pre-footer {
-    padding: 0.5rem;
+    position: relative;
+    padding: $font-size * 0.5;
+    max-height: $font-size * 3;
     background-color: $dark-blue;
     text-shadow: 0.1em 0.1em 0 darken($dark-blue, 5%);
   }
@@ -204,8 +206,9 @@ export default {
     position: absolute;
     width: 0;
     height: 0;
+    top: 0;
     right: 150px;
-    border-top: 3.5rem solid #f29121ff;
+    border-top: $font-size * 3.14 solid #f29121ff;
     border-left: 20px solid transparent;
 
     @media (max-width: 480px) {
@@ -215,9 +218,12 @@ export default {
 
   .square-pre {
     position: absolute;
-    width: 150px;
-    height: 3.5rem;
+    width: 0;
+    height: 0;
     right: 0;
+    top: 0;
+    border-top: $font-size * 3.14 solid $orange;
+    border-left: 150px solid transparent;
     background-color: #f29121ff;
 
     @media (max-width: 480px) {
