@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import $RefParser from 'json-schema-ref-parser'
 const GalleryPage = () => import('@/components/pages/GalleryPage')
 const NewCardPage = () => import('@/components/pages/NewCardPage')
 const AboutPage = () => import('@/components/pages/AboutPage')
@@ -11,6 +12,29 @@ const CardMinter = () => import('../components/pages/CardMinterPage')
 
 Vue.use(Router)
 
+function fetchCardSchema(to, from, next) {
+  console.log("Test")
+  if(!Vue.prototype.$cardSchema) {
+    new Promise(
+      function (resolve, reject) {
+        $RefParser.dereference( '/cardSchema/cardSchema.json', (err, api) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(api)
+            console.log('cardSchema: ', api)
+          }
+        })
+      })
+      .then(schema => {
+        Vue.prototype.$cardSchema = schema
+        next()
+      })
+  } else {
+    next()
+  }
+}
+
 export default new Router({
   routes: [
     {
@@ -21,7 +45,8 @@ export default new Router({
     {
       path: '/newcard',
       name: 'New Card',
-      component: NewCardPage
+      component: NewCardPage,
+      beforeEnter: (to, from, next) => fetchCardSchema(to,from,next)
     },
     {
       path: '/about',
@@ -51,7 +76,8 @@ export default new Router({
     {
       path: '/cardminter',
       name: 'CardMinter',
-      component: CardMinter
+      component: CardMinter,
+      beforeEnter: (to, from, next) => fetchCardSchema(to,from,next)
     }
   ]
 })
