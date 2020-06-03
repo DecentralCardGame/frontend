@@ -13,7 +13,6 @@ const CardMinter = () => import('../components/pages/CardMinterPage')
 Vue.use(Router)
 
 function fetchCardSchema(to, from, next) {
-  console.log("Test")
   if(!Vue.prototype.$cardSchema) {
     new Promise(
       function (resolve, reject) {
@@ -38,7 +37,7 @@ function fetchCardSchema(to, from, next) {
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/gallery',
       name: 'Gallery',
       component: GalleryPage
     },
@@ -49,7 +48,7 @@ export default new Router({
       beforeEnter: (to, from, next) => fetchCardSchema(to,from,next)
     },
     {
-      path: '/about',
+      path: '/',
       name: 'About',
       component: AboutPage
     },
