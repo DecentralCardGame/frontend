@@ -10,20 +10,20 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 
-const base = axios.create({
+Vue.prototype.$http = axios.create({
   baseURL: process.env.VUE_APP_BLOCKCHAIN_API,
   localURL: 'localhost:1317'
 })
-const authAPI = axios.create({
+
+Vue.prototype.$hottub = axios.create({
   baseURL: process.env.VUE_APP_AUTH_API
 })
 
-Vue.prototype.$http = base
-Vue.prototype.$hottub = authAPI
-
 Vue.use(Notifications)
 Vue.use(VueCryptojs)
+
 Vue.component('vue-swing', VueSwing)
+
 function loadVue () {
     new Vue({
         router,

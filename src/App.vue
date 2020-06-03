@@ -32,7 +32,7 @@ import PageMenu from '@/components/partials/PageMenu'
 import PageFooter from '@/components/partials/PageFooter'
 
 export default {
-  name: 'App',
+  name: 'CrowdControlApp',
   components: {PageFooter, PageMenu, PageHeader},
 }
 </script>
