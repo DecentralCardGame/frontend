@@ -251,7 +251,7 @@
             v-model="model.text"
             value="Card Name"
             @change="saveDraft"
-          >.
+          >
         </div>
         <div
           v-if="activeStep == 4"
@@ -581,7 +581,7 @@ export default {
   .creator-input-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     gap: 1rem 1rem;
     grid-template-areas: ". ." ". .";
   }
