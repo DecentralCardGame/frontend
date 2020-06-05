@@ -1,5 +1,5 @@
 <template>
-  <content-container-component>
+  <div>
     <h2>Welcome back!</h2>
     <br>
     <p>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</p>
@@ -46,7 +46,7 @@
       </label><br>
       <!-- <span class="psw">Forgot <a href="#">password</a>?</span> -->
     </form>
-  </content-container-component>
+  </div>
 </template>
 
 <script>
