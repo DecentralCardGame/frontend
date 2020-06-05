@@ -44,7 +44,7 @@
       </div>
       <ul :class="showMenuClass">
         <li>
-          <router-link to="/about">
+          <router-link to="/">
             The Game
           </router-link>
         </li>
@@ -54,7 +54,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/">
+          <router-link to="/gallery">
             Gallery
           </router-link>
         </li>

@@ -32,11 +32,11 @@ import PageMenu from '@/components/partials/PageMenu'
 import PageFooter from '@/components/partials/PageFooter'
 
 export default {
-  name: 'App',
+  name: 'CrowdControlApp',
   components: {PageFooter, PageMenu, PageHeader},
 }
 </script>
 
-<style lang="sass">
-  @import "assets/styles/main.scss"
+<style lang="scss">
+  @import "assets/styles/main.scss";
 </style>
