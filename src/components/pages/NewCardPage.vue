@@ -167,17 +167,11 @@
             for="file"
             class="button-file"
           >Choose a file</label>
+          <br><br>
           My flavor is best expressed by
           the following sentences:
           <input
             v-model="model.text"
-            value="Card Name"
-            @change="saveDraft"
-          >.
-          I would like to give the
-          council proper intel:
-          <input
-            v-model="model.notes"
             value="Card Name"
             @change="saveDraft"
           >.
@@ -191,7 +185,14 @@
           thanks for creating and being
           part of the community.
           Be brave and publish me!
-          Or save my awesome looks for later purposes.
+          <br>
+          P.S. I would like to give the
+          council the following notes for this card:
+          <input
+            v-model="model.notes"
+            value="Card Name"
+            @change="saveDraft"
+          >.
           <br><br>
           <template>
             <button
