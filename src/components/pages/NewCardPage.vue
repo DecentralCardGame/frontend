@@ -1,35 +1,37 @@
 <template>
   <div class="card-generator-container">
-    <div class="progress">
-      <div
-        :class="classStepPassed(0)"
-        @click="activeStep = 0"
-      >
-        Name, Type, Tags and Rarity
-      </div>
-      <div
-        :class="classStepPassed(1)"
-        @click="activeStep = 1"
-      >
-        Costs and Properties
-      </div>
-      <div
-        :class="classStepPassed(2)"
-        @click="activeStep = 2"
-      >
-        Rulings and Abilities
-      </div>
-      <div
-        :class="classStepPassed(3)"
-        @click="activeStep = 3"
-      >
-        Style, Flavor and Notes
-      </div>
-      <div
-        :class="classStepPassed(4)"
-        @click="activeStep = 4"
-      >
-        Summary and Publish
+    <div class="progress-container">
+      <div class="progress">
+        <div
+                :class="classStepPassed(0)"
+                @click="activeStep = 0"
+        >
+          Name, Type, Tags and Rarity
+        </div>
+        <div
+                :class="classStepPassed(1)"
+                @click="activeStep = 1"
+        >
+          Costs and Properties
+        </div>
+        <div
+                :class="classStepPassed(2)"
+                @click="activeStep = 2"
+        >
+          Rulings and Abilities
+        </div>
+        <div
+                :class="classStepPassed(3)"
+                @click="activeStep = 3"
+        >
+          Style, Flavor and Notes
+        </div>
+        <div
+                :class="classStepPassed(4)"
+                @click="activeStep = 4"
+        >
+          Summary and Publish
+        </div>
       </div>
     </div>
     <div class="creator">
@@ -290,18 +292,21 @@
             </button>
           </div>
         </div>
-        <button
-          v-if="activeStep > 0"
-          @click="activeStep--"
-        >
-          back
-        </button>
-        <button
-          v-if="activeStep < 4"
-          @click="activeStep++"
-        >
-          next
-        </button>
+        <div class="creator-nav-container">
+          <button
+                  class="back"
+                  v-if="activeStep > 0"
+                  @click="activeStep--"
+          >
+            back
+          </button>
+          <button
+                  v-if="activeStep < 4"
+                  @click="activeStep++"
+          >
+            next
+          </button>
+        </div>
       </div>
       <div class="creator-preview">
         <CardComponent
@@ -560,6 +565,8 @@ export default {
       let exportClass = "progress-item";
       if (this.activeStep > n) {
         exportClass += " progress-item-active"
+      } if (this.activeStep === n) {
+        exportClass += " progress-item-current"
       }
       return exportClass
     }
@@ -568,6 +575,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "../../assets/styles/variables";
+
   .creator {
     line-height: 1.5em;
     text-shadow: none;
@@ -617,13 +626,21 @@ export default {
   .progress-item {
     cursor: pointer;
     margin: 0.3em;
-    border: 4px solid white;
+    border: 4px solid rgba(255,255,255,0.7);;
     padding: 0.2em;
     transform: skewX(-15deg);
 
     &.progress-item-active {
       background-color: rgba(255,255,255,0.3);
     }
+    &.progress-item-current {
+      border-color: $white;
+    }
+  }
+
+  .progress-container {
+    display: flex;
+    justify-content: center;
   }
 
   .inputfile {
@@ -635,12 +652,27 @@ export default {
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid white;
+    border: 2px solid $white;
     border-radius: 4px;
-    color: white;
+    color: $white;
     resize: vertical;
     background-color: transparent;
     font-size: 1em;
     font-family: "Museo", sans-serif;
+  }
+
+  .creator-nav-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    button.back {
+      color: $white;
+      text-decoration: underline;
+      &:after {
+        background: transparent;
+        box-shadow: none;
+      }
+    }
   }
 </style>
