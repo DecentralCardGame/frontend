@@ -64,7 +64,7 @@ export default {
     getNextCard () {
       if (this.pageId + this.currentId >= this.cardList.length) return
 
-      getCard(this.$http, this.cardList[this.pageId + this.currentId])
+      getCard(this.$http, this.cardList[this.cardList.length - 1 - this.pageId - this.currentId])
         .then(res => {
           let card = res.card
           if (card.Content) {

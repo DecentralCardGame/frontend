@@ -380,12 +380,21 @@ export function getVotableCards (http, address) {
 
 const handleGetVotableCards = R.curry(handleGetVotableCardsCurryMe)
 function handleGetVotableCardsCurryMe (res, address) {
+  // TODO check if it is possible to differentiate here between unregistered and no voting rights
   if (res.data.result === null) {
+    console.log('res',res)
     notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
     return {
       unregistered: true
     }
   } else {
+    if (res.data.result.unregistered == true) {
+      return res.data.result
+    }
+    else if (res.data.result.noVoteRights == true) {
+      return res.data.result
+    }
+    console.log('response',res)
     return {
       votables: res.data.result
     }

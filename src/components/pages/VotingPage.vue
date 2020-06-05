@@ -35,7 +35,7 @@
           <span>You have already voted on all cards. Come back tomorrow to vote again.</span>
         </div>
         <div v-if="unregistered">
-          <span>You are not registered. To vote on cards you have to register, press the Join button to register.</span>
+          <span>You are not registered. To vote on cards you have to register, press the Join button to register. </span>
           <span>Afer registering it might take a few seconds until your account becomes active.</span>
         </div>
       </div>
@@ -97,6 +97,10 @@ export default {
           console.log('no more voting rights')
         } else if (res.unregistered === true) {
           this.unregistered = true
+          notify.fail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
+        } else if (res.noVoteRights === true) {
+          this.noMoreVotesLeft = true
+          notify.fail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
         } else {
           this.votingActive = false
           console.error('getVotableCards returned non-readable data: ', res)
