@@ -18,7 +18,7 @@ button:hover {
 }
  */
 
-button {
+button, .button-file {
   z-index: 1;
   background-color: transparent;
   color: $black;

@@ -33,14 +33,81 @@
       </div>
     </div>
     <div class="creator">
-      <div class="creator-text">
-        <div v-if="activeStep == 0">
-          Hey, my Name is<br>
-          My type is<br>
-          People like to tag me as<br>
-          My rarity is
+      <div class="creator-input">
+        <div
+          v-if="activeStep == 0"
+          class="creator-input-container"
+        >
+          <span>Hey, my Name is</span>
+          <input
+            v-model="model.name"
+            value="Card Name"
+            @change="saveDraft"
+          >
+          <span>My type is</span>
+          <select
+            v-model="model.type"
+            @change="saveDraft"
+          >
+            <option
+              v-for="type in $cardSchema.oneOf"
+              :key="type.required[0]"
+            >
+              {{ type.required[0] }}
+            </option>
+          </select>
+          <span>People like to tag me as</span>
+          <div>
+            <select
+              v-model="model.tagDummy"
+              @change="updateTags"
+            >
+              <option
+                v-for="tag in getTags(0)"
+                :key="tag"
+              >
+                {{ tag }}
+              </option>
+            </select>
+            <span v-if="model.tag && model.tag[0]"> , </span>
+            <select
+              v-if="model.tag && model.tag[0]"
+              v-model="model.tag[1]"
+              @change="updateTags"
+            >
+              <option
+                v-for="tag in getTags(1)"
+                :key="tag"
+              >
+                {{ tag }}
+              </option>
+            </select>
+            <span v-if="model.tag && model.tag[1]" />
+            <select
+              v-if="model.tag && model.tag[1]"
+              v-model="model.tag[2]"
+              @change="updateTags
+              "
+            >
+              <option
+                v-for="tag in getTags(2)"
+                :key="tag"
+              >
+                {{ tag }}
+              </option>
+            </select>
+          </div>
+          <span>My rarity is</span>
+          <select @change="saveDraft">
+            <option>Common</option>
+            <option>Rare</option>
+            <option>Legendary</option>
+          </select>
         </div>
-        <div v-if="activeStep == 1">
+        <div
+          v-if="activeStep == 1"
+          class="creator-input-container"
+        >
           <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
           <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
           <select
@@ -55,79 +122,76 @@
               {{ n }}
             </option>
           </select>
-          <span v-if="model.type!=='Headquarter'">Ressources. </span><br>
-          My classes are: <br>
-          <input
-            v-model="model.cost.lumber"
-            type="checkbox"
-            @change="saveDraft"
-          >
-          <label for="checkbox"> Lumber </label> <br>
-          <input
-            v-model="model.cost.food"
-            type="checkbox"
-            @change="saveDraft"
-          >
-          <label for="checkbox"> Food </label> <br>
-          <input
-            v-model="model.cost.iron"
-            type="checkbox"
-            @change="saveDraft"
-          >
-          <label for="checkbox"> Iron </label> <br>
-          <input
-            v-model="model.cost.mana"
-            type="checkbox"
-            @change="saveDraft"
-          >
-          <label for="checkbox"> Mana </label> <br>
-          <input
-            v-model="model.cost.energy"
-            type="checkbox"
-            @change="saveDraft"
-          >
-          <label for="checkbox"> Energy </label> <br>
-          <span v-if="model.type==='Entity'"> I have an attack of</span>
-          <select
-            v-if="model.type==='Entity'"
-            v-model="model.attack"
-            @change="saveDraft"
-          >
-            <option
-              v-for="n in getNumbers(0,32,0)"
-              :key="n"
-              :value="n"
+          <span>My classes are:</span>
+          <div>
+            <input
+              v-model="model.cost.lumber"
+              type="checkbox"
+              @change="saveDraft"
             >
-              {{ n }}
-            </option>
-          </select>
-          <span v-if="model.type==='Entity'"> and </span>
-          <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for</span>
-          <select
-            v-if="model.type!=='Action'"
-            v-model="model.health"
-            @change="saveDraft"
-          >
-            <option
-              v-for="n in getNumbers(0,32,0)"
-              :key="n"
-              :value="n"
+            <label for="checkbox"> Lumber </label> <br>
+            <input
+              v-model="model.cost.food"
+              type="checkbox"
+              @change="saveDraft"
             >
-              {{ n }}
-            </option>
-          </select>
-          <span v-if="model.type!=='Action'"> damage. </span>
+            <label for="checkbox"> Food </label> <br>
+            <input
+              v-model="model.cost.iron"
+              type="checkbox"
+              @change="saveDraft"
+            >
+            <label for="checkbox"> Iron </label> <br>
+            <input
+              v-model="model.cost.mana"
+              type="checkbox"
+              @change="saveDraft"
+            >
+            <label for="checkbox"> Mana </label> <br>
+            <input
+              v-model="model.cost.energy"
+              type="checkbox"
+              @change="saveDraft"
+            >
+            <label for="checkbox"> Energy </label> <br>
+            <span v-if="model.type==='Entity'"> I have an attack of</span>
+            <select
+              v-if="model.type==='Entity'"
+              v-model="model.attack"
+              @change="saveDraft"
+            >
+              <option
+                v-for="n in getNumbers(0,32,0)"
+                :key="n"
+                :value="n"
+              >
+                {{ n }}
+              </option>
+            </select>
+            <span v-if="model.type==='Entity'"> and </span>
+            <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for</span>
+            <select
+              v-if="model.type!=='Action'"
+              v-model="model.health"
+              @change="saveDraft"
+            >
+              <option
+                v-for="n in getNumbers(0,32,0)"
+                :key="n"
+                :value="n"
+              >
+                {{ n }}
+              </option>
+            </select>
+            <span v-if="model.type!=='Action'"> damage. </span>
+          </div>
         </div>
-        <div v-if="activeStep == 2">
-          <template>
+        <div
+          v-if="activeStep == 2"
+          class="creator-input-container"
+        >
+          <div>
             THIS IS NOT FUNCTIONAL YET
-            <button
-              type="button"
-              class="btn"
-              @click="showAbilityModal('root')"
-            >
-              New Ability
-            </button>
             use the flavor text to write down your abilities
             <AbilityModal
               v-if="isAbilityModalVisible"
@@ -139,7 +203,14 @@
               @update:currentNode="currentNode = $event"
               @close="closeAbilityModal"
             />
-          </template>
+          </div>
+          <button
+            type="button"
+            class="btn"
+            @click="showAbilityModal('root')"
+          >
+            New Ability
+          </button>
           <div
             v-for="ability in abilities"
             :key="ability.ability"
@@ -153,9 +224,14 @@
             />
           </div>
         </div>
-        <div v-if="activeStep == 3">
-          Everybody needs a face,
-          so do I, pls
+        <div
+          v-if="activeStep == 3"
+          class="creator-input-container"
+        >
+          <span>
+            Everybody needs a face,
+            so do I, pls upload a file
+          </span>
           <input
             id="file"
             type="file"
@@ -167,49 +243,52 @@
             for="file"
             class="button-file"
           >Choose a file</label>
-          <br><br>
-          My flavor is best expressed by
-          the following sentences:
+          <span>
+            My flavor is best expressed by
+            the following sentences:
+          </span>
           <input
             v-model="model.text"
             value="Card Name"
             @change="saveDraft"
           >.
         </div>
-        <div v-if="activeStep == 4">
-          <br>
-          Uh, uh, uh. I like my looks,
-          i like my feels, let us get some
-          victorieeessss.
-          Seriously,
-          thanks for creating and being
-          part of the community.
-          Be brave and publish me!
-          <br>
-          P.S. I would like to give the
-          council the following notes for this card:
+        <div
+          v-if="activeStep == 4"
+          class="creator-input-container"
+        >
+          <span>
+            Uh, uh, uh. I like my looks,
+            i like my feels, let us get some
+            victorieeessss.
+            Seriously,
+            thanks for creating and being
+            part of the community.
+            Be brave and publish me!
+            P.S. I would like to give the
+            council the following notes for this card:
+          </span>
           <input
             v-model="model.notes"
             value="Card Name"
             @change="saveDraft"
-          >.
-          <br><br>
-          <template>
+          >
+          <div>
             <button
-              type="button"
-              class="btn"
-              @click="showBuySchemeModal"
+                    type="button"
+                    class="btn"
+                    @click="showBuySchemeModal"
             >
               Buy Card Scheme
             </button>
             <BuySchemeModal
-              v-if="isBuySchemeModalVisible"
-              @close="closeBuySchemeModal"
+                    v-if="isBuySchemeModalVisible"
+                    @close="closeBuySchemeModal"
             />
-          </template>
-          <button @click="saveSubmit()">
-            Publish
-          </button>
+            <button @click="saveSubmit()">
+              Publish
+            </button>
+          </div>
         </div>
         <button
           v-if="activeStep > 0"
@@ -223,72 +302,6 @@
         >
           next
         </button>
-      </div>
-      <div class="creator-input">
-        <div v-if="activeStep == 0">
-          <input
-            v-model="model.name"
-            value="Card Name"
-            @change="saveDraft"
-          >
-          <br>
-          <select
-            v-model="model.type"
-            @change="saveDraft"
-          >
-            <option
-              v-for="type in $cardSchema.oneOf"
-              :key="type.required[0]"
-            >
-              {{ type.required[0] }}
-            </option>
-          </select>
-          <br>
-          <select
-            v-model="model.tagDummy"
-            @change="updateTags"
-          >
-            <option
-              v-for="tag in getTags(0)"
-              :key="tag"
-            >
-              {{ tag }}
-            </option>
-          </select>
-          <span v-if="model.tag && model.tag[0]"> , </span>
-          <select
-            v-if="model.tag && model.tag[0]"
-            v-model="model.tag[1]"
-            @change="updateTags"
-          >
-            <option
-              v-for="tag in getTags(1)"
-              :key="tag"
-            >
-              {{ tag }}
-            </option>
-          </select>
-          <span v-if="model.tag && model.tag[1]" />
-          <select
-            v-if="model.tag && model.tag[1]"
-            v-model="model.tag[2]"
-            @change="updateTags
-            "
-          >
-            <option
-              v-for="tag in getTags(2)"
-              :key="tag"
-            >
-              {{ tag }}
-            </option>
-          </select>
-          <br>
-          <select @change="saveDraft">
-            <option>Common</option>
-            <option>Rare</option>
-            <option>Legendary</option>
-          </select>
-        </div>
       </div>
       <div class="creator-preview">
         <CardComponent
@@ -559,12 +572,19 @@ export default {
     line-height: 1.5em;
     text-shadow: none;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
-    gap: 1px 1px;
-    grid-template-areas: "creator-text creator-input creator-preview";
+    gap: 1rem 1rem;
+    grid-template-areas: "creator-input creator-preview";
   }
 
+  .creator-input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem 1rem;
+    grid-template-areas: ". ." ". .";
+  }
 
   @media (max-width: 480px) {
     .creator {
@@ -604,15 +624,6 @@ export default {
     &.progress-item-active {
       background-color: rgba(255,255,255,0.3);
     }
-  }
-
-  .button-file {
-    background-color: white;
-    color: black;
-    padding: 0.1em 1em;
-    box-shadow: 7px 7px 0 black;
-    border: none;
-    cursor: pointer;
   }
 
   .inputfile {
