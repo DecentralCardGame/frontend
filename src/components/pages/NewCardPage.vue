@@ -3,32 +3,32 @@
     <div class="progress-container">
       <div class="progress">
         <div
-                :class="classStepPassed(0)"
-                @click="activeStep = 0"
+          :class="classStepPassed(0)"
+          @click="activeStep = 0"
         >
           Name, Type, Tags and Rarity
         </div>
         <div
-                :class="classStepPassed(1)"
-                @click="activeStep = 1"
+          :class="classStepPassed(1)"
+          @click="activeStep = 1"
         >
           Costs and Properties
         </div>
         <div
-                :class="classStepPassed(2)"
-                @click="activeStep = 2"
+          :class="classStepPassed(2)"
+          @click="activeStep = 2"
         >
           Rulings and Abilities
         </div>
         <div
-                :class="classStepPassed(3)"
-                @click="activeStep = 3"
+          :class="classStepPassed(3)"
+          @click="activeStep = 3"
         >
           Style, Flavor and Notes
         </div>
         <div
-                :class="classStepPassed(4)"
-                @click="activeStep = 4"
+          :class="classStepPassed(4)"
+          @click="activeStep = 4"
         >
           Summary and Publish
         </div>
@@ -110,8 +110,14 @@
           v-if="activeStep == 1"
           class="creator-input-container"
         >
-          <span v-if="model.type!=='Headquarter'" class="creator-text">As I am quite awesome to get me rolling you need to invest:</span>
-          <span v-if="model.type==='Headquarter'" class="creator-text">As I am quite awesome I can grow to a maximum size of:</span>
+          <span
+            v-if="model.type!=='Headquarter'"
+            class="creator-text"
+          >As I am quite awesome to get me rolling you need to invest:</span>
+          <span
+            v-if="model.type==='Headquarter'"
+            class="creator-text"
+          >As I am quite awesome I can grow to a maximum size of:</span>
           <select
             v-model="model.costAmount"
             @change="saveDraft"
@@ -278,33 +284,34 @@
         </div>
         <div class="creator-nav-container">
           <button
-                  class="back"
-                  v-if="activeStep > 0"
-                  @click="activeStep--"
+            v-if="activeStep > 0"
+            class="back"
+            @click="activeStep--"
           >
             back
           </button>
           <button
-                  v-if="activeStep < 4"
-                  @click="activeStep++"
+            v-if="activeStep < 4"
+            @click="activeStep++"
           >
             next
           </button>
           <button
-                  v-if="activeStep == 4"
-                  type="button"
-                  class="btn"
-                  @click="showBuySchemeModal"
+            v-if="activeStep == 4"
+            type="button"
+            class="btn"
+            @click="showBuySchemeModal"
           >
             Buy Card Scheme
           </button>
           <BuySchemeModal
-                  v-if="isBuySchemeModalVisible"
-                  @close="closeBuySchemeModal"
+            v-if="isBuySchemeModalVisible"
+            @close="closeBuySchemeModal"
           />
           <button
-                  v-if="activeStep == 4"
-                  @click="saveSubmit()">
+            v-if="activeStep == 4"
+            @click="saveSubmit()"
+          >
             Publish
           </button>
         </div>

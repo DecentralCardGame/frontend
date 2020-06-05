@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     jwt: '',
-    mnemonic: ''
+    mnemonic: '',
+    loading: false
   },
   mutations: {
     logout (state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setUserMnemonic (state, mnemonic) {
       state.mnemonic = mnemonic
+    },
+    setLoading (state, loading) {
+      state.loading = loading
     }
   },
   getters: {

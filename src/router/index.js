@@ -9,11 +9,13 @@ const RegisterPage = () => import('@/components/pages/RegisterPage')
 const VotingPage = () => import('../components/pages/VotingPage')
 const AccountPage = () => import('../components/pages/AccountPage')
 const CardMinter = () => import('../components/pages/CardMinterPage')
+import store from "@/store/index"
 
 Vue.use(Router)
 
 function fetchCardSchema(to, from, next) {
   if(!Vue.prototype.$cardSchema) {
+    store.commit('setLoading', true)
     new Promise(
       function (resolve, reject) {
         $RefParser.dereference( '/cardSchema/cardSchema.json', (err, api) => {
@@ -27,6 +29,7 @@ function fetchCardSchema(to, from, next) {
       })
       .then(schema => {
         Vue.prototype.$cardSchema = schema
+        store.commit('setLoading', false)
         next()
       })
   } else {
