@@ -40,13 +40,13 @@
           v-if="activeStep == 0"
           class="creator-input-container"
         >
-          <span>Hey, my Name is</span>
+          <span class="creator-text">Hey, my Name is</span>
           <input
             v-model="model.name"
             value="Card Name"
             @change="saveDraft"
           >
-          <span>My type is</span>
+          <span class="creator-text">My type is</span>
           <select
             v-model="model.type"
             @change="saveDraft"
@@ -58,7 +58,7 @@
               {{ type.required[0] }}
             </option>
           </select>
-          <span>People like to tag me as</span>
+          <span class="creator-text">People like to tag me as</span>
           <div>
             <select
               v-model="model.tagDummy"
@@ -99,7 +99,7 @@
               </option>
             </select>
           </div>
-          <span>My rarity is</span>
+          <span class="creator-text">My rarity is</span>
           <select @change="saveDraft">
             <option>Common</option>
             <option>Rare</option>
@@ -110,8 +110,8 @@
           v-if="activeStep == 1"
           class="creator-input-container"
         >
-          <span v-if="model.type!=='Headquarter'">As I am quite awesome to get me rolling you need to invest:</span>
-          <span v-if="model.type==='Headquarter'">As I am quite awesome I can grow to a maximum size of:</span>
+          <span v-if="model.type!=='Headquarter'" class="creator-text">As I am quite awesome to get me rolling you need to invest:</span>
+          <span v-if="model.type==='Headquarter'" class="creator-text">As I am quite awesome I can grow to a maximum size of:</span>
           <select
             v-model="model.costAmount"
             @change="saveDraft"
@@ -124,7 +124,7 @@
               {{ n }}
             </option>
           </select>
-          <span>My classes are:</span>
+          <span class="creator-text">My classes are:</span>
           <div>
             <input
               v-model="model.cost.lumber"
@@ -192,7 +192,7 @@
           v-if="activeStep == 2"
           class="creator-input-container"
         >
-          <div>
+          <div class="creator-text">
             THIS IS NOT FUNCTIONAL YET
             use the flavor text to write down your abilities
             <AbilityModal
@@ -230,7 +230,7 @@
           v-if="activeStep == 3"
           class="creator-input-container"
         >
-          <span>
+          <span class="creator-text">
             Everybody needs a face,
             so do I, pls upload a file
           </span>
@@ -245,7 +245,7 @@
             for="file"
             class="button-file"
           >Choose a file</label>
-          <span>
+          <span class="creator-text">
             My flavor is best expressed by
             the following sentences:
           </span>
@@ -259,7 +259,7 @@
           v-if="activeStep == 4"
           class="creator-input-container"
         >
-          <span>
+          <span class="creator-text">
             Uh, uh, uh. I like my looks,
             i like my feels, let us get some
             victorieeessss.
@@ -275,22 +275,6 @@
             value="Card Name"
             @change="saveDraft"
           >
-          <div>
-            <button
-                    type="button"
-                    class="btn"
-                    @click="showBuySchemeModal"
-            >
-              Buy Card Scheme
-            </button>
-            <BuySchemeModal
-                    v-if="isBuySchemeModalVisible"
-                    @close="closeBuySchemeModal"
-            />
-            <button @click="saveSubmit()">
-              Publish
-            </button>
-          </div>
         </div>
         <div class="creator-nav-container">
           <button
@@ -305,6 +289,23 @@
                   @click="activeStep++"
           >
             next
+          </button>
+          <button
+                  v-if="activeStep == 4"
+                  type="button"
+                  class="btn"
+                  @click="showBuySchemeModal"
+          >
+            Buy Card Scheme
+          </button>
+          <BuySchemeModal
+                  v-if="isBuySchemeModalVisible"
+                  @close="closeBuySchemeModal"
+          />
+          <button
+                  v-if="activeStep == 4"
+                  @click="saveSubmit()">
+            Publish
           </button>
         </div>
       </div>
@@ -581,9 +582,9 @@ export default {
     line-height: 1.5em;
     text-shadow: none;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
-    gap: 1rem 1rem;
+    gap: 2rem 2rem;
     grid-template-areas: "creator-input creator-preview";
   }
 
@@ -604,13 +605,8 @@ export default {
   }
 
   .creator-text {
-    grid-area: creator-text;
-    padding: 0 2em 0 0;
+    text-align: right;
   }
-
-  .creator-input { grid-area: creator-input; }
-
-  .creator-preview { grid-area: creator-preview; }
 
   .progress {
     display: flex;
