@@ -1,0 +1,6 @@
+{
+  "name": "Place-Stringproperty",
+  "children": ["NAME","TEXT"],
+  "type": "enum",
+  "description": "Chose an Place-Stringproperty"
+}

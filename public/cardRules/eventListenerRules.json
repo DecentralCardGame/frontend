@@ -1,0 +1,25 @@
+{
+  "name": "Eventlistener",
+  "children": {
+    "attackEventListener": {
+      "$ref": "attackEventListenerRules.json"
+    },
+    "blockEventListener": {
+      "$ref": "blockEventListenerRules.json"
+    },
+    "manipulationEventListener": {
+      "$ref": "manipulationEventListenerRules.json"
+    },
+    "productionEventListener": {
+      "$ref": "productionEventListenerRules.json"
+    },
+    "timeEventListener": {
+      "$ref": "timeEventListenerRules.json"
+    },
+    "zoneChangeEventListener": {
+      "$ref": "zoneChangeEventListenerRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose an Eventlistener type"
+}

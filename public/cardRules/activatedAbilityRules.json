@@ -1,0 +1,13 @@
+{
+  "name": "ActivatedAbility",
+  "children": {
+    "AbilityCost": {
+      "$ref": "abilityCostRules.json"
+    },
+    "Effects": {
+      "$ref": "effectsRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build an Activated Ability"
+}

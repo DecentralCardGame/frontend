@@ -1,0 +1,16 @@
+{
+  "name": "Stringmanipulation-Eventlistener",
+  "children": {
+    "property": {
+      "$ref": "cardStringPropertyRules.json"
+    },
+    "stringChangeMode": {
+      "$ref": "stringChangeModeRules.json"
+    },
+    "cardCondition": {
+      "$ref": "cardConditionRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build an Stringmanipulation-Eventlistener"
+}

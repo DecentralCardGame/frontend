@@ -1,0 +1,6 @@
+{
+  "name": "Place-Intproperty",
+  "children": ["COSTSUM","HEALTH"],
+  "type": "enum",
+  "description": "Chose a Place-Intproperty"
+}

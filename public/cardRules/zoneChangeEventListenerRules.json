@@ -1,0 +1,17 @@
+{
+  "name": "Zonechange-Eventlistener",
+  "children": {
+    "source": {
+      "$ref": "dynamicZoneRules.json"
+    },
+    "destination": {
+      "$ref": "zoneRules.json"
+    },
+    "cardCondition": {
+      "$ref": "cardConditionRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a Zonechange-Eventlistener"
+}

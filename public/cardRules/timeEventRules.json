@@ -1,0 +1,6 @@
+{
+  "name": "Time-Event",
+  "children": ["TICKEND","TICKSTART"],
+  "type": "enum",
+  "description": "Chose a Time-Event"
+}

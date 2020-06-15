@@ -1,0 +1,11 @@
+{
+  "name": "Triggered Ability",
+  "children": {
+    "cause": {
+      "$ref": "eventListenerRules.json"
+    },
+    "effects": {
+      "$ref": "effectsRules.json"
+    }
+  }
+}

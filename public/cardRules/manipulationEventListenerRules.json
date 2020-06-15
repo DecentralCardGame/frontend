@@ -1,0 +1,13 @@
+{
+  "name": "Manipulation-EventListener",
+  "children": {
+    "intManipulationEventListener": {
+      "$ref": "intManipulationEventListenerRules.json"
+    },
+    "stringManipulationEventListener": {
+      "$ref": "stringManipulationEventListenerRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose a Manipulation-Eventlistener type"
+}

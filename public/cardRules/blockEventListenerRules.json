@@ -1,0 +1,11 @@
+{
+  "name": "Block-Eventlistener",
+  "children": {
+    "entityCondition": {
+      "$ref": "entityConditionRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a Block-Eventlistener"
+}

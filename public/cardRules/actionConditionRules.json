@@ -1,0 +1,16 @@
+{
+  "name": "Action-Condition",
+  "children": {
+    "actionIntCondition": {
+      "$ref": "actionIntConditionRules.json"
+    },
+    "actionStringCondition": {
+      "$ref": "actionStringConditionRules.json"
+    },
+    "actionTagCondition": {
+      "$ref": "actionTagConditionRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose an Action-Condition type"
+}

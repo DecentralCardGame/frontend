@@ -1,0 +1,6 @@
+{
+  "name": "Textbased Comparator",
+  "children": ["EQUAL","CONTAINS"],
+  "type": "enum",
+  "description": "Chose a Textbased Comparator"
+}

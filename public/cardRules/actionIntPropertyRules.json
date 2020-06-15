@@ -1,0 +1,6 @@
+{
+  "name": "Action-Intproperty",
+  "children": ["COSTSUM"],
+  "type": "enum",
+  "description": "Chose an Action-Intproperty"
+}

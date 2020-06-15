@@ -1,0 +1,22 @@
+{
+  "name": "costType",
+  "children": {
+    "Energy": {
+      "$ref": "energyRules.json"
+    },
+    "food": {
+      "$ref": "foodRules.json"
+    },
+    "lumber": {
+      "$ref": "lumberRules.json"
+    },
+    "mana": {
+      "$ref": "manaRules.json"
+    },
+    "iron": {
+      "$ref": "ironRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Chose one or more costtypes"
+}

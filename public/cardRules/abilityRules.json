@@ -1,0 +1,13 @@
+{
+  "name": "Ability",
+  "children": {
+    "activatedAbility": {
+      "$ref": "activatedAbilityRules.json"
+    },
+    "triggeredAbility": {
+      "$ref": "triggeredAbilityRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose an ability type"
+}

@@ -42,8 +42,8 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
-              <input v-if="dialog.type==='radio'" type="radio"
-                v-model="option.value" id="index" :value="option.name"
+              <input v-if="dialog.type==='interface'" type="radio"
+                v-model="option.name" id="index" :value="option.name"
               >
 
               <input v-if="dialog.type==='stringEnum'" type="radio"
@@ -68,7 +68,7 @@
                 v-model="option.value" id="index" :value="option.name"
               >
 
-              <label for="index">{{option.title}}</label>
+              <label for="index">{{option.name}}</label>
 
               <span v-if="option.description"> - {{option.description}} </span>
             </div>
@@ -124,6 +124,9 @@ export default {
       console.log('type:', this.dialog.type)
 
       switch (this.dialog.type) {
+        case 'interface':
+          this.handleInterface()
+          break
         case 'root':
           this.handleCreateAbility()
           break
@@ -164,6 +167,11 @@ export default {
     writeNode (prop, data) {
       this.currentNode[prop] = data
       this.$emit('update:currentNode', this.currentNode)
+    },
+    handleInterface() {
+      console.log('dialog: ', this.dialog)
+
+
     },
     handleCheckboxInteraction () {
       console.log('dialog: ', this.dialog)
@@ -287,12 +295,22 @@ export default {
       console.log('ability after handleStringINteraction: ', this.ability)
     },
     handleCreateAbility () {
-      let selection = filterSelection(this.dialog.options)
+      let atPath = path => {
+        return R.path(path, this.$cardRules)
+      }
+
+      console.log('dialog:', this.dialog)
+      console.log('option.value', option.value)
+
+      this.abilities.push(shallowClone(R.path(this.currentNode.path, this.$cardSchema).properties))
+
+      // let selection = filterSelection(this.dialog.options)
       // let properties = filterProperties(this.options, selection.option.value)
-      let abilityName = resolveParagraph(selection.option.value)
+      // let abilityName = resolveParagraph(selection.option.value)
 
-      this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
+      // this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
 
+      /*
       let newAbility = {}
       newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.$cardSchema).properties) // R.clone(R.path(this.currentNode.path, this.$cardSchema))
       newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.$cardSchema).description, this.currentNode.path, [abilityName], this.$cardSchema)
@@ -306,6 +324,7 @@ export default {
 
       console.log('newAbility: ', newAbility)
       console.log('currentNode: ', this.currentNode)
+      */
     },
     isNumber: function (evt) {
       evt = evt || window.event

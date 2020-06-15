@@ -1,0 +1,6 @@
+{
+  "name": "Entity-Intproperty",
+  "children": ["ATTACK","COSTSUM","HEALTH"],
+  "type": "enum",
+  "description": "Chose an Entity-Intproperty"
+}

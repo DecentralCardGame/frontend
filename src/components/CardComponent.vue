@@ -279,7 +279,8 @@ export default {
       if (this.model.type === 'No Type' || !this.model.type) {
         return ''
       } else {
-        let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]
+        if(this.model.type == 'hq') this.model.type = 'headquarter'
+        let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]  // TODO: change rules
         if (type) {
           return type.properties.DisplayName.const.toUpperCase()
         } else {

@@ -1,0 +1,10 @@
+{
+  "name": "Abilities",
+  "children": {
+    "ability": {
+      "$ref": "abilityRules.json"
+    }
+  },
+  "type": "array",
+  "description": "Add some abilities"
+}

@@ -13,7 +13,7 @@
           Hey, my Name is <input @change="saveDraft" v-model="model.name" value="Card Name"><br>
           My type is
           <select @change="saveDraft" v-model="model.type">
-            <option v-for="type in $cardSchema.oneOf" v-bind:key="type.required[0]"> {{ type.required[0] }} </option>
+            <option v-for="type in $cardRules.children" v-bind:key="type.name"> {{ type.name }} </option>
           </select>.<br>
           People like to tag me as
           <select @change="updateTags" v-model="model.tagDummy">
@@ -152,14 +152,13 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, emptyCard, resolveParagraph, notify, uploadImg } from '../utils.js'
+import { sampleImg, emptyCard, notify, uploadImg } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
   components: {CardComponent, AbilityComponent, BuySchemeModal, AbilityModal},
   data () {
     return {
-      cardSchema: Object,
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
       activeStep: 0,
@@ -211,46 +210,55 @@ export default {
       this.isBuySchemeModalVisible = false
     },
     showAbilityModal (type) {
+      let atPath = path => {
+        return R.path(path, this.$cardRules)
+      }
+
+      let climbRulesTree = path => {
+
+        let ascending = true
+        while (ascending) {
+          if (R.keys(atPath(path)).length === 1) {
+            path.push(R.keys(atPath(path))[0])
+          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
+            path.push('children')
+          } else {
+            ascending = false
+          }
+        }
+        return path
+      }
+
       this.isAbilityModalVisible = true
 
       if (type === 'root') {
         if (this.model.type === 'No Type') {
-          this.model.type = 'Entity'
+          notify.fail('No Type', 'Card has no type, please pick a type before setting abilities.')
+          this.isAbilityModalVisible = false
+          return
         }
 
-        var path = ['oneOf']
-        this.$cardSchema.oneOf.forEach((cardType, index) => {
-          if (cardType.properties[this.model.type]) {
-            path.push(index, 'properties', this.model.type, 'properties', 'Abilities', 'items', 'oneOf')
-            this.currentNode.path = path
+        let newAbility = {
+          path: ['children', this.model.type, 'children', this.model.type === 'action' ? 'effects' : 'abilities']
+        }
 
-            console.log('cardtype: ', cardType)
-            let options = cardType.properties[this.model.type].properties.Abilities.items.oneOf
-            console.log('options', options)
+        newAbility.path = climbRulesTree(newAbility.path)
 
-            console.log('path: ', this.currentNode.path)
+        console.log('postclimb', atPath(newAbility.path))
 
-            let dialog = {
-              title: 'New Ability',
-              description: 'Pick an ability type:',
-              type: 'root',
-              options: []
-            }
+        let options = atPath(newAbility.path)
 
-            options.forEach((option, index) => {
-              dialog.options.push({
-                name: option.description,
-                schemaPath: ['items', 'oneOf', index, 'properties', option.description],
-                abilityPath: [option.description],
-                title: option.title,
-                description: option.properties[resolveParagraph(option.description)].description
-              })
-            })
+        let dialog = {
+          title: 'New Ability',
+          description: atPath(R.dropLast(1, newAbility.path)).description,
+          type: 'root',
+          options: options,
+          path: newAbility.path
+        }
 
-            this.abilityOptions = options
-            this.abilityDialog = dialog
-          }
-        })
+        this.abilityOptions = options
+        this.abilityDialog = dialog
+          
       } else {
         console.log('modal type: ', type)
       }
@@ -269,10 +277,9 @@ export default {
       }
     },
     getTags (idx) {
-      if (this.$cardSchema.oneOf) {
+      if (this.$cardRules) {
         let usedTags = []
-        let allTags = this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum
-
+        let allTags = this.$cardRules.children.action.children.tags.children.tag.children
         if (this.model.tag[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.tag[idx], this.model.tag)

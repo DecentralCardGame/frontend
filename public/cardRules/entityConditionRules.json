@@ -1,0 +1,16 @@
+{
+  "name": "Entity-Condition",
+  "children": {
+    "entityIntCondition": {
+      "$ref": "entityIntConditionRules.json"
+    },
+    "entityStringCondition": {
+      "$ref": "entityStringConditionRules.json"
+    },
+    "entityTagCondition": {
+      "$ref": "entityTagConditionRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose an Entity-Condition"
+}

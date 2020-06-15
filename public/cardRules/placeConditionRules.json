@@ -1,0 +1,16 @@
+{
+  "name": "Place-Condition",
+  "children": {
+    "placeIntCondition": {
+      "$ref": "placeIntConditionRules.json"
+    },
+    "placeStringCondition": {
+      "$ref": "placeStringConditionRules.json"
+    },
+    "placeTagCondition": {
+      "$ref": "placeTagConditionRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose a Place-Condition"
+}

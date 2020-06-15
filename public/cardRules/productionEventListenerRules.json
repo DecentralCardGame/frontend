@@ -1,0 +1,10 @@
+{
+  "name": "Production-Eventlistener",
+  "children": {
+    "ressourceType": {
+      "$ref": "costTypeRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Production-Eventlistener"
+}

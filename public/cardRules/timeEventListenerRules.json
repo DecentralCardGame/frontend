@@ -1,0 +1,10 @@
+{
+  "name": "Time-Eventlistener",
+  "children": {
+    "TimeEvent": {
+      "$ref": "timeEventRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Time-Eventlistener"
+}

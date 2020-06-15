@@ -1,0 +1,16 @@
+{
+  "name": "Card-Condition",
+  "children": {
+    "actionCondition": {
+      "$ref": "actionConditionRules.json"
+    },
+    "entityCondition": {
+      "$ref": "entityConditionRules.json"
+    },
+    "placeCondition": {
+      "$ref": "placeConditionRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose a Card-Condition type"
+}

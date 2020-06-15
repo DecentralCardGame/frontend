@@ -1,0 +1,6 @@
+{
+  "name": "Action-Stringproperty",
+  "children": ["NAME","TEXT"],
+  "type": "enum",
+  "description": "Chose an Action-Stringproperty"
+}
