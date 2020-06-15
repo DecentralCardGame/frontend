@@ -37,9 +37,13 @@ export default {
   },
   methods: {
     showAbilityModal (ability, btn, index) {
+      console.log(this.dialog)
       // first set current node to clicked node
-      this.writeNode('interactionId', index)
-      let node = R.path(btn.schemaPath, this.$cardSchema)
+
+      //this.writeNode('interactionId', index)
+      //let node = R.path(btn.schemaPath, this.$cardSchema)
+      let node = {type: this.dialog.type}
+      index;
 
       console.log('entering showAbilityModal with btn: ', btn, ' and node: ', node)
 

@@ -305,8 +305,13 @@ export default {
 
       atPath(this.dialog.path)
 
+      let text = ''
+      R.keys(selection.option.children).forEach(entry => {
+        text += '§' + entry + ', '
+      })
+
       let newAbility = {
-        interaction: createInteraction('wenn sie das lesen, hat §marius versagt' ) 
+        interaction: createInteraction('Hier '+ text +' konfigurieren' ) 
       }
       newAbility[selection.index] = {
         path: this.dialog.path
