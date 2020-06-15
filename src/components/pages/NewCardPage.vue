@@ -76,7 +76,6 @@
             <AbilityModal
               v-if="isAbilityModalVisible"
               v-bind:dialog="abilityDialog"
-              v-bind:options="abilityOptions"
               v-bind:ability="ability"
               v-bind:abilities="abilities"
               v-bind:currentNode="currentNode"
@@ -164,7 +163,6 @@ export default {
       activeStep: 0,
       ability: {},
       abilities: [],
-      abilityOptions: {},
       currentNode: {init: 'yes'},
       abilityDialog: {},
       cardImageUrl: sampleImg,
@@ -215,7 +213,6 @@ export default {
       }
 
       let climbRulesTree = path => {
-
         let ascending = true
         while (ascending) {
           if (R.keys(atPath(path)).length === 1) {
@@ -228,6 +225,8 @@ export default {
         }
         return path
       }
+
+      console.log('abilities', this.abilities)
 
       this.isAbilityModalVisible = true
 
@@ -256,7 +255,6 @@ export default {
           path: newAbility.path
         }
 
-        this.abilityOptions = options
         this.abilityDialog = dialog
           
       } else {

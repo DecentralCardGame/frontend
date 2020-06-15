@@ -41,31 +41,27 @@
               <input v-if="dialog.type==='checkbox'" type="checkbox"
                 v-model="option.value" id="index" :value="option.name"
               >
-
-              <input v-if="dialog.type==='interface'" type="radio"
-                v-model="option.name" id="index" :value="option.name"
-              >
-
               <input v-if="dialog.type==='stringEnum'" type="radio"
                 v-model="selectedString" id="index" :value="option.name"
               >
-
               <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px" placeholder="enter text"
                 v-model="selectedString"
               >
-
               <button v-if="dialog.type==='integerList'" type="enumbtn"
                 @click="arrayCount.splice(index, 1, arrayCount[index] + 1)" id="index">
                 {{arrayCount[index]}}
               </button>
-
               <button v-if="dialog.type==='integer'" type="integerbtn"
                 @click="selectedCount += 1 - 2 * index" id="index">
                 {{option.name}}
               </button>
 
               <input v-if="dialog.type==='root'" type="radio"
-                v-model="option.value" id="index" :value="option.name"
+                v-model="option.selected" id="index" :value="option.name"
+              >
+
+              <input v-if="dialog.type==='interface'" type="radio"
+                v-model="option.selected" id="index" :value="option.name"
               >
 
               <label for="index">{{option.name}}</label>
@@ -97,7 +93,7 @@
 
 <script>
 import * as R from 'ramda'
-import { filterSelection, resolveParagraph } from './utils.js' // filterProperties (currently removed, maybe forever?)
+import { filterSelection } from './utils.js' 
 
 export default {
   name: 'modal',
@@ -170,6 +166,8 @@ export default {
     },
     handleInterface() {
       console.log('dialog: ', this.dialog)
+
+
 
 
     },
@@ -300,9 +298,24 @@ export default {
       }
 
       console.log('dialog:', this.dialog)
-      console.log('option.value', option.value)
+    
+      let selection = filterSelection(this.dialog.options)
 
-      this.abilities.push(shallowClone(R.path(this.currentNode.path, this.$cardSchema).properties))
+      console.log('selection', selection)
+
+      atPath(this.dialog.path)
+
+      let newAbility = {
+        interaction: createInteraction('wenn sie das lesen, hat §marius versagt' ) 
+      }
+      newAbility[selection.index] = {
+        path: this.dialog.path
+      }
+
+      this.abilities.push(newAbility)
+
+      console.log('this.abilities:', this.abilities)
+      this.writeNode(newAbility, {})
 
       // let selection = filterSelection(this.dialog.options)
       // let properties = filterProperties(this.options, selection.option.value)
@@ -341,7 +354,39 @@ export default {
   }
 }
 
-function createInteraction (description, schemaPath, abilityPath, rules) {
+function createInteraction (text) {
+  // split text into pieces, separated by button markers §
+  let regex = /([§]+)([a-z,A-Z]+)/g
+  text = text.replace(regex, '$1%$2§')
+  text = text.split('§')
+
+  let interaction = []
+  // iterate over text pieces, creating interaction for each piece
+  text.forEach(entry => {
+    if (entry[0] === '%') {
+      // % is the marker for a button
+
+      interaction[interaction.length - 1].btn = {
+        label: entry.slice(1),
+        type: entry.slice(1)
+      }
+    } else {
+      interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
+    }
+  })
+
+  console.log('interaction', interaction)
+  // check if the last interaction piece is a button, if not move pretext from the last piece to posttext of the second last piece
+  if (interaction[interaction.length - 1].btn.type === null) {
+    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
+    interaction.splice(-1, 1)
+  }
+
+  console.log('created Interaction: ', interaction)
+  return interaction
+}
+/*
+function createInteractionOLD (description, schemaPath, abilityPath, rules) {
   // let text = description
   let text = R.path(schemaPath, rules).description
   console.log('text: ', text)
@@ -376,6 +421,7 @@ function createInteraction (description, schemaPath, abilityPath, rules) {
   console.log('created Interaction: ', interaction)
   return interaction
 }
+*/
 
 function updateInteraction (ability, id, newInteraction) {
   if (id > 0) {

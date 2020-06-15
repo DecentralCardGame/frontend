@@ -65,14 +65,14 @@ export function uploadImg (file, callback) {
 
 export function filterSelection (options) {
   let found = {}
-  options.forEach((item, idx) => {
-    if (item.value) {
+  R.forEachObjIndexed((item, idx) => {
+    if (item.selected) {
       found = {
         index: idx,
         option: item
       }
     }
-  })
+  }, options)
   return found
 }
 
