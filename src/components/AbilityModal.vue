@@ -296,6 +296,19 @@ export default {
       let atPath = path => {
         return R.path(path, this.$cardRules)
       }
+      let climbRulesTree = path => {
+        let ascending = true
+        while (ascending) {
+          if (R.keys(atPath(path)).length === 1) {
+            path.push(R.keys(atPath(path))[0])
+          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
+            path.push('children')
+          } else {
+            ascending = false
+          }
+        }
+        return path
+      }
 
       console.log('dialog:', this.dialog)
     
@@ -303,18 +316,21 @@ export default {
 
       console.log('selection', selection)
 
-      atPath(this.dialog.path)
+      atPath
+
+      let abilityPath = [selection.index]
+      let rulesPath = climbRulesTree(R.append(selection.index, this.dialog.rulesPath))
 
       let text = ''
       R.keys(selection.option.children).forEach(entry => {
-        text += '§' + entry + ', '
+        text += '§' + entry + ' , '
       })
 
       let newAbility = {
-        interaction: createInteraction('Hier '+ text +' konfigurieren' ) 
+        interaction: createInteraction('Hier '+ text +' konfigurieren', abilityPath, rulesPath) 
       }
       newAbility[selection.index] = {
-        path: this.dialog.path
+        path: this.dialog.rulesPath
       }
 
       this.abilities.push(newAbility)
@@ -359,7 +375,7 @@ export default {
   }
 }
 
-function createInteraction (text) {
+function createInteraction (text, abilityPath, rulesPath) {
   // split text into pieces, separated by button markers §
   let regex = /([§]+)([a-z,A-Z]+)/g
   text = text.replace(regex, '$1%$2§')
@@ -370,10 +386,13 @@ function createInteraction (text) {
   text.forEach(entry => {
     if (entry[0] === '%') {
       // % is the marker for a button
+      let buttonEntry = entry.slice(1)
 
       interaction[interaction.length - 1].btn = {
-        label: entry.slice(1),
-        type: entry.slice(1)
+        label: buttonEntry,
+        type: buttonEntry,
+        abilityPath: R.append(buttonEntry, abilityPath),
+        rulesPath: R.append(buttonEntry, rulesPath)
       }
     } else {
       interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})

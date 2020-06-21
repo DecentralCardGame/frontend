@@ -252,7 +252,8 @@ export default {
           description: atPath(R.dropLast(1, newAbility.path)).description,
           type: 'root',
           options: options,
-          path: newAbility.path
+          rulesPath: newAbility.path,
+          abilityPath: []
         }
 
         this.abilityDialog = dialog
