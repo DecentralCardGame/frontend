@@ -37,15 +37,36 @@ export default {
   },
   methods: {
     showAbilityModal (ability, btn, index) {
-      console.log(this.dialog)
+      let atPath = path => {
+        return R.path(path, this.$cardRules)
+      }
+      let climbRulesTree = path => {
+        let ascending = true
+        while (ascending) {
+          if (R.keys(atPath(path)).length === 1) {
+            path.push(R.keys(atPath(path))[0])
+          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
+            path.push('children')
+          } else {
+            ascending = false
+          }
+        }
+        return path
+      }
+
       // first set current node to clicked node
 
       //this.writeNode('interactionId', index)
       //let node = R.path(btn.schemaPath, this.$cardSchema)
-      let node = {type: this.dialog.type}
+      //let node = {type: this.dialog.type}
       index;
 
-      console.log('entering showAbilityModal with btn: ', btn, ' and node: ', node)
+      console.log('dialog:', this.dialog)
+      console.log('entering showAbilityModal with btn: ', btn)
+
+      console.log('atpath:', atPath(btn.rulesPath))
+
+      let node = atPath(btn.rulesPath)
 
       let thereWillBeModal = true
 
@@ -53,60 +74,13 @@ export default {
       if (node.type) {
         switch (node.type) {
           case 'array':
+            climbRulesTree
+            
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
+            
+            console.log('ability:', this.ability)
 
-            if (node.items.enum) {
-              this.writeNode('modalType', 'items.enum')
-
-              let enums = node.items.enum
-              console.log('modalType: items.enums: ', enums)
-
-              let dialog = {
-                title: btn.type,
-                description: 'choose your destiny:',
-                type: 'enum',
-                options: [],
-                enum: enums
-              }
-
-              for (let prop in enums) {
-                dialog.options.push({
-                  name: enums[prop],
-                  schemaPath: [], // TODO YES
-                  abilityPath: [],
-                  title: enums[prop],
-                  description: ''
-                })
-              }
-
-              this.dialog = dialog
-
-            // this is an array radio case, where 1 item is added
-            } else if (node.items.oneOf) {
-              this.writeNode('modalType', 'items.oneOf')
-              console.log('modalType: items.oneOf')
-
-              let options = node.items.oneOf
-
-              let dialog = {
-                title: btn.type,
-                description: 'choose your destiny:',
-                type: 'radio',
-                options: []
-              }
-
-              for (let prop in options) {
-                let propName = options[prop].required[0]
-                dialog.options.push({
-                  name: options[prop].description,
-                  schemaPath: ['items', 'oneOf', prop],
-                  abilityPath: [propName],
-                  title: options[prop].title,
-                  description: options[prop].description
-                })
-              }
-
-              this.dialog = dialog
-            }
             break
 
           case 'object':
@@ -201,7 +175,7 @@ export default {
             break
           }
           // this is a terminal case, specify an integer
-          case 'integer':
+          case 'int':
 
             this.writeNode('modalType', 'integer')
             console.log('modalType: integer')
@@ -210,6 +184,7 @@ export default {
               title: btn.type,
               description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
               type: 'integer',
+              btn: btn,
               options: [{
                 name: 'MORE!',
                 schemaPath: [],

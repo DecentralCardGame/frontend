@@ -214,17 +214,9 @@ export default {
       console.log('ability: ', this.ability)
     },
     handleIntegerInteraction () {
-      console.log('current node: ', this.currentNode)
+      console.log('dialog: ', this.dialog)
 
-      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
-      console.log('currentProperty: ', currentProperty)
-
-      this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedCount
-
-      let btn = this.ability.interaction[this.currentNode.interactionId].btn
-
-      // R.path(btn.abilityPath, this.ability)[currentProperty] = this.selectedCount
-      this.attachToAbility(R.concat(btn.abilityPath, [currentProperty]), this.selectedCount)
+      this.attachToAbility(this.dialog.btn.abilityPath, this.selectedCount)
       // reset selectedCount
       // this.selectedCount = 0
       console.log('ability after handleInteger: ', this.ability)
@@ -327,7 +319,7 @@ export default {
       })
 
       let newAbility = {
-        interaction: createInteraction('Hier '+ text +' konfigurieren', abilityPath, rulesPath) 
+        interaction: createInteraction('Hier '+ text +' konfigurieren', abilityPath, rulesPath, this.$cardRules) 
       }
       newAbility[selection.index] = {
         path: this.dialog.rulesPath
@@ -336,7 +328,6 @@ export default {
       this.abilities.push(newAbility)
 
       console.log('this.abilities:', this.abilities)
-      this.writeNode(newAbility, {})
 
       // let selection = filterSelection(this.dialog.options)
       // let properties = filterProperties(this.options, selection.option.value)
@@ -375,7 +366,9 @@ export default {
   }
 }
 
-function createInteraction (text, abilityPath, rulesPath) {
+function createInteraction (text, abilityPath, rulesPath, cardRules) {
+  let makeBtn = R.curry(makeButton)(cardRules)
+
   // split text into pieces, separated by button markers §
   let regex = /([§]+)([a-z,A-Z]+)/g
   text = text.replace(regex, '$1%$2§')
@@ -388,11 +381,29 @@ function createInteraction (text, abilityPath, rulesPath) {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
 
-      interaction[interaction.length - 1].btn = {
-        label: buttonEntry,
-        type: buttonEntry,
-        abilityPath: R.append(buttonEntry, abilityPath),
-        rulesPath: R.append(buttonEntry, rulesPath)
+      let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
+      
+
+      if(type === 'array') {
+        let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
+
+        // Create the button for adding the effect
+        interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.append(buttonEntry, abilityPath))
+        // and also create the button for adding more effects
+        interaction.push({
+          pre: '+', 
+          btn: {
+            label: '...', 
+            type: 'expandArray', 
+            abilityPath: R.append(buttonEntry, abilityPath),
+            rulesPath: R.append(buttonEntry, rulesPath)
+          }, 
+          post: interaction[interaction.length - 2].post 
+        })
+        // the post button text has been moved behind the last button, so remove it from the previous one
+        interaction[interaction.length - 2].post = ''
+      } else {
+        R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath))
       }
     } else {
       interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
@@ -481,6 +492,37 @@ function deepness (node) {
   }
   console.log('terminal node, deepness is 0')
   return 0
+}
+
+function atPath(cardRules, path) {
+  return R.path(path, cardRules)
+}
+
+function makeButton (cardRules, rulesPath, abilityPath) {
+  let atRules = R.curry(atPath)(cardRules)
+
+  return {
+    label: atRules(rulesPath).name,
+    type: atRules(rulesPath).type,
+    abilityPath: abilityPath,
+    rulesPath: rulesPath
+  }
+}
+
+function climbRulesTree(cardRules, path) {
+  let atRules = R.curry(atPath)(cardRules)
+
+  let ascending = true
+  while (ascending) {
+    if (R.keys(atRules(path)).length === 1) {
+      path.push(R.keys(atRules(path))[0])
+    } else if (R.contains('children', R.keys(atRules(path)))) {
+      path.push('children')
+    } else {
+      ascending = false
+    }
+  }
+  return path
 }
 
 function shallowClone (obj) {
