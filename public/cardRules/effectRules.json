@@ -1,0 +1,19 @@
+{
+  "name": "Effect",
+  "children": {
+    "productionEffect": {
+      "$ref": "productionEffectRules.json"
+    },
+    "drawEffect": {
+      "$ref": "drawEffectRules.json"
+    },
+    "tokenEffect": {
+      "$ref": "tokenEffectRules.json"
+    },
+    "targetEffect": {
+      "$ref": "targetEffectRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Chose an Effect Type"
+}

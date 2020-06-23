@@ -1,0 +1,6 @@
+{
+  "name": "Player-Intproperty",
+  "children": ["HANDSIZE","BOARDSIZE","DECKSIZE"],
+  "type": "enum",
+  "description": "Chose an Player-Intproperty"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Player-Condition",
+  "children": {
+    "playerIntCondition": {
+      "$ref": "playerIntConditionRules.json"
+    },
+    "playerStringCondition": {
+      "$ref": "playerStringConditionRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose a Player-Condition"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "TokenEffect",
+  "children": {
+    "tokenAmount": {
+      "$ref": "intValueRules.json"
+    },
+    "token": {
+      "$ref": "tokenRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Token Effect"
+}

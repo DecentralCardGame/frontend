@@ -1,0 +1,24 @@
+{
+  "name": "Action-Selector",
+  "children": {
+    "playerMode": {
+      "$ref": "selectorModeRules.json"
+    },
+    "playerCondition": {
+      "$ref": "playerConditionRules.json",
+      "optional": true
+    },
+    "cardMode": {
+      "$ref": "selectorModeRules.json"
+    },
+    "actionCondition": {
+      "$ref": "actionConditionRules.json",
+      "optional": true
+    },
+    "zone": {
+      "$ref": "dynamicZoneRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build an Action-Selector"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Entity-Manipuations",
+  "children": {
+    "enitityManipulation": {
+      "$ref": "entityManipulationRules.json"
+    }
+  },
+  "type": "array",
+  "description": "Add some Entity-Manipuations"
+}

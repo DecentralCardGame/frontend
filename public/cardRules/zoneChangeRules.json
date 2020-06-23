@@ -1,0 +1,13 @@
+{
+  "name": "Zone-Change",
+  "children": {
+    "zone": {
+      "$ref": "zoneRules.json"
+    },
+    "player": {
+      "$ref": "ownerRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Zonechange"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Draw Effect",
+  "children": {
+    "drawAmount": {
+      "$ref": "intValueRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Draw Effect"
+}

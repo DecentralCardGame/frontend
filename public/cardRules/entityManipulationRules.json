@@ -1,0 +1,19 @@
+{
+  "name": "Entity-Manipulation",
+  "children": {
+    "entityAbilityManipulation": {
+      "$ref": "entityAbilityManipulationRules.json"
+    },
+    "actionIntManipulation": {
+      "$ref": "actionIntManipulationRules.json"
+    },
+    "actionStringManipulation": {
+      "$ref": "actionStringManipulationRules.json"
+    },
+    "actionTagManipulation": {
+      "$ref": "actionTagManipulationRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose an Action-Manipuation"
+}

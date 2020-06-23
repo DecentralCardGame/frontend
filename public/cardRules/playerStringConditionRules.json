@@ -1,0 +1,16 @@
+{
+  "name": "Player-Stringcondition",
+  "children": {
+    "stringProperty": {
+      "$ref": "playerStringPropertyRules.json"
+    },
+    "stringValue": {
+      "$ref": "stringValueRules.json"
+    },
+    "stringComparator": {
+      "$ref": "stringComparatorRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Player-Stringcondition"
+}

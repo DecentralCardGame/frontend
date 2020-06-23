@@ -1,0 +1,6 @@
+{
+  "name": "Selector-Mode",
+  "children": ["ALL","TARGET","OPPONENTSCHOICE"],
+  "type": "enum",
+  "description": "Choose a Selector-Mode"
+}

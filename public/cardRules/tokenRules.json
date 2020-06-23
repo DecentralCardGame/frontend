@@ -1,0 +1,21 @@
+{
+  "name": "Token",
+  "children": {
+    "Name": {
+      "$ref": "stringValueRules.json",
+      "optional": true
+    },
+    "Attack": {
+      "$ref": "attackRules.json"
+    },
+    "Health": {
+      "$ref": "healthRules.json"
+    },
+    "Tags": {
+      "$ref": "tagsRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a Token"
+}

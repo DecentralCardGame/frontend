@@ -1,0 +1,16 @@
+{
+  "name": "Target Effect",
+  "children": {
+    "actionTargetEffect": {
+      "$ref": "actionTargetEffectRules.json"
+    },
+    "entityTargetEffect": {
+      "$ref": "entityTargetEffectRules.json"
+    },
+    "placeTargetEffect": {
+      "$ref": "placeTargetEffectRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Build a Target Effect"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Action-Manipulation",
+  "children": {
+    "actionEffectManipulation": {
+      "$ref": "actionEffectManipulationRules.json"
+    },
+    "actionIntManipulation": {
+      "$ref": "actionIntManipulationRules.json"
+    },
+    "actionStringManipulation": {
+      "$ref": "actionStringManipulationRules.json"
+    },
+    "actionTagManipulation": {
+      "$ref": "actionTagManipulationRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose an Action-Manipuation"
+}

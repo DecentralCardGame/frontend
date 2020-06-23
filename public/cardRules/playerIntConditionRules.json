@@ -1,0 +1,14 @@
+{
+  "name": "Player-Intcondition",
+  "children": {
+    "intProperty": {
+      "$ref": "playerIntPropertyRules.json"
+    },
+    "intValue": {
+      "$ref": "intValueRules.json"
+    },
+    "intComparator": {
+      "$ref": "intComparatorRules.json"
+    }
+  }
+}
