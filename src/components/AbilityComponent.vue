@@ -79,8 +79,13 @@ export default {
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false
             
-            console.log('ability:', this.ability)
+            console.log('this case should actually not show up:', node.type)
 
+            break
+          
+          case 'expandArray':
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
             break
 
           case 'object':
