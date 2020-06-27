@@ -376,7 +376,7 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
 
   let interaction = []
   // iterate over text pieces, creating interaction for each piece
-  text.forEach(entry => {
+  text.forEach((entry) => {
     if (entry[0] === '%') {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
@@ -388,11 +388,12 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
         let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
 
         // Create the button for adding the effect
-        interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.append(buttonEntry, abilityPath))
+        interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
         // and also create the button for adding more effects
         interaction.push({
           pre: '+', 
           btn: {
+            id: interaction.length,
             label: '...', 
             type: 'expandArray', 
             abilityPath: R.append(buttonEntry, abilityPath),
@@ -403,7 +404,7 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = ''
       } else {
-        R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath))
+        R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
       }
     } else {
       interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
@@ -498,10 +499,11 @@ function atPath(cardRules, path) {
   return R.path(path, cardRules)
 }
 
-function makeButton (cardRules, rulesPath, abilityPath) {
+function makeButton (cardRules, rulesPath, abilityPath, id) {
   let atRules = R.curry(atPath)(cardRules)
 
   return {
+    id: id,
     label: atRules(rulesPath).name,
     type: atRules(rulesPath).type,
     abilityPath: abilityPath,

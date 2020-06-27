@@ -63,7 +63,7 @@ export default {
 
       console.log('dialog:', this.dialog)
       console.log('entering showAbilityModal with btn: ', btn)
-
+      climbRulesTree
       console.log('atpath:', atPath(btn.rulesPath))
 
       let node = atPath(btn.rulesPath)
@@ -74,19 +74,11 @@ export default {
       if (node.type) {
         switch (node.type) {
           case 'array':
-            climbRulesTree
-            
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false
-            
-            console.log('this case should actually not show up:', node.type)
+            this.ability.interaction = R.insert(btn.id, this.ability.interaction[btn.id - 1], this.ability.interaction)
+            break
 
-            break
-          
-          case 'expandArray':
-            // In this case there is no modal to be displayed just update the interaction
-            thereWillBeModal = false
-            break
 
           case 'object':
           // this is the typical radio case, where 1 item is selected
