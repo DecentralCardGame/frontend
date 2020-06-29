@@ -165,11 +165,16 @@ export default {
       this.$emit('update:currentNode', this.currentNode)
     },
     handleInterface() {
-      console.log('dialog: ', this.dialog)
+      console.log('dialog in handle interface: ', this.dialog)
 
+      let selection = filterSelection(this.dialog.options)
 
+      let abilityPath = R.append(selection.index, this.dialog.abilityPath)
+      let rulesPath = climbRulesTree(this.$cardRules, R.append(selection.index, this.dialog.rulesPath))
 
-
+      console.log('selection:', selection)
+      console.log('rulesPath: ', rulesPath)
+      console.log('abilityPath: ', abilityPath)
     },
     handleCheckboxInteraction () {
       console.log('dialog: ', this.dialog)
@@ -285,33 +290,10 @@ export default {
       console.log('ability after handleStringINteraction: ', this.ability)
     },
     handleCreateAbility () {
-      let atPath = path => {
-        return R.path(path, this.$cardRules)
-      }
-      let climbRulesTree = path => {
-        let ascending = true
-        while (ascending) {
-          if (R.keys(atPath(path)).length === 1) {
-            path.push(R.keys(atPath(path))[0])
-          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
-            path.push('children')
-          } else {
-            ascending = false
-          }
-        }
-        return path
-      }
-
-      console.log('dialog:', this.dialog)
-    
       let selection = filterSelection(this.dialog.options)
 
-      console.log('selection', selection)
-
-      atPath
-
       let abilityPath = [selection.index]
-      let rulesPath = climbRulesTree(R.append(selection.index, this.dialog.rulesPath))
+      let rulesPath = climbRulesTree(this.$cardRules, R.append(selection.index, this.dialog.rulesPath))
 
       let text = ''
       R.keys(selection.option.children).forEach(entry => {
@@ -326,30 +308,6 @@ export default {
       }
 
       this.abilities.push(newAbility)
-
-      console.log('this.abilities:', this.abilities)
-
-      // let selection = filterSelection(this.dialog.options)
-      // let properties = filterProperties(this.options, selection.option.value)
-      // let abilityName = resolveParagraph(selection.option.value)
-
-      // this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
-
-      /*
-      let newAbility = {}
-      newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.$cardSchema).properties) // R.clone(R.path(this.currentNode.path, this.$cardSchema))
-      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.$cardSchema).description, this.currentNode.path, [abilityName], this.$cardSchema)
-      newAbility.name = abilityName
-      newAbility.path = this.currentNode.path
-
-      this.abilities.push(R.clone(newAbility))
-      this.currentNode = R.clone(this.abilities[this.abilities.length - 1])
-      this.writeNode(abilityName, {})
-      this.writeNode('name', abilityName)
-
-      console.log('newAbility: ', newAbility)
-      console.log('currentNode: ', this.currentNode)
-      */
     },
     isNumber: function (evt) {
       evt = evt || window.event
@@ -383,12 +341,12 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
       
-
+      // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
         let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
 
         // Create the button for adding the effect
-        interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
+        interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.concat(abilityPath, [buttonEntry, 0]), interaction.length - 1)
         // and also create the button for adding more effects
         interaction.push({
           pre: '+', 
@@ -411,7 +369,6 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
     }
   })
 
-  console.log('interaction', interaction)
   // check if the last interaction piece is a button, if not move pretext from the last piece to posttext of the second last piece
   if (interaction[interaction.length - 1].btn.type === null) {
     interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
@@ -421,43 +378,6 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
   console.log('created Interaction: ', interaction)
   return interaction
 }
-/*
-function createInteractionOLD (description, schemaPath, abilityPath, rules) {
-  // let text = description
-  let text = R.path(schemaPath, rules).description
-  console.log('text: ', text)
-
-  let regex = /([§]+)([a-z,A-Z]+)/g
-  text = text.replace(regex, '$1%$2§')
-  text = text.split('§')
-
-  let interaction = []
-
-  text.forEach(entry => {
-    if (entry[0] === '%') {
-      // % is the marker for a button after regex, now check if it is terminal:
-      let buttonPath = R.append(entry.slice(1), R.append('properties', schemaPath))
-
-      interaction[interaction.length - 1].btn = {
-        label: entry.slice(1),
-        type: entry.slice(1),
-        schemaPath: buttonPath,
-        abilityPath: R.append(entry.slice(1), abilityPath)
-      }
-    } else {
-      interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
-    }
-  })
-
-  if (interaction[interaction.length - 1].btn.type === null) {
-    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
-    interaction.splice(-1, 1)
-  }
-
-  console.log('created Interaction: ', interaction)
-  return interaction
-}
-*/
 
 function updateInteraction (ability, id, newInteraction) {
   if (id > 0) {

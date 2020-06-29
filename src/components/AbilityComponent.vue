@@ -73,13 +73,40 @@ export default {
       // depending on type, create dialog
       if (node.type) {
         switch (node.type) {
-          case 'array':
-            // In this case there is no modal to be displayed just update the interaction
+          case 'array': {
+            // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
             thereWillBeModal = false
-            this.ability.interaction = R.insert(btn.id, this.ability.interaction[btn.id - 1], this.ability.interaction)
+            let copyButton = R.clone(this.ability.interaction[btn.id - 1])
+            
+            
+            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
+            
+            console.log('clone src:', this.ability.interaction[btn.id - 1])
+            console.log('cloned:', copyButton)
+
+            this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction)
+
+            // update btn ids
+            this.ability.interaction.forEach((item, idx) => {
+              item.btn.id = idx
+            })
+
+            console.log('abi', this.ability.interaction)
             break
+          }
+          case 'interface': {
+            let dialog = {
+              title: atPath(btn.rulesPath).name,
+              description: atPath(btn.rulesPath).description,
+              type: atPath(btn.rulesPath).type,
+              options: atPath(btn.rulesPath).children,
+              rulesPath: btn.rulesPath,
+              abilityPath: btn.abilityPath
+            }
 
-
+            this.dialog = dialog
+            break
+          }
           case 'object':
           // this is the typical radio case, where 1 item is selected
             if (R.has('oneOf', node)) {
