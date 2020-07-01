@@ -175,6 +175,18 @@ export default {
       console.log('selection:', selection)
       console.log('rulesPath: ', rulesPath)
       console.log('abilityPath: ', abilityPath)
+
+      let text = ''
+      R.keys(selection.option.children).forEach(entry => {
+        text += '§' + entry + ' , '
+      })
+      console.log('text', text)
+
+      let newInteraction = createInteraction('Hier '+ text +' konfigurieren', abilityPath, R.append('children', rulesPath), this.$cardRules) 
+      console.log('new:', newInteraction)
+      //updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
+
+      // update ability
     },
     handleCheckboxInteraction () {
       console.log('dialog: ', this.dialog)
@@ -338,6 +350,10 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
     if (entry[0] === '%') {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
+
+      console.log('cardrules', cardRules)
+      console.log('atPath', atPath(cardRules, rulesPath))
+      console.log('buttonpath', R.append(buttonEntry, rulesPath))
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
       
