@@ -170,11 +170,7 @@ export default {
       let selection = filterSelection(this.dialog.options)
 
       let abilityPath = R.append(selection.index, this.dialog.abilityPath)
-      let rulesPath = climbRulesTree(this.$cardRules, R.append(selection.index, this.dialog.rulesPath))
-
-      console.log('selection:', selection)
-      console.log('rulesPath: ', rulesPath)
-      console.log('abilityPath: ', abilityPath)
+      let rulesPath = R.concat(this.dialog.rulesPath, ['children', selection.index])
 
       let text = ''
       R.keys(selection.option.children).forEach(entry => {
@@ -184,7 +180,8 @@ export default {
 
       let newInteraction = createInteraction('Hier '+ text +' konfigurieren', abilityPath, R.append('children', rulesPath), this.$cardRules) 
       console.log('new:', newInteraction)
-      //updateInteraction(this.ability, this.currentNode.interactionId, newInteraction)
+      console.log('ability so far', this.ability)
+      updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
 
       // update ability
     },
@@ -350,10 +347,6 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
     if (entry[0] === '%') {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
-
-      console.log('cardrules', cardRules)
-      console.log('atPath', atPath(cardRules, rulesPath))
-      console.log('buttonpath', R.append(buttonEntry, rulesPath))
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
       

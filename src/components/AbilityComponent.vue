@@ -54,6 +54,8 @@ export default {
         return path
       }
 
+      this.ability.clickedBtn = btn
+
       // first set current node to clicked node
 
       //this.writeNode('interactionId', index)
