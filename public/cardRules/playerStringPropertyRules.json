@@ -1,6 +1,6 @@
 {
-  "name": "Player-Stringproperty",
+  "name": "Textbased Player-Property",
   "children": [],
   "type": "enum",
-  "description": "Choose a Player-Stringproperty"
+  "description": "Choose a Textbased Player-Property"
 }

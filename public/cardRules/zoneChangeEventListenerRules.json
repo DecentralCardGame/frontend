@@ -13,5 +13,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Zonechange-Eventlistener"
+  "description": "Build a Zonechange-Eventlistener",
+  "interactionText": "Whenever a card §cardCondition gets put from §source to §destination"
 }

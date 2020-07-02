@@ -4,16 +4,16 @@
     "entityAbilityManipulation": {
       "$ref": "entityAbilityManipulationRules.json"
     },
-    "actionIntManipulation": {
-      "$ref": "actionIntManipulationRules.json"
+    "entityIntManipulation": {
+      "$ref": "entityIntManipulationRules.json"
     },
-    "actionStringManipulation": {
-      "$ref": "actionStringManipulationRules.json"
+    "entityStringManipulation": {
+      "$ref": "entityStringManipulationRules.json"
     },
-    "actionTagManipulation": {
-      "$ref": "actionTagManipulationRules.json"
+    "entityTagManipulation": {
+      "$ref": "entityTagManipulationRules.json"
     }
   },
   "type": "interface",
-  "description": "Choose an Action-Manipuation"
+  "description": "Choose an Entity-Manipuation"
 }

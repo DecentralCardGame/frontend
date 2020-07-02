@@ -14,5 +14,6 @@
     }
   },
   "type": "struct",
-  "description": "Buid an Action-TargetEffect"
+  "description": "Buid an Action-TargetEffect",
+  "ineractionText": "§actionSelector §actionManipulations §zoneChange"
 }

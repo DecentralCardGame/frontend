@@ -1,5 +1,5 @@
 {
-  "name": "entity",
+  "name": "Entity",
   "children": {
     "costType": {
       "$ref": "costTypeRules.json"
@@ -27,5 +27,5 @@
     }
   },
   "type": "struct",
-  "description": "Build an entity"
+  "description": "Build an Entity"
 }

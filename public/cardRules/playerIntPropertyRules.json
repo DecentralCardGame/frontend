@@ -1,6 +1,6 @@
 {
-  "name": "Player-Intproperty",
+  "name": "Numeric Player-Property",
   "children": ["HANDSIZE","BOARDSIZE","DECKSIZE"],
   "type": "enum",
-  "description": "Chose an Player-Intproperty"
+  "description": "Choose a Numeric Player-Property"
 }

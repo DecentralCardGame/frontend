@@ -1,6 +1,6 @@
 {
-  "name": "Entity-Stringproperty",
+  "name": "Textbased Entity-Property",
   "children": ["NAME","TEXT"],
   "type": "enum",
-  "description": "Chose an Entity-Stringproperty"
+  "description": "Choose a Textbased Entity-Property"
 }

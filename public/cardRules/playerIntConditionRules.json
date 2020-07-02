@@ -1,5 +1,5 @@
 {
-  "name": "Player-Intcondition",
+  "name": "Numeric Player-Condition",
   "children": {
     "intProperty": {
       "$ref": "playerIntPropertyRules.json"
@@ -10,5 +10,8 @@
     "intComparator": {
       "$ref": "intComparatorRules.json"
     }
-  }
+  },
+  "type": "struct",
+  "description": "Build a Numeric Player-Condition",
+  "interactionText": "with §intProperty §intComparator §intValue"
 }

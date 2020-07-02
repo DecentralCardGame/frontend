@@ -159,7 +159,8 @@ export default {
       console.log('dialog in handle interface: ', this.dialog)
 
       let selection = filterSelection(this.dialog.options)
-
+      let interactionText = atPath(this.$cardRules, R.concat(this.dialog.rulesPath, ['children', selection.index])).interactionText
+      
       let abilityPath = R.append(selection.index, this.dialog.abilityPath)
       let rulesPath = R.concat(this.dialog.rulesPath, ['children', selection.index])
 
@@ -169,7 +170,7 @@ export default {
       })
       console.log('text', text)
 
-      let newInteraction = createInteraction('Hier '+ text +' konfigurieren', abilityPath, R.append('children', rulesPath), this.$cardRules) 
+      let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules) 
       console.log('new:', newInteraction)
       console.log('ability so far', this.ability)
       updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
@@ -301,22 +302,17 @@ export default {
     },
     handleCreateAbility () {
       let selection = filterSelection(this.dialog.options)
+      let interactionText = atPath(this.$cardRules, R.append(selection.index, this.dialog.rulesPath)).interactionText
 
       let abilityPath = [selection.index]
       let rulesPath = climbRulesTree(this.$cardRules, R.append(selection.index, this.dialog.rulesPath))
 
-      let text = ''
-      R.keys(selection.option.children).forEach(entry => {
-        text += '§' + entry + ' , '
-      })
-
       let newAbility = {
-        interaction: createInteraction('Hier '+ text +' konfigurieren', abilityPath, rulesPath, this.$cardRules) 
+        interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules) 
       }
       newAbility[selection.index] = {
         path: this.dialog.rulesPath
       }
-
       this.abilities.push(newAbility)
     },
     isNumber: function (evt) {

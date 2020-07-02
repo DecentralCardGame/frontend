@@ -20,5 +20,6 @@
     }
   },
   "type": "struct",
-  "description": "Build an Action-Selector"
+  "description": "Build an Action-Selector",
+  "interactionText": "Choose §cardMode action §actionCondition in the §zone of §playerMode player §playerCondition."
 }

@@ -12,5 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Action-Condition"
+  "description": "Build a Textbased Action-Condition",
+  "interactionText": "with §actionStringProperty §stringComparator §stringValue"
 }

@@ -1,7 +1,7 @@
 {
-  "name": "costType",
+  "name": "Cost Type",
   "children": {
-    "Energy": {
+    "energy": {
       "$ref": "energyRules.json"
     },
     "food": {
@@ -18,5 +18,6 @@
     }
   },
   "type": "struct",
-  "description": "Chose one or more costtypes"
+  "description": "Choose one or more Cost Types",
+  "interactionText": "§energy §food §lumber §mana §iron"
 }

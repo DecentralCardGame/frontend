@@ -4,7 +4,7 @@
     "entitySelector": {
       "$ref": "entitySelectorRules.json"
     },
-    "enitityManipulations": {
+    "entityManipulations": {
       "$ref": "entityManipulationsRules.json",
       "optional": true
     },
@@ -14,5 +14,6 @@
     }
   },
   "type": "struct",
-  "description": "Build an Entity-Targeteffect"
+  "description": "Build an Entity-Targeteffect",
+  "interactionText": "§entitySelector §entityManipulations §zoneChange"
 }

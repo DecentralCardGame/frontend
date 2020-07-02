@@ -2,5 +2,5 @@
   "name": "Dynamic Zone",
   "children": ["DECK","DUSTPILE","FIELD","HAND","QUEUE"],
   "type": "enum",
-  "description": "Chose a Dynamic Zone"
+  "description": "Choose a Dynamic Zone"
 }

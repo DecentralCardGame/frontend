@@ -12,5 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Entity-Condition"
+  "description": "Build a Textbased Entity-Condition",
+  "interactionText": "with §entityStringProperty §stringComparator §stringValue"
 }

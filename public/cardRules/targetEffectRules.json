@@ -12,5 +12,5 @@
     }
   },
   "type": "interface",
-  "description": "Build a Target Effect"
+  "description": "Choose a Target Effect"
 }

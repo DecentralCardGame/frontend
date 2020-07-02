@@ -6,5 +6,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Production-Eventlistener"
+  "description": "Build a Production-Eventlistener",
+  "interactionText": "Whenever one or more §ressourceType is produced"
 }

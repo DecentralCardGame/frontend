@@ -1,6 +1,6 @@
 {
-  "name": "Place-Stringproperty",
+  "name": "Textbased Place-Property",
   "children": ["NAME","TEXT"],
   "type": "enum",
-  "description": "Chose an Place-Stringproperty"
+  "description": "Choose a Textbased Place-Property"
 }

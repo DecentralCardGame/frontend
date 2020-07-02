@@ -9,5 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Tagbased Entity-Condition"
+  "description": "Build a Tagbased Entity-Condition",
+  "interactionText": "with tag §stringComparator §stringValue"
 }

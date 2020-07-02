@@ -9,5 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Token Effect"
+  "description": "Build a Token Effect",
+  "interactionText": "Create §tokenAmount §token."
 }

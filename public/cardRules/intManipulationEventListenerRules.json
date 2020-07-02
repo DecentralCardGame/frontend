@@ -1,5 +1,5 @@
 {
-  "name": "Intmanipulation-Eventlistener",
+  "name": "Numeric Manipulation-Eventlistener",
   "children": {
     "property": {
       "$ref": "cardIntPropertyRules.json"
@@ -8,9 +8,11 @@
       "$ref": "intChangeModeRules.json"
     },
     "cardCondition": {
-      "$ref": "cardConditionRules.json"
+      "$ref": "cardConditionRules.json",
+      "optional": true
     }
   },
   "type": "struct",
-  "description": "Build an Intmanipulation-Eventlistener"
+  "description": "Build a Numeric Manipulation-Eventlistener",
+  "interactionText": "Whenever §property on card §cardCondition §intChangeMode"
 }

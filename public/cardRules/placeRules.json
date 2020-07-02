@@ -1,5 +1,5 @@
 {
-  "name": "place",
+  "name": "Place",
   "children": {
     "costType": {
       "$ref": "costTypeRules.json"
@@ -24,5 +24,5 @@
     }
   },
   "type": "struct",
-  "description": "Build a place"
+  "description": "Build a Place"
 }

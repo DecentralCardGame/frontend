@@ -1,6 +1,6 @@
 {
-  "name": "Action-Intproperty",
+  "name": "Numeric Action-Property",
   "children": ["COSTSUM"],
   "type": "enum",
-  "description": "Chose an Action-Intproperty"
+  "description": "Choose a Numeric Action-Property"
 }

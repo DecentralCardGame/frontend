@@ -1,0 +1,19 @@
+{
+  "name": "Place-Manipulation",
+  "children": {
+    "placeAbilityManipulation": {
+      "$ref": "placeAbilityManipulationRules.json"
+    },
+    "placeIntManipulation": {
+      "$ref": "placeIntManipulationRules.json"
+    },
+    "placeStringManipulation": {
+      "$ref": "placeStringManipulationRules.json"
+    },
+    "placeTagManipulation": {
+      "$ref": "placeTagManipulationRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose a Place-Manipuation"
+}

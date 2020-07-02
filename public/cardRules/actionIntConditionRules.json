@@ -12,5 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Numeric Action-Condition"
+  "description": "Build a Numeric Action-Condition",
+  "interactionText": "with §actionIntProperty §intComparator §intValue"
 }

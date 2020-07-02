@@ -20,5 +20,6 @@
     }
   },
   "type": "struct",
-  "description": "Build an Place-Selector"
+  "description": "Build a Place-Selector",
+  "interactionText": "Choose §cardMode place §placeCondition in the §zone of §playerMode player §playerCondition."
 }

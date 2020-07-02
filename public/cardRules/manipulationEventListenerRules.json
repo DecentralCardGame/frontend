@@ -9,5 +9,5 @@
     }
   },
   "type": "interface",
-  "description": "Chose a Manipulation-Eventlistener type"
+  "description": "Choose a Manipulation-Eventlistener type"
 }

@@ -9,5 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Tagbased Action-Condition"
+  "description": "Build a Tagbased Action-Condition",
+  "interactionText": "with tag §stringComparator §stringValue"
 }

@@ -12,5 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Numeric Entity-Condition"
+  "description": "Build a Numeric Entity-Condition",
+  "interactionText": "with §entityIntProperty §intComparator §intValue"
 }
