@@ -76,17 +76,13 @@ export default {
           case 'array': {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
             thereWillBeModal = false
-            let copyButton = R.clone(this.ability.interaction[btn.id - 1])
-            
+            let copyButton = R.clone(this.ability.clickedBtn.template)
             
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
-            
-            console.log('clone src:', this.ability.interaction[btn.id - 1])
-            console.log('cloned:', copyButton)
 
             this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction)
 
-            // update btn ids
+            // update all btn ids
             this.ability.interaction.forEach((item, idx) => {
               item.btn.id = idx
             })

@@ -174,12 +174,12 @@ export default {
       console.log('new:', newInteraction)
       console.log('ability so far', this.ability)
       updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-      
       this.attachToAbility(this.dialog.btn.abilityPath, {})
     },
     handleIntegerInteraction () {
       console.log('dialog: ', this.dialog)
 
+      this.ability.clickedBtn.label = this.selectedCount
       this.attachToAbility(this.dialog.btn.abilityPath, this.selectedCount)
       // reset selectedCount
       // this.selectedCount = 0
@@ -366,7 +366,8 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
             label: '...', 
             type: 'expandArray', 
             abilityPath: R.append(buttonEntry, abilityPath),
-            rulesPath: R.append(buttonEntry, rulesPath)
+            rulesPath: R.append(buttonEntry, rulesPath),
+            template: interaction[interaction.length - 1]
           }, 
           post: interaction[interaction.length - 2].post 
         })
