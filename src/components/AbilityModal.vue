@@ -108,7 +108,6 @@ export default {
     picked: Object,
     dialog: Object,
     options: Array,
-    currentNode: Object,
     ability: Object,
     abilities: Array
   },
@@ -156,14 +155,6 @@ export default {
       }
       this.$emit('close')
     },
-    setNode (reference) {
-      this.currentNode = reference
-      this.$emit('update:currentNode', this.currentNode)
-    },
-    writeNode (prop, data) {
-      this.currentNode[prop] = data
-      this.$emit('update:currentNode', this.currentNode)
-    },
     handleInterface() {
       console.log('dialog in handle interface: ', this.dialog)
 
@@ -182,10 +173,19 @@ export default {
       console.log('new:', newInteraction)
       console.log('ability so far', this.ability)
       updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+      
+      this.attachToAbility(this.dialog.btn.abilityPath, {})
+    },
+    handleIntegerInteraction () {
+      console.log('dialog: ', this.dialog)
 
-      // update ability
+      this.attachToAbility(this.dialog.btn.abilityPath, this.selectedCount)
+      // reset selectedCount
+      // this.selectedCount = 0
+      console.log('ability after handleInteger: ', this.ability)
     },
     handleCheckboxInteraction () {
+      /*
       console.log('dialog: ', this.dialog)
 
       if (!this.dialog.options[0].value) {
@@ -199,8 +199,10 @@ export default {
 
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
       this.attachToAbility(btn.abilityPath, this.dialog.options[0].value)
+      */
     },
     handleIntegerListInteraction () {
+      /*
       console.log('current node: ', this.currentNode)
 
       let labels = ''
@@ -226,16 +228,10 @@ export default {
       // reset arrayCount
       this.arrayCount = [0, 0, 0, 0, 0, 0]
       console.log('ability: ', this.ability)
-    },
-    handleIntegerInteraction () {
-      console.log('dialog: ', this.dialog)
-
-      this.attachToAbility(this.dialog.btn.abilityPath, this.selectedCount)
-      // reset selectedCount
-      // this.selectedCount = 0
-      console.log('ability after handleInteger: ', this.ability)
+      */
     },
     handleRadioInteraction () {
+      /*
       console.log('ability: ', this.ability)
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       let option = filterSelection(this.dialog.options).option
@@ -269,8 +265,10 @@ export default {
 
       this.attachToAbility(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.$cardSchema).properties))
       console.log('ability after handleRadioInteraction: ', this.ability)
+      */
     },
     handleNoModal () {
+      /*
       console.log('ability at handleNoModal: ', this.ability)
       // let option = filterSelection(this.dialog.options).option
 
@@ -283,8 +281,10 @@ export default {
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties)
       this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties))
       console.log('ability after handleNoModal: ', this.ability)
+      */
     },
     handleStringInteraction () {
+      /*
       console.log('current node: ', this.currentNode)
 
       let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
@@ -297,6 +297,7 @@ export default {
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
       this.attachToAbility(R.dropLast(1, btn.abilityPath).push(currentProperty), this.selectedString)
       console.log('ability after handleStringINteraction: ', this.ability)
+      */
     },
     handleCreateAbility () {
       let selection = filterSelection(this.dialog.options)
@@ -329,7 +330,12 @@ export default {
     },
     attachToAbility (path, object) {
       this.ability = R.assocPath(path, object, this.ability)
-    }
+      this.$emit('update:ability', this.ability)
+    },
+    updateAbility (reference) {
+      this.ability = reference
+      this.$emit('update:ability', this.ability)
+    },
   }
 }
 
@@ -400,30 +406,6 @@ function updateInteraction (ability, id, newInteraction) {
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
 }
 
-function deepness (node) {
-  console.log('node whose deepness is checked: ', node)
-
-  if (node.description === '§ActivatedAbility') {
-    return 2
-  }
-  if (node.description === '§TriggeredAbility') {
-    return 2
-  }
-  if (R.has('items', node)) {
-    if (R.has('oneOf', node.items)) {
-      return 2
-    }
-  }
-  if (R.has('oneOf', node)) {
-    return 1
-  }
-  if (R.has('properties', node)) {
-    return 1
-  }
-  console.log('terminal node, deepness is 0')
-  return 0
-}
-
 function atPath(cardRules, path) {
   return R.path(path, cardRules)
 }
@@ -455,14 +437,14 @@ function climbRulesTree(cardRules, path) {
   }
   return path
 }
-
+/*
 function shallowClone (obj) {
   let clone = {}
   for (var prop in obj) {
     clone[prop] = {}
   }
   return clone
-}
+}*/
 </script>
 
 <style>

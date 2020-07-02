@@ -3,10 +3,9 @@
     <AbilityModal
       ref="abilityModal"
       v-show="isAbilityModalVisible"
-      v-bind:dialog="dialog"
-      v-bind:currentNode="currentNode"
-      v-on:update:currentNode="currentNode = $event"
+      v-bind:dialog="dialog"      
       v-bind:ability="ability"
+      v-on:update:ability="ability = $event"
       @close="closeAbilityModal"
     />
     <div v-for="(entry, index) in ability.interaction" class="ability" v-bind:key="index">
@@ -26,7 +25,6 @@ export default {
   components: {AbilityModal},
   props: {
     elements: Object,
-    currentNode: Object,
     dialog: Object,
     ability: Object
   },
@@ -58,7 +56,7 @@ export default {
 
       // first set current node to clicked node
 
-      //this.writeNode('interactionId', index)
+
       //let node = R.path(btn.schemaPath, this.$cardSchema)
       //let node = {type: this.dialog.type}
       index;
@@ -101,6 +99,7 @@ export default {
               title: atPath(btn.rulesPath).name,
               description: atPath(btn.rulesPath).description,
               type: atPath(btn.rulesPath).type,
+              btn: btn,
               options: atPath(btn.rulesPath).children,
               rulesPath: btn.rulesPath,
               abilityPath: btn.abilityPath
@@ -109,10 +108,37 @@ export default {
             this.dialog = dialog
             break
           }
+          // this is a terminal case, specify an integer
+          case 'int':
+            console.log('modalType: integer')
+
+            this.dialog = {
+              title: btn.type,
+              description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
+              type: 'integer',
+              btn: btn,
+              options: [{
+                name: 'MORE!',
+                schemaPath: [],
+                abilityPath: [],
+                title: '',
+                description: ''
+              },
+                {
+                  name: 'LESS..',
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: '',
+                  description: ''
+                }
+              ]
+            }
+            break
+
+
           case 'object':
           // this is the typical radio case, where 1 item is selected
             if (R.has('oneOf', node)) {
-              this.writeNode('modalType', 'object.oneOf')
               console.log('modalType: object.oneOf')
 
               let options = node.oneOf
@@ -139,7 +165,6 @@ export default {
             } else if (R.has('properties', node)) {
             // this is a terminal case, pick integers
               if (R.all(props => props.type === 'integer', R.values(node.properties))) {
-                this.writeNode('modalType', 'object.integers')
                 console.log('modalType: object.integers')
 
                 let keys = R.keys(node.properties)
@@ -166,7 +191,6 @@ export default {
 
               // this is a typical case for not showing a modal, still we want to call addAbility
               } else {
-                this.writeNode('modalType', 'object.noInteraction')
                 console.log('modalType: object.noInteraction')
 
                 thereWillBeModal = false
@@ -182,8 +206,6 @@ export default {
 
           // this is a terminal case, yes or no
           case 'boolean': {
-
-            this.writeNode('modalType', 'boolean')
             console.log('modalType: boolean')
 
             this.dialog = {
@@ -200,40 +222,10 @@ export default {
             };
             break
           }
-          // this is a terminal case, specify an integer
-          case 'int':
-
-            this.writeNode('modalType', 'integer')
-            console.log('modalType: integer')
-
-            this.dialog = {
-              title: btn.type,
-              description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
-              type: 'integer',
-              btn: btn,
-              options: [{
-                name: 'MORE!',
-                schemaPath: [],
-                abilityPath: [],
-                title: '',
-                description: ''
-              },
-                {
-                  name: 'LESS..',
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: '',
-                  description: ''
-                }
-              ]
-            }
-            break
-
           // this is a terminal case, enter a string or pick one if enums are present
           case 'string':
 
             if (node.enum) {
-              this.writeNode('modalType', 'stringEnum')
               console.log('modalType: stringEnum')
 
               let strings = node.enum
@@ -258,7 +250,6 @@ export default {
 
               break
             } else {
-              this.writeNode('modalType', 'stringEnter')
               console.log('modalType: stringEnter')
 
               this.dialog = {
@@ -288,16 +279,11 @@ export default {
 
       this.isAbilityModalVisible = thereWillBeModal
     },
-    setNode (reference) {
-      this.currentNode = reference
-      this.$emit('update:currentNode', this.currentNode)
-    },
-    writeNode (prop, data) {
-      this.currentNode[prop] = data
-      this.$emit('update:currentNode', this.currentNode)
+    setAbility (reference) {
+      this.ability = reference
+      this.$emit('update:ability', this.ability)
     },
     closeAbilityModal () {
-      console.log('currentNode on closeAbilityModal in AbilityComponent: ', this.currentNode)
       this.isAbilityModalVisible = false
     }
   }

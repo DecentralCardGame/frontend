@@ -77,19 +77,17 @@
               v-if="isAbilityModalVisible"
               v-bind:dialog="abilityDialog"
               v-bind:ability="ability"
+              v-on:update:ability="ability = $event"
               v-bind:abilities="abilities"
-              v-bind:currentNode="currentNode"
-              v-on:update:currentNode="currentNode = $event"
               @close="closeAbilityModal"
             />
           </template>
           <div v-bind:key="ability.ability" v-for="ability in abilities">
             <AbilityComponent
               v-bind:ability="ability"
+              v-on:update:ability="ability = $event"
               v-bind:dialog="abilityDialog"
               v-bind:abilities="abilities"
-              v-bind:currentNode="currentNode"
-              v-on:update:currentNode="currentNode = $event"
             />
           </div>
         </div>
@@ -163,7 +161,6 @@ export default {
       activeStep: 0,
       ability: {},
       abilities: [],
-      currentNode: {init: 'yes'},
       abilityDialog: {},
       cardImageUrl: sampleImg,
       model: {
@@ -261,11 +258,9 @@ export default {
       } else {
         console.log('modal type: ', type)
       }
-      console.log('currentNode on showAbilityModal: ', this.currentNode)
     },
     closeAbilityModal () {
       console.log('ability after close modal: ', this.ability)
-      console.log('curNode after close modal: ', this.currentNode)
       this.isAbilityModalVisible = false
     },
     getNumbers (start, stop, min) {
