@@ -363,7 +363,7 @@ function createInteraction (text, abilityPath, rulesPath, cardRules) {
           pre: '+', 
           btn: {
             id: interaction.length,
-            label: '...', 
+            label: '[add '+R.path(R.append(buttonEntry, rulesPath), cardRules).name+']', 
             type: 'expandArray', 
             abilityPath: R.append(buttonEntry, abilityPath),
             rulesPath: R.append(buttonEntry, rulesPath),
@@ -401,6 +401,11 @@ function updateInteraction (ability, id, newInteraction) {
 
   ability.interaction = R.remove(id, 1, ability.interaction)
   ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
+
+  // here please update ids
+  ability.interaction.forEach((item, idx) => {
+    item.btn.id = idx
+  })
 }
 
 function atPath(cardRules, path) {

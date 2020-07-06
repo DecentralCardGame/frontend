@@ -77,6 +77,9 @@ export default {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
             thereWillBeModal = false
             let copyButton = R.clone(this.ability.clickedBtn.template)
+
+            // TODO check if this is fine for everything else than activatedAbility (removes the :)
+            copyButton.pre = ''
             
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
 
@@ -130,74 +133,12 @@ export default {
               ]
             }
             break
+          case 'struct':
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
 
+            
 
-          case 'object':
-          // this is the typical radio case, where 1 item is selected
-            if (R.has('oneOf', node)) {
-              console.log('modalType: object.oneOf')
-
-              let options = node.oneOf
-
-              let dialog = {
-                title: btn.type,
-                description: 'choose your destiny:',
-                type: 'radio',
-                options: []
-              }
-
-              for (let prop in options) {
-                let propName = options[prop].required[0]
-                dialog.options.push({
-                  name: options[prop].description,
-                  schemaPath: ['oneOf', prop, 'properties', propName],
-                  abilityPath: [propName],
-                  title: options[prop].title,
-                  description: options[prop].description
-                })
-              }
-
-              this.dialog = dialog
-            } else if (R.has('properties', node)) {
-            // this is a terminal case, pick integers
-              if (R.all(props => props.type === 'integer', R.values(node.properties))) {
-                console.log('modalType: object.integers')
-
-                let keys = R.keys(node.properties)
-
-                let dialog = {
-                  title: btn.type,
-                  description: 'choose your destiny:',
-                  type: 'integerList',
-                  options: [],
-                  entries: keys
-                }
-
-                for (let prop in keys) {
-                  dialog.options.push({
-                    name: keys[prop],
-                    schemaPath: [],
-                    abilityPath: [],
-                    title: keys[prop],
-                    description: ''
-                  })
-                }
-
-                this.dialog = dialog
-
-              // this is a typical case for not showing a modal, still we want to call addAbility
-              } else {
-                console.log('modalType: object.noInteraction')
-
-                thereWillBeModal = false
-
-                this.dialog.type = 'noDialog'
-
-                this.$refs.abilityModal.addAbility()
-              }
-            } else {
-              console.error('object yes, but has no properties?!?')
-            }
             break
 
           // this is a terminal case, yes or no
