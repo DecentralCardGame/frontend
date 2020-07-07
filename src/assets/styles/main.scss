@@ -64,3 +64,39 @@ main {
 @import "forms";
 @import "notifications";
 @import "modals";
+
+.box-auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: $white;
+  text-shadow: none;
+  color: $black;
+  font-size: $font-size;
+  padding: 1rem;
+
+  label {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    text-align: right;
+  }
+
+  input {
+    color: $black;
+    padding: 0.5rem;
+    background-color: darken($white, 5%);
+    border: $border-thickness solid transparent;
+    transition: all $animation-duration;
+    &:focus {
+      transition: all $animation-duration;
+      border-color: $red;
+    }
+  }
+
+  .box-login {
+    padding: 0.5rem;
+    border-right: $border-thickness solid darken($white, 10%);
+  }
+  .box-register {
+    padding: 0.5rem;
+  }
+}

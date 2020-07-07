@@ -33,17 +33,16 @@
         >
       </label>
       <br>
-      <br>
+      <label>Stay logged in
+        <input
+                type="checkbox"
+                checked="checked"
+                name="remember"
+        >
+      </label>
       <button type="submit">
         Login
-      </button>
-      <label>
-        <input
-          type="checkbox"
-          checked="checked"
-          name="remember"
-        > Stay logged in
-      </label><br>
+      </button><br>
       <!-- <span class="psw">Forgot <a href="#">password</a>?</span> -->
     </form>
   </div>
@@ -51,7 +50,7 @@
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: 'Login',
   data () {
     return {
       loginError: null,

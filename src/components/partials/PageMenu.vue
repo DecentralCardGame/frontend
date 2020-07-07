@@ -68,30 +68,42 @@
             Voting
           </router-link>
         </li>
-        <li v-if="!$store.getters.loggedIn">
-          <router-link to="/login">
-            Login
-          </router-link>
-        </li>
-        <li v-if="!$store.getters.loggedIn">
-          <router-link
-            class="exposed"
-            to="/register"
-          >
-            Join
-          </router-link>
+        <li
+          v-if="!$store.getters.loggedIn"
+          @click="displayLoginDialogue = !displayLoginDialogue"
+        >
+          <div class="menu-item">
+            Login / Join
+          </div>
         </li>
       </ul>
+    </div>
+    <div
+      v-if="displayLoginDialogue == true"
+      class="lp-dialogue"
+    >
+      <div class="box-auth">
+        <div class="box-login">
+          <LoginPage />
+        </div>
+        <div class="box-register">
+          <RegisterPage />
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
+import LoginPage from '../elements/Login'
+import RegisterPage from '../elements/Register'
 export default {
   name: 'PageMenu',
+  components: {RegisterPage, LoginPage},
   data () {
     return {
-      displayMenu: false
+      displayMenu: false,
+      displayLoginDialogue: false
     }
   },
   computed: {
@@ -148,7 +160,7 @@ export default {
       width: 100%;
     }
 
-    a {
+    a, .menu-item {
       padding: 1.5rem;
       display: block;
       color: $white;
@@ -157,6 +169,7 @@ export default {
       background-size: 200% 100%;
       background-position: right bottom;
       transition: all $animation-duration ease-out;
+      cursor: pointer;
       text-decoration: none;
       &:hover {
         transition: all 0.1s;
@@ -176,6 +189,14 @@ export default {
         transform: skewX(0deg);
       }
     }
+  }
+
+  .lp-dialogue {
+    transform: skewX(+15deg);
+    position: fixed;
+    width: 60vw;
+    right: 0;
+    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 rgba(0,0,0,0.3);
   }
 
   .logo {
