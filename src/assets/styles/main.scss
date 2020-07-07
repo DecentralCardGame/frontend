@@ -73,23 +73,43 @@ main {
   color: $black;
   font-size: $font-size;
   padding: 1rem;
+  font-weight: normal;
 
   label {
     display: grid;
     grid-template-columns: 1fr 5fr;
     text-align: right;
+    margin: 1rem 0;
+  }
+  button {
+    margin: auto;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: $red;
+    font-weight: bold;
   }
 
   input {
     color: $black;
+    margin: 0 0.5rem;
     padding: 0.5rem;
-    background-color: darken($white, 5%);
+    background-color: darken($white, 10%);
     border: $border-thickness solid transparent;
     transition: all $animation-duration;
     &:focus {
       transition: all $animation-duration;
       border-color: $red;
     }
+  }
+
+  input[type="checkbox"]  {
+    border: 2px solid $red;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: red;
   }
 
   .box-login {

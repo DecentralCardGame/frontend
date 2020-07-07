@@ -3,7 +3,6 @@
     <h2>Join the Experience</h2><br>
     <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p><br>
     <p>AT THE MOMENT E-MAIL SIGNUP IS NOT IMPLEMENTED - JUST PRESS REGISTER TO ACTIVATE YOUR ACCOUNT ON THE BLOCKCHAIN </p><p>
-      <br>
     </p>
     <form @submit.prevent="register">
       <label>
@@ -15,7 +14,6 @@
           name="uname"
         > <!--required-->
       </label>
-      <br>
       <label>
         <b>Password: </b>
         <input
@@ -25,7 +23,6 @@
           name="psw"
         >
       </label>
-      <br>
       <label>
         <b>E-Mail: </b>
         <input
@@ -35,7 +32,6 @@
           name="mail"
         >
       </label>
-      <br>
       <label>
         <b>Mnemonic: </b>
         <input
@@ -45,7 +41,6 @@
           name="mail"
         >
       </label>
-      <br><br>
       <button type="submit">
         Register
       </button>
@@ -63,7 +58,6 @@
 
 <script>
 import { registerAccTx, generateMnemonic } from '../cardChain.js'
-import { notify } from '../utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {
@@ -100,13 +94,14 @@ export default {
       }
 
       this.$hottub.post('/register', post)
-        .catch(() => {
-          notify.fail('Backend registration failed!')
-        })
-
-      registerAccTx(this.$http, this.username)
-
-      this.$router.push('/')
+              .then((res) => {
+                console.log(res)
+                registerAccTx(this.$http, this.username)
+                this.$router.push('/')
+              })
+              .catch(() => {
+                this.$notify.fail('Backend registration failed!')
+              })
     }
   }
 }

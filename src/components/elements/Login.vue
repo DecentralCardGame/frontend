@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h2>Welcome back!</h2>
+    <h2>Login</h2>
     <br>
     <p>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</p>
-    <br>
     <p v-if="$route.query.redirect">
       Bitte logge dich ein!
     </p>
@@ -21,7 +20,6 @@
           required
         >
       </label>
-      <br>
       <label>
         <b>Password: </b>
         <input
@@ -32,7 +30,6 @@
           required
         >
       </label>
-      <br>
       <label>Stay logged in
         <input
                 type="checkbox"
