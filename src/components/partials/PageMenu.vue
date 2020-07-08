@@ -1,86 +1,88 @@
 <template>
-  <nav>
-    <div class="content">
-      <router-link
-        to="/"
-        class="logo"
-      >
-        <img
-          alt="Crowd Control"
-          src="../../assets/logo.svg"
+  <div>
+    <nav>
+      <div class="content">
+        <router-link
+                to="/"
+                class="logo"
         >
-      </router-link>
-      <div
-        class="menu-button"
-        @click="displayMenu = !displayMenu"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-menu"
-        ><line
-          x1="3"
-          y1="12"
-          x2="21"
-          y2="12"
-        /><line
-          x1="3"
-          y1="6"
-          x2="21"
-          y2="6"
-        /><line
-          x1="3"
-          y1="18"
-          x2="21"
-          y2="18"
-        /></svg>
+          <img
+                  alt="Crowd Control"
+                  src="../../assets/logo.svg"
+          >
+        </router-link>
+        <div
+                class="menu-button"
+                @click="displayMenu = !displayMenu"
+        >
+          <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-menu"
+          ><line
+                  x1="3"
+                  y1="12"
+                  x2="21"
+                  y2="12"
+          /><line
+                  x1="3"
+                  y1="6"
+                  x2="21"
+                  y2="6"
+          /><line
+                  x1="3"
+                  y1="18"
+                  x2="21"
+                  y2="18"
+          /></svg>
+        </div>
+        <ul :class="showMenuClass">
+          <li>
+            <router-link to="/">
+              The Game
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/newcard">
+              Card Creator
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/gallery">
+              Gallery
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/vote">
+              Voting
+            </router-link>
+          </li>
+          <li v-if="$store.getters.loggedIn">
+            <router-link to="/vote">
+              Voting
+            </router-link>
+          </li>
+          <li
+                  v-if="!$store.getters.loggedIn"
+                  @click="displayLoginDialogue = !displayLoginDialogue"
+          >
+            <div :class="displayLoginDialogue ? 'menu-item activated' : 'menu-item'">
+              Login / Join
+            </div>
+          </li>
+        </ul>
       </div>
-      <ul :class="showMenuClass">
-        <li>
-          <router-link to="/">
-            The Game
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/newcard">
-            Card Creator
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/gallery">
-            Gallery
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/vote">
-            Voting
-          </router-link>
-        </li>
-        <li v-if="$store.getters.loggedIn">
-          <router-link to="/vote">
-            Voting
-          </router-link>
-        </li>
-        <li
-          v-if="!$store.getters.loggedIn"
-          @click="displayLoginDialogue = !displayLoginDialogue"
-        >
-          <div class="menu-item">
-            Login / Join
-          </div>
-        </li>
-      </ul>
-    </div>
+    </nav>
     <div
-      v-if="displayLoginDialogue == true"
-      class="lp-dialogue"
+            v-if="displayLoginDialogue == true"
+            class="lp-dialogue"
     >
       <div class="box-auth">
         <div class="box-login">
@@ -91,7 +93,7 @@
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -122,6 +124,7 @@ export default {
   @import "../../assets/styles/variables";
 
   nav {
+    font-weight: bold;
     background-color: $blue;
     box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $red;
     position: relative;
@@ -135,6 +138,7 @@ export default {
   }
 
   .content {
+    position: relative;
     transform: skewX(15deg);
     display: flex;
     flex-flow: row;
@@ -171,7 +175,7 @@ export default {
       transition: all $animation-duration ease-out;
       cursor: pointer;
       text-decoration: none;
-      &:hover {
+      &:hover, &.activated {
         transition: all 0.1s;
         border-color: $white;
         background-position: left bottom;
@@ -192,10 +196,11 @@ export default {
   }
 
   .lp-dialogue {
-    transform: skewX(+15deg);
-    position: fixed;
+    position: absolute;
     width: 60vw;
-    right: 0;
+    right: 5.5rem;
+    margin-top: -2.5rem;
+    z-index: 10000000;
     box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 rgba(0,0,0,0.3);
   }
 

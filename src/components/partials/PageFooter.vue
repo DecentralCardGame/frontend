@@ -3,12 +3,9 @@
     <div class="pre-footer">
       <div class="pre-footer-content">
         <p>Ok, ok I have read enough. I am ready to</p>
-        <router-link
-          class="exposed"
-          to="/register"
-        >
+        <a href="https://discord.gg/yPA3aKe">
           <button>Join</button>
-        </router-link>
+        </a>
 
         <p>this awesome community and have tons of fun.</p>
       </div>
@@ -183,6 +180,10 @@ export default {
 
   li {
     padding-bottom: 2em;
+  }
+
+  h2 {
+    font-weight: bold;
   }
 
   .menu h2 {

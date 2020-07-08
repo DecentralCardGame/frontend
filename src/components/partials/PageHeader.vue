@@ -4,7 +4,7 @@
       id="Discordlink"
       href="https://discord.gg/yPA3aKe"
     >
-      Discuss the latest News or simply join our growing Community. We would love to hear your voice.
+      Discuss the latest News or simply join our growing Community <b>Discord</b>. We would love to hear your voice.
     </a>
     <router-link
       v-if="$store.getters.loggedIn"

@@ -3,6 +3,7 @@
     <h2>Login</h2>
     <br>
     <p>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</p>
+    <br>
     <p v-if="$route.query.redirect">
       Bitte logge dich ein!
     </p>
@@ -11,25 +12,25 @@
     </p>
     <form @submit.prevent="login">
       <label>
-        <b>Username: </b>
-        <input
-          v-model="username"
-          type="text"
-          placeholder="Enter Username"
-          name="uname"
-          required
-        >
+        Username:
       </label>
+      <input
+              v-model="username"
+              type="text"
+              placeholder="Enter Username"
+              name="uname"
+              required
+      >
       <label>
-        <b>Password: </b>
-        <input
-          v-model="password"
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-        >
+        Password:
       </label>
+      <input
+              v-model="password"
+              type="password"
+              placeholder="Enter Password"
+              name="psw"
+              required
+      >
       <label>Stay logged in
         <input
                 type="checkbox"

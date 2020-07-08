@@ -4,54 +4,47 @@
     <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p><br>
     <p>AT THE MOMENT E-MAIL SIGNUP IS NOT IMPLEMENTED - JUST PRESS REGISTER TO ACTIVATE YOUR ACCOUNT ON THE BLOCKCHAIN </p><p>
     </p>
+    <br>
     <form @submit.prevent="register">
       <label>
-        <b>Username: </b>
-        <input
-          v-model="username"
-          type="text"
-          placeholder="Enter Username"
-          name="uname"
-        > <!--required-->
+        Username:
       </label>
+      <input
+              v-model="username"
+              type="text"
+              placeholder="Enter Username"
+              name="uname"
+      >
       <label>
-        <b>Password: </b>
-        <input
-          v-model="password"
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-        >
+        Password:
       </label>
+      <input
+              v-model="password"
+              type="password"
+              placeholder="Enter Password"
+              name="psw"
+      >
       <label>
-        <b>E-Mail: </b>
-        <input
-          v-model="email"
-          type="mail"
-          placeholder="Enter E-Mail"
-          name="mail"
-        >
+        E-Mail:
       </label>
+      <input
+              v-model="email"
+              type="mail"
+              placeholder="Enter E-Mail"
+              name="mail"
+      >
       <label>
-        <b>Mnemonic: </b>
-        <input
-          v-model="mnemonic"
-          type="text"
-          placeholder="Enter Mnemonic"
-          name="mail"
-        >
+        Mnemonic:
       </label>
+      <input
+              v-model="mnemonic"
+              type="text"
+              placeholder="Enter Mnemonic"
+              name="mail"
+      >
       <button type="submit">
         Register
       </button>
-    </form>
-    <br>
-    <h2>Join the Community</h2><br>
-    <p>To join forces with other designers, players or trolls it is best to join our Discord server. Also to find someone to teach you the game!</p><br>
-    <form action="https://discord.gg/yPA3aKe">
-      <button type="submit">
-        Join Discord
-      </Button>
     </form>
   </div>
 </template>
