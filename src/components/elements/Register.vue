@@ -1,46 +1,46 @@
 <template>
   <div>
     <h2>Join the Experience</h2>
-    <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p>
+    <p><b>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</b></p>
     <form @submit.prevent="register">
       <label>
-        Username:
+        Username*
       </label>
       <input
               v-model="username"
               type="text"
-              placeholder="Enter Username"
+              placeholder="username"
               name="uname"
       >
       <label>
-        Password:
+        Password*
       </label>
       <input
               v-model="password"
               type="password"
-              placeholder="Enter Password"
+              placeholder="**********"
               name="psw"
       >
       <label>
-        E-Mail:
+        E-Mail*
       </label>
       <input
               v-model="email"
               type="mail"
-              placeholder="Enter E-Mail"
+              placeholder="your@e-mail.com"
               name="mail"
       >
       <label>
-        Mnemonic:
+        Mnemonic*
       </label>
       <input
               v-model="mnemonic"
               type="text"
-              placeholder="Enter Mnemonic"
+              placeholder="one two three four five ..."
               name="mail"
       >
       <button type="submit">
-        Register
+        Join
       </button>
     </form>
     <br>

@@ -1,28 +1,28 @@
 <template>
   <div>
     <h2>Login</h2>
-    <p>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</p>
+    <p><b>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</b></p>
     <p v-if="loginError">
       Login fehlgeschlagen!
     </p>
     <form @submit.prevent="login">
       <label>
-        Username:
+        Username*
       </label>
       <input
               v-model="username"
               type="text"
-              placeholder="Enter Username"
+              placeholder="username"
               name="uname"
               required
       >
       <label>
-        Password:
+        Password*
       </label>
       <input
               v-model="password"
               type="password"
-              placeholder="Enter Password"
+              placeholder="**********"
               name="psw"
               required
       >
