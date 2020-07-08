@@ -47,6 +47,10 @@ main {
   margin: auto;
 }
 
+b {
+  font-weight: bold;
+}
+
 @media (max-width: 480px) {
   main {
     font-size: 20px;
@@ -64,3 +68,98 @@ main {
 @import "forms";
 @import "notifications";
 @import "modals";
+
+.box-auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: $white;
+  text-shadow: none;
+  color: $black;
+  font-size: $font-size;
+  padding: 1rem;
+  font-weight: normal;
+
+  label {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  button {
+    margin: auto;
+    padding: 1rem 2rem;
+    z-index: 1;
+    background-color: transparent;
+    color: $black;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all $animation-duration ease-out;
+    &:after {
+      z-index: -1;
+      background: linear-gradient(to right, $red 50%, darken($white, 10%) 50%);
+      background-position: right bottom;
+      background-size: 200% 100%;
+      transition: all $animation-duration ease-out;
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: skewX($skew);
+      box-shadow: $border-thickness-bold $border-thickness-bold 0 black;
+    }
+    &:hover {
+      color: $white;
+      &:after {
+        background-position: left bottom;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: $red;
+    font-weight: bold;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: darken($white, 50%);
+    opacity: 1; /* Firefox */
+  }
+
+  input {
+    color: $black;
+    padding: 0.5rem;
+    background-color: darken($white, 10%);
+    border: $border-thickness solid transparent;
+    transition: all $animation-duration;
+    &:focus {
+      transition: all $animation-duration;
+      border-color: $red;
+    }
+  }
+
+  input[type="checkbox"]  {
+    border: 2px solid $red;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: red;
+  }
+
+  .box-login {
+    padding: 0.5rem;
+    border-right: $border-thickness solid darken($white, 10%);
+  }
+  .box-register {
+    padding: 0.5rem;
+  }
+}

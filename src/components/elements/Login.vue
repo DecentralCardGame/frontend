@@ -1,49 +1,41 @@
 <template>
   <div>
-    <h2>Welcome back!</h2>
-    <br>
-    <p>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</p>
-    <br>
-    <p v-if="$route.query.redirect">
-      Bitte logge dich ein!
-    </p>
+    <h2>Login</h2>
+    <p><b>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</b></p>
     <p v-if="loginError">
       Login fehlgeschlagen!
     </p>
     <form @submit.prevent="login">
       <label>
-        <b>Username: </b>
-        <input
-          v-model="username"
-          type="text"
-          placeholder="Enter Username"
-          name="uname"
-          required
-        >
+        Username*
       </label>
-      <br>
+      <input
+              v-model="username"
+              type="text"
+              placeholder="username"
+              name="uname"
+              required
+      >
       <label>
-        <b>Password: </b>
+        Password*
+      </label>
+      <input
+              v-model="password"
+              type="password"
+              placeholder="**********"
+              name="psw"
+              required
+      >
+      <label>Stay logged in
         <input
-          v-model="password"
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
+                type="checkbox"
+                checked="checked"
+                name="remember"
         >
       </label>
-      <br>
-      <br>
       <button type="submit">
         Login
-      </button>
-      <label>
-        <input
-          type="checkbox"
-          checked="checked"
-          name="remember"
-        > Stay logged in
-      </label><br>
+      </button><br>
       <!-- <span class="psw">Forgot <a href="#">password</a>?</span> -->
     </form>
   </div>
@@ -51,7 +43,7 @@
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: 'Login',
   data () {
     return {
       loginError: null,
