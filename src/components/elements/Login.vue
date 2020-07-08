@@ -1,12 +1,7 @@
 <template>
   <div>
     <h2>Login</h2>
-    <br>
     <p>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</p>
-    <br>
-    <p v-if="$route.query.redirect">
-      Bitte logge dich ein!
-    </p>
     <p v-if="loginError">
       Login fehlgeschlagen!
     </p>

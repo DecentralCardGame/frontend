@@ -76,14 +76,16 @@ main {
   font-weight: normal;
 
   label {
-
+    margin-top: 0.5rem;
   }
   button {
     margin: auto;
+    padding: 1rem 2rem;
   }
 
   h2 {
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
     color: $red;
     font-weight: bold;
   }

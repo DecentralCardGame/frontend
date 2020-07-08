@@ -1,10 +1,7 @@
 <template>
   <div>
-    <h2>Join the Experience</h2><br>
-    <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p><br>
-    <p>AT THE MOMENT E-MAIL SIGNUP IS NOT IMPLEMENTED - JUST PRESS REGISTER TO ACTIVATE YOUR ACCOUNT ON THE BLOCKCHAIN </p><p>
-    </p>
-    <br>
+    <h2>Join the Experience</h2>
+    <p>Good to see you here! Before you can dive into the universe of Crowd Control, you need to make an account.</p>
     <form @submit.prevent="register">
       <label>
         Username:
@@ -46,6 +43,8 @@
         Register
       </button>
     </form>
+    <br>
+    <p>AT THE MOMENT E-MAIL SIGNUP IS NOT IMPLEMENTED - JUST PRESS REGISTER TO ACTIVATE YOUR ACCOUNT ON THE BLOCKCHAIN </p>
   </div>
 </template>
 
