@@ -93,7 +93,7 @@
 
 <script>
 import * as R from 'ramda'
-import { filterSelection } from './utils.js' 
+import { filterSelection, createInteraction, updateInteraction, climbRulesTree, atPath } from './utils.js' 
 
 export default {
   name: 'modal',
@@ -153,28 +153,44 @@ export default {
           console.error('this type is unkown: ', this.dialog.type)
           break
       }
-      this.$emit('close')
+      console.log('prevent close?',this.dialog.preventClose )
+      if (!this.dialog.preventClose) {
+        this.$emit('close')
+      } 
+        
     },
     handleInterface() {
+      let atRules = R.curry(atPath)(this.$cardRules)
       console.log('dialog in handle interface: ', this.dialog)
 
       let selection = filterSelection(this.dialog.options)
-      let interactionText = atPath(this.$cardRules, R.concat(this.dialog.rulesPath, ['children', selection.index])).interactionText
+      let pathAtSelection = R.concat(this.dialog.rulesPath, ['children', selection.index])
+      let objAtSelection = atRules(pathAtSelection)    
+
+      // check if an option was selected, which has an interaction text
+      if (objAtSelection.interactionText) {
+        let interactionText = objAtSelection.interactionText
       
-      let abilityPath = R.append(selection.index, this.dialog.abilityPath)
-      let rulesPath = R.concat(this.dialog.rulesPath, ['children', selection.index])
+        let abilityPath = R.append(selection.index, this.dialog.abilityPath)
+        let rulesPath = pathAtSelection
+        let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules) 
 
-      let text = ''
-      R.keys(selection.option.children).forEach(entry => {
-        text += '§' + entry + ' , '
-      })
-      console.log('text', text)
-
-      let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules) 
-      console.log('new:', newInteraction)
-      console.log('ability so far', this.ability)
-      updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-      this.attachToAbility(this.dialog.btn.abilityPath, {})
+        updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+        this.attachToAbility(this.dialog.btn.abilityPath, {})
+        this.dialog.preventClose = false
+      } 
+      else {
+        // if there is no interaction text, don't close modal and present new options
+        this.dialog.preventClose = true
+        this.dialog.interactionText = objAtSelection.interactionText
+        this.dialog.title = objAtSelection.name
+        this.dialog.description = objAtSelection.description
+        this.dialog.type = objAtSelection.type
+        this.dialog.options = objAtSelection.children
+        this.dialog.rulesPath = pathAtSelection
+        this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
+      }
+      
     },
     handleIntegerInteraction () {
       console.log('dialog: ', this.dialog)
@@ -335,118 +351,6 @@ export default {
   }
 }
 
-function createInteraction (text, abilityPath, rulesPath, cardRules) {
-  let makeBtn = R.curry(makeButton)(cardRules)
-
-  // split text into pieces, separated by button markers §
-  let regex = /([§]+)([a-z,A-Z]+)/g
-  text = text.replace(regex, '$1%$2§')
-  text = text.split('§')
-
-  let interaction = []
-  // iterate over text pieces, creating interaction for each piece
-  text.forEach((entry) => {
-    if (entry[0] === '%') {
-      // % is the marker for a button
-      let buttonEntry = entry.slice(1)
-
-      let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
-      
-      // array is different to other interactions, therefore we need special treatment
-      if(type === 'array') {
-        let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
-
-        // Create the button for adding the effect
-        interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.concat(abilityPath, [buttonEntry, 0]), interaction.length - 1)
-        // and also create the button for adding more effects
-        interaction.push({
-          pre: '+', 
-          btn: {
-            id: interaction.length,
-            label: '[add '+R.path(R.append(buttonEntry, rulesPath), cardRules).name+']', 
-            type: 'expandArray', 
-            abilityPath: R.append(buttonEntry, abilityPath),
-            rulesPath: R.append(buttonEntry, rulesPath),
-            template: interaction[interaction.length - 1]
-          }, 
-          post: interaction[interaction.length - 2].post 
-        })
-        // the post button text has been moved behind the last button, so remove it from the previous one
-        interaction[interaction.length - 2].post = ''
-      } else {
-        R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
-      }
-    } else {
-      interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
-    }
-  })
-
-  // check if the last interaction piece is a button, if not move pretext from the last piece to posttext of the second last piece
-  if (interaction[interaction.length - 1].btn.type === null) {
-    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
-    interaction.splice(-1, 1)
-  }
-
-  console.log('created Interaction: ', interaction)
-  return interaction
-}
-
-function updateInteraction (ability, id, newInteraction) {
-  if (id > 0) {
-    ability.interaction[id - 1].post += ability.interaction[id].pre
-  }
-  if (id < ability.interaction.length - 1) {
-    ability.interaction[id + 1].pre += ability.interaction[id].post
-  }
-
-  ability.interaction = R.remove(id, 1, ability.interaction)
-  ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
-
-  // here please update ids
-  ability.interaction.forEach((item, idx) => {
-    item.btn.id = idx
-  })
-}
-
-function atPath(cardRules, path) {
-  return R.path(path, cardRules)
-}
-
-function makeButton (cardRules, rulesPath, abilityPath, id) {
-  let atRules = R.curry(atPath)(cardRules)
-
-  return {
-    id: id,
-    label: atRules(rulesPath).name,
-    type: atRules(rulesPath).type,
-    abilityPath: abilityPath,
-    rulesPath: rulesPath
-  }
-}
-
-function climbRulesTree(cardRules, path) {
-  let atRules = R.curry(atPath)(cardRules)
-
-  let ascending = true
-  while (ascending) {
-    if (R.keys(atRules(path)).length === 1) {
-      path.push(R.keys(atRules(path))[0])
-    } else if (R.contains('children', R.keys(atRules(path)))) {
-      path.push('children')
-    } else {
-      ascending = false
-    }
-  }
-  return path
-}
-/*
-function shallowClone (obj) {
-  let clone = {}
-  for (var prop in obj) {
-    clone[prop] = {}
-  }
-  return clone
-}*/
 </script>
 
 <style>

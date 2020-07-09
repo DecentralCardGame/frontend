@@ -19,6 +19,7 @@
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
+import { createInteraction, updateInteraction, climbRulesTree, shallowClone, atPath } from './utils.js' 
 
 export default {
   name: 'AbilityComponent',
@@ -35,22 +36,7 @@ export default {
   },
   methods: {
     showAbilityModal (ability, btn, index) {
-      let atPath = path => {
-        return R.path(path, this.$cardRules)
-      }
-      let climbRulesTree = path => {
-        let ascending = true
-        while (ascending) {
-          if (R.keys(atPath(path)).length === 1) {
-            path.push(R.keys(atPath(path))[0])
-          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
-            path.push('children')
-          } else {
-            ascending = false
-          }
-        }
-        return path
-      }
+      let atRules = R.curry(atPath)(this.$cardRules)
 
       this.ability.clickedBtn = btn
 
@@ -64,9 +50,9 @@ export default {
       console.log('dialog:', this.dialog)
       console.log('entering showAbilityModal with btn: ', btn)
       climbRulesTree
-      console.log('atpath:', atPath(btn.rulesPath))
+      console.log('atpath:', atRules(btn.rulesPath))
 
-      let node = atPath(btn.rulesPath)
+      let node = atRules(btn.rulesPath)
 
       let thereWillBeModal = true
 
@@ -95,11 +81,11 @@ export default {
           }
           case 'interface': {
             let dialog = {
-              title: atPath(btn.rulesPath).name,
-              description: atPath(btn.rulesPath).description,
-              type: atPath(btn.rulesPath).type,
+              title: atRules(btn.rulesPath).name,
+              description: atRules(btn.rulesPath).description,
+              type: atRules(btn.rulesPath).type,
               btn: btn,
-              options: atPath(btn.rulesPath).children,
+              options: atRules(btn.rulesPath).children,
               rulesPath: btn.rulesPath,
               abilityPath: btn.abilityPath
             }
@@ -109,8 +95,6 @@ export default {
           }
           // this is a terminal case, specify an integer
           case 'int':
-            console.log('modalType: integer')
-
             this.dialog = {
               title: btn.type,
               description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
@@ -133,13 +117,18 @@ export default {
               ]
             }
             break
-          case 'struct':
+          case 'struct': {
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false
 
+            let interactionText = atRules(btn.rulesPath).interactionText
             
+            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules) 
 
+            updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))   // TODO test if this works
             break
+          }
 
           // this is a terminal case, yes or no
           case 'boolean': {
@@ -216,7 +205,11 @@ export default {
 
       this.isAbilityModalVisible = thereWillBeModal
     },
-    setAbility (reference) {
+    attachToAbility (path, object) {
+      this.ability = R.assocPath(path, object, this.ability)
+      this.$emit('update:ability', this.ability)
+    },
+    updateAbility (reference) {
       this.ability = reference
       this.$emit('update:ability', this.ability)
     },

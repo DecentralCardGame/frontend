@@ -15,5 +15,5 @@
   },
   "type": "struct",
   "description": "Buid an Action-TargetEffect",
-  "ineractionText": "§actionSelector §actionManipulations §zoneChange"
+  "interactionText": "§actionSelector §actionManipulations §zoneChange"
 }
