@@ -93,6 +93,18 @@ export default {
             this.dialog = dialog
             break
           }
+          case 'struct': {
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
+
+            let interactionText = atRules(btn.rulesPath).interactionText
+            
+            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules) 
+
+            updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))   // TODO test if this works
+            break
+          }
           // this is a terminal case, specify an integer
           case 'int':
             this.dialog = {
@@ -117,18 +129,51 @@ export default {
               ]
             }
             break
-          case 'struct': {
-            // In this case there is no modal to be displayed just update the interaction
-            thereWillBeModal = false
+          // this is a terminal case, pick one string from enum
+          case 'enum': {
+              let strings = node.children
 
-            let interactionText = atRules(btn.rulesPath).interactionText
-            
-            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules) 
+              this.dialog = {
+                title: btn.type,
+                description: 'pick one of the following:',
+                type: 'stringEnum',
+                btn: btn,
+                options: [],
+                entries: strings
+              }
 
-            updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))   // TODO test if this works
+              for (let prop in strings) {
+                this.dialog.options.push({
+                  name: strings[prop],
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: strings[prop],
+                  description: ''
+                })
+              }
             break
           }
+          // this is a terminal case, enter a string or pick one if enums are present
+          case 'string': {
+
+            this.dialog = {
+              title: btn.type,
+              description: 'please let me know:',
+              type: 'stringEnter',
+              btn: btn,
+              options: [{
+                name: 'yes',
+                schemaPath: [],
+                abilityPath: [],
+                title: btn.type,
+                description: ''
+              }],
+              entries: []
+            }
+            break
+          }
+
+
 
           // this is a terminal case, yes or no
           case 'boolean': {
@@ -148,51 +193,7 @@ export default {
             };
             break
           }
-          // this is a terminal case, enter a string or pick one if enums are present
-          case 'string':
-
-            if (node.enum) {
-              console.log('modalType: stringEnum')
-
-              let strings = node.enum
-
-              this.dialog = {
-                title: btn.type,
-                description: 'pick one of the following:',
-                type: 'stringEnum',
-                options: [],
-                entries: strings
-              }
-
-              for (let prop in strings) {
-                this.dialog.options.push({
-                  name: strings[prop],
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: strings[prop],
-                  description: ''
-                })
-              }
-
-              break
-            } else {
-              console.log('modalType: stringEnter')
-
-              this.dialog = {
-                title: btn.type,
-                description: 'please let me know:',
-                type: 'stringEnter',
-                options: [{
-                  name: 'yes',
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: btn.type,
-                  description: ''
-                }],
-                entries: []
-              }
-              break
-            }
+          
 
           default:
             console.error('node.type is unknown')

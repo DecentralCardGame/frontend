@@ -125,17 +125,8 @@ export default {
         case 'root':
           this.handleCreateAbility()
           break
-        case 'multivalue':
-          this.handleMultiValueInteraction()
-          break
-        case 'integerList':
-          this.handleIntegerListInteraction()
-          break
         case 'integer':
           this.handleIntegerInteraction()
-          break
-        case 'radio':
-          this.handleRadioInteraction()
           break
         case 'stringEnum':
           this.handleStringInteraction()
@@ -143,17 +134,25 @@ export default {
         case 'stringEnter':
           this.handleStringInteraction()
           break
-        case 'checkbox':
-          this.handleCheckboxInteraction()
-          break
-        case 'noDialog':
-          this.handleNoModal()
-          break
+        // case 'checkbox':
+        //   this.handleCheckboxInteraction()
+        //   break
+        // case 'noDialog':
+        //   this.handleNoModal()
+        //   break
+        // case 'multivalue':
+        //   this.handleMultiValueInteraction()
+        //   break
+        // case 'integerList':
+        //   this.handleIntegerListInteraction()
+        //   break
+        // case 'radio':
+        //   this.handleRadioInteraction()
+        //   break
         default:
           console.error('this type is unkown: ', this.dialog.type)
           break
       }
-      console.log('prevent close?',this.dialog.preventClose )
       if (!this.dialog.preventClose) {
         this.$emit('close')
       } 
@@ -190,7 +189,6 @@ export default {
         this.dialog.rulesPath = pathAtSelection
         this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
       }
-      
     },
     handleIntegerInteraction () {
       console.log('dialog: ', this.dialog)
@@ -200,6 +198,14 @@ export default {
       // reset selectedCount
       // this.selectedCount = 0
       console.log('ability after handleInteger: ', this.ability)
+    },
+    handleStringInteraction () {
+      console.log('dialog: ', this.dialog)
+
+      this.ability.clickedBtn.label = this.selectedString
+      this.attachToAbility(this.dialog.btn.abilityPath, this.selectedString)
+
+      console.log('ability after handleString: ', this.ability)
     },
     handleCheckboxInteraction () {
       /*
@@ -298,22 +304,6 @@ export default {
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties)
       this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties))
       console.log('ability after handleNoModal: ', this.ability)
-      */
-    },
-    handleStringInteraction () {
-      /*
-      console.log('current node: ', this.currentNode)
-
-      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
-      console.log('currentProperty: ', currentProperty)
-
-      this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedString
-
-      let btn = this.ability.interaction[this.currentNode.interactionId].btn
-
-      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
-      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(currentProperty), this.selectedString)
-      console.log('ability after handleStringINteraction: ', this.ability)
       */
     },
     handleCreateAbility () {
