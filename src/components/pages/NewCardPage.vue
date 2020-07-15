@@ -67,12 +67,10 @@
         </div>
         <div v-if="activeStep == 2">
           <template>
-            THIS IS NOT FUNCTIONAL YET
             <button
               type="button"
               class="btn"
               @click="showAbilityModal('root')"> New Ability </button>
-            use the flavor text to write down your abilities
             <AbilityModal
               v-if="isAbilityModalVisible"
               v-bind:dialog="abilityDialog"
