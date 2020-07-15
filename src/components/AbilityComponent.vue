@@ -131,26 +131,35 @@ export default {
             break
           // this is a terminal case, pick one string from enum
           case 'enum': {
-              let strings = node.children
-
-              this.dialog = {
-                title: btn.type,
-                description: 'pick one of the following:',
-                type: 'stringEnum',
-                btn: btn,
-                options: [],
-                entries: strings
+            this.dialog = {
+              title: btn.type,
+              description: 'pick one of the following:',
+              type: 'stringEnum',
+              btn: btn,
+              options: []
+            }
+          
+            // recursively go down until only strings are left
+            let traverseChildren = array => {
+              let isString = x => R.type(x) === "String" 
+              if (R.all(isString)(array)) {
+                return array
+              } else {
+                return R.map(x => traverseChildren(x.children), array)
               }
+            }
 
-              for (let prop in strings) {
-                this.dialog.options.push({
-                  name: strings[prop],
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: strings[prop],
-                  description: ''
-                })
-              }
+            let strings = R.uniq(R.flatten(traverseChildren(node.children)))
+           
+            for (let prop in strings) {
+              this.dialog.options.push({
+                name: strings[prop],
+                schemaPath: [],         // how about paths TODO
+                abilityPath: [],
+                title: strings[prop],
+                description: ''
+              })
+            }
             break
           }
           // this is a terminal case, enter a string or pick one if enums are present
