@@ -5,12 +5,7 @@
       "$ref": "entitySelectorRules.json"
     },
     "entityManipulations": {
-      "$ref": "entityManipulationsRules.json",
-      "optional": true
-    },
-    "zoneChange": {
-      "$ref": "zoneChangeRules.json",
-      "optional": true
+      "$ref": "entityManipulationsRules.json"
     }
   },
   "type": "struct",

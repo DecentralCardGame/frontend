@@ -1,6 +1,6 @@
 {
   "name": "Zone",
-  "children": ["DECK","DUSTPILE","FIELD","HAND","QUEUE","VOID"],
+  "children": ["DECK","DUSTPILE","FIELD","HAND","VOID"],
   "type": "enum",
   "description": "Choose a Zone"
 }

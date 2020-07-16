@@ -5,12 +5,7 @@
       "$ref": "actionSelectorRules.json"
     },
     "actionManipulations": {
-      "$ref": "actionManipulationsRules.json",
-      "optional": true
-    },
-    "zoneChange": {
-      "$ref": "zoneChangeRules.json",
-      "optional": true
+      "$ref": "actionManipulationsRules.json"
     }
   },
   "type": "struct",

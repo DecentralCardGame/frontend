@@ -12,6 +12,9 @@
     },
     "actionTagManipulation": {
       "$ref": "actionTagManipulationRules.json"
+    },
+    "actionZoneChange": {
+      "$ref": "zoneChangeRules.json",
     }
   },
   "type": "interface",

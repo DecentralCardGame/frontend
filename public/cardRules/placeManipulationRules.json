@@ -12,6 +12,9 @@
     },
     "placeTagManipulation": {
       "$ref": "placeTagManipulationRules.json"
+    },
+    "placeZoneChange": {
+      "$ref": "zoneChangeRules.json"
     }
   },
   "type": "interface",

@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Action-Manipulation",
+  "name": "Tagbased Action-Manipulation",
   "children": {
     "tagValue": {
       "$ref": "tagRules.json"

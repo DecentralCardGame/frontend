@@ -5,12 +5,7 @@
       "$ref": "placeSelectorRules.json"
     },
     "placeManipulations": {
-      "$ref": "placeManipulationsRules.json",
-      "optional": true
-    },
-    "zoneChange": {
-      "$ref": "zoneChangeRules.json",
-      "optional": true
+      "$ref": "placeManipulationsRules.json"
     }
   },
   "type": "struct",

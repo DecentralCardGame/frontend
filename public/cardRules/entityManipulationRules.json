@@ -12,6 +12,9 @@
     },
     "entityTagManipulation": {
       "$ref": "entityTagManipulationRules.json"
+    },
+    "entityZoneChange": {
+      "$ref": "zoneChangeRules.json"
     }
   },
   "type": "interface",
