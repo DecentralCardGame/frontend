@@ -18,5 +18,5 @@
   },
   "type": "struct",
   "description": "Build a Token",
-  "interactionText": "a §attack / §health token named §name tagged §tags"
+  "interactionText": " §attack / §health token named §name tagged §tags"
 }

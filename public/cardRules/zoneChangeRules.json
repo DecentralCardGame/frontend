@@ -9,6 +9,7 @@
     }
   },
   "type": "struct",
+  "singleUse": true,
   "description": "Build a Zonechange",
   "interactionText": "Put it into §player §zone."
 }

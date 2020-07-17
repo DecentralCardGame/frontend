@@ -10,5 +10,5 @@
   },
   "type": "struct",
   "description": "Build an Entity-Targeteffect",
-  "interactionText": "§entitySelector §entityManipulations §zoneChange"
+  "interactionText": "§entitySelector §entityManipulations"
 }
