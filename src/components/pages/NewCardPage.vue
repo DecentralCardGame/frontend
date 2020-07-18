@@ -201,14 +201,16 @@
           <div class="creator-text">
             THIS IS NOT FUNCTIONAL YET
             use the flavor text to write down your abilities
+            <button
+              type="button"
+              class="btn"
+              @click="showAbilityModal('root')"> New Ability </button>
             <AbilityModal
               v-if="isAbilityModalVisible"
-              :dialog="abilityDialog"
-              :options="abilityOptions"
-              :ability="ability"
-              :abilities="abilities"
-              :current-node="currentNode"
-              @update:currentNode="currentNode = $event"
+              v-bind:dialog="abilityDialog"
+              v-bind:ability="ability"
+              v-on:update:ability="ability = $event"
+              v-bind:abilities="abilities"
               @close="closeAbilityModal"
             />
           </div>
@@ -224,11 +226,10 @@
             :key="ability.ability"
           >
             <AbilityComponent
-              :ability="ability"
-              :dialog="abilityDialog"
-              :abilities="abilities"
-              :current-node="currentNode"
-              @update:currentNode="currentNode = $event"
+              v-bind:ability="ability"
+              v-on:update:ability="ability = $event"
+              v-bind:dialog="abilityDialog"
+              v-bind:abilities="abilities"
             />
           </div>
         </div>
@@ -338,21 +339,18 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, emptyCard, resolveParagraph, notify, uploadImg } from '../utils.js'
+import { sampleImg, emptyCard, notify, uploadImg } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
   components: {CardComponent, AbilityComponent, BuySchemeModal, AbilityModal},
   data () {
     return {
-      cardSchema: Object,
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
       activeStep: 0,
       ability: {},
       abilities: [],
-      abilityOptions: {},
-      currentNode: {init: 'yes'},
       abilityDialog: {},
       cardImageUrl: sampleImg,
       model: {
@@ -397,54 +395,62 @@ export default {
       this.isBuySchemeModalVisible = false
     },
     showAbilityModal (type) {
+      let atPath = path => {
+        return R.path(path, this.$cardRules)
+      }
+
+      let climbRulesTree = path => {
+        let ascending = true
+        while (ascending) {
+          if (R.keys(atPath(path)).length === 1) {
+            path.push(R.keys(atPath(path))[0])
+          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
+            path.push('children')
+          } else {
+            ascending = false
+          }
+        }
+        return path
+      }
+
+      console.log('abilities', this.abilities)
+
       this.isAbilityModalVisible = true
 
       if (type === 'root') {
         if (this.model.type === 'No Type') {
-          this.model.type = 'Entity'
+          notify.fail('No Type', 'Card has no type, please pick a type before setting abilities.')
+          this.isAbilityModalVisible = false
+          return
         }
 
-        var path = ['oneOf']
-        this.$cardSchema.oneOf.forEach((cardType, index) => {
-          if (cardType.properties[this.model.type]) {
-            path.push(index, 'properties', this.model.type, 'properties', 'Abilities', 'items', 'oneOf')
-            this.currentNode.path = path
+        let newAbility = {
+          path: ['children', this.model.type, 'children', this.model.type === 'action' ? 'effects' : 'abilities']
+        }
 
-            console.log('cardtype: ', cardType)
-            let options = cardType.properties[this.model.type].properties.Abilities.items.oneOf
-            console.log('options', options)
+        newAbility.path = climbRulesTree(newAbility.path)
 
-            console.log('path: ', this.currentNode.path)
+        console.log('postclimb', atPath(newAbility.path))
 
-            let dialog = {
-              title: 'New Ability',
-              description: 'Pick an ability type:',
-              type: 'root',
-              options: []
-            }
+        let options = atPath(newAbility.path)
 
-            options.forEach((option, index) => {
-              dialog.options.push({
-                name: option.description,
-                schemaPath: ['items', 'oneOf', index, 'properties', option.description],
-                abilityPath: [option.description],
-                title: option.title,
-                description: option.properties[resolveParagraph(option.description)].description
-              })
-            })
+        let dialog = {
+          title: 'New Ability',
+          description: atPath(R.dropLast(1, newAbility.path)).description,
+          type: 'root',
+          options: options,
+          rulesPath: newAbility.path,
+          abilityPath: []
+        }
 
-            this.abilityOptions = options
-            this.abilityDialog = dialog
-          }
-        })
+        this.abilityDialog = dialog
+          
       } else {
         console.log('modal type: ', type)
       }
-      console.log('currentNode on showAbilityModal: ', this.currentNode)
     },
     closeAbilityModal () {
       console.log('ability after close modal: ', this.ability)
-      console.log('curNode after close modal: ', this.currentNode)
       this.isAbilityModalVisible = false
     },
     getNumbers (start, stop, min) {
@@ -455,10 +461,9 @@ export default {
       }
     },
     getTags (idx) {
-      if (this.$cardSchema.oneOf) {
+      if (this.$cardRules) {
         let usedTags = []
-        let allTags = this.$cardSchema.oneOf[0].properties.Action.properties.Tags.items.enum
-
+        let allTags = this.$cardRules.children.action.children.tags.children.tag.children
         if (this.model.tag[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.tag[idx], this.model.tag)

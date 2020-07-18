@@ -1,0 +1,28 @@
+{
+  "name": "Place",
+  "children": {
+    "costType": {
+      "$ref": "costTypeRules.json"
+    },
+    "castingCost": {
+      "$ref": "castingCostRules.json"
+    },
+    "cardName": {
+      "$ref": "cardNameRules.json"
+    },
+    "tags": {
+      "$ref": "tagsRules.json"
+    },
+    "flavourText": {
+      "$ref": "flavourTextRules.json"
+    },
+    "health": {
+      "$ref": "healthRules.json"
+    },
+    "abilities": {
+      "$ref": "abilitiesRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Place"
+}

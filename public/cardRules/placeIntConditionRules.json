@@ -1,0 +1,17 @@
+{
+  "name": "Numeric Place-Condition",
+  "children": {
+    "placeIntProperty": {
+      "$ref": "placeIntPropertyRules.json"
+    },
+    "intValue": {
+      "$ref": "intValueRules.json"
+    },
+    "intComparator": {
+      "$ref": "intComparatorRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Numeric Place-Condition",
+  "interactionText": "with §placeIntProperty §intComparator §intValue"
+}

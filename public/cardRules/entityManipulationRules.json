@@ -1,0 +1,22 @@
+{
+  "name": "Entity-Manipulation",
+  "children": {
+    "entityAbilityManipulation": {
+      "$ref": "entityAbilityManipulationRules.json"
+    },
+    "entityIntManipulation": {
+      "$ref": "entityIntManipulationRules.json"
+    },
+    "entityStringManipulation": {
+      "$ref": "entityStringManipulationRules.json"
+    },
+    "entityTagManipulation": {
+      "$ref": "entityTagManipulationRules.json"
+    },
+    "entityZoneChange": {
+      "$ref": "zoneChangeRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose an Entity-Manipuation"
+}

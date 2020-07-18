@@ -1,0 +1,6 @@
+{
+  "name": "Textbased Operator",
+  "children": ["SET"],
+  "type": "enum",
+  "description": "Choose a Textbased Operator"
+}

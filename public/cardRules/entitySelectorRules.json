@@ -1,0 +1,25 @@
+{
+  "name": "Entity-Selector",
+  "children": {
+    "playerMode": {
+      "$ref": "selectorModeRules.json"
+    },
+    "playerCondition": {
+      "$ref": "playerConditionRules.json",
+      "optional": true
+    },
+    "cardMode": {
+      "$ref": "selectorModeRules.json"
+    },
+    "entityCondition": {
+      "$ref": "entityConditionRules.json",
+      "optional": true
+    },
+    "zone": {
+      "$ref": "dynamicZoneRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build an Entity-Selector",
+  "interactionText": "Choose §cardMode entity §entityCondition in the §zone of §playerMode player §playerCondition."
+}

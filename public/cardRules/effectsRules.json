@@ -1,0 +1,10 @@
+{
+  "name": "Effects",
+  "children": {
+    "effect": {
+      "$ref": "effectRules.json"
+    }
+  },
+  "type": "array",
+  "description": "Add some effects"
+}

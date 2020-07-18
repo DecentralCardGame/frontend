@@ -2,11 +2,9 @@
   <div>
     <AbilityModal
       v-show="isAbilityModalVisible"
-      ref="abilityModal"
-      :dialog="dialog"
-      :current-node="currentNode"
-      :ability="ability"
-      @update:currentNode="currentNode = $event"
+      v-bind:dialog="dialog"      
+      v-bind:ability="ability"
+      v-on:update:ability="ability = $event"
       @close="closeAbilityModal"
     />
     <div
@@ -29,13 +27,13 @@
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
+import { createInteraction, updateInteraction, climbRulesTree, shallowClone, atPath } from './utils.js' 
 
 export default {
   name: 'AbilityComponent',
   components: {AbilityModal},
   props: {
     elements: Object,
-    currentNode: Object,
     dialog: Object,
     ability: Object
   },
@@ -46,175 +44,82 @@ export default {
   },
   methods: {
     showAbilityModal (ability, btn, index) {
-      // first set current node to clicked node
-      this.writeNode('interactionId', index)
-      let node = R.path(btn.schemaPath, this.$cardSchema)
+      let atRules = R.curry(atPath)(this.$cardRules)
 
-      console.log('entering showAbilityModal with btn: ', btn, ' and node: ', node)
+      this.ability.clickedBtn = btn
+
+      // first set current node to clicked node
+
+
+      //let node = R.path(btn.schemaPath, this.$cardSchema)
+      //let node = {type: this.dialog.type}
+      index;
+
+      console.log('dialog:', this.dialog)
+      console.log('entering showAbilityModal with btn: ', btn)
+      climbRulesTree
+      console.log('atpath:', atRules(btn.rulesPath))
+
+      let node = atRules(btn.rulesPath)
 
       let thereWillBeModal = true
 
       // depending on type, create dialog
       if (node.type) {
         switch (node.type) {
-          case 'array':
+          case 'array': {
+            // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
+            thereWillBeModal = false
+            let copyButton = R.clone(this.ability.clickedBtn.template)
 
-            if (node.items.enum) {
-              this.writeNode('modalType', 'items.enum')
+            // TODO check if this is fine for everything else than activatedAbility (removes the :)
+            copyButton.pre = ''
+            
+            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
 
-              let enums = node.items.enum
-              console.log('modalType: items.enums: ', enums)
+            this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction)
 
-              let dialog = {
-                title: btn.type,
-                description: 'choose your destiny:',
-                type: 'enum',
-                options: [],
-                enum: enums
-              }
+            // update all btn ids
+            this.ability.interaction.forEach((item, idx) => {
+              item.btn.id = idx
+            })
 
-              for (let prop in enums) {
-                dialog.options.push({
-                  name: enums[prop],
-                  schemaPath: [], // TODO YES
-                  abilityPath: [],
-                  title: enums[prop],
-                  description: ''
-                })
-              }
-
-              this.dialog = dialog
-
-            // this is an array radio case, where 1 item is added
-            } else if (node.items.oneOf) {
-              this.writeNode('modalType', 'items.oneOf')
-              console.log('modalType: items.oneOf')
-
-              let options = node.items.oneOf
-
-              let dialog = {
-                title: btn.type,
-                description: 'choose your destiny:',
-                type: 'radio',
-                options: []
-              }
-
-              for (let prop in options) {
-                let propName = options[prop].required[0]
-                dialog.options.push({
-                  name: options[prop].description,
-                  schemaPath: ['items', 'oneOf', prop],
-                  abilityPath: [propName],
-                  title: options[prop].title,
-                  description: options[prop].description
-                })
-              }
-
-              this.dialog = dialog
-            }
+            console.log('abi', this.ability.interaction)
             break
-
-          case 'object':
-          // this is the typical radio case, where 1 item is selected
-            if (R.has('oneOf', node)) {
-              this.writeNode('modalType', 'object.oneOf')
-              console.log('modalType: object.oneOf')
-
-              let options = node.oneOf
-
-              let dialog = {
-                title: btn.type,
-                description: 'choose your destiny:',
-                type: 'radio',
-                options: []
-              }
-
-              for (let prop in options) {
-                let propName = options[prop].required[0]
-                dialog.options.push({
-                  name: options[prop].description,
-                  schemaPath: ['oneOf', prop, 'properties', propName],
-                  abilityPath: [propName],
-                  title: options[prop].title,
-                  description: options[prop].description
-                })
-              }
-
-              this.dialog = dialog
-            } else if (R.has('properties', node)) {
-            // this is a terminal case, pick integers
-              if (R.all(props => props.type === 'integer', R.values(node.properties))) {
-                this.writeNode('modalType', 'object.integers')
-                console.log('modalType: object.integers')
-
-                let keys = R.keys(node.properties)
-
-                let dialog = {
-                  title: btn.type,
-                  description: 'choose your destiny:',
-                  type: 'integerList',
-                  options: [],
-                  entries: keys
-                }
-
-                for (let prop in keys) {
-                  dialog.options.push({
-                    name: keys[prop],
-                    schemaPath: [],
-                    abilityPath: [],
-                    title: keys[prop],
-                    description: ''
-                  })
-                }
-
-                this.dialog = dialog
-
-              // this is a typical case for not showing a modal, still we want to call addAbility
-              } else {
-                this.writeNode('modalType', 'object.noInteraction')
-                console.log('modalType: object.noInteraction')
-
-                thereWillBeModal = false
-
-                this.dialog.type = 'noDialog'
-
-                this.$refs.abilityModal.addAbility()
-              }
-            } else {
-              console.error('object yes, but has no properties?!?')
+          }
+          case 'interface': {
+            let dialog = {
+              title: atRules(btn.rulesPath).name,
+              description: atRules(btn.rulesPath).description,
+              type: atRules(btn.rulesPath).type,
+              btn: btn,
+              options: atRules(btn.rulesPath).children,
+              rulesPath: btn.rulesPath,
+              abilityPath: btn.abilityPath
             }
+
+            this.dialog = dialog
             break
+          }
+          case 'struct': {
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
 
-          // this is a terminal case, yes or no
-          case 'boolean': {
+            let interactionText = atRules(btn.rulesPath).interactionText
+            
+            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules) 
 
-            this.writeNode('modalType', 'boolean')
-            console.log('modalType: boolean')
-
-            this.dialog = {
-              title: btn.type,
-              description: 'choose your destiny:',
-              type: 'checkbox',
-              options: [{
-                name: 'marius hat gefailed',
-                schemaPath: [],
-                abilityPath: [],
-                title: 'Yes',
-                description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
-              }]
-            };
+            updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))   // TODO test if this works
             break
           }
           // this is a terminal case, specify an integer
-          case 'integer':
-
-            this.writeNode('modalType', 'integer')
-            console.log('modalType: integer')
-
+          case 'int':
             this.dialog = {
               title: btn.type,
               description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
               type: 'integer',
+              btn: btn,
               options: [{
                 name: 'MORE!',
                 schemaPath: [],
@@ -232,54 +137,80 @@ export default {
               ]
             }
             break
-
-          // this is a terminal case, enter a string or pick one if enums are present
-          case 'string':
-
-            if (node.enum) {
-              this.writeNode('modalType', 'stringEnum')
-              console.log('modalType: stringEnum')
-
-              let strings = node.enum
-
-              this.dialog = {
-                title: btn.type,
-                description: 'pick one of the following:',
-                type: 'stringEnum',
-                options: [],
-                entries: strings
-              }
-
-              for (let prop in strings) {
-                this.dialog.options.push({
-                  name: strings[prop],
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: strings[prop],
-                  description: ''
-                })
-              }
-
-              break
-            } else {
-              this.writeNode('modalType', 'stringEnter')
-              console.log('modalType: stringEnter')
-
-              this.dialog = {
-                title: btn.type,
-                description: 'please let me know:',
-                type: 'stringEnter',
-                options: [{
-                  name: 'yes',
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: btn.type,
-                  description: ''
-                }],
-                entries: []
-              }
-              break
+          // this is a terminal case, pick one string from enum
+          case 'enum': {
+            this.dialog = {
+              title: btn.type,
+              description: 'pick one of the following:',
+              type: 'stringEnum',
+              btn: btn,
+              options: []
             }
+          
+            // recursively go down until only strings are left
+            let traverseChildren = array => {
+              let isString = x => R.type(x) === "String" 
+              if (R.all(isString)(array)) {
+                return array
+              } else {
+                return R.map(x => traverseChildren(x.children), array)
+              }
+            }
+
+            let strings = R.uniq(R.flatten(traverseChildren(node.children)))
+           
+            for (let prop in strings) {
+              this.dialog.options.push({
+                name: strings[prop],
+                schemaPath: [],         // how about paths TODO
+                abilityPath: [],
+                title: strings[prop],
+                description: ''
+              })
+            }
+            break
+          }
+          // this is a terminal case, enter a string or pick one if enums are present
+          case 'string': {
+
+            this.dialog = {
+              title: btn.type,
+              description: 'please let me know:',
+              type: 'stringEnter',
+              btn: btn,
+              options: [{
+                name: 'yes',
+                schemaPath: [],
+                abilityPath: [],
+                title: btn.type,
+                description: ''
+              }],
+              entries: []
+            }
+            break
+          }
+
+
+
+          // this is a terminal case, yes or no
+          case 'boolean': {
+            console.log('modalType: boolean')
+
+            this.dialog = {
+              title: btn.type,
+              description: 'choose your destiny:',
+              type: 'checkbox',
+              options: [{
+                name: 'marius hat gefailed',
+                schemaPath: [],
+                abilityPath: [],
+                title: 'Yes',
+                description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
+              }]
+            };
+            break
+          }
+          
 
           default:
             console.error('node.type is unknown')
@@ -292,16 +223,15 @@ export default {
 
       this.isAbilityModalVisible = thereWillBeModal
     },
-    setNode (reference) {
-      this.currentNode = reference
-      this.$emit('update:currentNode', this.currentNode)
+    attachToAbility (path, object) {
+      this.ability = R.assocPath(path, object, this.ability)
+      this.$emit('update:ability', this.ability)
     },
-    writeNode (prop, data) {
-      this.currentNode[prop] = data
-      this.$emit('update:currentNode', this.currentNode)
+    updateAbility (reference) {
+      this.ability = reference
+      this.$emit('update:ability', this.ability)
     },
     closeAbilityModal () {
-      console.log('currentNode on closeAbilityModal in AbilityComponent: ', this.currentNode)
       this.isAbilityModalVisible = false
     }
   }

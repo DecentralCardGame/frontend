@@ -1,0 +1,14 @@
+{
+  "name": "Tagbased Entity-Manipulation",
+  "children": {
+    "tagValue": {
+      "$ref": "tagRules.json"
+    },
+    "tagOperator": {
+      "$ref": "tagOperatorRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Tagbased Entity-Manipulation",
+  "interactionText": "It §tagOperator §tagValue."
+}

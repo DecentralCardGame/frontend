@@ -1,0 +1,31 @@
+{
+  "name": "HQ",
+  "children": {
+    "costType": {
+      "$ref": "costTypeRules.json"
+    },
+    "cardName": {
+      "$ref": "cardNameRules.json"
+    },
+    "tags": {
+      "$ref": "tagsRules.json"
+    },
+    "flavourText": {
+      "$ref": "flavourTextRules.json"
+    },
+    "health": {
+      "$ref": "healthRules.json"
+    },
+    "abilities": {
+      "$ref": "abilitiesRules.json"
+    },
+    "growth": {
+      "$ref": "growthRules.json"
+    },
+    "wisdom": {
+      "$ref": "wisdomRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a HQ"
+}

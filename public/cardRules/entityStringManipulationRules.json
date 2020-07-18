@@ -1,0 +1,17 @@
+{
+  "name": "Textbased Entity-Manipulation",
+  "children": {
+    "stringProperty": {
+      "$ref": "entityStringPropertyRules.json"
+    },
+    "stringOperator": {
+      "$ref": "stringOperatorRules.json"
+    },
+    "stringValue": {
+      "$ref": "stringValueRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Textbased Entity-Manipulation",
+  "interactionText": "§stringOperator §stringProperty §stringValue."
+}

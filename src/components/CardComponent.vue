@@ -1,17 +1,5 @@
 <template id="theCardSvg">
-  <svg
-    width="100%"
-    height="100%"
-    viewBox="0 0 154 240"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xml:space="preserve"
-    xmlns:serif="http://www.serif.com/"
-    style="fill-rule:evenodd;clip-rule:evenodd;"
-    @mouseenter="cardmouseenter"
-    @mouseleave="cardmouselave"
-    @click="cardmouseclick"
-  >
+<svg @mouseenter="cardmouseenter" @mouseleave="cardmouseleave" @click="cardmouseclick" width="100%" height="100%" viewBox="0 0 154 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
     <!-- card image -->
     <g id="Ebene_2">
       <mask id="imgMask">
@@ -818,7 +806,7 @@ export default {
     }
   },
   methods: {
-    cardmouselave() {
+    cardmouseleave() {
       this.opaque = 1;
       this.clicked = false;
     },
@@ -836,7 +824,8 @@ export default {
       if (this.model.type === 'No Type' || !this.model.type) {
         return ''
       } else {
-        let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]
+        if(this.model.type == 'hq') this.model.type = 'headquarter'
+        let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]  // TODO: change rules
         if (type) {
           return type.properties.DisplayName.const.toUpperCase()
         } else {

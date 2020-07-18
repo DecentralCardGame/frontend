@@ -1,0 +1,10 @@
+{
+  "name": "Place-Manipuations",
+  "children": {
+    "placeManipulation": {
+      "$ref": "placeManipulationRules.json"
+    }
+  },
+  "type": "array",
+  "description": "Add some Place-Manipuations"
+}

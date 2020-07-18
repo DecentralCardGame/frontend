@@ -1,0 +1,10 @@
+{
+  "name": "Action-Manipulations",
+  "children": {
+    "actionManipulation": {
+      "$ref": "actionManipulationRules.json"
+    }
+  },
+  "type": "array",
+  "description": "Add some Action-Manipulations"
+}

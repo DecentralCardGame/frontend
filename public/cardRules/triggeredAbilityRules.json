@@ -1,0 +1,14 @@
+{
+  "name": "Triggered Ability",
+  "children": {
+    "cause": {
+      "$ref": "eventListenerRules.json"
+    },
+    "effects": {
+      "$ref": "effectsRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Triggered Ability",
+  "interactionText": "§cause : §effects \n"
+}

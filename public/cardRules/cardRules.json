@@ -1,0 +1,19 @@
+{
+  "name":"card",
+  "children": {
+    "action": {
+      "$ref": "actionRules.json"
+    },
+    "entity": {
+      "$ref": "entityRules.json"
+    },
+    "headquarter": {
+      "$ref": "headquarterRules.json"
+    },
+    "place": {
+      "$ref": "placeRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose a Cardtype"
+}

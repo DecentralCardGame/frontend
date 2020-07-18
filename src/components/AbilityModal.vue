@@ -52,57 +52,33 @@
                 type="checkbox"
                 :value="option.name"
               >
-
-              <input
-                v-if="dialog.type==='radio'"
-                id="index"
-                v-model="option.value"
-                type="radio"
-                :value="option.name"
+              <input v-if="dialog.type==='stringEnum'" type="radio"
+                v-model="selectedString" id="index" :value="option.name"
               >
-
-              <input
-                v-if="dialog.type==='stringEnum'"
-                id="index"
-                v-model="selectedString"
-                type="radio"
-                :value="option.name"
-              >
-
-              <input
-                v-if="dialog.type==='stringEnter'"
+              <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px" placeholder="enter text"
                 v-model="selectedString"
                 style="display: inline;color:black;height:50px"
                 placeholder="enter text"
               >
 
-              <button
-                v-if="dialog.type==='integerList'"
-                id="index"
-                type="enumbtn"
-                @click="arrayCount.splice(index, 1, arrayCount[index] + 1)"
-              >
-                {{ arrayCount[index] }}
+              <button v-if="dialog.type==='integerList'" type="enumbtn"
+                @click="arrayCount.splice(index, 1, arrayCount[index] + 1)" id="index">
+                {{arrayCount[index]}}
+              </button>
+              <button v-if="dialog.type==='integer'" type="integerbtn"
+                @click="selectedCount += 1 - 2 * index" id="index">
+                {{option.name}}
               </button>
 
-              <button
-                v-if="dialog.type==='integer'"
-                id="index"
-                type="integerbtn"
-                @click="selectedCount += 1 - 2 * index"
-              >
-                {{ option.name }}
-              </button>
-
-              <input
-                v-if="dialog.type==='root'"
-                id="index"
-                v-model="option.value"
-                type="radio"
-                :value="option.name"
+              <input v-if="dialog.type==='root'" type="radio"
+                v-model="option.selected" id="index" :value="option.name"
               >
 
-              <label for="index">{{ option.title }}</label>
+              <input v-if="dialog.type==='interface'" type="radio"
+                v-model="option.selected" id="index" :value="option.name"
+              >
+
+              <label for="index">{{option.name}}</label>
 
               <span v-if="option.description"> - {{ option.description }} </span>
             </div>
@@ -132,7 +108,7 @@
 
 <script>
 import * as R from 'ramda'
-import { filterSelection, resolveParagraph } from './utils.js' // filterProperties (currently removed, maybe forever?)
+import { filterSelection, createInteraction, updateInteraction, climbRulesTree, atPath } from './utils.js' 
 
 export default {
   name: 'Modal',
@@ -140,7 +116,6 @@ export default {
     picked: Object,
     dialog: Object,
     options: Array,
-    currentNode: Object,
     ability: Object,
     abilities: Array
   },
@@ -159,20 +134,14 @@ export default {
       console.log('type:', this.dialog.type)
 
       switch (this.dialog.type) {
+        case 'interface':
+          this.handleInterface()
+          break
         case 'root':
           this.handleCreateAbility()
           break
-        case 'multivalue':
-          this.handleMultiValueInteraction()
-          break
-        case 'integerList':
-          this.handleIntegerListInteraction()
-          break
         case 'integer':
           this.handleIntegerInteraction()
-          break
-        case 'radio':
-          this.handleRadioInteraction()
           break
         case 'stringEnum':
           this.handleStringInteraction()
@@ -180,27 +149,81 @@ export default {
         case 'stringEnter':
           this.handleStringInteraction()
           break
-        case 'checkbox':
-          this.handleCheckboxInteraction()
-          break
-        case 'noDialog':
-          this.handleNoModal()
-          break
+        // case 'checkbox':
+        //   this.handleCheckboxInteraction()
+        //   break
+        // case 'noDialog':
+        //   this.handleNoModal()
+        //   break
+        // case 'multivalue':
+        //   this.handleMultiValueInteraction()
+        //   break
+        // case 'integerList':
+        //   this.handleIntegerListInteraction()
+        //   break
+        // case 'radio':
+        //   this.handleRadioInteraction()
+        //   break
         default:
           console.error('this type is unkown: ', this.dialog.type)
           break
       }
-      this.$emit('close')
+      if (!this.dialog.preventClose) {
+        this.$emit('close')
+      } 
+        
     },
-    setNode (reference) {
-      this.currentNode = reference
-      this.$emit('update:currentNode', this.currentNode)
+    handleInterface() {
+      let atRules = R.curry(atPath)(this.$cardRules)
+      console.log('dialog in handle interface: ', this.dialog)
+
+      let selection = filterSelection(this.dialog.options)
+      let pathAtSelection = R.concat(this.dialog.rulesPath, ['children', selection.index])
+      let objAtSelection = atRules(pathAtSelection)    
+
+      // check if an option was selected, which has an interaction text
+      if (objAtSelection.interactionText) {
+        let interactionText = objAtSelection.interactionText
+      
+        let abilityPath = R.append(selection.index, this.dialog.abilityPath)
+        let rulesPath = pathAtSelection
+        let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules) 
+
+        updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+        this.attachToAbility(this.dialog.btn.abilityPath, {})
+        this.dialog.preventClose = false
+      } 
+      else {
+        // if there is no interaction text, don't close modal and present new options
+        this.dialog.preventClose = true
+        this.dialog.interactionText = objAtSelection.interactionText
+        this.dialog.title = objAtSelection.name
+        this.dialog.description = objAtSelection.description
+        this.dialog.type = objAtSelection.type
+        this.dialog.options = objAtSelection.children
+        this.dialog.rulesPath = pathAtSelection
+        this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
+      }
     },
-    writeNode (prop, data) {
-      this.currentNode[prop] = data
-      this.$emit('update:currentNode', this.currentNode)
+    handleIntegerInteraction () {
+      console.log('dialog: ', this.dialog)
+
+      this.ability.clickedBtn.label = this.selectedCount
+      this.attachToAbility(this.dialog.btn.abilityPath, this.selectedCount)
+      // reset selectedCount
+      // this.selectedCount = 0
+      console.log('ability after handleInteger: ', this.ability)
+    },
+    handleStringInteraction () {
+      console.log('dialog: ', this.dialog)
+
+      this.ability.clickedBtn.label = this.selectedString
+      this.attachToAbility(this.dialog.btn.abilityPath, this.selectedString)
+
+      console.log('ability after handleString: ', this.ability)
     },
     handleCheckboxInteraction () {
+      /*
       console.log('dialog: ', this.dialog)
 
       if (!this.dialog.options[0].value) {
@@ -214,8 +237,10 @@ export default {
 
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = this.dialog.options[0].value
       this.attachToAbility(btn.abilityPath, this.dialog.options[0].value)
+      */
     },
     handleIntegerListInteraction () {
+      /*
       console.log('current node: ', this.currentNode)
 
       let labels = ''
@@ -241,24 +266,10 @@ export default {
       // reset arrayCount
       this.arrayCount = [0, 0, 0, 0, 0, 0]
       console.log('ability: ', this.ability)
-    },
-    handleIntegerInteraction () {
-      console.log('current node: ', this.currentNode)
-
-      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
-      console.log('currentProperty: ', currentProperty)
-
-      this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedCount
-
-      let btn = this.ability.interaction[this.currentNode.interactionId].btn
-
-      // R.path(btn.abilityPath, this.ability)[currentProperty] = this.selectedCount
-      this.attachToAbility(R.concat(btn.abilityPath, [currentProperty]), this.selectedCount)
-      // reset selectedCount
-      // this.selectedCount = 0
-      console.log('ability after handleInteger: ', this.ability)
+      */
     },
     handleRadioInteraction () {
+      /*
       console.log('ability: ', this.ability)
       let btn = this.ability.interaction[this.currentNode.interactionId].btn
       let option = filterSelection(this.dialog.options).option
@@ -292,8 +303,10 @@ export default {
 
       this.attachToAbility(R.concat(btn.abilityPath, [R.last(option.abilityPath)]), shallowClone(R.path(schemaPath, this.$cardSchema).properties))
       console.log('ability after handleRadioInteraction: ', this.ability)
+      */
     },
     handleNoModal () {
+      /*
       console.log('ability at handleNoModal: ', this.ability)
       // let option = filterSelection(this.dialog.options).option
 
@@ -306,41 +319,22 @@ export default {
       // R.path(R.dropLast(1, btn.abilityPath), this.ability)[R.last(btn.abilityPath)] = shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties)
       this.attachToAbility(R.dropLast(1, btn.abilityPath).push(R.last(btn.abilityPath)), shallowClone(R.path(btn.schemaPath, this.$cardSchema).properties))
       console.log('ability after handleNoModal: ', this.ability)
-    },
-    handleStringInteraction () {
-      console.log('current node: ', this.currentNode)
-
-      let currentProperty = R.last(this.ability.interaction[this.currentNode.interactionId].btn.schemaPath)
-      console.log('currentProperty: ', currentProperty)
-
-      this.ability.interaction[this.currentNode.interactionId].btn.label = this.selectedString
-
-      let btn = this.ability.interaction[this.currentNode.interactionId].btn
-
-      // R.path(R.dropLast(1, btn.abilityPath), this.ability)[currentProperty] = this.selectedString
-      this.attachToAbility(R.dropLast(1, btn.abilityPath).push(currentProperty), this.selectedString)
-      console.log('ability after handleStringINteraction: ', this.ability)
+      */
     },
     handleCreateAbility () {
       let selection = filterSelection(this.dialog.options)
-      // let properties = filterProperties(this.options, selection.option.value)
-      let abilityName = resolveParagraph(selection.option.value)
+      let interactionText = atPath(this.$cardRules, R.append(selection.index, this.dialog.rulesPath)).interactionText
 
-      this.currentNode.path = R.concat(R.slice(0, 8, this.currentNode.path), [selection.index, 'properties', abilityName])
+      let abilityPath = [selection.index]
+      let rulesPath = climbRulesTree(this.$cardRules, R.append(selection.index, this.dialog.rulesPath))
 
-      let newAbility = {}
-      newAbility[abilityName] = shallowClone(R.path(this.currentNode.path, this.$cardSchema).properties) // R.clone(R.path(this.currentNode.path, this.$cardSchema))
-      newAbility.interaction = createInteraction(R.path(this.currentNode.path, this.$cardSchema).description, this.currentNode.path, [abilityName], this.$cardSchema)
-      newAbility.name = abilityName
-      newAbility.path = this.currentNode.path
-
-      this.abilities.push(R.clone(newAbility))
-      this.currentNode = R.clone(this.abilities[this.abilities.length - 1])
-      this.writeNode(abilityName, {})
-      this.writeNode('name', abilityName)
-
-      console.log('newAbility: ', newAbility)
-      console.log('currentNode: ', this.currentNode)
+      let newAbility = {
+        interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules) 
+      }
+      newAbility[selection.index] = {
+        path: this.dialog.rulesPath
+      }
+      this.abilities.push(newAbility)
     },
     isNumber: function (evt) {
       evt = evt || window.event
@@ -353,89 +347,15 @@ export default {
     },
     attachToAbility (path, object) {
       this.ability = R.assocPath(path, object, this.ability)
-    }
+      this.$emit('update:ability', this.ability)
+    },
+    updateAbility (reference) {
+      this.ability = reference
+      this.$emit('update:ability', this.ability)
+    },
   }
 }
 
-function createInteraction (description, schemaPath, abilityPath, rules) {
-  // let text = description
-  let text = R.path(schemaPath, rules).description
-  console.log('text: ', text)
-
-  let regex = /([§]+)([a-z,A-Z]+)/g
-  text = text.replace(regex, '$1%$2§')
-  text = text.split('§')
-
-  let interaction = []
-
-  text.forEach(entry => {
-    if (entry[0] === '%') {
-      // % is the marker for a button after regex, now check if it is terminal:
-      let buttonPath = R.append(entry.slice(1), R.append('properties', schemaPath))
-
-      interaction[interaction.length - 1].btn = {
-        label: entry.slice(1),
-        type: entry.slice(1),
-        schemaPath: buttonPath,
-        abilityPath: R.append(entry.slice(1), abilityPath)
-      }
-    } else {
-      interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
-    }
-  })
-
-  if (interaction[interaction.length - 1].btn.type === null) {
-    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
-    interaction.splice(-1, 1)
-  }
-
-  console.log('created Interaction: ', interaction)
-  return interaction
-}
-
-function updateInteraction (ability, id, newInteraction) {
-  if (id > 0) {
-    ability.interaction[id - 1].post += ability.interaction[id].pre
-  }
-  if (id < ability.interaction.length - 1) {
-    ability.interaction[id + 1].pre += ability.interaction[id].post
-  }
-
-  ability.interaction = R.remove(id, 1, ability.interaction)
-  ability.interaction = R.insertAll(id, newInteraction, ability.interaction)
-}
-
-function deepness (node) {
-  console.log('node whose deepness is checked: ', node)
-
-  if (node.description === '§ActivatedAbility') {
-    return 2
-  }
-  if (node.description === '§TriggeredAbility') {
-    return 2
-  }
-  if (R.has('items', node)) {
-    if (R.has('oneOf', node.items)) {
-      return 2
-    }
-  }
-  if (R.has('oneOf', node)) {
-    return 1
-  }
-  if (R.has('properties', node)) {
-    return 1
-  }
-  console.log('terminal node, deepness is 0')
-  return 0
-}
-
-function shallowClone (obj) {
-  let clone = {}
-  for (var prop in obj) {
-    clone[prop] = {}
-  }
-  return clone
-}
 </script>
 
 <style>

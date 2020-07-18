@@ -1,0 +1,14 @@
+{
+  "name": "Place-Targeteffect",
+  "children": {
+    "placeSelector": {
+      "$ref": "placeSelectorRules.json"
+    },
+    "placeManipulations": {
+      "$ref": "placeManipulationsRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Place-Targeteffect",
+  "interactionText": "§placeSelector §placeManipulations"
+}

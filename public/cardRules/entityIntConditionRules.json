@@ -1,0 +1,17 @@
+{
+  "name": "Numeric Entity-Condition",
+  "children": {
+    "entityIntProperty": {
+      "$ref": "entityIntPropertyRules.json"
+    },
+    "intValue": {
+      "$ref": "intValueRules.json"
+    },
+    "intComparator": {
+      "$ref": "intComparatorRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Numeric Entity-Condition",
+  "interactionText": "with §entityIntProperty §intComparator §intValue"
+}

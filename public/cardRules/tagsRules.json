@@ -1,0 +1,10 @@
+{
+  "name": "Tags",
+  "children" : {
+    "tag": {
+      "$ref": "tagRules.json"
+    }
+  },
+  "type": "array",
+  "description": "Add some tags"
+}

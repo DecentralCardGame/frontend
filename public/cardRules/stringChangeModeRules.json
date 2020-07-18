@@ -1,0 +1,6 @@
+{
+  "name": "Numeric Changemode",
+  "children": ["CHANGES"],
+  "type": "enum",
+  "description": "Choose a Numeric Changemode"
+}

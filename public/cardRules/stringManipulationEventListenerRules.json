@@ -1,0 +1,18 @@
+{
+  "name": "Textbased Manipulation-Eventlistener",
+  "children": {
+    "property": {
+      "$ref": "cardStringPropertyRules.json"
+    },
+    "stringChangeMode": {
+      "$ref": "stringChangeModeRules.json"
+    },
+    "cardCondition": {
+      "$ref": "cardConditionRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a Textbased Manipulation-Eventlistener",
+  "interactionText": "Whenever §property §stringChangeMode on a card §cardCondition"
+}
