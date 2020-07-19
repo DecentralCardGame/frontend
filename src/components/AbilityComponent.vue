@@ -37,19 +37,19 @@ export default {
   methods: {
     showAbilityModal (ability, btn, index) {
       let atRules = R.curry(atPath)(this.$cardRules)
+      let atAbility = R.curry(atPath)(ability)
 
       this.ability.clickedBtn = btn
 
       // first set current node to clicked node
-
-
+      // TODO
+      climbRulesTree
+      index;
       //let node = R.path(btn.schemaPath, this.$cardSchema)
       //let node = {type: this.dialog.type}
-      index;
 
-      console.log('dialog:', this.dialog)
       console.log('entering showAbilityModal with btn: ', btn)
-      climbRulesTree
+
       console.log('atpath:', atRules(btn.rulesPath))
 
       let node = atRules(btn.rulesPath)
@@ -64,7 +64,7 @@ export default {
             thereWillBeModal = false
             let copyButton = R.clone(this.ability.clickedBtn.template)
 
-            // TODO check if this is fine for everything else than activatedAbility (removes the :)
+            // TODO check if this is fine for everything else than activatedAbility (removes the : )
             copyButton.pre = ''
             
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
@@ -75,17 +75,26 @@ export default {
             this.ability.interaction.forEach((item, idx) => {
               item.btn.id = idx
             })
-
-            console.log('abi', this.ability.interaction)
             break
           }
           case 'interface': {
+            let options = atRules(btn.rulesPath).children
+
+            // check singleUse case
+            let prevElements = atAbility(R.dropLast(1, btn.abilityPath))
+            if (prevElements) {
+              let singleUseHappened = R.pluck('singleUse', prevElements)
+              if (!singleUseHappened.isEmpty) {
+                options = R.dissoc(singleUseHappened, options) 
+              }
+            }
+
             let dialog = {
               title: atRules(btn.rulesPath).name,
               description: atRules(btn.rulesPath).description,
               type: atRules(btn.rulesPath).type,
               btn: btn,
-              options: atRules(btn.rulesPath).children,
+              options: options,
               rulesPath: btn.rulesPath,
               abilityPath: btn.abilityPath
             }
@@ -164,7 +173,6 @@ export default {
           }
           // this is a terminal case, enter a string or pick one if enums are present
           case 'string': {
-
             this.dialog = {
               title: btn.type,
               description: 'please let me know:',
@@ -181,29 +189,22 @@ export default {
             }
             break
           }
-
-
-
           // this is a terminal case, yes or no
           case 'boolean': {
-            console.log('modalType: boolean')
-
             this.dialog = {
               title: btn.type,
-              description: 'choose your destiny:',
-              type: 'checkbox',
+              description: 'check box to apply:',
+              type: 'boolean',
               options: [{
-                name: 'marius hat gefailed',
+                name: node.name,
                 schemaPath: [],
                 abilityPath: [],
-                title: 'Yes',
-                description: node.description ? node.description : 'Marius hat keine Description Property hinzugefügt'
+                title: '',
+                description: node.description ? node.description : ''
               }]
             };
             break
           }
-          
-
           default:
             console.error('node.type is unknown')
             break
@@ -216,13 +217,14 @@ export default {
       this.isAbilityModalVisible = thereWillBeModal
     },
     attachToAbility (path, object) {
-      this.ability = R.assocPath(path, object, this.ability)
-      this.$emit('update:ability', this.ability)
+      let ability = R.assocPath(path, object, this.ability)
+      this.$emit('update:ability', ability)
     },
+    /*
     updateAbility (reference) {
-      this.ability = reference
-      this.$emit('update:ability', this.ability)
-    },
+      let ability = reference
+      this.$emit('update:ability', ability)
+    },*/
     closeAbilityModal () {
       this.isAbilityModalVisible = false
     }
