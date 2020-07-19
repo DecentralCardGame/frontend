@@ -199,16 +199,17 @@
           class="creator-input-container"
         >
           <div class="creator-text">
-            THIS IS NOT FUNCTIONAL YET
-            use the flavor text to write down your abilities
             <button
               type="button"
               class="btn"
-              @click="showAbilityModal('root')"> New Ability </button>
+              @click="showAbilityModal('root')"
+            > 
+              New Ability 
+            </button>
           </div>
           <div
-            v-for="entry in abilities"
-            :key="entry.ability"
+            v-for="ability in abilities"
+            :key="ability.ability"
           >
             <AbilityComponent
               v-bind:ability="ability"
@@ -314,12 +315,12 @@
     </div>
     <div class="ability-modal-container">
       <AbilityModal
-              v-if="isAbilityModalVisible"
-              v-bind:dialog="abilityDialog"
-              v-bind:ability="ability"
-              v-on:update:ability="ability = $event"
-              v-bind:abilities="abilities"
-              @close="closeAbilityModal"
+        v-if="isAbilityModalVisible"
+        v-bind:dialog="abilityDialog"
+        v-bind:ability="ability"
+        v-bind:abilities="abilities"
+        @update:ability="ability = $event"
+        @close="closeAbilityModal"
       />
     </div>
   </div>
