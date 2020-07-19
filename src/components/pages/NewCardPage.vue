@@ -207,14 +207,14 @@
               @click="showAbilityModal('root')"> New Ability </button>
           </div>
           <div
-            v-for="ability in abilities"
-            :key="ability.ability"
+            v-for="entry in abilities"
+            :key="entry.ability"
           >
             <AbilityComponent
               v-bind:ability="ability"
-              v-on:update:ability="ability = $event"
               v-bind:dialog="abilityDialog"
               v-bind:abilities="abilities"
+              @update:ability="ability = $event"
             />
           </div>
         </div>

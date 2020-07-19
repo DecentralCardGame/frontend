@@ -3,44 +3,44 @@
     <nav>
       <div class="content">
         <router-link
-                to="/"
-                class="logo"
+          to="/"
+          class="logo"
         >
           <img
-                  alt="Crowd Control"
-                  src="../../assets/logo.svg"
+            alt="Crowd Control"
+            src="../../assets/logo.svg"
           >
         </router-link>
         <div
-                class="menu-button"
-                @click="displayMenu = !displayMenu"
+          class="menu-button"
+          @click="displayMenu = !displayMenu"
         >
           <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-menu"
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-menu"
           ><line
-                  x1="3"
-                  y1="12"
-                  x2="21"
-                  y2="12"
+            x1="3"
+            y1="12"
+            x2="21"
+            y2="12"
           /><line
-                  x1="3"
-                  y1="6"
-                  x2="21"
-                  y2="6"
+            x1="3"
+            y1="6"
+            x2="21"
+            y2="6"
           /><line
-                  x1="3"
-                  y1="18"
-                  x2="21"
-                  y2="18"
+            x1="3"
+            y1="18"
+            x2="21"
+            y2="18"
           /></svg>
         </div>
         <ul :class="showMenuClass">
@@ -70,8 +70,8 @@
             </router-link>
           </li>
           <li
-                  v-if="!$store.getters.loggedIn"
-                  @click="displayLoginDialogue = !displayLoginDialogue"
+            v-if="!$store.getters.loggedIn"
+            @click="displayLoginDialogue = !displayLoginDialogue"
           >
             <div :class="displayLoginDialogue ? 'menu-item activated' : 'menu-item'">
               Login / Join
@@ -81,8 +81,8 @@
       </div>
     </nav>
     <div
-            v-if="displayLoginDialogue == true"
-            class="lp-dialogue"
+      v-if="displayLoginDialogue == true"
+      class="lp-dialogue"
     >
       <div class="box-auth">
         <div class="box-login">
