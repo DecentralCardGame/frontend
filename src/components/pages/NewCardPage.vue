@@ -214,13 +214,6 @@
               @close="closeAbilityModal"
             />
           </div>
-          <button
-            type="button"
-            class="btn"
-            @click="showAbilityModal('root')"
-          >
-            New Ability
-          </button>
           <div
             v-for="ability in abilities"
             :key="ability.ability"

@@ -57,8 +57,6 @@
               >
               <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px" placeholder="enter text"
                 v-model="selectedString"
-                style="display: inline;color:black;height:50px"
-                placeholder="enter text"
               >
 
               <button v-if="dialog.type==='integerList'" type="enumbtn"
