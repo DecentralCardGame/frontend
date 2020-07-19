@@ -28,7 +28,7 @@ export const notify = {
   })
 }
 
-// Utility functions for card creator:
+// Utility functions for card creator
 
 export function createInteraction (text, abilityPath, rulesPath, cardRules) {
   let makeBtn = R.curry(makeButton)(cardRules)
@@ -121,7 +121,6 @@ export function makeButton (cardRules, rulesPath, abilityPath, id) {
 
 export function climbRulesTree(cardRules, path) {
   let atRules = R.curry(atPath)(cardRules)
-
   let ascending = true
   while (ascending) {
     if (R.keys(atRules(path)).length === 1) {

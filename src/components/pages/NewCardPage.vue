@@ -335,7 +335,7 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, emptyCard, notify, uploadImg } from '../utils.js'
+import { sampleImg, emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js' 
 
 export default {
   name: 'NewCardPage',
@@ -391,48 +391,32 @@ export default {
       this.isBuySchemeModalVisible = false
     },
     showAbilityModal (type) {
-      let atPath = path => {
-        return R.path(path, this.$cardRules)
-      }
-
-      let climbRulesTree = path => {
-        let ascending = true
-        while (ascending) {
-          if (R.keys(atPath(path)).length === 1) {
-            path.push(R.keys(atPath(path))[0])
-          } else if (R.contains('children', R.keys(R.path(path, this.$cardRules)))) {
-            path.push('children')
-          } else {
-            ascending = false
-          }
-        }
-        return path
-      }
+      let atRules = R.curry(atPath)(this.$cardRules)
 
       console.log('abilities', this.abilities)
 
       this.isAbilityModalVisible = true
 
       if (type === 'root') {
-        if (this.model.type === 'No Type') {
+        console.log('modeltype:', this.model.type)
+
+        if (this.model.type === 'No Type' || this.model.type === undefined) {
           notify.fail('No Type', 'Card has no type, please pick a type before setting abilities.')
           this.isAbilityModalVisible = false
           return
         }
 
         let newAbility = {
-          path: ['children', this.model.type, 'children', this.model.type === 'action' ? 'effects' : 'abilities']
-        }
+          path: ['children', R.toLower(this.model.type), 'children', this.model.type === 'action' ? 'effects' : 'abilities']
+        }      
 
-        newAbility.path = climbRulesTree(newAbility.path)
+        newAbility.path = climbRulesTree(this.$cardRules, newAbility.path)
 
-        console.log('postclimb', atPath(newAbility.path))
-
-        let options = atPath(newAbility.path)
+        let options = atRules(newAbility.path)
 
         let dialog = {
           title: 'New Ability',
-          description: atPath(R.dropLast(1, newAbility.path)).description,
+          description: atRules(R.dropLast(1, newAbility.path)).description,
           type: 'root',
           options: options,
           rulesPath: newAbility.path,
@@ -442,7 +426,7 @@ export default {
         this.abilityDialog = dialog
 
       } else {
-        console.log('modal type: ', type)
+        console.log('modal type unknown: ', type)
       }
     },
     closeAbilityModal () {
