@@ -205,14 +205,6 @@
               type="button"
               class="btn"
               @click="showAbilityModal('root')"> New Ability </button>
-            <AbilityModal
-              v-if="isAbilityModalVisible"
-              v-bind:dialog="abilityDialog"
-              v-bind:ability="ability"
-              v-on:update:ability="ability = $event"
-              v-bind:abilities="abilities"
-              @close="closeAbilityModal"
-            />
           </div>
           <div
             v-for="ability in abilities"
@@ -319,6 +311,16 @@
           :display-notes="true"
         />
       </div>
+    </div>
+    <div class="ability-modal-container">
+      <AbilityModal
+              v-if="isAbilityModalVisible"
+              v-bind:dialog="abilityDialog"
+              v-bind:ability="ability"
+              v-on:update:ability="ability = $event"
+              v-bind:abilities="abilities"
+              @close="closeAbilityModal"
+      />
     </div>
   </div>
 </template>
@@ -437,7 +439,7 @@ export default {
         }
 
         this.abilityDialog = dialog
-          
+
       } else {
         console.log('modal type: ', type)
       }
@@ -675,5 +677,10 @@ export default {
         box-shadow: none;
       }
     }
+  }
+
+  .ability-modal-container {
+    position: relative;
+    z-index: 3;
   }
 </style>
