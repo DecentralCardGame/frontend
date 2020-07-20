@@ -24,7 +24,7 @@
           :class="classStepPassed(3)"
           @click="activeStep = 3"
         >
-          Style, Flavor and Notes
+          Style and Flavor
         </div>
         <div
           :class="classStepPassed(4)"
