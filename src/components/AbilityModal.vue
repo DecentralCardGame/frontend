@@ -44,12 +44,11 @@
                 size="1"
                 @keypress="isNumber($event)"
               >
-
               <input
-                v-if="dialog.type==='checkbox'"
-                id="index"
-                v-model="option.value"
                 type="checkbox"
+                id="index"
+                v-if="dialog.type==='boolean'"
+                v-model="option.value"
                 :value="option.name"
               >
               <input v-if="dialog.type==='stringEnum'" type="radio"
@@ -156,8 +155,7 @@ export default {
       }
       if (!this.dialog.preventClose) {
         this.$emit('close')
-      } 
-        
+      }
     },
     handleInterface() {
       let atRules = R.curry(atPath)(this.$cardRules)
@@ -214,10 +212,8 @@ export default {
       console.log('ability after handleString: ', this.ability)
     },
     handleBoolInteraction () {
-      console.log('value: ', this.dialog.options[0].value)
-
-      this.ability.clickedBtn.label = this.dialog.options[0].value
-      this.attachToAbility(this.dialog.btn.abilityPath, this.dialog.options[0].value)
+      this.ability.clickedBtn.label = this.dialog.options[0].value ? R.dropLast(1, this.dialog.btn.label) + '!' : '-'
+      this.attachToAbility(this.dialog.btn.abilityPath, this.dialog.options[0].value ? this.dialog.options[0].value : false)
 
       console.log('ability after handleBool: ', this.ability)
     },

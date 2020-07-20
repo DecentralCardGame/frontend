@@ -27,13 +27,12 @@
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
-import { createInteraction, updateInteraction, climbRulesTree, shallowClone, atPath } from './utils.js' 
+import { createInteraction, updateInteraction, shallowClone, atPath } from './utils.js' 
 
 export default {
   name: 'AbilityComponent',
   components: {AbilityModal},
   props: {
-    elements: Object,
     dialog: Object,
     ability: Object
   },
@@ -47,21 +46,10 @@ export default {
       let atRules = R.curry(atPath)(this.$cardRules)
       let atAbility = R.curry(atPath)(ability)
 
+      index; // currently not in use
       this.ability.clickedBtn = btn
 
-      // first set current node to clicked node
-      // TODO
-      climbRulesTree
-      index;
-      //let node = R.path(btn.schemaPath, this.$cardSchema)
-      //let node = {type: this.dialog.type}
-
-      console.log('entering showAbilityModal with btn: ', btn)
-
-      console.log('atpath:', atRules(btn.rulesPath))
-
       let node = atRules(btn.rulesPath)
-
       let thereWillBeModal = true
 
       // depending on type, create dialog
@@ -127,7 +115,6 @@ export default {
             thereWillBeModal = false
 
             let interactionText = atRules(btn.rulesPath).interactionText
-            
             let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules) 
 
             updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
@@ -137,7 +124,7 @@ export default {
           // this is a terminal case, specify an integer
           case 'int':
             this.dialog = {
-              title: btn.type,
+              title: atRules(btn.rulesPath).name,
               description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
               type: 'integer',
               btn: btn,
@@ -161,7 +148,7 @@ export default {
           // this is a terminal case, pick one string from enum
           case 'enum': {
             this.dialog = {
-              title: btn.type,
+              title: atRules(btn.rulesPath).name,
               description: 'pick one of the following:',
               type: 'stringEnum',
               btn: btn,
@@ -194,12 +181,12 @@ export default {
           // this is a terminal case, enter a string or pick one if enums are present
           case 'string': {
             this.dialog = {
-              title: btn.type,
-              description: 'please let me know:',
+              title: atRules(btn.rulesPath).name,
+              description: 'please write down:',
               type: 'stringEnter',
               btn: btn,
               options: [{
-                name: 'yes',
+                name: '',
                 schemaPath: [],
                 abilityPath: [],
                 title: btn.type,
@@ -212,9 +199,10 @@ export default {
           // this is a terminal case, yes or no
           case 'boolean': {
             this.dialog = {
-              title: btn.type,
+              title: atRules(btn.rulesPath).name,
               description: 'check box to apply:',
               type: 'boolean',
+              btn: btn,
               options: [{
                 name: node.name,
                 schemaPath: [],

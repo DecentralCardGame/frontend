@@ -46,7 +46,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       let buttonEntry = entry.slice(1)
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
-      
+      console.log('type', type)
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
         let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
@@ -70,6 +70,9 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
         interaction[interaction.length - 2].post = ''
       } else {
         R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
+        if (type === 'boolean') {
+          R.last(interaction).btn.label += '?'
+        }
       }
     } else {
       interaction.push({pre: entry, btn: {label: '', type: null, path: null}, post: ''})
