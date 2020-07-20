@@ -105,7 +105,7 @@
 
 <script>
 import * as R from 'ramda'
-import { filterSelection, createInteraction, updateInteraction, climbRulesTree, atPath } from './utils.js' 
+import { filterSelection, createInteraction, updateInteraction, atPath } from './utils.js' 
 
 export default {
   name: 'Modal',
@@ -222,7 +222,7 @@ export default {
       let interactionText = atPath(this.$cardRules, R.append(selection.index, this.dialog.rulesPath)).interactionText
 
       let abilityPath = [selection.index]
-      let rulesPath = climbRulesTree(this.$cardRules, R.append(selection.index, this.dialog.rulesPath))
+      let rulesPath = R.concat(this.dialog.rulesPath, [selection.index, 'children'])
 
       let newAbility = {
         interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules) 

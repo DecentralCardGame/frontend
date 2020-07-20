@@ -407,7 +407,7 @@ export default {
         }
 
         let newAbility = {
-          path: ['children', R.toLower(this.model.type), 'children', this.model.type === 'action' ? 'effects' : 'abilities']
+          path: ['children', R.toLower(this.model.type), 'children', R.toLower(this.model.type) === 'action' ? 'effects' : 'abilities']
         }      
 
         newAbility.path = climbRulesTree(this.$cardRules, newAbility.path)
