@@ -97,6 +97,18 @@ export default {
               }
             }
 
+            // check if selection is optional
+            if (atRules(btn.rulesPath).optional) {
+              options.noSelect = {
+                description: 'This means no condition will be checked here.',
+                name: 'No Condition',
+                schemaPath: [],
+                abilityPath: [],
+                type: 'interface',
+                interactionText: 'no §Condition'
+              }
+            }
+
             let dialog = {
               title: atRules(btn.rulesPath).name,
               description: atRules(btn.rulesPath).description,

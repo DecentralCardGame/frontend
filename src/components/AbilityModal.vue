@@ -168,8 +168,13 @@ export default {
       let objAtSelection = atRules(pathAtSelection)    
       console.log('objAtSelection', objAtSelection)
 
+      // check if the 'no condition' option was selected
+      if (selection.index === 'noSelect') {
+        this.dialog.btn.label = 'no condition'
+        this.dialog.preventClose = false
+
       // check if an option was selected, which has an interaction text
-      if (objAtSelection.interactionText) {
+      } else if (objAtSelection.interactionText) {
         let interactionText = objAtSelection.interactionText
       
         let abilityPath = R.append(selection.index, this.dialog.abilityPath)
@@ -183,8 +188,7 @@ export default {
           this.attachToAbility(this.dialog.btn.abilityPath, {})
         }
         this.dialog.preventClose = false
-      }
-      else {
+      } else {
         // if there is no interaction text, don't close modal and present new options
         this.dialog.preventClose = true
         this.dialog.interactionText = objAtSelection.interactionText
