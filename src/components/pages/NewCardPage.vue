@@ -49,7 +49,7 @@
           <span class="creator-text">My type is</span>
           <select
             v-model="model.type"
-            @change="saveDraft"
+            @change="resetAbilities(); saveDraft();"
           >
             <option
               v-for="type in $cardSchema.oneOf"
@@ -432,6 +432,9 @@ export default {
     closeAbilityModal () {
       console.log('ability after close modal: ', this.ability)
       this.isAbilityModalVisible = false
+    },
+    resetAbilities () {
+      this.abilities = []
     },
     getNumbers (start, stop, min) {
       if (min >= stop) {
