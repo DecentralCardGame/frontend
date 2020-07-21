@@ -13,14 +13,14 @@
         >
           <slot name="header">
             {{ dialog.title }}
-            <button
+            <!-- TODO --><span
               type="button"
               class="btn-close"
               aria-label="Close modal"
               @click="close"
             >
               x
-            </button>
+            </span>
           </slot>
         </header>
         <section
@@ -29,7 +29,6 @@
         >
           <slot name="body">
             {{ dialog.description }}
-            <br>
             <div
               v-for="(option, index) in dialog.options"
               :key="index"
@@ -51,7 +50,7 @@
                 v-model="option.value"
                 :value="option.name"
               >
-              <input v-if="dialog.type==='stringEnum'" type="radio"
+              <input v-if="dialog.type==='stringEnum'" type="radio" name="option"
                 v-model="selectedString" id="index" :value="option.name"
               >
               <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px" placeholder="enter text"
@@ -67,11 +66,11 @@
                 {{option.name}}
               </button>
 
-              <input v-if="dialog.type==='root'" type="radio"
+              <input v-if="dialog.type==='root'" type="radio" name="option"
                 v-model="option.selected" id="index" :value="option.name"
               >
 
-              <input v-if="dialog.type==='interface'" type="radio"
+              <input v-if="dialog.type==='interface'" type="radio" name="option"
                 v-model="option.selected" id="index" :value="option.name"
               >
 
@@ -87,7 +86,6 @@
         <footer class="modal-footer">
           <slot name="footer">
             {{ picked }}
-            <br>
           </slot>
           <button
             type="button"
@@ -105,7 +103,7 @@
 
 <script>
 import * as R from 'ramda'
-import { filterSelection, createInteraction, updateInteraction, atPath } from './utils.js' 
+import { filterSelection, createInteraction, updateInteraction, atPath } from './utils.js'
 
 export default {
   name: 'Modal',
@@ -163,7 +161,7 @@ export default {
 
       let selection = filterSelection(this.dialog.options)
       let pathAtSelection = R.concat(this.dialog.rulesPath, ['children', selection.index])
-      let objAtSelection = atRules(pathAtSelection)    
+      let objAtSelection = atRules(pathAtSelection)
       console.log('objAtSelection', objAtSelection)
 
       // check if the 'no condition' option was selected
@@ -174,10 +172,10 @@ export default {
       // check if an option was selected, which has an interaction text
       } else if (objAtSelection.interactionText) {
         let interactionText = objAtSelection.interactionText
-      
+
         let abilityPath = R.append(selection.index, this.dialog.abilityPath)
         let rulesPath = pathAtSelection
-        let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules) 
+        let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
         if(objAtSelection.singleUse) {
@@ -225,7 +223,7 @@ export default {
       let rulesPath = R.concat(this.dialog.rulesPath, [selection.index, 'children'])
 
       let newAbility = {
-        interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules) 
+        interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules)
       }
       newAbility[selection.index] = {
         path: this.dialog.rulesPath
@@ -255,7 +253,9 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss">
+  @import "../assets/styles/variables";
+
   .modal-backdrop {
     position: fixed;
     top: 0;
@@ -269,8 +269,9 @@ export default {
   }
 
   .modal {
-    background: #FFFFFF;
-    box-shadow: 2px 2px 20px 1px;
+    background: $white;
+    text-shadow: none;
+    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 rgba(0,0,0,0.25);
     overflow-x: auto;
     display: flex;
     flex-direction: column;
@@ -278,38 +279,39 @@ export default {
 
   .modal-header,
   .modal-footer {
-    padding: 15px;
+    padding: $font-size;
     display: flex;
   }
 
   .modal-header {
-    border-bottom: 1px solid #eeeeee;
-    color: #12D1D1;
+    border-bottom: $border-thickness solid $red;
+    font-weight: bold;
+    color: $red;
     justify-content: space-between;
   }
 
   .modal-footer {
-    border-top: 1px solid #eeeeee;
+    border-bottom: $border-thickness solid $red;
   }
 
   .modal-body {
     position: relative;
-    padding: 20px 10px;
+    padding: $font-size ($font-size / 2);
   }
 
   .btn-close {
-    border: none;    font-size: 20px;
-    padding: 20px;
+    border: none;
+    font-size: $font-size;
+    padding: $font-size / 4;
     cursor: pointer;
     font-weight: bold;
-    color: #12D1D1;
     background: transparent;
   }
 
   .btn-green {
-    color: white;
+    color: $white;
     background: #4AAE9B;
-    border: 1px solid #4AAE9B;
+    border: $border-thickness solid #4AAE9B;
     border-radius: 2px;
   }
 
