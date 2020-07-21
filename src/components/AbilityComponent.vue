@@ -1,12 +1,5 @@
 <template>
   <div>
-    <AbilityModal
-      v-show="isAbilityModalVisible"
-      v-bind:dialog="dialog"      
-      v-bind:ability="ability"
-      v-on:update:ability="ability = $event"
-      @close="closeAbilityModal"
-    />
     <div
       v-for="(entry, index) in ability.interaction"
       :key="index"
@@ -21,13 +14,22 @@
       </div>
       {{ entry.post }}
     </div>
+    <div class="ability-modal-container">
+      <AbilityModal
+              v-show="isAbilityModalVisible"
+              v-bind:dialog="dialog"
+              v-bind:ability="ability"
+              v-on:update:ability="ability = $event"
+              @close="closeAbilityModal"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import * as R from 'ramda'
 import AbilityModal from './AbilityModal.vue'
-import { createInteraction, updateInteraction, shallowClone, atPath } from './utils.js' 
+import { createInteraction, updateInteraction, shallowClone, atPath } from './utils.js'
 
 export default {
   name: 'AbilityComponent',
@@ -62,7 +64,7 @@ export default {
 
             // TODO check if this is fine for everything else than activatedAbility (removes the : )
             copyButton.pre = ''
-            
+
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
 
             this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction)
@@ -81,7 +83,7 @@ export default {
             if (prevElements) {
               let singleUseHappened = R.pluck('singleUse', prevElements)
               if (!singleUseHappened.isEmpty) {
-                options = R.dissoc(singleUseHappened, options) 
+                options = R.dissoc(singleUseHappened, options)
               }
             }
 
@@ -115,7 +117,7 @@ export default {
             thereWillBeModal = false
 
             let interactionText = atRules(btn.rulesPath).interactionText
-            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules) 
+            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules)
 
             updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
             this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))   // TODO test if this works
@@ -154,10 +156,10 @@ export default {
               btn: btn,
               options: []
             }
-          
+
             // recursively go down until only strings are left
             let traverseChildren = array => {
-              let isString = x => R.type(x) === "String" 
+              let isString = x => R.type(x) === "String"
               if (R.all(isString)(array)) {
                 return array
               } else {
@@ -166,7 +168,7 @@ export default {
             }
 
             let strings = R.uniq(R.flatten(traverseChildren(node.children)))
-           
+
             for (let prop in strings) {
               this.dialog.options.push({
                 name: strings[prop],
@@ -252,5 +254,10 @@ export default {
 
   .ability {
     display: inline-block;
+  }
+
+  .ability-modal-container {
+    position: relative;
+    z-index: 3;
   }
 </style>
