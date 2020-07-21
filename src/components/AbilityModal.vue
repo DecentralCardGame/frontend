@@ -291,13 +291,10 @@
         justify-content: space-between;
     }
 
-    .modal-footer {
-        border-bottom: $border-thickness solid $red;
-    }
-
     .modal-body {
         position: relative;
         padding: $font-size ($font-size / 2);
+        border-bottom: $border-thickness solid $red;
     }
 
     .btn-close {

@@ -203,8 +203,8 @@
               type="button"
               class="btn"
               @click="showAbilityModal('root')"
-            > 
-              New Ability 
+            >
+              New Ability
             </button>
           </div>
           <div
@@ -335,7 +335,7 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
-import { sampleImg, emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js' 
+import { sampleImg, emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js'
 
 export default {
   name: 'NewCardPage',
@@ -408,7 +408,7 @@ export default {
 
         let newAbility = {
           path: ['children', R.toLower(this.model.type), 'children', R.toLower(this.model.type) === 'action' ? 'effects' : 'abilities']
-        }      
+        }
 
         newAbility.path = climbRulesTree(this.$cardRules, newAbility.path)
 
@@ -648,7 +648,7 @@ export default {
     color: $white;
     resize: vertical;
     background-color: transparent;
-    font-size: 1em;
+    font-size: $font-size;
     font-family: "Museo", sans-serif;
   }
 
