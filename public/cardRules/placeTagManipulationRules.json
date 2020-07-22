@@ -1,3 +1,14 @@
 {
-
+  "name": "Tagbased Place-Manipulation",
+  "children": {
+    "tagValue": {
+      "$ref": "tagRules.json"
+    },
+    "tagOperator": {
+      "$ref": "tagOperatorRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Tagbased Place-Manipulation",
+  "interactionText": "It §tagOperator §tagValue."
 }
