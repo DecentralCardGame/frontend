@@ -34,20 +34,6 @@ function loadVue () {
 
 new Promise(
   function (resolve, reject) {
-    $RefParser.dereference( '/cardSchema/cardSchema.json', (err, api) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(api)
-        console.log('cardSchema: ', api)
-      }
-    })
-  })
-  .then(schema => {
-    Vue.prototype.$cardSchema = schema
-  })
-  .then(() => {
-    return new Promise(function (resolve, reject) {
       $RefParser.dereference( '/cardRules/cardRules.json', (err, api) => {
         if (err) {
           reject(err)
@@ -57,7 +43,6 @@ new Promise(
         }
       })
     })
-  })  
   .then(rules => {
     Vue.prototype.$cardRules = rules
     loadVue()

@@ -52,10 +52,10 @@
             @change="resetAbilities(); saveDraft();"
           >
             <option
-              v-for="type in $cardSchema.oneOf"
-              :key="type.required[0]"
+              v-for="val in getTypes()"
+              :key="val"
             >
-              {{ type.required[0] }}
+              {{ val }}
             </option>
           </select>
           <span class="creator-text">People like to tag me as</span>
@@ -88,8 +88,7 @@
             <select
               v-if="model.tag && model.tag[1]"
               v-model="model.tag[2]"
-              @change="updateTags
-              "
+              @change="updateTags"
             >
               <option
                 v-for="tag in getTags(2)"
@@ -442,6 +441,9 @@ export default {
       } else {
         return new Array(stop + 1 - start).fill(start).map((n, i) => n + i)
       }
+    },
+    getTypes () {
+      return R.values(R.pluck('name', this.$cardRules.children))
     },
     getTags (idx) {
       if (this.$cardRules) {

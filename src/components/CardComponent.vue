@@ -824,12 +824,12 @@ export default {
       if (this.model.type === 'No Type' || !this.model.type) {
         return ''
       } else {
-        if(this.model.type == 'hq') this.model.type = 'headquarter'
-        let type = this.$cardSchema.definitions[this.model.type.toLowerCase()]  // TODO: change rules
+        if(this.model.type == 'HQ') this.model.type = 'headquarter'
+        let type = this.$cardRules.children[this.model.type.toLowerCase()]
         if (type) {
-          return type.properties.DisplayName.const.toUpperCase()
+          return type.name.toUpperCase()
         } else {
-          console.error('Invalid card type. Must be one of the following: ' + R.keys(this.$cardSchema.definitions))
+          console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) )
         }
       }
     },
