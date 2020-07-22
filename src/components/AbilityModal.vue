@@ -30,71 +30,65 @@
                     <slot name="body">
                         {{ dialog.description }}
                         <div
-                                v-for="(option, index) in dialog.options"
-                                :key="index"
+                          v-for="(option, index) in dialog.options"
+                          :key="index"
                         >
-                            <input
-                                    v-if="dialog.type==='multivalue'"
-                                    id="index"
-                                    v-model="option.value"
-                                    type="text"
-                                    placeholder="0"
-                                    style="display: inline;color:black;height:50px;text-align: right"
-                                    size="1"
-                                    @keypress="isNumber($event)"
+                            <input v-if="dialog.type==='boolean'"
+                              type="checkbox"
+                              id="index"
+                              v-model="option.value"
+                              :value="option.name"
                             >
-                            <input
-                                    type="checkbox"
-                                    id="index"
-                                    v-if="dialog.type==='boolean'"
-                                    v-model="option.value"
-                                    :value="option.name"
+                            <button v-if="dialog.type === 'stringEnum'"
+                              type="button"
+                              class="btn-teal"
+                              aria-label="Close modal"
+                              @click="selectedString = option.name; addAbility();"
                             >
-                            <input v-if="dialog.type==='stringEnum'" type="radio" name="option"
-                                   v-model="selectedString" id="index" :value="option.name"
-                            >
+                              {{option.name}}
+                            </button>
+
                             <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px"
-                                   placeholder="enter text"
-                                   v-model="selectedString"
+                              placeholder="enter text"
+                              v-model="selectedString"
                             >
-
-                            <button v-if="dialog.type==='integerList'" type="enumbtn"
-                                    @click="arrayCount.splice(index, 1, arrayCount[index] + 1)" id="index">
-                                {{arrayCount[index]}}
-                            </button>
                             <button v-if="dialog.type==='integer'" type="integerbtn"
-                                    @click="selectedCount += 1 - 2 * index" id="index">
-                                {{option.name}}
+                              @click="selectedCount += 1 - 2 * index" id="index"
+                            >
+                              {{option.name}}
                             </button>
 
-                            <input v-if="dialog.type==='root'" type="radio" name="option"
-                                   v-model="option.selected" id="index" :value="option.name"
+                            <button v-if="dialog.type === 'interface' || dialog.type === 'root'"
+                              type="button"
+                              class="btn-teal"
+                              aria-label="Close modal"
+                              @click="option.selected = true; addAbility();"
                             >
+                              {{option.name}}
+                            </button>
 
-                            <input v-if="dialog.type==='interface'" type="radio" name="option"
-                                   v-model="option.selected" id="index" :value="option.name"
-                            >
+                            <label v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'stringEnum'" 
+                              for="index"> {{option.name}}
+                            </label>
 
-                            <label for="index">{{option.name}}</label>
-
-                            <span v-if="option.description"> - {{ option.description }} </span>
+                            <span v-if="option.description">  {{option.description}} </span>
                         </div>
                         <div>
-                            <span v-if="dialog.type==='integer'"> {{ selectedCount }} </span>
+                            <span v-if="dialog.type==='integer'"> {{selectedCount}} </span>
                         </div>
                     </slot>
                 </section>
                 <footer class="modal-footer">
                     <slot name="footer">
-                        {{ picked }}
+                        {{picked}}
                     </slot>
-                    <button
-                            type="button"
-                            class="btn-teal"
-                            aria-label="Close modal"
-                            @click="addAbility"
+                    <button v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
+                      type="button"
+                      class="btn-teal"
+                      aria-label="Close modal"
+                      @click="addAbility"
                     >
-                        Add
+                      Add
                     </button>
                 </footer>
             </div>
