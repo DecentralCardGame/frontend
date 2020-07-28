@@ -6,5 +6,7 @@
     }
   },
   "type": "array",
+  "min": 0,
+  "max": 3,
   "description": "Add some abilities"
 }

@@ -2,14 +2,14 @@
   "name": "Action-Selector",
   "children": {
     "playerMode": {
-      "$ref": "selectorModeRules.json"
+      "$ref": "playerModeRules.json"
     },
     "playerCondition": {
       "$ref": "playerConditionRules.json",
       "optional": true
     },
     "cardMode": {
-      "$ref": "selectorModeRules.json"
+      "$ref": "cardModeRules.json"
     },
     "actionCondition": {
       "$ref": "actionConditionRules.json",

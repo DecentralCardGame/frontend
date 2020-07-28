@@ -1,0 +1,6 @@
+{
+  "name": "Player-Mode",
+  "children": ["YOU","OPPONENT","BOTH"],
+  "type": "enum",
+  "description": "Choose a Player-Mode"
+}

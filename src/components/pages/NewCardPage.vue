@@ -110,25 +110,29 @@
           class="creator-input-container"
         >
           <span
-            v-if="model.type!=='Headquarter'"
+            v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
             class="creator-text"
           >As I am quite awesome to get me rolling you need to invest:</span>
-          <span
-            v-if="model.type==='Headquarter'"
-            class="creator-text"
-          >As I am quite awesome I can grow to a maximum size of:</span>
+          
           <select
+            v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
             v-model="model.costAmount"
             @change="saveDraft"
           >
             <option
-              v-for="n in getNumbers(0,30,0)"
+              v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.castingCost.min, $cardRules.children[R.toLower(model.type)].children.castingCost.max + 1)"
               :key="n"
               :value="n"
             >
               {{ n }}
             </option>
           </select>
+          <span
+            v-if="model.type==='HQ'"
+            class="creator-text"
+          >As I am quite awesome I can grow to a maximum size of:</span>
+          
+          <br>
           <span class="creator-text">My classes are:</span>
           <div>
             <input
@@ -163,12 +167,12 @@
             <label for="checkbox"> Energy </label> <br>
             <span v-if="model.type==='Entity'"> I have an attack of</span>
             <select
-              v-if="model.type==='Entity'"
+              v-if="model.type==='Entity' && $cardRules.children[R.toLower(model.type)]"
               v-model="model.attack"
               @change="saveDraft"
             >
               <option
-                v-for="n in getNumbers(0,32,0)"
+                v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.attack.min, $cardRules.children[R.toLower(model.type)].children.attack.max + 1)"
                 :key="n"
                 :value="n"
               >
@@ -176,14 +180,14 @@
               </option>
             </select>
             <span v-if="model.type==='Entity'"> and </span>
-            <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for</span>
+            <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for </span>
             <select
-              v-if="model.type!=='Action'"
+              v-if="model.type!=='Action' && $cardRules.children[R.toLower(model.type)]"
               v-model="model.health"
               @change="saveDraft"
             >
               <option
-                v-for="n in getNumbers(0,32,0)"
+                v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.health.min, $cardRules.children[R.toLower(model.type)].children.health.max + 1)"
                 :key="n"
                 :value="n"
               >
@@ -438,13 +442,6 @@ export default {
     resetAbilities () {
       this.abilities = []
     },
-    getNumbers (start, stop, min) {
-      if (min >= stop) {
-        return new Array(min + 1 - start).fill(start).map((n, i) => n + i)
-      } else {
-        return new Array(stop + 1 - start).fill(start).map((n, i) => n + i)
-      }
-    },
     getTypes () {
       return R.values(R.pluck('name', this.$cardRules.children))
     },
@@ -506,7 +503,7 @@ export default {
         },
         image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
-      if (this.model.type !== 'Headquarter') {
+      if (this.model.type !== 'HQ') {
         if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
@@ -528,7 +525,7 @@ export default {
         }
         newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Attack = this.model.attack
-      } else if (this.model.type === 'Headquarter') {
+      } else if (this.model.type === 'HQ') {
         newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Growth = 0       // TODO implement this
         newCard.model[this.model.type].Wisdom = 0       // TODO implement this

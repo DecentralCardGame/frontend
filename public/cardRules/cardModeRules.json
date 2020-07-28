@@ -1,0 +1,6 @@
+{
+  "name": "Card-Mode",
+  "children": ["ALL","TARGET"],
+  "type": "enum",
+  "description": "Choose a Card-Mode"
+}

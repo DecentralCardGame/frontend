@@ -1,4 +1,6 @@
 {
   "name": "Casting Cost",
-  "type": "int"
+  "type": "int",
+  "min": 0,
+  "max": 31
 }

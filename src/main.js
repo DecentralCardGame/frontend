@@ -7,6 +7,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import * as R from 'ramda'
+Object.defineProperty(Vue.prototype, 'R', { value: R });
 
 Vue.config.productionTip = false
 

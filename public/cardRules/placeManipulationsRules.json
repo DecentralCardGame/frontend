@@ -6,5 +6,7 @@
     }
   },
   "type": "array",
+  "min": 0,
+  "max": 7,
   "description": "Add some Place-Manipuations"
 }

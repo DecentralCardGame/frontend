@@ -6,7 +6,13 @@
       class="ability"
     >
       {{ entry.pre }}
-      <div v-if="entry.btn.label.slice(-1) === '-'"
+      <div 
+        v-if="entry.btn.type === 'int'"
+        
+      >
+        {{ entry.btn.label }}
+      </div>
+      <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-negated-option"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
@@ -131,9 +137,11 @@ export default {
           }
           // this is a terminal case, specify an integer
           case 'int':
+            console.log('atrules', atRules(btn.rulesPath))
+
             this.dialog = {
               title: atRules(btn.rulesPath).name,
-              description: 'choose a number between ' + node.minimum + ' and ' + node.maximum + ':',
+              description: 'choose a number between ' + atRules(btn.rulesPath).min + ' and ' + atRules(btn.rulesPath).max + ':',
               type: 'integer',
               btn: btn,
               options: [{
