@@ -6,11 +6,20 @@
       class="ability"
     >
       {{ entry.pre }}
-      <div 
-        v-if="entry.btn.type === 'int'"
+      <div v-if="entry.btn.type === 'int'">
+        <select
+          v-model="entry.btn.label"
+          @change="showAbilityModal(ability, entry.btn, index)"
+        >
+          <option
+            v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).min, R.path(entry.btn.rulesPath, $cardRules).max + 1)"
+            :key="n"
+            :value="n"
+          >
+            {{ n }}
+          </option>
+        </select>
         
-      >
-        {{ entry.btn.label }}
       </div>
       <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-negated-option"
@@ -52,6 +61,7 @@ export default {
   },
   data () {
     return {
+      selectedInt: 0,
       isAbilityModalVisible: false
     }
   },
@@ -137,7 +147,10 @@ export default {
           }
           // this is a terminal case, specify an integer
           case 'int':
-            console.log('atrules', atRules(btn.rulesPath))
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
+
+            this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
 
             this.dialog = {
               title: atRules(btn.rulesPath).name,

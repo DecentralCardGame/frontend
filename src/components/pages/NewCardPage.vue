@@ -201,7 +201,18 @@
           v-if="activeStep == 2"
           class="creator-input-container"
         >
-          <div class="creator-text">
+          <div v-if="model.type === 'Action'"
+            class="creator-text">
+            <button
+              type="button"
+              class="btn"
+              @click="showAbilityModal('root')"
+            >
+              New Effect
+            </button>
+          </div>
+          <div v-else
+            class="creator-text">
             <button
               type="button"
               class="btn"
@@ -401,8 +412,6 @@ export default {
       this.isAbilityModalVisible = true
 
       if (type === 'root') {
-        console.log('modeltype:', this.model.type)
-
         if (this.model.type === 'No Type' || this.model.type === undefined) {
           notify.fail('No Type', 'Card has no type, please pick a type before setting abilities.')
           this.isAbilityModalVisible = false
@@ -418,7 +427,7 @@ export default {
         let options = atRules(newAbility.path)
 
         let dialog = {
-          title: 'New Ability',
+          title: this.model.type === 'Action' ? 'New Effect' : 'New Ability',
           description: atRules(R.dropLast(1, newAbility.path)).description,
           type: 'root',
           options: options,
