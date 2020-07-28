@@ -6,7 +6,13 @@
       class="ability"
     >
       {{ entry.pre }}
-      <div
+      <div v-if="entry.btn.label.slice(-1) === '-'"
+        class="clickable-negated-option"
+        @click="showAbilityModal(ability, entry.btn, index)"
+      >
+        {{ entry.btn.label }}
+      </div>
+      <div v-else
         class="clickable-option"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
@@ -200,19 +206,13 @@ export default {
           }
           // this is a terminal case, yes or no
           case 'boolean': {
-            this.dialog = {
-              title: atRules(btn.rulesPath).name,
-              description: 'check box to apply:',
-              type: 'boolean',
-              btn: btn,
-              options: [{
-                name: node.name,
-                schemaPath: [],
-                abilityPath: [],
-                title: '',
-                description: node.description ? node.description : ''
-              }]
-            };
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
+
+            let negated = R.takeLast(1, this.ability.clickedBtn.label) !== '!'
+            this.ability.clickedBtn.label = R.dropLast(1, this.ability.clickedBtn.label) + (negated ? '!' : '-')
+
+            this.attachToAbility(this.ability.clickedBtn.abilityPath, negated)
             break
           }
           default:
@@ -228,6 +228,7 @@ export default {
     },
     attachToAbility (path, object) {
       let ability = R.assocPath(path, object, this.ability)
+      this.ability = ability
       this.$emit('update:ability', ability)
     },
     /*
@@ -244,6 +245,15 @@ export default {
 
 <style scoped>
   .clickable-option {
+    display: inline-block;
+    padding: 8px;
+    color: black;
+    background-color: #eeeeee;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .clickable-negated-option {
+    text-decoration: line-through;
     display: inline-block;
     padding: 8px;
     color: black;

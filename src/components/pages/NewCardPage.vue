@@ -214,7 +214,7 @@
               v-bind:ability="ability"
               v-bind:dialog="abilityDialog"
               v-bind:abilities="abilities"
-              @update:ability="ability = $event"
+              @update:ability="updateAbility($event)"
             />
           </div>
         </div>
@@ -431,6 +431,9 @@ export default {
     closeAbilityModal () {
       console.log('ability after close modal: ', this.ability)
       this.isAbilityModalVisible = false
+    },
+    updateAbility($event) {
+      this.ability = $event
     },
     resetAbilities () {
       this.abilities = []
