@@ -25,10 +25,10 @@
                 </header>
                 <section
                         id="modalDescription"
-                        class="modal-body"
+                        class="modal-body choice-grid"
                 >
                     <slot name="body">
-                        {{ dialog.description }}
+                        <!-- {{ dialog.description }} -->
                         <div
                           v-for="(option, index) in dialog.options"
                           :key="index"
@@ -41,11 +41,11 @@
                             >
                             <button v-if="dialog.type === 'stringEnum'"
                               type="button"
-                              class="btn-teal"
+                              class="choice-grid-button"
                               aria-label="Close modal"
                               @click="selectedString = option.name; addAbility();"
                             >
-                              {{option.name}}
+                              <b>{{option.name}}</b><br> - <span v-if="option.description">  {{option.description}} </span>
                             </button>
 
                             <input v-if="dialog.type==='stringEnter'" style="display: inline;color:black;height:50px"
@@ -55,23 +55,21 @@
                             <button v-if="dialog.type==='integer'" type="integerbtn"
                               @click="selectedCount += 1 - 2 * index" id="index"
                             >
-                              {{option.name}}
+                              {{option.name}} <span v-if="option.description">  {{option.description}} </span>
                             </button>
 
                             <button v-if="dialog.type === 'interface' || dialog.type === 'root'"
                               type="button"
-                              class="btn-teal"
+                                    class="choice-grid-button"
                               aria-label="Close modal"
                               @click="option.selected = true; addAbility();"
                             >
-                              {{option.name}}
+                              <b>{{option.name}}</b><br> <span v-if="option.description">  {{option.description}} </span>
                             </button>
 
-                            <label v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'stringEnum'" 
+                            <label v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'stringEnum'"
                               for="index"> {{option.name}}
                             </label>
-
-                            <span v-if="option.description">  {{option.description}} </span>
                         </div>
                         <div>
                             <span v-if="dialog.type==='integer'"> {{selectedCount}} </span>
@@ -287,7 +285,7 @@
 
     .modal-body {
         position: relative;
-        padding: $font-size ($font-size / 2);
+        padding: ($font-size / 2);
         border-bottom: $border-thickness solid $red;
     }
 
@@ -342,5 +340,33 @@
                 background-position: left bottom;
             }
         }
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .choice-grid-button {
+      margin: 0;
+      width: 100%;
+      &:after {
+        margin: 0;
+        z-index: -1;
+        background: linear-gradient(to right, $red 50%, $white 50%);
+        background-size: 200% 100%;
+        background-position: right bottom;
+        transition: all $animation-duration ease-out;
+        content: '';
+        display: block;
+        position: absolute;
+        transform: skewX(0);
+        box-shadow: none;
+      }
+      &:hover {
+        color: $white;
+        &:after {
+          background-position: left bottom;
+        }
+      }
     }
 </style>
