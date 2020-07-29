@@ -63,6 +63,7 @@
             <select
               v-model="model.tagDummy"
               @change="updateTags"
+              class="tag-select"
             >
               <option
                 v-for="tag in getTags(0)"
@@ -71,11 +72,11 @@
                 {{ tag }}
               </option>
             </select>
-            <span v-if="model.tag && model.tag[0]"> , </span>
             <select
               v-if="model.tag && model.tag[0]"
               v-model="model.tag[1]"
               @change="updateTags"
+              class="tag-select"
             >
               <option
                 v-for="tag in getTags(1)"
@@ -84,11 +85,11 @@
                 {{ tag }}
               </option>
             </select>
-            <span v-if="model.tag && model.tag[1]" />
             <select
               v-if="model.tag && model.tag[1]"
               v-model="model.tag[2]"
               @change="updateTags"
+              class="tag-select tag-select-last"
             >
               <option
                 v-for="tag in getTags(2)"
@@ -592,7 +593,7 @@ export default {
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
-    gap: 2rem 2rem;
+    gap: 2rem 4rem;
     @media (min-width: 480px) {
       grid-template-areas: "creator-input creator-preview";
     }
@@ -703,7 +704,7 @@ export default {
   .ability-frame {
     position: relative;
     padding: $font-size;
-    border: 1px solid $white;
+    border: $border-thickness solid $white;
     margin: 1rem 0;
   }
 
@@ -711,7 +712,7 @@ export default {
     z-index: 1;
     background-color: transparent;
     color: $white;
-    border: 1px dotted $white;
+    border: $border-thickness dotted $white;
     font-size: 1em;
     padding: 0.3em 1em;
     width: 100%;
@@ -723,6 +724,14 @@ export default {
     }
     &:hover {
       background-color: rgba(255,255,255,0.1);
+    }
+  }
+
+  .tag-select {
+    width: 100%;
+    margin-bottom: 1rem;
+    &.tag-select-last {
+      margin-bottom: 0;
     }
   }
 </style>

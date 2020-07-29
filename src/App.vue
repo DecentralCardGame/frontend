@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss">
   @import "assets/styles/main.scss";
+  @import "assets/styles/variables.scss";
 
   .spinner {
     margin: 100px auto 0;
@@ -56,7 +57,7 @@ export default {
   .spinner > div {
     width: 18px;
     height: 18px;
-    background-color: white;
+    background-color: $white;
 
     border-radius: 100%;
     display: inline-block;

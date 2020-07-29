@@ -48,12 +48,12 @@
           </li>
         </ul>
         <div class="other">
-          <p>
-            Discuss the latest News or<br>
-            simply join our growing<br>
-            Community. We would love<br>
+          <b>
+            Discuss the latest News or
+            simply join our growing
+            Community. We would love
             to here your voice.
-          </p>
+          </b>
           <img
             alt="Crowd Control"
             width="80%"
@@ -261,10 +261,6 @@ export default {
     text-align: center;
     padding: 1rem 1rem;
     text-decoration: none;
-  }
-
-  .other {
-    font-size: 2em;
   }
 
   .other > img {
