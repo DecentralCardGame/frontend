@@ -221,16 +221,19 @@
               New Ability
             </button>
           </div>
-          <div
-            v-for="ability in abilities"
-            :key="ability.ability"
-          >
-            <AbilityComponent
-              v-bind:ability="ability"
-              v-bind:dialog="abilityDialog"
-              v-bind:abilities="abilities"
-              @update:ability="updateAbility($event)"
-            />
+          <div>
+            <div
+                v-for="ability in abilities"
+                :key="ability.ability"
+            >
+              <AbilityComponent
+                  v-bind:ability="ability"
+                  v-bind:dialog="abilityDialog"
+                  v-bind:abilities="abilities"
+                  @update:ability="updateAbility($event)"
+              />
+              <br>
+            </div>
           </div>
         </div>
         <div

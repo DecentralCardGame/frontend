@@ -55,16 +55,16 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
         interaction[interaction.length - 1].btn = makeBtn(R.dropLast(1, nextPath), R.concat(abilityPath, [buttonEntry, 0]), interaction.length - 1)
         // and also create the button for adding more effects
         interaction.push({
-          pre: '+', 
+          pre: '+',
           btn: {
             id: interaction.length,
-            label: '[add '+R.path(R.append(buttonEntry, rulesPath), cardRules).name+']', 
-            type: 'expandArray', 
+            label: '[add '+R.path(R.append(buttonEntry, rulesPath), cardRules).name+']',
+            type: 'expandArray',
             abilityPath: R.append(buttonEntry, abilityPath),
             rulesPath: R.append(buttonEntry, rulesPath),
             template: interaction[interaction.length - 1]
-          }, 
-          post: interaction[interaction.length - 2].post 
+          },
+          post: interaction[interaction.length - 2].post
         })
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = ''
@@ -165,7 +165,7 @@ export function resolveParagraph (key) {
   if (key[0] === '§') {
     return key.slice(1)
   } else {
-    console.error('key to resolve is not a valid key: ', key)
+    console.error('key to resolve is not a valid key: ', k5ey)
   }
 }
 */
