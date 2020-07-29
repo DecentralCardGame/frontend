@@ -19,7 +19,7 @@
             {{ n }}
           </option>
         </select>
-        
+
       </div>
       <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-negated-option"
@@ -264,22 +264,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import "../assets/styles/variables";
+
   .clickable-option {
     display: inline-block;
-    padding: 8px;
-    color: black;
-    background-color: #eeeeee;
-    border-radius: 4px;
+    border: dotted 1px white;
     cursor: pointer;
   }
   .clickable-negated-option {
     text-decoration: line-through;
     display: inline-block;
-    padding: 8px;
-    color: black;
-    background-color: #eeeeee;
-    border-radius: 4px;
+    border: dotted 1px white;
     cursor: pointer;
   }
 
