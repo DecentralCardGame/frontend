@@ -83,8 +83,6 @@ export default {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
             thereWillBeModal = false
             let copyButton = R.clone(this.ability.clickedBtn.template)
-
-            // TODO check if this is fine for everything else than activatedAbility (removes the : )
             copyButton.pre = ''
 
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
@@ -151,28 +149,6 @@ export default {
             thereWillBeModal = false
 
             this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
-
-            this.dialog = {
-              title: atRules(btn.rulesPath).name,
-              description: 'choose a number between ' + atRules(btn.rulesPath).min + ' and ' + atRules(btn.rulesPath).max + ':',
-              type: 'integer',
-              btn: btn,
-              options: [{
-                name: 'MORE!',
-                schemaPath: [],
-                abilityPath: [],
-                title: '',
-                description: ''
-              },
-                {
-                  name: 'LESS..',
-                  schemaPath: [],
-                  abilityPath: [],
-                  title: '',
-                  description: ''
-                }
-              ]
-            }
             break
           // this is a terminal case, pick one string from enum
           case 'enum': {
