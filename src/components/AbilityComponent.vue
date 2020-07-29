@@ -270,6 +270,7 @@ export default {
   .clickable-option {
     display: inline-block;
     border: dotted 1px white;
+    font-weight: bold;
     cursor: pointer;
   }
   .clickable-negated-option {

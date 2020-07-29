@@ -199,41 +199,40 @@
         </div>
         <div
           v-if="activeStep == 2"
-          class="creator-input-container"
         >
-          <div v-if="model.type === 'Action'"
-            class="creator-text">
-            <button
-              type="button"
-              class="btn"
-              @click="showAbilityModal('root')"
-            >
-              New Effect
-            </button>
-          </div>
-          <div v-else
-            class="creator-text">
-            <button
-              type="button"
-              class="btn"
-              @click="showAbilityModal('root')"
-            >
-              New Ability
-            </button>
-          </div>
+          <p>In this step, you craft the heart of your card. Press the button to add abilities / effects to your card.</p>
           <div>
             <div
                 v-for="ability in abilities"
                 :key="ability.ability"
             >
               <AbilityComponent
+                  class="ability-frame"
                   v-bind:ability="ability"
                   v-bind:dialog="abilityDialog"
                   v-bind:abilities="abilities"
                   @update:ability="updateAbility($event)"
               />
-              <br>
             </div>
+          </div>
+          <div v-if="model.type === 'Action'">
+            <button
+                type="button"
+                class="btn btn-abilitycreator"
+                @click="showAbilityModal('root')"
+            >
+              Add Effect
+            </button>
+          </div>
+          <div v-else
+               class="creator-text">
+            <button
+                type="button"
+                class="btn btn-abilitycreator"
+                @click="showAbilityModal('root')"
+            >
+              Add Ability
+            </button>
           </div>
         </div>
         <div
@@ -699,5 +698,31 @@ export default {
   .ability-modal-container {
     position: relative;
     z-index: 3;
+  }
+
+  .ability-frame {
+    position: relative;
+    padding: $font-size;
+    border: 1px solid $white;
+    margin: 1rem 0;
+  }
+
+  .btn-abilitycreator {
+    z-index: 1;
+    background-color: transparent;
+    color: $white;
+    border: 1px dotted $white;
+    font-size: 1em;
+    padding: 0.3em 1em;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    transition: all $animation-duration ease-out;
+    &:after {
+      display: none;
+    }
+    &:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
   }
 </style>

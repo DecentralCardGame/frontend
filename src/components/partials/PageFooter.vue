@@ -83,7 +83,7 @@ export default {
   @import "../../assets/styles/variables";
 
   .footer-container {
-    margin-top: 1rem;
+    margin-top: 5rem;
   }
 
   footer {
