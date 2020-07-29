@@ -108,7 +108,9 @@ export default {
   .pre-footer {
     position: relative;
     padding: $font-size * 0.5;
-    max-height: $font-size * 3;
+    @media (min-width: 480px) {
+      max-height: $font-size * 3;
+    }
     background-color: $dark-blue;
     text-shadow: 0.1em 0.1em 0 darken($dark-blue, 5%);
   }
@@ -128,6 +130,9 @@ export default {
 
   .pre-footer-content p {
     margin: 0 1.5rem;
+    @media (max-width: 480px) {
+      margin: 0.5rem 1.5rem;
+    }
   }
 
   .pre-footer-content button {
@@ -144,6 +149,9 @@ export default {
   .content {
     margin: auto;
     padding-top: 4rem;
+    @media (max-width: 480px) {
+      padding-top: 1rem;
+    }
     max-width: 70vw;
     display: grid;
     width: 100%;

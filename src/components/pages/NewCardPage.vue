@@ -594,7 +594,9 @@ export default {
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
     gap: 2rem 2rem;
-    grid-template-areas: "creator-input creator-preview";
+    @media (min-width: 480px) {
+      grid-template-areas: "creator-input creator-preview";
+    }
   }
 
   .creator-input-container {
@@ -605,16 +607,28 @@ export default {
     grid-template-areas: ". ." ". .";
   }
 
+  .creator-text {
+    text-align: right;
+  }
+
   @media (max-width: 480px) {
+    .creator-input-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-areas: ".";
+    }
+
     .creator {
       line-height: 1.5em;
       display: grid;
+      padding: 1rem;
       grid-template-columns: 1fr;
+      grid-template-areas: "";
     }
-  }
 
-  .creator-text {
-    text-align: right;
+    .creator-text {
+      text-align: left;
+    }
   }
 
   .progress {
@@ -628,6 +642,7 @@ export default {
       font-size: 1em;
     }
   }
+
   .progress-item {
     cursor: pointer;
     margin: 0.3em;
