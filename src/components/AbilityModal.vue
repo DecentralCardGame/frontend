@@ -271,6 +271,9 @@
         overflow-x: auto;
         display: flex;
         flex-direction: column;
+        @media (max-width: 480px) {
+          height: 100vh;
+        }
     }
 
     .modal-header,
