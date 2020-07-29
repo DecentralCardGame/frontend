@@ -113,7 +113,7 @@
             v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
             class="creator-text"
           >As I am quite awesome to get me rolling you need to invest:</span>
-          
+
           <select
             v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
             v-model="model.costAmount"
@@ -127,13 +127,13 @@
               {{ n }}
             </option>
           </select>
-          <span
-            v-if="model.type==='HQ'"
-            class="creator-text"
-          >As I am quite awesome I can grow to a maximum size of:</span>
-          
-          <br>
-          <span class="creator-text">My classes are:</span>
+          <span class="creator-text">
+            <span
+                v-if="model.type==='HQ'"
+                class="creator-text"
+            >As I am quite awesome I can grow to a maximum size of:</span>
+            My classes are:
+          </span>
           <div>
             <input
               v-model="model.cost.lumber"
