@@ -202,6 +202,11 @@ export default {
     margin-top: -2.5rem;
     z-index: 10000000;
     box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 rgba(0,0,0,0.3);
+    @media (max-width: 480px) {
+      width: 100vw;
+      margin-top: -1px;
+      right: 0;
+    }
   }
 
   .logo {

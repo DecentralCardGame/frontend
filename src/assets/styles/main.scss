@@ -72,6 +72,9 @@ b {
 .box-auth {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
   background-color: $white;
   text-shadow: none;
   color: $black;
@@ -158,6 +161,10 @@ b {
   .box-login {
     padding: 0.5rem;
     border-right: $border-thickness solid darken($white, 10%);
+
+    @media (max-width: 480px) {
+      border-right: none;
+    }
   }
   .box-register {
     padding: 0.5rem;
