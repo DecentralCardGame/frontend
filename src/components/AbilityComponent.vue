@@ -6,8 +6,8 @@
       class="ability"
     >
       {{ entry.pre }}
-      <div v-if="entry.btn.type === 'int'">
         <select
+            v-if="entry.btn.type === 'int'"
           v-model="entry.btn.label"
           @change="showAbilityModal(ability, entry.btn, index)"
         >
@@ -19,8 +19,6 @@
             {{ n }}
           </option>
         </select>
-
-      </div>
       <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-negated-option"
         @click="showAbilityModal(ability, entry.btn, index)"
