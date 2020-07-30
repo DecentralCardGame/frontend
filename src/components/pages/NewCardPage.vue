@@ -1,5 +1,9 @@
 <template>
   <div class="card-generator-container">
+    <h1 align="center">Card Creator</h1>
+    <p>With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
+    takes you through the whole process.</p>
+    <br>
     <div class="progress-container">
       <div class="progress">
         <div
@@ -40,13 +44,13 @@
           v-if="activeStep == 0"
           class="creator-input-container"
         >
-          <span class="creator-text">Hey, my Name is</span>
+          <span class="creator-text">Hey, my <b>name</b> is</span>
           <input
             v-model="model.name"
             value="Card Name"
             @change="saveDraft"
           >
-          <span class="creator-text">My type is</span>
+          <span class="creator-text">My <b>type</b> is</span>
           <select
             v-model="model.type"
             @change="resetAbilities(); saveDraft();"
@@ -58,7 +62,7 @@
               {{ val }}
             </option>
           </select>
-          <span class="creator-text">People like to tag me as</span>
+          <span class="creator-text">People like to <b>tag</b> me as</span>
           <div>
             <select
               v-model="model.tagDummy"
@@ -99,7 +103,7 @@
               </option>
             </select>
           </div>
-          <span class="creator-text">My rarity is</span>
+          <span class="creator-text">My <b>rarity</b> is</span>
           <select @change="saveDraft">
             <option>Common</option>
             <option>Rare</option>
@@ -113,7 +117,7 @@
           <span
             v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
             class="creator-text"
-          >As I am quite awesome to get me rolling you need to invest:</span>
+          >As I am quite awesome to get me rolling you need to <b>invest</b>:</span>
 
           <select
             v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
@@ -132,8 +136,8 @@
             <span
                 v-if="model.type==='HQ'"
                 class="creator-text"
-            >As I am quite awesome I can grow to a maximum size of:</span>
-            My classes are:
+            >As I am quite awesome I can grow to a <b>maximum size</b> of:</span>
+            My <b>classes</b> are:
           </span>
           <div>
             <input
@@ -166,7 +170,7 @@
               @change="saveDraft"
             >
             <label for="checkbox"> Energy </label> <br>
-            <span v-if="model.type==='Entity'"> I have an attack of</span>
+            <span v-if="model.type==='Entity'"> I have an <b>attack</b> of </span>
             <select
               v-if="model.type==='Entity' && $cardRules.children[R.toLower(model.type)]"
               v-model="model.attack"
@@ -181,7 +185,7 @@
               </option>
             </select>
             <span v-if="model.type==='Entity'"> and </span>
-            <span v-if="model.type!=='Action'"> I sadly die after someone suckerpunchs me for </span>
+            <span v-if="model.type!=='Action'"> I sadly <b>die</b> after someone suckerpunchs me for </span>
             <select
               v-if="model.type!=='Action' && $cardRules.children[R.toLower(model.type)]"
               v-model="model.health"
@@ -201,7 +205,7 @@
         <div
           v-if="activeStep == 2"
         >
-          <p>In this step, you craft the heart of your card. Press the button to add abilities / effects to your card.</p>
+          <p>In this step, you craft the heart of your card. Press the button to add <b>abilities / effects</b> to your card.</p>
           <div>
             <div
                 v-for="ability in abilities"
@@ -241,8 +245,8 @@
           class="creator-input-container"
         >
           <span class="creator-text">
-            Everybody needs a face,
-            so do I, pls upload a file
+            Everybody needs a <b>face</b>,
+            so do I. Please upload an image
           </span>
           <input
             id="file"
@@ -256,7 +260,7 @@
             class="button-file"
           >Choose a file</label>
           <span class="creator-text">
-            My flavor is best expressed by
+            My <b>flavor</b> is best expressed by
             the following sentences:
           </span>
           <input
@@ -278,7 +282,7 @@
             part of the community.
             Be brave and publish me!
             P.S. I would like to give the
-            council the following notes for this card:
+            council the following notes for this card (optional):
           </span>
           <input
             v-model="model.notes"
@@ -292,13 +296,13 @@
             class="back"
             @click="activeStep--"
           >
-            back
+            Go Back
           </button>
           <button
             v-if="activeStep < 4"
             @click="activeStep++"
           >
-            next
+            Next Step >
           </button>
           <button
             v-if="activeStep == 4"
@@ -316,7 +320,7 @@
             v-if="activeStep == 4"
             @click="saveSubmit()"
           >
-            Publish
+            Publish Your Card
           </button>
         </div>
       </div>
@@ -588,8 +592,6 @@ export default {
   @import "../../assets/styles/variables";
 
   .creator {
-    line-height: 1.5em;
-    text-shadow: none;
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
@@ -619,7 +621,6 @@ export default {
     }
 
     .creator {
-      line-height: 1.5em;
       display: grid;
       padding: 1rem;
       grid-template-columns: 1fr;
@@ -645,13 +646,13 @@ export default {
 
   .progress-item {
     cursor: pointer;
-    margin: 0.3em;
-    border: 4px solid rgba(255,255,255,0.7);;
-    padding: 0.2em;
+    margin: 0.25rem;
+    border: $border-thickness solid rgba(255,255,255,0.7);
+    padding: 0.25rem 0.5rem;
     transform: skewX(-15deg);
 
     &.progress-item-active {
-      background-color: rgba(255,255,255,0.3);
+      background-color: rgba(255,255,255,0.2);
     }
     &.progress-item-current {
       border-color: $white;
@@ -678,7 +679,6 @@ export default {
     resize: vertical;
     background-color: transparent;
     font-size: $font-size;
-    font-family: "Museo", sans-serif;
   }
 
   .creator-nav-container {
