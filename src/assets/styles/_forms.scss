@@ -23,7 +23,7 @@ button, .button-file {
   background-color: transparent;
   color: $black;
   font-size: 1em;
-  padding: 0.3em 1em;
+  padding: 0.5rem 1em;
   border: none;
   cursor: pointer;
   position: relative;
@@ -79,8 +79,8 @@ input::placeholder {
 }
 
 input[type="checkbox"]  {
-  height: 25px;
-  width: 25px;
+  height: $font-size;
+  width: $font-size;
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;

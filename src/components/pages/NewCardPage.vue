@@ -1,7 +1,7 @@
 <template>
   <div class="card-generator-container">
     <h1 align="center">Card Creator</h1>
-    <p>With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
+    <p align="center">With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
     takes you through the whole process.</p>
     <br>
     <div class="progress-container">
