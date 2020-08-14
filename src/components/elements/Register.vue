@@ -50,6 +50,7 @@
 
 <script>
 import { registerAccTx, generateMnemonic } from '../cardChain.js'
+import { notify } from '../utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {
@@ -85,14 +86,15 @@ export default {
         mnemonic: encryptedMnemonic
       }
 
+      registerAccTx(this.$http, this.username)
+
       this.$hottub.post('/register', post)
               .then((res) => {
                 console.log(res)
-                registerAccTx(this.$http, this.username)
                 this.$router.push('/')
               })
               .catch(() => {
-                this.$notify.fail('Backend registration failed!')
+                notify.fail('Backend registration failed!')
               })
     }
   }
