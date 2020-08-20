@@ -493,7 +493,7 @@ export default {
       if (!this.model.name) {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
-      }
+      }     
 
       let newCard = {
         model: {
@@ -512,7 +512,7 @@ export default {
         },
         image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
-      if (this.model.type !== 'HQ') {
+      if (this.model.type !== 'headquarter') {
         if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
@@ -534,10 +534,11 @@ export default {
         }
         newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Attack = this.model.attack
-      } else if (this.model.type === 'HQ') {
+      } else if (this.model.type === 'headquarter') {
         newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Growth = 0       // TODO implement this
         newCard.model[this.model.type].Wisdom = 0       // TODO implement this
+
       } else if (this.model.type === 'Action') {
         newCard.model[this.model.type].Effects = []
       }
@@ -549,6 +550,14 @@ export default {
       if (!this.model.text[0]) {
         notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
+      }
+
+      if (this.model.type === 'headquarter') {
+        
+        newCard.model.Headquarter = newCard.model.headquarter
+        newCard.model.headquarter = undefined
+        
+        console.log('newCard:',newCard)
       }
 
       saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
