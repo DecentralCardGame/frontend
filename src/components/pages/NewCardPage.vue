@@ -492,7 +492,6 @@ export default {
       this.abilities = []
     },
     getTypes () {
-      console.log(this.model.type)
       return R.values(R.pluck('name', this.$cardRules.children))
     },
     getTags (idx) {
@@ -597,8 +596,6 @@ export default {
         
         newCard.model.Headquarter = newCard.model.headquarter
         newCard.model.headquarter = undefined
-        
-        console.log('newCard:',newCard)
       }
 
       saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {

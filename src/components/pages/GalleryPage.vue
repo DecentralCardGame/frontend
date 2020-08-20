@@ -58,7 +58,6 @@ export default {
       return getCardList(this.$http, 'prototype')
         .then(res => {
           this.cardList = res.cardList
-          console.log(this.cardList)
         })
     },
     getNextCard () {
