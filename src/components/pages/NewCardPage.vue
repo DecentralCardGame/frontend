@@ -136,10 +136,6 @@
             <span
                 v-show="model.type==='headquarter'"
                 class="creator-text"
-<<<<<<< HEAD
-            >As I am quite awesome I can grow to a <b>maximum size</b> of:</span>
-            My <b>classes</b> are:
-=======
             >
               As I am quite awesome, I generate <br>
 
@@ -179,7 +175,6 @@
             </span>
 
             My classes are:
->>>>>>> master
           </span>
           <div>
             <input
