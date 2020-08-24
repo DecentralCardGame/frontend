@@ -75,11 +75,15 @@ export default {
     getNextCard () {
       if (this.pageId + this.currentId >= this.cardList.length) return
 
-      getCard(this.$http, this.cardList[this.cardList.length - 1 - this.pageId - this.currentId])
+      let cardId = this.cardList[this.cardList.length - 1 - this.pageId - this.currentId]
+      getCard(this.$http, cardId)
         .then(res => {
           let card = res.card
+          card.id = cardId
           if (card.Content) {
             this.cards.push(parseCard(card))
+            card.id = cardId
+            console.log('card', card)
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
@@ -122,8 +126,10 @@ export default {
       saveCardAsPng(document.getElementById('card' + this.clickedIndex), this.cards[this.clickedIndex].name)
     },
     vote (type) {
-      console.log('vote cast for cardid', this.clickedIndex, 'voted: ', type)
-      voteCardTx(this.$http, this.clickedIndex, type)
+      console.log(this.cards[this.clickedIndex])
+      console.log('vote cast for cardid', this.cards[this.clickedIndex].id, 'voted: ', type)
+      
+      voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
     }
   }
 }

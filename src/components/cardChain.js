@@ -31,7 +31,8 @@ export function parseCard (rawCard) {
       'tag': card.Tags,
       'text': card.Text,
       'image': b64DecodeUnicode(card.Image),
-      'nerflevel': parseInt(card.Nerflevel)
+      'nerflevel': parseInt(card.Nerflevel),
+      'id': card.id
     }
   } else {
     return {
@@ -47,7 +48,8 @@ export function parseCard (rawCard) {
       'tag': null,
       'text': '',
       'image': null,
-      'nerflevel': 0
+      'nerflevel': 0,
+      'id': -1
     }
   }
 }

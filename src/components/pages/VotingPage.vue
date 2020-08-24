@@ -19,13 +19,13 @@
             :image-u-r-l="currentCard.image"
           />
         </vue-swing>
-        <button @click="vote(1, 'fair_enough')">
+        <button @click="vote('fair_enough')">
           Fair Enough
         </button>
-        <button @click="vote(1, 'overpowered')">
+        <button @click="vote('overpowered')">
           Overpowered
         </button>
-        <button @click="vote(1, 'underpowered')">
+        <button @click="vote('underpowered')">
           Underpowered
         </button>
       </div>
