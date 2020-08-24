@@ -205,6 +205,43 @@ export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) 
     })
 }
 
+export function saveContentToCardWithIdTx (http, card, onSuccessCallback) {
+  let req = {
+    'base_req': {
+      'from': localStorage.address,
+      'chain_id': 'testCardchain',
+      'gas': 'auto',
+      'gas_adjustment': '10'
+    },
+    'owner': localStorage.address,
+    'content': JSON.stringify(card.model),
+    'image': card.image,
+    'cardid': card.id
+  }
+
+  txLoop.enqueue(() => {
+    return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
+      .then(responses => {
+        let accData = responses[0]
+        let rawTx = responses[1].data
+
+        let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+
+        let signedTx = sign(rawTx, accData, wallet)
+
+        return broadcast(http, signedTx)
+          .then(res => {
+            notify.success('EPIC WIN', 'You have successfully edited this card.')
+            onSuccessCallback(res)
+          })
+          .catch(err => {
+            notify.fail('FAIL HARD', err.message)
+            console.error(err)
+          })
+      })
+  })
+}
+
 export function voteCardTx (http, cardid, voteType) {
   let req = {
     'base_req': {

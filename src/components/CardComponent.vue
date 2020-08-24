@@ -821,14 +821,14 @@ export default {
       this.opaque = 0;
     },
     getType () {
-      if (this.model.type === 'No Type' || !this.model.type) {
+      if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
         let type = this.$cardRules.children[this.model.type === 'HQ' ? 'headquarter' : this.model.type.toLowerCase()]
         if (type) {
           return type.name.toUpperCase()
         } else {
-          console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) )
+          console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) + '. Instead is: ' + type )
         }
       }
     },

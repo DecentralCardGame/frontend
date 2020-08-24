@@ -124,7 +124,7 @@ export default {
     },
     edit () {
       state.card = this.cards[this.clickedIndex]
-      state.card.img = 
+      
       this.$router.push('newCard')
     },
     downloadPng () {

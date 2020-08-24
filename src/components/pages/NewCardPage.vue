@@ -342,7 +342,7 @@
             Next Step >
           </button>
           <button
-            v-if="activeStep == 4"
+            v-if="activeStep == 4 && !model.id"
             type="button"
             class="btn"
             @click="showBuySchemeModal"
@@ -354,10 +354,17 @@
             @close="closeBuySchemeModal"
           />
           <button
-            v-if="activeStep == 4"
+            v-if="activeStep == 4 && !model.id"
             @click="saveSubmit()"
           >
             Publish Your Card
+          </button>
+
+          <button
+            v-if="activeStep == 4 && model.id"
+            @click="saveSubmit()"
+          >
+            Update Your Card
           </button>
         </div>
       </div>
@@ -393,7 +400,7 @@ import AbilityModal from '../AbilityModal.vue'
 import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
-import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx } from '../cardChain.js'
+import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx, saveContentToCardWithIdTx } from '../cardChain.js'
 import { sampleImg, emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js'
 
 export default {
@@ -438,10 +445,12 @@ export default {
   computed: {
   },
   mounted () {
-    this.getRulesType()
+    
     // here a card is loaded if edit card via gallery was selected
     if (state.card) {
+      if (state.card.type === 'Headquarter') state.card.type = 'HQ'
       this.model = R.merge(this.model, state.card)
+      
       this.cardImageUrl = this.model.image
       state.card = null
       return
@@ -619,15 +628,26 @@ export default {
         newCard.model.headquarter = undefined
       }
 
-      saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
-        localStorage.cardDraft = ''
-        localStorage.cardImg = ''
-        this.model = emptyCard
-        this.cardImageUrl = sampleImg
-      })
+      // check if a card is edited with pre-existing ID
+      if (this.model.id) {
+        newCard.id = this.model.id
+        saveContentToCardWithIdTx(this.$http, newCard, () => {
+          localStorage.cardDraft = ''
+          localStorage.cardImg = ''
+          this.model = emptyCard
+          this.cardImageUrl = sampleImg
+        })
+      } else {
+        saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
+          localStorage.cardDraft = ''
+          localStorage.cardImg = ''
+          this.model = emptyCard
+          this.cardImageUrl = sampleImg
+        })
+      }
+
     },
     saveDraft () {
-      console.log(this.model)
       localStorage.cardDraft = JSON.stringify(this.model)
     },
     inputFile (event) {
