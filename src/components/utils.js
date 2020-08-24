@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import * as R from 'ramda'
+import * as svg1 from 'save-svg-as-png'
 
 export const notify = {
   fail: R.curry(function (title, text) {
@@ -213,6 +214,10 @@ export function uploadImg (file, callback) {
   }
   reader.onerror = error => console.error(error)
   reader.readAsDataURL(file)
+}
+
+export function saveCardAsPng (element, name, scale = 5) {
+  svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
 }
 
 export const sampleCard = {

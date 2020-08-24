@@ -1,10 +1,21 @@
 <template>
   <div>
+    <GalleryModal
+      v-if="isGalleryModalVisible"
+      @close="closeGalleryModal"
+      @download="downloadPng"
+      @voteOP="vote('overpowered')"
+      @voteUP="vote('underpowered')"
+      @voteFair="vote('fair_enough')"
+      @voteInappropriate="vote('inappropriate')"
+    />
+
     <div class="gallery-view">
       <div
         v-for="(card, index) in cards"
         :key="index"
         width="75%"
+        @click="showGalleryModal(); clickedIndex = index;"
       >
         <CardComponent
           :id="'card'+index"
@@ -23,23 +34,24 @@
 
 <script>
 import * as R from 'ramda'
+import GalleryModal from '../GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
-import { parseCard, getCard, getCardList } from '../cardChain.js'
-import { sampleImg } from '../utils.js'
+import { parseCard, getCard, getCardList, voteCardTx } from '../cardChain.js'
+import { sampleImg, saveCardAsPng } from '../utils.js'
 
 const cardsPerPage = 2
 
 export default {
   name: 'GalleryPage',
-  components: {CardComponent},
+  components: {CardComponent, GalleryModal},
   data () {
     return {
+      clickedIndex: Number,
+      isGalleryModalVisible: false,
       pageId: 0,
       currentId: 0,
       cardList: [],
       cards: [],
-      cardImgs: [],
-      sampleImage: sampleImg,
       browsingForward: true,
       browsingBackward: true,
     }
@@ -100,6 +112,19 @@ export default {
       this.currentId = 0
       this.cards = []
       this.fillPage()
+    },
+    showGalleryModal () {
+      this.isGalleryModalVisible = true
+    },
+    closeGalleryModal () {
+      this.isGalleryModalVisible = false
+    },
+    downloadPng () {
+      saveCardAsPng(document.getElementById('card' + this.clickedIndex), this.cards[this.clickedIndex].name)
+    },
+    vote (type) {
+      console.log('vote cast for cardid', this.clickedIndex, 'voted: ', type)
+      voteCardTx(this.$http, this.clickedIndex, type)
     }
   }
 }

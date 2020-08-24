@@ -9,9 +9,9 @@
         <vue-swing
           :config="config"
           class="card"
-          @throwoutup="vote(1, 'fair_enough')"
-          @throwoutright="vote(1, 'overpowered')"
-          @throwoutleft="vote(1, 'underpowered')"
+          @throwoutup="vote('fair_enough')"
+          @throwoutright="vote('overpowered')"
+          @throwoutleft="vote('underpowered')"
         >
           <CardComponent
             width="50%"
@@ -111,11 +111,10 @@ export default {
       })
   },
   methods: {
-    vote (cardid, type) {
-      console.log('vote cast for cardid', cardid, 'voted: ', type)
-
+    vote (type) {
       this.getNextCard()
       voteCardTx(this.$http, this.currentCard.id, type)
+      console.log('vote cast for cardid', this.currentCard.id, 'voted: ', type)
 
       if (R.isEmpty(this.cards)) {
         if (!R.isEmpty(this.voteRights)) {
