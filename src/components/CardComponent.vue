@@ -874,7 +874,7 @@ export default {
           // line full, create new line
           lines.push(word + ' ')
         } else {
-          if (word === '\n') {
+          if (word === '\\n') {
             // newline operator, create new line
             lines.push(' ')
           } else {

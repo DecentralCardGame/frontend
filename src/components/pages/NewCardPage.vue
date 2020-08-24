@@ -134,10 +134,52 @@
           </select>
           <span class="creator-text">
             <span
-                v-if="model.type==='HQ'"
+                v-show="model.type==='headquarter'"
                 class="creator-text"
+<<<<<<< HEAD
             >As I am quite awesome I can grow to a <b>maximum size</b> of:</span>
             My <b>classes</b> are:
+=======
+            >
+              As I am quite awesome, I generate <br>
+
+              <select
+                v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.growth"
+                v-model="model.growth"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.growth.min, $cardRules.children[R.toLower(model.type)].children.growth.max + 1)"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }} 
+                </option>
+              </select>
+              Growth and<br>
+
+              <select
+                v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.wisdom"
+                v-model="model.wisdom"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.wisdom.min, $cardRules.children[R.toLower(model.type)].children.wisdom.max + 1)"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }} 
+                </option>
+              </select>
+              Wisdom. <br> 
+              <!-- Check my impressive starting hand size of -->
+              
+              <br>
+
+            </span>
+
+            My classes are:
+>>>>>>> master
           </span>
           <div>
             <input
@@ -389,7 +431,10 @@ export default {
         },
         costAmount: -1,
         health: 0,
-        attack: 0
+        attack: 0,
+        growth: 10,
+        wisdom: 10,
+        startingHand: 3
       },
       cardID: 0
     }
@@ -500,7 +545,7 @@ export default {
       if (!this.model.name) {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
-      }
+      }     
 
       let newCard = {
         model: {
@@ -519,7 +564,7 @@ export default {
         },
         image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
-      if (this.model.type !== 'HQ') {
+      if (this.model.type !== 'headquarter') {
         if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
@@ -541,10 +586,11 @@ export default {
         }
         newCard.model[this.model.type].Abilities = []
         newCard.model[this.model.type].Attack = this.model.attack
-      } else if (this.model.type === 'HQ') {
+      } else if (this.model.type === 'headquarter') {
         newCard.model[this.model.type].Abilities = []
-        newCard.model[this.model.type].Growth = 0       // TODO implement this
-        newCard.model[this.model.type].Wisdom = 0       // TODO implement this
+        newCard.model[this.model.type].Growth = this.model.growth
+        newCard.model[this.model.type].Wisdom = this.model.wisdom
+
       } else if (this.model.type === 'Action') {
         newCard.model[this.model.type].Effects = []
       }
@@ -556,6 +602,12 @@ export default {
       if (!this.model.text[0]) {
         notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
+      }
+
+      if (this.model.type === 'headquarter') {
+        
+        newCard.model.Headquarter = newCard.model.headquarter
+        newCard.model.headquarter = undefined
       }
 
       saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
