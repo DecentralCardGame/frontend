@@ -115,17 +115,17 @@
           class="creator-input-container"
         >
           <span
-            v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
+            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.castingCost"
             class="creator-text"
           >As I am quite awesome to get me rolling you need to <b>invest</b>:</span>
 
           <select
-            v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.castingCost"
+            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.castingCost"
             v-model="model.costAmount"
             @change="saveDraft"
           >
             <option
-              v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.castingCost.min, $cardRules.children[R.toLower(model.type)].children.castingCost.max + 1)"
+              v-for="n in R.range($cardRules.children[getRulesType()].children.castingCost.min, $cardRules.children[getRulesType()].children.castingCost.max + 1)"
               :key="n"
               :value="n"
             >
@@ -134,18 +134,18 @@
           </select>
           <span class="creator-text">
             <span
-                v-show="model.type==='headquarter'"
+                v-show="model.type==='HQ'"
                 class="creator-text"
             >
               As I am quite awesome, I generate <br>
 
               <select
-                v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.growth"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.growth"
                 v-model="model.growth"
                 @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.growth.min, $cardRules.children[R.toLower(model.type)].children.growth.max + 1)"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.growth.min, $cardRules.children[getRulesType()].children.growth.max + 1)"
                   :key="n"
                   :value="n"
                 >
@@ -155,12 +155,12 @@
               Growth and<br>
 
               <select
-                v-if="$cardRules.children[R.toLower(model.type)] && $cardRules.children[R.toLower(model.type)].children.wisdom"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.wisdom"
                 v-model="model.wisdom"
                 @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.wisdom.min, $cardRules.children[R.toLower(model.type)].children.wisdom.max + 1)"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.wisdom.min, $cardRules.children[getRulesType()].children.wisdom.max + 1)"
                   :key="n"
                   :value="n"
                 >
@@ -209,12 +209,12 @@
             <label for="checkbox"> Energy </label> <br>
             <span v-if="model.type==='Entity'"> I have an <b>attack</b> of </span>
             <select
-              v-if="model.type==='Entity' && $cardRules.children[R.toLower(model.type)]"
+              v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
               v-model="model.attack"
               @change="saveDraft"
             >
               <option
-                v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.attack.min, $cardRules.children[R.toLower(model.type)].children.attack.max + 1)"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.attack.min, $cardRules.children[getRulesType()].children.attack.max + 1)"
                 :key="n"
                 :value="n"
               >
@@ -224,12 +224,12 @@
             <span v-if="model.type==='Entity'"> and </span>
             <span v-if="model.type!=='Action'"> I sadly <b>die</b> after someone suckerpunchs me for </span>
             <select
-              v-if="model.type!=='Action' && $cardRules.children[R.toLower(model.type)]"
+              v-if="model.type!=='Action' && $cardRules.children[getRulesType()]"
               v-model="model.health"
               @change="saveDraft"
             >
               <option
-                v-for="n in R.range($cardRules.children[R.toLower(model.type)].children.health.min, $cardRules.children[R.toLower(model.type)].children.health.max + 1)"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.health.min, $cardRules.children[getRulesType()].children.health.max + 1)"
                 :key="n"
                 :value="n"
               >
@@ -386,6 +386,7 @@
 
 <script>
 import * as R from 'ramda'
+import state from '../cardState'
 import CardComponent from '../CardComponent'
 import BuySchemeModal from '../BuySchemeModal.vue'
 import AbilityModal from '../AbilityModal.vue'
@@ -414,7 +415,7 @@ export default {
         notes: '',
         article: 'the',
         surname: 'Surname',
-        type: 'No Type',
+        type: 'no type',
         tag: [],
         tagDummy: '',
         cost: {
@@ -437,6 +438,14 @@ export default {
   computed: {
   },
   mounted () {
+    this.getRulesType()
+    // here a card is loaded if edit card via gallery was selected
+    if (state.card) {
+      this.model = R.merge(this.model, state.card)
+      this.cardImageUrl = this.model.image
+      state.card = null
+      return
+    }
     if (localStorage.cardDraft) {
       this.model = JSON.parse(localStorage.cardDraft)
     }
@@ -459,14 +468,14 @@ export default {
       this.isAbilityModalVisible = true
 
       if (type === 'root') {
-        if (this.model.type === 'No Type' || this.model.type === undefined) {
+        if (this.model.type === 'no type' || this.model.type === undefined) {
           notify.fail('No Type', 'Card has no type, please pick a type before setting abilities.')
           this.isAbilityModalVisible = false
           return
         }
 
         let newAbility = {
-          path: ['children', R.toLower(this.model.type), 'children', R.toLower(this.model.type) === 'action' ? 'effects' : 'abilities']
+          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'action' ? 'effects' : 'abilities']
         }
 
         newAbility.path = climbRulesTree(this.$cardRules, newAbility.path)
@@ -498,8 +507,11 @@ export default {
     resetAbilities () {
       this.abilities = []
     },
+    getRulesType () {
+      return this.model.type === 'HQ' ? 'headquarter' : this.model.type.toLowerCase()
+    },
     getTypes () {
-      return R.values(R.pluck('name', this.$cardRules.children))
+      return R.pluck('name', this.$cardRules.children)
     },
     getTags (idx) {
       if (this.$cardRules) {
@@ -533,7 +545,7 @@ export default {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
       }
-      if (!this.model.type || this.model.type === 'No Type') {
+      if (!this.model.type || this.model.type === 'no type') {
         notify.fail('Wrong Type', 'please pick a type')
         return
       }
@@ -544,7 +556,7 @@ export default {
 
       let newCard = {
         model: {
-          [this.model.type]: {
+          [this.getRulesType()]: {
             'Name': this.model.name,
             'Tags': R.reject(R.isNil, this.model.tag),
             'Text': this.model.text,
@@ -559,35 +571,35 @@ export default {
         },
         image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
-      if (this.model.type !== 'headquarter') {
+      if (this.model.type !== 'HQ') {
         if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
         }
-        newCard.model[this.model.type].CastingCost = this.model.costAmount
+        newCard.model[this.getRulesType()].CastingCost = this.model.costAmount
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.health)) {
           notify.fail('No Health', 'Card has no health, please pick a number.')
           return
         }
-        newCard.model[this.model.type].Abilities = []
-        newCard.model[this.model.type].Health = this.model.health
+        newCard.model[this.getRulesType()].Abilities = []
+        newCard.model[this.getRulesType()].Health = this.model.health
       }
       if (this.model.type === 'Entity') {
         if (R.isNil(this.model.attack)) {
           notify.fail('No Attack', 'Card has no Attack, please pick a number.')
           return
         }
-        newCard.model[this.model.type].Abilities = []
-        newCard.model[this.model.type].Attack = this.model.attack
-      } else if (this.model.type === 'headquarter') {
-        newCard.model[this.model.type].Abilities = []
-        newCard.model[this.model.type].Growth = this.model.growth
-        newCard.model[this.model.type].Wisdom = this.model.wisdom
+        newCard.model[this.getRulesType()].Abilities = []
+        newCard.model[this.getRulesType()].Attack = this.model.attack
+      } else if (this.model.type === 'HQ') {
+        newCard.model[this.getRulesType()].Abilities = []
+        newCard.model[this.getRulesType()].Growth = this.model.growth
+        newCard.model[this.getRulesType()].Wisdom = this.model.wisdom
 
       } else if (this.model.type === 'Action') {
-        newCard.model[this.model.type].Effects = []
+        newCard.model[this.getRulesType()].Effects = []
       }
 
       if (!this.model.tag[0]) {
@@ -599,8 +611,10 @@ export default {
         return
       }
 
-      if (this.model.type === 'headquarter') {
-        
+      console.log('modelyes', newCard)
+
+      // fix for old cardschema
+      if(newCard.model.headquarter) {
         newCard.model.Headquarter = newCard.model.headquarter
         newCard.model.headquarter = undefined
       }
@@ -613,6 +627,7 @@ export default {
       })
     },
     saveDraft () {
+      console.log(this.model)
       localStorage.cardDraft = JSON.stringify(this.model)
     },
     inputFile (event) {

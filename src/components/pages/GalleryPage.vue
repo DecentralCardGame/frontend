@@ -4,6 +4,7 @@
       v-if="isGalleryModalVisible"
       @close="closeGalleryModal"
       @download="downloadPng"
+      @edit="edit"
       @voteOP="vote('overpowered')"
       @voteUP="vote('underpowered')"
       @voteFair="vote('fair_enough')"
@@ -34,6 +35,7 @@
 
 <script>
 import * as R from 'ramda'
+import state from '../cardState'
 import GalleryModal from '../GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard, getCardList, voteCardTx } from '../cardChain.js'
@@ -82,8 +84,6 @@ export default {
           card.id = cardId
           if (card.Content) {
             this.cards.push(parseCard(card))
-            card.id = cardId
-            console.log('card', card)
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
@@ -122,13 +122,15 @@ export default {
     closeGalleryModal () {
       this.isGalleryModalVisible = false
     },
+    edit () {
+      state.card = this.cards[this.clickedIndex]
+      state.card.img = 
+      this.$router.push('newCard')
+    },
     downloadPng () {
       saveCardAsPng(document.getElementById('card' + this.clickedIndex), this.cards[this.clickedIndex].name)
     },
     vote (type) {
-      console.log(this.cards[this.clickedIndex])
-      console.log('vote cast for cardid', this.cards[this.clickedIndex].id, 'voted: ', type)
-      
       voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
     }
   }

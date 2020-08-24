@@ -32,7 +32,7 @@
             type="button"
             class="btn-teal"
             aria-label="Close modal"
-            @click="download"
+            @click="download(); close();"
           >
             Download PNG
           </button> <br>
@@ -41,7 +41,7 @@
             type="button"
             class="btn-teal"
             aria-label="Close modal"
-            @click="edit"
+            @click="edit(); close();"
           >
             Edit Card
           </button> <br>
@@ -50,34 +50,34 @@
             type="button"
             class="btn-teal"
             aria-label="Close modal"
-            @click="voteOP"
+            @click="voteOP(); close();"
           >
             Vote Overpowered
-          </button>
+          </button> <br>
 
           <button
             type="button"
             class="btn-teal"
             aria-label="Close modal"
-            @click="voteUP"
+            @click="voteUP(); close();"
           >
             Vote Underpowered
-          </button>
+          </button> <br>
 
           <button
             type="button"
             class="btn-teal"
             aria-label="Close modal"
-            @click="voteFair"
+            @click="voteFair(); close();"
           >
             Vote Fair Enough
-          </button>
+          </button> <br>
 
           <button
             type="button"
             class="btn-teal"
             aria-label="Close modal"
-            @click="voteInappropriate"
+            @click="voteInappropriate(); close();"
           >
             Vote Inappropriate
           </button>
@@ -89,10 +89,7 @@
     </div>
   </transition>
 </template>
-
 <script>
-import {  } from './cardChain.js'
-import {  } from './utils.js'
 
 export default {
   name: 'GalleryModal',

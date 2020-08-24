@@ -142,7 +142,7 @@ export default {
               this.cards.push(parsedCard)
               R.last(this.cards).id = nextCard.CardId
             } else {
-              // yes?
+              console.error('card could not be parsed', res.card)
             }
           })
       } else {
