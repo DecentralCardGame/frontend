@@ -16,14 +16,20 @@
         v-for="(card, index) in cards"
         :key="index"
         width="75%"
-        @click="showGalleryModal(); clickedIndex = index;"
+        
       >
+        <div
+          @click="showGalleryModal(); clickedIndex = index;"
+          width="75%"
+        >
         <CardComponent
           :id="'card'+index"
           :model="card"
           :image-u-r-l="card.image"
-          width="75%"
+          width="100%"
+
         />
+        </div>
       </div>
       <div>
         <button v-show="browsingBackward" @click="prevPage">back</button>
