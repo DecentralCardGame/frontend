@@ -620,8 +620,6 @@ export default {
         return
       }
 
-      console.log('modelyes', newCard)
-
       // fix for old cardschema
       if(newCard.model.headquarter) {
         newCard.model.Headquarter = newCard.model.headquarter
