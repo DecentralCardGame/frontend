@@ -383,13 +383,17 @@ function handleGetCardCurryMe (res, cardId) {
   }
 }
 
-export function getCardList (http, type) {
-  if (type != 'scheme' && type != 'prototype' && type != 'counciled' && type != 'trial' && type != 'permanent' && type != '') {
-    throw new Error('CardList type invalid: ' + type)
+export function getCardList (http, owner, status, nameContains) {
+  console.log('status:', status)
+  console.log('owner:', owner)
+  console.log('nameContains:', nameContains)
+
+  if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
+    throw new Error('CardList status invalid: ' + status)
   }
-  return http.get('cardservice/cardList' + (type ? '/'+type : ''))
+  return http.get('cardservice/cardList' + (status ? '/'+status : '') + '?' + (owner? 'owner='+owner : '') + '&' + (nameContains? 'nameContains='+nameContains : ''))
     .catch(handleGetError)
-    .then(handleGetCardList(R.__, type))
+    .then(handleGetCardList(R.__, status))
 }
 
 const handleGetCardList = R.curry(handleGetCardListCurryMe)
