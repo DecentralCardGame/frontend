@@ -15,10 +15,10 @@
 .info-notification {
   padding: 10px;
   margin: 0 5px 5px;
-  border-left: 5px solid #FFACAC;
+  border-left: 5px solid $dark-blue;
   font-size: 16px;
   color: #FFFFFF;
-  background: #F29121 !important;
+  background: $blue !important;
 }
 
 .success-notification {

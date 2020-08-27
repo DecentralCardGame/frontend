@@ -373,7 +373,7 @@ function handleGetCardListCurryMe (res, type) {
     throw new Error('CardList Empty: ' + res)
   }
   if (!res.data.result) {
-    notify.fail('WTF', 'A proper cardList was not returned by the blockchain.')
+    notify.info('Empty', 'An empty cardList was returned by the blockchain.')
     throw new Error('CardList with type ' + type + ' did not return a proper result: ' + res)
   } else {
     return {
