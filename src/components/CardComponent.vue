@@ -813,7 +813,7 @@ export default {
     cardmouseclick() {
       this.opaque = 1;
       if (this.clicked) {
-        this.saveSingleCard()
+        //this.saveSingleCard()
       }
       this.clicked = true
     },
