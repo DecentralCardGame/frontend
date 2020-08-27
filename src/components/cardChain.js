@@ -3,7 +3,7 @@ import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
-import { notify } from './utils.js'
+import { notify, emptyCard } from './utils.js'
 
 export function parseCard (rawCard) {
   if (rawCard.Content) {
@@ -13,44 +13,13 @@ export function parseCard (rawCard) {
     let cardType = R.keys(card.Content)
     card = R.merge(card, card.Content[cardType[0]])
 
-    return {
-      'name': card.Name,
-      'type': cardType[0],
-      'health': card.Health || 0,
-      'attack': card.Attack || 0,
-      'cost': {
-        'lumber': card.CostType.Lumber,
-        'food': card.CostType.Food,
-        'iron': card.CostType.Iron,
-        'mana': card.CostType.Mana,
-        'energy': card.CostType.Energy
-      },
-      'costAmount': card.CastingCost,
-      'abilities': card.Abilities,
-      'effects': card.Effects,
-      'tag': card.Tags,
-      'text': card.Text,
-      'image': b64DecodeUnicode(card.Image),
-      'nerflevel': parseInt(card.Nerflevel),
-      'id': card.id
-    }
+    card.image = b64DecodeUnicode(card.Image)
+    card.nerflevel = parseInt(card.Nerflevel)
+    card.type = cardType[0]
+
+    return card
   } else {
-    return {
-      'name': 'empty',
-      'type': null,
-      'health': 0,
-      'attack': 0,
-      'speed': 0,
-      'cost': {},
-      'costAmount': {},
-      'abilities': null,
-      'effects': null,
-      'tag': null,
-      'text': '',
-      'image': null,
-      'nerflevel': 0,
-      'id': -1
-    }
+    return emptyCard
   }
 }
 
@@ -285,6 +254,7 @@ function broadcast (http, signedTx) {
     } else {
       console.error(err)
     }
+    notify.fail('WTF', err)
     throw err
   }).then(res => {
     console.log('tx successfull broadcasted', res)
@@ -319,6 +289,7 @@ function getUserInfo (http, address) {
       .catch(handleGetError)
       .then(handleGetUser(R.__, address))
   } else {
+    notify.fail('Do you even?', 'Have a proper address? Please login or register.')
     throw new Error('please provide proper address')
   }
 }
@@ -344,7 +315,8 @@ export function getAccInfo (http, address) {
       .catch(handleGetError)
       .then(handleGetAcc(R.__, address))
   } else {
-    throw new Error('please provide proper address')
+    notify.fail('Do you even?', 'Have a proper address? Please login or register.')
+    throw new Error('please provide proper address')    
   }
 }
 
@@ -371,6 +343,7 @@ export function getCard (http, id) {
 const handleGetCard = R.curry(handleGetCardCurryMe)
 function handleGetCardCurryMe (res, cardId) {
   if (res.data.result.owner === '') {
+    notify.fail('Card without Owner', 'If you can read this the programmers dun goofed.')
     throw new Error('Card without Owner: ' + cardId)
   }
   if (!res.data.result) {
@@ -385,6 +358,7 @@ function handleGetCardCurryMe (res, cardId) {
 
 export function getCardList (http, owner, status, nameContains) {
   if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
+    notify.fail('INVALID STATUS', 'The requested card status is not valid.')
     throw new Error('CardList status invalid: ' + status)
   }
   return http.get('cardservice/cardList?' + (status ? 'status='+status : '') + (owner? '&owner='+owner : '') + (nameContains? '&nameContains='+nameContains : ''))
@@ -395,6 +369,7 @@ export function getCardList (http, owner, status, nameContains) {
 const handleGetCardList = R.curry(handleGetCardListCurryMe)
 function handleGetCardListCurryMe (res, type) {
   if (res.data.result === '') {
+    notify.fail('Sad', 'Basically the CardList is valid, but it is empty.')
     throw new Error('CardList Empty: ' + res)
   }
   if (!res.data.result) {

@@ -46,7 +46,7 @@
         >
           <span class="creator-text">Hey, my <b>name</b> is</span>
           <input
-            v-model="model.name"
+            v-model="model.CardName"
             value="Card Name"
             @change="saveDraft"
           >
@@ -77,8 +77,8 @@
               </option>
             </select>
             <select
-              v-if="model.tag && model.tag[0]"
-              v-model="model.tag[1]"
+              v-if="model.Tags && model.Tags[0]"
+              v-model="model.Tags[1]"
               @change="updateTags"
               class="tag-select"
             >
@@ -90,8 +90,8 @@
               </option>
             </select>
             <select
-              v-if="model.tag && model.tag[1]"
-              v-model="model.tag[2]"
+              v-if="model.Tags && model.Tags[1]"
+              v-model="model.Tags[2]"
               @change="updateTags"
               class="tag-select tag-select-last"
             >
@@ -121,7 +121,7 @@
 
           <select
             v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
-            v-model="model.costAmount"
+            v-model="model.CastingCost"
             @change="saveDraft"
           >
             <option
@@ -190,31 +190,31 @@
           </span>
           <div>
             <input
-              v-model="model.cost.lumber"
+              v-model="model.CostType.Lumber"
               type="checkbox"
               @change="saveDraft"
             >
             <label for="checkbox"> Lumber </label> <br>
             <input
-              v-model="model.cost.food"
+              v-model="model.CostType.Food"
               type="checkbox"
               @change="saveDraft"
             >
             <label for="checkbox"> Food </label> <br>
             <input
-              v-model="model.cost.iron"
+              v-model="model.CostType.Iron"
               type="checkbox"
               @change="saveDraft"
             >
             <label for="checkbox"> Iron </label> <br>
             <input
-              v-model="model.cost.mana"
+              v-model="model.CostType.Mana"
               type="checkbox"
               @change="saveDraft"
             >
             <label for="checkbox"> Mana </label> <br>
             <input
-              v-model="model.cost.energy"
+              v-model="model.CostType.Energy"
               type="checkbox"
               @change="saveDraft"
             >
@@ -313,7 +313,7 @@
             the following sentences:
           </span>
           <input
-            v-model="model.text"
+            v-model="model.FlavourText"
             value="Card Name"
             @change="saveDraft"
           >
@@ -427,37 +427,13 @@ export default {
       abilities: [],
       abilityDialog: {},
       cardImageUrl: sampleImg,
-      model: {
-        name: 'Name',
-        text: '',
-        abilities: [],
-        notes: '',
-        article: 'the',
-        surname: 'Surname',
-        type: 'no type',
-        tag: [],
-        tagDummy: '',
-        cost: {
-          lumber: false,
-          food: false,
-          iron: false,
-          mana: false,
-          energy: false
-        },
-        costAmount: -1,
-        Health: 0,
-        Attack: 0,
-        Growth: 10,
-        Wisdom: 10,
-        StartingHandSize: 3
-      },
+      model: emptyCard,
       cardID: 0
     }
   },
   computed: {
   },
   mounted () {
-    
     // here a card is loaded if edit card via gallery was selected
     if (state.card) {
       if (state.card.type === 'Headquarter') state.card.type = 'HQ'
@@ -538,12 +514,12 @@ export default {
       if (this.$cardRules) {
         let usedTags = []
         let allTags = this.$cardRules.children.Action.children.Tags.children.Tag.children
-        if (this.model.tag[idx]) {
+        if (this.model.Tags[idx]) {
           // all tags already used except self
-          usedTags = R.without(this.model.tag[idx], this.model.tag)
+          usedTags = R.without(this.model.Tags[idx], this.model.Tags)
         }
         // if this is the last dropdown, allow to select nothing
-        if (R.length(R.filter(x => x, this.model.tag)) === idx + 1) {
+        if (R.length(R.filter(x => x, this.model.Tags)) === idx + 1) {
           return R.append('', R.without(usedTags, allTags))
         } else {
           // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
@@ -555,14 +531,14 @@ export default {
       }
     },
     updateTags () {
-      if (!this.model.tag) {
-        this.model.tag = []
+      if (!this.model.Tags) {
+        this.model.Tags = []
       }
-      this.model.tag.splice(0, 1, this.model.tagDummy)
+      this.model.Tags.splice(0, 1, this.model.tagDummy)
       this.saveDraft()
     },
     saveSubmit () {
-      if (!this.model.name) {
+      if (!this.model.CardName) {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
       }
@@ -570,7 +546,7 @@ export default {
         notify.fail('Wrong Type', 'please pick a type')
         return
       }
-      if (!this.model.name) {
+      if (!this.model.CardName) {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
       }     
@@ -578,26 +554,26 @@ export default {
       let newCard = {
         model: {
           [this.getRulesType()]: {
-            'Name': this.model.name,
-            'Tags': R.reject(R.isNil, this.model.tag),
-            'Text': this.model.text,
+            'CardName': this.model.CardName,
+            'Tags': R.reject(R.isNil, this.model.Tags),
+            'FlavourText': this.model.FlavourText,
             'CostType': {
-              'Lumber': this.model.cost.lumber == true,
-              'Energy': this.model.cost.energy == true,
-              'Food': this.model.cost.food == true,
-              'Iron': this.model.cost.iron == true,
-              'Mana': this.model.cost.mana == true
+              'Lumber': this.model.CostType.Lumber == true,
+              'Energy': this.model.CostType.Energy == true,
+              'Food': this.model.CostType.Food == true,
+              'Iron': this.model.CostType.Iron == true,
+              'Mana': this.model.CostType.Mana == true
             }
           }
         },
         image: this.cardImageUrl ? this.cardImageUrl : 'nix'
       }
       if (this.model.type !== 'HQ') {
-        if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
+        if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
           notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
         }
-        newCard.model[this.getRulesType()].CastingCost = this.model.costAmount
+        newCard.model[this.getRulesType()].CastingCost = this.model.CastingCost
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.Health)) {
@@ -623,20 +599,14 @@ export default {
         newCard.model[this.getRulesType()].Effects = []
       }
 
-      if (!this.model.tag[0]) {
+      if (!this.model.Tags[0]) {
         notify.fail('No Tags', 'Card has no Tag, please pick at least one tag.')
         return
       }
-      if (!this.model.text[0]) {
+      if (!this.model.FlavourText[0]) {
         notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
       }
-
-      // fix for old cardschema
-      /*if(newCard.model.headquarter) {
-        newCard.model.Headquarter = newCard.model.headquarter
-        newCard.model.headquarter = undefined
-      }*/
 
       // check if a card is edited with pre-existing ID
       if (this.model.id) {

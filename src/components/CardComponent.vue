@@ -128,7 +128,7 @@
         transform="matrix(0.928122,0,0,0.780528,14.3377,2.27483)"
       >
         <g
-          v-show="model.cost.energy"
+          v-show="model.CostType.Energy"
           id="Ebene3"
         >
           <path
@@ -141,7 +141,7 @@
           />
         </g>
         <g
-          v-show="!model.cost.energy"
+          v-show="!model.CostType.Energy"
           id="Ebene3"
           opacity="0.2"
         >
@@ -161,7 +161,7 @@
         transform="matrix(0.900887,0,0,0.900887,109.698,4.15101)"
       >
         <g
-          v-show="model.cost.food"
+          v-show="model.CostType.Food"
           id="Ebene_1-2-5"
         >
           <g transform="matrix(1.06878,0,0,1.06878,-116.112,-4.60135)">
@@ -196,7 +196,7 @@
           </g>
         </g>
         <g
-          v-show="!model.cost.food"
+          v-show="!model.CostType.Food"
           id="Ebene_1-2-5"
           opacity="0.2"
         >
@@ -234,7 +234,7 @@
       </g>
       <!-- iron icon -->
       <g
-        v-show="model.cost.iron"
+        v-show="model.CostType.Iron"
         :opacity="opaque"
         transform="matrix(0.601191,0,0,0.601191,29.7156,4.26699)"
       >
@@ -250,7 +250,7 @@
         </g>
       </g>
       <g
-        v-show="!model.cost.iron"
+        v-show="!model.CostType.Iron"
         opacity="0.2"
         transform="matrix(0.601191,0,0,0.601191,29.7156,4.26699)"
       >
@@ -289,7 +289,7 @@
             </clipPath>
             <g clip-path="url(#_clip1)">
               <g
-                v-show="model.cost.mana"
+                v-show="model.CostType.Mana"
                 id="Ebene_21"
                 serif:id="Ebene_2"
               >
@@ -327,7 +327,7 @@
                 </g>
               </g>
               <g
-                v-show="!model.cost.mana"
+                v-show="!model.CostType.Mana"
                 id="Ebene_2"
                 opacity="0.2"
               >
@@ -380,7 +380,7 @@
               serif:id="Ebene_2"
             >
               <g
-                v-show="model.cost.lumber"
+                v-show="model.CostType.Lumber"
                 id="Ebene_1-21"
                 serif:id="Ebene_1-2"
               >
@@ -394,7 +394,7 @@
                 />
               </g>
               <g
-                v-show="!model.cost.lumber"
+                v-show="!model.CostType.Lumber"
                 id="Ebene_1-2"
                 opacity="0.2"
               >
@@ -514,7 +514,7 @@
           style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
           text-anchor="middle"
           writing-mode="lr-tb"
-        >{{ model.name }}</tspan>
+        >{{ model.CardName }}</tspan>
       </text>
       <!-- Ressource Cost -->
       <text
@@ -545,7 +545,7 @@
       </text>
       <!-- Tags -->
       <text
-        v-for="(tag, index) in model.tag"
+        v-for="(tag, index) in model.Tags"
         id="text2527"
         :key="'tag'+index"
         :x="75 + index*46 - (tagLength() - 1)*23"
@@ -646,7 +646,7 @@ word-spacing="0" writing-mode="lr" xml:space="preserve"
       </text>
       <!-- Flavor text -->
       <text
-        v-for="(text, index) in textToSvg(model.text)"
+        v-for="(text, index) in textToSvg(model.FlavourText)"
         id="text2495-3"
         :key="'flavorLine'+index"
         x="76.9"
@@ -725,7 +725,7 @@ writing-mode="lr-tb" xml:space="preserve"
           style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
           text-anchor="end"
           writing-mode="lr-tb"
-        >{{ model.attack }}</tspan>
+        >{{ model.Attack }}</tspan>
       </text>
       <!-- Health -->
       <text
@@ -766,7 +766,7 @@ writing-mode="lr-tb" xml:space="preserve"
           style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
           text-anchor="start"
           writing-mode="lr-tb"
-        >{{ model.health }}</tspan>
+        >{{ model.Health }}</tspan>
       </text>
     </g>
   </svg>
@@ -833,15 +833,15 @@ export default {
       }
     },
     getNerfedCost () {
-      if (R.isNil(this.model.costAmount) || this.model.costAmount < 0) {
+      if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return '-'
       }
-      let cost = Math.max(0, this.model.costAmount + (this.model.nerflevel ? this.model.nerflevel : 0))
+      let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
       return cost
     },
     tagLength () {
-      if (this.model.tag) {
-        return R.length(R.filter(x => x, this.model.tag))
+      if (this.model.Tags) {
+        return R.length(R.filter(x => x, this.model.Tags))
       } else {
         return 0
       }
@@ -886,7 +886,7 @@ export default {
     },
     saveSingleCard () {
       let clickedCard = document.getElementById('theCardSvg')
-      svg1.saveSvgAsPng(clickedCard, this.model.name + '.png', {scale: 5})
+      svg1.saveSvgAsPng(clickedCard, this.model.CardName + '.png', {scale: 5})
     }
   }
 }

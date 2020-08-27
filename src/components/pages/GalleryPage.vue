@@ -110,6 +110,8 @@ export default {
           card.id = cardId
           if (card.Content) {
             this.cards.push(parseCard(card))
+
+            console.log(this.cards)
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
