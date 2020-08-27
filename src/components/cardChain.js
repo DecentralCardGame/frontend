@@ -384,10 +384,6 @@ function handleGetCardCurryMe (res, cardId) {
 }
 
 export function getCardList (http, owner, status, nameContains) {
-  console.log('status:', status)
-  console.log('owner:', owner)
-  console.log('nameContains:', nameContains)
-
   if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
     throw new Error('CardList status invalid: ' + status)
   }

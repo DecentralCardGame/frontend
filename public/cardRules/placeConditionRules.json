@@ -1,13 +1,13 @@
 {
   "name": "Place-Condition",
   "children": {
-    "placeIntCondition": {
+    "PlaceIntCondition": {
       "$ref": "placeIntConditionRules.json"
     },
-    "placeStringCondition": {
+    "PlaceStringCondition": {
       "$ref": "placeStringConditionRules.json"
     },
-    "placeTagCondition": {
+    "PlaceTagCondition": {
       "$ref": "placeTagConditionRules.json"
     }
   },

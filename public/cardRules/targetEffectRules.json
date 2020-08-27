@@ -1,13 +1,13 @@
 {
   "name": "Target Effect",
   "children": {
-    "actionTargetEffect": {
+    "ActionTargetEffect": {
       "$ref": "actionTargetEffectRules.json"
     },
-    "entityTargetEffect": {
+    "EntityTargetEffect": {
       "$ref": "entityTargetEffectRules.json"
     },
-    "placeTargetEffect": {
+    "PlaceTargetEffect": {
       "$ref": "placeTargetEffectRules.json"
     }
   },

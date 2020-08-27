@@ -1,25 +1,29 @@
 {
   "name": "Place-Selector",
   "children": {
-    "playerMode": {
+    "PlayerMode": {
       "$ref": "playerModeRules.json"
     },
-    "playerCondition": {
+    "PlayerCondition": {
       "$ref": "playerConditionRules.json",
       "optional": true
     },
-    "cardMode": {
+    "CardMode": {
       "$ref": "cardModeRules.json"
     },
-    "placeCondition": {
+    "PlaceCondition": {
       "$ref": "placeConditionRules.json",
       "optional": true
     },
-    "zone": {
+    "Zone": {
       "$ref": "dynamicZoneRules.json"
+    },
+    "PlaceExtractor": {
+      "$ref": "placeExtractorRules.json",
+      "optional": true
     }
   },
   "type": "struct",
   "description": "Build a Place-Selector",
-  "interactionText": "Choose §cardMode place §placeCondition in the §zone of §playerMode player §playerCondition."
+  "interactionText": "Choose §CardMode place §PlaceCondition in the §Zone of §PlayerMode player §PlayerCondition. §PlaceExtractor"
 }

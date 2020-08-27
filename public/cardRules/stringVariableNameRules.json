@@ -1,0 +1,6 @@
+{
+  "name": "Textbased Variable-Name",
+  "children": ["A","B","C"],
+  "type": "enum",
+  "description": "Choose a Textbased Variable-Name"
+}

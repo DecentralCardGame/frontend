@@ -1,14 +1,14 @@
 {
   "name": "Tagbased Place-Condition",
   "children": {
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     },
-    "stringComparator": {
+    "StringComparator": {
       "$ref": "stringComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Tagbased Place-Condition",
-  "interactionText": "with tag §stringComparator §stringValue"
+  "interactionText": "with tag §StringComparator §StringValue"
 }

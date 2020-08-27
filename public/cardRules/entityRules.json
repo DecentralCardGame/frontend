@@ -1,28 +1,28 @@
 {
   "name": "Entity",
   "children": {
-    "costType": {
-      "$ref": "costTypeRules.json"
+    "CostType": {
+      "$ref": "ressourceCostTypeRules.json"
     },
-    "castingCost": {
+    "CastingCost": {
       "$ref": "castingCostRules.json"
     },
-    "cardName": {
+    "CardName": {
       "$ref": "cardNameRules.json"
     },
-    "tags": {
+    "Tags": {
       "$ref": "tagsRules.json"
     },
-    "flavourText": {
+    "FlavourText": {
       "$ref": "flavourTextRules.json"
     },
-    "attack": {
+    "Attack": {
       "$ref": "attackRules.json"
     },
-    "health": {
+    "Health": {
       "$ref": "healthRules.json"
     },
-    "abilities": {
+    "Abilities": {
       "$ref": "abilitiesRules.json"
     }
   },

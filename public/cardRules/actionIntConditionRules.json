@@ -1,17 +1,17 @@
 {
   "name": "Numeric Action-Condition",
   "children": {
-    "actionIntProperty": {
+    "ActionIntProperty": {
       "$ref": "actionIntPropertyRules.json"
     },
-    "intValue": {
-      "$ref": "intValueRules.json"
+    "IntValue": {
+      "$ref": "simpleIntValueRules.json"
     },
-    "intComparator": {
+    "IntComparator": {
       "$ref": "intComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Numeric Action-Condition",
-  "interactionText": "with §actionIntProperty §intComparator §intValue"
+  "interactionText": "with §ActionIntProperty §IntComparator §IntValue"
 }

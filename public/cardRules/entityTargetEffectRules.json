@@ -1,14 +1,14 @@
 {
   "name": "Entity-Targeteffect",
   "children": {
-    "entitySelector": {
+    "EntitySelector": {
       "$ref": "entitySelectorRules.json"
     },
-    "entityManipulations": {
+    "EntityManipulations": {
       "$ref": "entityManipulationsRules.json"
     }
   },
   "type": "struct",
   "description": "Build an Entity-Targeteffect",
-  "interactionText": "§entitySelector §entityManipulations"
+  "interactionText": "§EntitySelector §EntityManipulations"
 }

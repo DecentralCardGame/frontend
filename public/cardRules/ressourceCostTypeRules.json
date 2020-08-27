@@ -1,23 +1,23 @@
 {
   "name": "Cost Type",
   "children": {
-    "energy": {
+    "Energy": {
       "$ref": "energyRules.json"
     },
-    "food": {
+    "Food": {
       "$ref": "foodRules.json"
     },
-    "lumber": {
+    "Lumber": {
       "$ref": "lumberRules.json"
     },
-    "mana": {
+    "Mana": {
       "$ref": "manaRules.json"
     },
-    "iron": {
+    "Iron": {
       "$ref": "ironRules.json"
     }
   },
   "type": "struct",
   "description": "Choose one or more Cost Types",
-  "interactionText": "§energy §food §lumber §mana §iron"
+  "interactionText": "§Energy §Food §Lumber §Mana §Iron"
 }

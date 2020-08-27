@@ -1,17 +1,17 @@
 {
   "name": "Textbased Action-Condition",
   "children": {
-    "actionStringProperty": {
+    "ActionStringProperty": {
       "$ref": "actionStringPropertyRules.json"
     },
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     },
-    "stringComparator": {
+    "StringComparator": {
       "$ref": "stringComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Textbased Action-Condition",
-  "interactionText": "with §actionStringProperty §stringComparator §stringValue"
+  "interactionText": "with §ActionStringProperty §StringComparator §StringValue"
 }

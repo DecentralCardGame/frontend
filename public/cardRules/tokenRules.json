@@ -1,22 +1,22 @@
 {
   "name": "Token",
   "children": {
-    "name": {
+    "Name": {
       "$ref": "stringValueRules.json",
       "optional": true
     },
-    "attack": {
+    "Attack": {
       "$ref": "attackRules.json"
     },
-    "health": {
+    "Health": {
       "$ref": "healthRules.json"
     },
-    "tags": {
+    "Tags": {
       "$ref": "tagsRules.json",
       "optional": true
     }
   },
   "type": "struct",
   "description": "Build a Token",
-  "interactionText": " §attack / §health token named §name tagged §tags"
+  "interactionText": " §Attack / §Health token named §Name tagged §Tags"
 }

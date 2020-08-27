@@ -1,19 +1,19 @@
 {
   "name": "Place-Manipulation",
   "children": {
-    "placeAbilityManipulation": {
+    "PlaceAbilityManipulation": {
       "$ref": "placeAbilityManipulationRules.json"
     },
-    "placeIntManipulation": {
+    "PlaceIntManipulation": {
       "$ref": "placeIntManipulationRules.json"
     },
-    "placeStringManipulation": {
+    "PlaceStringManipulation": {
       "$ref": "placeStringManipulationRules.json"
     },
-    "placeTagManipulation": {
+    "PlaceTagManipulation": {
       "$ref": "placeTagManipulationRules.json"
     },
-    "placeZoneChange": {
+    "PlaceZoneChange": {
       "$ref": "zoneChangeRules.json"
     }
   },

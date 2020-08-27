@@ -1,17 +1,17 @@
 {
   "name": "Textbased Place-Manipulation",
   "children": {
-    "stringProperty": {
+    "StringProperty": {
       "$ref": "placeStringPropertyRules.json"
     },
-    "stringOperator": {
+    "StringOperator": {
       "$ref": "stringOperatorRules.json"
     },
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Textbased Place-Stringmanipulation",
-  "interactionText": "§stringOperator §stringProperty §stringValue."
+  "interactionText": "§StringOperator §StringProperty §StringValue."
 }

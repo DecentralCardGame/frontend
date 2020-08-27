@@ -1,10 +1,10 @@
 {
   "name": "Manipulation-EventListener",
   "children": {
-    "intManipulationEventListener": {
+    "IntManipulationEventListener": {
       "$ref": "intManipulationEventListenerRules.json"
     },
-    "stringManipulationEventListener": {
+    "StringManipulationEventListener": {
       "$ref": "stringManipulationEventListenerRules.json"
     }
   },
