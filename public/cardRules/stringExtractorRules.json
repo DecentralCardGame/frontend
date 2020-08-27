@@ -1,0 +1,11 @@
+{
+  "name": "Textbased Extractor",
+  "children": {
+    "StringVariableName": {
+      "$ref": "stringVariableNameRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Textbased Extractor",
+  "interactionText": "Set §StringVariableName."
+}

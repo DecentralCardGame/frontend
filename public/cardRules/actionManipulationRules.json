@@ -1,19 +1,19 @@
 {
   "name": "Action-Manipulation",
   "children": {
-    "actionEffectManipulation": {
+    "ActionEffectManipulation": {
       "$ref": "actionEffectManipulationRules.json"
     },
-    "actionIntManipulation": {
+    "ActionIntManipulation": {
       "$ref": "actionIntManipulationRules.json"
     },
-    "actionStringManipulation": {
+    "ActionStringManipulation": {
       "$ref": "actionStringManipulationRules.json"
     },
-    "actionTagManipulation": {
+    "ActionTagManipulation": {
       "$ref": "actionTagManipulationRules.json"
     },
-    "actionZoneChange": {
+    "ActionZoneChange": {
       "$ref": "zoneChangeRules.json",
     }
   },

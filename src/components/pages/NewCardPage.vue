@@ -115,17 +115,17 @@
           class="creator-input-container"
         >
           <span
-            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.castingCost"
+            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
             class="creator-text"
           >As I am quite awesome to get me rolling you need to <b>invest</b>:</span>
 
           <select
-            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.castingCost"
+            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
             v-model="model.costAmount"
             @change="saveDraft"
           >
             <option
-              v-for="n in R.range($cardRules.children[getRulesType()].children.castingCost.min, $cardRules.children[getRulesType()].children.castingCost.max + 1)"
+              v-for="n in R.range($cardRules.children[getRulesType()].children.CastingCost.min, $cardRules.children[getRulesType()].children.CastingCost.max + 1)"
               :key="n"
               :value="n"
             >
@@ -137,30 +137,30 @@
                 v-show="model.type==='HQ'"
                 class="creator-text"
             >
-              As I am quite awesome, I generate <br>
 
+              As I am quite awesome, I generate <br>
               <select
-                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.growth"
-                v-model="model.growth"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Growth"
+                v-model="model.Growth"
                 @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.growth.min, $cardRules.children[getRulesType()].children.growth.max + 1)"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.Growth.min, $cardRules.children[getRulesType()].children.Growth.max + 1)"
                   :key="n"
                   :value="n"
                 >
                   {{ n }} 
                 </option>
               </select>
-              Growth and<br>
 
+              Growth and<br>
               <select
-                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.wisdom"
-                v-model="model.wisdom"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Wisdom"
+                v-model="model.Wisdom"
                 @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.wisdom.min, $cardRules.children[getRulesType()].children.wisdom.max + 1)"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.Wisdom.min, $cardRules.children[getRulesType()].children.Wisdom.max + 1)"
                   :key="n"
                   :value="n"
                 >
@@ -168,8 +168,20 @@
                 </option>
               </select>
               Wisdom. <br> 
-              <!-- Check my impressive starting hand size of -->
-              
+              Whoever sides with me, starts with an impressive hand size of
+              <select
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.StartingHandSize"
+                v-model="model.StartingHandSize"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.StartingHandSize.min, $cardRules.children[getRulesType()].children.StartingHandSize.max + 1)"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
               <br>
 
             </span>
@@ -207,14 +219,14 @@
               @change="saveDraft"
             >
             <label for="checkbox"> Energy </label> <br>
-            <span v-if="model.type==='Entity'"> I have an <b>attack</b> of </span>
+            <span v-if="model.type==='Entity'"> I have an <b>Attack</b> of </span>
             <select
               v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
-              v-model="model.attack"
+              v-model="model.Attack"
               @change="saveDraft"
             >
               <option
-                v-for="n in R.range($cardRules.children[getRulesType()].children.attack.min, $cardRules.children[getRulesType()].children.attack.max + 1)"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.Attack.min, $cardRules.children[getRulesType()].children.Attack.max + 1)"
                 :key="n"
                 :value="n"
               >
@@ -225,11 +237,11 @@
             <span v-if="model.type!=='Action'"> I sadly <b>die</b> after someone suckerpunchs me for </span>
             <select
               v-if="model.type!=='Action' && $cardRules.children[getRulesType()]"
-              v-model="model.health"
+              v-model="model.Health"
               @change="saveDraft"
             >
               <option
-                v-for="n in R.range($cardRules.children[getRulesType()].children.health.min, $cardRules.children[getRulesType()].children.health.max + 1)"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.Health.min, $cardRules.children[getRulesType()].children.Health.max + 1)"
                 :key="n"
                 :value="n"
               >
@@ -433,11 +445,11 @@ export default {
           energy: false
         },
         costAmount: -1,
-        health: 0,
-        attack: 0,
-        growth: 10,
-        wisdom: 10,
-        startingHand: 3
+        Health: 0,
+        Attack: 0,
+        Growth: 10,
+        Wisdom: 10,
+        StartingHandSize: 3
       },
       cardID: 0
     }
@@ -517,15 +529,15 @@ export default {
       this.abilities = []
     },
     getRulesType () {
-      return this.model.type === 'HQ' ? 'headquarter' : this.model.type.toLowerCase()
+      return this.model.type === 'HQ' ? 'Headquarter' : this.model.type
     },
     getTypes () {
-      return R.pluck('name', this.$cardRules.children)
+      return R.values(R.pluck('name', this.$cardRules.children))
     },
     getTags (idx) {
       if (this.$cardRules) {
         let usedTags = []
-        let allTags = this.$cardRules.children.action.children.tags.children.tag.children
+        let allTags = this.$cardRules.children.Action.children.Tags.children.Tag.children
         if (this.model.tag[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.tag[idx], this.model.tag)
@@ -588,25 +600,25 @@ export default {
         newCard.model[this.getRulesType()].CastingCost = this.model.costAmount
       }
       if (this.model.type !== 'Action') {
-        if (R.isNil(this.model.health)) {
-          notify.fail('No Health', 'Card has no health, please pick a number.')
+        if (R.isNil(this.model.Health)) {
+          notify.fail('No Health', 'Card has no Health, please pick a number.')
           return
         }
         newCard.model[this.getRulesType()].Abilities = []
-        newCard.model[this.getRulesType()].Health = this.model.health
+        newCard.model[this.getRulesType()].Health = this.model.Health
       }
       if (this.model.type === 'Entity') {
-        if (R.isNil(this.model.attack)) {
+        if (R.isNil(this.model.Attack)) {
           notify.fail('No Attack', 'Card has no Attack, please pick a number.')
           return
         }
         newCard.model[this.getRulesType()].Abilities = []
-        newCard.model[this.getRulesType()].Attack = this.model.attack
+        newCard.model[this.getRulesType()].Attack = this.model.Attack
       } else if (this.model.type === 'HQ') {
         newCard.model[this.getRulesType()].Abilities = []
-        newCard.model[this.getRulesType()].Growth = this.model.growth
-        newCard.model[this.getRulesType()].Wisdom = this.model.wisdom
-
+        newCard.model[this.getRulesType()].Growth = this.model.Growth
+        newCard.model[this.getRulesType()].Wisdom = this.model.Wisdom
+        newCard.model[this.getRulesType()].StartingHandSize = this.model.StartingHandSize
       } else if (this.model.type === 'Action') {
         newCard.model[this.getRulesType()].Effects = []
       }
@@ -621,10 +633,10 @@ export default {
       }
 
       // fix for old cardschema
-      if(newCard.model.headquarter) {
+      /*if(newCard.model.headquarter) {
         newCard.model.Headquarter = newCard.model.headquarter
         newCard.model.headquarter = undefined
-      }
+      }*/
 
       // check if a card is edited with pre-existing ID
       if (this.model.id) {

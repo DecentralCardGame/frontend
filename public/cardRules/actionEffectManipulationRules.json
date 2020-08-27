@@ -1,14 +1,14 @@
 {
   "name": "Action-Effectmanipulation",
   "children": {
-    "effect": {
+    "Effect": {
       "$ref": "effectRules.json"
     },
-    "effectOperator": {
+    "EffectOperator": {
       "$ref": "abilityEffectOperatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build an Action-Effectmanipulation",
-  "interactionText": "It §effectOperator §effect."
+  "interactionText": "It §EffectOperator §Effect."
 }

@@ -1,17 +1,17 @@
 {
   "name": "Numeric Action-Manipulation",
   "children": {
-    "intProperty": {
+    "IntProperty": {
       "$ref": "actionIntPropertyRules.json"
     },
-    "intOperator": {
+    "IntOperator": {
       "$ref": "intOperatorRules.json"
     },
-    "intValue": {
+    "IntValue": {
       "$ref": "intValueRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Numeric Action-Manipulation",
-  "interactionText": "§intOperator §intProperty §intValue."
+  "interactionText": "§IntOperator §IntProperty §IntValue."
 }

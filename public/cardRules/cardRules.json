@@ -1,16 +1,16 @@
 {
   "name":"card",
   "children": {
-    "action": {
+    "Action": {
       "$ref": "actionRules.json"
     },
-    "entity": {
+    "Entity": {
       "$ref": "entityRules.json"
     },
-    "headquarter": {
+    "Headquarter": {
       "$ref": "headquarterRules.json"
     },
-    "place": {
+    "Place": {
       "$ref": "placeRules.json"
     }
   },

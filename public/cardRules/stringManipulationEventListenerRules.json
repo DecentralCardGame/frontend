@@ -1,18 +1,26 @@
 {
   "name": "Textbased Manipulation-Eventlistener",
   "children": {
-    "property": {
+    "Property": {
       "$ref": "cardStringPropertyRules.json"
     },
-    "stringChangeMode": {
+    "StringChangeMode": {
       "$ref": "stringChangeModeRules.json"
     },
-    "cardCondition": {
+    "CardCondition": {
       "$ref": "cardConditionRules.json",
+      "optional": true
+    },
+    "ManipulatedCardExtractor": {
+      "$ref": "cardExtractorRules.json",
+      "optional": true
+    },
+    "ManipulationValueExtractor": {
+      "$ref": "stringExtractorRules.json",
       "optional": true
     }
   },
   "type": "struct",
   "description": "Build a Textbased Manipulation-Eventlistener",
-  "interactionText": "Whenever §property §stringChangeMode on a card §cardCondition"
+  "interactionText": "Whenever §Property §StringChangeMode on a card §CardCondition. §ManipulatedCardExtractor §ManipulationValueExtractor"
 }

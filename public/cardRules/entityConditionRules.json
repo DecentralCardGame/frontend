@@ -1,13 +1,13 @@
 {
   "name": "Entity-Condition",
   "children": {
-    "entityIntCondition": {
+    "EntityIntCondition": {
       "$ref": "entityIntConditionRules.json"
     },
-    "entityStringCondition": {
+    "EntityStringCondition": {
       "$ref": "entityStringConditionRules.json"
     },
-    "entityTagCondition": {
+    "EntityTagCondition": {
       "$ref": "entityTagConditionRules.json"
     }
   },

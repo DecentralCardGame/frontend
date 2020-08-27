@@ -1,7 +1,7 @@
 {
   "name": "Effects",
   "children": {
-    "effect": {
+    "Effect": {
       "$ref": "effectRules.json"
     }
   },

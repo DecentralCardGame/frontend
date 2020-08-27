@@ -1,7 +1,7 @@
 {
   "name": "Player-Condition",
   "children": {
-    "playerIntCondition": {
+    "PlayerIntCondition": {
       "$ref": "playerIntConditionRules.json"
     }
   },

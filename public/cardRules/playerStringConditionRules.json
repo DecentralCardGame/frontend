@@ -1,17 +1,17 @@
 {
   "name": "Textbased Player-Condition",
   "children": {
-    "stringProperty": {
+    "StringProperty": {
       "$ref": "playerStringPropertyRules.json"
     },
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     },
-    "stringComparator": {
+    "StringComparator": {
       "$ref": "stringComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Textbased Player-Condition",
-  "interactionText": "with §stringProperty §stringComparator §stringValue"
+  "interactionText": "with §StringProperty §StringComparator §StringValue"
 }

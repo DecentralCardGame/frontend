@@ -1,14 +1,14 @@
 {
   "name": "Tagbased Entity-Condition",
   "children": {
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     },
-    "stringComparator": {
+    "StringComparator": {
       "$ref": "stringComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Tagbased Entity-Condition",
-  "interactionText": "with tag §stringComparator §stringValue"
+  "interactionText": "with tag §StringComparator §StringValue"
 }

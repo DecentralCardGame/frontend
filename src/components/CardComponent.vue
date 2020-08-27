@@ -824,7 +824,7 @@ export default {
       if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
-        let type = this.$cardRules.children[this.model.type === 'HQ' ? 'headquarter' : this.model.type.toLowerCase()]
+        let type = this.$cardRules.children[this.model.type === 'HQ' ? 'Headquarter' : this.model.type]
         if (type) {
           return type.name.toUpperCase()
         } else {

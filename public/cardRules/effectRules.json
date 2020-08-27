@@ -1,19 +1,24 @@
 {
   "name": "Effect",
   "children": {
-    "productionEffect": {
+    "ProductionEffect": {
       "$ref": "productionEffectRules.json"
     },
-    "drawEffect": {
+    "DrawEffect": {
       "$ref": "drawEffectRules.json"
     },
-    "tokenEffect": {
+    "TokenEffect": {
       "$ref": "tokenEffectRules.json"
     },
-    "targetEffect": {
+    "TargetEffect": {
       "$ref": "targetEffectRules.json"
     }
   },
   "type": "interface",
-  "description": "Choose an Effect Type"
+  "description": "Choose an Effect Type",
+  "keywords": {
+    "DestroyEntityEffect": {
+      "$ref": "keywords/destroyEntityEffectRules.json"
+    }
+  }
 }

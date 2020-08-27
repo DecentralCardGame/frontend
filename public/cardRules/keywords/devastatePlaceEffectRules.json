@@ -1,0 +1,12 @@
+{
+  "name": "Devastate-Place Effect",
+  "children": {
+    "placeSelector": {
+      "$ref": "../placeSelectorRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a Devastate-Place Effect",
+  "interactionText": "§placeSelector Devastate it."
+}

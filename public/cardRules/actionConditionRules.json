@@ -1,13 +1,13 @@
 {
   "name": "Action-Condition",
   "children": {
-    "actionIntCondition": {
+    "ActionIntCondition": {
       "$ref": "actionIntConditionRules.json"
     },
-    "actionStringCondition": {
+    "ActionStringCondition": {
       "$ref": "actionStringConditionRules.json"
     },
-    "actionTagCondition": {
+    "ActionTagCondition": {
       "$ref": "actionTagConditionRules.json"
     }
   },

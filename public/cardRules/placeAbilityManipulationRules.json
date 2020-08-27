@@ -1,14 +1,14 @@
 {
   "name": "Place-Abilitymanipulation",
   "children": {
-    "ability": {
+    "Ability": {
       "$ref": "abilityRules.json"
     },
-    "abilityOperator": {
+    "AbilityOperator": {
       "$ref": "abilityEffectOperatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Place-Abilitymanipulation",
-  "interactionText": "It §abilityOperator §ability."
+  "interactionText": "It §AbilityOperator §Ability."
 }

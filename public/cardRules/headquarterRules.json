@@ -1,29 +1,32 @@
 {
   "name": "HQ",
   "children": {
-    "costType": {
-      "$ref": "costTypeRules.json"
+    "CostType": {
+      "$ref": "ressourceCostTypeRules.json"
     },
-    "cardName": {
+    "CardName": {
       "$ref": "cardNameRules.json"
     },
-    "tags": {
+    "Tags": {
       "$ref": "tagsRules.json"
     },
-    "flavourText": {
+    "FlavourText": {
       "$ref": "flavourTextRules.json"
     },
-    "health": {
+    "Health": {
       "$ref": "healthRules.json"
     },
-    "abilities": {
+    "Abilities": {
       "$ref": "abilitiesRules.json"
     },
-    "growth": {
+    "Growth": {
       "$ref": "growthRules.json"
     },
-    "wisdom": {
+    "Wisdom": {
       "$ref": "wisdomRules.json"
+    },
+    "StartingHandSize": {
+      "$ref": "startingHandSizeRules.json"
     }
   },
   "type": "struct",

@@ -1,0 +1,15 @@
+{
+  "name": "DiscardCost",
+  "children" : {
+    "Amount": {
+      "$ref": "simpleIntValueRules.json"
+    },
+    "Condition": {
+      "$ref": "cardConditionRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a DiscardCost",
+  "interactionText": "Discard §Amount card §Condition"
+}

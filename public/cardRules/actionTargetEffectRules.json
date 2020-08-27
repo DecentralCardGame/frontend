@@ -1,14 +1,14 @@
 {
   "name": "Action-Targeteffect",
   "children": {
-    "actionSelector": {
+    "ActionSelector": {
       "$ref": "actionSelectorRules.json"
     },
-    "actionManipulations": {
+    "ActionManipulations": {
       "$ref": "actionManipulationsRules.json"
     }
   },
   "type": "struct",
   "description": "Buid an Action-TargetEffect",
-  "interactionText": "§actionSelector §actionManipulations"
+  "interactionText": "§ActionSelector §ActionManipulations"
 }

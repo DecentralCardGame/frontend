@@ -1,0 +1,13 @@
+{
+  "name": "Action-Extractor",
+  "children": {
+    "ActionIntExtractor": {
+      "$ref": "actionIntExtractorRules.json"
+    },
+    "ActionStringExtractor": {
+      "$ref": "actionStringExtractorRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose an Action-Extractor"
+}
