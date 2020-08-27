@@ -10,7 +10,24 @@
       @voteFair="vote('fair_enough')"
       @voteInappropriate="vote('inappropriate')"
     />
-
+    <div>
+        <button @click="filters.visible = !filters.visible">Filters</button>
+      </div>
+      <div v-show="filters.visible">
+        <select v-model="filters.status">
+          <option disabled value="">select status</option>
+          <option>prototype</option>
+          <option>trial</option>
+          <option>permanent</option>
+          <option></option>
+        </select>  
+        <br>
+        <input v-model="filters.nameContains" placeholder="card name contains">  
+        <br>
+        <input v-model="filters.owner" placeholder="card owner is">
+        <br>
+        <button v-show="filters.visible" @click="loadCardList">Apply</button>
+      </div>
     <div class="gallery-view">
       <div
         v-for="(card, index) in cards"
@@ -29,24 +46,6 @@
         <button v-show="browsingBackward" @click="prevPage">back</button>
         <button v-show="browsingForward" @click="nextPage">next</button>
       </div>
-      <div>
-        <button @click="filters.visible = !filters.visible">Filters</button>
-      </div>
-      <div v-show="filters.visible">
-        <select v-model="filters.status">
-          <option disabled value="">select status</option>
-          <option>prototype</option>
-          <option>trial</option>
-          <option>permanent</option>
-          <option></option>
-        </select>  
-        <br>
-        <input v-model="filters.nameContains" placeholder="card name contains">  
-        <br>
-        <input v-model="filters.owner" placeholder="card owner is">
-        <br>
-        <button v-show="filters.visible" @click="loadCardList">Apply</button>
-      </div>
     </div>
   </div>
 </template>
@@ -59,7 +58,7 @@ import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard, getCardList, voteCardTx } from '../cardChain.js'
 import { sampleImg, saveCardAsPng } from '../utils.js'
 
-const cardsPerPage = 2
+const cardsPerPage = 20
 
 export default {
   name: 'GalleryPage',
