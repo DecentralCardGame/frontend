@@ -1,11 +1,11 @@
 {
   "name": "Production Effect",
   "children": {
-    "amount": {
+    "Amount": {
       "$ref": "intValueRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Production Effect",
-  "interactionText": "Produce §amount."
+  "interactionText": "Produce §Amount."
 }

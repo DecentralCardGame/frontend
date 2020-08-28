@@ -1,22 +1,22 @@
 {
   "name": "Eventlistener",
   "children": {
-    "attackEventListener": {
+    "AttackEventListener": {
       "$ref": "attackEventListenerRules.json"
     },
-    "blockEventListener": {
+    "BlockEventListener": {
       "$ref": "blockEventListenerRules.json"
     },
-    "manipulationEventListener": {
+    "ManipulationEventListener": {
       "$ref": "manipulationEventListenerRules.json"
     },
-    "productionEventListener": {
+    "ProductionEventListener": {
       "$ref": "productionEventListenerRules.json"
     },
-    "timeEventListener": {
+    "TimeEventListener": {
       "$ref": "timeEventListenerRules.json"
     },
-    "zoneChangeEventListener": {
+    "ZoneChangeEventListener": {
       "$ref": "zoneChangeEventListenerRules.json"
     }
   },

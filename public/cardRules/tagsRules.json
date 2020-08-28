@@ -1,7 +1,7 @@
 {
   "name": "Tags",
   "children" : {
-    "tag": {
+    "Tag": {
       "$ref": "tagRules.json"
     }
   },

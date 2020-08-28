@@ -1,14 +1,14 @@
 {
   "name": "Entity-Abiliytmanipulation",
   "children": {
-    "ability": {
+    "Ability": {
       "$ref": "abilityRules.json"
     },
-    "abilityOperator": {
+    "AbilityOperator": {
       "$ref": "abilityEffectOperatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build an Entity-Abilitymanipulation",
-  "interactionText": "It §abilityOperator §ability."
+  "interactionText": "It §AbilityOperator §Ability."
 }

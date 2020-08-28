@@ -1,17 +1,17 @@
 {
   "name": "Textbased Entity-Condition",
   "children": {
-    "entityStringProperty": {
+    "EntityStringProperty": {
       "$ref": "entityStringPropertyRules.json"
     },
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     },
-    "stringComparator": {
+    "StringComparator": {
       "$ref": "stringComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Textbased Entity-Condition",
-  "interactionText": "with §entityStringProperty §stringComparator §stringValue"
+  "interactionText": "with §EntityStringProperty §StringComparator §StringValue"
 }

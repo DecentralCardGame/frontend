@@ -1,0 +1,15 @@
+{
+  "name": "SacrificeCost",
+  "children" : {
+    "Amount": {
+      "$ref": "simpleIntValueRules.json"
+    },
+    "Condition": {
+      "$ref": "cardConditionRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a SacrificeCost",
+  "interactionText": "Sacrifice §Amount card §Condition"
+}

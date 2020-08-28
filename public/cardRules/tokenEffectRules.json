@@ -1,14 +1,14 @@
 {
   "name": "TokenEffect",
   "children": {
-    "tokenAmount": {
+    "TokenAmount": {
       "$ref": "intValueRules.json"
     },
-    "token": {
+    "Token": {
       "$ref": "tokenRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Token Effect",
-  "interactionText": "Create §tokenAmount §token."
+  "interactionText": "Create §TokenAmount §Token."
 }

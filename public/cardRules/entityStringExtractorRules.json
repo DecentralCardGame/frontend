@@ -1,0 +1,14 @@
+{
+  "name": "Textbased Entity-Extractor",
+  "children": {
+    "ExtractStringProperty": {
+      "$ref": "entityStringPropertyRules.json"
+    },
+    "StringVariableName": {
+      "$ref": "stringVariableNameRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Textbased Entity-Extractor",
+  "interactionText": "Set §StringVariableName to the entities §ExtractStringProperty."
+}

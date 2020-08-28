@@ -1,17 +1,17 @@
 {
   "name": "Numeric Entity-Manipulation",
   "children": {
-    "intProperty": {
+    "IntProperty": {
       "$ref": "entityIntPropertyRules.json"
     },
-    "intOperator": {
+    "IntOperator": {
       "$ref": "intOperatorRules.json"
     },
-    "intValue": {
+    "IntValue": {
       "$ref": "intValueRules.json"
     }
   },
   "type": "struct",
   "description": "Build an Numeric Entity-Manipulation",
-  "interactionText": "§intOperator §intProperty §intValue"
+  "interactionText": "§IntOperator §IntProperty §IntValue"
 }

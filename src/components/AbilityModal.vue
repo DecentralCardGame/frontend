@@ -239,11 +239,6 @@
                 let ability = R.assocPath(path, object, this.ability)
                 this.$emit('update:ability', ability)
             },
-            /*
-            updateAbility (reference) {
-              let ability = reference
-              this.$emit('update:ability', ability)
-            },*/
         }
     }
 

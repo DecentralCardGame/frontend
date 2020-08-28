@@ -1,13 +1,13 @@
 {
   "name": "Card-Condition",
   "children": {
-    "actionCondition": {
+    "ActionCondition": {
       "$ref": "actionConditionRules.json"
     },
-    "entityCondition": {
+    "EntityCondition": {
       "$ref": "entityConditionRules.json"
     },
-    "placeCondition": {
+    "PlaceCondition": {
       "$ref": "placeConditionRules.json"
     }
   },

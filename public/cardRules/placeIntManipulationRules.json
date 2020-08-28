@@ -1,17 +1,17 @@
 {
   "name": "Numeric Place-Manipulation",
   "children": {
-    "intProperty": {
+    "IntProperty": {
       "$ref": "placeIntPropertyRules.json"
     },
-    "intOperator": {
+    "IntOperator": {
       "$ref": "intOperatorRules.json"
     },
-    "intValue": {
+    "IntValue": {
       "$ref": "intValueRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Numeric Place-Manipulation",
-  "interactionText": "§intOperator §intProperty §intValue."
+  "interactionText": "§IntOperator §IntProperty §IntValue."
 }

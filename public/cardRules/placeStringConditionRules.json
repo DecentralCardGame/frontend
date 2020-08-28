@@ -1,17 +1,17 @@
 {
   "name": "Textbased Place-Condition",
   "children": {
-    "placeStringProperty": {
+    "PlaceStringProperty": {
       "$ref": "placeStringPropertyRules.json"
     },
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     },
-    "stringComparator": {
+    "StringComparator": {
       "$ref": "stringComparatorRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Textbased Place-Condition",
-  "interactionText": "with §placeStringProperty §stringComparator §stringValue"
+  "interactionText": "with §PlaceStringProperty §StringComparator §StringValue"
 }

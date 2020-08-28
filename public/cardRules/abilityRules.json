@@ -1,10 +1,10 @@
 {
   "name": "Ability",
   "children": {
-    "activatedAbility": {
+    "ActivatedAbility": {
       "$ref": "activatedAbilityRules.json"
     },
-    "triggeredAbility": {
+    "TriggeredAbility": {
       "$ref": "triggeredAbilityRules.json"
     }
   },

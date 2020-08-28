@@ -10,7 +10,24 @@
       @voteFair="vote('fair_enough')"
       @voteInappropriate="vote('inappropriate')"
     />
-
+    <div>
+        <button @click="filters.visible = !filters.visible">Filters</button>
+      </div>
+      <div v-show="filters.visible">
+        <select v-model="filters.status">
+          <option disabled value="">select status</option>
+          <option>prototype</option>
+          <option>trial</option>
+          <option>permanent</option>
+          <option></option>
+        </select>  
+        <br>
+        <input v-model="filters.nameContains" placeholder="card name contains">  
+        <br>
+        <input v-model="filters.owner" placeholder="card owner is">
+        <br>
+        <button v-show="filters.visible" @click="loadCardList">Apply</button>
+      </div>
     <div class="gallery-view">
       <div
         v-for="(card, index) in cards"
@@ -47,7 +64,7 @@ import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard, getCardList, voteCardTx } from '../cardChain.js'
 import { sampleImg, saveCardAsPng } from '../utils.js'
 
-const cardsPerPage = 2
+const cardsPerPage = 20
 
 export default {
   name: 'GalleryPage',
@@ -62,23 +79,32 @@ export default {
       cards: [],
       browsingForward: true,
       browsingBackward: true,
+      filters: {
+        visible: false,
+        nameContains: "",
+        status: "",
+        owner: ""
+      }
     }
   },
   mounted () {
-    this.getPrototypeCardList()
-      .then(() => {
-        this.fillPage()
-      })
+    this.loadCardList()
   },
   methods: {
-    getSampleImg () {
-      return sampleImg
-    },
-    getPrototypeCardList () {
-      return getCardList(this.$http, 'prototype')
+    loadCardList() {
+      return getCardList(this.$http, this.filters.owner, this.filters.status, this.filters.nameContains)
         .then(res => {
           this.cardList = res.cardList
+          this.pageId = 0
+          this.currentId = 0
+          this.cards = []
         })
+        .then(() => {
+          this.fillPage()
+        })
+    },
+    getSampleImg () {
+      return sampleImg
     },
     getNextCard () {
       if (this.pageId + this.currentId >= this.cardList.length) return
@@ -90,6 +116,8 @@ export default {
           card.id = cardId
           if (card.Content) {
             this.cards.push(parseCard(card))
+
+            console.log(this.cards)
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {

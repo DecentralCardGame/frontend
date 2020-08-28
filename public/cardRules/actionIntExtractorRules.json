@@ -1,0 +1,14 @@
+{
+  "name": "Numeric Action-Extractor",
+  "children": {
+    "ExtractIntProperty": {
+      "$ref": "actionIntPropertyRules.json"
+    },
+    "IntVariableName": {
+      "$ref": "intVariableNameRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Numeric Action-Extractor",
+  "interactionText": "Set §IntVariableName to the actions §ExtractIntProperty."
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Destroy-Entity Effect",
+  "children": {
+    "entitySelector": {
+      "$ref": "../entitySelectorRules.json",
+      "optional": true
+    }
+  },
+  "type": "struct",
+  "description": "Build a Destroy-Entity Effect",
+  "interactionText": "§entitySelector Destroy it."
+}

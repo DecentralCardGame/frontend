@@ -1,17 +1,17 @@
 {
   "name": "Textbased Action-Manipulation",
   "children": {
-    "stringProperty": {
+    "StringProperty": {
       "$ref": "actionStringPropertyRules.json"
     },
-    "stringOperator": {
+    "StringOperator": {
       "$ref": "stringOperatorRules.json"
     },
-    "stringValue": {
+    "StringValue": {
       "$ref": "stringValueRules.json"
     }
   },
   "type": "struct",
   "description": "Build an Textbased Action-Manipulation",
-  "interactionText": "§stringOperator §stringProperty §stringValue."
+  "interactionText": "§StringOperator §StringProperty §StringValue."
 }
