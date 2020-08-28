@@ -226,11 +226,6 @@ export default {
       this.ability = ability
       this.$emit('update:ability', ability)
     },
-    /*
-    updateAbility (reference) {
-      let ability = reference
-      this.$emit('update:ability', ability)
-    },*/
     closeAbilityModal () {
       this.isAbilityModalVisible = false
     }

@@ -472,8 +472,10 @@ export default {
         }
 
         let newAbility = {
-          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'action' ? 'effects' : 'abilities']
+          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'action' ? 'Effects' : 'Abilities']
         }
+
+        console.log(newAbility)
 
         newAbility.path = climbRulesTree(this.$cardRules, newAbility.path)
 
@@ -625,7 +627,6 @@ export default {
           this.cardImageUrl = sampleImg
         })
       }
-
     },
     saveDraft () {
       localStorage.cardDraft = JSON.stringify(this.model)
