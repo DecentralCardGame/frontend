@@ -1,10 +1,10 @@
 {
-  "name": "Textbased Card-Property",
+  "name": "Text based Card-Property",
   "children": [
     {"$ref": "actionStringPropertyRules.json"},
     {"$ref": "entityStringPropertyRules.json"},
     {"$ref": "placeStringPropertyRules.json"}
   ],
   "type": "enum",
-  "description": "Choose a Textbased Card-Property"
+  "description": "Choose a Text based Card-Property"
 }

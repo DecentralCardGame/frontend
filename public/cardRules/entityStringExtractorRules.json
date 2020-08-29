@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Entity-Extractor",
+  "name": "Text based Entity-Extractor",
   "children": {
     "ExtractStringProperty": {
       "$ref": "entityStringPropertyRules.json"
@@ -9,6 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Entity-Extractor",
+  "description": "Build a Text based Entity-Extractor",
   "interactionText": "Set §StringVariableName to the entities §ExtractStringProperty."
 }

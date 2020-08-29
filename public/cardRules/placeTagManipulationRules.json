@@ -1,5 +1,5 @@
 {
-  "name": "Tagbased Place-Manipulation",
+  "name": "Tag based Place-Manipulation",
   "children": {
     "TagValue": {
       "$ref": "tagRules.json"
@@ -9,6 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Tagbased Place-Manipulation",
+  "description": "Build a Tag based Place-Manipulation",
   "interactionText": "It §TagOperator §TagValue."
 }
