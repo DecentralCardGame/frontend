@@ -151,25 +151,6 @@ export function filterSelection (options) {
   }, options)
   return found
 }
-/*
-export function filterProperties (options, target) {
-  let found = {}
-  options.forEach((item) => {
-    if (item.description === target) {
-      found = item
-    }
-  })
-  return found
-}
-
-export function resolveParagraph (key) {
-  if (key[0] === '§') {
-    return key.slice(1)
-  } else {
-    console.error('key to resolve is not a valid key: ', k5ey)
-  }
-}
-*/
 
 export function shallowClone (obj) {
   let clone = {}

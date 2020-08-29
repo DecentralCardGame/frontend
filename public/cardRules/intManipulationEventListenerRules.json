@@ -1,5 +1,5 @@
 {
-  "name": "Numeric Manipulation-Eventlistener",
+  "name": "Numeric Manipulation-Event Listener",
   "children": {
     "Property": {
       "$ref": "cardIntPropertyRules.json"
@@ -21,6 +21,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Numeric Manipulation-Eventlistener",
+  "description": "Build a Numeric Manipulation-Event Listener",
   "interactionText": "Whenever §Property on card §CardCondition §IntChangeMode. §ManipulatedCardExtractor §ManipulationValueExtractor"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Block-Eventlistener",
+  "name": "Block-Event Listener",
   "children": {
     "EntityCondition": {
       "$ref": "entityConditionRules.json",
@@ -15,6 +15,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Block-Eventlistener",
+  "description": "Build a Block-Event Listener",
   "interactionText": "Whenever an entity §EntityCondition blocks. §BlockingEntityExtractor §BlockedEntityExtractor"
 }

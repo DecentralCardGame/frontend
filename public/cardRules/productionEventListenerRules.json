@@ -1,5 +1,5 @@
 {
-  "name": "Production-Eventlistener",
+  "name": "Production-Event Listener",
   "children": {
     "RessourceTypeCondition": {
       "$ref": "ressourceCostTypeRules.json",
@@ -11,6 +11,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Production-Eventlistener",
+  "description": "Build a Production-Event Listener",
   "interactionText": "Whenever one or more §RessourceType ressources is produced. §ProductionAmountExtractor"
 }

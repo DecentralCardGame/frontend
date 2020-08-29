@@ -45,7 +45,9 @@
                               aria-label="Close modal"
                               @click="selectedString = option.name; addAbility();"
                             >
-                              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"/><br>
+                              <img :src="getIcon(option)"
+                                style="max-width:40px"
+                              /><br>
                               <b>{{option.name}}</b><br> - <span v-if="option.description">  {{option.description}} </span>
                             </button>
 
@@ -125,7 +127,7 @@
             },
             getIcon(option) {
                 console.log(option)
-              return icon(R.toLower(R.split(' ', option.name)[0]))
+              return icon(R.toLower(R.split(' ', R.split('-', option.name)[0])[0]))
             },
             addAbility() {
                 console.log('dialog type:', this.dialog.type)
@@ -171,7 +173,7 @@
                     this.dialog.btn.label = 'no condition'
                     this.dialog.preventClose = false
 
-                    // check if an option was selected, which has an interaction text
+                // check if an option was selected, which has an interaction text
                 } else if (objAtSelection.interactionText) {
                     let interactionText = objAtSelection.interactionText
 
