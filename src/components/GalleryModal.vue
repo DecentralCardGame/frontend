@@ -27,7 +27,6 @@
           id="modalDescription"
           class="modal-body"
         >
-           
           <button
             type="button"
             class="btn-teal"
@@ -37,7 +36,7 @@
             Download PNG
           </button> <br>
 
-          <button
+          <button v-if="isOwner"
             type="button"
             class="btn-teal"
             aria-label="Close modal"
@@ -46,7 +45,7 @@
             Edit Card
           </button> <br>
 
-          <button
+          <button v-if="canVote"
             type="button"
             class="btn-teal"
             aria-label="Close modal"
@@ -55,7 +54,7 @@
             Vote Overpowered
           </button> <br>
 
-          <button
+          <button v-if="canVote"
             type="button"
             class="btn-teal"
             aria-label="Close modal"
@@ -64,7 +63,7 @@
             Vote Underpowered
           </button> <br>
 
-          <button
+          <button v-if="canVote"
             type="button"
             class="btn-teal"
             aria-label="Close modal"
@@ -73,7 +72,7 @@
             Vote Fair Enough
           </button> <br>
 
-          <button
+          <button v-if="canVote"
             type="button"
             class="btn-teal"
             aria-label="Close modal"
@@ -93,6 +92,10 @@
 
 export default {
   name: 'GalleryModal',
+  props: {
+    canVote: Boolean,
+    isOwner: Boolean
+  },
   data () {
     return {
       currentPrice: -1,
@@ -101,7 +104,6 @@ export default {
     }
   },
   mounted () {
-    
   },
   methods: {
     close () {

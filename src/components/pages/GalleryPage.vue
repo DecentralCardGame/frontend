@@ -9,6 +9,8 @@
       @voteUP="vote('underpowered')"
       @voteFair="vote('fair_enough')"
       @voteInappropriate="vote('inappropriate')"
+      v-bind:canVote="canVote"
+      v-bind:isOwner="isOwner"
     />
     <div>
         <button @click="filters.visible = !filters.visible">Filters</button>
@@ -33,7 +35,7 @@
         v-for="(card, index) in cards"
         :key="index"
         width="75%"
-        @click="showGalleryModal(); clickedIndex = index;"
+        @click=" clickedIndex = index; showGalleryModal();"
       >
         <CardComponent
           :id="'card'+index"
@@ -55,7 +57,7 @@ import * as R from 'ramda'
 import state from '../cardState'
 import GalleryModal from '../GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
-import { parseCard, getCard, getCardList, voteCardTx } from '../cardChain.js'
+import { parseCard, getCard, getCardList, voteCardTx, getVotableCards } from '../cardChain.js'
 import { sampleImg, saveCardAsPng } from '../utils.js'
 
 const cardsPerPage = 20
@@ -78,13 +80,23 @@ export default {
         nameContains: "",
         status: "",
         owner: ""
-      }
+      },
+      votableCards: [],
+      canVote: false
     }
   },
   mounted () {
     this.loadCardList()
+    this.loadVotableCards()
   },
   methods: {
+    loadVotableCards() {
+      getVotableCards(this.$http, localStorage.address)
+        .then(res => {
+          console.log('getVotableCards:', res)
+          this.votableCards = res.votables
+        })
+    },
     loadCardList() {
       return getCardList(this.$http, this.filters.owner, this.filters.status, this.filters.nameContains)
         .then(res => {
@@ -146,13 +158,14 @@ export default {
     },
     showGalleryModal () {
       this.isGalleryModalVisible = true
+      this.canVote = R.any(x => x == this.cards[this.clickedIndex].id, R.pluck('CardId', this.votableCards))
+      this.isOwner = this.cards[this.clickedIndex].Owner === localStorage.address
     },
     closeGalleryModal () {
       this.isGalleryModalVisible = false
     },
     edit () {
       state.card = this.cards[this.clickedIndex]
-      
       this.$router.push('newCard')
     },
     downloadPng () {
