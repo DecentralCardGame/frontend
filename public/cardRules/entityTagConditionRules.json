@@ -1,5 +1,5 @@
 {
-  "name": "Tagbased Entity-Condition",
+  "name": "Tag based Entity-Condition",
   "children": {
     "StringValue": {
       "$ref": "stringValueRules.json"
@@ -9,6 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Tagbased Entity-Condition",
+  "description": "Build a Tag based Entity-Condition",
   "interactionText": "with tag §StringComparator §StringValue"
 }

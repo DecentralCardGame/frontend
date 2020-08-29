@@ -1,5 +1,5 @@
 {
-  "name": "TokenEffect",
+  "name": "Token Effect",
   "children": {
     "TokenAmount": {
       "$ref": "intValueRules.json"

@@ -1,5 +1,5 @@
 {
-  "name": "Action-Effectmanipulation",
+  "name": "Action-Effect Manipulation",
   "children": {
     "Effect": {
       "$ref": "effectRules.json"

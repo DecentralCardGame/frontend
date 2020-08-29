@@ -1,6 +1,6 @@
 {
-  "name": "Textbased Action-Property",
+  "name": "Text based Action-Property",
   "children": ["NAME","TEXT"],
   "type": "enum",
-  "description": "Choose an Textbased Action-Property"
+  "description": "Choose an Text based Action-Property"
 }

@@ -472,7 +472,7 @@ export default {
         }
 
         let newAbility = {
-          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'action' ? 'Effects' : 'Abilities']
+          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'Action' ? 'Effects' : 'Abilities']
         }
 
         console.log(newAbility)

@@ -1,5 +1,5 @@
 {
-  "name": "Tagbased Action-Condition",
+  "name": "Tag based Action-Condition",
   "children": {
     "StringValue": {
       "$ref": "stringValueRules.json"
@@ -9,6 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Tagbased Action-Condition",
+  "description": "Build a Tag based Action-Condition",
   "interactionText": "with tag §StringComparator §StringValue"
 }

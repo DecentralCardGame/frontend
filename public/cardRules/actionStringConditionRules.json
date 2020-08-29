@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Action-Condition",
+  "name": "Text based Action-Condition",
   "children": {
     "ActionStringProperty": {
       "$ref": "actionStringPropertyRules.json"
@@ -12,6 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Action-Condition",
+  "description": "Build a Text based Action-Condition",
   "interactionText": "with §ActionStringProperty §StringComparator §StringValue"
 }

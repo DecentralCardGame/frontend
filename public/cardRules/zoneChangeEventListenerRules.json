@@ -1,5 +1,5 @@
 {
-  "name": "Zonechange-Eventlistener",
+  "name": "Zonechange-Event Listener",
   "children": {
     "Source": {
       "$ref": "dynamicZoneRules.json"
@@ -17,6 +17,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Zonechange-Eventlistener",
+  "description": "Build a Zonechange-Event Listener",
   "interactionText": "Whenever a card §CardCondition gets put from §Source to §Destination. §MovedCardExtractor"
 }

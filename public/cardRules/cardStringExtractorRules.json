@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Card-Extractor",
+  "name": "Text based Card-Extractor",
   "children": {
     "ExtractStringProperty": {
       "$ref": "cardStringPropertyRules.json"
@@ -9,6 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Card-Extractor",
+  "description": "Build a Text based Card-Extractor",
   "interactionText": "Set §StringVariableName to the cards §ExtractStringProperty."
 }

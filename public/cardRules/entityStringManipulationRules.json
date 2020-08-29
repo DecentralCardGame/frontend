@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Entity-Manipulation",
+  "name": "Text based Entity-Manipulation",
   "children": {
     "StringProperty": {
       "$ref": "entityStringPropertyRules.json"
@@ -12,6 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Entity-Manipulation",
+  "description": "Build a Text based Entity-Manipulation",
   "interactionText": "§StringOperator §StringProperty §StringValue."
 }

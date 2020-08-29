@@ -1,5 +1,5 @@
 {
-  "name": "Attack-Eventlistener",
+  "name": "Attack-Event Listener",
   "children": {
     "EntityCondition": {
       "$ref": "entityConditionRules.json",
@@ -11,6 +11,6 @@
     }
   },
   "type": "struct",
-  "description": "Build an Attack-Eventlistener",
+  "description": "Build an Attack-Event Listener",
   "interactionText": "Whenever an entity §EntityCondition attacks. §AttackEntityExtractor"
 }

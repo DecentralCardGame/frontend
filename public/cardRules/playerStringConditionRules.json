@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Player-Condition",
+  "name": "Text based Player-Condition",
   "children": {
     "StringProperty": {
       "$ref": "playerStringPropertyRules.json"
@@ -12,6 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Player-Condition",
+  "description": "Build a Text based Player-Condition",
   "interactionText": "with §StringProperty §StringComparator §StringValue"
 }

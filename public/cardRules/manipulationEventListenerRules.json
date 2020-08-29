@@ -1,5 +1,5 @@
 {
-  "name": "Manipulation-EventListener",
+  "name": "Manipulation-Event Listener",
   "children": {
     "IntManipulationEventListener": {
       "$ref": "intManipulationEventListenerRules.json"
@@ -9,5 +9,5 @@
     }
   },
   "type": "interface",
-  "description": "Choose a Manipulation-Eventlistener type"
+  "description": "Choose a Manipulation-Event Listener type"
 }

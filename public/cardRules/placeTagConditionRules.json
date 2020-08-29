@@ -1,5 +1,5 @@
 {
-  "name": "Tagbased Place-Condition",
+  "name": "Tag based Place-Condition",
   "children": {
     "StringValue": {
       "$ref": "stringValueRules.json"
@@ -9,6 +9,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Tagbased Place-Condition",
+  "description": "Build a Tag based Place-Condition",
   "interactionText": "with tag §StringComparator §StringValue"
 }

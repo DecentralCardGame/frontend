@@ -1,5 +1,5 @@
 {
-  "name": "Textbased Entity-Condition",
+  "name": "Text based Entity-Condition",
   "children": {
     "EntityStringProperty": {
       "$ref": "entityStringPropertyRules.json"
@@ -12,6 +12,6 @@
     }
   },
   "type": "struct",
-  "description": "Build a Textbased Entity-Condition",
+  "description": "Build a Text based Entity-Condition",
   "interactionText": "with §EntityStringProperty §StringComparator §StringValue"
 }
