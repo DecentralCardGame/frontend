@@ -24,7 +24,7 @@
         <br>
         <input v-model="filters.nameContains" placeholder="card name contains">  
         <br>
-        <input v-model="filters.owner" placeholder="card owner is">
+        <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
         <br>
         <button v-show="filters.visible" @click="loadCardList">Apply</button>
       </div>
@@ -160,6 +160,9 @@ export default {
     },
     vote (type) {
       voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
+    },
+    getOwnAddress () {
+      return localStorage.address
     }
   }
 }
