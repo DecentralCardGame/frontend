@@ -126,7 +126,6 @@
                 this.$emit('close')
             },
             getIcon(option) {
-                console.log(option)
               return icon(R.toLower(R.split(' ', R.split('-', option.name)[0])[0]))
             },
             addAbility() {
