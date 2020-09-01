@@ -55,7 +55,7 @@
                               placeholder="enter text"
                               v-model="selectedString"
                             >
-                            <button v-if="dialog.type==='integer'" type="integerbtn"
+                            <button v-if="dialog.type==='int'" type="integerbtn"
                               @click="selectedCount += 1 - 2 * index" id="index"
                             >
                               <img :src="getIcon(option)" /><br>
@@ -79,7 +79,7 @@
                             </label>
                         </div>
                         <div>
-                            <span v-if="dialog.type==='integer'"> {{selectedCount}} </span>
+                            <span v-if="dialog.type==='int'"> {{selectedCount}} </span>
                         </div>
                     </slot>
                 </section>
@@ -138,9 +138,6 @@
                     case 'root':
                         this.handleCreateAbility()
                         break
-                    case 'integer':
-                        this.handleIntegerInteraction()
-                        break
                     case 'stringEnum':
                         this.handleStringInteraction()
                         break
@@ -178,6 +175,7 @@
 
                     let abilityPath = R.append(selection.index, this.dialog.abilityPath)
                     let rulesPath = pathAtSelection
+
                     let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
                     updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
@@ -187,6 +185,15 @@
                         this.attachToAbility(this.dialog.btn.abilityPath, {})
                     }
                     this.dialog.preventClose = false
+                } else if (objAtSelection.type === 'int') {
+                    this.dialog.preventClose = false
+
+                    this.dialog.btn.type = "int"
+                    this.dialog.btn.rulesPath = pathAtSelection
+                    this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath)
+
+                    //updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+                    //this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))
                 } else {
                     // if there is no interaction text, don't close modal and present new options
                     this.dialog.preventClose = true

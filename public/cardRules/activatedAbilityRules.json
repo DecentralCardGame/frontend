@@ -2,7 +2,7 @@
   "name": "Activated Ability",
   "children": {
     "AbilityCost": {
-      "$ref": "abilityCostRules.json"
+      "$ref": "costRules.json"
     },
     "Effects": {
       "$ref": "effectsRules.json"

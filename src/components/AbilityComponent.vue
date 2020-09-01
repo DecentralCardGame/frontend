@@ -6,8 +6,8 @@
       class="ability"
     >
       {{ entry.pre }}
-        <select
-            v-if="entry.btn.type === 'int'"
+
+        <select v-if="entry.btn.type === 'int'"
           v-model="entry.btn.label"
           @change="showAbilityModal(ability, entry.btn, index)"
         >
@@ -19,16 +19,19 @@
             {{ n }}
           </option>
         </select>
+
       <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-negated-option"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
         {{ entry.btn.label }}
       </div>
+
       <div v-else
         class="clickable-option"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
+
         {{ entry.btn.label }}
       </div>
       {{ entry.post }}
@@ -138,7 +141,7 @@ export default {
             let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules)
 
             updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))   // TODO test if this works
+            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))
             break
           }
           // this is a terminal case, specify an integer

@@ -2,10 +2,10 @@
   "name": "Complex Numeric Value",
   "children": {
     "FirstValue": {
-      "$ref": "simpleIntValueRules.json"
+      "$ref": "intValueRules.json"
     },
     "SecondValue": {
-      "$ref": "simpleIntValueRules.json"
+      "$ref": "intValueRules.json"
     },
     "ArithOperator": {
       "$ref": "arithOperatorRules.json"
