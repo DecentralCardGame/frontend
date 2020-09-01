@@ -34,12 +34,11 @@
       <div
         v-for="(card, index) in cards"
         :key="index"
-        width="75%"
         @click="clickedIndex = index; showGalleryModal();"
       >
         <div
           @click="showGalleryModal(); clickedIndex = index;"
-          width="75%"
+          width="20%"
         >
         <CardComponent
           :id="'card'+index"
@@ -191,7 +190,7 @@ export default {
 .gallery-view {
   text-shadow: none;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
