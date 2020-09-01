@@ -108,10 +108,10 @@
     export default {
         name: 'Modal',
         props: {
-            picked: Object,
-            dialog: Object,
-            options: Array,
-            ability: Object,
+            picked: {},
+            dialog: {},
+            options: [],
+            ability: {},
             abilities: Array
         },
         data() {
@@ -205,13 +205,6 @@
                     this.dialog.rulesPath = pathAtSelection
                     this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
                 }
-            },
-            handleIntegerInteraction() {
-                this.ability.clickedBtn.label = this.selectedCount
-                this.attachToAbility(this.dialog.btn.abilityPath, this.selectedCount)
-                // reset selectedCount
-                // this.selectedCount = 0
-                console.log('ability after handleInteger: ', this.ability)
             },
             handleStringInteraction() {
                 this.ability.clickedBtn.label = this.selectedString
