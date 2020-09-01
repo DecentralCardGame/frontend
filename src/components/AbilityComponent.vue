@@ -156,7 +156,7 @@ export default {
             this.dialog = {
               title: atRules(btn.rulesPath).name,
               description: 'pick one of the following:',
-              type: 'stringEnum',
+              type: 'enum',
               btn: btn,
               options: []
             }

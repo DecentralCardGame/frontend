@@ -39,7 +39,7 @@
                               v-model="option.value"
                               :value="option.name"
                             >
-                            <button v-if="dialog.type === 'stringEnum'"
+                            <button v-if="dialog.type === 'enum'"
                               type="button"
                               class="choice-grid-button"
                               aria-label="Close modal"
@@ -55,12 +55,7 @@
                               placeholder="enter text"
                               v-model="selectedString"
                             >
-                            <button v-if="dialog.type==='int'" type="integerbtn"
-                              @click="selectedCount += 1 - 2 * index" id="index"
-                            >
-                              <img :src="getIcon(option)" /><br>
-                              {{option.name}} <span v-if="option.description">  {{option.description}} </span>
-                            </button>
+                            
 
                             <button v-if="dialog.type === 'interface' || dialog.type === 'root'"
                               type="button"
@@ -74,7 +69,7 @@
                               <b>{{option.name}}</b><br> <span v-if="option.description">  {{option.description}} </span>
                             </button>
 
-                            <label v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'stringEnum'"
+                            <label v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'enum'"
                               for="index"> {{option.name}}
                             </label>
                         </div>
@@ -138,7 +133,7 @@
                     case 'root':
                         this.handleCreateAbility()
                         break
-                    case 'stringEnum':
+                    case 'enum':
                         this.handleStringInteraction()
                         break
                     case 'stringEnter':
@@ -187,13 +182,16 @@
                     this.dialog.preventClose = false
                 } else if (objAtSelection.type === 'int') {
                     this.dialog.preventClose = false
-
                     this.dialog.btn.type = "int"
                     this.dialog.btn.rulesPath = pathAtSelection
                     this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath)
-
-                    //updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-                    //this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))
+                } else if (objAtSelection.type === 'enum') {
+                    this.dialog.preventClose = true
+                    this.dialog.title = objAtSelection.name
+                    this.dialog.type = objAtSelection.type
+                    this.dialog.options = R.map(x => ({name: x}), objAtSelection.children)
+                    this.dialog.btn.rulesPath = pathAtSelection
+                    this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath)
                 } else {
                     // if there is no interaction text, don't close modal and present new options
                     this.dialog.preventClose = true
@@ -207,6 +205,7 @@
                 }
             },
             handleStringInteraction() {
+                this.dialog.preventClose = false
                 this.ability.clickedBtn.label = this.selectedString
                 this.attachToAbility(this.dialog.btn.abilityPath, this.selectedString)
 
