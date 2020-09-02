@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h1 align="center">Gallery</h1>
+    <p align="center">In the gallery, you can view cards that were created by the community.</p>
+    <br>
     <GalleryModal
       v-if="isGalleryModalVisible"
       @close="closeGalleryModal"
@@ -12,19 +15,24 @@
       v-bind:canVote="canVote"
       v-bind:isOwner="isOwner"
     />
-    <div>
-        <button @click="filters.visible = !filters.visible">Filters</button>
+      <div class="button-container">
+        <button v-show="browsingBackward" @click="prevPage">back</button>
+        <button @click="filters.visible = !filters.visible">
+          {{ filters.visible ? 'hide' : 'show' }}
+          filters
+        </button>
+        <button v-show="browsingForward" @click="nextPage">next</button>
       </div>
-      <div v-show="filters.visible">
+      <div v-show="filters.visible" class="filter-box">
         <select v-model="filters.status">
           <option disabled value="">select status</option>
           <option>prototype</option>
           <option>trial</option>
           <option>permanent</option>
           <option></option>
-        </select>  
+        </select>
         <br>
-        <input v-model="filters.nameContains" placeholder="card name contains">  
+        <input v-model="filters.nameContains" placeholder="card name contains">
         <br>
         <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
         <br>
@@ -49,10 +57,10 @@
         />
         </div>
       </div>
-      <div>
-        <button v-show="browsingBackward" @click="prevPage">back</button>
-        <button v-show="browsingForward" @click="nextPage">next</button>
-      </div>
+    </div>
+    <div class="button-container">
+      <button v-show="browsingBackward" @click="prevPage">back</button>
+      <button v-show="browsingForward" @click="nextPage">next</button>
     </div>
   </div>
 </template>
@@ -186,13 +194,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "src/assets/styles/variables";
+
 .gallery-view {
+  margin: 1rem 0;
   text-shadow: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
+}
+
+.filter-box {
+  margin-top: 1rem;
+  border: $border-thickness solid $white;
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button-container {
+  display: block;
+  text-align: center;
 }
 </style>
