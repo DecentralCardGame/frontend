@@ -34,7 +34,7 @@
             @click="download(); close();"
           >
             Download PNG
-          </button> <br>
+          </button>
 
           <button v-if="isOwner"
             type="button"
@@ -43,7 +43,7 @@
             @click="edit(); close();"
           >
             Edit Card
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
@@ -52,7 +52,7 @@
             @click="voteOP(); close();"
           >
             Vote Overpowered
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
@@ -61,7 +61,7 @@
             @click="voteUP(); close();"
           >
             Vote Underpowered
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
@@ -70,7 +70,7 @@
             @click="voteFair(); close();"
           >
             Vote Fair Enough
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"

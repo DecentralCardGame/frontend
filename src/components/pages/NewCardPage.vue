@@ -712,7 +712,6 @@ export default {
     margin: 0.25rem;
     border: $border-thickness solid rgba(255,255,255,0.7);
     padding: 0.25rem 0.5rem;
-    transform: skewX(-15deg);
 
     &.progress-item-active {
       background-color: rgba(255,255,255,0.2);
