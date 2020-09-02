@@ -1,5 +1,5 @@
 {
-  "name": "SacrificeCost",
+  "name": "Sacrifice Cost",
   "children" : {
     "Amount": {
       "$ref": "simpleIntValueRules.json"

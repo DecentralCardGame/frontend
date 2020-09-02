@@ -1,5 +1,5 @@
 {
-  "name": "Ressource-Cost",
+  "name": "Resource Cost",
   "children": {
     "CostType": {
       "$ref": "ressourceCostTypeRules.json"

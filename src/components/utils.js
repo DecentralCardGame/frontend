@@ -46,6 +46,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
  
+      console.log(R.append(buttonEntry, rulesPath))
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
 
       // array is different to other interactions, therefore we need special treatment
