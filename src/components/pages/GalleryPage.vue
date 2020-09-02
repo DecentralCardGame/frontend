@@ -3,18 +3,6 @@
     <h1 align="center">Gallery</h1>
     <p align="center">In the gallery, you can view cards that were created by the community.</p>
     <br>
-    <GalleryModal
-      v-if="isGalleryModalVisible"
-      @close="closeGalleryModal"
-      @download="downloadPng"
-      @edit="edit"
-      @voteOP="vote('overpowered')"
-      @voteUP="vote('underpowered')"
-      @voteFair="vote('fair_enough')"
-      @voteInappropriate="vote('inappropriate')"
-      v-bind:canVote="canVote"
-      v-bind:isOwner="isOwner"
-    />
       <div class="button-container">
         <button v-show="browsingBackward" @click="prevPage">back</button>
         <button @click="filters.visible = !filters.visible">
@@ -52,8 +40,8 @@
           :id="'card'+index"
           :model="card"
           :image-u-r-l="card.image"
+          class="card"
           width="100%"
-
         />
         </div>
       </div>
@@ -61,6 +49,20 @@
     <div class="button-container">
       <button v-show="browsingBackward" @click="prevPage">back</button>
       <button v-show="browsingForward" @click="nextPage">next</button>
+    </div>
+    <div class="ability-modal-container">
+      <GalleryModal
+          v-if="isGalleryModalVisible"
+          @close="closeGalleryModal"
+          @download="downloadPng"
+          @edit="edit"
+          @voteOP="vote('overpowered')"
+          @voteUP="vote('underpowered')"
+          @voteFair="vote('fair_enough')"
+          @voteInappropriate="vote('inappropriate')"
+          v-bind:canVote="canVote"
+          v-bind:isOwner="isOwner"
+      />
     </div>
   </div>
 </template>
@@ -207,6 +209,10 @@ export default {
   grid-row-gap: 1em;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .filter-box {
   margin-top: 1rem;
   border: $border-thickness solid $white;
@@ -215,8 +221,8 @@ export default {
   gap: 0.5rem;
 }
 
-.button-container {
-  display: block;
-  text-align: center;
+.ability-modal-container {
+  position: relative;
+  z-index: 3;
 }
 </style>
