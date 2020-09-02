@@ -149,7 +149,7 @@
                   :key="n"
                   :value="n"
                 >
-                  {{ n }} 
+                  {{ n }}
                 </option>
               </select>
 
@@ -164,10 +164,10 @@
                   :key="n"
                   :value="n"
                 >
-                  {{ n }} 
+                  {{ n }}
                 </option>
               </select>
-              Wisdom. <br> 
+              Wisdom. <br>
               Whoever sides with me, starts with an impressive hand size of
               <select
                 v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.StartingHandSize"
@@ -361,10 +361,6 @@
           >
             Buy Card Scheme
           </button>
-          <BuySchemeModal
-            v-if="isBuySchemeModalVisible"
-            @close="closeBuySchemeModal"
-          />
           <button
             v-if="activeStep == 4 && !model.id"
             @click="saveSubmit()"
@@ -398,6 +394,10 @@
         v-bind:abilities="abilities"
         @update:ability="ability = $event"
         @close="closeAbilityModal"
+      />
+      <BuySchemeModal
+          v-if="isBuySchemeModalVisible"
+          @close="closeBuySchemeModal"
       />
     </div>
   </div>
@@ -438,7 +438,7 @@ export default {
     if (state.card) {
       if (state.card.type === 'Headquarter') state.card.type = 'HQ'
       this.model = R.merge(this.model, state.card)
-      
+
       this.cardImageUrl = this.model.image
       state.card = null
       return
@@ -551,7 +551,7 @@ export default {
       if (!this.model.CardName) {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
-      }     
+      }
 
       let newCard = {
         model: {
