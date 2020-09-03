@@ -1,30 +1,26 @@
 <template>
   <div>
-    <GalleryModal
-      v-if="isGalleryModalVisible"
-      @close="closeGalleryModal"
-      @download="downloadPng"
-      @edit="edit"
-      @voteOP="vote('overpowered')"
-      @voteUP="vote('underpowered')"
-      @voteFair="vote('fair_enough')"
-      @voteInappropriate="vote('inappropriate')"
-      v-bind:canVote="canVote"
-      v-bind:isOwner="isOwner"
-    />
-    <div>
-        <button @click="filters.visible = !filters.visible">Filters</button>
+    <h1 align="center">Gallery</h1>
+    <p align="center">In the gallery, you can view cards that were created by the community.</p>
+    <br>
+      <div class="button-container">
+        <button v-show="browsingBackward" @click="prevPage">back</button>
+        <button @click="filters.visible = !filters.visible">
+          {{ filters.visible ? 'hide' : 'show' }}
+          filters
+        </button>
+        <button v-show="browsingForward" @click="nextPage">next</button>
       </div>
-      <div v-show="filters.visible">
+      <div v-show="filters.visible" class="filter-box">
         <select v-model="filters.status">
           <option disabled value="">select status</option>
           <option>prototype</option>
           <option>trial</option>
           <option>permanent</option>
           <option></option>
-        </select>  
+        </select>
         <br>
-        <input v-model="filters.nameContains" placeholder="card name contains">  
+        <input v-model="filters.nameContains" placeholder="card name contains">
         <br>
         <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
         <br>
@@ -44,15 +40,29 @@
           :id="'card'+index"
           :model="card"
           :image-u-r-l="card.image"
+          class="card"
           width="100%"
-
         />
         </div>
       </div>
-      <div>
-        <button v-show="browsingBackward" @click="prevPage">back</button>
-        <button v-show="browsingForward" @click="nextPage">next</button>
-      </div>
+    </div>
+    <div class="button-container">
+      <button v-show="browsingBackward" @click="prevPage">back</button>
+      <button v-show="browsingForward" @click="nextPage">next</button>
+    </div>
+    <div class="ability-modal-container">
+      <GalleryModal
+          v-if="isGalleryModalVisible"
+          @close="closeGalleryModal"
+          @download="downloadPng"
+          @edit="edit"
+          @voteOP="vote('overpowered')"
+          @voteUP="vote('underpowered')"
+          @voteFair="vote('fair_enough')"
+          @voteInappropriate="vote('inappropriate')"
+          v-bind:canVote="canVote"
+          v-bind:isOwner="isOwner"
+      />
     </div>
   </div>
 </template>
@@ -186,13 +196,33 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "src/assets/styles/variables";
+
 .gallery-view {
+  margin: 1rem 0;
   text-shadow: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.filter-box {
+  margin-top: 1rem;
+  border: $border-thickness solid $white;
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ability-modal-container {
+  position: relative;
+  z-index: 3;
 }
 </style>

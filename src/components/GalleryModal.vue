@@ -25,56 +25,56 @@
         </header>
         <section
           id="modalDescription"
-          class="modal-body"
+          class="modal-body choice-grid"
         >
           <button
             type="button"
-            class="btn-teal"
+            class="choice-grid-button"
             aria-label="Close modal"
             @click="download(); close();"
           >
             Download PNG
-          </button> <br>
+          </button>
 
           <button v-if="isOwner"
             type="button"
-            class="btn-teal"
+                  class="choice-grid-button"
             aria-label="Close modal"
             @click="edit(); close();"
           >
             Edit Card
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
-            class="btn-teal"
+                  class="choice-grid-button"
             aria-label="Close modal"
             @click="voteOP(); close();"
           >
             Vote Overpowered
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
-            class="btn-teal"
+                  class="choice-grid-button"
             aria-label="Close modal"
             @click="voteUP(); close();"
           >
             Vote Underpowered
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
-            class="btn-teal"
+                  class="choice-grid-button"
             aria-label="Close modal"
             @click="voteFair(); close();"
           >
             Vote Fair Enough
-          </button> <br>
+          </button>
 
           <button v-if="canVote"
             type="button"
-            class="btn-teal"
+                  class="choice-grid-button"
             aria-label="Close modal"
             @click="voteInappropriate(); close();"
           >
@@ -82,7 +82,7 @@
           </button>
         </section>
         <footer class="modal-footer">
-         
+
         </footer>
       </div>
     </div>
@@ -131,83 +131,131 @@ export default {
 }
 </script>
 
-<style>
-  ::-webkit-input-placeholder { /* Edge */
-    color: red;
+<style lang="scss">
+@import "../assets/styles/variables";
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: $white;
+  text-shadow: none;
+  box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 480px) {
+    height: 100vh;
+  }
+}
+
+.modal-header,
+.modal-footer {
+  padding: $font-size;
+  display: flex;
+}
+
+.modal-header {
+  border-bottom: $border-thickness solid $red;
+  font-weight: bold;
+  color: $red;
+  justify-content: space-between;
+}
+
+.modal-body {
+  position: relative;
+  padding: ($font-size / 2);
+  border-bottom: $border-thickness solid $red;
+}
+
+.btn-close {
+  border: none;
+  font-size: $font-size;
+  padding: $font-size / 4;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+}
+
+.btn-green {
+  background-color: transparent;
+  border: none;
+  color: $black;
+  transition: all $animation-duration ease-out;
+
+  &:after {
+    z-index: -1;
+    background: linear-gradient(to right, #4AAE9B 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
   }
 
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: red;
+  &:hover {
+    color: $white;
+
+    &:after {
+      background-position: left bottom;
+    }
+  }
+}
+
+.btn-teal {
+  background-color: transparent;
+  border: none;
+  color: $black;
+  transition: all $animation-duration ease-out;
+
+  &:after {
+    z-index: -1;
+    background: linear-gradient(to right, #12D1D1 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
   }
 
-  ::placeholder {
-    color: red;
-  }
-  .input {
-    color: black
-  }
+  &:hover {
+    color: $white;
 
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &:after {
+      background-position: left bottom;
+    }
   }
+}
 
-  .modal {
-    background: #FFFFFF;
-    box-shadow: 2px 2px 20px 1px;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.choice-grid-button {
+  margin: 0;
+  width: 100%;
+  &:after {
+    margin: 0;
+    z-index: -1;
+    background: linear-gradient(to right, $red 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all $animation-duration ease-out;
+    content: '';
+    display: block;
+    position: absolute;
+    transform: skewX(0);
+    box-shadow: none;
   }
-
-  .modal-header,
-  .modal-footer {
-    padding: 15px;
-    display: flex;
+  &:hover {
+    color: $white;
+    &:after {
+      background-position: left bottom;
+    }
   }
-
-  .modal-header {
-    border-bottom: 1px solid #eeeeee;
-    color: #12D1D1;
-    justify-content: space-between;
-  }
-
-  .modal-footer {
-    border-top: 1px solid #eeeeee;
-  }
-
-  .modal-body {
-    position: relative;
-    padding: 20px 10px;
-  }
-
-  .btn-close {
-    border: none;    font-size: 20px;
-    padding: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #12D1D1;
-    background: transparent;
-  }
-
-  .btn-green {
-    color: white;
-    background: #4AAE9B;
-    border: 1px solid #4AAE9B;
-    border-radius: 2px;
-  }
-
-  .btn-teal {
-    color: white;
-    background: #12D1D1;
-    border: 1px solid #12D1D1;
-    border-radius: 2px;
-  }
+}
 </style>
+

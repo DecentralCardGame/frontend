@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Card Voting</h2>
+    <h1 align="center">Card Voting</h1>
+    <p align="center">Take part in the action and share your opinions about community cards.</p>
+    <br>
     <div class="voter">
       <div
         v-if="votingActive"
@@ -14,20 +16,23 @@
           @throwoutleft="vote('underpowered')"
         >
           <CardComponent
-            width="50%"
+              height="50vh"
             :model="currentCard"
             :image-u-r-l="currentCard.image"
           />
         </vue-swing>
-        <button @click="vote('fair_enough')">
-          Fair Enough
-        </button>
-        <button @click="vote('overpowered')">
-          Overpowered
-        </button>
-        <button @click="vote('underpowered')">
-          Underpowered
-        </button>
+        <br>
+        <div class="button-container">
+          <button @click="vote('fair_enough')">
+            Fair Enough
+          </button>
+          <button @click="vote('overpowered')">
+            Overpowered
+          </button>
+          <button @click="vote('underpowered')">
+            Underpowered
+          </button>
+        </div>
       </div>
       <div v-if="!votingActive">
         <span>You cannot vote on cards.</span>
@@ -167,9 +172,6 @@ export default {
   position: relative;
 }
 .voter {
-  min-height: 100vh;
-}
-vue-swing {
-  min-height: 100vh;
+  min-height: 10vh;
 }
 </style>

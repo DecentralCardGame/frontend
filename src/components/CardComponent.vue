@@ -893,6 +893,9 @@ export default {
 </script>
 
 <style scoped>
+/* TODO: change this to local font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Solway&display=swap');
+
 img {
   width: 100%;
   height: auto;
