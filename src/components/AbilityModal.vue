@@ -107,11 +107,10 @@
             dialog: {},
             options: [],
             ability: {},
-            abilities: Array
+            abilities: []
         },
         data() {
             return {
-                arrayCount: [0, 0, 0, 0, 0, 0],
                 selectedCount: 0,
                 selectedString: ''
             }
@@ -161,16 +160,26 @@
 
                 // check if the 'no condition' option was selected
                 if (selection.index === 'noSelect') {
-                    this.dialog.btn.label = 'no condition'
                     this.dialog.preventClose = false
+                    this.dialog.btn.label = 'no condition'
+                    console.log('this.dialog', this.dialog)
+
+                // check if a terminal option was selected
+                } else if (objAtSelection.type === 'terminal') {
+                    this.dialog.preventClose = false
+                    this.dialog.btn.label = objAtSelection.interactionText
+                    this.dialog.type = 'interface'
+
+                    console.log('this.dialog', this.dialog)
+                    console.log('abilityPath', this.dialog.btn.abilityPath)
+                    //this.attachToAbility(this.dialog.btn.abilityPath, objAtSelection.interactionText)
 
                 // check if an option was selected, which has an interaction text
                 } else if (objAtSelection.interactionText) {
+                    this.dialog.preventClose = false
                     let interactionText = objAtSelection.interactionText
-
                     let abilityPath = R.append(selection.index, this.dialog.abilityPath)
                     let rulesPath = pathAtSelection
-
                     let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
                     updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
@@ -179,7 +188,6 @@
                     } else {
                         this.attachToAbility(this.dialog.btn.abilityPath, {})
                     }
-                    this.dialog.preventClose = false
                 } else if (objAtSelection.type === 'int') {
                     this.dialog.preventClose = false
                     this.dialog.btn.type = "int"
@@ -203,6 +211,7 @@
                     this.dialog.rulesPath = pathAtSelection
                     this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
                 }
+                console.log('ability after handleInterface: ', this.ability)
             },
             handleStringInteraction() {
                 this.dialog.preventClose = false

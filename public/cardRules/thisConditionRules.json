@@ -1,0 +1,6 @@
+{
+  "name": "This-Condition",
+  "type": "terminal",
+  "description": "Build a This-Condition",
+  "interactionText": "this"
+}

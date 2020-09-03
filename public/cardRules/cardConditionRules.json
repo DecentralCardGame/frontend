@@ -9,6 +9,9 @@
     },
     "PlaceCondition": {
       "$ref": "placeConditionRules.json"
+    },
+    "ThisCondition": {
+      "$ref": "thisConditionRules.json"
     }
   },
   "type": "interface",

@@ -57,8 +57,8 @@ export default {
   name: 'AbilityComponent',
   components: {AbilityModal},
   props: {
-    dialog: Object,
-    ability: Object
+    dialog: {},
+    ability: {}
   },
   data () {
     return {
