@@ -447,7 +447,7 @@ export default {
     }
     if (localStorage.cardImg) {
       this.cardImageUrl = JSON.parse(localStorage.cardImg)
-    }
+    }    
   },
   methods: {
     showBuySchemeModal () {
