@@ -82,7 +82,7 @@ export default {
   components: {CardComponent, GalleryModal},
   data () {
     return {
-      clickedIndex: Number,
+      clickedIndex: 0,
       isGalleryModalVisible: false,
       pageId: 0,
       currentId: 0,
@@ -97,7 +97,8 @@ export default {
         owner: ""
       },
       votableCards: [],
-      canVote: false
+      canVote: false,
+      isOwner: false
     }
   },
   mounted () {
@@ -109,7 +110,11 @@ export default {
       getVotableCards(this.$http, localStorage.address)
         .then(res => {
           console.log('getVotableCards:', res)
-          this.votableCards = res.votables
+          if (res.noVoteRights) {
+            this.votableCards = []
+          } else {
+            this.votableCards = res.votables
+          }
         })
     },
     loadCardList() {
@@ -137,8 +142,6 @@ export default {
           card.id = cardId
           if (card.Content) {
             this.cards.push(parseCard(card))
-
-            console.log(this.cards)
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
@@ -148,7 +151,6 @@ export default {
         .catch(res => {
           console.error(res)
         })
-
       this.currentId++
     },
     fillPage () {
@@ -158,6 +160,7 @@ export default {
       else this.browsingBackward = true
 
       Promise.all(R.times(this.getNextCard, cardsPerPage))
+      console.log('all cards:', this.cards)
     },
     nextPage () {
       this.pageId += cardsPerPage
