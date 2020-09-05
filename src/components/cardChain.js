@@ -49,7 +49,16 @@ function sign (rawTx, accData, wallet) {
   }
 }
 
+const signAndBroadcast = R.curry( function (http, accInfoAndRawTx) {
+  let accData = accInfoAndRawTx[0]
+  let rawTx = accInfoAndRawTx[1].data
+  let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+  let signedTx = sign(rawTx, accData, wallet)
+  return broadcast(http, signedTx)
+})
+
 export function registerAccTx (http, alias) {
+  // this tx is special because it is not signed by the user but by a special creator address
   let reqBody = {
     'base_req': {
       'from': process.env.VUE_APP_CREATOR_ADDRESS,
@@ -144,7 +153,8 @@ export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) 
           'owner': localStorage.address,
           'content': JSON.stringify(card.model),
           'image': card.image,
-          'cardid': user.ownedCardSchemes[0]
+          'cardid': user.ownedCardSchemes[0],
+          'notes': card.notes
         }
         return reqBody
       }
@@ -152,23 +162,14 @@ export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) 
     .then(req => {
       txLoop.enqueue(() => {
         return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
-          .then(responses => {
-            let accData = responses[0]
-            let rawTx = responses[1].data
-
-            let wallet = createWalletFromMnemonic(localStorage.mnemonic)
-
-            let signedTx = sign(rawTx, accData, wallet)
-
-            return broadcast(http, signedTx)
-              .then(res => {
-                notify.success('EPIC WIN', 'You have successfully published this card.')
-                onSuccessCallback(res)
-              })
-              .catch(err => {
-                notify.fail('FAIL HARD', err.message)
-                console.error(err)
-              })
+          .then(signAndBroadcast(http))
+          .then(res => {
+            notify.success('EPIC WIN', 'You have successfully published this card.')
+            onSuccessCallback(res)
+          })
+          .catch(err => {
+            notify.fail('FAIL HARD', err.message)
+            console.error(err)
           })
       })
     })
@@ -185,29 +186,27 @@ export function saveContentToCardWithIdTx (http, card, onSuccessCallback) {
     'owner': localStorage.address,
     'content': JSON.stringify(card.model),
     'image': card.image,
-    'cardid': card.id
+    'cardid': card.id,
+    'notes': card.notes
   }
+  console.log('basereq:', req)
 
   txLoop.enqueue(() => {
     return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
-      .then(responses => {
-        let accData = responses[0]
-        let rawTx = responses[1].data
-
-        let wallet = createWalletFromMnemonic(localStorage.mnemonic)
-
-        let signedTx = sign(rawTx, accData, wallet)
-
-        return broadcast(http, signedTx)
-          .then(res => {
-            notify.success('EPIC WIN', 'You have successfully edited this card.')
-            onSuccessCallback(res)
-          })
-          .catch(err => {
-            notify.fail('FAIL HARD', err.message)
-            console.error(err)
-          })
+      .then(function (res) {
+        console.log('res', res)
+        return res
       })
+      .then(signAndBroadcast(http))
+      .then(res => {
+        notify.success('EPIC WIN', 'You have successfully edited this card.')
+        onSuccessCallback(res)
+      })
+      .catch(err => {
+        notify.fail('FAIL HARD', err.message)
+        console.error(err)
+      })
+      
   })
 }
 
