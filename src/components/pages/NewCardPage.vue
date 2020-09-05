@@ -438,7 +438,6 @@ export default {
     if (state.card) {
       if (state.card.type === 'Headquarter') state.card.type = 'HQ'
       this.model = R.merge(this.model, state.card)
-      console.log('loaded model', this.model)
       this.cardImageUrl = this.model.image
       state.card = null
       return
@@ -568,7 +567,8 @@ export default {
             }
           }
         },
-        image: this.cardImageUrl ? this.cardImageUrl : 'nix'
+        image: this.cardImageUrl ? this.cardImageUrl : 'nix',
+        Notes: this.model.Notes
       }
       if (this.model.type !== 'HQ') {
         if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
@@ -613,7 +613,6 @@ export default {
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
         newCard.id = this.model.id
-        console.log('submit card', newCard)
         saveContentToCardWithIdTx(this.$http, newCard, () => {
           localStorage.cardDraft = ''
           localStorage.cardImg = ''
