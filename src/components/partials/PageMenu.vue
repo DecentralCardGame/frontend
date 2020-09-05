@@ -71,7 +71,7 @@
           </li>
           <li
             v-if="!$store.getters.loggedIn"
-            @click="displayLoginDialogue = !displayLoginDialogue"
+            @click="$store.commit('toggleLoginBox')"
           >
             <div :class="displayLoginDialogue ? 'menu-item activated' : 'menu-item'">
               Login / Join
@@ -81,7 +81,7 @@
       </div>
     </nav>
     <div
-      v-if="displayLoginDialogue == true"
+      v-if="this.$store.getters.loginBoxVisible"
       class="lp-dialogue"
     >
       <div class="box-auth">

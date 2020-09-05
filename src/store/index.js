@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     jwt: '',
     mnemonic: '',
-    loading: false
+    loading: false,
+    displayLogin: false
   },
   mutations: {
     logout (state) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setLoading (state, loading) {
       state.loading = loading
+    },
+    toggleLoginBox (state) {
+      state.displayLogin = !state.displayLogin
     }
   },
   getters: {
@@ -33,6 +37,9 @@ export default new Vuex.Store({
     },
     loggedIn: state => {
       return state.jwt !== ''
+    },
+    loginBoxVisible: state => {
+      return state.displayLogin
     }
   },
   actions: {

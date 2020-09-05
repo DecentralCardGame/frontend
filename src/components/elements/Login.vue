@@ -74,6 +74,7 @@ export default {
               group: 'success',
               title: 'Login successful!'
             })
+            this.$store.commit('toggleLoginBox')
             this.$router.push('me')
           }
         })
