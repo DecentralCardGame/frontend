@@ -223,7 +223,7 @@ export const emptyCard = {
   CardName: 'Name',
   FlavourText: '',
   abilities: [],
-  notes: '',
+  Notes: '',
   type: 'no type',
   Tags: [],
   tagDummy: '',
