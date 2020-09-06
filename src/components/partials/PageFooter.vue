@@ -6,7 +6,7 @@
         <a v-if="userLoggedIn()" @click="$store.commit('toggleLoginBox')">
           <button>Join</button>
         </a>
-        <a v-else href="https://discord.gg/yPA3aKe">
+        <a v-else href="https://discord.gg/ZKKbhUs">
           <button>Join</button>
         </a>
 
