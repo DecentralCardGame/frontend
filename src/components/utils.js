@@ -2,6 +2,8 @@ import Vue from 'vue'
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 
+// Global Utility functions
+
 export const notify = {
   fail: R.curry(function (title, text) {
     Vue.notify({
@@ -27,6 +29,10 @@ export const notify = {
       duration: 5000
     })
   })
+}
+
+export function userLoggedIn() {
+  return R.isEmpty(localStorage.address) || R.isNil(localStorage.address)
 }
 
 // Utility functions for card creator

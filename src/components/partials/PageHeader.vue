@@ -2,7 +2,7 @@
   <header>
     <a
       id="Discordlink"
-      href="https://discord.gg/yPA3aKe"
+      href="https://discord.gg/ZKKbhUs"
     >
       Discuss the latest News or simply join our growing Community <b>Discord</b>. We would love to hear your voice.
     </a>
