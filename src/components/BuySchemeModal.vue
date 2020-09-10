@@ -237,24 +237,45 @@ export default {
 .choice-grid-button {
   margin: 0;
   width: 100%;
-  &:after {
-    margin: 0;
-    z-index: -1;
-    background: linear-gradient(to right, $red 50%, $white 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all $animation-duration ease-out;
-    content: '';
-    display: block;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: $animation-duration;
+  transition-duration: $animation-duration;
+  &:before {
+    content: "";
     position: absolute;
-    transform: skewX(0);
-    box-shadow: none;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: $animation-duration;
+    transition-duration: $animation-duration;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
   }
-  &:hover {
+  &:hover, &:focus, &:active {
     color: $white;
-    &:after {
-      background-position: left bottom;
-    }
+  }
+  &:hover:before, &:focus:before, &:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  &:after {
+    box-shadow: none;
+    transform: skewX(0);
   }
 }
 </style>
