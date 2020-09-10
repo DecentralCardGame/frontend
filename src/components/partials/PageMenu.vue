@@ -223,8 +223,8 @@ export default {
       position: relative;
       -webkit-transition-property: color;
       transition-property: color;
-      -webkit-transition-duration: 0.5s;
-      transition-duration: 0.5s;
+      -webkit-transition-duration: $animation-duration;
+      transition-duration: $animation-duration;
       &:before {
         content: "";
         position: absolute;
