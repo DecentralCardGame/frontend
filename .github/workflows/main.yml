@@ -9,12 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+    - name: Installing project dependencies
+    - run: npm install
+    - name: Building the project
+    - run: npm run build
     - name: Build and push Docker images
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DockerUsername }}
         password: ${{ secrets.DockerPassword }}
+        file: ./Dockerfile.lite
         tag_with_sha: true
         repository: crowdcontrol/frontend
         push: true
