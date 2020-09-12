@@ -23,7 +23,7 @@ jobs:
     needs: [build]
     steps:
     - name: Deploy
-      uses: floms/caprover-deploy-action@v1
+      uses: floms/action-caprover@v1
       with:
         host: 'https://captain.app.crowdcontrol.network'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
