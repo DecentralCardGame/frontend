@@ -9,12 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-    - name: Installing project dependencies
-    - run: npm install
-    - name: Building the project
-    - run: npm run build
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+    - name: Checkout branch
+      uses: actions/checkout@v2
+    - name: Clean install dependencies
+      run: npm ci
+    - name: Build Frontend
+      run: npm run build
     - name: Build and push Docker images
       uses: docker/build-push-action@v1.1.0
       with:
