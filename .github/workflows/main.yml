@@ -22,13 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-    - uses: actions/checkout@v1
-    - uses: benjlevesque/short-sha@v1.1
-      id: short-sha
-      with:
-        length: 7
     - name: Deploy
-      uses: WyriHaximus/github-action-helm3@v1.0.0
+      uses: floms/caprover-deploy-action@v1
       with:
-        exec: helm upgrade production helm --install --wait --atomic --namespace=crowdcontrol-frontend --set=app.name=production --set=image.tag=sha-${{ steps.short-sha.outputs.sha }}
-        kubeconfig: '${{ secrets.KUBECONFIG }}'
+        host: 'https://captain.app.crowdcontrol.network'
+        password: '${{ secrets.CAPROVER_PASSWORD }}'
+        app: 'crowdcontrol-frontend'
+        image: 'crowdcontrol/frontend'
