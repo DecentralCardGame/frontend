@@ -22,10 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
+    - uses: actions/checkout@v1
+    - uses: benjlevesque/short-sha@v1.1
+      id: short-sha
+      with:
+        length: 7
     - name: Deploy
       uses: floms/action-caprover@v1
       with:
         host: 'https://captain.app.crowdcontrol.network'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
         app: 'crowdcontrol-frontend'
-        image: 'crowdcontrol/frontend'
+        image: 'crowdcontrol/frontend:sha-${{ steps.short-sha.outputs.sha }}'
