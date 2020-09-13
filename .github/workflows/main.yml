@@ -15,7 +15,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        key: ${{ runner.os }}-buildx
         restore-keys: |
           ${{ runner.os }}-buildx-
     - name: Login to DockerHub
@@ -35,12 +35,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [build]
     steps:
-    - uses: actions/checkout@v1
-    - uses: benjlevesque/short-sha@v1.1
-      id: short-sha
-      with:
-        length: 7
-    - name: Deploy
+    - name: Deploy to Server
       uses: floms/action-caprover@v1
       with:
         host: 'https://captain.app.crowdcontrol.network'
