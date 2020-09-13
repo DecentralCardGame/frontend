@@ -28,11 +28,9 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: crowdcontrol/frontend:latest
+        tags: crowdcontrol/frontend:${{ github.sha }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
-    - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}
   deployment:
     runs-on: ubuntu-20.04
     needs: [build]
@@ -48,4 +46,4 @@ jobs:
         host: 'https://captain.app.crowdcontrol.network'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
         app: 'crowdcontrol-frontend'
-        image: 'crowdcontrol/frontend:${{ steps.docker_build.outputs.digest }}'
+        image: 'crowdcontrol/frontend:${{ github.sha }}'
