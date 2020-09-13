@@ -42,7 +42,7 @@ jobs:
         push: true
         tags: crowdcontrol/frontend:latest
     - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      run: echo ${{ steps.docker_build.outputs.digest }}
   deployment:
     runs-on: ubuntu-20.04
     needs: [build]
