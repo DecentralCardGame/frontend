@@ -23,7 +23,7 @@ jobs:
       with:
         username: ${{ secrets.DockerUsername }}
         password: ${{ secrets.DockerPassword }}
-    - ame: Build and push
+    - name: Build and push
       uses: docker/build-push-action@v2
       with:
         push: true
