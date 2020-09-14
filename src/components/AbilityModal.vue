@@ -227,11 +227,45 @@
                 console.log('ability after handleBool: ', this.ability)
             },
             handleCreateAbility() {
+                let atRules = R.curry(atPath)(this.$cardRules)
+
                 let selection = filterSelection(this.dialog.options)
+                let pathAtSelection = R.concat(this.dialog.rulesPath, [selection.index])
+                console.log('selection', selection)
+                console.log('pathAtSelection', pathAtSelection)
+
+                let objAtSelection = atRules(pathAtSelection)
+
                 let interactionText = atPath(this.$cardRules, R.append(selection.index, this.dialog.rulesPath)).interactionText
 
                 let abilityPath = [selection.index]
                 let rulesPath = R.concat(this.dialog.rulesPath, [selection.index, 'children'])
+
+
+                if (!objAtSelection.interactionText) {
+                    console.log('no interactiontext')
+                    let newAbility = {
+                    
+                    }
+                    newAbility[selection.index] = {
+                        path: this.dialog.rulesPath
+                    }
+                    this.abilities.push(newAbility)
+
+                    // if there is no interaction text, don't close modal and present new options
+                    this.dialog.preventClose = true
+                    this.dialog.interactionText = objAtSelection.interactionText
+                    this.dialog.title = objAtSelection.name
+                    this.dialog.description = objAtSelection.description
+                    this.dialog.type = objAtSelection.type
+                    this.dialog.options = objAtSelection.children
+                    this.dialog.rulesPath = pathAtSelection
+                    this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
+
+                    
+                    return
+                }
+
 
                 let newAbility = {
                     interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules)
