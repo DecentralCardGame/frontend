@@ -182,6 +182,7 @@
                     let rulesPath = pathAtSelection
                     let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
+                    console.log('this.ability clickedBtn', this.ability)
                     updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
                     if (objAtSelection.singleUse) {
                         this.attachToAbility(this.dialog.btn.abilityPath, {singleUse: selection.index})
@@ -245,15 +246,24 @@
                 if (!objAtSelection.interactionText) {
                     console.log('no interactiontext')
                     let newAbility = {
-                    
+                        interaction: createInteraction('Yes §TargetEffect Like', [], this.dialog.rulesPath, this.$cardRules)
                     }
+                    newAbility.clickedBtn = newAbility.interaction[0].btn
                     newAbility[selection.index] = {
                         path: this.dialog.rulesPath
                     }
+                    this.ability = newAbility
                     this.abilities.push(newAbility)
+
+                    this.attachToAbility(['interaction'], newAbility.interaction)
+                    this.attachToAbility([selection.index, 'path'], this.dialog.rulesPath)
+                    this.attachToAbility(['clickedBtn'], newAbility.interaction[0].btn)
+
+
 
                     // if there is no interaction text, don't close modal and present new options
                     this.dialog.preventClose = true
+                    this.dialog.btn = { abilityPath: [] }
                     this.dialog.interactionText = objAtSelection.interactionText
                     this.dialog.title = objAtSelection.name
                     this.dialog.description = objAtSelection.description
@@ -285,6 +295,8 @@
                 }
             },
             attachToAbility(path, object) {
+                console.log('path', path)
+                console.log('object', object)
                 let ability = R.assocPath(path, object, this.ability)
                 this.$emit('update:ability', ability)
             },
