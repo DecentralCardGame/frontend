@@ -169,10 +169,7 @@
                     this.dialog.preventClose = false
                     this.dialog.btn.label = objAtSelection.interactionText
                     this.dialog.type = 'interface'
-
-                    console.log('this.dialog', this.dialog)
-                    console.log('abilityPath', this.dialog.btn.abilityPath)
-                    //this.attachToAbility(this.dialog.btn.abilityPath, objAtSelection.interactionText)
+                    //this.attachToAbility(this.dialog.btn.abilityPath, objAtSelection.interactionText) // check if this is only deactivated temporarily or can be removed forever. is it because terminal is now dropdown selected?
 
                 // check if an option was selected, which has an interaction text
                 } else if (objAtSelection.interactionText) {
@@ -234,21 +231,15 @@
 
                 let selection = filterSelection(this.dialog.options)
                 let pathAtSelection = R.concat(this.dialog.rulesPath, [selection.index])
-                console.log('selection', selection)
-                console.log('pathAtSelection', pathAtSelection)
-
                 let objAtSelection = atRules(pathAtSelection)
-
                 let interactionText = atPath(this.$cardRules, R.append(selection.index, this.dialog.rulesPath)).interactionText
 
                 let abilityPath = [selection.index]
                 let rulesPath = R.concat(this.dialog.rulesPath, [selection.index, 'children'])
 
-
                 if (!objAtSelection.interactionText) {
-                    console.log('no interactiontext')
                     let newAbility = {
-                        interaction: createInteraction('Yes §TargetEffect Like', ['TargetEffect'], this.dialog.rulesPath, this.$cardRules)
+                        interaction: createInteraction('§'+selection.index, [], this.dialog.rulesPath, this.$cardRules)
                     }
                     newAbility.clickedBtn = newAbility.interaction[0].btn
                     newAbility[selection.index] = {
@@ -261,11 +252,9 @@
                     this.attachToAbility([selection.index, 'path'], this.dialog.rulesPath)
                     this.attachToAbility(['clickedBtn'], newAbility.interaction[0].btn)
 
-
-
                     // if there is no interaction text, don't close modal and present new options
-                    this.dialog.preventClose = true
-                    this.dialog.btn = { abilityPath: ['TargetEffect'] }
+                    this.dialog.preventClose = false
+                    this.dialog.btn = { abilityPath: [] }
                     this.dialog.interactionText = objAtSelection.interactionText
                     this.dialog.title = objAtSelection.name
                     this.dialog.description = objAtSelection.description
@@ -274,10 +263,8 @@
                     this.dialog.rulesPath = pathAtSelection
                     this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath)
 
-                    
                     return
                 }
-
 
                 let newAbility = {
                     interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules)
@@ -297,8 +284,6 @@
                 }
             },
             attachToAbility(path, object) {
-                console.log('path', path)
-                console.log('object', object)
                 let ability = R.assocPath(path, object, this.ability)
                 this.$emit('update:ability', ability)
             },
