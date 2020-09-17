@@ -28,40 +28,64 @@
       <div class="creator-preview">
         <CardComponent
           
-          :model="cards[0]"
-          :image-u-r-l="cardImgs[0]"
+          :model="cards[1]"
+          :image-u-r-l="cardImgs[1]"
         />
       </div>
 
       <div>
-      Crowd Control has unique game mechanics. These mechanics are tailored to allow card creation and balancing by the users as well as a modern fast paced gameplay. In Crowd Control you don't have to wait for others to end their turn. Simultaneous turns have become a standard in round-based multiplayer games, but unfortunately not in collectible card games. We change that. <br><br>
-      Crowd Control balances cards continuously. In other collectible card games some cards are too strong, some are too weak and even cards which are fair become useless after some time. We change that. <br><br>
-      Crowd Control gives you full ownership. And we mean it. You own the cards which you acquire through play and participation. And furthermore you own the card prototypes which you design and create. You decide if these cards are mass printed or your personal rare gems. In other collectible card games players create their own alternate art or even whole cards but can never play these cards legally. We change that.
+      Crowd Control has unique game mechanics. <br>
+      These mechanics allow automatic balancing by you, the players and provide a modern fast paced gameplay. <br>
+      In Crowd Control you don't have to wait for others to end their turn. We have simultaneous turns, this means a lot less waiting for your turn. <br><br>
+      Crowd Control balances cards continuously. <br>
+      There are no cards, which are too strong for all time and need to be banned because of that.<br>
+      There are no cards, which are useless forever and never see the light of play. <br>
+      Crowd Control gives you full ownership. And we mean it. <br>
+      You own the cards which you acquire through play and participation. <br>
+      And furthermore you own the card prototypes which you design and create. <br>
+      You decide if these cards are mass printed or your personal rare gems. <br>
+      In other collectible card games players create their own alternate art or even whole cards but can never play these cards legally. We change that.
       </div>
     </div>
-    <div class="about-both-card">
-
-      <div class="creator-preview">
-        <CardComponent
-          
-          :model="cards[0]"
-          :image-u-r-l="cardImgs[0]"
-        />
-      </div>
+    <div class="about-right-card">
 
       <div>
       Let's have a look into these new innovations and start with game mechanics. 
-
       </div>
-      
       <div class="creator-preview">
         <CardComponent
           
-          :model="cards[0]"
-          :image-u-r-l="cardImgs[0]"
+          :model="cards[2]"
+          :image-u-r-l="cardImgs[2]"
         />
       </div>
+    </div>
 
+    <div class="about-left-card">
+     <div class="creator-preview">
+        <CardComponent
+          
+          :model="cards[3]"
+          :image-u-r-l="cardImgs[3]"
+        />
+      </div>
+      <div>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+      </div>
+    </div>
+
+    <div class="about-right-card">
+
+      <div>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+      </div>
+      <div class="creator-preview">
+        <CardComponent
+          
+          :model="cards[4]"
+          :image-u-r-l="cardImgs[4]"
+        />
+      </div>
     </div>
   </div>
 
@@ -69,15 +93,15 @@
 
 <script>
 import CardComponent from '../CardComponent'
-import { sampleImg, communityImg, communityCard } from '../utils.js'
+import { communityCard, dollyCard, belloCard, timeDeviceCard, botCommandCard, communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg } from '../sampleCards.js'
 
 export default {
   name: 'AboutPage',
   components: {CardComponent},
   data () {
     return {
-      cards: [communityCard],
-      cardImgs: [communityImg, sampleImg]
+      cards: [communityCard, dollyCard, timeDeviceCard, belloCard, botCommandCard],
+      cardImgs: [communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg]
     }
   }
 }
@@ -95,7 +119,7 @@ export default {
 }
 .about-left-card {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     gap: 2rem 4rem;
     @media (min-width: 480px) {
@@ -104,7 +128,7 @@ export default {
   }
 .about-right-card {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
     gap: 2rem 4rem;
     @media (min-width: 480px) {

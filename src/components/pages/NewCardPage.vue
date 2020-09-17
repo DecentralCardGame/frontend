@@ -413,7 +413,8 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx, saveContentToCardWithIdTx } from '../cardChain.js'
-import { sampleImg, emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js'
+import { emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js'
+import { sampleGradientImg } from '../sampleCards.js'
 
 export default {
   name: 'NewCardPage',
@@ -426,7 +427,7 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
-      cardImageUrl: sampleImg,
+      cardImageUrl: sampleGradientImg,
       model: emptyCard,
       cardID: 0
     }
@@ -617,14 +618,14 @@ export default {
           localStorage.cardDraft = ''
           localStorage.cardImg = ''
           this.model = emptyCard
-          this.cardImageUrl = sampleImg
+          this.cardImageUrl = sampleGradientImg
         })
       } else {
         saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
           localStorage.cardDraft = ''
           localStorage.cardImg = ''
           this.model = emptyCard
-          this.cardImageUrl = sampleImg
+          this.cardImageUrl = sampleGradientImg
         })
       }
     },

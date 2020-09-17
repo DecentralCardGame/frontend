@@ -73,7 +73,7 @@ import state from '../cardState'
 import GalleryModal from '../GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard, getCardList, voteCardTx, getVotableCards } from '../cardChain.js'
-import { sampleImg, saveCardAsPng } from '../utils.js'
+import { saveCardAsPng } from '../utils.js'
 
 const cardsPerPage = 20
 
@@ -128,9 +128,6 @@ export default {
         .then(() => {
           this.fillPage()
         })
-    },
-    getSampleImg () {
-      return sampleImg
     },
     getNextCard () {
       if (this.pageId + this.currentId >= this.cardList.length) return

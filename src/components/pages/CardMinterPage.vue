@@ -37,7 +37,8 @@ import * as R from 'ramda'
 import { saveAs } from 'file-saver'
 import * as svg1 from 'save-svg-as-png'
 import CardComponent from '@/components/CardComponent'
-import { sampleCard, sampleImg, uploadImg } from '../utils.js'
+import { uploadImg } from '../utils.js'
+import { sampleCard, sampleGradientImg } from '../sampleCards.js'
 
 export default {
   name: 'CardMinter',
@@ -45,7 +46,7 @@ export default {
   data () {
     return {
       cards: [sampleCard],
-      cardImgs: [sampleImg]
+      cardImgs: [sampleGradientImg]
     }
   },
   methods: {
@@ -110,7 +111,7 @@ export default {
         let newCards = JSON.parse(this.result)
 
         this.cards = []
-        this.cardImgs = Array(newCards.length).fill(sampleImg)
+        this.cardImgs = Array(newCards.length).fill(sampleGradientImg)
 
         newCards.forEach(card => {
           that.cards.push(card)
