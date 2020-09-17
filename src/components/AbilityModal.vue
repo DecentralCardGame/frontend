@@ -182,8 +182,10 @@
                     let rulesPath = pathAtSelection
                     let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
-                    console.log('this.ability clickedBtn', this.ability)
+                    
                     updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+                    this.attachToAbility(['interaction'], this.ability.interaction)
+                    console.log('this.ability after updateInteraction', this.ability)
                     if (objAtSelection.singleUse) {
                         this.attachToAbility(this.dialog.btn.abilityPath, {singleUse: selection.index})
                     } else {
@@ -246,7 +248,7 @@
                 if (!objAtSelection.interactionText) {
                     console.log('no interactiontext')
                     let newAbility = {
-                        interaction: createInteraction('Yes §TargetEffect Like', [], this.dialog.rulesPath, this.$cardRules)
+                        interaction: createInteraction('Yes §TargetEffect Like', ['TargetEffect'], this.dialog.rulesPath, this.$cardRules)
                     }
                     newAbility.clickedBtn = newAbility.interaction[0].btn
                     newAbility[selection.index] = {
@@ -263,7 +265,7 @@
 
                     // if there is no interaction text, don't close modal and present new options
                     this.dialog.preventClose = true
-                    this.dialog.btn = { abilityPath: [] }
+                    this.dialog.btn = { abilityPath: ['TargetEffect'] }
                     this.dialog.interactionText = objAtSelection.interactionText
                     this.dialog.title = objAtSelection.name
                     this.dialog.description = objAtSelection.description

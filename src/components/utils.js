@@ -112,6 +112,8 @@ export function updateInteraction (ability, id, newInteraction) {
   ability.interaction.forEach((item, idx) => {
     item.btn.id = idx
   })
+
+  console.log('ability.interaction after update:', ability.interaction)
 }
 
 export function atPath(cardRules, path) {
