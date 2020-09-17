@@ -71,7 +71,7 @@ export default {
       let atRules = R.curry(atPath)(this.$cardRules)
       let atAbility = R.curry(atPath)(ability)
 
-      index; // currently not in use
+      index; // currently not in use TODO check if it should be removed alltogether
       this.ability.clickedBtn = btn
 
       let node = atRules(btn.rulesPath)
