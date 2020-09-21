@@ -13,30 +13,25 @@
       You are right now on the page of the game Crowd Control, which is the product of our decentralized autonomous organization (DAO).
       <br><br>
       </div>
-
       <div class="creator-preview">
         <CardComponent
-          
           :model="cards[0]"
           :image-u-r-l="cardImgs[0]"
         />
       </div>
-
     </div>
-    <div class="about-left-card">
 
+    <div class="about-left-card">
       <div class="creator-preview">
         <CardComponent
-          
           :model="cards[1]"
           :image-u-r-l="cardImgs[1]"
         />
       </div>
-
       <div>
       Crowd Control has unique game mechanics. <br>
       These mechanics allow automatic balancing by you, the players and provide a modern fast paced gameplay. <br>
-      In Crowd Control you don't have to wait for others to end their turn. We have simultaneous turns, this means a lot less waiting for your turn. <br><br>
+      In Crowd Control you don't have to wait for others to end their turn. We have simultaneous turns, this means you don't have to wait each turn. <br>
       Crowd Control balances cards continuously. <br>
       There are no cards, which are too strong for all time and need to be banned because of that.<br>
       There are no cards, which are useless forever and never see the light of play. <br>
@@ -47,14 +42,19 @@
       In other collectible card games players create their own alternate art or even whole cards but can never play these cards legally. We change that.
       </div>
     </div>
+
     <div class="about-right-card">
 
       <div>
-      Let's have a look into these new innovations and start with game mechanics. 
+      We have 4 different types of cards. The HQ, Place, Entity and Action. <br><br>
+      <b>Action</b> cards are played and have effects that happen directly. In other games these are often called Spells or Sorceries.<br>
+      <b>Entity</b> cards stay in the game and can attack and defend. In other games these are called Monsters, Creatures or Minions. <br>
+      <b>Place</b> cards stay in the game, but cannot attack. In other games things like our Places are rare, only Planeswalkers are similar. <br>
+      <b>HQ</b> cards define your playstyle. You have only one HQ in your Deck and it is active from the beginning. It is like Commanders in Magic and Heroes in Hearthstone combined, so its impact on the archetype of a deck is even higher.<br><br>
+      You can have a look at some cards here on the page or see all of them in the <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
       </div>
       <div class="creator-preview">
         <CardComponent
-          
           :model="cards[2]"
           :image-u-r-l="cardImgs[2]"
         />
@@ -64,7 +64,6 @@
     <div class="about-left-card">
      <div class="creator-preview">
         <CardComponent
-          
           :model="cards[3]"
           :image-u-r-l="cardImgs[3]"
         />
@@ -81,7 +80,6 @@
       </div>
       <div class="creator-preview">
         <CardComponent
-          
           :model="cards[4]"
           :image-u-r-l="cardImgs[4]"
         />
