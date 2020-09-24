@@ -41,6 +41,11 @@ export default new Router({
       path: '/cardminter',
       name: 'CardMinter',
       component: CardMinter
+    },
+    {
+      path: '/cardminter/:id',
+      name: 'CardMint',
+      component: CardMinter
     }
   ]
 })

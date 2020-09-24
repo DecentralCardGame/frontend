@@ -14,7 +14,6 @@
           <CardComponent
             :model="currentCard"
             :image-u-r-l="currentCard.image"
-            
           />
         </div>
 

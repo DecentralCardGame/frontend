@@ -1,35 +1,47 @@
 <template>
-  <div
-    v-cloak
-    @drop.prevent="dropIt"
-    @dragover.prevent
-  >
-    What the hell is this? <br>
-    Well, you can drop cards in json format here to display them and drop jpgs or pngs on the cards to give them images. If you are happy with the cards you can download by clicking on them or create a print sheet of 9 cards by clicking. Optimal resolution is 780 x 500 pixel.
-    <button
-      type="button"
-      class="btn"
-      @click="bundleSVGs()"
+  <div>
+    <div v-if="$route.params.id==null"
+      v-cloak
+      @drop.prevent="dropIt"
+      @dragover.prevent
     >
-      Download Print Sheet
-    </button>
-    <div class="gallery-view">
-      <div
-        v-for="(card, index) in cards"
-        v-cloak
-        :key="index"
-        @drop.prevent="addImage($event, index)"
-        @dragover.prevent
-        @click="saveSingleCard(index)"
+      What the hell is this? <br>
+      Well, you can drop cards in json format here to display them and drop jpgs or pngs on the cards to give them images. If you are happy with the cards you can download by clicking on them or create a print sheet of 9 cards by clicking. Optimal resolution is 780 x 500 pixel.
+      <button
+        type="button"
+        class="btn"
+        @click="bundleSVGs()"
       >
-        <CardComponent
-          :id="'card'+index"
-          :model="card"
-          :image-u-r-l="cardImgs[index]"
-        />
+        Download Print Sheet
+      </button>
+      <div class="gallery-view">
+        <div
+          v-for="(card, index) in cards"
+          v-cloak
+          :key="index"
+          @drop.prevent="addImage($event, index)"
+          @dragover.prevent
+          @click="saveSingleCard(index)"
+        >
+          <CardComponent
+            :id="'card'+index"
+            :model="card"
+            :image-u-r-l="cardImgs[index]"
+          />
+        </div>
       </div>
     </div>
+
+    <div v-else>
+      <CardComponent
+        :id="'card'"
+        :model="cards[0]"
+        :image-u-r-l="cards[0].image"
+      />
+    </div>
+    
   </div>
+  
 </template>
 
 <script>
@@ -39,6 +51,7 @@ import * as svg1 from 'save-svg-as-png'
 import CardComponent from '@/components/CardComponent'
 import { uploadImg } from '../utils.js'
 import { sampleCard, sampleGradientImg } from '../sampleCards.js'
+import { parseCard, getCard } from '../cardChain.js'
 
 export default {
   name: 'CardMinter',
@@ -47,6 +60,28 @@ export default {
     return {
       cards: [sampleCard],
       cardImgs: [sampleGradientImg]
+    }
+  },
+  mounted () {
+    let id = parseInt(this.$route.params.id)
+    console.log(id)
+    if (typeof id == 'number')  {
+      
+      getCard(this.$http, this.$route.params.id)
+        .then(res => {
+          let parsedCard = parseCard(res.card)
+          console.log('currentCard', res)
+          if (parsedCard) {
+            this.cards = []
+            this.cards.push(parsedCard)
+            
+            let clickedCard = document.getElementById('card')
+            svg1.svgAsPngUri(clickedCard, {scale: 5})
+              .then(res => {
+                console.log(res)
+              })
+          }
+        })
     }
   },
   methods: {
@@ -128,40 +163,6 @@ export default {
     }
   }
 }
-/*
-function uploadImg (file, saveCallback) {
-  const reader = new FileReader()
-
-  reader.onload = function (readerEvent) {
-    var image = new Image()
-    image.onload = function () {
-      // Resize the image
-      let canvas = document.createElement('canvas')
-      let maxSize = 800
-      let width = image.width
-      let height = image.height
-      if (width > height) {
-        if (width > maxSize) {
-          height *= maxSize / width
-          width = maxSize
-        }
-      } else {
-        if (height > maxSize) {
-          width *= maxSize / height
-          height = maxSize
-        }
-      }
-      canvas.width = width
-      canvas.height = height
-      canvas.getContext('2d').drawImage(image, 0, 0, width, height)
-      let dataUrl = canvas.toDataURL('image/jpeg')
-      saveCallback(dataUrl)
-    }
-    image.src = readerEvent.target.result
-  }
-  reader.onerror = error => console.error(error)
-  reader.readAsDataURL(file)
-}*/
 </script>
 
 <style scoped>
