@@ -99,7 +99,7 @@ export const timeDeviceCard = {
     Mana: false,
     Energy: true
   },
-  CastingCost: -1,
+  CastingCost: 2,
   Health: 1
 }
 
