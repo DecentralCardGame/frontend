@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const GalleryPage = () => import('@/components/pages/GalleryPage')
 const NewCardPage = () => import('@/components/pages/NewCardPage')
 const AboutPage = () => import('@/components/pages/AboutPage')
+const TeamPage = () => import('@/components/pages/TeamPage')
 const VotingPage = () => import('../components/pages/VotingPage')
 const AccountPage = () => import('../components/pages/AccountPage')
 const CardMinter = () => import('../components/pages/CardMinterPage')
@@ -26,6 +27,11 @@ export default new Router({
       path: '/',
       name: 'About',
       component: AboutPage
+    },
+    {
+      path: '/team',
+      name: 'Team',
+      component: TeamPage
     },
     {
       path: '/me',
