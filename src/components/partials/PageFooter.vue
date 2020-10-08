@@ -32,21 +32,27 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/">
+            <router-link to="/gallery">
               <h2>Gallery</h2>
               See what is out there.
             </router-link>
           </li>
           <li>
-            <router-link to="/">
-              <h2>Community</h2>
-              Get in touch. Not physical, thooo.
+            <a href="https://discord.gg/ZKKbhUs">
+            <h2>Community</h2>
+            Get in touch. Not physical, thooo.
+            </a>
+          </li>
+          <li>
+            <router-link to="/team">
+              <h2>About Us</h2>
+              We are pretty handsome.
             </router-link>
           </li>
           <li>
-            <router-link to="/">
-              <h2>About Us</h2>
-              We are pretty handsome.
+            <router-link to="/imprint">
+              <h2>Imprint</h2>
+              Terms and Conditions *yaaawn*
             </router-link>
           </li>
         </ul>
@@ -65,12 +71,8 @@
         </div>
       </div>
       <div class="footer-terms">
-        <h2>Terms and Conditions</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
-        </p>
+        <h2></h2>
+        If you read this you made it to the end, congrats!
       </div>
     </footer>
   </div>

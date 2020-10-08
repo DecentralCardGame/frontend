@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const GalleryPage = () => import('@/components/pages/GalleryPage')
 const NewCardPage = () => import('@/components/pages/NewCardPage')
 const AboutPage = () => import('@/components/pages/AboutPage')
+const ImprintPage = () => import('@/components/pages/ImprintPage')
 const TeamPage = () => import('@/components/pages/TeamPage')
 const VotingPage = () => import('../components/pages/VotingPage')
 const AccountPage = () => import('../components/pages/AccountPage')
@@ -32,6 +33,11 @@ export default new Router({
       path: '/team',
       name: 'Team',
       component: TeamPage
+    },
+    {
+      path: '/imprint',
+      name: 'Imprint',
+      component: ImprintPage
     },
     {
       path: '/me',
