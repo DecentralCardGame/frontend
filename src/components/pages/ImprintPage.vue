@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="temp-article">
     The website is based in Germany and the owner is german, so the legal information will be given in german. However for interested visitors here are some basic infos in english: <br>
-    The backend of this website will only store your E-Mail, your password (encrypted) and your mnemonic (encrypted). We cannot recover your mnemonic, we can only reset your password. We will not sell or give away your E-Mail address in any way. 
+    The backend of this website will only store your E-Mail, your password (encrypted) and your mnemonic (encrypted). We cannot recover your mnemonic, we can only reset your password. We will not sell or give away your E-Mail address in any way.
     All other information is stored on the blockchain. The blockchain is currently a testnet, so data will be removed from time to time. Don't upload copyright infringements for cards, we will remove them as fast as possible.
     This website is only an interface to the Crowd Control blockchain. The blockchain is hosted by multiple independent individuals once the mainnet is launched.<br><br>
 
