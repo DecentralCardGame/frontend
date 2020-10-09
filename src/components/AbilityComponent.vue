@@ -38,10 +38,10 @@
     </div>
     <div class="ability-modal-container">
       <AbilityModal
-              v-show="isAbilityModalVisible"
+              v-if="isAbilityModalVisible"
               v-bind:dialog="dialog"
               v-bind:ability="ability"
-              v-on:update:ability="ability = $event"
+              @update:ability="ability = $event"
               @close="closeAbilityModal"
       />
     </div>

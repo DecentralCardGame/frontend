@@ -56,7 +56,6 @@
                               v-model="selectedString"
                             >
 
-
                             <button v-if="dialog.type === 'interface' || dialog.type === 'root'"
                               type="button"
                                     class="choice-grid-button"
