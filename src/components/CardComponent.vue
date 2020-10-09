@@ -650,7 +650,7 @@ word-spacing="0" writing-mode="lr" xml:space="preserve"
         id="text2495-3"
         :key="'flavorLine'+index"
         x="76.9"
-        :y="abilitiesLength()*20 + 156.9 + index*8"
+        :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
         fill="#000000"
         fill-opacity="1"
         stroke="none"
@@ -666,17 +666,17 @@ word-spacing="0" writing-mode="lr" xml:space="preserve"
         style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
         text-anchor="start"
         word-spacing="0"
-writing-mode="lr-tb" xml:space="preserve"
+        writing-mode="lr-tb" xml:space="preserve"
       >
         <tspan
           id="tspan2493-1"
           x="76.9"
-          :y="abilitiesLength()*20 + 156.9 + index*8"
+          :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
           fill="#000000"
           fill-opacity="1"
           stroke-width=".1"
           font-family="Montserrat"
-          font-size="5.1"
+          :font-size="fontSize(model.FlavourText)"
           font-stretch="normal"
           font-style="normal"
           font-variant="normal"
@@ -865,6 +865,11 @@ export default {
       if (!text) return text
 
       let maxLength = 45
+      if (text.length < 100)
+        maxLength = 25
+      else if (text.length < 200)
+        maxLength = 35
+      
       let lines = ['']
       let words = text.split(' ')
 
@@ -883,6 +888,22 @@ export default {
         }
       })
       return lines
+    },
+    fontSize (text) {
+      if (text.length < 100)
+        return 8.1
+      else if (text.length < 200)
+        return 6.1
+      else 
+        return 5.1
+    },
+    fontSpacing (text) {
+      if (text.length < 100)
+        return 12
+      else if (text.length < 200)
+        return 10
+      else 
+        return 8
     },
     saveSingleCard () {
       let clickedCard = document.getElementById('theCardSvg')
