@@ -108,6 +108,8 @@
             ability: {},
             abilities: []
         },
+        mounted () {
+        },
         data() {
             return {
                 selectedCount: 0,

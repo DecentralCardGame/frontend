@@ -31,11 +31,17 @@
         class="clickable-option"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
-
         {{ entry.btn.label }}
       </div>
       {{ entry.post }}
     </div>
+    
+    <span
+      class="text-close"
+      @click="deleteAbility()"
+    >
+      X
+    </span>
     <div class="ability-modal-container">
       <AbilityModal
               v-if="isAbilityModalVisible"
@@ -229,6 +235,10 @@ export default {
       this.ability = ability
       this.$emit('update:ability', ability)
     },
+    deleteAbility () {
+      this.ability = null
+      this.$emit('update:ability', null)
+    },
     closeAbilityModal () {
       this.isAbilityModalVisible = false
     }
@@ -259,5 +269,9 @@ export default {
   .ability-modal-container {
     position: relative;
     z-index: 3;
+  }
+
+  .text-close {
+  cursor: pointer;
   }
 </style>
