@@ -20,7 +20,7 @@
       <div class="content">
         <ul class="menu">
           <li>
-            <router-link to="/about">
+            <router-link to="/">
               <h2>The Game</h2>
               Rules, Ideas and historical Context.
             </router-link>
@@ -39,8 +39,26 @@
           </li>
           <li>
             <a href="https://discord.gg/ZKKbhUs">
-            <h2>Community</h2>
+            <h2>Community Discord</h2>
             Get in touch. Not physical, thooo.
+            </a>
+          </li>
+          <li>
+            <a href="https://t.me/DecentralCardNetwork">
+            <h2>Telegram</h2>
+            for 'crypto enthusiasts'
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/DecentralCardGame">
+            <h2>Github</h2>
+            Checkout our codebase
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
+            <h2>Whitepaper</h2>
+            Read how it all started
             </a>
           </li>
           <li>
