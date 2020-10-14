@@ -12,11 +12,11 @@
 
         <p>this awesome community and have tons of fun.</p>
       </div>
-      <div class="triangle-pre" />
-      <div class="square-pre" />
+      <!-- <div class="triangle-pre" /> -->
+      <!-- <div class="square-pre" /> -->
     </div>
     <footer>
-      <div class="triangle" />
+      <!-- <div class="triangle" /> -->
       <div class="content">
         <ul class="menu">
           <li>
