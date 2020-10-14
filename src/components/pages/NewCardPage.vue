@@ -257,7 +257,7 @@
           <p>In this step, you craft the heart of your card. Press the button to add <b>abilities / effects</b> to your card.</p>
           <div>
             <div
-                v-for="ability in abilities"
+                v-for="(ability, index) in abilities"
                 :key="ability.ability"
             >
               <AbilityComponent
@@ -265,7 +265,7 @@
                   v-bind:ability="ability"
                   v-bind:dialog="abilityDialog"
                   v-bind:abilities="abilities"
-                  @update:ability="updateAbility($event)"
+                  @update:ability="updateAbility($event, index)"
               />
             </div>
           </div>
@@ -413,7 +413,7 @@ import AbilityComponent from '../AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
 import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx, saveContentToCardWithIdTx } from '../cardChain.js'
-import { emptyCard, notify, uploadImg, climbRulesTree, atPath } from '../utils.js'
+import { emptyCard, notify, uploadImg, atPath } from '../utils.js'
 import { sampleGradientImg } from '../sampleCards.js'
 
 export default {
@@ -472,12 +472,8 @@ export default {
         }
 
         let newAbility = {
-          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'Action' ? 'Effects' : 'Abilities']
+          path: ['children', this.getRulesType(), 'children', this.getRulesType() === 'Action' ? 'Effects' : 'Abilities', 'children', this.getRulesType() === 'Action' ? 'Effect' : 'Ability', 'children']
         }
-
-        console.log(newAbility)
-
-        newAbility.path = climbRulesTree(this.$cardRules, newAbility.path)
 
         let options = atRules(newAbility.path)
 
@@ -490,8 +486,13 @@ export default {
           abilityPath: []
         }
 
+        // this is a bugfix, previous selections are stripped off (they shouldn't be there though)
+        R.forEachObjIndexed(function(option) {
+          if (option.selected)
+            delete option.selected
+        }, dialog.options)
+        
         this.abilityDialog = dialog
-
       } else {
         console.log('modal type unknown: ', type)
       }
@@ -500,8 +501,11 @@ export default {
       console.log('ability after close modal: ', this.ability)
       this.isAbilityModalVisible = false
     },
-    updateAbility($event) {
+    updateAbility($event, index) {
       this.ability = $event
+      if ($event === null) {
+        this.abilities.splice(index, 1)
+      }
     },
     resetAbilities () {
       this.abilities = []
