@@ -145,6 +145,8 @@ export default {
   }
 }
 .about-left-card {
+    align-items: center;
+    align-self: center;
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
@@ -154,6 +156,8 @@ export default {
     }
   }
 .about-right-card {
+    align-items: center;
+    align-self: center;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
@@ -172,7 +176,7 @@ export default {
     }
   }
 .creator-preview {
-  max-height: 30rem;
+
 }
 h2 {
   font-size: 1.75rem;
