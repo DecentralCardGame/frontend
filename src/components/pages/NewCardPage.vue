@@ -1,7 +1,7 @@
 <template>
   <div class="card-generator-container">
-    <h1 align="center">Card Creator</h1>
-    <p align="center">With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
+    <h2 class="header--h2">Card Creator</h2>
+    <p class="header--p">With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
     takes you through the whole process.</p>
     <br>
     <div class="progress-container">
@@ -448,7 +448,7 @@ export default {
     }
     if (localStorage.cardImg) {
       this.cardImageUrl = JSON.parse(localStorage.cardImg)
-    }    
+    }
   },
   methods: {
     showBuySchemeModal () {
@@ -491,7 +491,7 @@ export default {
           if (option.selected)
             delete option.selected
         }, dialog.options)
-        
+
         this.abilityDialog = dialog
       } else {
         console.log('modal type unknown: ', type)

@@ -214,8 +214,6 @@ export default {
       text-align: center;
       cursor: pointer;
       text-decoration: none;
-
-
       display: inline-block;
       vertical-align: middle;
       -webkit-transform: perspective(1px) translateZ(0);
@@ -251,6 +249,11 @@ export default {
       &:hover:before, &:focus:before, &:active:before {
         -webkit-transform: scaleX(1);
         transform: scaleX(1);
+      }
+      @media (max-width: 480px) {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
       }
     }
     &.exposed {
@@ -299,10 +302,11 @@ export default {
   .menu-button {
     @media (min-width: 480px) {
       display: none;
+      width: 100%;
     }
     position: absolute;
-    right: 1em;
-    top: 1em;
+    right: 1.5em;
+    top: 1.5em;
   }
 
   .hide-menu {

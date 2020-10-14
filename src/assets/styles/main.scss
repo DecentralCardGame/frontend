@@ -211,3 +211,21 @@ h1 {
     font-size: 1.25rem;
   }
 }
+
+.header--h2 {
+  margin: 0 0 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+  font-size: 2.441em;
+  text-align: center;
+  @media (max-width: 480px) {
+    margin: 0.5rem 0 0.5rem;
+  }
+}
+.header--p {
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 100%;
+  text-align: center;
+}

@@ -154,6 +154,9 @@ export default {
     @media (min-width: 480px) {
       grid-template-areas: "creator-input creator-preview";
     }
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
   }
 .about-right-card {
     align-items: center;
@@ -164,6 +167,9 @@ export default {
     gap: 2rem 4rem;
     @media (min-width: 480px) {
       grid-template-areas: "creator-input creator-preview";
+    }
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
     }
   }
 .about-both-card {

@@ -142,7 +142,7 @@ export default {
   .pre-footer-content p {
     margin: 0 1.5rem;
     @media (max-width: 480px) {
-      margin: 0.5rem 1.5rem;
+      margin: 0.25rem 0.5rem;
     }
   }
 
@@ -152,7 +152,7 @@ export default {
     margin: -0.5em 0;
 
     @media (max-width: 480px) {
-      margin: 0;
+      margin: 0.25rem 0;
       font-size: 2em;
     }
   }
@@ -276,6 +276,11 @@ export default {
 
   .other > img {
     margin-top: 2rem;
+    @media (max-width: 480px) {
+      display: block;
+      margin: 1rem 0;
+      width: 100%;
+    }
   }
 
   .footer-copyright {

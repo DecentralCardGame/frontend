@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 align="center">Card Voting</h1>
-    <p align="center">Take part in the action and share your opinions about community cards.</p>
+    <h2 class="header--h2">Card Voting</h2>
+    <p class="header--p">Take part in the action and share your opinions about community cards.</p>
     <br>
     <div class="voter">
       <div

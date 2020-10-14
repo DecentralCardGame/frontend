@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 align="center">Gallery</h1>
-    <p align="center">In the gallery, you can view cards that were created by the community.</p>
+    <h2 class="header--h2">Gallery</h2>
+    <p class="header--p">In the gallery, you can view cards that were created by the community.</p>
     <br>
       <div class="button-container">
         <button v-show="browsingBackward" @click="prevPage">back</button>
