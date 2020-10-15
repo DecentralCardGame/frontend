@@ -486,7 +486,7 @@ export default {
           abilityPath: []
         }
 
-        // this is a bugfix, previous selections are stripped off (they shouldn't be there though)
+        // this is the bugfix for replay selection bug
         R.forEachObjIndexed(function(option) {
           if (option.selected)
             delete option.selected

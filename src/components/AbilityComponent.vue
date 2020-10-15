@@ -223,6 +223,13 @@ export default {
             console.error('node.type is unknown')
             break
         }
+
+        // this is the bugfix for replay selection bug
+        R.forEachObjIndexed(function(option) {
+          if (option.selected)
+            delete option.selected
+        }, this.dialog.options)
+
         console.log('created dialog: ', this.dialog)
       } else {
         console.error('node.type not defined')
