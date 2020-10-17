@@ -164,12 +164,14 @@ export default {
       this.currentId = 0
       this.cards = []
       this.fillPage()
+      window.scrollTo(0,0);
     },
     prevPage () {
       this.pageId -= cardsPerPage
       this.currentId = 0
       this.cards = []
       this.fillPage()
+      window.scrollTo(0,0);
     },
     showGalleryModal () {
       this.isGalleryModalVisible = true
