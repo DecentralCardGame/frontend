@@ -279,6 +279,11 @@ export default {
   }
 
   .text-close {
-  cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.25rem;
+    line-height: 100%;
   }
 </style>
