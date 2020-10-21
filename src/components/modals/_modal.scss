@@ -1,0 +1,152 @@
+@import "../../assets/styles/variables";
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: $white;
+  text-shadow: none;
+  box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 480px) {
+    height: 100vh;
+  }
+}
+
+.modal-header,
+.modal-footer {
+  padding: $font-size;
+  display: flex;
+}
+
+.modal-header {
+  border-bottom: $border-thickness solid $red;
+  font-weight: bold;
+  color: $red;
+  justify-content: space-between;
+}
+
+.modal-body {
+  position: relative;
+  padding: ($font-size / 2);
+  border-bottom: $border-thickness solid $red;
+}
+
+.btn-close {
+  border: none;
+  font-size: $font-size;
+  padding: $font-size / 4;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+}
+
+.btn-green {
+  background-color: transparent;
+  border: none;
+  color: $black;
+  transition: all $animation-duration ease-out;
+
+  &:after {
+    z-index: -1;
+    background: linear-gradient(to right, #4AAE9B 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+  }
+
+  &:hover {
+    color: $white;
+
+    &:after {
+      background-position: left bottom;
+    }
+  }
+}
+
+.btn-teal {
+  background-color: transparent;
+  border: none;
+  color: $black;
+  transition: all $animation-duration ease-out;
+
+  &:after {
+    z-index: -1;
+    background: linear-gradient(to right, #12D1D1 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+  }
+
+  &:hover {
+    color: $white;
+
+    &:after {
+      background-position: left bottom;
+    }
+  }
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.choice-grid-button {
+  margin: 0;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: $animation-duration;
+  transition-duration: $animation-duration;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: $animation-duration;
+    transition-duration: $animation-duration;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+
+  &:hover, &:focus, &:active {
+    color: $white;
+  }
+
+  &:hover:before, &:focus:before, &:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+
+  &:after {
+    box-shadow: none;
+    transform: skewX(0);
+  }
+}
+

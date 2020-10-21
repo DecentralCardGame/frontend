@@ -2,81 +2,81 @@
   <transition name="modal-fade">
     <div class="modal-backdrop">
       <div
-        class="modal"
-        role="dialog"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDescription"
+          aria-describedby="modalDescription"
+          aria-labelledby="modalTitle"
+          class="modal"
+          role="dialog"
       >
         <header
-          id="modalTitle"
-          class="modal-header"
+            id="modalTitle"
+            class="modal-header"
         >
           <slot name="header">
             Card Interactions
             <button
-              type="button"
-              class="btn-close"
-              aria-label="Close modal"
-              @click="close"
+                aria-label="Close modal"
+                class="btn-close"
+                type="button"
+                @click="close"
             >
               x
             </button>
           </slot>
         </header>
         <section
-          id="modalDescription"
-          class="modal-body choice-grid"
+            id="modalDescription"
+            class="modal-body choice-grid"
         >
           <button
-            type="button"
-            class="choice-grid-button"
-            aria-label="Close modal"
-            @click="download(); close();"
+              aria-label="Close modal"
+              class="choice-grid-button"
+              type="button"
+              @click="download(); close();"
           >
             Download PNG
           </button>
 
           <button v-if="isOwner"
-            type="button"
+                  aria-label="Close modal"
                   class="choice-grid-button"
-            aria-label="Close modal"
-            @click="edit(); close();"
+                  type="button"
+                  @click="edit(); close();"
           >
             Edit Card
           </button>
 
           <button v-if="canVote"
-            type="button"
+                  aria-label="Close modal"
                   class="choice-grid-button"
-            aria-label="Close modal"
-            @click="voteOP(); close();"
+                  type="button"
+                  @click="voteOP(); close();"
           >
             Vote Overpowered
           </button>
 
           <button v-if="canVote"
-            type="button"
+                  aria-label="Close modal"
                   class="choice-grid-button"
-            aria-label="Close modal"
-            @click="voteUP(); close();"
+                  type="button"
+                  @click="voteUP(); close();"
           >
             Vote Underpowered
           </button>
 
           <button v-if="canVote"
-            type="button"
+                  aria-label="Close modal"
                   class="choice-grid-button"
-            aria-label="Close modal"
-            @click="voteFair(); close();"
+                  type="button"
+                  @click="voteFair(); close();"
           >
             Vote Fair Enough
           </button>
 
           <button v-if="canVote"
-            type="button"
+                  aria-label="Close modal"
                   class="choice-grid-button"
-            aria-label="Close modal"
-            @click="voteInappropriate(); close();"
+                  type="button"
+                  @click="voteInappropriate(); close();"
           >
             Vote Inappropriate
           </button>
@@ -96,35 +96,35 @@ export default {
     canVote: Boolean,
     isOwner: Boolean
   },
-  data () {
+  data() {
     return {
       currentPrice: -1,
       currentBid: -1,
       creditsAvailable: -1
     }
   },
-  mounted () {
+  mounted() {
   },
   methods: {
-    close () {
+    close() {
       this.$emit('close')
     },
-    download () {
+    download() {
       this.$emit('download')
     },
-    edit () {
+    edit() {
       this.$emit('edit')
     },
-    voteOP () {
+    voteOP() {
       this.$emit('voteOP')
     },
-    voteUP () {
+    voteUP() {
       this.$emit('voteUP')
     },
-    voteFair () {
+    voteFair() {
       this.$emit('voteFair')
     },
-    voteInappropriate () {
+    voteInappropriate() {
       this.$emit('voteInappropriate')
     },
   }
@@ -132,151 +132,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/variables";
-
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  background: $white;
-  text-shadow: none;
-  box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 rgba(0, 0, 0, 0.25);
-  overflow-x: auto;
-  display: flex;
-  flex-direction: column;
-  @media (max-width: 480px) {
-    height: 100vh;
-  }
-}
-
-.modal-header,
-.modal-footer {
-  padding: $font-size;
-  display: flex;
-}
-
-.modal-header {
-  border-bottom: $border-thickness solid $red;
-  font-weight: bold;
-  color: $red;
-  justify-content: space-between;
-}
-
-.modal-body {
-  position: relative;
-  padding: ($font-size / 2);
-  border-bottom: $border-thickness solid $red;
-}
-
-.btn-close {
-  border: none;
-  font-size: $font-size;
-  padding: $font-size / 4;
-  cursor: pointer;
-  font-weight: bold;
-  background: transparent;
-}
-
-.btn-green {
-  background-color: transparent;
-  border: none;
-  color: $black;
-  transition: all $animation-duration ease-out;
-
-  &:after {
-    z-index: -1;
-    background: linear-gradient(to right, #4AAE9B 50%, $white 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-  }
-
-  &:hover {
-    color: $white;
-
-    &:after {
-      background-position: left bottom;
-    }
-  }
-}
-
-.btn-teal {
-  background-color: transparent;
-  border: none;
-  color: $black;
-  transition: all $animation-duration ease-out;
-
-  &:after {
-    z-index: -1;
-    background: linear-gradient(to right, #12D1D1 50%, $white 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-  }
-
-  &:hover {
-    color: $white;
-
-    &:after {
-      background-position: left bottom;
-    }
-  }
-}
-
-.choice-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.choice-grid-button {
-  margin: 0;
-  width: 100%;
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  position: relative;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: $animation-duration;
-  transition-duration: $animation-duration;
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $white;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: 0 50%;
-    transform-origin: 0 50%;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-duration: $animation-duration;
-    transition-duration: $animation-duration;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-  }
-  &:hover, &:focus, &:active {
-    color: $white;
-  }
-  &:hover:before, &:focus:before, &:active:before {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
-  &:after {
-    box-shadow: none;
-    transform: skewX(0);
-  }
-}
+@import "modal";
 </style>
 
