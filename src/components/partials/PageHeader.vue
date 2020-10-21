@@ -7,10 +7,11 @@
       Discuss the latest News or simply join our growing Community <b>Discord</b>. We would love to hear your voice.
     </a>
     <router-link
+        class="account-box"
       v-if="$store.getters.loggedIn"
       to="/me"
     >
-      <button>My Account</button>
+      <button>My Account (42 Credits)</button>
     </router-link>
   </header>
 </template>
@@ -29,5 +30,11 @@ export default {
     padding: $font-size * 0.5;
     text-align: center;
     border-bottom: $border-thickness-bold solid $white;
+  }
+
+  .account-box {
+    position: absolute;
+    top: 0;
+    right: 2rem;
   }
 </style>

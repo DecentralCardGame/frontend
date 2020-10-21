@@ -1,7 +1,7 @@
 <template>
   <div class="card-generator-container">
-    <h2 class="header--h2">Card Creator</h2>
-    <p class="header--p">With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
+    <h2 class="header__h2">Card Creator</h2>
+    <p class="header__p">With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
     takes you through the whole process.</p>
     <br>
     <div class="progress-container">
@@ -306,7 +306,7 @@
           >
           <label
             for="file"
-            class="button-file"
+            class="button--file"
           >Choose a file</label>
           <span class="creator-text">
             My <b>flavor</b> is best expressed by

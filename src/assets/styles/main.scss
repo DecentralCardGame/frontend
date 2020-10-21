@@ -179,7 +179,7 @@ h1 {
   font-weight: bold;
 }
 
-.temp-article {
+.article-temp {
   font-weight: 400;
   line-height: 1.65;
   font-size: 100%;
@@ -205,14 +205,14 @@ h1 {
 
   h5 {font-size: 1.25em;}
 
-  small, .text_small {font-size: 0.8em;}
+  small, .text--small {font-size: 0.8em;}
 
-  .text_big {
+  .text--big {
     font-size: 1.25rem;
   }
 }
 
-.header--h2 {
+.header__h2 {
   margin: 0 0 0.5rem;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
@@ -223,7 +223,8 @@ h1 {
     margin: 0.5rem 0 0.5rem;
   }
 }
-.header--p {
+
+.header__p {
   font-weight: 400;
   line-height: 1.65;
   font-size: 100%;

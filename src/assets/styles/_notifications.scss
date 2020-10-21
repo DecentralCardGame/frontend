@@ -1,31 +1,27 @@
+@import "variables";
 
 .notifications {
   width: 450px !important;
 }
 
-.fail-notification {
-  padding: 10px;
-  margin: 0 5px 5px;
-  border-left: 5px solid #FF3C3C;
-  font-size: 16px;
-  color: #FFFFFF;
+.notification {
+  padding: $font-size/2;
+  margin: 0 $font-size/2 $font-size/2;
+  font-size: $font-size;
+  color: $white;
+}
+
+.notification--alert {
+  border-left: $border-thickness-bold solid #FF3C3C;
   background: #D61224 !important;
 }
 
-.info-notification {
-  padding: 10px;
-  margin: 0 5px 5px;
-  border-left: 5px solid $black;
-  font-size: 16px;
-  color: #FFFFFF;
+.notification--info {
+  border-left: $border-thickness-bold solid $black;
   background: $dark-blue !important;
 }
 
-.success-notification {
-  padding: 10px;
-  margin: 0 5px 5px;
-  border-left: 5px solid #0ea54b;
-  font-size: 16px;
-  color: #FFFFFF;
+.notification--success {
+  border-left: $border-thickness-bold solid #0ea54b;
   background: #25d612 !important;
 }

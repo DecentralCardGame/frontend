@@ -1,8 +1,8 @@
 <template>
-  <div class="temp-article">
+  <div class="article-temp">
     <div class="hero">
       <h1>Welcome to Crowd Control</h1>
-      <p class="text_big">Crowd Control is a trading card game, which gives you full ownership of your cards AND gives the community full ownership of the game. This means we are creating this together. Any player can design their own trading cards. Any player may participate in the process of balancing the game by voting on cards.</p>
+      <p class="text--big">Crowd Control is a trading card game, which gives you full ownership of your cards AND gives the community full ownership of the game. This means we are creating this together. Any player can design their own trading cards. Any player may participate in the process of balancing the game by voting on cards.</p>
       <p>Scroll down to learn more about this awesome game!</p>
     </div>
     <div class="about-right-card">

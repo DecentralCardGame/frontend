@@ -1,5 +1,5 @@
 <template>
-  <div class="temp-article">
+  <div class="article-temp">
     <div class="team-left">
       <div class="image-cropper">
         <img src="../../assets/patrick.png" class="rounded" />

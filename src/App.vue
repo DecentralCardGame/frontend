@@ -17,17 +17,17 @@
     <notifications
       group="success"
       position="bottom right"
-      classes="success-notification"
+      classes="notification notification--success"
     />
     <notifications
       group="info"
       position="bottom right"
-      classes="info-notification"
+      classes="notification notification--info"
     />
     <notifications
       group="fail"
       position="bottom right"
-      classes="fail-notification"
+      classes="notification notification--alert"
     />
     <PageFooter />
   </div>
