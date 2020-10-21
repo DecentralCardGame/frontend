@@ -9,7 +9,7 @@
         class="box"
       >
         <div
-          class="card"
+          class="gallery__view__card"
         >
           <CardComponent
             :model="currentCard"
@@ -173,7 +173,7 @@ export default {
 .voter {
   min-height: 10vh;
 }
-.card {
+.gallery__view__card {
   margin: auto;
   width: 50%;
   max-width:500px;

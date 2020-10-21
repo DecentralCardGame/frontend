@@ -1,7 +1,7 @@
 <template>
   <div class="article-temp">
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/patrick.png" class="rounded" />
       </div>
       <div>
@@ -23,8 +23,8 @@
       </div>
     </div>
 
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/marius.png" class="rounded" />
       </div>
       <div>
@@ -46,8 +46,8 @@
       </div>
     </div>
 
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/thilo.png" class="rounded" />
       </div>
       <div>
@@ -65,8 +65,8 @@
       </div>
     </div>
 
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/anna.png" class="rounded" />
       </div>
       <div>
@@ -82,8 +82,8 @@
       </div>
     </div>
 
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/jannik.png" class="rounded" />
       </div>
       <div>
@@ -98,8 +98,8 @@
       </div>
     </div>
 
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/stefi.png" class="rounded" />
       </div>
       <div>
@@ -112,8 +112,8 @@
       </div>
     </div>
 
-    <div class="team-left">
-      <div class="image-cropper">
+    <div class="team-entry">
+      <div class="image--round">
         <img src="../assets/noah.png" class="rounded" />
       </div>
       <div>
@@ -145,28 +145,18 @@ export default {
 <style scoped lang="scss">
   @import "../assets/styles/variables";
 
-.hero {
-  margin: 4rem 0;
-
-  @media (max-width: 480px) {
-    margin: 0;
-  }
-}
-.image-cropper {
+.image--round {
   width: 200px;
   height: 200px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
 }
-.team-left {
+.team-entry {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr;
     gap: 2rem 4rem;
-    @media (min-width: 480px) {
-      grid-template-areas: "creator-input creator-preview";
-    }
     @media (max-width: 480px) {
       grid-template-columns: 1fr;
       gap: 0;

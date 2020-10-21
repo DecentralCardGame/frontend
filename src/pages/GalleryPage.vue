@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gallery">
     <h2 class="header__h2">Gallery</h2>
     <p class="header__p">In the gallery, you can view cards that were created by the community.</p>
     <br>
@@ -11,7 +11,7 @@
         </button>
         <button v-show="browsingForward" @click="nextPage">next</button>
       </div>
-      <div v-show="filters.visible" class="filter-box">
+      <div v-show="filters.visible" class="gallery__filter-box">
         <select v-model="filters.status">
           <option disabled value="">select status</option>
           <option>prototype</option>
@@ -26,7 +26,7 @@
         <br>
         <button v-show="filters.visible" @click="loadCardList">Apply</button>
       </div>
-    <div class="gallery-view">
+    <div class="gallery__view">
       <div
         v-for="(card, index) in cards"
         :key="index"
@@ -40,7 +40,7 @@
           :id="'card'+index"
           :model="card"
           :image-u-r-l="card.image"
-          class="card"
+          class="gallery__view__card"
           width="100%"
         />
         </div>
@@ -201,7 +201,7 @@ export default {
 <style scoped lang="scss">
 @import "../assets/styles/variables";
 
-.gallery-view {
+.gallery__view {
   margin: 1rem 0;
   text-shadow: none;
   display: grid;
@@ -211,11 +211,11 @@ export default {
   grid-row-gap: 1em;
 }
 
-.card:hover {
+.gallery__view__card:hover {
   cursor: pointer;
 }
 
-.filter-box {
+.gallery__filter-box {
   margin-top: 1rem;
   border: $border-thickness solid $white;
   padding: 1rem;

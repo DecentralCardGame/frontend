@@ -34,7 +34,7 @@
 <script>
 
 export default {
-  name: 'TeamPage',
+  name: 'ImprintPage',
   components: {},
   data () {
     return {
@@ -44,36 +44,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../assets/styles/variables";
-
-.hero {
-  margin: 4rem 0;
-
-  @media (max-width: 480px) {
-    margin: 0;
-  }
-}
-.image-cropper {
-  width: 200px;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.team-left {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr;
-    gap: 2rem 4rem;
-    @media (min-width: 480px) {
-      grid-template-areas: "creator-input creator-preview";
-    }
-}
-img {
-  display: inline;
-  margin: 0 auto;
-  height: 100%;
-  width: auto;
-  float:left;
-}
 </style>

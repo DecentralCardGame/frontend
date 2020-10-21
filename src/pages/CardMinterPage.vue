@@ -14,7 +14,7 @@
       >
         Download Print Sheet
       </button>
-      <div class="gallery-view">
+      <div class="gallery__view">
         <div
           v-for="(card, index) in cards"
           v-cloak
@@ -166,7 +166,7 @@ export default {
 </script>
 
 <style scoped>
-.gallery-view {
+.gallery__view {
   text-shadow: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
