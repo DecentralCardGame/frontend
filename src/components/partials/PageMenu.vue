@@ -1,10 +1,10 @@
 <template>
   <div>
-    <nav>
-      <div class="content">
+    <nav class="nav">
+      <div class="nav__content">
         <router-link
           to="/"
-          class="logo"
+          class="nav__logo"
         >
           <img
             alt="Crowd Control"
@@ -12,7 +12,7 @@
           >
         </router-link>
         <div
-          class="menu-button"
+          class="nav__button"
           @click="displayMenu = !displayMenu"
         >
           <svg
@@ -73,7 +73,7 @@
             v-if="!$store.getters.loggedIn"
             @click="$store.commit('toggleLoginBox')"
           >
-            <div :class="displayLoginDialogue ? 'menu-item activated' : 'menu-item'">
+            <div :class="displayLoginDialogue ? 'nav__menu__item nav__menu__item--exposed' : 'nav__menu__item '">
               Login / Join
             </div>
           </li>
@@ -82,7 +82,7 @@
     </nav>
     <div
       v-if="this.$store.getters.loginBoxVisible"
-      class="lp-dialogue"
+      class="nav__authentication-modal"
     >
       <div class="box-auth">
         <div class="box-login">
@@ -111,9 +111,9 @@ export default {
   computed: {
     showMenuClass () {
       if (this.displayMenu) {
-        return ""
+        return "nav__menu "
       } else {
-        return "hide-menu"
+        return "nav__menu nav__menu--hidden"
       }
     }
   },
@@ -123,7 +123,7 @@ export default {
 <style scoped lang="scss">
   @import "../../assets/styles/variables";
 
-  nav {
+  .nav {
     font-weight: bold;
     background-color: $blue;
     box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $red;
@@ -137,7 +137,7 @@ export default {
     }
   }
 
-  .content {
+  .nav__content {
     position: relative;
     transform: skewX(15deg);
     display: flex;
@@ -150,7 +150,7 @@ export default {
     }
   }
 
-  ul {
+  .nav__menu {
     width: auto;
     list-style-type: none;
     margin: 0;
@@ -158,57 +158,13 @@ export default {
     overflow: hidden;
   }
 
-  li {
+  .nav__menu li {
     float: left;
     @media (max-width: 480px) {
       width: 100%;
     }
 
-    /*
-    .hvr-bounce-to-right {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
-}
-.hvr-bounce-to-right:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #2098D1;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transform-origin: 0 50%;
-  transform-origin: 0 50%;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-.hvr-bounce-to-right:hover, .hvr-bounce-to-right:focus, .hvr-bounce-to-right:active {
-  color: white;
-}
-.hvr-bounce-to-right:hover:before, .hvr-bounce-to-right:focus:before, .hvr-bounce-to-right:active:before {
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-}
-     */
-
-    a, .menu-item {
+    a, .nav__menu__item {
       padding: 1.5rem;
       color: $white;
       text-align: center;
@@ -256,7 +212,7 @@ export default {
         padding-right: 0;
       }
     }
-    &.exposed {
+    &.nav__menu__item--exposed {
       transform: skewX(-15deg);
       background-color: $white;
       a {
@@ -269,7 +225,7 @@ export default {
     }
   }
 
-  .lp-dialogue {
+  .nav__authentication-modal {
     position: absolute;
     width: 60vw;
     right: 5.5rem;
@@ -283,7 +239,7 @@ export default {
     }
   }
 
-  .logo {
+  .nav__logo {
     position: relative;
     display: inline-block;
     margin: -1em 1em -2em;
@@ -299,7 +255,7 @@ export default {
     }
   }
 
-  .menu-button {
+  .nav__button {
     @media (min-width: 480px) {
       display: none;
       width: 100%;
@@ -309,7 +265,7 @@ export default {
     top: 1.5em;
   }
 
-  .hide-menu {
+  .nav__menu--hidden {
     @media (max-width: 480px) {
       display: none;
     }

@@ -10,7 +10,7 @@
       </div>
     </div>
     <main>
-      <div class="content">
+      <div class="footer__content">
         <router-view />
       </div>
     </main>

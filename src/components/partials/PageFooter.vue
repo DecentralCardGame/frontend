@@ -1,7 +1,7 @@
 <template>
   <div class="footer-container">
     <div class="pre-footer">
-      <div class="pre-footer-content">
+      <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
         <a v-if="userLoggedIn()" @click="$store.commit('toggleLoginBox')">
           <button>Join</button>
@@ -17,8 +17,8 @@
     </div>
     <footer>
       <!-- <div class="triangle" /> -->
-      <div class="content">
-        <ul class="menu">
+      <div class="footer__content">
+        <ul class="footer__menu">
           <li>
             <router-link to="/">
               <h2>The Game</h2>
@@ -74,7 +74,7 @@
             </router-link>
           </li>
         </ul>
-        <div class="other">
+        <div class="footer__other">
           <b>
             Discuss the latest News or
             simply join our growing
@@ -88,7 +88,7 @@
           >
         </div>
       </div>
-      <div class="footer-terms">
+      <div class="footer__terms">
         <h2></h2>
         If you read this you made it to the end, congrats!
       </div>
@@ -130,8 +130,8 @@ export default {
     }
   }
 
-  img {
-    user-select: none;
+  h2 {
+    font-weight: bold;
   }
 
   .pre-footer {
@@ -144,7 +144,7 @@ export default {
     text-shadow: 0.1em 0.1em 0 darken($dark-blue, 5%);
   }
 
-  .pre-footer-content {
+  .pre-footer__content {
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -155,27 +155,27 @@ export default {
       max-width: 100%;
       flex-flow: column;
     }
-  }
 
-  .pre-footer-content p {
-    margin: 0 1.5rem;
-    @media (max-width: 480px) {
-      margin: 0.25rem 0.5rem;
+    p {
+      margin: 0 1.5rem;
+      @media (max-width: 480px) {
+        margin: 0.25rem 0.5rem;
+      }
+    }
+
+    button {
+      font-weight: $font-weight;
+      font-size: 3rem;
+      margin: -0.5em 0;
+
+      @media (max-width: 480px) {
+        margin: 0.25rem 0;
+        font-size: 2em;
+      }
     }
   }
 
-  .pre-footer-content button {
-    font-weight: $font-weight;
-    font-size: 3rem;
-    margin: -0.5em 0;
-
-    @media (max-width: 480px) {
-      margin: 0.25rem 0;
-      font-size: 2em;
-    }
-  }
-
-  .content {
+  .footer__content {
     margin: auto;
     padding-top: 4rem;
     @media (max-width: 480px) {
@@ -192,7 +192,7 @@ export default {
     }
   }
 
-  .footer-terms {
+  .footer__terms {
     margin: auto;
     max-width: 70vw;
     width: 100%;
@@ -201,30 +201,24 @@ export default {
     @media (max-width: 480px) {
       max-width: 100%;
     }
-  }
-  .footer-terms h2 {
-    font-size: 2em;
+
+    h2 {
+      font-size: 2em;
+    }
   }
 
-  ul.menu {
+  .footer__menu {
     list-style-type: none;
-  }
-
-  ul.menu a {
-    color: $white;
-    text-decoration: none;
-  }
-
-  li {
-    padding-bottom: 2em;
-  }
-
-  h2 {
-    font-weight: bold;
-  }
-
-  .menu h2 {
-    font-size: 2em;
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    li {
+      padding-bottom: 2em;
+    }
   }
 
   .triangle {
@@ -269,31 +263,9 @@ export default {
     }
   }
 
-  .footer-menu {
-    display: flex;
-    justify-content: center;
-  }
-
-  .footer-menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .footer-menu li {
-    float: left;
-  }
-
-  .footer-menu li a {
-    display: block;
-    text-align: center;
-    padding: 1rem 1rem;
-    text-decoration: none;
-  }
-
-  .other > img {
+  .footer__other > img {
     margin-top: 2rem;
+    user-select: none;
     @media (max-width: 480px) {
       display: block;
       margin: 1rem 0;
@@ -301,7 +273,7 @@ export default {
     }
   }
 
-  .footer-copyright {
+  .footer__copyright {
     border-top: $border-thickness solid $white;
     padding: 1rem 0 1rem 0;
     text-align: center;

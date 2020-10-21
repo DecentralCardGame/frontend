@@ -21,7 +21,7 @@
         </select>
 
       <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
-        class="clickable-negated-option"
+        class="clickable-option--negated"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
         {{ entry.btn.label }}
@@ -262,7 +262,8 @@ export default {
     font-weight: bold;
     cursor: pointer;
   }
-  .clickable-negated-option {
+
+  .clickable-option--negated {
     text-decoration: line-through;
     display: inline-block;
     border: dotted 1px white;

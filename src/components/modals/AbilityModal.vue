@@ -1,6 +1,6 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop">
+    <div class="modal__backdrop">
       <div
           aria-describedby="modalDescription"
           aria-labelledby="modalTitle"
@@ -9,13 +9,13 @@
       >
         <header
             id="modalTitle"
-            class="modal-header"
+            class="modal__header"
         >
           <slot name="header">
             {{ dialog.title }}
             <!-- TODO --><span
               aria-label="Close modal"
-              class="btn-close"
+              class="btn--close"
               type="button"
               @click="close"
           >
@@ -25,7 +25,7 @@
         </header>
         <section
             id="modalDescription"
-            class="modal-body choice-grid"
+            class="modal__body choice-grid"
         >
           <slot name="body">
             <!-- {{ dialog.description }} -->
@@ -41,7 +41,7 @@
               >
               <button v-if="dialog.type === 'enum'"
                       aria-label="Close modal"
-                      class="choice-grid-button"
+                      class="choice-grid__button"
                       type="button"
                       @click="selectedString = option.name; addAbility();"
               >
@@ -58,7 +58,7 @@
 
               <button v-if="dialog.type === 'interface' || dialog.type === 'root'"
                       aria-label="Close modal"
-                      class="choice-grid-button"
+                      class="choice-grid__button"
                       type="button"
                       @click="option.selected = true; addAbility();"
               >
@@ -77,13 +77,13 @@
             </div>
           </slot>
         </section>
-        <footer class="modal-footer">
+        <footer class="modal__footer">
           <slot name="footer">
             {{ picked }}
           </slot>
           <button v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
                   aria-label="Close modal"
-                  class="btn-teal"
+                  class="btn--teal"
                   type="button"
                   @click="addAbility"
           >

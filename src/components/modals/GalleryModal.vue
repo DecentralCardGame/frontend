@@ -1,6 +1,6 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop">
+    <div class="modal__backdrop">
       <div
           aria-describedby="modalDescription"
           aria-labelledby="modalTitle"
@@ -9,13 +9,13 @@
       >
         <header
             id="modalTitle"
-            class="modal-header"
+            class="modal__header"
         >
           <slot name="header">
             Card Interactions
             <button
                 aria-label="Close modal"
-                class="btn-close"
+                class="btn--close"
                 type="button"
                 @click="close"
             >
@@ -25,11 +25,11 @@
         </header>
         <section
             id="modalDescription"
-            class="modal-body choice-grid"
+            class="modal__body choice-grid"
         >
           <button
               aria-label="Close modal"
-              class="choice-grid-button"
+              class="choice-grid__button"
               type="button"
               @click="download(); close();"
           >
@@ -38,7 +38,7 @@
 
           <button v-if="isOwner"
                   aria-label="Close modal"
-                  class="choice-grid-button"
+                  class="choice-grid__button"
                   type="button"
                   @click="edit(); close();"
           >
@@ -47,7 +47,7 @@
 
           <button v-if="canVote"
                   aria-label="Close modal"
-                  class="choice-grid-button"
+                  class="choice-grid__button"
                   type="button"
                   @click="voteOP(); close();"
           >
@@ -56,7 +56,7 @@
 
           <button v-if="canVote"
                   aria-label="Close modal"
-                  class="choice-grid-button"
+                  class="choice-grid__button"
                   type="button"
                   @click="voteUP(); close();"
           >
@@ -65,7 +65,7 @@
 
           <button v-if="canVote"
                   aria-label="Close modal"
-                  class="choice-grid-button"
+                  class="choice-grid__button"
                   type="button"
                   @click="voteFair(); close();"
           >
@@ -74,14 +74,14 @@
 
           <button v-if="canVote"
                   aria-label="Close modal"
-                  class="choice-grid-button"
+                  class="choice-grid__button"
                   type="button"
                   @click="voteInappropriate(); close();"
           >
             Vote Inappropriate
           </button>
         </section>
-        <footer class="modal-footer">
+        <footer class="modal__footer">
 
         </footer>
       </div>

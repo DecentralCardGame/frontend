@@ -1,6 +1,6 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop">
+    <div class="modal__backdrop">
       <div
           aria-describedby="modalDescription"
           aria-labelledby="modalTitle"
@@ -9,13 +9,13 @@
       >
         <header
             id="modalTitle"
-            class="modal-header"
+            class="modal__header"
         >
           <slot name="header">
             Card Scheme Auction
             <button
                 aria-label="Close modal"
-                class="btn-close"
+                class="btn--close"
                 type="button"
                 @click="close"
             >
@@ -25,7 +25,7 @@
         </header>
         <section
             id="modalDescription"
-            class="modal-body"
+            class="modal__body"
         >
           <slot name="body">
             Current price: {{ currentPrice }}
@@ -33,7 +33,7 @@
             You have: {{ creditsAvailable }}
           </slot>
         </section>
-        <footer class="modal-footer">
+        <footer class="modal__footer">
           <slot name="footer">
             Your bid: &nbsp;
             <input
@@ -47,7 +47,7 @@
           </slot>
           <button
               aria-label="Close modal"
-              class="btn-teal"
+              class="btn--teal"
               type="button"
               @click="buyCardScheme"
           >
