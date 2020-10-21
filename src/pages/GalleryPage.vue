@@ -69,11 +69,11 @@
 
 <script>
 import * as R from 'ramda'
-import state from '../cardState'
-import GalleryModal from '../GalleryModal.vue'
+import state from '../components/utils/cardState'
+import GalleryModal from '../components/modals/GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
-import { parseCard, getCard, getCardList, voteCardTx, getVotableCards } from '../cardChain.js'
-import { saveCardAsPng } from '../utils.js'
+import { parseCard, getCard, getCardList, voteCardTx, getVotableCards } from '../components/utils/cardChain.js'
+import { saveCardAsPng } from '../components/utils/utils.js'
 
 const cardsPerPage = 20
 
@@ -199,7 +199,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/assets/styles/variables";
+@import "../assets/styles/variables";
 
 .gallery-view {
   margin: 1rem 0;

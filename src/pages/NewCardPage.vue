@@ -405,16 +405,16 @@
 
 <script>
 import * as R from 'ramda'
-import state from '../cardState'
-import CardComponent from '../CardComponent'
-import BuySchemeModal from '../BuySchemeModal.vue'
-import AbilityModal from '../AbilityModal.vue'
-import AbilityComponent from '../AbilityComponent.vue'
+import state from '../components/utils/cardState'
+import CardComponent from '../components/CardComponent'
+import BuySchemeModal from '../components/modals/BuySchemeModal.vue'
+import AbilityModal from '../components/modals/AbilityModal.vue'
+import AbilityComponent from '../components/AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
-import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx, saveContentToCardWithIdTx } from '../cardChain.js'
-import { emptyCard, notify, uploadImg, atPath } from '../utils.js'
-import { sampleGradientImg } from '../sampleCards.js'
+import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx, saveContentToCardWithIdTx } from '../components/utils/cardChain.js'
+import { emptyCard, notify, uploadImg, atPath } from '../components/utils/utils.js'
+import { sampleGradientImg } from '../components/utils/sampleCards.js'
 
 export default {
   name: 'NewCardPage',
@@ -657,7 +657,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../assets/styles/variables";
+  @import "../assets/styles/variables";
 
   .creator {
     display: grid;

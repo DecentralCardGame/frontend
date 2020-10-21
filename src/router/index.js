@@ -3,14 +3,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const GalleryPage = () => import('@/components/pages/GalleryPage')
-const NewCardPage = () => import('@/components/pages/NewCardPage')
-const AboutPage = () => import('@/components/pages/AboutPage')
-const ImprintPage = () => import('@/components/pages/ImprintPage')
-const TeamPage = () => import('@/components/pages/TeamPage')
-const VotingPage = () => import('../components/pages/VotingPage')
-const AccountPage = () => import('../components/pages/AccountPage')
-const CardMinter = () => import('../components/pages/CardMinterPage')
+const GalleryPage = () => import('@/pages/GalleryPage')
+const NewCardPage = () => import('@/pages/NewCardPage')
+const AboutPage = () => import('@/pages/AboutPage')
+const ImprintPage = () => import('@/pages/ImprintPage')
+const TeamPage = () => import('@/pages/TeamPage')
+const VotingPage = () => import('../pages/VotingPage')
+const AccountPage = () => import('../pages/AccountPage')
+const CardMinter = () => import('../pages/CardMinterPage')
 
 Vue.use(Router)
 

@@ -49,10 +49,10 @@
 
 <script>
 import * as R from 'ramda'
-import CardComponent from '../CardComponent'
+import CardComponent from '../components/CardComponent'
 import VueSwing from 'vue-swing'
-import { parseCard, getCard, getVotableCards, voteCardTx } from '../cardChain.js'
-import { notify } from '../utils.js'
+import { parseCard, getCard, getVotableCards, voteCardTx } from '../components/utils/cardChain.js'
+import { notify } from '../components/utils/utils.js'
 
 export default {
   name: 'VotingPage',

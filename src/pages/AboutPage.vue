@@ -119,8 +119,8 @@
 </template>
 
 <script>
-import CardComponent from '../CardComponent'
-import { communityCard, dollyCard, belloCard, timeDeviceCard, botCommandCard, communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg } from '../sampleCards.js'
+import CardComponent from '../components/CardComponent'
+import { communityCard, dollyCard, belloCard, timeDeviceCard, botCommandCard, communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg } from '../components/utils/sampleCards.js'
 
 export default {
   name: 'AboutPage',
@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "src/assets/styles/variables";
+  @import "../assets/styles/variables";
 
 .hero {
   margin: 4rem 0;

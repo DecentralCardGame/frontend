@@ -35,7 +35,7 @@
       </div>
       {{ entry.post }}
     </div>
-    
+
     <span
       class="text-close"
       @click="deleteAbility()"
@@ -56,8 +56,8 @@
 
 <script>
 import * as R from 'ramda'
-import AbilityModal from './AbilityModal.vue'
-import { createInteraction, updateInteraction, shallowClone, atPath } from './utils.js'
+import AbilityModal from './modals/AbilityModal.vue'
+import { createInteraction, updateInteraction, shallowClone, atPath } from './utils/utils.js'
 
 export default {
   name: 'AbilityComponent',

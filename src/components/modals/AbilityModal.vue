@@ -97,7 +97,7 @@
 
 <script>
     import * as R from 'ramda'
-    import {atPath, createInteraction, filterSelection, updateInteraction, icon} from './utils.js'
+    import {atPath, createInteraction, filterSelection, updateInteraction, icon} from '../utils/utils.js'
 
     export default {
         name: 'Modal',
@@ -180,7 +180,7 @@
                     let rulesPath = pathAtSelection
                     let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
-                    
+
                     updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
                     this.attachToAbility(['interaction'], this.ability.interaction)
                     console.log('this.ability after updateInteraction', this.ability)
@@ -294,7 +294,7 @@
 </script>
 
 <style lang="scss">
-    @import "../assets/styles/variables";
+    @import "../../assets/styles/variables";
 
     .modal-backdrop {
         position: fixed;

@@ -237,7 +237,7 @@ export function icon(name) {
     item = require('../assets/icon/'+name+'.svg')
   } catch {
     if (name.length === 1) {
-      return require('../assets/icon/variable.svg')
+      return require('../../assets/icon/variable.svg')
     }
     try {
       item = require('../assets/icon/'+name+'s.svg')
@@ -246,7 +246,7 @@ export function icon(name) {
         item = require('../assets/icon/'+name+'r.svg')
       }  catch {
         return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"
-      }      
+      }
     }
   }
   return item

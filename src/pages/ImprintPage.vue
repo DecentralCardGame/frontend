@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "src/assets/styles/variables";
+  @import "../assets/styles/variables";
 
 .hero {
   margin: 4rem 0;

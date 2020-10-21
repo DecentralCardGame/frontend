@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import { buyCardSchemeTx, getGameInfo, getAccInfo } from './cardChain.js'
-import { notify } from './utils.js'
+import { buyCardSchemeTx, getGameInfo, getAccInfo } from '../utils/cardChain.js'
+import { notify } from '../utils/utils.js'
 
 export default {
   name: 'BuySchemeModal',
@@ -132,7 +132,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/styles/variables";
+@import "../../assets/styles/variables";
 
 .modal-backdrop {
   position: fixed;

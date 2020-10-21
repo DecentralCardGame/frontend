@@ -39,9 +39,9 @@
         :image-u-r-l="cards[0].image"
       />
     </div>
-    
+
   </div>
-  
+
 </template>
 
 <script>
@@ -49,9 +49,9 @@ import * as R from 'ramda'
 import { saveAs } from 'file-saver'
 import * as svg1 from 'save-svg-as-png'
 import CardComponent from '@/components/CardComponent'
-import { uploadImg } from '../utils.js'
-import { sampleCard, sampleGradientImg } from '../sampleCards.js'
-import { parseCard, getCard } from '../cardChain.js'
+import { uploadImg } from '../components/utils/utils.js'
+import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
+import { parseCard, getCard } from '../components/utils/cardChain.js'
 
 export default {
   name: 'CardMinter',
@@ -66,7 +66,7 @@ export default {
     let id = parseInt(this.$route.params.id)
     console.log(id)
     if (typeof id == 'number')  {
-      
+
       getCard(this.$http, this.$route.params.id)
         .then(res => {
           let parsedCard = parseCard(res.card)
@@ -74,7 +74,7 @@ export default {
           if (parsedCard) {
             this.cards = []
             this.cards.push(parsedCard)
-            
+
             let clickedCard = document.getElementById('card')
             svg1.svgAsPngUri(clickedCard, {scale: 5})
               .then(res => {

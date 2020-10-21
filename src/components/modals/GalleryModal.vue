@@ -132,7 +132,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/styles/variables";
+@import "../../assets/styles/variables";
 
 .modal-backdrop {
   position: fixed;

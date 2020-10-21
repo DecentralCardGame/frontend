@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import { registerAccTx, generateMnemonic } from '../cardChain.js'
-import { notify } from '../utils.js'
+import { registerAccTx, generateMnemonic } from '../utils/cardChain.js'
+import { notify } from '../utils/utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {

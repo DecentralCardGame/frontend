@@ -2,7 +2,7 @@
   <div class="article-temp">
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/patrick.png" class="rounded" />
+        <img src="../assets/patrick.png" class="rounded" />
       </div>
       <div>
       <h2>Patrick Wieth - Blockchain, Game Design and Development </h2>
@@ -25,7 +25,7 @@
 
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/marius.png" class="rounded" />
+        <img src="../assets/marius.png" class="rounded" />
       </div>
       <div>
       <h2> Marius Faust - Game Design and Development </h2>
@@ -48,7 +48,7 @@
 
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/thilo.png" class="rounded" />
+        <img src="../assets/thilo.png" class="rounded" />
       </div>
       <div>
       <h2> Thilo Billerbeck - Frontend </h2>
@@ -67,7 +67,7 @@
 
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/anna.png" class="rounded" />
+        <img src="../assets/anna.png" class="rounded" />
       </div>
       <div>
       <h2> Anna Zhu - Writer and Illustration </h2>
@@ -84,7 +84,7 @@
 
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/jannik.png" class="rounded" />
+        <img src="../assets/jannik.png" class="rounded" />
       </div>
       <div>
       <h2> Jannik Zettl - Game Designer </h2>
@@ -100,7 +100,7 @@
 
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/stefi.png" class="rounded" />
+        <img src="../assets/stefi.png" class="rounded" />
       </div>
       <div>
       <h2> Stefi Rescheleit - Illustration </h2>
@@ -114,7 +114,7 @@
 
     <div class="team-left">
       <div class="image-cropper">
-        <img src="../../assets/noah.png" class="rounded" />
+        <img src="../assets/noah.png" class="rounded" />
       </div>
       <div>
       <h2> Noah Faust - Game designer </h2>
@@ -143,7 +143,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "src/assets/styles/variables";
+  @import "../assets/styles/variables";
 
 .hero {
   margin: 4rem 0;
