@@ -36,12 +36,16 @@ body {
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-header;
+}
+
 a {
   color: $white;
 }
 
 main {
-  max-width: 70vw;
+  max-width: 55vw;
   margin: auto;
 }
 
@@ -183,12 +187,14 @@ h1 {
   font-weight: 400;
   line-height: 1.65;
   font-size: 100%;
-  p {margin-bottom: 1.15rem;}
+  p {
+    margin-bottom: 1.15rem;
+  }
 
   h1, h2, h3, h4, h5 {
     margin: 2.75rem 0 1.05rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
+    font-family: $font-family-header, sans-serif;
+    text-shadow: $border-thickness-bold $border-thickness-bold 0 $red;
     line-height: 1.15;
   }
 
@@ -213,9 +219,9 @@ h1 {
 }
 
 .header__h2 {
+  font-family: $font-family-header;
+  text-shadow: $border-thickness-bold $border-thickness-bold 0 $red;
   margin: 0 0 0.5rem;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 600;
   line-height: 1.15;
   font-size: 2.441em;
   text-align: center;

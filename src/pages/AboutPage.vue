@@ -1,11 +1,11 @@
 <template>
-  <div class="article-temp">
+  <div class="article-temp width-temp">
     <div class="hero">
       <h1>Welcome to Crowd Control</h1>
       <p class="text--big">Crowd Control is a trading card game, which gives you full ownership of your cards AND gives
         the community full ownership of the game. This means we are creating this together. Any player can design their
         own trading cards. Any player may participate in the process of balancing the game by voting on cards.</p>
-      <p>Scroll down to learn more about this awesome game!</p>
+      <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
     <div class="about about--card-right">
       <div>
@@ -24,21 +24,19 @@
           organization (DAO).
         </p>
       </div>
-      <div class="creator-preview">
         <CardComponent
+            class="about__preview"
             :model="cards[0]"
             :image-u-r-l="cardImgs[0]"
         />
-      </div>
     </div>
 
     <div class="about about--card-left">
-      <div class="creator-preview">
         <CardComponent
+            class="about__preview"
             :model="cards[1]"
             :image-u-r-l="cardImgs[1]"
         />
-      </div>
       <div>
         <h2>The Mechanics</h2>
         <p>
@@ -85,21 +83,19 @@
           .
         </p>
       </div>
-      <div class="creator-preview">
         <CardComponent
+            class="about__preview"
             :model="cards[2]"
             :image-u-r-l="cardImgs[2]"
         />
-      </div>
     </div>
 
     <div class="about about--card-left">
-      <div class="creator-preview">
         <CardComponent
+            class="about__preview"
             :model="cards[3]"
             :image-u-r-l="cardImgs[3]"
         />
-      </div>
       <div>
         <h2>The Gameplay</h2>
         <p>
@@ -141,12 +137,11 @@
           these sets.
         </p>
       </div>
-      <div class="creator-preview">
         <CardComponent
+            class="about__preview"
             :model="cards[4]"
             :image-u-r-l="cardImgs[4]"
         />
-      </div>
     </div>
   </div>
 
@@ -183,7 +178,7 @@ export default {
 @import "../assets/styles/variables";
 
 .hero {
-  margin: 4rem 0;
+  margin: 10rem 0;
   text-align: center;
   @media (max-width: 480px) {
     margin: 0;
@@ -191,7 +186,7 @@ export default {
 }
 
 .about {
-  align-items: center;
+  align-items: flex-start;
   align-self: center;
   display: grid;
   grid-template-rows: 1fr;
@@ -199,18 +194,37 @@ export default {
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
   }
+  h2 {
+    margin-top: 0;
+  }
+  svg {
+    height: $font-size * 20;
+  }
+  margin-bottom: $font-size*4;
 }
 
 .about--card-left {
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto 3fr;
+
+  .about__preview {
+    justify-self: start;
+  }
 }
 
 .about--card-right {
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr auto;
+
+  .about__preview {
+    justify-self: end;
+  }
 }
 
 .about--card-both {
   grid-template-columns: 1fr 2fr 1fr;
+}
+
+.about__preview {
+  width: auto;
 }
 
 h2 {

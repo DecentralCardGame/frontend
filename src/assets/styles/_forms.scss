@@ -20,6 +20,7 @@ button:hover {
 
 button, .button--file {
   z-index: 1;
+  font-family: $font-family-header;
   background-color: transparent;
   color: $black;
   font-size: 1em;

@@ -45,6 +45,23 @@ export default {
 </script>
 
 <style lang="scss">
+  @font-face {
+    font-family: 'Museo700-Regular';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/Museo700-Regular-webfont.woff2') format('woff2'),
+    url('/fonts/Museo700-Regular-webfont.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Museo500-Regular';
+    src: url('/fonts/Museo500-Regular-webfont.woff2') format('woff2'),
+    url('/fonts/Museo500-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
   @import "assets/styles/main.scss";
   @import "assets/styles/variables.scss";
 

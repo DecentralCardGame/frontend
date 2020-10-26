@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-wrapper">
     <nav class="nav">
       <div class="nav__content">
         <router-link
@@ -123,6 +123,11 @@ export default {
 <style scoped lang="scss">
   @import "../../assets/styles/variables";
 
+  .nav-wrapper {
+    max-width: 75vw;
+    margin: auto;
+  }
+
   .nav {
     font-weight: bold;
     background-color: $blue;
@@ -166,6 +171,7 @@ export default {
 
     a, .nav__menu__item {
       padding: 1.5rem;
+      font-size: $font-size*1.15;
       color: $white;
       text-align: center;
       cursor: pointer;
