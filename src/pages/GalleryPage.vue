@@ -73,7 +73,7 @@ import state from '../components/utils/cardState'
 import GalleryModal from '../components/modals/GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
 import { parseCard, getCard, getCardList, voteCardTx, getVotableCards } from '../components/utils/cardChain.js'
-import { saveCardAsPng } from '../components/utils/utils.js'
+import { saveCardAsPng, creditsFromCoins } from '../components/utils/utils.js'
 
 const cardsPerPage = 20
 
@@ -190,6 +190,10 @@ export default {
     },
     vote (type) {
       voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
+      .then(acc => {
+        this.creditsAvailable = creditsFromCoins(acc.coins)
+        this.$store.commit('setUserCredits', this.creditsAvailable) 
+      })
     },
     getOwnAddress () {
       return localStorage.address

@@ -23,15 +23,12 @@ import { creditsFromCoins } from '../utils/utils.js'
 export default {
   name: 'PageHeader',
     mounted () {
-      console.log('YES')
       let address = this.getAddress()
       if (address) {
         getAccInfo(this.$http, localStorage.address)
         .then(acc => {
-          
           this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)    
-          console.log(this.creditsAvailable, '=>', this.$store.getters.getUserCredits)
+          this.$store.commit('setUserCredits', this.creditsAvailable)
         })
       }
     },

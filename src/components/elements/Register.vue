@@ -50,7 +50,7 @@
 
 <script>
 import { registerAccTx, generateMnemonic } from '../utils/cardChain.js'
-import { notify } from '../utils/utils.js'
+import { notify, creditsFromCoins } from '../utils/utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {
@@ -89,6 +89,10 @@ export default {
       }
 
       registerAccTx(this.$http, this.username)
+      .then(acc => {
+        this.creditsAvailable = creditsFromCoins(acc.coins)
+        this.$store.commit('setUserCredits', this.creditsAvailable) 
+      })
 
       this.$hottub.post('/register', post)
               .then((res) => {

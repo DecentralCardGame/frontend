@@ -414,9 +414,9 @@ import AbilityModal from '../components/modals/AbilityModal.vue'
 import AbilityComponent from '../components/AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
-import {saveContentToCardWithIdTx, saveContentToUnusedCardSchemeTx} from '../components/utils/cardChain.js'
-import {atPath, emptyCard, notify, uploadImg} from '../components/utils/utils.js'
-import {sampleGradientImg} from '../components/utils/sampleCards.js'
+import { saveContentToCardWithIdTx, saveContentToUnusedCardSchemeTx } from '../components/utils/cardChain.js'
+import { atPath, emptyCard, notify, uploadImg, creditsFromCoins } from '../components/utils/utils.js'
+import { sampleGradientImg } from '../components/utils/sampleCards.js'
 
 export default {
   name: 'NewCardPage',
@@ -619,14 +619,23 @@ export default {
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
         newCard.id = this.model.id
-        saveContentToCardWithIdTx(this.$http, newCard, () => {
+        saveContentToCardWithIdTx(this.$http, newCard, () => {})
+        .then(acc => {
+          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.$store.commit('setUserCredits', this.creditsAvailable)  
+
           localStorage.cardDraft = ''
           localStorage.cardImg = ''
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
         })
+        
       } else {
-        saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {
+        saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {})
+        .then(acc => {
+          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.$store.commit('setUserCredits', this.creditsAvailable) 
+
           localStorage.cardDraft = ''
           localStorage.cardImg = ''
           this.model = emptyCard

@@ -58,37 +58,44 @@ const signAndBroadcast = R.curry( function (http, accInfoAndRawTx) {
 })
 
 export function registerAccTx (http, alias) {
-  // this tx is special because it is not signed by the user but by a special creator address
-  let reqBody = {
-    'base_req': {
-      'from': process.env.VUE_APP_CREATOR_ADDRESS,
-      'chain_id': 'testCardchain',
-      'gas': 'auto',
-      'gas_adjustment': '1.5'
-    },
-    'new_user': localStorage.address,
-    'creator': process.env.VUE_APP_CREATOR_ADDRESS,
-    'alias': alias
-  }
+  return new Promise(function(resolve, reject) {
+    // this tx is special because it is not signed by the user but by a special creator address
+    let reqBody = {
+      'base_req': {
+        'from': process.env.VUE_APP_CREATOR_ADDRESS,
+        'chain_id': 'testCardchain',
+        'gas': 'auto',
+        'gas_adjustment': '1.5'
+      },
+      'new_user': localStorage.address,
+      'creator': process.env.VUE_APP_CREATOR_ADDRESS,
+      'alias': alias
+    }
 
-  txLoop.enqueue(() => {
-    return Promise.all([getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
-      .then(responses => {
-        let accData = responses[0]
-        let rawTx = responses[1].data
-        let wallet = createWalletFromMnemonic(process.env.VUE_APP_CREATOR_MNEMONIC)
+    txLoop.enqueue(() => {
+      return Promise.all([getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
+        .then(responses => {
+          let accData = responses[0]
+          let rawTx = responses[1].data
+          let wallet = createWalletFromMnemonic(process.env.VUE_APP_CREATOR_MNEMONIC)
 
-        let signedTx = sign(rawTx, accData, wallet)
+          let signedTx = sign(rawTx, accData, wallet)
 
-        return broadcast(http, signedTx)
-          .then(() => notify.success('EPIC WIN', 'You have successfully registered in the blockchain.'))
-          .catch(() => {
-            this.$notify({
-              group: 'fail',
-              title: 'Registration failed!'
+          return broadcast(http, signedTx)
+            .then(() => {
+              notify.success('EPIC WIN', 'You have successfully registered in the blockchain.')
+              resolve(getAccInfo(http, localStorage.address))
             })
-          })
-      })
+            .catch((err) => {
+              this.$notify({
+                group: 'fail',
+                title: 'Registration failed!'
+              })
+              console.error(err)
+              reject(err)
+            })
+        })
+    })
   })
 }
 
@@ -141,8 +148,9 @@ export function buyCardSchemeTx (http, maxBid) {
   })
 }
 
-export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) {
-  return getUserInfo(http, localStorage.address)
+export function saveContentToUnusedCardSchemeTx (http, card) {
+  return new Promise(function(resolve, reject) {
+    getUserInfo(http, localStorage.address)
     .then(user => {
       if (!user.ownedCardSchemes) {
         notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
@@ -168,74 +176,87 @@ export function saveContentToUnusedCardSchemeTx (http, card, onSuccessCallback) 
       txLoop.enqueue(() => {
         return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
           .then(signAndBroadcast(http))
-          .then(res => {
+          .then(() => {
             notify.success('EPIC WIN', 'You have successfully published this card.')
-            onSuccessCallback(res)
+            resolve(getAccInfo(http, localStorage.address))
           })
           .catch(err => {
             notify.fail('FAIL HARD', err.message)
             console.error(err)
+            reject(err)
           })
       })
     })
+  })
 }
 
-export function saveContentToCardWithIdTx (http, card, onSuccessCallback) {
-  let req = {
-    'base_req': {
-      'from': localStorage.address,
-      'chain_id': 'testCardchain',
-      'gas': 'auto',
-      'gas_adjustment': '10'
-    },
-    'owner': localStorage.address,
-    'content': JSON.stringify(card.model),
-    'image': card.image,
-    'cardid': card.id,
-    'notes': card.Notes
-  }
-  txLoop.enqueue(() => {
-    return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
-      .then(signAndBroadcast(http))
-      .then(res => {
-        notify.success('EPIC WIN', 'You have successfully edited this card.')
-        onSuccessCallback(res)
-      })
-      .catch(err => {
-        notify.fail('FAIL HARD', err.message)
-        console.error(err)
-      })
+export function saveContentToCardWithIdTx (http, card) {
+  return new Promise(function(resolve, reject) {
+    let req = {
+      'base_req': {
+        'from': localStorage.address,
+        'chain_id': 'testCardchain',
+        'gas': 'auto',
+        'gas_adjustment': '10'
+      },
+      'owner': localStorage.address,
+      'content': JSON.stringify(card.model),
+      'image': card.image,
+      'cardid': card.id,
+      'notes': card.Notes
+    }
+    txLoop.enqueue(() => {
+      return Promise.all([getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
+        .then(signAndBroadcast(http))
+        .then(() => {
+          notify.success('EPIC WIN', 'You have successfully edited this card.')
+          resolve(getAccInfo(http, localStorage.address))
+        })
+        .catch(err => {
+          notify.fail('FAIL HARD', err.message)
+          console.error(err)
+          reject(err)
+        })
+    })
   })
 }
 
 export function voteCardTx (http, cardid, voteType) {
-  let req = {
-    'base_req': {
-      'from': localStorage.address,
-      'chain_id': 'testCardchain',
-      'gas': 'auto',
-      'gas_adjustment': '1.5'
-    },
-    'voter': localStorage.address,
-    'votetype': voteType,
-    'cardid': '' + cardid
-  }
+  return new Promise(function(resolve, reject) {
+    let req = {
+      'base_req': {
+        'from': localStorage.address,
+        'chain_id': 'testCardchain',
+        'gas': 'auto',
+        'gas_adjustment': '1.5'
+      },
+      'voter': localStorage.address,
+      'votetype': voteType,
+      'cardid': '' + cardid
+    }
 
-  txLoop.enqueue(() => {
-    return Promise.all([getAccInfo(http, localStorage.address), voteCardGenerateTx(http, req)])
-      .then(responses => {
-        let accData = responses[0]
-        let rawTx = responses[1].data
+    txLoop.enqueue(() => {
+      return Promise.all([getAccInfo(http, localStorage.address), voteCardGenerateTx(http, req)])
+        .then(responses => {
+          let accData = responses[0]
+          let rawTx = responses[1].data
 
-        let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+          let wallet = createWalletFromMnemonic(localStorage.mnemonic)
 
-        let signedTx = sign(rawTx, accData, wallet)
+          let signedTx = sign(rawTx, accData, wallet)
 
-        return broadcast(http, signedTx)
-          .then(() => {
-            notify.success('VOTED', 'Vote Transaction successfull!')
-          })
-      })
+          return broadcast(http, signedTx)
+            .then(() => {
+              notify.success('VOTED', 'Vote Transaction successfull!')
+              resolve(getAccInfo(http, localStorage.address))
+            })
+            .catch(err => {
+              notify.fail('FAIL HARD', err.message)
+              console.error(err)
+              reject(err)
+            })
+        })
+    })
   })
 }
 

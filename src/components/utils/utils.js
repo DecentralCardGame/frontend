@@ -156,7 +156,6 @@ export function climbRulesTree(cardRules, path) {
   return path
 }
 
-
 export function filterSelection (options) {
   let found = {}
   R.forEachObjIndexed((item, idx) => {

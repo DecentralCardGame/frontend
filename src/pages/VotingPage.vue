@@ -52,7 +52,7 @@ import * as R from 'ramda'
 import CardComponent from '../components/CardComponent'
 import VueSwing from 'vue-swing'
 import { parseCard, getCard, getVotableCards, voteCardTx } from '../components/utils/cardChain.js'
-import { notify } from '../components/utils/utils.js'
+import { notify, creditsFromCoins } from '../components/utils/utils.js'
 
 export default {
   name: 'VotingPage',
@@ -118,6 +118,10 @@ export default {
     vote (type) {
       this.getNextCard()
       voteCardTx(this.$http, this.currentCard.id, type)
+      .then(acc => {
+        this.creditsAvailable = creditsFromCoins(acc.coins)
+        this.$store.commit('setUserCredits', this.creditsAvailable) 
+      })
       console.log('vote cast for cardid', this.currentCard.id, 'voted: ', type)
 
       if (R.isEmpty(this.cards)) {
