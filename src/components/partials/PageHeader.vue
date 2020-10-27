@@ -8,17 +8,43 @@
     </a>
     <router-link
         class="account-box"
-      v-if="$store.getters.loggedIn"
+      v-if="$store.getters.loggedIn || getAddress()"
       to="/me"
     >
-      <button>My Account (42 Credits)</button>
+      <button>My Account ({{ getUserCredits }} Credits)</button>
     </router-link>
   </header>
 </template>
 
 <script>
+import { getAccInfo } from '../utils/cardChain.js'
+import { creditsFromCoins } from '../utils/utils.js'
+
 export default {
-  name: 'PageHeader'
+  name: 'PageHeader',
+    mounted () {
+      console.log('YES')
+      let address = this.getAddress()
+      if (address) {
+        getAccInfo(this.$http, localStorage.address)
+        .then(acc => {
+          
+          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.$store.commit('setUserCredits', this.creditsAvailable)    
+          console.log(this.creditsAvailable, '=>', this.$store.getters.getUserCredits)
+        })
+      }
+    },
+    methods: {
+      getAddress() {
+        return localStorage.address
+      }
+    },
+    computed: {
+      getUserCredits () {
+        return this.$store.getters.getUserCredits
+      }
+    }
 }
 </script>
 

@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     jwt: '',
+    credits: -1,
     mnemonic: '',
     loading: false,
     displayLogin: false
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     setUserMnemonic (state, mnemonic) {
       state.mnemonic = mnemonic
     },
+    setUserCredits (state, credits) {
+      state.credits = credits
+    },
     setLoading (state, loading) {
       state.loading = loading
     },
@@ -34,6 +38,9 @@ export default new Vuex.Store({
     },
     getUserMnemonic: state => {
       return state.mnemonic
+    },
+    getUserCredits: state => {
+      return state.credits
     },
     loggedIn: state => {
       return state.jwt !== ''

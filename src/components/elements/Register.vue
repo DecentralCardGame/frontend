@@ -64,6 +64,8 @@ export default {
       mnemonic: ''
     }
   },
+  mounted () {
+  },
   methods: {
     register () {
       if (!this.mnemonic) {

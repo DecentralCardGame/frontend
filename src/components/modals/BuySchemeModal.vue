@@ -30,7 +30,7 @@
           <slot name="body">
             Current price: {{ currentPrice }}
             <br>
-            You have: {{ creditsAvailable }}
+            You have: {{ creditsAvailable }} credits
           </slot>
         </section>
         <footer class="modal__footer">
@@ -60,9 +60,9 @@
 </template>
 
 <script>
-import {buyCardSchemeTx, getAccInfo, getGameInfo} from '../utils/cardChain.js'
-import {notify} from '../utils/utils.js'
-
+import { buyCardSchemeTx, getAccInfo, getGameInfo } from '../utils/cardChain.js'
+import { notify, creditsFromCoins } from '../utils/utils.js'
+ 
 export default {
   name: 'BuySchemeModal',
   data() {
@@ -95,14 +95,8 @@ export default {
             throw new Error('no coins available for', localStorage.address)
           }
 
-          let coins = {}
-          for (let i = 0; i < acc.coins.length; i++) {
-            if (acc.coins[i].denom === 'credits') {
-              coins = acc.coins[i]
-              break
-            }
-          }
-          this.creditsAvailable = coins.amount + coins.denom
+          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.$store.commit('setUserCredits', this.creditsAvailable)        
         })
         .catch(res => {
           console.error(res)
@@ -117,6 +111,10 @@ export default {
     buyCardScheme() {
       this.$emit('close')
       buyCardSchemeTx(this.$http, this.currentBid)
+        .then(acc => {
+          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.$store.commit('setUserCredits', this.creditsAvailable)      
+        })
     },
     isNumber: function (evt) {
       evt = evt || window.event
