@@ -1,38 +1,39 @@
 <template>
   <div class="card-generator-container">
     <h2 class="header__h2">Card Creator</h2>
-    <p class="header__p">With our card creator, you can design and craft your own cards by following a simple step-by-step wizard which
-    takes you through the whole process.</p>
+    <p class="header__p">With our card creator, you can design and craft your own cards by following a simple
+      step-by-step wizard which
+      takes you through the whole process.</p>
     <br>
     <div class="progress-container">
       <div class="progress">
         <div
-          :class="classStepPassed(0)"
-          @click="activeStep = 0"
+            :class="classStepPassed(0)"
+            @click="activeStep = 0"
         >
           Name, Type, Tags and Rarity
         </div>
         <div
-          :class="classStepPassed(1)"
-          @click="activeStep = 1"
+            :class="classStepPassed(1)"
+            @click="activeStep = 1"
         >
           Costs and Properties
         </div>
         <div
-          :class="classStepPassed(2)"
-          @click="activeStep = 2"
+            :class="classStepPassed(2)"
+            @click="activeStep = 2"
         >
           Rulings and Abilities
         </div>
         <div
-          :class="classStepPassed(3)"
-          @click="activeStep = 3"
+            :class="classStepPassed(3)"
+            @click="activeStep = 3"
         >
           Style and Flavor
         </div>
         <div
-          :class="classStepPassed(4)"
-          @click="activeStep = 4"
+            :class="classStepPassed(4)"
+            @click="activeStep = 4"
         >
           Summary and Publish
         </div>
@@ -41,23 +42,23 @@
     <div class="creator">
       <div class="creator-input">
         <div
-          v-if="activeStep == 0"
-          class="creator-input-container"
+            v-if="activeStep == 0"
+            class="creator-input-container"
         >
           <span class="creator-text">Hey, my <b>name</b> is</span>
           <input
-            v-model="model.CardName"
-            value="Card Name"
-            @change="saveDraft"
+              v-model="model.CardName"
+              value="Card Name"
+              @change="saveDraft"
           >
           <span class="creator-text">My <b>type</b> is</span>
           <select
-            v-model="model.type"
-            @change="resetAbilities(); saveDraft();"
+              v-model="model.type"
+              @change="resetAbilities(); saveDraft();"
           >
             <option
-              v-for="val in getTypes()"
-              :key="val"
+                v-for="val in getTypes()"
+                :key="val"
             >
               {{ val }}
             </option>
@@ -65,39 +66,39 @@
           <span class="creator-text">People like to <b>tag</b> me as</span>
           <div>
             <select
-              v-model="model.tagDummy"
-              @change="updateTags"
-              class="tag-select"
+                v-model="model.tagDummy"
+                class="tag-select"
+                @change="updateTags"
             >
               <option
-                v-for="tag in getTags(0)"
-                :key="tag"
+                  v-for="tag in getTags(0)"
+                  :key="tag"
               >
                 {{ tag }}
               </option>
             </select>
             <select
-              v-if="model.Tags && model.Tags[0]"
-              v-model="model.Tags[1]"
-              @change="updateTags"
-              class="tag-select"
+                v-if="model.Tags && model.Tags[0]"
+                v-model="model.Tags[1]"
+                class="tag-select"
+                @change="updateTags"
             >
               <option
-                v-for="tag in getTags(1)"
-                :key="tag"
+                  v-for="tag in getTags(1)"
+                  :key="tag"
               >
                 {{ tag }}
               </option>
             </select>
             <select
-              v-if="model.Tags && model.Tags[1]"
-              v-model="model.Tags[2]"
-              @change="updateTags"
-              class="tag-select tag-select-last"
+                v-if="model.Tags && model.Tags[1]"
+                v-model="model.Tags[2]"
+                class="tag-select tag-select-last"
+                @change="updateTags"
             >
               <option
-                v-for="tag in getTags(2)"
-                :key="tag"
+                  v-for="tag in getTags(2)"
+                  :key="tag"
               >
                 {{ tag }}
               </option>
@@ -111,23 +112,23 @@
           </select>
         </div>
         <div
-          v-if="activeStep == 1"
-          class="creator-input-container"
+            v-if="activeStep == 1"
+            class="creator-input-container"
         >
           <span
-            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
-            class="creator-text"
+              v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
+              class="creator-text"
           >As I am quite awesome to get me rolling you need to <b>invest</b>:</span>
 
           <select
-            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
-            v-model="model.CastingCost"
-            @change="saveDraft"
+              v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
+              v-model="model.CastingCost"
+              @change="saveDraft"
           >
             <option
-              v-for="n in R.range($cardRules.children[getRulesType()].children.CastingCost.min, $cardRules.children[getRulesType()].children.CastingCost.max + 1)"
-              :key="n"
-              :value="n"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.CastingCost.min, $cardRules.children[getRulesType()].children.CastingCost.max + 1)"
+                :key="n"
+                :value="n"
             >
               {{ n }}
             </option>
@@ -140,14 +141,14 @@
 
               As I am quite awesome, I generate <br>
               <select
-                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Growth"
-                v-model="model.Growth"
-                @change="saveDraft"
+                  v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Growth"
+                  v-model="model.Growth"
+                  @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.Growth.min, $cardRules.children[getRulesType()].children.Growth.max + 1)"
-                  :key="n"
-                  :value="n"
+                    v-for="n in R.range($cardRules.children[getRulesType()].children.Growth.min, $cardRules.children[getRulesType()].children.Growth.max + 1)"
+                    :key="n"
+                    :value="n"
                 >
                   {{ n }}
                 </option>
@@ -155,14 +156,14 @@
 
               Growth and<br>
               <select
-                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Wisdom"
-                v-model="model.Wisdom"
-                @change="saveDraft"
+                  v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Wisdom"
+                  v-model="model.Wisdom"
+                  @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.Wisdom.min, $cardRules.children[getRulesType()].children.Wisdom.max + 1)"
-                  :key="n"
-                  :value="n"
+                    v-for="n in R.range($cardRules.children[getRulesType()].children.Wisdom.min, $cardRules.children[getRulesType()].children.Wisdom.max + 1)"
+                    :key="n"
+                    :value="n"
                 >
                   {{ n }}
                 </option>
@@ -170,14 +171,14 @@
               Wisdom. <br>
               Whoever sides with me, starts with an impressive hand size of
               <select
-                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.StartingHandSize"
-                v-model="model.StartingHandSize"
-                @change="saveDraft"
+                  v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.StartingHandSize"
+                  v-model="model.StartingHandSize"
+                  @change="saveDraft"
               >
                 <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.StartingHandSize.min, $cardRules.children[getRulesType()].children.StartingHandSize.max + 1)"
-                  :key="n"
-                  :value="n"
+                    v-for="n in R.range($cardRules.children[getRulesType()].children.StartingHandSize.min, $cardRules.children[getRulesType()].children.StartingHandSize.max + 1)"
+                    :key="n"
+                    :value="n"
                 >
                   {{ n }}
                 </option>
@@ -190,45 +191,45 @@
           </span>
           <div>
             <input
-              v-model="model.CostType.Lumber"
-              type="checkbox"
-              @change="saveDraft"
+                v-model="model.CostType.Lumber"
+                type="checkbox"
+                @change="saveDraft"
             >
             <label for="checkbox"> Lumber </label> <br>
             <input
-              v-model="model.CostType.Food"
-              type="checkbox"
-              @change="saveDraft"
+                v-model="model.CostType.Food"
+                type="checkbox"
+                @change="saveDraft"
             >
             <label for="checkbox"> Food </label> <br>
             <input
-              v-model="model.CostType.Iron"
-              type="checkbox"
-              @change="saveDraft"
+                v-model="model.CostType.Iron"
+                type="checkbox"
+                @change="saveDraft"
             >
             <label for="checkbox"> Iron </label> <br>
             <input
-              v-model="model.CostType.Mana"
-              type="checkbox"
-              @change="saveDraft"
+                v-model="model.CostType.Mana"
+                type="checkbox"
+                @change="saveDraft"
             >
             <label for="checkbox"> Mana </label> <br>
             <input
-              v-model="model.CostType.Energy"
-              type="checkbox"
-              @change="saveDraft"
+                v-model="model.CostType.Energy"
+                type="checkbox"
+                @change="saveDraft"
             >
             <label for="checkbox"> Energy </label> <br>
             <span v-if="model.type==='Entity'"> I have an <b>Attack</b> of </span>
             <select
-              v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
-              v-model="model.Attack"
-              @change="saveDraft"
+                v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
+                v-model="model.Attack"
+                @change="saveDraft"
             >
               <option
-                v-for="n in R.range($cardRules.children[getRulesType()].children.Attack.min, $cardRules.children[getRulesType()].children.Attack.max + 1)"
-                :key="n"
-                :value="n"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.Attack.min, $cardRules.children[getRulesType()].children.Attack.max + 1)"
+                  :key="n"
+                  :value="n"
               >
                 {{ n }}
               </option>
@@ -236,14 +237,14 @@
             <span v-if="model.type==='Entity'"> and </span>
             <span v-if="model.type!=='Action'"> I sadly <b>die</b> after someone suckerpunchs me for </span>
             <select
-              v-if="model.type!=='Action' && $cardRules.children[getRulesType()]"
-              v-model="model.Health"
-              @change="saveDraft"
+                v-if="model.type!=='Action' && $cardRules.children[getRulesType()]"
+                v-model="model.Health"
+                @change="saveDraft"
             >
               <option
-                v-for="n in R.range($cardRules.children[getRulesType()].children.Health.min, $cardRules.children[getRulesType()].children.Health.max + 1)"
-                :key="n"
-                :value="n"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.Health.min, $cardRules.children[getRulesType()].children.Health.max + 1)"
+                  :key="n"
+                  :value="n"
               >
                 {{ n }}
               </option>
@@ -252,9 +253,10 @@
           </div>
         </div>
         <div
-          v-if="activeStep == 2"
+            v-if="activeStep == 2"
         >
-          <p>In this step, you craft the heart of your card. Press the button to add <b>abilities / effects</b> to your card.</p>
+          <p>In this step, you craft the heart of your card. Press the button to add <b>abilities / effects</b> to your
+            card.</p>
           <div>
             <div
                 v-for="(ability, index) in abilities"
@@ -262,17 +264,17 @@
             >
               <AbilityComponent
                   class="ability-frame"
+                  v-bind:abilities="abilities"
                   v-bind:ability="ability"
                   v-bind:dialog="abilityDialog"
-                  v-bind:abilities="abilities"
                   @update:ability="updateAbility($event, index)"
               />
             </div>
           </div>
           <div v-if="model.type === 'Action'">
             <button
-                type="button"
                 class="btn btn-abilitycreator"
+                type="button"
                 @click="showAbilityModal('root')"
             >
               Add Effect
@@ -281,8 +283,8 @@
           <div v-else
                class="creator-text">
             <button
-                type="button"
                 class="btn btn-abilitycreator"
+                type="button"
                 @click="showAbilityModal('root')"
             >
               Add Ability
@@ -290,37 +292,37 @@
           </div>
         </div>
         <div
-          v-if="activeStep == 3"
-          class="creator-input-container"
+            v-if="activeStep == 3"
+            class="creator-input-container"
         >
           <span class="creator-text">
             Everybody needs a <b>face</b>,
             so do I. Please upload an image
           </span>
           <input
-            id="file"
-            type="file"
-            name="file"
-            class="inputfile"
-            @change="inputFile"
+              id="file"
+              class="inputfile"
+              name="file"
+              type="file"
+              @change="inputFile"
           >
           <label
-            for="file"
-            class="button--file"
+              class="button--file"
+              for="file"
           >Choose a file</label>
           <span class="creator-text">
             My <b>flavor</b> is best expressed by
             the following sentences:
           </span>
           <input
-            v-model="model.FlavourText"
-            value="Card Name"
-            @change="saveDraft"
+              v-model="model.FlavourText"
+              value="Card Name"
+              @change="saveDraft"
           >
         </div>
         <div
-          v-if="activeStep == 4"
-          class="creator-input-container"
+            v-if="activeStep == 4"
+            class="creator-input-container"
         >
           <span class="creator-text">
             Uh, uh, uh. I like my looks,
@@ -334,43 +336,43 @@
             council the following notes for this card (optional):
           </span>
           <input
-            v-model="model.Notes"
-            value="Card Name"
-            @change="saveDraft"
+              v-model="model.Notes"
+              value="Card Name"
+              @change="saveDraft"
           >
         </div>
         <div class="creator-nav-container">
           <button
-            v-if="activeStep > 0"
-            class="back"
-            @click="activeStep--"
+              v-if="activeStep > 0"
+              class="back"
+              @click="activeStep--"
           >
             Go Back
           </button>
           <button
-            v-if="activeStep < 4"
-            @click="activeStep++"
+              v-if="activeStep < 4"
+              @click="activeStep++"
           >
             Next Step >
           </button>
           <button
-            v-if="activeStep == 4 && !model.id"
-            type="button"
-            class="btn"
-            @click="showBuySchemeModal"
+              v-if="activeStep == 4 && !model.id"
+              class="btn"
+              type="button"
+              @click="showBuySchemeModal"
           >
             Buy Card Scheme
           </button>
           <button
-            v-if="activeStep == 4 && !model.id"
-            @click="saveSubmit()"
+              v-if="activeStep == 4 && !model.id"
+              @click="saveSubmit()"
           >
             Publish Your Card
           </button>
 
           <button
-            v-if="activeStep == 4 && model.id"
-            @click="saveSubmit()"
+              v-if="activeStep == 4 && model.id"
+              @click="saveSubmit()"
           >
             Update Your Card
           </button>
@@ -378,22 +380,22 @@
       </div>
       <div class="creator-preview">
         <CardComponent
-          id="card"
-          :model="model"
-          :active-step="activeStep"
-          :image-u-r-l="cardImageUrl"
-          :display-notes="true"
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="cardImageUrl"
+            :model="model"
         />
       </div>
     </div>
     <div class="ability-modal-container">
       <AbilityModal
-        v-if="isAbilityModalVisible"
-        v-bind:dialog="abilityDialog"
-        v-bind:ability="ability"
-        v-bind:abilities="abilities"
-        @update:ability="ability = $event"
-        @close="closeAbilityModal"
+          v-if="isAbilityModalVisible"
+          v-bind:abilities="abilities"
+          v-bind:ability="ability"
+          v-bind:dialog="abilityDialog"
+          @close="closeAbilityModal"
+          @update:ability="ability = $event"
       />
       <BuySchemeModal
           v-if="isBuySchemeModalVisible"
@@ -412,14 +414,14 @@ import AbilityModal from '../components/modals/AbilityModal.vue'
 import AbilityComponent from '../components/AbilityComponent.vue'
 
 // eslint-disable-next-line no-unused-vars
-import { buyCardSchemeTx, saveContentToUnusedCardSchemeTx, saveContentToCardWithIdTx } from '../components/utils/cardChain.js'
-import { emptyCard, notify, uploadImg, atPath } from '../components/utils/utils.js'
-import { sampleGradientImg } from '../components/utils/sampleCards.js'
+import {saveContentToCardWithIdTx, saveContentToUnusedCardSchemeTx} from '../components/utils/cardChain.js'
+import {atPath, emptyCard, notify, uploadImg} from '../components/utils/utils.js'
+import {sampleGradientImg} from '../components/utils/sampleCards.js'
 
 export default {
   name: 'NewCardPage',
   components: {CardComponent, AbilityComponent, BuySchemeModal, AbilityModal},
-  data () {
+  data() {
     return {
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
@@ -432,9 +434,8 @@ export default {
       cardID: 0
     }
   },
-  computed: {
-  },
-  mounted () {
+  computed: {},
+  mounted() {
     // here a card is loaded if edit card via gallery was selected
     if (state.card) {
       if (state.card.type === 'Headquarter') state.card.type = 'HQ'
@@ -451,13 +452,13 @@ export default {
     }
   },
   methods: {
-    showBuySchemeModal () {
+    showBuySchemeModal() {
       this.isBuySchemeModalVisible = true
     },
-    closeBuySchemeModal () {
+    closeBuySchemeModal() {
       this.isBuySchemeModalVisible = false
     },
-    showAbilityModal (type) {
+    showAbilityModal(type) {
       let atRules = R.curry(atPath)(this.$cardRules)
 
       console.log('abilities', this.abilities)
@@ -487,7 +488,7 @@ export default {
         }
 
         // this is the bugfix for replay selection bug
-        R.forEachObjIndexed(function(option) {
+        R.forEachObjIndexed(function (option) {
           if (option.selected)
             delete option.selected
         }, dialog.options)
@@ -497,7 +498,7 @@ export default {
         console.log('modal type unknown: ', type)
       }
     },
-    closeAbilityModal () {
+    closeAbilityModal() {
       console.log('ability after close modal: ', this.ability)
       this.isAbilityModalVisible = false
     },
@@ -507,16 +508,16 @@ export default {
         this.abilities.splice(index, 1)
       }
     },
-    resetAbilities () {
+    resetAbilities() {
       this.abilities = []
     },
-    getRulesType () {
+    getRulesType() {
       return this.model.type === 'HQ' ? 'Headquarter' : this.model.type
     },
-    getTypes () {
+    getTypes() {
       return R.values(R.pluck('name', this.$cardRules.children))
     },
-    getTags (idx) {
+    getTags(idx) {
       if (this.$cardRules) {
         let usedTags = []
         let allTags = this.$cardRules.children.Action.children.Tags.children.Tag.children
@@ -536,14 +537,14 @@ export default {
         return []
       }
     },
-    updateTags () {
+    updateTags() {
       if (!this.model.Tags) {
         this.model.Tags = []
       }
       this.model.Tags.splice(0, 1, this.model.tagDummy)
       this.saveDraft()
     },
-    saveSubmit () {
+    saveSubmit() {
       if (!this.model.CardName) {
         notify.fail('No Name', 'Card has no name, please enter a name.')
         return
@@ -633,21 +634,22 @@ export default {
         })
       }
     },
-    saveDraft () {
+    saveDraft() {
       localStorage.cardDraft = JSON.stringify(this.model)
     },
-    inputFile (event) {
+    inputFile(event) {
       let file = event.target.files[0]
       uploadImg(file, (result) => {
         this.cardImageUrl = result
         localStorage.cardImg = JSON.stringify(result)
       })
     },
-    classStepPassed (n) {
+    classStepPassed(n) {
       let exportClass = "progress-item";
       if (this.activeStep > n) {
         exportClass += " progress-item-active"
-      } if (this.activeStep === n) {
+      }
+      if (this.activeStep === n) {
         exportClass += " progress-item-current"
       }
       return exportClass
@@ -656,149 +658,155 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  @import "../assets/styles/variables";
+<style lang="scss" scoped>
+@import "../assets/styles/variables";
+
+.creator {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 2rem 4rem;
+  @media (min-width: 480px) {
+    grid-template-areas: "creator-input creator-preview";
+  }
+}
+
+.creator-input-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 1rem 1rem;
+  grid-template-areas: ". ." ". .";
+}
+
+.creator-text {
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .creator-input-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas: ".";
+  }
 
   .creator {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 2rem 4rem;
-    @media (min-width: 480px) {
-      grid-template-areas: "creator-input creator-preview";
-    }
-  }
-
-  .creator-input-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 1rem 1rem;
-    grid-template-areas: ". ." ". .";
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-areas: "";
   }
 
   .creator-text {
-    text-align: right;
+    text-align: left;
   }
+}
+
+.progress {
+  display: flex;
+  font-size: 1rem;
+  text-shadow: none;
+  margin-bottom: 1.5rem;
 
   @media (max-width: 480px) {
-    .creator-input-container {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-      grid-template-areas: ".";
-    }
+    flex-flow: column;
+    font-size: 1em;
+  }
+}
 
-    .creator {
-      display: grid;
-      padding: 1rem;
-      grid-template-columns: 1fr;
-      grid-template-areas: "";
-    }
+.progress-item {
+  cursor: pointer;
+  margin: 0.25rem;
+  border: $border-thickness solid rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.5rem;
 
-    .creator-text {
-      text-align: left;
-    }
+  &.progress-item-active {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
-  .progress {
-    display: flex;
-    font-size: 1rem;
-    text-shadow: none;
-    margin-bottom: 1.5rem;
+  &.progress-item-current {
+    border-color: $white;
+  }
+}
 
-    @media (max-width: 480px) {
-      flex-flow: column;
-      font-size: 1em;
+.progress-container {
+  display: flex;
+  justify-content: center;
+}
+
+.inputfile {
+  display: none;
+}
+
+.ability {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid $white;
+  border-radius: 4px;
+  color: $white;
+  resize: vertical;
+  background-color: transparent;
+  font-size: $font-size;
+}
+
+.creator-nav-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  button.back {
+    color: $white;
+    text-decoration: underline;
+
+    &:after {
+      background: transparent;
+      box-shadow: none;
     }
   }
+}
 
-  .progress-item {
-    cursor: pointer;
-    margin: 0.25rem;
-    border: $border-thickness solid rgba(255,255,255,0.7);
-    padding: 0.25rem 0.5rem;
+.ability-modal-container {
+  position: relative;
+  z-index: 3;
+}
 
-    &.progress-item-active {
-      background-color: rgba(255,255,255,0.2);
-    }
-    &.progress-item-current {
-      border-color: $white;
-    }
-  }
+.ability-frame {
+  position: relative;
+  padding: $font-size;
+  border: $border-thickness solid $white;
+  margin: 1rem 0;
+}
 
-  .progress-container {
-    display: flex;
-    justify-content: center;
-  }
+.btn-abilitycreator {
+  z-index: 1;
+  background-color: transparent;
+  color: $white;
+  border: $border-thickness dotted $white;
+  font-size: 1em;
+  padding: 0.3em 1em;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  transition: all $animation-duration ease-out;
 
-  .inputfile {
+  &:after {
     display: none;
   }
 
-  .ability {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid $white;
-    border-radius: 4px;
-    color: $white;
-    resize: vertical;
-    background-color: transparent;
-    font-size: $font-size;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
+}
 
-  .creator-nav-container {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    button.back {
-      color: $white;
-      text-decoration: underline;
-      &:after {
-        background: transparent;
-        box-shadow: none;
-      }
-    }
-  }
+.tag-select {
+  width: 100%;
+  margin-bottom: 1rem;
 
-  .ability-modal-container {
-    position: relative;
-    z-index: 3;
+  &.tag-select-last {
+    margin-bottom: 0;
   }
-
-  .ability-frame {
-    position: relative;
-    padding: $font-size;
-    border: $border-thickness solid $white;
-    margin: 1rem 0;
-  }
-
-  .btn-abilitycreator {
-    z-index: 1;
-    background-color: transparent;
-    color: $white;
-    border: $border-thickness dotted $white;
-    font-size: 1em;
-    padding: 0.3em 1em;
-    width: 100%;
-    cursor: pointer;
-    position: relative;
-    transition: all $animation-duration ease-out;
-    &:after {
-      display: none;
-    }
-    &:hover {
-      background-color: rgba(255,255,255,0.1);
-    }
-  }
-
-  .tag-select {
-    width: 100%;
-    margin-bottom: 1rem;
-    &.tag-select-last {
-      margin-bottom: 0;
-    }
-  }
+}
 </style>

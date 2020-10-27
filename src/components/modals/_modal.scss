@@ -46,10 +46,15 @@
 .btn--close {
   border: none;
   font-size: $font-size;
-  padding: $font-size / 4;
+  padding: $font-size / 4 $font-size /2;
   cursor: pointer;
   font-weight: bold;
   background: transparent;
+  &:after {
+    background: linear-gradient(to right, $red 50%, #4AAE9B 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+  }
 }
 
 .btn--green {

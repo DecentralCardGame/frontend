@@ -3,7 +3,7 @@
     <h2 class="header__h2">Gallery</h2>
     <p class="header__p">In the gallery, you can view cards that were created by the community.</p>
     <br>
-      <div class="button-container">
+      <div class="button-container button-container--top">
         <button v-show="browsingBackward" @click="prevPage">back</button>
         <button @click="filters.visible = !filters.visible">
           {{ filters.visible ? 'hide' : 'show' }}
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="button-container">
+    <div class="button-container button-container--bottom">
       <button v-show="browsingBackward" @click="prevPage">back</button>
       <button v-show="browsingForward" @click="nextPage">next</button>
     </div>
@@ -205,10 +205,10 @@ export default {
   margin: 1rem 0;
   text-shadow: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: auto;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
 }
 
 .gallery__view__card:hover {
@@ -217,6 +217,7 @@ export default {
 
 .gallery__filter-box {
   margin-top: 1rem;
+  margin-bottom: 2rem;
   border: $border-thickness solid $white;
   padding: 1rem;
   display: flex;
@@ -226,5 +227,13 @@ export default {
 .ability-modal-container {
   position: relative;
   z-index: 3;
+}
+
+.button-container--top {
+  margin-bottom: 2rem;
+}
+
+.button-container--bottom {
+  margin-top: 2rem;
 }
 </style>
