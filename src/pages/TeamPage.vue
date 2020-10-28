@@ -118,11 +118,21 @@
       </div>
       <div>
       <h2> Noah Faust - Game designer </h2>
-      <p>He is actually the only one who does not want to work on the project. Unfortunately his older brother works here as well and he is stronger and trains Judo 2 times a week, so Noah cannot really choose
-      to opt out. Noah and Marius have also agreed on a way of expressing this situation, which goes like this: "Well, I have thought about it and then I read what Marius/Noah wrote about it in the
-      #game-mechanics channel and it is exactly what I thought". From a management point of view this can be a dangerous situation, but one needs to keep in mind, that we also need to keep Janniks urge for
-      power creep in check it is great to have 2 "synced" minds. Noah is very good at doing these, because in trading card games he likes to create underpowered decks with strange mechanics. This gives
+      <p>He is actually the only one who does not want to work on the project. Unfortunately his older brother works here as well and he is stronger and trains Judo two times a week, so Noah cannot really choose
+      to opt out. Noah and Marius have also agreed on a way of expressing this situation, which goes like this: "Well, I have thought about that and then I read what Marius/Noah wrote about that in the
+      #game-mechanics channel and it is exactly what I thought". From a management point of view this can be a dangerous situation. But one needs to keep in mind, that we also need to keep Jannik's urge for
+      power creep in check. Thus it is great to have 2 "synced" minds. Noah is very good at game design, because in trading card games he likes to create underpowered decks with strange mechanics. This gives
       him an edge which he plays out as a game designer for Crowd Control.
+      </p>
+      </div>
+    </div>
+
+    <div class="team-entry">
+      <div class="image--round">
+      </div>
+      <div>
+      <h2> Honoarable Mentions </h2>
+      <p>Danny Czoschke und Jette, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
       </p>
       </div>
     </div>
