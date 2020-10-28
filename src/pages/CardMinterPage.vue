@@ -64,9 +64,7 @@ export default {
   },
   mounted () {
     let id = parseInt(this.$route.params.id)
-    console.log(id)
-    if (typeof id == 'number')  {
-
+    if (typeof id === 'number' && !isNaN(id))  {
       getCard(this.$http, this.$route.params.id)
         .then(res => {
           let parsedCard = parseCard(res.card)
