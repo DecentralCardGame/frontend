@@ -588,7 +588,7 @@ export default {
           notify.fail('No Health', 'Card has no Health, please pick a number.')
           return
         }
-        newCard.model[this.getRulesType()].Abilities = []
+        newCard.model[this.getRulesType()].Abilities = R.map(R.pick(R.keys(this.$cardRules.children.Entity.children.Abilities.children.Ability.children)), this.abilities)
         newCard.model[this.getRulesType()].Health = this.model.Health
       }
       if (this.model.type === 'Entity') {
@@ -596,15 +596,13 @@ export default {
           notify.fail('No Attack', 'Card has no Attack, please pick a number.')
           return
         }
-        newCard.model[this.getRulesType()].Abilities = []
         newCard.model[this.getRulesType()].Attack = this.model.Attack
       } else if (this.model.type === 'HQ') {
-        newCard.model[this.getRulesType()].Abilities = []
         newCard.model[this.getRulesType()].Growth = this.model.Growth
         newCard.model[this.getRulesType()].Wisdom = this.model.Wisdom
         newCard.model[this.getRulesType()].StartingHandSize = this.model.StartingHandSize
       } else if (this.model.type === 'Action') {
-        newCard.model[this.getRulesType()].Effects = []
+        newCard.model[this.getRulesType()].Effects = R.map(R.pick(R.keys(this.$cardRules.children.Action.children.Effects.children.Effect.children)), this.abilities)
       }
 
       if (!this.model.Tags[0]) {
@@ -629,6 +627,9 @@ export default {
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
         })
+        .catch(err => {
+          console.log(err)
+        })
         
       } else {
         saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {})
@@ -640,6 +641,9 @@ export default {
           localStorage.cardImg = ''
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
+        })
+        .catch(err => {
+          console.log(err)
         })
       }
     },
