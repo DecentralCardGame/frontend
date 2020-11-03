@@ -36,7 +36,6 @@ export default {
             return 
         },
         getAccInfo: function(http, address) {
-            console.log(this)
             if (validAddress(address)) {
               return http.get('auth/accounts/' + address)
                 .catch(handleGetError)
@@ -86,100 +85,83 @@ export default {
                   'gas': 'auto',
                   'gas_adjustment': '1.5'
                 },
-                'new_user': localStorage.address,
+                'new_user': this.$store.getters.getUserAddress,
                 'creator': process.env.VUE_APP_CREATOR_ADDRESS,
                 'alias': alias
               }
-          
               this.$txQueue.enqueue(() => {
                 return Promise.all([this.getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
-                  .then(responses => {
-                    let accData = responses[0]
-                    let rawTx = responses[1].data
-                    let wallet = createWalletFromMnemonic(process.env.VUE_APP_CREATOR_MNEMONIC)
-          
-                    let signedTx = sign(rawTx, accData, wallet)
-          
-                    return broadcast(http, signedTx)
-                      .then(() => {
-                        notify.success('EPIC WIN', 'You have successfully registered in the blockchain.')
-                        resolve(this.getAccInfo(http, localStorage.address))
-                      })
-                      .catch((err) => {
-                        this.$notify({
-                          group: 'fail',
-                          title: 'Registration failed!'
-                        })
-                        console.error(err)
-                        reject(err)
-                      })
+                  .then(signAndBroadcast(http, process.env.VUE_APP_CREATOR_MNEMONIC))
+                  .then(() => {
+                    notify.success('EPIC WIN', 'You have successfully registered in the blockchain.')
+                    resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                  })
+                  .catch((err) => {
+                    this.$notify({
+                      group: 'fail',
+                      title: 'Registration failed!'
+                    })
+                    console.error(err)
+                    reject(err)
+                  })
                   })
               })
-            })
         },
         buyCardSchemeTx: function(http, maxBid) {
             return new Promise((resolve, reject) => {
               let reqBody = {
                 'base_req': {
-                  'from': localStorage.address,
+                  'from': this.$store.getters.getUserAddress,
                   'chain_id': 'testCardchain',
                   'gas': 'auto',
                   'gas_adjustment': '1.5'
                 },
                 'amount': maxBid + 'credits',
-                'buyer': localStorage.address
+                'buyer': this.$store.getters.getUserAddress
               }
               this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(http, localStorage.address), http.post('cardservice/buy_card_scheme', reqBody)])
-                  .then(responses => {
-                    let accData = responses[0]
-                    let rawTx = responses[1].data
-                    let wallet = createWalletFromMnemonic(localStorage.mnemonic)
-            
-                    let signedTx = sign(rawTx, accData, wallet)
-            
-                    return broadcast(http, signedTx)
-                      .then(() => { 
-                        notify.success('EPIC WIN', 'You have successfully bought a card scheme.') 
-                        resolve(this.getAccInfo(http, localStorage.address))
-                      })
-                      .catch(err => {
-                        console.error(err)
-                        if (err.response.data.error) {
-                          var errData = JSON.parse(err.response.data.error)
-                          if (errData.length > 0) {
-                            var errLog = JSON.parse(errData[0].log)
-                            notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
-                          } else {
-                            console.error(errData)
-                            notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-                          }
-                        } else {
-                          console.error(err)
-                          notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-                        }
-                        reject(err)
-                      })
+                return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), http.post('cardservice/buy_card_scheme', reqBody)])
+                  .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
+                  .then(() => { 
+                    notify.success('EPIC WIN', 'You have successfully bought a card scheme.') 
+                    resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                  })
+                  .catch(err => {
+                    console.error(err)
+                    if (err.response.data.error) {
+                      var errData = JSON.parse(err.response.data.error)
+                      if (errData.length > 0) {
+                        var errLog = JSON.parse(errData[0].log)
+                        notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
+                      } else {
+                        console.error(errData)
+                        notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
+                      }
+                    } else {
+                      console.error(err)
+                      notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
+                    }
+                    reject(err)
                   })
               })
             })
         },
         saveContentToUnusedCardSchemeTx: function (http, card) {
             return new Promise((resolve, reject) => {
-              this.getUserInfo(http, localStorage.address)
+              this.getUserInfo(http, this.$store.getters.getUserAddress)
               .then(user => {
                 if (!user.ownedCardSchemes) {
                   notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
-                  throw new Error('account ' + localStorage.address + ' does not own card schemes')
+                  throw new Error('account ' + this.$store.getters.getUserAddress + ' does not own card schemes')
                 } else {
                   let reqBody = {
                     'base_req': {
-                      'from': localStorage.address,
+                      'from': this.$store.getters.getUserAddress,
                       'chain_id': 'testCardchain',
                       'gas': 'auto',
                       'gas_adjustment': '10'
                     },
-                    'owner': localStorage.address,
+                    'owner': this.$store.getters.getUserAddress,
                     'content': JSON.stringify(card.model),
                     'image': card.image,
                     'cardid': user.ownedCardSchemes[0],
@@ -190,11 +172,11 @@ export default {
               })
               .then(req => {
                 this.$txQueue.enqueue(() => {
-                  return Promise.all([this.getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
-                    .then(signAndBroadcast(http))
+                  return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), saveCardContentGenerateTx(http, req)])
+                    .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
                     .then(() => {
                       notify.success('EPIC WIN', 'You have successfully published this card.')
-                      resolve(this.getAccInfo(http, localStorage.address))
+                      resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
                     })
                     .catch(err => {
                       notify.fail('FAIL HARD', err.message)
@@ -205,76 +187,64 @@ export default {
               })
             })
           },
-          saveContentToCardWithIdTx: function (http, card) {
-            console.log(this)
-            return new Promise((resolve, reject) => {
-              let req = {
-                'base_req': {
-                  'from': localStorage.address,
-                  'chain_id': 'testCardchain',
-                  'gas': 'auto',
-                  'gas_adjustment': '10'
-                },
-                'owner': localStorage.address,
-                'content': JSON.stringify(card.model),
-                'image': card.image,
-                'cardid': card.id,
-                'notes': card.Notes
-              }
-    
-              console.log(this)
-              this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(http, localStorage.address), saveCardContentGenerateTx(http, req)])
-                  .then(signAndBroadcast(http))
+        saveContentToCardWithIdTx: function (http, card) {
+          return new Promise((resolve, reject) => {
+            let req = {
+              'base_req': {
+                'from': this.$store.getters.getUserAddress,
+                'chain_id': 'testCardchain',
+                'gas': 'auto',
+                'gas_adjustment': '10'
+              },
+              'owner': this.$store.getters.getUserAddress,
+              'content': JSON.stringify(card.model),
+              'image': card.image,
+              'cardid': card.id,
+              'notes': card.Notes
+            }
+            this.$txQueue.enqueue(() => {
+              return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), saveCardContentGenerateTx(http, req)])
+                .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
+                .then(() => {
+                  notify.success('EPIC WIN', 'You have successfully edited this card.')
+                  resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                })
+                .catch(err => {
+                  notify.fail('FAIL HARD', err.message)
+                  console.error(err)
+                  reject(err)
+                })
+            })
+          })
+        },
+        voteCardTx: function(http, cardid, voteType) {
+          return new Promise((resolve, reject) => {
+            let req = {
+              'base_req': {
+                'from': this.$store.getters.getUserAddress,
+                'chain_id': 'testCardchain',
+                'gas': 'auto',
+                'gas_adjustment': '1.5'
+              },
+              'voter': this.$store.getters.getUserAddress,
+              'votetype': voteType,
+              'cardid': '' + cardid
+            }
+        
+            this.$txQueue.enqueue(() => {
+              return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), voteCardGenerateTx(http, req)])
+                .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
                   .then(() => {
-                    notify.success('EPIC WIN', 'You have successfully edited this card.')
-                    resolve(this.getAccInfo(http, localStorage.address))
+                    notify.success('VOTED', 'Vote Transaction successfull!')
+                    resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
                   })
                   .catch(err => {
                     notify.fail('FAIL HARD', err.message)
                     console.error(err)
                     reject(err)
                   })
-              })
             })
-          },
-          voteCardTx: function(http, cardid, voteType) {
-            return new Promise((resolve, reject) => {
-              let req = {
-                'base_req': {
-                  'from': localStorage.address,
-                  'chain_id': 'testCardchain',
-                  'gas': 'auto',
-                  'gas_adjustment': '1.5'
-                },
-                'voter': localStorage.address,
-                'votetype': voteType,
-                'cardid': '' + cardid
-              }
-          
-              this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(http, localStorage.address), voteCardGenerateTx(http, req)])
-                  .then(responses => {
-                    let accData = responses[0]
-                    let rawTx = responses[1].data
-          
-                    let wallet = createWalletFromMnemonic(localStorage.mnemonic)
-          
-                    let signedTx = sign(rawTx, accData, wallet)
-          
-                    return broadcast(http, signedTx)
-                      .then(() => {
-                        notify.success('VOTED', 'Vote Transaction successfull!')
-                        resolve(this.getAccInfo(http, localStorage.address))
-                      })
-                      .catch(err => {
-                        notify.fail('FAIL HARD', err.message)
-                        console.error(err)
-                        reject(err)
-                      })
-                  })
-              })
-            })
+          })  
         },
         getUserInfo: function(http, address) {
             if (validAddress(address)) {
@@ -344,10 +314,10 @@ function sign (rawTx, accData, wallet) {
   }
 }
 
-const signAndBroadcast = R.curry( function (http, accInfoAndRawTx) {
+const signAndBroadcast = R.curry(function (http, mnemonic, accInfoAndRawTx) {
   let accData = accInfoAndRawTx[0]
   let rawTx = accInfoAndRawTx[1].data
-  let wallet = createWalletFromMnemonic(localStorage.mnemonic)
+  let wallet = createWalletFromMnemonic(mnemonic)
   let signedTx = sign(rawTx, accData, wallet)
   return broadcast(http, signedTx)
 })
@@ -367,7 +337,6 @@ function broadcast (http, signedTx) {
     notify.fail('WTF', err)
     throw err
   }).then(res => {
-    console.log('tx successfull broadcasted', res)
     if (res.data.code) {
       notify.fail('EPIC FAIL', res.data.raw_log)
       throw new Error(res.data.raw_log)

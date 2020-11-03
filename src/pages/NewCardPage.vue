@@ -494,7 +494,7 @@ export default {
 
         this.abilityDialog = dialog
       } else {
-        console.log('modal type unknown: ', type)
+        console.error('modal type unknown: ', type)
       }
     },
     closeAbilityModal() {
@@ -612,7 +612,6 @@ export default {
         notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
       }
-
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
         newCard.id = this.model.id
@@ -627,9 +626,8 @@ export default {
           this.cardImageUrl = sampleGradientImg
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
         })
-        
       } else {
         this.saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {})
         .then(acc => {
@@ -642,7 +640,7 @@ export default {
           this.cardImageUrl = sampleGradientImg
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
         })
       }
     },
