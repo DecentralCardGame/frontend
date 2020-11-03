@@ -51,7 +51,7 @@
 import * as R from 'ramda'
 import CardComponent from '../components/CardComponent'
 import VueSwing from 'vue-swing'
-import { notify, creditsFromCoins } from '../components/utils/utils.js'
+import { creditsFromCoins } from '../components/utils/utils.js'
 
 export default {
   name: 'VotingPage',
@@ -100,17 +100,17 @@ export default {
           console.log('no more voting rights')
         } else if (res.unregistered === true) {
           this.unregistered = true
-          notify.fail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
+          this.notifyFail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
         } else if (res.noVoteRights === true) {
           this.noMoreVotesLeft = true
-          notify.fail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
+          this.notifyFail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
         } else {
           this.votingActive = false
           console.error('getVotableCards returned non-readable data: ', res)
         }
       })
       .catch(res => {
-        notify.fail('OH NOES', res)
+        this.notifyFail('OH NOES', res)
       })
   },
   methods: {

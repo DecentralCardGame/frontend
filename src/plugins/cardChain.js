@@ -235,11 +235,11 @@ export default {
               return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), voteCardGenerateTx(this.$http, req)])
                 .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
                   .then(() => {
-                    notify.success('VOTED', 'Vote Transaction successfull!')
+                    this.notifySuccess('VOTED', 'Vote Transaction successfull!')
                     resolve(this.getAccInfo(this.$store.getters.getUserAddress))
                   })
                   .catch(err => {
-                    notify.fail('FAIL HARD', err.message)
+                    this.notifyFail('FAIL HARD', err.message)
                     console.error(err)
                     reject(err)
                   })
@@ -252,7 +252,7 @@ export default {
                 .catch(handleGetError)
                 .then(handleGetUser(R.__, address))
             } else {
-              notify.fail('Do you even?', 'Have a proper address? Please login or register.')
+              this.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
               throw new Error('please provide proper address')
             }
         },
