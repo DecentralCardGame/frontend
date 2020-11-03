@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import { registerAccTx, generateMnemonic } from '../utils/cardChain.js'
 import { notify, creditsFromCoins } from '../utils/utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
@@ -69,14 +68,19 @@ export default {
   methods: {
     register () {
       if (!this.mnemonic) {
-        this.mnemonic = generateMnemonic()
-      } else {
+        this.mnemonic = this.generateMnemonic()
+      } else if (this.mnemonic.split(' ').length < 24) {
+        
         // TODO check if user has entered a serious mnemonic
+        notify.fail('Bad Mnemonic', 'Please enter a real mnemonic with 24 words')
       }
 
       let wallet = createWalletFromMnemonic(this.mnemonic)
 
-      localStorage.wallet = wallet
+      this.$store.commit('setUserMnemonic', this.mnemonic)
+      this.$store.commit('setUserAddress', wallet.address)
+
+      
       localStorage.address = wallet.address
       localStorage.mnemonic = this.mnemonic
 
@@ -88,10 +92,14 @@ export default {
         mnemonic: encryptedMnemonic
       }
 
-      registerAccTx(this.$http, this.username)
+      this.registerAccTx(this.$http, this.username)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 
+      })
+      .catch(err => {
+        console.error(err)
+        notify.fail('Blockchain Fail', 'Registering the address in the blockchain has failed.')
       })
 
       this.$hottub.post('/register', post)

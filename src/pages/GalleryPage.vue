@@ -72,7 +72,6 @@ import * as R from 'ramda'
 import state from '../components/utils/cardState'
 import GalleryModal from '../components/modals/GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
-import { parseCard, getCard, getCardList, voteCardTx, getVotableCards } from '../components/utils/cardChain.js'
 import { saveCardAsPng, creditsFromCoins } from '../components/utils/utils.js'
 
 const cardsPerPage = 20
@@ -107,7 +106,7 @@ export default {
   },
   methods: {
     loadVotableCards() {
-      getVotableCards(this.$http, localStorage.address)
+      this.getVotableCards(this.$http, localStorage.address)
         .then(res => {
           console.log('getVotableCards:', res)
           if (res.noVoteRights) {
@@ -118,7 +117,7 @@ export default {
         })
     },
     loadCardList() {
-      return getCardList(this.$http, this.filters.owner, this.filters.status, this.filters.nameContains)
+      return this.getCardList(this.$http, this.filters.owner, this.filters.status, this.filters.nameContains)
         .then(res => {
           this.cardList = res.cardList
           this.pageId = 0
@@ -133,12 +132,12 @@ export default {
       if (this.pageId + this.currentId >= this.cardList.length) return
 
       let cardId = this.cardList[this.cardList.length - 1 - this.pageId - this.currentId]
-      getCard(this.$http, cardId)
+      this.getCard(this.$http, cardId)
         .then(res => {
           let card = res.card
           card.id = cardId
           if (card.Content) {
-            this.cards.push(parseCard(card))
+            this.cards.push(this.parseCard(card))
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
@@ -189,7 +188,7 @@ export default {
       saveCardAsPng(document.getElementById('card' + this.clickedIndex), this.cards[this.clickedIndex].name)
     },
     vote (type) {
-      voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
+      this.voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 

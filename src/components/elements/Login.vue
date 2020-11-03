@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
+
 export default {
   name: 'Login',
   data () {
@@ -68,14 +70,19 @@ export default {
           } else {
             const decryptedMnemonicBytes = this.CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
             const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8))
+
             this.$store.commit('setUserToken', res.data.token)
             this.$store.commit('setUserMnemonic', decryptedMnemonic)
+            let wallet = createWalletFromMnemonic(decryptedMnemonic)
+            this.$store.commit('setUserAddress', wallet.address)
+            this.updateUserCredits()
+            this.$store.commit('toggleLoginBox')
+            this.$router.push('me')
+
             this.$notify({
               group: 'success',
               title: 'Login successful!'
             })
-            this.$store.commit('toggleLoginBox')
-            this.$router.push('me')
           }
         })
         .catch(() => {

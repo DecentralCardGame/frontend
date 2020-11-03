@@ -51,7 +51,6 @@
 import * as R from 'ramda'
 import CardComponent from '../components/CardComponent'
 import VueSwing from 'vue-swing'
-import { parseCard, getCard, getVotableCards, voteCardTx } from '../components/utils/cardChain.js'
 import { notify, creditsFromCoins } from '../components/utils/utils.js'
 
 export default {
@@ -78,7 +77,7 @@ export default {
     }
   },
   mounted () {
-    getVotableCards(this.$http, localStorage.address)
+    this.getVotableCards(this.$http, localStorage.address)
       .then(res => {
         console.log('getVotableCards:', res)
         if (res.votables) {
@@ -117,7 +116,7 @@ export default {
   methods: {
     vote (type) {
       this.getNextCard()
-      voteCardTx(this.$http, this.currentCard.id, type)
+      this.voteCardTx(this.$http, this.currentCard.id, type)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 
@@ -142,9 +141,9 @@ export default {
         let nextCard = R.last(this.voteRights)
         this.voteRights = R.dropLast(1, this.voteRights)
 
-        return getCard(this.$http, nextCard.CardId)
+        return this.getCard(this.$http, nextCard.CardId)
           .then(res => {
-            let parsedCard = parseCard(res.card)
+            let parsedCard = this.parseCard(res.card)
             console.log('currentCard', parsedCard)
             if (parsedCard) {
               this.cards.push(parsedCard)

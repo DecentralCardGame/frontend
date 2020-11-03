@@ -51,7 +51,6 @@ import * as svg1 from 'save-svg-as-png'
 import CardComponent from '@/components/CardComponent'
 import { uploadImg } from '../components/utils/utils.js'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
-import { parseCard, getCard } from '../components/utils/cardChain.js'
 
 export default {
   name: 'CardMinter',
@@ -65,9 +64,9 @@ export default {
   mounted () {
     let id = parseInt(this.$route.params.id)
     if (typeof id === 'number' && !isNaN(id))  {
-      getCard(this.$http, this.$route.params.id)
+      this.getCard(this.$http, this.$route.params.id)
         .then(res => {
-          let parsedCard = parseCard(res.card)
+          let parsedCard = this.parseCard(res.card)
           console.log('currentCard', res)
           if (parsedCard) {
             this.cards = []

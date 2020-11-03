@@ -8,6 +8,7 @@ export default new Vuex.Store({
     jwt: '',
     credits: -1,
     mnemonic: '',
+    address: '',
     loading: false,
     displayLogin: false
   },
@@ -15,12 +16,17 @@ export default new Vuex.Store({
     logout (state) {
       state.jwt = ''
       state.mnemonic = ''
+      state.address = ''
+      state.credits = -1
     },
     setUserToken (state, token) {
       state.jwt = token
     },
     setUserMnemonic (state, mnemonic) {
       state.mnemonic = mnemonic
+    },
+    setUserAddress (state, address) {
+      state.address = address
     },
     setUserCredits (state, credits) {
       state.credits = credits
@@ -38,6 +44,9 @@ export default new Vuex.Store({
     },
     getUserMnemonic: state => {
       return state.mnemonic
+    },
+    getUserAddress: state => {
+      return state.address
     },
     getUserCredits: state => {
       return state.credits

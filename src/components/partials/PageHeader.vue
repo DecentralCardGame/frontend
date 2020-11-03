@@ -7,8 +7,8 @@
       Discuss the latest News or simply join our growing Community <b>Discord</b>. We would love to hear your voice.
     </a>
     <router-link
-        class="account-box"
-      v-if="$store.getters.loggedIn || getAddress()"
+      class="account-box"
+      v-if="$store.getters.loggedIn"
       to="/me"
     >
       <button>My Account ({{ getUserCredits }} Credits)</button>
@@ -17,25 +17,12 @@
 </template>
 
 <script>
-import { getAccInfo } from '../utils/cardChain.js'
-import { creditsFromCoins } from '../utils/utils.js'
-
 export default {
   name: 'PageHeader',
     mounted () {
-      let address = this.getAddress()
-      if (address) {
-        getAccInfo(this.$http, localStorage.address)
-        .then(acc => {
-          this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)
-        })
-      }
+      this.updateUserCredits()
     },
     methods: {
-      getAddress() {
-        return localStorage.address
-      }
     },
     computed: {
       getUserCredits () {

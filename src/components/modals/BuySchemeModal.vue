@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import { buyCardSchemeTx, getAccInfo, getGameInfo } from '../utils/cardChain.js'
 import { notify, creditsFromCoins } from '../utils/utils.js'
  
 export default {
@@ -73,7 +72,7 @@ export default {
     }
   },
   mounted() {
-    getGameInfo(this.$http)
+    this.getGameInfo(this.$http)
         .then(res => {
           this.currentPrice = res.cardSchemePrice.amount + res.cardSchemePrice.denom
           this.currentBid = res.cardSchemePrice.amount
@@ -83,7 +82,7 @@ export default {
           this.close()
           return res
         })
-    getAccInfo(this.$http, localStorage.address)
+    this.getAccInfo(this.$http, localStorage.address)
         .then(acc => {
           if (acc.alias === '') {
             notify.fail('NOT LOGGED IN', 'please login or register')
@@ -110,7 +109,7 @@ export default {
     },
     buyCardScheme() {
       this.$emit('close')
-      buyCardSchemeTx(this.$http, this.currentBid)
+      this.buyCardSchemeTx(this.$http, this.currentBid)
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)      

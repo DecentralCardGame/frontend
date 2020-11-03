@@ -9,6 +9,7 @@ import store from './store'
 import axios from 'axios'
 import * as R from 'ramda'
 Object.defineProperty(Vue.prototype, 'R', { value: R });
+import cardChain from './plugins/cardChain'
 
 Vue.config.productionTip = false
 
@@ -23,11 +24,12 @@ Vue.prototype.$hottub = axios.create({
 
 Vue.use(Notifications)
 Vue.use(VueCryptojs)
+Vue.use(cardChain)
 
 Vue.component('vue-swing', VueSwing)
 
 function loadVue () {
-  new Vue({
+  return new Vue({
       router,
       store,
       render: h => h(App)
@@ -50,3 +52,4 @@ new Promise(
     loadVue()
   })
 
+  
