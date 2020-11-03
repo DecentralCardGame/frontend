@@ -443,11 +443,12 @@ export default {
       state.card = null
       return
     }
-    if (localStorage.cardDraft) {
-      this.model = JSON.parse(localStorage.cardDraft)
+    console.log(this.$store.getters.getCardCreatorDraft)
+    if (!R.isEmpty(this.$store.getters.getCardCreatorDraft) && this.$store.getters.getCardCreatorDraft.model) {
+      this.model = JSON.parse(this.$store.getters.getCardCreatorDraft.model)
     }
-    if (localStorage.cardImg) {
-      this.cardImageUrl = JSON.parse(localStorage.cardImg)
+    if (!R.isEmpty(this.$store.getters.getCardCreatorDraft) && this.$store.getters.getCardCreatorDraft.img) {
+      this.cardImageUrl = JSON.parse(this.$store.getters.getCardCreatorDraft.img)
     }
   },
   methods: {
@@ -615,13 +616,12 @@ export default {
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
         newCard.id = this.model.id
-        this.saveContentToCardWithIdTx(this.$http, newCard, () => {})
+        this.saveContentToCardWithIdTx(newCard, () => {})
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)  
 
-          localStorage.cardDraft = ''
-          localStorage.cardImg = ''
+          this.$store.commit('setCardCreatorDraft', {})  
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
         })
@@ -629,13 +629,12 @@ export default {
           console.error(err)
         })
       } else {
-        this.saveContentToUnusedCardSchemeTx(this.$http, newCard, () => {})
+        this.saveContentToUnusedCardSchemeTx(newCard, () => {})
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable) 
 
-          localStorage.cardDraft = ''
-          localStorage.cardImg = ''
+          this.$store.commit('setCardCreatorDraft', {})  
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
         })
@@ -645,13 +644,13 @@ export default {
       }
     },
     saveDraft() {
-      localStorage.cardDraft = JSON.stringify(this.model)
+      this.$store.commit('setCardCreatorDraftModel', JSON.stringify(this.model)) 
     },
     inputFile(event) {
       let file = event.target.files[0]
       uploadImg(file, (result) => {
         this.cardImageUrl = result
-        localStorage.cardImg = JSON.stringify(result)
+        this.$store.commit('setCardCreatorDraftImg', JSON.stringify(result))
       })
     },
     classStepPassed(n) {

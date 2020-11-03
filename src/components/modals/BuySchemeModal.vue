@@ -72,7 +72,7 @@ export default {
     }
   },
   mounted() {
-    this.getGameInfo(this.$http)
+    this.getGameInfo()
         .then(res => {
           this.currentPrice = res.cardSchemePrice.amount + res.cardSchemePrice.denom
           this.currentBid = res.cardSchemePrice.amount
@@ -82,16 +82,16 @@ export default {
           this.close()
           return res
         })
-    this.getAccInfo(this.$http, localStorage.address)
+    this.getAccInfo(this.$store.getters.getUserAddress)
         .then(acc => {
           if (acc.alias === '') {
             notify.fail('NOT LOGGED IN', 'please login or register')
-            throw new Error('unregistered account: ', localStorage.address)
+            throw new Error('unregistered account: ', this.$store.getters.getUserAddress)
           }
 
           if (!acc || !acc.coins) {
             notify.fail('NOT LOGGED IN', 'please login or register')
-            throw new Error('no coins available for', localStorage.address)
+            throw new Error('no coins available for', this.$store.getters.getUserAddress)
           }
 
           this.creditsAvailable = creditsFromCoins(acc.coins)
@@ -109,7 +109,7 @@ export default {
     },
     buyCardScheme() {
       this.$emit('close')
-      this.buyCardSchemeTx(this.$http, this.currentBid)
+      this.buyCardSchemeTx(this.currentBid)
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)      

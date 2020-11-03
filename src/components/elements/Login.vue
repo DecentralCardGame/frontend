@@ -61,8 +61,9 @@ export default {
       }
       this.$hottub.post('/login', request)
         .then((res) => {
-          console.log(res)
+          console.log('res:', res)
           if (res.status !== 200) {
+            console.log(res.status)
             this.$notify({
               group: 'fail',
               title: 'Login failed!'
@@ -85,10 +86,11 @@ export default {
             })
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          console.error(err)
           this.$notify({
             group: 'fail',
-            title: 'Login failed!'
+            title: 'Login failed! Reason: ' + err
           })
         })
     }

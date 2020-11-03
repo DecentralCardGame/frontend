@@ -80,10 +80,6 @@ export default {
       this.$store.commit('setUserMnemonic', this.mnemonic)
       this.$store.commit('setUserAddress', wallet.address)
 
-      
-      localStorage.address = wallet.address
-      localStorage.mnemonic = this.mnemonic
-
       const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.password).toString()
       const post = {
         email: this.email,
@@ -92,7 +88,7 @@ export default {
         mnemonic: encryptedMnemonic
       }
 
-      this.registerAccTx(this.$http, this.username)
+      this.registerAccTx(this.username)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 

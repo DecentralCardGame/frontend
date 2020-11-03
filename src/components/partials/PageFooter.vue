@@ -3,7 +3,8 @@
     <div class="pre-footer">
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
-        <a v-if="userLoggedIn()" @click="$store.commit('toggleLoginBox')">
+        <a v-if="userLoggedIn" 
+          @click="$store.commit('toggleLoginBox')">
           <button>Join</button>
         </a>
         <a v-else href="https://discord.gg/ZKKbhUs">
@@ -97,12 +98,12 @@
 </template>
 
 <script>
-import * as R from 'ramda'
 export default {
   name: 'PageFooter',
   methods: {
     userLoggedIn () {
-      return R.isEmpty(localStorage.address) || R.isNil(localStorage.address)
+      console.log(this.$store.getters.loggedIn)
+      return this.$store.getters.loggedIn
     }
   }
 }

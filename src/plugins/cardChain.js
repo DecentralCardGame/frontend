@@ -35,9 +35,9 @@ export default {
         blockchainEventLoop: () => {
             return 
         },
-        getAccInfo: function(http, address) {
+        getAccInfo: function(address) {
             if (validAddress(address)) {
-              return http.get('auth/accounts/' + address)
+              return this.$http.get('auth/accounts/' + address)
                 .catch(handleGetError)
                 .then(handleGetAcc(R.__, address))
             } else {
@@ -47,7 +47,7 @@ export default {
         },
         updateUserCredits: function() {
           if (this.$store.getters.getUserAddress) {
-            this.getAccInfo(this.$http, this.$store.getters.getUserAddress)
+            this.getAccInfo(this.$store.getters.getUserAddress)
             .then(acc => {
               this.$store.commit('setUserCredits', creditsFromCoins(acc.coins))
             })
@@ -75,7 +75,7 @@ export default {
             let entropy = Random(entropySize / 8)
             return entropyToMnemonic(entropy)
         },
-        registerAccTx: function(http, alias) {
+        registerAccTx: function(alias) {
             return new Promise((resolve, reject) => {
               // this tx is special because it is not signed by the user but by a special creator address
               let reqBody = {
@@ -90,11 +90,11 @@ export default {
                 'alias': alias
               }
               this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(http, process.env.VUE_APP_CREATOR_ADDRESS), http.put('cardservice/create_user', reqBody)])
-                  .then(signAndBroadcast(http, process.env.VUE_APP_CREATOR_MNEMONIC))
+                return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.$http.put('cardservice/create_user', reqBody)])
+                  .then(signAndBroadcast(this.$http, process.env.VUE_APP_CREATOR_MNEMONIC))
                   .then(() => {
                     notify.success('EPIC WIN', 'You have successfully registered in the blockchain.')
-                    resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                    resolve(this.getAccInfo(this.$store.getters.getUserAddress))
                   })
                   .catch((err) => {
                     this.$notify({
@@ -120,11 +120,11 @@ export default {
                 'buyer': this.$store.getters.getUserAddress
               }
               this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), http.post('cardservice/buy_card_scheme', reqBody)])
-                  .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
+                return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), this.$http.post('cardservice/buy_card_scheme', reqBody)])
+                  .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
                   .then(() => { 
                     notify.success('EPIC WIN', 'You have successfully bought a card scheme.') 
-                    resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                    resolve(this.getAccInfo(this.$store.getters.getUserAddress))
                   })
                   .catch(err => {
                     console.error(err)
@@ -146,9 +146,9 @@ export default {
               })
             })
         },
-        saveContentToUnusedCardSchemeTx: function (http, card) {
+        saveContentToUnusedCardSchemeTx: function (card) {
             return new Promise((resolve, reject) => {
-              this.getUserInfo(http, this.$store.getters.getUserAddress)
+              this.getUserInfo(this.$store.getters.getUserAddress)
               .then(user => {
                 if (!user.ownedCardSchemes) {
                   notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
@@ -172,11 +172,11 @@ export default {
               })
               .then(req => {
                 this.$txQueue.enqueue(() => {
-                  return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), saveCardContentGenerateTx(http, req)])
-                    .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
+                  return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), saveCardContentGenerateTx(this.$http, req)])
+                    .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
                     .then(() => {
                       notify.success('EPIC WIN', 'You have successfully published this card.')
-                      resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                      resolve(this.getAccInfo(this.$store.getters.getUserAddress))
                     })
                     .catch(err => {
                       notify.fail('FAIL HARD', err.message)
@@ -187,7 +187,7 @@ export default {
               })
             })
           },
-        saveContentToCardWithIdTx: function (http, card) {
+        saveContentToCardWithIdTx: function (card) {
           return new Promise((resolve, reject) => {
             let req = {
               'base_req': {
@@ -203,11 +203,11 @@ export default {
               'notes': card.Notes
             }
             this.$txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), saveCardContentGenerateTx(http, req)])
-                .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
+              return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), saveCardContentGenerateTx(this.$http, req)])
+                .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
                 .then(() => {
                   notify.success('EPIC WIN', 'You have successfully edited this card.')
-                  resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                  resolve(this.getAccInfo(this.$store.getters.getUserAddress))
                 })
                 .catch(err => {
                   notify.fail('FAIL HARD', err.message)
@@ -217,7 +217,7 @@ export default {
             })
           })
         },
-        voteCardTx: function(http, cardid, voteType) {
+        voteCardTx: function(cardid, voteType) {
           return new Promise((resolve, reject) => {
             let req = {
               'base_req': {
@@ -232,11 +232,11 @@ export default {
             }
         
             this.$txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(http, this.$store.getters.getUserAddress), voteCardGenerateTx(http, req)])
-                .then(signAndBroadcast(http, this.$store.getters.getUserMnemonic))
+              return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), voteCardGenerateTx(this.$http, req)])
+                .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
                   .then(() => {
                     notify.success('VOTED', 'Vote Transaction successfull!')
-                    resolve(this.getAccInfo(http, this.$store.getters.getUserAddress))
+                    resolve(this.getAccInfo(this.$store.getters.getUserAddress))
                   })
                   .catch(err => {
                     notify.fail('FAIL HARD', err.message)
@@ -246,9 +246,9 @@ export default {
             })
           })  
         },
-        getUserInfo: function(http, address) {
+        getUserInfo: function(address) {
             if (validAddress(address)) {
-              return http.get('cardservice/user/' + address)
+              return this.$http.get('cardservice/user/' + address)
                 .catch(handleGetError)
                 .then(handleGetUser(R.__, address))
             } else {
@@ -256,31 +256,31 @@ export default {
               throw new Error('please provide proper address')
             }
         },
-        getCard: function(http, id) {
-            return http.get('cardservice/cards/' + id)
+        getCard: function(id) {
+            return this.$http.get('cardservice/cards/' + id)
                 .catch(handleGetError)
                 .then(handleGetCard(R.__, id))
         },
-        getCardList: function(http, owner, status, nameContains) {
+        getCardList: function(owner, status, nameContains) {
             if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
               notify.fail('INVALID STATUS', 'The requested card status is not valid.')
               throw new Error('CardList status invalid: ' + status)
             }
-            return http.get('cardservice/cardList?' + (status ? 'status='+status : '') + (owner? '&owner='+owner : '') + (nameContains? '&nameContains='+nameContains : ''))
+            return this.$http.get('cardservice/cardList?' + (status ? 'status='+status : '') + (owner? '&owner='+owner : '') + (nameContains? '&nameContains='+nameContains : ''))
               .catch(handleGetError)
               .then(handleGetCardList(R.__, status))
         },
-        getVotableCards: function(http, address) {
+        getVotableCards: function(address) {
             if (validAddress(address)) {
-            return http.get('cardservice/votable_cards/' + address)
+            return this.$http.get('cardservice/votable_cards/' + address)
                 .catch(handleGetError)
                 .then(handleGetVotableCards(R.__, address))
             } else {
             return Promise.reject(new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.'))
             }
         },
-        getGameInfo: function(http) {
-            return http.get('cardservice/cardchain_info')
+        getGameInfo: function() {
+            return this.$http.get('cardservice/cardchain_info')
             .then(res => {
                 return {
                 cardSchemePrice: res.data.result

@@ -9,6 +9,7 @@ export default new Vuex.Store({
     credits: -1,
     mnemonic: '',
     address: '',
+    cardCreatorDraft: {},
     loading: false,
     displayLogin: false
   },
@@ -31,6 +32,15 @@ export default new Vuex.Store({
     setUserCredits (state, credits) {
       state.credits = credits
     },
+    setCardCreatorDraft (state, draft) {
+      state.cardCreatorDraft = draft
+    },
+    setCardCreatorDraftModel (state, model) {
+      state.cardCreatorDraft.model = model
+    },
+    setCardCreatorDraftImg (state, img) {
+      state.cardCreatorDraft.img = img
+    },
     setLoading (state, loading) {
       state.loading = loading
     },
@@ -50,6 +60,9 @@ export default new Vuex.Store({
     },
     getUserCredits: state => {
       return state.credits
+    },
+    getCardCreatorDraft: state => {
+      return state.cardCreatorDraft
     },
     loggedIn: state => {
       return state.jwt !== ''

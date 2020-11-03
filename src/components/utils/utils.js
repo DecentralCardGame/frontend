@@ -42,10 +42,6 @@ export function creditsFromCoins(coins) {
   return credits
 }
 
-export function userLoggedIn() {
-  return R.isEmpty(localStorage.address) || R.isNil(localStorage.address)
-}
-
 // Utility functions for card creator
 
 export function createInteraction (text, abilityPath, rulesPath, cardRules) {

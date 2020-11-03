@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     loadVotableCards() {
-      this.getVotableCards(this.$http, localStorage.address)
+      this.getVotableCards(this.$store.getters.getUserAddress)
         .then(res => {
           console.log('getVotableCards:', res)
           if (res.noVoteRights) {
@@ -117,7 +117,7 @@ export default {
         })
     },
     loadCardList() {
-      return this.getCardList(this.$http, this.filters.owner, this.filters.status, this.filters.nameContains)
+      return this.getCardList(this.filters.owner, this.filters.status, this.filters.nameContains)
         .then(res => {
           this.cardList = res.cardList
           this.pageId = 0
@@ -132,7 +132,7 @@ export default {
       if (this.pageId + this.currentId >= this.cardList.length) return
 
       let cardId = this.cardList[this.cardList.length - 1 - this.pageId - this.currentId]
-      this.getCard(this.$http, cardId)
+      this.getCard(cardId)
         .then(res => {
           let card = res.card
           card.id = cardId
@@ -175,7 +175,7 @@ export default {
     showGalleryModal () {
       this.isGalleryModalVisible = true
       this.canVote = R.any(x => x == this.cards[this.clickedIndex].id, R.pluck('CardId', this.votableCards))
-      this.isOwner = this.cards[this.clickedIndex].Owner === localStorage.address
+      this.isOwner = this.cards[this.clickedIndex].Owner === this.$store.getters.getUserAddress
     },
     closeGalleryModal () {
       this.isGalleryModalVisible = false
@@ -188,14 +188,14 @@ export default {
       saveCardAsPng(document.getElementById('card' + this.clickedIndex), this.cards[this.clickedIndex].name)
     },
     vote (type) {
-      this.voteCardTx(this.$http, this.cards[this.clickedIndex].id, type)
+      this.voteCardTx(this.cards[this.clickedIndex].id, type)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 
       })
     },
     getOwnAddress () {
-      return localStorage.address
+      return this.$store.getters.getUserAddress
     }
   }
 }
