@@ -28,22 +28,31 @@
             class="modal__body"
         >
           <slot name="body">
-            Current price: {{ currentPrice }}
-            <br>
-            You have: {{ creditsAvailable }} credits
+            <table class="table--buy-scard-scheme">
+              <tr>
+                <td>Current price:</td>
+                <td><b>{{ currentPrice }}</b></td>
+              </tr>
+              <tr>
+                <td>You have:</td>
+                <td><b>{{ creditsAvailable }} credits</b></td>
+              </tr>
+              <tr>
+                <td>Your bid:</td>
+                <td><input
+                    v-model="currentBid"
+                    :placeholder="[[ currentBid ]]"
+                    size="2"
+                    type="text"
+                    @keypress="isNumber($event)"
+                > <b> credits</b></td>
+              </tr>
+            </table>
           </slot>
         </section>
         <footer class="modal__footer">
           <slot name="footer">
-            Your bid: &nbsp;
-            <input
-                v-model="currentBid"
-                :placeholder="[[ currentBid ]]"
-                size="2"
-                style="display: inline;color:black;height:50px;text-align: right"
-                type="text"
-                @keypress="isNumber($event)"
-            > credits
+
           </slot>
           <button
               aria-label="Close modal"
@@ -61,7 +70,7 @@
 
 <script>
 import { notify, creditsFromCoins } from '../utils/utils.js'
- 
+
 export default {
   name: 'BuySchemeModal',
   data() {
@@ -74,7 +83,7 @@ export default {
   mounted() {
     this.getGameInfo()
         .then(res => {
-          this.currentPrice = res.cardSchemePrice.amount + res.cardSchemePrice.denom
+          this.currentPrice = res.cardSchemePrice.amount + ' ' + res.cardSchemePrice.denom
           this.currentBid = res.cardSchemePrice.amount
         })
         .catch(res => {
@@ -95,7 +104,7 @@ export default {
           }
 
           this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)        
+          this.$store.commit('setUserCredits', this.creditsAvailable)
         })
         .catch(res => {
           console.error(res)
@@ -112,7 +121,7 @@ export default {
       this.buyCardSchemeTx(this.currentBid)
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)      
+          this.$store.commit('setUserCredits', this.creditsAvailable)
         })
     },
     isNumber: function (evt) {
@@ -130,4 +139,19 @@ export default {
 
 <style lang="scss">
 @import "modal";
+
+.table--buy-scard-scheme {
+  td {
+    padding: 0.25rem;
+  }
+  input {
+    padding: 0;
+    margin: 0;
+    display: inline;
+    color: $black;
+    text-align: right;
+    background-color: lightgray;
+    font-weight: bold;
+  }
+}
 </style>

@@ -59,11 +59,6 @@
               Gallery
             </router-link>
           </li>
-          <li>
-            <router-link to="/vote">
-              Voting
-            </router-link>
-          </li>
           <li v-if="$store.getters.loggedIn">
             <router-link to="/vote">
               Voting
