@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     loadVotableCards() {
-      this.getVotableCards(this.$store.getters.getUserAddress)
+      this.$cardChain.getVotableCards(this.$store.getters.getUserAddress)
         .then(res => {
           console.log('getVotableCards:', res)
           if (res.noVoteRights) {
@@ -117,7 +117,7 @@ export default {
         })
     },
     loadCardList() {
-      return this.getCardList(this.filters.owner, this.filters.status, this.filters.nameContains)
+      return this.$cardChain.getCardList(this.filters.owner, this.filters.status, this.filters.nameContains)
         .then(res => {
           this.cardList = res.cardList
           this.pageId = 0
@@ -132,12 +132,12 @@ export default {
       if (this.pageId + this.currentId >= this.cardList.length) return
 
       let cardId = this.cardList[this.cardList.length - 1 - this.pageId - this.currentId]
-      this.getCard(cardId)
+      this.$cardChain.getCard(cardId)
         .then(res => {
           let card = res.card
           card.id = cardId
           if (card.Content) {
-            this.cards.push(this.parseCard(card))
+            this.cards.push(this.$cardChain.parseCard(card))
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
@@ -188,7 +188,7 @@ export default {
       saveCardAsPng(document.getElementById('card' + this.clickedIndex), this.cards[this.clickedIndex].name)
     },
     vote (type) {
-      this.voteCardTx(this.cards[this.clickedIndex].id, type)
+      this.$cardChain.voteCardTx(this.cards[this.clickedIndex].id, type)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 

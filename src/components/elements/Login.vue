@@ -59,6 +59,7 @@ export default {
         username: this.username,
         password: this.password
       }
+      console.log(this)
       this.$hottub.post('/login', request)
         .then((res) => {
           console.log('res:', res)
@@ -76,7 +77,7 @@ export default {
             this.$store.commit('setUserMnemonic', decryptedMnemonic)
             let wallet = createWalletFromMnemonic(decryptedMnemonic)
             this.$store.commit('setUserAddress', wallet.address)
-            this.updateUserCredits()
+            this.cardChain().updateUserCredits()
             this.$store.commit('toggleLoginBox')
             this.$router.push('me')
 

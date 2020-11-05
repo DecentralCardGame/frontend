@@ -77,7 +77,8 @@ export default {
     }
   },
   mounted () {
-    this.getVotableCards(this.$store.getters.getUserAddress)
+    console.log('this in voting page', this)
+    this.$cardChain.getVotableCards(this.$store.getters.getUserAddress)
       .then(res => {
         console.log('getVotableCards:', res)
         if (res.votables) {
@@ -116,7 +117,7 @@ export default {
   methods: {
     vote (type) {
       this.getNextCard()
-      this.voteCardTx(this.currentCard.id, type)
+      this.$cardChain.voteCardTx(this.currentCard.id, type)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 
@@ -141,9 +142,9 @@ export default {
         let nextCard = R.last(this.voteRights)
         this.voteRights = R.dropLast(1, this.voteRights)
 
-        return this.getCard(nextCard.CardId)
+        return this.$cardChain.getCard(nextCard.CardId)
           .then(res => {
-            let parsedCard = this.parseCard(res.card)
+            let parsedCard = this.$cardChain.parseCard(res.card)
             console.log('currentCard', parsedCard)
             if (parsedCard) {
               this.cards.push(parsedCard)

@@ -81,7 +81,7 @@ export default {
     }
   },
   mounted() {
-    this.getGameInfo()
+    this.$cardChain.getGameInfo()
         .then(res => {
           this.currentPrice = res.cardSchemePrice.amount + ' ' + res.cardSchemePrice.denom
           this.currentBid = res.cardSchemePrice.amount
@@ -91,7 +91,7 @@ export default {
           this.close()
           return res
         })
-    this.getAccInfo(this.$store.getters.getUserAddress)
+    this.$cardChain.getAccInfo(this.$store.getters.getUserAddress)
         .then(acc => {
           if (acc.alias === '') {
             notify.fail('NOT LOGGED IN', 'please login or register')
@@ -118,7 +118,7 @@ export default {
     },
     buyCardScheme() {
       this.$emit('close')
-      this.buyCardSchemeTx(this.currentBid)
+      this.$cardChain.buyCardSchemeTx(this.currentBid)
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)

@@ -59,15 +59,12 @@ export default {
   mounted () {
     this.mnemonic = this.$store.getters.getUserMnemonic
     this.address = this.$store.getters.getUserAddress
-    // this.mnemonic = localStorage.mnemonic
-    //this.address = localStorage.address
   },
   methods: {
     save () {
       // WHEN THIS FUNCTION IS USED THE ENCRYPTED MNEMONIC ON HOTTUB MUST BE OVERWRITTEN
       // overwriting localstorage is not enough
-      //localStorage.mnemonic = this.mnemonic
-      //localStorage.address = this.address
+
       const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.mnemonicConfirmationPassword).toString()
       const post = {
         mnemonic: encryptedMnemonic

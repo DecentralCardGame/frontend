@@ -443,7 +443,6 @@ export default {
       state.card = null
       return
     }
-    console.log(this.$store.getters.getCardCreatorDraft)
     if (!R.isEmpty(this.$store.getters.getCardCreatorDraft) && this.$store.getters.getCardCreatorDraft.model) {
       this.model = JSON.parse(this.$store.getters.getCardCreatorDraft.model)
     }
@@ -616,7 +615,7 @@ export default {
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
         newCard.id = this.model.id
-        this.saveContentToCardWithIdTx(newCard, () => {})
+        this.$cardChain.saveContentToCardWithIdTx(newCard, () => {})
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)  
@@ -629,7 +628,7 @@ export default {
           console.error(err)
         })
       } else {
-        this.saveContentToUnusedCardSchemeTx(newCard, () => {})
+        this.$cardChain.saveContentToUnusedCardSchemeTx(newCard, () => {})
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable) 

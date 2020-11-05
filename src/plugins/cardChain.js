@@ -3,7 +3,7 @@ import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
-import { creditsFromCoins, notify, emptyCard } from '../components/utils/utils.js'
+import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
 export default {
   install (Vue) {
@@ -30,448 +30,473 @@ export default {
           }
       }
     }
+
+    //Vue.prototype.$cardChain = new CardChain(Vue)
+    
+
     Vue.mixin({
       methods: {
-        blockchainEventLoop: () => {
-            return 
+        cardChain () {
+          return new CardChain(this)
         },
-        getAccInfo: function(address) {
-            if (validAddress(address)) {
-              return this.$http.get('auth/accounts/' + address)
-                .catch(handleGetError)
-                .then(handleGetAcc(R.__, address))
-            } else {
-              notify.fail('Do you even?', 'Have a proper address? Please login or register.')
-              throw new Error('please provide proper address')    
-            }
-        },
-        updateUserCredits: function() {
-          if (this.$store.getters.getUserAddress) {
-            this.getAccInfo(this.$store.getters.getUserAddress)
-            .then(acc => {
-              this.$store.commit('setUserCredits', creditsFromCoins(acc.coins))
-            })
+        setCardChainVueContext (vue) {
+          this.vue = vue
+        }
+        //getVotableCards (address) { return this.$cardChain.getVotableCards(address) },
+        //getCardList (owner, status, nameContains) { return this.$cardChain.getCardList(owner, status, nameContains) },
+        //getCard (id) { return this.$cardChain.getCard(id) },
+        //parseCard (rawCard) { return this.$cardChain.parseCard(rawCard) },
+        //updateUserCredits () { return this.$cardChain.updateUserCredits () }
+      }
+      
+    })
+
+
+
+    class CardChain {
+      constructor(vue) {
+        this.vue = vue
+      }
+    
+    
+      getAccInfo (address) {
+          if (this.validAddress(address)) {
+            return this.vue.$http.get('auth/accounts/' + address)
+              .catch(this.handleGetError)
+              .then(this.handleGetAcc(R.__, address))
+          } else {
+            this.vue.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
+            throw new Error('please provide proper address')    
           }
-        },
-        parseCard: function(rawCard) {
-            if (rawCard.Content) {
-                let contentLens = R.lensProp('Content')
-                let parseContent = item => R.set(contentLens, JSON.parse(b64DecodeUnicode(item.Content)), item)
-                let card = parseContent(rawCard)
-                let cardType = R.keys(card.Content)
-                card = R.merge(card, card.Content[cardType[0]])
-            
-                card.image = b64DecodeUnicode(card.Image)
-                card.nerflevel = parseInt(card.Nerflevel)
-                card.type = cardType[0]
-            
-                return card
-            } else {
-                return emptyCard
-            }
-        },
-        generateMnemonic: function() {
-            let entropySize = 24 * 11 - 8
-            let entropy = Random(entropySize / 8)
-            return entropyToMnemonic(entropy)
-        },
-        registerAccTx: function(alias) {
-            return new Promise((resolve, reject) => {
-              // this tx is special because it is not signed by the user but by a special creator address
-              let reqBody = {
-                'base_req': {
-                  'from': process.env.VUE_APP_CREATOR_ADDRESS,
-                  'chain_id': 'testCardchain',
-                  'gas': 'auto',
-                  'gas_adjustment': '1.5'
-                },
-                'new_user': this.$store.getters.getUserAddress,
-                'creator': process.env.VUE_APP_CREATOR_ADDRESS,
-                'alias': alias
-              }
-              this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.$http.put('cardservice/create_user', reqBody)])
-                  .then(signAndBroadcast(this.$http, process.env.VUE_APP_CREATOR_MNEMONIC))
-                  .then(() => {
-                    notify.success('EPIC WIN', 'You have successfully registered in the blockchain.')
-                    resolve(this.getAccInfo(this.$store.getters.getUserAddress))
-                  })
-                  .catch((err) => {
-                    this.$notify({
-                      group: 'fail',
-                      title: 'Registration failed!'
-                    })
-                    console.error(err)
-                    reject(err)
-                  })
-                  })
-              })
-        },
-        buyCardSchemeTx: function(http, maxBid) {
-            return new Promise((resolve, reject) => {
-              let reqBody = {
-                'base_req': {
-                  'from': this.$store.getters.getUserAddress,
-                  'chain_id': 'testCardchain',
-                  'gas': 'auto',
-                  'gas_adjustment': '1.5'
-                },
-                'amount': maxBid + 'credits',
-                'buyer': this.$store.getters.getUserAddress
-              }
-              this.$txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), this.$http.post('cardservice/buy_card_scheme', reqBody)])
-                  .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
-                  .then(() => { 
-                    notify.success('EPIC WIN', 'You have successfully bought a card scheme.') 
-                    resolve(this.getAccInfo(this.$store.getters.getUserAddress))
-                  })
-                  .catch(err => {
-                    console.error(err)
-                    if (err.response.data.error) {
-                      var errData = JSON.parse(err.response.data.error)
-                      if (errData.length > 0) {
-                        var errLog = JSON.parse(errData[0].log)
-                        notify.fail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
-                      } else {
-                        console.error(errData)
-                        notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-                      }
-                    } else {
-                      console.error(err)
-                      notify.fail('WHILE YOU WERE OUT', 'shit got serious.')
-                    }
-                    reject(err)
-                  })
-              })
-            })
-        },
-        saveContentToUnusedCardSchemeTx: function (card) {
-            return new Promise((resolve, reject) => {
-              this.getUserInfo(this.$store.getters.getUserAddress)
-              .then(user => {
-                if (!user.ownedCardSchemes) {
-                  notify.fail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
-                  throw new Error('account ' + this.$store.getters.getUserAddress + ' does not own card schemes')
-                } else {
-                  let reqBody = {
-                    'base_req': {
-                      'from': this.$store.getters.getUserAddress,
-                      'chain_id': 'testCardchain',
-                      'gas': 'auto',
-                      'gas_adjustment': '10'
-                    },
-                    'owner': this.$store.getters.getUserAddress,
-                    'content': JSON.stringify(card.model),
-                    'image': card.image,
-                    'cardid': user.ownedCardSchemes[0],
-                    'notes': card.Notes
-                  }
-                  return reqBody
-                }
-              })
-              .then(req => {
-                this.$txQueue.enqueue(() => {
-                  return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), saveCardContentGenerateTx(this.$http, req)])
-                    .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
-                    .then(() => {
-                      notify.success('EPIC WIN', 'You have successfully published this card.')
-                      resolve(this.getAccInfo(this.$store.getters.getUserAddress))
-                    })
-                    .catch(err => {
-                      notify.fail('FAIL HARD', err.message)
-                      console.error(err)
-                      reject(err)
-                    })
-                })
-              })
-            })
-          },
-        saveContentToCardWithIdTx: function (card) {
-          return new Promise((resolve, reject) => {
-            let req = {
-              'base_req': {
-                'from': this.$store.getters.getUserAddress,
-                'chain_id': 'testCardchain',
-                'gas': 'auto',
-                'gas_adjustment': '10'
-              },
-              'owner': this.$store.getters.getUserAddress,
-              'content': JSON.stringify(card.model),
-              'image': card.image,
-              'cardid': card.id,
-              'notes': card.Notes
-            }
-            this.$txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), saveCardContentGenerateTx(this.$http, req)])
-                .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
-                .then(() => {
-                  notify.success('EPIC WIN', 'You have successfully edited this card.')
-                  resolve(this.getAccInfo(this.$store.getters.getUserAddress))
-                })
-                .catch(err => {
-                  notify.fail('FAIL HARD', err.message)
-                  console.error(err)
-                  reject(err)
-                })
-            })
+      }
+      updateUserCredits () {
+        if (this.vue.$store.getters.getUserAddress) {
+          this.getAccInfo(this.vue.$store.getters.getUserAddress)
+          .then(acc => {
+            this.vue.$store.commit('setUserCredits', creditsFromCoins(acc.coins))
           })
-        },
-        voteCardTx: function(cardid, voteType) {
+        }
+      }
+      parseCard (rawCard) {
+          if (rawCard.Content) {
+              let contentLens = R.lensProp('Content')
+              let parseContent = item => R.set(contentLens, JSON.parse(this.b64DecodeUnicode(item.Content)), item)
+              let card = parseContent(rawCard)
+              let cardType = R.keys(card.Content)
+              card = R.merge(card, card.Content[cardType[0]])
+          
+              card.image = this.b64DecodeUnicode(card.Image)
+              card.nerflevel = parseInt(card.Nerflevel)
+              card.type = cardType[0]
+          
+              return card
+          } else {
+              return emptyCard
+          }
+      }
+      generateMnemonic () {
+          let entropySize = 24 * 11 - 8
+          let entropy = Random(entropySize / 8)
+          return entropyToMnemonic(entropy)
+      }
+      registerAccTx (alias) {
           return new Promise((resolve, reject) => {
-            let req = {
+            // this tx is special because it is not signed by the user but by a special creator address
+            let reqBody = {
               'base_req': {
-                'from': this.$store.getters.getUserAddress,
+                'from': process.env.VUE_APP_CREATOR_ADDRESS,
                 'chain_id': 'testCardchain',
                 'gas': 'auto',
                 'gas_adjustment': '1.5'
               },
-              'voter': this.$store.getters.getUserAddress,
-              'votetype': voteType,
-              'cardid': '' + cardid
+              'new_user': this.$store.getters.getUserAddress,
+              'creator': process.env.VUE_APP_CREATOR_ADDRESS,
+              'alias': alias
             }
-        
-            this.$txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(this.$store.getters.getUserAddress), voteCardGenerateTx(this.$http, req)])
-                .then(signAndBroadcast(this.$http, this.$store.getters.getUserMnemonic))
+            this.vue.$txQueue.enqueue(() => {
+              return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.vue.$http.put('cardservice/create_user', reqBody)])
+                .then(res => this.signAndBroadcast(process.env.VUE_APP_CREATOR_MNEMONIC, res))
+                .then(() => {
+                  this.vue.notifySuccess('EPIC WIN', 'You have successfully registered in the blockchain.')
+                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                })
+                .catch((err) => {
+                  this.vue.$notify({   // TODO YES?
+                    group: 'fail',
+                    title: 'Registration failed!'
+                  })
+                  console.error(err)
+                  reject(err)
+                })
+                })
+            })
+      }
+      buyCardSchemeTx (maxBid) {
+          return new Promise((resolve, reject) => {
+            let reqBody = {
+              'base_req': {
+                'from': this.vue.$store.getters.getUserAddress,
+                'chain_id': 'testCardchain',
+                'gas': 'auto',
+                'gas_adjustment': '1.5'
+              },
+              'amount': maxBid + 'credits',
+              'buyer': this.vue.$store.getters.getUserAddress
+            }
+            this.vue.$txQueue.enqueue(() => {
+              return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.vue.$http.post('cardservice/buy_card_scheme', reqBody)])
+                .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+                .then(() => { 
+                  this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a card scheme.') 
+                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                })
+                .catch(err => {
+                  console.error(err)
+                  if (err.response.data.error) {
+                    var errData = JSON.parse(err.response.data.error)
+                    if (errData.length > 0) {
+                      var errLog = JSON.parse(errData[0].log)
+                      this.vue.notifyFail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
+                    } else {
+                      console.error(errData)
+                      this.vue.notifyFail('WHILE YOU WERE OUT', 'shit got serious.')
+                    }
+                  } else {
+                    console.error(err)
+                    this.vue.notifyFail('WHILE YOU WERE OUT', 'shit got serious.')
+                  }
+                  reject(err)
+                })
+            })
+          })
+      }
+      saveContentToUnusedCardSchemeTx (card) {
+          return new Promise((resolve, reject) => {
+            this.getUserInfo(this.vue.$store.getters.getUserAddress)
+            .then(user => {
+              if (!user.ownedCardSchemes) {
+                this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
+                throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own card schemes')
+              } else {
+                let reqBody = {
+                  'base_req': {
+                    'from': this.vue.$store.getters.getUserAddress,
+                    'chain_id': 'testCardchain',
+                    'gas': 'auto',
+                    'gas_adjustment': '10'
+                  },
+                  'owner': this.vue.$store.getters.getUserAddress,
+                  'content': JSON.stringify(card.model),
+                  'image': card.image,
+                  'cardid': user.ownedCardSchemes[0],
+                  'notes': card.Notes
+                }
+                return reqBody
+              }
+            })
+            .then(req => {
+              this.vue.$txQueue.enqueue(() => {
+                return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])
+                  .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
                   .then(() => {
-                    this.notifySuccess('VOTED', 'Vote Transaction successfull!')
-                    resolve(this.getAccInfo(this.$store.getters.getUserAddress))
+                    this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
+                    resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
                   })
                   .catch(err => {
-                    this.notifyFail('FAIL HARD', err.message)
+                    this.vue.notifyFail('FAIL HARD', err.message)
                     console.error(err)
                     reject(err)
                   })
+              })
             })
-          })  
-        },
-        getUserInfo: function(address) {
-            if (validAddress(address)) {
-              return this.$http.get('cardservice/user/' + address)
-                .catch(handleGetError)
-                .then(handleGetUser(R.__, address))
-            } else {
-              this.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
-              throw new Error('please provide proper address')
-            }
-        },
-        getCard: function(id) {
-            return this.$http.get('cardservice/cards/' + id)
-                .catch(handleGetError)
-                .then(handleGetCard(R.__, id))
-        },
-        getCardList: function(owner, status, nameContains) {
-            if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
-              notify.fail('INVALID STATUS', 'The requested card status is not valid.')
-              throw new Error('CardList status invalid: ' + status)
-            }
-            return this.$http.get('cardservice/cardList?' + (status ? 'status='+status : '') + (owner? '&owner='+owner : '') + (nameContains? '&nameContains='+nameContains : ''))
-              .catch(handleGetError)
-              .then(handleGetCardList(R.__, status))
-        },
-        getVotableCards: function(address) {
-            if (validAddress(address)) {
-            return this.$http.get('cardservice/votable_cards/' + address)
-                .catch(handleGetError)
-                .then(handleGetVotableCards(R.__, address))
-            } else {
-            return Promise.reject(new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.'))
-            }
-        },
-        getGameInfo: function() {
-            return this.$http.get('cardservice/cardchain_info')
-            .then(res => {
-                return {
-                cardSchemePrice: res.data.result
-                }
-            })
-            .catch(handleGetError)
+          })
+        }
+      saveContentToCardWithIdTx (card) {
+        return new Promise((resolve, reject) => {
+          let req = {
+            'base_req': {
+              'from': this.vue.$store.getters.getUserAddress,
+              'chain_id': 'testCardchain',
+              'gas': 'auto',
+              'gas_adjustment': '10'
+            },
+            'owner': this.vue.$store.getters.getUserAddress,
+            'content': JSON.stringify(card.model),
+            'image': card.image,
+            'cardid': card.id,
+            'notes': card.Notes
+          }
+          this.vue.$txQueue.enqueue(() => {
+            return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])
+              .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+              .then(() => {
+                this.vue.notifySuccess('EPIC WIN', 'You have successfully edited this card.')
+                resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+              })
+              .catch(err => {
+                this.vue.notifyFail('FAIL HARD', err.message)
+                console.error(err)
+                reject(err)
+              })
+          })
+        })
+      }
+      voteCardTx (cardid, voteType) {
+        return new Promise((resolve, reject) => {
+          let req = {
+            'base_req': {
+              'from': this.vue.$store.getters.getUserAddress,
+              'chain_id': 'testCardchain',
+              'gas': 'auto',
+              'gas_adjustment': '1.5'
+            },
+            'voter': this.vue.$store.getters.getUserAddress,
+            'votetype': voteType,
+            'cardid': '' + cardid
+          }
+      
+          this.vue.$txQueue.enqueue(() => {
+            return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.voteCardGenerateTx(req)])
+              .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+                .then(() => {
+                  this.vue.notifySuccess('VOTED', 'Vote Transaction successfull!')
+                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                })
+                .catch(err => {
+                  this.vue.notifyFail('FAIL HARD', err.message)
+                  console.error(err)
+                  reject(err)
+                })
+          })
+        })
+      }
+      getUserInfo (address) {
+          if (this.validAddress(address)) {
+            return this.vue.$http.get('cardservice/user/' + address)
+              .catch(this.handleGetError)
+              .then(this.handleGetUser(R.__, address))
+          } else {
+            this.vue.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
+            throw new Error('please provide proper address')
+          }
+      }
+      getCard (id) {
+          return this.vue.$http.get('cardservice/cards/' + id)
+              .catch(this.handleGetError)
+              .then(this.handleGetCard(R.__, id))
+      }
+      getCardList (owner, status, nameContains) {
+          if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
+            this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
+            throw new Error('CardList status invalid: ' + status)
+          }
+          return this.vue.$http.get('cardservice/cardList?' + (status ? 'status='+status : '') + (owner? '&owner='+owner : '') + (nameContains? '&nameContains='+nameContains : ''))
+            .catch(this.handleGetError)
+            .then(this.handleGetCardList(R.__, status))
+      }
+      getVotableCards (address) {
+          if (this.validAddress(address)) {
+          return this.vue.$http.get('cardservice/votable_cards/' + address)
+              .catch(this.handleGetError)
+              .then(this.handleGetVotableCards(R.__, address))
+          } else {
+          return Promise.reject(new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.'))
+          }
+      }
+      getGameInfo () {
+          return this.vue.$http.get('cardservice/cardchain_info')
+          .then(res => {
+              return {
+              cardSchemePrice: res.data.result
+              }
+          })
+          .catch(this.handleGetError)
+      }
+    
+    
+    
+      
+      broadcast (signedTx) {
+        this.vue.notifyInfo('BROADCASTING', 'Transaction successfully created, sending it now into the blockchain.')
+        return this.vue.$http.post('txs', {
+          'tx': signedTx.value,
+          'mode': 'block'
+        }).catch(err => {
+          if (err.response) {
+            console.error(err.response.data)
+            this.vue.notifyFail('INVALID TX', err.response.data)
+          } else {
+            console.error(err)
+          }
+          this.vue.notifyFail('WTF', err)
+          throw err
+        }).then(res => {
+          if (res.data.code) {
+            this.vue.notifyFail('EPIC FAIL', res.data.raw_log)
+            throw new Error(res.data.raw_log)
+          }
+          this.getTx(res.data.txhash)
+            .then(tx => { console.log('looked up tx:', tx) })
+          return res
+        })
+      }
+            
+      sign (rawTx, accData, wallet) {
+        const signMeta = {
+          account_number: accData.account_number.toString(),
+          chain_id: process.env.VUE_APP_CHAIN_ID,
+          sequence: accData.sequence.toString()
+        }
+    
+        let unsignedTx = {
+          msg: rawTx.value.msg,
+          fee: rawTx.value.fee,
+          memo: rawTx.value.memo
+        }
+        let signed = signTx(unsignedTx, signMeta, wallet)
+    
+        return {
+          type: 'cosmos-sdk/StdTx',
+          value: signed
         }
       }
-    })
-  }
-
-}
-
-function sign (rawTx, accData, wallet) {
-  const signMeta = {
-    account_number: accData.account_number.toString(),
-    chain_id: process.env.VUE_APP_CHAIN_ID,
-    sequence: accData.sequence.toString()
-  }
-
-  let unsignedTx = {
-    msg: rawTx.value.msg,
-    fee: rawTx.value.fee,
-    memo: rawTx.value.memo
-  }
-  let signed = signTx(unsignedTx, signMeta, wallet)
-
-  return {
-    type: 'cosmos-sdk/StdTx',
-    value: signed
-  }
-}
-
-const signAndBroadcast = R.curry(function (http, mnemonic, accInfoAndRawTx) {
-  let accData = accInfoAndRawTx[0]
-  let rawTx = accInfoAndRawTx[1].data
-  let wallet = createWalletFromMnemonic(mnemonic)
-  let signedTx = sign(rawTx, accData, wallet)
-  return broadcast(http, signedTx)
-})
-
-function broadcast (http, signedTx) {
-  notify.info('BROADCASTING', 'Transaction successfully created, sending it now into the blockchain.')
-  return http.post('txs', {
-    'tx': signedTx.value,
-    'mode': 'block'
-  }).catch(err => {
-    if (err.response) {
-      console.error(err.response.data)
-      notify.fail('INVALID TX', err.response.data)
-    } else {
-      console.error(err)
+    
+      signAndBroadcast (mnemonic, accInfoAndRawTx) {
+        let accData = accInfoAndRawTx[0]
+        let rawTx = accInfoAndRawTx[1].data
+        let wallet = createWalletFromMnemonic(mnemonic)
+        let signedTx = this.sign(rawTx, accData, wallet)
+        return this.broadcast(signedTx)
+      }
+    
+      getTx (hash) {
+        return this.vue.$http.get('txs/' + hash)
+          .catch(this.handleGetError)
+      }
+    
+      voteCardGenerateTx (reqBody) {
+        return this.vue.$http.put('cardservice/vote_card', reqBody)
+          .catch(this.handlePutError)
+      }
+    
+      saveCardContentGenerateTx (reqBody) {
+        return this.vue.$http.put('cardservice/save_card_content', reqBody)
+          .catch(this.handlePutError)
+      }
+    
+      handleGetUser = R.curry((res, address) => {
+        if (res.data.result.Alias === '') {
+          this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+          throw new Error('account ' + address + ' is not registered')
+        } else {
+          return {
+            alias: res.data.result.Alias,
+            ownedCardSchemes: res.data.result.OwnedCardSchemes,
+            ownedCards: res.data.result.OwnedCard,
+            voteRights: res.data.result.VoteRights
+          }
+        }
+      })
+    
+      handleGetAcc = R.curry((res, address) => {
+        if (res.data.result.value.address === '') {
+          this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+          throw new Error('account ' + address + ' is not registered')
+        } else {
+          return {
+            coins: res.data.result.value.coins,
+            account_number: res.data.result.value.account_number,
+            sequence: res.data.result.value.sequence
+          }
+        }
+      })
+    
+      handleGetCard = R.curry((res, cardId) => {
+        if (res.data.result.owner === '') {
+          this.vue.notifyFail('Card without Owner', 'If you can read this the programmers dun goofed.')
+          throw new Error('Card without Owner: ' + cardId)
+        }
+        if (!res.data.result) {
+          this.vue.notifyFail('WTF', 'A card was looked up that does not exist in the blockchain.')
+          throw new Error('Card with ' + cardId + ' does not exist.')
+        } else {
+          return {
+            card: res.data.result
+          }
+        }
+      })
+    
+      handleGetCardList = R.curry((res, type) => {
+        if (res.data.result === '') {
+          this.vue.notifyFail('Sad', 'Basically the CardList is valid, but it is empty.')
+          throw new Error('CardList Empty: ' + res)
+        }
+        if (!res.data.result) {
+          this.vue.notifyInfo('Empty', 'An empty cardList was returned by the blockchain.')
+          throw new Error('CardList with type ' + type + ' did not return a proper result: ' + res)
+        } else {
+          return {
+            cardList: res.data.result
+          }
+        }
+      })
+    
+      handleGetVotableCards = R.curry((res, address) => {
+        // TODO check if it is possible to differentiate here between unregistered and no voting rights
+        if (res.data.result === null) {
+          this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
+          return {
+            unregistered: true
+          }
+        } else {
+          if (res.data.result.unregistered == true) {
+            return res.data.result
+          }
+          else if (res.data.result.noVoteRights == true) {
+            return res.data.result
+          }
+          return {
+            votables: res.data.result
+          }
+        }
+      })
+    
+      handleGetError (res) {
+        if (res.data) {
+          this.vue.notifyFail('OH SHIT', 'Something went terribly wrong.')
+          throw new Error(res.data)
+        } else {
+          this.vue.notifyFail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
+          throw new Error(res)
+        }
+      }
+    
+      handlePutError (err) {
+        if (err.response.data) {
+          this.vue.notifyFail('OH SHIT', err.response.data.error)
+          throw new Error(err.response.data)
+        } else {
+          this.vue.notifyFail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
+          throw new Error(err)
+        }
+      }
+    
+      validAddress (address) {
+        if (address) {
+          return address.startsWith('cosmos')
+        } else {
+          return false
+        }
+      }
+    
+      b64DecodeUnicode (str) {
+        // Going backwards: from bytestream, to percent-encoding, to original string.
+        return decodeURIComponent(atob(str).split('').map(c => {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(''))
+      }
+    
     }
-    notify.fail('WTF', err)
-    throw err
-  }).then(res => {
-    if (res.data.code) {
-      notify.fail('EPIC FAIL', res.data.raw_log)
-      throw new Error(res.data.raw_log)
-    }
-    getTx(http, res.data.txhash)
-      .then(tx => { console.log('looked up tx:', tx) })
-    return res
-  })
-}
 
-function getTx (http, hash) {
-  return http.get('txs/' + hash)
-    .catch(handleGetError)
-}
-
-function voteCardGenerateTx (http, reqBody) {
-  return http.put('cardservice/vote_card', reqBody)
-    .catch(handlePutError)
-}
-
-function saveCardContentGenerateTx (http, reqBody) {
-  return http.put('cardservice/save_card_content', reqBody)
-    .catch(handlePutError)
-}
-
-const handleGetUser = R.curry((res, address) => {
-  if (res.data.result.Alias === '') {
-    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    throw new Error('account ' + address + ' is not registered')
-  } else {
-    return {
-      alias: res.data.result.Alias,
-      ownedCardSchemes: res.data.result.OwnedCardSchemes,
-      ownedCards: res.data.result.OwnedCard,
-      voteRights: res.data.result.VoteRights
-    }
-  }
-})
-
-const handleGetAcc = R.curry((res, address) => {
-  if (res.data.result.value.address === '') {
-    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    throw new Error('account ' + address + ' is not registered')
-  } else {
-    return {
-      coins: res.data.result.value.coins,
-      account_number: res.data.result.value.account_number,
-      sequence: res.data.result.value.sequence
-    }
-  }
-})
-
-const handleGetCard = R.curry((res, cardId) => {
-  if (res.data.result.owner === '') {
-    notify.fail('Card without Owner', 'If you can read this the programmers dun goofed.')
-    throw new Error('Card without Owner: ' + cardId)
-  }
-  if (!res.data.result) {
-    notify.fail('WTF', 'A card was looked up that does not exist in the blockchain.')
-    throw new Error('Card with ' + cardId + ' does not exist.')
-  } else {
-    return {
-      card: res.data.result
-    }
-  }
-})
-
-const handleGetCardList = R.curry((res, type) => {
-  if (res.data.result === '') {
-    notify.fail('Sad', 'Basically the CardList is valid, but it is empty.')
-    throw new Error('CardList Empty: ' + res)
-  }
-  if (!res.data.result) {
-    notify.info('Empty', 'An empty cardList was returned by the blockchain.')
-    throw new Error('CardList with type ' + type + ' did not return a proper result: ' + res)
-  } else {
-    return {
-      cardList: res.data.result
-    }
-  }
-})
-
-const handleGetVotableCards = R.curry((res, address) => {
-  // TODO check if it is possible to differentiate here between unregistered and no voting rights
-  if (res.data.result === null) {
-    notify.fail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-    return {
-      unregistered: true
-    }
-  } else {
-    if (res.data.result.unregistered == true) {
-      return res.data.result
-    }
-    else if (res.data.result.noVoteRights == true) {
-      return res.data.result
-    }
-    return {
-      votables: res.data.result
-    }
-  }
-})
-
-function handleGetError (res) {
-  if (res.data) {
-    notify.fail('OH SHIT', 'Something went terribly wrong.')
-    throw new Error(res.data)
-  } else {
-    notify.fail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
-    throw new Error(res)
   }
 }
-
-function handlePutError (err) {
-  if (err.response.data) {
-    notify.fail('OH SHIT', err.response.data.error)
-    throw new Error(err.response.data)
-  } else {
-    notify.fail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
-    throw new Error(err)
-  }
-}
-
-function validAddress (address) {
-  if (address) {
-    return address.startsWith('cosmos')
-  } else {
-    return false
-  }
-}
-
-function b64DecodeUnicode (str) {
-  // Going backwards: from bytestream, to percent-encoding, to original string.
-  return decodeURIComponent(atob(str).split('').map(c => {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-  }).join(''))
-}
-
-

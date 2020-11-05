@@ -49,34 +49,39 @@ new Promise(
     })
   .then(rules => {
     Vue.prototype.$cardRules = rules
-    loadVue()
+    
+    let vm = loadVue()
+    
+    Vue.prototype.$cardChain = vm.cardChain()
+    //vm.prototype.cardChain = vm.cardChain()
+    console.log('vm', vm)
   })
 
-  Vue.mixin({
-    methods: {
-      notifyFail: R.curry(function (title, text) {
-        Vue.notify({
-          group: 'fail',
-          title: title,
-          text: text,
-          duration: 5000
-        })
-      }),
-      notifySuccess: R.curry(function (title, text) {
-        Vue.notify({
-          group: 'success',
-          title: title,
-          text: text,
-          duration: 5000
-        })
-      }),
-      notifyInfo: R.curry(function (title, text) {
-        Vue.notify({
-          group: 'info',
-          title: title,
-          text: text,
-          duration: 5000
-        })
+Vue.mixin({
+  methods: {
+    notifyFail: R.curry(function (title, text) {
+      Vue.notify({
+        group: 'fail',
+        title: title,
+        text: text,
+        duration: 5000
       })
-    }
-  })
+    }),
+    notifySuccess: R.curry(function (title, text) {
+      Vue.notify({
+        group: 'success',
+        title: title,
+        text: text,
+        duration: 5000
+      })
+    }),
+    notifyInfo: R.curry(function (title, text) {
+      Vue.notify({
+        group: 'info',
+        title: title,
+        text: text,
+        duration: 5000
+      })
+    })
+  }
+})

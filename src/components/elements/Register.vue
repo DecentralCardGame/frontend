@@ -68,7 +68,7 @@ export default {
   methods: {
     register () {
       if (!this.mnemonic) {
-        this.mnemonic = this.generateMnemonic()
+        this.mnemonic = this.$cardChain.generateMnemonic()
       } else if (this.mnemonic.split(' ').length < 24) {
         
         // TODO check if user has entered a serious mnemonic
@@ -88,7 +88,7 @@ export default {
         mnemonic: encryptedMnemonic
       }
 
-      this.registerAccTx(this.username)
+      this.$cardChain.registerAccTx(this.username)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
         this.$store.commit('setUserCredits', this.creditsAvailable) 
