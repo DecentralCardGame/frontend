@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { notify, creditsFromCoins } from '../utils/utils.js'
+import { creditsFromCoins } from '../utils/utils.js'
 
 export default {
   name: 'BuySchemeModal',
@@ -94,12 +94,12 @@ export default {
     this.$cardChain.getAccInfo(this.$store.getters.getUserAddress)
         .then(acc => {
           if (acc.alias === '') {
-            notify.fail('NOT LOGGED IN', 'please login or register')
+            this.notifyFail('NOT LOGGED IN', 'please login or register')
             throw new Error('unregistered account: ', this.$store.getters.getUserAddress)
           }
 
           if (!acc || !acc.coins) {
-            notify.fail('NOT LOGGED IN', 'please login or register')
+            this.notifyFail('NOT LOGGED IN', 'please login or register')
             throw new Error('no coins available for', this.$store.getters.getUserAddress)
           }
 

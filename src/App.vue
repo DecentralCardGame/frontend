@@ -15,19 +15,25 @@
       </div>
     </main>
     <notifications
-      group="success"
+      group="bottom-right-notification"
       position="bottom right"
       classes="notification notification--success"
+      animation-type="velocity"
+      :speed="300"
     />
     <notifications
-      group="info"
+      group="bottom-right-notification"
       position="bottom right"
       classes="notification notification--info"
+      animation-type="velocity"
+      :speed="300"
     />
     <notifications
-      group="fail"
+      group="bottom-right-notification"
       position="bottom right"
       classes="notification notification--alert"
+      animation-type="velocity"
+      :speed="300"
     />
     <PageFooter />
   </div>

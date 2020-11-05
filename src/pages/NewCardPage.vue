@@ -466,7 +466,7 @@ export default {
 
       if (type === 'root') {
         if (this.model.type === 'no type' || this.model.type === undefined) {
-          notify.fail('No Type', 'Card has no type, please pick a type before setting abilities.')
+          this.notifyFail('No Type', 'Card has no type, please pick a type before setting abilities.')
           this.isAbilityModalVisible = false
           return
         }
@@ -545,15 +545,15 @@ export default {
     },
     saveSubmit() {
       if (!this.model.CardName) {
-        notify.fail('No Name', 'Card has no name, please enter a name.')
+        this.notifyFail('No Name', 'Card has no name, please enter a name.')
         return
       }
       if (!this.model.type || this.model.type === 'no type') {
-        notify.fail('Wrong Type', 'please pick a type')
+        this.notifyFail('Wrong Type', 'please pick a type')
         return
       }
       if (!this.model.CardName) {
-        notify.fail('No Name', 'Card has no name, please enter a name.')
+        this.notifyFail('No Name', 'Card has no name, please enter a name.')
         return
       }
 
@@ -577,14 +577,14 @@ export default {
       }
       if (this.model.type !== 'HQ') {
         if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
-          notify.fail('No Cost', 'Card has no ressource cost, please pick a number.')
+          this.notifyFail('No Cost', 'Card has no ressource cost, please pick a number.')
           return
         }
         newCard.model[this.getRulesType()].CastingCost = this.model.CastingCost
       }
       if (this.model.type !== 'Action') {
         if (R.isNil(this.model.Health)) {
-          notify.fail('No Health', 'Card has no Health, please pick a number.')
+          this.notifyFail('No Health', 'Card has no Health, please pick a number.')
           return
         }
         newCard.model[this.getRulesType()].Abilities = R.map(R.pick(R.keys(this.$cardRules.children.Entity.children.Abilities.children.Ability.children)), this.abilities)
@@ -592,7 +592,7 @@ export default {
       }
       if (this.model.type === 'Entity') {
         if (R.isNil(this.model.Attack)) {
-          notify.fail('No Attack', 'Card has no Attack, please pick a number.')
+          this.notifyFail('No Attack', 'Card has no Attack, please pick a number.')
           return
         }
         newCard.model[this.getRulesType()].Attack = this.model.Attack
@@ -605,11 +605,11 @@ export default {
       }
 
       if (!this.model.Tags[0]) {
-        notify.fail('No Tags', 'Card has no Tag, please pick at least one tag.')
+        this.notifyFail('No Tags', 'Card has no Tag, please pick at least one tag.')
         return
       }
       if (!this.model.FlavourText[0]) {
-        notify.fail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
+        this.notifyFail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
       }
       // check if a card is edited with pre-existing ID

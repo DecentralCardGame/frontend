@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import {notify} from "../components/utils/utils";
 
 export default {
   name: 'AccountPage',
@@ -77,15 +76,12 @@ export default {
             console.log(res)
           })
           .catch(() => {
-            notify.fail('Backend registration failed!')
+            this.notifyFail('Backend registration failed!')
           })
     },
     logout () {
       this.$store.commit('logout')
-      this.$notify({
-        group: 'success',
-        title: 'Logout successful!'
-      })
+      this.notifySuccess('Very Nice', 'Logout successful!')
       this.$router.push('login')
     }
   }

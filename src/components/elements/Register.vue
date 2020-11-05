@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { notify, creditsFromCoins } from '../utils/utils.js'
+import { creditsFromCoins } from '../utils/utils.js'
 import { createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
 export default {
@@ -72,7 +72,7 @@ export default {
       } else if (this.mnemonic.split(' ').length < 24) {
         
         // TODO check if user has entered a serious mnemonic
-        notify.fail('Bad Mnemonic', 'Please enter a real mnemonic with 24 words')
+        this.notifyFail('Bad Mnemonic', 'Please enter a real mnemonic with 24 words')
       }
 
       let wallet = createWalletFromMnemonic(this.mnemonic)
@@ -95,17 +95,17 @@ export default {
       })
       .catch(err => {
         console.error(err)
-        notify.fail('Blockchain Fail', 'Registering the address in the blockchain has failed.')
+        this.notifyFail('Blockchain Fail', 'Registering the address in the blockchain has failed.')
       })
 
       this.$hottub.post('/register', post)
-              .then((res) => {
-                console.log(res)
-                this.$router.push('/')
-              })
-              .catch(() => {
-                notify.fail('Backend registration failed!')
-              })
+        .then((res) => {
+          console.log(res)
+          this.$router.push('/')
+        })
+        .catch(() => {
+          this.notifyFail('Backend registration failed!')
+        })
     }
   }
 }
