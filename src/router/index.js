@@ -8,6 +8,7 @@ const NewCardPage = () => import('@/pages/NewCardPage')
 const AboutPage = () => import('@/pages/AboutPage')
 const ImprintPage = () => import('@/pages/ImprintPage')
 const TeamPage = () => import('@/pages/TeamPage')
+const HowToPlayPage = () => import('@/pages/HowToPlayPage')
 const VotingPage = () => import('../pages/VotingPage')
 const AccountPage = () => import('../pages/AccountPage')
 const CardMinter = () => import('../pages/CardMinterPage')
@@ -30,6 +31,11 @@ export default new Router({
       path: '/',
       name: 'About',
       component: AboutPage
+    },
+    {
+      path: '/howtoplay',
+      name: 'How To Play',
+      component: HowToPlayPage
     },
     {
       path: '/team',
