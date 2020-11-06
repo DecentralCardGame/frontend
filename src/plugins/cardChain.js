@@ -94,7 +94,7 @@ export default {
               'gas': 'auto',
               'gas_adjustment': '1.5'
             },
-            'new_user': this.$store.getters.getUserAddress,
+            'new_user': this.vue.$store.getters.getUserAddress,
             'creator': process.env.VUE_APP_CREATOR_ADDRESS,
             'alias': alias
           }
