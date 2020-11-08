@@ -1,76 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval';
+    object-src 'none';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    media-src 'none';
+    frame-src 'none';
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' https://*.crowdcontrol.network">
+
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- LOAD PERFORMANCE CRITICAL ASSETS -->
     <style>
-      body {
-        background: orange url("<%= BASE_URL %>background.svg") no-repeat;
-          background-position: right;
-          background-size: cover;
-        color: white;
-      }
-      .lds-ring {
-          display: inline-block;
-          position: relative;
-          width: 80px;
-          height: 80px;
-      }
-      .lds-ring div {
-          box-sizing: border-box;
-          display: block;
-          position: absolute;
-          width: 64px;
-          height: 64px;
-          margin: 8px;
-          border: 8px solid #fff;
-          border-radius: 50%;
-          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-          border-color: #fff transparent transparent transparent;
-      }
-      .lds-ring div:nth-child(1) {
-          animation-delay: -0.45s;
-      }
-      .lds-ring div:nth-child(2) {
-          animation-delay: -0.3s;
-      }
-      .lds-ring div:nth-child(3) {
-          animation-delay: -0.15s;
-      }
-      @keyframes lds-ring {
-          0% {
-              transform: rotate(0deg);
-          }
-          100% {
-              transform: rotate(360deg);
-          }
-      }
-      .loading-container {
-          position: fixed;
-          flex-flow: column;
-          width: 100vw;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100vh;
-          gap: 1rem;
-      }
+        body {
+            background: orange url("<%= BASE_URL %>background.svg") no-repeat;
+            background-position: right;
+            background-size: cover;
+            color: white;
+        }
+
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 8px solid #fff;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-container {
+            position: fixed;
+            flex-flow: column;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 1rem;
+        }
     </style>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app">
-        <div class="loading-container">
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-            Casting the card magic onto your device...
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="app">
+    <div class="loading-container">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
+        Casting the card magic onto your device...
     </div>
-    <!-- built files will be auto injected -->
-  </body>
+</div>
+<!-- built files will be auto injected -->
+</body>
 </html>
