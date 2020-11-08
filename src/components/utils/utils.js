@@ -1,35 +1,7 @@
-import Vue from 'vue'
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 
 // Global Utility functions
-
-export const notify = {
-  fail: R.curry(function (title, text) {
-    Vue.notify({
-      group: 'fail',
-      title: title,
-      text: text,
-      duration: 5000
-    })
-  }),
-  success: R.curry(function (title, text) {
-    Vue.notify({
-      group: 'success',
-      title: title,
-      text: text,
-      duration: 5000
-    })
-  }),
-  info: R.curry(function (title, text) {
-    Vue.notify({
-      group: 'info',
-      title: title,
-      text: text,
-      duration: 5000
-    })
-  })
-}
 
 export function creditsFromCoins(coins) {
   let credits = -1

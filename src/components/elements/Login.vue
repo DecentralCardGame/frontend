@@ -61,13 +61,9 @@ export default {
       }
       this.$hottub.post('/login', request)
         .then((res) => {
-          console.log('res:', res)
           if (res.status !== 200) {
-            console.log(res.status)
-            this.$notify({
-              group: 'fail',
-              title: 'Login failed!'
-            })
+            console.error(res)
+            this.notifyFail('YOU FAIL', 'Login failed! ' + res.status)
           } else {
             const decryptedMnemonicBytes = this.CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
             const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8))
@@ -76,22 +72,16 @@ export default {
             this.$store.commit('setUserMnemonic', decryptedMnemonic)
             let wallet = createWalletFromMnemonic(decryptedMnemonic)
             this.$store.commit('setUserAddress', wallet.address)
-            this.updateUserCredits()
+            this.$cardChain.updateUserCredits()
             this.$store.commit('toggleLoginBox')
             this.$router.push('me')
 
-            this.$notify({
-              group: 'success',
-              title: 'Login successful!'
-            })
+            this.notifySuccess('Very Nice', 'Login successful!')
           }
         })
         .catch((err) => {
           console.error(err)
-          this.$notify({
-            group: 'fail',
-            title: 'Login failed! Reason: ' + err
-          })
+          this.notifyFail('YOU FAIL', 'Login failed! ' + err)
         })
     }
   }

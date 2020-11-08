@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import {notify} from "../components/utils/utils";
 
 export default {
   name: 'AccountPage',
@@ -59,15 +58,12 @@ export default {
   mounted () {
     this.mnemonic = this.$store.getters.getUserMnemonic
     this.address = this.$store.getters.getUserAddress
-    // this.mnemonic = localStorage.mnemonic
-    //this.address = localStorage.address
   },
   methods: {
     save () {
       // WHEN THIS FUNCTION IS USED THE ENCRYPTED MNEMONIC ON HOTTUB MUST BE OVERWRITTEN
       // overwriting localstorage is not enough
-      //localStorage.mnemonic = this.mnemonic
-      //localStorage.address = this.address
+
       const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.mnemonicConfirmationPassword).toString()
       const post = {
         mnemonic: encryptedMnemonic
@@ -80,15 +76,12 @@ export default {
             console.log(res)
           })
           .catch(() => {
-            notify.fail('Backend registration failed!')
+            this.notifyFail('Backend registration failed!')
           })
     },
     logout () {
       this.$store.commit('logout')
-      this.$notify({
-        group: 'success',
-        title: 'Logout successful!'
-      })
+      this.notifySuccess('Very Nice', 'Logout successful!')
       this.$router.push('login')
     }
   }

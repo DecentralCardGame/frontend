@@ -100,6 +100,8 @@
 <script>
 export default {
   name: 'PageFooter',
+  mounted () {
+  },
   methods: {
     userLoggedIn () {
       console.log(this.$store.getters.loggedIn)

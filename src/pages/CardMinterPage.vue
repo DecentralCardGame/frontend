@@ -64,9 +64,9 @@ export default {
   mounted () {
     let id = parseInt(this.$route.params.id)
     if (typeof id === 'number' && !isNaN(id))  {
-      this.getCard(this.$route.params.id)
+      this.$cardChain.getCard(this.$route.params.id)
         .then(res => {
-          let parsedCard = this.parseCard(res.card)
+          let parsedCard = this.$cardChain.parseCard(res.card)
           console.log('currentCard', res)
           if (parsedCard) {
             this.cards = []

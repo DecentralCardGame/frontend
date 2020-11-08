@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import $RefParser from 'json-schema-ref-parser'
 import Notifications from 'vue-notification'
-import VueSwing from 'vue-swing'
+import velocity      from 'velocity-animate'
+//import VueSwing from 'vue-swing'
 import VueCryptojs from 'vue-cryptojs'
 import App from './App.vue'
 import router from './router'
@@ -22,11 +23,11 @@ Vue.prototype.$hottub = axios.create({
   baseURL: process.env.VUE_APP_AUTH_API
 })
 
-Vue.use(Notifications)
+Vue.use(Notifications, { velocity })
 Vue.use(VueCryptojs)
 Vue.use(cardChain)
 
-Vue.component('vue-swing', VueSwing)
+//Vue.component('vue-swing', VueSwing)
 
 function loadVue () {
   return new Vue({
@@ -48,35 +49,39 @@ new Promise(
       })
     })
   .then(rules => {
-    Vue.prototype.$cardRules = rules
-    loadVue()
+    let vm = loadVue()
+    Vue.prototype.$cardRules = rules    
+    Vue.prototype.$cardChain = vm.newCardChain()
   })
 
-  Vue.mixin({
-    methods: {
-      notifyFail: R.curry(function (title, text) {
-        Vue.notify({
-          group: 'fail',
-          title: title,
-          text: text,
-          duration: 5000
-        })
-      }),
-      notifySuccess: R.curry(function (title, text) {
-        Vue.notify({
-          group: 'success',
-          title: title,
-          text: text,
-          duration: 5000
-        })
-      }),
-      notifyInfo: R.curry(function (title, text) {
-        Vue.notify({
-          group: 'info',
-          title: title,
-          text: text,
-          duration: 5000
-        })
+Vue.mixin({
+  methods: {
+    notifyFail: R.curry(function (title, text) {
+      this.$notify({
+        group: 'bottom-right-notification',
+        title: title,
+        text: text,
+        type: 'notification--alert',
+        duration: 5000
       })
-    }
-  })
+    }),
+    notifySuccess: R.curry(function (title, text) {
+      this.$notify({
+        group: 'bottom-right-notification',
+        title: title,
+        text: text,
+        type: 'notification--success',
+        duration: 5000
+      })
+    }),
+    notifyInfo: R.curry(function (title, text) {
+      this.$notify({
+        group: 'bottom-right-notification',
+        title: title,
+        text: text,
+        type: 'notification--info',
+        duration: 5000
+      })
+    })
+  }
+})

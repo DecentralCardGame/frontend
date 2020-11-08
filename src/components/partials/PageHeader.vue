@@ -20,7 +20,7 @@
 export default {
   name: 'PageHeader',
     mounted () {
-      this.updateUserCredits()
+      this.$cardChain.updateUserCredits()
     },
     methods: {
     },
