@@ -184,11 +184,7 @@ export default {
                     this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
                     resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
                   })
-                  .catch(err => {
-                    this.vue.notifyFail('FAIL HARD', err.message)
-                    console.error(err)
-                    reject(err)
-                  })
+                  .catch(this.handleTxFail(reject))
               })
             })
           })
@@ -215,11 +211,7 @@ export default {
                 this.vue.notifySuccess('EPIC WIN', 'You have successfully edited this card.')
                 resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
               })
-              .catch(err => {
-                this.vue.notifyFail('FAIL HARD', err.message)
-                console.error(err)
-                reject(err)
-              })
+              .catch(this.handleTxFail(reject))
           })
         })
       }
@@ -244,11 +236,7 @@ export default {
                   this.vue.notifySuccess('VOTED', 'Vote Transaction successful!')
                   resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
                 })
-                .catch(err => {
-                  this.vue.notifyFail('FAIL HARD', err.message)
-                  console.error(err)
-                  reject(err)
-                })
+                .catch(this.handleTxFail(reject))
           })
         })
       }
@@ -430,7 +418,7 @@ export default {
           }
         }
       })
-      handleGetError (res) {
+      handleGetError = (res) => {
         if (res.data) {
           this.vue.notifyFail('OH SHIT', 'Something went terribly wrong.')
           throw new Error(res.data)
@@ -439,15 +427,31 @@ export default {
           throw new Error(res)
         }
       }
-      handlePutError (err) {
+      handlePutError = (err) => {
         if (err.response.data) {
           this.vue.notifyFail('OH SHIT', err.response.data.error)
-          throw new Error(err.response.data)
+          console.error(err.response.data)
+          throw new Error('handled')
         } else {
           this.vue.notifyFail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
           throw new Error(err)
         }
       }
+      handleTxFail = R.curry((reject, err) => {
+        console.log(err)
+        if (err.message === 'handled') {
+          reject(err)
+        }
+        else if(err.message) {
+          this.vue.notifyFail('FAIL HARD', err.message)
+          console.error(err)
+          reject(err.message)
+        }
+        else {
+          console.error(err)
+          reject(err)
+        }
+      })
       validAddress (address) {
         if (address) {
           return address.startsWith('cosmos')

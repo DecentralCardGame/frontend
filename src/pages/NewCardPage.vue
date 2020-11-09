@@ -503,9 +503,13 @@ export default {
     },
     updateAbility($event, index) {
       this.ability = $event
+      this.abilities[index] = $event
+
+      // this is the delete case
       if ($event === null) {
         this.abilities.splice(index, 1)
       }
+      console.log('abilities after update', this.abilities)
     },
     resetAbilities() {
       this.abilities = []
@@ -543,7 +547,18 @@ export default {
       this.model.Tags.splice(0, 1, this.model.tagDummy)
       this.saveDraft()
     },
+    interactionTextToString(ability) {
+      let string = ''
+      ability.interaction.forEach( entry => {
+        if (entry.btn.type !== 'expandArray')
+          string += entry.pre + entry.btn.label + entry.post 
+      })
+      return string
+    },
     saveSubmit() {
+      let abilityText = this.interactionTextToString(this.abilities[0])
+      console.log(abilityText)
+
       if (!this.model.CardName) {
         this.notifyFail('No Name', 'Card has no name, please enter a name.')
         return
@@ -620,7 +635,7 @@ export default {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)  
 
-          this.$store.commit('setCardCreatorDraft', {})  
+          this.$store.commit('setCardCreatorDraft', {})     // TODO ACTIVATE THIS AGAIN BEFORE COMMITING
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
         })
