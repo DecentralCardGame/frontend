@@ -1,0 +1,6 @@
+{
+  "name": "Target Variable-Name",
+  "children": ["M","T"],
+  "type": "enum",
+  "description": "Choose a Target Variable-Name"
+}

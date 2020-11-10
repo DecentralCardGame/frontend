@@ -1,0 +1,16 @@
+{
+  "name": "Card-Extractors",
+  "children": {
+    "ActionExtractors": {
+      "$ref": "actionExtractorsRules.json"
+    },
+    "EntityExtractors": {
+      "$ref": "entityExtractorsRules.json"
+    },
+    "PlaceExtractors": {
+      "$ref": "placeExtractorsRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose a Card-Extractor"
+}

@@ -8,11 +8,11 @@
       "$ref": "stringChangeModeRules.json"
     },
     "CardCondition": {
-      "$ref": "cardConditionRules.json",
+      "$ref": "cardConditionsRules.json",
       "optional": true
     },
-    "ManipulatedCardExtractor": {
-      "$ref": "cardExtractorRules.json",
+    "ManipulatedCardExtractors": {
+      "$ref": "cardExtractorsRules.json",
       "optional": true
     },
     "ManipulationValueExtractor": {
@@ -22,5 +22,5 @@
   },
   "type": "struct",
   "description": "Build a Text based Manipulation-Event Listener",
-  "interactionText": "Whenever §Property §StringChangeMode on a card §CardCondition. §ManipulatedCardExtractor §ManipulationValueExtractor"
+  "interactionText": "Whenever §Property §StringChangeMode on a card §CardCondition. §ManipulatedCardExtractors §ManipulationValueExtractor"
 }

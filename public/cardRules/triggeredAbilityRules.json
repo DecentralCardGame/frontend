@@ -4,6 +4,10 @@
     "Cause": {
       "$ref": "eventListenerRules.json"
     },
+    "Cost": {
+      "$ref": "costRules.json",
+      "optional": true
+    },
     "Effects": {
       "$ref": "effectsRules.json"
     }

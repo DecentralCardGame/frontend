@@ -12,14 +12,18 @@
       "$ref": "cardModeRules.json"
     },
     "ActionCondition": {
-      "$ref": "actionConditionRules.json",
+      "$ref": "actionConditionsRules.json",
       "optional": true
     },
     "Zone": {
       "$ref": "dynamicZoneRules.json"
     },
     "ActionExtractor": {
-      "$ref": "actionExtractorRules.json",
+      "$ref": "actionExtractorsRules.json",
+      "optional": true
+    },
+    "AmountExtractor": {
+      "$ref": "intExtractorRules.json",
       "optional": true
     }
   },

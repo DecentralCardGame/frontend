@@ -5,7 +5,7 @@
       "$ref": "simpleIntValueRules.json"
     },
     "Condition": {
-      "$ref": "cardConditionRules.json",
+      "$ref": "cardConditionsRules.json",
       "optional": true
     }
   },

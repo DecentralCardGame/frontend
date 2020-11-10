@@ -1,6 +1,6 @@
 {
   "name": "Card-Mode",
-  "children": ["ALL","TARGET"],
+  "children": ["ALL","OPPONENTSCHOICE","RANDOM","TARGET"],
   "type": "enum",
   "description": "Choose a Card-Mode"
 }

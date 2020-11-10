@@ -6,6 +6,9 @@
     },
     "EntityStringExtractor": {
       "$ref": "entityStringExtractorRules.json"
+    },
+    "EntityTargetExtractor": {
+      "$ref": "targetExtractorRules.json"
     }
   },
   "type": "interface",

@@ -1,0 +1,12 @@
+{
+  "name": "Place-Extractors",
+  "children": {
+    "placeExctractor": {
+      "$ref": "placeExtractorRules.json"
+    }
+  },
+  "type": "array",
+  "min": 0,
+  "max": 3,
+  "description": "Add some Extractors"
+}

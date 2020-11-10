@@ -6,6 +6,9 @@
     },
     "ActionStringExtractor": {
       "$ref": "actionStringExtractorRules.json"
+    },
+    "ActionTargetExtractor": {
+      "$ref": "targetExtractorRules.json"
     }
   },
   "type": "interface",

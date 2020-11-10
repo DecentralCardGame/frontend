@@ -12,6 +12,9 @@
     },
     "TargetEffect": {
       "$ref": "targetEffectRules.json"
+    },
+    "ChooseFromEffects": {
+      "$ref": "effectsRules.json"
     }
   },
   "type": "interface",

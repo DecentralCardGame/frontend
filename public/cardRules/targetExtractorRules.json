@@ -1,0 +1,11 @@
+{
+  "name": "Target Extractor",
+  "children": {
+    "TargetVariableName": {
+      "$ref": "targetVariableNameRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build a Target-Extractor",
+  "interactionText": "That card is marked as §TargetVariableName."
+}

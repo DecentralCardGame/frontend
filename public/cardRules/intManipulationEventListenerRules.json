@@ -8,11 +8,11 @@
       "$ref": "intChangeModeRules.json"
     },
     "CardCondition": {
-      "$ref": "cardConditionRules.json",
+      "$ref": "cardConditionsRules.json",
       "optional": true
     },
     "ManipulatedCardExtractor": {
-      "$ref": "cardExtractorRules.json",
+      "$ref": "cardExtractorsRules.json",
       "optional": true
     },
     "ManipulationValueExtractor": {
@@ -22,5 +22,5 @@
   },
   "type": "struct",
   "description": "Build a Numeric Manipulation-Event Listener",
-  "interactionText": "Whenever §Property on card §CardCondition §IntChangeMode. §ManipulatedCardExtractor §ManipulationValueExtractor"
+  "interactionText": "Whenever §Property on card §CardCondition §IntChangeMode. §ManipulatedCardExtractors §ManipulationValueExtractor"
 }

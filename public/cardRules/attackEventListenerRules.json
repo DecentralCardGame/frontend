@@ -2,15 +2,14 @@
   "name": "Attack-Event Listener",
   "children": {
     "EntityCondition": {
-      "$ref": "entityConditionRules.json",
+      "$ref": "entityConditionsRules.json",
       "optional": true
     },
-    "AttackEntityExtractor": {
-      "$ref": "entityExtractorRules.json",
-      "optional": true
+    "AttackEntityExtractors": {
+      "$ref": "entityExtractorsRules.json"
     }
   },
   "type": "struct",
   "description": "Build an Attack-Event Listener",
-  "interactionText": "Whenever an entity §EntityCondition attacks. §AttackEntityExtractor"
+  "interactionText": "Whenever an entity §EntityCondition attacks. §AttackEntityExtractors"
 }

@@ -626,7 +626,7 @@ export default {
       }
 
       console.log('abilities:', this.abilities)
-      let abilityText = this.interactionTextToString(this.abilities[0])
+      let abilityText = this.abilities[0] ? this.interactionTextToString(this.abilities[0]) : ''
       console.log('abilityText:', abilityText)
 
       if(abilityText) {
@@ -641,9 +641,9 @@ export default {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)  
 
-          //this.$store.commit('setCardCreatorDraft', {})     // DONT FORGET TO ACTIVATE THIS BEFORE COMMITTING
-          //this.model = emptyCard
-          //this.cardImageUrl = sampleGradientImg
+          this.$store.commit('setCardCreatorDraft', {})
+          this.model = emptyCard
+          this.cardImageUrl = sampleGradientImg
         })
         .catch(err => {
           console.error(err)

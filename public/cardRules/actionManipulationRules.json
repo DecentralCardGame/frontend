@@ -14,7 +14,7 @@
       "$ref": "actionTagManipulationRules.json"
     },
     "ActionZoneChange": {
-      "$ref": "zoneChangeRules.json",
+      "$ref": "actionZoneChangeRules.json",
     }
   },
   "type": "interface",

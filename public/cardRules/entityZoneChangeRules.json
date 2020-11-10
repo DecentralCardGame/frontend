@@ -1,0 +1,14 @@
+{
+  "name": "Entity-Zone-Change",
+  "children": {
+    "Zone": {
+      "$ref": "entityZoneRules.json"
+    },
+    "Player": {
+      "$ref": "ownerRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Build an Entity-Zonechange",
+  "interactionText": "Put it into §Player §Zone."
+}

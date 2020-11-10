@@ -6,6 +6,9 @@
     },
     "PlaceStringExtractor": {
       "$ref": "placeStringExtractorRules.json"
+    },
+    "PlaceTargetExtractor": {
+      "$ref": "targetExtractorRules.json"
     }
   },
   "type": "interface",

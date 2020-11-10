@@ -1,0 +1,14 @@
+{
+  "name": "ExtractorTarget-Effect",
+  "children": {
+    "TargetVariable": {
+      "$ref": "targetVariableNameRules.json"
+    },
+    "Manipulations": {
+      "$ref": "manipulationsRules.json"
+    }
+  },
+  "type": "struct",
+  "description": "Buid an ExtractorTarget-Effect",
+  "interactionText": "Choose §TargetVariable. §Manipulations"
+}

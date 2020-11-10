@@ -2,8 +2,7 @@
   "name": "Token",
   "children": {
     "Name": {
-      "$ref": "stringValueRules.json",
-      "optional": true
+      "$ref": "stringValueRules.json"
     },
     "Attack": {
       "$ref": "attackRules.json"
@@ -12,8 +11,7 @@
       "$ref": "healthRules.json"
     },
     "Tags": {
-      "$ref": "tagsRules.json",
-      "optional": true
+      "$ref": "tagsRules.json"
     }
   },
   "type": "struct",

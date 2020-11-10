@@ -1,0 +1,16 @@
+{
+  "name": "Manipulations",
+  "children": {
+    "ActionManipulations": {
+      "$ref": "actionManipulationsRules.json"
+    },
+    "EntityManipulations": {
+      "$ref": "entityManipulationsRules.json"
+    },
+    "PlaceManipulations": {
+      "$ref": "placeManipulationsRules.json"
+    }
+  },
+  "type": "interface",
+  "description": "Choose a Manipulations type"
+}

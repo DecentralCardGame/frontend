@@ -1,0 +1,12 @@
+{
+  "name": "Place-Conditions",
+  "children": {
+    "PlaceCondition": {
+      "$ref": "placeConditionRules.json"
+    }
+  },
+  "type": "array",
+  "min": 0,
+  "max": 3,
+  "description": "Add some place-conditions"
+}

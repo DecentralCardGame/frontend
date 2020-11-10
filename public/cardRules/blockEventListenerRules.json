@@ -2,19 +2,17 @@
   "name": "Block-Event Listener",
   "children": {
     "EntityCondition": {
-      "$ref": "entityConditionRules.json",
+      "$ref": "entityConditionsRules.json",
       "optional": true
     },
-    "BlockingEntityExtractor": {
-      "$ref": "entityExtractorRules.json",
-      "optional": true
+    "BlockingEntityExtractors": {
+      "$ref": "entityExtractorsRules.json"
     },
-    "BlockedEntityExtractor": {
-      "$ref": "entityExtractorRules.json",
-      "optional": true
+    "BlockedEntityExtractors": {
+      "$ref": "entityExtractorsRules.json"
     }
   },
   "type": "struct",
   "description": "Build a Block-Event Listener",
-  "interactionText": "Whenever an entity §EntityCondition blocks. §BlockingEntityExtractor §BlockedEntityExtractor"
+  "interactionText": "Whenever an entity §EntityCondition blocks. §BlockingEntityExtractors §BlockedEntityExtractors"
 }

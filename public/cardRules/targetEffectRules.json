@@ -9,6 +9,9 @@
     },
     "PlaceTargetEffect": {
       "$ref": "placeTargetEffectRules.json"
+    },
+    "ExtractorTargetEffect": {
+      "$ref": "extractorTargetEffectRules.json"
     }
   },
   "type": "interface",

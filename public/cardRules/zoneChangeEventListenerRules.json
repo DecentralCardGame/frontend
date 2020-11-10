@@ -2,21 +2,22 @@
   "name": "Zonechange-Event Listener",
   "children": {
     "Source": {
-      "$ref": "dynamicZoneRules.json"
+      "$ref": "dynamicZoneRules.json",
+      "optional": true
     },
     "Destination": {
       "$ref": "zoneRules.json"
     },
     "CardCondition": {
-      "$ref": "cardConditionRules.json",
+      "$ref": "cardConditionsRules.json",
       "optional": true
     },
-    "MovedCardExtractor": {
-      "$ref": "cardExtractorRules.json",
+    "MovedCardExtractors": {
+      "$ref": "cardExtractorsRules.json",
       "optional": true
     }
   },
   "type": "struct",
   "description": "Build a Zonechange-Event Listener",
-  "interactionText": "Whenever a card §CardCondition gets put from §Source to §Destination. §MovedCardExtractor"
+  "interactionText": "Whenever a card §CardCondition gets put from §Source to §Destination. §MovedCardExtractors"
 }
