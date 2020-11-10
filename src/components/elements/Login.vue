@@ -17,11 +17,11 @@
               required
       >
       <label>
-        Password*
+        Password* <span class="link--show-pw" @click="showPw = !showPw">({{ showPw ? "hide" : "show"}})</span>
       </label>
       <input
               v-model="password"
-              type="password"
+              :type="showPw ? 'text' : 'password'"
               placeholder="**********"
               name="psw"
               required
@@ -50,7 +50,8 @@ export default {
     return {
       loginError: null,
       username: '',
-      password: ''
+      password: '',
+      showPw: false
     }
   },
   methods: {
@@ -91,5 +92,9 @@ export default {
 <style scoped>
 input {
   margin-bottom: 0.3em;
+}
+.link--show-pw {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>

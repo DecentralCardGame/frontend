@@ -13,11 +13,11 @@
               name="uname"
       >
       <label>
-        Password*
+        Password* <span class="link--show-pw" @click="showPw = !showPw">({{ showPw ? "hide" : "show"}})</span>
       </label>
       <input
               v-model="password"
-              type="password"
+              :type="showPw ? 'text' : 'password'"
               placeholder="**********"
               name="psw"
       >
@@ -60,7 +60,8 @@ export default {
       username: '',
       password: '',
       email: '',
-      mnemonic: ''
+      mnemonic: '',
+      showPw: false
     }
   },
   mounted () {
@@ -70,7 +71,7 @@ export default {
       if (!this.mnemonic) {
         this.mnemonic = this.$cardChain.generateMnemonic()
       } else if (this.mnemonic.split(' ').length < 24) {
-        
+
         // TODO check if user has entered a serious mnemonic
         this.notifyFail('Bad Mnemonic', 'Please enter a real mnemonic with 24 words')
       }
@@ -91,7 +92,7 @@ export default {
       this.$cardChain.registerAccTx(this.username)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
-        this.$store.commit('setUserCredits', this.creditsAvailable) 
+        this.$store.commit('setUserCredits', this.creditsAvailable)
       })
       .catch(err => {
         console.error(err)
@@ -114,5 +115,9 @@ export default {
 <style scoped>
   input {
     margin-bottom: 0.3em;
+  }
+  .link--show-pw {
+    text-decoration: underline;
+    cursor: pointer;
   }
 </style>
