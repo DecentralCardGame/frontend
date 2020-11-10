@@ -47,7 +47,7 @@
               v-if="isAbilityModalVisible"
               v-bind:dialog="dialog"
               v-bind:ability="ability"
-              @update:ability="ability = $event"
+              @update:ability="updateAbility($event)"
               @close="closeAbilityModal"
       />
     </div>
@@ -240,6 +240,10 @@ export default {
     attachToAbility (path, object) {
       let ability = R.assocPath(path, object, this.ability)
 
+      this.ability = ability
+      this.$emit('update:ability', ability)
+    },
+    updateAbility (ability) {
       this.ability = ability
       this.$emit('update:ability', ability)
     },

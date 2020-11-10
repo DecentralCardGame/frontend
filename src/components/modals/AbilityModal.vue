@@ -285,6 +285,7 @@ export default {
       }
     },
     attachToAbility(path, object) {
+      console.log('attaching ', object, ' to ', path)
       let ability = R.assocPath(path, object, this.ability)
       this.$emit('update:ability', ability)
     },

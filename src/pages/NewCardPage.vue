@@ -556,9 +556,6 @@ export default {
       return string
     },
     saveSubmit() {
-      let abilityText = this.interactionTextToString(this.abilities[0])
-      console.log(abilityText)
-
       if (!this.model.CardName) {
         this.notifyFail('No Name', 'Card has no name, please enter a name.')
         return
@@ -627,6 +624,15 @@ export default {
         this.notifyFail('No Flavor Text', 'Card has no (flavor) Text, please enter something.')
         return
       }
+
+      console.log('abilities:', this.abilities)
+      let abilityText = this.interactionTextToString(this.abilities[0])
+      console.log('abilityText:', abilityText)
+
+      if(abilityText) {
+        newCard.Notes = 'ability: ' + abilityText
+      }
+
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
         newCard.id = this.model.id
@@ -635,9 +641,9 @@ export default {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)  
 
-          this.$store.commit('setCardCreatorDraft', {})     // TODO ACTIVATE THIS AGAIN BEFORE COMMITING
-          this.model = emptyCard
-          this.cardImageUrl = sampleGradientImg
+          //this.$store.commit('setCardCreatorDraft', {})     // DONT FORGET TO ACTIVATE THIS BEFORE COMMITTING
+          //this.model = emptyCard
+          //this.cardImageUrl = sampleGradientImg
         })
         .catch(err => {
           console.error(err)

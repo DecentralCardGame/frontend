@@ -574,11 +574,11 @@
       </text>
       <!-- Human readable text of the abilities -->
       <text
-        v-for="(ability, index) in model.abilities"
+        v-for="(text, index) in textToSvg(getAbilityText())"
         id="text2410-9"
         :key="'abilityText'+index"
         x="33"
-        :y="141.1 + index*20"
+        :y="156.9 + index*fontSpacing(getAbilityText())"
         inline-size="18"
         fill="#000"
         fill-opacity="1"
@@ -594,12 +594,12 @@
         style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
         text-anchor="start"
         transform="scale(.94735 1.05557)"
-word-spacing="0" writing-mode="lr" xml:space="preserve"
+        word-spacing="0" writing-mode="lr" xml:space="preserve"
       >
         <tspan
           id="tspan2430"
           x="33"
-          :y="141.1 + index*20"
+          :y="156.9 + index*fontSpacing(getAbilityText())"
           inline-size="18"
           stroke-width=".1"
           font-family="Roboto"
@@ -611,7 +611,7 @@ word-spacing="0" writing-mode="lr" xml:space="preserve"
           style="-inkscape-font-specification:'Roboto, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
           text-anchor="start"
           writing-mode="lr"
-        > {{ ability.cardText }} </tspan>
+        > {{ text }} </tspan>
       </text>
       <!-- Type -->
       <text
@@ -796,6 +796,12 @@ export default {
       clicked: false
     }
   },
+  created () {
+    if (this.model.Notes.startsWith('ability: ')) {
+      this.model.abilities = [{cardText: this.model.Notes.substring(9)}]
+      this.model.FlavourText = ''
+    }
+  },
   computed: {
     viewBox () {
       if (!this.displayNotes) {
@@ -860,6 +866,12 @@ export default {
       } else {
         return 0
       }
+    },
+    getAbilityText () {
+      if (this.model.Notes.startsWith('ability: ')) {
+        return this.model.Notes.substring(9)
+      }
+      else return ''
     },
     textToSvg (text) {
       if (!text) return text
