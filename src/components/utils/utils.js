@@ -210,14 +210,14 @@ export const emptyCard = {
 }
 
 export function icon(name) {
-  let path = '../../assets/icon/'
+  //let path = '../../assets/icon/'
   let item
   try {
     //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
     item = require('../../assets/icon/'+name+'.svg')
   } catch {
     if (name.length === 1) {
-      return require(path+'variable.svg')
+      return require('../../assets/icon/variable.svg')
     }
     try {
       item = require('../../assets/icon/'+name+'s.svg')
