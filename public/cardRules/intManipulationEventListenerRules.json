@@ -11,7 +11,7 @@
       "$ref": "cardConditionsRules.json",
       "optional": true
     },
-    "ManipulatedCardExtractor": {
+    "ManipulatedCardExtractors": {
       "$ref": "cardExtractorsRules.json",
       "optional": true
     },
