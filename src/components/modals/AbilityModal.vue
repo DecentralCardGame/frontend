@@ -173,13 +173,12 @@ export default {
         //this.attachToAbility(this.dialog.btn.abilityPath, objAtSelection.interactionText) // check if this is only deactivated temporarily or can be removed forever. is it because terminal is now dropdown selected?
 
         // check if an option was selected, which has an interaction text
-      } else if (objAtSelection.interactionText) {
+      } else if (objAtSelection.interactionText) {  // TODO here check if this is an interface (only interfaces have interaction text? yes?)
         this.dialog.preventClose = false
         let interactionText = objAtSelection.interactionText
         let abilityPath = R.append(selection.index, this.dialog.abilityPath)
         let rulesPath = pathAtSelection
         let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
-
 
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
         this.attachToAbility(['interaction'], this.ability.interaction)
@@ -189,7 +188,7 @@ export default {
         } else {
           this.attachToAbility(this.dialog.btn.abilityPath, {})
         }
-      } else if (objAtSelection.type === 'int') {
+      } else if (objAtSelection.type === 'int') { // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false
         this.dialog.btn.type = "int"
         this.dialog.btn.rulesPath = pathAtSelection

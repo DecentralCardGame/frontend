@@ -191,6 +191,18 @@
           </span>
           <div>
             <input
+                v-model="model.CostType.Energy"
+                type="checkbox"
+                @change="saveDraft"
+            >
+            <label for="checkbox"> Energy </label> <br>
+            <input
+                v-model="model.CostType.Iron"
+                type="checkbox"
+                @change="saveDraft"
+            >
+            <label for="checkbox"> Iron </label> <br>
+            <input
                 v-model="model.CostType.Lumber"
                 type="checkbox"
                 @change="saveDraft"
@@ -203,23 +215,12 @@
             >
             <label for="checkbox"> Food </label> <br>
             <input
-                v-model="model.CostType.Iron"
-                type="checkbox"
-                @change="saveDraft"
-            >
-            <label for="checkbox"> Iron </label> <br>
-            <input
                 v-model="model.CostType.Mana"
                 type="checkbox"
                 @change="saveDraft"
             >
             <label for="checkbox"> Mana </label> <br>
-            <input
-                v-model="model.CostType.Energy"
-                type="checkbox"
-                @change="saveDraft"
-            >
-            <label for="checkbox"> Energy </label> <br>
+            
             <span v-if="model.type==='Entity'"> I have an <b>Attack</b> of </span>
             <select
                 v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
