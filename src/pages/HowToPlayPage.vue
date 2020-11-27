@@ -29,7 +29,7 @@
     <div class="about about--card-right">
       <div>
         <h2>Your Headquaters</h2>
-        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (<span style="color:$blue">1</span>).
+        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (<span style="color:#12d1d1ff">1</span>).
         These icons show you which resource classes you can use.
         The card type is displayed here.
         This is the life value of your headquarters. Once it is at 0, you have lost
