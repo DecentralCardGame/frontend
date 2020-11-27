@@ -23,20 +23,13 @@
     <br>
     <h2>Components of a CrowdControl Card</h2>
     Now that you know what the basis for playing cards is, we will go into the structure and the different types of cards you can play.
-    <h2>Class</h2>
-    These symbols show which class the card belongs to.
-    card name
-    <h2>Textbox</h2>
-    Here the abilities of the card are listed. 
-    <h2>Attack and Life Values</h2>
-    Depending on the type of card, the card can have an attack and life value. The attack value determines how much damage the card can do and the life value determines how much damage the card can withstand.
     <h2>Card types</h2>
     As you can see, each card has a specific card type that tells you what to do with it after you play it. 
     But first we will start with your headquarters, you don't have to play this card because you start the game with it in play.
     <div class="about about--card-right">
       <div>
         <h2>Your Headquaters</h2>
-        Your headquarters shows you which resources you can use.
+        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (<$blue>1</$blue>)
         These icons show you which resource classes you can use.
         The card type is displayed here.
         This is the life value of your headquarters. Once it is at 0, you have lost
