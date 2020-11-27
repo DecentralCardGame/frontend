@@ -27,6 +27,7 @@
     As you can see, each card has a specific card type that tells you what to do with it after you play it. 
     But first we will start with your headquarters, you don't have to play this card because you start the game with it in play.
     <br>
+    <br>
     <div class="about about--card-right">
       <div>
         <h2>Your Headquaters</h2>
@@ -120,7 +121,7 @@
         You may only place each card in a deck up to 3 times. In total, your deck must consist of 50 or more cards.
         <h3>Game progression</h3>
         <h2>Planning phase</h2>
-        <b>Start of round: </b>
+        Start of round:
         <br>
         First, the intrinsic abilities of the headquarters are executed, i.e. Wisdom and Growth. The two values (Wisdom, Growth) are credited to the player, if he has more than 10 Growth, the growth level of the HQ increases by one. After that he gets one resource for each Growth level of the HQ. After that, all abilities that are triggered at the beginning of the turn are processed. Whenever abilities are processed, all effects are collected and sorted into two different queues, one for all effects that affect your own cards and one for all effects that affect the opponent's cards. We call them Own Queue and Enemy Queue. The effects of the Own Queue are then applied immediately, i.e. you can draw cards, receive resources and so on. In contrast, the effects that affect the opponent are suspended and applied later, which can also be effects that were suspended at the very end of the last round. When executing these effects, triggered abilities can be triggered, the effects of these abilities are also suspended, i.e. not immediately applied. For this reason there are no so-called "infinites" in Crowd Control. These are loops in which one or more effects can be triggered infinite times in the same game phase. We deliberately designed the game so that this is not possible, but it is possible to build loops that give you a limited number of effects every turn.
         <h2>Card playing phase</h2>
