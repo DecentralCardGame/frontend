@@ -29,16 +29,50 @@
     <div class="about about--card-right">
       <div>
         <h2>Your Headquaters</h2>
-        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (<span class="blue-colored-text">1blue</span>).
+        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (<span class="red-colored-text">1red</span>).
         These icons show you which resource classes you can use.
         The card type is displayed here.
         This is the life value of your headquarters. Once it is at 0, you have lost
+      </div>
+        <CardComponent
+            class="about__preview"
+            :model="cards[0]"
+            :image-u-r-l="cardImgs[0]"
+        />
+    </div>
+    <div class="about about--card-right">
+      <div>    
         <h2>Entities (Creatures)</h2>
         Entities fight for you. They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them, while the attack value indicates the damage they cause. Entities inflict damage on each other during the battle phase. An entity can defend or attack, but it cannot attack on the turn it entered the game. Entities can have abilities which trigger effects.
+    </div>
+        <CardComponent
+            class="about__preview"
+            :model="cards[0]"
+            :image-u-r-l="cardImgs[0]"
+        />
+    </div>  
+    <div class="about about--card-right">
+      <div>
         <h2>Places</h2>
         Places are also permanent cards. They have only a life value and disappear from play as soon as it reaches 0. Places have different abilities, typical abilities are those that create additional entities or produce additional resources or wisdom.
+      </div>
+        <CardComponent
+            class="about__preview"
+            :model="cards[0]"
+            :image-u-r-l="cardImgs[0]"
+        />
+    </div>
+    <div class="about about--card-right">
+      <div>
         <h2>Actions</h2>
         Action cards, unlike all other card types, do not have abilities but effects. Effects have a direct effect on the game when the action is played. After that, actions land on the Dust Pile.
+      </div>
+        <CardComponent
+            class="about__preview"
+            :model="cards[0]"
+            :image-u-r-l="cardImgs[0]"
+        />
+    </div>  
         <h2>Abilities</h2>
         As mentioned before, the permanent cards can have special abilities that affect the game. There are 2 basic types, triggered and activated abilities. Activated abilities are used in a controlled way, e.g. when the player pays a certain amount of resources, whereas triggered abilities are triggered by certain events in the game. The three most common ones are "on spawn", i.e. when the card enters the game, "periodic" every round, and "on death" when the card leaves play.
         <h2>Triggered Abilities</h2>
@@ -80,15 +114,7 @@
         <h3>Combat</h3>
         The entities fight against each other as described above, all "unblocked" attackers can attack a Place or the HQ. All effects that are triggered in combat are collected as usual, but are not processed until the next turn. A very typical example is "On death - draw a card". The card can only be drawn in the next turn, which is not a big deal, because you can't play it until the next turn anyway.
         example of a round sequence
-
-      </div>
-        <CardComponent
-            class="about__preview"
-            :model="cards[0]"
-            :image-u-r-l="cardImgs[0]"
-        />
-    </div>
-
+    
     <div class="about about--card-left">
         <CardComponent
             class="about__preview"
