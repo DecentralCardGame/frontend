@@ -29,10 +29,15 @@
     <div class="about about--card-right">
       <div>
         <h2>Your Headquaters</h2>
-        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (<span class="red-colored-text">1red</span>).
-        These icons show you which resource classes you can use.
-        The card type is displayed here.
-        This is the life value of your headquarters. Once it is at 0, you have lost
+        Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
+        <span class="red-colored-text">1</span>
+        ).
+        Every Headquarters has special abilities for example Dr. Dolly´s Headquarters starts with Dr. Dolly in your hand and you can get 10 wisdom for 3 resources (
+        <span class="red-colored-text">2</span>
+        ).
+        You also have to always be aware of the life points of your headquarters which are on the botom right of the card (
+        <span class="red-colored-text">3</span>
+        ).
       </div>
         <CardComponent
             class="about__preview"
@@ -43,7 +48,17 @@
     <div class="about about--card-right">
       <div>    
         <h2>Entities (Creatures)</h2>
-        Entities fight for you. They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them, while the attack value indicates the damage they cause. Entities inflict damage on each other during the battle phase. An entity can defend or attack, but it cannot attack on the turn it entered the game. Entities can have abilities which trigger effects.
+        Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
+        <span class="red-colored-text">1</span>
+        ).
+        They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them (
+        <span class="red-colored-text">2</span>
+        ), while the attack value indicates the damage they cause (
+        <span class="red-colored-text">3</span>
+        ).
+        Entities inflict damage on each other during the battle phase. An entity can defend or attack, but it cannot attack on the turn it entered the game. Entities can have abilities which trigger effects. They are displayed on the textbox (
+        <span class="red-colored-text">4</span>
+        ).
     </div>
         <CardComponent
             class="about__preview"
@@ -543,8 +558,8 @@ h2 {
   font-size: 1.75rem;
 }
 
-.blue-colored-text {
-  color: $blue;
+.red-colored-text {
+  color: $red;
 }
 
 </style>
