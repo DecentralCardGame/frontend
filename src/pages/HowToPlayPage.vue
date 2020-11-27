@@ -1,5 +1,5 @@
 <template>
-    <h2>Fundamentals</h2>
+    <h2>Fundamentals test</h2>
   <p>
   Crowd Control is a strategy game in which two players battle with their own, previously put together decks. The cards are played simultaneously 
   and remain hidden until both players are finished playing cards. Both players start with a headquarters, that has 20 health points, in play.
