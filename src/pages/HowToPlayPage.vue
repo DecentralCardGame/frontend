@@ -1,4 +1,28 @@
 <template>
+    <h2>Fundamentals</h2>
+  <p>
+  Crowd Control is a strategy game in which two players battle with their own, previously put together decks. The cards are played simultaneously 
+  and remain hidden until both players are finished playing cards. Both players start with a headquarters, that has 20 health points, in play.
+  When a player manages to reduce the health points of the enemy headquarter to zero, he wins.
+  <br>
+  <h2>Resources: the basis for every action</h2>
+  Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
+  <h2>Classes</h2>
+  In addition to said effects, headquarters also dictate the classes from which you are allowed to play cards. In total there are five classes:
+  <h2>Energy Iron Lumber Food Mana</h2>
+  A headquarter can have any combination of classes. You may only put cards into your deck that share at least one class with your headquarter and don´t belong to another class. For example if your headquarters is lumber/food you may put food cards, lumber cards and food/lumber cards, but not lumber/iron or food/mana cards into your deck.
+  <h2>Components of a CrowdControl Card</h2>
+  Now that you know what the basis for playing cards is, we will go into the structure and the different types of cards you can play.
+  <h2>Class</h2>
+  These symbols show which class the card belongs to.
+  card name
+  <h2>Textbox</h2>
+  Here the abilities of the card are listed. 
+  <h2>Attack and Life Values</h2>
+  Depending on the type of card, the card can have an attack and life value. The attack value determines how much damage the card can do and the life value determines how much damage the card can withstand.
+  <h2>Card types</h2>
+  As you can see, each card has a specific card type that tells you what to do with it after you play it. 
+  But first we will start with your headquarters, you don't have to play this card because you start the game with it in play.
   <div class="article-temp width-temp">
     <div class="hero">
       <h1>How To Play</h1>
@@ -7,30 +31,6 @@
     </div>
     <div class="about about--card-right">
       <div>
-        <h2>Fundamentals</h2>
-        <p>
-        Crowd Control is a strategy game in which two players battle with their own, previously put together decks. The cards are played simultaneously 
-        and remain hidden until both players are finished playing cards. Both players start with a headquarters, that has 20 health points, in play.
-        When a player manages to reduce the health points of the enemy headquarter to zero, he wins.
-        <br>
-        <h2>Resources: the basis for every action</h2>
-        Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
-        <h2>Classes</h2>
-        In addition to said effects, headquarters also dictate the classes from which you are allowed to play cards. In total there are five classes:
-        <h2>Energy Iron Lumber Food Mana</h2>
-        A headquarter can have any combination of classes. You may only put cards into your deck that share at least one class with your headquarter and don´t belong to another class. For example if your headquarters is lumber/food you may put food cards, lumber cards and food/lumber cards, but not lumber/iron or food/mana cards into your deck.
-        <h2>Components of a CrowdControl Card</h2>
-        Now that you know what the basis for playing cards is, we will go into the structure and the different types of cards you can play.
-        <h2>Class</h2>
-        These symbols show which class the card belongs to.
-        card name
-        <h2>Textbox</h2>
-        Here the abilities of the card are listed. 
-        <h2>Attack and Life Values</h2>
-        Depending on the type of card, the card can have an attack and life value. The attack value determines how much damage the card can do and the life value determines how much damage the card can withstand.
-        <h2>Card types</h2>
-        As you can see, each card has a specific card type that tells you what to do with it after you play it. 
-        But first we will start with your headquarters, you don't have to play this card because you start the game with it in play.
         <h2>Your Headquaters</h2>
         Your headquarters shows you which resources you can use.
         These icons show you which resource classes you can use.
