@@ -26,6 +26,7 @@
     <h2>Card types</h2>
     As you can see, each card has a specific card type that tells you what to do with it after you play it. 
     But first we will start with your headquarters, you don't have to play this card because you start the game with it in play.
+    <br>
     <div class="about about--card-right">
       <div>
         <h2>Your Headquaters</h2>
@@ -109,24 +110,26 @@
         That means: Entity in position 1 attacks entity in position 1 in defense mode, entity in position 2 attacks entity in position 2 and so on. If an entity is switched from one mode to the other in the next turn, it will be at the very back of the sequence, even if it was at the very front before. The order of the entities that are moved in the back of a lane can be decided by the owner of the entities.
         In defense mode attacks can be blocked. So if you want to protect your headquarters from an attack, turn an entity horizontally to put it in defense mode. This way it blocks an attack. However, an entity can only block one attack. This means that the next attacking entity could pass by to your headquarters or attack a place.
         During the planning phase you can always decide which mode your card is in. However, by turning the card into the respective mode you also change the position of the card. This means, for example, that a card that changes from defense mode to attack mode will now be in the last position in the attack order. In the same way, if you move a card from attack mode to defense mode, it will be moved to the end of the defense order.
-        <h2>Important:</h2>
+        <br>
+        <b>Important:</b>
         There is the attack and the defense mode
         Each defending entity can only block one attacking entity
         Entities that fight against each other inflict damage to each other in the amount of their attack value
         Without a defender your headquarters can be attacked directly
         <h2>Deck building</h2>
         You may only place each card in a deck up to 3 times. In total, your deck must consist of 50 or more cards.
-        <h2>Game progression</h2>
-        <h3>Planning phase</h3>
-        <h3>Start of round: </h3>
+        <h3>Game progression</h3>
+        <h2>Planning phase</h2>
+        <b>Start of round: </b>
+        <br>
         First, the intrinsic abilities of the headquarters are executed, i.e. Wisdom and Growth. The two values (Wisdom, Growth) are credited to the player, if he has more than 10 Growth, the growth level of the HQ increases by one. After that he gets one resource for each Growth level of the HQ. After that, all abilities that are triggered at the beginning of the turn are processed. Whenever abilities are processed, all effects are collected and sorted into two different queues, one for all effects that affect your own cards and one for all effects that affect the opponent's cards. We call them Own Queue and Enemy Queue. The effects of the Own Queue are then applied immediately, i.e. you can draw cards, receive resources and so on. In contrast, the effects that affect the opponent are suspended and applied later, which can also be effects that were suspended at the very end of the last round. When executing these effects, triggered abilities can be triggered, the effects of these abilities are also suspended, i.e. not immediately applied. For this reason there are no so-called "infinites" in Crowd Control. These are loops in which one or more effects can be triggered infinite times in the same game phase. We deliberately designed the game so that this is not possible, but it is possible to build loops that give you a limited number of effects every turn.
-        <h3>Card playing phase</h3>
+        <h2>Card playing phase</h2>
         Both players can now play cards. This happens at the same time. The effects of action cards may be applied immediately if they affect your own cards, effects affecting the opponent are collected further. The effects of triggered abilities are collected. When playing an Entity or Place, it is possible to immediately activate an activated ability. The effect of the activated ability is collected as usual and processed later. 
-        <h3>Resolve </h3>
+        <h2>Resolve Phase I</h2>
         The first Resolve Phase is when all the cards played are revealed and all the effects collected are applied. First the collected effects, which come from triggered abilities and affect the own cards, are processed. Then the effects that affect the opponent's cards are applied. These can even be from the last round if they were triggered at the very end. Both players choose the targets and once they have done so, the effects are applied. While applying effects, new abilities can be triggered again, the effects are collected as usual.
-        <h3>Resolve</h3>
+        <h2>Resolve Phase II</h2>
         The second Resolve phase works the same as the first. All effects that are triggered by the resolving of effects in this phase will end up in the queue as usual, but the queue will not be processed until the next turn.
-        <h3>Combat</h3>
+        <h2>Combat</h2>
         The entities fight against each other as described above, all "unblocked" attackers can attack a Place or the HQ. All effects that are triggered in combat are collected as usual, but are not processed until the next turn. A very typical example is "On death - draw a card". The card can only be drawn in the next turn, which is not a big deal, because you can't play it until the next turn anyway.
         example of a round sequence
     
