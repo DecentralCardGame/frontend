@@ -58,7 +58,7 @@
         <span class="red-colored-text">4</span>
         ).
       </div>
-        <img src="../assets/Dr.Dolly.png" />
+        <img src="../assets/HQ_Dolly.png" />
     </div>  
     <div class="about about--card-right">
       <div>
@@ -67,8 +67,8 @@
       </div>
         <CardComponent
             class="about__preview"
-            :model="cards[0]"
-            :image-u-r-l="cardImgs[0]"
+            :model="cards[4]"
+            :image-u-r-l="cardImgs[4]"
         />
     </div>
     <div class="about about--card-right">
