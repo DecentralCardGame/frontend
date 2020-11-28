@@ -175,7 +175,7 @@ export default {
 img {
   display: inline;
   margin: 0 auto;
-  height: 100%;
+  height: 15%;
   width: auto;
   float:left;
 }
