@@ -41,7 +41,7 @@
         <span class="red-colored-text">3</span>
         ).
       </div>
-        <img src="../assets/patrick.png" class="rounded" />
+        <img src="../assets/Dr.Dolly.png" />
     </div>
     <div class="about about--card-right">
       <div>    
