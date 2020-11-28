@@ -41,11 +41,7 @@
         <span class="red-colored-text">3</span>
         ).
       </div>
-        <CardComponent
-            class="about__preview"
-            :model="cards[0]"
-            :image-u-r-l="cardImgs[0]"
-        />
+        <img src="../assets/patrick.png" class="rounded" />
     </div>
     <div class="about about--card-right">
       <div>    
