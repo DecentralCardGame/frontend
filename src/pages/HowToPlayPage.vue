@@ -562,4 +562,11 @@ h2 {
   color: $red;
 }
 
+img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+  float:left;
+}
 </style>
