@@ -131,8 +131,9 @@
       <div class="image--round">
       </div>
       <div>
-      <h2> Honoarable Mentions </h2>
+      <h2> Honorable Mentions </h2>
       <p>Danny Czoschke und Jette, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
+      Andy Frankenberger and Tom König helped us win the Diffusion Hackathon in 2019 with their incredible CORS skills.
       </p>
       </div>
     </div>
