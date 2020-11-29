@@ -653,6 +653,7 @@ export default {
           console.error(err)
         })
       } else {
+        console.log('saving card with id (should be 0):', newCard.id)
         this.$cardChain.saveContentToUnusedCardSchemeTx(newCard, () => {})
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
