@@ -408,7 +408,6 @@
 
 <script>
 import * as R from 'ramda'
-import state from '../components/utils/cardState'
 import CardComponent from '../components/CardComponent'
 import BuySchemeModal from '../components/modals/BuySchemeModal.vue'
 import AbilityModal from '../components/modals/AbilityModal.vue'
@@ -437,11 +436,14 @@ export default {
   computed: {},
   mounted() {
     // here a card is loaded if edit card via gallery was selected
-    if (state.card) {
-      if (state.card.type === 'Headquarter') state.card.type = 'HQ'
-      this.model = R.merge(this.model, state.card)
-      this.cardImageUrl = this.model.image
-      state.card = null
+    if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
+      this.model = R.merge(this.model, this.$store.getters.getCardCreatorEditCard)
+
+      if (this.model.type === 'Headquarter') this.model.type = 'HQ'
+      this.cardImageUrl = this.$store.getters.getCardCreatorEditCard.image
+      
+      // reset the entry we have just loaded in the store
+      this.$store.commit('setCardCreatorEditCard', {})
       return
     }
     if (!R.isEmpty(this.$store.getters.getCardCreatorDraft) && this.$store.getters.getCardCreatorDraft.model) {
@@ -636,13 +638,14 @@ export default {
 
       // check if a card is edited with pre-existing ID
       if (this.model.id) {
+        console.log('overwriting card with id:', this.model.id)
         newCard.id = this.model.id
         this.$cardChain.saveContentToCardWithIdTx(newCard, () => {})
         .then(acc => {
           this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)  
 
-          this.$store.commit('setCardCreatorDraft', {})
+          //this.$store.commit('setCardCreatorDraft', {})
           this.model = emptyCard
           this.cardImageUrl = sampleGradientImg
         })

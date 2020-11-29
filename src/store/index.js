@@ -16,6 +16,7 @@ export default new Vuex.Store({
     mnemonic: '',
     address: '',
     cardCreatorDraft: {},
+    cardCreatorEditCard: {},
     loading: false,
     displayLogin: false
   },
@@ -46,6 +47,15 @@ export default new Vuex.Store({
     },
     setCardCreatorDraftImg (state, img) {
       state.cardCreatorDraft.img = img
+    },
+    setCardCreatorEditCard (state, draft) {
+      state.cardCreatorEditCard = draft
+    },
+    setCardCreatorEditCardModel (state, model) {
+      state.cardCreatorEditCard.model = model
+    },
+    setCardCreatorEditCardImg (state, img) {
+      state.cardCreatorEditCard.img = img
     },
     setLoading (state, loading) {
       state.loading = loading
@@ -78,6 +88,9 @@ export default new Vuex.Store({
     },
     getCardCreatorDraft: state => {
       return state.cardCreatorDraft
+    },
+    getCardCreatorEditCard: state => {
+      return state.cardCreatorEditCard
     },
     loggedIn: state => {
       return state.jwt !== ''

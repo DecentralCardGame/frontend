@@ -69,7 +69,6 @@
 
 <script>
 import * as R from 'ramda'
-import state from '../components/utils/cardState'
 import GalleryModal from '../components/modals/GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
 import { saveCardAsPng, creditsFromCoins } from '../components/utils/utils.js'
@@ -181,7 +180,7 @@ export default {
       this.isGalleryModalVisible = false
     },
     edit () {
-      state.card = this.cards[this.clickedIndex]
+      this.$store.commit('setCardCreatorEditCard', this.cards[this.clickedIndex])
       this.$router.push('newCard')
     },
     downloadPng () {
