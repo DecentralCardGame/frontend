@@ -28,27 +28,25 @@
     But first we will start with your headquarters, you don't have to play this card because you start the game with it in play.
     <br>
     <br>
-    <div class="about about--card-right">
-      <div>
+    
+        
         <h2>Your Headquaters</h2>
         Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
         <span class="red-colored-text">1</span>
         ).
+        <img src="../assets/Dr.Dolly.png" />
         Every Headquarters has special abilities for example Dr. Dolly´s Headquarters starts with Dr. Dolly in your hand and you can get 10 wisdom for 3 resources (
         <span class="red-colored-text">2</span>
         ).
         You also have to always be aware of the life points of your headquarters which are on the botom right of the card (
         <span class="red-colored-text">3</span>
         ).
-      </div>
-        <img src="../assets/Dr.Dolly.png" />
-    </div>
-    <div class="about about--card-right">
-      <div>    
+
         <h2>Entities (Creatures)</h2>
         Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
         <span class="red-colored-text">1</span>
         ).
+        <img src="../assets/HQ_Dolly.png" />
         They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them (
         <span class="red-colored-text">2</span>
         ), while the attack value indicates the damage they cause (
@@ -57,9 +55,8 @@
         Entities inflict damage on each other during the battle phase. An entity can defend or attack, but it cannot attack on the turn it entered the game. Entities can have abilities which trigger effects. They are displayed on the textbox (
         <span class="red-colored-text">4</span>
         ).
-      </div>
-        <img src="../assets/HQ_Dolly.png" />
-    </div>  
+      
+
     <div class="about about--card-right">
       <div>
         <h2>Places</h2>
@@ -559,10 +556,7 @@ h2 {
 }
 
 img {
-  display: inline;
-  margin: 0 auto;
-  height: 15%;
-  width: auto;
-  float:left;
+  float: right;
+  width: 30%
 }
 </style>
