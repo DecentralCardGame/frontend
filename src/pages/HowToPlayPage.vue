@@ -29,7 +29,6 @@
     <br>
     <br>
     
-        
         <h2>Your Headquaters</h2>
         Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
         <span class="red-colored-text">1</span>
@@ -422,7 +421,6 @@
     </g>
     <!-- lumber icon -->
     <g
-      :opacity="1"
       transform="matrix(1,0,0,1,0.791233,0)"
     >
       <g transform="matrix(1.02546,0,0,1.02546,94.5416,9.32348)">

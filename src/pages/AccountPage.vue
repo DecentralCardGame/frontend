@@ -58,6 +58,11 @@ export default {
   mounted () {
     this.mnemonic = this.$store.getters.getUserMnemonic
     this.address = this.$store.getters.getUserAddress
+
+    this.$cardChain.getUserInfo(this.address)
+    .then(user => {
+      console.log(user)
+    })
   },
   methods: {
     save () {

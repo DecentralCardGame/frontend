@@ -1,6 +1,7 @@
 {
   "name": "This-Condition",
-  "type": "terminal",
+  "children": {},
+  "type": "struct",
   "description": "Build a This-Condition",
   "interactionText": "this"
 }

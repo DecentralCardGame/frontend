@@ -1,5 +1,5 @@
 {
-  "name": "Entity-Abiliytmanipulation",
+  "name": "Entity-Abilitymanipulation",
   "children": {
     "Ability": {
       "$ref": "abilityRules.json"

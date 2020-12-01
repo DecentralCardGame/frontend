@@ -156,6 +156,7 @@ export default {
           return new Promise((resolve, reject) => {
             this.getUserInfo(this.vue.$store.getters.getUserAddress)
             .then(user => {
+              console.log(user)
               if (!user.ownedCardSchemes) {
                 this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
                 throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own card schemes')
