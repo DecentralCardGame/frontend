@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2>Account Settings</h2>
+    You have {{ user.ownedCardSchemes.length }} Card Schemes, which allow you to create new cards. <br>
+    You have {{ user.voteRights.length }} Vote Rights for Cards, that will get you a reward.
+    <br>
     <br>
     <button v-if="$store.getters.loggedIn"
       @click="logout()">
@@ -52,7 +55,8 @@ export default {
     return {
       mnemonic: '',
       mnemonicConfirmationPassword: '',
-      address: ''
+      address: '',
+      user: {}
     }
   },
   mounted () {
@@ -62,6 +66,7 @@ export default {
     this.$cardChain.getUserInfo(this.address)
     .then(user => {
       console.log(user)
+      this.user = user
     })
   },
   methods: {
