@@ -348,6 +348,7 @@ export default {
           .catch(this.handlePutError)
       }
       handleGetUser = R.curry((res, address) => {
+        console.log('handleGetUser', res)
         if (res.data.result.Alias === '') {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           throw new Error('account ' + address + ' is not registered')
@@ -355,7 +356,7 @@ export default {
           return {
             alias: res.data.result.Alias,
             ownedCardSchemes: res.data.result.OwnedCardSchemes,
-            ownedCards: res.data.result.OwnedCard,
+            ownedCards: res.data.result.OwnedCards,
             voteRights: res.data.result.VoteRights
           }
         }
