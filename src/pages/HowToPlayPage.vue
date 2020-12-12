@@ -17,7 +17,7 @@
     <h2>Classes</h2>
     In addition to said effects, headquarters also dictate the classes from which you are allowed to play cards. In total there are five classes:
     <br>
-    Energy Iron Lumber Food Mana
+    <img src="../assets/Energy.svg" /> Iron Lumber Food Mana
     <br>
     A headquarter can have any combination of classes. You may only put cards into your deck that share at least one class with your headquarter and don´t belong to another class. For example if your headquarters is lumber/food you may put food cards, lumber cards and food/lumber cards, but not lumber/iron or food/mana cards into your deck.
     <br>
