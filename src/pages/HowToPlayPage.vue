@@ -47,6 +47,7 @@
         <br>
         <br>
         <br>
+        <br>
         <img src="../assets/HQ_Dolly.png" />
         <h2>Entities (Creatures)</h2>
         Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
