@@ -68,6 +68,7 @@
     <br>
     <br>
     <br>
+    <br>
     <div class="about about--card-right">
       <div>
         <h2>Places</h2>
