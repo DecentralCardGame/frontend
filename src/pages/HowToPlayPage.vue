@@ -29,8 +29,8 @@
     <br>
     <br>
     
-        <h2>Your Headquaters</h2>
         <img src="../assets/Dr.Dolly.png" />
+        <h2>Your Headquaters</h2>
         Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
         <span class="red-colored-text">1</span>
         ).
