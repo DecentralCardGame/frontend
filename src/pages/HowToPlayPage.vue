@@ -40,12 +40,14 @@
         You also have to always be aware of the life points of your headquarters which are on the botom right of the card (
         <span class="red-colored-text">3</span>
         ).
-
+        <br>
+        <br>
+        <br>
+        <img src="../assets/HQ_Dolly.png" />
         <h2>Entities (Creatures)</h2>
         Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
         <span class="red-colored-text">1</span>
         ).
-        <img src="../assets/HQ_Dolly.png" />
         They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them (
         <span class="red-colored-text">2</span>
         ), while the attack value indicates the damage they cause (
