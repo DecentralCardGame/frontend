@@ -30,10 +30,10 @@
     <br>
     
         <h2>Your Headquaters</h2>
+        <img src="../assets/Dr.Dolly.png" />
         Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
         <span class="red-colored-text">1</span>
         ).
-        <img src="../assets/Dr.Dolly.png" />
         Every Headquarters has special abilities for example Dr. Dolly´s Headquarters starts with Dr. Dolly in your hand and you can get 10 wisdom for 3 resources (
         <span class="red-colored-text">2</span>
         ).
