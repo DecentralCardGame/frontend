@@ -62,8 +62,12 @@
         Entities inflict damage on each other during the battle phase. An entity can defend or attack, but it cannot attack on the turn it entered the game. Entities can have abilities which trigger effects. They are displayed on the textbox (
         <span class="red-colored-text">4</span>
         ).
-      
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="about about--card-right">
       <div>
         <h2>Places</h2>
