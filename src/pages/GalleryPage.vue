@@ -12,19 +12,40 @@
         <button v-show="browsingForward" @click="nextPage">next</button>
       </div>
       <div v-show="filters.visible" class="gallery__filter-box">
-        <select v-model="filters.status">
-          <option disabled value="">select status</option>
-          <option>prototype</option>
-          <option>trial</option>
-          <option>permanent</option>
-          <option></option>
-        </select>
-        <br>
-        <input v-model="filters.nameContains" placeholder="card name contains">
-        <br>
-        <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
-        <br>
-        <button v-show="filters.visible" @click="loadCardList">Apply</button>
+        <div>
+          <select v-model="filters.status">
+            <option disabled value="">select status</option>
+            <option>Prototype</option>
+            <option>Trial</option>
+            <option>Permanent</option>
+          </select>
+          <br>
+          <select v-model="filters.type">
+            <option disabled value="">select type</option>
+            <option>HQ</option>
+            <option>Entity</option>
+            <option>Action</option>
+            <option>Place</option>
+          </select>
+          <br>
+          <select v-model="filters.sortBy">
+            <option disabled value="">sort by</option>
+            <option>Name</option>
+            <option>Casting Cost</option>
+            <option>Id</option>
+          </select>
+        </div>
+        <div>
+          <input v-model="filters.nameContains" placeholder="card name contains">
+          <br>
+          <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
+          <br>
+          <input v-model="filters.cardsPerPage" placeholder="cards per page">
+          <br>
+          <button @click="loadCardList">Apply</button>
+          <br>
+          <button @click="resetFilters">Clear Filters</button>
+        </div>
       </div>
     <div class="gallery__view">
       <div
@@ -73,8 +94,6 @@ import GalleryModal from '../components/modals/GalleryModal.vue'
 import CardComponent from '@/components/CardComponent'
 import { saveCardAsPng, creditsFromCoins } from '../components/utils/utils.js'
 
-const cardsPerPage = 20
-
 export default {
   name: 'GalleryPage',
   components: {CardComponent, GalleryModal},
@@ -92,7 +111,10 @@ export default {
         visible: false,
         nameContains: "",
         status: "",
-        owner: ""
+        sortBy: "",
+        type: "",
+        owner: "",
+        cardsPerPage: 20
       },
       votableCards: [],
       canVote: false,
@@ -131,7 +153,8 @@ export default {
       if (this.pageId + this.currentId >= this.cardList.length) return
 
       let cardId = this.cardList[this.cardList.length - 1 - this.pageId - this.currentId]
-      this.$cardChain.getCard(cardId)
+      this.currentId++
+      return this.$cardChain.getCard(cardId)
         .then(res => {
           let card = res.card
           card.id = cardId
@@ -146,26 +169,46 @@ export default {
         .catch(res => {
           console.error(res)
         })
-      this.currentId++
     },
     fillPage () {
-      if (this.pageId + cardsPerPage >= this.cardList.length) this.browsingForward = false
+      if (this.pageId + this.filters.cardsPerPage >= this.cardList.length) this.browsingForward = false
       else this.browsingForward = true
       if (this.pageId <= 0) this.browsingBackward = false
       else this.browsingBackward = true
 
-      Promise.all(R.times(this.getNextCard, cardsPerPage))
+      Promise.all(R.times(this.getNextCard, this.filters.cardsPerPage))
+        .then(() => {
+          if (this.filters.type === 'HQ') {
+            this.cards = this.cards.filter(x => x.type === 'Headquarter')
+          }
+          if (this.filters.type === 'Entity') {
+            this.cards = this.cards.filter(x => x.type === 'Entity')
+          }
+          if (this.filters.type === 'Action') {
+            this.cards = this.cards.filter(x => x.type === 'Action')
+          }
+          if (this.filters.type === 'Place') {
+            this.cards = this.cards.filter(x => x.type === 'Place')
+          }
+          if (this.filters.sortBy === 'Name') {
+            this.cards.sort((x,y) => x.CardName.toUpperCase() > y.CardName.toUpperCase() ? 1 : -1)
+          } else if (this.filters.sortBy === 'Casting Cost') {
+            this.cards.sort((x,y) => (x.CastingCost+x.nerflevel) - (y.CastingCost+y.nerflevel))
+          } else if (this.filters.sortBy === 'Id') {
+            this.cards.sort((x,y) => x.id - y.id)
+          }
+        })
       console.log('all cards:', this.cards)
     },
     nextPage () {
-      this.pageId += cardsPerPage
+      this.pageId += this.filters.cardsPerPage
       this.currentId = 0
       this.cards = []
       this.fillPage()
       window.scrollTo(0,0);
     },
     prevPage () {
-      this.pageId -= cardsPerPage
+      this.pageId -= this.filters.cardsPerPage
       this.currentId = 0
       this.cards = []
       this.fillPage()
@@ -195,6 +238,16 @@ export default {
     },
     getOwnAddress () {
       return this.$store.getters.getUserAddress
+    },
+    resetFilters () {
+      this.filters = {
+        visible: false,
+        nameContains: "",
+        status: "",
+        sortBy: "",
+        owner: "",
+        cardsPerPage: 20
+      }
     }
   }
 }
