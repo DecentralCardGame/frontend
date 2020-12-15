@@ -38,6 +38,8 @@
         <div>
           <input v-model="filters.nameContains" placeholder="card name contains">
           <br>
+          <input v-model="filters.notesContains" placeholder="card notes contains">
+          <br>
           <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
           <br>
           <input  @input="filters.cardsPerPage = $event.target.value" placeholder="cards per page">
@@ -110,6 +112,7 @@ export default {
       filters: {
         visible: false,
         nameContains: "",
+        notesContains: "",
         status: "",
         sortBy: "",
         type: "",
@@ -173,6 +176,7 @@ export default {
         })
     },
     applyFilters (card) {
+      if (this.filters.notesContains && !card.Notes.includes(this.filters.notesContains)) return false 
       if (this.filters.type === 'HQ' && card.type !== 'Headquarter') return false
       if (this.filters.type === 'Entity' && card.type !== 'Entity') return false
       if (this.filters.type === 'Action' && card.type !== 'Action') return false
