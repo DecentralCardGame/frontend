@@ -40,7 +40,7 @@
           <br>
           <input v-model="filters.owner" v-on:click="filters.owner=getOwnAddress()" placeholder="card owner is">
           <br>
-          <input v-model="filters.cardsPerPage" placeholder="cards per page">
+          <input  @input="filters.cardsPerPage = $event.target.value" placeholder="cards per page">
           <br>
           <button @click="loadCardList">Apply</button>
           <br>
@@ -159,7 +159,9 @@ export default {
           let card = res.card
           card.id = cardId
           if (card.Content) {
-            this.cards.push(this.$cardChain.parseCard(card))
+            let candidate = this.$cardChain.parseCard(card)
+            if (this.applyFilters(candidate))
+              this.cards.push(candidate)
           } else if (!card.Owner) {
             console.error('card without content and owner: ', res)
           } else {
@@ -170,6 +172,13 @@ export default {
           console.error(res)
         })
     },
+    applyFilters (card) {
+      if (this.filters.type === 'HQ' && card.type !== 'Headquarter') return false
+      if (this.filters.type === 'Entity' && card.type !== 'Entity') return false
+      if (this.filters.type === 'Action' && card.type !== 'Action') return false
+      if (this.filters.type === 'Place' && card.type !== 'Place') return false
+      return true
+    },
     fillPage () {
       if (this.pageId + this.filters.cardsPerPage >= this.cardList.length) this.browsingForward = false
       else this.browsingForward = true
@@ -178,18 +187,6 @@ export default {
 
       Promise.all(R.times(this.getNextCard, this.filters.cardsPerPage))
         .then(() => {
-          if (this.filters.type === 'HQ') {
-            this.cards = this.cards.filter(x => x.type === 'Headquarter')
-          }
-          if (this.filters.type === 'Entity') {
-            this.cards = this.cards.filter(x => x.type === 'Entity')
-          }
-          if (this.filters.type === 'Action') {
-            this.cards = this.cards.filter(x => x.type === 'Action')
-          }
-          if (this.filters.type === 'Place') {
-            this.cards = this.cards.filter(x => x.type === 'Place')
-          }
           if (this.filters.sortBy === 'Name') {
             this.cards.sort((x,y) => x.CardName.toUpperCase() > y.CardName.toUpperCase() ? 1 : -1)
           } else if (this.filters.sortBy === 'Casting Cost') {
@@ -248,6 +245,7 @@ export default {
         owner: "",
         cardsPerPage: 20
       }
+      this.loadCardList()
     }
   }
 }
