@@ -63,6 +63,7 @@ export default {
   },
   mounted () {
     let id = parseInt(this.$route.params.id)
+    console.log('params id:', id)
     if (typeof id === 'number' && !isNaN(id))  {
       this.$cardChain.getCard(this.$route.params.id)
         .then(res => {

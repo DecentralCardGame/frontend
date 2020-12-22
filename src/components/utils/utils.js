@@ -64,8 +64,9 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
     }
   })
 
-  // check if the last interaction piece is a button, if not move pretext from the last piece to posttext of the second last piece and remove it
-  if (interaction[interaction.length - 1].btn.type === null) {
+  // check if the last interaction piece is just an ending text (no button) and if there exist an interaction text element before it,
+  // if true then move pretext from the last piece to posttext of the second last piece and remove it
+  if (interaction[interaction.length - 1].btn.type === null && interaction[interaction.length - 2]) {
     interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
     interaction.splice(-1, 1)
   }
