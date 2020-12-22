@@ -377,6 +377,13 @@
           >
             Update Your Card
           </button>
+
+          <button
+              v-if="activeStep == 4 && model.id"
+              @click="resetEditCard()"
+          >
+            Discard Changes
+          </button>
         </div>
       </div>
       <div class="creator-preview">
@@ -437,17 +444,25 @@ export default {
   mounted() {
     // here a card is loaded if edit card via gallery was selected
     if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
+      console.log('edit card!')
       this.model = R.merge(this.model, this.$store.getters.getCardCreatorEditCard)
 
       if (this.model.type === 'Headquarter') this.model.type = 'HQ'
       this.cardImageUrl = this.$store.getters.getCardCreatorEditCard.image
       
       // reset the entry we have just loaded in the store
-      this.$store.commit('setCardCreatorEditCard', {})
+      //this.$store.commit('setCardCreatorEditCard', {})
       return
     }
     if (!R.isEmpty(this.$store.getters.getCardCreatorDraft) && this.$store.getters.getCardCreatorDraft.model) {
       this.model = JSON.parse(this.$store.getters.getCardCreatorDraft.model)
+
+      console.log('loaded model:', this.model)
+      // this is automated fix for old (and wrong) data in store
+      if (this.model.id) {
+        console.log('automated fix!')
+        this.$store.commit('setCardCreatorDraft', {})
+      }
     }
     if (!R.isEmpty(this.$store.getters.getCardCreatorDraft) && this.$store.getters.getCardCreatorDraft.img) {
       this.cardImageUrl = JSON.parse(this.$store.getters.getCardCreatorDraft.img)
@@ -641,41 +656,44 @@ export default {
         console.log('overwriting card with id:', this.model.id)
         newCard.id = this.model.id
         this.$cardChain.saveContentToCardWithIdTx(newCard, () => {})
-        .then(acc => {
-          this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)  
-
-          //this.$store.commit('setCardCreatorDraft', {})
-          this.model = emptyCard
-          this.cardImageUrl = sampleGradientImg
-        })
-        .catch(err => {
-          console.error(err)
-        })
+          .then(this.updateCredits)
+          .then(this.resetEditCard)
+          .catch(err => {
+            console.error(err)
+          })
       } else {
         console.log('saving card with id (should be 0):', newCard.id)
         this.$cardChain.saveContentToUnusedCardSchemeTx(newCard, () => {})
-        .then(acc => {
-          this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable) 
-
-          this.$store.commit('setCardCreatorDraft', {})  
-          this.model = emptyCard
-          this.cardImageUrl = sampleGradientImg
-        })
-        .catch(err => {
-          console.error(err)
-        })
+          .then(this.updateCredits)
+          .then(this.resetCardDraft)
+          .catch(err => {
+            console.error(err)
+          })
       }
     },
+    updateCredits(acc) {
+      this.creditsAvailable = creditsFromCoins(acc.coins)
+      this.$store.commit('setUserCredits', this.creditsAvailable)  
+      return this.creditsAvailable
+    },
     saveDraft() {
-      this.$store.commit('setCardCreatorDraftModel', JSON.stringify(this.model)) 
+      this.$store.commit(this.model.id? 'setCardCreatorEditCardModel' : 'setCardCreatorDraftModel', JSON.stringify(this.model)) 
+    },
+    resetEditCard() {
+      this.$store.commit('setCardCreatorEditCard', {})
+      this.model = emptyCard
+      this.cardImageUrl = sampleGradientImg
+    },
+    resetCardDraft() {
+      this.$store.commit('setCardCreatorDraft', {})  
+      this.model = emptyCard
+      this.cardImageUrl = sampleGradientImg
     },
     inputFile(event) {
       let file = event.target.files[0]
       uploadImg(file, (result) => {
         this.cardImageUrl = result
-        this.$store.commit('setCardCreatorDraftImg', JSON.stringify(result))
+        this.$store.commit(this.model.id? 'setCardCreatorEditCardModel' : 'setCardCreatorDraftModel', JSON.stringify(result))
       })
     },
     classStepPassed(n) {
