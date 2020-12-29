@@ -10,5 +10,5 @@
   },
   "type": "struct",
   "description": "Build a Ressource-Cost",
-  "interactionText": "§CastingCost §CostType"
+  "interactionText": "§CostAmount §RessourceCostType"
 }
