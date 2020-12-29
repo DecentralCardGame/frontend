@@ -194,7 +194,9 @@ export default {
           if (this.filters.sortBy === 'Name') {
             this.cards.sort((x,y) => x.CardName.toUpperCase() > y.CardName.toUpperCase() ? 1 : -1)
           } else if (this.filters.sortBy === 'Casting Cost') {
-            this.cards.sort((x,y) => (x.CastingCost+x.nerflevel) - (y.CastingCost+y.nerflevel))
+            console.log('cards before sort', this.cards)
+            this.cards.sort((x,y) => (x.CastingCost? x.CastingCost+x.nerflevel : 0) - (y.CastingCost? y.CastingCost+ y.nerflevel : 0))
+            console.log('cards after sort', this.cards)
           } else if (this.filters.sortBy === 'Id') {
             this.cards.sort((x,y) => x.id - y.id)
           }
