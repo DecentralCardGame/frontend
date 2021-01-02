@@ -1,3 +1,8 @@
+import { testcard } from './testcard.js'
+export const sampleCards = {
+  testcard: testcard
+}
+
 export const sampleCard = {
   CardName: 'Schoolbus',
   FlavourText: 'Whenever a creature with tag "pupil" enters the field, schoolbus gets a chu chu counter. Remove a chu chu counter: Schoolbus deals attack to target unit equal to the number of chu chu counters on it.',

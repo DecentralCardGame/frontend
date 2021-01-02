@@ -192,6 +192,12 @@
         />
     </div>
 
+          <CardComponent
+            class="about__preview"
+            :model="sampleCards.testcard"
+            :image-u-r-l="sampleCards.testcard.cardImg"
+        />
+
 
   <!-- energy icon -->
   <svg>
@@ -481,6 +487,7 @@
 <script>
 import CardComponent from '../components/CardComponent'
 import {
+  sampleCards,
   belloCard,
   belloImg,
   botCommandCard,
@@ -493,14 +500,18 @@ import {
   timeDeviceImg
 } from '../components/utils/sampleCards.js'
 
+
 export default {
   name: 'AboutPage',
   components: {CardComponent},
   data() {
     return {
+      sampleCards: sampleCards,
       cards: [communityCard, dollyCard, timeDeviceCard, belloCard, botCommandCard],
       cardImgs: [communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg]
     }
+  },
+  mounted() {
   }
 }
 </script>
