@@ -8,16 +8,16 @@
     <h2>Fundamentals</h2>
     <p>
     Crowd Control is a strategy game in which two players battle with their own, previously put together decks. The cards are played simultaneously 
-    and remain hidden until both players are finished playing cards. Both players start with a headquarters, that has 20 health points, in play.
-    When a player manages to reduce the health points of the enemy headquarter to zero, he wins.
+    and remain hidden until both players are finished playing cards. Both players start with a headquarters that has 20 health points.
+    When a player manages to reduce the health points of the enemy headquarters to zero, he wins.
     <br>
     <h2>Resources: the basis for every action</h2>
-    Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
+    Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth points. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
     <br>
     <h2>Classes</h2>
     In addition to said effects, headquarters also dictate the classes from which you are allowed to play cards. In total there are five classes:
     <br>
-    <img src="../assets/Energy.svg" /> Iron Lumber Food Mana
+    <img src="../assets/Energy.svg" /> Iron, Lumber, Food and Mana.
     <br>
     A headquarter can have any combination of classes. You may only put cards into your deck that share at least one class with your headquarter and don´t belong to another class. For example if your headquarters is lumber/food you may put food cards, lumber cards and food/lumber cards, but not lumber/iron or food/mana cards into your deck.
     <br>
@@ -191,7 +191,82 @@
             :image-u-r-l="cardImgs[4]"
         />
     </div>
+    <!--vvv 
+    Made by Niko. 
+    possibly seperate this part of the page by transition? 
+    vvv-->
+    <h2>4. Fight planning stage</h2>
+    <p>
+      The cards are now placed in either attack or defense mode. All cards are placed simultaneously.
+      Player 1 puts all five pets in defense mode. Dr. Dolly, Bello and Saint Daisy go into attack mode.
+    </p>
+    <div class = "content-border-white"> <!--1st box-->
+      <p>Player 1<p>
+      <p style="text-align:center;">Attack mode</p>
+      <div class="card-container-attack-mode">
+      <CardComponent
+            class="card-attack-mode"
+            :model="cards[1]"
+            :image-u-r-l="cardImgs[1]"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="cards[3]"
+            :image-u-r-l="cardImgs[3]"
+        />
+        <span class = "card-attack-mode">
+        </span>
+      </div>
+    </div>
+    <p>
+      Player 2 places Ulrich the Tinker in Defense Mode. Richard, Bot Commander, Hurrwig, Bot Manufacturer and Assoult Horse in attack mode.
+    </p>
+    <div class = "content-border-white"><!--2nd box-->
+    <p>Player 1<p>
+      <p style="text-align:center;">Attack mode</p>
+      <div class="card-container-attack-mode">
+      </div>
+    </div>
+    <h2>5. Resolve Phase II</h2>
+    <p>
+      Since no effects were triggered by the lane switches, we now enter the combat phase
+    </p>
+    <h2>6. Combat</h2>
+    <p>Now the entities that were played in the last tick fight against each other.
+      Due to its ability "Charge" the Assoult Horse can attack immediately in this turn.
+      Now the entities attack one after the other.
 
+      Player 1 attacks with all hist entities placed in the attack lane.
+      Since Ulrich the Tinker is in Defense Mode, neither the HQ nor Places can be attacked.
+      The entities in Attack Mode, namely, Dr. Dolly and Bello, die because of Ulrich the Tinker.
+      Ulrich the Tinker survives with one life.
+    </p>
+    <div class = "content-border-white"><!--3rd box-->
+    <p>Player 1<p>
+      <p style="text-align:center;">Attack mode</p>
+      <div class="card-container-attack-mode">
+      </div>
+    </div>
+    <p>
+      Now player 2 attacks with hist entities in attack mode. 
+      Richard Bot Commander fights against the 1st Pet in defense mode. Thereby his ability is triggered which is: "When Richard is attacking, create a 1/1 Bot that is also attacking". So an additional 1/1 bot appears, which now attacks the 2nd pet in defense mode. 
+      Both entities take 1 point of damage and die.
+
+      Now the appearance of the "Bot" will trigger an effect: Hurrwig's Bot Manufacturer's ability is triggered again and he can do 2 damage points to any enemy entity, this effect now lands in the Enemies Queue and is not processed until the next tick in the Resolve Phase I.
+
+      Additionally, the death of the bot also triggers the ability of Ulrich the Tinker: "Whenever an Entity with the tag "Bot" is destroyed, draw a card".
+      This effect is now also "collected" and ends up in the Own Queue of player 2, which is processed at the beginning of the next tick.
+
+      Hurrwig, Bot Manufacturer now fights the 3rd Pet in defense mode, which also dies. The Bot created last round destroys the 4th Pet in the row.
+      The 2 nd Bot can't attack, because it was created this round. The last entity, Assoult Horse can attack, because of its Ability "Charge" and attacks the 5th Pet, whcih lands also on the Graveyard.
+    <div class = "content-border-white"><!--4th box-->
+    <p>Player 2<p>
+      <p style="text-align:center;">Defense mode</p>
+      <div class="card-container-attack-mode">
+      </div>
+    </div>
+    <p>
+    </p>
 
   <!-- energy icon -->
   <svg>
@@ -494,7 +569,7 @@ import {
 } from '../components/utils/sampleCards.js'
 
 export default {
-  name: 'AboutPage',
+  name: 'HowToPlayPage',
   components: {CardComponent},
   data() {
     return {
@@ -563,11 +638,29 @@ h2 {
 }
 
 .red-colored-text {
-  color: $red;
+  color: #fff;
+  text-shadow: 1px 0 0 #888888, 0 -1px 0 #888888, 0 1px 0 #888888, -1px 0 0 #888888;
 }
 
 img {
   float: right;
   width: 30%
 }
+
+.content-border-white {
+  width:auto;
+  border: 5px solid white;
+  padding:5px;
+  padding-top: 0px;
+}
+.card-container-attack-mode {
+  display: grid;
+  align-self: left;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+.card-attack-mode {
+   max-width: 480px;
+}
+
 </style>
