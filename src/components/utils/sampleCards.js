@@ -2,6 +2,7 @@ import { testcard } from './cardfiles/testcard.js'
 import {saintDaisy} from './cardfiles/saintDaisy.js'
 import {saintDaisy_pet} from './cardfiles/saintDaisy_pet.js'
 import {richard} from './cardfiles/richard.js'
+import {richard_bot} from './cardfiles/richard_bot.js'
 import {hurrwig} from './cardfiles/hurrwig.js'
 import {assoultHorse} from './cardfiles/assoultHorse.js'
 import {ulrich} from './cardfiles/ulrich.js'
@@ -18,7 +19,8 @@ export const sampleCards = {
   ulrich: ulrich,
   steam: steam,
   automatedBotProduction: automatedBotProduction,
-  automatedBotProduction_bot: automatedBotProduction_bot
+  automatedBotProduction_bot: automatedBotProduction_bot,
+  richard_bot: richard_bot
 }
 
 export const sampleCard = {

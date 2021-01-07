@@ -291,7 +291,7 @@
             :model="sampleCards.ulrich"
             :image-u-r-l="sampleCards.ulrich.cardImg"
         />
-        <span></span>
+        <span></span><!-- Empty space in grid -->
         <CardComponent
           class="card-defense-mode"
           :model="sampleCards.steam"
@@ -321,7 +321,7 @@
       Ulrich the Tinker survives with one life.
     </p>
     <div class = "content-border-white"><!--3rd box-->
-      <p style="display:block;font-size:1.5rem;margin:10px;">Player 1 Attack Mode
+      <p style="display:block;font-size:1rem;margin:10px;">Player 1 Attack Mode
       <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
       </p>
       <div class="card-container-attack-mode">
@@ -340,8 +340,9 @@
             :model="sampleCards.saintDaisy"
             :image-u-r-l="sampleCards.saintDaisy.cardImg"
         />
-        <!-- TODO: arrow image here -->
-        <span></span>
+        <div>
+          <img class=image_arrow src='../assets/arrows/arrow_up.png'>
+        </div>
         <CardComponent
             class="card-defense-mode"
             :model="sampleCards.ulrich"
@@ -362,10 +363,82 @@
       Hurrwig, Bot Manufacturer now fights the 3rd Pet in defense mode, which also dies. The Bot created last round destroys the 4th Pet in the row.
       The 2nd Bot can't attack, because it was created this round. The last entity, Assoult Horse can attack, because of its Ability "Charge" and attacks the 5th Pet, whcih lands also on the Graveyard.
     <div class = "content-border-white"><!--4th box-->
-    <p>Player 2<p>
-      <p style="text-align:center;">Defense mode</p>
+      <p id="player-num-text">Player 2 Defense Mode</p>
       <div class="card-container-attack-mode">
-      </div>
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+        </div>
+
+        <div class="card-container-defense-mode"> <!-- Arrows -->
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        </div>
+
+        <div class="card-container-defense-mode">
+          <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.richard"
+          :image-u-r-l="sampleCards.richard.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.richard_bot"
+          :image-u-r-l="sampleCards.richard_bot.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.hurrwig"
+          :image-u-r-l="sampleCards.hurrwig.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.automatedBotProduction"
+          :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.automatedBotProduction_bot"
+          :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+        />
+        </div>
+
+      
     </div>
     <p>
     Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
@@ -423,8 +496,16 @@
 <p>
   Since the ability affects your own cards, it can be used immediately, so Dr.Dolly is addionally buffed by 2/2. Saint Daisy's ability: "ETB Create a 1/1 Pet for each Human you control" is activated and 5 Pets with 1/1 stats are summoned.  
 </p>  
+<p>
+  Player 2 plays the entities Assoult Horse, Ulrich the Tinker and the Action Card provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
+</p>
 
+<h2>3. Resolve Phase</h2>
+<p>
+The played cards are now revealed. The effects that affect your own cards have already been executed in phase 2. Now the ones that are in the enemy queue are resolved. The triggered ability of Hurrwig, Bot Manufacturer is in the queue 2 times. Once it was activated at the end of the combat phase of tick 9 and now in the planning phase in this tick. Now it deals 2 damage to Wynn, the Brainless and 2 damage to Furious jack, both of which end up on the Graveyard.
 
+This activates Dr.Dolly's ability "Whenever an entity dies, gain 1 Mana" which is put into the queue for the next resolve phase.
+</p>
   <!-- energy icon -->
   <svg>
     <g
@@ -707,8 +788,8 @@
     </svg>
 
   </div>
-
 </template>
+
 
 <script>
 import CardComponent from '../components/CardComponent'
@@ -834,20 +915,36 @@ img {
 .card-defense-mode{
   max-width: 240px;
 }
+.image_arrow{
+  padding-top:40%;
+  min-width:100%;
+  min-height:20%;
+}
+.rot90 {
+  transform: rotate(280deg);
+  -ms-transform: rotate(280deg);
+  -moz-transform: rotate(280deg);
+  -webkit-transform: rotate(280deg);
+  -o-transform: rotate(280deg);
+  width: 100%;
+  padding-left:50%;
+}
+
 #defense-mode-text {
-  font-size:1.75rem;
+  font-size:1.25rem;
   margin:-10px;
   margin-top:5px;
 }
 #attack-mode-text {
   text-align:center;
-  font-size:1.75rem;
+  font-size:1.25rem;
   margin:-10px;
   margin-bottom: 5px;
 }
 #player-num-text {
-  font-size:2rem;
+  font-size:1.5rem;
   margin:-5px;
 }
+
 
 </style>
