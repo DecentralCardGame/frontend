@@ -344,43 +344,50 @@
         </div>
         <div class="creator-nav-container">
           <button
-              v-if="activeStep > 0"
-              class="back"
-              @click="activeStep--"
+            v-if="activeStep > 0"
+            class="back"
+            @click="activeStep--"
           >
             Go Back
           </button>
           <button
-              v-if="activeStep < 4"
-              @click="activeStep++"
+            v-if="activeStep < 4"
+            @click="activeStep++"
           >
             Next Step >
           </button>
           <button
-              v-if="activeStep == 4 && !model.id"
-              class="btn"
-              type="button"
-              @click="showBuySchemeModal"
+            v-if="activeStep == 4 && !model.id"
+            class="btn"
+            type="button"
+            @click="showBuySchemeModal"
           >
             Buy Card Scheme
           </button>
           <button
-              v-if="activeStep == 4 && !model.id"
-              @click="saveSubmit()"
+            v-if="activeStep == 4 && !model.id"
+            @click="saveSubmit()"
           >
             Publish Your Card
           </button>
 
           <button
-              v-if="activeStep == 4 && model.id"
-              @click="saveSubmit()"
+            v-if="activeStep == 4 && !model.id"
+            @click="resetCardDraft()"
+          >
+            Discard Draft
+          </button>
+
+          <button
+            v-if="activeStep == 4 && model.id"
+            @click="saveSubmit()"
           >
             Update Your Card
           </button>
 
           <button
-              v-if="activeStep == 4 && model.id"
-              @click="resetEditCard()"
+            v-if="activeStep == 4 && model.id"
+            @click="resetEditCard()"
           >
             Discard Changes
           </button>
@@ -388,11 +395,11 @@
       </div>
       <div class="creator-preview">
         <CardComponent
-            id="card"
-            :active-step="activeStep"
-            :display-notes="true"
-            :image-u-r-l="cardImageUrl"
-            :model="model"
+          id="card"
+          :active-step="activeStep"
+          :display-notes="true"
+          :image-u-r-l="cardImageUrl"
+          :model="model"
         />
       </div>
     </div>
@@ -574,6 +581,8 @@ export default {
       return string
     },
     saveSubmit() {
+      console.log()
+
       if (!this.model.CardName) {
         this.notifyFail('No Name', 'Card has no name, please enter a name.')
         return
