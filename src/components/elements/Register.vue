@@ -7,37 +7,38 @@
         Username*
       </label>
       <input
-              v-model="username"
-              type="text"
-              placeholder="username"
-              name="uname"
+        v-model="username"
+        type="text"
+        placeholder="username"
+        name="uname"
       >
       <label>
-        Password* <span class="link--show-pw" @click="showPw = !showPw">({{ showPw ? "hide" : "show"}})</span>
+        Password* <span class="link--show-pw" 
+        @click="showPw = !showPw">({{ showPw ? "hide" : "show" }})</span>
       </label>
       <input
-              v-model="password"
-              :type="showPw ? 'text' : 'password'"
-              placeholder="**********"
-              name="psw"
+        v-model="password"
+        :type="showPw ? 'text' : 'password'"
+        placeholder="**********"
+        name="psw"
       >
       <label>
         E-Mail*
       </label>
       <input
-              v-model="email"
-              type="mail"
-              placeholder="your@e-mail.com"
-              name="mail"
+        v-model="email"
+        type="mail"
+        placeholder="your@e-mail.com"
+        name="mail"
       >
       <label>
         Mnemonic*
       </label>
       <input
-              v-model="mnemonic"
-              type="text"
-              placeholder="one two three four five ..."
-              name="mail"
+        v-model="mnemonic"
+        type="text"
+        placeholder="one two three four five ..."
+        name="mail"
       >
       <button type="submit">
         Join
@@ -74,6 +75,7 @@ export default {
 
         // TODO check if user has entered a serious mnemonic
         this.notifyFail('Bad Mnemonic', 'Please enter a real mnemonic with 24 words')
+        return
       }
 
       let wallet = createWalletFromMnemonic(this.mnemonic)
