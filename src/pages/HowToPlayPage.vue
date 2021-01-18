@@ -202,48 +202,48 @@
     <div class = "content-border-white"> <!--1st box-->
       <b id="player-num-text">Player 1</b>
       <p id="attack-mode-text">Attack mode</p>
-      <div class="card-container-attack-mode">
+      <div class="card-container">
       <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="cards[1]"
             :image-u-r-l="cardImgs[1]"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="cards[3]"
             :image-u-r-l="cardImgs[3]"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.saintDaisy"
             :image-u-r-l="sampleCards.saintDaisy.cardImg"
         />
 
       </div>
       <span id="defense-mode-text" style="text-align:left;">Defense mode</span> 
-      <div class="card-container-defense-mode">
+      <div class="card-container">
         <CardComponent
-            class="card-defense-mode"
+            class="card"
             :model="sampleCards.saintDaisy_pet"
             :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
         <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
         <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
         <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
         <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
@@ -254,51 +254,51 @@
       Player 2 places Ulrich the Tinker in Defense Mode. Richard, Bot Commander, Hurrwig, Bot Manufacturer and Assoult Horse in attack mode.
     </p>
     <div class = "content-border-white"> <!--2nd box-->
-      <b id="player-num-text">Player 1</b>
+      <b id="player-num-text">Player 2</b>
       <p id="attack-mode-text">Attack mode</p>
-      <div class="card-container-attack-mode">
+      <div class="card-container">
       <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.richard"
             :image-u-r-l="sampleCards.richard.cardImg"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.hurrwig"
             :image-u-r-l="sampleCards.hurrwig.cardImg"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.automatedBotProduction_bot"
             :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.automatedBotProduction_bot"
             :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />       
          <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.assoultHorse"
             :image-u-r-l="sampleCards.assoultHorse.cardImg"
         />
       </div>
       <span id="defense-mode-text">Defense mode</span>
       <span id="defense-mode-text" style="margin-left:30%;">Places</span>
-      <div class="card-container-defense-mode">
+      <div class="card-container">
            <CardComponent
-            class="card-defense-mode"
+            class="card"
             :model="sampleCards.ulrich"
             :image-u-r-l="sampleCards.ulrich.cardImg"
         />
         <span></span><!-- Empty space in grid -->
         <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.steam"
           :image-u-r-l="sampleCards.steam.cardImg"
         />
         <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.automatedBotProduction"
           :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
         />
@@ -324,19 +324,19 @@
       <p style="display:block;font-size:1rem;margin:10px;">Player 1 Attack Mode
       <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
       </p>
-      <div class="card-container-attack-mode">
+      <div class="card-container">
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="cards[1]"
             :image-u-r-l="cardImgs[1]"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="cards[3]"
             :image-u-r-l="cardImgs[3]"
         />
         <CardComponent
-            class="card-attack-mode"
+            class="card"
             :model="sampleCards.saintDaisy"
             :image-u-r-l="sampleCards.saintDaisy.cardImg"
         />
@@ -344,7 +344,7 @@
           <img class=image_arrow src='../assets/arrows/arrow_up.png'>
         </div>
         <CardComponent
-            class="card-defense-mode"
+            class="card"
             :model="sampleCards.ulrich"
             :image-u-r-l="sampleCards.ulrich.cardImg"
         />
@@ -363,113 +363,192 @@
       Hurrwig, Bot Manufacturer now fights the 3rd Pet in defense mode, which also dies. The Bot created last round destroys the 4th Pet in the row.
       The 2nd Bot can't attack, because it was created this round. The last entity, Assoult Horse can attack, because of its Ability "Charge" and attacks the 5th Pet, whcih lands also on the Graveyard.
     <div class = "content-border-white"><!--4th box-->
-      <p id="player-num-text">Player 2 Defense Mode</p>
-      <div class="card-container-attack-mode">
+      <p style="display:block;font-size:1rem;margin:10px;">Player 2 Defense Mode</p>
+      <div class="card-container">
+        <div>
          <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-         <CardComponent
-          class="card-defense-mode"
-          :model="sampleCards.saintDaisy_pet"
-          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
-        />
-         <CardComponent
-          class="card-defense-mode"
-          :model="sampleCards.saintDaisy_pet"
-          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
-        />
-         <CardComponent
-          class="card-defense-mode"
-          :model="sampleCards.saintDaisy_pet"
-          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
-        />
-         <CardComponent
-          class="card-defense-mode"
-          :model="sampleCards.saintDaisy_pet"
-          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
-        />
-        </div>
-
-        <div class="card-container-defense-mode"> <!-- Arrows -->
-        <div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-        </div>
-        <div>
-          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-        </div>
-        <div>
-          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-        </div>
-        <div>
-          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-        </div>
-        <div>
-          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-        </div>
-        </div>
-
-        <div class="card-container-defense-mode">
           <CardComponent
-          class="card-defense-mode"
+          class="card"
           :model="sampleCards.richard"
           :image-u-r-l="sampleCards.richard.cardImg"
         />
-        <CardComponent
-          class="card-defense-mode"
-          :model="sampleCards.richard_bot"
-          :image-u-r-l="sampleCards.richard_bot.cardImg"
+        </div>
+        <div>
+         <CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-        <CardComponent
-          class="card-defense-mode"
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+          <CardComponent
+          class="card"
+          :model="sampleCards.richard"
+          :image-u-r-l="sampleCards.richard.cardImg"
+        />
+        </div>
+        <div>
+         <CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+          <CardComponent
+          class="card"
           :model="sampleCards.hurrwig"
           :image-u-r-l="sampleCards.hurrwig.cardImg"
         />
-        <CardComponent
-          class="card-defense-mode"
-          :model="sampleCards.automatedBotProduction"
-          :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
+        </div>
+        <div>
+         <CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-        <CardComponent
-          class="card-defense-mode"
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+          <CardComponent
+          class="card"
           :model="sampleCards.automatedBotProduction_bot"
           :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />
         </div>
+        <div>
+         <CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+          <CardComponent
+          class="card"
+          :model="sampleCards.assoultHorse"
+          :image-u-r-l="sampleCards.assoultHorse.cardImg"
+        />
+        </div>
+         
 
-      
+      </div>
     </div>
-    <p>
-    Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
 
-    The fight is over, the damage points have been calculated and all triggered effects have been collected.
-    Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
-    </p>
-<div class = "content-border-white"><!--5th box-->
-    <p>Player 2</p>
-      <p style="text-align:center;">Attack Mode</p>
-      <div class="card-container-attack-mode">
+        <!-- PAGE 2 -->
+
+    <div class="about about--card-right">
+      <div>
+        <p>
+          Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
+          The fight is over, the damage points have been calculated and all triggered effects have been collected.
+          Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
+         </p>
+      </div>
+        <CardComponent
+            class="about__preview"
+            :model="cards[1]"
+            :image-u-r-l="cardImgs[1]"
+        />
+    </div>
+    
+      
+    <div class = "content-border-white"> <!-- 5th box -->
+      <b id="player-num-text">Player 2</b>
+      <p id="attack-mode-text">Attack mode</p>
+      <div class="card-container">
+      <CardComponent
+            class="card"
+            :model="sampleCards.richard"
+            :image-u-r-l="sampleCards.richard.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.hurrwig"
+            :image-u-r-l="sampleCards.hurrwig.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.automatedBotProduction_bot"
+            :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+        />  
+         <CardComponent
+            class="card"
+            :model="sampleCards.assoultHorse"
+            :image-u-r-l="sampleCards.assoultHorse.cardImg"
+        />
+      </div>
+      <span id="defense-mode-text">Defense mode</span>
+      <span id="defense-mode-text" style="margin-left:30%;">Places</span>
+      <div class="card-container">
+           <CardComponent
+            class="card"
+            :model="sampleCards.ulrich"
+            :image-u-r-l="sampleCards.ulrich.cardImg"
+        />
+        <span></span><!-- Empty space in grid -->
+        <CardComponent
+          class="card"
+          :model="sampleCards.steam"
+          :image-u-r-l="sampleCards.steam.cardImg"
+        />
+        <CardComponent
+          class="card"
+          :model="sampleCards.automatedBotProduction"
+          :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
+        />
       </div>
     </div>
   <p>
     The fight is over, the damage points have been calculated and all triggered effects have been collected. This tick is finished and the next round begins.
   </p>
+
   <h2 style="text-align:center;">Example of a round</h2> <!-- !!!Example of a round!!! -->
-  <p>
-    In order to illustrate the course of a round, the following example shows how a round, divided into its different phases, progresses.
-    <br/>
-    For this example, we are already in the middle of the game in turn 10.
-    Player 1 plays the Dr. Dolly Deck and Player 2 plays the Blasturn, the Capital Deck.
+     <div class="about about--card-right">
+        <p>
+           In order to illustrate the course of a round, the following example shows how a round, divided into its different phases, progresses.
+          <br/>
+          For this example, we are already in the middle of the game in turn 10.
+          Player 1 plays the Dr. Dolly Deck and Player 2 plays the Blasturn, the Capital Deck.
 
-    player 1 has the following cards in play:
+          player 1 has the following cards in play:
 
-    Dr. Dolly and Bello, Man's Best Friend, which are in attack mode, as well as Wynn, the Brainless Baby and Furious Jack, which are in defense mode.
-  </p>
+           
+        </p>
+        <CardComponent
+            class="about__preview"
+            :model="cards[1]"
+            :image-u-r-l="cardImgs[1]"
+        />
+     </div>
+     <p>
+        Dr. Dolly and Bello, Man's Best Friend, which are in attack mode, as well as Wynn, the Brainless Baby and Furious Jack, which are in defense mode.
+     </p>
   <div class = "content-border-white"><!--6th box-->
-    <p>Player 1</p>
-      <p style="text-align:center;" class=".card-state-indicator">Attack Mode</p>
-      <div class="card-container-attack-mode">
+        <span id="defense-mode-text">Attack mode</span>
+      <span id="defense-mode-text" style="margin-left:50%;">Defense mode</span>
+      <div class="card-container">
+        <CardComponent
+            class="card"
+            :model="cards[1]"
+            :image-u-r-l="cardImgs[1]"
+        />
+        <CardComponent
+            class="card"
+            :model="cards[3]"
+            :image-u-r-l="cardImgs[3]"
+        />
+      <div></div>
+        <CardComponent
+            class="card"
+            :model="sampleCards.furiousJack"
+            :image-u-r-l="sampleCards.furiousJack.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.wynn"
+            :image-u-r-l="sampleCards.wynn.cardImg"
+        />
       </div>
   </div>
 <p>
@@ -479,8 +558,34 @@
 </p>
 <div class = "content-border-white"><!--7th box-->
     <p>Player 1</p>
-      <p style="text-align:center;">Attack Mode</p>
-      <div class="card-container-attack-mode">
+      <span id="defense-mode-text">Attack mode</span>
+      <span id="defense-mode-text" style="margin-left:50%;">Places</span>
+      <div class="card-container">
+          <CardComponent
+            class="card"
+            :model="sampleCards.richard"
+            :image-u-r-l="sampleCards.richard.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.hurrwig"
+            :image-u-r-l="sampleCards.hurrwig.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.automatedBotProduction_bot"
+            :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.automatedBotProduction"
+            :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
+        />
+        <CardComponent
+            class="card"
+            :model="sampleCards.steam"
+            :image-u-r-l="sampleCards.steam.cardImg"
+        />
       </div>
   </div>
 <h1 style="text-align:center">Start of turn 10:</h1>
@@ -493,13 +598,63 @@
   Player 2's Steam Processor produces 6 Energy, which is then used for its ability to gain 10 Wisdom, so player 2 can now draw an additional card. Their 2nd place Automated Bot Production produces another 1/1 Bot. In combination with Hurrwig, Bot Manufacturer, the following ability is now triggered: "Whenever an entity with Tag "Bot" enters the battlefield, you may deal 2 damage to target entity". Since this ability affects the enemy, the effect is delayed and placed in the enemy queue.
 </p>
 <h2>2. Card playing phase</h2>
-<p>
-  Since the ability affects your own cards, it can be used immediately, so Dr.Dolly is addionally buffed by 2/2. Saint Daisy's ability: "ETB Create a 1/1 Pet for each Human you control" is activated and 5 Pets with 1/1 stats are summoned.  
-</p>  
+<div class="about about--card-right">
+  <p>
+    Since the ability affects your own cards, it can be used immediately, so Dr.Dolly is addionally buffed by 2/2. Saint Daisy's ability: "ETB Create a 1/1 Pet for each Human you control" is activated and 5 Pets with 1/1 stats are summoned.  
+  </p>  
+  <div>
+    <CardComponent
+          class="card"
+          :model="sampleCards.evie"
+          :image-u-r-l="sampleCards.evie.cardImg"
+    />
+  </div>
+</div>
+<div class="card-container">
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDiasy"
+          :image-u-r-l="sampleCards.saintDaisy.cardImg"
+/>
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+/>
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+/>
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+/>
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+/>
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+/>
+</div>
+<div class="about about--card-right" style="padding-top:15px">
 <p>
   Player 2 plays the entities Assoult Horse, Ulrich the Tinker and the Action Card provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
 </p>
+<div>
+  <CardComponent
+          class="card"
+          :model="sampleCards.exoskeleton"
+          :image-u-r-l="sampleCards.exoskeleton.cardImg"
+/>
+</div>
 
+</div>
 <h2>3. Resolve Phase</h2>
 <p>
 The played cards are now revealed. The effects that affect your own cards have already been executed in phase 2. Now the ones that are in the enemy queue are resolved. The triggered ability of Hurrwig, Bot Manufacturer is in the queue 2 times. Once it was activated at the end of the combat phase of tick 9 and now in the planning phase in this tick. Now it deals 2 damage to Wynn, the Brainless and 2 damage to Furious jack, both of which end up on the Graveyard.
@@ -819,6 +974,9 @@ export default {
     }
   },
   mounted() {
+  },
+  methods: {
+    
   }
 }
 </script>
@@ -896,24 +1054,24 @@ img {
   padding:20px;
   padding-top: 0px;
 }
-.card-container-attack-mode {
-  display: grid;
-  align-self: left;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 1%;
-}
-.card-attack-mode {
+// .card-container {
+//   display: grid;
+//   align-self: left;
+//   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+// }
+.card {
    max-width: 240px;
 }
-.card-container-defense-mode {
+// .card:hover {
+//   width:200%;
+//   z-index:9999;
+// }
+.card-container {
   display:grid;
   align-self:center;
   align-items: center;
   grid-template-columns:repeat(5,1fr);
-  grid-gap:1%;
-}
-.card-defense-mode{
-  max-width: 240px;
+  grid-gap:2px;
 }
 .image_arrow{
   padding-top:40%;
@@ -927,7 +1085,7 @@ img {
   -webkit-transform: rotate(280deg);
   -o-transform: rotate(280deg);
   width: 100%;
-  padding-left:50%;
+  //padding-left:10%;
 }
 
 #defense-mode-text {
