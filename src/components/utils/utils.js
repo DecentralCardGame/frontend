@@ -31,6 +31,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
 
+      console.log(R.append(buttonEntry, rulesPath), cardRules)
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
@@ -65,7 +66,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
   })
 
   // check if the last interaction piece is just an ending text (no button) and if there exist an interaction text element before it,
-  // if true then move pretext from the last piece to posttext of the second last piece and remove it
+  // if true then move pretext from the last piece to posttext of the second last piece and remove it.
   if (interaction[interaction.length - 1].btn.type === null && interaction[interaction.length - 2]) {
     interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
     interaction.splice(-1, 1)

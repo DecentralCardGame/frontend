@@ -112,43 +112,42 @@
           </select>
         </div>
         <div
-            v-if="activeStep == 1"
-            class="creator-input-container"
+          v-if="activeStep == 1"
+          class="creator-input-container"
         >
           <span
-              v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
-              class="creator-text"
+            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
+            class="creator-text"
           >As I am quite awesome to get me rolling you need to <b>invest</b>:</span>
 
           <select
-              v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
-              v-model="model.CastingCost"
-              @change="saveDraft"
+            v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.CastingCost"
+            v-model="model.CastingCost"
+            @change="saveDraft"
           >
             <option
-                v-for="n in R.range($cardRules.children[getRulesType()].children.CastingCost.min, $cardRules.children[getRulesType()].children.CastingCost.max + 1)"
-                :key="n"
-                :value="n"
+              v-for="n in R.range($cardRules.children[getRulesType()].children.CastingCost.min, $cardRules.children[getRulesType()].children.CastingCost.max + 1)"
+              :key="n"
+              :value="n"
             >
               {{ n }}
             </option>
           </select>
           <span class="creator-text">
             <span
-                v-show="model.type==='HQ'"
-                class="creator-text"
+              v-show="model.type==='HQ'"
+              class="creator-text"
             >
-
               As I am quite awesome, I generate <br>
               <select
-                  v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Growth"
-                  v-model="model.Growth"
-                  @change="saveDraft"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Growth"
+                v-model="model.Growth"
+                @change="saveDraft"
               >
                 <option
-                    v-for="n in R.range($cardRules.children[getRulesType()].children.Growth.min, $cardRules.children[getRulesType()].children.Growth.max + 1)"
-                    :key="n"
-                    :value="n"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.Growth.min, $cardRules.children[getRulesType()].children.Growth.max + 1)"
+                  :key="n"
+                  :value="n"
                 >
                   {{ n }}
                 </option>
@@ -156,14 +155,14 @@
 
               Growth and<br>
               <select
-                  v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Wisdom"
-                  v-model="model.Wisdom"
-                  @change="saveDraft"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.Wisdom"
+                v-model="model.Wisdom"
+                @change="saveDraft"
               >
                 <option
-                    v-for="n in R.range($cardRules.children[getRulesType()].children.Wisdom.min, $cardRules.children[getRulesType()].children.Wisdom.max + 1)"
-                    :key="n"
-                    :value="n"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.Wisdom.min, $cardRules.children[getRulesType()].children.Wisdom.max + 1)"
+                  :key="n"
+                  :value="n"
                 >
                   {{ n }}
                 </option>
@@ -171,14 +170,14 @@
               Wisdom. <br>
               Whoever sides with me, starts with an impressive hand size of
               <select
-                  v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.StartingHandSize"
-                  v-model="model.StartingHandSize"
-                  @change="saveDraft"
+                v-if="$cardRules.children[getRulesType()] && $cardRules.children[getRulesType()].children.StartingHandSize"
+                v-model="model.StartingHandSize"
+                @change="saveDraft"
               >
                 <option
-                    v-for="n in R.range($cardRules.children[getRulesType()].children.StartingHandSize.min, $cardRules.children[getRulesType()].children.StartingHandSize.max + 1)"
-                    :key="n"
-                    :value="n"
+                  v-for="n in R.range($cardRules.children[getRulesType()].children.StartingHandSize.min, $cardRules.children[getRulesType()].children.StartingHandSize.max + 1)"
+                  :key="n"
+                  :value="n"
                 >
                   {{ n }}
                 </option>
@@ -427,8 +426,7 @@ import BuySchemeModal from '../components/modals/BuySchemeModal.vue'
 import AbilityModal from '../components/modals/AbilityModal.vue'
 import AbilityComponent from '../components/AbilityComponent.vue'
 
-// eslint-disable-next-line no-unused-vars
-import { atPath, emptyCard, notify, uploadImg, creditsFromCoins } from '../components/utils/utils.js'
+import { atPath, emptyCard, uploadImg, creditsFromCoins } from '../components/utils/utils.js'
 import { sampleGradientImg } from '../components/utils/sampleCards.js'
 
 export default {
@@ -465,6 +463,7 @@ export default {
       this.model = JSON.parse(this.$store.getters.getCardCreatorDraft.model)
 
       console.log('loaded model:', this.model)
+
       // this is automated fix for old (and wrong) data in store
       if (this.model.id) {
         console.log('automated fix!')
@@ -581,7 +580,13 @@ export default {
       return string
     },
     saveSubmit() {
+<<<<<<< HEAD
       console.log()
+=======
+      
+      console.log(JSON.stringify(R.assoc('cardImg', this.cardImageUrl, this.model)))
+      
+>>>>>>> NikoHowToPlay
 
       if (!this.model.CardName) {
         this.notifyFail('No Name', 'Card has no name, please enter a name.')
@@ -589,10 +594,6 @@ export default {
       }
       if (!this.model.type || this.model.type === 'no type') {
         this.notifyFail('Wrong Type', 'please pick a type')
-        return
-      }
-      if (!this.model.CardName) {
-        this.notifyFail('No Name', 'Card has no name, please enter a name.')
         return
       }
 

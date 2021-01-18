@@ -8,16 +8,16 @@
     <h2>Fundamentals</h2>
     <p>
     Crowd Control is a strategy game in which two players battle with their own, previously put together decks. The cards are played simultaneously 
-    and remain hidden until both players are finished playing cards. Both players start with a headquarters, that has 20 health points, in play.
-    When a player manages to reduce the health points of the enemy headquarter to zero, he wins.
+    and remain hidden until both players are finished playing cards. Both players start with a headquarters that has 20 health points.
+    When a player manages to reduce the health points of the enemy headquarters to zero, he wins.
     <br>
     <h2>Resources: the basis for every action</h2>
-    Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
+    Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth points. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
     <br>
     <h2>Classes</h2>
     In addition to said effects, headquarters also dictate the classes from which you are allowed to play cards. In total there are five classes:
     <br>
-    <img src="../assets/Energy.svg" /> Iron Lumber Food Mana
+    <img src="../assets/Energy.svg" /> Iron, Lumber, Food and Mana.
     <br>
     A headquarter can have any combination of classes. You may only put cards into your deck that share at least one class with your headquarter and don´t belong to another class. For example if your headquarters is lumber/food you may put food cards, lumber cards and food/lumber cards, but not lumber/iron or food/mana cards into your deck.
     <br>
@@ -32,13 +32,13 @@
         <img src="../assets/Dr.Dolly.png" />
         <h2>Your Headquaters</h2>
         Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
-        <span class="red-colored-text">1</span>
+        <span class="marked-text">1</span>
         ).
         Every Headquarters has special abilities for example Dr. Dolly´s Headquarters starts with Dr. Dolly in your hand and you can get 10 wisdom for 3 resources (
-        <span class="red-colored-text">2</span>
+        <span class="marked-text">2</span>
         ).
         You also have to always be aware of the life points of your headquarters which are on the botom right of the card (
-        <span class="red-colored-text">3</span>
+        <span class="marked-text">3</span>
         ).
         <br>
         <br>
@@ -52,15 +52,15 @@
         <img src="../assets/HQ_Dolly.png" />
         <h2>Entities (Creatures)</h2>
         Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
-        <span class="red-colored-text">1</span>
+        <span class="marked-text">1</span>
         ).
         They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them (
-        <span class="red-colored-text">2</span>
+        <span class="marked-text">2</span>
         ), while the attack value indicates the damage they cause (
-        <span class="red-colored-text">3</span>
+        <span class="marked-text">3</span>
         ).
         Entities inflict damage on each other during the battle phase. An entity can defend or attack, but it cannot attack on the turn it entered the game. Entities can have abilities which trigger effects. They are displayed on the textbox (
-        <span class="red-colored-text">4</span>
+        <span class="marked-text">4</span>
         ).
     <br>
     <br>
@@ -191,8 +191,327 @@
             :image-u-r-l="cardImgs[4]"
         />
     </div>
+    <!--vvv 
+    Made by Niko. 
+    vvv-->
+    <h2>4. Fight planning stage</h2>
+    <p>
+<<<<<<< HEAD
+      The cards are now assigned in either attack or defense mode. Both players do that and get to see
+      the enemy's attack modes after they locked in their decision.
+      For example Player 1 has 5 Pet Entities and puts all of them in defense mode. Dr. Dolly, Bello and Saint Daisy go into attack mode.
+=======
+      The cards are now assigned in either attack or defense mode. All cards are placed on the field simultaneously.
+      Player 1 puts all five pets in defense mode. Dr. Dolly, Bello and Saint Daisy go into attack mode.
+>>>>>>> c25db1a75d1cd8941733dd34e7d011926e992021
+    </p>
+    <div class = "content-border-white"> <!--1st box-->
+      <b id="player-num-text">Player 1</b>
+      <p id="attack-mode-text">Attack mode</p>
+      <div class="card-container-attack-mode">
+      <CardComponent
+            class="card-attack-mode"
+            :model="cards[1]"
+            :image-u-r-l="cardImgs[1]"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="cards[3]"
+            :image-u-r-l="cardImgs[3]"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.saintDaisy"
+            :image-u-r-l="sampleCards.saintDaisy.cardImg"
+        />
 
+      </div>
+      <span id="defense-mode-text" style="text-align:left;">Defense mode</span> 
+      <div class="card-container-defense-mode">
+        <CardComponent
+            class="card-defense-mode"
+            :model="sampleCards.saintDaisy_pet"
+            :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+           
+      </div>
+    </div>
+    <p>
+      Player 2 places Ulrich the Tinker in Defense Mode. Richard, Bot Commander, Hurrwig, Bot Manufacturer and Assoult Horse in attack mode.
+    </p>
+    <div class = "content-border-white"> <!--2nd box-->
+      <b id="player-num-text">Player 1</b>
+      <p id="attack-mode-text">Attack mode</p>
+      <div class="card-container-attack-mode">
+      <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.richard"
+            :image-u-r-l="sampleCards.richard.cardImg"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.hurrwig"
+            :image-u-r-l="sampleCards.hurrwig.cardImg"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.automatedBotProduction_bot"
+            :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.automatedBotProduction_bot"
+            :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+        />       
+         <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.assoultHorse"
+            :image-u-r-l="sampleCards.assoultHorse.cardImg"
+        />
+      </div>
+      <span id="defense-mode-text">Defense mode</span>
+      <span id="defense-mode-text" style="margin-left:30%;">Places</span>
+      <div class="card-container-defense-mode">
+           <CardComponent
+            class="card-defense-mode"
+            :model="sampleCards.ulrich"
+            :image-u-r-l="sampleCards.ulrich.cardImg"
+        />
+        <span></span><!-- Empty space in grid -->
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.steam"
+          :image-u-r-l="sampleCards.steam.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.automatedBotProduction"
+          :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
+        />
+      </div>
+    </div>
+    <h2>5. Resolve Phase II</h2>
+    <p>
+      Since no effects were triggered by the lane switches, we now enter the combat phase
+    </p>
+    <h2>6. Combat</h2>
+    <p>Now the entities that were played in the last tick fight against each other.
+      Due to its ability "Charge" the Assoult Horse can attack immediately in this turn.
+      Now the entities attack one after the other.
 
+           
+
+      Player 1 attacks with all hist entities placed in the attack lane.
+      Since Ulrich the Tinker is in Defense Mode, neither the HQ nor Places can be attacked.
+      The entities in Attack Mode, namely, Dr. Dolly and Bello, die because of Ulrich the Tinker.
+      Ulrich the Tinker survives with one life.
+    </p>
+    <div class = "content-border-white"><!--3rd box-->
+      <p style="display:block;font-size:1rem;margin:10px;">Player 1 Attack Mode
+      <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
+      </p>
+      <div class="card-container-attack-mode">
+        <CardComponent
+            class="card-attack-mode"
+            :model="cards[1]"
+            :image-u-r-l="cardImgs[1]"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="cards[3]"
+            :image-u-r-l="cardImgs[3]"
+        />
+        <CardComponent
+            class="card-attack-mode"
+            :model="sampleCards.saintDaisy"
+            :image-u-r-l="sampleCards.saintDaisy.cardImg"
+        />
+        <div>
+          <img class=image_arrow src='../assets/arrows/arrow_up.png'>
+        </div>
+        <CardComponent
+            class="card-defense-mode"
+            :model="sampleCards.ulrich"
+            :image-u-r-l="sampleCards.ulrich.cardImg"
+        />
+      </div>
+    </div>
+    <p>
+      Now player 2 attacks with hist entities in attack mode. 
+      Richard Bot Commander fights against the 1st Pet in defense mode. Thereby his ability is triggered which is: "When Richard is attacking, create a 1/1 Bot that is also attacking". So an additional 1/1 bot appears, which now attacks the 2nd pet in defense mode. 
+      Both entities take 1 point of damage and die.
+
+      Now the appearance of the "Bot" will trigger an effect: Hurrwig's Bot Manufacturer's ability is triggered again and he can do 2 damage points to any enemy entity, this effect now lands in the Enemies Queue and is not processed until the next tick in the Resolve Phase I.
+
+      Additionally, the death of the bot also triggers the ability of Ulrich the Tinker: "Whenever an Entity with the tag "Bot" is destroyed, draw a card".
+      This effect is now also "collected" and ends up in the Own Queue of player 2, which is processed at the beginning of the next tick.
+
+      Hurrwig, Bot Manufacturer now fights the 3rd Pet in defense mode, which also dies. The Bot created last round destroys the 4th Pet in the row.
+      The 2nd Bot can't attack, because it was created this round. The last entity, Assoult Horse can attack, because of its Ability "Charge" and attacks the 5th Pet, whcih lands also on the Graveyard.
+    <div class = "content-border-white"><!--4th box-->
+      <p id="player-num-text">Player 2 Defense Mode</p>
+      <div class="card-container-attack-mode">
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+         <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
+        </div>
+
+        <div class="card-container-defense-mode"> <!-- Arrows -->
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        <div>
+          <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
+        </div>
+        </div>
+
+        <div class="card-container-defense-mode">
+          <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.richard"
+          :image-u-r-l="sampleCards.richard.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.richard_bot"
+          :image-u-r-l="sampleCards.richard_bot.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.hurrwig"
+          :image-u-r-l="sampleCards.hurrwig.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.automatedBotProduction"
+          :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
+        />
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.automatedBotProduction_bot"
+          :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+        />
+        </div>
+
+      
+    </div>
+    <p>
+    Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
+
+    The fight is over, the damage points have been calculated and all triggered effects have been collected.
+    Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
+    </p>
+<div class = "content-border-white"><!--5th box-->
+    <p>Player 2</p>
+      <p style="text-align:center;">Attack Mode</p>
+      <div class="card-container-attack-mode">
+      </div>
+    </div>
+  <p>
+    The fight is over, the damage points have been calculated and all triggered effects have been collected. This tick is finished and the next round begins.
+  </p>
+  <h2 style="text-align:center;">Example of a round</h2> <!-- !!!Example of a round!!! -->
+  <p>
+    In order to illustrate the course of a round, the following example shows how a round, divided into its different phases, progresses.
+    <br/>
+    For this example, we are already in the middle of the game in turn 10.
+    Player 1 plays the Dr. Dolly Deck and Player 2 plays the Blasturn, the Capital Deck.
+
+    player 1 has the following cards in play:
+
+    Dr. Dolly and Bello, Man's Best Friend, which are in attack mode, as well as Wynn, the Brainless Baby and Furious Jack, which are in defense mode.
+  </p>
+  <div class = "content-border-white"><!--6th box-->
+    <p>Player 1</p>
+      <p style="text-align:center;" class=".card-state-indicator">Attack Mode</p>
+      <div class="card-container-attack-mode">
+      </div>
+  </div>
+<p>
+  Player 2 has the following entities on the board in attack mode:
+
+  Richard, Bot Commander, Hurrwig, Bot Manufacturer, a bot produced by the Place Automated Bot Production and the Place Steam Processor.
+</p>
+<div class = "content-border-white"><!--7th box-->
+    <p>Player 1</p>
+      <p style="text-align:center;">Attack Mode</p>
+      <div class="card-container-attack-mode">
+      </div>
+  </div>
+<h1 style="text-align:center">Start of turn 10:</h1>
+<h2>1. Planning Phase</h2>
+<p>
+  At the beginning of the round, the abilities affecting the player himself and his cards are executed first. the Growth level of the headquarters increases by +1 and thus both players recieve 10 resources. In addition, both HQs produce 10 wisdom, which is converted to drawing 1 card.
+
+  Dr. Dolly's Headquarters ability is used by paying 3 resources to produce an additional 10 wisdom. In addition, Bello, Man's Best Friend and Wynn, the Brainless baby are on the board, producing an additional 15 wisodm through Dr. Dolly's presence. This gives player 1 a total of 25 wisdom, which allows him to draw two additional cards with 5 wisdom left over. Wynn, the Brainless is also buffed by +1/+1 because Dr. Dolly is on the field and now has 2 attack and 2 health points.
+
+  Player 2's Steam Processor produces 6 Energy, which is then used for its ability to gain 10 Wisdom, so player 2 can now draw an additional card. Their 2nd place Automated Bot Production produces another 1/1 Bot. In combination with Hurrwig, Bot Manufacturer, the following ability is now triggered: "Whenever an entity with Tag "Bot" enters the battlefield, you may deal 2 damage to target entity". Since this ability affects the enemy, the effect is delayed and placed in the enemy queue.
+</p>
+<h2>2. Card playing phase</h2>
+<p>
+  Since the ability affects your own cards, it can be used immediately, so Dr.Dolly is addionally buffed by 2/2. Saint Daisy's ability: "ETB Create a 1/1 Pet for each Human you control" is activated and 5 Pets with 1/1 stats are summoned.  
+</p>  
+<p>
+  Player 2 plays the entities Assoult Horse, Ulrich the Tinker and the Action Card provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
+</p>
+
+<h2>3. Resolve Phase</h2>
+<p>
+The played cards are now revealed. The effects that affect your own cards have already been executed in phase 2. Now the ones that are in the enemy queue are resolved. The triggered ability of Hurrwig, Bot Manufacturer is in the queue 2 times. Once it was activated at the end of the combat phase of tick 9 and now in the planning phase in this tick. Now it deals 2 damage to Wynn, the Brainless and 2 damage to Furious jack, both of which end up on the Graveyard.
+
+This activates Dr.Dolly's ability "Whenever an entity dies, gain 1 Mana" which is put into the queue for the next resolve phase.
+</p>
   <!-- energy icon -->
   <svg>
     <g
@@ -475,12 +794,13 @@
     </svg>
 
   </div>
-
 </template>
+
 
 <script>
 import CardComponent from '../components/CardComponent'
 import {
+  sampleCards,
   belloCard,
   belloImg,
   botCommandCard,
@@ -493,14 +813,18 @@ import {
   timeDeviceImg
 } from '../components/utils/sampleCards.js'
 
+
 export default {
-  name: 'AboutPage',
+  name: 'HowToPlayPage',
   components: {CardComponent},
   data() {
     return {
+      sampleCards: sampleCards,
       cards: [communityCard, dollyCard, timeDeviceCard, belloCard, botCommandCard],
       cardImgs: [communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg]
     }
+  },
+  mounted() {
   }
 }
 </script>
@@ -562,12 +886,71 @@ h2 {
   font-size: 1.75rem;
 }
 
-.red-colored-text {
-  color: $red;
+.marked-text {
+  color: #fff;
+  text-shadow: 1px 0 0 #888888, 0 -1px 0 #888888, 0 1px 0 #888888, -1px 0 0 #888888;
 }
 
 img {
   float: right;
   width: 30%
 }
+
+.content-border-white {
+  width:auto;
+  border: 5px solid white;
+  padding:20px;
+  padding-top: 0px;
+}
+.card-container-attack-mode {
+  display: grid;
+  align-self: left;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1%;
+}
+.card-attack-mode {
+   max-width: 240px;
+}
+.card-container-defense-mode {
+  display:grid;
+  align-self:center;
+  align-items: center;
+  grid-template-columns:repeat(5,1fr);
+  grid-gap:1%;
+}
+.card-defense-mode{
+  max-width: 240px;
+}
+.image_arrow{
+  padding-top:40%;
+  min-width:100%;
+  min-height:20%;
+}
+.rot90 {
+  transform: rotate(280deg);
+  -ms-transform: rotate(280deg);
+  -moz-transform: rotate(280deg);
+  -webkit-transform: rotate(280deg);
+  -o-transform: rotate(280deg);
+  width: 100%;
+  padding-left:50%;
+}
+
+#defense-mode-text {
+  font-size:1.25rem;
+  margin:-10px;
+  margin-top:5px;
+}
+#attack-mode-text {
+  text-align:center;
+  font-size:1.25rem;
+  margin:-10px;
+  margin-bottom: 5px;
+}
+#player-num-text {
+  font-size:1.5rem;
+  margin:-5px;
+}
+
+
 </style>

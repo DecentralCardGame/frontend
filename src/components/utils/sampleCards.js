@@ -1,3 +1,28 @@
+import { testcard } from './cardfiles/testcard.js'
+import {saintDaisy} from './cardfiles/saintDaisy.js'
+import {saintDaisy_pet} from './cardfiles/saintDaisy_pet.js'
+import {richard} from './cardfiles/richard.js'
+import {richard_bot} from './cardfiles/richard_bot.js'
+import {hurrwig} from './cardfiles/hurrwig.js'
+import {assoultHorse} from './cardfiles/assoultHorse.js'
+import {ulrich} from './cardfiles/ulrich.js'
+import {steam} from './cardfiles/steam.js'
+import {automatedBotProduction} from './cardfiles/automatedBotProduction.js'
+import {automatedBotProduction_bot} from './cardfiles/automatedBotProduction_bot.js'
+export const sampleCards = {
+  testcard: testcard,
+  saintDaisy: saintDaisy,
+  saintDaisy_pet: saintDaisy_pet,
+  richard: richard,
+  hurrwig: hurrwig,
+  assoultHorse: assoultHorse,
+  ulrich: ulrich,
+  steam: steam,
+  automatedBotProduction: automatedBotProduction,
+  automatedBotProduction_bot: automatedBotProduction_bot,
+  richard_bot: richard_bot
+}
+
 export const sampleCard = {
   CardName: 'Schoolbus',
   FlavourText: 'Whenever a creature with tag "pupil" enters the field, schoolbus gets a chu chu counter. Remove a chu chu counter: Schoolbus deals attack to target unit equal to the number of chu chu counters on it.',
