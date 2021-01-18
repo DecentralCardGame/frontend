@@ -580,13 +580,9 @@ export default {
       return string
     },
     saveSubmit() {
-<<<<<<< HEAD
-      console.log()
-=======
       
       console.log(JSON.stringify(R.assoc('cardImg', this.cardImageUrl, this.model)))
       
->>>>>>> NikoHowToPlay
 
       if (!this.model.CardName) {
         this.notifyFail('No Name', 'Card has no name, please enter a name.')
