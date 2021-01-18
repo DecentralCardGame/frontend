@@ -59,13 +59,13 @@
           @click="showGalleryModal(); clickedIndex = index;"
           width="20%"
         >
-        <CardComponent
-          :id="'card'+index"
-          :model="card"
-          :image-u-r-l="card.image"
-          class="gallery__view__card"
-          width="100%"
-        />
+          <CardComponent
+            :id="'card'+index"
+            :model="card"
+            :image-u-r-l="card.image"
+            class="gallery__view__card"
+            width="100%"
+          />
         </div>
       </div>
     </div>
@@ -75,16 +75,16 @@
     </div>
     <div class="ability-modal-container">
       <GalleryModal
-          v-if="isGalleryModalVisible"
-          @close="closeGalleryModal"
-          @download="downloadPng"
-          @edit="edit"
-          @voteOP="vote('overpowered')"
-          @voteUP="vote('underpowered')"
-          @voteFair="vote('fair_enough')"
-          @voteInappropriate="vote('inappropriate')"
-          v-bind:canVote="canVote"
-          v-bind:isOwner="isOwner"
+        v-if="isGalleryModalVisible"
+        v-bind:canVote="canVote"
+        v-bind:isOwner="isOwner"
+        @close="closeGalleryModal"
+        @download="downloadPng"
+        @edit="edit"
+        @voteOP="vote('overpowered')"
+        @voteUP="vote('underpowered')"
+        @voteFair="vote('fair_enough')"
+        @voteInappropriate="vote('inappropriate')"
       />
     </div>
   </div>
