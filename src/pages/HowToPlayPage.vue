@@ -185,11 +185,11 @@
           lorem ipsum yeslorem ipsum yeslorem ipsum yeslorem ipsum yeslorem ipsum yes
         </p>
       </div>
-        <CardComponent
-            class="about__preview"
-            :model="cards[4]"
-            :image-u-r-l="cardImgs[4]"
-        />
+      <CardComponent
+        class="about__preview"
+        :model="cards[4]"
+        :image-u-r-l="cardImgs[4]"
+      />
     </div>
     <!--vvv 
     Made by Niko. 
@@ -203,31 +203,26 @@
       <b id="player-num-text">Player 1</b>
       <p id="attack-mode-text">Attack mode</p>
       <div class="card-container-attack-mode">
-      <CardComponent
-            class="card-attack-mode"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
+        <CardComponent
+          class="card-attack-mode"
+          :model="cards[1]"
+          :image-u-r-l="cardImgs[1]"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="cards[3]"
-            :image-u-r-l="cardImgs[3]"
+          class="card-attack-mode"
+          :model="cards[3]"
+          :image-u-r-l="cardImgs[3]"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.saintDaisy"
-            :image-u-r-l="sampleCards.saintDaisy.cardImg"
+          class="card-attack-mode"
+          :model="sampleCards.saintDaisy"
+          :image-u-r-l="sampleCards.saintDaisy.cardImg"
         />
-
       </div>
-      <span id="defense-mode-text" style="text-align:left;">Defense mode</span> 
+      <span id="defense-mode-text" 
+            style="text-align:left;">Defense mode</span> 
       <div class="card-container-defense-mode">
         <CardComponent
-            class="card-defense-mode"
-            :model="sampleCards.saintDaisy_pet"
-            :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
-        />
-        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
@@ -247,7 +242,11 @@
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-           
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+        />
       </div>
     </div>
     <p>
@@ -257,41 +256,42 @@
       <b id="player-num-text">Player 1</b>
       <p id="attack-mode-text">Attack mode</p>
       <div class="card-container-attack-mode">
-      <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.richard"
-            :image-u-r-l="sampleCards.richard.cardImg"
+        <CardComponent
+          class="card-attack-mode"
+          :model="sampleCards.richard"
+          :image-u-r-l="sampleCards.richard.cardImg"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.hurrwig"
-            :image-u-r-l="sampleCards.hurrwig.cardImg"
+          class="card-attack-mode"
+          :model="sampleCards.hurrwig"
+          :image-u-r-l="sampleCards.hurrwig.cardImg"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.automatedBotProduction_bot"
-            :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+          class="card-attack-mode"
+          :model="sampleCards.automatedBotProduction_bot"
+          :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.automatedBotProduction_bot"
-            :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
+          class="card-attack-mode"
+          :model="sampleCards.automatedBotProduction_bot"
+          :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />       
-         <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.assoultHorse"
-            :image-u-r-l="sampleCards.assoultHorse.cardImg"
+        <CardComponent
+          class="card-attack-mode"
+          :model="sampleCards.assoultHorse"
+          :image-u-r-l="sampleCards.assoultHorse.cardImg"
         />
       </div>
       <span id="defense-mode-text">Defense mode</span>
       <span id="defense-mode-text" style="margin-left:30%;">Places</span>
       <div class="card-container-defense-mode">
-           <CardComponent
-            class="card-defense-mode"
-            :model="sampleCards.ulrich"
-            :image-u-r-l="sampleCards.ulrich.cardImg"
+        <CardComponent
+          class="card-defense-mode"
+          :model="sampleCards.ulrich"
+          :image-u-r-l="sampleCards.ulrich.cardImg"
         />
-        <span></span><!-- Empty space in grid -->
+        <span> 
+        </span><!-- Empty space in grid -->
         <CardComponent
           class="card-defense-mode"
           :model="sampleCards.steam"
@@ -322,31 +322,31 @@
     </p>
     <div class = "content-border-white"><!--3rd box-->
       <p style="display:block;font-size:1rem;margin:10px;">Player 1 Attack Mode
-      <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
+        <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
       </p>
       <div class="card-container-attack-mode">
         <CardComponent
-            class="card-attack-mode"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
+          class="card-attack-mode"
+          :model="cards[1]"
+          :image-u-r-l="cardImgs[1]"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="cards[3]"
-            :image-u-r-l="cardImgs[3]"
+          class="card-attack-mode"
+          :model="cards[3]"
+          :image-u-r-l="cardImgs[3]"
         />
         <CardComponent
-            class="card-attack-mode"
-            :model="sampleCards.saintDaisy"
-            :image-u-r-l="sampleCards.saintDaisy.cardImg"
+          class="card-attack-mode"
+          :model="sampleCards.saintDaisy"
+          :image-u-r-l="sampleCards.saintDaisy.cardImg"
         />
         <div>
           <img class=image_arrow src='../assets/arrows/arrow_up.png'>
         </div>
         <CardComponent
-            class="card-defense-mode"
-            :model="sampleCards.ulrich"
-            :image-u-r-l="sampleCards.ulrich.cardImg"
+          class="card-defense-mode"
+          :model="sampleCards.ulrich"
+          :image-u-r-l="sampleCards.ulrich.cardImg"
         />
       </div>
     </div>
@@ -365,34 +365,34 @@
     <div class = "content-border-white"><!--4th box-->
       <p id="player-num-text">Player 2 Defense Mode</p>
       <div class="card-container-attack-mode">
-         <CardComponent
+        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-         <CardComponent
+        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-         <CardComponent
+        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-         <CardComponent
+        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-         <CardComponent
+        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
-        </div>
+      </div>
 
-        <div class="card-container-defense-mode"> <!-- Arrows -->
+      <div class="card-container-defense-mode"> <!-- Arrows -->
         <div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
         </div>
@@ -408,10 +408,10 @@
         <div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
         </div>
-        </div>
+      </div>
 
-        <div class="card-container-defense-mode">
-          <CardComponent
+      <div class="card-container-defense-mode">
+        <CardComponent
           class="card-defense-mode"
           :model="sampleCards.richard"
           :image-u-r-l="sampleCards.richard.cardImg"
@@ -436,18 +436,16 @@
           :model="sampleCards.automatedBotProduction_bot"
           :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />
-        </div>
-
-      
+      </div>
     </div>
     <p>
-    Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
+      Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
 
-    The fight is over, the damage points have been calculated and all triggered effects have been collected.
-    Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
+      The fight is over, the damage points have been calculated and all triggered effects have been collected.
+     Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
     </p>
-<div class = "content-border-white"><!--5th box-->
-    <p>Player 2</p>
+    <div class = "content-border-white"><!--5th box-->
+      <p>Player 2</p>
       <p style="text-align:center;">Attack Mode</p>
       <div class="card-container-attack-mode">
       </div>
