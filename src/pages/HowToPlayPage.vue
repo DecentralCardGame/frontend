@@ -196,8 +196,14 @@
     vvv-->
     <h2>4. Fight planning stage</h2>
     <p>
+<<<<<<< HEAD
+      The cards are now assigned in either attack or defense mode. Both players do that and get to see
+      the enemy's attack modes after they locked in their decision.
+      For example Player 1 has 5 Pet Entities and puts all of them in defense mode. Dr. Dolly, Bello and Saint Daisy go into attack mode.
+=======
       The cards are now assigned in either attack or defense mode. All cards are placed on the field simultaneously.
       Player 1 puts all five pets in defense mode. Dr. Dolly, Bello and Saint Daisy go into attack mode.
+>>>>>>> c25db1a75d1cd8941733dd34e7d011926e992021
     </p>
     <div class = "content-border-white"> <!--1st box-->
       <b id="player-num-text">Player 1</b>
