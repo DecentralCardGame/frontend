@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap reverse-flex">
+    <div class="about-flex-wrap reverse-column">
       <div class="about-card">
         <CardComponent
           :model="cards[1]"
@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap">
+    <div class="about-flex-wrap reverse-column">
       <div class="about-card">
         <CardComponent
           :model="cards[3]"
@@ -228,7 +228,7 @@ export default {
 
 .about-text {
   min-width: 300px;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 15px;
   text-align: justify;
 }
@@ -243,8 +243,10 @@ export default {
   }
 }
 
-.reverse-flex {
-  flex-wrap: wrap-reverse
+.reverse-column {
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+  }
 }
 
 h2 {
