@@ -9,6 +9,12 @@ import {ulrich} from './cardfiles/ulrich.js'
 import {steam} from './cardfiles/steam.js'
 import {automatedBotProduction} from './cardfiles/automatedBotProduction.js'
 import {automatedBotProduction_bot} from './cardfiles/automatedBotProduction_bot.js'
+import {wynn} from './cardfiles/wynn.js'
+import {furiousJack} from './cardfiles/furiousJack.js'
+import {miniLab} from './cardfiles/miniLab.js'
+import {blastburn} from './cardfiles/blastburn.js'
+import {evie} from './cardfiles/evie.js'
+import {exoskeleton} from './cardfiles/exoskeleton.js'
 export const sampleCards = {
   testcard: testcard,
   saintDaisy: saintDaisy,
@@ -20,7 +26,13 @@ export const sampleCards = {
   steam: steam,
   automatedBotProduction: automatedBotProduction,
   automatedBotProduction_bot: automatedBotProduction_bot,
-  richard_bot: richard_bot
+  richard_bot: richard_bot,
+  wynn: wynn,
+  furiousJack: furiousJack,
+  miniLab: miniLab,
+  blastburn: blastburn,
+  evie: evie,
+  exoskeleton: exoskeleton
 }
 
 export const sampleCard = {
