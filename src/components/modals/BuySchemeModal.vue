@@ -2,30 +2,30 @@
   <transition name="modal-fade">
     <div class="modal__backdrop">
       <div
-          aria-describedby="modalDescription"
-          aria-labelledby="modalTitle"
-          class="modal"
-          role="dialog"
+        aria-describedby="modalDescription"
+        aria-labelledby="modalTitle"
+        class="modal"
+        role="dialog"
       >
         <header
-            id="modalTitle"
-            class="modal__header"
+          id="modalTitle"
+          class="modal__header"
         >
           <slot name="header">
             Card Scheme Auction
             <button
-                aria-label="Close modal"
-                class="btn--close"
-                type="button"
-                @click="close"
+              aria-label="Close modal"
+              class="btn--close"
+              type="button"
+              @click="close"
             >
               x
             </button>
           </slot>
         </header>
         <section
-            id="modalDescription"
-            class="modal__body"
+          id="modalDescription"
+          class="modal__body"
         >
           <slot name="body">
             <table class="table--buy-scard-scheme">
@@ -39,26 +39,26 @@
               </tr>
               <tr>
                 <td>Your bid:</td>
-                <td><input
+                <td>
+                  <input
                     v-model="currentBid"
                     :placeholder="[[ currentBid ]]"
                     size="2"
                     type="text"
                     @keypress="isNumber($event)"
-                > <b> credits</b></td>
+                  > <b> credits</b>
+                </td>
               </tr>
             </table>
           </slot>
         </section>
         <footer class="modal__footer">
-          <slot name="footer">
-
-          </slot>
+          <slot name="footer" />
           <button
-              aria-label="Close modal"
-              class="btn--teal"
-              type="button"
-              @click="buyCardScheme"
+            aria-label="Close modal"
+            class="btn--teal"
+            type="button"
+            @click="buyCardScheme"
           >
             BUY
           </button>

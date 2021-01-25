@@ -10,27 +10,30 @@
         Username*
       </label>
       <input
-              v-model="username"
-              type="text"
-              placeholder="username"
-              name="uname"
-              required
+        v-model="username"
+        type="text"
+        placeholder="username"
+        name="uname"
+        required
       >
       <label>
-        Password* <span class="link--show-pw" @click="showPw = !showPw">({{ showPw ? "hide" : "show"}})</span>
+        Password* <span
+          class="link--show-pw"
+          @click="showPw = !showPw"
+        >({{ showPw ? "hide" : "show" }})</span>
       </label>
       <input
-              v-model="password"
-              :type="showPw ? 'text' : 'password'"
-              placeholder="**********"
-              name="psw"
-              required
+        v-model="password"
+        :type="showPw ? 'text' : 'password'"
+        placeholder="**********"
+        name="psw"
+        required
       >
       <label>Stay logged in
         <input
-                type="checkbox"
-                checked="checked"
-                name="remember"
+          type="checkbox"
+          checked="checked"
+          name="remember"
         >
       </label>
       <button type="submit">

@@ -2,13 +2,16 @@
   <div class="article-temp width-temp">
     <div class="hero">
       <h1>Welcome to Crowd Control</h1>
-      <p class="text--big">Crowd Control is a trading card game, which gives you full ownership of your cards AND gives
+      <p class="text--big">
+        Crowd Control is a trading card game, which gives you full ownership of your cards AND gives
         the community full ownership of the game. This means we are creating this together. Any player can design their
-        own trading cards. Any player may participate in the process of balancing the game by voting on cards.</p>
+        own trading cards. Any player may participate in the process of balancing the game by voting on cards.
+      </p>
       <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
-    <div class="about about--card-right">
-      <div>
+    
+    <div class="about-flex-wrap">
+      <div class="about-text">
         <h2>The Game</h2>
         <p>
           This sounds very awesome, but how shall this work? Somebody must be in charge and someone has to say what is
@@ -18,26 +21,29 @@
           How all of this works can be read on our project page <a
             href="https://www.decentral-card.net/"
             target="_blank"
-        > Decentral Card Network </a></p>
+          > Decentral Card Network </a>
+        </p>
         <p>
           You are right now on the page of the game Crowd Control, which is the product of our decentralized autonomous
           organization (DAO).
         </p>
       </div>
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
-            :model="cards[0]"
-            :image-u-r-l="cardImgs[0]"
+          :model="cards[0]"
+          :image-u-r-l="cardImgs[0]"
         />
+      </div>
     </div>
 
-    <div class="about about--card-left">
+    <div class="about-flex-wrap reverse-flex">
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
+          :model="cards[1]"
+          :image-u-r-l="cardImgs[1]"
         />
-      <div>
+      </div>
+      <div class="about-text">
         <h2>The Mechanics</h2>
         <p>
           Crowd Control has unique game mechanics.
@@ -50,7 +56,9 @@
           Crowd Control gives you full ownership. And we mean it.
           You own the cards which you acquire through play and participation.
           And furthermore you own the card prototypes which you design and create. Go to the
-          <router-link :to="{ name: 'New Card' }">Card Creator</router-link>
+          <router-link :to="{ name: 'New Card' }">
+            Card Creator
+          </router-link>
           to start creating.
           You decide if these cards are mass printed or your personal rare gems.
           In other collectible card games players create their own alternate art or even whole cards but can never play
@@ -59,9 +67,8 @@
       </div>
     </div>
 
-    <div class="about about--card-right">
-
-      <div>
+    <div class="about-flex-wrap">
+      <div class="about-text">
         <h2>The Cards</h2>
         <p>
           We have 4 different types of cards. The HQ, Place, Entity and Action.
@@ -79,24 +86,28 @@
         </p>
         <p>
           ou can have a look at some cards here on the page or see all of them in the
-          <router-link :to="{ name: 'Gallery' }">Gallery</router-link>
+          <router-link :to="{ name: 'Gallery' }">
+            Gallery
+          </router-link>
           .
         </p>
       </div>
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
-            :model="cards[2]"
-            :image-u-r-l="cardImgs[2]"
+          :model="cards[2]"
+          :image-u-r-l="cardImgs[2]"
         />
+      </div>
     </div>
 
-    <div class="about about--card-left">
+    <div class="about-flex-wrap">
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
-            :model="cards[3]"
-            :image-u-r-l="cardImgs[3]"
+          :model="cards[3]"
+          :image-u-r-l="cardImgs[3]"
         />
-      <div>
+      </div>
+      <div class="about-text">
         <h2>The Gameplay</h2>
         <p>
           A turn begins by giving you Production and Wisdom. How much you get is determined by your HQ as well as how
@@ -112,13 +123,15 @@
           In Crowd Control we have solved the hard task to give the players as much freedom as possible with abilities
           while also being able to balance the game under all circumstances.
           If you want to know the game rules and mechanics in detail, check out our
-          <router-link :to="{ name: 'About' }">Game Rules</router-link>
+          <router-link :to="{ name: 'About' }">
+            Game Rules
+          </router-link>
         </p>
       </div>
     </div>
 
-    <div class="about about--card-right">
-      <div>
+    <div class="about-flex-wrap">
+      <div class="about-text">
         <h2>The Council</h2>
         <p>
           The balancing is done by adjusting the ressource cost of a card. This means when a card receives more
@@ -129,7 +142,9 @@
           which are used to remove images or flavor text which are inappropriate like gore or explicit sexual content.
           In that case only the image and the flavor text are stripped off a card and must be updated by the creator.
           You can start
-          <router-link :to="{ name: 'Vote' }">Voting</router-link>
+          <router-link :to="{ name: 'Vote' }">
+            Voting
+          </router-link>
           after you login with your account.
           In the future there will also be a council, where new cards must be approved, which earns council members
           credits.
@@ -137,14 +152,14 @@
           these sets.
         </p>
       </div>
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
-            :model="cards[4]"
-            :image-u-r-l="cardImgs[4]"
+          :model="cards[4]"
+          :image-u-r-l="cardImgs[4]"
         />
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -203,28 +218,33 @@ export default {
   margin-bottom: $font-size*4;
 }
 
-.about--card-left {
-  grid-template-columns: auto 3fr;
 
-  .about__preview {
-    justify-self: start;
+.about-card {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 0 15px;
+}
+
+.about-text {
+  min-width: 300px;
+  max-width: 400px;
+  margin: 0 15px;
+  text-align: justify;
+}
+
+.about-flex-wrap { 
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: top;
+  @media (max-width: 1200px) {
+    flex-direction: column;
   }
 }
 
-.about--card-right {
-  grid-template-columns: 3fr auto;
-
-  .about__preview {
-    justify-self: end;
-  }
-}
-
-.about--card-both {
-  grid-template-columns: 1fr 2fr 1fr;
-}
-
-.about__preview {
-  width: auto;
+.reverse-flex {
+  flex-wrap: wrap-reverse
 }
 
 h2 {
