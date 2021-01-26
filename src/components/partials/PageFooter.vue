@@ -80,13 +80,15 @@
             Discuss the latest News or
             simply join our growing
             Community. We would love
-            to here your voice.
+            to hear your voice.
           </b>
+          <p>
           <img
             alt="Crowd Control"
             width="80%"
             src="../../assets/logo.svg"
           >
+          </p>
         </div>
       </div>
       <div class="footer__terms">
