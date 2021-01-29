@@ -1,7 +1,0 @@
-{
-  "name": "This-Condition",
-  "children": {},
-  "type": "struct",
-  "description": "Build a This-Condition",
-  "interactionText": "this"
-}

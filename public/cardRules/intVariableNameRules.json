@@ -1,6 +1,0 @@
-{
-  "name": "Numeric Variable-Name",
-  "children": ["X","Y","Z"],
-  "type": "enum",
-  "description": "Choose a Numeric Variable-Name"
-}

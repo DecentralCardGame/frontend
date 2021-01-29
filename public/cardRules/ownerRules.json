@@ -1,6 +1,0 @@
-{
-  "name": "Owner",
-  "children": ["YOUR","OPPONENTS","OWNERS"],
-  "type": "enum",
-  "description": "Choose an Owner"
-}

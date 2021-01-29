@@ -1,6 +1,0 @@
-{
-  "name": "Simple Numeric Value",
-  "type": "int",
-  "min": 0,
-  "max": 31
-}

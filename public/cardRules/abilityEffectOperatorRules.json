@@ -1,6 +1,0 @@
-{
-  "name": "Ability/Effect-Operator",
-  "children": ["GAIN","LOSE"],
-  "type": "enum",
-  "description": "Choose an Ability/Effect-Operator"
-}

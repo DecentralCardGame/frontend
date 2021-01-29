@@ -1,5 +1,17 @@
 <template id="theCardSvg">
-<svg @mouseenter="cardmouseenter" @mouseleave="cardmouseleave" @click="cardmouseclick" width="100%" height="100%" viewBox="0 0 154 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 154 240"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xml:space="preserve"
+    @mouseenter="cardmouseenter"
+    xmlns:serif="http://www.serif.com/"
+    @mouseleave="cardmouseleave"
+    style="fill-rule:evenodd;clip-rule:evenodd;"
+@click="cardmouseclick"
+  >
     <!-- card image -->
     <g id="Ebene_2">
       <mask id="imgMask">
@@ -594,7 +606,9 @@
         style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
         text-anchor="start"
         transform="scale(.94735 1.05557)"
-        word-spacing="0" writing-mode="lr" xml:space="preserve"
+        word-spacing="0"
+        writing-mode="lr"
+        xml:space="preserve"
       >
         <tspan
           id="tspan2430"
@@ -666,7 +680,8 @@
         style="line-height:1.25;-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
         text-anchor="start"
         word-spacing="0"
-        writing-mode="lr-tb" xml:space="preserve"
+        writing-mode="lr-tb"
+        xml:space="preserve"
       >
         <tspan
           id="tspan2493-1"
@@ -796,12 +811,6 @@ export default {
       clicked: false
     }
   },
-  created () {
-    if (this.model.Notes.startsWith('ability: ')) {
-      this.model.abilities = [{cardText: this.model.Notes.substring(9)}]
-      this.model.FlavourText = ''
-    }
-  },
   computed: {
     viewBox () {
       if (!this.displayNotes) {
@@ -809,6 +818,12 @@ export default {
       } else {
         return '0 0 210 297'
       }
+    }
+  },
+  created () {
+    if (this.model.Notes.startsWith('ability: ')) {
+      this.model.abilities = [{cardText: this.model.Notes.substring(9)}]
+      this.model.FlavourText = ''
     }
   },
   methods: {
@@ -830,6 +845,7 @@ export default {
       if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
+        console.log(this.$cardRules)
         let type = this.$cardRules.children[this.model.type === 'HQ' ? 'Headquarter' : this.model.type]
         if (type) {
           return type.name.toUpperCase()

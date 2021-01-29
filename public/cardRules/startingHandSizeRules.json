@@ -1,6 +1,0 @@
-{
-  "name": "Starting Hand Size",
-  "type": "int",
-  "min": 0,
-  "max": 10
-}

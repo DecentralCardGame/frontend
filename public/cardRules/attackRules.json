@@ -1,6 +1,0 @@
-{
-  "name": "Attack",
-  "type": "int",
-  "min": 0,
-  "max": 31
-}

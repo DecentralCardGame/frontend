@@ -1,6 +1,0 @@
-{
-  "name": "Numeric Place-Property",
-  "children": ["COSTSUM","HEALTH"],
-  "type": "enum",
-  "description": "Choose a Numeric Place-Property"
-}

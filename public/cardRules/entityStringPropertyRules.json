@@ -1,6 +1,0 @@
-{
-  "name": "Text based Entity-Property",
-  "children": ["NAME","TEXT"],
-  "type": "enum",
-  "description": "Choose a Text based Entity-Property"
-}

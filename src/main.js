@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import $RefParser from 'json-schema-ref-parser'
+//import $RefParser from 'json-schema-ref-parser'
 import Notifications from 'vue-notification'
 import velocity      from 'velocity-animate'
 //import VueSwing from 'vue-swing'
@@ -11,6 +11,7 @@ import axios from 'axios'
 import * as R from 'ramda'
 Object.defineProperty(Vue.prototype, 'R', { value: R });
 import cardChain from './plugins/cardChain'
+import cardRules from '../public/cardRules.json'
 
 Vue.config.productionTip = false
 
@@ -38,7 +39,7 @@ function loadVue () {
 }
 
 new Promise(
-  function (resolve, reject) {
+  /*function (resolve, reject) {
       $RefParser.dereference( '/cardRules/cardRules.json', (err, api) => {
         if (err) {
           reject(err)
@@ -47,10 +48,17 @@ new Promise(
           console.log('cardRules: ', api)
         }
       })
-    })
+  })*/
+  function (resolve, reject) {
+    if(cardRules) {
+      resolve(cardRules)
+    }
+    else 
+      reject('shit')
+  })
   .then(rules => {
     let vm = loadVue()
-    Vue.prototype.$cardRules = rules    
+    Vue.prototype.$cardRules = rules
     Vue.prototype.$cardChain = vm.newCardChain()
   })
 

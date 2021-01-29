@@ -1,6 +1,0 @@
-{
-  "name": "Numeric Comparator",
-  "children": ["EQUAL","GREATER","LESSER"],
-  "type": "enum",
-  "description": "Choose a Numeric Comparator"
-}

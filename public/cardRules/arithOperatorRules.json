@@ -1,6 +1,0 @@
-{
-  "name": "Arithmetic Operator",
-  "children": ["ADD","SUBTRACT"],
-  "type": "enum",
-  "description": "Choose a Arithmetic Operator"
-}

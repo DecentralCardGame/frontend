@@ -1,6 +1,0 @@
-{
-  "name": "Time-Event",
-  "children": ["TICKSTART","COMBAT"],
-  "type": "enum",
-  "description": "Choose a Time-Event"
-}

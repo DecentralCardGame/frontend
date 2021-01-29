@@ -1,6 +1,0 @@
-{
-  "name": "Numeric Action-Property",
-  "children": ["COSTSUM"],
-  "type": "enum",
-  "description": "Choose a Numeric Action-Property"
-}

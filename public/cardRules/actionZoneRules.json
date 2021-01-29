@@ -1,6 +1,0 @@
-{
-  "name": "Action-Zone",
-  "children": ["DECK","DUSTPILE","HAND","VOID"],
-  "type": "enum",
-  "description": "Choose a Zone"
-}
