@@ -6,11 +6,11 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
-    @mouseenter="cardmouseenter"
     xmlns:serif="http://www.serif.com/"
-    @mouseleave="cardmouseleave"
     style="fill-rule:evenodd;clip-rule:evenodd;"
-@click="cardmouseclick"
+    @mouseenter="cardmouseenter"
+    @mouseleave="cardmouseleave"
+    @click="cardmouseclick"
   >
     <!-- card image -->
     <g id="Ebene_2">
@@ -845,6 +845,7 @@ export default {
       if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
+        console.log(this.$cardRules)
         let type = this.$cardRules.children[this.model.type === 'HQ' ? 'Headquarter' : this.model.type]
         if (type) {
           return type.name.toUpperCase()

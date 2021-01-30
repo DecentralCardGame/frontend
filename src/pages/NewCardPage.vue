@@ -521,7 +521,7 @@ export default {
       console.log("loaded model:", this.model);
 
       // this is automated fix for old (and wrong) data in store
-      if (this.model.id) {
+      if (this.isEditCardMode()) {
         console.log("automated fix!");
         this.$store.commit("setCardCreatorDraft", {});
       }
@@ -765,7 +765,7 @@ export default {
       }
 
       // check if a card is edited with pre-existing ID
-      if (this.model.id) {
+      if (this.isEditCardMode()) {
         console.log("overwriting card with id:", this.model.id);
         newCard.id = this.model.id;
         this.$cardChain
@@ -793,7 +793,7 @@ export default {
     },
     saveDraft() {
       this.$store.commit(
-        this.model.id
+        this.isEditCardMode()
           ? "setCardCreatorEditCardModel"
           : "setCardCreatorDraftModel",
         JSON.stringify(this.model)
@@ -809,12 +809,16 @@ export default {
       this.model = R.clone(emptyCard);
       this.cardImageUrl = sampleGradientImg;
     },
+    isEditCardMode() {
+      return this.model.id
+    },
     inputFile(event) {
       let file = event.target.files[0];
       uploadImg(file, (result) => {
+        console.log("result", result)
         this.cardImageUrl = result;
         this.$store.commit(
-          this.model.id
+          this.isEditCardMode()
             ? "setCardCreatorEditCardModel"
             : "setCardCreatorDraftModel",
           JSON.stringify(result)
