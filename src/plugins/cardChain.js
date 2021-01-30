@@ -65,14 +65,12 @@ export default {
       parseCard (rawCard) {
         if (rawCard.Content) {
             let contentLens = R.lensProp('Content')
-            console.log("rawCard", rawCard)
-            let parseContent = item => R.set(contentLens, JSON.parse(this.b64DecodeUnicode(item.Content)), item)
+            let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
             let card = parseContent(rawCard)
             let cardType = R.keys(card.Content)
             card = R.merge(card, card.Content[cardType[0]])
         
-            console.log("card:", card)
-            card.image = card.image = this.b64DecodeUnicode(card.Image)
+            card.image = card.Image
             card.nerflevel = parseInt(card.Nerflevel)
             card.type = cardType[0]
         

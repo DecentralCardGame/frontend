@@ -845,7 +845,6 @@ export default {
       if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
-        console.log(this.$cardRules)
         let type = this.$cardRules.children[this.model.type === 'HQ' ? 'Headquarter' : this.model.type]
         if (type) {
           return type.name.toUpperCase()

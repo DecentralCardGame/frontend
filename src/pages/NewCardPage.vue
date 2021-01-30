@@ -652,10 +652,6 @@ export default {
       return string;
     },
     saveSubmit() {
-      console.log(
-        JSON.stringify(R.assoc("cardImg", this.cardImageUrl, this.model))
-      );
-
       if (!this.model.CardName) {
         this.notifyFail("No Name", "Card has no name, please enter a name.");
         return;
@@ -815,7 +811,6 @@ export default {
     inputFile(event) {
       let file = event.target.files[0];
       uploadImg(file, (result) => {
-        console.log("result", result)
         this.cardImageUrl = result;
         this.$store.commit(
           this.isEditCardMode()
