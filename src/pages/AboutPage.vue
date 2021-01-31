@@ -230,7 +230,6 @@ export default {
   min-width: 300px;
   max-width: 500px;
   margin: 0 15px;
-  text-align: justify;
 }
 
 .about-flex-wrap { 
