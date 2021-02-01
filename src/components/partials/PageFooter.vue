@@ -52,19 +52,19 @@
           <li>
             <a href="https://t.me/DecentralCardNetwork">
               <h2>Telegram</h2>
-              for 'crypto enthusiasts'
+              For 'crypto enthusiasts'.
             </a>
           </li>
           <li>
             <a href="https://github.com/DecentralCardGame">
               <h2>Github</h2>
-              Checkout our codebase
+              Checkout our codebase.
             </a>
           </li>
           <li>
             <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
               <h2>Whitepaper</h2>
-              Read how it all started
+              Read how it all started.
             </a>
           </li>
           <li>
@@ -76,7 +76,7 @@
           <li>
             <router-link to="/imprint">
               <h2>Imprint</h2>
-              Terms and Conditions *yaaawn*
+              Terms and Conditions *yaaawn*.
             </router-link>
           </li>
         </ul>

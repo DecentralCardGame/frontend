@@ -21,7 +21,7 @@
           How all of this works can be read on our project page <a
             href="https://www.decentral-card.net/"
             target="_blank"
-          > Decentral Card Network </a>
+          > Decentral Card Network. </a>
         </p>
         <p>
           You are right now on the page of the game Crowd Control, which is the product of our decentralized autonomous
