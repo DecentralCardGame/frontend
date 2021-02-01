@@ -185,6 +185,9 @@ export default {
       cards: [communityCard, dollyCard, timeDeviceCard, belloCard, botCommandCard],
       cardImgs: [communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg]
     }
+  },
+  mounted () {
+
   }
 }
 </script>

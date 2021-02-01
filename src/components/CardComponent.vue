@@ -832,11 +832,17 @@ export default {
       this.clicked = false;
     },
     cardmouseclick() {
-      this.opaque = 1;
-      if (this.clicked) {
-        //this.saveSingleCard()
+      if (this.isMobileDevice()) {
+        this.opaque = this.clicked? 1 : 0
+        this.clicked = !this.clicked
       }
-      this.clicked = true
+      else {
+        this.opaque = 1;
+        if (this.clicked) {
+          //this.saveSingleCard()
+        }
+        this.clicked = true
+      }
     },
     cardmouseenter() {
       this.opaque = 0;
