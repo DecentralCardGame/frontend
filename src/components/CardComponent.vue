@@ -73,11 +73,16 @@
       :opacity="opaque"
     >
       <!-- tag box -->
-      <g transform="matrix(0.0991046,0,0,0.322856,71.962,232.17)">
-        <path
-          d="M-610.05,0.928L712.217,0.928L707.752,19.35L-614.516,19.35L-610.05,2.928Z"
-          style="fill:rgb(96,96,106);"
-        />
+      
+      <g transform="matrix(0.0991046,0,0, 0.322856,71.962,232.17)">
+        <g transform="scale(1,1.2)">
+          <g transform="translate(0 -3)">
+            <path
+              d="M-610.05,0.928L712.217,0.928L707.752,19.35L-614.516,19.35L-610.05,2.928Z"
+              style="fill:rgb(96,96,106);"
+            />
+          </g>
+        </g>
       </g>
       <!-- left line -->
       <g
@@ -85,7 +90,7 @@
         transform="matrix(0.519675,0,0,1,22.0546,-0.0)"
       >
         <path
-          d="M66.56,225.91L12.22,225.91"
+          d="M66.56,222.91L12.22,222.91"
           style="fill:none;fill-rule:nonzero;stroke:rgb(96,96,106);stroke-width:1px;"
         />
       </g>
@@ -95,7 +100,7 @@
         transform="matrix(0.519675,0,0,1,90.1594,-0.0)"
       >
         <path
-          d="M66.56,225.91L12.22,225.91"
+          d="M66.56,222.91L12.22,222.91"
           style="fill:none;fill-rule:nonzero;stroke:rgb(96,96,106);stroke-width:1px;"
         />
       </g>
@@ -534,7 +539,7 @@
         x="23.5"
         y="14.1"
         font-family="Museo500-Regular"
-        font-size="14.5"
+        font-size="13"
         stroke="black"
         stroke-width="0.3"
         font-style="normal"
@@ -549,7 +554,7 @@
           x="23.5"
           y="14.1"
           font-family="Museo500-Regular"
-          font-size="14.5"
+          font-size="13"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -565,7 +570,7 @@
         fill="#FFDAA6"
         stroke-width=".1"
         font-family="Roboto"
-        font-size="4.6"
+        font-size="6.6"
         letter-spacing="1"
         text-anchor="start"
         xml:space="preserve"
@@ -578,7 +583,7 @@
           fill-opacity="1"
           stroke-width=".1"
           font-family="Roboto"
-          font-size="4.6"
+          font-size="6.6"
           font-style="medium"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -631,7 +636,7 @@
       <text
         id="text2495"
         x="76.9"
-        y="228.6"
+        y="225.6"
         fill="#001433"
         fill-opacity="1"
         font-family="Roboto"
@@ -647,7 +652,7 @@
         <tspan
           id="tspan2493"
           x="76.9"
-          y="228.6"
+          y="225.6"
           fill="#001433"
           fill-opacity="1"
           font-family="Roboto"
@@ -706,7 +711,7 @@
         v-show="model.type === 'Entity'"
         id="text2236-11"
         x="23"
-        y="228.6"
+        y="225.6"
         fill="#001433"
         fill-opacity="1"
         stroke="none"
@@ -727,7 +732,7 @@
         <tspan
           id="tspan2234-91"
           x="23"
-          y="228.6"
+          y="225.6"
           fill="#001433"
           fill-opacity="1"
           stroke-width=".2"
@@ -747,7 +752,7 @@
         v-show="model.type !== 'Action'"
         id="text2236-11-3"
         x="128"
-        y="228.6"
+        y="225.6"
         fill="#001433"
         fill-opacity="1"
         stroke="none"
@@ -768,7 +773,7 @@
         <tspan
           id="tspan2234-91-7"
           x="131"
-          y="228.6"
+          y="225.6"
           fill="#001433"
           fill-opacity="1"
           stroke-width=".2"
