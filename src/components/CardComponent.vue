@@ -564,7 +564,7 @@
       <text
         id="text2527"
         key="tag"
-        x="75"
+        x="77"
         y="237.4"
         fill="#FFDAA6"
         stroke-width=".1"
@@ -576,7 +576,7 @@
       >
         <tspan
           id="tspan2525"
-          x="75"
+          x="77"
           y="237.4"
           fill="#FFDAA6"
           fill-opacity="1"
