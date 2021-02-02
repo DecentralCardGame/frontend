@@ -562,6 +562,36 @@
       </text>
       <!-- Tags -->
       <text
+        id="text2527"
+        key="tag"
+        x="75"
+        y="237.4"
+        fill="#FFDAA6"
+        stroke-width=".1"
+        font-family="Roboto"
+        font-size="6.6"
+        letter-spacing="1"
+        text-anchor="start"
+        xml:space="preserve"
+      >
+        <tspan
+          id="tspan2525"
+          x="75"
+          y="237.4"
+          fill="#FFDAA6"
+          fill-opacity="1"
+          stroke-width=".1"
+          font-family="Roboto"
+          font-size="6.6"
+          font-style="medium"
+          text-anchor="middle"
+          writing-mode="lr-tb"
+        >{{ getTags() }}
+        </tspan>
+      </text>
+
+      <!-- Tags old -->
+      <!--text
         v-for="(tag, index) in model.Tags"
         id="text2527"
         :key="'tag'+index"
@@ -588,7 +618,7 @@
           text-anchor="middle"
           writing-mode="lr-tb"
         >{{ (tag || '').toUpperCase() }}</tspan>
-      </text>
+      </text-->
       <!-- Human readable text of the abilities -->
       <text
         v-for="(text, index) in textToSvg(getAbilityText())"
@@ -877,6 +907,9 @@ export default {
       } else {
         return 0
       }
+    },
+    getTags () {
+      return this.model.Tags.join(' - ').toUpperCase() || ''
     },
     abilitiesLength () {
       if (this.model.abilities) {
