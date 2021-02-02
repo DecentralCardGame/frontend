@@ -18,14 +18,17 @@
           overpowered and why should anyone do all this kind of work?
           Yes. The answer is blockchain. We build a blockchain with Cosmos technology that incentivizes all of these
           processes and disincentivizes trolling.
-          How all of this works can be read on our project page <a
-            href="https://www.decentral-card.net/"
+          How all of this works can be read in depth in our <a
+            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
             target="_blank"
-          > Decentral Card Network. </a>
+          > Whitepaper</a>,
+          however if you like it shorter and simpler, just read the following lines.
         </p>
         <p>
-          You are right now on the page of the game Crowd Control, which is the product of our decentralized autonomous
-          organization (DAO).
+          Furthermore Crowd Control is not just a game, but rather a decentralized autonomous
+          organization (DAO). This means that this whole thing is not owned by a company squeezing the maximum profit
+          out of the player base. Crowd Control is owned by all of those who have contributed to this project. This
+          means you can also contribute and become not only a member but an owner of Crowd Control.
         </p>
       </div>
       <div class="about-card">
@@ -56,9 +59,7 @@
           Crowd Control gives you full ownership. And we mean it.
           You own the cards which you acquire through play and participation.
           And furthermore you own the card prototypes which you design and create. Go to the
-          <router-link :to="{ name: 'New Card' }">
-            Card Creator
-          </router-link>
+          <router-link :to="{ name: 'New Card' }">Card Creator</router-link>
           to start creating.
           You decide if these cards are mass printed or your personal rare gems.
           In other collectible card games players create their own alternate art or even whole cards but can never play
@@ -86,10 +87,7 @@
         </p>
         <p>
           ou can have a look at some cards here on the page or see all of them in the
-          <router-link :to="{ name: 'Gallery' }">
-            Gallery
-          </router-link>
-          .
+          <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
         </p>
       </div>
       <div class="about-card">
@@ -123,16 +121,14 @@
           In Crowd Control we have solved the hard task to give the players as much freedom as possible with abilities
           while also being able to balance the game under all circumstances.
           If you want to know the game rules and mechanics in detail, check out our
-          <router-link :to="{ name: 'About' }">
-            Game Rules
-          </router-link>
+          <router-link :to="{ name: 'About' }">Game Rules</router-link>.
         </p>
       </div>
     </div>
 
     <div class="about-flex-wrap">
       <div class="about-text">
-        <h2>The Council</h2>
+        <h2>The Balancing</h2>
         <p>
           The balancing is done by adjusting the ressource cost of a card. This means when a card receives more
           'overpowered' votes than 'fair enough' or 'underpowered' votes and it is among the cards with the most
@@ -142,14 +138,12 @@
           which are used to remove images or flavor text which are inappropriate like gore or explicit sexual content.
           In that case only the image and the flavor text are stripped off a card and must be updated by the creator.
           You can start
-          <router-link :to="{ name: 'Vote' }">
-            Voting
-          </router-link>
+          <router-link :to="{ name: 'Vote' }">Voting</router-link>
           after you login with your account.
           In the future there will also be a council, where new cards must be approved, which earns council members
           credits.
           Furthermore there will be sets, which bundle together 100 cards into a set and boosters can be bought from
-          these sets.
+          these sets, giving financial reward to those creating cards.
         </p>
       </div>
       <div class="about-card">
@@ -163,7 +157,7 @@
 </template>
 
 <script>
-import CardComponent from '../components/CardComponent'
+import CardComponent from "../components/CardComponent";
 import {
   belloCard,
   belloImg,
@@ -174,22 +168,32 @@ import {
   dollyCard,
   dollyImg,
   timeDeviceCard,
-  timeDeviceImg
-} from '../components/utils/sampleCards.js'
+  timeDeviceImg,
+} from "../components/utils/sampleCards.js";
 
 export default {
-  name: 'AboutPage',
-  components: {CardComponent},
+  name: "AboutPage",
+  components: { CardComponent },
   data() {
     return {
-      cards: [communityCard, dollyCard, timeDeviceCard, belloCard, botCommandCard],
-      cardImgs: [communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg]
-    }
+      cards: [
+        communityCard,
+        dollyCard,
+        timeDeviceCard,
+        belloCard,
+        botCommandCard,
+      ],
+      cardImgs: [
+        communityImg,
+        dollyImg,
+        timeDeviceImg,
+        belloImg,
+        botCommandImg,
+      ],
+    };
   },
-  mounted () {
-
-  }
-}
+  mounted() {},
+};
 </script>
 
 <style scoped lang="scss">
@@ -218,9 +222,8 @@ export default {
   svg {
     height: $font-size * 20;
   }
-  margin-bottom: $font-size*4;
+  margin-bottom: $font-size * 4;
 }
-
 
 .about-card {
   max-width: 300px;
@@ -235,7 +238,7 @@ export default {
   margin: 0 15px;
 }
 
-.about-flex-wrap { 
+.about-flex-wrap {
   display: flex;
   flex-direction: row;
   justify-content: start;
