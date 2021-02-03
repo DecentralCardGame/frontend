@@ -141,7 +141,7 @@
           >
             <option
               v-for="n in R.range(
-                $cardRules.children[getRulesType()].children.CastingCost.min,
+                $cardRules.children[getRulesType()].children.CastingCost.min || 0,
                 $cardRules.children[getRulesType()].children.CastingCost.max + 1
               )"
               :key="n"
@@ -152,7 +152,7 @@
           </select>
           <span class="creator-text">
             <span
-              v-show="model.type === 'HQ'"
+              v-show="model.type === 'Headquarter'"
               class="creator-text"
             >
               As I am quite awesome, I generate <br>
@@ -166,7 +166,7 @@
               >
                 <option
                   v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.Growth.min,
+                    $cardRules.children[getRulesType()].children.Growth.min || 0,
                     $cardRules.children[getRulesType()].children.Growth.max + 1
                   )"
                   :key="n"
@@ -187,7 +187,7 @@
               >
                 <option
                   v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.Wisdom.min,
+                    $cardRules.children[getRulesType()].children.Wisdom.min || 0,
                     $cardRules.children[getRulesType()].children.Wisdom.max + 1
                   )"
                   :key="n"
@@ -208,10 +208,8 @@
               >
                 <option
                   v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children
-                      .StartingHandSize.min,
-                    $cardRules.children[getRulesType()].children
-                      .StartingHandSize.max + 1
+                    $cardRules.children[getRulesType()].children.StartingHandSize.min || 0,
+                    $cardRules.children[getRulesType()].children.StartingHandSize.max + 1
                   )"
                   :key="n"
                   :value="n"
@@ -268,7 +266,7 @@
             >
               <option
                 v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.Attack.min,
+                  $cardRules.children[getRulesType()].children.Attack.min || 0,
                   $cardRules.children[getRulesType()].children.Attack.max + 1
                 )"
                 :key="n"
@@ -290,7 +288,7 @@
             >
               <option
                 v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.Health.min,
+                  $cardRules.children[getRulesType()].children.Health.min || 0,
                   $cardRules.children[getRulesType()].children.Health.max + 1
                 )"
                 :key="n"
@@ -505,7 +503,7 @@ export default {
         this.$store.getters.getCardCreatorEditCard
       );
 
-      if (this.model.type === "Headquarter") this.model.type = "HQ";
+      //if (this.model.type === "Headquarter") this.model.type = "Headquarter";
       this.cardImageUrl = this.$store.getters.getCardCreatorEditCard.image;
 
       // reset the entry we have just loaded in the store
@@ -610,16 +608,16 @@ export default {
       this.abilities = [];
     },
     getRulesType() {
-      return this.model.type === "HQ" ? "Headquarter" : this.model.type;
+      //return this.model.type === "Headquarter" ? "Headquarter" : this.model.type;
+      return this.model.type
     },
     getTypes() {
-      return R.values(R.pluck("name", this.$cardRules.children));
+      return R.keys(this.$cardRules.children)
     },
     getTags(idx) {
       if (this.$cardRules) {
-        let usedTags = [];
-        let allTags = this.$cardRules.children.Action.children.Tags.children.Tag
-          .children;
+        let usedTags = []
+        let allTags = this.$cardRules.children.Action.children.Tags.children.Tag.enum
         if (this.model.Tags[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.Tags[idx], this.model.Tags);
@@ -679,7 +677,7 @@ export default {
         image: this.cardImageUrl ? this.cardImageUrl : "nix",
         Notes: this.model.Notes,
       };
-      if (this.model.type !== "HQ") {
+      if (this.model.type !== "Headquarter") {
         if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
           this.notifyFail(
             "No Cost",
@@ -717,7 +715,7 @@ export default {
           return;
         }
         newCard.model[this.getRulesType()].Attack = this.model.Attack;
-      } else if (this.model.type === "HQ") {
+      } else if (this.model.type === "Headquarter") {
         newCard.model[this.getRulesType()].Growth = this.model.Growth;
         newCard.model[this.getRulesType()].Wisdom = this.model.Wisdom;
         newCard.model[

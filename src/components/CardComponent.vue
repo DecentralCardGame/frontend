@@ -886,10 +886,9 @@ export default {
       if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
-        console.log(this.$cardRules)
-        let type = this.$cardRules.children[this.model.type === 'HQ' ? 'Headquarter' : this.model.type]
+        let type = this.model.type === 'Headquarter' ? 'HQ' : this.model.type
         if (type) {
-          return type.name.toUpperCase()
+          return type.toUpperCase()
         } else {
           console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) + '. Instead is: ' + type )
         }
