@@ -1,7 +1,7 @@
 import Vue from 'vue'
-//import $RefParser from 'json-schema-ref-parser'
+import $RefParser from 'json-schema-ref-parser'
 import Notifications from 'vue-notification'
-import velocity      from 'velocity-animate'
+import velocity from 'velocity-animate'
 //import VueSwing from 'vue-swing'
 import VueCryptojs from 'vue-cryptojs'
 import App from './App.vue'
@@ -30,32 +30,35 @@ Vue.use(cardChain)
 
 //Vue.component('vue-swing', VueSwing)
 
-function loadVue () {
+function loadVue() {
   return new Vue({
-      router,
-      store,
-      render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
   }).$mount('#app')
 }
 
 new Promise(
-  /*function (resolve, reject) {
-      $RefParser.dereference( '/cardRules/cardRules.json', (err, api) => {
+  function (resolve, reject) {
+    console.log(cardRules)
+    $RefParser.dereference(cardRules,
+      (err, rules) => {
         if (err) {
           reject(err)
         } else {
-          resolve(api)
-          console.log('cardRules: ', api)
+          console.log('cardRules: ', rules)
+          resolve(rules.card)
+
         }
       })
-  })*/
+  })/*
   function (resolve, reject) {
     if(cardRules) {
       resolve(cardRules)
     }
     else 
       reject('shit')
-  })
+  })*/
   .then(rules => {
     let vm = loadVue()
     Vue.prototype.$cardRules = rules
