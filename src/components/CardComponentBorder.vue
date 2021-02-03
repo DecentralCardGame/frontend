@@ -549,7 +549,10 @@
               font-stretch="normal"
               font-style="normal"
               font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+              font-weight="700"
+              style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+              text-anchor="end"
+              writing-mode="lr-tb"
             >{{ model.cost.energy }}</tspan>
           </text>
           <text
@@ -571,7 +574,10 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
               font-stretch="normal"
               font-style="normal"
               font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+              font-weight="700"
+              style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+              text-anchor="end"
+              writing-mode="lr-tb"
             >{{ model.cost.energy }}</tspan>
           </text>
         </g>
@@ -594,7 +600,11 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
         font-style="normal"
         font-variant="normal"
         font-weight="700"
-letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb"
+        letter-spacing="0"
+        text-anchor="start"
+        transform="translate(-2)"
+        word-spacing="0"
+        writing-mode="lr-tb"
       >
         <text
           id="text2236-1-6-2"
@@ -615,7 +625,10 @@ letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.iron }}</tspan>
         </text>
         <text
@@ -637,7 +650,10 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.iron }}</tspan>
         </text>
       </g>
@@ -659,7 +675,11 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
         font-style="normal"
         font-variant="normal"
         font-weight="700"
-letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb"
+        letter-spacing="0"
+        text-anchor="start"
+        transform="translate(-2)"
+        word-spacing="0"
+        writing-mode="lr-tb"
       >
         <text
           id="text2236-1-6-5"
@@ -680,7 +700,10 @@ letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.lumber }}</tspan>
         </text>
         <text
@@ -702,7 +725,10 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.lumber }}</tspan>
         </text>
       </g>
@@ -724,7 +750,11 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
         font-style="normal"
         font-variant="normal"
         font-weight="700"
-letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb"
+        letter-spacing="0"
+        text-anchor="start"
+        transform="translate(-2)"
+        word-spacing="0"
+        writing-mode="lr-tb"
       >
         <text
           id="text2236-1-6-4"
@@ -745,7 +775,10 @@ letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.food }}</tspan>
         </text>
         <text
@@ -767,7 +800,10 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.food }}</tspan>
         </text>
       </g>
@@ -789,7 +825,11 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
         font-style="normal"
         font-variant="normal"
         font-weight="700"
-letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb"
+        letter-spacing="0"
+        text-anchor="start"
+        transform="translate(-2)"
+        word-spacing="0"
+        writing-mode="lr-tb"
       >
         <text
           id="text2236-1-6-3"
@@ -810,7 +850,10 @@ letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.mana }}</tspan>
         </text>
         <text
@@ -832,7 +875,10 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.mana }}</tspan>
         </text>
       </g>
@@ -854,7 +900,11 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
         font-style="normal"
         font-variant="normal"
         font-weight="700"
-letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0" writing-mode="lr-tb"
+        letter-spacing="0"
+        text-anchor="start"
+        transform="translate(-2)"
+        word-spacing="0"
+        writing-mode="lr-tb"
       >
         <text
           id="text2236-1-6-0"
@@ -875,7 +925,10 @@ letter-spacing="0" text-anchor="start" transform="translate(-2)" word-spacing="0
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.generic }}</tspan>
         </text>
         <text
@@ -897,7 +950,10 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+            font-weight="700"
+            style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+            text-anchor="end"
+            writing-mode="lr-tb"
           >{{ model.cost.generic }}</tspan>
         </text>
       </g>
@@ -978,7 +1034,16 @@ font-weight="700" style="-inkscape-font-specification:'Montserrat, Bold';font-va
       font-family="Solway"
       font-size="10.7"
       font-stretch="normal"
-font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
+      font-style="normal"
+      font-variant="normal"
+      font-weight="700"
+      letter-spacing="0"
+      style="line-height:1.25;-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+      text-anchor="start"
+      transform="scale(.94735 1.05557)"
+      word-spacing="0"
+      writing-mode="lr-tb"
+      xml:space="preserve"
     >
       <tspan
         id="tspan2408"
@@ -991,7 +1056,9 @@ font-style="normal" font-variant="normal" font-weight="700" letter-spacing="0" s
         font-style="normal"
         font-variant="normal"
         font-weight="700"
-style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb"
+        style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
+        text-anchor="middle"
+        writing-mode="lr-tb"
       >{{ model.name }}</tspan>
     </text>
     <!-- Speed -->
@@ -1006,7 +1073,9 @@ style="-inkscape-font-specification:'Solway, Bold';font-variant-ligatures:normal
       font-style="normal"
       letter-spacing="0"
       text-anchor="start"
-word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
+      word-spacing="0"
+      writing-mode="lr-tb"
+      xml:space="preserve"
     >
       <tspan
         id="tspan2234"
@@ -1031,7 +1100,8 @@ word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
       font-family="Montserrat"
       font-size="4.6"
       letter-spacing="1"
-text-anchor="start" xml:space="preserve"
+      text-anchor="start"
+      xml:space="preserve"
     >
       <tspan
         id="tspan2525"
@@ -1044,7 +1114,7 @@ text-anchor="start" xml:space="preserve"
         font-size="4.6"
         font-style="medium"
         text-anchor="middle"
-writing-mode="lr-tb"
+        writing-mode="lr-tb"
       >{{ (tag || '').toUpperCase() }}</tspan>
     </text>
     <!-- Human readable text of the abilities -->
@@ -1059,7 +1129,17 @@ writing-mode="lr-tb"
       fill-opacity="1"
       stroke="none"
       stroke-width=".1"
-font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="400" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" transform="scale(.94735 1.05557)" word-spacing="0" writing-mode="lr" xml:space="preserve"
+      font-family="Montserrat"
+      font-size="5"
+      font-stretch="normal"
+      font-style="normal"
+      font-variant="normal"
+      font-weight="400"
+      letter-spacing="0"
+      style="line-height:1.25;-inkscape-font-specification:'Montserrat, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+      text-anchor="start"
+      transform="scale(.94735 1.05557)"
+word-spacing="0" writing-mode="lr" xml:space="preserve"
     >
       <tspan
         id="tspan2430"
@@ -1072,7 +1152,10 @@ font-family="Montserrat" font-size="5" font-stretch="normal" font-style="normal"
         font-stretch="normal"
         font-style="normal"
         font-variant="normal"
-font-weight="400" style="-inkscape-font-specification:'Montserrat, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal" text-anchor="start" writing-mode="lr"
+        font-weight="400"
+        style="-inkscape-font-specification:'Montserrat, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+        text-anchor="start"
+        writing-mode="lr"
       > {{ ability.cardText }} </tspan>
     </text>
     <!-- Type -->
@@ -1087,7 +1170,10 @@ font-weight="400" style="-inkscape-font-specification:'Montserrat, Normal';text-
       font-stretch="expanded"
       font-style="medium"
       letter-spacing="1"
-text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
+      text-anchor="start"
+      word-spacing="0"
+      writing-mode="lr-tb"
+      xml:space="preserve"
     >
       <tspan
         id="tspan2493"
@@ -1100,7 +1186,7 @@ text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
         font-stretch="expanded"
         font-style="medium"
         text-anchor="middle"
-writing-mode="lr-tb"
+        writing-mode="lr-tb"
       >{{ getType() }}</tspan>
     </text>
     <!-- Flavor text -->
@@ -1115,7 +1201,17 @@ writing-mode="lr-tb"
       stroke="none"
       stroke-width=".1"
       font-family="Montserrat"
-font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" font-weight="300" letter-spacing="0" opacity="1" style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
+      font-size="5.1"
+      font-stretch="normal"
+      font-style="normal"
+      font-variant="normal"
+      font-weight="300"
+      letter-spacing="0"
+      opacity="1"
+      style="line-height:1.25;-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+      text-anchor="start"
+      word-spacing="0"
+writing-mode="lr-tb" xml:space="preserve"
     >
       <tspan
         id="tspan2493-1"
@@ -1128,7 +1224,11 @@ font-size="5.1" font-stretch="normal" font-style="normal" font-variant="normal" 
         font-size="5.1"
         font-stretch="normal"
         font-style="normal"
-font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center" text-anchor="middle" writing-mode="lr-tb"
+        font-variant="normal"
+        font-weight="300"
+        style="-inkscape-font-specification:'Montserrat';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
+        text-anchor="middle"
+        writing-mode="lr-tb"
       >{{ text }}</tspan>
     </text>
     <!-- Attack -->
@@ -1143,7 +1243,16 @@ font-variant="normal" font-weight="300" style="-inkscape-font-specification:'Mon
       stroke-width=".2"
       font-family="Montserrat"
       font-size="9"
-font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
+      font-stretch="normal"
+      font-style="normal"
+      font-variant="normal"
+      font-weight="500"
+      letter-spacing="0"
+      style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+      text-anchor="start"
+      word-spacing="0"
+      writing-mode="lr-tb"
+      xml:space="preserve"
     >
       <tspan
         id="tspan2234-91"
@@ -1156,7 +1265,11 @@ font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500
         font-size="9"
         font-stretch="normal"
         font-style="normal"
-font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end" text-anchor="end" writing-mode="lr-tb"
+        font-variant="normal"
+        font-weight="500"
+        style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
+        text-anchor="end"
+        writing-mode="lr-tb"
       >{{ model.attack }}</tspan>
     </text>
     <!-- Health -->
@@ -1171,7 +1284,16 @@ font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Mon
       stroke-width=".2"
       font-family="Montserrat"
       font-size="9"
-font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500" letter-spacing="0" style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" word-spacing="0" writing-mode="lr-tb" xml:space="preserve"
+      font-stretch="normal"
+      font-style="normal"
+      font-variant="normal"
+      font-weight="500"
+      letter-spacing="0"
+      style="line-height:1.25;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+      text-anchor="start"
+      word-spacing="0"
+      writing-mode="lr-tb"
+      xml:space="preserve"
     >
       <tspan
         id="tspan2234-91-7"
@@ -1184,7 +1306,11 @@ font-stretch="normal" font-style="normal" font-variant="normal" font-weight="500
         font-size="9"
         font-stretch="normal"
         font-style="normal"
-font-variant="normal" font-weight="500" style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" text-anchor="start" writing-mode="lr-tb"
+        font-variant="normal"
+        font-weight="500"
+        style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+        text-anchor="start"
+        writing-mode="lr-tb"
       >{{ model.health }}</tspan>
     </text>
   </svg>

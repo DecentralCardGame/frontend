@@ -2,88 +2,91 @@
   <transition name="modal-fade">
     <div class="modal__backdrop">
       <div
-          aria-describedby="modalDescription"
-          aria-labelledby="modalTitle"
-          class="modal"
-          role="dialog"
+        aria-describedby="modalDescription"
+        aria-labelledby="modalTitle"
+        class="modal"
+        role="dialog"
       >
         <header
-            id="modalTitle"
-            class="modal__header"
+          id="modalTitle"
+          class="modal__header"
         >
           <slot name="header">
             Card Interactions
             <button
-                aria-label="Close modal"
-                class="btn--close"
-                type="button"
-                @click="close"
+              aria-label="Close modal"
+              class="btn--close"
+              type="button"
+              @click="close"
             >
               x
             </button>
           </slot>
         </header>
         <section
-            id="modalDescription"
-            class="modal__body choice-grid"
+          id="modalDescription"
+          class="modal__body choice-grid"
         >
           <button
-              aria-label="Close modal"
-              class="choice-grid__button"
-              type="button"
-              @click="download(); close();"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="download(); close();"
           >
             Download PNG
           </button>
 
-          <button v-if="isOwner"
-                  aria-label="Close modal"
-                  class="choice-grid__button"
-                  type="button"
-                  @click="edit(); close();"
+          <button
+            v-if="isOwner"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="edit(); close();"
           >
             Edit Card
           </button>
 
-          <button v-if="canVote"
-                  aria-label="Close modal"
-                  class="choice-grid__button"
-                  type="button"
-                  @click="voteOP(); close();"
+          <button
+            v-if="canVote"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="voteOP(); close();"
           >
             Vote Overpowered
           </button>
 
-          <button v-if="canVote"
-                  aria-label="Close modal"
-                  class="choice-grid__button"
-                  type="button"
-                  @click="voteUP(); close();"
+          <button
+            v-if="canVote"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="voteUP(); close();"
           >
             Vote Underpowered
           </button>
 
-          <button v-if="canVote"
-                  aria-label="Close modal"
-                  class="choice-grid__button"
-                  type="button"
-                  @click="voteFair(); close();"
+          <button
+            v-if="canVote"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="voteFair(); close();"
           >
             Vote Fair Enough
           </button>
 
-          <button v-if="canVote"
-                  aria-label="Close modal"
-                  class="choice-grid__button"
-                  type="button"
-                  @click="voteInappropriate(); close();"
+          <button
+            v-if="canVote"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="voteInappropriate(); close();"
           >
             Vote Inappropriate
           </button>
         </section>
-        <footer class="modal__footer">
-
-        </footer>
+        <footer class="modal__footer" />
       </div>
     </div>
   </transition>

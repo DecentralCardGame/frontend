@@ -6,11 +6,11 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
-    @mouseenter="cardmouseenter"
     xmlns:serif="http://www.serif.com/"
-    @mouseleave="cardmouseleave"
     style="fill-rule:evenodd;clip-rule:evenodd;"
-@click="cardmouseclick"
+    @mouseenter="cardmouseenter"
+    @mouseleave="cardmouseleave"
+    @click="cardmouseclick"
   >
     <!-- card image -->
     <g id="Ebene_2">
@@ -73,11 +73,16 @@
       :opacity="opaque"
     >
       <!-- tag box -->
-      <g transform="matrix(0.0991046,0,0,0.322856,71.962,232.17)">
-        <path
-          d="M-610.05,0.928L712.217,0.928L707.752,19.35L-614.516,19.35L-610.05,2.928Z"
-          style="fill:rgb(96,96,106);"
-        />
+      
+      <g transform="matrix(0.0991046,0,0, 0.322856,71.962,232.17)">
+        <g transform="scale(1,1.2)">
+          <g transform="translate(0 -3)">
+            <path
+              d="M-610.05,0.928L712.217,0.928L707.752,19.35L-614.516,19.35L-610.05,2.928Z"
+              style="fill:rgb(96,96,106);"
+            />
+          </g>
+        </g>
       </g>
       <!-- left line -->
       <g
@@ -85,7 +90,7 @@
         transform="matrix(0.519675,0,0,1,22.0546,-0.0)"
       >
         <path
-          d="M66.56,225.91L12.22,225.91"
+          d="M66.56,222.91L12.22,222.91"
           style="fill:none;fill-rule:nonzero;stroke:rgb(96,96,106);stroke-width:1px;"
         />
       </g>
@@ -95,7 +100,7 @@
         transform="matrix(0.519675,0,0,1,90.1594,-0.0)"
       >
         <path
-          d="M66.56,225.91L12.22,225.91"
+          d="M66.56,222.91L12.22,222.91"
           style="fill:none;fill-rule:nonzero;stroke:rgb(96,96,106);stroke-width:1px;"
         />
       </g>
@@ -517,12 +522,12 @@
           x="81.2"
           y="127.4"
           stroke-width=".3"
-          font-family="Museo700-Regular"
+          font-family="Museo500-Regular"
           font-size="10.7"
           font-stretch="normal"
           font-style="normal"
           font-variant="normal"
-          font-weight="700"
+          font-weight="500"
           style="-inkscape-font-specification:'Museo700-Regular, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -534,9 +539,9 @@
         x="23.5"
         y="14.1"
         font-family="Museo500-Regular"
-        font-size="14.5"
+        font-size="13"
         stroke="black"
-        stroke-width="0.8"
+        stroke-width="0.3"
         font-style="normal"
         letter-spacing="0"
         text-anchor="start"
@@ -549,7 +554,7 @@
           x="23.5"
           y="14.1"
           font-family="Museo500-Regular"
-          font-size="14.5"
+          font-size="13"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -557,6 +562,36 @@
       </text>
       <!-- Tags -->
       <text
+        id="text2527"
+        key="tag"
+        x="77"
+        y="237.4"
+        fill="#FFDAA6"
+        stroke-width=".1"
+        font-family="Roboto"
+        font-size="6.6"
+        letter-spacing="1"
+        text-anchor="start"
+        xml:space="preserve"
+      >
+        <tspan
+          id="tspan2525"
+          x="77"
+          y="237.4"
+          fill="#FFDAA6"
+          fill-opacity="1"
+          stroke-width=".1"
+          font-family="Roboto"
+          font-size="6.6"
+          font-style="medium"
+          text-anchor="middle"
+          writing-mode="lr-tb"
+        >{{ getTags() }}
+        </tspan>
+      </text>
+
+      <!-- Tags old -->
+      <!--text
         v-for="(tag, index) in model.Tags"
         id="text2527"
         :key="'tag'+index"
@@ -565,7 +600,7 @@
         fill="#FFDAA6"
         stroke-width=".1"
         font-family="Roboto"
-        font-size="4.6"
+        font-size="6.6"
         letter-spacing="1"
         text-anchor="start"
         xml:space="preserve"
@@ -578,12 +613,12 @@
           fill-opacity="1"
           stroke-width=".1"
           font-family="Roboto"
-          font-size="4.6"
+          font-size="6.6"
           font-style="medium"
           text-anchor="middle"
           writing-mode="lr-tb"
         >{{ (tag || '').toUpperCase() }}</tspan>
-      </text>
+      </text-->
       <!-- Human readable text of the abilities -->
       <text
         v-for="(text, index) in textToSvg(getAbilityText())"
@@ -631,7 +666,7 @@
       <text
         id="text2495"
         x="76.9"
-        y="228.6"
+        y="225.6"
         fill="#001433"
         fill-opacity="1"
         font-family="Roboto"
@@ -647,7 +682,7 @@
         <tspan
           id="tspan2493"
           x="76.9"
-          y="228.6"
+          y="225.6"
           fill="#001433"
           fill-opacity="1"
           font-family="Roboto"
@@ -706,7 +741,7 @@
         v-show="model.type === 'Entity'"
         id="text2236-11"
         x="23"
-        y="228.6"
+        y="225.6"
         fill="#001433"
         fill-opacity="1"
         stroke="none"
@@ -727,7 +762,7 @@
         <tspan
           id="tspan2234-91"
           x="23"
-          y="228.6"
+          y="225.6"
           fill="#001433"
           fill-opacity="1"
           stroke-width=".2"
@@ -747,7 +782,7 @@
         v-show="model.type !== 'Action'"
         id="text2236-11-3"
         x="128"
-        y="228.6"
+        y="225.6"
         fill="#001433"
         fill-opacity="1"
         stroke="none"
@@ -768,7 +803,7 @@
         <tspan
           id="tspan2234-91-7"
           x="131"
-          y="228.6"
+          y="225.6"
           fill="#001433"
           fill-opacity="1"
           stroke-width=".2"
@@ -832,11 +867,17 @@ export default {
       this.clicked = false;
     },
     cardmouseclick() {
-      this.opaque = 1;
-      if (this.clicked) {
-        //this.saveSingleCard()
+      if (this.isMobileDevice()) {
+        this.opaque = this.clicked? 1 : 0
+        this.clicked = !this.clicked
       }
-      this.clicked = true
+      else {
+        this.opaque = 1;
+        if (this.clicked) {
+          //this.saveSingleCard()
+        }
+        this.clicked = true
+      }
     },
     cardmouseenter() {
       this.opaque = 0;
@@ -867,6 +908,9 @@ export default {
       } else {
         return 0
       }
+    },
+    getTags () {
+      return this.model.Tags.join(' - ').toUpperCase() || ''
     },
     abilitiesLength () {
       if (this.model.abilities) {

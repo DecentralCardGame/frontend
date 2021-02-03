@@ -7,27 +7,30 @@
     >
       {{ entry.pre }}
 
-        <select v-if="entry.btn.type === 'int'"
-          v-model="entry.btn.label"
-          @change="showAbilityModal(ability, entry.btn, index)"
+      <select
+        v-if="entry.btn.type === 'int'"
+        v-model="entry.btn.label"
+        @change="showAbilityModal(ability, entry.btn, index)"
+      >
+        <option
+          v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).min, R.path(entry.btn.rulesPath, $cardRules).max + 1)"
+          :key="n"
+          :value="n"
         >
-          <option
-            v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).min, R.path(entry.btn.rulesPath, $cardRules).max + 1)"
-            :key="n"
-            :value="n"
-          >
-            {{ n }}
-          </option>
-        </select>
+          {{ n }}
+        </option>
+      </select>
 
-      <div v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
+      <div
+        v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-option--negated"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
         {{ entry.btn.label }}
       </div>
 
-      <div v-else
+      <div
+        v-else
         class="clickable-option"
         @click="showAbilityModal(ability, entry.btn, index)"
       >
@@ -44,11 +47,11 @@
     </span>
     <div class="ability-modal-container">
       <AbilityModal
-              v-if="isAbilityModalVisible"
-              v-bind:dialog="dialog"
-              v-bind:ability="ability"
-              @update:ability="updateAbility($event)"
-              @close="closeAbilityModal"
+        v-if="isAbilityModalVisible"
+        :dialog="dialog"
+        :ability="ability"
+        @update:ability="updateAbility($event)"
+        @close="closeAbilityModal"
       />
     </div>
   </div>
