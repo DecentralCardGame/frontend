@@ -190,46 +190,46 @@
           </span>
           <div>
             <input
-                v-model="model.CostType.Energy"
-                type="checkbox"
-                @change="saveDraft"
+              v-model="model.CostType.Energy"
+              type="checkbox"
+              @change="saveDraft"
             >
             <label for="checkbox"> Energy </label> <br>
             <input
-                v-model="model.CostType.Iron"
-                type="checkbox"
-                @change="saveDraft"
+              v-model="model.CostType.Iron"
+              type="checkbox"
+              @change="saveDraft"
             >
             <label for="checkbox"> Iron </label> <br>
             <input
-                v-model="model.CostType.Lumber"
-                type="checkbox"
-                @change="saveDraft"
+              v-model="model.CostType.Lumber"
+              type="checkbox"
+              @change="saveDraft"
             >
             <label for="checkbox"> Lumber </label> <br>
             <input
-                v-model="model.CostType.Food"
-                type="checkbox"
-                @change="saveDraft"
+              v-model="model.CostType.Food"
+              type="checkbox"
+              @change="saveDraft"
             >
             <label for="checkbox"> Food </label> <br>
             <input
-                v-model="model.CostType.Mana"
-                type="checkbox"
-                @change="saveDraft"
+              v-model="model.CostType.Mana"
+              type="checkbox"
+              @change="saveDraft"
             >
             <label for="checkbox"> Mana </label> <br>
             
             <span v-if="model.type==='Entity'"> I have an <b>Attack</b> of </span>
             <select
-                v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
-                v-model="model.Attack"
-                @change="saveDraft"
+              v-if="model.type==='Entity' && $cardRules.children[getRulesType()]"
+              v-model="model.Attack"
+              @change="saveDraft"
             >
               <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.Attack.min, $cardRules.children[getRulesType()].children.Attack.max + 1)"
-                  :key="n"
-                  :value="n"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.Attack.min, $cardRules.children[getRulesType()].children.Attack.max + 1)"
+                :key="n"
+                :value="n"
               >
                 {{ n }}
               </option>
@@ -237,14 +237,14 @@
             <span v-if="model.type==='Entity'"> and </span>
             <span v-if="model.type!=='Action'"> I sadly <b>die</b> after someone suckerpunchs me for </span>
             <select
-                v-if="model.type!=='Action' && $cardRules.children[getRulesType()]"
-                v-model="model.Health"
-                @change="saveDraft"
+              v-if="model.type!=='Action' && $cardRules.children[getRulesType()]"
+              v-model="model.Health"
+              @change="saveDraft"
             >
               <option
-                  v-for="n in R.range($cardRules.children[getRulesType()].children.Health.min, $cardRules.children[getRulesType()].children.Health.max + 1)"
-                  :key="n"
-                  :value="n"
+                v-for="n in R.range($cardRules.children[getRulesType()].children.Health.min, $cardRules.children[getRulesType()].children.Health.max + 1)"
+                :key="n"
+                :value="n"
               >
                 {{ n }}
               </option>
@@ -253,29 +253,29 @@
           </div>
         </div>
         <div
-            v-if="activeStep == 2"
+          v-if="activeStep == 2"
         >
           <p>In this step, you craft the heart of your card. Press the button to add <b>abilities / effects</b> to your
             card.</p>
           <div>
             <div
-                v-for="(ability, index) in abilities"
-                :key="ability.ability"
+              v-for="(ability, index) in abilities"
+              :key="ability.ability"
             >
               <AbilityComponent
-                  class="ability-frame"
-                  v-bind:abilities="abilities"
-                  v-bind:ability="ability"
-                  v-bind:dialog="abilityDialog"
-                  @update:ability="updateAbility($event, index)"
+                class="ability-frame"
+                v-bind:abilities="abilities"
+                v-bind:ability="ability"
+                v-bind:dialog="abilityDialog"
+                @update:ability="updateAbility($event, index)"
               />
             </div>
           </div>
           <div v-if="model.type === 'Action'">
             <button
-                class="btn btn-abilitycreator"
-                type="button"
-                @click="showAbilityModal('root')"
+              class="btn btn-abilitycreator"
+              type="button"
+              @click="showAbilityModal('root')"
             >
               Add Effect
             </button>
@@ -283,46 +283,46 @@
           <div v-else
                class="creator-text">
             <button
-                class="btn btn-abilitycreator"
-                type="button"
-                @click="showAbilityModal('root')"
+              class="btn btn-abilitycreator"
+              type="button"
+              @click="showAbilityModal('root')"
             >
               Add Ability
             </button>
           </div>
         </div>
         <div
-            v-if="activeStep == 3"
-            class="creator-input-container"
+          v-if="activeStep == 3"
+          class="creator-input-container"
         >
           <span class="creator-text">
             Everybody needs a <b>face</b>,
             so do I. Please upload an image
           </span>
           <input
-              id="file"
-              class="inputfile"
-              name="file"
-              type="file"
-              @change="inputFile"
+            id="file"
+            class="inputfile"
+            name="file"
+            type="file"
+            @change="inputFile"
           >
           <label
-              class="button--file"
-              for="file"
+            class="button--file"
+            for="file"
           >Choose a file</label>
           <span class="creator-text">
             My <b>flavor</b> is best expressed by
             the following sentences:
           </span>
           <input
-              v-model="model.FlavourText"
-              value="Card Name"
-              @change="saveDraft"
+            v-model="model.FlavourText"
+            value="Card Name"
+            @change="saveDraft"
           >
         </div>
         <div
-            v-if="activeStep == 4"
-            class="creator-input-container"
+          v-if="activeStep == 4"
+          class="creator-input-container"
         >
           <span class="creator-text">
             Uh, uh, uh. I like my looks,
@@ -336,77 +336,84 @@
             council the following notes for this card (optional):
           </span>
           <input
-              v-model="model.Notes"
-              value="Card Name"
-              @change="saveDraft"
+            v-model="model.Notes"
+            value="Card Name"
+            @change="saveDraft"
           >
         </div>
         <div class="creator-nav-container">
           <button
-              v-if="activeStep > 0"
-              class="back"
-              @click="activeStep--"
+            v-if="activeStep > 0"
+            class="back"
+            @click="activeStep--"
           >
             Go Back
           </button>
           <button
-              v-if="activeStep < 4"
-              @click="activeStep++"
+            v-if="activeStep < 4"
+            @click="activeStep++"
           >
             Next Step >
           </button>
           <button
-              v-if="activeStep == 4 && !model.id"
-              class="btn"
-              type="button"
-              @click="showBuySchemeModal"
+            v-if="activeStep == 4 && !model.id"
+            class="btn"
+            type="button"
+            @click="showBuySchemeModal"
           >
             Buy Card Scheme
           </button>
           <button
-              v-if="activeStep == 4 && !model.id"
-              @click="saveSubmit()"
+            v-if="activeStep == 4 && !model.id"
+            @click="saveSubmit()"
           >
             Publish Your Card
           </button>
 
           <button
-              v-if="activeStep == 4 && model.id"
-              @click="saveSubmit()"
+            v-if="activeStep == 4 && model.id"
+            @click="saveSubmit()"
           >
             Update Your Card
           </button>
 
           <button
-              v-if="activeStep == 4 && model.id"
-              @click="resetEditCard()"
+            v-if="activeStep == 4 && model.id"
+            @click="resetEditCard"
           >
             Discard Changes
+          </button>
+          
+          <button
+            v-show="activeStep == 4"
+            @click="resetCardDraft"
+          >
+            Discard Draft
           </button>
         </div>
       </div>
       <div class="creator-preview">
         <CardComponent
-            id="card"
-            :active-step="activeStep"
-            :display-notes="true"
-            :image-u-r-l="cardImageUrl"
-            :model="model"
+          id="card"
+          :active-step="activeStep"
+          :display-notes="true"
+          :image-u-r-l="cardImageUrl"
+          :model="model"
         />
       </div>
     </div>
     <div class="ability-modal-container">
       <AbilityModal
-          v-if="isAbilityModalVisible"
-          v-bind:abilities="abilities"
-          v-bind:ability="ability"
-          v-bind:dialog="abilityDialog"
-          @close="closeAbilityModal"
-          @update:ability="ability = $event"
+        v-if="isAbilityModalVisible"
+        v-bind:abilities="abilities"
+        v-bind:ability="ability"
+        v-bind:dialog="abilityDialog"
+        @close="closeAbilityModal"
+        @update:ability="ability = $event"
       />
       <BuySchemeModal
-          v-if="isBuySchemeModalVisible"
-          @close="closeBuySchemeModal"
+        v-if="isBuySchemeModalVisible"
+        @close="closeBuySchemeModal"
       />
     </div>
   </div>
@@ -434,7 +441,7 @@ export default {
       abilities: [],
       abilityDialog: {},
       cardImageUrl: sampleGradientImg,
-      model: emptyCard,
+      model: R.clone(emptyCard),
       cardID: 0
     }
   },
@@ -680,12 +687,12 @@ export default {
     },
     resetEditCard() {
       this.$store.commit('setCardCreatorEditCard', {})
-      this.model = emptyCard
+      this.model = R.clone(emptyCard)
       this.cardImageUrl = sampleGradientImg
     },
     resetCardDraft() {
       this.$store.commit('setCardCreatorDraft', {})  
-      this.model = emptyCard
+      this.model = R.clone(emptyCard)
       this.cardImageUrl = sampleGradientImg
     },
     inputFile(event) {
