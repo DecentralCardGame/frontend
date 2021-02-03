@@ -2,14 +2,14 @@
   <transition name="modal-fade">
     <div class="modal__backdrop">
       <div
-          aria-describedby="modalDescription"
-          aria-labelledby="modalTitle"
-          class="modal"
-          role="dialog"
+        aria-describedby="modalDescription"
+        aria-labelledby="modalTitle"
+        class="modal"
+        role="dialog"
       >
         <header
-            id="modalTitle"
-            class="modal__header"
+          id="modalTitle"
+          class="modal__header"
         >
           <slot name="header">
             {{ dialog.title }}
@@ -18,58 +18,67 @@
               class="btn--close"
               type="button"
               @click="close"
-          >
+            >
               x
             </span>
           </slot>
         </header>
         <section
-            id="modalDescription"
-            class="modal__body choice-grid"
+          id="modalDescription"
+          class="modal__body choice-grid"
         >
           <slot name="body">
             <!-- {{ dialog.description }} -->
             <div
-                v-for="(option, index) in dialog.options"
-                :key="index"
+              v-for="(option, index) in dialog.options"
+              :key="index"
             >
-              <input v-if="dialog.type==='boolean'"
-                     id="index"
-                     v-model="option.value"
-                     :value="option.name"
-                     type="checkbox"
+              <input
+                v-if="dialog.type==='boolean'"
+                id="index"
+                v-model="option.value"
+                :value="option.name"
+                type="checkbox"
               >
-              <button v-if="dialog.type === 'enum'"
-                      aria-label="Close modal"
-                      class="choice-grid__button"
-                      type="button"
-                      @click="selectedString = option.name; addAbility();"
+              <button
+                v-if="dialog.type === 'enum'"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="selectedString = option.name; addAbility();"
               >
-                <img :src="getIcon(option)"
-                     style="max-width:40px"
-                /><br>
+                <img
+                  :src="getIcon(option)"
+                  style="max-width:40px"
+                ><br>
                 <b>{{ option.name }}</b><br> - <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
-              <input v-if="dialog.type==='stringEnter'" v-model="selectedString"
-                     placeholder="enter text"
-                     style="display: inline;color:black;height:50px"
+              <input
+                v-if="dialog.type==='stringEnter'"
+                v-model="selectedString"
+                placeholder="enter text"
+                style="display: inline;color:black;height:50px"
               >
 
-              <button v-if="dialog.type === 'interface' || dialog.type === 'root'"
-                      aria-label="Close modal"
-                      class="choice-grid__button"
-                      type="button"
-                      @click="option.selected = true; addAbility();"
+              <button
+                v-if="dialog.type === 'interface' || dialog.type === 'root'"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="option.selected = true; addAbility();"
               >
-                <img :src="getIcon(option)"
-                     style="max-width:40px"
-                /><br>
+                <img
+                  :src="getIcon(option)"
+                  style="max-width:40px"
+                ><br>
                 <b>{{ option.name }}</b><br> <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
-              <label v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'enum'"
-                     for="index"> {{ option.name }}
+              <label
+                v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'enum'"
+                for="index"
+              > {{ option.name }}
               </label>
             </div>
             <div>
@@ -81,11 +90,12 @@
           <slot name="footer">
             {{ picked }}
           </slot>
-          <button v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
-                  aria-label="Close modal"
-                  class="btn--teal"
-                  type="button"
-                  @click="addAbility"
+          <button
+            v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
+            aria-label="Close modal"
+            class="btn--teal"
+            type="button"
+            @click="addAbility"
           >
             Add
           </button>
@@ -108,13 +118,13 @@ export default {
     ability: {},
     abilities: []
   },
-  mounted() {
-  },
   data() {
     return {
       selectedCount: 0,
       selectedString: ''
     }
+  },
+  mounted() {
   },
   methods: {
     close() {

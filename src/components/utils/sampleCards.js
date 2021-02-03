@@ -1,22 +1,20 @@
-import { testcard } from './cardfiles/testcard.js'
-import {saintDaisy} from './cardfiles/saintDaisy.js'
-import {saintDaisy_pet} from './cardfiles/saintDaisy_pet.js'
-import {richard} from './cardfiles/richard.js'
-import {richard_bot} from './cardfiles/richard_bot.js'
-import {hurrwig} from './cardfiles/hurrwig.js'
-import {assoultHorse} from './cardfiles/assoultHorse.js'
-import {ulrich} from './cardfiles/ulrich.js'
-import {steam} from './cardfiles/steam.js'
-import {automatedBotProduction} from './cardfiles/automatedBotProduction.js'
-import {automatedBotProduction_bot} from './cardfiles/automatedBotProduction_bot.js'
-import {wynn} from './cardfiles/wynn.js'
-import {furiousJack} from './cardfiles/furiousJack.js'
-import {miniLab} from './cardfiles/miniLab.js'
-import {blastburn} from './cardfiles/blastburn.js'
-import {evie} from './cardfiles/evie.js'
-import {exoskeleton} from './cardfiles/exoskeleton.js'
+import { saintDaisy } from './cardfiles/saintDaisy.js'
+import { saintDaisy_pet } from './cardfiles/saintDaisy_pet.js'
+import { richard } from './cardfiles/richard.js'
+import { richard_bot } from './cardfiles/richard_bot.js'
+import { hurrwig } from './cardfiles/hurrwig.js'
+import { assoultHorse } from './cardfiles/assoultHorse.js'
+import { ulrich } from './cardfiles/ulrich.js'
+import { steam } from './cardfiles/steam.js'
+import { automatedBotProduction } from './cardfiles/automatedBotProduction.js'
+import { automatedBotProduction_bot } from './cardfiles/automatedBotProduction_bot.js'
+import { wynn } from './cardfiles/wynn.js'
+import { furiousJack } from './cardfiles/furiousJack.js'
+import { miniLab } from './cardfiles/miniLab.js'
+import { blastburn } from './cardfiles/blastburn.js'
+import { evie } from './cardfiles/evie.js'
+import { exoskeleton } from './cardfiles/exoskeleton.js'
 export const sampleCards = {
-  testcard: testcard,
   saintDaisy: saintDaisy,
   saintDaisy_pet: saintDaisy_pet,
   richard: richard,
@@ -38,7 +36,7 @@ export const sampleCards = {
 export const sampleCard = {
   CardName: 'Schoolbus',
   FlavourText: 'Whenever a creature with tag "pupil" enters the field, schoolbus gets a chu chu counter. Remove a chu chu counter: Schoolbus deals attack to target unit equal to the number of chu chu counters on it.',
-  abilities: [{'cardText': 'test ability'}, {'cardText': 'test ability 2'}],
+  abilities: [{ 'cardText': 'test ability' }, { 'cardText': 'test ability 2' }],
   Notes: '',
   type: 'Entity',
   Tags: ['crazy', 'motherfucking', 'bus'],

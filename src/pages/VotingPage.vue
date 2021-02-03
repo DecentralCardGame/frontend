@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h2 class="header__h2">Card Voting</h2>
-    <p class="header__p">Take part in the action and share your opinions about community cards.</p>
+    <h2 class="header__h2">
+      Card Voting
+    </h2>
+    <p class="header__p">
+      Take part in the action and share your opinions about community cards.
+    </p>
     <br>
     <div class="voter">
       <div

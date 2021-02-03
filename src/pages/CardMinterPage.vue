@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div v-if="$route.params.id==null"
+    <div
+      v-if="$route.params.id==null"
       v-cloak
       @drop.prevent="dropIt"
       @dragover.prevent
@@ -39,9 +40,7 @@
         :image-u-r-l="cards[0].image"
       />
     </div>
-
   </div>
-
 </template>
 
 <script>

@@ -7,8 +7,8 @@
       Discuss the latest News or simply join our growing Community <b>Discord</b>. We would love to hear your voice.
     </a>
     <router-link
-      class="account-box"
       v-if="$store.getters.loggedIn"
+      class="account-box"
       to="/me"
     >
       <button>My Account ({{ getUserCredits }} Credits)</button>
@@ -19,15 +19,15 @@
 <script>
 export default {
   name: 'PageHeader',
-    mounted () {
-      //this.$cardChain.updateUserCredits()
-    },
-    methods: {
-    },
     computed: {
       getUserCredits () {
         return this.$store.getters.getUserCredits
       }
+    },
+    mounted () {
+      //this.$cardChain.updateUserCredits()
+    },
+    methods: {
     }
 }
 </script>

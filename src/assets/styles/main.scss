@@ -32,7 +32,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 480px) {
-    font-size: 16px;
+    font-size: $font-size-medium;
   }
 }
 
@@ -53,9 +53,10 @@ b {
   font-weight: bold;
 }
 
+// this applies to text on small screens (mobile)
 @media (max-width: 480px) {
   main {
-    font-size: 20px;
+    font-size: $font-size-big;
     line-height: 1.3em;
     max-width: 100%;
     padding: 0.5em;
@@ -185,7 +186,7 @@ h1 {
 
 .article-temp {
   font-weight: 400;
-  line-height: 1.65;
+  line-height: $line-height-big;
   font-size: 100%;
   p {
     margin-bottom: 1.15rem;
@@ -195,7 +196,7 @@ h1 {
     margin: 2.75rem 0 1.05rem;
     font-family: $font-family-header, sans-serif;
     text-shadow: $border-thickness-bold $border-thickness-bold 0 $red;
-    line-height: 1.15;
+    line-height: $line-height-headline;
   }
 
   h1 {
@@ -222,7 +223,7 @@ h1 {
   font-family: $font-family-header;
   text-shadow: $border-thickness-bold $border-thickness-bold 0 $red;
   margin: 0 0 0.5rem;
-  line-height: 1.15;
+  line-height: $line-height;
   font-size: 2.441em;
   text-align: center;
   @media (max-width: 480px) {
@@ -232,7 +233,7 @@ h1 {
 
 .header__p {
   font-weight: 400;
-  line-height: 1.65;
+  line-height: $line-height-big;
   font-size: 100%;
   text-align: center;
 }
