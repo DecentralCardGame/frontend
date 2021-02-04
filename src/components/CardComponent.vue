@@ -838,7 +838,8 @@ export default {
     displayNotes: {
       type: Boolean,
       default: false
-    }
+    },
+    hoverBehavior: String
   },
   data () {
     return {
@@ -863,10 +864,14 @@ export default {
   },
   methods: {
     cardmouseleave() {
+      if (this.hoverBehavior === 'none') return 
+
       this.opaque = 1;
       this.clicked = false;
     },
     cardmouseclick() {
+      if (this.hoverBehavior === 'none') return 
+
       if (this.isMobileDevice()) {
         this.opaque = this.clicked? 1 : 0
         this.clicked = !this.clicked
@@ -880,6 +885,8 @@ export default {
       }
     },
     cardmouseenter() {
+      if (this.hoverBehavior === 'none') return 
+
       this.opaque = 0;
     },
     getType () {

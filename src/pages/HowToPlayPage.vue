@@ -880,11 +880,13 @@
   <br/>
   Player 2 plays the entities Assoult Horse, Ulrich the Tinker and the Action Card provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
 </p>
+
 <div @click="highlight(sampleCards.exoskeleton, sampleCards.exoskeleton.cardImg)">
+    
   <CardComponent
-          class="card"
-          :model="sampleCards.exoskeleton"
-          :image-u-r-l="sampleCards.exoskeleton.cardImg"
+    class="card"
+    :model="sampleCards.exoskeleton"
+    :image-u-r-l="sampleCards.exoskeleton.cardImg"
 />
 </div>
 
@@ -895,13 +897,15 @@ The played cards are now revealed. The effects that affect your own cards have a
 <br/><br/>
 This activates Dr.Dolly's ability "Whenever an entity dies, gain 1 Mana" which is put into the queue for the next resolve phase.
 </p>
-
+<!-- This is the highlight card area, it does not really appear at the bottom, but over everything else-->
     <div v-if="isCardHighlighted"
         @click="closeHighlightedCard"
-        class="highlighted-card">
+        class="highlight-area">
       <CardComponent
+        class="highlighted-card"
         :model="sampleCards.exoskeleton"
         :image-u-r-l="sampleCards.exoskeleton.cardImg"
+        hoverBehavior="none"
       />
     </div>
   </div>
@@ -957,7 +961,6 @@ export default {
       this.isCardHighlighted = false
     },
     highlight(model, image) {
-      console.log("yes")
       this.isCardHighlighted = true
       this.highlightedCard = {
         model: model,
@@ -1093,7 +1096,21 @@ img {
 }
 
 .highlighted-card {
-  position: relative;
+  margin: auto;
+  margin-top: 2vh;
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+.highlight-area {
+  position: fixed;
   z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
 }
 </style>
