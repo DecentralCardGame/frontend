@@ -3,11 +3,16 @@
     <div class="pre-footer">
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
-        <a v-if="userLoggedIn" 
-          @click="$store.commit('toggleLoginBox')">
+        <a
+          v-if="userLoggedIn" 
+          @click="$store.commit('toggleLoginBox')"
+        >
           <button>Join</button>
         </a>
-        <a v-else href="https://discord.gg/ZKKbhUs">
+        <a
+          v-else
+          href="https://discord.gg/ZKKbhUs"
+        >
           <button>Join</button>
         </a>
 
@@ -40,26 +45,26 @@
           </li>
           <li>
             <a href="https://discord.gg/ZKKbhUs">
-            <h2>Community Discord</h2>
-            Get in touch. Not physical, thooo.
+              <h2>Community Discord</h2>
+              Get in touch. Not physical, thooo.
             </a>
           </li>
           <li>
             <a href="https://t.me/DecentralCardNetwork">
-            <h2>Telegram</h2>
-            for 'crypto enthusiasts'
+              <h2>Telegram</h2>
+              For 'crypto enthusiasts'.
             </a>
           </li>
           <li>
             <a href="https://github.com/DecentralCardGame">
-            <h2>Github</h2>
-            Checkout our codebase
+              <h2>Github</h2>
+              Checkout our codebase.
             </a>
           </li>
           <li>
             <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
-            <h2>Whitepaper</h2>
-            Read how it all started
+              <h2>Whitepaper</h2>
+              Read how it all started.
             </a>
           </li>
           <li>
@@ -71,7 +76,7 @@
           <li>
             <router-link to="/imprint">
               <h2>Imprint</h2>
-              Terms and Conditions *yaaawn*
+              Terms and Conditions *yaaawn*.
             </router-link>
           </li>
         </ul>
@@ -92,7 +97,7 @@
         </div>
       </div>
       <div class="footer__terms">
-        <h2></h2>
+        <h2 />
         If you read this you made it to the end, congrats!
       </div>
     </footer>
