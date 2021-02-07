@@ -355,11 +355,11 @@
         Places are also permanent cards. They have only a life value and disappear from play as soon as it reaches 0. Places have different abilities, typical abilities are those that create additional entities or produce additional resources or wisdom.
       </div>
       <div class="about-card">
-        <div @click="highlight(sampleCards.communityImg, sampleCards.communityImg.cardImg)">
+        <div @click="highlight(sampleCards.botCommandCenter, sampleCards.botCommandCenter.cardImg)">
         <CardComponent
             class="card"
-            :model="sampleCards.communityImg"
-            :image-u-r-l="sampleCards.communityImg.cardImg"
+            :model="sampleCards.botCommandCenter"
+            :image-u-r-l="sampleCards.botCommandCenter.cardImg"
         />
         </div>
       </div>
@@ -370,11 +370,11 @@
         Action cards, unlike all other card types, do not have abilities but effects. Effects have a direct effect on the game when the action is played. After that, actions land on the Dust Pile.
       </div>
       <div class="about-card">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.communityImg, sampleCards.communityImg.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[0]"
-            :image-u-r-l="cardImgs[0]"
+            :model="sampleCards.communityImg"
+            :image-u-r-l="sampleCards.communityImg.cardImg"
         />
         </div>
       </div>
@@ -434,20 +434,14 @@
       <b id="player-num-text">Player 1</b>
       <p id="attack-mode-text">Attack mode</p>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
+            :model="sampleCards.drDolly"
+            :image-u-r-l="sampleCards.drDolly.cardImg"
         />
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
-        <CardComponent
-            class="card"
-            :model="cards[3]"
-            :image-u-r-l="cardImgs[3]"
-        /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.saintDaisy, sampleCards.saintDaisy.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.saintDaisy"
@@ -497,31 +491,31 @@
       <b id="player-num-text">Player 2</b>
       <p id="attack-mode-text">Attack mode</p>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.richard, sampleCards.richard.cardImg)">
       <CardComponent
             class="card"
             :model="sampleCards.richard"
             :image-u-r-l="sampleCards.richard.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.hurrwig, sampleCards.hurrwig.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.hurrwig"
             :image-u-r-l="sampleCards.hurrwig.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction_bot, sampleCards.automatedBotProduction_bot.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.automatedBotProduction_bot"
             :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction_bot, sampleCards.automatedBotProduction_bot.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.automatedBotProduction_bot"
             :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         /></div>  
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.assoultHorse, sampleCards.assoultHorse.cardImg)">
          <CardComponent
             class="card"
             :model="sampleCards.assoultHorse"
@@ -531,20 +525,20 @@
       <span id="defense-mode-text">Defense mode</span>
       <span id="defense-mode-text" style="margin-left:30%;">Places</span>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.ulrich, sampleCards.ulrich.cardImg)">
            <CardComponent
             class="card"
             :model="sampleCards.ulrich"
             :image-u-r-l="sampleCards.ulrich.cardImg"
         /></div>
         <span></span><!-- Empty space in grid -->
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.steam, sampleCards.steam.cardImg)">
         <CardComponent
           class="card"
           :model="sampleCards.steam"
           :image-u-r-l="sampleCards.steam.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction, sampleCards.automatedBotProduction.cardImg)">
         <CardComponent
           class="card"
           :model="sampleCards.automatedBotProduction"
@@ -574,19 +568,19 @@
       <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
       </p>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
+            :model="sampleCards.drDolly"
+            :image-u-r-l="sampleCards.drDolly.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.bello, sampleCards.bello.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[3]"
-            :image-u-r-l="cardImgs[3]"
+            :model="sampleCards.bello"
+            :image-u-r-l="sampleCards.bello.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.saintDaisy, sampleCards.saintDaisy.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.saintDaisy"
@@ -595,7 +589,7 @@
         <div>
           <img class=image_arrow src='../assets/arrows/arrow_up.png'>
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.ulrich, sampleCards.ulrich.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.ulrich"
@@ -629,7 +623,7 @@
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         /></div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-          <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+          <div @click="highlight(sampleCards.richard, sampleCards.richard.cardImg)">
           <CardComponent
           class="card"
           :model="sampleCards.richard"
@@ -644,7 +638,7 @@
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         /></div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-          <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+          <div @click="highlight(sampleCards.richard, sampleCards.richard.cardImg)">
           <CardComponent
           class="card"
           :model="sampleCards.richard"
@@ -659,7 +653,7 @@
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         /></div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-          <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+          <div @click="highlight(sampleCards.hurrwig, sampleCards.hurrwig.cardImg)">
           <CardComponent
           class="card"
           :model="sampleCards.hurrwig"
@@ -674,7 +668,7 @@
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         /></div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-          <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+          <div @click="highlight(sampleCards.automatedBotProduction_bot, sampleCards.automatedBotProduction_bot.cardImg)">
           <CardComponent
           class="card"
           :model="sampleCards.automatedBotProduction_bot"
@@ -689,7 +683,7 @@
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         /></div>
           <img class="image_arrow rot90" src='../assets/arrows/arrow_up.png'>
-          <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+          <div @click="highlight(sampleCards.assoultHorse, sampleCards.assoultHorse.cardImg)">
           <CardComponent
           class="card"
           :model="sampleCards.assoultHorse"
@@ -712,11 +706,11 @@
           Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
         </div>
       <div class="about-card">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
+            :model="sampleCards.drDolly"
+            :image-u-r-l="sampleCards.drDolly.cardImg"
         /></div>
       </div>
     </div>
@@ -726,25 +720,25 @@
       <b id="player-num-text">Player 2</b>
       <p id="attack-mode-text">Attack mode</p>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.richard, sampleCards.richard.cardImg)">
       <CardComponent
             class="card"
             :model="sampleCards.richard"
             :image-u-r-l="sampleCards.richard.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.hurrwig, sampleCards.hurrwig.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.hurrwig"
             :image-u-r-l="sampleCards.hurrwig.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction_bot, sampleCards.automatedBotProduction_bot.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.automatedBotProduction_bot"
             :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />  </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.assoultHorse, sampleCards.assoultHorse.cardImg)">
          <CardComponent
             class="card"
             :model="sampleCards.assoultHorse"
@@ -754,20 +748,20 @@
       <span id="defense-mode-text">Defense mode</span>
       <span id="defense-mode-text" style="margin-left:30%;">Places</span>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.ulrich, sampleCards.ulrich.cardImg)">
            <CardComponent
             class="card"
             :model="sampleCards.ulrich"
             :image-u-r-l="sampleCards.ulrich.cardImg"
         /></div>
         <span></span><!-- Empty space in grid -->
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.steam, sampleCards.steam.cardImg)">
         <CardComponent
           class="card"
           :model="sampleCards.steam"
           :image-u-r-l="sampleCards.steam.cardImg"
         /></div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction, sampleCards.automatedBotProduction.cardImg)">
         <CardComponent
           class="card"
           :model="sampleCards.automatedBotProduction"
@@ -790,13 +784,12 @@
                      
         </div>
         <div class="about-card">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
-        />
-        </div>
+            :model="sampleCards.drDolly"
+            :image-u-r-l="sampleCards.drDolly.cardImg"
+        /></div>
      </div>
      </div>
      <p>
@@ -808,29 +801,28 @@
         <span id="defense-mode-text">Attack mode</span>
       <span id="defense-mode-text" style="margin-left:50%;">Defense mode</span>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
         <CardComponent
             class="card"
-            :model="cards[1]"
-            :image-u-r-l="cardImgs[1]"
-        />
-        </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
-        <CardComponent
+            :model="sampleCards.drDolly"
+            :image-u-r-l="sampleCards.drDolly.cardImg"
+        /></div>
+        <div @click="highlight(sampleCards.bello, sampleCards.bello.cardImg)">
+          <CardComponent
             class="card"
-            :model="cards[3]"
-            :image-u-r-l="cardImgs[3]"
+            :model="sampleCards.bello"
+            :image-u-r-l="sampleCards.bello.cardImg"
         />
         </div>
       <div></div>
-      <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+      <div @click="highlight(sampleCards.furiousJack, sampleCards.furiousJack.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.furiousJack"
             :image-u-r-l="sampleCards.furiousJack.cardImg"
         />
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.wynn, sampleCards.wynn.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.wynn"
@@ -852,35 +844,35 @@
       <span id="defense-mode-text">Attack mode</span>
       <span id="defense-mode-text" style="margin-left:50%;">Places</span>
       <div class="card-container">
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.richard, sampleCards.richard.cardImg)">
           <CardComponent
             class="card"
             :model="sampleCards.richard"
             :image-u-r-l="sampleCards.richard.cardImg"
         />
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.hurrwig, sampleCards.hurrwig.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.hurrwig"
             :image-u-r-l="sampleCards.hurrwig.cardImg"
         />
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction_bot, sampleCards.automatedBotProduction_bot.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.automatedBotProduction_bot"
             :image-u-r-l="sampleCards.automatedBotProduction_bot.cardImg"
         />
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.automatedBotProduction, sampleCards.automatedBotProduction.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.automatedBotProduction"
             :image-u-r-l="sampleCards.automatedBotProduction.cardImg"
         />
         </div>
-        <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+        <div @click="highlight(sampleCards.steam, sampleCards.steam.cardImg)">
         <CardComponent
             class="card"
             :model="sampleCards.steam"
@@ -907,7 +899,7 @@
     Since the ability affects your own cards, it can be used immediately, so Dr.Dolly is addionally buffed by 2/2. Saint Daisy's ability: "ETB Create a 1/1 Pet for each Human you control" is activated and 5 Pets with 1/1 stats are summoned.  
   </div> 
   <div class="about-card">
-    <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+    <div @click="highlight(sampleCards.evie, sampleCards.evie.cardImg)">
     <CardComponent
           class="card"
           :model="sampleCards.evie"
@@ -943,14 +935,6 @@
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
-          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
-/>
-</div>
-<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
-<CardComponent
-          class="card"
-          :model="sampleCards.saintDaisy_pet"
-        
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
 </div>
@@ -1001,6 +985,7 @@ This activates Dr.Dolly's ability "Whenever an entity dies, gain 1 Mana" which i
 
 <script>
 import CardComponent from "../components/CardComponent";
+
 import {
   sampleCards,
   belloCard,

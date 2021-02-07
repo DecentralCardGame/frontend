@@ -15,6 +15,10 @@ import { blastburn } from './cardfiles/blastburn.js'
 import { evie } from './cardfiles/evie.js'
 import { exoskeleton } from './cardfiles/exoskeleton.js'
 import { communityImg } from './cardfiles/communityCard.js'
+import { botCommandCenter } from './cardfiles/botCommandCenter.js'
+import { drDolly } from './cardfiles/drDollyCard.js'
+import { bello } from './cardfiles/bello.js'
+
 
 export const sampleCards = {
   saintDaisy: saintDaisy,
@@ -33,7 +37,11 @@ export const sampleCards = {
   blastburn: blastburn,
   evie: evie,
   exoskeleton: exoskeleton,
-  communityImg: communityImg
+  communityImg: communityImg,
+  botCommandCenter: botCommandCenter,
+  drDolly: drDolly,
+  bello: bello
+
 }
 
 export const sampleCard = {
