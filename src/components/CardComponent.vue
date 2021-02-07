@@ -698,8 +698,6 @@
         v-for="(text, index) in textToSvg(model.FlavourText)"
         id="text2495-3"
         :key="'flavorLine'+index"
-        x="76.9"
-        :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
         fill="#000000"
         fill-opacity="1"
         stroke="none"
@@ -713,14 +711,13 @@
         letter-spacing="0"
         opacity="1"
         style="line-height:1.25;-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
-        text-anchor="start"
         word-spacing="0"
         writing-mode="lr-tb"
         xml:space="preserve"
       >
         <tspan
           id="tspan2493-1"
-          x="76.9"
+          x="30.9"
           :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
           fill="#000000"
           fill-opacity="1"
@@ -732,7 +729,7 @@
           font-variant="normal"
           font-weight="300"
           style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
-          text-anchor="middle"
+          text-anchor="start"
           writing-mode="lr-tb"
         >{{ text }}</tspan>
       </text>
