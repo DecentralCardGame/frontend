@@ -349,27 +349,31 @@
     <br>
     <br>
     <br>
-    <div class="about about--card-right">
-      <div>
+    <div class="about-flex-wrap">
+      <div class="about-text">
         <h2>Places</h2>
         Places are also permanent cards. They have only a life value and disappear from play as soon as it reaches 0. Places have different abilities, typical abilities are those that create additional entities or produce additional resources or wisdom.
       </div>
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
+            class="card"
             :model="cards[4]"
             :image-u-r-l="cardImgs[4]"
         />
+      </div>
     </div>
-    <div class="about about--card-right">
-      <div>
+    <div class="about-flex-wrap">
+      <div class="about-text">
         <h2>Actions</h2>
         Action cards, unlike all other card types, do not have abilities but effects. Effects have a direct effect on the game when the action is played. After that, actions land on the Dust Pile.
       </div>
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
+            class="card"
             :model="cards[0]"
             :image-u-r-l="cardImgs[0]"
         />
+      </div>
     </div>  
         <h2>Abilities</h2>
         As mentioned before, the permanent cards can have special abilities that affect the game. There are 2 basic types, triggered and activated abilities. Activated abilities are used in a controlled way, e.g. when the player pays a certain amount of resources, whereas triggered abilities are triggered by certain events in the game. The three most common ones are "on spawn", i.e. when the card enters the game, "periodic" every round, and "on death" when the card leaves play.
@@ -664,21 +668,21 @@
 
         <!-- PAGE 2 -->
     <br/>
-    <div class="about about--card-right">
-      <div>
-        
-        <p>
+
+    <div class="about-flex-wrap">
+        <div class="about-text">
           Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
           <br/><br/>
           The fight is over, the damage points have been calculated and all triggered effects have been collected.
           Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
-         </p>
-      </div>
+        </div>
+      <div class="about-card">
         <CardComponent
-            class="about__preview"
+            class="card"
             :model="cards[1]"
             :image-u-r-l="cardImgs[1]"
         />
+      </div>
     </div>
     
       
@@ -733,20 +737,22 @@
   </p>
 
   <h2 style="text-align:center;">Example of a round</h2> <!-- !!!Example of a round!!! -->
-     <div class="about about--card-right">
-        <p>
+     <div class="about-flex-wrap">
+        <div class="about-text">
            In order to illustrate the course of a round, the following example shows how a round, divided into its different phases, progresses.
             <br/><br/>
           For this example, we are already in the middle of the game in turn 10.
           Player 1 plays the Dr. Dolly Deck and Player 2 plays the Blasturn, the Capital Deck.
             <br/><br/>
                      
-        </p>
+        </div>
+        <div class="about-card">
         <CardComponent
-            class="about__preview"
+            class="card"
             :model="cards[1]"
             :image-u-r-l="cardImgs[1]"
         />
+        </div>
      </div>
      <p>
        player 1 has the following cards in play:
@@ -831,11 +837,12 @@
   Player 2's Steam Processor produces 6 Energy, which is then used for its ability to gain 10 Wisdom, so player 2 can now draw an additional card. Their 2nd place Automated Bot Production produces another 1/1 Bot. In combination with Hurrwig, Bot Manufacturer, the following ability is now triggered: "Whenever an entity with Tag "Bot" enters the battlefield, you may deal 2 damage to target entity". Since this ability affects the enemy, the effect is delayed and placed in the enemy queue.
 </p>
 <h2>2. Card playing phase</h2>
-<div class="about about--card-right">
-  <p>
+
+<div class="about-flex-wrap">
+  <div class="about-text">
     Since the ability affects your own cards, it can be used immediately, so Dr.Dolly is addionally buffed by 2/2. Saint Daisy's ability: "ETB Create a 1/1 Pet for each Human you control" is activated and 5 Pets with 1/1 stats are summoned.  
-  </p>  
-  <div>
+  </div> 
+  <div class="about-card">
     <CardComponent
           class="card"
           :model="sampleCards.evie"
@@ -843,6 +850,7 @@
     />
   </div>
 </div>
+
 <div class="card-container">
 <CardComponent
           class="card"
@@ -874,21 +882,22 @@
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+
 </div>
-<div class="about about--card-right" style="padding-top:15px">
-<p>
+<div class="about-flex-wrap" style="padding-top:15px">
+<div class="about-text">
   <br/>
-  Player 2 plays the entities Assoult Horse, Ulrich the Tinker and the Action Card provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
-</p>
-<div>
+  Player 2 plays the following entities - Assoult Horse, Ulrich the Tinker and Provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
+</div>
+<div class="about-card">
   <CardComponent
           class="card"
           :model="sampleCards.exoskeleton"
           :image-u-r-l="sampleCards.exoskeleton.cardImg"
 />
 </div>
-
 </div>
+
 <h2>3. Resolve Phase</h2>
 <p>
 The played cards are now revealed. The effects that affect your own cards have already been executed in phase 2. Now the ones that are in the enemy queue are resolved. The triggered ability of Hurrwig, Bot Manufacturer is in the queue 2 times. Once it was activated at the end of the combat phase of tick 9 and now in the planning phase in this tick. Now it deals 2 damage to Wynn, the Brainless and 2 damage to Furious jack, both of which end up on the Graveyard.
@@ -1058,6 +1067,33 @@ img {
   font-size:1.5rem;
   margin:-5px;
 }
+.about-card {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 0 15px;
+}
 
+.about-text {
+  min-width: 300px;
+  max-width: 500px;
+  margin: 0 15px;
+}
+
+.about-flex-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: top;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+}
+
+.reverse-column {
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+  }
+}
 
 </style>
