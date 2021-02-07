@@ -889,11 +889,12 @@
   <br/>
   Player 2 plays the following entities - Assoult Horse, Ulrich the Tinker and Provide Exoskeleton. This affects their own cards and can be applied immediately to Richard, Bot Commander, who now has the stats 5/8.
 </div>
-<div class="about-card">
+<div @click="highlight(sampleCards.exoskeleton, sampleCards.exoskeleton.cardImg)">
+    
   <CardComponent
-          class="card"
-          :model="sampleCards.exoskeleton"
-          :image-u-r-l="sampleCards.exoskeleton.cardImg"
+    class="card"
+    :model="sampleCards.exoskeleton"
+    :image-u-r-l="sampleCards.exoskeleton.cardImg"
 />
 </div>
 </div>
@@ -904,14 +905,23 @@ The played cards are now revealed. The effects that affect your own cards have a
 <br/><br/>
 This activates Dr.Dolly's ability "Whenever an entity dies, gain 1 Mana" which is put into the queue for the next resolve phase.
 </p>
-
-
+<!-- This is the highlight card area, it does not really appear at the bottom, but over everything else-->
+    <div v-if="isCardHighlighted"
+        @click="closeHighlightedCard"
+        class="highlight-area">
+      <CardComponent
+        class="highlighted-card"
+        :model="sampleCards.exoskeleton"
+        :image-u-r-l="sampleCards.exoskeleton.cardImg"
+        hoverBehavior="none"
+      />
+    </div>
   </div>
 </template>
 
 
 <script>
-import CardComponent from '../components/CardComponent'
+import CardComponent from "../components/CardComponent";
 import {
   sampleCards,
   belloCard,
@@ -923,26 +933,50 @@ import {
   dollyCard,
   dollyImg,
   timeDeviceCard,
-  timeDeviceImg
-} from '../components/utils/sampleCards.js'
-
+  timeDeviceImg,
+} from "../components/utils/sampleCards.js";
 
 export default {
-  name: 'HowToPlayPage',
-  components: {CardComponent},
+  name: "HowToPlayPage",
+  components: { CardComponent },
   data() {
     return {
       sampleCards: sampleCards,
-      cards: [communityCard, dollyCard, timeDeviceCard, belloCard, botCommandCard],
-      cardImgs: [communityImg, dollyImg, timeDeviceImg, belloImg, botCommandImg]
-    }
+      cards: [
+        communityCard,
+        dollyCard,
+        timeDeviceCard,
+        belloCard,
+        botCommandCard,
+      ],
+      cardImgs: [
+        communityImg,
+        dollyImg,
+        timeDeviceImg,
+        belloImg,
+        botCommandImg,
+      ],
+      highlightedCard: {
+        model: communityCard,
+        img: communityImg,
+      },
+      isCardHighlighted: false,
+    };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
-    
-  }
-}
+    closeHighlightedCard() {
+      this.isCardHighlighted = false
+    },
+    highlight(model, image) {
+      this.isCardHighlighted = true
+      this.highlightedCard = {
+        model: model,
+        img: image,
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -971,7 +1005,7 @@ export default {
   svg {
     height: $font-size * 20;
   }
-  margin-bottom: $font-size*4;
+  margin-bottom: $font-size * 4;
 }
 
 .about--card-left {
@@ -1004,18 +1038,19 @@ h2 {
 
 .marked-text {
   color: #fff;
-  text-shadow: 1px 0 0 #888888, 0 -1px 0 #888888, 0 1px 0 #888888, -1px 0 0 #888888;
+  text-shadow: 1px 0 0 #888888, 0 -1px 0 #888888, 0 1px 0 #888888,
+    -1px 0 0 #888888;
 }
 
 img {
   float: right;
-  width: 30%
+  width: 30%;
 }
 
 .content-border-white {
-  width:auto;
+  width: auto;
   border: 5px solid white;
-  padding:20px;
+  padding: 20px;
   padding-top: 0px;
 }
 // .card-container {
@@ -1024,23 +1059,23 @@ img {
 //   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 // }
 .card {
-   max-width: 240px;
+  max-width: 240px;
 }
 // .card:hover {
 //   width:200%;
 //   z-index:9999;
 // }
 .card-container {
-  display:grid;
-  align-self:center;
+  display: grid;
+  align-self: center;
   align-items: center;
-  grid-template-columns:repeat(5,1fr);
-  grid-gap:2px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2px;
 }
-.image_arrow{
-  padding-top:40%;
-  min-width:100%;
-  min-height:20%;
+.image_arrow {
+  padding-top: 40%;
+  min-width: 100%;
+  min-height: 20%;
 }
 .rot90 {
   transform: rotate(280deg);
@@ -1053,19 +1088,19 @@ img {
 }
 
 #defense-mode-text {
-  font-size:1.25rem;
-  margin:-10px;
-  margin-top:5px;
+  font-size: 1.25rem;
+  margin: -10px;
+  margin-top: 5px;
 }
 #attack-mode-text {
-  text-align:center;
-  font-size:1.25rem;
-  margin:-10px;
+  text-align: center;
+  font-size: 1.25rem;
+  margin: -10px;
   margin-bottom: 5px;
 }
 #player-num-text {
-  font-size:1.5rem;
-  margin:-5px;
+  font-size: 1.5rem;
+  margin: -5px;
 }
 .about-card {
   max-width: 300px;
@@ -1094,6 +1129,24 @@ img {
   @media (max-width: 1200px) {
     flex-direction: column-reverse;
   }
+}
+.highlighted-card {
+  margin: auto;
+  margin-top: 2vh;
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+.highlight-area {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
 }
 
 </style>
