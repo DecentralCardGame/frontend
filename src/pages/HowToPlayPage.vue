@@ -858,30 +858,36 @@
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+</div>
 <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+</div>
 <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+</div>
 <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+</div>
 <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
+        
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+</div>
 <div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
