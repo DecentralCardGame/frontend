@@ -852,36 +852,43 @@
 </div>
 
 <div class="card-container">
-<CardComponent
-          class="card"
-          :model="sampleCards.saintDiasy"
-          :image-u-r-l="sampleCards.saintDaisy.cardImg"
-/>
+<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
 <CardComponent
           class="card"
           :model="sampleCards.saintDaisy_pet"
           :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
 />
+<div @click="highlight(sampleCards.saintDaisy_pet, sampleCards.saintDaisy_pet.cardImg)">
+<CardComponent
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+/>
+</div>
 
 </div>
 <div class="about-flex-wrap" style="padding-top:15px">
@@ -911,8 +918,8 @@ This activates Dr.Dolly's ability "Whenever an entity dies, gain 1 Mana" which i
         class="highlight-area">
       <CardComponent
         class="highlighted-card"
-        :model="sampleCards.exoskeleton"
-        :image-u-r-l="sampleCards.exoskeleton.cardImg"
+        :model="highlightedCard.model"
+        :image-u-r-l="highlightedCard.img"
         hoverBehavior="none"
       />
     </div>
