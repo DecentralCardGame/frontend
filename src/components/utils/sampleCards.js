@@ -18,6 +18,7 @@ import { communityImg } from './cardfiles/communityCard.js'
 import { botCommandCenter } from './cardfiles/botCommandCenter.js'
 import { drDolly } from './cardfiles/drDollyCard.js'
 import { bello } from './cardfiles/bello.js'
+import { timeDevice } from './cardfiles/timeDeviceCard.js'
 
 
 export const sampleCards = {
@@ -40,8 +41,8 @@ export const sampleCards = {
   communityImg: communityImg,
   botCommandCenter: botCommandCenter,
   drDolly: drDolly,
-  bello: bello
-
+  bello: bello,
+  timeDevice: timeDevice
 }
 
 export const sampleCard = {
