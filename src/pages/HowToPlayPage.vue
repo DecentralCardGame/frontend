@@ -388,11 +388,13 @@
     <h2>Activated Abillites</h2>
     You can activate an activated ability exactly when you can also play cards from your hand. But you must also be able to pay their costs. For example, the Time Manipulation Device has the ability "10 Energy: Gain 15 Wisdom".
     <h2>Game Zones</h2>
-    Hand
+    Hand: <br>
     You start the game with as many hand cards as specified on your HQ. Most of the time this is 3 cards, you are usually allowed to draw 1 card per round, so in the first round you will likely have 4 cards to play.
-    Your Deck
+    <br><br>
+    Your Deck: <br>
     From this deck you draw your playing cards. Your deck consists of 50 cards.
-    Dustpile 
+    <br><br>
+    Dustpile: <br>
     The Dustpile is your storage stack for played actions, as well as entities and places whose life value has fallen to or below 0. There are certain action cards or effects that can bring cards from the Dust Pile back into play.
     <h2>Attacking and Blocking</h2>
     The game is decided by whose headquarters reaches 0 life points first. Attacking with entities is the usual way to achieve this.
