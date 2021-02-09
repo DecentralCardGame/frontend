@@ -310,7 +310,7 @@
     <br>
     <br>
     
-    <img src="../assets/Dr.Dolly.png">
+    <img src="../assets/HQ_Dolly.png">
     <h2>Your Headquaters</h2>
     Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
     <span class="marked-text">1</span>
@@ -330,7 +330,8 @@
     <br>
     <br>
     <br>
-    <img src="../assets/HQ_Dolly.png">
+    
+     <img src="../assets/Dr.Dolly.png">
     <h2>Entities (Creatures)</h2>
     Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
     <span class="marked-text">1</span>
@@ -496,6 +497,7 @@
       </div>
     </div>
     <p>
+      <br>
       Player 2 places Ulrich the Tinker in Defense Mode. Richard, Bot Commander, Hurrwig, Bot Manufacturer and Assoult Horse in attack mode.
     </p>
     <div class="content-border-white">
@@ -571,6 +573,7 @@
         </div>
       </div>
     </div>
+    <br>
     <h2>5. Resolve Phase II</h2>
     <p>
       Since no effects were triggered by the lane switches, we now enter the combat phase
@@ -633,6 +636,7 @@
       </div>
     </div>
     <p>
+      <br>
       Now player 2 attacks with hist entities in attack mode. 
       Richard Bot Commander fights against the 1st Pet in defense mode. Thereby his ability is triggered which is: "When Richard is attacking, create a 1/1 Bot that is also attacking". So an additional 1/1 bot appears, which now attacks the 2nd pet in defense mode. 
       Both entities take 1 point of damage and die.
@@ -845,6 +849,7 @@
       </div>
     </div>
     <p>
+      <br>
       The fight is over, the damage points have been calculated and all triggered effects have been collected. This tick is finished and the next round begins.
     </p>
 
@@ -1140,30 +1145,6 @@ export default {
   margin-bottom: $font-size * 4;
 }
 
-.about--card-left {
-  grid-template-columns: auto 3fr;
-
-  .about__preview {
-    justify-self: start;
-  }
-}
-
-.about--card-right {
-  grid-template-columns: 3fr auto;
-
-  .about__preview {
-    justify-self: end;
-  }
-}
-
-.about--card-both {
-  grid-template-columns: 1fr 2fr 1fr;
-}
-
-.about__preview {
-  width: auto;
-}
-
 h2 {
   font-size: 1.75rem;
 }
@@ -1280,4 +1261,6 @@ img {
   display: table;
   transition: opacity 0.3s ease;
 }
+
+
 </style>
