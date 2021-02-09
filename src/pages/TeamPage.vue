@@ -141,9 +141,12 @@
         >
       </div>
       <div>
-        <h2> Nikolas Yes - Game Developer </h2>
+        <h2> Niklavs Senvalds - Game Developer </h2>
         <p>
-          He stomps out code for the game client.
+          Niklavs, actually the right spelling is Niklāvs Šenvalds, but the title font cannot display these crazy letters, is also known as Niko. He is a displaced gamer, 
+          but has suddenly found himself developing games instead of playing them. Unlike literally everybody else on the planet earth, he has never played magic and therefore
+          is at a slight disadvantage - he has never won a single game during playtesting. Still he has decided to participate in this project and works on the website as well
+          as the game client.
         </p>
       </div>
     </div>
@@ -158,7 +161,7 @@
       <div>
         <h2> Harold Zellner - Game Developer </h2>
         <p>
-          He stomps out even more code for the game client.
+          He stomps out 110% of the code for the game client.
         </p>
       </div>
     </div>
