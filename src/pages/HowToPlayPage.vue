@@ -3,7 +3,6 @@
     <div class="hero">
       <h1>How To Play</h1>
       <p class="text--big">Here you can read how to play this game - written by noobs for noobs.</p>
-      
     </div>
     <h2>Fundamentals</h2>
     <p>
@@ -450,9 +449,9 @@
       <span id="defense-mode-text" style="text-align:left;">Defense mode</span> 
       <div class="card-container">
         <CardComponent
-            class="card"
-            :model="sampleCards.saintDaisy_pet"
-            :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
+          class="card"
+          :model="sampleCards.saintDaisy_pet"
+          :image-u-r-l="sampleCards.saintDaisy_pet.cardImg"
         />
         <CardComponent
           class="card"
@@ -979,14 +978,14 @@ export default {
   mounted() {},
   methods: {
     closeHighlightedCard() {
-      this.isCardHighlighted = false
+      this.isCardHighlighted = false;
     },
     highlight(model, image) {
-      this.isCardHighlighted = true
+      this.isCardHighlighted = true;
       this.highlightedCard = {
         model: model,
         img: image,
-      }
+      };
     },
   },
 };
@@ -1157,9 +1156,8 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
-
 </style>
