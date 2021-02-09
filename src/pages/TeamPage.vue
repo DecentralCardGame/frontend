@@ -3,7 +3,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/patrick.png"
+          src="../assets/team/patrick.jpg"
           class="rounded"
         >
       </div>
@@ -30,7 +30,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/marius.png"
+          src="../assets/team/marius.jpg"
           class="rounded"
         >
       </div>
@@ -57,30 +57,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/thilo.png"
-          class="rounded"
-        >
-      </div>
-      <div>
-        <h2> Thilo Billerbeck - Frontend </h2>
-        <p>
-          He likes games since his childhood. He also likes open source, but a bit later though. He likes to build websites and especially likes the design and technical realization of websites.
-          He also likes new technology, especially in internet and communication. He likes modern architecture and usability. It is unbelievable how good that matches to this project here.
-          Imagine someone who likes sex and money and wins a lottery, while being in front of a brothel. It's a bit like that but just with programming the frontend of Crowd Control. It might be
-          a bit harder than the example with sex and money, because the pixels have a high need for uniqueness and never want to really align how the designers envisioned it. So whenever designers
-          throw a new stylesheet or concept.pdf at Thilo, he just keeps cool and answers "I'll see what I can do". Once we thought we should challenge him a bit more and locked ourselves up in a
-          holiday chalet, forced everyone into the sauna and hot tub in turns, but he still stayed cool. We also tried it with a Hackathon and forced us to code under pressure, didn't help either.
-          But at the end we won two prizes and his face turned a bit red, so maybe that did the trick. So whenever you find a bug on the website, help us and throw it at Thilo. <br>
-          In addition to that one needs to mention that it is a very hard job to make the creation of cards accessible, since the users are actually programming cards. But we must prevent them from
-          knowing that fact. It should feel just like clicking some buttons and Thilo works on making these buttons friendly to you.
-        </p>
-      </div>
-    </div>
-
-    <div class="team-entry">
-      <div class="image--round">
-        <img
-          src="../assets/anna.png"
+          src="../assets/team/anna.jpg"
           class="rounded"
         >
       </div>
@@ -101,7 +78,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/jannik.png"
+          src="../assets/team/jannik.jpg"
           class="rounded"
         >
       </div>
@@ -121,7 +98,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/stefi.png"
+          src="../assets/team/stefi.jpg"
           class="rounded"
         >
       </div>
@@ -140,12 +117,12 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/noah.png"
+          src="../assets/team/noah.jpg"
           class="rounded"
         >
       </div>
       <div>
-        <h2> Noah Faust - Game designer </h2>
+        <h2> Noah Faust - Game Designer </h2>
         <p>
           He is actually the only one who does not want to work on the project. Unfortunately his older brother works here as well and he is stronger and trains Judo two times a week, so Noah cannot really choose
           to opt out. Noah and Marius have also agreed on a way of expressing this situation, which goes like this: "Well, I have thought about that and then I read what Marius/Noah wrote about that in the
@@ -157,11 +134,44 @@
     </div>
 
     <div class="team-entry">
+      <div class="image--round">
+        <img
+          src="../assets/team/niko.jpg"
+          class="rounded"
+        >
+      </div>
+      <div>
+        <h2> Niklavs Senvalds - Game Developer </h2>
+        <p>
+          Niklavs, actually the right spelling is Niklāvs Šenvalds, but the title font cannot display these crazy letters, is also known as Niko. He is a displaced gamer, 
+          but has suddenly found himself developing games instead of playing them. Unlike literally everybody else on the planet earth, he has never played magic and therefore
+          is at a slight disadvantage - he has never won a single game during playtesting. Still he has decided to participate in this project and works on the website as well
+          as the game client.
+        </p>
+      </div>
+    </div>
+
+    <div class="team-entry">
+      <div class="image--round">
+        <img
+          src="../assets/team/harry.jpg"
+          class="rounded"
+        >
+      </div>
+      <div>
+        <h2> Harold Zellner - Game Developer </h2>
+        <p>
+          He stomps out 110% of the code for the game client.
+        </p>
+      </div>
+    </div>
+
+    <div class="team-entry">
       <div class="image--round" />
       <div>
         <h2> Honorable Mentions </h2>
         <p>
-          Danny Czoschke und Jette, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
+          Thilo Billerbeck has built most of the Website you see here. Danny Czoschke and Jette, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
           Andy Frankenberger and Tom König helped us win the Diffusion Hackathon in 2019 with their incredible CORS skills.
         </p>
       </div>
