@@ -717,7 +717,7 @@
       >
         <tspan
           id="tspan2493-1"
-          x="30.9"
+          x="26.9"
           :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
           fill="#000000"
           fill-opacity="1"
@@ -728,9 +728,9 @@
           font-style="normal"
           font-variant="normal"
           font-weight="300"
-          style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
+          style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:justify"
           text-anchor="start"
-          writing-mode="lr-tb"
+          writing-mode="horizontal-tb"
         >{{ text }}</tspan>
       </text>
       <!-- Attack -->
@@ -932,11 +932,11 @@ export default {
     textToSvg (text) {
       if (!text) return text
 
-      let maxLength = 45
+      let maxLength = 47
       if (text.length < 100)
         maxLength = 25
       else if (text.length < 200)
-        maxLength = 35
+        maxLength = 29
 
       let lines = ['']
       let words = text.split(' ')
@@ -961,9 +961,9 @@ export default {
       if (text.length < 100)
         return 8.1
       else if (text.length < 200)
-        return 6.1
+        return 7.1
       else
-        return 5.1
+        return 6.1
     },
     fontSpacing (text) {
       if (text.length < 100)
