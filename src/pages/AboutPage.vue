@@ -33,8 +33,8 @@
       </div>
       <div class="about-card">
         <CardComponent
-          :model="cards[0]"
-          :image-u-r-l="cardImgs[0]"
+          :model="sampleCards.communityImg"
+          :image-u-r-l="sampleCards.communityImg.cardImg"
         />
       </div>
     </div>
@@ -42,8 +42,8 @@
     <div class="about-flex-wrap reverse-column">
       <div class="about-card">
         <CardComponent
-          :model="cards[1]"
-          :image-u-r-l="cardImgs[1]"
+          :model="sampleCards.drDolly"
+          :image-u-r-l="sampleCards.drDolly.cardImg"
         />
       </div>
       <div class="about-text">
@@ -92,8 +92,8 @@
       </div>
       <div class="about-card">
         <CardComponent
-          :model="cards[2]"
-          :image-u-r-l="cardImgs[2]"
+          :model="sampleCards.timeDevice"
+          :image-u-r-l="sampleCards.timeDevice.cardImg"
         />
       </div>
     </div>
@@ -101,8 +101,8 @@
     <div class="about-flex-wrap reverse-column">
       <div class="about-card">
         <CardComponent
-          :model="cards[3]"
-          :image-u-r-l="cardImgs[3]"
+          :model="sampleCards.bello"
+          :image-u-r-l="sampleCards.bello.cardImg"
         />
       </div>
       <div class="about-text">
@@ -148,8 +148,8 @@
       </div>
       <div class="about-card">
         <CardComponent
-          :model="cards[4]"
-          :image-u-r-l="cardImgs[4]"
+          :model="sampleCards.botCommandCenter"
+          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
         />
       </div>
     </div>
@@ -157,8 +157,13 @@
 </template>
 
 <script>
+
+
+
+
 import CardComponent from "../components/CardComponent";
 import {
+  sampleCards,
   belloCard,
   belloImg,
   botCommandCard,
@@ -176,6 +181,7 @@ export default {
   components: { CardComponent },
   data() {
     return {
+      sampleCards: sampleCards,
       cards: [
         communityCard,
         dollyCard,
