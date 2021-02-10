@@ -82,7 +82,7 @@
       <div class="gallery__filter__item">
         <input
           v-model="filters.notesContains"
-          placeholder="card notes contains"
+          placeholder="card notes contain"
         >
       </div>
       <div class="gallery__filter__item">
