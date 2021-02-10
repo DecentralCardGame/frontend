@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 154 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,0.791233,0)">
+        <g id="Icons-Spacing" serif:id="Icons Spacing">
+            <g transform="matrix(1.02546,0,0,1.02546,94.5416,9.32348)">
+                <g transform="matrix(1,0,0,1,-5.5,-5.5)">
+                    <g id="Ebene_2">
+                        <g id="Ebene_1-2">
+                            <path d="M9.5,7.5L5.5,0.5L1.677,7.5L9.5,7.5Z" style="fill:rgb(153,204,102);stroke:rgb(96,96,106);stroke-width:1px;"/>
+                            <path d="M5.5,10.33L5.5,5.5" style="fill:none;fill-rule:nonzero;stroke:rgb(96,96,106);stroke-width:1px;stroke-miterlimit:2;"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

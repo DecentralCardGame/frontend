@@ -426,7 +426,7 @@
           >
             Discard Changes
           </button>
-
+          
           <button
             v-show="activeStep == 4"
             @click="resetCardDraft"

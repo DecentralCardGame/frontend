@@ -50,6 +50,11 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/howtoplay">
+              How To Play
+            </router-link>
+          </li>
+          <li>
             <router-link to="/newcard">
               Card Creator
             </router-link>

@@ -698,8 +698,6 @@
         v-for="(text, index) in textToSvg(model.FlavourText)"
         id="text2495-3"
         :key="'flavorLine'+index"
-        x="76.9"
-        :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
         fill="#000000"
         fill-opacity="1"
         stroke="none"
@@ -713,14 +711,13 @@
         letter-spacing="0"
         opacity="1"
         style="line-height:1.25;-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
-        text-anchor="start"
         word-spacing="0"
         writing-mode="lr-tb"
         xml:space="preserve"
       >
         <tspan
           id="tspan2493-1"
-          x="76.9"
+          x="26.9"
           :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
           fill="#000000"
           fill-opacity="1"
@@ -731,9 +728,9 @@
           font-style="normal"
           font-variant="normal"
           font-weight="300"
-          style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
-          text-anchor="middle"
-          writing-mode="lr-tb"
+          style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:justify"
+          text-anchor="start"
+          writing-mode="horizontal-tb"
         >{{ text }}</tspan>
       </text>
       <!-- Attack -->
@@ -838,7 +835,8 @@ export default {
     displayNotes: {
       type: Boolean,
       default: false
-    }
+    },
+    hoverBehavior: String
   },
   data () {
     return {
@@ -863,10 +861,14 @@ export default {
   },
   methods: {
     cardmouseleave() {
+      if (this.hoverBehavior === 'none') return 
+
       this.opaque = 1;
       this.clicked = false;
     },
     cardmouseclick() {
+      if (this.hoverBehavior === 'none') return 
+
       if (this.isMobileDevice()) {
         this.opaque = this.clicked? 1 : 0
         this.clicked = !this.clicked
@@ -880,6 +882,8 @@ export default {
       }
     },
     cardmouseenter() {
+      if (this.hoverBehavior === 'none') return 
+
       this.opaque = 0;
     },
     getType () {
@@ -935,11 +939,11 @@ export default {
     textToSvg (text) {
       if (!text) return text
 
-      let maxLength = 45
+      let maxLength = 47
       if (text.length < 100)
         maxLength = 25
       else if (text.length < 200)
-        maxLength = 35
+        maxLength = 29
 
       let lines = ['']
       let words = text.split(' ')
@@ -964,9 +968,9 @@ export default {
       if (text.length < 100)
         return 8.1
       else if (text.length < 200)
-        return 6.1
+        return 7.1
       else
-        return 5.1
+        return 6.1
     },
     fontSpacing (text) {
       if (text.length < 100)
