@@ -29,89 +29,84 @@
       v-show="filters.visible"
       class="gallery__filter-box"
     >
+      <div class="gallery__filter__item">
+      <select v-model="filters.status">
+        <option
+          disabled
+          value=""
+        >
+          select status
+        </option>
+        <option>Prototype</option>
+        <option>Trial</option>
+        <option>Permanent</option>
+      </select>
+      </div>
+      <div class="gallery__filter__item">
+      <select v-model="filters.type">
+        <option
+          disabled
+          value=""
+        >
+          select type
+        </option>
+        <option>HQ</option>
+        <option>Entity</option>
+        <option>Action</option>
+        <option>Place</option>
+      </select>
+      </div>
       <div>
         <div class="gallery__filter__item">
-        <select v-model="filters.status">
-          <option
-            disabled
-            value=""
-          >
-            select status
-          </option>
-          <option>Prototype</option>
-          <option>Trial</option>
-          <option>Permanent</option>
-        </select>
-        </div>
-        <div class="gallery__filter__item">
-        <select v-model="filters.type">
-          <option
-            disabled
-            value=""
-          >
-            select type
-          </option>
-          <option>HQ</option>
-          <option>Entity</option>
-          <option>Action</option>
-          <option>Place</option>
-        </select>
-        </div>
-
-        <div>
-          <div class="gallery__filter__item">
-            <select v-model="filters.sortBy">
-              <option
-                disabled
-                value=""
-              >
-                sort by
-              </option>
-              <option>Name</option>
-              <option>Casting Cost</option>
-              <option>Id</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <div class="gallery__filter__item">
-            <input
-              v-model="filters.nameContains"
-              placeholder="card name contains"
+          <select v-model="filters.sortBy">
+            <option
+              disabled
+              value=""
             >
-          </div>
+              sort by
+            </option>
+            <option>Name</option>
+            <option>Casting Cost</option>
+            <option>Id</option>
+          </select>
         </div>
-
+      </div>
+      <div>
         <div class="gallery__filter__item">
           <input
-            v-model="filters.notesContains"
-            placeholder="card notes contains"
+            v-model="filters.nameContains"
+            placeholder="card name contains"
           >
         </div>
-        <div class="gallery__filter__item">
-          <input
-            v-model="filters.owner"
-            placeholder="card owner is"
-            @click="filters.owner = getOwnAddress()"
-          >
-        </div>
-        <div class="gallery__filter__item">
-          <input
-            placeholder="cards per page"
-            @input="filters.cardsPerPage = $event.target.value"
-          >
-        </div>
-        <div class="gallery__filter__item">
-          <button @click="loadCardList">
-            Apply
-          </button>
-        </div>
-        <div class="gallery__filter__item">
-          <button @click="resetFilters">
-            Clear Filters
-          </button>
-        </div>
+      </div>
+      <div class="gallery__filter__item">
+        <input
+          v-model="filters.notesContains"
+          placeholder="card notes contains"
+        >
+      </div>
+      <div class="gallery__filter__item">
+        <input
+          v-model="filters.owner"
+          placeholder="card owner is"
+          @click="filters.owner = getOwnAddress()"
+        >
+      </div>
+      <div class="gallery__filter__item">
+        <input
+          placeholder="cards per page"
+          @input="filters.cardsPerPage = $event.target.value"
+        >
+      </div>
+      <div class="gallery__filter__item">
+        <button @click="resetFilters">
+          Clear Filters
+        </button>
+      </div>
+      <div class="gallery__filter__item">
+        <button @click="loadCardList">
+          Apply
+        </button>
       </div>
     </div>
     <div class="gallery__view">
@@ -399,7 +394,7 @@ export default {
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: auto;
-  grid-column-gap: 1rem;
+  grid-column-gap: 4rem;
   grid-row-gap: 1rem;
 }
 
