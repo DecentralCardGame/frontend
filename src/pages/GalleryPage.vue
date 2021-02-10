@@ -30,6 +30,7 @@
       class="gallery__filter-box"
     >
       <div>
+        <div class="gallery__filter__item">
         <select v-model="filters.status">
           <option
             disabled
@@ -41,7 +42,8 @@
           <option>Trial</option>
           <option>Permanent</option>
         </select>
-        <br>
+        </div>
+        <div class="gallery__filter__item">
         <select v-model="filters.type">
           <option
             disabled
@@ -54,48 +56,62 @@
           <option>Action</option>
           <option>Place</option>
         </select>
-        <br>
-        <select v-model="filters.sortBy">
-          <option
-            disabled
-            value=""
+        </div>
+
+        <div>
+          <div class="gallery__filter__item">
+            <select v-model="filters.sortBy">
+              <option
+                disabled
+                value=""
+              >
+                sort by
+              </option>
+              <option>Name</option>
+              <option>Casting Cost</option>
+              <option>Id</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="gallery__filter__item">
+            <input
+              v-model="filters.nameContains"
+              placeholder="card name contains"
+            >
+          </div>
+        </div>
+
+        <div class="gallery__filter__item">
+          <input
+            v-model="filters.notesContains"
+            placeholder="card notes contains"
           >
-            sort by
-          </option>
-          <option>Name</option>
-          <option>Casting Cost</option>
-          <option>Id</option>
-        </select>
-      </div>
-      <div>
-        <input
-          v-model="filters.nameContains"
-          placeholder="card name contains"
-        >
-        <br>
-        <input
-          v-model="filters.notesContains"
-          placeholder="card notes contains"
-        >
-        <br>
-        <input
-          v-model="filters.owner"
-          placeholder="card owner is"
-          @click="filters.owner = getOwnAddress()"
-        >
-        <br>
-        <input
-          placeholder="cards per page"
-          @input="filters.cardsPerPage = $event.target.value"
-        >
-        <br>
-        <button @click="loadCardList">
-          Apply
-        </button>
-        <br>
-        <button @click="resetFilters">
-          Clear Filters
-        </button>
+        </div>
+        <div class="gallery__filter__item">
+          <input
+            v-model="filters.owner"
+            placeholder="card owner is"
+            @click="filters.owner = getOwnAddress()"
+          >
+        </div>
+        <div class="gallery__filter__item">
+          <input
+            placeholder="cards per page"
+            @input="filters.cardsPerPage = $event.target.value"
+          >
+        </div>
+        <div class="gallery__filter__item">
+          <button @click="loadCardList">
+            Apply
+          </button>
+        </div>
+        <div class="gallery__filter__item">
+          <button @click="resetFilters">
+            Clear Filters
+          </button>
+        </div>
       </div>
     </div>
     <div class="gallery__view">
@@ -379,8 +395,16 @@ export default {
   margin-bottom: 2rem;
   border: $border-thickness solid $white;
   padding: 1rem;
-  display: flex;
+  display: grid;
   gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: auto;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+
+.gallery__filter__item {
+  width: 20%
 }
 
 .ability-modal-container {
