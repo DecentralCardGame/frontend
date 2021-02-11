@@ -47,7 +47,7 @@ new Promise(
           reject(err)
         } else {
           console.log('cardRules: ', rules)
-          resolve(rules.card)
+          resolve(rules.Card)
 
         }
       })

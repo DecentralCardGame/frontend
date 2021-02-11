@@ -13,7 +13,7 @@
         @change="showAbilityModal(ability, entry.btn, index)"
       >
         <option
-          v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).min, R.path(entry.btn.rulesPath, $cardRules).max + 1)"
+          v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).min || 0, R.path(entry.btn.rulesPath, $cardRules).max + 1)"
           :key="n"
           :value="n"
         >
@@ -116,8 +116,9 @@ export default {
                 options = R.dissoc(singleUseHappened, options)
               }
             }
-
+            
             // check if selection is optional
+            /*
             if (atRules(btn.rulesPath).optional) {
               options.noSelect = {
                 description: 'This means no condition will be checked here.',
@@ -128,6 +129,7 @@ export default {
                 interactionText: 'no §Condition'
               }
             }
+            */
 
             let dialog = {
               title: atRules(btn.rulesPath).name,
@@ -170,6 +172,8 @@ export default {
               options: []
             }
 
+            console.log('yes', node)
+
             // recursively go down until only strings are left
             let traverseChildren = array => {
               let isString = x => R.type(x) === "String"
@@ -180,7 +184,7 @@ export default {
               }
             }
 
-            let strings = R.uniq(R.flatten(traverseChildren(node.children)))
+            let strings = R.uniq(R.flatten(traverseChildren(node.enum)))
 
             for (let prop in strings) {
               this.dialog.options.push({

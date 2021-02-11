@@ -544,6 +544,7 @@ export default {
       let atRules = R.curry(atPath)(this.$cardRules);
 
       console.log("abilities", this.abilities);
+      console.log('atrules', atRules(''))
 
       this.isAbilityModalVisible = true;
 
@@ -557,6 +558,7 @@ export default {
           return;
         }
 
+        console.log('getrulestype', this.getRulesType())
         let newAbility = {
           path: [
             "children",
@@ -579,6 +581,8 @@ export default {
           rulesPath: newAbility.path,
           abilityPath: [],
         };
+
+        console.log('dialog', dialog)
 
         // this is the bugfix for replay selection bug
         R.forEachObjIndexed(function (option) {
