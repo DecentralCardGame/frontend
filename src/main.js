@@ -40,7 +40,6 @@ function loadVue() {
 
 new Promise(
   function (resolve, reject) {
-    console.log(cardRules)
     $RefParser.dereference(cardRules,
       (err, rules) => {
         if (err) {
