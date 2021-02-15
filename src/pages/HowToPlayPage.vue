@@ -340,10 +340,12 @@
       </p>
       <div class="content-border-white">
         <!--3rd box-->
-        <p style="display:block;font-size:1.25rem;margin:10px;">
-          Player 1 Attack Mode
-          <span style="display:block;float:right;width:45%;margin-left:10px;">Player 2 Defense Mode</span>
-        </p>
+        <div class="card-container" style="grid-template-columns: repeat(2, 1fr);">
+          <span style="display:block;font-size:1.25rem;margin:2px;">
+            Player 1 Attack
+          </span>
+          <span style="font-size:1.25rem;text-align: right;">Player 2 Defense</span>
+          </div>
         <div class="card-container">
           <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
             <CardComponent
@@ -963,6 +965,7 @@ img {
   font-size: 1.5rem;
   margin: -5px;
 }
+
 .about-card {
   max-width: 300px;
   min-width: 300px;
