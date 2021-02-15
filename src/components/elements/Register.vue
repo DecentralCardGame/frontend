@@ -3,7 +3,7 @@
     <h2>Join the Experience</h2>
     <p>
       <b>
-        >Good to see you here! Before you can dive into the universe of Crowd
+        Good to see you here! Before you can dive into the universe of Crowd
         Control, you need to make an account.</b>
     </p>
     <form @submit.prevent="register">
@@ -46,10 +46,6 @@
       </button>
     </form>
     <br>
-    <p>
-      AT THE MOMENT E-MAIL SIGNUP IS NOT IMPLEMENTED - JUST PRESS REGISTER TO
-      ACTIVATE YOUR ACCOUNT ON THE BLOCKCHAIN
-    </p>
   </div>
 </template>
 
