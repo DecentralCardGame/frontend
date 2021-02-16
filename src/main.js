@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import $RefParser from 'json-schema-ref-parser'
 import Notifications from 'vue-notification'
-import velocity from 'velocity-animate'
 //import VueSwing from 'vue-swing'
 import VueCryptojs from 'vue-cryptojs'
 import App from './App.vue'
@@ -24,7 +23,7 @@ Vue.prototype.$hottub = axios.create({
   baseURL: process.env.VUE_APP_AUTH_API
 })
 
-Vue.use(Notifications, { velocity })
+Vue.use(Notifications)
 Vue.use(VueCryptojs)
 Vue.use(cardChain)
 
@@ -73,7 +72,7 @@ Vue.mixin({
     },
     notifyFail: R.curry(function (title, text) {
       this.$notify({
-        group: 'bottom-right-notification',
+        group: 'bottom-right-notification-alert',
         title: title,
         text: text,
         type: 'notification--alert',
@@ -82,7 +81,7 @@ Vue.mixin({
     }),
     notifySuccess: R.curry(function (title, text) {
       this.$notify({
-        group: 'bottom-right-notification',
+        group: 'bottom-right-notification-success',
         title: title,
         text: text,
         type: 'notification--success',
@@ -91,7 +90,7 @@ Vue.mixin({
     }),
     notifyInfo: R.curry(function (title, text) {
       this.$notify({
-        group: 'bottom-right-notification',
+        group: 'bottom-right-notification-info',
         title: title,
         text: text,
         type: 'notification--info',

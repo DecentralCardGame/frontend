@@ -14,26 +14,20 @@
         <router-view />
       </div>
     </main>
-    <notifications
-      group="bottom-right-notification"
+    <notifications      
+      group="bottom-right-notification-success"
       position="bottom right"
       classes="notification notification--success"
-      animation-type="velocity"
-      :speed="300"
     />
-    <notifications
-      group="bottom-right-notification"
+    <notifications 
+      group="bottom-right-notification-info"
       position="bottom right"
       classes="notification notification--info"
-      animation-type="velocity"
-      :speed="300"
     />
     <notifications
-      group="bottom-right-notification"
+      group="bottom-right-notification-alert"
       position="bottom right"
       classes="notification notification--alert"
-      animation-type="velocity"
-      :speed="300"
     />
     <PageFooter />
   </div>
