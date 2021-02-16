@@ -14,26 +14,32 @@
         <router-view />
       </div>
     </main>
-    <notifications
+    <notifications      
+      v-show="!notifClicked"
       group="bottom-right-notification"
       position="bottom right"
       classes="notification notification--success"
       animation-type="velocity"
       :speed="300"
+      @click="hide()"
     />
-    <notifications
+    <notifications 
+      v-show="!notifClicked"
       group="bottom-right-notification"
       position="bottom right"
       classes="notification notification--info"
       animation-type="velocity"
       :speed="300"
+      @click="hide()"
     />
     <notifications
+      v-show="!notifClicked"
       group="bottom-right-notification"
       position="bottom right"
       classes="notification notification--alert"
       animation-type="velocity"
       :speed="300"
+      @click="hide()"
     />
     <PageFooter />
   </div>
@@ -47,7 +53,19 @@ import PageFooter from '@/components/partials/PageFooter'
 export default {
   name: 'CrowdControlApp',
   components: {PageFooter, PageMenu, PageHeader},
-}
+  data() {
+    return{
+      notifClicked: false,
+    };
+  },
+  mounted() {},
+  methods: {
+    hide(){
+      this.notifClicked = true;
+      console.log("click");
+    }
+  },
+};
 </script>
 
 <style lang="scss">
