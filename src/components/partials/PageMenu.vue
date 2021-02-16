@@ -136,7 +136,7 @@ export default {
     margin: 2.5rem 5rem;
     transform: skewX(-15deg);
 
-    @media (max-width: 480px) {
+    @media (max-width: 1100px) {
       transform: skewX(0);
       margin: 0;
     }
@@ -148,7 +148,7 @@ export default {
     display: flex;
     flex-flow: row;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1100px) {
       transform: skewX(0);
       display: flex;
       flex-flow: column;
@@ -165,7 +165,7 @@ export default {
 
   .nav__menu li {
     float: left;
-    @media (max-width: 480px) {
+    @media (max-width: 1100px) {
       width: 100%;
     }
 
@@ -212,7 +212,7 @@ export default {
         -webkit-transform: scaleX(1);
         transform: scaleX(1);
       }
-      @media (max-width: 480px) {
+      @media (max-width: 1100px) {
         width: 100%;
         padding-left: 0;
         padding-right: 0;
@@ -225,7 +225,7 @@ export default {
         color: $black;
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 1100px) {
         transform: skewX(0deg);
       }
     }
@@ -238,7 +238,7 @@ export default {
     margin-top: -2.5rem;
     z-index: 10000000;
     box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 rgba(0,0,0,0.3);
-    @media (max-width: 480px) {
+    @media (max-width: 1100px) {
       width: 100vw;
       margin-top: -1px;
       right: 0;
@@ -254,15 +254,20 @@ export default {
     width: 300px;
     height: 100%;
 
-
-    @media (max-width: 480px) {
+    @media (max-width: 1660px){
+      display:inline-block;
+      margin-top:1em;
+    }
+    @media (max-width: 1100px) {
       margin: 1em auto;
       width: 30%;
     }
+    
+
   }
 
   .nav__button {
-    @media (min-width: 480px) {
+    @media (min-width: 1100px) {
       display: none;
       width: 100%;
     }
@@ -272,7 +277,7 @@ export default {
   }
 
   .nav__menu--hidden {
-    @media (max-width: 480px) {
+    @media (max-width: 1100px) {
       display: none;
     }
   }
