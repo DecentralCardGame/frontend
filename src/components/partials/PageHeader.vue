@@ -36,7 +36,7 @@ export default {
   @import "../../assets/styles/variables";
 
   header {
-    background-color: $dark-blue;
+    background-color: $background-separator;
     padding: $font-size * 0.5;
     text-align: center;
     border-bottom: $border-thickness-bold solid $white;

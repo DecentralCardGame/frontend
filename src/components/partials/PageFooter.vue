@@ -126,16 +126,16 @@ export default {
   }
 
   footer {
-    background-color: $blue;
+    background-color: $background-color;
     // text-shadow: 0.1em 0.1em 0 #0d9393ff;
-    text-shadow: 0.1em 0.1em 0 darken($blue, 5%);
+    text-shadow: 0.1em 0.1em 0 darken($background-color, 5%);
 
     @media (max-width: 480px) {
       padding: 1rem;
     }
 
     ::selection {
-      background-color: $red;
+      background-color: $main-color-a;
       color: white;
     }
   }
@@ -150,8 +150,8 @@ export default {
     @media (min-width: 480px) {
       max-height: $font-size * 3;
     }
-    background-color: $dark-blue;
-    text-shadow: 0.1em 0.1em 0 darken($dark-blue, 5%);
+    background-color: $background-separator;
+    text-shadow: 0.1em 0.1em 0 darken($background-separator, 5%);
   }
 
   .pre-footer__content {
@@ -236,7 +236,7 @@ export default {
     width: 0;
     height: 0;
     right: 0;
-    border-top: 300px solid $orange;
+    border-top: 300px solid $minor-color-a;
     border-left: 100px solid transparent;
 
     @media (max-width: 480px) {
@@ -264,7 +264,7 @@ export default {
     height: 0;
     right: 0;
     top: 0;
-    border-top: $font-size * 3.14 solid $orange;
+    border-top: $font-size * 3.14 solid $minor-color-a;
     border-left: 150px solid transparent;
     background-color: #f29121ff;
 

@@ -13,15 +13,15 @@
 
 .notification--alert {
   border-left: $border-thickness-bold solid #FF3C3C;
-  background: #D61224 !important;
+  background: $notification-fail !important;
 }
 
 .notification--info {
   border-left: $border-thickness-bold solid $black;
-  background: $dark-blue !important;
+  background: $notification-info !important;
 }
 
 .notification--success {
   border-left: $border-thickness-bold solid #0ea54b;
-  background: #25d612 !important;
+  background: $notification-success !important;
 }

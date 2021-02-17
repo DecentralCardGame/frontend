@@ -64,7 +64,7 @@ b {
 }
 
 ::selection {
-  background-color: $blue;
+  background-color: $background-color;
   color: white;
 }
 
@@ -102,7 +102,7 @@ b {
     transition: all $animation-duration ease-out;
     &:after {
       z-index: -1;
-      background: linear-gradient(to right, $red 50%, darken($white, 10%) 50%);
+      background: linear-gradient(to right, $main-color-a 50%, darken($white, 10%) 50%);
       background-position: right bottom;
       background-size: 200% 100%;
       transition: all $animation-duration ease-out;
@@ -127,7 +127,7 @@ b {
   h2 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: $red;
+    color: $main-color-a;
     font-weight: bold;
   }
 
@@ -149,12 +149,12 @@ b {
     transition: all $animation-duration;
     &:focus {
       transition: all $animation-duration;
-      border-color: $red;
+      border-color: $main-color-a;
     }
   }
 
   input[type="checkbox"]  {
-    border: 2px solid $red;
+    border: 2px solid $main-color-a;
   }
 
   input[type="checkbox"]:checked {
@@ -195,7 +195,7 @@ h1 {
   h1, h2, h3, h4, h5 {
     margin: 2.75rem 0 1.05rem;
     font-family: $font-family-header, sans-serif;
-    text-shadow: $border-thickness-bold $border-thickness-bold 0 $red;
+    text-shadow: $border-thickness-bold $border-thickness-bold 0 $main-color-a;
     line-height: $line-height-headline;
   }
 
@@ -221,7 +221,7 @@ h1 {
 
 .header__h2 {
   font-family: $font-family-header;
-  text-shadow: $border-thickness-bold $border-thickness-bold 0 $red;
+  text-shadow: $border-thickness-bold $border-thickness-bold 0 $main-color-a;
   margin: 0 0 0.5rem;
   line-height: $line-height;
   font-size: 2.441em;

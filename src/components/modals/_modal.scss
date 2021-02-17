@@ -31,16 +31,16 @@
 }
 
 .modal__header {
-  border-bottom: $border-thickness solid $red;
+  border-bottom: $border-thickness solid $main-color-a;
   font-weight: bold;
-  color: $red;
+  color: $main-color-a;
   justify-content: space-between;
 }
 
 .modal__body {
   position: relative;
   padding: ($font-size / 2);
-  border-bottom: $border-thickness solid $red;
+  border-bottom: $border-thickness solid $main-color-a;
 }
 
 .btn--close {
@@ -51,7 +51,7 @@
   font-weight: bold;
   background: transparent;
   &:after {
-    background: linear-gradient(to right, $red 50%, #4AAE9B 50%);
+    background: linear-gradient(to right, $main-color-a 50%, $main-color-b 50%);
     background-size: 200% 100%;
     background-position: right bottom;
   }

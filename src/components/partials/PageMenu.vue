@@ -130,8 +130,8 @@ export default {
 
   .nav {
     font-weight: bold;
-    background-color: $blue;
-    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $red;
+    background-color: $main-color-c;
+    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $minor-color-c;
     position: relative;
     margin: 2.5rem 5rem;
     transform: skewX(-15deg);
@@ -172,7 +172,7 @@ export default {
     a, .nav__menu__item {
       padding: 1.5rem;
       font-size: $font-size*1.15;
-      color: $white;
+      color: $black;
       text-align: center;
       cursor: pointer;
       text-decoration: none;
@@ -206,7 +206,7 @@ export default {
         transition-timing-function: ease-out;
       }
       &:hover, &:focus, &:active {
-        color: $red;
+        color: $minor-color-c;
       }
       &:hover:before, &:focus:before, &:active:before {
         -webkit-transform: scaleX(1);

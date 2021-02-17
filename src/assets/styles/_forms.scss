@@ -13,7 +13,7 @@ button {
 
 button:hover {
   transition: all 200ms;
-  background-color: $red;
+  background-color: $main-color-a;
   color: $white;
 }
  */
@@ -31,7 +31,7 @@ button, .button--file {
   transition: all $animation-duration ease-out;
   &:after {
     z-index: -1;
-    background: linear-gradient(to right, $red 50%, $white 50%);
+    background: linear-gradient(to right, $main-color-a 50%, $white 50%);
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all $animation-duration ease-out;
@@ -62,7 +62,7 @@ select {
 }
 
 select option {
-  color: $red;
+  color: $main-color-a;
   background-color: $white;
 }
 
