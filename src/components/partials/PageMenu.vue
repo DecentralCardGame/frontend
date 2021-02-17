@@ -259,7 +259,7 @@ export default {
       margin-top:1em;
     }
     @media (max-width: 1100px) {
-      margin: 0 auto 0 0;
+      margin: 1em auto;
       width: 30%;
     }
     
