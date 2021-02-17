@@ -56,11 +56,11 @@
           <slot name="footer" />
           <button
             aria-label="Close modal"
-            class="btn--teal"
+            class="btn--default"
             type="button"
             @click="buyCardScheme"
           >
-            BUY
+            Buy
           </button>
         </footer>
       </div>

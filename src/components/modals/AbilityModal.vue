@@ -93,7 +93,7 @@
           <button
             v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
             aria-label="Close modal"
-            class="btn--teal"
+            class="btn--default"
             type="button"
             @click="addAbility"
           >

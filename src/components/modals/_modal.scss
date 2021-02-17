@@ -43,6 +43,20 @@
   border-bottom: $border-thickness solid $main-color-a;
 }
 
+.btn--default {
+  border: none;
+  font-size: $font-size;
+  padding: $font-size / 4 $font-size /2;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+  &:after {
+    background: linear-gradient(to right, $main-color-a 50%, $main-color-c 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+  }
+}
+
 .btn--close {
   border: none;
   font-size: $font-size;
@@ -51,7 +65,7 @@
   font-weight: bold;
   background: transparent;
   &:after {
-    background: linear-gradient(to right, $main-color-a 50%, $main-color-b 50%);
+    background: linear-gradient(to right, $main-color-a 50%, $main-color-c 50%);
     background-size: 200% 100%;
     background-position: right bottom;
   }
