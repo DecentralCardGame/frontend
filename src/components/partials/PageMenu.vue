@@ -251,8 +251,8 @@ export default {
     margin: -1em 1em -2em;
     user-select: none;
     -webkit-user-drag: none;
-    width: 300px;
-    height: 100%;
+    width: 200px;
+    height: 300%;
 
     @media (max-width: 1660px){
       display:inline-block;
