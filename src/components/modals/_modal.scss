@@ -65,7 +65,7 @@
 
   &:after {
     z-index: -1;
-    background: linear-gradient(to right, #4AAE9B 50%, $white 50%);
+    background: linear-gradient(to right, $main-color-b 50%, $white 50%);
     background-size: 200% 100%;
     background-position: right bottom;
   }
@@ -87,7 +87,7 @@
 
   &:after {
     z-index: -1;
-    background: linear-gradient(to right, #12D1D1 50%, $white 50%);
+    background: linear-gradient(to right, $minor-color-b 50%, $white 50%);
     background-size: 200% 100%;
     background-position: right bottom;
   }

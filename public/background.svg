@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2498.522" height="7786.779" viewBox="0 0 2498.522 7786.779">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2217" height="7358.815" viewBox="0 0 2217 7358.815">
   <defs>
-    <filter id="Pfad_251" x="964.65" y="2485.338" width="1533.873" height="4042.897" filterUnits="userSpaceOnUse">
-      <feOffset dx="-100" input="SourceAlpha"/>
+    <filter id="Pfad_294" x="0" y="4594" width="2217" height="2764.815" filterUnits="userSpaceOnUse">
+      <feOffset dx="100" dy="100" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="49.5" result="blur"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="Pfad_250" x="0" y="4866" width="2287.799" height="2920.779" filterUnits="userSpaceOnUse">
-      <feOffset dx="100" dy="-100" input="SourceAlpha"/>
+    <filter id="Pfad_251" x="929.209" y="2618.047" width="1087.791" height="3853.764" filterUnits="userSpaceOnUse">
+      <feOffset dx="-100" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="49.5" result="blur-2"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-2"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="Pfad_249" x="0" y="0" width="2287.799" height="2920.78" filterUnits="userSpaceOnUse">
+    <filter id="Pfad_249" x="0" y="0" width="2217" height="2764.815" filterUnits="userSpaceOnUse">
       <feOffset dx="100" dy="100" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="49.5" result="blur-3"/>
       <feFlood flood-opacity="0.161"/>
@@ -22,17 +22,16 @@
       <feComposite in="SourceGraphic"/>
     </filter>
   </defs>
-  <g id="Gruppe_213" data-name="Gruppe 213" transform="translate(83.94 114.577)">
-    <path id="Pfad_1" data-name="Pfad 1" d="M-3054.21,556.959h1990.8V-2762.1L-3054.21-3303.8V556.959" transform="translate(3018.77 6696.804)" fill="#560541"/>
-    <path id="Pfad_1-2" data-name="Pfad 1" d="M-3054.21-3303.8h1990.8V993.676l-1990.8,701.4V-3303.8" transform="translate(3018.77 3237.727)" fill="#560541"/>
-    <g transform="matrix(1, 0, 0, 1, -83.94, -114.58)" filter="url(#Pfad_251)">
-      <path id="Pfad_251-2" data-name="Pfad 251" d="M2251.475,2519.262S1155.746,2953.528,1130.912,3531.115s228.935,949.185,307.509,1175.257,115.729,589.971,90.535,669.924-61.523,695.606,513.307,882.4S2251.475,2519.262,2251.475,2519.262Z" transform="translate(83.94 114.58)" fill="#1b0650"/>
+  <g id="Gruppe_213" data-name="Gruppe 213" transform="translate(48.5 48.5)">
+    <path id="Pfad_1" data-name="Pfad 1" d="M-3018.77-3237.727h1920v7060h-1920" transform="translate(3018.77 3237.727)" fill="#560541"/>
+    <g transform="matrix(1, 0, 0, 1, -48.5, -48.5)" filter="url(#Pfad_294)">
+      <path id="Pfad_294-2" data-name="Pfad 294" d="M1799.406,2261.78c-70.018-123.7-57.635-88.039-194.479-253.764-224.079-73.679-407.876-197.718-576.793-357.244s-263.826-276.548-371.521-426.636C507.27,972.115,603.831,906.05,517.729,721.709c-124.717-276.19-178.608-241.3-271.562-355.639C59.137,136.02-35,35-35,35V2502.815H1885S1869.425,2385.479,1799.406,2261.78Z" transform="translate(83.5 4607.5)" fill="#1b0650"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -83.94, -114.58)" filter="url(#Pfad_250)">
-      <path id="Pfad_250-2" data-name="Pfad 250" d="M1920.358,2343.163s-178.587-145.612-315.431-311.337c-224.079-73.679-407.876-197.718-576.793-357.244s-263.826-276.548-371.521-426.636C507.27,995.925,603.831,929.86,517.729,745.519,393.012,469.329,220.168,370.1,127.214,255.766-59.816,25.716-70.44-31.077-70.44-31.077l29.1,2623.78H1920Z" transform="translate(118.94 5145.58)" fill="#1b0650"/>
+    <g transform="matrix(1, 0, 0, 1, -48.5, -48.5)" filter="url(#Pfad_251)">
+      <path id="Pfad_251-2" data-name="Pfad 251" d="M1920,2718.047c-166.6,15.33-764.254,235.481-789.088,813.068s228.935,949.185,307.509,1175.257,115.729,589.971,90.535,669.924S1345.17,6088.015,1920,6274.811Z" transform="translate(48.5 48.5)" fill="#1b0650"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -83.94, -114.58)" filter="url(#Pfad_249)">
-      <path id="Pfad_249-2" data-name="Pfad 249" d="M1920.358,218.463S1741.771,364.075,1604.927,529.8c-224.079,73.679-407.876,197.718-576.793,357.244S764.308,1163.591,656.612,1313.68c-149.342,252.02-52.781,318.085-138.883,502.426-124.717,276.19-297.561,375.418-390.515,489.753C-59.816,2535.909-70.44,2592.7-70.44,2592.7l29.1-2623.78H1920Z" transform="translate(118.94 79.58)" fill="#1b0650"/>
+    <g transform="matrix(1, 0, 0, 1, -48.5, -48.5)" filter="url(#Pfad_249)">
+      <path id="Pfad_249-2" data-name="Pfad 249" d="M1799.406,276.035c-70.018,123.7-57.635,88.039-194.479,253.764-224.079,73.679-407.876,197.718-576.793,357.244S764.308,1163.591,656.612,1313.68c-149.342,252.02-52.781,318.085-138.883,502.426-124.717,276.19-178.608,241.3-271.562,355.639C59.137,2401.795-35,2502.815-35,2502.815V35H1885S1869.425,152.335,1799.406,276.035Z" transform="translate(83.5 13.5)" fill="#1b0650"/>
     </g>
   </g>
 </svg>

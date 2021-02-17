@@ -12,7 +12,7 @@
 }
 
 .notification--alert {
-  border-left: $border-thickness-bold solid #FF3C3C;
+  border-left: $border-thickness-bold solid darken($notification-fail, 10%);
   background: $notification-fail !important;
 }
 
@@ -22,6 +22,6 @@
 }
 
 .notification--success {
-  border-left: $border-thickness-bold solid #0ea54b;
+  border-left: $border-thickness-bold solid darken($notification-success, 10%);
   background: $notification-success !important;
 }
