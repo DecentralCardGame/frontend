@@ -74,7 +74,7 @@
             @click="$store.commit('toggleLoginBox')"
           >
             <div :class="displayLoginDialogue ? 'nav__menu__item nav__menu__item--exposed' : 'nav__menu__item '">
-              Login / Join
+              Login
             </div>
           </li>
         </ul>
@@ -162,7 +162,7 @@ export default {
     padding: 0;
     overflow: hidden;
     @media (max-width: 1561px) {
-      margin: 0em 1.5em;
+      margin: 0em 3em;
     }
     @media (max-width: 1298px){
       margin: 0em 0em;
@@ -260,10 +260,10 @@ export default {
     height: 100%;
 
     @media (max-width: 1561px){
-      margin: 0.5em 4em -2em 0em;
+      margin: auto 4em auto 1em;
     }
-    @media (max-width: 1298px){
-      margin: 0.5em 2em -2em 0em;
+    @media (max-width: 1498px){
+      margin: auto auto auto 1em;
     }
     @media (max-width: 1178px) {
       position: relative;
