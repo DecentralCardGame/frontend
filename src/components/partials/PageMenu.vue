@@ -74,7 +74,7 @@
             @click="$store.commit('toggleLoginBox')"
           >
             <div :class="displayLoginDialogue ? 'nav__menu__item nav__menu__item--exposed' : 'nav__menu__item '">
-              Login / Join
+              Login
             </div>
           </li>
         </ul>
@@ -136,7 +136,7 @@ export default {
     margin: 2.5rem 5rem;
     transform: skewX(-15deg);
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1178px) {
       transform: skewX(0);
       margin: 0;
     }
@@ -148,7 +148,7 @@ export default {
     display: flex;
     flex-flow: row;
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1178px) {
       transform: skewX(0);
       display: flex;
       flex-flow: column;
@@ -161,11 +161,17 @@ export default {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    @media (max-width: 1561px) {
+      margin: 0em 3em;
+    }
+    @media (max-width: 1298px){
+      margin: 0em 0em;
+    }
   }
 
   .nav__menu li {
     float: left;
-    @media (max-width: 1100px) {
+    @media (max-width: 1178px) {
       width: 100%;
     }
 
@@ -212,7 +218,7 @@ export default {
         -webkit-transform: scaleX(1);
         transform: scaleX(1);
       }
-      @media (max-width: 1100px) {
+      @media (max-width: 1178px) {
         width: 100%;
         padding-left: 0;
         padding-right: 0;
@@ -225,7 +231,7 @@ export default {
         color: $black;
       }
 
-      @media (max-width: 1100px) {
+      @media (max-width: 1178px) {
         transform: skewX(0deg);
       }
     }
@@ -238,7 +244,7 @@ export default {
     margin-top: -2.5rem;
     z-index: 10000000;
     box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 rgba(0,0,0,0.3);
-    @media (max-width: 1100px) {
+    @media (max-width: 1178px) {
       width: 100vw;
       margin-top: -1px;
       right: 0;
@@ -248,36 +254,40 @@ export default {
   .nav__logo {
     position: relative;
     display: inline-block;
-    margin: -1em 1em -2em;
-    user-select: none;
+    margin: -1em 1em -2em 0em;
     -webkit-user-drag: none;
-    width: 200px;
-    height: 300%;
+    width: 300px;
+    height: 100%;
 
-    @media (max-width: 1660px){
-      display:inline-block;
-      margin-top:1em;
+    @media (max-width: 1561px){
+      margin: auto 4em auto 1em;
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 1498px){
+      margin: auto auto auto 1em;
+    }
+    @media (max-width: 1178px) {
+      position: relative;
+      display: inline-block;
       margin: 1em auto;
-      width: 30%;
+      width: 47%;
     }
     
 
   }
 
   .nav__button {
-    @media (min-width: 1100px) {
+    @media (min-width: 1178px) {
       display: none;
       width: 100%;
     }
+    color: $black;
     position: absolute;
     right: 1.5em;
     top: 1.5em;
   }
 
   .nav__menu--hidden {
-    @media (max-width: 1100px) {
+    @media (max-width: 1178px) {
       display: none;
     }
   }
