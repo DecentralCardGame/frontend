@@ -15,19 +15,9 @@
       </div>
     </main>
     <notifications      
-      group="bottom-right-notification-success"
+      group="bottom-right-notification"
       position="bottom right"
-      classes="notification notification--success"
-    />
-    <notifications 
-      group="bottom-right-notification-info"
-      position="bottom right"
-      classes="notification notification--info"
-    />
-    <notifications
-      group="bottom-right-notification-alert"
-      position="bottom right"
-      classes="notification notification--alert"
+      classes="notification"
     />
     <PageFooter />
   </div>
