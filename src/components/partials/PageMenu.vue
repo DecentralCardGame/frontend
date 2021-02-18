@@ -280,6 +280,7 @@ export default {
       display: none;
       width: 100%;
     }
+    color: $black;
     position: absolute;
     right: 1.5em;
     top: 1.5em;
