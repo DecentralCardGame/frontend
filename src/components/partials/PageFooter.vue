@@ -126,7 +126,7 @@ export default {
   }
 
   footer {
-    background-color: $background-color;
+    background-color: teal;
     // text-shadow: 0.1em 0.1em 0 #0d9393ff;
     text-shadow: 0.1em 0.1em 0 darken($background-color, 5%);
 
