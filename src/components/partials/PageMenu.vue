@@ -84,12 +84,20 @@
       v-if="this.$store.getters.loginBoxVisible"
       class="nav__authentication-modal"
     >
-      <div class="box-auth">
-        <div class="box-login">
-          <LoginPage />
-        </div>
-        <div class="box-register">
-          <RegisterPage />
+      <div 
+        class="container-auth"
+        @click="$store.commit('toggleLoginBox')"
+      >
+        <div
+          class="box-auth"
+          @click.stop="doNothing"
+        >
+          <div class="box-login">
+            <LoginPage />
+          </div>
+          <div class="box-register">
+            <RegisterPage />
+          </div>
         </div>
       </div>
     </div>
@@ -115,6 +123,11 @@ export default {
       } else {
         return "nav__menu nav__menu--hidden"
       }
+    }
+  },
+  methods: {
+    doNothing () {
+
     }
   },
 }
@@ -271,8 +284,6 @@ export default {
       margin: 1em auto;
       width: 47%;
     }
-    
-
   }
 
   .nav__button {
