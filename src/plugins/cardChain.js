@@ -26,20 +26,20 @@ export default {
               this.queue.push(transaction)
           
               if (!this.isRunning) {
-              this.run()
+                this.run()
               }
           },
           run: function() {
-              this.isRunning = true
-          
-              if (!R.isEmpty(this.queue)) {
-                const transaction = this.queue[0]
-                this.queue = R.drop(1, this.queue)
-          
-                transaction().finally(() => this.run())
-              } else {
-                this.isRunning = false
-              }
+            this.isRunning = true
+        
+            if (!R.isEmpty(this.queue)) {
+              const transaction = this.queue[0]
+              this.queue = R.drop(1, this.queue)
+        
+              transaction().finally(() => this.run())
+            } else {
+              this.isRunning = false
+            }
           }
         }
       }

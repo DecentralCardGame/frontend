@@ -26,15 +26,6 @@ Vue.use(VueCryptojs)
 Vue.use(cardChain)
 Vue.use(cardRules)
 
-let vm = new Vue({
-  router,
-  store,
-  cardChain,
-  cardRules,
-  render: h => h(App)
-}).$mount('#app')
-Vue.prototype.$cardChain = vm.newCardChain()
-
 Vue.mixin({
   methods: {
     isMobileDevice: function() {
@@ -71,3 +62,13 @@ Vue.mixin({
     })
   }
 })
+
+let vm = new Vue({
+  router,
+  store,
+  cardRules,
+  cardChain,
+  render: h => h(App)
+}).$mount('#app')
+
+Vue.prototype.$cardChain = vm.newCardChain()
