@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h2>Join the Experience</h2>
+    <button 
+    class="close-button" 
+    type="button"
+    @click="$store.commit('toggleLoginBox')">
+    x
+    </button>
+      
+    <h2>Join the Experience</h2> 
     <p>
       <b>
         Good to see you here! Before you can dive into the universe of Crowd
@@ -126,6 +133,12 @@ export default {
 <style scoped>
 input {
   margin-bottom: 0.3em;
+}
+
+.close-button {
+  padding: 4.5px 9px;
+  width: 10%;
+  float:right;  
 }
 .link--show-pw {
   text-decoration: underline;
