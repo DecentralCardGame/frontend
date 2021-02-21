@@ -495,6 +495,8 @@ export default {
   },
   computed: {},
   mounted() {
+    console.log('cardRules:', this.$cardRules)
+    
     // here a card is loaded if edit card via gallery was selected
     if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
       console.log("edit card!");

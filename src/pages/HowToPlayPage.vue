@@ -23,23 +23,38 @@
     <div>
       <div>
         <!-- energy icon -->
-        <img src="../assets/symbols/energy-class.png" class="class-symbol">
+        <img
+          src="../assets/symbols/energy-class.png"
+          class="class-symbol"
+        >
       </div>
       <div>
         <!-- food icon -->
-        <img src="../assets/symbols/food-class.png" class="class-symbol">
+        <img
+          src="../assets/symbols/food-class.png"
+          class="class-symbol"
+        >
       </div>
       <div>
         <!-- iron icon -->
-        <img src="../assets/symbols/iron-class.png" class="class-symbol">
+        <img
+          src="../assets/symbols/iron-class.png"
+          class="class-symbol"
+        >
       </div>
       <div>
         <!-- mana icon -->
-        <img src="../assets/symbols/mana-class.png" class="class-symbol">
+        <img
+          src="../assets/symbols/mana-class.png"
+          class="class-symbol"
+        >
       </div>
       <div>
         <!-- lumber icon -->
-        <img src="../assets/symbols/lumber-class.png" class="class-symbol">
+        <img
+          src="../assets/symbols/lumber-class.png"
+          class="class-symbol"
+        >
       </div>
     </div>
     <div>
@@ -340,12 +355,15 @@
       </p>
       <div class="content-border-white">
         <!--3rd box-->
-        <div class="card-container" style="grid-template-columns: repeat(2, 1fr);">
+        <div
+          class="card-container"
+          style="grid-template-columns: repeat(2, 1fr);"
+        >
           <span style="display:block;font-size:1.25rem;margin:2px;">
             Player 1 Attack
           </span>
           <span style="font-size:1.25rem;text-align: right;">Player 2 Defense</span>
-          </div>
+        </div>
         <div class="card-container">
           <div @click="highlight(sampleCards.drDolly, sampleCards.drDolly.cardImg)">
             <CardComponent
@@ -828,7 +846,6 @@
   </div>
 </template>
 
-
 <script>
 import CardComponent from "../components/CardComponent";
 
@@ -1017,6 +1034,4 @@ img {
   height: 80px; 
   width: auto;
 }
-
-
 </style>

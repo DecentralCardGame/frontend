@@ -45,7 +45,7 @@
 
 <script>
 import * as R from 'ramda'
-import { saveAs } from 'file-saver'
+//import { saveAs } from 'file-saver'
 import * as svg1 from 'save-svg-as-png'
 import CardComponent from '@/components/CardComponent'
 import { uploadImg } from '../components/utils/utils.js'
@@ -101,7 +101,8 @@ export default {
 
       // var blob = new Blob([document.getElementById('card0').outerHTML], {type: 'text/plain;charset=utf-8'})
       var blob = new Blob([svgMain.outerHTML], {type: 'text/plain;charset=utf-8'})
-      saveAs(blob, 'cardes.svg')
+      console.log(blob)
+      //saveAs(blob, 'cardes.svg')
     },
     saveSingleCard (index) {
       let clickedCard = document.getElementById('card' + index)
