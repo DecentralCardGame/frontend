@@ -30,31 +30,31 @@
       class="gallery__filter-box"
     >
       <div class="gallery__filter__item">
-      <select v-model="filters.status">
-        <option
-          disabled
-          value=""
-        >
-          select status
-        </option>
-        <option>Prototype</option>
-        <option>Trial</option>
-        <option>Permanent</option>
-      </select>
+        <select v-model="filters.status">
+          <option
+            disabled
+            value=""
+          >
+            select status
+          </option>
+          <option>Prototype</option>
+          <option>Trial</option>
+          <option>Permanent</option>
+        </select>
       </div>
       <div class="gallery__filter__item">
-      <select v-model="filters.type">
-        <option
-          disabled
-          value=""
-        >
-          select type
-        </option>
-        <option>HQ</option>
-        <option>Entity</option>
-        <option>Action</option>
-        <option>Place</option>
-      </select>
+        <select v-model="filters.cardType">
+          <option
+            disabled
+            value=""
+          >
+            select type
+          </option>
+          <option>Headquarter</option>
+          <option>Entity</option>
+          <option>Action</option>
+          <option>Place</option>
+        </select>
       </div>
       <div>
         <div class="gallery__filter__item">
@@ -187,12 +187,13 @@ export default {
       browsingBackward: true,
       filters: {
         visible: false,
+        owner: "",
+        status: "",
+        cardType: "",
+        classes: "",
+        sortBy: "",
         nameContains: "",
         notesContains: "",
-        status: "",
-        sortBy: "",
-        type: "",
-        owner: "",
         cardsPerPage: 20,
       },
       votableCards: [],
@@ -222,7 +223,11 @@ export default {
         .getCardList(
           this.filters.owner,
           this.filters.status,
-          this.filters.nameContains
+          this.filters.cardType,
+          this.filters.classes,
+          this.filters.sortBy.replace(/\s+/g, ''),
+          this.filters.nameContains,
+          this.filters.notesContains
         )
         .then((res) => {
           this.cardList = res.cardList;
@@ -248,7 +253,8 @@ export default {
           card.id = cardId;
           if (card.Content) {
             let candidate = this.$cardChain.parseCard(card);
-            if (this.applyFilters(candidate)) this.cards.push(candidate);
+            //if (this.applyFilters(candidate)) 
+            this.cards.push(candidate);
           } else if (!card.Owner) {
             console.error("card without content and owner: ", res);
           } else {
@@ -259,21 +265,21 @@ export default {
           console.error(res);
         });
     },
-    applyFilters(card) {
+    /*applyFilters(card) {
       if (
         this.filters.notesContains &&
         !card.Notes.includes(this.filters.notesContains)
       )
         return false;
-      if (this.filters.type === "HQ" && card.type !== "Headquarter")
+      if (this.filters.cardType === "HQ" && card.type !== "Headquarter")
         return false;
-      if (this.filters.type === "Entity" && card.type !== "Entity")
+      if (this.filters.cardType === "Entity" && card.type !== "Entity")
         return false;
-      if (this.filters.type === "Action" && card.type !== "Action")
+      if (this.filters.cardType === "Action" && card.type !== "Action")
         return false;
-      if (this.filters.type === "Place" && card.type !== "Place") return false;
+      if (this.filters.cardType === "Place" && card.type !== "Place") return false;
       return true;
-    },
+    },*/
     fillPage() {
       if (this.pageId + this.filters.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
@@ -285,18 +291,17 @@ export default {
         () => {
           if (this.filters.sortBy === "Name") {
             this.cards.sort((x, y) =>
-              x.CardName.toUpperCase() > y.CardName.toUpperCase() ? 1 : -1
+              x.CardName.toUpperCase() < y.CardName.toUpperCase() ? 1 : -1
             );
           } else if (this.filters.sortBy === "Casting Cost") {
-            console.log("cards before sort", this.cards);
             this.cards.sort(
               (x, y) =>
-                (x.CastingCost ? x.CastingCost + x.nerflevel : 0) -
-                (y.CastingCost ? y.CastingCost + y.nerflevel : 0)
+                (y.CastingCost ? y.CastingCost + y.nerflevel : 0) -
+                (x.CastingCost ? x.CastingCost + x.nerflevel : 0)
             );
             console.log("cards after sort", this.cards);
           } else if (this.filters.sortBy === "Id") {
-            this.cards.sort((x, y) => x.id - y.id);
+            this.cards.sort((x, y) => y.id - x.id);
           }
         }
       );

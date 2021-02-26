@@ -256,12 +256,20 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
-      getCardList (owner, status, nameContains) {
+      getCardList (owner, status, cardType, classes, sortBy, nameContains, notesContains) {
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
             this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
             throw new Error('CardList status invalid: ' + status)
           }
-          return this.vue.$http.get('cardservice/cardList?' + (status ? 'status='+status : '') + (owner? '&owner='+owner : '') + (nameContains? '&nameContains='+nameContains : ''))
+          return this.vue.$http.get('cardservice/cardList?' + 
+              (status ? 'status='+status : '') + 
+              (owner? '&owner='+owner : '') + 
+              (cardType? '&cardType='+cardType : '') + 
+              (classes? '&classes='+classes : '') + 
+              (sortBy? '&sortBy='+sortBy : '') + 
+              (nameContains? '&nameContains='+nameContains : '') +
+              (notesContains? '&notesContains='+notesContains : '')
+            )
             .catch(this.handleGetError)
             .then(this.handleGetCardList(R.__, status))
       }
