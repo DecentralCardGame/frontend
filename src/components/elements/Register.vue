@@ -130,18 +130,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 input {
   margin-bottom: 0.3em;
 }
 
-.close-button {
-  padding: 4.5px 9px;
-  width: 10%;
-  float:right;  
-}
 .link--show-pw {
   text-decoration: underline;
   cursor: pointer;
+}
+.close-button{
+  padding: 4.5px 9px;
+  float:right;
+  @media (max-width: 480px){
+    display:none;
+  }
 }
 </style>

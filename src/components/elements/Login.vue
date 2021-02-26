@@ -1,5 +1,11 @@
 <template>
   <div>
+    <button 
+    class="close-button" 
+    type="button"
+    @click="$store.commit('toggleLoginBox')">
+    x
+    </button>
     <h2>Login</h2>
     <p><b>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</b></p>
     <p v-if="loginError">
@@ -92,12 +98,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 input {
   margin-bottom: 0.3em;
 }
 .link--show-pw {
   text-decoration: underline;
   cursor: pointer;
+}
+.close-button{
+  padding: 4.5px 9px;
+  float:right;
+  @media (min-width: 480px){
+    display:none;
+  }
 }
 </style>
