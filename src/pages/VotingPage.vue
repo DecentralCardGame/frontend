@@ -68,12 +68,6 @@ export default {
       cards: [],
       currentCard: {},
       config: {
-        allowedDirections: [
-          VueSwing.Direction.UP,
-          VueSwing.Direction.DOWN,
-          VueSwing.Direction.LEFT,
-          VueSwing.Direction.RIGHT
-        ],
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
       }
