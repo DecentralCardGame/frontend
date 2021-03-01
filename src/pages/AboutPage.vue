@@ -164,16 +164,6 @@
 import CardComponent from "../components/CardComponent";
 import {
   sampleCards,
-  belloCard,
-  belloImg,
-  botCommandCard,
-  botCommandImg,
-  communityCard,
-  communityImg,
-  dollyCard,
-  dollyImg,
-  timeDeviceCard,
-  timeDeviceImg,
 } from "../components/utils/sampleCards.js";
 
 export default {
@@ -182,20 +172,6 @@ export default {
   data() {
     return {
       sampleCards: sampleCards,
-      cards: [
-        communityCard,
-        dollyCard,
-        timeDeviceCard,
-        belloCard,
-        botCommandCard,
-      ],
-      cardImgs: [
-        communityImg,
-        dollyImg,
-        timeDeviceImg,
-        belloImg,
-        botCommandImg,
-      ],
     };
   },
   mounted() {},
