@@ -45,7 +45,7 @@
           </li>
           <li>
             <a href="https://discord.gg/ZKKbhUs">
-              <h2>Community Discord</h2>
+              <h2>Community Discord <img src="../../assets/icon/discord.png" style="display:inline; max-height:33px;transform:translateY(5px);"></h2>
               Get in touch. Not physical, thooo.
             </a>
           </li>
@@ -57,7 +57,7 @@
           </li>
           <li>
             <a href="https://github.com/DecentralCardGame">
-              <h2>Github</h2>
+              <h2>Github <img src="../../assets/icon/github.png" style="display:inline; max-height:33px;"></h2> 
               Checkout our codebase.
             </a>
           </li>
