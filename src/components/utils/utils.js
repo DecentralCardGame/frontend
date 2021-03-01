@@ -150,6 +150,8 @@ export function shallowClone (obj) {
 // utility functions for uploading and downloading stuff
 
 export function uploadImg (file, callback) {
+  let resolution = {height: 1560, width: 1000}
+
   //console.log(event)
   //let file = event.target.files[0]
 
@@ -160,7 +162,7 @@ export function uploadImg (file, callback) {
     image.onload = function () {
       // Resize the image
       let canvas = document.createElement('canvas')
-      let maxSize = 780
+      let maxSize = resolution.height
       let width = image.width
       let height = image.height
       if (height > maxSize) {
@@ -169,8 +171,8 @@ export function uploadImg (file, callback) {
       }
       // centering
       let widthAdjust = 0
-      if (width > 500) {
-        widthAdjust = (width - 500) / 2
+      if (width > resolution.width) {
+        widthAdjust = (width - resolution.width) / 2
       }
       canvas.width = width
       canvas.height = height

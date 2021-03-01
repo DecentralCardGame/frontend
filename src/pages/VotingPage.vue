@@ -54,7 +54,6 @@
 <script>
 import * as R from 'ramda'
 import CardComponent from '../components/CardComponent'
-import VueSwing from 'vue-swing'
 import { creditsFromCoins } from '../components/utils/utils.js'
 
 export default {
