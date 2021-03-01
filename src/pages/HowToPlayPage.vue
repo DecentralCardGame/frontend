@@ -69,7 +69,7 @@
       <br>
       <br>
       
-      <img src="../assets/HQ_Dolly.png">
+      <img src="../components/utils/cardfiles/HQ_Dolly.png">
       <h2>Your Headquaters</h2>
       Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
       <span class="marked-text">1</span>
@@ -90,7 +90,7 @@
       <br>
       <br>
       
-      <img src="../assets/Dr.Dolly.png">
+      <img src="../components/utils/cardfiles/Dr.Dolly.png">
       <h2>Entities (Creatures)</h2>
       Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
       <span class="marked-text">1</span>
