@@ -75,6 +75,18 @@
             height: 100vh;
             gap: 1rem;
         }
+        .image1 {
+            position: relative;
+            z-index: 3;
+            width: 600; 
+            height: 600;
+        }
+        .image2 {
+            position: absolute;
+            z-index: 3;
+            width: 600; 
+            height: 600;
+        }
     </style>
 </head>
 <body>
@@ -84,13 +96,8 @@
 </noscript>
 <div id="app">
     <div class="loading-container">
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        Casting the card magic onto your device...
+        <img src="<%= BASE_URL %>logo.svg" class="image1" alt="Loading..." >
+        <img src="<%= BASE_URL %>sparkling_water.gif" alt="Loading..." class="image2">
     </div>
 </div>
 <!-- built files will be auto injected -->
