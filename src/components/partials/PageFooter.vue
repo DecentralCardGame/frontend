@@ -91,7 +91,7 @@
           <img
             alt="Crowd Control"
             width="80%"
-            src="../../assets/logo.svg"
+            src="logo.svg"
           >
           </p>
         </div>

@@ -86,7 +86,7 @@
           impact on the archetype of a deck is even higher.<br>
         </p>
         <p>
-          ou can have a look at some cards here on the page or see all of them in the
+          you can have a look at some cards here on the page or see all of them in the
           <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
         </p>
       </div>

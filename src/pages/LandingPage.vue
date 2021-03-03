@@ -1,45 +1,57 @@
 <template>
   <div class="article-temp width-temp">
+    <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
     <div class="hero">
       <p class="text--big">
-        Crowd Control is a trading card game, which gives you full ownership of your cards AND gives
+        Crowd Control is a trading card game, which gives you full ownership of your cards &amp; gives
         the community full ownership of the game. 
       </p>
     </div>
 
-    This means we are creating this together. Any player can design their
-    own trading cards. Any player may participate in the process of balancing the game by voting on cards.
-    
+    <div class="hero">
+      <p class="text--big">
+        YOU can design your own trading cards. <br>
+        YOU may participate in the process of balancing the game.
+      </p>
+    </div>
+
+    <div class="hero">
+      <p class="text--big">
+        Find out more about our unique game mechanics on <router-link :to="{ name: 'About' }">The Game</router-link> page. 
+        Check out the <router-link :to="{ name: 'Gallery' }">Gallery</router-link> to see cards created by fellow trading card gamers or 
+        use the <router-link :to="{ name: 'New Card' }">Card Creator</router-link> to make cards of your own!
+      </p>
+    </div>
+
+    <div class="hero">
+      <p class="text--big">
+        Crowd Control is owned by all of those who contribute to the project. We make this possible
+        by being a decentralized autonomous organization (DAO), with a game buld on a blockchain
+        using Cosmos technology.
+        <br><br>
+        Read our <a
+            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
+            target="_blank"
+          > Whitepaper</a> to find out more.
+      </p>
+    </div>
     
 
-    
-    
-
-    
 
     
 
     <div class="about-flex-wrap">
-      <div class="about-text">
-        <h2>The Balancing</h2>
-        <p>
-          The balancing is done by adjusting the ressource cost of a card. This means when a card receives more
-          'overpowered' votes than 'fair enough' or 'underpowered' votes and it is among the cards with the most
-          'overpowered' votes, it gets nerfed by increasing its ressource cost by one. HQs get nerfed by decreasing
-          their HP, Wisdom, Growth and Starting Hand Size. Which value is decreased rotates on every nerf level.
-          The same applies for 'underpowered' votes just the other way around. There are also 'inappropriate' votes,
-          which are used to remove images or flavor text which are inappropriate like gore or explicit sexual content.
-          In that case only the image and the flavor text are stripped off a card and must be updated by the creator.
-          You can start
-          <router-link :to="{ name: 'Vote' }">
-            Voting
-          </router-link>
-          after you login with your account.
-          In the future there will also be a council, where new cards must be approved, which earns council members
-          credits.
-          Furthermore there will be sets, which bundle together 100 cards into a set and boosters can be bought from
-          these sets, giving financial reward to those creating cards.
-        </p>
+      <div class="about-card">
+        <CardComponent
+          :model="sampleCards.botCommandCenter"
+          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+        />
+      </div>
+      <div class="about-card">
+        <CardComponent
+          :model="sampleCards.botCommandCenter"
+          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+        />
       </div>
       <div class="about-card">
         <CardComponent
@@ -77,8 +89,9 @@ export default {
 @import "../assets/styles/variables";
 
 .hero {
+  z-index: 3;
   margin: 10rem 0;
-  text-align: center;
+  text-align: initial;
   @media (max-width: 480px) {
     margin: 0;
   }
@@ -113,6 +126,7 @@ export default {
   min-width: 300px;
   max-width: 500px;
   margin: 0 15px;
+  z-index: 3;
 }
 
 .about-flex-wrap {
@@ -133,5 +147,10 @@ export default {
 
 h2 {
   font-size: 1.75rem;
+}
+
+.image2 {
+    position: absolute;
+    z-index: 0;
 }
 </style>

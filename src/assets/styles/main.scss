@@ -231,6 +231,7 @@ h1 {
   small, .text--small {font-size: 0.8em;}
 
   .text--big {
+    z-index: 3;
     font-size: 1.25rem;
   }
 }
