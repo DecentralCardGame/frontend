@@ -24,47 +24,6 @@
             background-size: 100% auto;
         }
 
-        .lds-ring {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-        }
-
-        .lds-ring div {
-            box-sizing: border-box;
-            display: block;
-            position: absolute;
-            width: 64px;
-            height: 64px;
-            margin: 8px;
-            border: 8px solid #fff;
-            border-radius: 50%;
-            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-            border-color: #fff transparent transparent transparent;
-        }
-
-        .lds-ring div:nth-child(1) {
-            animation-delay: -0.45s;
-        }
-
-        .lds-ring div:nth-child(2) {
-            animation-delay: -0.3s;
-        }
-
-        .lds-ring div:nth-child(3) {
-            animation-delay: -0.15s;
-        }
-
-        @keyframes lds-ring {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
         .loading-container {
             position: fixed;
             flex-flow: column;
@@ -78,14 +37,10 @@
         .image1 {
             position: relative;
             z-index: 3;
-            width: 600; 
-            height: 600;
         }
         .image2 {
             position: absolute;
-            z-index: 3;
-            width: 600; 
-            height: 600;
+            z-index: 1;
         }
     </style>
 </head>
@@ -96,8 +51,8 @@
 </noscript>
 <div id="app">
     <div class="loading-container">
-        <img src="<%= BASE_URL %>logo.svg" class="image1" alt="Loading..." >
-        <img src="<%= BASE_URL %>sparkling_water.gif" alt="Loading..." class="image2">
+        <img src="<%= BASE_URL %>logo.svg" class="image1" alt="Loading..." width="600">
+        <img src="<%= BASE_URL %>sparkling_water.gif" class="image2" alt="Loading..." width="600">
     </div>
 </div>
 <!-- built files will be auto injected -->
