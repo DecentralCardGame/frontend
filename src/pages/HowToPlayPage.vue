@@ -210,8 +210,8 @@
           <div @click="highlight(sampleCards.saintDaisy, sampleCards.saintDaisy.cardImg)">
             <CardComponent
               class="card"
-              :model="sampleCards.saintDaisy"
-              :image-u-r-l="sampleCards.saintDaisy.cardImg"
+              :model="daisyData"
+              :image-u-r-l="cardJpgs.daisyImg"
             />
           </div>
         </div>
@@ -851,6 +851,8 @@ import CardComponent from "../components/CardComponent";
 
 import {
   sampleCards,
+  daisyData,
+  cardJpgs,
 } from "../components/utils/sampleCards.js";
 
 export default {
@@ -860,6 +862,8 @@ export default {
     return {
       symbolScale: 5,
       sampleCards: sampleCards,
+      diasyData: daisyData,
+      cardJpgs: cardJpgs,
       highlightedCard: {
         model: {},
         img: {},

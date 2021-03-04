@@ -1,3 +1,4 @@
+
 import { saintDaisy } from './cardfiles/saintDaisy.js'
 import { saintDaisy_pet } from './cardfiles/saintDaisy_pet.js'
 import { richard } from './cardfiles/richard.js'
@@ -20,6 +21,31 @@ import { drDolly } from './cardfiles/drDollyCard.js'
 import { bello } from './cardfiles/bello.js'
 import { timeDevice } from './cardfiles/timeDeviceCard.js'
 
+import daisyImg from "./cardfiles/daisy.jpg"
+
+export const cardJpgs = {
+  daisyImg: daisyImg
+}
+
+export const daisyData = {
+  CardName: 'Bello, Man\'s Best Friend',
+  FlavourText: 'Periodic - If you control a Human, gain 5 Wisdom. \n If it´s Dr. Dolly instead gain 10 Wisdom.',
+  abilities: [],
+  Notes: '',
+  type: 'Entity',
+  Tags: ['Animal'],
+  tagDummy: '',
+  CostType: {
+    Lumber: false,
+    Food: true,
+    Iron: false,
+    Mana: false,
+    Energy: false
+  },
+  CastingCost: 3,
+  Health: 2,
+  Attack: 2
+}
 
 export const sampleCards = {
   saintDaisy: saintDaisy,
