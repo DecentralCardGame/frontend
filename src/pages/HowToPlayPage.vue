@@ -862,7 +862,7 @@ export default {
     return {
       symbolScale: 5,
       sampleCards: sampleCards,
-      diasyData: daisyData,
+      daisyData: daisyData,
       cardJpgs: cardJpgs,
       highlightedCard: {
         model: {},
@@ -871,7 +871,8 @@ export default {
       isCardHighlighted: false,
     };
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     closeHighlightedCard() {
       this.isCardHighlighted = false;

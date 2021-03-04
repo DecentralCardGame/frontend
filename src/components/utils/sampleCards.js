@@ -1,4 +1,3 @@
-
 import { saintDaisy } from './cardfiles/saintDaisy.js'
 import { saintDaisy_pet } from './cardfiles/saintDaisy_pet.js'
 import { richard } from './cardfiles/richard.js'
