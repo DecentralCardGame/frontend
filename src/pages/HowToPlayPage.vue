@@ -877,7 +877,8 @@ export default {
       isCardHighlighted: false,
     };
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     closeHighlightedCard() {
       this.isCardHighlighted = false;
