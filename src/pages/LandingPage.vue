@@ -43,20 +43,20 @@
     <div class="about-flex-wrap">
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.botCommandCenter"
-          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+          :model="botCommandCenterData"
+          :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.botCommandCenter"
-          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+          :model="botCommandCenterData"
+          :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.botCommandCenter"
-          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+          :model="botCommandCenterData"
+          :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
     </div>
@@ -70,7 +70,8 @@
 
 import CardComponent from "../components/CardComponent";
 import {
-  sampleCards,
+  cardJpgs,
+  botCommandCenterData
 } from "../components/utils/sampleCards.js";
 
 export default {
@@ -78,7 +79,7 @@ export default {
   components: { CardComponent },
   data() {
     return {
-      sampleCards: sampleCards,
+      cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
     };
   },
   mounted() {},
