@@ -1,22 +1,24 @@
 <template>
   <div class="article-temp width-temp">
-    <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
+
     <div class="hero">
-      <p class="text--big">
+      
+      <b class="text--huge">
+        <img src="sparkling_water.gif" class="image2" alt="Loading...">
         Crowd Control is a trading card game, which gives you full ownership of your cards &amp; gives
         the community full ownership of the game. 
-      </p>
+      </b>
     </div>
 
     <div class="hero">
-      <p class="text--big">
+      <b class="text--huge">
         YOU can design your own trading cards. <br>
         YOU may participate in the process of balancing the game.
-      </p>
+      </b>
     </div>
 
     <div class="hero">
-      <p class="text--big">
+      <p class="text--huge">
         Find out more about our unique game mechanics on <router-link :to="{ name: 'About' }">The Game</router-link> page. 
         Check out the <router-link :to="{ name: 'Gallery' }">Gallery</router-link> to see cards created by fellow trading card gamers or 
         use the <router-link :to="{ name: 'New Card' }">Card Creator</router-link> to make cards of your own!
@@ -24,7 +26,7 @@
     </div>
 
     <div class="hero">
-      <p class="text--big">
+      <p class="text--huge">
         Crowd Control is owned by all of those who contribute to the project. We make this possible
         by being a decentralized autonomous organization (DAO), with a game buld on a blockchain
         using Cosmos technology.
@@ -36,8 +38,6 @@
       </p>
     </div>
     
-
-
     
 
     <div class="about-flex-wrap">
@@ -67,7 +67,6 @@
 
 
 
-
 import CardComponent from "../components/CardComponent";
 import {
   sampleCards,
@@ -87,15 +86,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/styles/variables";
-
-.hero {
-  z-index: 3;
-  margin: 10rem 0;
-  text-align: initial;
-  @media (max-width: 480px) {
-    margin: 0;
-  }
-}
 
 .about {
   align-items: flex-start;
@@ -149,8 +139,25 @@ h2 {
   font-size: 1.75rem;
 }
 
+.hero {
+  z-index: 3;
+  margin: 15rem 0rem;
+  text-align: initial;
+  @media (max-width: 480px) {
+    margin: 10rem 0rem;
+  }
+}
+
+.text--huge {
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
 .image2 {
-    position: absolute;
-    z-index: 0;
+  position: absolute;
+  top: calc(500px - 40vw);
+  left: 0;
+  z-index: 0;
+  width: 100vw;
 }
 </style>
