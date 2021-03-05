@@ -33,8 +33,8 @@
       </div>
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.communityImg"
-          :image-u-r-l="sampleCards.communityImg.cardImg"
+          :model="communityCardData"
+          :image-u-r-l="cardJpgs.communityCardImg"
         />
       </div>
     </div>
@@ -42,8 +42,8 @@
     <div class="about-flex-wrap reverse-column">
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.drDolly"
-          :image-u-r-l="sampleCards.drDolly.cardImg"
+          :model="drDollyData"
+          :image-u-r-l="cardJpgs.drDollyImg"
         />
       </div>
       <div class="about-text">
@@ -92,8 +92,8 @@
       </div>
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.timeDevice"
-          :image-u-r-l="sampleCards.timeDevice.cardImg"
+          :model="timeDeviceData"
+          :image-u-r-l="cardJpgs.timeDeviceImg"
         />
       </div>
     </div>
@@ -101,8 +101,8 @@
     <div class="about-flex-wrap reverse-column">
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.bello"
-          :image-u-r-l="sampleCards.bello.cardImg"
+          :model="belloData"
+          :image-u-r-l="cardJpgs.belloImg"
         />
       </div>
       <div class="about-text">
@@ -148,8 +148,8 @@
       </div>
       <div class="about-card">
         <CardComponent
-          :model="sampleCards.botCommandCenter"
-          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+          :model="botCommandCenterData"
+          :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
     </div>
@@ -163,7 +163,8 @@
 
 import CardComponent from "../components/CardComponent";
 import {
-  sampleCards,
+  cardJpgs,
+  communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData
 } from "../components/utils/sampleCards.js";
 
 export default {
@@ -171,7 +172,8 @@ export default {
   components: { CardComponent },
   data() {
     return {
-      sampleCards: sampleCards,
+      cardJpgs:cardJpgs,
+      communityCardData:communityCardData , botCommandCenterData:botCommandCenterData, belloData:belloData, timeDeviceData:timeDeviceData, drDollyData:drDollyData
     };
   },
   mounted() {},
