@@ -141,7 +141,7 @@ h2 {
 
 .hero {
   z-index: 3;
-  margin: 0rem 0rem;
+  margin: 0rem 0rem 15rem;
   text-align: initial;
   @media (max-width: 480px) {
     margin: 10rem 0rem 0rem;
@@ -150,7 +150,7 @@ h2 {
 
 .hero--with--img {
   z-index: 2;
-  margin: 15rem 0rem 10rem;
+  margin: 15rem 0rem 0rem;
   text-align: initial;
   @media (max-width: 800px) {
     margin: 10rem 0rem;
