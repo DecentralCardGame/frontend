@@ -1,14 +1,15 @@
 <template>
   <div class="article-temp width-temp">
+    
     <div class="hero--with--img">  
-      <img src="sparkling_water.gif" class="image2" alt="Loading..." z-index="1">
-      <b class="text--huge" z-index="3">
+      <b class="text--huge">
         Crowd Control is a trading card game, which gives you full ownership of your cards &amp; gives
         the community full ownership of the game. 
       </b>
+      <img src="sparkling_water.gif" class="image2" alt="Loading...">
     </div>
 
-    <div class="hero--after--img">
+    <div class="hero">
       <b class="text--huge">
         YOU can design your own trading cards. <br>
         YOU may participate in the process of balancing the game.
@@ -140,42 +141,66 @@ h2 {
 
 .hero {
   z-index: 3;
-  margin: 20rem 0rem;
+  margin: 0rem 0rem;
   text-align: initial;
   @media (max-width: 480px) {
-    margin: 15rem 0rem;
+    margin: 10rem 0rem 0rem;
   }
 }
 
 .hero--with--img {
-  z-index: 3;
-  margin: -15rem 0rem 10rem;
+  z-index: 2;
+  margin: 15rem 0rem 10rem;
   text-align: initial;
-  @media (max-width: 480px) {
+  @media (max-width: 800px) {
     margin: 10rem 0rem;
   }
-}
-
-.hero--after--img {
-  z-index: 3;
-  margin: 20rem 0rem;
-  text-align: initial;
   @media (max-width: 480px) {
-    margin: 10rem 0rem;
+    margin: 10rem 0rem 0rem;
+    margin-bottom: 0;
   }
 }
 
 .text--huge {
-  font-size: 2rem;
+  position: relative;
   z-index: 3;
+  top: 0rem;
+
+  font-size: 40px;
+  @media (max-width: 1200px) {
+    font-size: 35px;
+  }
+  @media (max-width: 800px) {
+    font-size: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 25px;
+  }
 }
 
 .image2 {
   position: relative;
   margin: auto;
   z-index: 1;
-  top: 20rem;
-  width: 50vw;
+
+  width: 100%;
   max-width: 1000px;
+  min-width: 400px;
+  top: -30rem;
+  @media (max-width: 1700px) {
+    top: -27rem;
+  }
+  @media (max-width: 1200px) {
+    top: -22rem;
+    left: -1em;
+  }
+  @media (max-width: 800px) {
+    top: -20rem;
+    left: -5em;
+  }
+  @media (max-width: 480px) {
+    top: -16rem;
+    left: 0em;
+  }
 }
 </style>
