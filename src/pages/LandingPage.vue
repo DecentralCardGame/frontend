@@ -143,7 +143,7 @@ h2 {
 
 .hero {
   z-index: 3;
-  margin: 0rem 0rem 15rem;
+  margin: 15rem 0rem 15rem;
   text-align: initial;
   @media (max-width: 480px) {
     margin: 10rem 0rem 0rem;
@@ -153,7 +153,7 @@ h2 {
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: 15rem 0rem 0rem;
+  margin: 25vh 0rem 0rem;
   text-align: initial;
   @media (max-width: 800px) {
     margin: 10rem 0rem;
@@ -191,12 +191,15 @@ h2 {
   left: 0;
   right: 0;
   
-  top: -18rem;
+  top: -20rem;
   @media (max-width: 1700px) {
-    top: -14rem;
+    top: -18rem;
   }
-  @media (max-width: 1200px) {
-    top: -9rem;
+  @media (max-width: 1400px) {
+    top: -13rem;
+  }
+  @media (max-width: 1000px) {
+    top: -11rem;
     left: -1em;
   }
   @media (max-width: 800px) {
