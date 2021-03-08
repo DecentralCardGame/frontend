@@ -1,5 +1,5 @@
 <template>
-  <div class="article-temp width-temp">
+  <div class="article-temp">
     
     <div class="hero--with--img">  
       <b class="text--huge">
@@ -109,13 +109,13 @@ export default {
   max-width: 300px;
   min-width: 300px;
   min-height: 300px;
-  margin: 0 15px;
+  margin: 0 auto;
 }
 
 .about-text {
   min-width: 300px;
   max-width: 500px;
-  margin: 0 15px;
+  margin: 0 auto;
   z-index: 3;
 }
 
@@ -180,8 +180,8 @@ h2 {
 
 .image2 {
   position: relative;
-  margin: auto;
-  z-index: 1;
+  margin: 0rem;
+  z-index: -1;
 
   width: 100%;
   max-width: 1000px;

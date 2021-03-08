@@ -213,20 +213,20 @@ export default {
   max-width: 300px;
   min-width: 300px;
   min-height: 300px;
-  margin: 0 15px;
+  margin: 0 auto;
 }
 
 .about-text {
   min-width: 300px;
   max-width: 500px;
-  margin: 0 15px;
+  margin: 0 auto;
 }
 
 .about-flex-wrap {
   display: flex;
+  margin: auto; 
   flex-direction: row;
-  justify-content: start;
-  align-items: top;
+  align-items: center;
   @media (max-width: 1200px) {
     flex-direction: column;
   }
