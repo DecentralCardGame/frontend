@@ -2,20 +2,20 @@
   <div class="article-temp">
     
     <div class="hero--with--img">  
-      <p class="text--huge">
+      <b class="text--huge">
         Crowd Control is a trading card game, which gives you full ownership of your cards &amp; gives
         the community full ownership of the game. 
-      </p>
+      </b>
       <div class= "img--container">
         <img src="sparkling_water.gif" class="image2" alt="Loading...">
       </div>
     </div>
 
     <div class="hero">
-      <b class="text--huge">
+      <p class="text--huge">
         YOU can design your own trading cards. <br>
         YOU may participate in the process of balancing the game.
-      </b>
+      </p>
     </div>
 
     <div class="hero">
@@ -143,7 +143,7 @@ h2 {
 
 .hero {
   z-index: 3;
-  margin: 15rem 0rem 15rem;
+  margin: 45vh 0rem;
   text-align: initial;
   @media (max-width: 480px) {
     margin: 10rem 0rem 0rem;
@@ -153,7 +153,7 @@ h2 {
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: 25vh 0rem 0rem;
+  margin: 30vh 0rem 0rem;
   text-align: initial;
   @media (max-width: 800px) {
     margin: 10rem 0rem;
@@ -177,7 +177,7 @@ h2 {
     font-size: 30px;
   }
   @media (max-width: 480px) {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 
@@ -207,7 +207,7 @@ h2 {
     left: -5em;
   }
   @media (max-width: 480px) {
-    top: -5rem;
+    top: -8rem;
   }
 }
 
