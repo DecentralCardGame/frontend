@@ -8,7 +8,7 @@
         >
           <img
             alt="Crowd Control"
-            src="logo.svg"
+            src="../../assets/logo.svg"
           >
         </router-link>
         <div
