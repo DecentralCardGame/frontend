@@ -7,7 +7,7 @@
         the community full ownership of the game. 
       </b>
       <div class= "img--container">
-        <img src="sparkling_water.gif" class="image2" alt="Loading...">
+        <img src="../assets/ggez.gif" class="image2" alt="yes...">
       </div>
     </div>
 
@@ -38,7 +38,6 @@
           > Whitepaper</a> to find out more.
       </b>
     </div>
-    
     
 
     <div class="about-flex-wrap">
