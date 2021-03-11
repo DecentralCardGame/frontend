@@ -12,10 +12,10 @@
     </div>
 
     <div class="hero">
-      <p class="text--huge">
+      <b class="text--huge">
         YOU can design your own trading cards. <br>
         YOU may participate in the process of balancing the game.
-      </p>
+      </b>
     </div>
 
     <div class="hero">
@@ -144,23 +144,13 @@ h2 {
   z-index: 3;
   margin: 45vh 0rem;
   text-align: initial;
-  @media (max-width: 480px) {
-    margin: 10rem 0rem 0rem;
-  }
 }
 
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: 30vh 0rem 0rem;
+  margin: calc(30vh - 80px) 0rem 0rem;
   text-align: initial;
-  @media (max-width: 800px) {
-    margin: 10rem 0rem;
-  }
-  @media (max-width: 480px) {
-    margin: 10rem 0rem 0rem;
-    margin-bottom: 0;
-  }
 }
 
 .text--huge {
