@@ -139,6 +139,9 @@ export default {
   .nav-wrapper {
     max-width: 75vw;
     margin: auto;
+    @media (max-width: 480px) {
+      max-width: 100vw;
+    }
   }
 
   .nav {
