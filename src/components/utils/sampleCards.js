@@ -11,11 +11,11 @@ import furiousJackImg from './cardfiles/furiousJack.jpg'
 import miniLabImg from './cardfiles/miniLab.jpg'
 import evieImg from './cardfiles/evie.jpg'
 import exoskeletonImg from './cardfiles/exoskeleton.jpg'
-import communityCardImg from './cardfiles/communityCard.jpg'
-import botCommandCenterImg from './cardfiles/botCommandCenter.jpg'
-import drDollyImg from './cardfiles/drDollyCard.jpg'
-import belloImg from './cardfiles/bello.jpg'
-import timeDeviceImg from './cardfiles/timeDeviceCard.jpg'
+import communityCardImg from './cardfiles/communityCard.webp'
+import botCommandCenterImg from './cardfiles/botCommandCenter.webp'
+import drDollyImg from './cardfiles/drDollyCard.webp'
+import belloImg from './cardfiles/bello.webp'
+import timeDeviceImg from './cardfiles/timeDeviceCard.webp'
 
 export const cardJpgs = {
   daisyImg: daisyImg,
