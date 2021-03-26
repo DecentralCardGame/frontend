@@ -24,35 +24,35 @@
       <div>
         <!-- energy icon -->
         <img
-          src="../assets/symbols/energy-class.png"
+          src="../assets/symbols/energy-class.webp"
           class="class-symbol"
         >
       </div>
       <div>
         <!-- food icon -->
         <img
-          src="../assets/symbols/food-class.png"
+          src="../assets/symbols/food-class.webp"
           class="class-symbol"
         >
       </div>
       <div>
         <!-- iron icon -->
         <img
-          src="../assets/symbols/iron-class.png"
+          src="../assets/symbols/iron-class.webp"
           class="class-symbol"
         >
       </div>
       <div>
         <!-- mana icon -->
         <img
-          src="../assets/symbols/mana-class.png"
+          src="../assets/symbols/mana-class.webp"
           class="class-symbol"
         >
       </div>
       <div>
         <!-- lumber icon -->
         <img
-          src="../assets/symbols/lumber-class.png"
+          src="../assets/symbols/lumber-class.webp"
           class="class-symbol"
         >
       </div>
@@ -69,7 +69,7 @@
       <br>
       <br>
       
-      <img src="../components/utils/cardfiles/HQ_Dolly.png">
+      <img src="../components/utils/cardfiles/HQ_Dolly.webp">
       <h2>Your Headquaters</h2>
       Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
       <span class="marked-text">1</span>
@@ -90,7 +90,7 @@
       <br>
       <br>
       
-      <img src="../components/utils/cardfiles/Dr.Dolly.png">
+      <img src="../components/utils/cardfiles/Dr.Dolly.webp">
       <h2>Entities (Creatures)</h2>
       Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
       <span class="marked-text">1</span>
@@ -389,7 +389,7 @@
           <div>
             <img
               class="image_arrow"
-              src="../assets/arrows/arrow_up.png"
+              src="../assets/arrows/arrow_up.webp"
             >
           </div>
           <div @click="highlight(ulrichData, cardJpgs.ulrichImg)">
@@ -433,7 +433,7 @@
             </div>
             <img
               class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.png"
+              src="../assets/arrows/arrow_up.webp"
             >
             <div @click="highlight(richardData, cardJpgs.richardImg)">
               <CardComponent
@@ -453,7 +453,7 @@
             </div>
             <img
               class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.png"
+              src="../assets/arrows/arrow_up.webp"
             >
             <div @click="highlight(richardData, cardJpgs.richardImg)">
               <CardComponent
@@ -473,7 +473,7 @@
             </div>
             <img
               class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.png"
+              src="../assets/arrows/arrow_up.webp"
             >
             <div @click="highlight(hurrwigData, cardJpgs.hurrwigImg)">
               <CardComponent
@@ -493,7 +493,7 @@
             </div>
             <img
               class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.png"
+              src="../assets/arrows/arrow_up.webp"
             >
             <div @click="highlight(AutomatedBotProductionBotData, cardJpgs.automatedBotProductionImg)">
               <CardComponent
@@ -513,7 +513,7 @@
             </div>
             <img
               class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.png"
+              src="../assets/arrows/arrow_up.webp"
             >
             <div @click="highlight(assoultHorseData, cardJpgs.assoultHorseImg)">
               <CardComponent
