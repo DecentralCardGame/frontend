@@ -10,8 +10,8 @@
       <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
     
-    <div class="about-flex-wrap">
-      <div class="about-text">
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
         <h2>The Game</h2>
         <p>
           This sounds very awesome, but how shall this work? Somebody must be in charge and someone has to say what is
@@ -31,7 +31,7 @@
           means you can also contribute and become not only a member but an owner of Crowd Control.
         </p>
       </div>
-      <div class="about-card">
+      <div class="dual--column--img">
         <CardComponent
           :model="communityCardData"
           :image-u-r-l="cardJpgs.communityCardImg"
@@ -39,14 +39,14 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap reverse-column">
-      <div class="about-card">
+    <div class="dual--column--flex--wrap reverse-column">
+      <div class="dual--column--img">
         <CardComponent
           :model="drDollyData"
           :image-u-r-l="cardJpgs.drDollyImg"
         />
       </div>
-      <div class="about-text">
+      <div class="dual--column--text">
         <h2>The Mechanics</h2>
         <p>
           Crowd Control has unique game mechanics.
@@ -68,8 +68,8 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap">
-      <div class="about-text">
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
         <h2>The Cards</h2>
         <p>
           We have 4 different types of cards. The HQ, Place, Entity and Action.
@@ -90,7 +90,7 @@
           <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
         </p>
       </div>
-      <div class="about-card">
+      <div class="dual--column--img">
         <CardComponent
           :model="timeDeviceData"
           :image-u-r-l="cardJpgs.timeDeviceImg"
@@ -98,14 +98,14 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap reverse-column">
-      <div class="about-card">
+    <div class="dual--column--flex--wrap reverse-column">
+      <div class="dual--column--img">
         <CardComponent
           :model="belloData"
           :image-u-r-l="cardJpgs.belloImg"
         />
       </div>
-      <div class="about-text">
+      <div class="dual--column--text">
         <h2>The Gameplay</h2>
         <p>
           A turn begins by giving you Production and Wisdom. How much you get is determined by your HQ as well as how
@@ -126,8 +126,8 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap">
-      <div class="about-text">
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
         <h2>The Balancing</h2>
         <p>
           The balancing is done by adjusting the ressource cost of a card. This means when a card receives more
@@ -146,7 +146,7 @@
           these sets, giving financial reward to those creating cards.
         </p>
       </div>
-      <div class="about-card">
+      <div class="dual--column--img">
         <CardComponent
           :model="botCommandCenterData"
           :image-u-r-l="cardJpgs.botCommandCenterImg"
@@ -157,9 +157,6 @@
 </template>
 
 <script>
-
-
-
 
 import CardComponent from "../components/CardComponent";
 import {
@@ -207,35 +204,6 @@ export default {
     height: $font-size * 20;
   }
   margin-bottom: $font-size * 4;
-}
-
-.about-card {
-  max-width: 300px;
-  min-width: 300px;
-  min-height: 300px;
-  margin: 0 auto;
-}
-
-.about-text {
-  min-width: 300px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.about-flex-wrap {
-  display: flex;
-  margin: auto; 
-  flex-direction: row;
-  align-items: center;
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
-}
-
-.reverse-column {
-  @media (max-width: 1200px) {
-    flex-direction: column-reverse;
-  }
 }
 
 h2 {

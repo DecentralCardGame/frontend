@@ -3,20 +3,71 @@
     
     <div class="hero--with--img">  
       <b class="text--huge">
-        Crowd Control is a trading card game, which gives you full ownership of your cards &amp; gives
-        the community full ownership of the game. 
+        <br>
+        <center>
+        A Trading Card Game YOU OWN
+        </center>
       </b>
-      <div class= "img--container">
+      <div class= "img--container--top">
         <img src="../assets/animations/sparkling_water.gif" class="image2" alt="yes...">
       </div>
     </div>
 
-    <div class="hero">
-      <b class="text--huge">
-        YOU can design your own trading cards. <br>
-        YOU may participate in the process of balancing the game.
-      </b>
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
+
+        <div class="hero--with--img">
+
+          <div class= "img--container">
+            <svg width="1000px" height="1000px" viewBox="0 0 985.399 969.501" class="image3" >
+              <path id="Pfad_298" data-name="Pfad 298" d="M132.32,2293.693l38.946,842.479,623.139-39.166,224.141-431.792-144.9-397.009Z" transform="translate(250.87 -2267.424) rotate(7)" fill="#4b0439"/>
+              <g transform="translate(16,-12)">
+                <path id="Pfad_299" data-name="Pfad 299" d="M132.32,2293.285l38.323,829,613.169-38.539,220.555-424.883L861.787,2268.2Z" transform="translate(249.177 -2267.424) rotate(7)" fill="#9a0881"/>
+              </g>
+            </svg>
+          </div>
+
+          <center>
+          <b class="text--huge">
+            <br>
+            YOU CREATE
+          </b>
+          <p class="text">
+            On Crowd Control you can create and <br>
+            design your own trading cards. <br>
+            Your Cards become a part of the <br>
+            game for everyone.
+          </p>
+
+          <b class="text--huge">
+            YOU BALANCE
+          </b>
+          <p class="text">
+            Join the council and vote on cards. <br>
+            You can be part of the balancing process.
+          </p>
+
+          <b class="text--huge">
+            YOU EARN
+          </b>
+          <p class="text">
+            Create cards or vote to earn coins!
+          </p>
+          </center>
+
+
+        </div>
+
+      </div>
+      <div class="dual--column--img">
+        <CardComponent
+          :model="botCommandCenterData"
+          :image-u-r-l="cardJpgs.botCommandCenterImg"
+        />
+      </div>
     </div>
+
+    
 
     <div class="hero">
       <b class="text--huge">
@@ -40,33 +91,10 @@
     </div>
     
 
-    <div class="about-flex-wrap">
-      <div class="about-card">
-        <CardComponent
-          :model="botCommandCenterData"
-          :image-u-r-l="cardJpgs.botCommandCenterImg"
-        />
-      </div>
-      <div class="about-card">
-        <CardComponent
-          :model="botCommandCenterData"
-          :image-u-r-l="cardJpgs.botCommandCenterImg"
-        />
-      </div>
-      <div class="about-card">
-        <CardComponent
-          :model="botCommandCenterData"
-          :image-u-r-l="cardJpgs.botCommandCenterImg"
-        />
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-
-
-
 import CardComponent from "../components/CardComponent";
 import {
   cardJpgs,
@@ -74,7 +102,7 @@ import {
 } from "../components/utils/sampleCards.js";
 
 export default {
-  name: "AboutPage",
+  name: "LandingPage",
   components: { CardComponent },
   data() {
     return {
@@ -88,53 +116,6 @@ export default {
 <style scoped lang="scss">
 @import "../assets/styles/variables";
 
-.about {
-  align-items: flex-start;
-  align-self: center;
-  display: grid;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-  h2 {
-    margin-top: 0;
-  }
-  svg {
-    height: $font-size * 20;
-  }
-  margin-bottom: $font-size * 4;
-}
-
-.about-card {
-  max-width: 300px;
-  min-width: 300px;
-  min-height: 300px;
-  margin: 0 auto;
-}
-
-.about-text {
-  min-width: 300px;
-  max-width: 500px;
-  margin: 0 auto;
-  z-index: 3;
-}
-
-.about-flex-wrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: top;
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
-}
-
-.reverse-column {
-  @media (max-width: 1200px) {
-    flex-direction: column-reverse;
-  }
-}
 
 h2 {
   font-size: 1.75rem;
@@ -170,7 +151,7 @@ h2 {
   }
 }
 
-.img--container {
+.img--container--top {
   z-index: -1;
   pointer-events: none;
   display: flex;
@@ -200,6 +181,33 @@ h2 {
   }
 }
 
+.img--container {
+  z-index: -1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  
+  top: 0rem;
+  @media (max-width: 1700px) {
+  }
+  @media (max-width: 1400px) {
+  }
+  @media (max-width: 1000px) {
+    top: -11rem;
+    left: -1em;
+  }
+  @media (max-width: 800px) {
+    top: -8rem;
+    left: -5em;
+  }
+  @media (max-width: 480px) {
+    top: -8rem;
+  }
+}
+
 .image2 {
   margin: 0rem;
   margin-left: 0;
@@ -208,5 +216,13 @@ h2 {
   width: 100%;
   max-width: 1000px;
   min-width: 400px;
+}
+
+.image3 {
+  margin: 0rem;
+  margin-left: 0;
+  z-index: -1;
+
+  width: 100%;
 }
 </style>

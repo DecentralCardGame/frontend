@@ -258,3 +258,32 @@ h1 {
 .img__default__container {
   margin: 10%;
 }
+
+.dual--column--img {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 0 auto;
+}
+
+.dual--column--text {
+  min-width: 300px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.dual--column--flex--wrap {
+  display: flex;
+  margin: auto; 
+  flex-direction: row;
+  align-items: center;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+}
+
+.reverse-column {
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+  }
+}
