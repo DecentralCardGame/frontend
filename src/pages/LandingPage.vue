@@ -19,7 +19,7 @@
         <div class="hero--with--img">
 
           <div class= "img--container">
-            <svg width="1000px" height="1000px" viewBox="0 0 985.399 969.501" class="image3" >
+            <svg viewBox="0 0 985.399 969.501" class="image3" >
               <path id="Pfad_298" data-name="Pfad 298" d="M132.32,2293.693l38.946,842.479,623.139-39.166,224.141-431.792-144.9-397.009Z" transform="translate(250.87 -2267.424) rotate(7)" fill="#4b0439"/>
               <g transform="translate(16,-12)">
                 <path id="Pfad_299" data-name="Pfad 299" d="M132.32,2293.285l38.323,829,613.169-38.539,220.555-424.883L861.787,2268.2Z" transform="translate(249.177 -2267.424) rotate(7)" fill="#9a0881"/>
@@ -189,6 +189,9 @@ h2 {
   position: absolute;
   left: 0;
   right: 0;
+
+  width: 1000px;
+  height: 1000px;
   
   top: 0rem;
   @media (max-width: 1700px) {
