@@ -27,34 +27,31 @@
             </svg>
           </div>
 
-          <center>
+
           <b class="text--huge">
             <br>
             YOU CREATE
           </b>
-          <p class="text">
+          <p class="text--medium">
             On Crowd Control you can create and <br>
-            design your own trading cards. <br>
-            Your Cards become a part of the <br>
-            game for everyone.
+            design your own trading cards. Your Cards <br>
+            become a part of the game for everyone.<br>
           </p>
 
           <b class="text--huge">
             YOU BALANCE
           </b>
-          <p class="text">
-            Join the council and vote on cards. <br>
-            You can be part of the balancing process.
+          <p class="text--medium">
+            Join the council and vote on cards. You can <br>
+            be part of the balancing process.
           </p>
 
           <b class="text--huge">
             YOU EARN
           </b>
-          <p class="text">
+          <p class="text--medium">
             Create cards or vote to earn coins!
           </p>
-          </center>
-
 
         </div>
 
@@ -151,6 +148,9 @@ h2 {
   }
 }
 
+.text--medium {
+}
+
 .img--container--top {
   z-index: -1;
   pointer-events: none;
@@ -187,13 +187,13 @@ h2 {
   display: flex;
   justify-content: center;
   position: absolute;
-  left: 0;
+  left: -4.5rem;
   right: 0;
 
-  width: 1000px;
+  width: 480px;
   height: 1000px;
   
-  top: 0rem;
+  top: -16rem;
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
