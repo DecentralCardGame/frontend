@@ -201,7 +201,7 @@ h1 {
 }
 
 .article-temp {
-  font-weight: 400;
+  font-weight: $font-weight;
   line-height: $line-height-big;
   font-size: 100%;
   p {
@@ -249,7 +249,7 @@ h1 {
 }
 
 .header__p {
-  font-weight: 400;
+  font-weight: $font-weight;
   line-height: $line-height-big;
   font-size: 100%;
   text-align: center;

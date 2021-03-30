@@ -27,7 +27,6 @@
             </svg>
           </div>
 
-
           <b class="text--huge">
             <br>
             YOU CREATE
@@ -57,42 +56,105 @@
 
       </div>
       <div class="dual--column--img">
-        <CardComponent
-          :model="botCommandCenterData"
-          :image-u-r-l="cardJpgs.botCommandCenterImg"
-        />
+        <img src="mother_popup.gif" class="image3" alt="yes...">
       </div>
     </div>
 
     
+    <div class="dual--column--flex--wrap">
 
-    <div class="hero">
-      <b class="text--huge">
-        Find out more about our unique game mechanics on <router-link :to="{ name: 'About' }">The Game</router-link> page. 
-        Check out the <router-link :to="{ name: 'Gallery' }">Gallery</router-link> to see cards created by fellow trading card gamers or 
-        use the <router-link :to="{ name: 'New Card' }">Card Creator</router-link> to make cards of your own!
-      </b>
+      <div class="dual--column--img">
+        <img src="paper_flyin.gif" class="image3" alt="yes...">
+      </div>
+
+      <div class="dual--column--text">
+
+        <div class="hero--with--img">
+          <div class= "img--container--trapez">
+            <svg viewBox="0 0 859.168 1347.934" class="image3" >
+              <path id="Pfad_297" data-name="Pfad 297" d="M932.947,5899.424,872.038,4551.49l859.168,133.93-57.222,1144.968Z" transform="translate(-872.038 -4551.49)" fill="#4b0439"/>
+              <g transform="translate(-10,-10)">
+                <path id="Pfad_300" data-name="Pfad 300" d="M932.521,5890.01,872.038,4551.49l853.168,132.994-56.823,1136.973Z" transform="translate(-872.038 -4551.49)" fill="#9a0881"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="info--item">
+            <b class="text--huge">
+              <br>
+              Gallery
+            </b>
+            <p class="text--medium">
+              Check out the cards created by fellow <br>
+              trading card gamers in the <router-link :to="{ name: 'Gallery' }">Gallery</router-link>. <br>
+            </p>
+            <div class=link--button>
+              <router-link to="/about" style="text-decoration: none; color: inherit;">
+                <p class=link--text>
+                  Go to Gallery >
+                </p>
+              </router-link>
+            </div>
+          </div>
+
+          <div class="info--item">
+            <b class="text--huge">
+              Card Creator
+            </b>
+            <p class="text--medium">
+              Make your own cards on the blockchain <br>
+              with our <router-link :to="{ name: 'New Card' }">Card Creator</router-link>.
+            </p>
+            <div class=link--button>
+              <router-link to="/about" style="text-decoration: none; color: inherit;">
+                <p class=link--text>
+                  Go to Card Creator >
+                </p>
+              </router-link>
+            </div>
+          </div>
+
+          <div class="info--item">
+            <b class="text--huge">
+              The Game
+            </b>
+            <p class="text--medium">
+              Crowd Control has unique game mechanics <br>
+              and a new kind of gameplay. Read more <br>
+              about the game rules on <router-link :to="{ name: 'About' }">the Game</router-link> page.
+            </p>
+            <div class=link--button>
+              <router-link to="/about" style="text-decoration: none; color: inherit;">
+                <p class=link--text>
+                  Find out more >
+                </p>
+              </router-link>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
+
+
     <div class="hero">
       <b class="text--huge">
-        Crowd Control is owned by all of those who contribute to the project. We make this possible
-        by being a decentralized autonomous organization (DAO), with a game buld on a blockchain
-        using Cosmos technology.
-        <br><br>
-        Read our <a
+        We are not a company
+      </b>
+      <p class="text--medium">
+        Crowd Control is not a company, but a Decentralized Autonomous Organization (DAO). This is realized <br>
+        with a blockchain built on Cosmos technology. Read our <a
             href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
             target="_blank"
-          > Whitepaper</a> to find out more.
-      </b>
+          > Whitepaper</a> 
+        to find out more.
+      </p>
     </div>
-    
-
   </div>
 </template>
 
 <script>
-import CardComponent from "../components/CardComponent";
 import {
   cardJpgs,
   botCommandCenterData
@@ -100,7 +162,7 @@ import {
 
 export default {
   name: "LandingPage",
-  components: { CardComponent },
+  components: { },
   data() {
     return {
       cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
@@ -131,7 +193,12 @@ h2 {
   text-align: initial;
 }
 
+.info--item {
+  margin: 0rem 0rem;
+}
+
 .text--huge {
+  font-family: $font-family-header; 
   position: relative;
   z-index: 3;
   top: 0rem;
@@ -147,8 +214,62 @@ h2 {
     font-size: 20px;
   }
 }
-
 .text--medium {
+  font-family: $font-family; 
+  font-weight: $font-weight;
+  font-size: $font-size-small;
+  letter-spacing: 2;
+}
+.link--text {
+  font-family: $font-family-header; 
+  font-weight: normal;
+  padding: 0.5rem 1rem;
+  font-size: $font-size-small;
+  color: $black;
+  text-align: center;
+  transform: skewX(15deg);
+}
+
+.link--button {
+  background-color: $main-color-c;
+  box-shadow: $border-thickness-bold * 1.0 $border-thickness-bold * 1.0 0 $black;
+  position: relative;
+  margin: 0.5rem 5rem;
+  transform: skewX(-25deg);
+  font-size: $font-size-small;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: $animation-duration;
+    transition-duration: $animation-duration;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  &:hover, &:focus, &:active {
+    color: $minor-color-c;
+  }
+  &:hover:before, &:focus:before, &:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  @media (max-width: 1178px) {
+    transform: skewX(0);
+    margin: 0;
+  }  
 }
 
 .img--container--top {
@@ -194,6 +315,36 @@ h2 {
   height: 1000px;
   
   top: -16rem;
+  @media (max-width: 1700px) {
+  }
+  @media (max-width: 1400px) {
+  }
+  @media (max-width: 1000px) {
+    top: -11rem;
+    left: -1em;
+  }
+  @media (max-width: 800px) {
+    top: -8rem;
+    left: -5em;
+  }
+  @media (max-width: 480px) {
+    top: -8rem;
+  }
+}
+
+.img--container--trapez {
+  z-index: -1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: -4.5rem;
+  right: 0;
+
+  width: 380px;
+  height: 600px;
+  
+  top: -5rem;
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
