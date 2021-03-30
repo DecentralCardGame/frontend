@@ -64,8 +64,8 @@ b {
 }
 
 ::selection {
-  background-color: $black;
-  color: white;
+  background-color: $main-color-b;
+  color: black;
 }
 
 @import "forms";
@@ -211,7 +211,7 @@ h1 {
   h1, h2, h3, h4, h5 {
     margin: 2.75rem 0 1.05rem;
     font-family: $font-family-header, sans-serif;
-    text-shadow: $border-thickness-bold $border-thickness-bold 0 $black;
+    text-shadow: $border-thickness-bold $border-thickness-bold 0 $black-transparent;
     line-height: $line-height-headline;
   }
 
@@ -238,7 +238,7 @@ h1 {
 
 .header__h2 {
   font-family: $font-family-header;
-  text-shadow: $border-thickness-bold $border-thickness-bold 0 $black;
+  text-shadow: $border-thickness-bold $border-thickness-bold 0 $black-transparent;
   margin: 0 0 0.5rem;
   line-height: $line-height;
   font-size: 2.441em;

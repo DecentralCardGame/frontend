@@ -338,13 +338,13 @@ h2 {
   display: flex;
   justify-content: center;
   position: absolute;
-  left: -4.5rem;
+  left: -3rem;
   right: 0;
 
-  width: 380px;
-  height: 600px;
+  width: 400px;
+  height: 700px;
   
-  top: -5rem;
+  top: -2rem;
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
