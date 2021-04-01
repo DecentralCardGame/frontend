@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="dual--column--flex--wrap">
+    <div class="dual--column--flex--wrap extra--space">
       <div class="dual--column--text">
 
         <div class="hero--with--img">
@@ -211,6 +211,10 @@ h2 {
   z-index: 3;
   margin: 45vh 0rem;
   text-align: initial;
+}
+
+.extra--space {
+  margin: 45vh auto;
 }
 
 .hero--with--img {
