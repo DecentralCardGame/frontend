@@ -66,7 +66,9 @@
     <div class="dual--column--flex--wrap">
 
       <div class="dual--column--img">
-        <img src="paper_flyin.gif" class="image3" alt="yes...">
+        <div class= "img--container adjust--flyin">
+          <img src="paper_flyin.gif" class="image3" alt="yes...">
+        </div>
       </div>
 
       <div class="dual--column--text">
@@ -228,8 +230,8 @@ h2 {
   margin: 0rem;
 }
 .extra--margin {
-  margin: 0rem 14rem;
-  left: -18rem;
+  margin: 0rem 18rem;
+  left: -22rem;
 }
 
 .text--huge {
@@ -338,6 +340,30 @@ h2 {
     top: -8rem;
   }
 }
+.adjust--flyin {
+  position: relative;
+  left: 10rem;
+  right: 0;
+  width: 300px;
+  height: 300px;
+
+  top: 10rem;
+  @media (max-width: 1700px) {
+  }
+  @media (max-width: 1400px) {
+  }
+  @media (max-width: 1000px) {
+    top: -11rem;
+    left: -1em;
+  }
+  @media (max-width: 800px) {
+    top: -8rem;
+    left: -5em;
+  }
+  @media (max-width: 480px) {
+    top: -8rem;
+  }
+}
 .adjust--mother--gif {
   position: relative;
   left: 0rem;
@@ -361,7 +387,6 @@ h2 {
     top: -8rem;
   }
 }
-
 .adjust--pentagon {
   left: -4.5rem;
   right: 0;
