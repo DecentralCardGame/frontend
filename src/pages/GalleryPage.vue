@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery">
+  <div class="gallery" v-on:auxclick="handleAuxInput" v-on:click="handleAuxInput">
     <h2 class="header__h2">
       Gallery
     </h2>
@@ -199,13 +199,45 @@ export default {
       votableCards: [],
       canVote: false,
       isOwner: false,
+      leavePageLock: false,
     };
   },
   mounted() {
     this.loadCardList();
     this.loadVotableCards();
+
+    window.onpopstate = function(event) {
+      alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    };
+
+    document.addEventListener('backbutton', function() {
+      console.log('YES')
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('lock:', this.leavePageLock)
+    console.log(to, from)
+    if (this.leavePageLock)
+      next(false)
+    else
+      next()
   },
   methods: {
+    handleAuxInput(event) {
+      if (event.which == 5) {
+        this.nextPage()
+        this.leavePageLock = true
+      }
+      if (event.which == 4) {
+        this.prevPage()
+        this.leavePageLock = true
+      }
+      else {
+        this.leavePageLock = false
+      }
+      console.log(event)
+      this.$router.replace('gallery')
+    },
     loadVotableCards() {
       this.$cardChain
         .getVotableCards(this.$store.getters.getUserAddress)
@@ -265,21 +297,6 @@ export default {
           console.error(res);
         });
     },
-    /*applyFilters(card) {
-      if (
-        this.filters.notesContains &&
-        !card.Notes.includes(this.filters.notesContains)
-      )
-        return false;
-      if (this.filters.cardType === "HQ" && card.type !== "Headquarter")
-        return false;
-      if (this.filters.cardType === "Entity" && card.type !== "Entity")
-        return false;
-      if (this.filters.cardType === "Action" && card.type !== "Action")
-        return false;
-      if (this.filters.cardType === "Place" && card.type !== "Place") return false;
-      return true;
-    },*/
     fillPage() {
       if (this.pageId + this.filters.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
@@ -308,6 +325,9 @@ export default {
       console.log("all cards:", this.cards);
     },
     nextPage() {
+      if (!this.browsingForward)
+        return
+      
       this.pageId += this.filters.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
@@ -315,6 +335,9 @@ export default {
       window.scrollTo(0, 0);
     },
     prevPage() {
+      if (!this.browsingBackward)
+        return
+
       this.pageId -= this.filters.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
