@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery" v-on:auxclick="handleAuxInput" v-on:click="handleAuxInput">
+  <div class="gallery">
     <h2 class="header__h2">
       Gallery
     </h2>
@@ -202,27 +202,39 @@ export default {
       leavePageLock: false,
     };
   },
-  mounted() {
-    this.loadCardList();
-    this.loadVotableCards();
+  // this watch together with the following beforeRouteLeave make browsing
+  // through the Gallery with mouse back and forward (x1, x2) buttons possible
+  watch: {
+    '$store.state.lastInputEvent': function() {
+      let event = this.$store.state.lastInputEvent
 
-    window.onpopstate = function(event) {
-      alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
-    };
-
-    document.addEventListener('backbutton', function() {
-      console.log('YES')
-    });
+      if (event.which == 5) {
+        this.leavePageLock = true
+        this.nextPage()
+      }
+      else if (event.which == 4) {
+        
+        this.leavePageLock = true
+        this.prevPage()
+      }
+      else {
+        this.leavePageLock = false
+      }
+    }
   },
   beforeRouteLeave(to, from, next) {
-    console.log('lock:', this.leavePageLock)
-    console.log(to, from)
     if (this.leavePageLock)
       next(false)
     else
       next()
   },
+  mounted() {
+    this.loadCardList();
+    this.loadVotableCards();
+  },
+
   methods: {
+    /*
     handleAuxInput(event) {
       if (event.which == 5) {
         this.nextPage()
@@ -237,7 +249,7 @@ export default {
       }
       console.log(event)
       this.$router.replace('gallery')
-    },
+    },*/
     loadVotableCards() {
       this.$cardChain
         .getVotableCards(this.$store.getters.getUserAddress)
@@ -393,7 +405,7 @@ export default {
       this.loadCardList();
     },
   },
-};
+}
 </script>
 
 <style scoped lang="scss">

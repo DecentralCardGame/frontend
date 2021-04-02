@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @auxclick="handleAnyInput" @click="handleAnyInput">
     <PageHeader />
     <PageMenu />
     <div v-if="$store.state.loading">
@@ -31,6 +31,14 @@ import PageFooter from '@/components/partials/PageFooter'
 export default {
   name: 'CrowdControlApp',
   components: {PageFooter, PageMenu, PageHeader},
+  methods: {
+    handleAnyInput(event) {
+      this.$store.commit(
+        "setLastInputEvent",
+        event
+      );
+    }
+  }
 }
 </script>
 

@@ -18,7 +18,8 @@ export default new Vuex.Store({
     cardCreatorDraft: {},
     cardCreatorEditCard: {},
     loading: false,
-    displayLogin: false
+    displayLogin: false,
+    lastInputEvent: {},
   },
   mutations: {
     logout (state) {
@@ -62,7 +63,10 @@ export default new Vuex.Store({
     },
     toggleLoginBox (state) {
       state.displayLogin = !state.displayLogin
-    }
+    },
+    setLastInputEvent (state, event) {
+      state.lastInputEvent = event
+    },
   },
   getters: {
     getUserToken: state => {
@@ -97,6 +101,9 @@ export default new Vuex.Store({
     },
     loginBoxVisible: state => {
       return state.displayLogin
+    },
+    getLastInputEvent: state => {
+      return state.getLastInputEvent
     }
   },
   actions: {
