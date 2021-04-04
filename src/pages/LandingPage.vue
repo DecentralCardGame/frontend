@@ -2,7 +2,7 @@
   <div class="article-temp">
     
     <div class="hero--with--img">  
-      <b class="text--huge">
+      <b class="text--very--hug">
         <br>
         <center>
         A Trading Card Game YOU OWN
@@ -214,13 +214,13 @@ h2 {
 }
 
 .extra--space {
-  margin: 45vh auto;
+  margin: 35vh auto;
 }
 
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: calc(30vh - 80px) 0rem 0rem;
+  margin: calc(35vh - 80px) 0rem 0rem;
   text-align: initial;
 }
 
@@ -238,6 +238,23 @@ h2 {
   left: -22rem;
 }
 
+.text--very--hug {
+  font-family: $font-family-header;
+  position: relative;
+  z-index: 3;
+  top: 0rem;
+
+  font-size: 70px;
+  @media (max-width: 1200px) {
+    font-size: 35px;
+  }
+  @media (max-width: 800px) {
+    font-size: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
+}
 .text--huge {
   font-family: $font-family-header; 
   position: relative;
@@ -325,9 +342,9 @@ h2 {
   left: 0;
   right: 0;
   
-  top: -20rem;
+  top: -17rem;
   @media (max-width: 1700px) {
-    top: -18rem;
+    top: -17rem;
   }
   @media (max-width: 1400px) {
     top: -13rem;
