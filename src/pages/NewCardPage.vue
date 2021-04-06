@@ -55,8 +55,14 @@
             value="Card Name"
             @change="saveDraft"
           >
-          <span class="creator-text">My <b>type</b> is</span>
+
+          <span 
+            v-if="$cardRules"
+            class="creator-text">
+            My <b>type</b> is
+          </span>
           <select
+            v-if="$cardRules"
             v-model="model.type"
             @change="
               resetAbilities();
@@ -70,8 +76,13 @@
               {{ val }}
             </option>
           </select>
-          <span class="creator-text">People like to <b>tag</b> me as</span>
-          <div>
+
+          <span             
+            v-if="$cardRules"
+            class="creator-text">
+            People like to <b>tag</b> me as</span>
+          <div             
+            v-if="$cardRules">
             <select
               v-model="model.tagDummy"
               class="tag-select"
@@ -111,12 +122,12 @@
               </option>
             </select>
           </div>
-          <span class="creator-text">My <b>rarity</b> is</span>
+          <!--span class="creator-text">My <b>rarity</b> is</span>
           <select @change="saveDraft">
             <option>Common</option>
             <option>Rare</option>
             <option>Legendary</option>
-          </select>
+          </select-->
         </div>
         <div
           v-if="activeStep == 1"
@@ -495,7 +506,12 @@ export default {
   },
   computed: {},
   mounted() {
-    console.log('cardRules:', this.$cardRules)
+    if(!this.$cardRules) {
+      this.$router.push("landing")
+    }
+    else {
+      console.log('cardRules:', this.$cardRules)
+    }
     
     // here a card is loaded if edit card via gallery was selected
     if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
@@ -546,7 +562,6 @@ export default {
       let atRules = R.curry(atPath)(this.$cardRules);
 
       console.log("abilities", this.abilities);
-      console.log('atrules', atRules(''))
 
       this.isAbilityModalVisible = true;
 
@@ -618,7 +633,7 @@ export default {
       return this.model.type
     },
     getTypes() {
-      return R.keys(this.$cardRules.children)
+      return R.keys(this.$cardRules.children) 
     },
     getTags(idx) {
       if (this.$cardRules) {

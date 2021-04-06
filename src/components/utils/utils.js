@@ -31,7 +31,6 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
 
-      console.log(R.append(buttonEntry, rulesPath), cardRules)
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
@@ -50,7 +49,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
             rulesPath: R.append(buttonEntry, rulesPath),
             template: interaction[interaction.length - 1]
           },
-          post: interaction[interaction.length - 2].post
+          post: interaction[interaction.length - 2] ? interaction[interaction.length - 2].post : ""
         })
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = ''
@@ -101,7 +100,6 @@ export function atPath(cardRules, path) {
 
 export function makeButton (cardRules, rulesPath, abilityPath, id) {
   let atRules = R.curry(atPath)(cardRules)
-
   return {
     id: id,
     label: atRules(rulesPath).name,
