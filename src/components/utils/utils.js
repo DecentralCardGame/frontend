@@ -216,17 +216,19 @@ export function icon(name) {
   let item
   try {
     //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
-    item = require('../../assets/icon/'+name+'.svg')
+    //console.log("retrieving:", '../../assets/icon/abilities/'+name+'.svg')
+    item = require('../../assets/icon/abilities/'+name+'.svg')
   } catch {
     if (name.length === 1) {
-      return require('../../assets/icon/variable.svg')
+      return require('../../assets/icon/abilities/variable.svg')
     }
     try {
-      item = require('../../assets/icon/'+name+'s.svg')
+      item = require('../../assets/icon/abilities/'+name+'s.svg')
     } catch {
       try {
-        item = require('../../assets/icon/'+name+'r.svg')
+        item = require('../../assets/icon/abilities/'+name+'r.svg')
       }  catch {
+        console.log('was not able to retrieve', name, 'icon')
         return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"
       }
     }
