@@ -76,11 +76,18 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
 }
 
 export function updateInteraction (ability, id, newInteraction) {
+  // if it is not the first ability, pick the post-text from the previous one and add it to the pre-text of this interaction
   if (id > 0) {
     ability.interaction[id - 1].post += ability.interaction[id].pre
   }
+  // if it is not the last ability, pick the pre-text from the next one and add it to the post-text of this interaction
   if (id < ability.interaction.length - 1) {
-    ability.interaction[id + 1].pre += ability.interaction[id].post
+    if (ability.interaction[id].post) {
+      ability.interaction[id + 1].pre += ability.interaction[id].post
+    } else {
+      // sometimes there is no post-text, but there is pre-text we want to preserve
+      newInteraction[0].pre = ability.interaction[id].pre + newInteraction[0].pre 
+    }
   }
 
   ability.interaction = R.remove(id, 1, ability.interaction)
