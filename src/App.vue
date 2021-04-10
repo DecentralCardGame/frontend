@@ -1,6 +1,7 @@
 <template>
   <div id="app" @auxclick="handleAnyInput" @click="handleAnyInput">
-    <PageHeader />
+    <PageLogoHeader v-if="$store.getters.showTopLogo" />
+    <PageHeader v-else />
     <PageMenu />
     <div v-if="$store.state.loading">
       <div class="spinner">
@@ -25,12 +26,13 @@
 
 <script>
 import PageHeader from '@/components/partials/PageHeader'
+import PageLogoHeader from '@/components/partials/PageLogoHeader'
 import PageMenu from '@/components/partials/PageMenu'
 import PageFooter from '@/components/partials/PageFooter'
 
 export default {
   name: 'CrowdControlApp',
-  components: {PageFooter, PageMenu, PageHeader},
+  components: {PageFooter, PageMenu, PageHeader, PageLogoHeader},
   methods: {
     handleAnyInput(event) {
       this.$store.commit(

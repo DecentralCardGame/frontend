@@ -195,7 +195,19 @@ export default {
       cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
     };
   },
-  mounted() {},
+  mounted() {
+    this.$store.commit(
+      "setShowTopLogo",
+      true
+    );
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit(
+      "setShowTopLogo",
+      false
+    );
+    next()
+  },
 };
 </script>
 

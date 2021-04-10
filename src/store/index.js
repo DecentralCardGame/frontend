@@ -20,6 +20,7 @@ export default new Vuex.Store({
     loading: false,
     displayLogin: false,
     lastInputEvent: {},
+    showTopLogo: false,
   },
   mutations: {
     logout (state) {
@@ -67,6 +68,9 @@ export default new Vuex.Store({
     setLastInputEvent (state, event) {
       state.lastInputEvent = event
     },
+    setShowTopLogo (state, show) {
+      state.showTopLogo = show
+    },
   },
   getters: {
     getUserToken: state => {
@@ -104,6 +108,9 @@ export default new Vuex.Store({
     },
     getLastInputEvent: state => {
       return state.getLastInputEvent
+    },
+    showTopLogo: state => {
+      return state.showTopLogo
     }
   },
   actions: {

@@ -40,7 +40,6 @@ export default {
     padding: $font-size * 0.5;
     text-align: center;
     border-bottom: $border-thickness-bold solid $white;
-    
   }
 
   .account-box {
