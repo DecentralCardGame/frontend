@@ -1,6 +1,6 @@
 <template>
   <div id="app" @auxclick="handleAnyInput" @click="handleAnyInput">
-    <PageLogoHeader v-if="false" />
+    <PageLogoHeader v-if="$store.getters.showTopLogo" />
     <PageHeader v-else />
     <PageMenu />
     <div v-if="$store.state.loading">
