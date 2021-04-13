@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="logo-container">
+    <div class="loading-container">
       <img src="logo.svg" class="image1" alt="Loading..." width="500">
       <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
     </div>
@@ -23,9 +23,9 @@ export default {
   @import "../../assets/styles/variables";
 
   header {
-    padding: 10vh 10vh 20vh
+    padding: 10vh;
   }
-  .logo-container {
+  .loading-container {
       position: relative;
       flex-flow: column;
       display: flex;
