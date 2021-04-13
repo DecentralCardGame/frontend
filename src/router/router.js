@@ -19,6 +19,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'About',
+      meta: { layout: "default" },
+      component: AboutPage
+    },
+    {
       path: '/gallery',
       name: 'Gallery',
       component: GalleryPage
@@ -26,17 +32,14 @@ export default new Router({
     {
       path: '/newcard',
       name: 'New Card',
-      component: NewCardPage
-    },
-    {
-      path: '/',
-      name: 'About',
-      component: AboutPage
+      component: NewCardPage,
+      meta: { layout: "default" },
     },
     {
       path: '/landing',
       name: 'Landing',
-      component: LandingPage
+      meta: { layout: "landing" },
+      component: LandingPage,
     },
     {
       path: '/howtoplay',

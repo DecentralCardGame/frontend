@@ -1,8 +1,9 @@
 <template>
   <div id="app" @auxclick="handleAnyInput" @click="handleAnyInput">
-    <PageLogoHeader v-if="$store.getters.showTopLogo" />
-    <PageHeader v-else />
-    <PageMenu />
+    <component :is="layout">
+      <router-view />
+    </component>
+
     <div v-if="$store.state.loading">
       <div class="spinner">
         <div class="bounce1" />
@@ -10,29 +11,29 @@
         <div class="bounce3" />
       </div>
     </div>
-    <main>
-      <div class="footer__content">
-        <router-view />
-      </div>
-    </main>
+
     <notifications      
       group="bottom-right-notification"
       position="bottom right"
       classes="notification"
     />
-    <PageFooter />
   </div>
 </template>
 
 <script>
-import PageHeader from '@/components/partials/PageHeader'
-import PageLogoHeader from '@/components/partials/PageLogoHeader'
-import PageMenu from '@/components/partials/PageMenu'
-import PageFooter from '@/components/partials/PageFooter'
+const default_layout = "default"
 
 export default {
   name: 'CrowdControlApp',
-  components: {PageFooter, PageMenu, PageHeader, PageLogoHeader},
+  components: {},
+  computed: {
+    layout() {
+      console.log("app.vue meta", this.$route.meta)
+      return (this.$route.meta.layout || default_layout) + '-layout'
+    }
+  },
+  mounted: {
+  },
   methods: {
     handleAnyInput(event) {
       this.$store.commit(
@@ -40,11 +41,13 @@ export default {
         event
       );
     }
-  }
+  },
+
 }
 </script>
 
 <style lang="scss">
+
   @font-face {
     font-family: 'Museo700-Regular';
     font-weight: normal;

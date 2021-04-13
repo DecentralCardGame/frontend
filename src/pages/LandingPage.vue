@@ -1,11 +1,13 @@
 <template>
-  <div class="article-temp">
+  <div class="article-temp scroll--snap">
     
-    <div class="hero--with--img">  
+    <section class="snap--here">
+
+    <div class="hero--with--img snap--here">  
       <b class="text--very--hug">
         <br>
         <center>
-        A Trading Card Game YOU OWN
+          A Trading Card Game YOU OWN
         </center>
       </b>
       <div class= "img--container adjust--top">
@@ -13,7 +15,11 @@
       </div>
     </div>
 
-    <div class="dual--column--flex--wrap extra--space">
+    </section>
+
+    <section class="snap--here">
+
+    <div class="dual--column--flex--wrap extra--space snap--here">
       <div class="dual--column--text">
 
         <div class="hero--with--img">
@@ -62,8 +68,9 @@
       </div>
     </div>
 
-    
-    <div class="dual--column--flex--wrap">
+    </section>
+
+    <div class="dual--column--flex--wrap snap--here">
 
       <div class="dual--column--img">
         <div class= "img--container adjust--flyin">
@@ -148,7 +155,7 @@
     </div>
 
 
-    <div class="hero">
+    <div class="hero snap--here">
       <b class="text--huge">
         We are not a company
       </b>
@@ -164,15 +171,14 @@
       <div class="button--container extra--margin">
         <div class=link--button>
           <a
-              href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
-              target="_blank"
-              style="text-decoration: none; color: inherit;"
+            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
+            target="_blank"
+            style="text-decoration: none; color: inherit;"
           >   
             <p class=text--button>
               Go to Whitepaper >
             </p> 
           </a>
-
         </div>
       </div>
 
@@ -195,11 +201,28 @@ export default {
       cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
     };
   },
+  created () {
+    //console.log("meta:", this.$router.meta)
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   mounted() {
+    console.log("meta:", this.$router.meta)
+
     this.$store.commit(
       "setShowTopLogo",
       true
     );
+  },
+    methods: {
+    handleScroll (event) {
+      event
+      //console.log(event)
+      //console.log("scrolled:", window.scrollY)
+      // Any code to be executed when the window is scrolled
+    }
   },
   beforeRouteLeave(to, from, next) {
     this.$store.commit(
@@ -214,6 +237,20 @@ export default {
 <style scoped lang="scss">
 @import "../assets/styles/variables";
 
+.scroll--snap {
+  scroll-snap-type: y mandatory;
+}
+
+.bla {
+      margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.snap--here {
+  scroll-snap-align: start;
+}
 
 h2 {
   font-size: 1.75rem;

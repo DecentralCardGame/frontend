@@ -2,13 +2,19 @@ import Vue from 'vue'
 import Notifications from 'vue-notification'
 import VueCryptojs from 'vue-cryptojs'
 import App from './App.vue'
-import router from './router'
+import router from './router/router'
 import store from './store'
 import axios from 'axios'
 import * as R from 'ramda'
 Object.defineProperty(Vue.prototype, 'R', { value: R });
 import cardChain from './plugins/cardChain'
 import cardRules from './plugins/cardRules'
+
+import Default from "./layouts/Default.vue"
+import Landing from "./layouts/Landing.vue"
+
+Vue.component('default-layout', Default)
+Vue.component('landing-layout', Landing)
 
 Vue.config.productionTip = false
 
