@@ -210,6 +210,20 @@
          ],
          "interactionText":"§CardName §CastingCost §CostType §Effects §FlavourText §Tags"
       },
+      "anthem":{
+         "type":"struct",
+         "name":"Anthem",
+         "description":"Build a Anthem",
+         "children":{
+            "Tag":{
+               "$ref":"#/definitions/Tag"
+            }
+         },
+         "required":[
+            "Tag"
+         ],
+         "interactionText":"Anthem §Tag."
+      },
       "arm":{
          "type":"struct",
          "name":"Arm",
@@ -276,11 +290,23 @@
          "name":"Effect",
          "description":"Choose a Effect",
          "children":{
+            "Anthem":{
+               "$ref":"#/definitions/anthem"
+            },
             "Arm":{
                "$ref":"#/definitions/arm"
             },
             "Harm":{
                "$ref":"#/definitions/harm"
+            },
+            "Kill":{
+               "$ref":"#/definitions/kill"
+            },
+            "Produce":{
+               "$ref":"#/definitions/produce"
+            },
+            "Repair":{
+               "$ref":"#/definitions/repair"
             }
          }
       },
@@ -397,6 +423,15 @@
          ],
          "interactionText":"§CardName §CostType §Abilities §Health §Growth §StartingHandSize §Wisdom §FlavourText §Tags"
       },
+      "kill":{
+         "type":"struct",
+         "name":"Kill",
+         "description":"Build a Kill",
+         "children":{
+            
+         },
+         "interactionText":"Kill an entity."
+      },
       "onConstruction":{
          "type":"struct",
          "name":"On Construction",
@@ -508,6 +543,34 @@
             "Tags"
          ],
          "interactionText":"§CardName §CastingCost §CostType §Abilities §Health §FlavourText §Tags"
+      },
+      "produce":{
+         "type":"struct",
+         "name":"Produce",
+         "description":"Build a Produce",
+         "children":{
+            "RessourceAmount":{
+               "$ref":"#/definitions/SimpleIntValue"
+            }
+         },
+         "required":[
+            "RessourceAmount"
+         ],
+         "interactionText":"Produce §RessourceAmount ressources."
+      },
+      "repair":{
+         "type":"struct",
+         "name":"Repair",
+         "description":"Build a Repair",
+         "children":{
+            "Amount":{
+               "$ref":"#/definitions/SimpleIntValue"
+            }
+         },
+         "required":[
+            "Amount"
+         ],
+         "interactionText":"Repair §Amount."
       },
       "tribute":{
          "type":"struct",

@@ -171,7 +171,7 @@
       <div>
         <h2> Honorable Mentions </h2>
         <p>
-          Thilo Billerbeck has built most of the Website you see here. Danny Czoschke and Jette, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
+          Thilo Billerbeck has built most of the Website you see here. Jette and Danny Czoschke, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
           Andy Frankenberger and Tom König helped us win the Diffusion Hackathon in 2019 with their incredible CORS skills.
         </p>
       </div>
