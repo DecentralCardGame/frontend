@@ -10,14 +10,20 @@ const LandingPage = () => import('@/pages/LandingPage')
 const ImprintPage = () => import('@/pages/ImprintPage')
 const TeamPage = () => import('@/pages/TeamPage')
 const HowToPlayPage = () => import('@/pages/HowToPlayPage')
-const VotingPage = () => import('../pages/VotingPage')
-const AccountPage = () => import('../pages/AccountPage')
-const CardMinter = () => import('../pages/CardMinterPage')
+const VotingPage = () => import('@/pages/VotingPage')
+const AccountPage = () => import('@/pages/AccountPage')
+const CardMinter = () => import('@/pages/CardMinterPage')
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      name: 'About',
+      meta: { layout: "default" },
+      component: AboutPage
+    },
     {
       path: '/gallery',
       name: 'Gallery',
@@ -26,17 +32,14 @@ export default new Router({
     {
       path: '/newcard',
       name: 'New Card',
-      component: NewCardPage
-    },
-    {
-      path: '/',
-      name: 'About',
-      component: AboutPage
+      component: NewCardPage,
+      meta: { layout: "default" },
     },
     {
       path: '/landing',
       name: 'Landing',
-      component: LandingPage
+      meta: { layout: "landing" },
+      component: LandingPage,
     },
     {
       path: '/howtoplay',
