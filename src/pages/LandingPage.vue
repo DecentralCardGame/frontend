@@ -1,7 +1,13 @@
 <template>
+  <vue-scroll-snap :fullscreen="true">
   <div class="article-temp scroll--snap">
     
-    <section class="snap--here">
+      <div class="snap--here">
+        <PageLogoHeader />
+      </div>
+      <div class="snap--here">
+        <PageMenu />
+      </div>
 
     <div class="hero--with--img snap--here">  
       <b class="text--very--hug">
@@ -15,7 +21,6 @@
       </div>
     </div>
 
-    </section>
 
     <section class="snap--here">
 
@@ -183,53 +188,31 @@
       </div>
 
     </div>
-
+      <PageFooter />
   </div>
+    </vue-scroll-snap>
 </template>
 
 <script>
 import {
   cardJpgs,
   botCommandCenterData
-} from "../components/utils/sampleCards.js";
+} from "../components/utils/sampleCards.js"
+import VueScrollSnap from "vue-scroll-snap"
+import PageLogoHeader from '@/components/partials/PageLogoHeader'
+import PageMenu from '@/components/partials/PageMenu'
+import PageFooter from '@/components/partials/PageFooter'
 
 export default {
   name: "LandingPage",
-  components: { },
+  components: { VueScrollSnap, PageMenu, PageLogoHeader, PageFooter },
   data() {
     return {
       cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
     };
   },
-  created () {
-    //console.log("meta:", this.$router.meta)
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
   mounted() {
     console.log("meta:", this.$router.meta)
-
-    this.$store.commit(
-      "setShowTopLogo",
-      true
-    );
-  },
-    methods: {
-    handleScroll (event) {
-      event
-      //console.log(event)
-      //console.log("scrolled:", window.scrollY)
-      // Any code to be executed when the window is scrolled
-    }
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$store.commit(
-      "setShowTopLogo",
-      false
-    );
-    next()
   },
 };
 </script>
