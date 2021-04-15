@@ -1,6 +1,6 @@
 <template>
-  <vue-scroll-snap :fullscreen="true">
-    <div class="article-temp scroll--snap">
+
+    <div class="article-temp">
       
       <div class="snap--here">
         <PageLogoHeader />
@@ -193,7 +193,7 @@
         <PageFooter />
       </div>
     </div>
-  </vue-scroll-snap>
+
 </template>
 
 <script>
@@ -201,14 +201,14 @@ import {
   cardJpgs,
   botCommandCenterData
 } from "../components/utils/sampleCards.js"
-import VueScrollSnap from "vue-scroll-snap"
+
 import PageLogoHeader from '@/components/partials/PageLogoHeader'
 import PageMenu from '@/components/partials/PageMenu'
 import PageFooter from '@/components/partials/PageFooter'
 
 export default {
   name: "LandingPage",
-  components: { VueScrollSnap, PageMenu, PageLogoHeader, PageFooter },
+  components: { PageMenu, PageLogoHeader, PageFooter },
   data() {
     return {
       cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
@@ -224,17 +224,18 @@ export default {
 @import "../assets/styles/variables";
 
 .scroll--snap {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 
 .bla {
-      margin: 0 auto;
+    margin: 0 auto;
     overflow-x: hidden;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 }
 
 .snap--here {
+  min-height: 1000px;
   scroll-snap-align: start;
 }
 
