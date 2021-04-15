@@ -37,10 +37,3 @@ export default {
 
 <style lang="scss">
 
-.scroll--snap {
-  scroll-snap-type: y mandatory;
-}
-
-.snap--here {
-  scroll-snap-align: start;
-}
