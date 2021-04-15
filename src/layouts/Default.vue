@@ -1,23 +1,23 @@
 <template>
   <div>
-    <PageHeader/>
+    <PageHeader />
     <PageMenu />
     <div v-if="$store.state.loading">
-        <div class="spinner">
+      <div class="spinner">
         <div class="bounce1" />
         <div class="bounce2" />
         <div class="bounce3" />
-        </div>
+      </div>
     </div>
     <main>
-        <div class="footer__content">
+      <div class="footer__content">
         <router-view />
-        </div>
+      </div>
     </main>
     <notifications      
-        group="bottom-right-notification"
-        position="bottom right"
-        classes="notification"
+      group="bottom-right-notification"
+      position="bottom right"
+      classes="notification"
     />
     <PageFooter />
   </div>

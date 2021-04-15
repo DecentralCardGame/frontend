@@ -1,28 +1,27 @@
 <template>
   <vue-scroll-snap :fullscreen="true">
     <div class="scroll--snap">
-    <PageLogoHeader v-if="$store.getters.showTopLogo "/>
-
-    <PageMenu />
-    <div v-if="$store.state.loading">
-      <div class="spinner">
-        <div class="bounce1" />
-        <div class="bounce2" />
-        <div class="bounce3" />
+      <PageLogoHeader />
+      <PageMenu />
+      <div v-if="$store.state.loading">
+        <div class="spinner">
+          <div class="bounce1" />
+          <div class="bounce2" />
+          <div class="bounce3" />
+        </div>
       </div>
+      <main>
+        <div class="footer__content">
+          <router-view />
+        </div>
+      </main>
+      <notifications      
+        group="bottom-right-notification"
+        position="bottom right"
+        classes="notification"
+      />
+      <PageFooter />
     </div>
-    <main>
-      <div class="footer__content">
-        <router-view />
-      </div>
-    </main>
-    <notifications      
-      group="bottom-right-notification"
-      position="bottom right"
-      classes="notification"
-    />
-    <PageFooter />
-  </div>
   </vue-scroll-snap>
 </template>
 

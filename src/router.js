@@ -10,9 +10,9 @@ const LandingPage = () => import('@/pages/LandingPage')
 const ImprintPage = () => import('@/pages/ImprintPage')
 const TeamPage = () => import('@/pages/TeamPage')
 const HowToPlayPage = () => import('@/pages/HowToPlayPage')
-const VotingPage = () => import('../pages/VotingPage')
-const AccountPage = () => import('../pages/AccountPage')
-const CardMinter = () => import('../pages/CardMinterPage')
+const VotingPage = () => import('@/pages/VotingPage')
+const AccountPage = () => import('@/pages/AccountPage')
+const CardMinter = () => import('@/pages/CardMinterPage')
 
 Vue.use(Router)
 
