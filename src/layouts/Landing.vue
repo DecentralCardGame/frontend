@@ -1,33 +1,36 @@
 <template>
-  <vue-scroll-snap>
-    <div class="scroll--snap">
-      <div v-if="$store.state.loading">
-        <div class="spinner">
-          <div class="bounce1" />
-          <div class="bounce2" />
-          <div class="bounce3" />
-        </div>
+  <div>
+    <PageLogoHeader />
+    <PageMenu />
+    <div v-if="$store.state.loading">
+      <div class="spinner">
+        <div class="bounce1" />
+        <div class="bounce2" />
+        <div class="bounce3" />
       </div>
-      <main>
-        <div class="footer__content">
-          <router-view />
-        </div>
-      </main>
-      <notifications      
-        group="bottom-right-notification"
-        position="bottom right"
-        classes="notification"
-      />
     </div>
-  </vue-scroll-snap>
+    <main>
+      <div class="footer__content">
+        <router-view />
+      </div>
+    </main>
+    <PageFooter />
+    <notifications      
+      group="bottom-right-notification"
+      position="bottom right"
+      classes="notification"
+    />
+  </div>
 </template>
 
 <script>
-import VueScrollSnap from "vue-scroll-snap"
+import PageLogoHeader from '@/components/partials/PageLogoHeader'
+import PageMenu from '@/components/partials/PageMenu'
+import PageFooter from '@/components/partials/PageFooter'
 
 export default {
   name: 'CrowdControlApp',
-  components: { VueScrollSnap },
+  components: { PageMenu, PageLogoHeader, PageFooter },
   methods: {
     handleAnyInput(event) {
       this.$store.commit(
@@ -40,9 +43,4 @@ export default {
 </script>
 
 <style lang="scss">
-  .scroll--snap {
-    height: 3000px;
-    width: 1500px;
-    scroll-snap-type: y proximity;
-  }
 </style>
