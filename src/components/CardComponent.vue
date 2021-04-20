@@ -139,13 +139,13 @@
       :opacity="opaque"
       serif:id="Icons Spacing Grey"
     >
-      <!-- energy icon -->
+      <!-- Technology (was energy) icon -->
       <g
         :opacity="opaque"
         transform="matrix(0.928122,0,0,0.780528,14.3377,2.27483)"
       >
         <g
-          v-show="model.CostType.Energy"
+          v-show="model.Class.Technology"
           id="Ebene3"
         >
           <path
@@ -158,7 +158,7 @@
           />
         </g>
         <g
-          v-show="!model.CostType.Energy"
+          v-show="!model.Class.Technology"
           id="Ebene3"
           opacity="0.2"
         >
@@ -172,13 +172,13 @@
           />
         </g>
       </g>
-      <!-- food icon -->
+      <!-- Culture (was food) icon -->
       <g
         :opacity="opaque"
         transform="matrix(0.900887,0,0,0.900887,109.698,4.15101)"
       >
         <g
-          v-show="model.CostType.Food"
+          v-show="model.Class.Culture"
           id="Ebene_1-2-5"
         >
           <g transform="matrix(1.06878,0,0,1.06878,-116.112,-4.60135)">
@@ -213,7 +213,7 @@
           </g>
         </g>
         <g
-          v-show="!model.CostType.Food"
+          v-show="!model.Class.Culture"
           id="Ebene_1-2-5"
           opacity="0.2"
         >
@@ -249,9 +249,9 @@
           </g>
         </g>
       </g>
-      <!-- iron icon -->
+      <!-- Technology (was iron) icon -->
       <g
-        v-show="model.CostType.Iron"
+        v-show="model.Class.Technology"
         :opacity="opaque"
         transform="matrix(0.601191,0,0,0.601191,29.7156,4.26699)"
       >
@@ -267,7 +267,7 @@
         </g>
       </g>
       <g
-        v-show="!model.CostType.Iron"
+        v-show="!model.Class.Technology"
         opacity="0.2"
         transform="matrix(0.601191,0,0,0.601191,29.7156,4.26699)"
       >
@@ -285,7 +285,7 @@
           />
         </g>
       </g>
-      <!-- mana icon -->
+      <!-- Mysticism (was mana) icon -->
       <g
         :opacity="opaque"
         transform="matrix(1,0,0,1,0.791233,0)"
@@ -306,7 +306,7 @@
             </clipPath>
             <g clip-path="url(#_clip1)">
               <g
-                v-show="model.CostType.Mana"
+                v-show="model.Class.Mysticism"
                 id="Ebene_21"
                 serif:id="Ebene_2"
               >
@@ -344,7 +344,7 @@
                 </g>
               </g>
               <g
-                v-show="!model.CostType.Mana"
+                v-show="!model.Class.Mysticism"
                 id="Ebene_2"
                 opacity="0.2"
               >
@@ -385,7 +385,7 @@
           </g>
         </g>
       </g>
-      <!-- lumber icon -->
+      <!-- Nature icon -->
       <g
         :opacity="opaque"
         transform="matrix(1,0,0,1,0.791233,0)"
@@ -397,7 +397,7 @@
               serif:id="Ebene_2"
             >
               <g
-                v-show="model.CostType.Lumber"
+                v-show="model.Class.Nature"
                 id="Ebene_1-21"
                 serif:id="Ebene_1-2"
               >
@@ -411,7 +411,7 @@
                 />
               </g>
               <g
-                v-show="!model.CostType.Lumber"
+                v-show="!model.Class.Nature"
                 id="Ebene_1-2"
                 opacity="0.2"
               >
@@ -996,7 +996,7 @@ img {
 
 .cls-1{fill:#ffdfa1;stroke:#d99941}
 .cls-ironsymbol{fill:#777c85;stroke:#3e4045}
-.cls-lumbersymbol{fill:#d9864e;stroke:#8c4e24}
+.cls-Naturesymbol{fill:#d9864e;stroke:#8c4e24}
 .cls-manasymbol{fill:#8000ff;stroke:#a496ff}
 .cls-manasymbol2{fill:#a496ff;stroke:none}
 .cls-foodsymbol{fill:#fae3d7;stroke:#e05d16}

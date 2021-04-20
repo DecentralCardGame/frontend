@@ -58,7 +58,8 @@
 
           <span 
             v-if="$cardRules"
-            class="creator-text">
+            class="creator-text"
+          >
             My <b>type</b> is
           </span>
           <select
@@ -79,10 +80,12 @@
 
           <span             
             v-if="$cardRules"
-            class="creator-text">
+            class="creator-text"
+          >
             People like to <b>tag</b> me as</span>
           <div             
-            v-if="$cardRules">
+            v-if="$cardRules"
+          >
             <select
               v-model="model.tagDummy"
               class="tag-select"
@@ -166,19 +169,19 @@
               v-show="model.type === 'Headquarter'"
               class="creator-text"
             >
-              As I am quite awesome, I generate <br>
+              As I am quite awesome, I can use my abilities after a delay of <br>
               <select
                 v-if="
                   $cardRules.children[getRulesType()] &&
-                    $cardRules.children[getRulesType()].children.Growth
+                    $cardRules.children[getRulesType()].children.Delay
                 "
-                v-model="model.Growth"
+                v-model="model.Delay"
                 @change="saveDraft"
               >
                 <option
                   v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.Growth.min || 0,
-                    $cardRules.children[getRulesType()].children.Growth.max + 1
+                    $cardRules.children[getRulesType()].children.Delay.min || 0,
+                    $cardRules.children[getRulesType()].children.Delay.max + 1
                   )"
                   :key="n"
                   :value="n"
@@ -187,83 +190,36 @@
                 </option>
               </select>
 
-              Growth and<br>
-              <select
-                v-if="
-                  $cardRules.children[getRulesType()] &&
-                    $cardRules.children[getRulesType()].children.Wisdom
-                "
-                v-model="model.Wisdom"
-                @change="saveDraft"
-              >
-                <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.Wisdom.min || 0,
-                    $cardRules.children[getRulesType()].children.Wisdom.max + 1
-                  )"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-              Wisdom. <br>
-              Whoever sides with me, starts with an impressive hand size of
-              <select
-                v-if="
-                  $cardRules.children[getRulesType()] &&
-                    $cardRules.children[getRulesType()].children.StartingHandSize
-                "
-                v-model="model.StartingHandSize"
-                @change="saveDraft"
-              >
-                <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.StartingHandSize.min || 0,
-                    $cardRules.children[getRulesType()].children.StartingHandSize.max + 1
-                  )"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-              <br>
+              turns.<br>
             </span>
 
             My classes are:
           </span>
           <div>
             <input
-              v-model="model.CostType.Energy"
+              v-model="model.Class.Technology"
               type="checkbox"
               @change="saveDraft"
             >
-            <label for="checkbox"> Energy </label> <br>
+            <label for="checkbox"> Technology </label> <br>
             <input
-              v-model="model.CostType.Iron"
+              v-model="model.Class.Nature"
               type="checkbox"
               @change="saveDraft"
             >
-            <label for="checkbox"> Iron </label> <br>
+            <label for="checkbox"> Nature </label> <br>
             <input
-              v-model="model.CostType.Lumber"
+              v-model="model.Class.Culture"
               type="checkbox"
               @change="saveDraft"
             >
-            <label for="checkbox"> Lumber </label> <br>
+            <label for="checkbox"> Culture </label> <br>
             <input
-              v-model="model.CostType.Food"
+              v-model="model.Class.Mysticism"
               type="checkbox"
               @change="saveDraft"
             >
-            <label for="checkbox"> Food </label> <br>
-            <input
-              v-model="model.CostType.Mana"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Mana </label> <br>
+            <label for="checkbox"> Mysticism </label> <br>
 
             <span v-if="model.type === 'Entity'">
               I have an <b>Attack</b> of
@@ -708,12 +664,11 @@ export default {
             CardName: this.model.CardName,
             Tags: R.reject(R.isNil, this.model.Tags),
             FlavourText: this.model.FlavourText,
-            CostType: {
-              Lumber: this.model.CostType.Lumber == true,
-              Energy: this.model.CostType.Energy == true,
-              Food: this.model.CostType.Food == true,
-              Iron: this.model.CostType.Iron == true,
-              Mana: this.model.CostType.Mana == true,
+            Class: {
+              Nature: this.model.Class.Nature == true,
+              Technology: this.model.Class.Technology == true,
+              Culture: this.model.Class.Culture == true,
+              Mysticism: this.model.Class.Mysticism == true,
             },
           },
         },
@@ -762,9 +717,7 @@ export default {
         }
         newCard.model[this.getRulesType()].Attack = this.model.Attack;
       } else if (this.model.type === "Headquarter") {
-        newCard.model[this.getRulesType()].Growth = this.model.Growth;
-        newCard.model[this.getRulesType()].Wisdom = this.model.Wisdom;
-        newCard.model[this.getRulesType()].StartingHandSize = this.model.StartingHandSize; // can be removed?
+        newCard.model[this.getRulesType()].Delay = this.model.Delay;
       } else if (this.model.type === "Action") {
         // this writes the relevant part of the effects in the new model
         newCard.model[this.getRulesType()].Effects = R.map(

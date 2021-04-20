@@ -45,12 +45,12 @@ export const daisyData = {
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: true,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: true,
+    
   },
   CastingCost: 7,
   Health: 3,
@@ -65,12 +65,12 @@ export const daisyPetData = {
   type: 'Entity',
   Tags: ['PET'],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: true,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: true,
+    
   },
   CastingCost: 7,
   Health: 1,
@@ -85,12 +85,12 @@ export const richardData = {
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: true,
-    Mana: false,
-    Energy: true
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 7,
   Health: 8,
@@ -104,12 +104,12 @@ export const richardBotData = {
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: true,
-    Mana: false,
-    Energy: true
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 7,
   Health: 1,
@@ -124,12 +124,12 @@ export const hurrwigData = {
   type: 'Entity',
   Tags: ['TECHNOCRAT','HUMAN'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 8,
   Health: 5,
@@ -143,12 +143,12 @@ export const assoultHorseData = {
   type: 'Entity',
   Tags: ['BOT'],
   tagDummy: 'BOT',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 3,
   Health: 3,
@@ -162,12 +162,12 @@ export const ulrichData = {
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 3,
   Health: 7,
@@ -181,12 +181,12 @@ export const steamData = {
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 8,
   Health: 5,
@@ -200,12 +200,12 @@ export const AutomatedBotProductionData = {
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: true
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 4,
   Health: 4,
@@ -219,12 +219,12 @@ export const AutomatedBotProductionBotData = {
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: true
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 4,
   Health: 1,
@@ -238,12 +238,12 @@ export const wynnData = {
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: false,
+    
   },
   CastingCost: 3,
   Health: 1,
@@ -257,12 +257,12 @@ export const furiousJackData = {
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: 'HUMAN',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: false,
+    
   },
   CastingCost: 4,
   Health: 1,
@@ -270,18 +270,18 @@ export const furiousJackData = {
 }
 export const miniLabData = {
   CardName: 'Dr. Dolly\'s Mini Lab',
-  FlavourText: 'Hand size 5. Additionally, start with Dr. Dolly in your hand. Produce Wisdom 10. Pay 3 Resiources: Get 10 Wisdom. Whenever Dr. Dolly dies, move him back to your hand.',
+  FlavourText: 'Hand size 5. Additionally, start with Dr. Dolly in your hand. Produce Wisdom 10. Pay 3 Mana: Get 10 Wisdom. Whenever Dr. Dolly dies, move him back to your hand.',
   abilities: [],
   Notes: '',
   type: 'HQ',
   Tags: ['HUMAN'],
   tagDummy: 'HUMAN',
-  CostType: {
-    Lumber: true,
-    Food: true,
-    Iron: false,
-    Mana: true,
-    Energy: false
+  Class: {
+    Nature: true,
+    Culture: true,
+    Technology: false,
+    Mysticism: true,
+    
   },
   CastingCost: 4,
   Health: 18,
@@ -295,12 +295,12 @@ export const blasturnData = {
   type: 'HQ',
   Tags: ['HUMAN','TECHNOCRAT'],
   tagDummy: 'HUMAN',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: true,
-    Mana: false,
-    Energy: true
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 4,
   Health: 20,
@@ -314,12 +314,12 @@ export const evieData = {
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: 'HUMAN',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: false,
+    
   },
   CastingCost: 1,
   Health: 2,
@@ -333,12 +333,12 @@ export const exoskeletonData = {
   type: 'Action',
   Tags: ['',null],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 6,
   Health: 2,
@@ -352,12 +352,12 @@ export const communityCardData = {
   type: 'HQ',
   Tags: ['Community','Awesome'],
   tagDummy: 'HUMAN',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: false,
-    Energy: true
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: false,
+    
   },
   CastingCost: -1,
   Health: 1,
@@ -371,12 +371,12 @@ export const botCommandCenterData = {
   type: 'Place',
   Tags: ['Technocrat'],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 4,
   Health: 3,
@@ -390,12 +390,12 @@ export const drDollyData = {
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: true,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: true,
+    
   },
   CastingCost: 5,
   Health: 4,
@@ -409,12 +409,12 @@ export const belloData = {
   type: 'Entity',
   Tags: ['Animal'],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: true,
-    Iron: false,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: false,
+    
   },
   CastingCost: 3,
   Health: 2,
@@ -428,12 +428,12 @@ export const timeDeviceData = {
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: true,
-    Mana: false,
-    Energy: false
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+    
   },
   CastingCost: 8,
   Health: 5,

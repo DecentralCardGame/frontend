@@ -203,19 +203,16 @@ export const emptyCard = {
   type: 'no type',
   Tags: [],
   tagDummy: '',
-  CostType: {
-    Lumber: false,
-    Food: false,
-    Iron: false,
-    Mana: false,
-    Energy: false
+  Class: {
+    Culture: false,
+    Mysticism: false,
+    Technology: false,
+    Nature: false
   },
   CastingCost: -1,
   Health: 0,
   Attack: 0,
-  Growth: 10,
-  Wisdom: 10,
-  StartingHandSize: 3
+  Delay: 0
 }
 
 export function icon(name) {

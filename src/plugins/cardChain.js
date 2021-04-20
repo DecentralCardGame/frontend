@@ -74,6 +74,7 @@ export default {
             card.nerflevel = parseInt(card.Nerflevel)
             card.type = cardType[0]
         
+            console.log('parsed card: ', card)
             return card
         } else {
             return emptyCard

@@ -439,9 +439,9 @@
         />
       </g>
     </g>
-    <!-- Lumber symbol -->
+    <!-- Nature symbol -->
     <g
-      v-show="model.cost.lumber"
+      v-show="model.cost.Nature"
       id="Ebene_2-2"
       data-name="Ebene 2"
       transform="translate(79.7 3.7)"
@@ -658,9 +658,9 @@
         </text>
       </g>
     </g>
-    <!-- Lumber cost text -->
+    <!-- Nature cost text -->
     <g
-      v-show="model.cost.lumber && !(model.type==='Headquarter')"
+      v-show="model.cost.Nature && !(model.type==='Headquarter')"
       id="g2312-1"
       transform="translate(42.9 -.8)"
     >
@@ -704,7 +704,7 @@
             style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
             text-anchor="end"
             writing-mode="lr-tb"
-          >{{ model.cost.lumber }}</tspan>
+          >{{ model.cost.Nature }}</tspan>
         </text>
         <text
           id="text2236-1-1"
@@ -729,7 +729,7 @@
             style="-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end"
             text-anchor="end"
             writing-mode="lr-tb"
-          >{{ model.cost.lumber }}</tspan>
+          >{{ model.cost.Nature }}</tspan>
         </text>
       </g>
     </g>
@@ -1317,100 +1317,110 @@ writing-mode="lr-tb" xml:space="preserve"
 </template>
 
 <script>
-import * as R from 'ramda'
+import * as R from "ramda";
 
 export default {
-  name: 'CardComponent',
+  name: "CardComponent",
   props: {
     model: Object,
     imageURL: {
       type: String,
-      default: null
+      default: null,
     },
     nerflevel: Number,
     displayNotes: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
-      cardID: 0
-    }
+      cardID: 0,
+    };
   },
   computed: {
-    viewBox () {
+    viewBox() {
       if (!this.displayNotes) {
-        return '0 0 154 240'
+        return "0 0 154 240";
       } else {
-        return '0 0 210 297'
+        return "0 0 210 297";
       }
-    }
+    },
   },
-  mounted: () => {
-  },
+  mounted: () => {},
   methods: {
-    getSchema () {
-      return this.$cardSchema.then(x => {
-        return x
-      }).catch(x => {
-        console.error(x)
-      })
+    getSchema() {
+      return this.$cardSchema
+        .then((x) => {
+          return x;
+        })
+        .catch((x) => {
+          console.error(x);
+        });
     },
-    getType () {
-      return this.getSchema().then(x => {return x.definitions[this.model.type.toLowerCase()].properties.DisplayName})
+    getType() {
+      return this.getSchema().then((x) => {
+        return x.definitions[this.model.type.toLowerCase()].properties
+          .DisplayName;
+      });
     },
-    getNerfedSpeed () {
-      let speed = Math.max(1, this.model.speed + (this.model.nerflevel ? this.model.nerflevel : 0))
-      return speed
+    getNerfedSpeed() {
+      let speed = Math.max(
+        1,
+        this.model.speed + (this.model.nerflevel ? this.model.nerflevel : 0)
+      );
+      return speed;
     },
-    tagLength () {
+    tagLength() {
       if (this.model.tag) {
-        return R.length(R.filter(x => x, this.model.tag))
+        return R.length(R.filter((x) => x, this.model.tag));
       } else {
-        return 0
+        return 0;
       }
     },
-    abilitiesLength () {
+    abilitiesLength() {
       if (this.model.abilities) {
         if (R.isEmpty(this.model.abilities)) {
-          return 0
+          return 0;
         }
-        return R.length(this.model.abilities)
+        return R.length(this.model.abilities);
       } else if (this.model.effects) {
         if (R.isEmpty(this.model.effects)) {
-          return 0
+          return 0;
         }
-        return R.length(this.model.effects)
+        return R.length(this.model.effects);
       } else {
-        return 0
+        return 0;
       }
     },
-    textToSvg (text) {
-      if (!text) return text
+    textToSvg(text) {
+      if (!text) return text;
 
-      let maxLength = 45
-      let lines = ['']
-      let words = text.split(' ')
+      let maxLength = 45;
+      let lines = [""];
+      let words = text.split(" ");
 
       words.forEach(function (word) {
         if (R.last(lines).length + word.length > maxLength) {
           // line full, create new line
-          lines.push(word + ' ')
+          lines.push(word + " ");
         } else {
-          if (word === '\n') {
+          if (word === "\n") {
             // newline operator, create new line
-            lines.push(' ')
+            lines.push(" ");
           } else {
             // concat to existing line
-            lines[lines.length - 1] = R.concat(lines[lines.length - 1], word + ' ')
+            lines[lines.length - 1] = R.concat(
+              lines[lines.length - 1],
+              word + " "
+            );
           }
         }
-      })
-      return lines
-    }
-  }
-}
+      });
+      return lines;
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -1419,16 +1429,40 @@ img {
   height: auto;
 }
 
-.cls-1{fill:#ffdfa1;stroke:#d99941}
-.cls-10,.cls-4{fill:none}
-.cls-3{fill:#001433}
-.cls-banderole-back{fill:#D99941}
-.cls-4{stroke:#d99941}
-.cls-5{fill:#d99941}
-.cls-6{fill:#a37331}
-.cls-7{fill:#f2f2f2}
-.cls-10{stroke:#001433}
-.cost{stroke:#d99941;fill:none}
-.cost-fill {fill:#d99941}
-
+.cls-1 {
+  fill: #ffdfa1;
+  stroke: #d99941;
+}
+.cls-10,
+.cls-4 {
+  fill: none;
+}
+.cls-3 {
+  fill: #001433;
+}
+.cls-banderole-back {
+  fill: #d99941;
+}
+.cls-4 {
+  stroke: #d99941;
+}
+.cls-5 {
+  fill: #d99941;
+}
+.cls-6 {
+  fill: #a37331;
+}
+.cls-7 {
+  fill: #f2f2f2;
+}
+.cls-10 {
+  stroke: #001433;
+}
+.cost {
+  stroke: #d99941;
+  fill: none;
+}
+.cost-fill {
+  fill: #d99941;
+}
 </style>

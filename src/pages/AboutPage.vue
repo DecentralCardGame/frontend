@@ -59,7 +59,9 @@
           Crowd Control gives you full ownership. And we mean it.
           You own the cards which you acquire through play and participation.
           And furthermore you own the card prototypes which you design and create. Go to the
-          <router-link :to="{ name: 'New Card' }">Card Creator</router-link>
+          <router-link :to="{ name: 'New Card' }">
+            Card Creator
+          </router-link>
           to start creating.
           You decide if these cards are mass printed or your personal rare gems.
           In other collectible card games players create their own alternate art or even whole cards but can never play
@@ -87,7 +89,9 @@
         </p>
         <p>
           you can have a look at some cards here on the page or see all of them in the
-          <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
+          <router-link :to="{ name: 'Gallery' }">
+            Gallery
+          </router-link>.
         </p>
       </div>
       <div class="dual--column--img">
@@ -108,8 +112,9 @@
       <div class="dual--column--text">
         <h2>The Gameplay</h2>
         <p>
-          A turn begins by giving you Production and Wisdom. How much you get is determined by your HQ as well as how
-          many cards are in your starting hand.
+          A turn begins by giving you Mana and Wisdom. Your HQ produces 10 Wisdom each turn, which let's you draw one card.
+          It also grows each turn, which increases the mana production. In turn 1 you get 1 Mana, in 
+          turn 2 you get 2 and so on. 
           Then both players may play cards at the same time, when both are finished, they decide which Entities should
           attack and which defend.
           Finally the Entities fight against each other and all unblocked ones may damage the opponents HQ or a Place.
@@ -121,7 +126,9 @@
           In Crowd Control we have solved the hard task to give the players as much freedom as possible with abilities
           while also being able to balance the game under all circumstances.
           If you want to know the game rules and mechanics in detail, check out our
-          <router-link :to="{ name: 'About' }">Game Rules</router-link>.
+          <router-link :to="{ name: 'About' }">
+            Game Rules
+          </router-link>.
         </p>
       </div>
     </div>
@@ -130,18 +137,21 @@
       <div class="dual--column--text">
         <h2>The Balancing</h2>
         <p>
-          The balancing is done by adjusting the ressource cost of a card. This means when a card receives more
+          The balancing is done by adjusting the mana cost of a card. This means when a card receives more
           'overpowered' votes than 'fair enough' or 'underpowered' votes and it is among the cards with the most
           'overpowered' votes, it gets nerfed by increasing its ressource cost by one. HQs get nerfed by decreasing
-          their HP, Wisdom, Growth and Starting Hand Size. Which value is decreased rotates on every nerf level.
+          their HP and increasing their delay. Which value is decreased rotates on every nerf level. Delay is very
+          similar to mana cost as it determines when a HQ can use its abilities.
           The same applies for 'underpowered' votes just the other way around. There are also 'inappropriate' votes,
           which are used to remove images or flavor text which are inappropriate like gore or explicit sexual content.
           In that case only the image and the flavor text are stripped off a card and must be updated by the creator.
           You can start
-          <router-link :to="{ name: 'Vote' }">Voting</router-link>
+          <router-link :to="{ name: 'Vote' }">
+            Voting
+          </router-link>
           after you login with your account.
-          In the future there will also be a council, where new cards must be approved, which earns council members
-          credits.
+          In the future there will also be a council, where new cards must be approved. A process, which earns 
+          council members credits.
           Furthermore there will be sets, which bundle together 100 cards into a set and boosters can be bought from
           these sets, giving financial reward to those creating cards.
         </p>
