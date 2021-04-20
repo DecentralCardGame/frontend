@@ -658,6 +658,7 @@ export default {
       }
 
       // then create the newCard object, to check dependent requirements
+      // maybe it makes more sense to put this code into the cardChain.js
       let newCard = {
         model: {
           [this.getRulesType()]: {
@@ -670,6 +671,8 @@ export default {
               Culture: this.model.Class.Culture == true,
               Mysticism: this.model.Class.Mysticism == true,
             },
+            Keywords: [],
+            RulesText: "This could be your RulesText",
           },
         },
         image: this.cardImageUrl ? this.cardImageUrl : "if you read this, someone was able to upload a card without proper image...",

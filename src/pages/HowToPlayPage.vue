@@ -13,8 +13,8 @@
         and remain hidden until both players are finished playing cards. Both players start with a headquarters that has 20 health points.
         When a player manages to reduce the health points of the enemy headquarters to zero, he wins.
         <br>
-      </p><h2>Resources: the basis for every action</h2>
-      Each card you play requires resources. You can get those resources either from some cards themselves or from your headquarters, which gives you more and more resources as the game goes on. To be more specific, your headquarter produces resources equal to its growth-level every turn. The growth level increases every time you reach ten growth points. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any resources that you didn’t spend, allowing you to still use them in the following turns.
+      </p><h2>Mana: the basis for every action</h2>
+      Each card you play requires Mana. You can get Mana either from some cards themselves or from your headquarters, which gives you more and more Mana as the game goes on. To be more specific, your headquarter produces Mana equal to its size every turn. The size increases every time you reach ten growth points. Most headquarters gain ten growth per turn, meaning that you get one more resource every turn, so one in the first turn, two in the second and so on. You keep any Mana that you didn’t spend, allowing you to still use them in the following turns.
       <br>
       <h2>Classes</h2>
       In addition to said effects, headquarters also dictate the classes from which you are allowed to play cards. In total there are five classes:
@@ -71,10 +71,10 @@
       
       <img src="../components/utils/cardfiles/HQ_Dolly.webp">
       <h2>Your Headquaters</h2>
-      Your Headquarters shows you which resources you can use, they are displayed on the top right of your card (
+      Your Headquarters shows you which Mana you can use, they are displayed on the top right of your card (
       <span class="marked-text">1</span>
       ).
-      Every Headquarters has special abilities for example Dr. Dolly´s Headquarters starts with Dr. Dolly in your hand and you can get 10 wisdom for 3 resources (
+      Every Headquarters has special abilities for example Dr. Dolly´s Headquarters starts with Dr. Dolly in your hand and you can get 10 wisdom for 3 Mana (
       <span class="marked-text">2</span>
       ).
       You also have to always be aware of the life points of your headquarters which are on the botom right of the card (
@@ -92,7 +92,7 @@
       
       <img src="../components/utils/cardfiles/Dr.Dolly.webp">
       <h2>Entities (Creatures)</h2>
-      Entities fight for you on the battleground. The number on the top left tells you how many resources you need to put them there (
+      Entities fight for you on the battleground. The number on the top left tells you how much Mana you need to put them there (
       <span class="marked-text">1</span>
       ).
       They stay on the battlefield until they lose their life points. The life points tell you how much damage is needed to destroy them (
@@ -113,7 +113,7 @@
       <div class="about-flex-wrap">
         <div class="about-text">
           <h2>Places</h2>
-          Places are also permanent cards. They have only a life value and disappear from play as soon as it reaches 0. Places have different abilities, typical abilities are those that create additional entities or produce additional resources or wisdom.
+          Places are also permanent cards. They have only a life value and disappear from play as soon as it reaches 0. Places have different abilities, typical abilities are those that create additional entities or produce additional Mana or Wisdom.
         </div>
         <div class="about-card">
           <div @click="highlight(botCommandCenterData, cardJpgs.botCommandCenterImg)">
@@ -141,7 +141,7 @@
         </div>
       </div>  
       <h2>Abilities</h2>
-      As mentioned before, the permanent cards can have special abilities that affect the game. There are 2 basic types, triggered and activated abilities. Activated abilities are used in a controlled way, e.g. when the player pays a certain amount of resources, whereas triggered abilities are triggered by certain events in the game. The three most common ones are "on spawn", i.e. when the card enters the game, "periodic" every round, and "on death" when the card leaves play.
+      As mentioned before, the permanent cards can have special abilities that affect the game. There are 2 basic types, triggered and activated abilities. Activated abilities are used in a controlled way, e.g. when the player pays a certain amount of Mana, whereas triggered abilities are triggered by certain events in the game. The three most common ones are "on spawn", i.e. when the card enters the game, "periodic" every round, and "on death" when the card leaves play.
       <h2>Triggered Abilities</h2>
       When a certain event occurs, an effect is triggered. This would be for example for the card Dr. Dolly: Whenever an entity dies, you get a resource for it. The event is the death of an entity, more precisely the change from the game to the Dust Pile and the effect is the receipt of a resource. Within a turn there are certain phases in which triggered abilities are processed. We will go into this in more detail later.
       <h2>Activated Abillites</h2>
@@ -175,7 +175,7 @@
       <h2>Planning phase</h2>
       Start of round:
       <br>
-      First, the intrinsic abilities of the headquarters are executed, i.e. Wisdom and Growth. The two values (Wisdom, Growth) are credited to the player, if he has more than 10 Growth, the growth level of the HQ increases by one. After that he gets one resource for each Growth level of the HQ. After that, all abilities that are triggered at the beginning of the turn are processed. Whenever abilities are processed, all effects are collected and sorted into two different queues, one for all effects that affect your own cards and one for all effects that affect the opponent's cards. We call them Own Queue and Enemy Queue. The effects of the Own Queue are then applied immediately, i.e. you can draw cards, receive resources and so on. In contrast, the effects that affect the opponent are suspended and applied later, which can also be effects that were suspended at the very end of the last round. When executing these effects, triggered abilities can be triggered, the effects of these abilities are also suspended, i.e. not immediately applied. For this reason there are no so-called "infinites" in Crowd Control. These are loops in which one or more effects can be triggered infinite times in the same game phase. We deliberately designed the game so that this is not possible, but it is possible to build loops that give you a limited number of effects every turn.
+      First, the intrinsic abilities of the headquarters are executed, i.e. Wisdom and Growth. The two values (Wisdom, Growth) are credited to the player, if he has more than 10 Growth, the size of the HQ increases by one. After that he gets as much Mana as the HQ' size. After that, all abilities that are triggered at the beginning of the turn are processed. Whenever abilities are processed, all effects are collected and sorted into two different queues, one for all effects that affect your own cards and one for all effects that affect the opponent's cards. We call them Own Queue and Enemy Queue. The effects of the Own Queue are then applied immediately, i.e. you can draw cards, receive Mana and so on. In contrast, the effects that affect the opponent are suspended and applied later, which can also be effects that were suspended at the very end of the last round. When executing these effects, triggered abilities can be triggered, the effects of these abilities are also suspended, i.e. not immediately applied. For this reason there are no so-called "infinites" in Crowd Control. These are loops in which one or more effects can be triggered infinite times in the same game phase. We deliberately designed the game so that this is not possible, but it is possible to build loops that give you a limited number of effects every turn.
       <h2>Card playing phase</h2>
       Both players can now play cards. This happens at the same time. The effects of action cards may be applied immediately if they affect your own cards, effects affecting the opponent are collected further. The effects of triggered abilities are collected. When playing an Entity or Place, it is possible to immediately activate an activated ability. The effect of the activated ability is collected as usual and processed later. 
       <h2>Resolve Phase I</h2>
@@ -531,7 +531,7 @@
 
       <div class="about-flex-wrap">
         <div class="about-text">
-          Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 resources.
+          Dr. Dolly's ability was triggered in the Combat: "Whenever a Entity dies, gain 1 Mana" the effect goes into the Own Queue of player 1 and is then processed at the beginning of the next tick, so he then gets 5 Mana.
           <br><br>
           The fight is over, the damage points have been calculated and all triggered effects have been collected.
           Player 1 has only Dr. Dolly left on board. In contrast to Player 2, who still has Richard, Bot Commander, Hurrwig Bot Manufacturer, Bot Token, Assoult Horse and the Places Steam rocessor and Automated Bot Production.
@@ -745,9 +745,9 @@
       </h1>
       <h2>1. Planning Phase</h2>
       <p>
-        At the beginning of the round, the abilities affecting the player himself and his cards are executed first. the Growth level of the headquarters increases by +1 and thus both players recieve 10 resources. In addition, both HQs produce 10 wisdom, which is converted to drawing 1 card.
+        At the beginning of the round, the abilities affecting the player himself and his cards are executed first. the Growth level of the headquarters increases by +1 and thus both players recieve 10 Mana. In addition, both HQs produce 10 wisdom, which is converted to drawing 1 card.
         <br><br>
-        Dr. Dolly's Headquarters ability is used by paying 3 resources to produce an additional 10 wisdom. In addition, Bello, Man's Best Friend and Wynn, the Brainless baby are on the board, producing an additional 15 wisodm through Dr. Dolly's presence. This gives player 1 a total of 25 wisdom, which allows him to draw two additional cards with 5 wisdom left over. Wynn, the Brainless is also buffed by +1/+1 because Dr. Dolly is on the field and now has 2 attack and 2 health points.
+        Dr. Dolly's Headquarters ability is used by paying 3 Mana to produce an additional 10 wisdom. In addition, Bello, Man's Best Friend and Wynn, the Brainless baby are on the board, producing an additional 15 wisodm through Dr. Dolly's presence. This gives player 1 a total of 25 wisdom, which allows him to draw two additional cards with 5 wisdom left over. Wynn, the Brainless is also buffed by +1/+1 because Dr. Dolly is on the field and now has 2 attack and 2 health points.
         <br><br>
         Player 2's Steam Processor produces 6 Energy, which is then used for its ability to gain 10 Wisdom, so player 2 can now draw an additional card. Their 2nd place Automated Bot Production produces another 1/1 Bot. In combination with Hurrwig, Bot Manufacturer, the following ability is now triggered: "Whenever an entity with Tag "Bot" enters the battlefield, you may deal 2 damage to target entity". Since this ability affects the enemy, the effect is delayed and placed in the enemy queue.
       </p>
