@@ -139,6 +139,9 @@ export default {
   .nav-wrapper {
     max-width: 75vw;
     margin: auto;
+    @media (max-width: 480px) {
+      max-width: 100vw;
+    }
   }
 
   .nav {
@@ -188,7 +191,8 @@ export default {
       width: 100%;
     }
 
-    a, .nav__menu__item {
+    a, .nav__menu__item {  
+      font-family: $font-family-header;
       padding: 1.5rem;
       font-size: $font-size*1.15;
       color: $black;

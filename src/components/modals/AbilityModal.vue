@@ -131,7 +131,7 @@ export default {
       this.$emit('close')
     },
     getIcon(option) {
-      return icon(R.toLower(R.split(' ', R.split('-', option.name)[0])[0]))
+      return icon(R.toLower(R.split('-', option.name)[0]))
     },
     addAbility() {
       console.log('dialog type:', this.dialog.type)

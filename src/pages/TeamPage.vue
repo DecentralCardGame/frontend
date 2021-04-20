@@ -3,7 +3,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/patrick.jpg"
+          src="../assets/team/patrick.webp"
           class="rounded"
         >
       </div>
@@ -30,7 +30,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/marius.jpg"
+          src="../assets/team/marius.webp"
           class="rounded"
         >
       </div>
@@ -57,7 +57,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/anna.jpg"
+          src="../assets/team/anna.webp"
           class="rounded"
         >
       </div>
@@ -78,7 +78,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/jannik.jpg"
+          src="../assets/team/jannik.webp"
           class="rounded"
         >
       </div>
@@ -98,7 +98,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/stefi.jpg"
+          src="../assets/team/stefi.webp"
           class="rounded"
         >
       </div>
@@ -117,7 +117,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/noah.jpg"
+          src="../assets/team/noah.webp"
           class="rounded"
         >
       </div>
@@ -136,7 +136,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/niko.jpg"
+          src="../assets/team/niko.webp"
           class="rounded"
         >
       </div>
@@ -154,7 +154,7 @@
     <div class="team-entry">
       <div class="image--round">
         <img
-          src="../assets/team/harry.jpg"
+          src="../assets/team/harry.webp"
           class="rounded"
         >
       </div>
@@ -171,7 +171,7 @@
       <div>
         <h2> Honorable Mentions </h2>
         <p>
-          Thilo Billerbeck has built most of the Website you see here. Danny Czoschke and Jette, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
+          Thilo Billerbeck has built most of the Website you see here. Jette and Danny Czoschke, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
           Andy Frankenberger and Tom König helped us win the Diffusion Hackathon in 2019 with their incredible CORS skills.
         </p>
       </div>

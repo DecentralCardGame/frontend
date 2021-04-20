@@ -45,7 +45,7 @@ a {
 }
 
 main {
-  max-width: 55vw;
+  max-width: 65vw;
   margin: auto;
 }
 
@@ -64,8 +64,8 @@ b {
 }
 
 ::selection {
-  background-color: $background-color;
-  color: white;
+  background-color: $main-color-c;
+  color: black;
 }
 
 @import "forms";
@@ -201,7 +201,7 @@ h1 {
 }
 
 .article-temp {
-  font-weight: 400;
+  font-weight: $font-weight;
   line-height: $line-height-big;
   font-size: 100%;
   p {
@@ -211,7 +211,7 @@ h1 {
   h1, h2, h3, h4, h5 {
     margin: 2.75rem 0 1.05rem;
     font-family: $font-family-header, sans-serif;
-    text-shadow: $border-thickness-bold $border-thickness-bold 0 $black;
+    text-shadow: $border-thickness-bold $border-thickness-bold 0 $black-transparent;
     line-height: $line-height-headline;
   }
 
@@ -231,13 +231,14 @@ h1 {
   small, .text--small {font-size: 0.8em;}
 
   .text--big {
+    z-index: 3;
     font-size: 1.25rem;
   }
 }
 
 .header__h2 {
   font-family: $font-family-header;
-  text-shadow: $border-thickness-bold $border-thickness-bold 0 $black;
+  text-shadow: $border-thickness-bold $border-thickness-bold 0 $black-transparent;
   margin: 0 0 0.5rem;
   line-height: $line-height;
   font-size: 2.441em;
@@ -248,8 +249,41 @@ h1 {
 }
 
 .header__p {
-  font-weight: 400;
+  font-weight: $font-weight;
   line-height: $line-height-big;
   font-size: 100%;
   text-align: center;
+}
+
+.img__default__container {
+  margin: 10%;
+}
+
+.dual--column--img {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 0 auto;
+}
+
+.dual--column--text {
+  min-width: 300px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.dual--column--flex--wrap {
+  display: flex;
+  margin: auto; 
+  flex-direction: row;
+  align-items: center;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+}
+
+.reverse-column {
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+  }
 }

@@ -45,8 +45,7 @@
 
 <script>
 import * as R from 'ramda'
-//import { saveAs } from 'file-saver'
-import * as svg1 from 'save-svg-as-png'
+import { saveCardAsPng } from "../components/utils/utils.js";
 import CardComponent from '@/components/CardComponent'
 import { uploadImg } from '../components/utils/utils.js'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
@@ -67,16 +66,17 @@ export default {
       this.$cardChain.getCard(this.$route.params.id)
         .then(res => {
           let parsedCard = this.$cardChain.parseCard(res.card)
-          console.log('currentCard', res)
+          console.log('downloaded card:', res)
           if (parsedCard) {
             this.cards = []
             this.cards.push(parsedCard)
-
+            console.log('parsed Card:', parsedCard)
             let clickedCard = document.getElementById('card')
-            svg1.svgAsPngUri(clickedCard, {scale: 5})
-              .then(res => {
-                console.log(res)
-              })
+
+            saveCardAsPng(
+              clickedCard,
+              parsedCard.CardName + '.png'
+            );
           }
         })
     }
@@ -105,8 +105,10 @@ export default {
       //saveAs(blob, 'cardes.svg')
     },
     saveSingleCard (index) {
-      let clickedCard = document.getElementById('card' + index)
-      svg1.saveSvgAsPng(clickedCard, this.cards[index].name + '.png', {scale: 5})
+      saveCardAsPng(
+        document.getElementById('card' + index),
+        this.cards[index].name + '.png'
+      );
     },
     addImage (e, index) {
       let that = this

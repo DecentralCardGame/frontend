@@ -10,8 +10,8 @@
     <h2>Join the Experience</h2> 
     <p>
       <b>
-        Good to see you here! Before you can dive into the universe of Crowd
-        Control, you need to make an account.</b>
+        Good to see you here! Before you can dive into the universe of 
+        Crowd Control, you need to make an account.</b>
     </p>
     <form @submit.prevent="register">
       <label> Username* </label>
@@ -41,8 +41,18 @@
         placeholder="your@e-mail.com"
         name="mail"
       >
-      <label> Mnemonic* </label>
+      <label>Custom Mnemonic
+        <input
+          type="checkbox"
+          v-model="ownMnemonic"
+          name="ownMnemonic"
+        >
+      </label>
+      <label>  
+        (If you don't know what this is, it's not for you) 
+      </label>
       <input
+        v-show=ownMnemonic
         v-model="mnemonic"
         type="text"
         placeholder="one two three four five ..."
@@ -69,6 +79,7 @@ export default {
       password: "",
       email: "",
       mnemonic: "",
+      ownMnemonic: false,
       showPw: false,
     };
   },

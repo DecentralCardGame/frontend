@@ -199,13 +199,57 @@ export default {
       votableCards: [],
       canVote: false,
       isOwner: false,
+      leavePageLock: false,
     };
+  },
+  // this watch together with the following beforeRouteLeave make browsing
+  // through the Gallery with mouse back and forward (x1, x2) buttons possible
+  watch: {
+    '$store.state.lastInputEvent': function() {
+      let event = this.$store.state.lastInputEvent
+
+      if (event.which == 5) {
+        this.leavePageLock = true
+        this.nextPage()
+      }
+      else if (event.which == 4) {
+        
+        this.leavePageLock = true
+        this.prevPage()
+      }
+      else {
+        this.leavePageLock = false
+      }
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.leavePageLock)
+      next(false)
+    else
+      next()
   },
   mounted() {
     this.loadCardList();
     this.loadVotableCards();
   },
+
   methods: {
+    /*
+    handleAuxInput(event) {
+      if (event.which == 5) {
+        this.nextPage()
+        this.leavePageLock = true
+      }
+      if (event.which == 4) {
+        this.prevPage()
+        this.leavePageLock = true
+      }
+      else {
+        this.leavePageLock = false
+      }
+      console.log(event)
+      this.$router.replace('gallery')
+    },*/
     loadVotableCards() {
       this.$cardChain
         .getVotableCards(this.$store.getters.getUserAddress)
@@ -265,21 +309,6 @@ export default {
           console.error(res);
         });
     },
-    /*applyFilters(card) {
-      if (
-        this.filters.notesContains &&
-        !card.Notes.includes(this.filters.notesContains)
-      )
-        return false;
-      if (this.filters.cardType === "HQ" && card.type !== "Headquarter")
-        return false;
-      if (this.filters.cardType === "Entity" && card.type !== "Entity")
-        return false;
-      if (this.filters.cardType === "Action" && card.type !== "Action")
-        return false;
-      if (this.filters.cardType === "Place" && card.type !== "Place") return false;
-      return true;
-    },*/
     fillPage() {
       if (this.pageId + this.filters.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
@@ -308,6 +337,9 @@ export default {
       console.log("all cards:", this.cards);
     },
     nextPage() {
+      if (!this.browsingForward)
+        return
+      
       this.pageId += this.filters.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
@@ -315,6 +347,9 @@ export default {
       window.scrollTo(0, 0);
     },
     prevPage() {
+      if (!this.browsingBackward)
+        return
+
       this.pageId -= this.filters.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
@@ -370,7 +405,7 @@ export default {
       this.loadCardList();
     },
   },
-};
+}
 </script>
 
 <style scoped lang="scss">

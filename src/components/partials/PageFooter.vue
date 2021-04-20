@@ -43,24 +43,14 @@
               See what is out there.
             </router-link>
           </li>
-          <li>
-            <a href="https://discord.gg/ZKKbhUs">
-              <h2>Community Discord <img src="../../assets/icon/discord.png" style="display:inline; max-height:33px;transform:translateY(5px);"></h2>
-              Get in touch. Not physical, thooo.
-            </a>
-          </li>
+
           <li>
             <a href="https://t.me/DecentralCardNetwork">
               <h2>Telegram</h2>
               For 'crypto enthusiasts'.
             </a>
           </li>
-          <li>
-            <a href="https://github.com/DecentralCardGame">
-              <h2>Github <img src="../../assets/icon/github.png" style="display:inline; max-height:33px;"></h2> 
-              Checkout our codebase.
-            </a>
-          </li>
+
           <li>
             <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
               <h2>Whitepaper</h2>
@@ -86,14 +76,34 @@
             simply join our growing
             Community. We would love
             to hear your voice.
+            
           </b>
-          <p>
-          <img
-            alt="Crowd Control"
-            width="80%"
-            src="../../assets/logo.svg"
-          >
-          </p>
+          <div>
+            <br>
+          </div>
+          <ul class="footer__menu">
+            <li>
+              <a href="https://discord.gg/ZKKbhUs">
+                <h2>Discord <img src="../../assets/icon/discord.webp" style="display:inline; max-height:33px;transform:translateY(5px);"></h2>
+                Get in touch. Not physical, thooo.
+              </a>
+            </li>
+
+            <li>
+              <a href="https://github.com/DecentralCardGame">
+                <h2>Github <img src="../../assets/icon/github.webp" style="display:inline; max-height:33px;"></h2> 
+                Checkout our codebase.
+              </a>
+            </li> 
+          </ul>
+
+          <div class="img__default__container">
+            <img
+              alt="Crowd Control"
+              width="80%"
+              src="logo.svg"
+            >
+          </div>
         </div>
       </div>
       <div class="footer__terms">

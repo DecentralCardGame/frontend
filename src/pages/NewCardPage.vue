@@ -55,8 +55,14 @@
             value="Card Name"
             @change="saveDraft"
           >
-          <span class="creator-text">My <b>type</b> is</span>
+
+          <span 
+            v-if="$cardRules"
+            class="creator-text">
+            My <b>type</b> is
+          </span>
           <select
+            v-if="$cardRules"
             v-model="model.type"
             @change="
               resetAbilities();
@@ -70,8 +76,13 @@
               {{ val }}
             </option>
           </select>
-          <span class="creator-text">People like to <b>tag</b> me as</span>
-          <div>
+
+          <span             
+            v-if="$cardRules"
+            class="creator-text">
+            People like to <b>tag</b> me as</span>
+          <div             
+            v-if="$cardRules">
             <select
               v-model="model.tagDummy"
               class="tag-select"
@@ -111,12 +122,12 @@
               </option>
             </select>
           </div>
-          <span class="creator-text">My <b>rarity</b> is</span>
+          <!--span class="creator-text">My <b>rarity</b> is</span>
           <select @change="saveDraft">
             <option>Common</option>
             <option>Rare</option>
             <option>Legendary</option>
-          </select>
+          </select-->
         </div>
         <div
           v-if="activeStep == 1"
@@ -495,7 +506,12 @@ export default {
   },
   computed: {},
   mounted() {
-    console.log('cardRules:', this.$cardRules)
+    if(!this.$cardRules) {
+      this.$router.push("landing")
+    }
+    else {
+      console.log('cardRules:', this.$cardRules)
+    }
     
     // here a card is loaded if edit card via gallery was selected
     if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
@@ -546,7 +562,6 @@ export default {
       let atRules = R.curry(atPath)(this.$cardRules);
 
       console.log("abilities", this.abilities);
-      console.log('atrules', atRules(''))
 
       this.isAbilityModalVisible = true;
 
@@ -618,7 +633,7 @@ export default {
       return this.model.type
     },
     getTypes() {
-      return R.keys(this.$cardRules.children)
+      return R.keys(this.$cardRules.children) 
     },
     getTags(idx) {
       if (this.$cardRules) {
@@ -656,6 +671,7 @@ export default {
       return string;
     },
     saveSubmit() {
+      // first check all things that must be entered:
       if (!this.model.CardName) {
         this.notifyFail("No Name", "Card has no name, please enter a name.");
         return;
@@ -664,7 +680,28 @@ export default {
         this.notifyFail("Wrong Type", "please pick a type");
         return;
       }
+      if (!this.cardImageUrl) {
+        this.notifyFail("No Image", "Card has no image, please upload an image.");
+        return;
+      }
+      if (!this.model.Tags[0]) {
+        this.notifyFail(
+          "No Tags",
+          "Card has no Tag, please pick at least one tag."
+        );
+        return;
+      }
+      if (!this.model.FlavourText[0] && !this.model.abilities) {
+        console.log("flavor:", this.model.FlavourText)
+        console.log("abilities:", this.model.abilities)
+        this.notifyFail(
+          "No Flavor Text",
+          "Card has no flavor text and no abilities, please enter something."
+        );
+        return;
+      }
 
+      // then create the newCard object, to check dependent requirements
       let newCard = {
         model: {
           [this.getRulesType()]: {
@@ -680,9 +717,11 @@ export default {
             },
           },
         },
-        image: this.cardImageUrl ? this.cardImageUrl : "nix",
+        image: this.cardImageUrl ? this.cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
         Notes: this.model.Notes,
       };
+
+      // in the following part we check things that are only required for specific card types
       if (this.model.type !== "Headquarter") {
         if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
           this.notifyFail(
@@ -701,11 +740,12 @@ export default {
           );
           return;
         }
+
+        // this writes the relevant part of the effects in the new model
         newCard.model[this.getRulesType()].Abilities = R.map(
           R.pick(
             R.keys(
-              this.$cardRules.children.Entity.children.Abilities.children
-                .Ability.children
+              this.$cardRules.children.Entity.children.Abilities.children.Ability.children
             )
           ),
           this.abilities
@@ -724,44 +764,32 @@ export default {
       } else if (this.model.type === "Headquarter") {
         newCard.model[this.getRulesType()].Growth = this.model.Growth;
         newCard.model[this.getRulesType()].Wisdom = this.model.Wisdom;
-        newCard.model[
-          this.getRulesType()
-        ].StartingHandSize = this.model.StartingHandSize;
+        newCard.model[this.getRulesType()].StartingHandSize = this.model.StartingHandSize; // can be removed?
       } else if (this.model.type === "Action") {
+        // this writes the relevant part of the effects in the new model
         newCard.model[this.getRulesType()].Effects = R.map(
           R.pick(
             R.keys(
-              this.$cardRules.children.Action.children.Effects.children.Effect
-                .children
+              this.$cardRules.children.Action.children.Effects.children.Effect.children
             )
           ),
           this.abilities
         );
       }
 
-      if (!this.model.Tags[0]) {
-        this.notifyFail(
-          "No Tags",
-          "Card has no Tag, please pick at least one tag."
-        );
-        return;
-      }
-      if (!this.model.FlavourText[0]) {
-        this.notifyFail(
-          "No Flavor Text",
-          "Card has no (flavor) Text, please enter something."
-        );
-        return;
-      }
 
-      console.log("abilities:", this.abilities);
+      console.log("abilities of card being submitted:", this.abilities);
       let abilityText = this.abilities[0]
         ? this.interactionTextToString(this.abilities[0])
         : "";
-      console.log("abilityText:", abilityText);
+      console.log("abilityText of card being submitted:", abilityText);
 
       if (abilityText) {
         newCard.Notes = "ability: " + abilityText;
+      }
+
+      if (!newCard.model[this.getRulesType()].FlavourText) {
+        newCard.model[this.getRulesType()].FlavourText = abilityText
       }
 
       // check if a card is edited with pre-existing ID
@@ -786,6 +814,8 @@ export default {
           });
       }
     },
+
+
     updateCredits(acc) {
       this.creditsAvailable = creditsFromCoins(acc.coins);
       this.$store.commit("setUserCredits", this.creditsAvailable);

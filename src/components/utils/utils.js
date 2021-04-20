@@ -31,7 +31,6 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       // % is the marker for a button
       let buttonEntry = entry.slice(1)
 
-      console.log(R.append(buttonEntry, rulesPath), cardRules)
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
@@ -50,7 +49,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
             rulesPath: R.append(buttonEntry, rulesPath),
             template: interaction[interaction.length - 1]
           },
-          post: interaction[interaction.length - 2].post
+          post: interaction[interaction.length - 2] ? interaction[interaction.length - 2].post : ""
         })
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = ''
@@ -77,11 +76,18 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
 }
 
 export function updateInteraction (ability, id, newInteraction) {
+  // if it is not the first ability, pick the post-text from the previous one and add it to the pre-text of this interaction
   if (id > 0) {
     ability.interaction[id - 1].post += ability.interaction[id].pre
   }
+  // if it is not the last ability, pick the pre-text from the next one and add it to the post-text of this interaction
   if (id < ability.interaction.length - 1) {
-    ability.interaction[id + 1].pre += ability.interaction[id].post
+    if (ability.interaction[id].post) {
+      ability.interaction[id + 1].pre += ability.interaction[id].post
+    } else {
+      // sometimes there is no post-text, but there is pre-text we want to preserve
+      newInteraction[0].pre = ability.interaction[id].pre + newInteraction[0].pre 
+    }
   }
 
   ability.interaction = R.remove(id, 1, ability.interaction)
@@ -101,7 +107,6 @@ export function atPath(cardRules, path) {
 
 export function makeButton (cardRules, rulesPath, abilityPath, id) {
   let atRules = R.curry(atPath)(cardRules)
-
   return {
     id: id,
     label: atRules(rulesPath).name,
@@ -218,17 +223,19 @@ export function icon(name) {
   let item
   try {
     //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
-    item = require('../../assets/icon/'+name+'.svg')
+    console.log("retrieving:", '../../assets/icon/abilities/'+name+'.svg')
+    item = require('../../assets/icon/abilities/'+name+'.svg')
   } catch {
     if (name.length === 1) {
-      return require('../../assets/icon/variable.svg')
+      return require('../../assets/icon/abilities/variable.svg')
     }
     try {
-      item = require('../../assets/icon/'+name+'s.svg')
+      item = require('../../assets/icon/abilities/'+name+'s.svg')
     } catch {
       try {
-        item = require('../../assets/icon/'+name+'r.svg')
+        item = require('../../assets/icon/abilities/'+name+'r.svg')
       }  catch {
+        console.log('was not able to retrieve', name, 'icon')
         return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"
       }
     }

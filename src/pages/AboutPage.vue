@@ -10,8 +10,8 @@
       <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
     
-    <div class="about-flex-wrap">
-      <div class="about-text">
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
         <h2>The Game</h2>
         <p>
           This sounds very awesome, but how shall this work? Somebody must be in charge and someone has to say what is
@@ -31,22 +31,22 @@
           means you can also contribute and become not only a member but an owner of Crowd Control.
         </p>
       </div>
-      <div class="about-card">
+      <div class="dual--column--img">
         <CardComponent
-          :model="sampleCards.communityImg"
-          :image-u-r-l="sampleCards.communityImg.cardImg"
+          :model="communityCardData"
+          :image-u-r-l="cardJpgs.communityCardImg"
         />
       </div>
     </div>
 
-    <div class="about-flex-wrap reverse-column">
-      <div class="about-card">
+    <div class="dual--column--flex--wrap reverse-column">
+      <div class="dual--column--img">
         <CardComponent
-          :model="sampleCards.drDolly"
-          :image-u-r-l="sampleCards.drDolly.cardImg"
+          :model="drDollyData"
+          :image-u-r-l="cardJpgs.drDollyImg"
         />
       </div>
-      <div class="about-text">
+      <div class="dual--column--text">
         <h2>The Mechanics</h2>
         <p>
           Crowd Control has unique game mechanics.
@@ -68,8 +68,8 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap">
-      <div class="about-text">
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
         <h2>The Cards</h2>
         <p>
           We have 4 different types of cards. The HQ, Place, Entity and Action.
@@ -86,26 +86,26 @@
           impact on the archetype of a deck is even higher.<br>
         </p>
         <p>
-          ou can have a look at some cards here on the page or see all of them in the
+          you can have a look at some cards here on the page or see all of them in the
           <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
         </p>
       </div>
-      <div class="about-card">
+      <div class="dual--column--img">
         <CardComponent
-          :model="sampleCards.timeDevice"
-          :image-u-r-l="sampleCards.timeDevice.cardImg"
+          :model="timeDeviceData"
+          :image-u-r-l="cardJpgs.timeDeviceImg"
         />
       </div>
     </div>
 
-    <div class="about-flex-wrap reverse-column">
-      <div class="about-card">
+    <div class="dual--column--flex--wrap reverse-column">
+      <div class="dual--column--img">
         <CardComponent
-          :model="sampleCards.bello"
-          :image-u-r-l="sampleCards.bello.cardImg"
+          :model="belloData"
+          :image-u-r-l="cardJpgs.belloImg"
         />
       </div>
-      <div class="about-text">
+      <div class="dual--column--text">
         <h2>The Gameplay</h2>
         <p>
           A turn begins by giving you Production and Wisdom. How much you get is determined by your HQ as well as how
@@ -126,8 +126,8 @@
       </div>
     </div>
 
-    <div class="about-flex-wrap">
-      <div class="about-text">
+    <div class="dual--column--flex--wrap">
+      <div class="dual--column--text">
         <h2>The Balancing</h2>
         <p>
           The balancing is done by adjusting the ressource cost of a card. This means when a card receives more
@@ -146,10 +146,10 @@
           these sets, giving financial reward to those creating cards.
         </p>
       </div>
-      <div class="about-card">
+      <div class="dual--column--img">
         <CardComponent
-          :model="sampleCards.botCommandCenter"
-          :image-u-r-l="sampleCards.botCommandCenter.cardImg"
+          :model="botCommandCenterData"
+          :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
     </div>
@@ -158,12 +158,10 @@
 
 <script>
 
-
-
-
 import CardComponent from "../components/CardComponent";
 import {
-  sampleCards,
+  cardJpgs,
+  communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData
 } from "../components/utils/sampleCards.js";
 
 export default {
@@ -171,7 +169,8 @@ export default {
   components: { CardComponent },
   data() {
     return {
-      sampleCards: sampleCards,
+      cardJpgs:cardJpgs,
+      communityCardData:communityCardData , botCommandCenterData:botCommandCenterData, belloData:belloData, timeDeviceData:timeDeviceData, drDollyData:drDollyData
     };
   },
   mounted() {},
@@ -205,35 +204,6 @@ export default {
     height: $font-size * 20;
   }
   margin-bottom: $font-size * 4;
-}
-
-.about-card {
-  max-width: 300px;
-  min-width: 300px;
-  min-height: 300px;
-  margin: 0 15px;
-}
-
-.about-text {
-  min-width: 300px;
-  max-width: 500px;
-  margin: 0 15px;
-}
-
-.about-flex-wrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: top;
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
-}
-
-.reverse-column {
-  @media (max-width: 1200px) {
-    flex-direction: column-reverse;
-  }
 }
 
 h2 {
