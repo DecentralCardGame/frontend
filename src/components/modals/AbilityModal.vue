@@ -196,7 +196,10 @@ export default {
         if (objAtSelection.singleUse) {
           this.attachToAbility(this.dialog.btn.abilityPath, {singleUse: selection.index})
         } else {
-          this.attachToAbility(this.dialog.btn.abilityPath, {})
+          // TODO check if this is consistent with the singleUse case?
+          let newEntry = {}
+          newEntry[selection.index] = {}
+          this.attachToAbility(this.dialog.btn.abilityPath, newEntry)
         }
       } else if (objAtSelection.type === 'int') { // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false

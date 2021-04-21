@@ -619,6 +619,7 @@ export default {
       this.saveDraft();
     },
     interactionTextToString(ability) {
+      console.log("converting ability:", ability);
       let string = "";
       ability.interaction.forEach((entry) => {
         if (entry.btn.type !== "expandArray")
@@ -788,7 +789,6 @@ export default {
       let newModel = this.model;
 
       if (this.model.type !== "Action") {
-        console.log("newModel:", newCard);
         // this writes the relevant part of the effects in the new model
         newModel.Abilities = R.map(
           R.pick(
@@ -812,12 +812,13 @@ export default {
         );
       }
 
-      // this will be removed soon with the rulesText update
-      console.log("abilities of card being submitted:", this.abilities);
-      let abilityText = this.abilities[0]
-        ? this.interactionTextToString(this.abilities[0])
-        : "";
-      console.log("abilityText of card being submitted:", abilityText);
+      console.log("abilities to keywords:", this.abilities);
+      newModel.Keywords = R.map(JSON.stringify, this.abilities);
+      newModel.RulesText = R.join(
+        "\n",
+        R.map(this.interactionTextToString, this.abilities)
+      );
+      console.log("rulesText:", newModel.rulesText);
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
         newModel,
@@ -827,6 +828,7 @@ export default {
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
         console.log("overwriting card with id:", this.model.id);
+        console.log("card:", newCard);
         newCard.id = this.model.id;
         this.$cardChain
           .saveContentToCardWithIdTx(newCard, () => {})

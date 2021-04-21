@@ -62,7 +62,7 @@ export default {
           })
         }
       }
-      parseCard (rawCard) {
+      cardObjectToWebModel (rawCard) {
         if (rawCard.Content) {
           let contentLens = R.lensProp('Content')
           let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
@@ -92,27 +92,27 @@ export default {
             Culture: webModel.Class.Culture == true,
             Mysticism: webModel.Class.Mysticism == true,
           },
-          Keywords: [],
-          RulesText: "",
+          Keywords: webModel.Keywords,
+          RulesText: webModel.RulesText,
         }
 
         // in the following part we check things that are only required for specific card types
         if (webModel.type !== "Headquarter") {
-          cardContent.CastingCost = webModel.CastingCost;
+          cardContent.CastingCost = webModel.CastingCost
         }
         if (webModel.type !== "Action") {
-          cardContent.Health = webModel.Health;
+          cardContent.Health = webModel.Health
+          cardContent.Abilities = webModel.Abilities
         }
         if (webModel.type === "Entity") {
-          cardContent.Attack = webModel.Attack;
-        } else if (webModel.type === "Headquarter") {
-          cardContent.Delay = webModel.Delay;
+          cardContent.Attack = webModel.Attack
+        } 
+        else if (webModel.type === "Action") {
+          cardContent.Effects = webModel.Effects
+        } 
+        else if (webModel.type === "Headquarter") {
+          cardContent.Delay = webModel.Delay
         }
-
-        if (!cardContent.FlavourText) {
-          cardContent.FlavourText = "nix"
-        }
-
         return {
           content: {
             [webModel.type]: cardContent

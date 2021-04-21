@@ -296,7 +296,7 @@ export default {
           let card = res.card;
           card.id = cardId;
           if (card.Content) {
-            let candidate = this.$cardChain.parseCard(card);
+            let candidate = this.$cardChain.cardObjectToWebModel(card);
             //if (this.applyFilters(candidate)) 
             this.cards.push(candidate);
           } else if (!card.Owner) {

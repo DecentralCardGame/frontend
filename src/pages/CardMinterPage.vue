@@ -65,7 +65,7 @@ export default {
     if (typeof id === 'number' && !isNaN(id))  {
       this.$cardChain.getCard(this.$route.params.id)
         .then(res => {
-          let parsedCard = this.$cardChain.parseCard(res.card)
+          let parsedCard = this.$cardChain.cardObjectToWebModel(res.card)
           console.log('downloaded card:', res)
           if (parsedCard) {
             this.cards = []

@@ -141,7 +141,7 @@ export default {
 
         return this.$cardChain.getCard(nextCard.CardId)
           .then(res => {
-            let parsedCard = this.$cardChain.parseCard(res.card)
+            let parsedCard = this.$cardChain.cardObjectToWebModel(res.card)
             console.log('currentCard', parsedCard)
             if (parsedCard) {
               this.cards.push(parsedCard)
