@@ -462,13 +462,12 @@ export default {
   },
   computed: {},
   mounted() {
-    if(!this.$cardRules) {
-      this.$router.push("landing")
+    if (!this.$cardRules) {
+      this.$router.push("landing");
+    } else {
+      console.log("cardRules:", this.$cardRules);
     }
-    else {
-      console.log('cardRules:', this.$cardRules)
-    }
-    
+
     // here a card is loaded if edit card via gallery was selected
     if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
       console.log("edit card!");
@@ -531,7 +530,7 @@ export default {
           return;
         }
 
-        console.log('getrulestype', this.getRulesType())
+        console.log("getrulestype", this.getRulesType());
         let newAbility = {
           path: [
             "children",
@@ -555,7 +554,7 @@ export default {
           abilityPath: [],
         };
 
-        console.log('dialog', dialog)
+        console.log("dialog", dialog);
 
         // this is the bugfix for replay selection bug
         R.forEachObjIndexed(function (option) {
@@ -586,15 +585,16 @@ export default {
     },
     getRulesType() {
       //return this.model.type === "Headquarter" ? "Headquarter" : this.model.type;
-      return this.model.type
+      return this.model.type;
     },
     getTypes() {
-      return R.keys(this.$cardRules.children) 
+      return R.keys(this.$cardRules.children);
     },
     getTags(idx) {
       if (this.$cardRules) {
-        let usedTags = []
-        let allTags = this.$cardRules.children.Action.children.Tags.children.Tag.enum
+        let usedTags = [];
+        let allTags = this.$cardRules.children.Action.children.Tags.children.Tag
+          .enum;
         if (this.model.Tags[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.Tags[idx], this.model.Tags);
@@ -637,7 +637,10 @@ export default {
         return;
       }
       if (!this.cardImageUrl) {
-        this.notifyFail("No Image", "Card has no image, please upload an image.");
+        this.notifyFail(
+          "No Image",
+          "Card has no image, please upload an image."
+        );
         return;
       }
       if (!this.model.Tags[0]) {
@@ -648,15 +651,43 @@ export default {
         return;
       }
       if (!this.model.FlavourText[0] && !this.model.abilities) {
-        console.log("flavor:", this.model.FlavourText)
-        console.log("abilities:", this.model.abilities)
+        console.log("flavor:", this.model.FlavourText);
+        console.log("abilities:", this.model.abilities);
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
         );
         return;
       }
-
+      // in the following part we check things that are only required for specific card types
+      if (this.model.type !== "Headquarter") {
+        if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
+          this.notifyFail(
+            "No Cost",
+            "Card has no ressource cost, please pick a number."
+          );
+          return;
+        }
+      }
+      if (this.model.type !== "Action") {
+        if (R.isNil(this.model.Health)) {
+          this.notifyFail(
+            "No Health",
+            "Card has no Health, please pick a number."
+          );
+          return;
+        }
+      }
+      if (this.model.type === "Entity") {
+        if (R.isNil(this.model.Attack)) {
+          this.notifyFail(
+            "No Attack",
+            "Card has no Attack, please pick a number."
+          );
+          return;
+        }
+      }
+      /*
       // then create the newCard object, to check dependent requirements
       // maybe it makes more sense to put this code into the cardChain.js
       let newCard = {
@@ -672,10 +703,12 @@ export default {
               Mysticism: this.model.Class.Mysticism == true,
             },
             Keywords: [],
-            RulesText: "This could be your RulesText",
+            RulesText: "",
           },
         },
-        image: this.cardImageUrl ? this.cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
+        image: this.cardImageUrl
+          ? this.cardImageUrl
+          : "if you read this, someone was able to upload a card without proper image...",
         Notes: this.model.Notes,
       };
 
@@ -703,7 +736,8 @@ export default {
         newCard.model[this.getRulesType()].Abilities = R.map(
           R.pick(
             R.keys(
-              this.$cardRules.children.Entity.children.Abilities.children.Ability.children
+              this.$cardRules.children.Entity.children.Abilities.children
+                .Ability.children
             )
           ),
           this.abilities
@@ -726,13 +760,13 @@ export default {
         newCard.model[this.getRulesType()].Effects = R.map(
           R.pick(
             R.keys(
-              this.$cardRules.children.Action.children.Effects.children.Effect.children
+              this.$cardRules.children.Action.children.Effects.children.Effect
+                .children
             )
           ),
           this.abilities
         );
       }
-
 
       console.log("abilities of card being submitted:", this.abilities);
       let abilityText = this.abilities[0]
@@ -745,8 +779,50 @@ export default {
       }
 
       if (!newCard.model[this.getRulesType()].FlavourText) {
-        newCard.model[this.getRulesType()].FlavourText = abilityText
+        newCard.model[this.getRulesType()].FlavourText = abilityText;
       }
+      */
+
+      // finalize abilties or effects
+      // this should potentially moved to somewhere else? maybe where abilities are saved
+      let newModel = this.model;
+
+      if (this.model.type !== "Action") {
+        console.log("newModel:", newCard);
+        // this writes the relevant part of the effects in the new model
+        newModel.Abilities = R.map(
+          R.pick(
+            R.keys(
+              this.$cardRules.children.Entity.children.Abilities.children
+                .Ability.children
+            )
+          ),
+          this.abilities
+        );
+      } else if (this.model.type === "Action") {
+        // this writes the relevant part of the effects in the new model
+        newModel.Effects = R.map(
+          R.pick(
+            R.keys(
+              this.$cardRules.children.Action.children.Effects.children.Effect
+                .children
+            )
+          ),
+          this.abilities
+        );
+      }
+
+      // this will be removed soon with the rulesText update
+      console.log("abilities of card being submitted:", this.abilities);
+      let abilityText = this.abilities[0]
+        ? this.interactionTextToString(this.abilities[0])
+        : "";
+      console.log("abilityText of card being submitted:", abilityText);
+
+      let newCard = this.$cardChain.cardWebModelToCardobject(
+        newModel,
+        this.cardImageUrl
+      );
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
@@ -770,7 +846,6 @@ export default {
           });
       }
     },
-
 
     updateCredits(acc) {
       this.creditsAvailable = creditsFromCoins(acc.coins);
@@ -796,7 +871,7 @@ export default {
       this.cardImageUrl = sampleGradientImg;
     },
     isEditCardMode() {
-      return this.model.id
+      return this.model.id;
     },
     inputFile(event) {
       let file = event.target.files[0];

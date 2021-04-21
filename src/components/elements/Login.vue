@@ -1,10 +1,11 @@
 <template>
   <div>
     <button 
-    class="close-button" 
-    type="button"
-    @click="$store.commit('toggleLoginBox')">
-    x
+      class="close-button" 
+      type="button"
+      @click="$store.commit('toggleLoginBox')"
+    >
+      x
     </button>
     <h2>Login</h2>
     <p><b>Before you can carry on, please Log-In with your credentials. If you don't have an account you can register.</b></p>
@@ -75,6 +76,7 @@ export default {
             console.error(res)
             this.notifyFail('YOU FAIL', 'Login failed! ' + res.status)
           } else {
+            console.log(res)
             const decryptedMnemonicBytes = this.CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
             const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8))
 

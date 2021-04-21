@@ -64,21 +64,62 @@ export default {
       }
       parseCard (rawCard) {
         if (rawCard.Content) {
-            let contentLens = R.lensProp('Content')
-            let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
-            let card = parseContent(rawCard)
-            let cardType = R.keys(card.Content)
-            card = R.merge(card, card.Content[cardType[0]])
-        
-            card.image = card.Image
-            card.nerflevel = parseInt(card.Nerflevel)
-            card.type = cardType[0]
-        
-            console.log('parsed card: ', card)
-            return card
+          let contentLens = R.lensProp('Content')
+          let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
+          let card = parseContent(rawCard)
+          let cardType = R.keys(card.Content)
+          card = R.merge(card, card.Content[cardType[0]])
+      
+          card.image = card.Image
+          card.nerflevel = parseInt(card.Nerflevel)
+          card.type = cardType[0]
+
+          console.log('parsed card: ', card)
+          return card
         } else {
-            return emptyCard
+          return emptyCard
         }
+      }
+      cardWebModelToCardobject (webModel, cardImageUrl) {
+        console.log('trying to parse ', webModel)
+        let cardContent = {
+          CardName: webModel.CardName,
+          Tags: R.reject(R.isNil, webModel.Tags),
+          FlavourText: webModel.FlavourText,
+          Class: {
+            Nature: webModel.Class.Nature == true,
+            Technology: webModel.Class.Technology == true,
+            Culture: webModel.Class.Culture == true,
+            Mysticism: webModel.Class.Mysticism == true,
+          },
+          Keywords: [],
+          RulesText: "",
+        }
+
+        // in the following part we check things that are only required for specific card types
+        if (webModel.type !== "Headquarter") {
+          cardContent.CastingCost = webModel.CastingCost;
+        }
+        if (webModel.type !== "Action") {
+          cardContent.Health = webModel.Health;
+        }
+        if (webModel.type === "Entity") {
+          cardContent.Attack = webModel.Attack;
+        } else if (webModel.type === "Headquarter") {
+          cardContent.Delay = webModel.Delay;
+        }
+
+        if (!cardContent.FlavourText) {
+          cardContent.FlavourText = "nix"
+        }
+
+        return {
+          content: {
+            [webModel.type]: cardContent
+          },
+          image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
+          Notes: webModel.Notes,
+        };
       }
       generateMnemonic () {
         let entropySize = 24 * 11 - 8
@@ -170,7 +211,7 @@ export default {
                     'gas_adjustment': '10'
                   },
                   'owner': this.vue.$store.getters.getUserAddress,
-                  'content': JSON.stringify(card.model),
+                  'content': JSON.stringify(card.content),
                   'image': card.image,
                   'cardid': user.ownedCardSchemes[0],
                   'notes': card.Notes
@@ -201,7 +242,7 @@ export default {
               'gas_adjustment': '10'
             },
             'owner': this.vue.$store.getters.getUserAddress,
-            'content': JSON.stringify(card.model),
+            'content': JSON.stringify(card.content),
             'image': card.image,
             'cardid': card.id,
             'notes': card.Notes
