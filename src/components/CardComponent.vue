@@ -590,35 +590,6 @@
         </tspan>
       </text>
 
-      <!-- Tags old -->
-      <!--text
-        v-for="(tag, index) in model.Tags"
-        id="text2527"
-        :key="'tag'+index"
-        :x="75 + index*46 - (tagLength() - 1)*23"
-        y="237.4"
-        fill="#FFDAA6"
-        stroke-width=".1"
-        font-family="Roboto"
-        font-size="6.6"
-        letter-spacing="1"
-        text-anchor="start"
-        xml:space="preserve"
-      >
-        <tspan
-          id="tspan2525"
-          :x="75 + index*46 - (tagLength() - 1)*23"
-          y="237.4"
-          fill="#FFDAA6"
-          fill-opacity="1"
-          stroke-width=".1"
-          font-family="Roboto"
-          font-size="6.6"
-          font-style="medium"
-          text-anchor="middle"
-          writing-mode="lr-tb"
-        >{{ (tag || '').toUpperCase() }}</tspan>
-      </text-->
       <!-- Human readable text of the abilities -->
       <text
         v-for="(text, index) in textToSvg(getAbilityText())"
@@ -694,45 +665,49 @@
         >{{ getType() }}</tspan>
       </text>
       <!-- Flavor text -->
-      <text
-        v-for="(text, index) in textToSvg(model.FlavourText)"
-        id="text2495-3"
-        :key="'flavorLine'+index"
-        fill="#000000"
-        fill-opacity="1"
-        stroke="none"
-        stroke-width=".1"
-        font-family="Roboto"
-        font-size="5.1"
-        font-stretch="normal"
-        font-style="normal"
-        font-variant="normal"
-        font-weight="300"
-        letter-spacing="0"
-        opacity="1"
-        style="line-height:1.25;-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
-        word-spacing="0"
-        writing-mode="lr-tb"
-        xml:space="preserve"
+      <g
+        v-if="!model.RulesText"
       >
-        <tspan
-          id="tspan2493-1"
-          x="26.9"
-          :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
+        <text
+          v-for="(text, index) in textToSvg(model.FlavourText)"
+          id="text2495-3"
+          :key="'flavorLine'+index"
           fill="#000000"
           fill-opacity="1"
+          stroke="none"
           stroke-width=".1"
           font-family="Roboto"
-          :font-size="fontSize(model.FlavourText)"
+          font-size="5.1"
           font-stretch="normal"
           font-style="normal"
           font-variant="normal"
           font-weight="300"
-          style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:justify"
-          text-anchor="start"
-          writing-mode="horizontal-tb"
-        >{{ text }}</tspan>
-      </text>
+          letter-spacing="0"
+          opacity="1"
+          style="line-height:1.25;-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+          word-spacing="0"
+          writing-mode="lr-tb"
+          xml:space="preserve"
+        >
+          <tspan
+            id="tspan2493-1"
+            x="26.9"
+            :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
+            fill="#000000"
+            fill-opacity="1"
+            stroke-width=".1"
+            font-family="Roboto"
+            :font-size="fontSize(model.FlavourText)"
+            font-stretch="normal"
+            font-style="normal"
+            font-variant="normal"
+            font-weight="300"
+            style="-inkscape-font-specification:'Roboto';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:justify"
+            text-anchor="start"
+            writing-mode="horizontal-tb"
+          >{{ text }}</tspan>
+        </text>
+      </g>
       <!-- Attack -->
       <text
         v-show="model.type === 'Entity'"
@@ -931,10 +906,7 @@ export default {
       }
     },
     getAbilityText () {
-      if (this.model.Notes.startsWith('ability: ')) {
-        return this.model.Notes.substring(9)
-      }
-      else return ''
+      return this.model.RulesText
     },
     textToSvg (text) {
       if (!text) return text
