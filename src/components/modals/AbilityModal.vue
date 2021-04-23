@@ -191,16 +191,19 @@ export default {
         let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
+        console.log('no')
         this.attachToAbility(['interaction'], this.ability.interaction)
         console.log('this.ability after updateInteraction', this.ability)
-        if (objAtSelection.singleUse) {
-          this.attachToAbility(this.dialog.btn.abilityPath, {singleUse: selection.index})
-        } else {
-          // TODO check if this is consistent with the singleUse case?
-          let newEntry = {}
-          newEntry[selection.index] = {}
-          this.attachToAbility(this.dialog.btn.abilityPath, newEntry)
-        }
+
+        console.log('yes')
+        let newEntry = {}
+        newEntry[selection.index] = {}
+
+        if (objAtSelection.singleUse) 
+          newEntry.singleUse = selection.index
+        
+        this.attachToAbility(this.dialog.btn.abilityPath, newEntry, true)
+        
       } else if (objAtSelection.type === 'int') { // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false
         this.dialog.btn.type = "int"
@@ -280,25 +283,34 @@ export default {
       }
 
       let newAbility = {
-        interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules)
+        interaction: createInteraction(interactionText, abilityPath, rulesPath, this.$cardRules),
+        keywords: [selection.index]
       }
       newAbility[selection.index] = {
         path: this.dialog.rulesPath
       }
+
       this.abilities.push(newAbility)
+      console.log('pushed new ability:', newAbility)
     },
-    isNumber: function (evt) {
-      evt = evt || window.event
-      var charCode = (evt.which) ? evt.which : evt.keyCode
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault()
-      } else {
-        return true
-      }
-    },
-    attachToAbility(path, object) {
-      console.log('attaching ', object, ' to ', path)
+    attachToAbility(path, object, updateKeywords=false) {
+      console.log('attaching ', object, ' to ', path, 'with keywords: ', R.keys(object))
+
       let ability = R.assocPath(path, object, this.ability)
+
+      if (updateKeywords) {
+        console.log('keywords before: ', this.ability.keywords)
+
+        ability.keywords = ability.keywords ? R.concat( ability.keywords, R.keys(object) ) : R.keys(object)
+        /*
+        if (ability.keywords)
+          ability.keywords.push(R.keys(object))
+        else
+          ability.keywords = R.keys(object)
+          */
+        console.log('keywords after: ', ability.keywords)
+      }
+
       this.$emit('update:ability', ability)
     },
   }

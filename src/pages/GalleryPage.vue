@@ -119,7 +119,7 @@
         "
       >
         <div
-          width="20%"
+          class="cardContainer"
           @click="
             showGalleryModal();
             clickedIndex = index;
@@ -440,6 +440,11 @@ export default {
 
 .gallery__filter__item {
   width: 20%
+}
+
+.cardContainer {
+  max-width: 500px;          
+  width: "20%";
 }
 
 .ability-modal-container {

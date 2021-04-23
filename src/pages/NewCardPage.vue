@@ -463,7 +463,7 @@ export default {
   computed: {},
   mounted() {
     if (!this.$cardRules) {
-      this.$router.push("landing");
+      this.$router.push("/");
     } else {
       console.log("cardRules:", this.$cardRules);
     }
@@ -571,6 +571,7 @@ export default {
       this.isAbilityModalVisible = false;
     },
     updateAbility($event, index) {
+      console.log("update ability: ", $event);
       this.ability = $event;
       this.abilities[index] = $event;
 
