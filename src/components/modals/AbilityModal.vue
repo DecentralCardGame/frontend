@@ -51,7 +51,8 @@
                   :src="getIcon(option)"
                   style="max-width:40px"
                 ><br>
-                <b>{{ option.name }}</b><br> - <span v-if="option.description">  {{ option.description }} </span>
+                <b>{{ option.name }}</b><br>
+                 - <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
               <input
@@ -72,7 +73,14 @@
                   :src="getIcon(option)"
                   style="max-width:40px"
                 ><br>
-                <b>{{ option.name }}</b><br> <span v-if="option.description">  {{ option.description }} </span>
+                <div
+                  class="title"
+                > 
+                  {{ option.name }} 
+                </div>
+                <div class="info">
+                  {{ option.description }}
+                </div>
               </button>
 
               <label
@@ -316,4 +324,12 @@ export default {
 
 <style lang="scss">
 @import "modal";
+
+.title{
+  font-size: $font-size-big
+}
+
+.info{
+  font-family: $font-family;
+}
 </style>
