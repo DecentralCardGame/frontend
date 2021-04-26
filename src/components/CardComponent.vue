@@ -432,17 +432,17 @@
     <g :opacity="opaque">
       <g
         v-for="(ability, y) in getKeywords()"
-        :key="ability"
+        :key="y"
       >
         <g
           v-for="(icon, x) in ability"
-          :key="icon"
+          :key="x"
         >
           <image
             id="Ebene_2-36"
             :key="icon"
             :x="15"
-            :y="getAbilityIconPos(x,y)"
+            :y="getAbilityYPos(x,y)"
             width="10"
             height="10"
             :href="getIcon(icon)"
@@ -565,7 +565,7 @@
           <tspan
             id="tspan2430"
             x="33"
-            :y="147.5 + 30 * index + jndex*fontSpacing(getAbilityText())"
+            :y="getAbilityYPos(0,index) - 3*index + jndex*fontSpacing(getAbilityText())"
             fill-opacity="1"
             stroke-width=".1"
             font-family="Roboto"
@@ -582,7 +582,7 @@
       </g>
       <!-- Flavor text -->
       <g
-        v-if="!model.RulesText"
+        v-if="!model.RulesTexts"
       >
         <text
           v-for="(text, index) in textToSvg(model.FlavourText)"
@@ -853,23 +853,20 @@ export default {
         return 0
       }
     },
-    getAbilityIconPos(x, y) {
+    getAbilityYPos(x, y) {
       let keywords = this.getKeywords()
 
       let summedLength = 0
       for (let i = 0; i < y; i++)
         summedLength += keywords[i].length
 
-      console.log("summed length:", summedLength)
-
-      return 148 + 13*summedLength + 13*x + 5*y
+      return 145 + 13*summedLength + 13*x + 5*y
     },
     getAbilityText () {
-      return this.model.RulesText
+      return this.model.RulesTexts
     },
     textToSvg (text) {
       if (!text) return text
-      console.log('text:', text)
 
       let maxLength = 57
       if (text.length < 100)
@@ -897,7 +894,6 @@ export default {
       return lines
     },
     getKeywords() {
-      console.log(this.model.Keywords)
       return this.model.Keywords
     },
     getIcon(name) {

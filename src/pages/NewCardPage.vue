@@ -470,7 +470,7 @@ export default {
 
     // here a card is loaded if edit card via gallery was selected
     if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
-      console.log("edit card!");
+      console.log("edit card: ", this.$store.getters.getCardCreatorEditCard);
       this.model = R.merge(
         this.model,
         this.$store.getters.getCardCreatorEditCard
@@ -721,8 +721,8 @@ export default {
       console.log("keywords:", R.pluck("keywords", this.abilities));
       newModel.Keywords = R.pluck("keywords", this.abilities);
 
-      newModel.RulesText = R.map(this.interactionTextToString, this.abilities);
-      console.log("rulesText:", newModel.rulesText);
+      newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      console.log("rulesTexts:", newModel.rulesTexts);
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
         newModel,

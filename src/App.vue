@@ -1,5 +1,9 @@
 <template>
-  <div id="app" @auxclick="handleAnyInput" @click="handleAnyInput">
+  <div
+    id="app"
+    @auxclick="handleAnyInput"
+    @click="handleAnyInput"
+  >
     <component :is="layout">
       <router-view />
     </component>
@@ -28,7 +32,6 @@ export default {
   components: {},
   computed: {
     layout() {
-      console.log("app.vue meta", this.$route.meta)
       return (this.$route.meta.layout || default_layout) + '-layout'
     }
   },

@@ -74,7 +74,7 @@ export default {
           card.nerflevel = parseInt(card.Nerflevel)
           card.type = cardType[0]
 
-          card.RulesText = card.RulesText ? JSON.parse(card.RulesText) : []
+          card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
 
           console.log('parsed card: ', card)
@@ -96,8 +96,9 @@ export default {
             Mysticism: webModel.Class.Mysticism == true,
           },
           Keywords: R.map(JSON.stringify, webModel.Keywords),
-          RulesText: JSON.stringify(webModel.RulesText)
+          RulesTexts: webModel.RulesTexts
         }
+        console.log('parsed into:', cardContent)
 
         // in the following part we check things that are only required for specific card types
         if (webModel.type !== "Headquarter") {
