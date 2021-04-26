@@ -582,7 +582,7 @@
       </g>
       <!-- Flavor text -->
       <g
-        v-if="!model.RulesTexts"
+        v-if="R.isEmpty(model.RulesTexts)"
       >
         <text
           v-for="(text, index) in textToSvg(model.FlavourText)"
@@ -607,7 +607,7 @@
         >
           <tspan
             id="tspan2493-1"
-            x="26.9"
+            x="15"
             :y="abilitiesLength()*20 + 156.9 + index*fontSpacing(model.FlavourText)"
             fill="#000000"
             fill-opacity="1"
