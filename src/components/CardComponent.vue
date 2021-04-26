@@ -430,70 +430,25 @@
       </g>
     </g>
     <g :opacity="opaque">
-      <!-- Ability icon 1 -->
       <g
-        v-for="(ability, index) in model.abilities"
-        id="Ebene_2-36"
-        :key="'icon'+index"
-        data-name="Ebene 2"
-        :transform="'translate(17.4 ' + (146.1+index*20) + ')'"
+        v-for="(ability, y) in getKeywords()"
+        :key="ability"
       >
         <g
-          id="Ebene_1-2-0"
-          data-name="Ebene 1"
+          v-for="(icon, x) in ability"
+          :key="icon"
         >
-          <rect
-            id="rect1000"
+          <image
+            id="Ebene_2-36"
+            :key="icon"
+            :x="15"
+            :y="getAbilityIconPos(x,y)"
             width="10"
             height="10"
-            x=".5"
-            y=".5"
-            fill="none"
-            stroke="#d99941"
-            class="cls-1"
-            rx="5"
-          />
-          <path
-            id="line1002"
-            fill="none"
-            stroke="#d99941"
-            d="M.7 5.8h9.8"
-            class="cls-1"
-          />
-          <path
-            id="line1004"
-            fill="none"
-            stroke="#d99941"
-            d="M2.4 3.9v1.8"
-            class="cls-1"
-          />
-          <path
-            id="line1006"
-            fill="none"
-            stroke="#d99941"
-            d="M8.3 3.9v1.8"
-            class="cls-1"
-          />
-          <path
-            id="line1008"
-            fill="none"
-            stroke="#d99941"
-            d="M5.5 3.9v1.8"
-            class="cls-1"
+            :href="getIcon(icon)"
           />
         </g>
       </g>
-      <!-- Ability icon 2
-      <g v-show="model.abilities[1]" id="Ebene_2-6" data-name="Ebene 2" transform="translate(17.3 146.1)">
-        <g id="Ebene_1-2-2" data-name="Ebene 1">
-          <rect id="rect1032" width="10" height="10" x=".5" y=".5" fill="none" stroke="#d99941" class="cls-1" rx="5"/>
-          <path id="line1034" fill="none" stroke="#d99941" d="M5.5 6.5v-6" class="cls-1"/>
-          <path id="line1036" fill="none" stroke="#d99941" d="M5.5 8.5v-1" class="cls-1"/>
-          <path id="line1038" fill="none" stroke="#d99941" d="M2.3 4.4l1.4 1.7" class="cls-1"/>
-          <path id="line1040" fill="none" stroke="#d99941" d="M8.7 4.4L7.3 6.1" class="cls-1"/>
-        </g>
-      </g>
-      -->
       <!-- Title of the card -->
       <text
         id="text2410"
@@ -589,81 +544,42 @@
         >{{ getTags() }}
         </tspan>
       </text>
-
       <!-- Human readable text of the abilities -->
-      <text
-        v-for="(text, index) in textToSvg(getAbilityText())"
-        id="text2410-9"
-        :key="'abilityText'+index"
-        x="33"
-        :y="156.9 + index*fontSpacing(getAbilityText())"
-        inline-size="18"
-        fill="#000"
-        fill-opacity="1"
-        stroke="none"
-        stroke-width=".1"
-        font-family="Roboto"
-        font-size="5"
-        font-stretch="normal"
-        font-style="normal"
-        font-variant="normal"
-        font-weight="400"
-        letter-spacing="0"
-        style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
-        text-anchor="start"
-        transform="scale(.94735 1.05557)"
-        word-spacing="0"
-        writing-mode="lr"
-        xml:space="preserve"
+      <g
+        v-for="(ability, index) in getAbilityText()"
+        :key="'ability#'+index"
       >
-        <tspan
-          id="tspan2430"
-          x="33"
-          :y="156.9 + index*fontSpacing(getAbilityText())"
-          inline-size="18"
-          stroke-width=".1"
-          font-family="Roboto"
-          font-size="5"
-          font-stretch="normal"
-          font-style="normal"
-          font-variant="normal"
-          font-weight="400"
-          style="-inkscape-font-specification:'Roboto, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+        <text
+          v-for="(text, jndex) in textToSvg(ability)"
+          id="text2410-9"
+          :key="'abilityText'+jndex"
+          fill="#000"
+          letter-spacing="0"
+          style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
           text-anchor="start"
+          transform="scale(.94735 1.05557)"
+          word-spacing="0"
           writing-mode="lr"
-        > {{ text }} </tspan>
-      </text>
-      <!-- Type -->
-      <text
-        id="text2495"
-        x="76.9"
-        y="225.6"
-        fill="#001433"
-        fill-opacity="1"
-        font-family="Roboto"
-        font-size="6.6"
-        font-stretch="expanded"
-        font-style="medium"
-        letter-spacing="1"
-        text-anchor="start"
-        word-spacing="0"
-        writing-mode="lr-tb"
-        xml:space="preserve"
-      >
-        <tspan
-          id="tspan2493"
-          x="76.9"
-          y="225.6"
-          fill="#001433"
-          fill-opacity="1"
-          font-family="Roboto"
-          font-size="6.6"
-          font-stretch="expanded"
-          font-style="medium"
-          text-anchor="middle"
-          writing-mode="lr-tb"
-        >{{ getType() }}</tspan>
-      </text>
+          xml:space="preserve"
+        >
+          <tspan
+            id="tspan2430"
+            x="33"
+            :y="147.5 + 30 * index + jndex*fontSpacing(getAbilityText())"
+            fill-opacity="1"
+            stroke-width=".1"
+            font-family="Roboto"
+            :font-size="fontSize(getAbilityText())"
+            font-stretch="normal"
+            font-style="normal"
+            font-variant="normal"
+            font-weight="300"
+            style="-inkscape-font-specification:'Roboto, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+            text-anchor="start"
+            writing-mode="lr"
+          > {{ text }} </tspan>
+        </text>
+      </g>
       <!-- Flavor text -->
       <g
         v-if="!model.RulesText"
@@ -708,6 +624,37 @@
           >{{ text }}</tspan>
         </text>
       </g>
+      <!-- Type -->
+      <text
+        id="text2495"
+        x="76.9"
+        y="225.6"
+        fill="#001433"
+        fill-opacity="1"
+        font-family="Roboto"
+        font-size="6.6"
+        font-stretch="expanded"
+        font-style="medium"
+        letter-spacing="1"
+        text-anchor="start"
+        word-spacing="0"
+        writing-mode="lr-tb"
+        xml:space="preserve"
+      >
+        <tspan
+          id="tspan2493"
+          x="76.9"
+          y="225.6"
+          fill="#001433"
+          fill-opacity="1"
+          font-family="Roboto"
+          font-size="6.6"
+          font-stretch="expanded"
+          font-style="medium"
+          text-anchor="middle"
+          writing-mode="lr-tb"
+        >{{ getType() }}</tspan>
+      </text>
       <!-- Attack -->
       <text
         v-show="model.type === 'Entity'"
@@ -797,6 +744,7 @@
 <script>
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
+import { icon } from '@/components/utils/utils.js'
 
 export default {
   name: 'CardComponent',
@@ -905,17 +853,29 @@ export default {
         return 0
       }
     },
+    getAbilityIconPos(x, y) {
+      let keywords = this.getKeywords()
+
+      let summedLength = 0
+      for (let i = 0; i < y; i++)
+        summedLength += keywords[i].length
+
+      console.log("summed length:", summedLength)
+
+      return 148 + 13*summedLength + 13*x + 5*y
+    },
     getAbilityText () {
       return this.model.RulesText
     },
     textToSvg (text) {
       if (!text) return text
+      console.log('text:', text)
 
-      let maxLength = 47
+      let maxLength = 57
       if (text.length < 100)
-        maxLength = 25
+        maxLength = 38
       else if (text.length < 200)
-        maxLength = 29
+        maxLength = 39
 
       let lines = ['']
       let words = text.split(' ')
@@ -936,7 +896,15 @@ export default {
       })
       return lines
     },
-    fontSize (text) {
+    getKeywords() {
+      console.log(this.model.Keywords)
+      return this.model.Keywords
+    },
+    getIcon(name) {
+      return icon(R.toLower(R.split('-', name)[0]))
+    },
+    fontSize (rawText) {
+      let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
       if (text.length < 100)
         return 8.1
       else if (text.length < 200)
@@ -944,7 +912,8 @@ export default {
       else
         return 6.1
     },
-    fontSpacing (text) {
+    fontSpacing (rawText) {
+      let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
       if (text.length < 100)
         return 12
       else if (text.length < 200)

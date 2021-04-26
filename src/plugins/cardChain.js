@@ -69,10 +69,13 @@ export default {
           let card = parseContent(rawCard)
           let cardType = R.keys(card.Content)
           card = R.merge(card, card.Content[cardType[0]])
-      
+
           card.image = card.Image
           card.nerflevel = parseInt(card.Nerflevel)
           card.type = cardType[0]
+
+          card.RulesText = card.RulesText ? JSON.parse(card.RulesText) : []
+          card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
 
           console.log('parsed card: ', card)
           return card
@@ -92,8 +95,8 @@ export default {
             Culture: webModel.Class.Culture == true,
             Mysticism: webModel.Class.Mysticism == true,
           },
-          Keywords: webModel.Keywords,
-          RulesText: webModel.RulesText,
+          Keywords: R.map(JSON.stringify, webModel.Keywords),
+          RulesText: JSON.stringify(webModel.RulesText)
         }
 
         // in the following part we check things that are only required for specific card types

@@ -131,7 +131,7 @@ export default {
       this.$emit('close')
     },
     getIcon(option) {
-      return icon(R.toLower(R.split('-', option.name)[0]))
+      return icon(R.toLower(R.split('-', option.name.replace(/ /g,''))[0]))
     },
     addAbility() {
       console.log('dialog type:', this.dialog.type)
@@ -302,12 +302,8 @@ export default {
         console.log('keywords before: ', this.ability.keywords)
 
         ability.keywords = ability.keywords ? R.concat( ability.keywords, R.keys(object) ) : R.keys(object)
-        /*
-        if (ability.keywords)
-          ability.keywords.push(R.keys(object))
-        else
-          ability.keywords = R.keys(object)
-          */
+
+
         console.log('keywords after: ', ability.keywords)
       }
 

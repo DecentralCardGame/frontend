@@ -689,101 +689,6 @@ export default {
           return;
         }
       }
-      /*
-      // then create the newCard object, to check dependent requirements
-      // maybe it makes more sense to put this code into the cardChain.js
-      let newCard = {
-        model: {
-          [this.getRulesType()]: {
-            CardName: this.model.CardName,
-            Tags: R.reject(R.isNil, this.model.Tags),
-            FlavourText: this.model.FlavourText,
-            Class: {
-              Nature: this.model.Class.Nature == true,
-              Technology: this.model.Class.Technology == true,
-              Culture: this.model.Class.Culture == true,
-              Mysticism: this.model.Class.Mysticism == true,
-            },
-            Keywords: [],
-            RulesText: "",
-          },
-        },
-        image: this.cardImageUrl
-          ? this.cardImageUrl
-          : "if you read this, someone was able to upload a card without proper image...",
-        Notes: this.model.Notes,
-      };
-
-      // in the following part we check things that are only required for specific card types
-      if (this.model.type !== "Headquarter") {
-        if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
-          this.notifyFail(
-            "No Cost",
-            "Card has no ressource cost, please pick a number."
-          );
-          return;
-        }
-        newCard.model[this.getRulesType()].CastingCost = this.model.CastingCost;
-      }
-      if (this.model.type !== "Action") {
-        if (R.isNil(this.model.Health)) {
-          this.notifyFail(
-            "No Health",
-            "Card has no Health, please pick a number."
-          );
-          return;
-        }
-
-        // this writes the relevant part of the effects in the new model
-        newCard.model[this.getRulesType()].Abilities = R.map(
-          R.pick(
-            R.keys(
-              this.$cardRules.children.Entity.children.Abilities.children
-                .Ability.children
-            )
-          ),
-          this.abilities
-        );
-        newCard.model[this.getRulesType()].Health = this.model.Health;
-      }
-      if (this.model.type === "Entity") {
-        if (R.isNil(this.model.Attack)) {
-          this.notifyFail(
-            "No Attack",
-            "Card has no Attack, please pick a number."
-          );
-          return;
-        }
-        newCard.model[this.getRulesType()].Attack = this.model.Attack;
-      } else if (this.model.type === "Headquarter") {
-        newCard.model[this.getRulesType()].Delay = this.model.Delay;
-      } else if (this.model.type === "Action") {
-        // this writes the relevant part of the effects in the new model
-        newCard.model[this.getRulesType()].Effects = R.map(
-          R.pick(
-            R.keys(
-              this.$cardRules.children.Action.children.Effects.children.Effect
-                .children
-            )
-          ),
-          this.abilities
-        );
-      }
-
-      console.log("abilities of card being submitted:", this.abilities);
-      let abilityText = this.abilities[0]
-        ? this.interactionTextToString(this.abilities[0])
-        : "";
-      console.log("abilityText of card being submitted:", abilityText);
-
-      if (abilityText) {
-        newCard.Notes = "ability: " + abilityText;
-      }
-
-      if (!newCard.model[this.getRulesType()].FlavourText) {
-        newCard.model[this.getRulesType()].FlavourText = abilityText;
-      }
-      */
 
       // finalize abilties or effects
       // this should potentially moved to somewhere else? maybe where abilities are saved
@@ -813,12 +718,10 @@ export default {
         );
       }
 
-      console.log("abilities to keywords:", this.abilities);
-      newModel.Keywords = R.map(JSON.stringify, this.abilities);
-      newModel.RulesText = R.join(
-        "\n",
-        R.map(this.interactionTextToString, this.abilities)
-      );
+      console.log("keywords:", R.pluck("keywords", this.abilities));
+      newModel.Keywords = R.pluck("keywords", this.abilities);
+
+      newModel.RulesText = R.map(this.interactionTextToString, this.abilities);
       console.log("rulesText:", newModel.rulesText);
 
       let newCard = this.$cardChain.cardWebModelToCardobject(

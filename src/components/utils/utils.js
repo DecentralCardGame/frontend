@@ -212,7 +212,9 @@ export const emptyCard = {
   CastingCost: -1,
   Health: 0,
   Attack: 0,
-  Delay: 0
+  Delay: 0,
+  RulesText: "",
+  Keywords: []
 }
 
 export function icon(name) {
