@@ -351,6 +351,16 @@
             @change="saveDraft"
           >
         </div>
+            <div class="ability-modal-container">
+      <AbilityModal
+        v-if="isAbilityModalVisible"
+        :abilities="abilities"
+        :ability="ability"
+        :dialog="abilityDialog"
+        @close="closeAbilityModal"
+        @update:ability="ability = $event"
+      />
+    </div>
         <div class="creator-nav-container">
           <button
             v-if="activeStep > 0"
@@ -413,14 +423,6 @@
       </div>
     </div>
     <div class="ability-modal-container">
-      <AbilityModal
-        v-if="isAbilityModalVisible"
-        :abilities="abilities"
-        :ability="ability"
-        :dialog="abilityDialog"
-        @close="closeAbilityModal"
-        @update:ability="ability = $event"
-      />
       <BuySchemeModal
         v-if="isBuySchemeModalVisible"
         @close="closeBuySchemeModal"

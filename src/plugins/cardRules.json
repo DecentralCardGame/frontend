@@ -217,6 +217,21 @@
             "Battlecry":{
                "$ref":"#/definitions/battlecry"
             },
+            "Channel":{
+               "$ref":"#/definitions/channel"
+            },
+            "DiscardPay":{
+               "$ref":"#/definitions/discardPay"
+            },
+            "Dismantle":{
+               "$ref":"#/definitions/dismantle"
+            },
+            "Dissolve":{
+               "$ref":"#/definitions/dissolve"
+            },
+            "Loot":{
+               "$ref":"#/definitions/loot"
+            },
             "OnConstruction":{
                "$ref":"#/definitions/onConstruction"
             },
@@ -231,6 +246,9 @@
             },
             "Periodic":{
                "$ref":"#/definitions/periodic"
+            },
+            "Regenerate":{
+               "$ref":"#/definitions/regenerate"
             },
             "Tribute":{
                "$ref":"#/definitions/tribute"
@@ -307,6 +325,20 @@
          ],
          "interactionText":"Arm §Amount."
       },
+      "armor":{
+         "type":"struct",
+         "name":"Armor",
+         "description":"Arm gives a friendly entity +X max health and health.",
+         "children":{
+            "Amount":{
+               "$ref":"#/definitions/SimpleIntValue"
+            }
+         },
+         "required":[
+            "Amount"
+         ],
+         "interactionText":"Armor §Amount."
+      },
       "arrival":{
          "type":"struct",
          "name":"Arrival",
@@ -363,6 +395,52 @@
          ],
          "interactionText":"Burn §Amount."
       },
+      "channel":{
+         "type":"struct",
+         "name":"Channel",
+         "description":"When you play an action activate Effects.",
+         "children":{
+            "Effects":{
+               "$ref":"#/definitions/effects"
+            }
+         },
+         "required":[
+            "Effects"
+         ],
+         "interactionText":"Channel: §Effects."
+      },
+      "countPower":{
+         "type":"struct",
+         "name":"Count Power",
+         "description":"Count your entities with more or equal to Power.",
+         "children":{
+            "Power":{
+               "$ref":"#/definitions/SimpleIntValue"
+            }
+         },
+         "required":[
+            "Power"
+         ],
+         "interactionText":"Count Power §Power."
+      },
+      "discardPay":{
+         "type":"struct",
+         "name":"Discard Pay",
+         "description":"Pay Mana and discard a card to activate Effects.",
+         "children":{
+            "ManaAmount":{
+               "$ref":"#/definitions/SimpleIntValue"
+            },
+            "Effects":{
+               "$ref":"#/definitions/effects"
+            }
+         },
+         "required":[
+            "ManaAmount",
+            "Effects"
+         ],
+         "interactionText":"Discard, Pay §ManaAmount: §Effects."
+      },
       "discount":{
          "type":"struct",
          "name":"Discount",
@@ -412,6 +490,39 @@
          ],
          "interactionText":"Dissolve §VoidAmount: §Effects."
       },
+      "drawAction":{
+         "type":"struct",
+         "name":"Draw Action",
+         "description":"Draw an action from your deck.",
+         "children":{
+            "Tag":{
+               "$ref":"#/definitions/Tag"
+            }
+         },
+         "interactionText":"Draw Action §Tag."
+      },
+      "drawEntity":{
+         "type":"struct",
+         "name":"Draw Entity",
+         "description":"Draw an entity from your deck.",
+         "children":{
+            "Tag":{
+               "$ref":"#/definitions/Tag"
+            }
+         },
+         "interactionText":"Draw Entity §Tag."
+      },
+      "drawPlace":{
+         "type":"struct",
+         "name":"Draw Place",
+         "description":"Draw a place from your deck.",
+         "children":{
+            "Tag":{
+               "$ref":"#/definitions/Tag"
+            }
+         },
+         "interactionText":"Draw Place §Tag."
+      },
       "effect":{
          "type":"interface",
          "name":"Effect",
@@ -423,26 +534,38 @@
             "Arm":{
                "$ref":"#/definitions/arm"
             },
+            "Armor":{
+               "$ref":"#/definitions/armor"
+            },
             "Bounce":{
                "$ref":"#/definitions/bounce"
             },
             "Burn":{
                "$ref":"#/definitions/burn"
             },
+            "CountPower":{
+               "$ref":"#/definitions/countPower"
+            },
             "Discount":{
                "$ref":"#/definitions/discount"
             },
-            "Dismantle":{
-               "$ref":"#/definitions/dismantle"
+            "DrawAction":{
+               "$ref":"#/definitions/drawAction"
             },
-            "Dissolve":{
-               "$ref":"#/definitions/dissolve"
+            "DrawEntity":{
+               "$ref":"#/definitions/drawEntity"
+            },
+            "DrawPlace":{
+               "$ref":"#/definitions/drawPlace"
             },
             "Grow":{
                "$ref":"#/definitions/grow"
             },
             "Harm":{
                "$ref":"#/definitions/harm"
+            },
+            "Heal":{
+               "$ref":"#/definitions/heal"
             },
             "Kill":{
                "$ref":"#/definitions/kill"
@@ -456,8 +579,29 @@
             "Produce":{
                "$ref":"#/definitions/produce"
             },
+            "Ravage":{
+               "$ref":"#/definitions/ravage"
+            },
+            "Reassemble":{
+               "$ref":"#/definitions/reassemble"
+            },
+            "RecoverAction":{
+               "$ref":"#/definitions/recoverAction"
+            },
+            "RecoverEntity":{
+               "$ref":"#/definitions/recoverEntity"
+            },
+            "RecoverPlace":{
+               "$ref":"#/definitions/recoverPlace"
+            },
+            "Resurrect":{
+               "$ref":"#/definitions/resurrect"
+            },
             "Repair":{
                "$ref":"#/definitions/repair"
+            },
+            "Silence":{
+               "$ref":"#/definitions/silence"
             },
             "Void":{
                "$ref":"#/definitions/void"
@@ -602,6 +746,15 @@
          ],
          "interactionText":"§CardName §Class §Delay §Abilities §Health §Growth §StartingHandSize §Wisdom §FlavourText §Tags §Keywords §RulesTexts"
       },
+      "heal":{
+         "type":"struct",
+         "name":"Heal",
+         "description":"Restore a friendly entities health to full life.",
+         "children":{
+            
+         },
+         "interactionText":"Heal"
+      },
       "insight":{
          "type":"struct",
          "name":"Insight",
@@ -624,6 +777,20 @@
             
          },
          "interactionText":"Kill"
+      },
+      "loot":{
+         "type":"struct",
+         "name":"Loot",
+         "description":"When an opposing place is destroyed activate Effects.",
+         "children":{
+            "Effects":{
+               "$ref":"#/definitions/effects"
+            }
+         },
+         "required":[
+            "Effects"
+         ],
+         "interactionText":"Loot: §Effects."
       },
       "mill":{
          "type":"struct",
@@ -776,6 +943,70 @@
          ],
          "interactionText":"Produce §ManaAmount."
       },
+      "ravage":{
+         "type":"struct",
+         "name":"Ravage",
+         "description":"Deal X damage to an opposing place.",
+         "children":{
+            "Amount":{
+               "$ref":"#/definitions/SimpleIntValue"
+            }
+         },
+         "required":[
+            "Amount"
+         ],
+         "interactionText":"Ravage §Amount."
+      },
+      "reassemble":{
+         "type":"struct",
+         "name":"Reassemble",
+         "description":"Return target Place from a dustpile to your field.",
+         "children":{
+            
+         },
+         "interactionText":"Reassemle."
+      },
+      "recoverAction":{
+         "type":"struct",
+         "name":"Recover Action",
+         "description":"Return an action from your dustpile to your hand.",
+         "children":{
+            
+         },
+         "interactionText":"Recover Action."
+      },
+      "recoverEntity":{
+         "type":"struct",
+         "name":"Recover Entity",
+         "description":"Return an entity from your dustpile to your hand.",
+         "children":{
+            
+         },
+         "interactionText":"Recover Entity."
+      },
+      "recoverPlace":{
+         "type":"struct",
+         "name":"Recover Place",
+         "description":"Return a place from your dustpile to your hand.",
+         "children":{
+            
+         },
+         "interactionText":"Recover Place."
+      },
+      "regenerate":{
+         "type":"struct",
+         "name":"Regenerate",
+         "description":"Restore health of this entity each turn.",
+         "children":{
+            "Amount":{
+               "$ref":"#/definitions/SimpleIntValue"
+            }
+         },
+         "required":[
+            "Amount"
+         ],
+         "interactionText":"Regenerate §Amount."
+      },
       "repair":{
          "type":"struct",
          "name":"Repair",
@@ -789,6 +1020,29 @@
             "Amount"
          ],
          "interactionText":"Repair §Amount."
+      },
+      "resurrect":{
+         "type":"struct",
+         "name":"Resurrect",
+         "description":"Return target Entity from a dustpile to your field.",
+         "children":{
+            
+         },
+         "interactionText":"Resurrect."
+      },
+      "silence":{
+         "type":"struct",
+         "name":"Silence",
+         "description":"Target entity loses its abilities.",
+         "children":{
+            "Player":{
+               "$ref":"#/definitions/PlayerMode"
+            }
+         },
+         "required":[
+            "Player"
+         ],
+         "interactionText":"Silence §Player"
       },
       "tribute":{
          "type":"struct",

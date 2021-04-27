@@ -12,6 +12,18 @@
   align-items: center;
 }
 
+.modal__backdrop__embed {
+  position: static;
+  top: 60rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal {
   background: $white;
   text-shadow: none;
@@ -117,7 +129,7 @@
 
 .choice-grid {
   display: grid;
-  grid-template-columns: 0.4fr 0.4fr 0.4fr 0.4fr;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
 }
 
 .choice-grid__button {
