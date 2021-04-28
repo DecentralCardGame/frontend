@@ -307,6 +307,16 @@
               Add Ability
             </button>
           </div>
+          <div class="ability-modal-container">
+            <AbilityModal
+              v-if="isAbilityModalVisible"
+              :abilities="abilities"
+              :ability="ability"
+              :dialog="abilityDialog"
+              @close="closeAbilityModal"
+              @update:ability="ability = $event"
+            />
+          </div>
         </div>
         <div
           v-if="activeStep == 3"
@@ -351,16 +361,6 @@
             @change="saveDraft"
           >
         </div>
-            <div class="ability-modal-container">
-      <AbilityModal
-        v-if="isAbilityModalVisible"
-        :abilities="abilities"
-        :ability="ability"
-        :dialog="abilityDialog"
-        @close="closeAbilityModal"
-        @update:ability="ability = $event"
-      />
-    </div>
         <div class="creator-nav-container">
           <button
             v-if="activeStep > 0"
