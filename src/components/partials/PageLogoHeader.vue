@@ -25,7 +25,11 @@ export default {
     methods: {
       scrollPastMenu() {
         const scroll = document.getElementById('scrollAnchor1').scrollHeight
-        window.scrollTo(0, scroll + window.innerHeight);
+        window.scrollTo({
+          left: 0,
+          top: scroll + window.innerHeight,
+          behavior: 'smooth'
+        });
       }
     }
 }
