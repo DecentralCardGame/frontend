@@ -1,6 +1,5 @@
 <template>
   <div class="article-temp">
-    
     <div class="hero--with--img">  
       <b class="text--very--hug">
         <br>
@@ -8,18 +7,15 @@
           A Trading Card Game YOU OWN
         </center>
       </b>
-      <div class= "img--container adjust--top">
+      <div class="img--container adjust--top">
         <img src="../assets/animations/sparkling_water.gif" class="image2" alt="yes...">
       </div>
     </div>
 
-
     <div class="dual--column--flex--wrap extra--space">
       <div class="dual--column--text">
-
         <div class="hero--with--img">
-
-          <div class= "img--container adjust--pentagon">
+          <div class="img--container adjust--pentagon">
             <svg viewBox="0 0 985.399 969.501" class="image3" >
               <path id="Pfad_298" data-name="Pfad 298" d="M132.32,2293.693l38.946,842.479,623.139-39.166,224.141-431.792-144.9-397.009Z" transform="translate(250.87 -2267.424) rotate(7)" fill="#4b0439"/>
               <g transform="translate(16,-12)">
@@ -193,7 +189,6 @@ export default {
     };
   },
   mounted() {
-    console.log("meta:", this.$router.meta)
   },
 };
 </script>

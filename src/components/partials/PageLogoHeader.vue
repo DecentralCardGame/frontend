@@ -1,21 +1,17 @@
 <template>
-  <div>
+  <div class="main">
     <div class="logo-container">
       <img src="logo.svg" class="image1" alt="Loading..." width="500">
       <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
     </div>
-
     <div class="button--container extra--margin">
-      <div class=link--button>
-          asdf
-        <div class= "img--container">
+      <div class=link--button @click="scrollPastMenu">
+        
+        <div class="img--container" id="scrollAnchor1" style="overflow-y: scroll">
           <img src="../../assets/arrows/arrow_down.svg" class="image3" alt="yes...">
         </div>
-          
-        
       </div>
     </div>
-
   </div>
 </template>
 
@@ -27,6 +23,10 @@ export default {
     mounted () {
     },
     methods: {
+      scrollPastMenu() {
+        const scroll = document.getElementById('scrollAnchor1').scrollHeight
+        window.scrollTo(0, scroll + 400);
+      }
     }
 }
 </script>
@@ -35,7 +35,9 @@ export default {
 @import "../../assets/styles/variables";
 
 header {
-  padding: 10vh 10vh 20vh
+}
+.main {
+  padding: 40vh 10vh
 }
 .logo-container {
     position: relative;
@@ -69,7 +71,9 @@ header {
   background-color: $main-color-c;
   box-shadow: $border-thickness-bold * 1.0 $border-thickness-bold * 1.0 0 $black;
   position: relative;
-  margin: 0rem 5rem;
+  margin: 1rem auto;
+  padding: 1.5rem 1rem;
+  max-width: 100px;
   transform: skewX(-25deg);
   font-size: $font-size-small;
   cursor: pointer;
@@ -108,17 +112,17 @@ header {
 }
 .button--container {
   position: relative;
-  top: -0.5rem;
-  left: -4rem;
+  top: 0rem;
+  left: -1rem;
   margin: 0rem;
 }
 .extra--margin {
-  margin: 0rem 18rem;
-  left: -22rem;
+  margin: 5rem 0rem 8rem;
 }
 
 .img--container {
   position: absolute;
+  top: -0rem;
   z-index: -1;
   pointer-events: none;
   display: flex;
@@ -126,8 +130,8 @@ header {
 }
 .image3 {
   transform: skewX(25deg);
-  margin: 0rem;
-  margin-left: 0;
+
+  margin: 2rem;
   z-index: -1;
 
   width: 100%;
