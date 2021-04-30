@@ -25,7 +25,7 @@ export default {
     methods: {
       scrollPastMenu() {
         const scroll = document.getElementById('scrollAnchor1').scrollHeight
-        window.scrollTo(0, scroll + 400);
+        window.scrollTo(0, scroll + window.innerHeight);
       }
     }
 }
@@ -36,8 +36,12 @@ export default {
 
 header {
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 .main {
-  padding: 40vh 10vh
+  padding: 30vh 10vh
 }
 .logo-container {
     position: relative;
@@ -122,7 +126,8 @@ header {
 
 .img--container {
   position: absolute;
-  top: -0rem;
+  top: -1.5rem;
+  left: 1.5rem;
   z-index: -1;
   pointer-events: none;
   display: flex;
