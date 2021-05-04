@@ -1,7 +1,7 @@
 <template>
   <div class="article-temp">
     <div class="hero--with--img">  
-      <b class="text--very--hug">
+      <b class="text--very--huge">
         <br>
         <center>
           A Trading Card Game YOU OWN
@@ -48,21 +48,18 @@
           <p class="text--medium">
             Create cards or vote to earn coins!
           </p>
-
         </div>
-
       </div>
       <div class="dual--column--img">
-        <div class= "img--container adjust--mother--gif">
+        <div class="img--container adjust--mother--gif">
           <img src="mother_popup.gif" class="image3" alt="yes...">
         </div>
       </div>
     </div>
 
     <div class="dual--column--flex--wrap">
-
       <div class="dual--column--img">
-        <div class= "img--container adjust--flyin">
+        <div class="img--container adjust--flyin">
           <img src="paper_flyin.gif" class="image3" alt="yes...">
         </div>
       </div>
@@ -90,7 +87,7 @@
             </p>
             <div class="button--container">
               <div class=link--button>
-                <router-link to="/about" style="text-decoration: none; color: inherit;">
+                <router-link to="/gallery" style="text-decoration: none; color: inherit;">
                   <p class=text--button>
                     Go to Gallery >
                   </p>
@@ -108,9 +105,9 @@
               with our <router-link :to="{ name: 'New Card' }"><b>Card Creator</b></router-link>.
             </p>
             <div class="button--container">
-              <div class=link--button>
-                <router-link to="/about" style="text-decoration: none; color: inherit;">
-                  <p class=text--button>
+              <div class="link--button">
+                <router-link to="/newcard" style="text-decoration: none; color: inherit;">
+                  <p class="text--button">
                     Go to Card Creator >
                   </p>
                 </router-link>
@@ -138,7 +135,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -151,14 +147,14 @@
       <p class="text--medium">
         Crowd Control is not a company, but a Decentralized Autonomous Organization (DAO). This is realized <br>
         with a blockchain built on Cosmos technology. Read our <a
-            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
-            target="_blank"
-          ><b> Whitepaper</b></a> 
+          href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
+          target="_blank"
+        ><b> Whitepaper</b></a> 
         to find out more.
       </p>
 
       <div class="button--container extra--margin">
-        <div class=link--button>
+        <div class="link--button">
           <a
             href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
             target="_blank"
@@ -208,6 +204,9 @@ h2 {
 
 .extra--space {
   margin: 35vh auto;
+  @media (max-width: 480px) {
+    margin: 10vh auto;
+  }
 }
 
 .hero--with--img {
@@ -231,7 +230,7 @@ h2 {
   left: -22rem;
 }
 
-.text--very--hug {
+.text--very--huge {
   font-family: $font-family-header;
   position: relative;
   z-index: 3;
@@ -239,13 +238,11 @@ h2 {
 
   font-size: 70px;
   @media (max-width: 1200px) {
-    font-size: 35px;
   }
   @media (max-width: 800px) {
-    font-size: 30px;
   }
   @media (max-width: 480px) {
-    font-size: 20px;
+    font-size: 40px;
   }
 }
 .text--huge {
@@ -256,13 +253,11 @@ h2 {
 
   font-size: 40px;
   @media (max-width: 1200px) {
-    font-size: 35px;
   }
   @media (max-width: 800px) {
-    font-size: 30px;
   }
   @media (max-width: 480px) {
-    font-size: 20px;
+    font-size: 40px;
   }
 }
 .text--medium {
@@ -319,7 +314,6 @@ h2 {
   }
   @media (max-width: 1178px) {
     transform: skewX(-25deg);
-    margin: 0;
   }  
 }
 
@@ -331,24 +325,17 @@ h2 {
   justify-content: center;
 }
 .adjust--top {
-  top: 0;
+  top: -17rem;
   left: 0;
   right: 0;
   
-  top: -17rem;
   @media (max-width: 1700px) {
-    top: -17rem;
   }
   @media (max-width: 1400px) {
-    top: -13rem;
   }
   @media (max-width: 1000px) {
-    top: -11rem;
-    left: -1em;
   }
   @media (max-width: 800px) {
-    top: -8rem;
-    left: -5em;
   }
   @media (max-width: 480px) {
     top: -8rem;
@@ -367,12 +354,8 @@ h2 {
   @media (max-width: 1400px) {
   }
   @media (max-width: 1000px) {
-    top: -11rem;
-    left: -1em;
   }
   @media (max-width: 800px) {
-    top: -8rem;
-    left: -5em;
   }
   @media (max-width: 480px) {
     top: -8rem;
@@ -390,15 +373,11 @@ h2 {
   @media (max-width: 1400px) {
   }
   @media (max-width: 1000px) {
-    top: -11rem;
-    left: -1em;
   }
   @media (max-width: 800px) {
-    top: -8rem;
-    left: -5em;
   }
   @media (max-width: 480px) {
-    top: -8rem;
+    top: 8rem;
   }
 }
 .adjust--pentagon {
@@ -413,15 +392,11 @@ h2 {
   @media (max-width: 1400px) {
   }
   @media (max-width: 1000px) {
-    top: -11rem;
-    left: -1em;
   }
   @media (max-width: 800px) {
-    top: -8rem;
-    left: -5em;
   }
   @media (max-width: 480px) {
-    top: -8rem;
+    top: -17rem;
   }
 }
 .adjust--trapez {
@@ -437,15 +412,11 @@ h2 {
   @media (max-width: 1400px) {
   }
   @media (max-width: 1000px) {
-    top: -11rem;
-    left: -1em;
   }
   @media (max-width: 800px) {
-    top: -8rem;
-    left: -5em;
   }
   @media (max-width: 480px) {
-    top: -8rem;
+    top: -1rem;
   }
 }
 

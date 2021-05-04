@@ -129,6 +129,7 @@ header {
 }
 
 .img--container {
+  overflow-y: hidden !important;
   position: absolute;
   top: -1.5rem;
   left: 1.5rem;

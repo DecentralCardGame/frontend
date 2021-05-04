@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageLogoHeader />
+    <PageLogoHeader v-if="!isMobileDevice()" />
     <PageMenu />
     <div v-if="$store.state.loading">
       <div class="spinner">
