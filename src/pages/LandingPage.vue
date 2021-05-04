@@ -226,8 +226,12 @@ h2 {
   margin: 0rem;
 }
 .extra--margin {
-  margin: 0rem 18rem;
-  left: -22rem;
+  margin: 0rem 14rem;
+  left: -18rem;
+  @media (max-width: 480px) {
+    margin: 0rem 0rem;
+    left: -4rem;
+  }
 }
 
 .text--very--huge {
