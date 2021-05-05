@@ -200,6 +200,9 @@ h2 {
   z-index: 3;
   margin: 45vh 0rem;
   text-align: initial;
+  @media (max-width: 480px) {
+    margin: 20vh 0rem;
+  }
 }
 
 .extra--space {
@@ -214,6 +217,9 @@ h2 {
   z-index: 2;
   margin: calc(35vh - 80px) 0rem 0rem;
   text-align: initial;
+  @media (max-width: 480px) {
+    margin: 20vh 0rem;
+  }
 }
 
 .info--item {
@@ -421,6 +427,7 @@ h2 {
   }
   @media (max-width: 480px) {
     top: -1rem;
+    left: -2rem;
   }
 }
 
