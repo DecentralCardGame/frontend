@@ -43,7 +43,3 @@ export default {
 </script>
 
 <style lang="scss">
-
-.scroll--snap {
-  scroll-snap-type: y mandatory;
-}

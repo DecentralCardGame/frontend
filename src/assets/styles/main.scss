@@ -56,6 +56,7 @@ b {
 // this applies to text on small screens (mobile)
 @media (max-width: 480px) {
   main {
+    overflow: hidden;
     font-size: $font-size-big;
     line-height: 1.3em;
     max-width: 100%;

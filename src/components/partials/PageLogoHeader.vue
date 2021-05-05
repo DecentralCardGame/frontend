@@ -1,18 +1,19 @@
 <template>
-  <div class="main">
-    <div class="logo-container">
-      <img src="logo.svg" class="image1" alt="Loading..." width="500">
-      <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
-    </div>
-    <div class="button--container extra--margin">
-      <div class=link--button @click="scrollPastMenu">
-        
-        <div class="img--container" id="scrollAnchor1" style="overflow-y: scroll">
-          <img src="../../assets/arrows/arrow_down.svg" class="image3" alt="yes...">
+  <header>
+    <div class="main">
+      <div class="logo-container">
+        <img src="logo.svg" class="image1" alt="Loading..." width="500">
+        <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
+      </div>
+      <div class="button--container extra--margin">
+        <div class=link--button @click="scrollPastMenu">
+          <div class="img--container" id="scrollAnchor1" style="overflow-y: scroll">
+            <img src="../../assets/arrows/arrow_down.svg" class="image3" alt="yes...">
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -39,7 +40,12 @@ export default {
 @import "../../assets/styles/variables";
 
 header {
+  background-color: $background-separator;
+  padding: $font-size * 0.5;
+  text-align: center;
+  border-bottom: $border-thickness-bold solid $white;
 }
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
