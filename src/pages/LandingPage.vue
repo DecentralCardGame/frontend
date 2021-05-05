@@ -64,8 +64,7 @@
         </div>
       </div>
 
-      <div class="dual--column--text">
-
+      <div class="dual--column--text adjust--mobile">
         <div class="hero--with--img">
           <div class= "img--container adjust--trapez">
             <svg viewBox="0 0 859.168 1347.934" class="image3" >
@@ -368,7 +367,8 @@ h2 {
   @media (max-width: 800px) {
   }
   @media (max-width: 480px) {
-    top: -8rem;
+    left: 3rem;
+    top: 10rem;
   }
 }
 .adjust--mother--gif {
@@ -428,6 +428,11 @@ h2 {
   @media (max-width: 480px) {
     top: -1rem;
     left: -2rem;
+  }
+}
+.adjust--mobile {
+  @media (max-width: 480px) {
+    top: -50rem;
   }
 }
 
