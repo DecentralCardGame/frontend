@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div class="dual--column--flex--wrap">
+    <div class="dual--column--flex--wrap reverse-column">
       <div class="dual--column--img">
         <div class="img--container adjust--flyin">
           <img src="paper_flyin.gif" class="image3" alt="yes...">
@@ -159,7 +159,7 @@
             target="_blank"
             style="text-decoration: none; color: inherit;"
           >   
-            <p class=text--button>
+            <p class="text--button">
               Go to Whitepaper >
             </p> 
           </a>
@@ -233,6 +233,10 @@ h2 {
 .extra--margin {
   margin: 0rem 14rem;
   left: -18rem;
+  @media (max-width: 1200px) {
+    margin: 0rem 6rem;
+    left: -10rem;
+  }
   @media (max-width: 480px) {
     margin: 0rem 0rem;
     left: -4rem;
@@ -341,13 +345,16 @@ h2 {
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
+    top: -10rem;
   }
   @media (max-width: 1000px) {
+    top: -2rem;
   }
   @media (max-width: 800px) {
+    top: -0rem;
   }
   @media (max-width: 480px) {
-    top: -8rem;
+    top: -4rem;
   }
 }
 .adjust--flyin {

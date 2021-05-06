@@ -114,7 +114,6 @@ header {
   }
   @media (max-width: 1178px) {
     transform: skewX(-25deg);
-    margin: 0;
   }  
 }
 .button--container {
