@@ -325,6 +325,18 @@
           <span class="creator-text">
             Everybody needs a <b>face</b>, so do I. Please upload an image
           </span>
+
+          <!-- TODO -->
+          <div class="text-center">
+            <img v-if="uploadedImg" :src="uploadedImg">
+            <button id="pick-avatar">Select an image</button>
+            <avatar-cropper
+              @uploaded="handleUploaded"
+              trigger="#pick-avatar"
+              upload-url="/files/upload" />
+          </div>
+
+
           <input
             id="file"
             class="inputfile"
@@ -433,6 +445,7 @@
 
 <script>
 import * as R from "ramda";
+import AvatarCropper from "vue-avatar-cropper"
 import CardComponent from "../components/CardComponent";
 import BuySchemeModal from "../components/modals/BuySchemeModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
@@ -446,9 +459,10 @@ import {
 } from "../components/utils/utils.js";
 import { sampleGradientImg } from "../components/utils/sampleCards.js";
 
+
 export default {
   name: "NewCardPage",
-  components: { CardComponent, AbilityComponent, BuySchemeModal, AbilityModal },
+  components: { AvatarCropper, CardComponent, AbilityComponent, BuySchemeModal, AbilityModal },
   data() {
     return {
       isAbilityModalVisible: false,
@@ -457,6 +471,7 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
+      uploadedImg: undefined,
       cardImageUrl: sampleGradientImg,
       model: R.clone(emptyCard),
       cardID: 0,
@@ -509,6 +524,9 @@ export default {
     }
   },
   methods: {
+    handleUploadedImg(res) {
+      this.uploadedImg = res.relative_url;
+    },
     showBuySchemeModal() {
       this.isBuySchemeModalVisible = true;
     },
