@@ -26,7 +26,7 @@ export default {
         const scroll = document.getElementById('scrollAnchor1').scrollHeight
         window.scrollTo({
           left: 0,
-          top: scroll + window.innerHeight,
+          top: scroll + window.innerHeight - 200,
           behavior: 'smooth'
         });
       }
