@@ -233,12 +233,17 @@ h2 {
 .extra--margin {
   margin: 0rem 14rem;
   left: -18rem;
+  max-width: 400px;
   @media (max-width: 1200px) {
-    margin: 0rem 6rem;
+    margin: 0rem 10rem;
     left: -10rem;
   }
+  @media (max-width: 800px) {
+    margin: 0rem 4rem;
+    left: -6rem;
+  }
   @media (max-width: 480px) {
-    margin: 0rem 0rem;
+    margin: 0rem 2rem;
     left: -4rem;
   }
 }

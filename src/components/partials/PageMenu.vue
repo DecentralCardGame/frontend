@@ -137,7 +137,7 @@ export default {
   @import "../../assets/styles/variables";
 
   .nav-wrapper {
-    max-width: 75vw;
+    max-width: calc(#{$main-width} + 10vw);
     margin: auto;
     @media (max-width: 480px) {
       max-width: 100vw;
