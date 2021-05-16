@@ -58,7 +58,7 @@
     </div>
 
     <div class="dual--column--flex--wrap reverse-column">
-      <div class="dual--column--img">
+      <div class="dual--column--img" v-if="!this.isMobileDevice()">
         <div class="img--container adjust--flyin">
           <img src="paper_flyin.gif" class="image3" alt="yes...">
         </div>

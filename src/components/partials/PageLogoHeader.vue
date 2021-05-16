@@ -56,7 +56,8 @@ header {
 
 .image1 {
   position: relative;
-  z-index: -1;
+  z-index: -3;
+  width: 55vw;
   max-width: 95vw;
 }
 .image2 {
@@ -138,10 +139,10 @@ header {
 }
 .image3 {
   transform: skewX(25deg);
-
   margin: 2rem;
   z-index: -1;
-
+  top: 0rem;
+  left: 1rem;
   width: 100%;
 }
 </style>
