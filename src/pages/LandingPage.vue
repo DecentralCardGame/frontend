@@ -286,7 +286,7 @@ h2 {
 .text--medium {
   font-family: $font-family; 
   font-weight: $font-weight;
-  font-size: $font-size-small;
+  font-size: 2vw;
   letter-spacing: 2;
 }
 .text--button {
@@ -409,14 +409,11 @@ h2 {
   }
 }
 .adjust--pentagon {
-  left: -4.5rem;
-  right: 0;
-  width: 120%;
-  min-width: 480px;
-  height: 1000px;
-  max-height: 95vh;
+  width: 140%;
+  left: -9vw;
+  top: -3vw;
 
-  top: -16rem;
+
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
