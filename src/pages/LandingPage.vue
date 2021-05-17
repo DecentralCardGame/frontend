@@ -13,7 +13,7 @@
     </div>
 
     <div class="dual--column--flex--wrap extra--space">
-      <div class="dual--column--text">
+      <div class="dual--column--text scale--width">
         <div class="hero--with--img">
           <div class="img--container adjust--pentagon">
             <svg viewBox="0 0 985.399 969.501" class="image3" >
@@ -50,15 +50,15 @@
           </p>
         </div>
       </div>
-      <div class="dual--column--img">
+      <div class="dual--column--img scale--width">
         <div class="img--container adjust--mother--gif">
-          <img src="mother_popup.gif" class="image3" alt="yes...">
+          <img src="mother_popup.gif" class="image3" alt="yes..." width="200%">
         </div>
       </div>
     </div>
 
     <div class="dual--column--flex--wrap reverse-column">
-      <div class="dual--column--img" v-if="!this.isMobileDevice()">
+      <div class="dual--column--img scale--width" v-if="!this.isMobileDevice()">
         <div class="img--container adjust--flyin">
           <img src="paper_flyin.gif" class="image3" alt="yes...">
         </div>
@@ -211,10 +211,15 @@ h2 {
   }
 }
 
+.scale--width {
+  max-width: 1000px;
+  width: 50%
+}
+
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: calc(35vh - 80px) 0rem 0rem;
+  margin: calc(35vh - 0px) 0rem 0rem;
   text-align: initial;
   @media (max-width: 480px) {
     margin: 20vh 0rem;
@@ -269,7 +274,7 @@ h2 {
   z-index: 3;
   top: 0rem;
 
-  font-size: 40px;
+  font-size: 4vw;
   @media (max-width: 1200px) {
   }
   @media (max-width: 800px) {
@@ -341,6 +346,7 @@ h2 {
   pointer-events: none;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 .adjust--top {
   top: -17rem;
@@ -405,8 +411,10 @@ h2 {
 .adjust--pentagon {
   left: -4.5rem;
   right: 0;
-  width: 480px;
+  width: 120%;
+  min-width: 480px;
   height: 1000px;
+  max-height: 95vh;
 
   top: -16rem;
   @media (max-width: 1700px) {
