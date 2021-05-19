@@ -144,7 +144,7 @@
         We are not a company
       </b>
       <p class="text--medium">
-        Crowd Control is not a company, but a Decentralized Autonomous Organization (DAO). This is realized <br>
+        Crowd Control is not a company, but a Decentralized Autonomous Organization (DAO). This is realized
         with a blockchain built on Cosmos technology. Read our <a
           href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
           target="_blank"
@@ -389,22 +389,10 @@ h2 {
 }
 .adjust--mother--gif {
   position: relative;
-  left: 0rem;
+  top: 15vw;
+  left: 0;
   right: 0;
   height: 100%;
-
-  top: 10rem;
-  @media (max-width: 1700px) {
-  }
-  @media (max-width: 1400px) {
-  }
-  @media (max-width: 1000px) {
-  }
-  @media (max-width: 800px) {
-  }
-  @media (max-width: 480px) {
-    top: 8rem;
-  }
 }
 .adjust--pentagon {
   width: 140%;
