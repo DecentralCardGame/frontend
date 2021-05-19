@@ -28,7 +28,7 @@
             <br>
             YOU CREATE
           </b>
-          <p class="text--medium">
+          <p class="text--medium extra--bottom--margin">
             On Crowd Control you can create and <br>
             design your own trading cards. Your Cards <br>
             become a part of the game for everyone.<br>
@@ -37,7 +37,7 @@
           <b class="text--huge">
             YOU BALANCE
           </b>
-          <p class="text--medium">
+          <p class="text--medium extra--bottom--margin">
             Join the council and vote on cards. You can <br>
             be part of the balancing process.
           </p>
@@ -45,7 +45,7 @@
           <b class="text--huge">
             YOU EARN
           </b>
-          <p class="text--medium">
+          <p class="text--medium extra--bottom--margin">
             Create cards or vote to earn coins!
           </p>
         </div>
@@ -64,10 +64,10 @@
         </div>
       </div>
 
-      <div class="dual--column--text adjust--mobile">
+      <div class="dual--column--text scale--width adjust--mobile">
         <div class="hero--with--img">
-          <div class= "img--container adjust--trapez">
-            <svg viewBox="0 0 859.168 1347.934" class="image3" >
+          <div class="img--container adjust--trapez">
+            <svg viewBox="0 0 859.168 1347.934" class="image3 show--overflow" >
               <path id="Pfad_297" data-name="Pfad 297" d="M932.947,5899.424,872.038,4551.49l859.168,133.93-57.222,1144.968Z" transform="translate(-872.038 -4551.49)" fill="#4b0439"/>
               <g transform="translate(-10,-10)">
                 <path id="Pfad_300" data-name="Pfad 300" d="M932.521,5890.01,872.038,4551.49l853.168,132.994-56.823,1136.973Z" transform="translate(-872.038 -4551.49)" fill="#9a0881"/>
@@ -204,14 +204,25 @@ h2 {
   }
 }
 
+.show--overflow {
+  overflow: visible
+}
+
 .extra--space {
   margin: 35vh auto;
   @media (max-width: 480px) {
     margin: 10vh auto;
   }
 }
+.extra--bottom--margin {
+  margin-bottom: 3rem;
+  @media (max-width: 1000px) {
+    margin-bottom: 2rem;
+  }
+}
 
 .scale--width {
+  min-width: 400px;
   max-width: 1000px;
   width: 50%
 }
@@ -234,6 +245,8 @@ h2 {
   top: -0.5rem;
   left: -4rem;
   margin: 0rem;
+  min-width: 360px;
+  max-width: 400px;
 }
 .extra--margin {
   margin: 0rem 14rem;
@@ -275,24 +288,24 @@ h2 {
   top: 0rem;
 
   font-size: 4vw;
-  @media (max-width: 1200px) {
-  }
-  @media (max-width: 800px) {
-  }
-  @media (max-width: 480px) {
+  @media (max-width: 1000px) {
     font-size: 40px;
   }
 }
 .text--medium {
   font-family: $font-family; 
   font-weight: $font-weight;
+  line-height: 150%;
+
   font-size: 2vw;
-  letter-spacing: 2;
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
 }
 .text--button {
   font-family: $font-family-header; 
   font-weight: normal;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: $font-size-small;
   color: $black;
   text-align: center;
@@ -370,24 +383,9 @@ h2 {
 }
 .adjust--flyin {
   position: relative;
-  left: 10rem;
-  right: 0;
-  width: 300px;
-  height: 300px;
-
   top: 10rem;
-  @media (max-width: 1700px) {
-  }
-  @media (max-width: 1400px) {
-  }
-  @media (max-width: 1000px) {
-  }
-  @media (max-width: 800px) {
-  }
-  @media (max-width: 480px) {
-    left: 3rem;
-    top: 10rem;
-  }
+  left: -4vw;
+  right: 0;
 }
 .adjust--mother--gif {
   position: relative;
@@ -410,30 +408,26 @@ h2 {
 }
 .adjust--pentagon {
   width: 140%;
-  left: -9vw;
-  top: -3vw;
-
+  left: -8vw;
+  top: -0vw;
 
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
   }
   @media (max-width: 1000px) {
+    left: -6rem
   }
   @media (max-width: 800px) {
   }
   @media (max-width: 480px) {
-    top: -17rem;
   }
 }
 .adjust--trapez {
-  left: -3rem;
-  right: 0;
-
-  width: 400px;
-  height: 700px;
+  width: 120%;
+  left: -5vw;
+  top: -3vw;
   
-  top: -2rem;
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
