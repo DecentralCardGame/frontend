@@ -73,16 +73,32 @@ b {
 @import "notifications";
 @import "modals";
 
-.container-auth{
+// .container-auth{
+//   position: fixed;
+//   z-index: 4;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   display: table;
+//   transition: opacity 0.3s ease;
+// }
+
+.container-auth {
   position: fixed;
   z-index: 4;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: table;
   transition: opacity 0.3s ease;
+  @media (max-width: 480px) {
+    
+    bottom:0;
+    overflow-y: scroll;
+  }
 }
 
 .box-auth {
@@ -93,7 +109,10 @@ b {
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media (max-width: 480px) {
+    margin-top: 0;
     grid-template-columns: 1fr;
+    max-height:120vh;
+    height:120vh;
   }
   background-color: $white;
   text-shadow: none;
