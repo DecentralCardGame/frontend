@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageLogoHeader />
+    <PageLogoHeader v-if="!isMobileDevice()" />
     <PageMenu />
     <div v-if="$store.state.loading">
       <div class="spinner">
@@ -14,12 +14,12 @@
         <router-view />
       </div>
     </main>
-    <PageFooter />
     <notifications      
       group="bottom-right-notification"
       position="bottom right"
       classes="notification"
     />
+    <PageFooter />
   </div>
 </template>
 
@@ -43,4 +43,3 @@ export default {
 </script>
 
 <style lang="scss">
-</style>

@@ -137,7 +137,7 @@ export default {
   @import "../../assets/styles/variables";
 
   .nav-wrapper {
-    max-width: 75vw;
+    max-width: calc(#{$main-width} + 10vw);
     margin: auto;
     @media (max-width: 480px) {
       max-width: 100vw;
@@ -177,11 +177,8 @@ export default {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    @media (max-width: 1561px) {
-      margin: 0em 3em;
-    }
-    @media (max-width: 1298px){
-      margin: 0em 0em;
+    @media (max-width:  1396px) {
+      margin: 0em 5.5em;
     }
   }
 
@@ -273,14 +270,11 @@ export default {
     display: inline-block;
     margin: -1em 1em -2em 0em;
     -webkit-user-drag: none;
-    width: 300px;
+    width: 350px;
     height: 100%;
 
-    @media (max-width: 1561px){
-      margin: auto 4em auto 1em;
-    }
-    @media (max-width: 1498px){
-      margin: auto auto auto 1em;
+    @media (max-width: 1396px) {
+      margin: 1em auto;
     }
     @media (max-width: 1178px) {
       position: relative;
@@ -298,7 +292,7 @@ export default {
     color: $black;
     position: absolute;
     right: 1.5em;
-    top: 1.5em;
+    top: 8vw;
   }
 
   .nav__menu--hidden {
