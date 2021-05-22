@@ -95,7 +95,6 @@ b {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease;
   @media (max-width: 480px) {
-    
     bottom:0;
     overflow-y: scroll;
   }
@@ -111,8 +110,8 @@ b {
   @media (max-width: 480px) {
     margin-top: 0;
     grid-template-columns: 1fr;
-    max-height:120vh;
-    height:120vh;
+    max-height:300vh;
+    height:auto;
   }
   background-color: $white;
   text-shadow: none;
