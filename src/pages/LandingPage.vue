@@ -1,6 +1,6 @@
 <template>
   <div class="article-temp">
-    <div class="hero--with--img">  
+    <div class="hero--with--img less--margin">  
       <b class="text--very--huge">
         <br>
         <center>
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="dual--column--flex--wrap extra--space">
+    <div class="dual--column--flex--wrap">
       <div class="dual--column--text scale--width">
         <div class="hero--with--img">
           <div class="img--container adjust--pentagon">
@@ -208,12 +208,6 @@ h2 {
   overflow: visible
 }
 
-.extra--space {
-  margin: 35vh auto;
-  @media (max-width: 480px) {
-    margin: 10vh auto;
-  }
-}
 .extra--bottom--margin {
   margin-bottom: 3rem;
   @media (max-width: 1000px) {
@@ -230,11 +224,14 @@ h2 {
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: calc(35vh - 0px) 0rem 0rem;
+  margin: 35vh 0rem 0rem;
   text-align: initial;
   @media (max-width: 480px) {
     margin: 20vh 0rem;
   }
+}
+.less--margin {
+  margin: 20vh 0 10vh 0;
 }
 
 .info--item {
