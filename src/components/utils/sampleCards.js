@@ -40,6 +40,7 @@ export const cardJpgs = {
 export const daisyData = {
   CardName: 'Saint Daisy, Triplet',
   FlavourText: 'ETB - Create a 1/1 pet for each human you control',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -60,6 +61,7 @@ export const daisyData = {
 export const daisyPetData = {
   CardName: 'Saint Daisy, Triplet',
   FlavourText: 'PET',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -80,6 +82,7 @@ export const daisyPetData = {
 export const richardData = {
   CardName: 'Richard, Bot Commander',
   FlavourText: 'When Richard is attacking, create a 1/1 Bot token that is also attacking. When Richard blocks, all Bots gain +0/+1.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -99,6 +102,7 @@ export const richardData = {
 export const richardBotData = {
   CardName: 'Richard, Bot Commander',
   FlavourText: 'BOT',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -119,6 +123,7 @@ export const richardBotData = {
 export const hurrwigData = {
   CardName: 'Hurrwig, Bot Manufacturer',
   FlavourText: 'Whenever an entity with the tag \'Bot\' enters the battlefield, you may deal 2 damage to target entity.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -138,6 +143,7 @@ export const hurrwigData = {
 export const assoultHorseData = {
   CardName: 'Assoult Horse',
   FlavourText: 'Charge!',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -157,6 +163,7 @@ export const assoultHorseData = {
 export const ulrichData = {
   CardName: 'Ulrich, the Tinker',
   FlavourText: 'Whenever an Entity with the tag \'Bot\' is destroyed, draw a card.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -176,6 +183,7 @@ export const ulrichData = {
 export const steamData = {
   CardName: 'Steam Processor',
   FlavourText: 'Production: 6 \\nPay 6: gain 10 Wisdom.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Place',
@@ -195,6 +203,7 @@ export const steamData = {
 export const AutomatedBotProductionData = {
   CardName: 'Automated Bot Production',
   FlavourText: 'Periodic - Create a 1/1 Bot token.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Place',
@@ -214,6 +223,7 @@ export const AutomatedBotProductionData = {
 export const AutomatedBotProductionBotData = {
   CardName: 'Automated Bot Production',
   FlavourText: 'BOT',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -233,6 +243,7 @@ export const AutomatedBotProductionBotData = {
 export const wynnData = {
   CardName: 'Wynn, the Brainless Baby',
   FlavourText: 'Periodic - If Dr. Dolly is on your field. gain 5 Wisdom and +1/+1',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -252,6 +263,7 @@ export const wynnData = {
 export const furiousJackData = {
   CardName: 'Furious Jack',
   FlavourText: 'ETB - Deal 2 damage to target entity.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -271,6 +283,7 @@ export const furiousJackData = {
 export const miniLabData = {
   CardName: 'Dr. Dolly\'s Mini Lab',
   FlavourText: 'Hand size 5. Additionally, start with Dr. Dolly in your hand. Produce Wisdom 10. Pay 3 Mana: Get 10 Wisdom. Whenever Dr. Dolly dies, move him back to your hand.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'HQ',
@@ -290,6 +303,7 @@ export const miniLabData = {
 export const blasturnData = {
   CardName: 'Blasturn, the capital',
   FlavourText: 'Sacrifice a place: draw a card.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'HQ',
@@ -309,6 +323,7 @@ export const blasturnData = {
 export const evieData = {
   CardName: 'Evie, Damsel in Distress',
   FlavourText: 'On materialization - Manipulate target entity on the field by +2 or -2 Attack.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -328,6 +343,7 @@ export const evieData = {
 export const exoskeletonData = {
   CardName: 'Provide Exoskeleton',
   FlavourText: 'Target entity gets +3 HP and gets the ability: Regeneration (whenever this Entity recieves damage, gain the same costAmount of health back.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Action',
@@ -347,6 +363,7 @@ export const exoskeletonData = {
 export const communityCardData = {
   CardName: 'Crowd Created Content',
   FlavourText: 'Big corporations hate this trick! \n You will be surprised when you see what happens in a community creating their own content!',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'HQ',
@@ -366,6 +383,7 @@ export const communityCardData = {
 export const botCommandCenterData = {
   CardName: 'Bot Command Center',
   FlavourText: 'Pay 10 Energy: Get 15 Wisdom \n Pay 4 Energy: Return target Entity to Owner\'s Hand.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Place',
@@ -385,6 +403,7 @@ export const botCommandCenterData = {
 export const drDollyData = {
   CardName: 'Dr. Dolly',
   FlavourText: 'Whenever another entity dies, gain 1 Mana.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -404,6 +423,7 @@ export const drDollyData = {
 export const belloData = {
   CardName: 'Bello, man\'s best friend',
   FlavourText: 'Periodic - If you control a Human, gain 5 Wisdom. \n If it´s Dr. Dolly instead gain 10 Wisdom.',
+  RulesTexts: '',
   abilities: [],
   Notes: '',
   type: 'Entity',
@@ -421,10 +441,11 @@ export const belloData = {
   Attack: 2
 }
 export const timeDeviceData = {
-  CardName: 'Steam Processor',
-  FlavourText: 'Production: 6 \\nPay 6: gain 10 Wisdom.',
+  CardName: 'Time Manipulation Device',
+  FlavourText: 'Periodic - Insight 3 \\n Pay 4: Bounce',
+  RulesTexts: '',
   abilities: [],
-  Notes: 'Whenever an Entity with the tag \'Bot\' is destroyed, draw a card.',
+  Notes: '',
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
