@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div style='background-size: 100% auto'
     id="app"
     v-bind:style="{ 'background-image': 'url(' + background + ')' }"
     @auxclick="handleAnyInput"
@@ -44,6 +44,8 @@ export default {
           return "/background2.svg";
         case "default3":
           return "/background3.svg";
+        case "landing":
+          return "/background.svg";
         default:
           return "/background.svg";
       }
@@ -64,6 +66,9 @@ export default {
 </script>
 
 <style lang="scss">
+  body {
+    
+  }
 
   @font-face {
     font-family: 'Museo700-Regular';

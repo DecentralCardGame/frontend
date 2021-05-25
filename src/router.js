@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/',
       name: 'About',
-      meta: { layout: "default2" },
+      meta: { layout: "default" },
       component: AboutPage
     },
     {
