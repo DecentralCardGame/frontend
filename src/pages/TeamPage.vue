@@ -194,11 +194,6 @@ export default {
 <style scoped lang="scss">
   @import "../assets/styles/variables";
 
-  .body {
-    background: url("../assets/background3.svg");
-    background-size: 100% auto;
-  }
-
 .image--round {
   width: 200px;
   height: 200px;

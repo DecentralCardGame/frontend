@@ -44,10 +44,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  body {
-    background: url("../assets/background2.svg");
-    background-size: 100% auto;
-  }
-</style>

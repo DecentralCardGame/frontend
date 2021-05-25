@@ -1,6 +1,7 @@
 <template>
   <div
     id="app"
+    v-bind:style="{ 'background-image': 'url(' + background + ')' }"
     @auxclick="handleAnyInput"
     @click="handleAnyInput"
   >
@@ -34,6 +35,18 @@ export default {
     layout() {
       console.log("layout:", (this.$route.meta.layout || default_layout))
       return (this.$route.meta.layout || default_layout) + '-layout'
+    },
+    background() {
+      switch(this.$route.meta.layout) {
+        case "Default":
+          return "/background1.svg";
+        case "default2":
+          return "/background2.svg";
+        case "default3":
+          return "/background3.svg";
+        default:
+          return "/background.svg";
+      }
     }
   },
   mounted: {
