@@ -32,6 +32,7 @@ export default {
   components: {},
   computed: {
     layout() {
+      console.log("layout:", (this.$route.meta.layout || default_layout))
       return (this.$route.meta.layout || default_layout) + '-layout'
     }
   },

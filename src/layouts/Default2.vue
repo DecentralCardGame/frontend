@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageLogoHeader v-if="!isMobileDevice()" />
+    <PageHeader />
     <PageMenu />
     <div v-if="$store.state.loading">
       <div class="spinner">
@@ -24,27 +24,30 @@
 </template>
 
 <script>
-import PageLogoHeader from '@/components/partials/PageLogoHeader'
+import PageHeader from '@/components/partials/PageHeader'
 import PageMenu from '@/components/partials/PageMenu'
 import PageFooter from '@/components/partials/PageFooter'
 
 export default {
-  name: 'CrowdControlApp',
-  components: { PageMenu, PageLogoHeader, PageFooter },
+  name: 'CrowdControlApp2',
+  components: {PageFooter, PageMenu, PageHeader},
+  mounted () {
+    console.log("YES2")
+  },
   methods: {
     handleAnyInput(event) {
       this.$store.commit(
         "setLastInputEvent",
         event
-      );
+      )
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   body {
-    background: url("../assets/background1.svg");
+    background: url("../assets/background2.svg") !important;
     background-size: 100% auto;
   }
 </style>
