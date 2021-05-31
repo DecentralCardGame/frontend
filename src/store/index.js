@@ -17,6 +17,17 @@ export default new Vuex.Store({
     address: '',
     cardCreatorDraft: {},
     cardCreatorEditCard: {},
+    galleryFilter: {
+      visible: false,
+      owner: "",
+      status: "",
+      cardType: "",
+      classes: "",
+      sortBy: "",
+      nameContains: "",
+      notesContains: "",
+      cardsPerPage: 30,
+    },
     loading: false,
     displayLogin: false,
     lastInputEvent: {},
@@ -59,6 +70,12 @@ export default new Vuex.Store({
     setCardCreatorEditCardImg (state, img) {
       state.cardCreatorEditCard.img = img
     },
+    setGalleryFilter (state, filter) {
+      state.galleryFilter = filter
+    },
+    toggleGalleryFilter (state) {
+      state.galleryFilter.visible = !state.galleryFilter.visible
+    },
     setLoading (state, loading) {
       state.loading = loading
     },
@@ -99,6 +116,9 @@ export default new Vuex.Store({
     },
     getCardCreatorEditCard: state => {
       return state.cardCreatorEditCard
+    },
+    getGalleryFilter: state => {
+      return state.galleryFilter
     },
     loggedIn: state => {
       return state.jwt !== ''

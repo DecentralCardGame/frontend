@@ -14,8 +14,8 @@
       >
         back
       </button>
-      <button @click="filters.visible = !filters.visible">
-        {{ filters.visible ? "hide" : "show" }}
+      <button @click="$store.commit('toggleGalleryFilter')">
+        {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
         filters
       </button>
       <button
@@ -26,11 +26,11 @@
       </button>
     </div>
     <div
-      v-show="filters.visible"
+      v-show="$store.getters.getGalleryFilter.visible"
       class="gallery__filter-box"
     >
       <div class="gallery__filter__item">
-        <select v-model="filters.status">
+        <select v-model="$store.getters.getGalleryFilter.status">
           <option
             disabled
             value=""
@@ -43,7 +43,7 @@
         </select>
       </div>
       <div class="gallery__filter__item">
-        <select v-model="filters.cardType">
+        <select v-model="$store.getters.getGalleryFilter.cardType">
           <option
             disabled
             value=""
@@ -58,7 +58,7 @@
       </div>
       <div>
         <div class="gallery__filter__item">
-          <select v-model="filters.sortBy">
+          <select v-model="$store.getters.getGalleryFilter.sortBy">
             <option
               disabled
               value=""
@@ -74,32 +74,32 @@
       <div>
         <div class="gallery__filter__item">
           <input
-            v-model="filters.nameContains"
+            v-model="$store.getters.getGalleryFilter.nameContains"
             placeholder="card name contains"
           >
         </div>
       </div>
       <div class="gallery__filter__item">
         <input
-          v-model="filters.notesContains"
+          v-model="$store.getters.getGalleryFilter.notesContains"
           placeholder="card notes contain"
         >
       </div>
       <div class="gallery__filter__item">
         <input
-          v-model="filters.owner"
+          v-model="$store.getters.getGalleryFilter.owner"
           placeholder="card owner is"
-          @click="filters.owner = getOwnAddress()"
+          @click="$store.getters.getGalleryFilter.owner = getOwnAddress()"
         >
       </div>
       <div class="gallery__filter__item">
         <input
           placeholder="cards per page"
-          @input="filters.cardsPerPage = $event.target.value"
+          @input="$store.getters.getGalleryFilter.cardsPerPage = $event.target.value"
         >
       </div>
       <div class="gallery__filter__item">
-        <button @click="resetFilters">
+        <button @click="$store.getters.getGalleryFilter">
           Clear Filters
         </button>
       </div>
@@ -185,17 +185,6 @@ export default {
       cards: [],
       browsingForward: true,
       browsingBackward: true,
-      filters: {
-        visible: false,
-        owner: "",
-        status: "",
-        cardType: "",
-        classes: "",
-        sortBy: "",
-        nameContains: "",
-        notesContains: "",
-        cardsPerPage: 20,
-      },
       votableCards: [],
       canVote: false,
       isOwner: false,
@@ -265,13 +254,13 @@ export default {
     loadCardList() {
       return this.$cardChain
         .getCardList(
-          this.filters.owner,
-          this.filters.status,
-          this.filters.cardType,
-          this.filters.classes,
-          this.filters.sortBy.replace(/\s+/g, ''),
-          this.filters.nameContains,
-          this.filters.notesContains
+          this.$store.getters.getGalleryFilter.owner,
+          this.$store.getters.getGalleryFilter.status,
+          this.$store.getters.getGalleryFilter.cardType,
+          this.$store.getters.getGalleryFilter.classes,
+          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, ''),
+          this.$store.getters.getGalleryFilter.nameContains,
+          this.$store.getters.getGalleryFilter.notesContains
         )
         .then((res) => {
           this.cardList = res.cardList;
@@ -310,26 +299,26 @@ export default {
         });
     },
     fillPage() {
-      if (this.pageId + this.filters.cardsPerPage >= this.cardList.length)
+      if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
-      Promise.all(R.times(this.getNextCard, this.filters.cardsPerPage)).then(
+      Promise.all(R.times(this.getNextCard, this.$store.getters.getGalleryFilter.cardsPerPage)).then(
         () => {
-          if (this.filters.sortBy === "Name") {
+          if (this.$store.getters.getGalleryFilter.sortBy === "Name") {
             this.cards.sort((x, y) =>
               x.CardName.toUpperCase() < y.CardName.toUpperCase() ? 1 : -1
             );
-          } else if (this.filters.sortBy === "Casting Cost") {
+          } else if (this.$store.getters.getGalleryFilter.sortBy === "Casting Cost") {
             this.cards.sort(
               (x, y) =>
                 (y.CastingCost ? y.CastingCost + y.nerflevel : 0) -
                 (x.CastingCost ? x.CastingCost + x.nerflevel : 0)
             );
             console.log("cards after sort", this.cards);
-          } else if (this.filters.sortBy === "Id") {
+          } else if (this.$store.getters.getGalleryFilter.sortBy === "Id") {
             this.cards.sort((x, y) => y.id - x.id);
           }
         }
@@ -340,7 +329,7 @@ export default {
       if (!this.browsingForward)
         return
       
-      this.pageId += this.filters.cardsPerPage;
+      this.pageId += this.$store.getters.getGalleryFilter.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
       this.fillPage();
@@ -350,7 +339,7 @@ export default {
       if (!this.browsingBackward)
         return
 
-      this.pageId -= this.filters.cardsPerPage;
+      this.pageId -= this.$store.getters.getGalleryFilter.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
       this.fillPage();
@@ -394,14 +383,18 @@ export default {
       return this.$store.getters.getUserAddress;
     },
     resetFilters() {
-      this.filters = {
+      this.$store.commit("setGalleryFilter", {
         visible: false,
-        nameContains: "",
-        status: "",
-        sortBy: "",
         owner: "",
-        cardsPerPage: 20,
-      };
+        status: "",
+        cardType: "",
+        classes: "",
+        sortBy: "",
+        nameContains: "",
+        notesContains: "",
+        cardsPerPage: 30,
+      });
+
       this.loadCardList();
     },
   },
