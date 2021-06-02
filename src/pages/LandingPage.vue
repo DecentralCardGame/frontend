@@ -224,7 +224,7 @@ h2 {
 .hero--with--img {
   position: relative;
   z-index: 2;
-  margin: 35vh 0rem 0rem;
+  margin: 30vh 0rem 0rem;
   text-align: initial;
   @media (max-width: 480px) {
     margin: 20vh 0rem;
