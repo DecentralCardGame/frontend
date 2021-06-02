@@ -29,11 +29,8 @@ import PageMenu from '@/components/partials/PageMenu'
 import PageFooter from '@/components/partials/PageFooter'
 
 export default {
-  name: 'CrowdControlApp1',
+  name: 'CrowdControlApp',
   components: {PageFooter, PageMenu, PageHeader},
-  mounted () {
-    console.log("YES")
-  },
   methods: {
     handleAnyInput(event) {
       this.$store.commit(
@@ -45,9 +42,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  body {
-    background: url("../assets/background2.svg");
-    background-size: 100% auto;
-  }
-</style>
+<style lang="scss">

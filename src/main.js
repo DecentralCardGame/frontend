@@ -11,13 +11,9 @@ import cardChain from './plugins/cardChain'
 import cardRules from './plugins/cardRules'
 
 import Default from "./layouts/Default.vue"
-import Default2 from "./layouts/Default2.vue"
-import Default3 from "./layouts/Default3.vue"
 import Landing from "./layouts/Landing.vue"
 
 Vue.component('default-layout', Default)
-Vue.component('default2-layout', Default2)
-Vue.component('default3-layout', Default3)
 Vue.component('landing-layout', Landing)
 
 Vue.config.productionTip = false

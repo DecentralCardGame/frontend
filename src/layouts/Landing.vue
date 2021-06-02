@@ -42,9 +42,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  body {
-    background: url("../assets/background1.svg");
-    background-size: 100% auto;
-  }
-</style>
+<style lang="scss">

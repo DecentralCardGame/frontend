@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/',
       name: 'About',
-      meta: { layout: "default2" },
+      meta: { layout: "default" },
       component: AboutPage
     },
     {
@@ -44,14 +44,12 @@ export default new Router({
     {
       path: '/howtoplay',
       name: 'How To Play',
-      component: HowToPlayPage,
-      meta: { layout: "default3" },
+      component: HowToPlayPage
     },
     {
       path: '/team',
       name: 'Team',
-      component: TeamPage,
-      meta: { layout: "default2" },
+      component: TeamPage
     },
     {
       path: '/imprint',
