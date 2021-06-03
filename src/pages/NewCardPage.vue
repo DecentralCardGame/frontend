@@ -233,15 +233,15 @@
             Entitites.
           </span>
 
-          <span>
+          <span             
+            v-if="        
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost &&
+                $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost
+            ">
             I will only materialize if you send
           
             <select
-              v-if="
-                $cardRules.children[getRulesType()] &&
-                  $cardRules.children[getRulesType()].children.AdditionalCost &&
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost
-              "
               v-model="model.AdditionalCost.VoidCost.Amount"
               @change="saveDraft"
             >
