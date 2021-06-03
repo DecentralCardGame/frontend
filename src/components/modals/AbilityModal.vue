@@ -221,7 +221,7 @@ export default {
         this.dialog.preventClose = true
         this.dialog.title = objAtSelection.name
         this.dialog.type = objAtSelection.type
-        this.dialog.options = R.map(x => ({name: x}), objAtSelection.children)
+        this.dialog.options = R.map(x => ({name: x}), objAtSelection.enum)
         this.dialog.btn.rulesPath = pathAtSelection
         this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath)
       } else {
