@@ -9,6 +9,7 @@ export default {
                 Vue.$cardRules = err
                 console.error(err)
               } else {
+                console.log("loaded cardrules:", rules.Card)
                 Vue.prototype.$cardRules = rules.Card
               }
             })

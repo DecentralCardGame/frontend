@@ -103,6 +103,7 @@ export default {
         // in the following part we check things that are only required for specific card types
         if (webModel.type !== "Headquarter") {
           cardContent.CastingCost = webModel.CastingCost
+          cardContent.AdditionalCost = webModel.AdditionalCost
         }
         if (webModel.type !== "Action") {
           cardContent.Health = webModel.Health

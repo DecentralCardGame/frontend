@@ -143,7 +143,8 @@
             "
             class="creator-text"
           >As I am quite awesome to get me rolling you need to
-            <b>invest</b>:</span>
+            <b>invest</b>:
+          </span>
 
           <select
             v-if="
@@ -164,6 +165,100 @@
               {{ n }}
             </option>
           </select>
+
+
+          <span
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost
+            "
+            class="creator-text"
+          >
+            Being a special subject, I also demand for additional costs to be paid.
+          </span>
+
+          <span
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost &&
+                $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost
+            "
+            class="creator-text"
+          >
+            To play me you need to discard
+            
+            <select
+              v-model="model.AdditionalCost.DiscardCost.Amount"
+              @change="saveDraft"
+            >
+              <option
+                v-for="n in R.range(
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
+                )"
+                :key="n"
+                :value="n"
+              >
+                {{ n }}
+              </option>
+            </select>
+
+            cards from your hand.
+          </span>
+
+          <span
+            v-if="        
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost &&
+                $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost
+            ">
+            I demand a sacrifice of
+
+            <select
+
+              v-model="model.AdditionalCost.SacrificeCost.Amount"
+              @change="saveDraft"
+            >
+              <option
+                v-for="n in R.range(
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
+                )"
+                :key="n"
+                :value="n"
+              >
+                {{ n }}
+              </option>
+            </select>
+            Entitites.
+          </span>
+
+          <span>
+            I will only materialize if you send
+          
+            <select
+              v-if="
+                $cardRules.children[getRulesType()] &&
+                  $cardRules.children[getRulesType()].children.AdditionalCost &&
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost
+              "
+              v-model="model.AdditionalCost.VoidCost.Amount"
+              @change="saveDraft"
+            >
+              <option
+                v-for="n in R.range(
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
+                  $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
+                )"
+                :key="n"
+                :value="n"
+              >
+                {{ n }}
+              </option>
+            </select>
+            cards from the graveyard to the void.
+          </span>
+
           <span class="creator-text">
             <span
               v-show="model.type === 'Headquarter'"

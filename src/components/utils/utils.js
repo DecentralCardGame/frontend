@@ -210,6 +210,17 @@ export const emptyCard = {
     Nature: false
   },
   CastingCost: -1,
+  AdditionalCost: {
+    DiscardCost: {
+      Amount: -1,
+    },
+    SacrificeCost: {
+      Amount: -1,
+    },
+    VoidCost: {
+      Amount: -1,
+    },
+  },
   Health: 0,
   Attack: 0,
   Delay: 0,
