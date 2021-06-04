@@ -8,6 +8,18 @@ const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
+let emptyGalleryFilter = {
+  visible: false,
+  owner: "",
+  status: "",
+  cardType: "",
+  classes: "",
+  sortBy: "",
+  nameContains: "",
+  notesContains: "",
+  cardsPerPage: 30,
+}
+
 export default new Vuex.Store({
   plugins: [vuexLocal.plugin],
   state: {
@@ -17,17 +29,7 @@ export default new Vuex.Store({
     address: '',
     cardCreatorDraft: {},
     cardCreatorEditCard: {},
-    galleryFilter: {
-      visible: false,
-      owner: "",
-      status: "",
-      cardType: "",
-      classes: "",
-      sortBy: "",
-      nameContains: "",
-      notesContains: "",
-      cardsPerPage: 30,
-    },
+    galleryFilter: emptyGalleryFilter,
     loading: false,
     displayLogin: false,
     lastInputEvent: {},
@@ -72,6 +74,9 @@ export default new Vuex.Store({
     },
     setGalleryFilter (state, filter) {
       state.galleryFilter = filter
+    },
+    resetGalleryFilter (state) {
+      state.galleryFilter = emptyGalleryFilter
     },
     toggleGalleryFilter (state) {
       state.galleryFilter.visible = !state.galleryFilter.visible

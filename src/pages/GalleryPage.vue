@@ -31,11 +31,8 @@
     >
       <div class="gallery__filter__item">
         <select v-model="$store.getters.getGalleryFilter.status">
-          <option
-            disabled
-            value=""
-          >
-            select status
+          <option value="">
+            any card status
           </option>
           <option>Prototype</option>
           <option>Trial</option>
@@ -44,11 +41,8 @@
       </div>
       <div class="gallery__filter__item">
         <select v-model="$store.getters.getGalleryFilter.cardType">
-          <option
-            disabled
-            value=""
-          >
-            select type
+          <option value="">
+            any card type
           </option>
           <option>Headquarter</option>
           <option>Entity</option>
@@ -59,12 +53,7 @@
       <div>
         <div class="gallery__filter__item">
           <select v-model="$store.getters.getGalleryFilter.sortBy">
-            <option
-              disabled
-              value=""
-            >
-              sort by
-            </option>
+            <option value="">default sort</option>
             <option>Name</option>
             <option>Casting Cost</option>
             <option>Id</option>
