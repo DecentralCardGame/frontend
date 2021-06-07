@@ -15,7 +15,7 @@
           :class="classStepPassed(0)"
           @click="activeStep = 0"
         >
-          Name, Type, Tags and Rarity
+          Name, Type and Tags
         </div>
         <div
           :class="classStepPassed(1)"
@@ -125,172 +125,13 @@
               </option>
             </select>
           </div>
-          <!--span class="creator-text">My <b>rarity</b> is</span>
-          <select @change="saveDraft">
-            <option>Common</option>
-            <option>Rare</option>
-            <option>Legendary</option>
-          </select-->
         </div>
         <div
           v-if="activeStep == 1"
           class="creator-input-container"
         >
-          <span
-            v-if="
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.CastingCost
-            "
-            class="creator-text"
-          >As I am quite awesome to get me rolling you need to
-            <b>invest</b>:
-          </span>
-
-          <select
-            v-if="
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.CastingCost
-            "
-            v-model="model.CastingCost"
-            @change="saveDraft"
-          >
-            <option
-              v-for="n in R.range(
-                $cardRules.children[getRulesType()].children.CastingCost.min || 0,
-                $cardRules.children[getRulesType()].children.CastingCost.max + 1
-              )"
-              :key="n"
-              :value="n"
-            >
-              {{ n }}
-            </option>
-          </select>
-
-
-          <span
-            v-if="
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.AdditionalCost
-            "
-            class="creator-text"
-          >
-            Being a special subject, I also demand for additional costs to be paid.
-          </span>
-
-          <span
-            v-if="
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.AdditionalCost &&
-                $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost
-            "
-            class="creator-text"
-          >
-            To play me you need to discard
-            
-            <select
-              v-model="model.AdditionalCost.DiscardCost.Amount"
-              @change="saveDraft"
-            >
-              <option
-                v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
-                )"
-                :key="n"
-                :value="n"
-              >
-                {{ n }}
-              </option>
-            </select>
-
-            cards from your hand.
-          </span>
-
-          <span
-            v-if="        
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.AdditionalCost &&
-                $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost
-            ">
-            I demand a sacrifice of
-
-            <select
-
-              v-model="model.AdditionalCost.SacrificeCost.Amount"
-              @change="saveDraft"
-            >
-              <option
-                v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
-                )"
-                :key="n"
-                :value="n"
-              >
-                {{ n }}
-              </option>
-            </select>
-            Entitites.
-          </span>
-
-          <span             
-            v-if="        
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.AdditionalCost &&
-                $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost
-            ">
-            I will only materialize if you send
-          
-            <select
-              v-model="model.AdditionalCost.VoidCost.Amount"
-              @change="saveDraft"
-            >
-              <option
-                v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
-                )"
-                :key="n"
-                :value="n"
-              >
-                {{ n }}
-              </option>
-            </select>
-            cards from the graveyard to the void.
-          </span>
-
-          <span class="creator-text">
-            <span
-              v-show="model.type === 'Headquarter'"
-              class="creator-text"
-            >
-              As I am quite awesome, I can use my abilities after a delay of <br>
-              <select
-                v-if="
-                  $cardRules.children[getRulesType()] &&
-                    $cardRules.children[getRulesType()].children.Delay
-                "
-                v-model="model.Delay"
-                @change="saveDraft"
-              >
-                <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.Delay.min || 0,
-                    $cardRules.children[getRulesType()].children.Delay.max + 1
-                  )"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-
-              turns.<br>
-            </span>
-
-            My classes are:
-          </span>
           <div>
+            My classes are: <br>
             <input
               v-model="model.Class.Technology"
               type="checkbox"
@@ -361,6 +202,179 @@
             </select>
             <span v-if="model.type !== 'Action'"> damage. </span>
           </div>
+
+          <span
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost
+            "
+            class="creator-text"
+          >As I am quite awesome to get me rolling you need to
+            <b>invest</b>:
+          </span>
+
+          <select
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost
+            "
+            v-model="model.CastingCost"
+            @change="saveDraft"
+          >
+            <option
+              v-for="n in R.range(
+                $cardRules.children[getRulesType()].children.CastingCost.min || 0,
+                $cardRules.children[getRulesType()].children.CastingCost.max + 1
+              )"
+              :key="n"
+              :value="n"
+            >
+              {{ n }}
+            </option>
+          </select>
+
+          
+
+          <div
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost
+            "
+          >
+            Special cost?
+
+            <input
+              v-model="isAdditionalCostVisible"
+              type="checkbox"
+              @change="toggleAdditionalCost"
+            >
+
+            To spawn me you need to 
+            <div
+              v-if="isAdditionalCostVisible"
+            >
+              <select
+                @change="setAdditionalCost($event); saveDraft();"
+              >
+                <option disabled value="">Select Special Cost</option>
+                <option
+                  v-for="n in R.keys(
+                    $cardRules.children[getRulesType()].children.AdditionalCost.children
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ printAdditionalCost(n) }}
+                </option>
+              </select>
+
+
+              <span
+                v-if="model.AdditionalCost.DiscardCost"
+                class="creator-text"
+              >
+                
+                
+                <select
+                  v-model="model.AdditionalCost.DiscardCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+
+                cards from your hand.
+              </span>
+
+              <span
+                v-if="        
+                  model.AdditionalCost.SacrificeCost
+                ">
+                
+                <select
+                  v-model="model.AdditionalCost.SacrificeCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                entitites.
+              </span>
+
+              <span             
+                v-if="
+                  model.AdditionalCost.VoidCost
+                ">
+                
+              
+                <select
+                  v-model="model.AdditionalCost.VoidCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                cards from your graveyard.
+              </span>
+            
+            </div>
+          </div>
+
+          <span class="creator-text">
+            <span
+              v-show="model.type === 'Headquarter'"
+              class="creator-text"
+            >
+              As I am quite awesome, I can use my abilities after a delay of <br>
+              <select
+                v-if="
+                  $cardRules.children[getRulesType()] &&
+                    $cardRules.children[getRulesType()].children.Delay
+                "
+                v-model="model.Delay"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range(
+                    $cardRules.children[getRulesType()].children.Delay.min || 0,
+                    $cardRules.children[getRulesType()].children.Delay.max + 1
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+
+              turns.<br>
+            </span>
+
+
+          </span>
         </div>
         <div v-if="activeStep == 2">
           <p>
@@ -548,6 +562,7 @@ export default {
     return {
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
+      isAdditionalCostVisible: false,
       activeStep: 0,
       ability: {},
       abilities: [],
@@ -604,6 +619,31 @@ export default {
     }
   },
   methods: {
+    toggleAdditionalCost() {
+      if (!this.isAdditionalCostVisible) {
+        this.model.AdditionalCost = emptyCard.AdditionalCost
+      }
+    },
+    setAdditionalCost(event) {
+      console.log(event.target.value)
+
+      this.model.AdditionalCost = {}
+      this.model.AdditionalCost[event.target.value] = {
+        Amount: 0
+      }
+    },
+    printAdditionalCost(wholeString) {
+      let countUppers = x => R.sum(R.map(
+        x => x === R.toUpper(x) ? 1 : 0,
+        R.split('', x)))
+ 
+      let printString = ''  
+      while (countUppers(printString) < 2 && printString.length < wholeString.length ) {
+        printString = R.take(printString.length + 1, wholeString)
+      }
+
+      return printString.length > 1 ? R.dropLast(1, printString) : ''
+    },
     showBuySchemeModal() {
       this.isBuySchemeModalVisible = true;
     },
@@ -856,6 +896,7 @@ export default {
       return this.creditsAvailable;
     },
     saveDraft() {
+      console.log("saving model", this.model)
       this.$store.commit(
         this.isEditCardMode()
           ? "setCardCreatorEditCardModel"

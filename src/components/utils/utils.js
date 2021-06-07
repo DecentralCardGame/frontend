@@ -1,6 +1,31 @@
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 
+
+export const emptyCard = {
+  CardName: 'Name',
+  FlavourText: '',
+  abilities: [],
+  Notes: '',
+  type: 'no type',
+  Tags: [],
+  tagDummy: '',
+  Class: {
+    Culture: false,
+    Mysticism: false,
+    Technology: false,
+    Nature: false
+  },
+  CastingCost: -1,
+  AdditionalCost: {
+  },
+  Health: 0,
+  Attack: 0,
+  Delay: 0,
+  RulesTexts: [],
+  Keywords: []
+}
+
 // Global Utility functions
 
 export function creditsFromCoins(coins) {
@@ -193,39 +218,6 @@ export function uploadImg (file, callback) {
 
 export function saveCardAsPng (element, name, scale = 5) {
   svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
-}
-
-export const emptyCard = {
-  CardName: 'Name',
-  FlavourText: '',
-  abilities: [],
-  Notes: '',
-  type: 'no type',
-  Tags: [],
-  tagDummy: '',
-  Class: {
-    Culture: false,
-    Mysticism: false,
-    Technology: false,
-    Nature: false
-  },
-  CastingCost: -1,
-  AdditionalCost: {
-    DiscardCost: {
-      Amount: -1,
-    },
-    SacrificeCost: {
-      Amount: -1,
-    },
-    VoidCost: {
-      Amount: -1,
-    },
-  },
-  Health: 0,
-  Attack: 0,
-  Delay: 0,
-  RulesTexts: [],
-  Keywords: []
 }
 
 export function icon(name) {
