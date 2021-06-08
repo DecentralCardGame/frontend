@@ -777,10 +777,6 @@ export default {
     }
   },
   created () {
-    if (this.model.Notes.startsWith('ability: ')) {
-      this.model.abilities = [{cardText: this.model.Notes.substring(9)}]
-      this.model.FlavourText = ''
-    }
   },
   methods: {
     cardmouseleave() {
@@ -863,7 +859,23 @@ export default {
       return 145 + 13*summedLength + 13*x + 5*y
     },
     getAbilityText () {
-      return this.model.RulesTexts
+      let additionalCostText = []
+
+      if (this.model.AdditionalCost) {
+        if (this.model.AdditionalCost.SacrificeCost) {
+          additionalCostText.push("Special Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
+        }
+        else if (this.model.AdditionalCost.DiscardCost) {
+          additionalCostText.push("Special Cost - Discard " + this.model.AdditionalCost.SacrificeCost.Amount + " Card.")
+        }
+        else if (this.model.AdditionalCost.VoidCost) {
+          additionalCostText.push("Special Cost - Void " + this.model.AdditionalCost.SacrificeCost.Amount + " Card.")
+        }
+        else 
+          console.error("invalid additional cost found", this.model.AdditionalCost)
+      }
+        
+      return R.concat(additionalCostText, this.model.RulesTexts)
     },
     textToSvg (text) {
       if (!text) return text
@@ -894,7 +906,20 @@ export default {
       return lines
     },
     getKeywords() {
-      return this.model.Keywords
+      let additionalCostPseudoKeyword = [[]]
+
+      if (this.model.AdditionalCost) {
+        if (this.model.AdditionalCost.SacrificeCost) {
+          additionalCostPseudoKeyword[0].push("Tribute")
+        }
+        else if (this.model.AdditionalCost.DiscardCost) {
+          additionalCostPseudoKeyword[0].push("DiscardPay")
+        }
+        else if (this.model.AdditionalCost.VoidCost) {
+          additionalCostPseudoKeyword[0].push("Dissolve")
+        }
+      }
+      return R.concat(additionalCostPseudoKeyword, this.model.Keywords)
     },
     getIcon(name) {
       return icon(R.toLower(R.split('-', name)[0]))
