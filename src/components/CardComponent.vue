@@ -908,6 +908,8 @@ export default {
     getKeywords() {
       let additionalCostPseudoKeyword = [[]]
 
+      console.log("yes", this.model)
+
       if (this.model.AdditionalCost) {
         if (this.model.AdditionalCost.SacrificeCost) {
           additionalCostPseudoKeyword[0].push("Tribute")
