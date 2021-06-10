@@ -7,6 +7,7 @@
     >
       {{ entry.pre }}
 
+      <!-- pick an int from a dropdown case -->
       <select
         v-if="entry.btn.type === 'int'"
         v-model="entry.btn.label"
@@ -21,6 +22,29 @@
         </option>
       </select>
 
+      <!-- pick an int or a variable from dropdown case -->
+      <select
+        v-if="entry.btn.type === 'intX'"
+        v-model="entry.btn.label"
+        @change="showAbilityModal(ability, entry.btn, index)"
+      >
+        <option
+          v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).children.SimpleIntValue.min || 0, R.path(entry.btn.rulesPath, $cardRules).children.SimpleIntValue.max + 1)"
+          :key="n"
+          :value="n"
+        >
+          {{ n }}
+        </option>
+        <option
+          v-for="n in R.path(entry.btn.rulesPath, $cardRules).children.IntVariable.enum"
+          :key="n"
+          :value="n"
+        >
+          {{ n }}
+        </option>
+      </select>
+
+      <!-- toggle a bool via click case -->
       <div
         v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-option--negated"
@@ -29,6 +53,7 @@
         {{ entry.btn.label }}
       </div>
 
+      <!-- default case (interfaces and rest) -->
       <div
         v-else
         class="clickable-option"
@@ -88,6 +113,7 @@ export default {
 
       // depending on type, create dialog
       if (node.type) {
+        console.log('node type', node.type)
         switch (node.type) {
           case 'array': {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
@@ -108,40 +134,68 @@ export default {
           case 'interface': {
             let options = atRules(btn.rulesPath).children
 
-            // check singleUse case
-            let prevElements = atAbility(R.dropLast(1, btn.abilityPath))
-            if (prevElements) {
-              let singleUseHappened = R.pluck('singleUse', prevElements)
-              if (!singleUseHappened.isEmpty) {
-                options = R.dissoc(singleUseHappened, options)
+            // special case intX: IntVariable + SimpleIntValue = condense in one thing, don't show dialog
+            if (R.contains("IntVariable", R.keys(options)) && R.contains("SimpleIntValue", R.keys(options))) {
+              console.log("special case")
+              thereWillBeModal = false
+
+              console.log('attaching:', btn.label, 'to', this.ability.clickedBtn.abilityPath)
+
+              let intX = {}
+                
+              // variable case
+              if( isNaN(btn.label)) {
+                intX.IntVariable = btn.label
+              }
+              // number case
+              else {
+                intX.SimpleIntValue = btn.label
+              }
+
+              console.log("intX", intX)
+
+              this.attachToAbility(this.ability.clickedBtn.abilityPath, intX)
+              
+              this.dialog = "surpressed - no modal"
+            }
+            // default case
+            else {
+
+              // check singleUse case  // TODO check if this is still relevant
+              let prevElements = atAbility(R.dropLast(1, btn.abilityPath))
+              if (prevElements) {
+                let singleUseHappened = R.pluck('singleUse', prevElements)
+                if (!singleUseHappened.isEmpty) {
+                  options = R.dissoc(singleUseHappened, options)
+                }
+              }
+              
+              // check if selection is optional // TODO check how to make this work again
+              /*
+              if (atRules(btn.rulesPath).optional) {
+                options.noSelect = {
+                  description: 'This means no condition will be checked here.',
+                  name: 'No Condition',
+                  schemaPath: [],
+                  abilityPath: [],
+                  type: 'interface',
+                  interactionText: 'no §Condition'
+                }
+              }
+              */
+
+              console.log("handle interface:", options)
+
+              this.dialog = {
+                title: atRules(btn.rulesPath).name,
+                description: atRules(btn.rulesPath).description,
+                type: atRules(btn.rulesPath).type,
+                btn: btn,
+                options: options,
+                rulesPath: btn.rulesPath,
+                abilityPath: btn.abilityPath
               }
             }
-            
-            // check if selection is optional
-            /*
-            if (atRules(btn.rulesPath).optional) {
-              options.noSelect = {
-                description: 'This means no condition will be checked here.',
-                name: 'No Condition',
-                schemaPath: [],
-                abilityPath: [],
-                type: 'interface',
-                interactionText: 'no §Condition'
-              }
-            }
-            */
-
-            let dialog = {
-              title: atRules(btn.rulesPath).name,
-              description: atRules(btn.rulesPath).description,
-              type: atRules(btn.rulesPath).type,
-              btn: btn,
-              options: options,
-              rulesPath: btn.rulesPath,
-              abilityPath: btn.abilityPath
-            }
-
-            this.dialog = dialog
             break
           }
           case 'struct': {
@@ -162,6 +216,9 @@ export default {
 
             this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
             break
+          case 'intX':
+            console.log('intX case')
+            break
           // this is a terminal case, pick one string from enum
           case 'enum': {
             this.dialog = {
@@ -171,8 +228,6 @@ export default {
               btn: btn,
               options: []
             }
-
-            console.log('yes', node)
 
             // recursively go down until only strings are left
             let traverseChildren = array => {

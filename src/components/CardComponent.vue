@@ -866,10 +866,10 @@ export default {
           additionalCostText.push("Special Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
         }
         else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostText.push("Special Cost - Discard " + this.model.AdditionalCost.SacrificeCost.Amount + " Card.")
+          additionalCostText.push("Special Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
         }
         else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostText.push("Special Cost - Void " + this.model.AdditionalCost.SacrificeCost.Amount + " Card.")
+          additionalCostText.push("Special Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
         }
         else 
           console.error("invalid additional cost found", this.model.AdditionalCost)
@@ -907,8 +907,6 @@ export default {
     },
     getKeywords() {
       let additionalCostPseudoKeyword = [[]]
-
-      console.log("yes", this.model)
 
       if (this.model.AdditionalCost) {
         if (this.model.AdditionalCost.SacrificeCost) {

@@ -199,11 +199,9 @@ export default {
         let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-        console.log('no')
         this.attachToAbility(['interaction'], this.ability.interaction)
         console.log('this.ability after updateInteraction', this.ability)
 
-        console.log('yes')
         let newEntry = {}
         newEntry[selection.index] = {}
 

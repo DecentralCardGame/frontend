@@ -57,6 +57,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       let buttonEntry = entry.slice(1)
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
+      console.log('type', type)
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
         let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
@@ -78,7 +79,12 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
         })
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = ''
-      } else {
+      }
+      else if(type === 'yes') {
+        console.log(text)
+      }
+      // this is the default case 
+      else {
         R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
         if (type === 'boolean') {
           R.last(interaction).btn.label += '?'
@@ -132,13 +138,23 @@ export function atPath(cardRules, path) {
 
 export function makeButton (cardRules, rulesPath, abilityPath, id) {
   let atRules = R.curry(atPath)(cardRules)
-  return {
+
+  let button = {
     id: id,
     label: atRules(rulesPath).name,
     type: atRules(rulesPath).type,
     abilityPath: abilityPath,
     rulesPath: rulesPath
   }
+
+  // special case: IntVariable + SimpleIntValue = condense in one thing, don't show dialog
+  if (R.contains("IntVariable", R.keys(atRules(rulesPath).children)) && R.contains("SimpleIntValue", R.keys(atRules(rulesPath).children))) {
+    console.log("special case")
+    console.log(atRules(rulesPath))
+    button.type = 'intX'
+  }
+
+  return button
 }
 
 export function climbRulesTree(cardRules, path) {
