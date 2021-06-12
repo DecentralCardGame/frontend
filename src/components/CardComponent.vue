@@ -858,7 +858,6 @@ export default {
       for (let i = 0; i < abilityIndex; i++)
         summedLength += keywords[i].length
 
-      console.log("abilityYPos", 145 + 13*summedLength , 'abilityIndex', abilityIndex, 'y', extraLines, "summedlength", summedLength)
       return 145 + 13*summedLength + 8*abilityIndex + 13*extraLines
     },
     getAbilityText () {
@@ -877,7 +876,6 @@ export default {
         else 
           console.error("invalid additional cost found", this.model.AdditionalCost)
       }
-        console.log("abilityText", R.concat(additionalCostText, this.model.RulesTexts))
       return R.concat(additionalCostText, this.model.RulesTexts)
     },
     textToSvg (text) {

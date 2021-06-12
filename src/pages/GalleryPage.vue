@@ -88,7 +88,7 @@
         >
       </div>
       <div class="gallery__filter__item">
-        <button @click="$store.getters.getGalleryFilter">
+        <button @click="resetFilters">
           Clear Filters
         </button>
       </div>
@@ -364,25 +364,16 @@ export default {
       this.$cardChain
         .voteCardTx(this.cards[this.clickedIndex].id, type)
         .then((acc) => {
-          this.creditsAvailable = creditsFromCoins(acc.coins);
-          this.$store.commit("setUserCredits", this.creditsAvailable);
+          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.$store.commit("setUserCredits", this.creditsAvailable)
         });
     },
     getOwnAddress() {
-      return this.$store.getters.getUserAddress;
+      return this.$store.getters.getUserAddress
     },
     resetFilters() {
-      this.$store.commit("setGalleryFilter", {
-        visible: false,
-        owner: "",
-        status: "",
-        cardType: "",
-        classes: "",
-        sortBy: "",
-        nameContains: "",
-        notesContains: "",
-        cardsPerPage: 30,
-      });
+      console.log('reset filters')
+      this.$store.commit("resetGalleryFilter")
 
       this.loadCardList();
     },

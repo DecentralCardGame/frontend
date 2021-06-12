@@ -2,23 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
 
+import { emptyGalleryFilter } from "@/components/utils/utils.js";
+
 Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
-
-let emptyGalleryFilter = {
-  visible: false,
-  owner: "",
-  status: "",
-  cardType: "",
-  classes: "",
-  sortBy: "",
-  nameContains: "",
-  notesContains: "",
-  cardsPerPage: 30,
-}
 
 export default new Vuex.Store({
   plugins: [vuexLocal.plugin],

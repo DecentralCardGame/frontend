@@ -552,7 +552,7 @@ import {
   emptyCard,
   uploadImg,
   creditsFromCoins,
-} from "../components/utils/utils.js";
+} from "@/components/utils/utils.js";
 import { sampleGradientImg } from "../components/utils/sampleCards.js";
 
 export default {

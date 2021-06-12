@@ -26,6 +26,18 @@ export const emptyCard = {
   Keywords: []
 }
 
+export const emptyGalleryFilter = {
+  visible: false,
+  owner: "",
+  status: "",
+  cardType: "",
+  classes: "",
+  sortBy: "",
+  nameContains: "",
+  notesContains: "",
+  cardsPerPage: 30,
+}
+
 // Global Utility functions
 
 export function creditsFromCoins(coins) {
