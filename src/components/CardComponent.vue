@@ -430,25 +430,6 @@
       </g>
     </g>
     <g :opacity="opaque">
-      <g
-        v-for="(ability, y) in getKeywords()"
-        :key="y"
-      >
-        <g
-          v-for="(icon, x) in ability"
-          :key="x"
-        >
-          <image
-            id="Ebene_2-36"
-            :key="icon"
-            :x="15"
-            :y="getAbilityYPos(x,y)"
-            width="10"
-            height="10"
-            :href="getIcon(icon)"
-          />
-        </g>
-      </g>
       <!-- Title of the card -->
       <text
         id="text2410"
@@ -544,6 +525,26 @@
         >{{ getTags() }}
         </tspan>
       </text>
+      <!-- Ability Icons -->
+      <g
+        v-for="(ability, abilityIndex) in getKeywords()"
+        :key="abilityIndex"
+      >
+        <g
+          v-for="(icon, iconIndex) in ability"
+          :key="iconIndex"
+        >
+          <image
+            id="Ebene_2-36"
+            :key="icon"
+            :x="15"
+            :y="getAbilityYPos(abilityIndex, iconIndex)"
+            width="10"
+            height="10"
+            :href="getIcon(icon)"
+          />
+        </g>
+      </g>
       <!-- Human readable text of the abilities -->
       <g
         v-for="(ability, index) in getAbilityText()"
@@ -553,6 +554,7 @@
           v-for="(text, jndex) in textToSvg(ability)"
           id="text2410-9"
           :key="'abilityText'+jndex"
+          x="33"
           fill="#000"
           letter-spacing="0"
           style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
@@ -565,7 +567,7 @@
           <tspan
             id="tspan2430"
             x="33"
-            :y="getAbilityYPos(0,index) - 3*index + jndex*fontSpacing(getAbilityText())"
+            :y="getAbilityYPos(index, jndex) - index*1"
             fill-opacity="1"
             stroke-width=".1"
             font-family="Roboto"
@@ -849,14 +851,15 @@ export default {
         return 0
       }
     },
-    getAbilityYPos(x, y) {
+    getAbilityYPos(abilityIndex, extraLines) {
       let keywords = this.getKeywords()
 
       let summedLength = 0
-      for (let i = 0; i < y; i++)
+      for (let i = 0; i < abilityIndex; i++)
         summedLength += keywords[i].length
 
-      return 145 + 13*summedLength + 13*x + 5*y
+      console.log("abilityYPos", 145 + 13*summedLength , 'abilityIndex', abilityIndex, 'y', extraLines, "summedlength", summedLength)
+      return 145 + 13*summedLength + 8*abilityIndex + 13*extraLines
     },
     getAbilityText () {
       let additionalCostText = []
@@ -874,7 +877,7 @@ export default {
         else 
           console.error("invalid additional cost found", this.model.AdditionalCost)
       }
-        
+        console.log("abilityText", R.concat(additionalCostText, this.model.RulesTexts))
       return R.concat(additionalCostText, this.model.RulesTexts)
     },
     textToSvg (text) {
@@ -919,7 +922,10 @@ export default {
           additionalCostPseudoKeyword[0].push("Dissolve")
         }
       }
-      return R.concat(additionalCostPseudoKeyword, this.model.Keywords)
+
+      return additionalCostPseudoKeyword[0].length > 0 ? 
+        R.concat(additionalCostPseudoKeyword, this.model.Keywords) : 
+        this.model.Keywords
     },
     getIcon(name) {
       return icon(R.toLower(R.split('-', name)[0]))
