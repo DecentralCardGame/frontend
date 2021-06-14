@@ -47,12 +47,13 @@
                 type="button"
                 @click="selectedString = option.name; addAbility();"
               >
-                <img
+                <img 
+                  class="button--img"
                   :src="getIcon(option)"
-                  style="max-width:40px"
-                ><br>
+                >
+                <br>
                 <b>{{ option.name }}</b><br>
-                 - <span v-if="option.description">  {{ option.description }} </span>
+                - <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
               <input
@@ -70,9 +71,10 @@
                 @click="option.selected = true; addAbility();"
               >
                 <img
+                  class="button--img"
                   :src="getIcon(option)"
-                  style="max-width:40px"
-                ><br>
+                >
+                <br>
                 <div
                   class="title"
                 > 
@@ -329,5 +331,10 @@ export default {
 
 .info{
   font-family: $font-family;
+}
+
+
+.button--img{
+  max-width: 40px;
 }
 </style>

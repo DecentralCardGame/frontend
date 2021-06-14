@@ -166,6 +166,10 @@
     transition-timing-function: ease-out;
   }
 
+  &:hover img{
+    -webkit-filter: invert(100%);
+  }
+
   &:hover, &:focus, &:active {
     color: $white;
   }
