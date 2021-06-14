@@ -7,9 +7,24 @@
     >
       {{ entry.pre }}
 
+      <!-- pick one entry of an enum via dropdown -->
+      <select
+        v-if="entry.btn.type === 'enum'"
+        v-model="entry.btn.label"
+        @change="showAbilityModal(ability, entry.btn, index)"
+      >
+        <option
+          v-for="item in R.path(entry.btn.rulesPath, $cardRules).enum"
+          :key="item"
+          :value="item"
+        >
+          {{ item }}
+        </option>
+      </select>
+
       <!-- pick an int from a dropdown case -->
       <select
-        v-if="entry.btn.type === 'int'"
+        v-else-if="entry.btn.type === 'int'"
         v-model="entry.btn.label"
         @change="showAbilityModal(ability, entry.btn, index)"
       >
@@ -24,7 +39,7 @@
 
       <!-- pick an int or a variable from dropdown case -->
       <select
-        v-if="entry.btn.type === 'intX'"
+        v-else-if="entry.btn.type === 'intX'"
         v-model="entry.btn.label"
         @change="showAbilityModal(ability, entry.btn, index)"
       >
@@ -216,11 +231,13 @@ export default {
 
             this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
             break
-          case 'intX':
-            console.log('intX case')
-            break
           // this is a terminal case, pick one string from enum
           case 'enum': {
+            // In this case there is no modal to be displayed just update the interaction
+            thereWillBeModal = false
+            this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
+
+            /* in the past a dialog was created here:
             this.dialog = {
               title: atRules(btn.rulesPath).name,
               description: 'pick one of the following:',
@@ -250,6 +267,8 @@ export default {
                 description: ''
               })
             }
+            */
+
             break
           }
           // this is a terminal case, enter a string or pick one if enums are present
