@@ -131,7 +131,7 @@
           class="creator-input-container"
         >
           <div>
-            My <b>classes</b> are: <br>
+            My <b>Classes</b> are: <br>
           </div>
           <div>
             <input
@@ -158,53 +158,8 @@
               @change="saveDraft"
             >
             <label for="checkbox"> Mysticism </label> <br>
-
-            <span v-if="model.type === 'Entity'">
-              I have an <b>Attack</b> of
-            </span>
-            <select
-              v-if="
-                model.type === 'Entity' && $cardRules.children[getRulesType()]
-              "
-              v-model="model.Attack"
-              @change="saveDraft"
-            >
-              <option
-                v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.Attack.min || 0,
-                  $cardRules.children[getRulesType()].children.Attack.max + 1
-                )"
-                :key="n"
-                :value="n"
-              >
-                {{ n }}
-              </option>
-            </select>
-            <span v-if="model.type === 'Entity'"> and </span>
-            <span v-if="model.type !== 'Action'">
-              I sadly <b>die</b> after someone suckerpunchs me for
-            </span>
-            <select
-              v-if="
-                model.type !== 'Action' && $cardRules.children[getRulesType()]
-              "
-              v-model="model.Health"
-              @change="saveDraft"
-            >
-              <option
-                v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.Health.min || 0,
-                  $cardRules.children[getRulesType()].children.Health.max + 1
-                )"
-                :key="n"
-                :value="n"
-              >
-                {{ n }}
-              </option>
-            </select>
-            <span v-if="model.type !== 'Action'"> damage. </span>
           </div>
-
+          <!-- cost area -->
           <div>
             <span
               v-if="
@@ -216,12 +171,14 @@
               <b>pay</b>:
             </span>
           </div>
-          <div>
+          <div 
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost
+            "
+          >
             <select
-              v-if="
-                $cardRules.children[getRulesType()] &&
-                  $cardRules.children[getRulesType()].children.CastingCost
-              "
+
               v-model="model.CastingCost"
               @change="saveDraft"
             >
@@ -253,112 +210,119 @@
             Special cost:
           </div>    
 
-          <div
-            v-if="isAdditionalCostVisible"
-          >
-            To spawn me you need to 
-            <select
-              @change="setAdditionalCost($event); saveDraft();"
+          <div>
+            <div
+              v-if="isAdditionalCostVisible"
             >
-              <option disabled 
-                      selected="true" 
-                      value=""
-              >
-                Select Special Cost
-              </option>
-              <option
-                v-for="n in R.keys(
-                  $cardRules.children[getRulesType()].children.AdditionalCost.children
-                )"
-                :key="n"
-                :value="n"
-              >
-                {{ printAdditionalCost(n) }}
-              </option>
-            </select>
-
-            <span
-              v-if="model.AdditionalCost.DiscardCost"
-              class="creator-text"
-            >
-              
+              To spawn me you need to 
               <select
-                v-model="model.AdditionalCost.DiscardCost.Amount"
-                @change="saveDraft"
+                @change="setAdditionalCost($event); saveDraft();"
               >
+                <option disabled 
+                        selected="true" 
+                        value=""
+                >
+                  Select Special Cost
+                </option>
                 <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
-                    $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
+                  v-for="n in R.keys(
+                    $cardRules.children[getRulesType()].children.AdditionalCost.children
                   )"
                   :key="n"
                   :value="n"
                 >
-                  {{ n }}
+                  {{ printAdditionalCost(n) }}
                 </option>
               </select>
 
-              cards from your hand.
-            </span>
-
-            <span
-              v-if="        
-                model.AdditionalCost.SacrificeCost
-              ">
-              
-              <select
-                v-model="model.AdditionalCost.SacrificeCost.Amount"
-                @change="saveDraft"
+              <span
+                v-if="model.AdditionalCost.DiscardCost"
+                class="creator-text"
               >
-                <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
-                    $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
-                  )"
-                  :key="n"
-                  :value="n"
+                
+                <select
+                  v-model="model.AdditionalCost.DiscardCost.Amount"
+                  @change="saveDraft"
                 >
-                  {{ n }}
-                </option>
-              </select>
-              Entitites.
-            </span>
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
 
-            <span             
-              v-if="
-                model.AdditionalCost.VoidCost
-              ">
-              
-              <select
-                v-model="model.AdditionalCost.VoidCost.Amount"
-                @change="saveDraft"
-              >
-                <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
-                    $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
-                  )"
-                  :key="n"
-                  :value="n"
+                cards from your hand.
+              </span>
+
+              <span
+                v-if="        
+                  model.AdditionalCost.SacrificeCost
+                ">
+                
+                <select
+                  v-model="model.AdditionalCost.SacrificeCost.Amount"
+                  @change="saveDraft"
                 >
-                  {{ n }}
-                </option>
-              </select>
-              cards from your graveyard.
-            </span>
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                Entitites.
+              </span>
+
+              <span             
+                v-if="
+                  model.AdditionalCost.VoidCost
+                ">
+                
+                <select
+                  v-model="model.AdditionalCost.VoidCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                cards from your graveyard.
+              </span>
+            </div>
           </div>
 
-          <span class="creator-text">
-            <span
-              v-show="model.type === 'Headquarter'"
-              class="creator-text"
-            >
-              As I am quite awesome, I can use my abilities after a delay of <br>
+          <!-- HQ Delay -->
+          <div v-if="model.type === 'Headquarter'">
+            <span class="creator-text">
+
+              As I am quite awesome, I can use my abilities after a <b>Delay</b> of <br>
+            </span>
+          </div>
+          <div                 
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.Delay
+            "
+          >
+            <span class="creator-text">
               <select
-                v-if="
-                  $cardRules.children[getRulesType()] &&
-                    $cardRules.children[getRulesType()].children.Delay
-                "
+
                 v-model="model.Delay"
                 @change="saveDraft"
               >
@@ -376,10 +340,68 @@
 
               turns.<br>
             </span>
+          </div>
 
+          <div>
+            <!-- Attack & Health -->
+            <span v-if="model.type === 'Entity'">
+              I have an <b>Attack</b> of <br>
+              <br>
+            </span>
+            
+            <span v-if="model.type === 'Entity'"> and </span>
+            <span v-if="model.type !== 'Action'">
+              I have a <b>Defense</b> of <br>
+              <br>
+            </span>
+          </div>
 
-          </span>
+          <div>
+            <div>
+              <div                 
+                v-if="model.type === 'Entity' && $cardRules.children[getRulesType()]"
+              >
+                <select
+                  v-model="model.Attack"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.Attack.min || 0,
+                      $cardRules.children[getRulesType()].children.Attack.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                <br>
+                <br>
+              </div>
+
+              <select
+                v-if="
+                  model.type !== 'Action' && $cardRules.children[getRulesType()]
+                "
+                v-model="model.Health"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range(
+                    $cardRules.children[getRulesType()].children.Health.min || 0,
+                    $cardRules.children[getRulesType()].children.Health.max + 1
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
+        <!-- Abilities -->
         <div v-if="activeStep == 2">
           <p>
             In this step, you craft the heart of your card. Press the button to
