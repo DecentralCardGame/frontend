@@ -12,11 +12,16 @@ import furiousJackImg from './cardfiles/furiousJack.webp'
 import miniLabImg from './cardfiles/miniLab.webp'
 import evieImg from './cardfiles/evie.webp'
 import exoskeletonImg from './cardfiles/exoskeleton.webp'
-import communityCardImg from './cardfiles/communityCard.webp'
+import communityCardJpg from './cardfiles/communityCard.webp'
+import communityCardImg from './cardfiles/communityCard.jpg'
 import botCommandCenterImg from './cardfiles/botCommandCenter.webp'
 import drDollyImg from './cardfiles/drDollyCard.webp'
 import belloImg from './cardfiles/bello.webp'
 import timeDeviceImg from './cardfiles/timeDeviceCard.webp'
+
+export const cardWebps = {
+  communityCardImg: communityCardJpg,
+}
 
 export const cardJpgs = {
   daisyImg: daisyImg,

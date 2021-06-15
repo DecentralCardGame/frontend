@@ -756,6 +756,10 @@ export default {
       type: String,
       default: null
     },
+    altImageURL: {
+      type: String,
+      default: null
+    },
     nerflevel: Number,
     displayNotes: {
       type: Boolean,
