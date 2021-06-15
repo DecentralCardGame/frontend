@@ -496,6 +496,15 @@
             @change="saveDraft"
           >
         </div>
+
+        <div v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)">
+          Clear Abilities of this card 
+          <input
+            v-model="clearAbilities"
+            type="checkbox"
+          >
+        </div>
+
         <div class="creator-nav-container">
           <button
             v-if="activeStep > 0"
@@ -589,6 +598,7 @@ export default {
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
       isAdditionalCostVisible: false,
+      clearAbilities: false,
       activeStep: 0,
       ability: {},
       abilities: [],
@@ -742,6 +752,7 @@ export default {
       console.log("abilities after update", this.abilities);
     },
     resetAbilities() {
+      console.log("RESET ABILITIES")
       this.abilities = [];
     },
     getRulesType() {
@@ -813,8 +824,6 @@ export default {
         return;
       }
       if (!this.model.FlavourText[0] && !this.model.abilities) {
-        console.log("flavor:", this.model.FlavourText);
-        console.log("abilities:", this.model.abilities);
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
@@ -855,34 +864,51 @@ export default {
       let newModel = this.model;
 
       if (this.model.type !== "Action") {
+        // check if the old abilities should be restored
+        if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
+          newModel.Abilities = R.clone(this.$store.getters.getCardCreatorEditCard.Abilities)
+        }
         // this writes the relevant part of the effects in the new model
-        newModel.Abilities = R.map(
-          R.pick(
-            R.keys(
-              this.$cardRules.children.Entity.children.Abilities.children
-                .Ability.children
-            )
-          ),
-          this.abilities
-        );
+        else {
+          newModel.Abilities = R.map(
+            R.pick(
+              R.keys(
+                this.$cardRules.children.Entity.children.Abilities.children
+                  .Ability.children
+              )
+            ),
+            this.abilities
+          );
+        }
+
       } else if (this.model.type === "Action") {
+        // check if the old effects should be restored
+        if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
+          newModel.Effects = this.$store.getters.getCardCreatorEditCard.Abilities
+        }
         // this writes the relevant part of the effects in the new model
-        newModel.Effects = R.map(
-          R.pick(
-            R.keys(
-              this.$cardRules.children.Action.children.Effects.children.Effect
-                .children
-            )
-          ),
-          this.abilities
-        );
+        else {
+          newModel.Effects = R.map(
+            R.pick(
+              R.keys(
+                this.$cardRules.children.Action.children.Effects.children.Effect
+                  .children
+              )
+            ),
+            this.abilities
+          );
+        }    
       }
 
-      console.log("keywords:", R.pluck("keywords", this.abilities));
-      newModel.Keywords = R.pluck("keywords", this.abilities);
-
-      newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
-      console.log("rulesTexts:", newModel.rulesTexts);
+      // check if the old Keywords and RulesTexts should be restored
+      if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
+        newModel.Keywords = this.$store.getters.getCardCreatorEditCard.Keywords
+        newModel.RulesTexts = this.$store.getters.getCardCreatorEditCard.RulesTexts
+      }
+      else {  
+        newModel.Keywords = R.pluck("keywords", this.abilities);
+        newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      }
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
         newModel,

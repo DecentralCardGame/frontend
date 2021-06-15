@@ -873,8 +873,6 @@ export default {
         else if (this.model.AdditionalCost.VoidCost) {
           additionalCostText.push("Special Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
         }
-        else 
-          console.error("invalid additional cost found", this.model.AdditionalCost)
       }
       return R.concat(additionalCostText, this.model.RulesTexts)
     },
