@@ -820,6 +820,10 @@ export default {
       }
     },
     getNerfedCost () {
+      if (this.model.type === 'Headquarter') {
+        console.log(this.model)
+        return this.model.Delay ? this.model.Delay : '?'
+      }
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return '-'
       }
