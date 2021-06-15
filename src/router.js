@@ -19,7 +19,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/about',
       name: 'About',
       meta: { layout: "default" },
       component: AboutPage
@@ -36,7 +36,7 @@ export default new Router({
       meta: { layout: "default" },
     },
     {
-      path: '/landing',
+      path: '/',
       name: 'Landing',
       meta: { layout: "landing" },
       component: LandingPage,

@@ -26,7 +26,7 @@
       <div class="footer__content">
         <ul class="footer__menu">
           <li>
-            <router-link to="/">
+            <router-link to="/about">
               <h2>The Game</h2>
               Rules, Ideas and historical Context.
             </router-link>
