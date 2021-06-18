@@ -537,8 +537,8 @@
           <image
             id="Ebene_2-36"
             :key="icon"
-            :x="15"
-            :y="getAbilityYPos(abilityIndex, iconIndex)"
+            :x="iconIndex > 0 || ability.length == 1 ? 20 : 8"
+            :y="getAbilityYPos(abilityIndex, iconIndex > 0 ? iconIndex-1 : 0)"
             width="10"
             height="10"
             :href="getIcon(icon)"
@@ -824,8 +824,7 @@ export default {
       }
     },
     getNerfedCost () {
-      if (this.model.type === 'Headquarter') {
-        console.log(this.model)
+      if (this.model.type === 'Headquarter') {  
         return this.model.Delay ? this.model.Delay : '?'
       }
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
@@ -863,23 +862,24 @@ export default {
       let keywords = this.getKeywords()
 
       let summedLength = 0
-      for (let i = 0; i < abilityIndex; i++)
-        summedLength += keywords[i].length
+      for (let i = 0; i < abilityIndex; i++) {
+        summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
+      }
 
-      return 145 + 13*summedLength + 8*abilityIndex + 13*extraLines
+      return 145 + 13*summedLength + 8*abilityIndex + 10*extraLines
     },
     getAbilityText () {
       let additionalCostText = []
 
       if (this.model.AdditionalCost) {
         if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostText.push("Special Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
+          additionalCostText.push("Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
         }
         else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostText.push("Special Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
+          additionalCostText.push("Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
         }
         else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostText.push("Special Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
+          additionalCostText.push("Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
         }
       }
       return R.concat(additionalCostText, this.model.RulesTexts)
@@ -889,7 +889,7 @@ export default {
 
       let maxLength = 57
       if (text.length < 100)
-        maxLength = 38
+        maxLength = 35
       else if (text.length < 200)
         maxLength = 39
 
