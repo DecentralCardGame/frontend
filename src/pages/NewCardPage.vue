@@ -492,8 +492,8 @@
             :src="cropImage"
             :auto-zoom="true"
             :stencil-size="{
-              width: 1000,
-              height: 1560
+              width: 838,
+              height: 1300
             }"
             image-restriction="stencil"
             @change="changeCrop"
@@ -608,6 +608,7 @@ import {
   atPath,
   emptyCard,
   uploadImg,
+  compressImg,
   creditsFromCoins,
 } from "@/components/utils/utils.js";
 import { sampleGradientImg } from "../components/utils/sampleCards.js";
@@ -617,8 +618,6 @@ export default {
   components: { CardComponent, AbilityComponent, BuySchemeModal, AbilityModal },
   data() {
     return {
-      cropImage: sampleGradientImg,
-
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
       isAdditionalCostVisible: false,
@@ -629,6 +628,7 @@ export default {
       abilityDialog: {},
       uploadedImg: undefined,
       cardImageUrl: sampleGradientImg,
+      cropImage: sampleGradientImg,
       model: R.clone(emptyCard),
       cardID: 0,
     };
@@ -681,12 +681,9 @@ export default {
     }
   },
   methods: {
-    changeCrop({coordinates, canvas}) {
-      console.log(coordinates, canvas)
+    changeCrop({canvas}) {
       this.cardImageUrl = canvas.toDataURL()
     },
-
-
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
         this.model.AdditionalCost = emptyCard.AdditionalCost
@@ -943,10 +940,10 @@ export default {
       }
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
-        newModel,
-        this.cardImageUrl
+        newModel, 
+        compressImg(this.cardImageUrl, 250)
       );
-
+    
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
         console.log("overwriting card with id:", this.model.id);
@@ -970,7 +967,6 @@ export default {
           });
       }
     },
-
     updateCredits(acc) {
       this.creditsAvailable = creditsFromCoins(acc.coins);
       this.$store.commit("setUserCredits", this.creditsAvailable);
@@ -998,7 +994,7 @@ export default {
       return this.model.id;
     },
     inputFile(event) {
-      let file = event.target.files[0];
+      let file = event.target.files[0]
       uploadImg(file, (result) => {
         this.cropImage = result;
         this.$store.commit(

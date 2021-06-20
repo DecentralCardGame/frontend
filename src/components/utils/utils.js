@@ -208,10 +208,7 @@ export function shallowClone (obj) {
 // utility functions for uploading and downloading stuff
 
 export function uploadImg (file, callback) {
-  let resolution = {height: 1560, width: 1000}
-
-  //console.log(event)
-  //let file = event.target.files[0]
+  let resolution = {height: 1300, width: 838}
 
   const reader = new FileReader()
 
@@ -235,13 +232,37 @@ export function uploadImg (file, callback) {
       canvas.width = width
       canvas.height = height
       canvas.getContext('2d').drawImage(image, -widthAdjust, 0, width, height)
-      let dataUrl = canvas.toDataURL('image/jpeg')
+
+      let dataUrl = canvas.toDataURL('image/png')
+      
       callback(dataUrl)
     }
     image.src = readerEvent.target.result
   }
   reader.onerror = error => console.error(error)
   reader.readAsDataURL(file)
+}
+
+export function compressImg(dataURL, maxKB) {
+  var image = new Image()
+  image.src = dataURL
+
+  let canvas = document.createElement('canvas')
+  canvas.width = image.width
+  canvas.height = image.height
+  canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height)
+
+  let quality = 0.9
+  let newDataURL = canvas.toDataURL('image/jpeg', quality)
+
+  while (Math.round(newDataURL.length)/1000 > maxKB) {
+    quality -= 0.1
+    newDataURL = canvas.toDataURL('image/jpeg', quality)
+
+    if (quality <= 0)
+      return ""
+  }
+  return newDataURL
 }
 
 export function saveCardAsPng (element, name, scale = 5) {
