@@ -15,7 +15,7 @@
           :class="classStepPassed(0)"
           @click="activeStep = 0"
         >
-          Name, Type, Tags and Rarity
+          Name, Type and Tags
         </div>
         <div
           :class="classStepPassed(1)"
@@ -125,76 +125,14 @@
               </option>
             </select>
           </div>
-          <!--span class="creator-text">My <b>rarity</b> is</span>
-          <select @change="saveDraft">
-            <option>Common</option>
-            <option>Rare</option>
-            <option>Legendary</option>
-          </select-->
         </div>
         <div
           v-if="activeStep == 1"
           class="creator-input-container"
         >
-          <span
-            v-if="
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.CastingCost
-            "
-            class="creator-text"
-          >As I am quite awesome to get me rolling you need to
-            <b>invest</b>:</span>
-
-          <select
-            v-if="
-              $cardRules.children[getRulesType()] &&
-                $cardRules.children[getRulesType()].children.CastingCost
-            "
-            v-model="model.CastingCost"
-            @change="saveDraft"
-          >
-            <option
-              v-for="n in R.range(
-                $cardRules.children[getRulesType()].children.CastingCost.min || 0,
-                $cardRules.children[getRulesType()].children.CastingCost.max + 1
-              )"
-              :key="n"
-              :value="n"
-            >
-              {{ n }}
-            </option>
-          </select>
-          <span class="creator-text">
-            <span
-              v-show="model.type === 'Headquarter'"
-              class="creator-text"
-            >
-              As I am quite awesome, I can use my abilities after a delay of <br>
-              <select
-                v-if="
-                  $cardRules.children[getRulesType()] &&
-                    $cardRules.children[getRulesType()].children.Delay
-                "
-                v-model="model.Delay"
-                @change="saveDraft"
-              >
-                <option
-                  v-for="n in R.range(
-                    $cardRules.children[getRulesType()].children.Delay.min || 0,
-                    $cardRules.children[getRulesType()].children.Delay.max + 1
-                  )"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-
-              turns.<br>
-            </span>
-
-            My classes are:
-          </span>
+          <div>
+            My <b>Classes</b> are: <br>
+          </div>
           <div>
             <input
               v-model="model.Class.Technology"
@@ -220,21 +158,34 @@
               @change="saveDraft"
             >
             <label for="checkbox"> Mysticism </label> <br>
-
-            <span v-if="model.type === 'Entity'">
-              I have an <b>Attack</b> of
-            </span>
-            <select
+          </div>
+          <!-- cost area -->
+          <div>
+            <span
               v-if="
-                model.type === 'Entity' && $cardRules.children[getRulesType()]
+                $cardRules.children[getRulesType()] &&
+                  $cardRules.children[getRulesType()].children.CastingCost
               "
-              v-model="model.Attack"
+              class="creator-text"
+            >As I am quite awesome to get me rolling you need to
+              <b>pay</b>:
+            </span>
+          </div>
+          <div 
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost
+            "
+          >
+            <select
+
+              v-model="model.CastingCost"
               @change="saveDraft"
             >
               <option
                 v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.Attack.min || 0,
-                  $cardRules.children[getRulesType()].children.Attack.max + 1
+                  $cardRules.children[getRulesType()].children.CastingCost.min || 0,
+                  $cardRules.children[getRulesType()].children.CastingCost.max + 1
                 )"
                 :key="n"
                 :value="n"
@@ -242,31 +193,215 @@
                 {{ n }}
               </option>
             </select>
+            Mana
+          </div>
+
+          <div
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost
+            "
+          >
+            <input
+              v-model="isAdditionalCostVisible"
+              type="checkbox"
+              @change="toggleAdditionalCost"
+            >
+            Special cost:
+          </div>    
+
+          <div>
+            <div
+              v-if="isAdditionalCostVisible"
+            >
+              To spawn me you need to 
+              <select
+                @change="setAdditionalCost($event); saveDraft();"
+              >
+                <option disabled 
+                        selected="true" 
+                        value=""
+                >
+                  Select Special Cost
+                </option>
+                <option
+                  v-for="n in R.keys(
+                    $cardRules.children[getRulesType()].children.AdditionalCost.children
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ printAdditionalCost(n) }}
+                </option>
+              </select>
+
+              <span
+                v-if="model.AdditionalCost.DiscardCost"
+                class="creator-text"
+              >
+                
+                <select
+                  v-model="model.AdditionalCost.DiscardCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+
+                cards from your hand.
+              </span>
+
+              <span
+                v-if="        
+                  model.AdditionalCost.SacrificeCost
+                ">
+                
+                <select
+                  v-model="model.AdditionalCost.SacrificeCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                Entitites.
+              </span>
+
+              <span             
+                v-if="
+                  model.AdditionalCost.VoidCost
+                ">
+                
+                <select
+                  v-model="model.AdditionalCost.VoidCost.Amount"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                cards from your graveyard.
+              </span>
+            </div>
+          </div>
+
+          <!-- HQ Delay -->
+          <div v-if="model.type === 'Headquarter'">
+            <span class="creator-text">
+
+              As I am quite awesome, I can use my abilities after a <b>Delay</b> of <br>
+            </span>
+          </div>
+          <div                 
+            v-if="
+              $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.Delay
+            "
+          >
+            <span class="creator-text">
+              <select
+
+                v-model="model.Delay"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range(
+                    $cardRules.children[getRulesType()].children.Delay.min || 0,
+                    $cardRules.children[getRulesType()].children.Delay.max + 1
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+
+              turns.<br>
+            </span>
+          </div>
+
+          <div>
+            <!-- Attack & Health -->
+            <span v-if="model.type === 'Entity'">
+              I have an <b>Attack</b> of <br>
+              <br>
+            </span>
+            
             <span v-if="model.type === 'Entity'"> and </span>
             <span v-if="model.type !== 'Action'">
-              I sadly <b>die</b> after someone suckerpunchs me for
+              I have a <b>Defense</b> of <br>
+              <br>
             </span>
-            <select
-              v-if="
-                model.type !== 'Action' && $cardRules.children[getRulesType()]
-              "
-              v-model="model.Health"
-              @change="saveDraft"
-            >
-              <option
-                v-for="n in R.range(
-                  $cardRules.children[getRulesType()].children.Health.min || 0,
-                  $cardRules.children[getRulesType()].children.Health.max + 1
-                )"
-                :key="n"
-                :value="n"
+          </div>
+
+          <div>
+            <div>
+              <div                 
+                v-if="model.type === 'Entity' && $cardRules.children[getRulesType()]"
               >
-                {{ n }}
-              </option>
-            </select>
-            <span v-if="model.type !== 'Action'"> damage. </span>
+                <select
+                  v-model="model.Attack"
+                  @change="saveDraft"
+                >
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.Attack.min || 0,
+                      $cardRules.children[getRulesType()].children.Attack.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                <br>
+                <br>
+              </div>
+
+              <select
+                v-if="
+                  model.type !== 'Action' && $cardRules.children[getRulesType()]
+                "
+                v-model="model.Health"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range(
+                    $cardRules.children[getRulesType()].children.Health.min || 0,
+                    $cardRules.children[getRulesType()].children.Health.max + 1
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
+        <!-- Abilities -->
         <div v-if="activeStep == 2">
           <p>
             In this step, you craft the heart of your card. Press the button to
@@ -318,24 +453,24 @@
             />
           </div>
         </div>
+
+
         <div
           v-if="activeStep == 3"
           class="creator-input-container"
         >
           <span class="creator-text">
+            My <b>flavor</b> is best expressed by the following sentences:
+          </span>
+          <input
+            v-model="model.FlavourText"
+            value="Card Name"
+            @change="saveDraft"
+          >
+
+          <span class="creator-text">
             Everybody needs a <b>face</b>, so do I. Please upload an image
           </span>
-
-          <!-- TODO -->
-          <div class="text-center">
-            <img v-if="uploadedImg" :src="uploadedImg">
-            <button id="pick-avatar">Select an image</button>
-            <avatar-cropper
-              @uploaded="handleUploaded"
-              trigger="#pick-avatar"
-              upload-url="/files/upload" />
-          </div>
-
 
           <input
             id="file"
@@ -348,15 +483,23 @@
             class="button--file"
             for="file"
           >Choose a file</label>
-          <span class="creator-text">
-            My <b>flavor</b> is best expressed by the following sentences:
-          </span>
-          <input
-            v-model="model.FlavourText"
-            value="Card Name"
-            @change="saveDraft"
-          >
         </div>
+        <div
+          v-if="activeStep == 3" 
+        >
+          <cropper
+            class="cropper"
+            :src="cropImage"
+            :auto-zoom="true"
+            :stencil-size="{
+              width: 1000,
+              height: 1560
+            }"
+            image-restriction="stencil"
+            @change="changeCrop"
+          />
+        </div>
+
         <div
           v-if="activeStep == 4"
           class="creator-input-container"
@@ -373,6 +516,15 @@
             @change="saveDraft"
           >
         </div>
+
+        <div v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)">
+          Clear Abilities of this card 
+          <input
+            v-model="clearAbilities"
+            type="checkbox"
+          >
+        </div>
+
         <div class="creator-nav-container">
           <button
             v-if="activeStep > 0"
@@ -445,7 +597,8 @@
 
 <script>
 import * as R from "ramda";
-import AvatarCropper from "vue-avatar-cropper"
+
+
 import CardComponent from "../components/CardComponent";
 import BuySchemeModal from "../components/modals/BuySchemeModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
@@ -456,17 +609,20 @@ import {
   emptyCard,
   uploadImg,
   creditsFromCoins,
-} from "../components/utils/utils.js";
+} from "@/components/utils/utils.js";
 import { sampleGradientImg } from "../components/utils/sampleCards.js";
-
 
 export default {
   name: "NewCardPage",
-  components: { AvatarCropper, CardComponent, AbilityComponent, BuySchemeModal, AbilityModal },
+  components: { CardComponent, AbilityComponent, BuySchemeModal, AbilityModal },
   data() {
     return {
+      cropImage: sampleGradientImg,
+
       isAbilityModalVisible: false,
       isBuySchemeModalVisible: false,
+      isAdditionalCostVisible: false,
+      clearAbilities: false,
       activeStep: 0,
       ability: {},
       abilities: [],
@@ -495,6 +651,7 @@ export default {
 
       //if (this.model.type === "Headquarter") this.model.type = "Headquarter";
       this.cardImageUrl = this.$store.getters.getCardCreatorEditCard.image;
+      this.cropImage = this.$store.getters.getCardCreatorEditCard.image;
 
       // reset the entry we have just loaded in the store
       //this.$store.commit('setCardCreatorEditCard', {})
@@ -524,8 +681,34 @@ export default {
     }
   },
   methods: {
-    handleUploadedImg(res) {
-      this.uploadedImg = res.relative_url;
+    changeCrop({coordinates, canvas}) {
+      console.log(coordinates, canvas)
+      this.cardImageUrl = canvas.toDataURL()
+    },
+
+
+    toggleAdditionalCost() {
+      if (!this.isAdditionalCostVisible) {
+        this.model.AdditionalCost = emptyCard.AdditionalCost
+      }
+    },
+    setAdditionalCost(event) {
+      this.model.AdditionalCost = {}
+      this.model.AdditionalCost[event.target.value] = {
+        Amount: 0
+      }
+    },
+    printAdditionalCost(wholeString) {
+      let countUppers = x => R.sum(R.map(
+        x => x === R.toUpper(x) ? 1 : 0,
+        R.split('', x)))
+ 
+      let printString = ''  
+      while (countUppers(printString) < 2 && printString.length < wholeString.length ) {
+        printString = R.take(printString.length + 1, wholeString)
+      }
+
+      return printString.length > 1 ? R.dropLast(1, printString) : ''
     },
     showBuySchemeModal() {
       this.isBuySchemeModalVisible = true;
@@ -591,7 +774,6 @@ export default {
       this.isAbilityModalVisible = false;
     },
     updateAbility($event, index) {
-      console.log("update ability: ", $event);
       this.ability = $event;
       this.abilities[index] = $event;
 
@@ -602,6 +784,7 @@ export default {
       console.log("abilities after update", this.abilities);
     },
     resetAbilities() {
+      console.log("RESET ABILITIES")
       this.abilities = [];
     },
     getRulesType() {
@@ -673,8 +856,6 @@ export default {
         return;
       }
       if (!this.model.FlavourText[0] && !this.model.abilities) {
-        console.log("flavor:", this.model.FlavourText);
-        console.log("abilities:", this.model.abilities);
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
@@ -715,34 +896,51 @@ export default {
       let newModel = this.model;
 
       if (this.model.type !== "Action") {
+        // check if the old abilities should be restored
+        if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
+          newModel.Abilities = R.clone(this.$store.getters.getCardCreatorEditCard.Abilities)
+        }
         // this writes the relevant part of the effects in the new model
-        newModel.Abilities = R.map(
-          R.pick(
-            R.keys(
-              this.$cardRules.children.Entity.children.Abilities.children
-                .Ability.children
-            )
-          ),
-          this.abilities
-        );
+        else {
+          newModel.Abilities = R.map(
+            R.pick(
+              R.keys(
+                this.$cardRules.children.Entity.children.Abilities.children
+                  .Ability.children
+              )
+            ),
+            this.abilities
+          );
+        }
+
       } else if (this.model.type === "Action") {
+        // check if the old effects should be restored
+        if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
+          newModel.Effects = this.$store.getters.getCardCreatorEditCard.Abilities
+        }
         // this writes the relevant part of the effects in the new model
-        newModel.Effects = R.map(
-          R.pick(
-            R.keys(
-              this.$cardRules.children.Action.children.Effects.children.Effect
-                .children
-            )
-          ),
-          this.abilities
-        );
+        else {
+          newModel.Effects = R.map(
+            R.pick(
+              R.keys(
+                this.$cardRules.children.Action.children.Effects.children.Effect
+                  .children
+              )
+            ),
+            this.abilities
+          );
+        }    
       }
 
-      console.log("keywords:", R.pluck("keywords", this.abilities));
-      newModel.Keywords = R.pluck("keywords", this.abilities);
-
-      newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
-      console.log("rulesTexts:", newModel.rulesTexts);
+      // check if the old Keywords and RulesTexts should be restored
+      if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
+        newModel.Keywords = this.$store.getters.getCardCreatorEditCard.Keywords
+        newModel.RulesTexts = this.$store.getters.getCardCreatorEditCard.RulesTexts
+      }
+      else {  
+        newModel.Keywords = R.pluck("keywords", this.abilities);
+        newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      }
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
         newModel,
@@ -802,7 +1000,7 @@ export default {
     inputFile(event) {
       let file = event.target.files[0];
       uploadImg(file, (result) => {
-        this.cardImageUrl = result;
+        this.cropImage = result;
         this.$store.commit(
           this.isEditCardMode()
             ? "setCardCreatorEditCardModel"
@@ -827,6 +1025,17 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/styles/variables";
+
+.cropper {
+  height: 300px;
+  width: 50vw;
+  margin: 1rem;
+  border: $border-thickness solid rgba(255, 255, 255, 0.7);
+}
+
+.noWidth {
+  width: 0%
+}
 
 .creator {
   display: grid;

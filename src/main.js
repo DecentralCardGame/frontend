@@ -10,6 +10,9 @@ Object.defineProperty(Vue.prototype, 'R', { value: R });
 import cardChain from './plugins/cardChain'
 import cardRules from './plugins/cardRules'
 
+import { Cropper } from 'vue-advanced-cropper'
+import 'vue-advanced-cropper/dist/style.css';
+
 import Default from "./layouts/Default.vue"
 import Landing from "./layouts/Landing.vue"
 
@@ -74,6 +77,7 @@ let vm = new Vue({
   store,
   cardRules,
   cardChain,
+  Cropper,
   render: h => h(App)
 }).$mount('#app')
 

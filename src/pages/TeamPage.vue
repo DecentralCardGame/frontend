@@ -146,7 +146,7 @@
           Niklavs, actually the right spelling is Niklāvs Šenvalds, but the title font cannot display these crazy letters, is also known as Niko. He is a displaced gamer, 
           but has suddenly found himself developing games instead of playing them. Unlike literally everybody else on the planet earth, he has never played magic and therefore
           is at a slight disadvantage - he has never won a single game during playtesting. Still he has decided to participate in this project and works on the website as well
-          as the game client.
+          as the game client. He also helps us by stomping everyone in chess, which he plays better than anyone else even when suffering vaccination side effects.
         </p>
       </div>
     </div>
@@ -161,7 +161,8 @@
       <div>
         <h2> Harold Zellner - Game Developer </h2>
         <p>
-          He stomps out 110% of the code for the game client.
+          He stomps out 110% of the code for the game client. When he is not coding relentlessly he likes to engage in exciting discussions about any imaginable topic.
+          In his past he was a Kindergarten teacher, thus he is optimally prepared to work together with us. It also helps him a lot to write code that we can understand. 
         </p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main" id="main">
     <div class="logo-container">
       <img src="logo.svg" class="image1" alt="Loading..." width="500">
       <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
@@ -23,10 +23,10 @@ export default {
     },
     methods: {
       scrollPastMenu() {
-        const scroll = document.getElementById('scrollAnchor1').scrollHeight
+        const mainElement = document.getElementById('main').getBoundingClientRect();
         window.scrollTo({
           left: 0,
-          top: scroll + window.innerHeight,
+          top: mainElement.bottom,
           behavior: 'smooth'
         });
       }
@@ -44,7 +44,7 @@ header {
   height: 0;
 }
 .main {
-  padding: 30vh 10vh
+  padding: 25vh 10vh
 }
 .logo-container {
     position: relative;
@@ -56,7 +56,8 @@ header {
 
 .image1 {
   position: relative;
-  z-index: -1;
+  z-index: -3;
+  width: 55vw;
   max-width: 95vw;
 }
 .image2 {
@@ -129,8 +130,8 @@ header {
 .img--container {
   overflow-y: hidden !important;
   position: absolute;
-  top: -1.5rem;
-  left: 1.5rem;
+  top: -2.0rem;
+  left: 0.5rem;
   z-index: -1;
   pointer-events: none;
   display: flex;
@@ -138,10 +139,10 @@ header {
 }
 .image3 {
   transform: skewX(25deg);
-
-  margin: 2rem;
+  margin: 2.8rem;
   z-index: -1;
-
+  top: 0rem;
+  left: 1rem;
   width: 100%;
 }
 </style>

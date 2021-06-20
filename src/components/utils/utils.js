@@ -1,6 +1,43 @@
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 
+
+export const emptyCard = {
+  CardName: 'Name',
+  FlavourText: '',
+  abilities: [],
+  Notes: '',
+  type: 'no type',
+  Tags: [],
+  tagDummy: '',
+  Class: {
+    Culture: false,
+    Mysticism: false,
+    Technology: false,
+    Nature: false
+  },
+  CastingCost: -1,
+  AdditionalCost: {
+  },
+  Health: 0,
+  Attack: 0,
+  Delay: 0,
+  RulesTexts: [],
+  Keywords: []
+}
+
+export const emptyGalleryFilter = {
+  visible: false,
+  owner: "",
+  status: "",
+  cardType: "",
+  classes: "",
+  sortBy: "",
+  nameContains: "",
+  notesContains: "",
+  cardsPerPage: 30,
+}
+
 // Global Utility functions
 
 export function creditsFromCoins(coins) {
@@ -32,6 +69,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       let buttonEntry = entry.slice(1)
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
+      console.log('type', type)
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
         let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
@@ -53,7 +91,12 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
         })
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = ''
-      } else {
+      }
+      else if(type === 'yes') {
+        console.log(text)
+      }
+      // this is the default case 
+      else {
         R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
         if (type === 'boolean') {
           R.last(interaction).btn.label += '?'
@@ -107,13 +150,23 @@ export function atPath(cardRules, path) {
 
 export function makeButton (cardRules, rulesPath, abilityPath, id) {
   let atRules = R.curry(atPath)(cardRules)
-  return {
+
+  let button = {
     id: id,
     label: atRules(rulesPath).name,
     type: atRules(rulesPath).type,
     abilityPath: abilityPath,
     rulesPath: rulesPath
   }
+
+  // special case: IntVariable + SimpleIntValue = condense in one thing, don't show dialog
+  if (R.contains("IntVariable", R.keys(atRules(rulesPath).children)) && R.contains("SimpleIntValue", R.keys(atRules(rulesPath).children))) {
+    console.log("special case")
+    console.log(atRules(rulesPath))
+    button.type = 'intX'
+  }
+
+  return button
 }
 
 export function climbRulesTree(cardRules, path) {
@@ -193,28 +246,6 @@ export function uploadImg (file, callback) {
 
 export function saveCardAsPng (element, name, scale = 5) {
   svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
-}
-
-export const emptyCard = {
-  CardName: 'Name',
-  FlavourText: '',
-  abilities: [],
-  Notes: '',
-  type: 'no type',
-  Tags: [],
-  tagDummy: '',
-  Class: {
-    Culture: false,
-    Mysticism: false,
-    Technology: false,
-    Nature: false
-  },
-  CastingCost: -1,
-  Health: 0,
-  Attack: 0,
-  Delay: 0,
-  RulesTexts: [],
-  Keywords: []
 }
 
 export function icon(name) {

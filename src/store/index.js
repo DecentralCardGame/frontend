@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
 
+import { emptyGalleryFilter } from "@/components/utils/utils.js";
+
 Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({
@@ -17,6 +19,7 @@ export default new Vuex.Store({
     address: '',
     cardCreatorDraft: {},
     cardCreatorEditCard: {},
+    galleryFilter: emptyGalleryFilter,
     loading: false,
     displayLogin: false,
     lastInputEvent: {},
@@ -59,6 +62,15 @@ export default new Vuex.Store({
     setCardCreatorEditCardImg (state, img) {
       state.cardCreatorEditCard.img = img
     },
+    setGalleryFilter (state, filter) {
+      state.galleryFilter = filter
+    },
+    resetGalleryFilter (state) {
+      state.galleryFilter = emptyGalleryFilter
+    },
+    toggleGalleryFilter (state) {
+      state.galleryFilter.visible = !state.galleryFilter.visible
+    },
     setLoading (state, loading) {
       state.loading = loading
     },
@@ -99,6 +111,9 @@ export default new Vuex.Store({
     },
     getCardCreatorEditCard: state => {
       return state.cardCreatorEditCard
+    },
+    getGalleryFilter: state => {
+      return state.galleryFilter
     },
     loggedIn: state => {
       return state.jwt !== ''

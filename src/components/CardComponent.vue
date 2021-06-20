@@ -430,25 +430,6 @@
       </g>
     </g>
     <g :opacity="opaque">
-      <g
-        v-for="(ability, y) in getKeywords()"
-        :key="y"
-      >
-        <g
-          v-for="(icon, x) in ability"
-          :key="x"
-        >
-          <image
-            id="Ebene_2-36"
-            :key="icon"
-            :x="15"
-            :y="getAbilityYPos(x,y)"
-            width="10"
-            height="10"
-            :href="getIcon(icon)"
-          />
-        </g>
-      </g>
       <!-- Title of the card -->
       <text
         id="text2410"
@@ -544,6 +525,26 @@
         >{{ getTags() }}
         </tspan>
       </text>
+      <!-- Ability Icons -->
+      <g
+        v-for="(ability, abilityIndex) in getKeywords()"
+        :key="abilityIndex"
+      >
+        <g
+          v-for="(icon, iconIndex) in ability"
+          :key="iconIndex"
+        >
+          <image
+            id="Ebene_2-36"
+            :key="icon"
+            :x="iconIndex > 0 || ability.length == 1 ? 20 : 8"
+            :y="getAbilityYPos(abilityIndex, iconIndex > 0 ? iconIndex-1 : 0)"
+            width="10"
+            height="10"
+            :href="getIcon(icon)"
+          />
+        </g>
+      </g>
       <!-- Human readable text of the abilities -->
       <g
         v-for="(ability, index) in getAbilityText()"
@@ -553,6 +554,7 @@
           v-for="(text, jndex) in textToSvg(ability)"
           id="text2410-9"
           :key="'abilityText'+jndex"
+          x="33"
           fill="#000"
           letter-spacing="0"
           style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
@@ -565,7 +567,7 @@
           <tspan
             id="tspan2430"
             x="33"
-            :y="getAbilityYPos(0,index) - 3*index + jndex*fontSpacing(getAbilityText())"
+            :y="getAbilityYPos(index, jndex) - index*1"
             fill-opacity="1"
             stroke-width=".1"
             font-family="Roboto"
@@ -754,6 +756,10 @@ export default {
       type: String,
       default: null
     },
+    altImageURL: {
+      type: String,
+      default: null
+    },
     nerflevel: Number,
     displayNotes: {
       type: Boolean,
@@ -777,10 +783,6 @@ export default {
     }
   },
   created () {
-    if (this.model.Notes.startsWith('ability: ')) {
-      this.model.abilities = [{cardText: this.model.Notes.substring(9)}]
-      this.model.FlavourText = ''
-    }
   },
   methods: {
     cardmouseleave() {
@@ -822,6 +824,9 @@ export default {
       }
     },
     getNerfedCost () {
+      if (this.model.type === 'Headquarter') {  
+        return this.model.Delay ? this.model.Delay : '?'
+      }
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return '-'
       }
@@ -853,24 +858,38 @@ export default {
         return 0
       }
     },
-    getAbilityYPos(x, y) {
+    getAbilityYPos(abilityIndex, extraLines) {
       let keywords = this.getKeywords()
 
       let summedLength = 0
-      for (let i = 0; i < y; i++)
-        summedLength += keywords[i].length
+      for (let i = 0; i < abilityIndex; i++) {
+        summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
+      }
 
-      return 145 + 13*summedLength + 13*x + 5*y
+      return 145 + 13*summedLength + 8*abilityIndex + 10*extraLines
     },
     getAbilityText () {
-      return this.model.RulesTexts
+      let additionalCostText = []
+
+      if (this.model.AdditionalCost) {
+        if (this.model.AdditionalCost.SacrificeCost) {
+          additionalCostText.push("Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
+        }
+        else if (this.model.AdditionalCost.DiscardCost) {
+          additionalCostText.push("Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
+        }
+        else if (this.model.AdditionalCost.VoidCost) {
+          additionalCostText.push("Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
+        }
+      }
+      return R.concat(additionalCostText, this.model.RulesTexts)
     },
     textToSvg (text) {
       if (!text) return text
 
       let maxLength = 57
       if (text.length < 100)
-        maxLength = 38
+        maxLength = 35
       else if (text.length < 200)
         maxLength = 39
 
@@ -894,7 +913,23 @@ export default {
       return lines
     },
     getKeywords() {
-      return this.model.Keywords
+      let additionalCostPseudoKeyword = [[]]
+
+      if (this.model.AdditionalCost) {
+        if (this.model.AdditionalCost.SacrificeCost) {
+          additionalCostPseudoKeyword[0].push("Tribute")
+        }
+        else if (this.model.AdditionalCost.DiscardCost) {
+          additionalCostPseudoKeyword[0].push("DiscardPay")
+        }
+        else if (this.model.AdditionalCost.VoidCost) {
+          additionalCostPseudoKeyword[0].push("Dissolve")
+        }
+      }
+
+      return additionalCostPseudoKeyword[0].length > 0 ? 
+        R.concat(additionalCostPseudoKeyword, this.model.Keywords) : 
+        this.model.Keywords
     },
     getIcon(name) {
       return icon(R.toLower(R.split('-', name)[0]))
