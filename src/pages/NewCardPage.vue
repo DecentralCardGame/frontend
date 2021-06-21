@@ -674,7 +674,7 @@ export default {
       // this is automated fix for old (and wrong) data in store
       if (this.isEditCardMode()) {
         console.log("automated fix!");
-        this.$store.commit("setCardCreatorDraft", {});
+        this.$store.commit("setCardCreatorDraft", R.clone(emptyCard));
       }
     }
     if (
@@ -1005,8 +1005,8 @@ export default {
         this.cropImage = result;
         this.$store.commit(
           this.isEditCardMode()
-            ? "setCardCreatorEditCardModel"
-            : "setCardCreatorDraftModel",
+            ? "setCardCreatorEditCardImg"
+            : "setCardCreatorDraftImg",
           JSON.stringify(result)
         );
       });
