@@ -663,7 +663,13 @@ export default {
     ) {
       this.model = JSON.parse(this.$store.getters.getCardCreatorDraft.model);
 
-      console.log("loaded model:", this.model);
+      console.log("loaded model:", this.model, R.is(Object, this.model));
+
+      // if the loaded model is not an object, something is 100% wrong
+      if (!R.is(Object, this.model)) {
+        console.error("loaded model is not an object, overwriting with empty model")
+        this.model = R.clone(emptyCard)
+      }
 
       // this is automated fix for old (and wrong) data in store
       if (this.isEditCardMode()) {
