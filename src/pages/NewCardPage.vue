@@ -1027,6 +1027,9 @@ export default {
   width: 50vw;
   margin: 1rem;
   border: $border-thickness solid rgba(255, 255, 255, 0.7);
+  @media (max-width: 480px) {
+    width: 80vw;
+  }
 }
 
 .noWidth {
