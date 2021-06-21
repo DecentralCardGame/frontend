@@ -636,7 +636,13 @@ export default {
   computed: {},
   mounted() {
     if (!this.$cardRules) {
-      this.$router.push("/");
+      // here comes a synchronous wait and it is intended
+      const end = Date.now() + 1000
+      while (Date.now() < end && !this.$cardRules) continue
+
+      // if waiting did not help, route back to / (without $cardRules this page makes no sense)
+      if (!this.$cardRules)
+        this.$router.push("/");
     } else {
       console.log("cardRules:", this.$cardRules);
     }
@@ -1003,11 +1009,12 @@ export default {
       let file = event.target.files[0]
       uploadImg(file, (result) => {
         this.cropImage = result;
+        console.log("SAVING NEW IMG")
         this.$store.commit(
           this.isEditCardMode()
             ? "setCardCreatorEditCardImg"
             : "setCardCreatorDraftImg",
-          JSON.stringify(result)
+          compressImg(result, 500)
         );
       });
     },
