@@ -581,7 +581,7 @@
           id="card"
           :active-step="activeStep"
           :display-notes="true"
-          :image-u-r-l="cardImageUrl"
+          :image-u-r-l="cardImage"
           :model="model"
         />
       </div>
@@ -627,10 +627,10 @@ export default {
       abilities: [],
       abilityDialog: {},
       uploadedImg: undefined,
-      cardImageUrl: sampleGradientImg,
+      cardImage: sampleGradientImg,
       cropImage: sampleGradientImg,
       model: R.clone(emptyCard),
-      cardID: 0,
+      cardID: 0,    // this being 0 is important to recognize edit card mode
     };
   },
   computed: {},
@@ -648,19 +648,16 @@ export default {
     }
 
     // here a card is loaded if edit card via gallery was selected
-    if (!R.isEmpty(this.$store.getters.getCardCreatorEditCard)) {
+    if (this.isEditCardMode()) {
       console.log("edit card: ", this.$store.getters.getCardCreatorEditCard);
       this.model = R.merge(
         this.model,
         this.$store.getters.getCardCreatorEditCard
       );
 
-      //if (this.model.type === "Headquarter") this.model.type = "Headquarter";
-      this.cardImageUrl = this.$store.getters.getCardCreatorEditCard.image;
-      this.cropImage = this.$store.getters.getCardCreatorEditCard.image;
-
-      // reset the entry we have just loaded in the store
-      //this.$store.commit('setCardCreatorEditCard', {})
+      this.cardImage = this.$store.getters.getCardCreatorEditCard.img;
+      this.cropImage = this.$store.getters.getCardCreatorEditCard.img;
+      console.log("loaded card", this.$store.getters.getCardCreatorEditCard)
       return;
     }
     if (
@@ -687,14 +684,14 @@ export default {
       !R.isEmpty(this.$store.getters.getCardCreatorDraft) &&
       this.$store.getters.getCardCreatorDraft.img
     ) {
-      this.cardImageUrl = JSON.parse(
+      this.cardImage = JSON.parse(
         this.$store.getters.getCardCreatorDraft.img
       );
     }
   },
   methods: {
     changeCrop({canvas}) {
-      this.cardImageUrl = canvas.toDataURL()
+      this.cardImage = canvas.toDataURL()
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
@@ -850,7 +847,7 @@ export default {
         this.notifyFail("Wrong Type", "please pick a type");
         return;
       }
-      if (!this.cardImageUrl) {
+      if (!this.cardImage) {
         this.notifyFail(
           "No Image",
           "Card has no image, please upload an image."
@@ -953,7 +950,7 @@ export default {
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
         newModel, 
-        compressImg(this.cardImageUrl, 250)
+        compressImg(this.cardImage, 250)
       );
     
       // check if a card is edited with pre-existing ID
@@ -995,27 +992,31 @@ export default {
     resetEditCard() {
       this.$store.commit("setCardCreatorEditCard", {});
       this.model = R.clone(emptyCard);
-      this.cardImageUrl = sampleGradientImg;
+      this.cardImage = sampleGradientImg;
+      this.cropImage = sampleGradientImg;
     },
     resetCardDraft() {
       this.$store.commit("setCardCreatorDraft", {});
       this.model = R.clone(emptyCard);
-      this.cardImageUrl = sampleGradientImg;
+      this.cardImage = sampleGradientImg;
+      this.cropImage = sampleGradientImg;
     },
     isEditCardMode() {
-      return this.model.id;
+      return !R.isEmpty(this.$store.getters.getCardCreatorEditCard);
     },
     inputFile(event) {
       let file = event.target.files[0]
       uploadImg(file, (result) => {
+        console.log("result", result)
         this.cropImage = result;
-        console.log("SAVING NEW IMG")
+        console.log("SAVING NEW IMG", compressImg(result, 500).length)
         this.$store.commit(
           this.isEditCardMode()
             ? "setCardCreatorEditCardImg"
             : "setCardCreatorDraftImg",
           compressImg(result, 500)
         );
+        console.log("saved img", this.$store.getters.getCardCreatorEditCard.img.length)
       });
     },
     classStepPassed(n) {

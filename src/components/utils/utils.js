@@ -254,10 +254,12 @@ export function compressImg(dataURL, maxKB) {
 
   let quality = 0.9
   let newDataURL = canvas.toDataURL('image/jpeg', quality)
+  console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
 
   while (Math.round(newDataURL.length)/1000 > maxKB) {
     quality -= 0.1
     newDataURL = canvas.toDataURL('image/jpeg', quality)
+    console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
 
     if (quality <= 0)
       return ""
