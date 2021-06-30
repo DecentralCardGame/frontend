@@ -30,7 +30,7 @@
           <slot name="body">
             <!-- {{ dialog.description }} -->
             <div
-              v-for="(option, index) in dialog.options"
+              v-for="(option, index) in filterClasses(dialog.options)"
               :key="index"
             >
               <input
@@ -126,7 +126,8 @@ export default {
     dialog: {},
     options: [],
     ability: {},
-    abilities: []
+    abilities: [],
+    cardmodel: {},
   },
   data() {
     return {
@@ -139,6 +140,34 @@ export default {
   methods: {
     close() {
       this.$emit('close')
+    },
+    filterClasses (options) {
+      console.log("cardmodel", this.cardmodel)
+      console.log("options", options)
+      if (!this.cardmodel.Class || !options) {
+        return []
+      }
+      let firstLetterToUpper = string => {
+        return string[0].toUpperCase() + string.substring(1)
+      }
+      let cardHasClass = x => {
+        return this.cardmodel.Class[firstLetterToUpper(R.toLower(x))]
+      }
+      let abilityIsValid = x => {
+        if (!x.classes) {
+          return true
+        }
+        else {
+          let ok = R.any(y => cardHasClass(y), x.classes)
+          return ok
+        } 
+      }
+      let valids = R.filter(ability => 
+        abilityIsValid(ability),
+      options)
+
+      console.log("valid keywords:", valids)
+      return valids
     },
     getIcon(option) {
       return icon(R.toLower(R.split('-', option.name.replace(/ /g,''))[0]))

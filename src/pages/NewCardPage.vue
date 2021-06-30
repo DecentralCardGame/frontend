@@ -417,6 +417,7 @@
                 :abilities="abilities"
                 :ability="ability"
                 :dialog="abilityDialog"
+                :model="model"
                 @update:ability="updateAbility($event, index)"
               />
             </div>
@@ -448,6 +449,7 @@
               :abilities="abilities"
               :ability="ability"
               :dialog="abilityDialog"
+              :cardmodel="model"
               @close="closeAbilityModal"
               @update:ability="ability = $event"
             />
@@ -630,7 +632,7 @@ export default {
       cardImage: sampleGradientImg,
       cropImage: sampleGradientImg,
       model: R.clone(emptyCard),
-      cardID: 0,    // this being 0 is important to recognize edit card mode
+      cardID: 0,
     };
   },
   computed: {},

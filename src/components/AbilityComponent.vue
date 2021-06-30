@@ -90,6 +90,7 @@
         v-if="isAbilityModalVisible"
         :dialog="dialog"
         :ability="ability"
+        :cardmodel="model"
         @update:ability="updateAbility($event)"
         @close="closeAbilityModal"
       />
@@ -107,7 +108,8 @@ export default {
   components: {AbilityModal},
   props: {
     dialog: {},
-    ability: {}
+    ability: {},
+    model: {},
   },
   data () {
     return {
