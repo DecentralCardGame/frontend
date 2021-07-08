@@ -26,7 +26,7 @@ export default {
         const mainElement = document.getElementById('main').getBoundingClientRect();
         window.scrollTo({
           left: 0,
-          top: mainElement.bottom,
+          top: mainElement.bottom + document.documentElement.scrollTop,
           behavior: 'smooth'
         });
       }
