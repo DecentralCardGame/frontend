@@ -1,27 +1,22 @@
 import * as R from "ramda"
 import { emptyCard } from "@/components/utils/utils.js"
-import daisyImg from "./cardfiles/daisy.webp"
-import richardImg from "./cardfiles/richard.webp"
-import hurrwigImg from './cardfiles/hurrwig.webp'
-import assoultHorseImg from './cardfiles/assoultHorse.webp'
-import ulrichImg from './cardfiles/ulrich.webp'
-import steamImg from './cardfiles/steam.webp'
-import automatedBotProductionImg from './cardfiles/automatedBotProduction.webp'
-import wynnImg from './cardfiles/wynn.webp'
-import furiousJackImg from './cardfiles/furiousJack.webp'
-import miniLabImg from './cardfiles/miniLab.webp'
-import evieImg from './cardfiles/evie.webp'
-import exoskeletonImg from './cardfiles/exoskeleton.webp'
-import communityCardJpg from './cardfiles/communityCard.webp'
+import daisyImg from "./cardfiles/daisy.jpg"
+import richardImg from "./cardfiles/richard.jpg"
+import hurrwigImg from './cardfiles/hurrwig.jpg'
+import assoultHorseImg from './cardfiles/assoultHorse.jpg'
+import ulrichImg from './cardfiles/ulrich.jpg'
+import steamImg from './cardfiles/steam.jpg'
+import automatedBotProductionImg from './cardfiles/automatedBotProduction.jpg'
+import wynnImg from './cardfiles/wynn.jpg'
+import furiousJackImg from './cardfiles/furiousJack.jpg'
+import miniLabImg from './cardfiles/miniLab.jpg'
+import evieImg from './cardfiles/evie.jpg'
+import exoskeletonImg from './cardfiles/exoskeleton.jpg'
 import communityCardImg from './cardfiles/communityCard.jpg'
-import botCommandCenterImg from './cardfiles/botCommandCenter.webp'
-import drDollyImg from './cardfiles/drDollyCard.webp'
-import belloImg from './cardfiles/bello.webp'
-import timeDeviceImg from './cardfiles/timeDeviceCard.webp'
-
-export const cardWebps = {
-  communityCardImg: communityCardJpg,
-}
+import botCommandCenterImg from './cardfiles/botCommandCenter.jpg'
+import drDollyImg from './cardfiles/drDollyCard.jpg'
+import belloImg from './cardfiles/bello.jpg'
+import timeDeviceImg from './cardfiles/timeDeviceCard.jpg'
 
 export const cardJpgs = {
   daisyImg: daisyImg,
