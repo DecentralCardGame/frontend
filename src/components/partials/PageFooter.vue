@@ -84,14 +84,34 @@
           <ul class="footer__menu">
             <li>
               <a href="https://discord.gg/ZKKbhUs">
-                <h2>Discord <img src="../../assets/icon/discord.webp" style="display:inline; max-height:33px;transform:translateY(5px);"></h2>
+                <h2>Discord 
+                  <picture>
+                    <source type="image/webp" srcset="../../assets/icon/discord.webp">
+                    <source type="image/png" srcset="../../assets/icon/discord.png">
+                    <img 
+                      src="../../assets/icon/discord.png"
+                      style="display:inline; max-height:33px;transform:translateY(5px);"
+                      alt="Image description"
+                    >
+                  </picture>
+                </h2>
                 Get in touch. Not physical, thooo.
               </a>
             </li>
 
             <li>
               <a href="https://github.com/DecentralCardGame">
-                <h2>Github <img src="../../assets/icon/github.webp" style="display:inline; max-height:33px;"></h2> 
+                <h2>Github 
+                  <picture>
+                    <source type="image/webp" srcset="../../assets/icon/github.webp">
+                    <source type="image/png" srcset="../../assets/icon/github.png" >
+                    <img 
+                      src="../../assets/icon/github.png"
+                      style="display:inline; max-height:33px;"
+                      alt="Image description"
+                    >
+                  </picture>
+                </h2> 
                 Checkout our codebase.
               </a>
             </li> 
