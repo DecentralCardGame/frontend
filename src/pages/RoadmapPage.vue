@@ -1,11 +1,11 @@
 <template>
   <div class="article-temp width-temp">
     <div class="hero">
-      <h1>Welcome to Crowd Control</h1>
+      <h1>1. The Beginning</h1>
       <p class="text--big">
-        Crowd Control is a trading card game, which gives you full ownership of your cards AND gives
-        the community full ownership of the game. This means we are creating this together. Any player can design their
-        own trading cards. Any player may participate in the process of balancing the game by voting on cards.
+        Develop the game rules and mechanics 
+        Find out how a community owned trading card game can potentially work
+        Set up technology stack: Cosmos Blockchain + Unity Gameclient
       </p>
       <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
