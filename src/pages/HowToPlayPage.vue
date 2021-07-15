@@ -421,7 +421,7 @@
           <div>
             <picture>
               <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/jpg" srcset="../assets/arrows/arrow_up.png">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow"
@@ -469,7 +469,7 @@
             </div>
             <picture>
               <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/jpg" srcset="../assets/arrows/arrow_up.png">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -493,7 +493,7 @@
             </div>
             <picture>
               <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/jpg" srcset="../assets/arrows/arrow_up.png">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -517,7 +517,7 @@
             </div>
             <picture>
               <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/jpg" srcset="../assets/arrows/arrow_up.png">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -541,7 +541,7 @@
             </div>
             <picture>
               <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/jpg" srcset="../assets/arrows/arrow_up.png">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -565,7 +565,7 @@
             </div>
             <picture>
               <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/jpg" srcset="../assets/arrows/arrow_up.png">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
