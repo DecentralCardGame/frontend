@@ -30,7 +30,7 @@
           <slot name="body">
             <!-- {{ dialog.description }} -->
             <div
-              v-for="(option, index) in dialog.options"
+              v-for="(option, index) in filterClasses(dialog.options)"
               :key="index"
             >
               <input
@@ -47,12 +47,13 @@
                 type="button"
                 @click="selectedString = option.name; addAbility();"
               >
-                <img
+                <img 
+                  class="button--img"
                   :src="getIcon(option)"
-                  style="max-width:40px"
-                ><br>
+                >
+                <br>
                 <b>{{ option.name }}</b><br>
-                 - <span v-if="option.description">  {{ option.description }} </span>
+                - <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
               <input
@@ -70,9 +71,10 @@
                 @click="option.selected = true; addAbility();"
               >
                 <img
+                  class="button--img"
                   :src="getIcon(option)"
-                  style="max-width:40px"
-                ><br>
+                >
+                <br>
                 <div
                   class="title"
                 > 
@@ -124,7 +126,8 @@ export default {
     dialog: {},
     options: [],
     ability: {},
-    abilities: []
+    abilities: [],
+    cardmodel: {},
   },
   data() {
     return {
@@ -137,6 +140,34 @@ export default {
   methods: {
     close() {
       this.$emit('close')
+    },
+    filterClasses (options) {
+      console.log("cardmodel", this.cardmodel)
+      console.log("options", options)
+      if (!this.cardmodel.Class || !options) {
+        return []
+      }
+      let firstLetterToUpper = string => {
+        return string[0].toUpperCase() + string.substring(1)
+      }
+      let cardHasClass = x => {
+        return this.cardmodel.Class[firstLetterToUpper(R.toLower(x))]
+      }
+      let abilityIsValid = x => {
+        if (!x.classes) {
+          return true
+        }
+        else {
+          let ok = R.any(y => cardHasClass(y), x.classes)
+          return ok
+        } 
+      }
+      let valids = R.filter(ability => 
+        abilityIsValid(ability),
+      options)
+
+      console.log("valid keywords:", valids)
+      return valids
     },
     getIcon(option) {
       return icon(R.toLower(R.split('-', option.name.replace(/ /g,''))[0]))
@@ -199,11 +230,9 @@ export default {
         let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-        console.log('no')
         this.attachToAbility(['interaction'], this.ability.interaction)
         console.log('this.ability after updateInteraction', this.ability)
 
-        console.log('yes')
         let newEntry = {}
         newEntry[selection.index] = {}
 
@@ -221,7 +250,7 @@ export default {
         this.dialog.preventClose = true
         this.dialog.title = objAtSelection.name
         this.dialog.type = objAtSelection.type
-        this.dialog.options = R.map(x => ({name: x}), objAtSelection.children)
+        this.dialog.options = R.map(x => ({name: x}), objAtSelection.enum)
         this.dialog.btn.rulesPath = pathAtSelection
         this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath)
       } else {
@@ -331,5 +360,10 @@ export default {
 
 .info{
   font-family: $font-family;
+}
+
+
+.button--img{
+  max-width: 40px;
 }
 </style>

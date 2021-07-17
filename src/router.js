@@ -6,6 +6,7 @@ import Router from 'vue-router'
 const GalleryPage = () => import('@/pages/GalleryPage')
 const NewCardPage = () => import('@/pages/NewCardPage')
 const AboutPage = () => import('@/pages/AboutPage')
+const RoadmapPage = () => import('@/pages/RoadmapPage')
 const LandingPage = () => import('@/pages/LandingPage')
 const ImprintPage = () => import('@/pages/ImprintPage')
 const TeamPage = () => import('@/pages/TeamPage')
@@ -19,10 +20,16 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/about',
       name: 'About',
       meta: { layout: "default" },
       component: AboutPage
+    },
+    {
+      path: '/roadmap',
+      name: 'Roadmap',
+      meta: { layout: "default" },
+      component: RoadmapPage
     },
     {
       path: '/gallery',
@@ -36,7 +43,7 @@ export default new Router({
       meta: { layout: "default" },
     },
     {
-      path: '/landing',
+      path: '/',
       name: 'Landing',
       meta: { layout: "landing" },
       component: LandingPage,

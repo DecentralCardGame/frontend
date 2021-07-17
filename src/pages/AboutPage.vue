@@ -170,7 +170,7 @@
 
 import CardComponent from "../components/CardComponent";
 import {
-  cardJpgs,
+  cardJpgs, cardWebps,
   communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData
 } from "../components/utils/sampleCards.js";
 
@@ -180,6 +180,7 @@ export default {
   data() {
     return {
       cardJpgs:cardJpgs,
+      cardWebps: cardWebps,
       communityCardData:communityCardData , botCommandCenterData:botCommandCenterData, belloData:belloData, timeDeviceData:timeDeviceData, drDollyData:drDollyData
     };
   },

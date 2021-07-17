@@ -3,7 +3,7 @@
     <nav class="nav">
       <div class="nav__content">
         <router-link
-          to="/"
+          to="/gallery"
           class="nav__logo"
         >
           <img
@@ -45,7 +45,7 @@
         </div>
         <ul :class="showMenuClass">
           <li>
-            <router-link to="/">
+            <router-link to="/about">
               The Game
             </router-link>
           </li>

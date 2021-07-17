@@ -2,10 +2,14 @@
   <div class="article-temp">
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/patrick.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/patrick.webp">
+          <source type="image/jpg" srcset="../assets/team/patrick.jpg">
+          <img 
+            src="../assets/team/patrick.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2>Patrick Wieth - Blockchain, Game Design and Development </h2>
@@ -29,10 +33,14 @@
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/marius.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/marius.webp">
+          <source type="image/jpg" srcset="../assets/team/marius.jpg">
+          <img 
+            src="../assets/team/marius.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Marius Faust - Game Design and Development </h2>
@@ -56,10 +64,14 @@
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/anna.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/anna.webp">
+          <source type="image/jpg" srcset="../assets/team/anna.jpg">
+          <img 
+            src="../assets/team/anna.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Anna Zhu - Writer and Illustration </h2>
@@ -77,10 +89,14 @@
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/jannik.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/jannik.webp">
+          <source type="image/jpg" srcset="../assets/team/jannik.jpg">
+          <img 
+            src="../assets/team/jannik.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Jannik Zettl - Game Designer </h2>
@@ -97,10 +113,14 @@
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/stefi.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/stefi.webp">
+          <source type="image/jpg" srcset="../assets/team/stefi.jpg">
+          <img 
+            src="../assets/team/stefi.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Stefi Rescheleit - Illustration </h2>
@@ -116,10 +136,14 @@
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/noah.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/noah.webp">
+          <source type="image/jpg" srcset="../assets/team/noah.jpg">
+          <img 
+            src="../assets/team/noah.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Noah Faust - Game Designer </h2>
@@ -135,10 +159,14 @@
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/niko.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/niko.webp">
+          <source type="image/jpg" srcset="../assets/team/niko.jpg">
+          <img 
+            src="../assets/team/niko.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Niklavs Senvalds - Game Developer </h2>
@@ -146,22 +174,49 @@
           Niklavs, actually the right spelling is Niklāvs Šenvalds, but the title font cannot display these crazy letters, is also known as Niko. He is a displaced gamer, 
           but has suddenly found himself developing games instead of playing them. Unlike literally everybody else on the planet earth, he has never played magic and therefore
           is at a slight disadvantage - he has never won a single game during playtesting. Still he has decided to participate in this project and works on the website as well
-          as the game client.
+          as the game client. He also helps us by stomping everyone in chess, which he plays better than anyone else even when suffering vaccination side effects.
         </p>
       </div>
     </div>
 
     <div class="team-entry">
       <div class="image--round">
-        <img
-          src="../assets/team/harry.webp"
-          class="rounded"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/team/harry.webp">
+          <source type="image/jpg" srcset="../assets/team/harry.jpg">
+          <img 
+            src="../assets/team/harry.webp"
+            class="rounded"
+          >
+        </picture>
       </div>
       <div>
         <h2> Harold Zellner - Game Developer </h2>
         <p>
-          He stomps out 110% of the code for the game client.
+          He stomps out 110% of the code for the game client. When he is not coding relentlessly he likes to engage in exciting discussions about any imaginable topic.
+          In his past he was a Kindergarten teacher, thus he is optimally prepared to work together with us. It also helps him a lot to write code that we can understand. 
+        </p>
+      </div>
+    </div>
+
+    <div class="team-entry">
+      <div class="image--round">
+        <picture>
+          <source type="image/webp" srcset="../assets/team/kosta.webp">
+          <source type="image/jpg" srcset="../assets/team/kosta.jpg">
+          <img 
+            src="../assets/team/kosta.webp"
+            class="rounded"
+          >
+        </picture>
+      </div>
+      <div>
+        <h2> Kosta aka Aerozopher - Design & Illustration </h2>
+        <p>
+          Enthusiastic about blockchain technology and new visionary systems he has decided to join us with a bunch of useful skills and a sharp eye. On one hand he is helping
+          with design matters all over the place, on the other hand he is joining as illustrator for the first decks. Namely, he is also the creator of Aynbath, where he is 
+          already creating a darker collection of mystical journeys and an intricate world.
+          und Aynbath verlinken zu https://aynbath.com/stories wär cool
         </p>
       </div>
     </div>

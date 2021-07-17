@@ -4,7 +4,17 @@
       id="Discordlink"
       href="https://discord.gg/ZKKbhUs"
     >
-      Discuss the latest News or simply join our growing Community <img src="../../assets/icon/discord.webp" style="display:inline; max-height:20px;transform:translateY(4px);"> <b>Discord</b>. We would love to hear your voice.
+      Discuss the latest News or simply join our growing Community
+      <picture>
+        <source type="image/webp" srcset="../../assets/icon/discord.webp">
+        <source type="image/png" srcset="../../assets/icon/discord.png">
+        <img 
+          src="../../assets/icon/discord.png"
+          style="display:inline; max-height:20px;transform:translateY(4px);"
+          alt="Image description"
+        >
+      </picture>
+      <b>Discord</b>. We would love to hear your voice.
     </a>
     <router-link
       v-if="$store.getters.loggedIn"

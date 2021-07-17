@@ -23,38 +23,58 @@
     <div>
       <div>
         <!-- energy icon -->
-        <img
-          src="../assets/symbols/energy-class.webp"
-          class="class-symbol"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/symbols/energy-class.webp">
+          <source type="image/jpg" srcset="../assets/symbols/energy-class.png">
+          <img 
+            src="../assets/symbols/energy-class.webp"
+            class="class-symbol"
+          >
+        </picture>
       </div>
       <div>
         <!-- food icon -->
-        <img
-          src="../assets/symbols/food-class.webp"
-          class="class-symbol"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/symbols/food-class.webp">
+          <source type="image/jpg" srcset="../assets/symbols/food-class.png">
+          <img 
+            src="../assets/symbols/food-class.webp"
+            class="class-symbol"
+          >
+        </picture>
       </div>
       <div>
         <!-- iron icon -->
-        <img
-          src="../assets/symbols/iron-class.webp"
-          class="class-symbol"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/symbols/iron-class.webp">
+          <source type="image/jpg" srcset="../assets/symbols/iron-class.png">
+          <img 
+            src="../assets/symbols/iron-class.webp"
+            class="class-symbol"
+          >
+        </picture>
       </div>
       <div>
         <!-- mana icon -->
-        <img
-          src="../assets/symbols/mana-class.webp"
-          class="class-symbol"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/symbols/mana-class.webp">
+          <source type="image/jpg" srcset="../assets/symbols/mana-class.png">
+          <img 
+            src="../assets/symbols/mana-class.webp"
+            class="class-symbol"
+          >
+        </picture>
       </div>
       <div>
         <!-- Nature icon -->
-        <img
-          src="../assets/symbols/lumber-class.webp"
-          class="class-symbol"
-        >
+        <picture>
+          <source type="image/webp" srcset="../assets/symbols/lumber-class.webp">
+          <source type="image/jpg" srcset="../assets/symbols/lumber-class.png">
+          <img 
+            src="../assets/symbols/lumber-class.webp"
+            class="class-symbol"
+          >
+        </picture>
       </div>
     </div>
     <div>
@@ -69,7 +89,14 @@
       <br>
       <br>
       
-      <img src="../components/utils/cardfiles/HQ_Dolly.webp">
+      <picture>
+        <source type="image/webp" srcset="../components/utils/cardfiles/HQ_Dolly.webp">
+        <source type="image/jpg" srcset="../components/utils/cardfiles/HQ_Dolly.png">
+        <img 
+          src="../components/utils/cardfiles/HQ_Dolly.webp"
+          class="mockcard"
+        >
+      </picture>
       <h2>Your Headquaters</h2>
       Your Headquarters shows you which Mana you can use, they are displayed on the top right of your card (
       <span class="marked-text">1</span>
@@ -90,7 +117,14 @@
       <br>
       <br>
       
-      <img src="../components/utils/cardfiles/Dr.Dolly.webp">
+      <picture>
+        <source type="image/webp" srcset="../components/utils/cardfiles/Dr.Dolly.webp">
+        <source type="image/jpg" srcset="../components/utils/cardfiles/Dr.Dolly.png">
+        <img 
+          src="../components/utils/cardfiles/Dr.Dolly.webp"
+          class="mockcard"
+        >
+      </picture>
       <h2>Entities (Creatures)</h2>
       Entities fight for you on the battleground. The number on the top left tells you how much Mana you need to put them there (
       <span class="marked-text">1</span>
@@ -185,9 +219,7 @@
       <h2>Combat</h2>
       The entities fight against each other as described above, all "unblocked" attackers can attack a Place or the HQ. All effects that are triggered in combat are collected as usual, but are not processed until the next turn. A very typical example is "On death - draw a card". The card can only be drawn in the next turn, which is not a big deal, because you can't play it until the next turn anyway.
       example of a round sequence
-      <!--vvv 
-      Made by Niko. 
-      vvv-->
+
       <h2>4. Fight planning stage</h2>
       <p>
         The cards are now assigned in either attack or defense mode. All cards are placed on the field simultaneously.
@@ -387,10 +419,14 @@
             />
           </div>
           <div>
-            <img
-              class="image_arrow"
-              src="../assets/arrows/arrow_up.webp"
-            >
+            <picture>
+              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <img 
+                src="../assets/arrows/arrow_up.webp"
+                class="image_arrow"
+              >
+            </picture>
           </div>
           <div @click="highlight(ulrichData, cardJpgs.ulrichImg)">
             <CardComponent
@@ -431,10 +467,14 @@
                 :image-u-r-l="cardJpgs.daisyImg"
               />
             </div>
-            <img
-              class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.webp"
-            >
+            <picture>
+              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <img 
+                src="../assets/arrows/arrow_up.webp"
+                class="image_arrow rot90"
+              >
+            </picture>
             <div @click="highlight(richardData, cardJpgs.richardImg)">
               <CardComponent
                 class="card"
@@ -451,10 +491,14 @@
                 :image-u-r-l="cardJpgs.daisyImg"
               />
             </div>
-            <img
-              class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.webp"
-            >
+            <picture>
+              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <img 
+                src="../assets/arrows/arrow_up.webp"
+                class="image_arrow rot90"
+              >
+            </picture>
             <div @click="highlight(richardData, cardJpgs.richardImg)">
               <CardComponent
                 class="card"
@@ -471,10 +515,14 @@
                 :image-u-r-l="cardJpgs.daisyImg"
               />
             </div>
-            <img
-              class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.webp"
-            >
+            <picture>
+              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <img 
+                src="../assets/arrows/arrow_up.webp"
+                class="image_arrow rot90"
+              >
+            </picture>
             <div @click="highlight(hurrwigData, cardJpgs.hurrwigImg)">
               <CardComponent
                 class="card"
@@ -491,10 +539,14 @@
                 :image-u-r-l="cardJpgs.daisyImg"
               />
             </div>
-            <img
-              class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.webp"
-            >
+            <picture>
+              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <img 
+                src="../assets/arrows/arrow_up.webp"
+                class="image_arrow rot90"
+              >
+            </picture>
             <div @click="highlight(AutomatedBotProductionBotData, cardJpgs.automatedBotProductionImg)">
               <CardComponent
                 class="card"
@@ -511,10 +563,14 @@
                 :image-u-r-l="cardJpgs.daisyImg"
               />
             </div>
-            <img
-              class="image_arrow rot90"
-              src="../assets/arrows/arrow_up.webp"
-            >
+            <picture>
+              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
+              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <img 
+                src="../assets/arrows/arrow_up.webp"
+                class="image_arrow rot90"
+              >
+            </picture>
             <div @click="highlight(assoultHorseData, cardJpgs.assoultHorseImg)">
               <CardComponent
                 class="card"

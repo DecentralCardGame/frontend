@@ -98,11 +98,13 @@ export default {
           Keywords: R.map(JSON.stringify, webModel.Keywords),
           RulesTexts: webModel.RulesTexts
         }
-        console.log('parsed into:', cardContent)
-
         // in the following part we check things that are only required for specific card types
         if (webModel.type !== "Headquarter") {
           cardContent.CastingCost = webModel.CastingCost
+          console.log("additionalcost empty?", R.isEmpty(webModel.AdditionalCost))
+          if (!R.isEmpty(webModel.AdditionalCost)) {
+            cardContent.AdditionalCost = webModel.AdditionalCost
+          } 
         }
         if (webModel.type !== "Action") {
           cardContent.Health = webModel.Health
@@ -117,6 +119,7 @@ export default {
         else if (webModel.type === "Headquarter") {
           cardContent.Delay = webModel.Delay
         }
+        console.log('parsed into:', cardContent)
         return {
           content: {
             [webModel.type]: cardContent
