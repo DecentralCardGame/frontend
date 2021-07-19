@@ -36,6 +36,12 @@ export const emptyGalleryFilter = {
   nameContains: "",
   notesContains: "",
   cardsPerPage: 30,
+  classesVisible: false,
+  classORLogic: false,
+  mysticism: false,
+  nature: false,
+  technology: false,
+  culture: false,
 }
 
 // Global Utility functions
