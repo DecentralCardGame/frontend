@@ -53,7 +53,9 @@
       <div>
         <div class="gallery__filter__item">
           <select v-model="$store.getters.getGalleryFilter.sortBy">
-            <option value="">default sort</option>
+            <option value="">
+              default sort
+            </option>
             <option>Name</option>
             <option>Casting Cost</option>
             <option>Id</option>
@@ -81,6 +83,54 @@
           @click="$store.getters.getGalleryFilter.owner = getOwnAddress()"
         >
       </div>
+
+      <div class="gallery__filter__item">
+        <div class="no--wrap">
+          <input
+            v-model="$store.getters.getGalleryFilter.classesVisible"
+            type="checkbox"
+            @input="$store.getters.getGalleryFilter.classesVisible = !$store.getters.getGalleryFilter.classesVisible "
+          >Filter Classes <br>
+        </div>
+
+        <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          class="clickable-option"
+          @click="$store.getters.getGalleryFilter.classORLogic = !$store.getters.getGalleryFilter.classORLogic"
+        >
+          <br><br>
+          {{ $store.getters.getGalleryFilter.classORLogic? "Any: " : "All: " }}
+        </span>
+        <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.mysticism }"
+          @click="$store.getters.getGalleryFilter.mysticism = !$store.getters.getGalleryFilter.mysticism"
+        >
+          Mysticism
+        </span>
+        <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.technology }"
+          @click="$store.getters.getGalleryFilter.technology = !$store.getters.getGalleryFilter.technology"
+        >
+          Technology
+        </span>
+        <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.nature }"
+          @click="$store.getters.getGalleryFilter.nature = !$store.getters.getGalleryFilter.nature"
+        >
+          Nature
+        </span>
+        <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.culture }"
+          @click="$store.getters.getGalleryFilter.culture = !$store.getters.getGalleryFilter.culture"
+        >
+          Culture
+        </span>
+      </div>
+
       <div class="gallery__filter__item">
         <input
           placeholder="cards per page"
@@ -183,28 +233,23 @@ export default {
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
   watch: {
-    '$store.state.lastInputEvent': function() {
-      let event = this.$store.state.lastInputEvent
+    "$store.state.lastInputEvent": function () {
+      let event = this.$store.state.lastInputEvent;
 
       if (event.which == 5) {
-        this.leavePageLock = true
-        this.nextPage()
+        this.leavePageLock = true;
+        this.nextPage();
+      } else if (event.which == 4) {
+        this.leavePageLock = true;
+        this.prevPage();
+      } else {
+        this.leavePageLock = false;
       }
-      else if (event.which == 4) {
-        
-        this.leavePageLock = true
-        this.prevPage()
-      }
-      else {
-        this.leavePageLock = false
-      }
-    }
+    },
   },
   beforeRouteLeave(to, from, next) {
-    if (this.leavePageLock)
-      next(false)
-    else
-      next()
+    if (this.leavePageLock) next(false);
+    else next();
   },
   mounted() {
     this.loadCardList();
@@ -212,22 +257,6 @@ export default {
   },
 
   methods: {
-    /*
-    handleAuxInput(event) {
-      if (event.which == 5) {
-        this.nextPage()
-        this.leavePageLock = true
-      }
-      if (event.which == 4) {
-        this.prevPage()
-        this.leavePageLock = true
-      }
-      else {
-        this.leavePageLock = false
-      }
-      console.log(event)
-      this.$router.replace('gallery')
-    },*/
     loadVotableCards() {
       this.$cardChain
         .getVotableCards(this.$store.getters.getUserAddress)
@@ -241,13 +270,19 @@ export default {
         });
     },
     loadCardList() {
+      let classes =
+        (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
+        (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
+        (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
+        (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
+        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "");
       return this.$cardChain
         .getCardList(
           this.$store.getters.getGalleryFilter.owner,
           this.$store.getters.getGalleryFilter.status,
           this.$store.getters.getGalleryFilter.cardType,
-          this.$store.getters.getGalleryFilter.classes,
-          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, ''),
+          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
+          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, ""),
           this.$store.getters.getGalleryFilter.nameContains,
           this.$store.getters.getGalleryFilter.notesContains
         )
@@ -275,7 +310,7 @@ export default {
           card.id = cardId;
           if (card.Content) {
             let candidate = this.$cardChain.cardObjectToWebModel(card);
-            //if (this.applyFilters(candidate)) 
+            //if (this.applyFilters(candidate))
             this.cards.push(candidate);
           } else if (!card.Owner) {
             console.error("card without content and owner: ", res);
@@ -288,36 +323,43 @@ export default {
         });
     },
     fillPage() {
-      if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
+      if (
+        this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >=
+        this.cardList.length
+      )
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
-      Promise.all(R.times(this.getNextCard, this.$store.getters.getGalleryFilter.cardsPerPage)).then(
-        () => {
-          if (this.$store.getters.getGalleryFilter.sortBy === "Name") {
-            this.cards.sort((x, y) =>
-              x.CardName.toUpperCase() < y.CardName.toUpperCase() ? 1 : -1
-            );
-          } else if (this.$store.getters.getGalleryFilter.sortBy === "Casting Cost") {
-            this.cards.sort(
-              (x, y) =>
-                (y.CastingCost ? y.CastingCost + y.nerflevel : 0) -
-                (x.CastingCost ? x.CastingCost + x.nerflevel : 0)
-            );
-            console.log("cards after sort", this.cards);
-          } else if (this.$store.getters.getGalleryFilter.sortBy === "Id") {
-            this.cards.sort((x, y) => y.id - x.id);
-          }
+      Promise.all(
+        R.times(
+          this.getNextCard,
+          this.$store.getters.getGalleryFilter.cardsPerPage
+        )
+      ).then(() => {
+        if (this.$store.getters.getGalleryFilter.sortBy === "Name") {
+          this.cards.sort((x, y) =>
+            x.CardName.toUpperCase() < y.CardName.toUpperCase() ? 1 : -1
+          );
+        } else if (
+          this.$store.getters.getGalleryFilter.sortBy === "Casting Cost"
+        ) {
+          this.cards.sort(
+            (x, y) =>
+              (y.CastingCost ? y.CastingCost + y.nerflevel : 0) -
+              (x.CastingCost ? x.CastingCost + x.nerflevel : 0)
+          );
+          console.log("cards after sort", this.cards);
+        } else if (this.$store.getters.getGalleryFilter.sortBy === "Id") {
+          this.cards.sort((x, y) => y.id - x.id);
         }
-      );
+      });
       console.log("all cards:", this.cards);
     },
     nextPage() {
-      if (!this.browsingForward)
-        return
-      
+      if (!this.browsingForward) return;
+
       this.pageId += this.$store.getters.getGalleryFilter.cardsPerPage;
       this.currentId = 0;
       this.cards = [];
@@ -325,8 +367,7 @@ export default {
       window.scrollTo(0, 0);
     },
     prevPage() {
-      if (!this.browsingBackward)
-        return
+      if (!this.browsingBackward) return;
 
       this.pageId -= this.$store.getters.getGalleryFilter.cardsPerPage;
       this.currentId = 0;
@@ -364,21 +405,21 @@ export default {
       this.$cardChain
         .voteCardTx(this.cards[this.clickedIndex].id, type)
         .then((acc) => {
-          this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit("setUserCredits", this.creditsAvailable)
+          this.creditsAvailable = creditsFromCoins(acc.coins);
+          this.$store.commit("setUserCredits", this.creditsAvailable);
         });
     },
     getOwnAddress() {
-      return this.$store.getters.getUserAddress
+      return this.$store.getters.getUserAddress;
     },
     resetFilters() {
-      console.log('reset filters')
-      this.$store.commit("resetGalleryFilter")
+      console.log("reset filters");
+      this.$store.commit("resetGalleryFilter");
 
       this.loadCardList();
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -412,11 +453,29 @@ export default {
 }
 
 .gallery__filter__item {
-  width: 20%
+  width: 20%;
+}
+
+.no--wrap {
+  display: inline;
+  float: left;
+  white-space: nowrap;
+}
+
+.clickable-option {
+  display: inline;
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.negated {
+  text-decoration: line-through;
+  font-weight: normal;
 }
 
 .cardContainer {
-  max-width: 500px;          
+  max-width: 500px;
   width: "20%";
 }
 
