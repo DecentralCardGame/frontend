@@ -96,6 +96,7 @@
             </router-link>
           </div>
         </div>
+        
         <h2>5. The Crowd is in Control</h2>
         <p class="text--big">
           Game client is taken to the next level (with possible ICO funds)

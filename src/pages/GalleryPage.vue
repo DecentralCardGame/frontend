@@ -195,6 +195,7 @@
         :is-owner="isOwner"
         @close="closeGalleryModal"
         @download="downloadPng"
+        @cardview="cardview"
         @edit="edit"
         @voteOP="vote('overpowered')"
         @voteUP="vote('underpowered')"
@@ -395,10 +396,13 @@ export default {
       );
       this.$router.push("newCard");
     },
+    cardview() {
+      this.$router.push('cardminter/' + this.cards[this.clickedIndex].id)
+    },
     downloadPng() {
       saveCardAsPng(
         document.getElementById("card" + this.clickedIndex),
-        this.cards[this.clickedIndex].name
+        this.cards[this.clickedIndex].CardName
       );
     },
     vote(type) {

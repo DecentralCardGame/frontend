@@ -31,11 +31,18 @@
             aria-label="Close modal"
             class="choice-grid__button"
             type="button"
+            @click="cardview(); close();"
+          >
+            Advanced Card Info
+          </button>
+          <button
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
             @click="download(); close();"
           >
             Download PNG
           </button>
-
           <button
             v-if="isOwner"
             aria-label="Close modal"
@@ -47,7 +54,6 @@
           </button>
 
           <button
-            v-if="canVote"
             aria-label="Close modal"
             class="choice-grid__button"
             type="button"
@@ -114,6 +120,9 @@ export default {
     },
     download() {
       this.$emit('download')
+    },
+    cardview() {
+      this.$emit('cardview')
     },
     edit() {
       this.$emit('edit')

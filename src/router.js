@@ -14,6 +14,7 @@ const HowToPlayPage = () => import('@/pages/HowToPlayPage')
 const VotingPage = () => import('@/pages/VotingPage')
 const AccountPage = () => import('@/pages/AccountPage')
 const CardMinter = () => import('@/pages/CardMinterPage')
+const CardView = () => import('@/pages/CardViewPage')
 
 Vue.use(Router)
 
@@ -82,6 +83,16 @@ export default new Router({
       path: '/cardminter/:id',
       name: 'CardMint',
       component: CardMinter
+    },
+    {
+      path: '/cardview',
+      name: 'CardView',
+      component: CardView
+    },
+    {
+      path: '/cardview/:id',
+      name: 'CardView',
+      component: CardView
     }
   ],
 
