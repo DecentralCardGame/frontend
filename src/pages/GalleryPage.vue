@@ -399,7 +399,7 @@ export default {
       this.$router.push("newCard");
     },
     cardview() {
-      this.$router.push('cardminter/' + this.cards[this.clickedIndex].id)
+      this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
     },
     downloadPng() {
       saveCardAsPng(
