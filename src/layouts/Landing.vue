@@ -32,12 +32,6 @@ export default {
   name: 'CrowdControlApp',
   components: { PageMenu, PageLogoHeader, PageFooter },
   methods: {
-    handleAnyInput(event) {
-      this.$store.commit(
-        "setLastInputEvent",
-        event
-      );
-    }
   }
 }
 </script>

@@ -238,13 +238,15 @@ export default {
       let event = this.$store.state.lastInputEvent;
 
       if (event.which == 5) {
-        this.leavePageLock = true;
-        this.nextPage();
+        this.leavePageLock = true
+        this.nextPage()
       } else if (event.which == 4) {
-        this.leavePageLock = true;
-        this.prevPage();
+        this.leavePageLock = true
+        this.prevPage()
+      } else if (event.which == 13) {
+        this.loadCardList()
       } else {
-        this.leavePageLock = false;
+        this.leavePageLock = false
       }
     },
   },
