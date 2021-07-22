@@ -209,7 +209,7 @@
 <script>
 import * as R from "ramda";
 import GalleryModal from "../components/modals/GalleryModal.vue";
-import CardComponent from "@/components/CardComponent";
+import CardComponent from "@/components/elements/CardComponent";
 import { saveCardAsPng, creditsFromCoins } from "../components/utils/utils.js";
 
 export default {

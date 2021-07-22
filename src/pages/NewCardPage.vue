@@ -601,10 +601,10 @@
 import * as R from "ramda";
 
 
-import CardComponent from "../components/CardComponent";
+import CardComponent from "../components/elements/CardComponent";
 import BuySchemeModal from "../components/modals/BuySchemeModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
-import AbilityComponent from "../components/AbilityComponent.vue";
+import AbilityComponent from "../components/elements/AbilityComponent.vue";
 
 import {
   atPath,

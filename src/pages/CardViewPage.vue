@@ -39,7 +39,7 @@
 <script>
 //import * as R from 'ramda'
 import { saveCardAsPng } from "../components/utils/utils.js";
-import CardComponent from '@/components/CardComponent'
+import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
 
 export default {

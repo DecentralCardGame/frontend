@@ -53,7 +53,7 @@
 
 <script>
 import * as R from 'ramda'
-import CardComponent from '../components/CardComponent'
+import CardComponent from '../components/elements/CardComponent'
 import { creditsFromCoins } from '../components/utils/utils.js'
 
 export default {

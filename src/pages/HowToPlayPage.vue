@@ -903,7 +903,7 @@
 </template>
 
 <script>
-import CardComponent from "../components/CardComponent";
+import CardComponent from "@/components/elements/CardComponent";
 
 import {
   cardJpgs,

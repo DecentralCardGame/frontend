@@ -168,7 +168,7 @@
 
 <script>
 
-import CardComponent from "../components/CardComponent";
+import CardComponent from "@/components/elements/CardComponent";
 import {
   cardJpgs, cardWebps,
   communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData

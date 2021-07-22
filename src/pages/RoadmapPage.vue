@@ -85,47 +85,53 @@
       </div>
     </div>
 
-    <div class="dual--column--flex--wrap reverse-column">
-      <div class="dual--column--text">
-        <div class="button--container">
-          <div class=link--button>
-            <router-link to="/gallery" style="text-decoration: none; color: inherit;">
-              <p class=text--button>
-                Go to Gallery >
-              </p>
-            </router-link>
-          </div>
+    <div>
+      <div class="qbox--container">
+        <div class=qbox>
+          <p class=qbox--text>
+            Q3 2022
+          </p>
         </div>
-        
+      </div>
+
+      <div class="dual--column--text">
         <h2>5. The Crowd is in Control</h2>
-        <p class="text--big">
-          Game client is taken to the next level (with possible ICO funds)
-        </p>
-        <p class="text--big">
-          Automated / user created tournament system
-        </p>
-        <p class="text--big">
-          Continuous release of new sets via set election
-        </p>
-        <p class="text--big">
-          It's on you: Participate via card creation, governance votes and playing. Give us your feedback!
-        </p>
+        <div>
+          <p class="diamond">
+            <!-- -->
+          </p>
+          <p class="text--big">
+            Game client is taken to the next level (with possible ICO funds)
+          </p>
+        </div>
+        <div> 
+          <BulletPoint />
+          <p class="text--big">
+            Automated / user created tournament system
+          </p>
+          <p class="text--big">
+            Continuous release of new sets via set election
+          </p>
+          <p class="text--big">
+            It's on you: Participate via card creation, governance votes and playing. Give us your feedback!
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-import CardComponent from "../components/CardComponent";
+import BulletPoint from '@/components/elements/BulletPoint'
+import CardComponent from "../components/elements/CardComponent";
 import {
   cardJpgs, cardWebps,
   communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData
 } from "../components/utils/sampleCards.js";
 
 export default {
-  name: "AboutPage",
-  components: { CardComponent },
+  name: "RoadmapPage",
+  components: { CardComponent, BulletPoint },
   data() {
     return {
       cardJpgs:cardJpgs,
@@ -140,33 +146,51 @@ export default {
 <style scoped lang="scss">
 @import "../assets/styles/variables";
 
-.hero {
-  margin: 10rem 0;
+.qbox {
+  background-color: $main-color-c;
+  box-shadow: $border-thickness-bold * 1.0 $border-thickness-bold * 1.0 0 $black;
+  position: relative;
+  margin: 1rem auto;
+  padding: 1.5rem 1rem;
+  max-width: 100px;
+  transform: skewX(-25deg);
+  font-size: $font-size-small;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: $animation-duration;
+    transition-duration: $animation-duration;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+}
+.qbox--container {
+  position: relative;
+  top: 0rem;
+  left: -1rem;
+  margin: 0rem;
+}
+.qbox--text {
+  font-family: $font-family-header; 
+  font-weight: normal;
+  padding: 0.25rem 1rem;
+  font-size: $font-size-small;
+  color: $black;
   text-align: center;
-  @media (max-width: 480px) {
-    margin: 0;
-  }
+  transform: skewX(15deg);
 }
 
-.about {
-  align-items: flex-start;
-  align-self: center;
-  display: grid;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-  h2 {
-    margin-top: 0;
-  }
-  svg {
-    height: $font-size * 20;
-  }
-  margin-bottom: $font-size * 4;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
 </style>
