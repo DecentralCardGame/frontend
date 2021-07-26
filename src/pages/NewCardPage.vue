@@ -613,7 +613,8 @@ import {
   compressImg,
   creditsFromCoins,
 } from "@/components/utils/utils.js";
-import { sampleGradientImg } from "../components/utils/sampleCards.js";
+
+import { sampleGradientImg } from '../components/utils/sampleCards.js'
 
 export default {
   name: "NewCardPage",

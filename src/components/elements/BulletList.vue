@@ -1,5 +1,13 @@
 <template>
   <div>
+    <ul>
+      <li>List item</li>
+      <li>Another list item</li>
+      <li>Guess what? It's a list item</li>
+      <li>This is a list item too</li>
+      <li>Last list item</li>
+    </ul>
+
     <div
         class="diamond--element"
     >
@@ -9,7 +17,7 @@
         transform="rotate(45)"
         fill="none" 
         stroke-width="4px" 
-        stroke="black" 
+        stroke="#12CECF" 
       />
     </svg>
     </div>
@@ -17,7 +25,7 @@
     <div
       class="text--element"
     >
-      {{ BulletInfo }}
+      {{ text }}
     </div>
   </div>
 </template>
@@ -26,9 +34,12 @@
 
 export default {
   name: 'BulletPoint',
+  props: {
+    text: String,
+    type: String
+  },
   data () {
     return {
-        BulletInfo: "blabla"
     }
   },
   methods: {
@@ -45,4 +56,22 @@ export default {
     float:left; 
     display:inline;
 }
+
+ul {
+  list-style:none;
+  padding-left: 1em;
+}
+li {
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    background-image: url(../../assets/misc/bulletpoint.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right:0.5em;   
+  }
+}
+
 </style>

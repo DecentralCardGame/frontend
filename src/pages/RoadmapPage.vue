@@ -105,7 +105,11 @@
           </p>
         </div>
         <div> 
-          <BulletPoint />
+          <BulletList
+            :text="'Game client is taken to the next level (with possible ICO funds)'" 
+          />
+        </div>
+        <div>
           <p class="text--big">
             Automated / user created tournament system
           </p>
@@ -122,20 +126,19 @@
 </template>
 
 <script>
-import BulletPoint from '@/components/elements/BulletPoint'
+import BulletList from '@/components/elements/BulletList'
 import CardComponent from "../components/elements/CardComponent";
 import {
-  cardJpgs, cardWebps,
+  cardJpgs,
   communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData
 } from "../components/utils/sampleCards.js";
 
 export default {
   name: "RoadmapPage",
-  components: { CardComponent, BulletPoint },
+  components: { CardComponent, BulletList },
   data() {
     return {
       cardJpgs:cardJpgs,
-      cardWebps: cardWebps,
       communityCardData:communityCardData , botCommandCenterData:botCommandCenterData, belloData:belloData, timeDeviceData:timeDeviceData, drDollyData:drDollyData
     };
   },

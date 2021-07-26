@@ -17,6 +17,9 @@ import botCommandCenterImg from './cardfiles/botCommandCenter.jpg'
 import drDollyImg from './cardfiles/drDollyCard.jpg'
 import belloImg from './cardfiles/bello.jpg'
 import timeDeviceImg from './cardfiles/timeDeviceCard.jpg'
+import sampleGradient from './cardfiles/sampleGradient.svg'
+
+export const sampleGradientImg = sampleGradient
 
 export const cardJpgs = {
   daisyImg: daisyImg,
