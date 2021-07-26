@@ -96,29 +96,16 @@
 
       <div class="dual--column--text">
         <h2>5. The Crowd is in Control</h2>
-        <div>
-          <p class="diamond">
-            <!-- -->
-          </p>
-          <p class="text--big">
-            Game client is taken to the next level (with possible ICO funds)
-          </p>
-        </div>
         <div> 
           <BulletList
-            :text="'Game client is taken to the next level (with possible ICO funds)'" 
+            :text="[
+              'Game client is taken to the next level (with possible ICO funds)',
+              'Automated / user created tournament system',
+              'Continuous release of new sets via set election',
+              'It\'s on you: Participate via card creation, governance votes and playing. Give us your feedback!'
+            ]"
+            :type="'yes'"
           />
-        </div>
-        <div>
-          <p class="text--big">
-            Automated / user created tournament system
-          </p>
-          <p class="text--big">
-            Continuous release of new sets via set election
-          </p>
-          <p class="text--big">
-            It's on you: Participate via card creation, governance votes and playing. Give us your feedback!
-          </p>
         </div>
       </div>
     </div>
