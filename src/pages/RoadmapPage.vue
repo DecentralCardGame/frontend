@@ -16,7 +16,7 @@
               'Technology: Cosmos Blockchain + Unity Gameclient',
               'Test buff and nerf mechanics via blockchain'
             ]"
-            :type="'yes'"
+            :type="'filled'"
           />
         </div>
         <p class="text--big">
@@ -41,7 +41,7 @@
               'Manage cards on the blockchain (testnet)',
               'Test buff/nerf mechanics via blockchain'
             ]"
-            :type="'filled'"
+            :type="'yes'"
           />
         </div>
         <p class="text--big">
@@ -66,7 +66,7 @@
               'Startup tests for the Mainnet',
               'The alpha set + starter decks are finalized'
             ]"
-            :type="'filled'"
+            :type="'yes'"
           />
         </div>
         <p class="text--big">
@@ -92,7 +92,7 @@
               'Maybe ICO / IDO / LBP',
               'The alpha set + starter decks'
             ]"
-            :type="'filled'"
+            :type="'yes'"
           />
         </div>
         <p class="text--big">
@@ -117,7 +117,7 @@
               'User created tournament system',
               'Continuous release of new sets via set election'
             ]"
-            :type="'filled'"
+            :type="'yes'"
           />
         </div>
         <p class="text--big">
