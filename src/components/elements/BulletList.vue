@@ -1,12 +1,10 @@
 <template>
   <div>
-    <ul
-      
-      
+    <ul 
     >
       <li       
         v-for="(line, index) in text"
-        :class="{ 'teal': type==='teal', 'negated': false }"
+        :class="{ 'filled': type==='filled' }"
         :key="index"
       >
         {{ line }}
@@ -42,21 +40,22 @@ ul {
   padding-left: 1em;
 }
 li {
+  margin: 1rem;
   &:before {
     content: '';
     display: inline-block;
-    height: 1em;
-    width: 1em;
+    height: 1rem;
+    width: 1rem;
     background-image: url(../../assets/misc/bulletpoint.svg);
     background-size: contain;
     background-repeat: no-repeat;
-    margin-right:0.5em;   
+    margin-right:0.5em;
   }
 }
 
-.teal{
+.filled{
   &:before {
-    background-image: url(../../assets/misc/bulletpoint-teal.svg)
+    background-image: url(../../assets/misc/bulletpoint-filled.svg)
   }
 }
 
