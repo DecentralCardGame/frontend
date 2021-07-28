@@ -53,8 +53,8 @@
         stroke-width="5%"
         style=""
         filter="url(#glow)"
-        fill="#12D1D1"
-        stroke="#12D1D1"
+        fill="#ffc464"
+        stroke="#ffc464"
         fill-opacity="1"
     />
 

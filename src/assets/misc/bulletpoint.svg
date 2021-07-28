@@ -54,7 +54,7 @@
         style=""
         filter="url(#glow)"
         fill="#ffc464"
-        stroke="#12D1D1"
+        stroke="#ffc464"
         fill-opacity="0"
     />
 

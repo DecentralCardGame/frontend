@@ -20,7 +20,7 @@
           />
         </div>
         <p class="text--big">
-          Contribute: You can join our team by contacting us on Telegram or Discord
+          Contribute: You can join our team by contacting us on Telegram or Discord.
         </p>
       </div>
     </div>
@@ -45,7 +45,7 @@
           />
         </div>
         <p class="text--big">
-          Contribute Join the team, design cards or join the alpha tests
+          Contribute: Join the team, design cards or join the alpha tests.
         </p>
       </div>
     </div>
@@ -121,7 +121,7 @@
           />
         </div>
         <p class="text--big">
-          It's on you: Participate via card creation, governance votes and playing. Give us your feedback!'
+          It's on you: Participate via card creation, governance votes and playing. Give us your feedback!
         </p>
       </div>
     </div>
