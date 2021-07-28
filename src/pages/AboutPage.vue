@@ -59,9 +59,7 @@
           Crowd Control gives you full ownership. And we mean it.
           You own the cards which you acquire through play and participation.
           And furthermore you own the card prototypes which you design and create. Go to the
-          <router-link :to="{ name: 'New Card' }">
-            Card Creator
-          </router-link>
+          <router-link :to="{ name: 'New Card' }">Card Creator</router-link>
           to start creating.
           You decide if these cards are mass printed or your personal rare gems.
           In other collectible card games players create their own alternate art or even whole cards but can never play
@@ -89,9 +87,7 @@
         </p>
         <p>
           you can have a look at some cards here on the page or see all of them in the
-          <router-link :to="{ name: 'Gallery' }">
-            Gallery
-          </router-link>.
+          <router-link :to="{ name: 'Gallery' }">Gallery</router-link>.
         </p>
       </div>
       <div class="dual--column--img">
@@ -126,9 +122,7 @@
           In Crowd Control we have solved the hard task to give the players as much freedom as possible with abilities
           while also being able to balance the game under all circumstances.
           If you want to know the game rules and mechanics in detail, check out our
-          <router-link :to="{ name: 'About' }">
-            Game Rules
-          </router-link>.
+          <router-link :to="{ name: 'About' }">Game Rules</router-link>.
         </p>
       </div>
     </div>
@@ -162,6 +156,13 @@
           :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
+      <div class="dual--column--text">
+        <p>
+          <br>
+          If you want to see how all of this is progressing, just check out our <router-link :to="{ name: 'Roadmap' }"><b>Roadmap</b></router-link>.
+        </p>
+      </div>
+      
     </div>
   </div>
 </template>
