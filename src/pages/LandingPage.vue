@@ -152,18 +152,40 @@
         to find out more.
       </p>
 
-      <div class="button--container extra--margin">
-        <div class="link--button">
-          <a
-            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
-            target="_blank"
-            style="text-decoration: none; color: inherit;"
-          >   
-            <p class="text--button">
-              Go to Whitepaper >
-            </p> 
-          </a>
+
+      <p class="text--medium">
+      Or check out our <router-link :to="{ name: 'Roadmap' }"><b>Roadmap</b></router-link>
+      to see what we are planning next. <br><br>
+      </p>
+
+      <div class="grid">
+
+        <div class="button--container">
+          <div class="link--button">
+            <a
+              href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
+              target="_blank"
+              style="text-decoration: none; color: inherit;"
+            >   
+              <p class="text--button">
+                Go to Whitepaper >
+              </p> 
+            </a>
+          </div>
         </div>
+
+        <div class="button--container">
+          <div class="link--button">
+
+            <router-link to="/roadmap" style="text-decoration: none; color: inherit;">
+              <p class=text--button>
+                Go to Roadmap >
+              </p>
+            </router-link>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -190,6 +212,15 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/styles/variables";
+
+.grid {
+  display: flex;
+  flex-wrap : wrap;
+  margin: auto; 
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
 
 h2 {
   font-size: 1.75rem;
