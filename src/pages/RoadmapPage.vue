@@ -160,6 +160,7 @@ h2 {
   left: 8rem;
   transform: scale(1.5);
   margin: 0rem;
+  min-width: 500px;
 }
 .qbox--text {
   font-family: $font-family-header; 
