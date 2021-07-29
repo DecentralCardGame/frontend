@@ -3,7 +3,7 @@
     <nav class="nav">
       <div class="nav__content">
         <router-link
-          to="/gallery"
+          to="/"
           class="nav__logo"
         >
           <img
