@@ -151,7 +151,7 @@ h2 {
 
 .text--big {
   color: $main-color-c;
-  margin: 2rem auto 5rem;
+  margin: 2rem 2rem 5rem;
 }
 
 .qbox--container {
@@ -160,9 +160,9 @@ h2 {
   left: 8rem;
   transform: scale(1.5);
   margin: 0rem;
-  min-width: 500px;
 }
 .qbox--text {
+  min-width: 300px;
   font-family: $font-family-header; 
   font-weight: normal;
   padding: 1rem 1rem;
@@ -173,6 +173,9 @@ h2 {
   background-size: 20%;
   background-repeat: no-repeat;
   background-image: url(../assets/misc/quartalbox.svg);
+  @media (max-width: 480px) {
+    background-size: 30%;
+  }
 }
 
 </style>
