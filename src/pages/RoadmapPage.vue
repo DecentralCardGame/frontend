@@ -13,10 +13,9 @@
             :text="[
               'Develop the game rules and mechanics',
               'Community owned trading card game concepting',
-              'Technology: Cosmos Blockchain + Unity Gameclient',
-              'Test buff and nerf mechanics via blockchain'
+              'Technology: Cosmos Blockchain + Unity Gameclient'
             ]"
-            :type="'filled'"
+            :type="['filled', 'filled', 'filled']"
           />
         </div>
         <p class="text--big">
@@ -41,7 +40,7 @@
               'Manage cards on the blockchain (testnet)',
               'Test buff/nerf mechanics via blockchain'
             ]"
-            :type="'yes'"
+            :type="['filled', 'open', 'filled', 'filled']"
           />
         </div>
         <p class="text--big">
@@ -66,7 +65,7 @@
               'Startup tests for the Mainnet',
               'The alpha set + starter decks are finalized'
             ]"
-            :type="'yes'"
+            :type="[]"
           />
         </div>
         <p class="text--big">
@@ -92,7 +91,7 @@
               'Maybe ICO / IDO / LBP',
               'The alpha set + starter decks'
             ]"
-            :type="'yes'"
+            :type="[]"
           />
         </div>
         <p class="text--big">
@@ -117,7 +116,7 @@
               'User created tournament system',
               'Continuous release of new sets via set election'
             ]"
-            :type="'yes'"
+            :type="[]"
           />
         </div>
         <p class="text--big">

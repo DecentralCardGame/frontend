@@ -4,7 +4,7 @@
     >
       <li       
         v-for="(line, index) in text"
-        :class="{ 'filled': type==='filled' }"
+        :class="{ 'filled': type[index]==='filled' }"
         :key="index"
       >
         {{ line }}
@@ -19,14 +19,14 @@ export default {
   name: 'BulletList',
   props: {
     text: Array,
-    type: String,
+    type: Array,
   },
   data () {
     return {
     }
   },
   mounted () {
-    console.log(this.type)
+    console.log('bulletlist types', this.type)
   },
   methods: {
   }
