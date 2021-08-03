@@ -146,6 +146,7 @@ export default {
 
 h2 {
   margin: 2.5rem;
+  font-size: 2.0rem;
 }
 
 .text--big {
