@@ -24,8 +24,14 @@
       <div>
         <!-- energy icon -->
         <picture>
-          <source type="image/webp" srcset="../assets/symbols/energy-class.webp">
-          <source type="image/jpg" srcset="../assets/symbols/energy-class.png">
+          <source
+            type="image/webp" 
+            srcset="../assets/symbols/energy-class.webp"
+          >
+          <source
+            type="image/jpg" 
+            srcset="../assets/symbols/energy-class.png"
+          >
           <img 
             src="../assets/symbols/energy-class.webp"
             class="class-symbol"
@@ -35,8 +41,14 @@
       <div>
         <!-- food icon -->
         <picture>
-          <source type="image/webp" srcset="../assets/symbols/food-class.webp">
-          <source type="image/jpg" srcset="../assets/symbols/food-class.png">
+          <source 
+            type="image/webp" 
+            srcset="../assets/symbols/food-class.webp"
+          >
+          <source 
+            type="image/jpg" 
+            srcset="../assets/symbols/food-class.png"
+          >
           <img 
             src="../assets/symbols/food-class.webp"
             class="class-symbol"
@@ -46,8 +58,14 @@
       <div>
         <!-- iron icon -->
         <picture>
-          <source type="image/webp" srcset="../assets/symbols/iron-class.webp">
-          <source type="image/jpg" srcset="../assets/symbols/iron-class.png">
+          <source 
+            type="image/webp" 
+            srcset="../assets/symbols/iron-class.webp"
+          >
+          <source 
+            type="image/jpg" 
+            srcset="../assets/symbols/iron-class.png"
+          >
           <img 
             src="../assets/symbols/iron-class.webp"
             class="class-symbol"
@@ -57,8 +75,14 @@
       <div>
         <!-- mana icon -->
         <picture>
-          <source type="image/webp" srcset="../assets/symbols/mana-class.webp">
-          <source type="image/jpg" srcset="../assets/symbols/mana-class.png">
+          <source 
+            type="image/webp" 
+            srcset="../assets/symbols/mana-class.webp"
+          >
+          <source 
+            type="image/jpg" 
+            srcset="../assets/symbols/mana-class.png"
+          >
           <img 
             src="../assets/symbols/mana-class.webp"
             class="class-symbol"
@@ -68,8 +92,14 @@
       <div>
         <!-- Nature icon -->
         <picture>
-          <source type="image/webp" srcset="../assets/symbols/lumber-class.webp">
-          <source type="image/jpg" srcset="../assets/symbols/lumber-class.png">
+          <source 
+            type="image/webp" 
+            srcset="../assets/symbols/lumber-class.webp"
+          >
+          <source 
+            type="image/jpg" 
+            srcset="../assets/symbols/lumber-class.png"
+          >
           <img 
             src="../assets/symbols/lumber-class.webp"
             class="class-symbol"
@@ -90,8 +120,14 @@
       <br>
       
       <picture>
-        <source type="image/webp" srcset="../components/utils/cardfiles/HQ_Dolly.webp">
-        <source type="image/jpg" srcset="../components/utils/cardfiles/HQ_Dolly.png">
+        <source 
+          type="image/webp" 
+          srcset="../components/utils/cardfiles/HQ_Dolly.webp"
+        >
+        <source 
+          type="image/jpg" 
+          srcset="../components/utils/cardfiles/HQ_Dolly.png"
+        >
         <img 
           src="../components/utils/cardfiles/HQ_Dolly.webp"
           class="mockcard"
@@ -118,8 +154,14 @@
       <br>
       
       <picture>
-        <source type="image/webp" srcset="../components/utils/cardfiles/Dr.Dolly.webp">
-        <source type="image/jpg" srcset="../components/utils/cardfiles/Dr.Dolly.png">
+        <source 
+          type="image/webp" 
+          srcset="../components/utils/cardfiles/Dr.Dolly.webp"
+        >
+        <source 
+          type="image/jpg" 
+          srcset="../components/utils/cardfiles/Dr.Dolly.png"
+        >
         <img 
           src="../components/utils/cardfiles/Dr.Dolly.webp"
           class="mockcard"
@@ -420,8 +462,14 @@
           </div>
           <div>
             <picture>
-              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <source 
+                type="image/webp" 
+                srcset="../assets/arrows/arrow_up.webp"
+              >
+              <source
+                type="image/png" 
+                srcset="../assets/arrows/arrow_up.png"
+              >
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow"
@@ -468,8 +516,14 @@
               />
             </div>
             <picture>
-              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <source 
+                type="image/webp" 
+                srcset="../assets/arrows/arrow_up.webp"
+              >
+              <source
+                type="image/png" 
+                srcset="../assets/arrows/arrow_up.png"
+              >
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -492,8 +546,14 @@
               />
             </div>
             <picture>
-              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <source 
+                type="image/webp" 
+                srcset="../assets/arrows/arrow_up.webp"
+              >
+              <source
+                type="image/png" 
+                srcset="../assets/arrows/arrow_up.png"
+              >
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -516,8 +576,14 @@
               />
             </div>
             <picture>
-              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <source 
+                type="image/webp" 
+                srcset="../assets/arrows/arrow_up.webp"
+              >
+              <source
+                type="image/png" 
+                srcset="../assets/arrows/arrow_up.png"
+              >
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -540,8 +606,14 @@
               />
             </div>
             <picture>
-              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <source 
+                type="image/webp" 
+                srcset="../assets/arrows/arrow_up.webp"
+              >
+              <source
+                type="image/png" 
+                srcset="../assets/arrows/arrow_up.png"
+              >
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -564,8 +636,14 @@
               />
             </div>
             <picture>
-              <source type="image/webp" srcset="../assets/arrows/arrow_up.webp">
-              <source type="image/png" srcset="../assets/arrows/arrow_up.png">
+              <source 
+                type="image/webp" 
+                srcset="../assets/arrows/arrow_up.webp"
+              >
+              <source
+                type="image/png" 
+                srcset="../assets/arrows/arrow_up.png"
+              >
               <img 
                 src="../assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
@@ -1066,7 +1144,7 @@ img {
 .about-flex-wrap {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: top;
   @media (max-width: 1200px) {
     flex-direction: column;

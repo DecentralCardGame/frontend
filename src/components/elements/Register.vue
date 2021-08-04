@@ -1,10 +1,11 @@
 <template>
   <div>
     <button 
-    class="close-button" 
-    type="button"
-    @click="$store.commit('toggleLoginBox')">
-    x
+      class="close-button" 
+      type="button"
+      @click="$store.commit('toggleLoginBox')"
+    >
+      x
     </button>
       
     <h2>Join the Experience</h2> 
@@ -43,8 +44,8 @@
       >
       <label>Custom Mnemonic
         <input
-          type="checkbox"
           v-model="ownMnemonic"
+          type="checkbox"
           name="ownMnemonic"
         >
       </label>
@@ -52,7 +53,7 @@
         (If you don't know what this is, it's not for you) 
       </label>
       <input
-        v-show=ownMnemonic
+        v-show="ownMnemonic"
         v-model="mnemonic"
         type="text"
         placeholder="one two three four five ..."
@@ -179,7 +180,7 @@ export default {
         this.notifyFail(
           "DAMN",
           "Registration failed!\n" + errmsg
-        );
+        )
       });
     },
   },
