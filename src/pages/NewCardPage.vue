@@ -218,9 +218,10 @@
               <select
                 @change="setAdditionalCost($event); saveDraft();"
               >
-                <option disabled 
-                        selected="true" 
-                        value=""
+                <option 
+                  disabled 
+                  selected="true" 
+                  value=""
                 >
                   Select Special Cost
                 </option>
@@ -260,10 +261,8 @@
               </span>
 
               <span
-                v-if="        
-                  model.AdditionalCost.SacrificeCost
-                ">
-                
+                v-if="model.AdditionalCost.SacrificeCost"
+              >
                 <select
                   v-model="model.AdditionalCost.SacrificeCost.Amount"
                   @change="saveDraft"
@@ -283,10 +282,8 @@
               </span>
 
               <span             
-                v-if="
-                  model.AdditionalCost.VoidCost
-                ">
-                
+                v-if="model.AdditionalCost.VoidCost"
+              >                
                 <select
                   v-model="model.AdditionalCost.VoidCost.Amount"
                   @change="saveDraft"
@@ -600,7 +597,6 @@
 <script>
 import * as R from "ramda";
 
-
 import CardComponent from "../components/elements/CardComponent";
 import BuySchemeModal from "../components/modals/BuySchemeModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
@@ -658,9 +654,9 @@ export default {
         this.$store.getters.getCardCreatorEditCard
       );
 
-      this.cardImage = this.$store.getters.getCardCreatorEditCard.img;
-      this.cropImage = this.$store.getters.getCardCreatorEditCard.img;
-      console.log("loaded card", this.$store.getters.getCardCreatorEditCard)
+      this.cardImage = this.$store.getters.getCardCreatorEditCard.image;
+      this.cropImage = this.$store.getters.getCardCreatorEditCard.image;
+      console.log("loaded card", this.model)
       return;
     }
     if (

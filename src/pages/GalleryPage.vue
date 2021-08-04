@@ -392,6 +392,7 @@ export default {
       this.isGalleryModalVisible = false;
     },
     edit() {
+      console.log("editing:", this.cards[this.clickedIndex])
       this.$store.commit(
         "setCardCreatorEditCard",
         this.cards[this.clickedIndex]
