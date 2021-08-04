@@ -142,7 +142,7 @@ export default {
         let acc = res[0]
         this.creditsAvailable = creditsFromCoins(acc.coins);
         this.$store.commit("setUserCredits", this.creditsAvailable);
-        //this.$router.push("/gallery");
+        this.$router.push("/me");
 
         this.notifySuccess('EPIC WIN', 'You have successfully registered in the blockchain.')
       })
