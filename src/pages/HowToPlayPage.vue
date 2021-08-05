@@ -29,7 +29,7 @@
             srcset="../assets/symbols/energy-class.webp"
           >
           <source
-            type="image/jpg" 
+            type="image/png" 
             srcset="../assets/symbols/energy-class.png"
           >
           <img 
@@ -46,7 +46,7 @@
             srcset="../assets/symbols/food-class.webp"
           >
           <source 
-            type="image/jpg" 
+            type="image/png" 
             srcset="../assets/symbols/food-class.png"
           >
           <img 
@@ -63,7 +63,7 @@
             srcset="../assets/symbols/iron-class.webp"
           >
           <source 
-            type="image/jpg" 
+            type="image/png" 
             srcset="../assets/symbols/iron-class.png"
           >
           <img 
@@ -80,7 +80,7 @@
             srcset="../assets/symbols/mana-class.webp"
           >
           <source 
-            type="image/jpg" 
+            type="image/png" 
             srcset="../assets/symbols/mana-class.png"
           >
           <img 
@@ -97,7 +97,7 @@
             srcset="../assets/symbols/lumber-class.webp"
           >
           <source 
-            type="image/jpg" 
+            type="image/png" 
             srcset="../assets/symbols/lumber-class.png"
           >
           <img 
@@ -125,7 +125,7 @@
           srcset="../components/utils/cardfiles/HQ_Dolly.webp"
         >
         <source 
-          type="image/jpg" 
+          type="image/png" 
           srcset="../components/utils/cardfiles/HQ_Dolly.png"
         >
         <img 
@@ -159,7 +159,7 @@
           srcset="../components/utils/cardfiles/Dr.Dolly.webp"
         >
         <source 
-          type="image/jpg" 
+          type="image/png" 
           srcset="../components/utils/cardfiles/Dr.Dolly.png"
         >
         <img 
