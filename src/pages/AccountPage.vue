@@ -71,13 +71,18 @@ export default {
 
     this.$cardChain.getUserInfo(this.address)
     .then(user => {
-      console.log(user)
+      console.log("received user data:", user)
       this.user = user
+
+      if (!user.alias) {
+        console.log("Account seems to be not registered, trying to register again.")
+        this.$cardChain.registerAccTx("superNoob")
+      }
     })
   },
   methods: {
     save () {
-      // WHEN THIS FUNCTION IS USED THE ENCRYPTED MNEMONIC ON HOTTUB MUST BE OVERWRITTEN
+      // TODO WHEN THIS FUNCTION IS USED THE ENCRYPTED MNEMONIC ON HOTTUB MUST BE OVERWRITTEN
       // overwriting localstorage is not enough
 
       const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.mnemonicConfirmationPassword).toString()
