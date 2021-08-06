@@ -214,9 +214,10 @@
         <h2> Kosta aka Aerozopher - Design & Illustration </h2>
         <p>
           Enthusiastic about blockchain technology and new visionary systems he has decided to join us with a bunch of useful skills and a sharp eye. On one hand he is helping
-          with design matters all over the place, on the other hand he is joining as illustrator for the first decks. Namely, he is also the creator of Aynbath, where he is 
-          already creating a darker collection of mystical journeys and an intricate world.
-          und Aynbath verlinken zu https://aynbath.com/stories wär cool
+          with design matters all over the place, on the other hand he is joining as illustrator for the first decks. Namely, he is also the creator of <a
+            href="https://aynbath.com/stories"
+            target="_blank"
+          > Aynbath</a>, where he is already creating a darker collection of mystical journeys and an intricate world.
         </p>
       </div>
     </div>
