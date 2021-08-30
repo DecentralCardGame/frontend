@@ -11,6 +11,8 @@ export default {
               } else {
                 console.log("loaded cardrules:", rules.Card)
                 Vue.prototype.$cardRules = rules.Card
+                Vue.prototype.$rulesDefinitions = rules.definitions
+                console.log("definitions", rules.definitions)
               }
             })
         }

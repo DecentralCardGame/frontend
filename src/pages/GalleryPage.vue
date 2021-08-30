@@ -195,6 +195,7 @@
         :is-owner="isOwner"
         @close="closeGalleryModal"
         @download="downloadPng"
+        @cardview="cardview"
         @edit="edit"
         @voteOP="vote('overpowered')"
         @voteUP="vote('underpowered')"
@@ -208,7 +209,7 @@
 <script>
 import * as R from "ramda";
 import GalleryModal from "../components/modals/GalleryModal.vue";
-import CardComponent from "@/components/CardComponent";
+import CardComponent from "@/components/elements/CardComponent";
 import { saveCardAsPng, creditsFromCoins } from "../components/utils/utils.js";
 
 export default {
@@ -237,6 +238,7 @@ export default {
       let event = this.$store.state.lastInputEvent;
 
       if (event.which == 5) {
+<<<<<<< HEAD
         this.leavePageLock = true;
         this.nextPage();
       } else if (event.which == 4) {
@@ -244,6 +246,17 @@ export default {
         this.prevPage();
       } else {
         this.leavePageLock = false;
+=======
+        this.leavePageLock = true
+        this.nextPage()
+      } else if (event.which == 4) {
+        this.leavePageLock = true
+        this.prevPage()
+      } else if (event.which == 13) {
+        this.loadCardList()
+      } else {
+        this.leavePageLock = false
+>>>>>>> master
       }
     },
   },
@@ -389,16 +402,20 @@ export default {
       this.isGalleryModalVisible = false;
     },
     edit() {
+      console.log("editing:", this.cards[this.clickedIndex])
       this.$store.commit(
         "setCardCreatorEditCard",
         this.cards[this.clickedIndex]
       );
       this.$router.push("newCard");
     },
+    cardview() {
+      this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
+    },
     downloadPng() {
       saveCardAsPng(
         document.getElementById("card" + this.clickedIndex),
-        this.cards[this.clickedIndex].name
+        this.cards[this.clickedIndex].CardName
       );
     },
     vote(type) {

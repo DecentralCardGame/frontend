@@ -1,8 +1,10 @@
 <template>
   <div
     id="app"
+    tabindex="-1"
     @auxclick="handleAnyInput"
     @click="handleAnyInput"
+    @keyup.enter="handleAnyInput"
   >
     <component :is="layout">
       <router-view />

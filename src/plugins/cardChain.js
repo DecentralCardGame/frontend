@@ -151,12 +151,9 @@ export default {
             return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.vue.$http.put('cardservice/create_user', reqBody)])
               .then(res => this.signAndBroadcast(process.env.VUE_APP_CREATOR_MNEMONIC, res))
               .then(() => {
-                this.vue.notifySuccess('EPIC WIN', 'You have successfully registered in the blockchain.')
                 resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
               })
               .catch((err) => {
-                this.vue.notifyFail('EPIC FAIL', 'Register in the Blockchain failed. ' + err)
-                console.error(err)
                 reject(err)
               })
           })

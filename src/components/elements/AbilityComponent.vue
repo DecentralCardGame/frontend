@@ -100,8 +100,8 @@
 
 <script>
 import * as R from 'ramda'
-import AbilityModal from './modals/AbilityModal.vue'
-import { createInteraction, updateInteraction, shallowClone, atPath } from './utils/utils.js'
+import AbilityModal from '@/components//modals/AbilityModal.vue'
+import { createInteraction, updateInteraction, shallowClone, atPath } from '../utils/utils.js'
 
 export default {
   name: 'AbilityComponent',
@@ -342,7 +342,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../assets/styles/variables";
+  @import "../../assets/styles/variables";
 
   .clickable-option {
     display: inline-block;

@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "postinstall": "bin/postinstall.sh"
+    "disabledpostinstall": "bin/postinstall.sh"
   },
   "dependencies": {
     "@tendermint/sig": "^0.4.1",

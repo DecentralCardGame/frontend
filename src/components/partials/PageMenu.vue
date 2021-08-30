@@ -3,7 +3,7 @@
     <nav class="nav">
       <div class="nav__content">
         <router-link
-          to="/gallery"
+          to="/"
           class="nav__logo"
         >
           <img
@@ -139,6 +139,9 @@ export default {
   .nav-wrapper {
     max-width: calc(#{$main-width} + 10vw);
     margin: auto;
+    @media (max-width: 1178px) {
+      margin: auto auto 3vh auto;
+    }
     @media (max-width: 480px) {
       max-width: 100vw;
     }

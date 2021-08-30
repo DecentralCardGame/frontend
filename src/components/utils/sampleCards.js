@@ -17,6 +17,9 @@ import botCommandCenterImg from './cardfiles/botCommandCenter.jpg'
 import drDollyImg from './cardfiles/drDollyCard.jpg'
 import belloImg from './cardfiles/bello.jpg'
 import timeDeviceImg from './cardfiles/timeDeviceCard.jpg'
+import sampleGradient from './cardfiles/sampleGradient.svg'
+
+export const sampleGradientImg = sampleGradient
 
 export const cardJpgs = {
   daisyImg: daisyImg,
@@ -38,6 +41,25 @@ export const cardJpgs = {
   timeDeviceImg: timeDeviceImg
 }
 
+export const sampleCard = R.merge(emptyCard, {
+  CardName: 'Sample Card',
+  FlavourText: 'Whenever you play CrowdControl your happiness increases by 1.',
+  abilities: [],
+  Notes: '',
+  type: 'Entity',
+  Tags: ['TECHNOCRAT','HUMAN'],
+  tagDummy: 'TECHNOCRAT',
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: true,
+    Mysticism: false,
+    
+  },
+  CastingCost: 8,
+  Health: 5,
+  Attack: 3
+})
 export const daisyData = R.merge(emptyCard, {
   CardName: 'Saint Daisy, Triplet',
   FlavourText: 'ETB - Create a 1/1 pet for each human you control',

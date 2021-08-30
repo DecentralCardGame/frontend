@@ -1,10 +1,11 @@
 <template>
   <div>
     <button 
-    class="close-button" 
-    type="button"
-    @click="$store.commit('toggleLoginBox')">
-    x
+      class="close-button" 
+      type="button"
+      @click="$store.commit('toggleLoginBox')"
+    >
+      x
     </button>
       
     <h2>Join the Experience</h2> 
@@ -43,8 +44,8 @@
       >
       <label>Custom Mnemonic
         <input
-          type="checkbox"
           v-model="ownMnemonic"
+          type="checkbox"
           name="ownMnemonic"
         >
       </label>
@@ -52,7 +53,7 @@
         (If you don't know what this is, it's not for you) 
       </label>
       <input
-        v-show=ownMnemonic
+        v-show="ownMnemonic"
         v-model="mnemonic"
         type="text"
         placeholder="one two three four five ..."
@@ -89,12 +90,31 @@ export default {
       if (!this.mnemonic) {
         this.mnemonic = this.$cardChain.generateMnemonic();
       } else if (this.mnemonic.split(" ").length < 24) {
-        // TODO check if user has entered a serious mnemonic
+        // TODO check if user has entered a serious mnemonic, currently it only checks for 24 words...
         this.notifyFail(
           "Bad Mnemonic",
           "Please enter a real mnemonic with 24 words"
         );
-        return;
+        return
+      }
+      function validateEmail(email) 
+      {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+      }
+      if (!validateEmail(this.email)) {
+        this.notifyFail(
+          "Bad Email",
+          "Please enter an Email address, which at least appears valid."
+        );
+        return
+      }
+      if (!this.username || !this.password) {
+        this.notifyFail(
+          "Do you even try?",
+          "Please enter at least something as name and password."
+        );
+        return
       }
 
       let wallet = createWalletFromMnemonic(this.mnemonic);
@@ -106,6 +126,7 @@ export default {
         JSON.stringify(this.mnemonic),
         this.password
       ).toString();
+
       const post = {
         email: this.email,
         username: this.username,
@@ -113,29 +134,54 @@ export default {
         mnemonic: encryptedMnemonic,
       };
 
-      this.$cardChain
-        .registerAccTx(this.username)
-        .then((acc) => {
-          this.creditsAvailable = creditsFromCoins(acc.coins);
-          this.$store.commit("setUserCredits", this.creditsAvailable);
-        })
-        .catch((err) => {
-          console.error(err);
-          this.notifyFail(
-            "Blockchain Fail",
-            "Registering the address in the blockchain has failed."
-          );
-        });
+      Promise.all([
+        this.$cardChain.registerAccTx(this.username),
+        this.$hottub.post("/register", post)
+      ])
+      .then((res) => {
+        console.log("success res:", res);
+        let acc = res[0]
+        this.creditsAvailable = creditsFromCoins(acc.coins);
+        this.$store.commit("setUserCredits", this.creditsAvailable);
+        this.$router.push("/me");
 
-      this.$hottub
-        .post("/register", post)
-        .then((res) => {
-          console.log(res);
-          this.$router.push("/");
-        })
-        .catch(() => {
-          this.notifyFail("Backend registration failed!");
-        });
+        this.notifySuccess('EPIC WIN', 'You have successfully registered in the blockchain.')
+      })
+      .catch((err) => {
+        console.error(err)
+        let errmsg = err
+        if (err.response) {
+          errmsg = err.response
+          if (err.response.data) {
+            errmsg = err.response.data
+            if (err.response.data.errors)
+            errmsg = err.response.data.errors
+            if (err.response.data.errors.body)
+            errmsg = err.response.data.errors.body
+          }
+        }
+        console.log("error info:", errmsg)
+
+        if (errmsg.includes('uix_users_email') && errmsg.includes('duplicate')) {
+          this.notifyFail(
+            "Email taken",
+            "This Email address is already registered :("
+          );
+          return
+        }
+        if (errmsg.includes('uix_users_name') && errmsg.includes('duplicate')) {
+          this.notifyFail(
+            "Name already taken",
+            "The Name is already registered :("
+          );
+          return // TODO this might not work until it is fixed on the hottub side
+        }
+
+        this.notifyFail(
+          "DAMN",
+          "Registration failed!\n" + errmsg
+        )
+      });
     },
   },
 };
