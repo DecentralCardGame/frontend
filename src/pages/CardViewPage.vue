@@ -11,12 +11,28 @@
 
     <div 
       v-else 
-      class="gallery__view__card">
+      class="gallery__view__card"
+      @click="saveCard"
+    >
       <CardComponent
         :id="'card'"
         :model="cards[0]"
         :image-u-r-l="cards[0].image"
       />
+    </div>
+
+    <div>
+      <b>Keyword Explanations:</b>
+
+      <table class="keywordTable">
+        <tbody>
+          <tr v-for="(keyword, index) in KeywordDescriptions" :key="index">
+            <th scope="row"> <b> {{ keyword[0] }} </b> </th>  
+            <td> - {{ keyword[1] }}</td>  
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
     <div>
@@ -58,7 +74,8 @@ export default {
       Nerflevel: 0,
       Owner: "",
       Status: "",
-      VotePool: 0
+      VotePool: 0,
+      KeywordDescriptions: []
     }
   },
   mounted () {
@@ -82,21 +99,25 @@ export default {
             this.Status = parsedCard.Status
             this.VotePool = parsedCard.VotePool.amount
             console.log('parsed Card:', parsedCard)
-            let clickedCard = document.getElementById('card')
-
-            saveCardAsPng(
-              clickedCard,
-              parsedCard.CardName + '.png'
-            );
+            
+            let firstLetterToLower = string => {
+              return string[0].toLowerCase() + string.substring(1)
+            }
+            parsedCard.Keywords.forEach(ability => {
+              ability.forEach(keyword => {
+                this.KeywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
+              })
+            })
+            console.log("keyword:", this.KeywordDescriptions)
           }
         })
     }
   },
   methods: {
-    saveSingleCard (index) {
+    saveCard () {
       saveCardAsPng(
-        document.getElementById('card' + index),
-        this.cards[index].name + '.png'
+        document.getElementById('card'),
+        this.cards[0].CardName
       );
     },
   }
@@ -104,6 +125,10 @@ export default {
 </script>
 
 <style scoped>
+.keywordTable {
+  border-collapse: separate;
+  border-spacing: 10px;
+}
 .gallery__view {
   text-shadow: none;
   display: grid;
