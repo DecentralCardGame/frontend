@@ -156,19 +156,20 @@
           :image-u-r-l="cardJpgs.botCommandCenterImg"
         />
       </div>
+    </div>
+
+    <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <p>
           <br>
-          If you want to see how all of this is progressing, just check out our <router-link :to="{ name: 'Roadmap' }"><b>Roadmap</b></router-link>.
+          Just check out our <router-link :to="{ name: 'Roadmap' }"><b>Roadmap</b></router-link> to see how it's going.
         </p>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-
 import CardComponent from "@/components/elements/CardComponent";
 import {
   cardJpgs,
