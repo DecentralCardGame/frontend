@@ -54,15 +54,6 @@
           </button>
 
           <button
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="voteOP(); close();"
-          >
-            Vote Overpowered
-          </button>
-
-          <button
             v-if="canVote"
             aria-label="Close modal"
             class="choice-grid__button"
@@ -70,6 +61,16 @@
             @click="voteUP(); close();"
           >
             Vote Underpowered
+          </button>
+
+          <button
+            v-if="canVote"
+            aria-label="Close modal"
+            class="choice-grid__button"
+            type="button"
+            @click="voteOP(); close();"
+          >
+            Vote Overpowered
           </button>
 
           <button
@@ -92,6 +93,18 @@
             Vote Inappropriate
           </button>
         </section>
+
+        <table class="keywordTable">
+          <b>Keyword Explanations:</b>
+          <tbody>
+            <tr 
+              v-for="(keyword, index) in keywordDescriptions" 
+              :key="index">
+              <th scope="row"> <b> {{ keyword[0] }} </b> </th>  
+              <td> - {{ keyword[1] }}</td>  
+            </tr>
+          </tbody>
+        </table>
         <footer class="modal__footer" />
       </div>
     </div>
@@ -103,13 +116,14 @@ export default {
   name: 'GalleryModal',
   props: {
     canVote: Boolean,
-    isOwner: Boolean
+    isOwner: Boolean,
+    keywordDescriptions: Array
   },
   data() {
     return {
       currentPrice: -1,
       currentBid: -1,
-      creditsAvailable: -1
+      creditsAvailable: -1,
     }
   },
   mounted() {
@@ -145,5 +159,11 @@ export default {
 
 <style lang="scss">
 @import "modal";
+
+.keywordTable {
+  border-collapse: separate;
+  border-spacing: 10px;
+  color: $black;
+}
 </style>
 

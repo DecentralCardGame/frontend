@@ -193,6 +193,7 @@
         v-if="isGalleryModalVisible"
         :can-vote="canVote"
         :is-owner="isOwner"
+        :keywordDescriptions="keywordDescriptions"
         @close="closeGalleryModal"
         @download="downloadPng"
         @cardview="cardview"
@@ -229,6 +230,7 @@ export default {
       canVote: false,
       isOwner: false,
       leavePageLock: false,
+      keywordDescriptions: []
     };
   },
   // this watch together with the following beforeRouteLeave make browsing
@@ -379,14 +381,25 @@ export default {
       window.scrollTo(0, 0);
     },
     showGalleryModal() {
-      this.isGalleryModalVisible = true;
+      this.isGalleryModalVisible = true
+      
       this.canVote = R.any(
         (x) => x == this.cards[this.clickedIndex].id,
         R.pluck("CardId", this.votableCards)
-      );
+      )
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
-        this.$store.getters.getUserAddress;
+        this.$store.getters.getUserAddress
+      
+      this.keywordDescriptions = []
+      let firstLetterToLower = string => {
+        return string[0].toLowerCase() + string.substring(1)
+      }
+      this.cards[this.clickedIndex].Keywords.forEach(ability => {
+        ability.forEach(keyword => {
+          this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
+        })
+      })
     },
     closeGalleryModal() {
       this.isGalleryModalVisible = false;

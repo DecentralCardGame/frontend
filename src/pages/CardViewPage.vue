@@ -26,7 +26,7 @@
 
       <table class="keywordTable">
         <tbody>
-          <tr v-for="(keyword, index) in KeywordDescriptions" :key="index">
+          <tr v-for="(keyword, index) in keywordDescriptions" :key="index">
             <th scope="row"> <b> {{ keyword[0] }} </b> </th>  
             <td> - {{ keyword[1] }}</td>  
           </tr>
@@ -75,7 +75,7 @@ export default {
       Owner: "",
       Status: "",
       VotePool: 0,
-      KeywordDescriptions: []
+      keywordDescriptions: []
     }
   },
   mounted () {
@@ -105,10 +105,9 @@ export default {
             }
             parsedCard.Keywords.forEach(ability => {
               ability.forEach(keyword => {
-                this.KeywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
+                this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
               })
             })
-            console.log("keyword:", this.KeywordDescriptions)
           }
         })
     }
