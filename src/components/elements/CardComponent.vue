@@ -740,6 +740,53 @@
         >{{ model.Health }}</tspan>
       </text>
     </g>
+    <!-- Keyword explanation -->
+      <g
+        v-show="!opaque"
+      >
+        <!-- grey box -->
+        <g
+          :opacity="0.8"
+          transform="matrix(0.986969,0,0,1,1.66464,-120.992511)"
+        >
+          <g id="Ebene4">
+            <path
+              d="M4.33,138.7L4.33,231.81C4.33,234.004 6.136,235.81 8.33,235.81L144.33,235.81C146.524,235.81 148.33,234.004 148.33,231.81L148.33,138.7"
+              style="fill:white;fill-rule:nonzero;stroke:white;stroke-width:1px;"
+            />
+          </g>
+        </g>
+        <text
+          v-for="(text, index) in textToSvg(keywordDescriptions)"
+          id="text2410-9"
+          :key="'keywordText'+index"
+          fill="#000"
+          letter-spacing="0"
+          style="line-height:1.25;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+          text-anchor="start"
+          transform="scale(.94735 1.05557)"
+          word-spacing="0"
+          writing-mode="lr"
+          xml:space="preserve"
+        >
+          <tspan
+            id="tspan2430"
+            x="15"
+            :y="30 + index*fontSpacing(keywordDescriptions)"
+            fill-opacity="1"
+            stroke-width=".1"
+            font-family="Roboto"
+            :font-size="fontSize(keywordDescriptions)"
+            font-stretch="normal"
+            font-style="normal"
+            font-variant="normal"
+            font-weight="300"
+            style="-inkscape-font-specification:'Roboto, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+            text-anchor="start"
+            writing-mode="lr"
+          > {{ text }} </tspan>
+        </text>
+      </g>
   </svg>
 </template>
 
@@ -770,7 +817,8 @@ export default {
   data () {
     return {
       opaque: 1,
-      clicked: false
+      clicked: false,
+      keywordDescriptions: ""
     }
   },
   computed: {
@@ -783,6 +831,16 @@ export default {
     }
   },
   created () {
+    let firstLetterToLower = string => {
+      return string[0].toLowerCase() + string.substring(1)
+    }
+    this.model.Keywords.forEach(ability => {
+      ability.forEach(keyword => {
+        this.keywordDescriptions = R.concat(this.keywordDescriptions, 
+          keyword + " - " + this.$rulesDefinitions[firstLetterToLower(keyword)].description + " \\n "
+        )
+      })
+    })
   },
   methods: {
     cardmouseleave() {
