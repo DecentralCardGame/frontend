@@ -5,6 +5,7 @@
     @auxclick="handleAnyInput"
     @click="handleAnyInput"
     @keyup.enter="handleAnyInput"
+    @keyup.esc="handleAnyInput"
   >
     <component :is="layout">
       <router-view />

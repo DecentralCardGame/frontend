@@ -163,14 +163,29 @@
             showGalleryModal();
             clickedIndex = index;
           "
+          @mouseover="hoverIndex = index"
+          @mouseleave="hoverIndex = -1"
         >
-          <CardComponent
-            :id="'card' + index"
-            :model="card"
-            :image-u-r-l="card.image"
-            class="gallery__view__card"
-            width="100%"
-          />
+          <div class="cardContainer--element">
+            <CardComponent
+              :id="'card' + index"
+              :model="card"
+              :image-u-r-l="card.image"
+              hoverBehavior="none"
+              class="gallery__view__card"
+              width="100%"
+            />
+          </div>
+          <div
+            v-show="hoverIndex == index" 
+            class="cardContainer--element2"
+          >
+            <CardTooltip
+              :id="'card' + index"
+              :model="card"
+              width="100%"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -194,6 +209,8 @@
         :can-vote="canVote"
         :is-owner="isOwner"
         :keywordDescriptions="keywordDescriptions"
+        :model="cards[clickedIndex]"
+        :imageURL="cards[clickedIndex].image"
         @close="closeGalleryModal"
         @download="downloadPng"
         @cardview="cardview"
@@ -211,14 +228,16 @@
 import * as R from "ramda";
 import GalleryModal from "../components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent";
+import CardTooltip from "@/components/elements/CardTooltip";
 import { saveCardAsPng, creditsFromCoins } from "../components/utils/utils.js";
 
 export default {
   name: "GalleryPage",
-  components: { CardComponent, GalleryModal },
+  components: { CardComponent, CardTooltip, GalleryModal },
   data() {
     return {
       clickedIndex: 0,
+      hoverIndex: -1,
       isGalleryModalVisible: false,
       pageId: 0,
       currentId: 0,
@@ -495,8 +514,26 @@ export default {
 }
 
 .cardContainer {
+  position: relative;
+  display: flex;
   max-width: 500px;
-  width: "20%";
+}
+.cardContainer:hover {
+  grid-column: span 2;
+  grid-row: span 2;
+  max-width: initial; 
+}
+
+.cardContainer--element {
+  flex-grow: 1;
+}
+
+.cardContainer--element2 {
+  position: absolute;
+  width: 100%;
+  left: 100%;
+  flex-grow: 1;
+  z-index: 3;
 }
 
 .ability-modal-container {

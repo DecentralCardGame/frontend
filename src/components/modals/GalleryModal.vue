@@ -12,7 +12,7 @@
           class="modal__header"
         >
           <slot name="header">
-            Card Interactions
+            Card Info & Interactions
             <button
               aria-label="Close modal"
               class="btn--close"
@@ -23,101 +23,123 @@
             </button>
           </slot>
         </header>
-        <section
-          id="modalDescription"
-          class="modal__body choice-grid"
-        >
-          <button
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="cardview(); close();"
-          >
-            Advanced Card Info
-          </button>
-          <button
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="download(); close();"
-          >
-            Download PNG
-          </button>
-          <button
-            v-if="isOwner"
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="edit(); close();"
-          >
-            Edit Card
-          </button>
 
-          <button
-            v-if="canVote"
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="voteUP(); close();"
-          >
-            Vote Underpowered
-          </button>
+        <div class="container-flex-row">
 
-          <button
-            v-if="canVote"
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="voteOP(); close();"
-          >
-            Vote Overpowered
-          </button>
+          <div>
+            <CardComponent
+              :model="model"
+              :image-u-r-l="imageURL"
+              hoverBehavior="none"
+            />
+          </div>
 
-          <button
-            v-if="canVote"
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="voteFair(); close();"
-          >
-            Vote Fair Enough
-          </button>
+          <div class="container-flex-column">
 
-          <button
-            v-if="canVote"
-            aria-label="Close modal"
-            class="choice-grid__button"
-            type="button"
-            @click="voteInappropriate(); close();"
-          >
-            Vote Inappropriate
-          </button>
-        </section>
+            <div v-show="keywordDescriptions.length" class="modal__body">
 
-        <table class="keywordTable">
-          <b>Keyword Explanations:</b>
-          <tbody>
-            <tr 
-              v-for="(keyword, index) in keywordDescriptions" 
-              :key="index">
-              <th scope="row"> <b> {{ keyword[0] }} </b> </th>  
-              <td> - {{ keyword[1] }}</td>  
-            </tr>
-          </tbody>
-        </table>
+                <b>Keyword Explanations:</b>
+
+                  <div class="container-flex-row"
+                    v-for="(keyword, index) in keywordDescriptions"
+                    :key="index">
+                    <b> {{ keyword[0] }}</b>
+                     - {{ keyword[1] }}
+                  </div>
+            </div>
+
+            <section
+              id="modalDescription"
+              class="modal__body choice-grid"
+            >
+              <button
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="cardview(); close();"
+              >
+                Advanced Card Info
+              </button>
+              <button
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="download(); close();"
+              >
+                Download PNG
+              </button>
+              <button
+                v-if="isOwner"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="edit(); close();"
+              >
+                Edit Card
+              </button>
+
+              <button
+                v-if="canVote"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="voteUP(); close();"
+              >
+                Vote Underpowered
+              </button>
+
+              <button
+                v-if="canVote"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="voteOP(); close();"
+              >
+                Vote Overpowered
+              </button>
+
+              <button
+                v-if="canVote"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="voteFair(); close();"
+              >
+                Vote Fair Enough
+              </button>
+
+              <button
+                v-if="canVote"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="voteInappropriate(); close();"
+              >
+                Vote Inappropriate
+              </button>
+            </section>
+
+          </div>
+
+        </div>
+
         <footer class="modal__footer" />
       </div>
     </div>
   </transition>
 </template>
 <script>
+import CardComponent from "@/components/elements/CardComponent";
 
 export default {
   name: 'GalleryModal',
+  components: { CardComponent },
   props: {
     canVote: Boolean,
     isOwner: Boolean,
-    keywordDescriptions: Array
+    keywordDescriptions: Array,
+    model: Object,
+    imageURL: String
   },
   data() {
     return {
@@ -153,12 +175,34 @@ export default {
     voteInappropriate() {
       this.$emit('voteInappropriate')
     },
-  }
+  },
+  watch: {
+    "$store.state.lastInputEvent": function () {
+      let event = this.$store.state.lastInputEvent;
+
+      if (event.which == 27) {
+        this.$emit('close')
+      }
+    },
+  },
 }
 </script>
 
 <style lang="scss">
 @import "modal";
+
+.container-flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1rem;
+  white-space: pre-wrap;
+}
+
+.container-flex-column {
+  display: flex;
+  flex-direction: column;
+}
 
 .keywordTable {
   border-collapse: separate;

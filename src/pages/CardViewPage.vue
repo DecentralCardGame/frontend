@@ -53,7 +53,7 @@
 </template>
 
 <script>
-//import * as R from 'ramda'
+import * as R from 'ramda'
 import { saveCardAsPng } from "../components/utils/utils.js";
 import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
@@ -108,9 +108,17 @@ export default {
                 this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
               })
             })
+
+            // yesyoulike.json for harry
+            let likelist = []
+            R.mapObjIndexed((num, key) => { likelist.push({"keyword": key, "description": num.description}) }, R.filter(x => x.description, this.$rulesDefinitions))
+            
+            console.log("yes:", JSON.stringify(likelist))
           }
         })
     }
+
+    
   },
   methods: {
     saveCard () {
@@ -125,6 +133,7 @@ export default {
 
 <style scoped>
 .keywordTable {
+  color: $white;
   border-collapse: separate;
   border-spacing: 10px;
 }
