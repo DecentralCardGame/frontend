@@ -66,20 +66,28 @@
         <div class="gallery__filter__item">
           <input
             v-model="$store.getters.getGalleryFilter.nameContains"
-            placeholder="card name contains"
+            placeholder="Name contains"
+          >
+        </div>
+      </div>
+      <div>
+        <div class="gallery__filter__item">
+          <input
+            v-model="$store.getters.getGalleryFilter.keywordsContains"
+            placeholder="Ability/Effect contains"
           >
         </div>
       </div>
       <div class="gallery__filter__item">
         <input
           v-model="$store.getters.getGalleryFilter.notesContains"
-          placeholder="card notes contain"
+          placeholder="Notes contain"
         >
       </div>
       <div class="gallery__filter__item">
         <input
           v-model="$store.getters.getGalleryFilter.owner"
-          placeholder="card owner is"
+          placeholder="Owner is"
           @click="$store.getters.getGalleryFilter.owner = getOwnAddress()"
         >
       </div>
@@ -238,25 +246,15 @@ export default {
       let event = this.$store.state.lastInputEvent;
 
       if (event.which == 5) {
-<<<<<<< HEAD
         this.leavePageLock = true;
         this.nextPage();
       } else if (event.which == 4) {
         this.leavePageLock = true;
         this.prevPage();
+      } else if (event.which == 13) {
+        this.loadCardList();
       } else {
         this.leavePageLock = false;
-=======
-        this.leavePageLock = true
-        this.nextPage()
-      } else if (event.which == 4) {
-        this.leavePageLock = true
-        this.prevPage()
-      } else if (event.which == 13) {
-        this.loadCardList()
-      } else {
-        this.leavePageLock = false
->>>>>>> master
       }
     },
   },
@@ -297,6 +295,7 @@ export default {
           this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
           this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, ""),
           this.$store.getters.getGalleryFilter.nameContains,
+          this.$store.getters.getGalleryFilter.keywordsContains,
           this.$store.getters.getGalleryFilter.notesContains
         )
         .then((res) => {
@@ -402,7 +401,7 @@ export default {
       this.isGalleryModalVisible = false;
     },
     edit() {
-      console.log("editing:", this.cards[this.clickedIndex])
+      console.log("editing:", this.cards[this.clickedIndex]);
       this.$store.commit(
         "setCardCreatorEditCard",
         this.cards[this.clickedIndex]
@@ -410,7 +409,7 @@ export default {
       this.$router.push("newCard");
     },
     cardview() {
-      this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
+      this.$router.push("cardview/" + this.cards[this.clickedIndex].id);
     },
     downloadPng() {
       saveCardAsPng(

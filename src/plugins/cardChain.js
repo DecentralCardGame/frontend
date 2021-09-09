@@ -302,7 +302,7 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
-      getCardList (owner, status, cardType, classes, sortBy, nameContains, notesContains) {
+      getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
             this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
             throw new Error('CardList status invalid: ' + status)
@@ -314,6 +314,7 @@ export default {
               (classes? '&classes='+classes : '') + 
               (sortBy? '&sortBy='+sortBy : '') + 
               (nameContains? '&nameContains='+nameContains : '') +
+              (keywordsContains? '&keywordsContains='+keywordsContains : '') +
               (notesContains? '&notesContains='+notesContains : '')
             )
             .catch(this.handleGetError)
