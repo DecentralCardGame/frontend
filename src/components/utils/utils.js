@@ -32,6 +32,7 @@ export const emptyGalleryFilter = {
   status: "",
   cardType: "",
   classes: "",
+  keywordsContains: "",
   sortBy: "",
   nameContains: "",
   notesContains: "",

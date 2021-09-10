@@ -843,8 +843,8 @@ export default {
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return '-'
       }
-      let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
-      return cost
+      //let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
+      return this.model.CastingCost
     },
     tagLength () {
       if (this.model.Tags) {
