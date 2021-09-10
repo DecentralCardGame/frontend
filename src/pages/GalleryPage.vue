@@ -181,17 +181,15 @@
               :image-u-r-l="card.image"
               hoverBehavior="none"
               class="gallery__view__card"
-              width="100%"
             />
           </div>
           <div
-            v-show="hoverIndex == index" 
+            v-if="hoverIndex == index" 
             class="cardContainer--element2"
           >
             <CardTooltip
               :id="'card' + index"
               :model="card"
-              width="100%"
             />
           </div>
         </div>
@@ -525,24 +523,23 @@ export default {
 .cardContainer {
   position: relative;
   display: flex;
-  max-width: 500px;
 }
 .cardContainer:hover {
-  grid-column: span 2;
-  grid-row: span 2;
-  max-width: initial; 
 }
 
 .cardContainer--element {
+  position: relative;
   flex-grow: 1;
+  max-width: 300px;
 }
 
 .cardContainer--element2 {
   position: absolute;
   width: 100%;
-  left: 100%;
+  left: min(100%, 300px);
   flex-grow: 1;
   z-index: 3;
+  max-width: 400px;
 }
 
 .ability-modal-container {
