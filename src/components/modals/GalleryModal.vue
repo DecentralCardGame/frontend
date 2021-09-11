@@ -120,11 +120,8 @@
                 Vote Inappropriate
               </button>
             </section>
-
           </div>
-
         </div>
-
         <footer class="modal__footer" />
       </div>
     </div>
