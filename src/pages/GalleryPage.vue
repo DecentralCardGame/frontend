@@ -201,23 +201,26 @@
         next
       </button>
     </div>
-    <div class="ability-modal-container">
-      <GalleryModal
-        v-if="isGalleryModalVisible"
-        :can-vote="canVote"
-        :is-owner="isOwner"
-        :keywordDescriptions="keywordDescriptions"
-        :model="cards[clickedIndex]"
-        :imageURL="cards[clickedIndex].image"
-        @close="closeGalleryModal"
-        @download="downloadPng"
-        @cardview="cardview"
-        @edit="edit"
-        @voteOP="vote('overpowered')"
-        @voteUP="vote('underpowered')"
-        @voteFair="vote('fair_enough')"
-        @voteInappropriate="vote('inappropriate')"
-      />
+    <div v-if="isGalleryModalVisible" class="container-modal"
+    @click="closeGalleryModal">
+      <div class="ability-modal-container">
+        <GalleryModal
+          @click.stop="doNothing"
+          :can-vote="canVote"
+          :is-owner="isOwner"
+          :keywordDescriptions="keywordDescriptions"
+          :model="cards[clickedIndex]"
+          :imageURL="cards[clickedIndex].image"
+          @close="closeGalleryModal"
+          @download="downloadPng"
+          @cardview="cardview"
+          @edit="edit"
+          @voteOP="vote('overpowered')"
+          @voteUP="vote('underpowered')"
+          @voteFair="vote('fair_enough')"
+          @voteInappropriate="vote('inappropriate')"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -277,6 +280,8 @@ export default {
   },
 
   methods: {
+    doNothing () {
+    },
     loadVotableCards() {
       this.$cardChain
         .getVotableCards(this.$store.getters.getUserAddress)
@@ -523,10 +528,7 @@ export default {
   max-width: 300px;
 }
 
-.ability-modal-container {
-  position: relative;
-  z-index: 3;
-}
+
 
 .button-container--top {
   margin-bottom: 2rem;
@@ -535,4 +537,33 @@ export default {
 .button-container--bottom {
   margin-top: 2rem;
 }
+.container-modal {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+  @media (max-width: 480px) {
+    bottom:0;
+    overflow-y: scroll;
+  }
+}
+.ability-modal-container {
+  margin: auto;
+  margin-top: 5vh;
+  max-width: 800px;
+  max-height: 95vh;
+  @media (max-width: 480px) {
+    margin-top: 0;
+    max-height:300vh;
+    height:auto;
+  }
+  //OLD:
+  // position: relative;
+   z-index: 3;
+}
+
 </style>
