@@ -56,9 +56,12 @@
             <option value="">
               default sort
             </option>
-            <option>Name</option>
-            <option>Casting Cost</option>
-            <option>Id</option>
+            <option>Name (A-Z)</option>
+            <option>Name (Z-A)</option>
+            <option>Casting Cost (↑)</option>
+            <option>Casting Cost (↓)</option>
+            <option>Id (↑)</option>
+            <option>Id (↓)</option>
           </select>
         </div>
       </div>
@@ -246,7 +249,7 @@ export default {
       hoverIndex: -1,
       isGalleryModalVisible: false,
       pageId: 0,
-      currentId: 0,
+      //currentId: 0,
       cardList: [],
       cards: [],
       browsingForward: true,
@@ -312,63 +315,64 @@ export default {
           this.$store.getters.getGalleryFilter.status,
           this.$store.getters.getGalleryFilter.cardType,
           this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
-          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, ""),
+          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
           this.$store.getters.getGalleryFilter.nameContains,
           this.$store.getters.getGalleryFilter.keywordsContains,
           this.$store.getters.getGalleryFilter.notesContains
         )
         .then((res) => {
-          this.cardList = res.cardList;
+          if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
+            this.cardList = R.reverse(res.cardList)
+          } 
+          else {
+            this.cardList = res.cardList;
+          }
           this.pageId = 0;
-          this.currentId = 0;
+          //this.currentId = 0;
           this.cards = [];
         })
         .then(() => {
           this.fillPage();
         });
     },
-    getNextCard() {
-      if (this.pageId + this.currentId >= this.cardList.length) return;
-
+    getCard(currentId) {
       let cardId = this.cardList[
-        this.cardList.length - 1 - this.pageId - this.currentId
+        this.cardList.length - 1 - this.pageId - currentId
       ];
-      this.currentId++;
+      //this.currentId++
       return this.$cardChain
         .getCard(cardId)
         .then((res) => {
-          let card = res.card;
-          card.id = cardId;
+          let card = res.card
+          card.id = cardId
           if (card.Content) {
-            let candidate = this.$cardChain.cardObjectToWebModel(card);
-            //if (this.applyFilters(candidate))
-            this.cards.push(candidate);
+            let candidate = this.$cardChain.cardObjectToWebModel(card)
+            this.cards.push(candidate)
+            return candidate
           } else if (!card.Owner) {
-            console.error("card without content and owner: ", res);
+            console.error("card without content and owner: ", res)
+            return res
           } else {
-            console.error("card without content: ", res);
+            console.error("card without content: ", res)
+            return res
           }
         })
-        .catch((res) => {
-          console.error(res);
-        });
     },
     fillPage() {
-      if (
-        this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >=
-        this.cardList.length
-      )
+      if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
-      Promise.all(
-        R.times(
-          this.getNextCard,
-          this.$store.getters.getGalleryFilter.cardsPerPage
+      let requestedCards = R.map(n => this.getCard(n),
+          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length)) 
         )
-      ).then(() => {
+
+      Promise.all(requestedCards)
+      .then((res) => {
+        this.cards = res
+        /*
         if (this.$store.getters.getGalleryFilter.sortBy === "Name") {
           this.cards.sort((x, y) =>
             x.CardName.toUpperCase() < y.CardName.toUpperCase() ? 1 : -1
@@ -378,13 +382,14 @@ export default {
         ) {
           this.cards.sort(
             (x, y) =>
-              (y.CastingCost ? y.CastingCost + y.nerflevel : 0) -
-              (x.CastingCost ? x.CastingCost + x.nerflevel : 0)
+              (y.CastingCost ? y.CastingCost : y.Delay ? y.Delay : 0) -
+              (x.CastingCost ? x.CastingCost : y.Delay ? y.Delay : 0)
           );
           console.log("cards after sort", this.cards);
         } else if (this.$store.getters.getGalleryFilter.sortBy === "Id") {
           this.cards.sort((x, y) => y.id - x.id);
         }
+        */
       });
       console.log("all cards:", this.cards);
     },
@@ -392,7 +397,7 @@ export default {
       if (!this.browsingForward) return;
 
       this.pageId += this.$store.getters.getGalleryFilter.cardsPerPage;
-      this.currentId = 0;
+      //this.currentId = 0;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0);
@@ -401,7 +406,7 @@ export default {
       if (!this.browsingBackward) return;
 
       this.pageId -= this.$store.getters.getGalleryFilter.cardsPerPage;
-      this.currentId = 0;
+      //this.currentId = 0;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0);
