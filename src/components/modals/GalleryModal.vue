@@ -6,6 +6,7 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
+        @click.stop="doNothing"
       >
         <header
           id="modalTitle"
@@ -150,6 +151,8 @@ export default {
   mounted() {
   },
   methods: {
+    doNothing () {
+    },
     close() {
       this.$emit('close')
     },

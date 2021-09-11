@@ -202,10 +202,9 @@
       </button>
     </div>
     <div v-if="isGalleryModalVisible" class="container-modal"
-    @click="closeGalleryModal">
+      @click="closeGalleryModal">
       <div class="ability-modal-container">
         <GalleryModal
-          @click.stop="doNothing"
           :can-vote="canVote"
           :is-owner="isOwner"
           :keywordDescriptions="keywordDescriptions"
@@ -280,8 +279,6 @@ export default {
   },
 
   methods: {
-    doNothing () {
-    },
     loadVotableCards() {
       this.$cardChain
         .getVotableCards(this.$store.getters.getUserAddress)
