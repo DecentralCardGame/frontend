@@ -35,17 +35,18 @@
           </div>
 
           <div class="container-flex-column">
-
             <div v-show="keywordDescriptions.length" class="modal__body">
-
                 <b>Keyword Explanations:</b>
-
                   <div class="container-flex-row"
                     v-for="(keyword, index) in keywordDescriptions"
                     :key="index">
                     <b> {{ keyword[0] }}</b>
                      - {{ keyword[1] }}
                   </div>
+            </div>
+
+            <div class="modal__body no__bottomline">
+              <b>Card Interactions:</b>
             </div>
 
             <section
@@ -208,6 +209,10 @@ export default {
   border-collapse: separate;
   border-spacing: 10px;
   color: $black;
+}
+
+.no__bottomline {
+  border-bottom: initial;
 }
 </style>
 

@@ -174,8 +174,6 @@
             showGalleryModal();
             clickedIndex = index;
           "
-          @mouseover="hoverIndex = index"
-          @mouseleave="hoverIndex = -1"
         >
           <div class="cardContainer--element">
             <CardComponent
@@ -184,15 +182,6 @@
               :image-u-r-l="card.image"
               hoverBehavior="none"
               class="gallery__view__card"
-            />
-          </div>
-          <div
-            v-if="hoverIndex == index" 
-            class="cardContainer--element2"
-          >
-            <CardTooltip
-              :id="'card' + index"
-              :model="card"
             />
           </div>
         </div>
@@ -237,16 +226,14 @@
 import * as R from "ramda";
 import GalleryModal from "../components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent";
-import CardTooltip from "@/components/elements/CardTooltip";
 import { saveCardAsPng, creditsFromCoins } from "../components/utils/utils.js";
 
 export default {
   name: "GalleryPage",
-  components: { CardComponent, CardTooltip, GalleryModal },
+  components: { CardComponent, GalleryModal },
   data() {
     return {
       clickedIndex: 0,
-      hoverIndex: -1,
       isGalleryModalVisible: false,
       pageId: 0,
       //currentId: 0,
@@ -529,22 +516,11 @@ export default {
   position: relative;
   display: flex;
 }
-.cardContainer:hover {
-}
 
 .cardContainer--element {
   position: relative;
   flex-grow: 1;
   max-width: 300px;
-}
-
-.cardContainer--element2 {
-  position: absolute;
-  width: 100%;
-  left: min(100%, 300px);
-  flex-grow: 1;
-  z-index: 3;
-  max-width: 400px;
 }
 
 .ability-modal-container {

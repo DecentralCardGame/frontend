@@ -132,8 +132,9 @@ export default {
 </script>
 
 <style scoped>
+
 .keywordTable {
-  color: $white;
+  color: #F5F5F5;
   border-collapse: separate;
   border-spacing: 10px;
 }
