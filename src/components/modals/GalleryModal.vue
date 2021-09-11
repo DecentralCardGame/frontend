@@ -31,6 +31,7 @@
               :model="model"
               :image-u-r-l="imageURL"
               hoverBehavior="none"
+              class="view__card"
             />
           </div>
 
@@ -213,6 +214,10 @@ export default {
 
 .no__bottomline {
   border-bottom: initial;
+}
+
+.view__card {
+  height: 50vh;
 }
 </style>
 
