@@ -314,21 +314,19 @@ export default {
             this.cardList = R.reverse(res.cardList)
           } 
           else {
-            this.cardList = res.cardList;
+            this.cardList = res.cardList
           }
-          this.pageId = 0;
-          //this.currentId = 0;
-          this.cards = [];
+          this.pageId = 0
+          this.cards = []
         })
         .then(() => {
-          this.fillPage();
+          this.fillPage()
         });
     },
     getCard(currentId) {
       let cardId = this.cardList[
         this.cardList.length - 1 - this.pageId - currentId
       ];
-      //this.currentId++
       return this.$cardChain
         .getCard(cardId)
         .then((res) => {
@@ -360,25 +358,12 @@ export default {
 
       Promise.all(requestedCards)
       .then((res) => {
-        this.cards = res
-        /*
-        if (this.$store.getters.getGalleryFilter.sortBy === "Name") {
-          this.cards.sort((x, y) =>
-            x.CardName.toUpperCase() < y.CardName.toUpperCase() ? 1 : -1
-          );
-        } else if (
-          this.$store.getters.getGalleryFilter.sortBy === "Casting Cost"
-        ) {
-          this.cards.sort(
-            (x, y) =>
-              (y.CastingCost ? y.CastingCost : y.Delay ? y.Delay : 0) -
-              (x.CastingCost ? x.CastingCost : y.Delay ? y.Delay : 0)
-          );
-          console.log("cards after sort", this.cards);
-        } else if (this.$store.getters.getGalleryFilter.sortBy === "Id") {
-          this.cards.sort((x, y) => y.id - x.id);
+        // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
+        // therefore the clickedindex must be adjusted (if something was clicked)
+        if (!R.equals(this.cards[this.clickedIndex], res[this.clickedIndex] )) {
+          this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
-        */
+        this.cards = res
       });
       console.log("all cards:", this.cards);
     },
@@ -386,7 +371,6 @@ export default {
       if (!this.browsingForward) return;
 
       this.pageId += this.$store.getters.getGalleryFilter.cardsPerPage;
-      //this.currentId = 0;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0);
@@ -395,7 +379,6 @@ export default {
       if (!this.browsingBackward) return;
 
       this.pageId -= this.$store.getters.getGalleryFilter.cardsPerPage;
-      //this.currentId = 0;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0);
