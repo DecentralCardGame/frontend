@@ -45,6 +45,13 @@
           </li>
 
           <li>
+            <router-link to="/roadmap">
+              <h2>Roadmap</h2>
+              Know what we're up to.
+            </router-link>
+          </li>
+
+          <li>
             <a href="https://t.me/DecentralCardNetwork">
               <h2>Telegram</h2>
               For 'crypto enthusiasts'.
