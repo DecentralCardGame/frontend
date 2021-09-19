@@ -787,6 +787,14 @@ export default {
         this.abilities.splice(index, 1);
       }
       console.log("abilities after update", this.abilities);
+
+      let keywordCount = R.length(R.flatten(R.pluck("keywords", this.abilities)))
+      if (keywordCount >= 6 && keywordCount <= 8) {
+        this.notifyInfo("Number of Keywords", "You have added "+keywordCount+" Keywords to this card. 8 is the maximum.")
+      }
+      else if (keywordCount > 8) {
+        this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.")
+      }
     },
     resetAbilities() {
       console.log("RESET ABILITIES")
@@ -864,6 +872,13 @@ export default {
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
+        );
+        return;
+      }
+      if (R.length(R.flatten(R.pluck("keywords", this.abilities))) > 8) {
+        this.notifyFail(
+          "Too many Keywords",
+          "Card has too many Keywords. You must reduce to 8 or less."
         );
         return;
       }
