@@ -129,6 +129,7 @@ header {
 
 .img--container {
   overflow-y: hidden !important;
+  width: 100%;
   position: absolute;
   top: -2.0rem;
   left: 0.5rem;
@@ -139,7 +140,7 @@ header {
 }
 .image3 {
   transform: skewX(25deg);
-  margin: 2.8rem;
+  margin: 3.2rem;
   z-index: -1;
   top: 0rem;
   left: 1rem;
