@@ -364,8 +364,8 @@ export default {
           this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
         this.cards = res
-      });
-      console.log("all cards:", this.cards);
+      })
+      console.log("all cards:", this.cards)
     },
     nextPage() {
       if (!this.browsingForward) return;
@@ -373,7 +373,7 @@ export default {
       this.pageId += this.$store.getters.getGalleryFilter.cardsPerPage;
       this.cards = [];
       this.fillPage();
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
     },
     prevPage() {
       if (!this.browsingBackward) return;

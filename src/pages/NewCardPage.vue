@@ -162,23 +162,20 @@
           <!-- cost area -->
           <div>
             <span
-              v-if="
-                $cardRules.children[getRulesType()] &&
-                  $cardRules.children[getRulesType()].children.CastingCost
-              "
+              v-if="$cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost"
               class="creator-text"
             >As I am quite awesome to get me rolling you need to
               <b>pay</b>:
             </span>
           </div>
-          <div 
+          <div
             v-if="
               $cardRules.children[getRulesType()] &&
                 $cardRules.children[getRulesType()].children.CastingCost
             "
           >
             <select
-
               v-model="model.CastingCost"
               @change="saveDraft"
             >
