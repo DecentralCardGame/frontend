@@ -243,7 +243,6 @@ export default {
       clickedIndex: 0,
       isGalleryModalVisible: false,
       pageId: 0,
-      //currentId: 0,
       cardList: [],
       cards: [],
       browsingForward: true,
@@ -282,7 +281,6 @@ export default {
     this.loadCardList();
     this.loadVotableCards();
   },
-
   methods: {
     loadVotableCards() {
       this.$cardChain
@@ -357,8 +355,11 @@ export default {
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
+      console.log("pageId", this.pageId)
+      console.log("cardlist.length", this.cardList.length)
+
       let requestedCards = R.map(n => this.getCard(n),
-          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length)) 
+          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId)) 
         )
 
       Promise.all(requestedCards)
