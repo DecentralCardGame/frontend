@@ -97,11 +97,16 @@
 
       <div class="gallery__filter__item">
         <div class="no--wrap">
-          <input
-            v-model="$store.getters.getGalleryFilter.classesVisible"
-            type="checkbox"
-            @input="$store.getters.getGalleryFilter.classesVisible = !$store.getters.getGalleryFilter.classesVisible "
-          >Filter Classes <br>
+          <label class="gallery-checkbox__label"> 
+            <input
+              class="gallery-checkbox"
+              v-model="$store.getters.getGalleryFilter.classesVisible"
+              type="checkbox"
+              @input="$store.getters.getGalleryFilter.classesVisible = !$store.getters.getGalleryFilter.classesVisible "
+            > 
+            Filter Classes
+            <br>
+          </label>
         </div>
 
         <span
@@ -530,6 +535,14 @@ export default {
     bottom:0;
     overflow-y: scroll;
   }
+}
+.gallery-checkbox {
+  position: absolute;
+  display: inline-block;
+  margin-left: -25px; 
+}
+.gallery-checkbox__label {
+margin-left: 25px;
 }
 .ability-modal-container {
   margin: auto;
