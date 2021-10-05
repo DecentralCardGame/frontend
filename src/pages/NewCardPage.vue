@@ -134,30 +134,42 @@
             My <b>Classes</b> are: <br>
           </div>
           <div>
-            <input
-              v-model="model.Class.Technology"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Technology </label> <br>
-            <input
-              v-model="model.Class.Nature"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Nature </label> <br>
-            <input
-              v-model="model.Class.Culture"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Culture </label> <br>
-            <input
-              v-model="model.Class.Mysticism"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Mysticism </label> <br>
+            <label class="input--checkbox-label__left">  
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Technology"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Technology <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Nature"
+                type="checkbox"
+                @change="saveDraft"
+              >  
+              Nature <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Culture"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Culture <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Mysticism"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Mysticism <br>
+            </label> 
           </div>
           <!-- cost area -->
           <div>
@@ -1200,6 +1212,14 @@ export default {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
+  .input--checkbox__left {
+    position: absolute;
+    display: inline-block;
+    margin-left: -25px; 
+  }
+  .input--checkbox-label__left {
+    margin-left: 25px;
+  }
 
 .tag-select {
   width: 100%;
