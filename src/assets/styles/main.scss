@@ -194,6 +194,13 @@ b {
 
   input[type="checkbox"]:checked {
     background-color: $minor-color-c;
+    
+  }
+  input[type="checkbox"]:checked::after{
+    content: '\2714';
+    position: absolute;
+    top: -25%;
+    left: 5%;
   }
 
   .box-login {
