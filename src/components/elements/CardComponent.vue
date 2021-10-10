@@ -837,8 +837,8 @@ export default {
       }
     },
     getNerfedCost () {
-      if (this.model.type === 'Headquarter') {  
-        return this.model.Delay ? this.model.Delay : '?'
+      if (this.model.type === 'Headquarter') {
+        return this.model.Delay || this.model.Delay === 0 ? this.model.Delay : '?'
       }
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return '-'
