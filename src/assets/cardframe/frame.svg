@@ -1,5 +1,4 @@
-<template id="theCardSvg">
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     viewBox="0 0 198.5 274.28" style="enable-background:new 0 0 198.5 274.28;" xml:space="preserve">
 
     <g id="_x31__Outer_Backgrounds">
@@ -6344,8 +6343,8 @@
       </g>
     </g>
     <g id="FullArt_Frames">
-      <g v-if="techFrame" id="Tech_Frame">
-        <g v-if="healthFrame" id="Health_Frame_00000127035313427268732900000016041358039876385415_">
+      <g id="Tech_Frame">
+        <g id="Health_Frame_00000127035313427268732900000016041358039876385415_">
           <g>
             <defs>
               <path id="SVGID_00000156583457368035771170000013040477651332644232_" d="M52.52,223.08l-21.15-2.98v23.1
@@ -6371,8 +6370,26 @@
                   </clipPath>
                   <g style="clip-path:url(#SVGID_00000111192140422247044290000015804750630355908540_);">
                     
-                    <image style="overflow:visible;" width="85" height="76" href="../../assets/cardframe/bla.jpg" transform="matrix(0.48 0 0 0.48 25.9634 214.8756)">
-
+                      <image style="overflow:visible;" width="85" height="76" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEAlgCWAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
+    EAMCAwYAAAJfAAADLQAABFz/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
+    Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
+    JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIAE8AWAMBIgACEQEDEQH/
+    xACkAAACAwEBAAAAAAAAAAAAAAADBAACBQYBAQADAQAAAAAAAAAAAAAAAAAAAQIDEAADAAEEAQMF
+    AQAAAAAAAAAAAQIEERIDBRAgMRQhIiQ0BhMRAAIAAwELCAoDAAAAAAAAAAECABEDIRAwMUFRYaES
+    cjOTIHGBseEiUrKRwdEyQpLC0hMEI3MUEgABBQADAQAAAAAAAAAAAAAAECABETEwIWGB/9oADAMB
+    AAIRAxEAAADtsW2beWoxiXF0BuahXWX40qOtirU6SSBziGijpj4T0oD8Z8YnRkQidTx2zN7MkjTn
+    0nEtMTHAw2aW9Gqu2uJby9Cepicz1Rz9DMvNg6hmO2WuOwLjAQyDJ1ItJrU5vtclVhFLeore9hho
+    zUFKt1FSa8Vf/9oACAECAAEFAElpojajb5Xt5peF7ejT6r29Gn3JmqNUao1RuWv/2gAIAQMAAQUA
+    qnruo3s/0E9fFe5p4h+H7rw/Gv217o1H41+yp1NrNGaM2s2Pb//aAAgBAQABBQDPzuPC4a73Odcf
+    f5aI/oJZHd4VEdlg2RzcXJ6e+t1m6CQkaDQzhzMrHfX5s5vB47tfnJCkUmwclSNHX5bw8iampO6X
+    5yRMkwKCuMuCpGjpM36Hc/vSQiJJgqC4LkpE1UVh8/yMbuf3pZDONkspllopDOivXE7xbc1URRFk
+    2OimWUM6C9OX+gf5iZNEUTRuGymUM6m9mf2/XVlw05cksliY2UUMwJq807TDwsi/gUnOFQsOhYlH
+    xKHh0PCo+DTfWYuJwP8A/9oACAECAgY/AOK31w6aan//2gAIAQMCBj8A6NTuFllJLb8Jb9Lgwwwx
+    P//aAAgBAQEGPwDXbvO1iJ4jBI1FGIBfbEnRGGWRB6479EjOGn1iLddOcfaTFlZRPLNfNKP43V54
+    NUg9XJCnAiADpmeXOlUYYpTmLMxjXA1XWx1yHtunZW8LUtKGyoBjXsgMpmrCYIwEG4dlbz/kqHPS
+    npW4dlbyHQyZTMEYiIp1pSLC3nFh0iDsremTGjn0ECAZ+8gOkj1XqtT8ShvlMvqhP6h5mvVPI01P
+    SIFSlvqYMh4hkghhIiwg4QbzQC4dcHoUzOgXCwr06P7IsYMwAbaGGJfnoHOKqxvqPEWN7S4ixvaX
+    EWN7S4ixvaXEWN7R4ixL81EZzUWCVrJW/YYfCwMhmE4//9k=" transform="matrix(0.48 0 0 0.48 25.9634 214.8756)">
                     </image>
                   </g>
                 </g>
@@ -6380,7 +6397,7 @@
             </g>
           </g>
         </g>
-        <g v-if="healthFrame" id="Health_Frame_00000145020789489851237450000001663393472026780546_">
+        <g id="Health_Frame_00000145020789489851237450000001663393472026780546_">
           <g>
             <defs>
               <path id="SVGID_00000103244793925254684210000013609442076931062915_" d="M145.9,223.32l21.15-2.98v23.1
@@ -6457,7 +6474,7 @@
         
           <polygon id="Health_Frame_00000145776546414272373820000013251877061798231437_" style="fill:url(#Health_Frame_00000178205095992577050480000001997247802188487570_);" points="
           62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"/>
-        <g v-if="healthFrame" id="Health_Frame">
+        <g id="Health_Frame">
           
             <linearGradient id="SVGID_00000013877605100299959540000008851678559881748360_" gradientUnits="userSpaceOnUse" x1="136.6834" y1="245.2795" x2="136.6834" y2="232.6223">
             <stop  offset="0" style="stop-color:#5E7C88"/>
@@ -6656,8 +6673,8 @@
           h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27l2.02,11.23
           H34.5z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"/>
       </g>
-      <g v-if="natureFrame" id="Nature_Frame">
-        <g v-if="healthFrame" id="Health_Frame_00000135671152285543049820000015813525320815153562_">
+      <g id="Nature_Frame">
+        <g id="Health_Frame_00000135671152285543049820000015813525320815153562_">
           <g>
             <defs>
               <path id="SVGID_00000011027996741808743260000011400182550973863593_" d="M145.9,223.32l21.15-2.98v23.1
@@ -6710,7 +6727,7 @@
             </g>
           </g>
         </g>
-        <g v-if="healthFrame" id="Health_Frame_00000008828817616354599610000013651939815711263634_">
+        <g id="Health_Frame_00000008828817616354599610000013651939815711263634_">
           <g>
             <defs>
               <path id="SVGID_00000016798203976138237650000015545801011638081928_" d="M52.52,223.32l-21.15-2.98v23.1
@@ -6787,7 +6804,7 @@
         
           <polygon id="Health_Frame_00000068672965480437925620000000451653373043581084_" style="fill:url(#Health_Frame_00000036238605286227601540000015889752648881134507_);" points="
           62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"/>
-        <g v-if="healthFrame" id="Health_Frame_00000111884566421854863540000013342101112691306675_">
+        <g id="Health_Frame_00000111884566421854863540000013342101112691306675_">
           
             <linearGradient id="SVGID_00000176030997785522929860000004781036040835371180_" gradientUnits="userSpaceOnUse" x1="136.6834" y1="245.2795" x2="136.6834" y2="232.6223">
             <stop  offset="0" style="stop-color:#4C6847"/>
@@ -6987,8 +7004,8 @@
           l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
           l2.02,11.23H34.5z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"/>
       </g>
-      <g v-if="mythFrame" id="Myth_Frame">
-        <g v-if="healthFrame" id="Health_Frame_00000122703829134633546180000012885021694717682581_">
+      <g id="Myth_Frame">
+        <g id="Health_Frame_00000122703829134633546180000012885021694717682581_">
           <g>
             <defs>
               <path id="SVGID_00000085934088260461085770000010118768989086406529_" d="M52.52,223.32l-21.15-2.98v23.1
@@ -7042,7 +7059,7 @@
             </g>
           </g>
         </g>
-        <g v-if="healthFrame" id="Health_Frame_00000017504223541060782870000017709470130329752997_">
+        <g id="Health_Frame_00000017504223541060782870000017709470130329752997_">
           <g>
             <defs>
               <path id="SVGID_00000025415198813362014430000015497584447399091389_" d="M145.9,223.32l21.15-2.98v23.1
@@ -7311,8 +7328,8 @@
           l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
           l2.02,11.23H34.5z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"/>
       </g>
-      <g v-if="cultureFrame" id="Culture_Frame">
-        <g v-if="healthFrame" id="Health_Frame_00000062911607721957344240000004456903925967723654_">
+      <g id="Culture_Frame">
+        <g id="Health_Frame_00000062911607721957344240000004456903925967723654_">
           <g>
             <defs>
               <path id="SVGID_00000122694241516355998270000014383393117477509785_" d="M145.9,223.32l21.15-2.98v23.1
@@ -7367,7 +7384,7 @@
             </g>
           </g>
         </g>
-        <g v-if="healthFrame" id="Health_Frame_00000099635997935204855430000018413654597194621370_">
+        <g id="Health_Frame_00000099635997935204855430000018413654597194621370_">
           <g>
             <defs>
               <path id="SVGID_00000008110515053961001410000010484326397004898491_" d="M52.52,223.32l-21.15-2.98v23.1
@@ -7638,8 +7655,8 @@
           l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
           l2.02,11.23H34.5z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"/>
       </g>
-      <g v-if="MultiClassFrame" id="Multi_Class_Frame">
-        <g v-if="healthFrame" id="Health_Frame_00000156589647150680156280000018129664523251590058_">
+      <g id="Multi_Class_Frame">
+        <g id="Health_Frame_00000156589647150680156280000018129664523251590058_">
           <g>
             <defs>
               <path id="SVGID_00000092440451448895647280000012522784356969323408_" d="M145.9,223.32l21.15-2.98v23.1
@@ -7691,7 +7708,7 @@
             </g>
           </g>
         </g>
-        <g v-if="healthFrame" id="Health_Frame_00000011713564767811554290000017441946538392818578_">
+        <g id="Health_Frame_00000011713564767811554290000017441946538392818578_">
           <g>
             <defs>
               <path id="SVGID_00000173125493705738982180000001736969096539271590_" d="M52.45,223.32l-21.15-2.98v23.1
@@ -7767,7 +7784,7 @@
         
           <polygon id="Health_Frame_00000062178617851681257790000016567373781796261547_" style="fill:url(#Health_Frame_00000054984580892193791240000009144491763993755542_);" points="
           62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"/>
-        <g v-if="healthFrame" id="Health_Frame_00000059270714850280727540000009499101397916845722_">
+        <g id="Health_Frame_00000059270714850280727540000009499101397916845722_">
           
             <linearGradient id="SVGID_00000183246561578787803080000016530789022016490641_" gradientUnits="userSpaceOnUse" x1="136.6834" y1="245.2795" x2="136.6834" y2="232.6223">
             <stop  offset="0" style="stop-color:#755C51"/>
@@ -7966,8 +7983,8 @@
           l2.02,11.23H34.5z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"/>
       </g>
     </g>
-    <g v-if="framedAddition" id="Framed_Addition">
-      <g v-if="framed.Tech" id="Framed_Tech_00000031167252648264106370000018010308886634233003_">
+    <g id="Framed_Addition">
+      <g id="Framed_Tech_00000031167252648264106370000018010308886634233003_">
         <g id="Framed">
           
             <linearGradient id="FullArt_Inside_BG_00000173127783802214258490000017491837307575853988_" gradientUnits="userSpaceOnUse" x1="66.2613" y1="-76.3933" x2="132.0733" y2="-76.3933" gradientTransform="matrix(1 0 0 -1 0 91.3729)">
@@ -8083,7 +8100,7 @@
         <polyline id="Deco" style="fill:url(#Deco_00000166667432662721895550000016908302236962704009_);" points="151.11,158.02 
           165.1,144.02 165.1,146.15 153.23,158.02 		"/>
       </g>
-      <g v-if="framed.Nature" id="Framed_Nature">
+      <g id="Framed_Nature">
         <g id="Framed_00000075866472900094871340000006266058141490682250_">
           
             <linearGradient id="FullArt_Inside_BG_00000147191491581553259800000018049666383642086546_" gradientUnits="userSpaceOnUse" x1="66.2613" y1="-76.3933" x2="132.0733" y2="-76.3933" gradientTransform="matrix(1 0 0 -1 0 91.3729)">
@@ -8204,7 +8221,7 @@
             151.11,158.02 165.1,144.02 165.1,146.15 153.23,158.02 			"/>
         </g>
       </g>
-      <g v-if="framed.Myth" id="Framed_Myth">
+      <g id="Framed_Myth">
         <g id="Framed_00000116236433486506473750000000589168606566114459_">
           
             <linearGradient id="FullArt_Inside_BG_00000131334034455494148810000008529414055480616070_" gradientUnits="userSpaceOnUse" x1="66.2613" y1="-76.3933" x2="132.0733" y2="-76.3933" gradientTransform="matrix(1 0 0 -1 0 91.3729)">
@@ -8325,7 +8342,7 @@
             151.11,158.02 165.1,144.02 165.1,146.15 153.23,158.02 			"/>
         </g>
       </g>
-      <g v-if="framed.Culture" id="Framed_Culture">
+      <g id="Framed_Culture">
         <g id="Framed_00000057113505976316548600000016625615134210339255_">
           
             <linearGradient id="FullArt_Inside_BG_00000124847399899929771010000016800429953148749736_" gradientUnits="userSpaceOnUse" x1="66.2613" y1="-76.3933" x2="132.0733" y2="-76.3933" gradientTransform="matrix(1 0 0 -1 0 91.3729)">
@@ -8446,7 +8463,7 @@
             151.11,158.02 165.1,144.02 165.1,146.15 153.23,158.02 			"/>
         </g>
       </g>
-      <g v-if="framed.MultiClass" id="Framed_Multi_Class">
+      <g v-show="framedMultiClass" id="Framed_Multi_Class">
         <g id="Framed_00000062162050087782160700000004047623722043919773_">
           
             <linearGradient id="FullArt_Inside_BG_00000052084548068686741060000007427986052288534440_" gradientUnits="userSpaceOnUse" x1="66.2613" y1="-76.3933" x2="132.0733" y2="-76.3933" gradientTransform="matrix(1 0 0 -1 0 91.3729)">
@@ -8565,667 +8582,3 @@
       </g>
     </g>
   </svg>
-
-</template>
-
-<script>
-import * as R from 'ramda'
-import * as svg1 from 'save-svg-as-png'
-import { icon } from '@/components/utils/utils.js'
-
-export default {
-  name: 'CardComponent',
-  props: {
-    model: Object,
-    imageURL: {
-      type: String,
-      default: null
-    },
-    altImageURL: {
-      type: String,
-      default: null
-    },
-    nerflevel: Number,
-    displayNotes: {
-      type: Boolean,
-      default: false
-    },
-    hoverBehavior: String
-  },
-  data () {
-    return {
-      opaque: 1,
-      clicked: false,
-      keywordDescriptions: "",
-
-      framedAddition: true,
-      framed: {
-        MultiClass: false,
-        Culture: false,
-        Myth: true,
-        Nature: false,
-        Tech: false,
-        
-      },
-      techFrame: true,
-      natureFrame: false,
-      mythFrame: false,
-      cultureFrame: false,
-      
-      healthFrame: true,
-      MultiClassFrame: false,
-    }
-  },
-  computed: {
-    viewBox () {
-      if (!this.displayNotes) {
-        return '0 0 154 240'
-      } else {
-        return '0 0 210 240'
-      }
-    }
-  },
-  created () {
-    let firstLetterToLower = string => {
-      return string[0].toLowerCase() + string.substring(1)
-    }
-    this.model.Keywords.forEach(ability => {
-      ability.forEach(keyword => {
-        this.keywordDescriptions = R.concat(this.keywordDescriptions, 
-          keyword + " - " + this.$rulesDefinitions[firstLetterToLower(keyword)].description + " \\n "
-        )
-      })
-    })
-  },
-  methods: {
-    cardmouseleave() {
-      if (this.hoverBehavior === 'none') return 
-
-      this.opaque = 1;
-      this.clicked = false;
-    },
-    cardmouseclick() {
-      if (this.hoverBehavior === 'none') return 
-
-      if (this.isMobileDevice()) {
-        this.opaque = this.clicked? 1 : 0
-        this.clicked = !this.clicked
-      }
-      else {
-        this.opaque = 1;
-        if (this.clicked) {
-          //this.saveSingleCard()
-        }
-        this.clicked = true
-      }
-    },
-    cardmouseenter() {
-      if (this.hoverBehavior === 'none') return 
-
-      this.opaque = 0;
-    },
-    getType () {
-      if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
-        return ''
-      } else {
-        let type = this.model.type === 'Headquarter' ? 'HQ' : this.model.type
-        if (type) {
-          return type.toUpperCase()
-        } else {
-          console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) + '. Instead is: ' + type )
-        }
-      }
-    },
-    getNerfedCost () {
-      if (this.model.type === 'Headquarter') {  
-        return this.model.Delay ? this.model.Delay : '?'
-      }
-      if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
-        return '-'
-      }
-      //let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
-      return this.model.CastingCost
-    },
-    tagLength () {
-      if (this.model.Tags) {
-        return R.length(R.filter(x => x, this.model.Tags))
-      } else {
-        return 0
-      }
-    },
-    getTags () {
-      return this.model.Tags.join(' - ').toUpperCase() || ''
-    },
-    abilitiesLength () {
-      if (this.model.abilities) {
-        if (R.isEmpty(this.model.abilities)) {
-          return 0
-        }
-        return R.length(this.model.abilities)
-      } else if (this.model.effects) {
-        if (R.isEmpty(this.model.effects)) {
-          return 0
-        }
-        return R.length(this.model.effects)
-      } else {
-        return 0
-      }
-    },
-    getAbilityYPos(abilityIndex, extraLines) {
-      let keywords = this.getKeywords()
-
-      let summedLength = 0
-      for (let i = 0; i < abilityIndex; i++) {
-        summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
-      }
-
-      return 145 + 13*summedLength + 8*abilityIndex + 10*extraLines
-    },
-    getAbilityText () {
-      let additionalCostText = []
-
-      if (this.model.AdditionalCost) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostText.push("Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
-        }
-        else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostText.push("Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
-        }
-        else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostText.push("Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
-        }
-      }
-      return R.concat(additionalCostText, this.model.RulesTexts)
-    },
-    textToSvg (text) {
-      if (!text) return text
-
-      let maxLength = 57
-      if (text.length < 100)
-        maxLength = 35
-      else if (text.length < 200)
-        maxLength = 39
-
-      let lines = ['']
-      let words = text.split(' ')
-
-      words.forEach(function (word) {
-        if (R.last(lines).length + word.length > maxLength) {
-          // line full, create new line
-          lines.push(word + ' ')
-        } else {
-          if (word === '\\n') {
-            // newline operator, create new line
-            lines.push(' ')
-          } else {
-            // concat to existing line
-            lines[lines.length - 1] = R.concat(lines[lines.length - 1], word + ' ')
-          }
-        }
-      })
-      return lines
-    },
-    getKeywords() {
-      let additionalCostPseudoKeyword = [[]]
-
-      if (this.model.AdditionalCost) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostPseudoKeyword[0].push("Tribute")
-        }
-        else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostPseudoKeyword[0].push("DiscardPay")
-        }
-        else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostPseudoKeyword[0].push("Dissolve")
-        }
-      }
-
-      return additionalCostPseudoKeyword[0].length > 0 ? 
-        R.concat(additionalCostPseudoKeyword, this.model.Keywords) : 
-        this.model.Keywords
-    },
-    getIcon(name) {
-      return icon(R.toLower(R.split('-', name)[0]))
-    },
-    fontSize (rawText) {
-      let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
-      if (text.length < 100)
-        return 8.1
-      else if (text.length < 200)
-        return 7.1
-      else
-        return 6.1
-    },
-    fontSpacing (rawText) {
-      let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
-      if (text.length < 100)
-        return 12
-      else if (text.length < 200)
-        return 10
-      else
-        return 8
-    },
-    saveSingleCard () {
-      let clickedCard = document.getElementById('theCardSvg')
-      svg1.saveSvgAsPng(clickedCard, this.model.CardName + '.png', {scale: 5})
-    }
-  }
-}
-</script>
-
-<style scoped>
-img {
-  width: 100%;
-  height: auto;
-}
-
-	.st0{clip-path:url(#SVGID_00000010308134101373640250000005780674306055471769_);}
-	.st1{clip-path:url(#SVGID_00000145737198545181751290000006071004755933329802_);}
-	.st2{clip-path:url(#SVGID_00000026847776175046134320000015085348261736159136_);}
-	.st3{clip-path:url(#SVGID_00000177466039871203799650000017331434978354862745_);}
-	.st4{clip-path:url(#SVGID_00000018226711472192680580000009161842229579162794_);}
-	.st5{clip-path:url(#SVGID_00000111152180017489074180000006795926600268591752_);}
-	.st6{clip-path:url(#SVGID_00000078738081549294153620000005310943215804086931_);}
-	.st7{clip-path:url(#SVGID_00000138566330574591493910000013301827057392366993_);}
-	.st8{clip-path:url(#SVGID_00000004547801861123733770000015251854743929634739_);}
-	.st9{clip-path:url(#SVGID_00000127019791547548191210000010292699247907592838_);}
-	.st10{clip-path:url(#SVGID_00000001634069391719324700000000830737065333363337_);}
-	.st11{clip-path:url(#SVGID_00000077310909154975185780000015766985028474745472_);}
-	.st12{fill:#FDDD9D;}
-	.st13{fill:url(#SVGID_00000142156329236257362740000009876653706608061072_);}
-	.st14{fill:url(#SVGID_00000026132827432295120790000008811844050746794168_);}
-	.st15{fill:url(#SVGID_00000114033334710463376720000007780372020056997765_);}
-	.st16{fill:url(#SVGID_00000096739546565751750630000012924625001108533944_);}
-	.st17{fill:url(#SVGID_00000045607698043555260790000016909867478893604482_);}
-	.st18{fill:url(#SVGID_00000013174832192228267990000005183844951945103003_);}
-	.st19{fill:url(#SVGID_00000050634243634585895970000017293142187106597052_);}
-	.st20{fill:url(#Frame_Outline_Left_00000093896827248510621540000014749414018162042761_);}
-	.st21{fill:url(#SVGID_00000170248220555219293460000006145759279001729461_);}
-	.st22{fill:url(#SVGID_00000005970064909460460700000015403809449800519093_);}
-	.st23{fill:url(#SVGID_00000107547269545964107730000017404586962400716464_);}
-	.st24{fill:url(#SVGID_00000106828071311226228180000010131286730999521955_);}
-	.st25{fill:url(#SVGID_00000088125831201054968750000003701804350536059550_);}
-	.st26{fill:url(#SVGID_00000005948780588168462500000008522767821804311440_);}
-	.st27{fill:url(#SVGID_00000119805355603131913420000010224819388519497148_);}
-	.st28{fill:url(#Frame_Outline_Left_00000077318479881664024550000004940491446173361287_);}
-	.st29{fill:url(#SVGID_00000026131898631398210230000010786344706033311112_);}
-	.st30{fill:url(#SVGID_00000103980348497227133900000013679276579978772356_);}
-	.st31{fill:url(#SVGID_00000075868837051522693300000001741201372013859723_);}
-	.st32{fill:url(#SVGID_00000118355193921990234180000012064558010564234920_);}
-	.st33{fill:url(#SVGID_00000023261149498265120020000006162186096416099480_);}
-	.st34{fill:url(#SVGID_00000157308284696086534920000008671976472185801388_);}
-	.st35{fill:url(#SVGID_00000174584971205982746280000007120040236972424606_);}
-	.st36{fill:url(#Frame_Outline_Left_00000181770743995092305140000006214847179183523994_);}
-	.st37{fill:url(#SVGID_00000049922331321813387090000014965691223033452204_);}
-	.st38{fill:url(#SVGID_00000103248748997037720390000008572875699147516330_);}
-	.st39{fill:url(#SVGID_00000055704558691150602930000000422699425701665941_);}
-	.st40{fill:url(#SVGID_00000013908077723688970470000010502186806599445679_);}
-	.st41{fill:url(#SVGID_00000137132390399912797860000001401964512827553923_);}
-	.st42{fill:url(#SVGID_00000057114295725728494280000016037787924022379664_);}
-	.st43{fill:url(#SVGID_00000111880073795417397650000005445709718599042713_);}
-	.st44{fill:url(#Frame_Outline_Left_00000147206115729566817660000005051849325685709208_);}
-	.st45{fill:url(#SVGID_00000083785547082873818530000007945298720635405953_);}
-	.st46{fill:url(#SVGID_00000097463266485285290820000008323262094128949177_);}
-	.st47{fill:url(#SVGID_00000146483395534793354060000005252712865911745681_);}
-	.st48{fill:url(#SVGID_00000001640524115027448240000014588757308953601682_);}
-	.st49{fill:url(#SVGID_00000029746667493551215590000007983766110700089739_);}
-	.st50{fill:url(#SVGID_00000110437434128787012810000016656467979410313356_);}
-	.st51{fill:url(#SVGID_00000039820116422460801890000006368557204504163752_);}
-	.st52{fill:url(#Frame_Outline_Left_00000052801116291330628660000003966573528030360473_);}
-	.st53{clip-path:url(#SVGID_00000112612131578300859200000008460784279080431011_);}
-	.st54{clip-path:url(#SVGID_00000178202821597181393620000002252014017386609314_);}
-	.st55{clip-path:url(#SVGID_00000114058349066304843390000002827429285587891882_);}
-	.st56{clip-path:url(#SVGID_00000021082951778091254370000010911183854689963942_);}
-	.st57{clip-path:url(#SVGID_00000036237217050826097680000008751566724620035247_);}
-	.st58{clip-path:url(#SVGID_00000026869312493342158590000015619218646999320716_);}
-	.st59{clip-path:url(#SVGID_00000094609250508608395370000013375756956152779706_);}
-	.st60{clip-path:url(#SVGID_00000116216230259238465600000003400075771191539586_);}
-	.st61{clip-path:url(#SVGID_00000066498019763858838900000002573377230392417703_);}
-	.st62{fill:none;stroke:#000000;stroke-width:1.5;stroke-miterlimit:10;}
-	.st63{fill:none;stroke:url(#SVGID_00000128453164592282973010000008572406823629682107_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st64{fill:none;stroke:url(#Tech_00000081612216962146120410000017260515821545301682_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st65{fill:none;stroke:url(#SVGID_00000124856680049649377980000013591567940980258946_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st66{fill:none;stroke:url(#Nature_00000031904471582748633340000014391761558832140169_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st67{fill:none;stroke:url(#SVGID_00000077297596551645054640000011783773933166682501_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st68{fill:none;stroke:url(#Nature_00000100362425681257200050000016785506466689937027_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st69{fill:none;stroke:url(#SVGID_00000051363253359760304350000017101591171486231207_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st70{fill:none;stroke:url(#Nature_00000145060173523238224730000008611392385138867612_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st71{clip-path:url(#SVGID_00000040540155335128266330000005698831536591745466_);}
-	.st72{clip-path:url(#SVGID_00000070805396770563951220000012321684770162584963_);}
-	.st73{clip-path:url(#SVGID_00000047058070849827318740000002654181233377658514_);}
-	.st74{clip-path:url(#SVGID_00000139252499532479776890000000250535165784927392_);}
-	.st75{clip-path:url(#SVGID_00000107551119889439116270000001851555164017315252_);}
-	.st76{clip-path:url(#SVGID_00000098929851536018039590000014827901321154060443_);}
-	.st77{clip-path:url(#SVGID_00000047054030976885884970000011728441666200571057_);}
-	.st78{clip-path:url(#SVGID_00000145042780930577469830000015807460949499766927_);}
-	.st79{clip-path:url(#SVGID_00000123432585611129722830000003763144041111976873_);}
-	.st80{clip-path:url(#SVGID_00000156585886446846135670000003606643929766983592_);}
-	.st81{clip-path:url(#SVGID_00000016038937687423602020000006342920962973433763_);}
-	.st82{clip-path:url(#SVGID_00000135673373950604348290000013917319757444579764_);}
-	.st83{clip-path:url(#SVGID_00000109023604689192282960000016435029341900069040_);}
-	.st84{clip-path:url(#SVGID_00000101785701142693073220000003784934616519496582_);}
-	.st85{clip-path:url(#SVGID_00000085930363640406202110000017541557755702724766_);}
-	.st86{clip-path:url(#SVGID_00000121276261694027208900000002463255903848238236_);}
-	.st87{fill:none;stroke:url(#SVGID_00000093869927779698645750000005952310753764292282_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st88{fill:none;stroke:url(#SVGID_00000052081506605611514820000007974668292053448127_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st89{clip-path:url(#SVGID_00000171698295718724669200000008505360292348423082_);}
-	.st90{clip-path:url(#SVGID_00000152975917065914709590000009936106762518022018_);}
-	.st91{clip-path:url(#SVGID_00000105408730555124349990000012874241244122805124_);}
-	.st92{clip-path:url(#SVGID_00000024682075469220729310000003128443589452469389_);}
-	.st93{clip-path:url(#SVGID_00000132050543056101358370000014601194903578981767_);}
-	.st94{clip-path:url(#SVGID_00000143590612344215615230000017186323837199769789_);}
-	.st95{clip-path:url(#SVGID_00000138546306815843204270000000555195357310080401_);}
-	.st96{clip-path:url(#SVGID_00000081646388459641094350000009221121946196171150_);}
-	.st97{clip-path:url(#SVGID_00000084523076582531538780000005824812571828441986_);}
-	.st98{clip-path:url(#SVGID_00000052065224995938701990000008511567775709227657_);}
-	.st99{clip-path:url(#SVGID_00000000913449451503145970000006140202582876956830_);}
-	.st100{clip-path:url(#SVGID_00000106141954499825234460000009151073083029159613_);}
-	.st101{clip-path:url(#SVGID_00000089559890216142552770000016425377880310068905_);}
-	.st102{clip-path:url(#SVGID_00000088852858092784344020000011109054109326496142_);}
-	.st103{fill:none;stroke:url(#SVGID_00000070819301485226039000000017195560602251456701_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st104{fill:none;stroke:url(#SVGID_00000064314350048765226550000017345470895974705284_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st105{clip-path:url(#SVGID_00000101813656133544900980000015497108964639926403_);}
-	.st106{clip-path:url(#SVGID_00000174592532574180871400000012319113417698372251_);}
-	.st107{clip-path:url(#SVGID_00000060740603259823254390000010487954446472461474_);}
-	.st108{clip-path:url(#SVGID_00000090996908215937573110000017641698404653994643_);}
-	.st109{clip-path:url(#SVGID_00000119814600571533575370000009962101604782665620_);}
-	.st110{clip-path:url(#SVGID_00000173861100082141135080000017270153151591624580_);}
-	.st111{clip-path:url(#SVGID_00000084494169350530805310000013751516372966298496_);}
-	.st112{clip-path:url(#SVGID_00000079461920374227320300000002364606163489672097_);}
-	.st113{clip-path:url(#SVGID_00000014595350607392156340000003645482503916342941_);}
-	.st114{clip-path:url(#SVGID_00000131335137250938838810000008156718978348613807_);}
-	.st115{fill:none;stroke:url(#SVGID_00000002341985793197735280000004772652201490185610_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st116{fill:none;stroke:url(#SVGID_00000051379421684030091110000003406790439150069379_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st117{clip-path:url(#SVGID_00000009563414795781644440000003185507835969262234_);}
-	.st118{clip-path:url(#SVGID_00000113332684111882153290000014900520614861997973_);}
-	.st119{fill:none;stroke:url(#SVGID_00000031205697381211991690000012583840918411511183_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st120{fill:none;stroke:url(#SVGID_00000040537798496892038050000005822147022697681081_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st121{fill:none;stroke:url(#SVGID_00000129186405742491204500000005226239283717322906_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st122{clip-path:url(#SVGID_00000155866556130116614320000000794009366381009541_);}
-	.st123{clip-path:url(#SVGID_00000095301944258652251310000004423701276434933940_);}
-	.st124{fill:none;stroke:url(#SVGID_00000127011305204640986090000005381017415303864729_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st125{fill:none;stroke:url(#SVGID_00000028299941688933400430000004843578557327015351_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st126{fill:none;stroke:url(#SVGID_00000065787195954092123590000000810077520453130147_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st127{clip-path:url(#SVGID_00000043428145205925298950000013362503873361159595_);}
-	.st128{clip-path:url(#SVGID_00000099655051996852271420000016937784824027549826_);}
-	.st129{fill:none;stroke:url(#SVGID_00000045618079678899759020000014732166357596771467_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st130{fill:none;stroke:url(#SVGID_00000157283167526522396160000007643910285898558616_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st131{fill:none;stroke:url(#SVGID_00000113325241057838462570000012203347441760184724_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st132{clip-path:url(#SVGID_00000152954221494355698750000004849603884752872098_);}
-	.st133{clip-path:url(#SVGID_00000128457140192372597090000010221218412512389549_);}
-	.st134{fill:none;stroke:url(#SVGID_00000036960953491296963900000001202219058833383578_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st135{fill:none;stroke:url(#SVGID_00000132079761628803873070000009593627031194393791_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st136{fill:none;stroke:url(#SVGID_00000036220311584475186290000003773497419864752528_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st137{clip-path:url(#SVGID_00000039098040463723911900000008621677990619319229_);}
-	.st138{clip-path:url(#SVGID_00000044864702752722666730000015504304672284613777_);}
-	.st139{fill:none;stroke:url(#SVGID_00000035500666921049980000000007713085017493754045_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st140{fill:none;stroke:url(#SVGID_00000091696462367783961720000005829358282628720552_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st141{fill:none;stroke:url(#SVGID_00000019673935551764245020000009847651576532093324_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st142{fill:#FFCF03;}
-	.st143{clip-path:url(#SVGID_00000150785710889359181220000004030032556268104626_);}
-	.st144{fill:#087EFF;}
-	.st145{fill:#5AFF03;}
-	.st146{fill:url(#Tech_Gradient_00000131332521994557399150000004783373301257667490_);}
-	.st147{fill:url(#Myth_Gradient_00000042715985312867602560000017804279024178328210_);}
-	.st148{fill:url(#Culture_Gradient_00000026164215728602298810000017515332112505809055_);}
-	.st149{fill:url(#Nature_Gradient_00000150079250988226248980000009626611947479212215_);}
-	.st150{fill:url(#Multi_Gradient_00000096036716150111888390000008607295590928800687_);}
-	.st151{fill:url(#Gold_Gradient_00000039831545256991703580000003576118505466520986_);}
-	.st152{clip-path:url(#SVGID_00000125595401997242361630000006945199876164505490_);}
-	.st153{clip-path:url(#SVGID_00000085959253581456899300000005697036253725602983_);}
-	.st154{display:none;}
-	.st155{display:inline;}
-	.st156{clip-path:url(#SVGID_00000130638834916448554200000002590089707998125202_);}
-	.st157{clip-path:url(#SVGID_00000099639696618653088970000000730469824865026947_);}
-	.st158{clip-path:url(#SVGID_00000005947583042319546070000000048381237413761191_);}
-	.st159{clip-path:url(#SVGID_00000036936764027023610330000017259402544407181491_);}
-	.st160{clip-path:url(#SVGID_00000060032755347327384250000016311611364135072134_);}
-	.st161{clip-path:url(#SVGID_00000068662423567110137010000009991198411218794157_);}
-	.st162{clip-path:url(#SVGID_00000085222093782805281840000006999391965591027631_);}
-	.st163{clip-path:url(#SVGID_00000057868656249528784950000002672952180164119703_);}
-	.st164{clip-path:url(#SVGID_00000068664003958186689850000012115381679041507250_);}
-	.st165{clip-path:url(#SVGID_00000152942577816813749120000015884678691794486443_);}
-	.st166{clip-path:url(#SVGID_00000035503610934820300090000011675696329784548793_);}
-	.st167{clip-path:url(#SVGID_00000064332294037251670340000006296958757554673289_);}
-	.st168{clip-path:url(#SVGID_00000153667615675308996000000014763724596172964230_);}
-	.st169{clip-path:url(#SVGID_00000165221889578746978340000015421971861057195906_);}
-	.st170{clip-path:url(#SVGID_00000079460576838167623180000001830457747362131645_);}
-	.st171{clip-path:url(#SVGID_00000013191493896861033380000010400794970540098694_);}
-	.st172{clip-path:url(#SVGID_00000090287915722052355180000018055373522433488789_);}
-	.st173{clip-path:url(#SVGID_00000083774219975453487990000012639703647090649239_);}
-	.st174{clip-path:url(#SVGID_00000170246414059307606720000011109215874988655286_);}
-	.st175{clip-path:url(#SVGID_00000022554009371325151340000005500877242662723228_);}
-	.st176{clip-path:url(#SVGID_00000178889770371070795830000007468409673974456967_);}
-	.st177{fill:url(#SVGID_00000112603220547806534950000010572631860369622714_);}
-	.st178{fill:url(#SVGID_00000102546932703990872570000017133980417305548990_);}
-	.st179{fill:url(#SVGID_00000010287927669726083390000002971808210807680673_);}
-	.st180{fill:url(#SVGID_00000154402860094606795520000002498050833680117405_);}
-	.st181{fill:url(#SVGID_00000044875443966896282150000001632528173827994273_);}
-	.st182{fill:url(#SVGID_00000033334617393059186160000017520266665078403740_);}
-	.st183{fill:url(#SVGID_00000016755961439781023310000002973177352195607478_);}
-	.st184{fill:url(#SVGID_00000048479043555330316320000015099068003062061977_);}
-	.st185{fill:url(#SVGID_00000044156741277652620960000012515745057148836787_);}
-	.st186{clip-path:url(#SVGID_00000177483772716127664730000016785108139678904966_);}
-	.st187{clip-path:url(#SVGID_00000088113718829868657040000007028188613585756856_);}
-	.st188{clip-path:url(#SVGID_00000090257367458516456300000014570559827376132286_);}
-	.st189{clip-path:url(#SVGID_00000032648401794725131880000000740928821402615718_);}
-	.st190{fill:url(#Health_Frame_00000067213220320426199310000017512433112032765871_);}
-	.st191{fill:url(#Health_Frame_00000150782453410360884020000017525316961689606058_);}
-	.st192{fill:url(#Health_Frame_00000059304635489250081470000010722580265685725312_);}
-	.st193{fill:url(#SVGID_00000067954685827651343990000007596009473534290059_);}
-	.st194{fill:url(#SVGID_00000067958382813967825050000010569906573086154897_);}
-	.st195{fill:url(#FullArt_Inside_BG_00000168087265648315364300000017964318533315400609_);}
-	.st196{fill:url(#FullArt_Inside_BG_00000137829525372442785560000005882511443450604208_);}
-	.st197{fill:url(#FullArt_Inside_BG_00000091010598037535076970000011949708786862742426_);}
-	.st198{fill:url(#FullArt_Inside_BG_00000034804576104405581500000012690889861027958178_);}
-	.st199{fill:url(#FullArt_Inside_BG_00000042709213329499940570000013367694932623832986_);}
-	.st200{fill:url(#FullArt_Inside_BG_00000144322471135075734800000014777933494680333992_);}
-	.st201{fill:url(#FullArt_Inside_BG_00000009574482146060501420000003302212019269478077_);}
-	.st202{fill:url(#FullArt_Inside_BG_00000018934874678757808280000002077234689159381941_);}
-	.st203{fill:url(#FullArt_Inside_BG_00000141451594145892914580000005943924634204421504_);}
-	.st204{fill:url(#FullArt_Inside_BG_00000026132842904254287710000005004980209037923218_);}
-	.st205{fill:url(#Health_Frame_00000080204587668095887420000004290144534467849112_);}
-	.st206{fill:url(#Health_Frame_00000075844466374765959690000010057937829039267519_);}
-	.st207{fill:url(#FullArt_Inside_BG_00000032624775216293829750000016050195813722516413_);}
-	.st208{fill:url(#FullArt_Inside_BG_00000041283468372605654350000014136770193951823490_);}
-	.st209{fill:url(#FullArt_Outside_00000053516386407913523040000002638506447120007318_);}
-	.st210{fill:url(#FullArt_Outside_00000101074497530023618510000001897112338675186082_);}
-	.st211{fill:url(#FullArt_Outside_00000173845866003624409870000009507218929187925387_);}
-	.st212{fill:url(#FullArt_Outside_00000172407548321048959820000009972728006179150214_);}
-	.st213{fill:url(#FullArt_Outside_00000120559874271982062040000016636376367667682715_);}
-	.st214{fill:url(#FullArt_Outside_00000111162953724572697550000003862001220172786307_);}
-	.st215{fill:url(#FullArt_Outside_00000020382554404950867860000015533082044774543541_);}
-	.st216{fill:url(#Bottom_Frame_00000112592160824181470960000014981547756681179530_);}
-	.st217{clip-path:url(#SVGID_00000173851996608687088270000012550153655986593954_);}
-	.st218{clip-path:url(#SVGID_00000116216874346083334160000003386158048367327927_);}
-	.st219{clip-path:url(#SVGID_00000033330269523612007480000009409795631469490617_);}
-	.st220{clip-path:url(#SVGID_00000138572266327456314220000013385297382371482043_);}
-	.st221{fill:url(#Health_Frame_00000018239184122185220910000005583394410686471848_);}
-	.st222{fill:url(#Health_Frame_00000071521138499653677860000010046609604142756229_);}
-	.st223{fill:url(#Health_Frame_00000178911740334374833250000002715676134165462704_);}
-	.st224{fill:url(#SVGID_00000029742105178736280990000004280786338451436206_);}
-	.st225{fill:url(#SVGID_00000168086299796757598730000006828068724394147213_);}
-	.st226{fill:url(#FullArt_Inside_BG_00000012443065424328229540000011949746759779028916_);}
-	.st227{fill:url(#FullArt_Inside_BG_00000041258109386584264380000017053446635444987824_);}
-	.st228{fill:url(#FullArt_Inside_BG_00000155856144736645843700000001811046065721238443_);}
-	.st229{fill:url(#FullArt_Inside_BG_00000047024992207695205230000005074051789427020448_);}
-	.st230{fill:url(#FullArt_Inside_BG_00000154408914137835867910000012663283331834109843_);}
-	.st231{fill:url(#FullArt_Inside_BG_00000018926475555974743340000010700258901153311645_);}
-	.st232{fill:url(#FullArt_Inside_BG_00000112618109074723258800000005204132329646611894_);}
-	.st233{fill:url(#FullArt_Inside_BG_00000019637189355086089680000015893048857495482752_);}
-	.st234{fill:url(#FullArt_Inside_BG_00000046336710760042845250000016553249210285781384_);}
-	.st235{fill:url(#FullArt_Inside_BG_00000022540566416538468850000008932126329079162792_);}
-	.st236{fill:url(#Health_Frame_00000175322261491469347290000012435820152628958125_);}
-	.st237{fill:url(#Health_Frame_00000113328837804312358790000004465622803549593256_);}
-	.st238{fill:url(#FullArt_Inside_BG_00000091736552884823701910000000389104507238061193_);}
-	.st239{fill:url(#FullArt_Inside_BG_00000060751464083452692160000009289772230253872010_);}
-	.st240{fill:url(#FullArt_Outside_00000005984219663602054480000007830572475583924901_);}
-	.st241{fill:url(#FullArt_Outside_00000082334163680821400780000018033259904039780272_);}
-	.st242{fill:url(#FullArt_Outside_00000157987424453988322440000017566284838914321835_);}
-	.st243{fill:url(#FullArt_Outside_00000127753322470154978780000001438241755229692334_);}
-	.st244{fill:url(#FullArt_Outside_00000117641509686284036560000003815121304931999902_);}
-	.st245{fill:url(#FullArt_Outside_00000124152411780954779920000003181650697930108313_);}
-	.st246{fill:url(#FullArt_Outside_00000108288685182785389740000013854805399011019961_);}
-	.st247{fill:url(#Bottom_Frame_00000044878210691718922330000001242463665609106585_);}
-	.st248{clip-path:url(#SVGID_00000039830154106055903680000006481559442394879149_);}
-	.st249{clip-path:url(#SVGID_00000055667797482112744330000002929574762340739241_);}
-	.st250{clip-path:url(#SVGID_00000126296373175657843710000014305017311469685391_);}
-	.st251{clip-path:url(#SVGID_00000168809355879684648680000009548705452926921096_);}
-	.st252{fill:url(#Health_Frame_00000173146566768665076180000001155088774487782801_);}
-	.st253{fill:url(#Health_Frame_00000144301439028862037190000008293020077961057690_);}
-	.st254{fill:url(#Health_Frame_00000009584228333024922010000011686975060284622209_);}
-	.st255{fill:url(#SVGID_00000026138498671369515310000015968752079123330991_);}
-	.st256{fill:url(#FullArt_Inside_BG_00000105392552766906378410000003237849365145799584_);}
-	.st257{fill:url(#FullArt_Inside_BG_00000033347924923377743400000009376797974254398636_);}
-	.st258{fill:url(#FullArt_Inside_BG_00000181766021118997633540000017521604503026817215_);}
-	.st259{fill:url(#FullArt_Inside_BG_00000080199945861802610660000011793757975520339632_);}
-	.st260{fill:url(#FullArt_Inside_BG_00000177464896795514848250000017430654796759507374_);}
-	.st261{fill:url(#FullArt_Inside_BG_00000063616162353477583430000016684171237967490962_);}
-	.st262{fill:url(#FullArt_Inside_BG_00000165949553821214178820000017038562224542462889_);}
-	.st263{fill:url(#FullArt_Inside_BG_00000051350509546194520640000017864577618642232470_);}
-	.st264{fill:url(#FullArt_Inside_BG_00000097491569067853416170000018386052041661213856_);}
-	.st265{fill:url(#FullArt_Inside_BG_00000080201270390752596200000001134659671675043256_);}
-	.st266{fill:url(#Health_Frame_00000096770177399017045870000006397610987880025241_);}
-	.st267{fill:url(#Health_Frame_00000070831601337169172180000007884011971447886751_);}
-	.st268{fill:url(#FullArt_Inside_BG_00000025428284009213798610000009812882470921275572_);}
-	.st269{fill:url(#FullArt_Inside_BG_00000090268844990537427260000006487884912247266177_);}
-	.st270{fill:url(#FullArt_Outside_00000085213207425400467400000002249079813420440239_);}
-	.st271{fill:url(#FullArt_Outside_00000083068032695953119170000002459682510519037573_);}
-	.st272{fill:url(#FullArt_Outside_00000052096547545869746240000013741920864896449193_);}
-	.st273{fill:url(#FullArt_Outside_00000036217638277829592980000006408132174982089916_);}
-	.st274{fill:url(#FullArt_Outside_00000075140815873876631470000009069824501738047921_);}
-	.st275{fill:url(#FullArt_Outside_00000168799704854533292000000013010516707045009566_);}
-	.st276{fill:url(#FullArt_Outside_00000097481485752752981730000016482276344019475333_);}
-	.st277{fill:url(#Bottom_Frame_00000090280259708100062960000001143522946844029568_);}
-	.st278{clip-path:url(#SVGID_00000031908452917205921650000002503664884559423665_);}
-	.st279{clip-path:url(#SVGID_00000036968833663903013570000016231907206373735303_);}
-	.st280{clip-path:url(#SVGID_00000163031122788089043970000009362255846805247379_);}
-	.st281{clip-path:url(#SVGID_00000165203972294066167490000006384778250838718087_);}
-	.st282{fill:url(#Health_Frame_00000047028166652893415910000011269492884167779981_);}
-	.st283{fill:url(#Health_Frame_00000024709410618053134630000007806168166913999256_);}
-	.st284{fill:url(#Health_Frame_00000168825201894346886300000004382183771581232563_);}
-	.st285{fill:url(#SVGID_00000127735381075974369340000001848898011824210566_);}
-	.st286{fill:url(#FullArt_Inside_BG_00000101811888928811604970000006268798557733459332_);}
-	.st287{fill:url(#FullArt_Inside_BG_00000121982256515347844760000004748769170655708333_);}
-	.st288{fill:url(#FullArt_Inside_BG_00000107586578624718167850000017107584953667538877_);}
-	.st289{fill:url(#FullArt_Inside_BG_00000025439577823901183740000010516801925295688068_);}
-	.st290{fill:url(#FullArt_Inside_BG_00000097459565623839722780000006257326408740171446_);}
-	.st291{fill:url(#FullArt_Inside_BG_00000165214970775163518340000007688325830902611347_);}
-	.st292{fill:url(#FullArt_Inside_BG_00000018209343792013325450000014751142492059418277_);}
-	.st293{fill:url(#FullArt_Inside_BG_00000079468502323312982950000009692840672340537734_);}
-	.st294{fill:url(#FullArt_Inside_BG_00000129169103917147202200000000096443094229364361_);}
-	.st295{fill:url(#FullArt_Inside_BG_00000051370554127781245730000007870452677721818545_);}
-	.st296{fill:url(#Health_Frame_00000174569032569462223320000013678624806253689758_);}
-	.st297{fill:url(#Health_Frame_00000001664676610195182940000012459813999344263822_);}
-	.st298{fill:url(#FullArt_Inside_BG_00000073684131530044410120000013919845505299437190_);}
-	.st299{fill:url(#FullArt_Inside_BG_00000067203215090386051170000010564596387737646502_);}
-	.st300{fill:url(#FullArt_Outside_00000011002320674860204130000006901487085145030586_);}
-	.st301{fill:url(#FullArt_Outside_00000069363759461624854520000005318098031985488534_);}
-	.st302{fill:url(#FullArt_Outside_00000012463175975355062420000005275604558513041076_);}
-	.st303{fill:url(#FullArt_Outside_00000157988520604729048170000002709241669624852402_);}
-	.st304{fill:url(#FullArt_Outside_00000100362624414379789790000009180221431753544633_);}
-	.st305{fill:url(#FullArt_Outside_00000073686038460327541380000015368075334584190882_);}
-	.st306{fill:url(#FullArt_Outside_00000122720345248237665530000010351208627670603936_);}
-	.st307{fill:url(#Bottom_Frame_00000182487774695224642280000015027316657677133486_);}
-	.st308{clip-path:url(#SVGID_00000004541805065432060840000011015802429324706436_);}
-	.st309{clip-path:url(#SVGID_00000062889921997453009490000006265300434269135538_);}
-	.st310{clip-path:url(#SVGID_00000085223429167870363670000003345817439166271374_);}
-	.st311{clip-path:url(#SVGID_00000134940224738854325040000018309101814433032612_);}
-	.st312{fill:url(#Health_Frame_00000065053545327072392020000017743885021137861542_);}
-	.st313{fill:url(#Health_Frame_00000106114810969338526000000016903337621111224217_);}
-	.st314{fill:url(#Health_Frame_00000039826872345249473280000008361261513964422027_);}
-	.st315{fill:url(#SVGID_00000155141288040220176880000015797508193953511850_);}
-	.st316{fill:url(#SVGID_00000079479801768478952000000008443290837629486228_);}
-	.st317{fill:url(#FullArt_Inside_BG_00000065768422177895792190000005618022210696837562_);}
-	.st318{fill:url(#FullArt_Inside_BG_00000075875617017083039880000002646460226115889065_);}
-	.st319{fill:url(#FullArt_Inside_BG_00000091704039322667187080000003799682874654219923_);}
-	.st320{fill:url(#FullArt_Inside_BG_00000166664640766555238630000010821570112360070311_);}
-	.st321{fill:url(#FullArt_Inside_BG_00000008149981456826001480000011801487556717297077_);}
-	.st322{fill:url(#FullArt_Inside_BG_00000023969698306281224800000000334541396004192130_);}
-	.st323{fill:url(#FullArt_Inside_BG_00000003073456755580975860000015202164445183059616_);}
-	.st324{fill:url(#FullArt_Inside_BG_00000093139857155156021050000000491835282205986728_);}
-	.st325{fill:url(#FullArt_Inside_BG_00000159451070719736120250000006136879472224176794_);}
-	.st326{fill:url(#FullArt_Inside_BG_00000042737339809100455530000005985634633077618055_);}
-	.st327{fill:url(#Health_Frame_00000071538565387917628270000008417432704844368281_);}
-	.st328{fill:url(#Health_Frame_00000078745198170660727700000014966556630810963897_);}
-	.st329{fill:url(#FullArt_Inside_BG_00000045603534524081177800000000357482644659068844_);}
-	.st330{fill:url(#FullArt_Inside_BG_00000157272498251444774710000015305315422014477705_);}
-	.st331{fill:url(#FullArt_Outside_00000133517688194975506800000011463695407800577413_);}
-	.st332{fill:url(#FullArt_Outside_00000160187456071231339390000001971518077797811637_);}
-	.st333{fill:url(#FullArt_Outside_00000154392266716745197310000011085853551485646252_);}
-	.st334{fill:url(#FullArt_Outside_00000124130933736088068870000015326876761505670025_);}
-	.st335{fill:url(#FullArt_Outside_00000143607921770381979410000017911936895485907378_);}
-	.st336{fill:url(#FullArt_Outside_00000069384200226945018380000002382502763459015096_);}
-	.st337{fill:url(#FullArt_Outside_00000029020315140526950930000000374731190388337556_);}
-	.st338{fill:url(#Bottom_Frame_00000080173754119199581410000002551299029925786755_);}
-	.st339{fill:url(#FullArt_Inside_BG_00000131366902433058835780000013694841842976701312_);}
-	.st340{fill:url(#FullArt_Inside_BG_00000075146976643867215160000008670794326322618302_);}
-	.st341{fill:url(#FullArt_Inside_BG_00000049902183898290397070000004590203077642344895_);}
-	.st342{fill:url(#FullArt_Outside_00000083078327742854671990000011986061889404705467_);}
-	.st343{fill:url(#FullArt_Outside_00000119825654189796679740000009314784879182798252_);}
-	.st344{fill:url(#FullArt_Outside_00000129182687495156970530000005719759591058951079_);}
-	.st345{fill:url(#Deco_00000015344477709374988340000007385623595512019627_);}
-	.st346{fill:url(#Deco_00000042720203811773110250000017571224664401208226_);}
-	.st347{fill:url(#Deco_00000078016686130333081460000003831173601775328146_);}
-	.st348{fill:url(#Deco_00000175315571365505659720000013225096450483902860_);}
-	.st349{fill:url(#Deco_00000090273750167856553240000005779605580280649132_);}
-	.st350{fill:url(#Deco_00000067948948361847045860000017517957477362977182_);}
-	.st351{fill:url(#Deco_00000145018402406021258650000011442789482481650849_);}
-	.st352{fill:url(#Deco_00000088115029513602635240000010019815258196414878_);}
-	.st353{fill:url(#FullArt_Inside_BG_00000164506512117256138400000011806079869203908499_);}
-	.st354{fill:url(#FullArt_Inside_BG_00000067918081702701395930000003614738174456150912_);}
-	.st355{fill:url(#FullArt_Inside_BG_00000008858319124354388020000012686515306893923491_);}
-	.st356{fill:url(#FullArt_Outside_00000161595035471455756730000007772137569368557461_);}
-	.st357{fill:url(#FullArt_Outside_00000038385376678564939210000003550169205156959896_);}
-	.st358{fill:url(#FullArt_Outside_00000057840198115357264240000000986869135319458178_);}
-	.st359{fill:url(#Deco_00000108287431070901160190000006443916645227264443_);}
-	.st360{fill:url(#Deco_00000151524929983134805550000001998047093729402556_);}
-	.st361{fill:url(#Deco_00000161592444024724805520000015281360157323355824_);}
-	.st362{fill:url(#Deco_00000181801804469921763920000006433249528573316495_);}
-	.st363{fill:url(#Deco_00000170247245952775974530000014190715423268951951_);}
-	.st364{fill:url(#Deco_00000173847421589793610680000013538339517689247658_);}
-	.st365{fill:url(#Deco_00000008867086465552510280000014471450378463759023_);}
-	.st366{fill:url(#Deco_00000100377890781030661900000010396448893963757454_);}
-	.st367{fill:url(#FullArt_Inside_BG_00000131349392566604918950000009096851804466449584_);}
-	.st368{fill:url(#FullArt_Inside_BG_00000020400583047344956730000012655616947629090232_);}
-	.st369{fill:url(#FullArt_Inside_BG_00000140729676043151613650000014774339091003561092_);}
-	.st370{fill:url(#FullArt_Outside_00000075844029927738323730000000939388149332414612_);}
-	.st371{fill:url(#FullArt_Outside_00000127019629490479618490000001150893376262663808_);}
-	.st372{fill:url(#FullArt_Outside_00000012439044650570888370000015347584496169673383_);}
-	.st373{fill:url(#Deco_00000000213198708268599600000014272745018000582039_);}
-	.st374{fill:url(#Deco_00000134968734638585710060000015189565327195637904_);}
-	.st375{fill:url(#Deco_00000007411960159231289510000006971748112638291593_);}
-	.st376{fill:url(#Deco_00000101808638829500445680000010874469075363174016_);}
-	.st377{fill:url(#Deco_00000068642873523745327030000010637355659579942803_);}
-	.st378{fill:url(#Deco_00000112598832795855815020000005066348951924565661_);}
-	.st379{fill:url(#Deco_00000061441815162601813380000012524018347646181012_);}
-	.st380{fill:url(#Deco_00000026128541670333856740000011884668549502923404_);}
-	.st381{fill:url(#FullArt_Inside_BG_00000062176897617823968800000008713589937067650210_);}
-	.st382{fill:url(#FullArt_Inside_BG_00000177465137623457040190000003172571027716308865_);}
-	.st383{fill:url(#FullArt_Inside_BG_00000143606581887461930120000000906731618195661238_);}
-	.st384{fill:url(#FullArt_Outside_00000007421353391337917770000017355121442770820509_);}
-	.st385{fill:url(#FullArt_Outside_00000096740767663388316890000012221975087730632591_);}
-	.st386{fill:url(#FullArt_Outside_00000103973487843573819240000013252087452732445318_);}
-	.st387{fill:url(#Deco_00000075865622751510552760000007504368157409485442_);}
-	.st388{fill:url(#Deco_00000096744802368070141800000004982076480322483899_);}
-	.st389{fill:url(#Deco_00000105408335232884931180000005916647569475028158_);}
-	.st390{fill:url(#Deco_00000181081781273417080430000009074803406614891189_);}
-	.st391{fill:url(#Deco_00000150799656092751442960000013200348643052897980_);}
-	.st392{fill:url(#Deco_00000093899657539478308780000012523893636104216738_);}
-	.st393{fill:url(#Deco_00000067918942933559623240000016105152539450168198_);}
-	.st394{fill:url(#Deco_00000010306453189882301610000017944440843762655395_);}
-	.st395{fill:url(#FullArt_Inside_BG_00000065770382749665076910000010543063753089529769_);}
-	.st396{fill:url(#FullArt_Inside_BG_00000166654578495441886870000012794866522975775127_);}
-	.st397{fill:url(#FullArt_Inside_BG_00000158713654583477903140000004639134856081922977_);}
-	.st398{fill:url(#FullArt_Outside_00000073689567963794601530000014249690912502661305_);}
-	.st399{fill:url(#FullArt_Outside_00000120541600826522665210000012067387222172717985_);}
-	.st400{fill:url(#FullArt_Outside_00000065769793838291656070000010838247319713109425_);}
-	.st401{fill:url(#Deco_00000060715235291778689320000006331468043557744050_);}
-	.st402{fill:url(#Deco_00000072255341114858872990000001460711838010790840_);}
-	.st403{fill:url(#Deco_00000062885165718212941250000012445079736250620601_);}
-	.st404{fill:url(#Deco_00000111913226567762206190000010709481438473825923_);}
-	.st405{fill:url(#Deco_00000049925129537975601700000015495029569026475447_);}
-	.st406{fill:url(#Deco_00000061459371625614721620000001713653174139328178_);}
-	.st407{fill:url(#Deco_00000003089137925698091120000001922585180144711557_);}
-	.st408{fill:url(#Deco_00000143575192448798275020000001805479824642547861_);}
-</style>
