@@ -285,7 +285,7 @@
           />
         </g>
       </g>
-      <!-- Mysticism (was mana) icon -->
+      <!-- Mysticism icon -->
       <g
         :opacity="opaque"
         transform="matrix(1,0,0,1,0.791233,0)"
@@ -476,7 +476,7 @@
         y="14.1"
         font-family="Museo500-Regular"
         font-size="13"
-        stroke="black"
+        :fill="getManaCostColor()"
         stroke-width="0.3"
         font-style="normal"
         letter-spacing="0"
@@ -740,8 +740,8 @@
         >{{ model.Health }}</tspan>
       </text>
     </g>
-      <!-- experimental for new cardframe -->
-      <!--image x="-50" y="-20" width="250" height="250" href="../../assets/Cardback.svg" /-->
+    <!-- experimental for new cardframe -->
+    <!--image x="-50" y="-20" width="250" height="250" href="../../assets/Cardback.svg" /-->
   </svg>
 </template>
 
@@ -749,11 +749,15 @@
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 import { icon } from '@/components/utils/utils.js'
+import { emptyCard } from '../utils/utils'
 
 export default {
   name: 'CardComponent',
   props: {
-    model: Object,
+    model: {
+      type: Object,
+      default: emptyCard
+    },
     imageURL: {
       type: String,
       default: null
@@ -762,12 +766,14 @@ export default {
       type: String,
       default: null
     },
-    nerflevel: Number,
     displayNotes: {
       type: Boolean,
       default: false
     },
-    hoverBehavior: String
+    hoverBehavior: {
+      type: String,
+      default: "none"
+    }
   },
   data () {
     return {
@@ -837,6 +843,9 @@ export default {
       }
     },
     getNerfedCost () {
+      if (this.model.isBanned) {
+        return "-"
+      }
       if (this.model.type === 'Headquarter') {
         return this.model.Delay || this.model.Delay === 0 ? this.model.Delay : '?'
       }
@@ -845,6 +854,9 @@ export default {
       }
       //let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
       return this.model.CastingCost
+    },
+    getManaCostColor() {
+      return this.model.isNerfed ? "red" : this.model.isBuffed ? "mediumseagreen" : "black"
     },
     tagLength () {
       if (this.model.Tags) {

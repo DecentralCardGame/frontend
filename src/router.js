@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const GalleryPage = () => import('@/pages/GalleryPage')
+const VotingResultsPage = () => import('@/pages/VotingResultsPage')
 const NewCardPage = () => import('@/pages/NewCardPage')
 const AboutPage = () => import('@/pages/AboutPage')
 const RoadmapPage = () => import('@/pages/RoadmapPage')
@@ -36,6 +37,11 @@ export default new Router({
       path: '/gallery',
       name: 'Gallery',
       component: GalleryPage
+    },
+    {
+      path: '/votingresults',
+      name: 'VotingResults',
+      component: VotingResultsPage
     },
     {
       path: '/newcard',
