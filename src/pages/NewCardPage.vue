@@ -134,51 +134,60 @@
             My <b>Classes</b> are: <br>
           </div>
           <div>
-            <input
-              v-model="model.Class.Technology"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Technology </label> <br>
-            <input
-              v-model="model.Class.Nature"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Nature </label> <br>
-            <input
-              v-model="model.Class.Culture"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Culture </label> <br>
-            <input
-              v-model="model.Class.Mysticism"
-              type="checkbox"
-              @change="saveDraft"
-            >
-            <label for="checkbox"> Mysticism </label> <br>
+            <label class="input--checkbox-label__left">  
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Technology"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Technology <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Nature"
+                type="checkbox"
+                @change="saveDraft"
+              >  
+              Nature <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Culture"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Culture <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                class="input--checkbox__left"
+                v-model="model.Class.Mysticism"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Mysticism <br>
+            </label> 
           </div>
           <!-- cost area -->
           <div>
             <span
-              v-if="
-                $cardRules.children[getRulesType()] &&
-                  $cardRules.children[getRulesType()].children.CastingCost
-              "
+              v-if="$cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost"
               class="creator-text"
             >As I am quite awesome to get me rolling you need to
               <b>pay</b>:
             </span>
           </div>
-          <div 
+          <div
             v-if="
               $cardRules.children[getRulesType()] &&
                 $cardRules.children[getRulesType()].children.CastingCost
             "
           >
             <select
-
               v-model="model.CastingCost"
               @change="saveDraft"
             >
@@ -787,6 +796,14 @@ export default {
         this.abilities.splice(index, 1);
       }
       console.log("abilities after update", this.abilities);
+
+      let keywordCount = R.length(R.flatten(R.pluck("keywords", this.abilities)))
+      if (keywordCount >= 6 && keywordCount <= 8) {
+        this.notifyInfo("Number of Keywords", "You have added "+keywordCount+" Keywords to this card. 8 is the maximum.")
+      }
+      else if (keywordCount > 8) {
+        this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.")
+      }
     },
     resetAbilities() {
       console.log("RESET ABILITIES")
@@ -864,6 +881,13 @@ export default {
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
+        );
+        return;
+      }
+      if (R.length(R.flatten(R.pluck("keywords", this.abilities))) > 8) {
+        this.notifyFail(
+          "Too many Keywords",
+          "Card has too many Keywords. You must reduce to 8 or less."
         );
         return;
       }
@@ -1188,6 +1212,14 @@ export default {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
+  .input--checkbox__left {
+    position: absolute;
+    display: inline-block;
+    margin-left: -25px; 
+  }
+  .input--checkbox-label__left {
+    margin-left: 25px;
+  }
 
 .tag-select {
   width: 100%;

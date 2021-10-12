@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import * as R from "ramda"
 
-import { emptyGalleryFilter } from "@/components/utils/utils.js";
+import { emptyGalleryFilter } from "@/components/utils/utils.js"
 
 Vue.use(Vuex)
 
@@ -19,7 +20,7 @@ export default new Vuex.Store({
     address: '',
     cardCreatorDraft: {},
     cardCreatorEditCard: {},
-    galleryFilter: emptyGalleryFilter,
+    galleryFilter: R.clone(emptyGalleryFilter),
     loading: false,
     displayLogin: false,
     lastInputEvent: {},
@@ -66,7 +67,8 @@ export default new Vuex.Store({
       state.galleryFilter = filter
     },
     resetGalleryFilter (state) {
-      state.galleryFilter = emptyGalleryFilter
+      state.galleryFilter = R.clone(emptyGalleryFilter)
+      console.log("galleryfilter:", state.galleryFilter)
     },
     toggleGalleryFilter (state) {
       state.galleryFilter.visible = !state.galleryFilter.visible

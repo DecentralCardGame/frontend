@@ -80,6 +80,7 @@ input::placeholder {
 }
 
 input[type="checkbox"]  {
+  position: absolute;
   height: $font-size;
   width: $font-size;
   -webkit-appearance: none;
@@ -91,6 +92,8 @@ input[type="checkbox"]  {
   outline: none;
   background-color: transparent;
   cursor: pointer;
+  margin-left: 10px;
+  margin-top: -1px;
 }
 
 input[type="checkbox"]:checked {

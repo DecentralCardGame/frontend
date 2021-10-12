@@ -2,7 +2,7 @@
   <svg
     width="100%"
     height="100%"
-    viewBox="0 0 154 240"
+    :viewBox="viewBox"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
@@ -285,7 +285,7 @@
           />
         </g>
       </g>
-      <!-- Mysticism (was mana) icon -->
+      <!-- Mysticism icon -->
       <g
         :opacity="opaque"
         transform="matrix(1,0,0,1,0.791233,0)"
@@ -476,7 +476,7 @@
         y="14.1"
         font-family="Museo500-Regular"
         font-size="13"
-        stroke="black"
+        :fill="getManaCostColor()"
         stroke-width="0.3"
         font-style="normal"
         letter-spacing="0"
@@ -740,6 +740,8 @@
         >{{ model.Health }}</tspan>
       </text>
     </g>
+    <!-- experimental for new cardframe -->
+    <!--image x="-50" y="-20" width="250" height="250" href="../../assets/Cardback.svg" /-->
   </svg>
 </template>
 
@@ -747,11 +749,15 @@
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 import { icon } from '@/components/utils/utils.js'
+import { emptyCard } from '../utils/utils'
 
 export default {
   name: 'CardComponent',
   props: {
-    model: Object,
+    model: {
+      type: Object,
+      default: emptyCard
+    },
     imageURL: {
       type: String,
       default: null
@@ -760,17 +766,20 @@ export default {
       type: String,
       default: null
     },
-    nerflevel: Number,
     displayNotes: {
       type: Boolean,
       default: false
     },
-    hoverBehavior: String
+    hoverBehavior: {
+      type: String,
+      default: "none"
+    }
   },
   data () {
     return {
       opaque: 1,
-      clicked: false
+      clicked: false,
+      keywordDescriptions: ""
     }
   },
   computed: {
@@ -778,11 +787,21 @@ export default {
       if (!this.displayNotes) {
         return '0 0 154 240'
       } else {
-        return '0 0 210 297'
+        return '0 0 210 240'
       }
     }
   },
   created () {
+    let firstLetterToLower = string => {
+      return string[0].toLowerCase() + string.substring(1)
+    }
+    this.model.Keywords.forEach(ability => {
+      ability.forEach(keyword => {
+        this.keywordDescriptions = R.concat(this.keywordDescriptions, 
+          keyword + " - " + this.$rulesDefinitions[firstLetterToLower(keyword)].description + " \\n "
+        )
+      })
+    })
   },
   methods: {
     cardmouseleave() {
@@ -824,14 +843,20 @@ export default {
       }
     },
     getNerfedCost () {
-      if (this.model.type === 'Headquarter') {  
-        return this.model.Delay ? this.model.Delay : '?'
+      if (this.model.isBanned) {
+        return "-"
+      }
+      if (this.model.type === 'Headquarter') {
+        return this.model.Delay || this.model.Delay === 0 ? this.model.Delay : '?'
       }
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return '-'
       }
-      let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
-      return cost
+      //let cost = Math.max(0, this.model.CastingCost + (this.model.nerflevel ? this.model.nerflevel : 0))
+      return this.model.CastingCost
+    },
+    getManaCostColor() {
+      return this.model.isNerfed ? "red" : this.model.isBuffed ? "mediumseagreen" : "black"
     },
     tagLength () {
       if (this.model.Tags) {

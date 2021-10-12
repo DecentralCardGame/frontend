@@ -32,6 +32,7 @@ export const emptyGalleryFilter = {
   status: "",
   cardType: "",
   classes: "",
+  keywordsContains: "",
   sortBy: "",
   nameContains: "",
   notesContains: "",
@@ -45,7 +46,6 @@ export const emptyGalleryFilter = {
 }
 
 // Global Utility functions
-
 export function creditsFromCoins(coins) {
   let credits = -1
   for (let i = 0; i < coins.length; i++) {

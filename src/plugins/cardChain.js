@@ -329,6 +329,15 @@ export default {
           return Promise.reject(new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.'))
           }
       }
+      getVotingResults () {
+        return this.vue.$http.get('cardservice/cardchain_votingresults')
+          .then(res => {
+            return {
+            votingResult: res.data.result
+            }
+          })
+          .catch(this.handleGetError)
+      }
       getGameInfo () {
           return this.vue.$http.get('cardservice/cardchain_info')
           .then(res => {
