@@ -4,7 +4,8 @@
       Card Voting
     </h2>
     <p class="header__p">
-      Take part in the action and share your opinions about community cards.
+      Take part in the action and share your opinions about community cards. <br>
+      See results of <router-link :to="{ name: 'VotingResults' }">last weeks voting here</router-link>.
     </p>
     <br>
     <div class="voter">
