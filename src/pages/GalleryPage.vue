@@ -99,8 +99,8 @@
         <div class="no--wrap">
           <label class="gallery-checkbox__label"> 
             <input
-              class="gallery-checkbox"
               v-model="$store.getters.getGalleryFilter.classesVisible"
+              class="gallery-checkbox"
               type="checkbox"
               @input="$store.getters.getGalleryFilter.classesVisible = !$store.getters.getGalleryFilter.classesVisible "
             > 
@@ -185,7 +185,7 @@
               :id="'card' + index"
               :model="card"
               :image-u-r-l="card.image"
-              hoverBehavior="none"
+              hover-behavior="none"
               class="gallery__view__card"
             />
           </div>
@@ -206,15 +206,18 @@
         next
       </button>
     </div>
-    <div v-if="isGalleryModalVisible" class="container-modal"
-      @click="closeGalleryModal">
+    <div 
+      v-if="isGalleryModalVisible" 
+      class="container-modal"
+      @click="closeGalleryModal"
+    >
       <div class="ability-modal-container">
         <GalleryModal
           :can-vote="canVote"
           :is-owner="isOwner"
-          :keywordDescriptions="keywordDescriptions"
+          :keyword-descriptions="keywordDescriptions"
           :model="cards[clickedIndex]"
-          :imageURL="cards[clickedIndex].image"
+          :image-u-r-l="cards[clickedIndex].image"
           @close="closeGalleryModal"
           @download="downloadPng"
           @cardview="cardview"
@@ -354,9 +357,6 @@ export default {
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
-
-      console.log("pageId", this.pageId)
-      console.log("cardlist.length", this.cardList.length)
 
       let requestedCards = R.map(n => this.getCard(n),
           R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId)) 
