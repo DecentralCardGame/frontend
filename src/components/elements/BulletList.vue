@@ -1,11 +1,10 @@
 <template>
   <div>
-    <ul 
-    >
+    <ul>
       <li       
         v-for="(line, index) in text"
-        :class="{ 'filled': type[index]==='filled' }"
         :key="index"
+        :class="{ 'filled': type[index]==='filled' }"
       >
         {{ line }}
       </li>

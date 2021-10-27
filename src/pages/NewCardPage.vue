@@ -136,8 +136,8 @@
           <div>
             <label class="input--checkbox-label__left">  
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Technology"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >
@@ -145,8 +145,8 @@
             </label> 
             <label class="input--checkbox-label__left"> 
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Nature"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >  
@@ -154,8 +154,8 @@
             </label> 
             <label class="input--checkbox-label__left"> 
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Culture"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >
@@ -163,8 +163,8 @@
             </label> 
             <label class="input--checkbox-label__left"> 
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Mysticism"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >
@@ -463,6 +463,19 @@
         </div>
 
 
+        <div
+          v-if="activeStep == 3"
+          class="creator-input-container"
+        >
+          <span class="creator-text">
+            My <b>beauty</b> must not be covered by borders
+          </span>
+          <input
+            v-model="model.FullArt"
+            type="checkbox"
+            @change="saveDraft"
+          > 
+        </div>
         <div
           v-if="activeStep == 3"
           class="creator-input-container"

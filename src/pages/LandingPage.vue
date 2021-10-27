@@ -8,7 +8,11 @@
         </center>
       </b>
       <div class="img--container adjust--top">
-        <img src="../assets/animations/sparkling_water.gif" class="image2" alt="yes...">
+        <img
+          src="../assets/animations/sparkling_water.gif"
+          class="image2"
+          alt="yes..."
+        >
       </div>
     </div>
 
@@ -16,10 +20,25 @@
       <div class="dual--column--text scale--width">
         <div class="hero--with--img">
           <div class="img--container adjust--pentagon">
-            <svg viewBox="0 0 985.399 969.501" class="image3" >
-              <path id="Pfad_298" data-name="Pfad 298" d="M132.32,2293.693l38.946,842.479,623.139-39.166,224.141-431.792-144.9-397.009Z" transform="translate(250.87 -2267.424) rotate(7)" fill="#4b0439"/>
+            <svg
+              viewBox="0 0 985.399 969.501"
+              class="image3"
+            >
+              <path
+                id="Pfad_298"
+                data-name="Pfad 298"
+                d="M132.32,2293.693l38.946,842.479,623.139-39.166,224.141-431.792-144.9-397.009Z"
+                transform="translate(250.87 -2267.424) rotate(7)"
+                fill="#4b0439"
+              />
               <g transform="translate(16,-12)">
-                <path id="Pfad_299" data-name="Pfad 299" d="M132.32,2293.285l38.323,829,613.169-38.539,220.555-424.883L861.787,2268.2Z" transform="translate(249.177 -2267.424) rotate(7)" fill="#9a0881"/>
+                <path
+                  id="Pfad_299"
+                  data-name="Pfad 299"
+                  d="M132.32,2293.285l38.323,829,613.169-38.539,220.555-424.883L861.787,2268.2Z"
+                  transform="translate(249.177 -2267.424) rotate(7)"
+                  fill="#9a0881"
+                />
               </g>
             </svg>
           </div>
@@ -52,25 +71,52 @@
       </div>
       <div class="dual--column--img scale--width">
         <div class="img--container adjust--mother--gif">
-          <img src="mother_popup.gif" class="image3" alt="yes..." width="200%">
+          <img
+            src="mother_popup.gif"
+            class="image3"
+            alt="yes..."
+            width="200%"
+          >
         </div>
       </div>
     </div>
 
     <div class="dual--column--flex--wrap reverse-column">
-      <div class="dual--column--img scale--width" v-if="!this.isMobileDevice()">
+      <div
+        v-if="!this.isMobileDevice()"
+        class="dual--column--img scale--width"
+      >
         <div class="img--container adjust--flyin">
-          <img src="paper_flyin.gif" class="image3" alt="yes...">
+          <img
+            src="paper_flyin.gif"
+            class="image3"
+            alt="yes..."
+          >
         </div>
       </div>
 
       <div class="dual--column--text scale--width adjust--mobile">
         <div class="hero--with--img">
           <div class="img--container adjust--trapez">
-            <svg viewBox="0 0 859.168 1347.934" class="image3 show--overflow" >
-              <path id="Pfad_297" data-name="Pfad 297" d="M932.947,5899.424,872.038,4551.49l859.168,133.93-57.222,1144.968Z" transform="translate(-872.038 -4551.49)" fill="#4b0439"/>
+            <svg
+              viewBox="0 0 859.168 1347.934"
+              class="image3 show--overflow"
+            >
+              <path
+                id="Pfad_297"
+                data-name="Pfad 297"
+                d="M932.947,5899.424,872.038,4551.49l859.168,133.93-57.222,1144.968Z"
+                transform="translate(-872.038 -4551.49)"
+                fill="#4b0439"
+              />
               <g transform="translate(-10,-10)">
-                <path id="Pfad_300" data-name="Pfad 300" d="M932.521,5890.01,872.038,4551.49l853.168,132.994-56.823,1136.973Z" transform="translate(-872.038 -4551.49)" fill="#9a0881"/>
+                <path
+                  id="Pfad_300"
+                  data-name="Pfad 300"
+                  d="M932.521,5890.01,872.038,4551.49l853.168,132.994-56.823,1136.973Z"
+                  transform="translate(-872.038 -4551.49)"
+                  fill="#9a0881"
+                />
               </g>
             </svg>
           </div>
@@ -82,12 +128,17 @@
             </b>
             <p class="text--medium">
               Check out the cards created by fellow <br>
-              trading card gamers in the <router-link :to="{ name: 'Gallery' }"><b>Gallery</b></router-link>. <br>
+              trading card gamers in the <router-link :to="{ name: 'Gallery' }">
+                <b>Gallery</b>
+              </router-link>. <br>
             </p>
             <div class="button--container">
-              <div class=link--button>
-                <router-link to="/gallery" style="text-decoration: none; color: inherit;">
-                  <p class=text--button>
+              <div class="link--button">
+                <router-link
+                  to="/gallery"
+                  style="text-decoration: none; color: inherit;"
+                >
+                  <p class="text--button">
                     Go to Gallery >
                   </p>
                 </router-link>
@@ -101,11 +152,16 @@
             </b>
             <p class="text--medium">
               Make your own cards on the blockchain <br>
-              with our <router-link :to="{ name: 'New Card' }"><b>Card Creator</b></router-link>.
+              with our <router-link :to="{ name: 'New Card' }">
+                <b>Card Creator</b>
+              </router-link>.
             </p>
             <div class="button--container">
               <div class="link--button">
-                <router-link to="/newcard" style="text-decoration: none; color: inherit;">
+                <router-link
+                  to="/newcard"
+                  style="text-decoration: none; color: inherit;"
+                >
                   <p class="text--button">
                     Go to Card Creator >
                   </p>
@@ -122,12 +178,17 @@
               Crowd Control has unique game mechanics <br>
               and a new kind of gameplay. Read more <br>
               about the game rules on 
-              <router-link :to="{ name: 'About' }"><b>the Game</b></router-link> page.
+              <router-link :to="{ name: 'About' }">
+                <b>the Game</b>
+              </router-link> page.
             </p>
             <div class="button--container">
-              <div class=link--button>
-                <router-link to="/about" style="text-decoration: none; color: inherit;">
-                  <p class=text--button>
+              <div class="link--button">
+                <router-link
+                  to="/about"
+                  style="text-decoration: none; color: inherit;"
+                >
+                  <p class="text--button">
                     Find out more >
                   </p>
                 </router-link>
@@ -154,12 +215,13 @@
 
 
       <p class="text--medium">
-      Or check out our <router-link :to="{ name: 'Roadmap' }"><b>Roadmap</b></router-link>
-      to see what we are planning next. <br><br>
+        Or check out our <router-link :to="{ name: 'Roadmap' }">
+          <b>Roadmap</b>
+        </router-link>
+        to see what we are planning next. <br><br>
       </p>
 
       <div class="grid">
-
         <div class="button--container">
           <div class="link--button">
             <a
@@ -176,16 +238,16 @@
 
         <div class="button--container">
           <div class="link--button">
-
-            <router-link to="/roadmap" style="text-decoration: none; color: inherit;">
-              <p class=text--button>
+            <router-link
+              to="/roadmap"
+              style="text-decoration: none; color: inherit;"
+            >
+              <p class="text--button">
                 Go to Roadmap >
               </p>
             </router-link>
-
           </div>
         </div>
-
       </div>
     </div>
   </div>

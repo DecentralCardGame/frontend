@@ -740,10 +740,16 @@
         >{{ model.Health }}</tspan>
       </text>
     </g>
-      <!-- experimental for new cardframe -->
-      <!--image x="-50" y="-20" width="250" height="250" href="../../assets/Cardback.svg" /-->
-      <image x="-40" y="-0" width="230" height="230" href="../../assets/cardframe/EntityFullFrame.svg"/>
-      <!--image x="-40" y="-0" width="230" height="230" href="../../assets/cardframe/EFr_05_2ClassesFrame.svg"/-->
+    <!-- experimental for new cardframe -->
+    <!--image x="-50" y="-20" width="250" height="250" href="../../assets/Cardback.svg" /-->
+    <image
+      x="-40"
+      y="-0"
+      width="230"
+      height="230"
+      href="../../assets/cardframe/EntityFullFrame.svg"
+    />
+    <!--image x="-40" y="-0" width="230" height="230" href="../../assets/cardframe/EFr_05_2ClassesFrame.svg"/-->
   </svg>
 </template>
 

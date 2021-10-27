@@ -3,7 +3,7 @@
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class=qbox--text>
+          <p class="qbox--text">
             Q1 2019
           </p>
         </div>
@@ -27,7 +27,7 @@
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class=qbox--text>
+          <p class="qbox--text">
             Q1 2021
           </p>
         </div>
@@ -52,7 +52,7 @@
     <div class="dual--column--flex--wrap reverse-column">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class=qbox--text>
+          <p class="qbox--text">
             Q4 2021
           </p>
         </div>
@@ -78,7 +78,7 @@
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class=qbox--text>
+          <p class="qbox--text">
             Q2 2022
           </p>
         </div>
@@ -101,10 +101,9 @@
     </div>
 
     <div>
-
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class=qbox--text>
+          <p class="qbox--text">
             Q3 2022
           </p>
         </div>
