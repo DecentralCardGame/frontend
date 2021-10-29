@@ -3,12 +3,13 @@
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    x="0px"
-    y="0px"
+    x="0"
+    y="0"
     viewBox="0 0 198.5 274.28"
     style="enable-background:new 0 0 198.5 274.28;"
     xml:space="preserve"
   >
+    
     <g id="_x31__Outer_Backgrounds">
       <g
         v-if="OBG.HQ"
@@ -4996,42 +4997,94 @@
       v-if="FullArtIllustrationMask.Entity"
       id="Entity_FullArt_Illustration_Mask"
     >
-      <polygon
-        class="st208"
-        points="66.26,25.56 132.07,25.56 171.2,64.69 171.2,128.51 166.22,133.49 166.22,242.02 163.83,244.41 
+      <clipPath id="full_entity_artwork_clip">
+        <polygon
+          points="66.26,25.56 132.07,25.56 171.2,64.69 171.2,128.51 166.22,133.49 166.22,242.02 163.83,244.41 
           34.5,244.41 32.12,242.02 32.12,133.49 27.13,128.51 27.13,64.69 	"
+        />
+      </clipPath>
+
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#full_entity_artwork_clip)"
       />
     </g>
     <g
       v-if="FullArtIllustrationMask.Action"
       id="Action_FullArt_Illustration_Mask"
     >
-      <path
-        class="st208"
-        d="M172.7,96.21c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,9.46,1.81,18.49,5.08,26.81v96.23
+      <clipPath id="full_action_artwork_clip">
+        <path
+          d="M172.7,96.21c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,9.46,1.81,18.49,5.08,26.81v96.23
           v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-96.46l0,0C170.93,114.54,172.7,105.58,172.7,96.21z"
+        />
+      </clipPath>
+
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#full_action_artwork_clip)"
       />
     </g>
     <g
       v-if="FullArtIllustrationMask.Place"
       id="Place_FullArt_Illustration_Mask"
     >
-      <polygon
-        class="st208"
-        points="171.45,59.96 99.12,23.46 26.79,59.96 26.79,133.12 30.62,135.05 30.62,219.24 30.62,243.51 
-          33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,135.01 171.45,133.12 	"
+      <clipPath id="full_place_artwork_clip">
+        <polygon
+          points="171.45,59.96 99.12,23.46 26.79,59.96 26.79,133.12 30.62,135.05 30.62,219.24 30.62,243.51 
+            33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,135.01 171.45,133.12 	"
+        />
+      </clipPath>
+
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#full_place_artwork_clip)"
       />
     </g>
     <g
       v-if="FullArtIllustrationMask.HQ"
       id="HQ_FullArt_Illustration_Mask"
     >
-      <path
-        class="st208"
-        d="M172.37,73.57c-0.15-0.16-15.48-16.13-40.18-33.55C107.34,22.5,99.52,21.77,99.2,21.74l-0.07,0l-0.07,0
-          c-0.32,0.02-8.14,0.76-32.98,18.28C41.38,57.44,26.05,73.41,25.9,73.57l-0.28,0.29l0,0.4c0,0.24,0.12,24.21,3.51,42.56
-          c1.38,7.49,2.77,13.65,3.89,18.23l-2.41,0v84.19v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.24l-2.46,0
-          c1.12-4.57,2.5-10.71,3.88-18.18c3.39-18.35,3.51-42.32,3.51-42.56l0-0.4L172.37,73.57z"
+      <clipPath id="full_hq_artwork_clip">
+        <path
+          d="M172.37,73.57c-0.15-0.16-15.48-16.13-40.18-33.55C107.34,22.5,99.52,21.77,99.2,21.74l-0.07,0l-0.07,0
+            c-0.32,0.02-8.14,0.76-32.98,18.28C41.38,57.44,26.05,73.41,25.9,73.57l-0.28,0.29l0,0.4c0,0.24,0.12,24.21,3.51,42.56
+            c1.38,7.49,2.77,13.65,3.89,18.23l-2.41,0v84.19v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.24l-2.46,0
+            c1.12-4.57,2.5-10.71,3.88-18.18c3.39-18.35,3.51-42.32,3.51-42.56l0-0.4L172.37,73.57z"
+        />
+      </clipPath>
+
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#full_hq_artwork_clip)"
       />
     </g>
     <g
@@ -5380,43 +5433,93 @@
       v-if="FramedIllustrationMask.Entity"
       id="Entity_Framed_Illustration_Mask"
     >
-      <polygon
-        class="st219"
-        points="66.26,26.43 132.07,26.43 171.2,65.56 171.2,129.38 132.07,168.52 66.26,168.52 27.13,129.39 
+      <clipPath id="entity_artwork_clip">
+        <polygon
+          points="66.26,26.43 132.07,26.43 171.2,65.56 171.2,129.38 132.07,168.52 66.26,168.52 27.13,129.39 
           27.13,65.56 	"
+        />
+      </clipPath>
+
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#entity_artwork_clip)"
       />
     </g>
     <g
       v-if="FramedIllustrationMask.Action"
       id="Action_Framed_Illustration_Mask"
     >
-      <circle
-        class="st219"
-        cx="99.12"
-        cy="96.21"
-        r="72.83"
+      <clipPath id="action_artwork_clip">
+        <circle
+          class="st219"
+          cx="99.12"
+          cy="96.21"
+          r="72.83"
+        />
+      </clipPath>
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#action_artwork_clip)"
       />
     </g>
     <g
       v-if="FramedIllustrationMask.Place"
       id="Place_Framed_Illustration_Mask"
     >
-      <path
-        class="st219"
-        d="M99.12,169.62l-72.33-36.5V59.96l72.33-36.5l72.33,36.5v73.17L99.12,169.62z M170.7,132.66L170.7,132.66
-          L170.7,132.66z"
+      <clipPath id="place_artwork_clip">
+        <path
+          d="M99.12,169.62l-72.33-36.5V59.96l72.33-36.5l72.33,36.5v73.17L99.12,169.62z M170.7,132.66L170.7,132.66
+            L170.7,132.66z"
+        />
+      </clipPath>
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#place_artwork_clip)"
       />
     </g>
     <g
       v-if="FramedIllustrationMask.HQ"
       id="HQ_Framed_Illustration_Mask"
     >
-      <path
-        class="st219"
-        d="M99.13,169.04L35.67,144.8l-0.15-0.46c-0.03-0.1-3.2-10.29-6.39-27.51c-3.39-18.35-3.51-42.32-3.51-42.56
-          l0-0.4l0.28-0.29c0.15-0.16,15.48-16.13,40.18-33.55C90.93,22.5,98.74,21.77,99.06,21.74l0.07,0l0.07,0
-          c0.32,0.02,8.14,0.76,32.98,18.28c24.7,17.42,40.03,33.39,40.18,33.55l0.28,0.29l0,0.4c0,0.24-0.12,24.21-3.51,42.56
-          c-3.18,17.22-6.35,27.41-6.39,27.51l-0.15,0.46L99.13,169.04z"
+      <clipPath id="hq_artwork_clip">
+        <path
+          d="M99.13,169.04L35.67,144.8l-0.15-0.46c-0.03-0.1-3.2-10.29-6.39-27.51c-3.39-18.35-3.51-42.32-3.51-42.56
+            l0-0.4l0.28-0.29c0.15-0.16,15.48-16.13,40.18-33.55C90.93,22.5,98.74,21.77,99.06,21.74l0.07,0l0.07,0
+            c0.32,0.02,8.14,0.76,32.98,18.28c24.7,17.42,40.03,33.39,40.18,33.55l0.28,0.29l0,0.4c0,0.24-0.12,24.21-3.51,42.56
+            c-3.18,17.22-6.35,27.41-6.39,27.51l-0.15,0.46L99.13,169.04z"
+        />
+      </clipPath>
+      <image
+        id="cardimage"
+        align="xMidYMid"
+        :href="imageURL"
+        :x="artwork.x"
+        :y="artwork.y"
+        :width="artwork.width"
+        :height="artwork.height"
+        class="cardImage"
+        clip-path="url(#hq_artwork_clip)"
       />
     </g>
 
@@ -7742,7 +7845,7 @@
 
     <g
       v-if="attackFrame"
-      id="Health_Frame_00000099635997935204855430000018413654597194621370_"
+      id="Attack_Frame_00000099635997935204855430000018413654597194621370_"
     >
       <g>
         <defs>
@@ -7800,7 +7903,6 @@
                   href="../../assets/cardframe/TechAttackFrame.jpg"
                   transform="matrix(0.48 0 0 0.48 25.9634 214.8756)"
                 />
-                
                 <image
                   v-if="framed.Nature"
                   style="overflow:visible;"
@@ -7809,7 +7911,6 @@
                   href="../../assets/cardframe/NatureAttackFrame.jpg"
                   transform="matrix(0.48 0 0 0.48 25.9634 214.8756)"
                 />
-
                 <image
                   v-if="framed.Culture"
                   style="overflow:visible;"
@@ -7818,15 +7919,14 @@
                   href="../../assets/cardframe/CultureAttackFrame.jpg"
                   transform="matrix(0.48 0 0 0.48 25.9634 214.8756)"
                 />
-
                 <image
                   v-if="framed.Myth"
                   style="overflow:visible;"
                   width="85"
                   height="76"
                   href="../../assets/cardframe/MythAttackFrame.jpg"
+                  transform="matrix(0.48 0 0 0.48 25.9634 214.8756)"
                 />
-
                 <image
                   v-if="framed.MultiClass"
                   style="overflow:visible;"
@@ -22732,11 +22832,17 @@ export default {
   },
   data () {
     return {
+      artwork: {
+        x: 27,
+        y: 19,
+        height: 230,
+        width: 145
+      },
       opaque: 1,
       clicked: false,
       keywordDescriptions: "",
 
-      FullArt: false,
+      FullArt: true,
       Classes: 0,
       Class: {
         Culture: false,
@@ -22760,7 +22866,6 @@ export default {
         Tech: false,
       },
       GoldSquare: false,
-
       Border: {
         HQ: false,
         MultiClass: false,
@@ -22776,7 +22881,6 @@ export default {
         Tech: false,
       },
       BGGoldLines: false,
-
       BGShadow:  {
         HQ: false,
         Action: false,
@@ -22784,7 +22888,6 @@ export default {
         Place: false,
       },
       ClassShadow: false,
-
       ManaBall: {
         HQ: false,
         MultiClass: false,
@@ -22827,7 +22930,6 @@ export default {
         Tech: false,
       },
       HQFramedTextBox: false,
-
       ShadowTextBox: {
         HQ: false,
         Action: false,
@@ -22988,8 +23090,6 @@ export default {
       this.framed = colorType
       this.attackFrame = cardType.Entity
       this.healthFrame = !cardType.Action
-
-      EntityFullArtfilter({})
 
       console.log("Classes:", this.Classes)
       console.log("healthframe", this.healthFrame)
