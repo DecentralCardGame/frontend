@@ -2084,8 +2084,7 @@
       v-if="Classes==1"
       id="One_Class"
     >
-      <g
-        v-if="Class.Tech"
+      <g v-if="Class.Tech"
         id="One_Class_Tech"
       >
         <g id="Tech_00000080922445234125155640000015717078093224142236_">
@@ -2191,8 +2190,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Nature"
+      <g v-if="Class.Nature"
         id="One_Class_Nature"
       >
         <g id="Nature_00000038380082024414601940000005536322595031582397_">
@@ -2298,8 +2296,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Myth"
+      <g v-if="Class.Myth"
         id="One_Class_Myth"
       >
         <g id="Nature_00000094617829098826953140000018122678802195250602_">
@@ -2405,8 +2402,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Culture"
+      <g v-if="Class.Culture"
         id="One_Class_Culture"
       >
         <g id="Nature_00000147192224752665045240000001255549089283610256_">
@@ -2535,6 +2531,199 @@
           c0.85,0.86,2.04,1.37,3.26,1.37c1.21,0.02,2.43-0.47,3.3-1.33c0.13-0.13,0.23-0.29,0.34-0.44
           C164.39,40.61,164.68,39.47,164.68,38.43z"
       />
+
+
+      <g v-if="Type.HQ" id="One_Class_HQ">
+        <g v-if="Class.Culture" id="Culture_One_Class_HQ">
+          <defs>
+            <circle id="_x33__Class_BG_00000178922219514254205810000012955844356719004591_" cx="160.12" cy="38.56" r="8.5"/>
+          </defs>
+          <clipPath id="_x33__Class_BG_00000047060804308905560680000014137196596218791311_">
+            <use xlink:href="#_x33__Class_BG_00000178922219514254205810000012955844356719004591_"  style="overflow:visible;"/>
+          </clipPath>
+          
+            <g id="Culture_OBG_00000010280091852343980390000004965054895620379038_" style="clip-path:url(#_x33__Class_BG_00000047060804308905560680000014137196596218791311_);">
+            <g>
+              <defs>
+                <path id="SVGID_00000140000012303181202550000013370592552831573638_" d="M165.23,27.78H47.32
+                  c-2.57-4.04-7.08-6.73-12.23-6.73c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78
+                  c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"/>
+              </defs>
+              <clipPath id="SVGID_00000107556407408310033360000002368524923237570492_">
+                <use xlink:href="#SVGID_00000140000012303181202550000013370592552831573638_"  style="overflow:visible;"/>
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000107556407408310033360000002368524923237570492_);">
+                <g>
+                  <defs>
+                    <rect id="SVGID_00000142894184464355156210000004024719596897452720_" x="15.6" y="16.05" width="160.31" height="239.23"/>
+                  </defs>
+                  <clipPath id="SVGID_00000013900077073487984470000011005157641882091905_">
+                    <use xlink:href="#SVGID_00000142894184464355156210000004024719596897452720_"  style="overflow:visible;"/>
+                  </clipPath>
+                  
+                    <g transform="matrix(1 0 0 1 0 9.536743e-07)" style="clip-path:url(#SVGID_00000013900077073487984470000011005157641882091905_);">
+                    
+                      <image style="overflow:visible;" width="335" height="500" href="../../assets/cardframe/OBGCulture.jpg" transform="matrix(0.48 0 0 0.48 15.4034 15.6756)">
+                    </image>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g v-if="Class.Myth" id="Myth_One_Class_HQ">
+          <defs>
+            <circle id="_x33__Class_BG_00000089546964404460335160000006332096818175982464_" cx="160.12" cy="38.56" r="8.5"/>
+          </defs>
+          <clipPath id="_x33__Class_BG_00000168097003387891110950000005294466756081954194_">
+            <use xlink:href="#_x33__Class_BG_00000089546964404460335160000006332096818175982464_"  style="overflow:visible;"/>
+          </clipPath>
+          
+            <g id="Myth_OBG_00000065783437003262987940000010692353983980657558_" style="clip-path:url(#_x33__Class_BG_00000168097003387891110950000005294466756081954194_);">
+            <g>
+              <defs>
+                <path id="SVGID_00000062189555438534080290000014640452436407674288_" d="M165.23,27.78H47.32
+                  c-2.57-4.04-7.08-6.73-12.23-6.73c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78
+                  c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"/>
+              </defs>
+              <clipPath id="SVGID_00000040550066304571946930000008275184925303341726_">
+                <use xlink:href="#SVGID_00000062189555438534080290000014640452436407674288_"  style="overflow:visible;"/>
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000040550066304571946930000008275184925303341726_);">
+                <g>
+                  <defs>
+                    <rect id="SVGID_00000119107938647766340340000015781183049400071353_" x="15.6" y="16.05" width="160.31" height="239.23"/>
+                  </defs>
+                  <clipPath id="SVGID_00000143612127166699288170000001839756449853831559_">
+                    <use xlink:href="#SVGID_00000119107938647766340340000015781183049400071353_"  style="overflow:visible;"/>
+                  </clipPath>
+                  
+                    <g transform="matrix(1 0 0 1 0 9.536743e-07)" style="clip-path:url(#SVGID_00000143612127166699288170000001839756449853831559_);">
+                    
+                      <image style="overflow:visible;" width="335" height="500" href="../../assets/cardframe/OBGMyth.jpg" transform="matrix(0.48 0 0 0.48 15.4034 15.6756)">
+                    </image>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g v-if="Class.Nature" id="Nature_One_Class_HQ">
+          <defs>
+            <circle id="_x33__Class_BG_00000089570678114279000370000002361402257906201739_" cx="160.12" cy="38.56" r="8.5"/>
+          </defs>
+          <clipPath id="_x33__Class_BG_00000018955488998602615720000005926355286392112810_">
+            <use xlink:href="#_x33__Class_BG_00000089570678114279000370000002361402257906201739_"  style="overflow:visible;"/>
+          </clipPath>
+          
+            <g id="Nature_OBG_00000168813798712575700400000005018661677886951309_" style="clip-path:url(#_x33__Class_BG_00000018955488998602615720000005926355286392112810_);">
+            <g>
+              <defs>
+                <path id="SVGID_00000068653041940371398800000011035343479658101399_" d="M165.23,27.78H47.32
+                  c-2.57-4.04-7.08-6.73-12.23-6.73c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78
+                  c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"/>
+              </defs>
+              <clipPath id="SVGID_00000072257235394490977320000005863020954049580727_">
+                <use xlink:href="#SVGID_00000068653041940371398800000011035343479658101399_"  style="overflow:visible;"/>
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000072257235394490977320000005863020954049580727_);">
+                <g>
+                  <defs>
+                    <rect id="SVGID_00000168088192576664131480000009794340156365286571_" x="15.6" y="16.05" width="160.31" height="239.23"/>
+                  </defs>
+                  <clipPath id="SVGID_00000061462364789187643800000014249893726389788309_">
+                    <use xlink:href="#SVGID_00000168088192576664131480000009794340156365286571_"  style="overflow:visible;"/>
+                  </clipPath>
+                  
+                    <g transform="matrix(1 0 0 1 0 9.536743e-07)" style="clip-path:url(#SVGID_00000061462364789187643800000014249893726389788309_);">
+                    
+                      <image style="overflow:visible;" width="335" height="500" href="../../assets/cardframe/OBGNature.jpg" transform="matrix(0.48 0 0 0.48 15.4034 15.6756)">
+                    </image>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g v-if="Class.Tech" id="Tech_One_Class_HQ">
+          <defs>
+            <circle id="_x33__Class_BG" cx="160.12" cy="38.56" r="8.5"/>
+          </defs>
+          <clipPath id="_x33__Class_BG_00000029014446708573416200000014113716459243246501_">
+            <use xlink:href="#_x33__Class_BG"  style="overflow:visible;"/>
+          </clipPath>
+          
+          <g id="Tech_OBG_00000139274491479255915470000000037116823967539896_" style="clip-path:url(#_x33__Class_BG_00000029014446708573416200000014113716459243246501_);">
+            <g>
+              <defs>
+                <path id="SVGID_00000103254804211984096210000002693727745511043461_" d="M165.23,27.78H47.32
+                  c-2.57-4.04-7.08-6.73-12.23-6.73c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78
+                  c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"/>
+              </defs>
+              <clipPath id="SVGID_00000013889447165353567830000002998707345135946899_">
+                <use xlink:href="#SVGID_00000103254804211984096210000002693727745511043461_"  style="overflow:visible;"/>
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000013889447165353567830000002998707345135946899_);">
+                <g>
+                  <defs>
+                    <rect id="SVGID_00000124869654736075279830000001821518440278369428_" x="15.6" y="16.05" width="160.31" height="239.23"/>
+                  </defs>
+                  <clipPath id="SVGID_00000091014919955833925410000013267557508931031201_">
+                    <use xlink:href="#SVGID_00000124869654736075279830000001821518440278369428_"  style="overflow:visible;"/>
+                  </clipPath>
+                  
+                  <g transform="matrix(1 0 0 1 0 9.536743e-07)" style="clip-path:url(#SVGID_00000091014919955833925410000013267557508931031201_);">
+                  
+                    <image style="overflow:visible;" width="335" height="500" href="../../assets/cardframe/OBGTech.jpg" transform="matrix(0.48 0 0 0.48 15.4034 15.6756)">
+                    </image>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="HQ_00000171000928725356791190000018238046686567527562_">
+          
+          <image style="overflow:visible;opacity:0.75;" width="106" height="106" href="../../assets/cardframe/Circle3.2.jpg" transform="matrix(0.24 0 0 0.24 147.4714 25.8236)">
+          </image>
+          <g>
+            
+            <linearGradient id="SVGID_00000119805431224967418660000015856533515533612479_" gradientUnits="userSpaceOnUse" x1="155.9664" y1="31.3723" x2="164.2681" y2="45.7511">
+              <stop  offset="0" style="stop-color:#74573A"/>
+              <stop  offset="0.4273" style="stop-color:#76593B"/>
+              <stop  offset="0.5813" style="stop-color:#7D5F40"/>
+              <stop  offset="0.691" style="stop-color:#886A48"/>
+              <stop  offset="0.7797" style="stop-color:#997A54"/>
+              <stop  offset="0.8557" style="stop-color:#AF8F64"/>
+              <stop  offset="0.9229" style="stop-color:#CBA877"/>
+              <stop  offset="0.9823" style="stop-color:#EAC68D"/>
+              <stop  offset="1" style="stop-color:#F5D095"/>
+            </linearGradient>
+            
+            <circle style="fill:none;stroke:url(#SVGID_00000119805431224967418660000015856533515533612479_);stroke-width:1.5;stroke-miterlimit:10;" cx="160.12" cy="38.56" r="7.55"/>
+          </g>
+        </g>
+        
+        <linearGradient id="HQ_00000018943376912588314620000012709788740853122461_" gradientUnits="userSpaceOnUse" x1="155.4893" y1="30.5459" x2="164.7452" y2="46.5775">
+          <stop  offset="0" style="stop-color:#F4CF94"/>
+          <stop  offset="0.1144" style="stop-color:#D5B074"/>
+          <stop  offset="0.2386" style="stop-color:#BB965A"/>
+          <stop  offset="0.3751" style="stop-color:#A68145"/>
+          <stop  offset="0.5278" style="stop-color:#987336"/>
+          <stop  offset="0.7102" style="stop-color:#906B2E"/>
+          <stop  offset="1" style="stop-color:#8D682B"/>
+        </linearGradient>
+        
+        <circle id="HQ" style="fill:none;stroke:url(#HQ_00000018943376912588314620000012709788740853122461_);stroke-width:1.5;stroke-miterlimit:10;" cx="160.12" cy="38.56" r="8.5"/>
+      </g>
+      <path id="Gold_Right" class="st12" d="M164.82,38.56c0.01,1.23-0.49,2.46-1.37,3.33c-0.86,0.89-2.09,1.41-3.33,1.42
+  c-1.24,0.01-2.49-0.49-3.37-1.38c-0.89-0.88-1.41-2.12-1.42-3.37c-0.01-1.25,0.5-2.51,1.39-3.4c0.89-0.9,2.14-1.41,3.4-1.41
+  c1.26,0.02,2.5,0.55,3.36,1.45C164.35,36.09,164.84,37.33,164.82,38.56z M164.68,38.43c-0.01-1.23-0.42-2.29-1.3-3.13
+  c-0.49-0.48-1.09-0.84-1.74-1.06c-0.49-0.17-1.01-0.37-1.53-0.36c-0.91,0-1.57,0.13-2.32,0.64c-0.23,0.16-0.71,0.61-0.91,0.82
+  c-0.32,0.31-0.67,0.6-0.89,1c-0.36,0.66-0.57,1.45-0.58,2.2c0,0.38,0.15,0.8,0.24,1.17c0.2,0.79,0.61,1.54,1.19,2.12
+  c0.85,0.86,2.04,1.37,3.26,1.37c1.21,0.02,2.43-0.47,3.3-1.33c0.13-0.13,0.23-0.29,0.34-0.44
+  C164.39,40.61,164.68,39.47,164.68,38.43z"/>
+
     </g>
     <g
       v-if="Classes >= 2"
@@ -3113,8 +3302,6 @@
     >
 
       // RIGHT
-        
-          
       <g
         v-if="Class.Myth"
         id="_x31_1_Myth_00000080909038949935645790000011940198766423694006_"
@@ -3257,8 +3444,6 @@
       </g>
 
       // LEFT
-        
-          
       <g
         v-if="Class.Myth"
         id="_x31_0_Myth_00000017475090403506264130000018256608661766496424_"
@@ -3329,8 +3514,6 @@
       </g>
 
       // LEFT
-        
-          
       <g
         v-if="Class.Culture && Class.Nature"
         id="_x31_0_Culture_00000078748249870552128150000009190041049528861851_"
@@ -3401,8 +3584,6 @@
       </g>
 
       // TOP
-        
-          
       <g
         v-if="Class.Culture"
         id="_x39__Culture_00000029041257028089108250000002497267864017592725_"
@@ -3469,9 +3650,7 @@
         </g>
       </g>
 
-      // TOP
-        
-          
+      // TOP          
       <g
         v-if="Class.Nature"
         id="_x39__Nature_00000100379132996877746900000015198813090447383176_"
@@ -5973,7 +6152,7 @@
       id="_x37__Tagsbar"
     >
       <g
-        v-if="Tagsbar.HQ"
+        v-if="Type.HQ"
         id="Tagsbar_HQ"
       >
         <g>
@@ -6036,7 +6215,6 @@
                 </g>
 
                 <g
-                  v-if="Tagsbar.HQ"
                   id="Tagsbar_HQ"
                 >
                   <image
@@ -6380,6 +6558,79 @@
           </g>
         </g>
       </g>
+
+      <g
+        v-if="Tagsbar.Tech"
+        id="Tagsbar_Tech"
+      >
+        <g>
+          <defs>
+            <rect
+              id="SVGID_00000139254507076380287010000008278346598401660828_"
+              x="32.58"
+              y="232.82"
+              width="133.17"
+              height="12.06"
+            />
+          </defs>
+          <clipPath id="SVGID_00000072980187061191500640000005567222433003537045_">
+            <use
+              xlink:href="#SVGID_00000139254507076380287010000008278346598401660828_"
+              style="overflow:visible;"
+            />
+          </clipPath>
+          <g style="clip-path:url(#SVGID_00000072980187061191500640000005567222433003537045_);">
+            <g>
+              <defs>
+                <rect
+                  id="SVGID_00000183970306596405195510000008393010701553005488_"
+                  x="27.58"
+                  y="227.82"
+                  width="143.17"
+                  height="22.06"
+                />
+              </defs>
+              <clipPath id="SVGID_00000029034771886320812920000017526188383952942271_">
+                <use
+                  xlink:href="#SVGID_00000183970306596405195510000008393010701553005488_"
+                  style="overflow:visible;"
+                />
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000029034771886320812920000017526188383952942271_);">
+                <defs>
+                  <rect
+                    id="SVGID_00000176033144500420294780000017103118889594979489_"
+                    x="27.58"
+                    y="227.82"
+                    width="143.17"
+                    height="22.06"
+                  />
+                </defs>
+                <clipPath id="SVGID_00000121975943092167470890000000220299177361231265_">
+                  <use
+                    xlink:href="#SVGID_00000176033144500420294780000017103118889594979489_"
+                    style="overflow:visible;"
+                  />
+                </clipPath>
+
+                
+
+                <g style="clip-path:url(#SVGID_00000121975943092167470890000000220299177361231265_);">
+                  <image
+                    style="overflow:visible;"
+                    width="299"
+                    height="47"
+                    href="../../assets/cardframe/TagsbarTech.jpg"
+                    transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+
+
       <path
         id="Tagsbar_Frame_00000029765297210790863020000009900232293504514947_"
         class="st12"
@@ -22656,6 +22907,7 @@ export default {
       console.log("model", this.model)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
+      let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
       let Framedfilter = x => !this.FullArt ? x : R.map(() => false, x)
 
       let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type
@@ -22696,7 +22948,7 @@ export default {
       }
       if (cardType.HQ) {
         frameType = {
-          HQ: true,
+          HQ: false,
           MultiClass: false,
           Culture: false,
           Myth: false,
@@ -22717,7 +22969,7 @@ export default {
       this.OBG = frameType
       this.GoldSquare = true
       this.Border = frameType
-      this.IBG = cardClass
+      this.IBG = this.Classes === 2 && !cardType.HQ ? cardClass : false
       this.BGGoldLines = true
       this.BGShadow = cardType
       this.ClassShadow = true
@@ -22729,17 +22981,22 @@ export default {
       this.FramedTextBox = Framedfilter(colorType)
       this.HQFramedTextBox = Framedfilter(cardType.HQ)
       this.ShadowTextBox = Framedfilter(cardType)
-      this.Tagsbar = frameType
+      this.Tagsbar = colorType
       this.ShadowFramed = Framedfilter(cardType)
-      this.FullArtFrames = FullArtfilter(frameType)
+      this.FullArtFrames = EntityFullArtfilter(cardType)
       this.FramedAddition = Framedfilter(cardType)
       this.framed = colorType
       this.attackFrame = cardType.Entity
       this.healthFrame = !cardType.Action
 
+      EntityFullArtfilter({})
+
       console.log("Classes:", this.Classes)
       console.log("healthframe", this.healthFrame)
       console.log("attackframe", this.attackFrame)
+      console.log("FullArtFrames", this.FullArtFrames)
+      console.log("framed", this.framed)
+      console.log("tagsbar", this.Tagsbar)
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return 
