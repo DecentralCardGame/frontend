@@ -5005,7 +5005,7 @@
       </clipPath>
 
       <image
-        id="cardimage"
+        id="cardimageFullEntity"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5028,7 +5028,7 @@
       </clipPath>
 
       <image
-        id="cardimage"
+        id="cardimageFullAction"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5051,7 +5051,7 @@
       </clipPath>
 
       <image
-        id="cardimage"
+        id="cardimageFullPlace"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5076,7 +5076,7 @@
       </clipPath>
 
       <image
-        id="cardimage"
+        id="cardimageFullHQ"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5441,7 +5441,7 @@
       </clipPath>
 
       <image
-        id="cardimage"
+        id="cardimageFramedEntity"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5458,14 +5458,13 @@
     >
       <clipPath id="action_artwork_clip">
         <circle
-          class="st219"
           cx="99.12"
           cy="96.21"
           r="72.83"
         />
       </clipPath>
       <image
-        id="cardimage"
+        id="cardimageFramedAction"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5487,7 +5486,7 @@
         />
       </clipPath>
       <image
-        id="cardimage"
+        id="cardimageFramedPlace"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -5511,7 +5510,7 @@
         />
       </clipPath>
       <image
-        id="cardimage"
+        id="cardimageFramedHQ"
         align="xMidYMid"
         :href="imageURL"
         :x="artwork.x"
@@ -7784,7 +7783,7 @@
               </clipPath>
               <g style="clip-path:url(#SVGID_00000008833963887054328980000014402233052742959039_);">
                 <image
-                  v-if="framed.Nature"
+                  v-if="healthFrame.Nature"
                   style="overflow:visible;"
                   width="85"
                   height="76"
@@ -7793,7 +7792,7 @@
                 />
 
                 <image
-                  v-if="framed.Tech"
+                  v-if="healthFrame.Tech"
                   style="overflow:visible;"
                   width="85"
                   height="76"
@@ -7802,7 +7801,7 @@
                 />
 
                 <image
-                  v-if="framed.Myth"
+                  v-if="healthFrame.Myth"
                   style="overflow:visible;"
                   width="85"
                   height="76"
@@ -7811,7 +7810,7 @@
                 />
 
                 <image
-                  v-if="framed.Culture"
+                  v-if="healthFrame.Culture"
                   style="overflow:visible;"
                   width="85"
                   height="76"
@@ -7820,7 +7819,7 @@
                 />
 
                 <image
-                  v-if="framed.MultiClass"
+                  v-if="healthFrame.MultiClass"
                   style="overflow:visible;"
                   width="85"
                   height="76"
@@ -7829,7 +7828,7 @@
                 />
 
                 <image
-                  v-if="Type.HQ"
+                  v-if="healthFrame.HQ"
                   style="overflow:visible;"
                   width="85"
                   height="76"
@@ -9254,7 +9253,6 @@
         v-if="framed.Myth"
         id="Myth_Frame"
       >
-        
         <linearGradient
           id="Health_Frame_00000155852531660001351230000010150227762775362437_"
           gradientUnits="userSpaceOnUse"
@@ -9883,8 +9881,6 @@
         v-if="framed.Culture"
         id="Culture_Frame"
       >
-        
-        
         <linearGradient
           id="Health_Frame_00000136406794588487439390000016837285619480654492_"
           gradientUnits="userSpaceOnUse"
@@ -22144,7 +22140,7 @@
       id="HQ_Framed_Addition"
     >
       <g
-        v-if="framed.MultiClass"
+        
         id="Multi_Class_Frame_00000013893546042885296050000001931460204239677355_"
       >
         <linearGradient
@@ -22842,7 +22838,7 @@ export default {
       clicked: false,
       keywordDescriptions: "",
 
-      FullArt: true,
+      FullArt: false,
       Classes: 0,
       Class: {
         Culture: false,
@@ -22857,117 +22853,41 @@ export default {
         Place: false,
       },
 
-      OBG: {  
-        HQ: false,
-        MultiClass: false,
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
+      OBG: {
       },
       GoldSquare: false,
       Border: {
-        HQ: false,
-        MultiClass: false,
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       IBG: {
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       BGGoldLines: false,
       BGShadow:  {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       ClassShadow: false,
       ManaBall: {
-        HQ: false,
-        MultiClass: false,
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       FullArtIllustrationMask: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       ShadowFullArt: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       FramedIllustrationMask: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       FullArtGradients: {
-        HQ: false,
-        MultiClass: false,
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       FramedTextBox: {
-        MultiClass: false,
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       HQFramedTextBox: false,
       ShadowTextBox: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       Tagsbar: {
-        HQ: false,
-        MultiClass: false,
-        Culture: true,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       ShadowFramed: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       FullArtFrames: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       FramedAddition: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
       framed: {
-        MultiClass: false,
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       attackFrame: false,
       healthFrame: false,
@@ -23011,6 +22931,7 @@ export default {
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
       let Framedfilter = x => !this.FullArt ? x : R.map(() => false, x)
+      let NonActionFilter = x => !cardType.Action ? x : false
 
       let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type
       console.log("tempType:", tempType)
@@ -23050,7 +22971,7 @@ export default {
       }
       if (cardType.HQ) {
         frameType = {
-          HQ: false,
+          HQ: true,
           MultiClass: false,
           Culture: false,
           Myth: false,
@@ -23081,7 +23002,7 @@ export default {
       this.FramedIllustrationMask = Framedfilter(cardType)
       this.FullArtGradients = FullArtfilter(frameType)
       this.FramedTextBox = Framedfilter(colorType)
-      this.HQFramedTextBox = Framedfilter(cardType.HQ)
+      this.HQFramedTextBox = cardType.HQ && !this.FullArt
       this.ShadowTextBox = Framedfilter(cardType)
       this.Tagsbar = colorType
       this.ShadowFramed = Framedfilter(cardType)
@@ -23089,7 +23010,7 @@ export default {
       this.FramedAddition = Framedfilter(cardType)
       this.framed = colorType
       this.attackFrame = cardType.Entity
-      this.healthFrame = !cardType.Action
+      this.healthFrame = NonActionFilter(frameType)
 
       console.log("Classes:", this.Classes)
       console.log("healthframe", this.healthFrame)
@@ -23097,6 +23018,11 @@ export default {
       console.log("FullArtFrames", this.FullArtFrames)
       console.log("framed", this.framed)
       console.log("tagsbar", this.Tagsbar)
+      console.log("framedaddition", this.FramedAddition)
+      console.log("border", this.Border)
+      console.log("OBG", this.OBG)
+      console.log("FramedIllustrationMask", this.FramedIllustrationMask)
+      console.log("FullArtIllustrationMask", this.FullArtIllustrationMask)
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return 
