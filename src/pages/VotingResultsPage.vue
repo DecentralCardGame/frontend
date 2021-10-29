@@ -4,12 +4,12 @@
       Voting Results
     </h2>
     <p class="header__p">
-      Here you can see the outome of the last week's voting. <br>
-      TotalVotes: {{ TotalVotes }} <br>
-      TotalFairEnoughVotes: {{ TotalFairEnoughVotes }} <br>
-      TotalInappropriateVotes: {{ TotalInappropriateVotes }} <br>
-      TotalOverpoweredVotes: {{ TotalOverpoweredVotes }} <br>
-      TotalUnderpoweredVotes: {{ TotalUnderpoweredVotes }} <br> <br>
+      Here you can see the outome of the last week's voting. <br><br>
+      Total Votes: {{ TotalVotes }} <br>
+      Total <b>Fair Enough</b> Votes: {{ TotalFairEnoughVotes }} <br>
+      Total <b>Inappropriate</b> Votes: {{ TotalInappropriateVotes }} <br>
+      Total <b>Overpowered</b> Votes: {{ TotalOverpoweredVotes }} <br>
+      Total <b>Underpowered</b> Votes: {{ TotalUnderpoweredVotes }} <br> <br>
       Nerfed Mana Costs are <span style="color: #ff0000">red</span> and buffed Mana Costs are <span style="color: #3CB38F">green</span>. <br>
       Banned Cards have their Mana Cost removed.
     </p>
@@ -35,18 +35,22 @@
         :key="index"
         @click="
           clickedIndex = index;
-          downloadPng();
+          showGalleryModal();
         "
       >
         <div
           class="cardContainer"
+          @click="
+            showGalleryModal();
+            clickedIndex = index;
+          "
         >
           <div class="cardContainer--element">
             <CardComponent
               :id="'card' + index"
               :model="card"
               :image-u-r-l="card.image"
-              hover-behavior="normal"
+              hover-behavior="none"
               class="gallery__view__card"
             />
           </div>
@@ -67,26 +71,55 @@
         next
       </button>
     </div>
+    <div 
+      v-if="isGalleryModalVisible" 
+      class="container-modal"
+      @click="closeGalleryModal"
+    >
+      <div class="ability-modal-container">
+        <GalleryModal
+          :can-vote="canVote"
+          :is-owner="isOwner"
+          :keyword-descriptions="keywordDescriptions"
+          :model="cards[clickedIndex]"
+          :image-u-r-l="cards[clickedIndex].image"
+          @close="closeGalleryModal"
+          @download="downloadPng"
+          @cardview="cardview"
+          @edit="edit"
+          @voteOP="vote('overpowered')"
+          @voteUP="vote('underpowered')"
+          @voteFair="vote('fair_enough')"
+          @voteInappropriate="vote('inappropriate')"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import * as R from "ramda";
+import GalleryModal from "../components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent";
-import { saveCardAsPng } from "../components/utils/utils.js";
+import { saveCardAsPng, creditsFromCoins } from "../components/utils/utils.js";
 
 export default {
   name: "VotingResultsPage",
-  components: { CardComponent },
+  components: { CardComponent, GalleryModal },
   data() {
     return {
       clickedIndex: 0,
+      isGalleryModalVisible: false,
       pageId: 0,
       cardList: [],
       cards: [],
       browsingForward: true,
       browsingBackward: true,
+      votableCards: [],
+      canVote: false,
+      isOwner: false,
       leavePageLock: false,
+      keywordDescriptions: [],
       TotalVotes: 0,
       TotalFairEnoughVotes: 0,
       TotalInappropriateVotes: 0,
@@ -200,14 +233,63 @@ export default {
       this.fillPage();
       window.scrollTo(0, 0);
     },
+    showGalleryModal() {
+      this.isGalleryModalVisible = true
+      
+      this.canVote = R.any(
+        (x) => x == this.cards[this.clickedIndex].id,
+        R.pluck("CardId", this.votableCards)
+      )
+      this.isOwner =
+        this.cards[this.clickedIndex].Owner ===
+        this.$store.getters.getUserAddress
+      
+      this.keywordDescriptions = []
+      let firstLetterToLower = string => {
+        return string[0].toLowerCase() + string.substring(1)
+      }
+      this.cards[this.clickedIndex].Keywords.forEach(ability => {
+        ability.forEach(keyword => {
+          this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
+        })
+      })
+    },
+    closeGalleryModal() {
+      this.isGalleryModalVisible = false;
+    },
+    edit() {
+      console.log("editing:", this.cards[this.clickedIndex])
+      this.$store.commit(
+        "setCardCreatorEditCard",
+        this.cards[this.clickedIndex]
+      );
+      this.$router.push("newCard")
+    },
+    cardview() {
+      this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
+    },
     downloadPng() {
       saveCardAsPng(
         document.getElementById("card" + this.clickedIndex),
         this.cards[this.clickedIndex].CardName
       );
     },
+    vote(type) {
+      this.$cardChain
+        .voteCardTx(this.cards[this.clickedIndex].id, type)
+        .then((acc) => {
+          this.creditsAvailable = creditsFromCoins(acc.coins);
+          this.$store.commit("setUserCredits", this.creditsAvailable);
+        });
+    },
     getOwnAddress() {
       return this.$store.getters.getUserAddress;
+    },
+    resetFilters() {
+      console.log("reset filters");
+      this.$store.commit("resetGalleryFilter");
+
+      this.loadCardList();
     },
   },
 };

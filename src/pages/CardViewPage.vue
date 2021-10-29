@@ -40,10 +40,10 @@
       <b>Advanced Card Information:</b> <br>
       FlavourText: {{ FlavourText }} <br>
       Notes: {{ Notes }} <br>
-      InappropriateVotes: {{ InappropriateVotes }} <br>
-      UnderpoweredVotes: {{ UnderpoweredVotes }} <br>
-      OverpoweredVotes: {{ OverpoweredVotes }} <br>
-      FairEnoughVotes: {{ FairEnoughVotes }} <br>
+      Inappropriate Votes: {{ InappropriateVotes }} <br>
+      Underpowered Votes: {{ UnderpoweredVotes }} <br>
+      Overpowered Votes: {{ OverpoweredVotes }} <br>
+      Fair Enough Votes: {{ FairEnoughVotes }} <br>
       Nerflevel: {{ Nerflevel }} <br>
       Owner: {{ Owner }} <br>
       Status: {{ Status }} <br>
