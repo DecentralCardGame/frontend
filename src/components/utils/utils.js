@@ -1,7 +1,6 @@
 import * as R from 'ramda'
 import * as svg1 from 'save-svg-as-png'
 
-
 export const emptyCard = {
   CardName: 'Name',
   FlavourText: '',
@@ -24,7 +23,7 @@ export const emptyCard = {
   Delay: 0,
   RulesTexts: [],
   Keywords: [],
-  FullArt: false
+  FullArt: true
 }
 
 export const emptyGalleryFilter = {

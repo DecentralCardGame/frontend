@@ -9,10 +9,8 @@
     style="enable-background:new 0 0 198.5 274.28;"
     xml:space="preserve"
   >
-    
     <g id="_x31__Outer_Backgrounds">
-      <g
-        v-if="OBG.HQ"
+      <g v-if="OBG.HQ"
         id="HQ_OBG"
       >
         <g>
@@ -80,8 +78,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.MultiClass"
+      <g v-if="OBG.MultiClass"  
         id="Multi_Class_OBG"
       >
         <g>
@@ -149,8 +146,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Culture"
+      <g v-if="OBG.Culture"
         id="Culture_OBG"
       >
         <g>
@@ -218,8 +214,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Myth"
+      <g v-if="OBG.Myth"
         id="Myth_OBG"
       >
         <g>
@@ -287,8 +282,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Nature"
+      <g v-if="OBG.Nature"
         id="Nature_OBG"
       >
         <g>
@@ -356,8 +350,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Tech"
+      <g v-if="OBG.Tech"
         id="Tech_OBG"
       >
         <g>
@@ -425,8 +418,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="GoldSquare"
+      <g v-if="GoldSquare"
         id="Gold_Square"
       >
         <path
@@ -450,8 +442,7 @@
       />
     </g>
     <g id="Card_Borders">
-      <g
-        v-if="Border.Tech"
+      <g v-if="Border.Tech"
         id="Tech_Border"
       >
         <linearGradient
@@ -641,8 +632,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Nature"
+      <g v-if="Border.Nature"
         id="Nature_Border"
       >
         <linearGradient
@@ -832,8 +822,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Myth"
+      <g v-if="Border.Myth"
         id="Myth_Border"
       >
         <linearGradient
@@ -1023,8 +1012,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Culture"
+      <g v-if="Border.Culture"
         id="Culture_Border"
       >
         <linearGradient
@@ -1214,8 +1202,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.MultiClass"
+      <g v-if="Border.MultiClass"
         id="Multi_Class_Border"
       >
         <linearGradient
@@ -1405,8 +1392,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.HQ"
+      <g v-if="Border.HQ"
         id="HQ_Border"
       >
         <linearGradient
@@ -1597,207 +1583,10 @@
         />
       </g>
     </g>
-    <g
-      v-if="IBG"
+    <g v-if="IBG"
       id="_x32__Inner_Background"
     >
-      <g
-        v-if="IBG.Myth"
-        id="Myth_IBG"
-      >
-        <g>
-          <defs>
-            <path
-              id="SVGID_00000169535016381955657600000007694404226893358747_"
-              d="M165.36,37.49c-1.66-1.66-2.59-2.59-4.25-4.25H37.3
-                c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
-            />
-          </defs>
-          <clipPath id="SVGID_00000176015696093878606030000011326883433775667360_">
-            <use
-              xlink:href="#SVGID_00000169535016381955657600000007694404226893358747_"
-              style="overflow:visible;"
-            />
-          </clipPath>
-          <g style="clip-path:url(#SVGID_00000176015696093878606030000011326883433775667360_);">
-            <g>
-              <defs>
-                <rect
-                  id="SVGID_00000137101434716200562970000000559068387446810783_"
-                  x="28.05"
-                  y="28.24"
-                  width="142.31"
-                  height="220.95"
-                />
-              </defs>
-              <clipPath id="SVGID_00000160181948636491110370000007299203307992006575_">
-                <use
-                  xlink:href="#SVGID_00000137101434716200562970000000559068387446810783_"
-                  style="overflow:visible;"
-                />
-              </clipPath>
-              <g style="clip-path:url(#SVGID_00000160181948636491110370000007299203307992006575_);">
-                <defs>
-                  <rect
-                    id="SVGID_00000101092783785814214970000016087348733540548485_"
-                    x="28.05"
-                    y="28.24"
-                    width="142.31"
-                    height="220.95"
-                  />
-                </defs>
-                <clipPath id="SVGID_00000160891091435967670910000016303121718585873051_">
-                  <use
-                    xlink:href="#SVGID_00000101092783785814214970000016087348733540548485_"
-                    style="overflow:visible;"
-                  />
-                </clipPath>
-                <g style="clip-path:url(#SVGID_00000160891091435967670910000016303121718585873051_);">
-                  <image
-                    style="overflow:visible;"
-                    width="297"
-                    height="461"
-                    href="../../assets/cardframe/IBGMyth.jpg"
-                    transform="matrix(0.48 0 0 0.48 27.8834 28.1556)"
-                  />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-      <g
-        v-if="IBG.Culture"
-        id="Culture_IBG"
-      >
-        <g>
-          <defs>
-            <path
-              id="SVGID_00000042710165106101580370000008878286882281806482_"
-              d="M165.36,37.49c-1.66-1.66-2.59-2.59-4.25-4.25H37.3
-                c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
-            />
-          </defs>
-          <clipPath id="SVGID_00000044169460403616222520000003669845880260927414_">
-            <use
-              xlink:href="#SVGID_00000042710165106101580370000008878286882281806482_"
-              style="overflow:visible;"
-            />
-          </clipPath>
-          <g style="clip-path:url(#SVGID_00000044169460403616222520000003669845880260927414_);">
-            <g>
-              <defs>
-                <rect
-                  id="SVGID_00000148622156169963897930000011883151364280108979_"
-                  x="28.05"
-                  y="28.24"
-                  width="142.31"
-                  height="220.95"
-                />
-              </defs>
-              <clipPath id="SVGID_00000075845965515093132050000018317063392619523757_">
-                <use
-                  xlink:href="#SVGID_00000148622156169963897930000011883151364280108979_"
-                  style="overflow:visible;"
-                />
-              </clipPath>
-              <g style="clip-path:url(#SVGID_00000075845965515093132050000018317063392619523757_);">
-                <defs>
-                  <rect
-                    id="SVGID_00000092442497088537611450000015925968356868128700_"
-                    x="28.05"
-                    y="28.24"
-                    width="142.31"
-                    height="220.95"
-                  />
-                </defs>
-                <clipPath id="SVGID_00000062188277129599383770000018378547790866351534_">
-                  <use
-                    xlink:href="#SVGID_00000092442497088537611450000015925968356868128700_"
-                    style="overflow:visible;"
-                  />
-                </clipPath>
-                <g style="clip-path:url(#SVGID_00000062188277129599383770000018378547790866351534_);">
-                  <image
-                    style="overflow:visible;"
-                    width="297"
-                    height="461"
-                    href="../../assets/cardframe/IBGCulture.jpg"
-                    transform="matrix(0.48 0 0 0.48 27.8834 28.1556)"
-                  />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-      <g
-        v-if="IBG.Nature"
-        id="Nature_IBG"
-      >
-        <g>
-          <defs>
-            <path
-              id="SVGID_00000094588595587971105160000011355663130670155436_"
-              d="M165.36,37.49c-1.66-1.66-2.59-2.59-4.25-4.25H37.3
-                c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
-            />
-          </defs>
-          <clipPath id="SVGID_00000145051194791347550580000008980101860734870148_">
-            <use
-              xlink:href="#SVGID_00000094588595587971105160000011355663130670155436_"
-              style="overflow:visible;"
-            />
-          </clipPath>
-          <g style="clip-path:url(#SVGID_00000145051194791347550580000008980101860734870148_);">
-            <g>
-              <defs>
-                <rect
-                  id="SVGID_00000147924659999806827590000013741391907952835456_"
-                  x="28.05"
-                  y="28.24"
-                  width="142.31"
-                  height="220.95"
-                />
-              </defs>
-              <clipPath id="SVGID_00000001664056108247386270000006922689230456408223_">
-                <use
-                  xlink:href="#SVGID_00000147924659999806827590000013741391907952835456_"
-                  style="overflow:visible;"
-                />
-              </clipPath>
-              <g style="clip-path:url(#SVGID_00000001664056108247386270000006922689230456408223_);">
-                <defs>
-                  <rect
-                    id="SVGID_00000010291046240539824640000016501886118019047341_"
-                    x="28.05"
-                    y="28.24"
-                    width="142.31"
-                    height="220.95"
-                  />
-                </defs>
-                <clipPath id="SVGID_00000142135954675889225370000010383477552377309847_">
-                  <use
-                    xlink:href="#SVGID_00000010291046240539824640000016501886118019047341_"
-                    style="overflow:visible;"
-                  />
-                </clipPath>
-                <g style="clip-path:url(#SVGID_00000142135954675889225370000010383477552377309847_);">
-                  <image
-                    style="overflow:visible;"
-                    width="297"
-                    height="461"
-                    href="../../assets/cardframe/IBGNature.jpg"
-                    transform="matrix(0.48 0 0 0.48 27.8834 28.1556)"
-                  />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-      <g
-        v-if="IBG.Tech"
+      <g v-if="IBG.Tech"
         id="Tech_IBG"
       >
         <g>
@@ -1861,9 +1650,200 @@
           </g>
         </g>
       </g>
+      <g v-if="IBG.Nature"
+        id="Nature_IBG"
+      >
+        <g>
+          <defs>
+            <path
+              id="SVGID_00000094588595587971105160000011355663130670155436_"
+              d="M165.36,37.49c-1.66-1.66-2.59-2.59-4.25-4.25H37.3
+                c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
+            />
+          </defs>
+          <clipPath id="SVGID_00000145051194791347550580000008980101860734870148_">
+            <use
+              xlink:href="#SVGID_00000094588595587971105160000011355663130670155436_"
+              style="overflow:visible;"
+            />
+          </clipPath>
+          <g style="clip-path:url(#SVGID_00000145051194791347550580000008980101860734870148_);">
+            <g>
+              <defs>
+                <rect
+                  id="SVGID_00000147924659999806827590000013741391907952835456_"
+                  x="28.05"
+                  y="28.24"
+                  width="142.31"
+                  height="220.95"
+                />
+              </defs>
+              <clipPath id="SVGID_00000001664056108247386270000006922689230456408223_">
+                <use
+                  xlink:href="#SVGID_00000147924659999806827590000013741391907952835456_"
+                  style="overflow:visible;"
+                />
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000001664056108247386270000006922689230456408223_);">
+                <defs>
+                  <rect
+                    id="SVGID_00000010291046240539824640000016501886118019047341_"
+                    x="28.05"
+                    y="28.24"
+                    width="142.31"
+                    height="220.95"
+                  />
+                </defs>
+                <clipPath id="SVGID_00000142135954675889225370000010383477552377309847_">
+                  <use
+                    xlink:href="#SVGID_00000010291046240539824640000016501886118019047341_"
+                    style="overflow:visible;"
+                  />
+                </clipPath>
+                <g style="clip-path:url(#SVGID_00000142135954675889225370000010383477552377309847_);">
+                  <image
+                    style="overflow:visible;"
+                    width="297"
+                    height="461"
+                    href="../../assets/cardframe/IBGNature.jpg"
+                    transform="matrix(0.48 0 0 0.48 27.8834 28.1556)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g v-if="IBG.Culture"
+        id="Culture_IBG"
+      >
+        <g>
+          <defs>
+            <path
+              id="SVGID_00000042710165106101580370000008878286882281806482_"
+              d="M165.36,37.49c-1.66-1.66-2.59-2.59-4.25-4.25H37.3
+                c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
+            />
+          </defs>
+          <clipPath id="SVGID_00000044169460403616222520000003669845880260927414_">
+            <use
+              xlink:href="#SVGID_00000042710165106101580370000008878286882281806482_"
+              style="overflow:visible;"
+            />
+          </clipPath>
+          <g style="clip-path:url(#SVGID_00000044169460403616222520000003669845880260927414_);">
+            <g>
+              <defs>
+                <rect
+                  id="SVGID_00000148622156169963897930000011883151364280108979_"
+                  x="28.05"
+                  y="28.24"
+                  width="142.31"
+                  height="220.95"
+                />
+              </defs>
+              <clipPath id="SVGID_00000075845965515093132050000018317063392619523757_">
+                <use
+                  xlink:href="#SVGID_00000148622156169963897930000011883151364280108979_"
+                  style="overflow:visible;"
+                />
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000075845965515093132050000018317063392619523757_);">
+                <defs>
+                  <rect
+                    id="SVGID_00000092442497088537611450000015925968356868128700_"
+                    x="28.05"
+                    y="28.24"
+                    width="142.31"
+                    height="220.95"
+                  />
+                </defs>
+                <clipPath id="SVGID_00000062188277129599383770000018378547790866351534_">
+                  <use
+                    xlink:href="#SVGID_00000092442497088537611450000015925968356868128700_"
+                    style="overflow:visible;"
+                  />
+                </clipPath>
+                <g style="clip-path:url(#SVGID_00000062188277129599383770000018378547790866351534_);">
+                  <image
+                    style="overflow:visible;"
+                    width="297"
+                    height="461"
+                    href="../../assets/cardframe/IBGCulture.jpg"
+                    transform="matrix(0.48 0 0 0.48 27.8834 28.1556)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g v-if="IBG.Myth"
+        id="Myth_IBG"
+      >
+        <g>
+          <defs>
+            <path
+              id="SVGID_00000169535016381955657600000007694404226893358747_"
+              d="M165.36,37.49c-1.66-1.66-2.59-2.59-4.25-4.25H37.3
+                c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
+            />
+          </defs>
+          <clipPath id="SVGID_00000176015696093878606030000011326883433775667360_">
+            <use
+              xlink:href="#SVGID_00000169535016381955657600000007694404226893358747_"
+              style="overflow:visible;"
+            />
+          </clipPath>
+          <g style="clip-path:url(#SVGID_00000176015696093878606030000011326883433775667360_);">
+            <g>
+              <defs>
+                <rect
+                  id="SVGID_00000137101434716200562970000000559068387446810783_"
+                  x="28.05"
+                  y="28.24"
+                  width="142.31"
+                  height="220.95"
+                />
+              </defs>
+              <clipPath id="SVGID_00000160181948636491110370000007299203307992006575_">
+                <use
+                  xlink:href="#SVGID_00000137101434716200562970000000559068387446810783_"
+                  style="overflow:visible;"
+                />
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000160181948636491110370000007299203307992006575_);">
+                <defs>
+                  <rect
+                    id="SVGID_00000101092783785814214970000016087348733540548485_"
+                    x="28.05"
+                    y="28.24"
+                    width="142.31"
+                    height="220.95"
+                  />
+                </defs>
+                <clipPath id="SVGID_00000160891091435967670910000016303121718585873051_">
+                  <use
+                    xlink:href="#SVGID_00000101092783785814214970000016087348733540548485_"
+                    style="overflow:visible;"
+                  />
+                </clipPath>
+                <g style="clip-path:url(#SVGID_00000160891091435967670910000016303121718585873051_);">
+                  <image
+                    style="overflow:visible;"
+                    width="297"
+                    height="461"
+                    href="../../assets/cardframe/IBGMyth.jpg"
+                    transform="matrix(0.48 0 0 0.48 27.8834 28.1556)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
     </g>
-    <g
-      v-if="BGGoldLines"
+    <g v-if="BGGoldLines"
       id="BG_Gold_Lines"
     >
       <g id="Gold_Inner_Frame">
@@ -1889,8 +1869,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="BGShadow.Action"
+    <g v-if="BGShadow.Action"
       id="Action_BG_Shadow"
     >
       <g>
@@ -1928,8 +1907,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.Entity"
+    <g v-if="BGShadow.Entity"
       id="Entity_BG_Shadow"
     >
       <g>
@@ -1966,8 +1944,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.Place"
+    <g v-if="BGShadow.Place"
       id="Place_BG_Shadow"
     >
       <g>
@@ -2002,8 +1979,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.HQ"
+    <g v-if="BGShadow.HQ"
       id="HQ_BG_Shadow"
     >
       <g>
@@ -2059,8 +2035,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ClassShadow"
+    <g v-if="ClassShadow"
       id="Class_Shadow"
     >
       <g id="Shadow_00000083786197643803441000000008484445605677345712_">
@@ -2081,8 +2056,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Classes==1"
+    <g v-if="Classes==1"
       id="One_Class"
     >
       <g v-if="Class.Tech"
@@ -2532,8 +2506,6 @@
           c0.85,0.86,2.04,1.37,3.26,1.37c1.21,0.02,2.43-0.47,3.3-1.33c0.13-0.13,0.23-0.29,0.34-0.44
           C164.39,40.61,164.68,39.47,164.68,38.43z"
       />
-
-
       <g v-if="Type.HQ" id="One_Class_HQ">
         <g v-if="Class.Culture" id="Culture_One_Class_HQ">
           <defs>
@@ -2685,10 +2657,8 @@
         </g>
         <g id="HQ_00000171000928725356791190000018238046686567527562_">
           
-          <image style="overflow:visible;opacity:0.75;" width="106" height="106" href="../../assets/cardframe/Circle3.2.jpg" transform="matrix(0.24 0 0 0.24 147.4714 25.8236)">
-          </image>
+          <image style="overflow:visible;opacity:0.75;" width="106" height="106" href="../../assets/cardframe/Circle3.2.jpg" transform="matrix(0.24 0 0 0.24 147.4714 25.8236)"/>
           <g>
-            
             <linearGradient id="SVGID_00000119805431224967418660000015856533515533612479_" gradientUnits="userSpaceOnUse" x1="155.9664" y1="31.3723" x2="164.2681" y2="45.7511">
               <stop  offset="0" style="stop-color:#74573A"/>
               <stop  offset="0.4273" style="stop-color:#76593B"/>
@@ -2726,8 +2696,7 @@
   C164.39,40.61,164.68,39.47,164.68,38.43z"/>
 
     </g>
-    <g
-      v-if="Classes >= 2"
+    <g v-if="Classes >= 2"
       id="_x33__Class_BG_00000106828953381195913150000008910534209060889004_"
     >
       <g>
@@ -2792,16 +2761,11 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Classes==2"
+    <g v-if="Classes==2"
       id="HQ_Classes_copy_00000123407028572346819720000015199051159379258786_"
     >
-
       // BOTTOM
-        
-          
-      <g
-        v-if="Class.Tech"
+      <g v-if="Class.Tech"
         id="_x35__Tech_00000105393578533262114780000001513111495754690206_"
       >
         <g>
@@ -2865,12 +2829,8 @@
           </g>
         </g>
       </g>
-
       // BOTTOM
-        
-          
-      <g
-        v-if="Class.Nature"
+      <g v-if="Class.Nature"
         id="_x35__Nature_00000011725085793288903870000004132891873278979751_"
       >
         <g>
@@ -2934,12 +2894,8 @@
           </g>
         </g>
       </g>
-
       // BOTTOM
-        
-          
-      <g
-        v-if="Class.Culture"
+      <g v-if="Class.Culture"
         id="_x35__Culture_00000068676709616123043950000002393212968750640536_"
       >
         <g>
@@ -3003,12 +2959,8 @@
           </g>
         </g>
       </g>
-
       // BOTTOM
-        
-          
-      <g
-        v-if="Class.Myth"
+      <g v-if="Class.Myth"
         id="_x35__Myth_00000023981592066913379740000015781955592218530204_"
       >
         <g>
@@ -3072,12 +3024,8 @@
           </g>
         </g>
       </g>
-
       // TOP
-        
-          
-      <g
-        v-if="Class.Culture"
+      <g v-if="Class.Culture"
         id="_x34__Culture_00000040543964828010785830000010539442367856353943_"
       >
         <g>
@@ -3141,12 +3089,8 @@
           </g>
         </g>
       </g>
-
       // TOP
-        
-          
-      <g
-        v-if="Class.Nature"
+      <g v-if="Class.Nature"
         id="_x34__Nature_00000127739038924936826890000006168223653451514804_"
       >
         <g>
@@ -3210,12 +3154,8 @@
           </g>
         </g>
       </g>
-
       // TOP
-        
-          
-      <g
-        v-if="Class.Tech"
+      <g v-if="Class.Tech"
         id="_x34__Tech_00000096048797798902483570000009767725496856427393_"
       >
         <g>
@@ -3297,14 +3237,11 @@
           c1.78-0.01,3.53-0.76,4.75-2.02c0.76-0.76,1.33-1.72,1.65-2.75L166.36,33.46z"
       />
     </g>
-    <g
-      v-if="Classes==3"
+    <g v-if="Classes==3"
       id="Three_Classes"
     >
-
       // RIGHT
-      <g
-        v-if="Class.Myth"
+      <g v-if="Class.Myth"
         id="_x31_1_Myth_00000080909038949935645790000011940198766423694006_"
       >
         <g>
@@ -3371,12 +3308,8 @@
           </g>
         </g>
       </g>
-
       // RIGHT
-        
-          
-      <g
-        v-if="Class.Tech"
+      <g v-if="Class.Tech"
         id="_x31_1_Tech_00000094584958586423160310000013945027226273506179_"
       >
         <g>
@@ -3443,10 +3376,8 @@
           </g>
         </g>
       </g>
-
       // LEFT
-      <g
-        v-if="Class.Myth"
+      <g v-if="Class.Myth"
         id="_x31_0_Myth_00000017475090403506264130000018256608661766496424_"
       >
         <g>
@@ -3513,10 +3444,8 @@
           </g>
         </g>
       </g>
-
       // LEFT
-      <g
-        v-if="Class.Culture && Class.Nature"
+      <g v-if="Class.Culture && Class.Nature"
         id="_x31_0_Culture_00000078748249870552128150000009190041049528861851_"
       >
         <g>
@@ -3583,10 +3512,8 @@
           </g>
         </g>
       </g>
-
       // TOP
-      <g
-        v-if="Class.Culture"
+      <g v-if="Class.Culture"
         id="_x39__Culture_00000029041257028089108250000002497267864017592725_"
       >
         <g>
@@ -3650,10 +3577,8 @@
           </g>
         </g>
       </g>
-
       // TOP          
-      <g
-        v-if="Class.Nature"
+      <g v-if="Class.Nature"
         id="_x39__Nature_00000100379132996877746900000015198813090447383176_"
       >
         <g>
@@ -5012,7 +4937,6 @@
         :y="artwork.y"
         :width="artwork.width"
         :height="artwork.height"
-        class="cardImage"
         clip-path="url(#full_entity_artwork_clip)"
       />
     </g>
@@ -5035,7 +4959,6 @@
         :y="artwork.y"
         :width="artwork.width"
         :height="artwork.height"
-        class="cardImage"
         clip-path="url(#full_action_artwork_clip)"
       />
     </g>
@@ -5058,7 +4981,6 @@
         :y="artwork.y"
         :width="artwork.width"
         :height="artwork.height"
-        class="cardImage"
         clip-path="url(#full_place_artwork_clip)"
       />
     </g>
@@ -5083,7 +5005,6 @@
         :y="artwork.y"
         :width="artwork.width"
         :height="artwork.height"
-        class="cardImage"
         clip-path="url(#full_hq_artwork_clip)"
       />
     </g>
@@ -5429,101 +5350,97 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FramedIllustrationMask.Entity"
-      id="Entity_Framed_Illustration_Mask"
-    >
-      <clipPath id="entity_artwork_clip">
-        <polygon
-          points="66.26,26.43 132.07,26.43 171.2,65.56 171.2,129.38 132.07,168.52 66.26,168.52 27.13,129.39 
-          27.13,65.56 	"
-        />
-      </clipPath>
+    <g v-if="true" id="Framed_Illustration_Mask">
+      <g
+        v-if="FramedIllustrationMask.Entity"
+        id="Entity_Framed_Illustration_Mask"
+      >
+        <clipPath id="entity_artwork_clip">
+          <polygon
+            points="66.26,26.43 132.07,26.43 171.2,65.56 171.2,129.38 132.07,168.52 66.26,168.52 27.13,129.39 
+            27.13,65.56 	"
+          />
+        </clipPath>
 
-      <image
-        id="cardimageFramedEntity"
-        align="xMidYMid"
-        :href="imageURL"
-        :x="artwork.x"
-        :y="artwork.y"
-        :width="artwork.width"
-        :height="artwork.height"
-        class="cardImage"
-        clip-path="url(#entity_artwork_clip)"
-      />
-    </g>
-    <g
-      v-if="FramedIllustrationMask.Action"
-      id="Action_Framed_Illustration_Mask"
-    >
-      <clipPath id="action_artwork_clip">
-        <circle
-          cx="99.12"
-          cy="96.21"
-          r="72.83"
+        <image
+          id="cardimageFramedEntity"
+          align="xMidYMid"
+          :href="imageURL"
+          :x="artwork.x"
+          :y="artwork.y"
+          :width="artwork.width"
+          :height="artwork.height"
+          clip-path="url(#entity_artwork_clip)"
         />
-      </clipPath>
-      <image
-        id="cardimageFramedAction"
-        align="xMidYMid"
-        :href="imageURL"
-        :x="artwork.x"
-        :y="artwork.y"
-        :width="artwork.width"
-        :height="artwork.height"
-        class="cardImage"
-        clip-path="url(#action_artwork_clip)"
-      />
-    </g>
-    <g
-      v-if="FramedIllustrationMask.Place"
-      id="Place_Framed_Illustration_Mask"
-    >
-      <clipPath id="place_artwork_clip">
-        <path
-          d="M99.12,169.62l-72.33-36.5V59.96l72.33-36.5l72.33,36.5v73.17L99.12,169.62z M170.7,132.66L170.7,132.66
-            L170.7,132.66z"
+      </g>
+      <g
+        v-if="FramedIllustrationMask.Action"
+        id="Action_Framed_Illustration_Mask"
+      >
+        <clipPath id="action_artwork_clip">
+          <circle
+            cx="99.12"
+            cy="96.21"
+            r="72.83"
+          />
+        </clipPath>
+        <image
+          id="cardimageFramedAction"
+          align="xMidYMid"
+          :href="imageURL"
+          :x="artwork.x"
+          :y="artwork.y"
+          :width="artwork.width"
+          :height="artwork.height"
+          clip-path="url(#action_artwork_clip)"
         />
-      </clipPath>
-      <image
-        id="cardimageFramedPlace"
-        align="xMidYMid"
-        :href="imageURL"
-        :x="artwork.x"
-        :y="artwork.y"
-        :width="artwork.width"
-        :height="artwork.height"
-        class="cardImage"
-        clip-path="url(#place_artwork_clip)"
-      />
-    </g>
-    <g
-      v-if="FramedIllustrationMask.HQ"
-      id="HQ_Framed_Illustration_Mask"
-    >
-      <clipPath id="hq_artwork_clip">
-        <path
-          d="M99.13,169.04L35.67,144.8l-0.15-0.46c-0.03-0.1-3.2-10.29-6.39-27.51c-3.39-18.35-3.51-42.32-3.51-42.56
-            l0-0.4l0.28-0.29c0.15-0.16,15.48-16.13,40.18-33.55C90.93,22.5,98.74,21.77,99.06,21.74l0.07,0l0.07,0
-            c0.32,0.02,8.14,0.76,32.98,18.28c24.7,17.42,40.03,33.39,40.18,33.55l0.28,0.29l0,0.4c0,0.24-0.12,24.21-3.51,42.56
-            c-3.18,17.22-6.35,27.41-6.39,27.51l-0.15,0.46L99.13,169.04z"
+      </g>
+      <g
+        v-if="FramedIllustrationMask.Place"
+        id="Place_Framed_Illustration_Mask"
+      >
+        <clipPath id="place_artwork_clip">
+          <path
+            d="M99.12,169.62l-72.33-36.5V59.96l72.33-36.5l72.33,36.5v73.17L99.12,169.62z M170.7,132.66L170.7,132.66
+              L170.7,132.66z"
+          />
+        </clipPath>
+        <image
+          id="cardimageFramedPlace"
+          align="xMidYMid"
+          :href="imageURL"
+          :x="artwork.x"
+          :y="artwork.y"
+          :width="artwork.width"
+          :height="artwork.height"
+          clip-path="url(#place_artwork_clip)"
         />
-      </clipPath>
-      <image
-        id="cardimageFramedHQ"
-        align="xMidYMid"
-        :href="imageURL"
-        :x="artwork.x"
-        :y="artwork.y"
-        :width="artwork.width"
-        :height="artwork.height"
-        class="cardImage"
-        clip-path="url(#hq_artwork_clip)"
-      />
+      </g>
+      <g
+        v-if="FramedIllustrationMask.HQ"
+        id="HQ_Framed_Illustration_Mask"
+      >
+        <clipPath id="hq_artwork_clip">
+          <path
+            d="M99.13,169.04L35.67,144.8l-0.15-0.46c-0.03-0.1-3.2-10.29-6.39-27.51c-3.39-18.35-3.51-42.32-3.51-42.56
+              l0-0.4l0.28-0.29c0.15-0.16,15.48-16.13,40.18-33.55C90.93,22.5,98.74,21.77,99.06,21.74l0.07,0l0.07,0
+              c0.32,0.02,8.14,0.76,32.98,18.28c24.7,17.42,40.03,33.39,40.18,33.55l0.28,0.29l0,0.4c0,0.24-0.12,24.21-3.51,42.56
+              c-3.18,17.22-6.35,27.41-6.39,27.51l-0.15,0.46L99.13,169.04z"
+          />
+        </clipPath>
+        <image
+          id="cardimageFramedHQ"
+          align="xMidYMid"
+          :href="imageURL"
+          :x="artwork.x"
+          :y="artwork.y"
+          :width="artwork.width"
+          :height="artwork.height"
+          clip-path="url(#hq_artwork_clip)"
+        />
+      </g>
     </g>
-
-    <g
-      v-if="FullArtGradients"
+    <g v-if="FullArtGradients"  
       id="_x36__Fullart_Gradients"
     >
       <g v-if="FullArtGradients.Tech">
@@ -5789,9 +5706,7 @@
         />
       </g>
     </g>
-
-    <g
-      v-if="Type.Entity"
+    <g v-if="Type.Entity" 
       id="Entity_Framed_Text_Box"
     >
       <defs>
@@ -5911,8 +5826,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Type.Action"
+    <g v-if="Type.Action" 
       id="Action_Framed_Text_Box"
     >
       <g>
@@ -6015,8 +5929,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Type.Place"
+    <g v-if="Type.Place && false"
       id="Place_Framed_Text_Box"
     >
       <g>
@@ -6122,10 +6035,7 @@
       </g>
       
     </g>
-    <g
-      v-if="Type.HQ && HQFramedTextBox"
-      id="HQ_Framed_Text_Box"
-    >
+    <g v-if="HQFramedTextBox">
       <g>
         <g>
           <defs>
@@ -6190,11 +6100,7 @@
         </g>
       </g>
     </g>
-
-    <g
-      v-if="ShadowTextBox.Entity"
-      id="Entity_Shadow_Text_Box"
-    >
+    <g v-if="ShadowTextBox.Entity">
       <g>
         <image
           style="overflow:visible;opacity:0.75;"
@@ -6211,8 +6117,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowTextBox.HQ || ShadowTextBox.Place || ShadowTextBox.Entity"
+    <g v-if="ShadowTextBox.HQ || ShadowTextBox.Place || ShadowTextBox.Entity"
       id="HQ_Place_Shadow_Text_Box"
     >
       <g>
@@ -6248,9 +6153,7 @@
         />
       </g>
     </g>
-
-    <g
-      v-if="Tagsbar"
+    <g v-if="Tagsbar"
       id="_x37__Tagsbar"
     >
       <g
@@ -6754,9 +6657,7 @@
           C165.58,241.72,165.57,240.23,165.57,238.74z"
       />
     </g>
-
-    <g
-      v-if="ShadowFramed.Entity"
+    <g v-if="ShadowFramed.Entity"
       id="Entity_Shadow_Framed"
     >
       <g>
@@ -7118,8 +7019,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.Action"
+    <g v-if="ShadowFramed.Action"
       id="Action_Shadow_Framed"
     >
       <g>
@@ -7326,8 +7226,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.Place"
+    <g v-if="ShadowFramed.Place"
       id="Place_Shadow_Framed"
     >
       <g>
@@ -7617,8 +7516,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.HQ"
+    <g v-if="ShadowFramed.HQ"
       id="HQ_Shadow_Framed"
     >
       <g>
@@ -7729,9 +7627,7 @@
         </g>
       </g>
     </g>
-
-    <g
-      v-if="healthFrame"
+    <g v-if="healthFrame"
       id="Health_Frame_00000135671152285543049820000015813525320815153562_"
     >
       <g>
@@ -7840,10 +7736,30 @@
           </g>
         </g>
       </g>
+      <g>
+        <!-- Health -->
+        <text>
+          <tspan
+            id="tspan2234-91-7"
+            :x="model.Health < 10 ? 149 : 144"
+            y="241"
+            fill="#001433"
+            fill-opacity="1"
+            stroke-width=".5"
+            font-family="Roboto"
+            font-size="16"
+            font-stretch="normal"
+            font-style="normal"
+            font-variant="normal"
+            font-weight="500"
+            style="-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+            text-anchor="start"
+            writing-mode="lr-tb"
+          >{{ model.Health }}</tspan>
+        </text>
+      </g>
     </g>
-
-    <g
-      v-if="attackFrame"
+    <g v-if="attackFrame"
       id="Attack_Frame_00000099635997935204855430000018413654597194621370_"
     >
       <g>
@@ -7939,10 +7855,29 @@
           </g>
         </g>
       </g>
+      <g>
+        <!-- Attack -->
+        <text>
+          <tspan
+            id="tspan2234-91-7"
+            :x="model.Attack < 10 ? 41 : 36"
+            y="241"
+            fill="#001433"
+            fill-opacity="1"
+            font-family="Roboto"
+            font-size="16"
+            font-stretch="normal"
+            font-style="normal"
+            font-variant="normal"
+            font-weight="500"
+            style="-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+            text-anchor="start"
+            writing-mode="lr-tb"
+          >{{ model.Attack }}</tspan>
+        </text>
+      </g>
     </g>
-
-    <g
-      v-if="FullArtFrames.Entity"
+    <g v-if="FullArtFrames.Entity"
       id="Entity_FullArt_Frames"
     >
       <g
@@ -11149,8 +11084,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Action"
+    <g v-if="FullArtFrames.Action"
       id="Action_FullArt_Frames"
     >
       <g
@@ -12113,8 +12047,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Place"
+    <g v-if="FullArtFrames.Place"
       id="Place_FullArt_Frames"
     >
       <g
@@ -14626,8 +14559,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.HQ"
+    <g v-if="FullArtFrames.HQ"
       id="HQ_FullArt_Frames"
     >
       <linearGradient
@@ -15000,9 +14932,7 @@
         />
       </g>
     </g>
-    
-    <g
-      v-if="FramedAddition.Entity"
+    <g v-if="FramedAddition.Entity"
       id="Entity_Framed_Addition"
     >
       <g
@@ -16733,8 +16663,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Action"
+    <g v-if="FramedAddition.Action"
       id="Action_Framed_Addition"
     >
       <g
@@ -18665,8 +18594,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Place"
+    <g v-if="FramedAddition.Place"
       id="Place_Framed_Addition"
     >
       <g
@@ -22135,8 +22063,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.HQ"
+    <g v-if="FramedAddition.HQ"
       id="HQ_Framed_Addition"
     >
       <g
@@ -22793,6 +22720,104 @@
           c-22.88-16.14-31.06-17.78-31.9-17.91c0,0,0,0,0,0V21.74z"
       />
     </g>
+
+    <g>
+      <!-- Title of the card -->
+      <text>
+        <tspan
+          id="tspan2408"
+          x="99"
+          y="180"
+          stroke-width=".3"
+          font-family="Museo500-Regular"
+          font-size="10.7"
+          font-stretch="normal"
+          font-style="normal"
+          font-variant="normal"
+          font-weight="500"
+          style="-inkscape-font-specification:'Museo700-Regular, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
+          text-anchor="middle"
+          writing-mode="lr-tb"
+        >{{ model.CardName }}</tspan>
+      </text>
+      <!-- Ressource Cost -->
+      <text>
+        <tspan
+          id="tspan2234"
+          x="35"
+          y="40"
+          font-family="Museo500-Regular"
+          font-size="13"
+          font-style="normal"
+          text-anchor="middle"
+          writing-mode="lr-tb"
+        >{{ getNerfedCost() }}</tspan>
+      </text>
+      <!-- Tags -->
+      <text>
+        <tspan
+          id="tspan2525"
+          x="85"
+          y="241"
+          fill="#FFDAA6"
+          fill-opacity="1"
+          stroke-width=".1"
+          font-family="Roboto"
+          font-size="6.6"
+          font-style="medium"
+          text-anchor="middle"
+          writing-mode="lr-tb"
+        >{{ getTags() }}
+        </tspan>
+      </text>
+      <!-- Ability Icons -->
+      <g
+        v-for="(ability, abilityIndex) in getKeywords()"
+        :key="abilityIndex"
+      >
+        <g
+          v-for="(icon, iconIndex) in ability"
+          :key="iconIndex"
+        >
+          <image
+            id="Ebene_2-36"
+            :key="icon"
+            :x="iconIndex > 0 || ability.length == 1 ? 50 : 38"
+            :y="getAbilityYPos(abilityIndex, iconIndex > 0 ? iconIndex-1 : 0)"
+            width="10"
+            height="10"
+            :href="getIcon(icon)"
+          />
+        </g>
+      </g>
+      <!-- Human readable text of the abilities -->
+      <g
+        v-for="(ability, index) in getAbilityText()"
+        :key="'ability#'+index"
+      >
+        <text
+          v-for="(text, jndex) in textToSvg(ability)"
+          :key="'abilityText'+jndex"
+        >
+          <tspan
+            id="tspan2430"
+            x="50"
+            :y="getAbilityYPos(index, jndex) - index*1"
+            fill-opacity="1"
+            stroke-width=".1"
+            font-family="Roboto"
+            :font-size="fontSize(getAbilityText())"
+            font-stretch="normal"
+            font-style="normal"
+            font-variant="normal"
+            font-weight="300"
+            style="-inkscape-font-specification:'Roboto, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
+            text-anchor="start"
+            writing-mode="lr"
+          > {{ text }} </tspan>
+        </text>
+      </g>
+    </g>
   </svg>
 </template>
 
@@ -22838,19 +22863,11 @@ export default {
       clicked: false,
       keywordDescriptions: "",
 
-      FullArt: false,
+      FullArt: this.model.FullArt,
       Classes: 0,
       Class: {
-        Culture: false,
-        Myth: false,
-        Nature: false,
-        Tech: false,
       },
       Type: {
-        HQ: false,
-        Action: false,
-        Entity: false,
-        Place: false,
       },
 
       OBG: {
@@ -22894,13 +22911,6 @@ export default {
     }
   },
   computed: {
-    viewBox () {
-      if (!this.displayNotes) {
-        return '0 0 154 240'
-      } else {
-        return '0 0 210 240'
-      }
-    }
   },
   watch: {
     model: {
@@ -22926,13 +22936,14 @@ export default {
   },
   methods: {
     update() {
-      console.log("model", this.model)
+      console.log("model", this.model.CardName, this.model)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
       let Framedfilter = x => !this.FullArt ? x : R.map(() => false, x)
       let NonActionFilter = x => !cardType.Action ? x : false
 
+      this.FullArt = this.model.FullArt
       let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type
       console.log("tempType:", tempType)
 
@@ -22951,6 +22962,20 @@ export default {
       cardType[tempType] = true
       let frameType = R.merge(cardClass, {HQ: false, MultiClass: false})
       let colorType = R.merge(cardClass, {MultiClass: false})
+      let singleColorType = R.clone(cardClass)
+      
+      let primaryColor = false
+      R.mapObjIndexed((val, key, obj) => {
+        if (val === true) {
+          if (!primaryColor) {
+            primaryColor = true
+          }
+          else {
+            obj[key] = false
+            console.log(val, key)
+          }
+        }
+      }, singleColorType)
 
       if (R.countBy(x => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
@@ -22984,15 +23009,16 @@ export default {
       console.log("cardClass", cardClass)
       console.log("cardType", cardType)
       console.log("colorType", colorType)
+      console.log("single color:", singleColorType)
 
       // here begins the part where the components are activated
       this.Class = cardClass
       this.Classes = R.countBy(x => x === true)(R.values(this.model.Class)).true
-      this.Type[tempType] = true
-      this.OBG = frameType
+      this.Type = cardType
+      this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
       this.GoldSquare = true
       this.Border = frameType
-      this.IBG = this.Classes === 2 && !cardType.HQ ? cardClass : false
+      this.IBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : false
       this.BGGoldLines = true
       this.BGShadow = cardType
       this.ClassShadow = true
@@ -23000,11 +23026,11 @@ export default {
       this.FullArtIllustrationMask = FullArtfilter(cardType)
       this.ShadowFullArt = FullArtfilter(cardType)
       this.FramedIllustrationMask = Framedfilter(cardType)
-      this.FullArtGradients = FullArtfilter(frameType)
+      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? singleColorType : frameType)
       this.FramedTextBox = Framedfilter(colorType)
       this.HQFramedTextBox = cardType.HQ && !this.FullArt
       this.ShadowTextBox = Framedfilter(cardType)
-      this.Tagsbar = colorType
+      this.Tagsbar = this.Classes === 2 && !cardType.HQ ? singleColorType : frameType
       this.ShadowFramed = Framedfilter(cardType)
       this.FullArtFrames = EntityFullArtfilter(cardType)
       this.FramedAddition = Framedfilter(cardType)
@@ -23021,6 +23047,7 @@ export default {
       console.log("framedaddition", this.FramedAddition)
       console.log("border", this.Border)
       console.log("OBG", this.OBG)
+      console.log("IBG", this.IBG)
       console.log("FramedIllustrationMask", this.FramedIllustrationMask)
       console.log("FullArtIllustrationMask", this.FullArtIllustrationMask)
     },
@@ -23111,7 +23138,7 @@ export default {
         summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
       }
 
-      return 145 + 13*summedLength + 8*abilityIndex + 10*extraLines
+      return 190 + 13*summedLength + 8*abilityIndex + 10*extraLines
     },
     getAbilityText () {
       let additionalCostText = []

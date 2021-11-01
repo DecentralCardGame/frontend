@@ -66,7 +66,7 @@ export default {
         if (rawCard.Content) {
           let contentLens = R.lensProp('Content')
           let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
-          let card = parseContent(rawCard)
+          let card = R.merge(emptyCard, parseContent(rawCard))
           let cardType = R.keys(card.Content)
           card = R.merge(card, card.Content[cardType[0]])
 
