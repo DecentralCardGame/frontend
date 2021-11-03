@@ -136,8 +136,8 @@
           <div>
             <label class="input--checkbox-label__left">  
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Technology"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >
@@ -145,8 +145,8 @@
             </label> 
             <label class="input--checkbox-label__left"> 
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Nature"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >  
@@ -154,8 +154,8 @@
             </label> 
             <label class="input--checkbox-label__left"> 
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Culture"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >
@@ -163,8 +163,8 @@
             </label> 
             <label class="input--checkbox-label__left"> 
               <input
-                class="input--checkbox__left"
                 v-model="model.Class.Mysticism"
+                class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
               >
@@ -211,20 +211,21 @@
                 $cardRules.children[getRulesType()].children.AdditionalCost
             "
           >
+            Special cost:
             <input
               v-model="isAdditionalCostVisible"
               type="checkbox"
+              class="input--checkbox__right"
               @change="toggleAdditionalCost"
             >
-            Special cost:
           </div>    
 
           <div>
             <div
               v-if="isAdditionalCostVisible"
             >
-              To spawn me you need to 
-              <select
+              To spawn me you need to
+              <select 
                 @change="setAdditionalCost($event); saveDraft();"
               >
                 <option 
@@ -1219,6 +1220,11 @@ export default {
   }
   .input--checkbox-label__left {
     margin-left: 25px;
+  }
+  .input--checkbox__right {
+    position: absolute;
+    display: inline-block;
+    margin-top: 1px;
   }
 
 .tag-select {
