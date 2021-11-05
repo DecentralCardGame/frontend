@@ -76,6 +76,7 @@ export default {
 
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
+          card.FullArt = rawCard.FullArt
 
           console.log('parsed card: ', card)
           return card
@@ -125,6 +126,7 @@ export default {
             [webModel.type]: cardContent
           },
           image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
+          FullArt: webModel.FullArt,
           Notes: webModel.Notes,
         };
       }

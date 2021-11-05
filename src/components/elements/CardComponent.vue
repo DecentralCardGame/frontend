@@ -7743,7 +7743,7 @@
             id="tspan2234-91-7"
             :x="model.Health < 10 ? 149 : 144"
             y="241"
-            fill="#001433"
+            fill="#172736"
             fill-opacity="1"
             stroke-width=".5"
             font-family="Roboto"
@@ -7862,7 +7862,7 @@
             id="tspan2234-91-7"
             :x="model.Attack < 10 ? 41 : 36"
             y="241"
-            fill="#001433"
+            fill="#172736"
             fill-opacity="1"
             font-family="Roboto"
             font-size="16"
@@ -22727,15 +22727,17 @@
         <tspan
           id="tspan2408"
           x="99"
-          y="180"
-          stroke-width=".3"
-          font-family="Museo500-Regular"
+          y="181"
+          font-family="Museo700-Regular"
           font-size="10.7"
+          :stroke="getTitleStrokeColor()"
+          stroke-width=".4"
+          fill="#FEF4EA"
           font-stretch="normal"
           font-style="normal"
           font-variant="normal"
-          font-weight="500"
-          style="-inkscape-font-specification:'Museo700-Regular, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center"
+          font-weight="700"
+          
           text-anchor="middle"
           writing-mode="lr-tb"
         >{{ model.CardName }}</tspan>
@@ -22746,8 +22748,11 @@
           id="tspan2234"
           x="35"
           y="40"
-          font-family="Museo500-Regular"
+          font-family="Museo700-Regular"
           font-size="13"
+          fill="#C5AD91"
+          stroke="#050505"
+          stroke-width=".3"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22770,50 +22775,31 @@
         >{{ getTags() }}
         </tspan>
       </text>
-      <!-- Ability Icons -->
-      <g
-        v-for="(ability, abilityIndex) in getKeywords()"
-        :key="abilityIndex"
-      >
-        <g
-          v-for="(icon, iconIndex) in ability"
-          :key="iconIndex"
-        >
-          <image
-            id="Ebene_2-36"
-            :key="icon"
-            :x="iconIndex > 0 || ability.length == 1 ? 50 : 38"
-            :y="getAbilityYPos(abilityIndex, iconIndex > 0 ? iconIndex-1 : 0)"
-            width="10"
-            height="10"
-            :href="getIcon(icon)"
-          />
-        </g>
-      </g>
       <!-- Human readable text of the abilities -->
       <g
-        v-for="(ability, index) in getAbilityText()"
-        :key="'ability#'+index"
+        v-for="(ability, ability_index) in getAbilityText()"
+        :key="'ability#'+ability_index"
       >
         <text
-          v-for="(text, jndex) in textToSvg(ability)"
-          :key="'abilityText'+jndex"
+          v-for="(text, line_index) in textToSvg(ability)"
+          :key="'abilityText'+line_index"
         >
           <tspan
             id="tspan2430"
-            x="50"
-            :y="getAbilityYPos(index, jndex) - index*1"
+            x="100"
+            :y="getAbilityYPos(ability_index, line_index)"
             fill-opacity="1"
             stroke-width=".1"
             font-family="Roboto"
             :font-size="fontSize(getAbilityText())"
+            fill="#FEF4EA"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="300"
-            style="-inkscape-font-specification:'Roboto, Normal';text-align:start;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal"
-            text-anchor="start"
+            font-weight="100"
+            text-anchor="middle"
             writing-mode="lr"
+            text-shadow="6px 6px 10px black"
           > {{ text }} </tspan>
         </text>
       </g>
@@ -22868,6 +22854,9 @@ export default {
       Class: {
       },
       Type: {
+      },
+      SecondaryColor: {
+
       },
 
       OBG: {
@@ -22943,9 +22932,13 @@ export default {
       let Framedfilter = x => !this.FullArt ? x : R.map(() => false, x)
       let NonActionFilter = x => !cardType.Action ? x : false
 
+      let trueAt = (x, key) => {
+        x[key] = true
+        return x
+      }
+
       this.FullArt = this.model.FullArt
       let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type
-      console.log("tempType:", tempType)
 
       let cardClass = {
         Tech: this.model.Class.Technology,
@@ -22953,6 +22946,13 @@ export default {
         Culture: this.model.Class.Culture,
         Nature: this.model.Class.Nature,
       }
+      let Colors = {
+        Tech: false,
+        Myth: false,
+        Culture: false,
+        Nature: false,
+      }
+
       let cardType = {
         HQ: false,
         Action: false,
@@ -22960,22 +22960,9 @@ export default {
         Place: false,
       }
       cardType[tempType] = true
+
       let frameType = R.merge(cardClass, {HQ: false, MultiClass: false})
       let colorType = R.merge(cardClass, {MultiClass: false})
-      let singleColorType = R.clone(cardClass)
-      
-      let primaryColor = false
-      R.mapObjIndexed((val, key, obj) => {
-        if (val === true) {
-          if (!primaryColor) {
-            primaryColor = true
-          }
-          else {
-            obj[key] = false
-            console.log(val, key)
-          }
-        }
-      }, singleColorType)
 
       if (R.countBy(x => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
@@ -23009,12 +22996,17 @@ export default {
       console.log("cardClass", cardClass)
       console.log("cardType", cardType)
       console.log("colorType", colorType)
-      console.log("single color:", singleColorType)
 
       // here begins the part where the components are activated
       this.Class = cardClass
       this.Classes = R.countBy(x => x === true)(R.values(this.model.Class)).true
       this.Type = cardType
+      this.SecondaryColor = R.last(R.invert(cardClass).true)
+      this.PrimaryColor = R.head(R.invert(cardClass).true)
+
+      console.log("primary color:", this.PrimaryColor)
+      console.log("secondary color:", this.SecondaryColor)
+
       this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
       this.GoldSquare = true
       this.Border = frameType
@@ -23026,11 +23018,11 @@ export default {
       this.FullArtIllustrationMask = FullArtfilter(cardType)
       this.ShadowFullArt = FullArtfilter(cardType)
       this.FramedIllustrationMask = Framedfilter(cardType)
-      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? singleColorType : frameType)
+      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : frameType)
       this.FramedTextBox = Framedfilter(colorType)
       this.HQFramedTextBox = cardType.HQ && !this.FullArt
       this.ShadowTextBox = Framedfilter(cardType)
-      this.Tagsbar = this.Classes === 2 && !cardType.HQ ? singleColorType : frameType
+      this.Tagsbar = this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType
       this.ShadowFramed = Framedfilter(cardType)
       this.FullArtFrames = EntityFullArtfilter(cardType)
       this.FramedAddition = Framedfilter(cardType)
@@ -23130,7 +23122,11 @@ export default {
         return 0
       }
     },
-    getAbilityYPos(abilityIndex, extraLines) {
+    getAbilityYPos(abilityIndex, lineIndex) {
+      let startpos = 195
+      let lineSpacing = 10
+      let abilitySpacing = 5
+
       let keywords = this.getKeywords()
 
       let summedLength = 0
@@ -23138,7 +23134,7 @@ export default {
         summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
       }
 
-      return 190 + 13*summedLength + 8*abilityIndex + 10*extraLines
+      return startpos + lineSpacing*summedLength + abilitySpacing*abilityIndex + lineSpacing*lineIndex
     },
     getAbilityText () {
       let additionalCostText = []
@@ -23183,6 +23179,29 @@ export default {
         }
       })
       return lines
+    },
+    getTitleStrokeColor() {
+      let colors = {
+        Culture: "#760000",
+        Nature: "#294400",
+        Myth: "#48005F",
+        Tech: "#00566E",
+        MultiClass: "#9A7038",
+        HQ: "#9A7038"
+      }
+
+      if (this.cardType && this.cardType.HQ) {
+        console.log("HQ color")
+        return colors.HQ
+      }
+      else if (this.Classes > 2) {
+        console.log("MultiClass color")
+        return colors.MultiClass
+      }
+      else {
+        console.log(colors[this.SecondaryColor] + " yes color")
+        return colors[this.SecondaryColor]
+      }
     },
     getKeywords() {
       let additionalCostPseudoKeyword = [[]]
