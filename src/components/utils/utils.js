@@ -23,7 +23,7 @@ export const emptyCard = {
   Delay: 0,
   RulesTexts: [],
   Keywords: [],
-  FullArt: true
+  FullArt: false
 }
 
 export const emptyGalleryFilter = {

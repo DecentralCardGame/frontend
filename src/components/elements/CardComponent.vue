@@ -3975,8 +3975,7 @@
           c0.9,0.01,1.8-0.35,2.45-0.99c0.1-0.1,0.17-0.21,0.26-0.33C166.99,43.82,167.21,42.97,167.21,42.2z"
       />
     </g>
-    <g
-      v-if="Classes >= 2"
+    <g v-if="Classes >= 2"
       id="class ball outer ring and shadow"
     >
       <g v-if="Type.HQ">
@@ -4161,8 +4160,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="ManaBall"
+    <g v-if="ManaBall"
       id="Mana"
     >
       <g id="BlueBall">
@@ -4918,8 +4916,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FullArtIllustrationMask.Entity"
+    <g v-if="FullArtIllustrationMask.Entity"
       id="Entity_FullArt_Illustration_Mask"
     >
       <clipPath id="full_entity_artwork_clip">
@@ -4940,8 +4937,7 @@
         clip-path="url(#full_entity_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.Action"
+    <g v-if="FullArtIllustrationMask.Action"
       id="Action_FullArt_Illustration_Mask"
     >
       <clipPath id="full_action_artwork_clip">
@@ -4962,8 +4958,7 @@
         clip-path="url(#full_action_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.Place"
+    <g v-if="FullArtIllustrationMask.Place"
       id="Place_FullArt_Illustration_Mask"
     >
       <clipPath id="full_place_artwork_clip">
@@ -4984,8 +4979,7 @@
         clip-path="url(#full_place_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.HQ"
+    <g v-if="FullArtIllustrationMask.HQ"
       id="HQ_FullArt_Illustration_Mask"
     >
       <clipPath id="full_hq_artwork_clip">
@@ -5008,8 +5002,7 @@
         clip-path="url(#full_hq_artwork_clip)"
       />
     </g>
-    <g
-      v-if="ShadowFullArt.Entity"
+    <g v-if="ShadowFullArt.Entity"
       id="Entity_Shadow_FullArt"
     >
       <g>
@@ -5049,8 +5042,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.Action"
+    <g v-if="ShadowFullArt.Action"  
       id="Action_Shadow_FullArt"
     >
       <g>
@@ -5087,8 +5079,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.Place"
+    <g v-if="ShadowFullArt.Place"
       id="Place_Shadow_FullArt"
     >
       <g>
@@ -5124,8 +5115,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.HQ"
+    <g v-if="ShadowFullArt.HQ"
       id="HQ_Shadow_FullArt"
     >
       <g>
@@ -5350,7 +5340,7 @@
         </g>
       </g>
     </g>
-    <g v-if="true" id="Framed_Illustration_Mask">
+    <g v-if="FramedIllustrationMask" id="Framed_Illustration_Mask">
       <g
         v-if="FramedIllustrationMask.Entity"
         id="Entity_Framed_Illustration_Mask"
@@ -22722,6 +22712,17 @@
     </g>
 
     <g>
+      <defs>
+        <filter id="dropshadow" height="130%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="1"/> 
+          <feOffset dx="1" dy="1" result="offsetblur"/> 
+          <feMerge> 
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" /> 
+          </feMerge>
+        </filter>
+      </defs>
+
       <!-- Title of the card -->
       <text>
         <tspan
@@ -22729,7 +22730,7 @@
           x="99"
           y="181"
           font-family="Museo700-Regular"
-          font-size="10.7"
+          font-size="9"
           :stroke="getTitleStrokeColor()"
           stroke-width=".4"
           fill="#FEF4EA"
@@ -22740,6 +22741,7 @@
           
           text-anchor="middle"
           writing-mode="lr-tb"
+          filter="url(#dropshadow)"
         >{{ model.CardName }}</tspan>
       </text>
       <!-- Ressource Cost -->
@@ -22750,9 +22752,9 @@
           y="40"
           font-family="Museo700-Regular"
           font-size="13"
-          fill="#C5AD91"
+          fill="#172736"
           stroke="#050505"
-          stroke-width=".3"
+          stroke-width="0.2"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22766,9 +22768,10 @@
           y="241"
           fill="#FFDAA6"
           fill-opacity="1"
-          stroke-width=".1"
+          stroke="#050505"
+          stroke-width=".0"
           font-family="Roboto"
-          font-size="6.6"
+          font-size="5.5"
           font-style="medium"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22786,20 +22789,21 @@
         >
           <tspan
             id="tspan2430"
-            x="100"
+            x="99"
             :y="getAbilityYPos(ability_index, line_index)"
             fill-opacity="1"
-            stroke-width=".1"
+            :stroke="getTitleStrokeColor()"
+            stroke-width=".2"
             font-family="Roboto"
             :font-size="fontSize(getAbilityText())"
             fill="#FEF4EA"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="100"
+            font-weight="500"
             text-anchor="middle"
             writing-mode="lr"
-            text-shadow="6px 6px 10px black"
+            filter="url(#dropshadow)"
           > {{ text }} </tspan>
         </text>
       </g>
@@ -23124,8 +23128,8 @@ export default {
     },
     getAbilityYPos(abilityIndex, lineIndex) {
       let startpos = 195
-      let lineSpacing = 10
-      let abilitySpacing = 5
+      let lineSpacing = 8
+      let abilitySpacing = 4
 
       let keywords = this.getKeywords()
 
@@ -23228,11 +23232,11 @@ export default {
     fontSize (rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
       if (text.length < 100)
-        return 8.1
+        return 7.5
       else if (text.length < 200)
-        return 7.1
+        return 6.5
       else
-        return 6.1
+        return 5.5
     },
     fontSpacing (rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)

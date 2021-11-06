@@ -744,13 +744,16 @@ export default {
       this.isBuySchemeModalVisible = false;
     },
     showAbilityModal(type) {
-      let atRules = R.curry(atPath)(this.$cardRules);
+      let atRules = R.curry(atPath)(this.$cardRules)
 
-      console.log("abilities", this.abilities);
-
-      this.isAbilityModalVisible = true;
+      this.isAbilityModalVisible = true
 
       if (type === "root") {
+        if (this.abilities.length >= 3) {
+          this.notifyFail("Number of Abilities", "A card can only have a maximum of 3 Abilities.")
+          this.isAbilityModalVisible = false
+          return
+        } 
         if (this.model.type === "no type" || this.model.type === undefined) {
           this.notifyFail(
             "No Type",
@@ -760,7 +763,6 @@ export default {
           return;
         }
 
-        console.log("getrulestype", this.getRulesType());
         let newAbility = {
           path: [
             "children",
