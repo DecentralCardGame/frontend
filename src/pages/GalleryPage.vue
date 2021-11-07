@@ -427,9 +427,6 @@ export default {
     cardview() {
       this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
     },
-    cardview() {
-      this.$router.push("cardview/" + this.cards[this.clickedIndex].id);
-    },
     downloadPng() {
       saveCardAsPng(
         document.getElementById("card" + this.clickedIndex),
