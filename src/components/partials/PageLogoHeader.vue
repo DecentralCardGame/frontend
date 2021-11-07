@@ -1,13 +1,37 @@
 <template>
-  <div class="main" id="main">
+  <div
+    id="main"
+    class="main"
+  >
     <div class="logo-container">
-      <img src="logo.svg" class="image1" alt="Loading..." width="500">
-      <img src="sparkling_water.gif" class="image2" alt="Loading..." width="1200">
+      <img
+        src="logo.svg"
+        class="image1"
+        alt="Loading..."
+        width="500"
+      >
+      <img
+        src="sparkling_water.gif"
+        class="image2"
+        alt="Loading..."
+        width="1200"
+      >
     </div>
     <div class="button--container extra--margin">
-      <div class=link--button @click="scrollPastMenu">
-        <div class="img--container" id="scrollAnchor1" style="overflow-y: scroll">
-          <img src="../../assets/arrows/arrow_down.svg" class="image3" alt="yes...">
+      <div
+        class="link--button"
+        @click="scrollPastMenu"
+      >
+        <div
+          id="scrollAnchor1"
+          class="img--container"
+          style="overflow-y: scroll"
+        >
+          <img
+            src="../../assets/arrows/arrow_down.svg"
+            class="image3"
+            alt="yes..."
+          >
         </div>
       </div>
     </div>

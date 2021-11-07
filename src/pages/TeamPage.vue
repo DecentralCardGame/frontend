@@ -3,8 +3,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/patrick.webp">
-          <source type="image/jpg" srcset="../assets/team/patrick.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/patrick.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/patrick.jpg"
+          >
           <img 
             src="../assets/team/patrick.webp"
             class="rounded"
@@ -34,8 +40,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/marius.webp">
-          <source type="image/jpg" srcset="../assets/team/marius.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/marius.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/marius.jpg"
+          >
           <img 
             src="../assets/team/marius.webp"
             class="rounded"
@@ -65,8 +77,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/anna.webp">
-          <source type="image/jpg" srcset="../assets/team/anna.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/anna.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/anna.jpg"
+          >
           <img 
             src="../assets/team/anna.webp"
             class="rounded"
@@ -90,8 +108,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/jannik.webp">
-          <source type="image/jpg" srcset="../assets/team/jannik.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/jannik.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/jannik.jpg"
+          >
           <img 
             src="../assets/team/jannik.webp"
             class="rounded"
@@ -114,8 +138,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/stefi.webp">
-          <source type="image/jpg" srcset="../assets/team/stefi.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/stefi.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/stefi.jpg"
+          >
           <img 
             src="../assets/team/stefi.webp"
             class="rounded"
@@ -137,8 +167,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/noah.webp">
-          <source type="image/jpg" srcset="../assets/team/noah.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/noah.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/noah.jpg"
+          >
           <img 
             src="../assets/team/noah.webp"
             class="rounded"
@@ -160,8 +196,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/niko.webp">
-          <source type="image/jpg" srcset="../assets/team/niko.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/niko.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/niko.jpg"
+          >
           <img 
             src="../assets/team/niko.webp"
             class="rounded"
@@ -182,8 +224,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/harry.webp">
-          <source type="image/jpg" srcset="../assets/team/harry.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/harry.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/harry.jpg"
+          >
           <img 
             src="../assets/team/harry.webp"
             class="rounded"
@@ -202,8 +250,14 @@
     <div class="team-entry">
       <div class="image--round">
         <picture>
-          <source type="image/webp" srcset="../assets/team/kosta.webp">
-          <source type="image/jpg" srcset="../assets/team/kosta.jpg">
+          <source
+            type="image/webp"
+            srcset="../assets/team/kosta.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/kosta.jpg"
+          >
           <img 
             src="../assets/team/kosta.webp"
             class="rounded"

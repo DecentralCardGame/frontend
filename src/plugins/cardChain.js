@@ -66,7 +66,7 @@ export default {
         if (rawCard.Content) {
           let contentLens = R.lensProp('Content')
           let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
-          let card = parseContent(rawCard)
+          let card = R.merge(emptyCard, parseContent(rawCard))
           let cardType = R.keys(card.Content)
           card = R.merge(card, card.Content[cardType[0]])
 
@@ -76,6 +76,7 @@ export default {
 
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
+          if (!R.isNil(rawCard.FullArt)) card.FullArt = rawCard.FullArt 
 
           console.log('parsed card: ', card)
           return card
@@ -125,6 +126,7 @@ export default {
             [webModel.type]: cardContent
           },
           image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
+          FullArt: webModel.FullArt,
           Notes: webModel.Notes,
         };
       }

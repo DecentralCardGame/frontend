@@ -6,8 +6,14 @@
     >
       Discuss the latest News or simply join our growing Community
       <picture>
-        <source type="image/webp" srcset="../../assets/icon/discord.webp">
-        <source type="image/png" srcset="../../assets/icon/discord.png">
+        <source
+          type="image/webp"
+          srcset="../../assets/icon/discord.webp"
+        >
+        <source
+          type="image/png"
+          srcset="../../assets/icon/discord.png"
+        >
         <img 
           src="../../assets/icon/discord.png"
           style="display:inline; max-height:20px;transform:translateY(4px);"
