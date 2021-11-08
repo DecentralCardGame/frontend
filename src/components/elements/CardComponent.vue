@@ -22705,8 +22705,8 @@
 
     <g>
       <defs>
-        <filter id="dropshadow" height="160%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> 
+        <filter id="dropshadow" height="400%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/> 
           <feOffset dx="1" dy="1" result="offsetblur"/> 
           <feMerge> 
             <feMergeNode />
@@ -22714,8 +22714,8 @@
           </feMerge>
         </filter>
         <filter id="dropshadow_straight" height="160%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/> 
-          <feOffset dx="0" dy="0" result="offsetblur"/> 
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> 
+          <feOffset dx="1" dy="1" result="offsetblur"/> 
           <feMerge> 
             <feMergeNode />
             <feMergeNode in="SourceGraphic" /> 
@@ -22931,7 +22931,7 @@ export default {
     update() {
       console.log("model", this.model.CardName, this.model)
       this.FullArt = this.model.FullArt
-      console.log("fullart updated:", this.FullArt)
+      console.log("this.FullArt updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
