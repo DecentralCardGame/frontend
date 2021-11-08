@@ -4291,8 +4291,7 @@
         transform="matrix(0.24 0 0 0.24 24.633 24.9052)"
       />
 
-      <g
-        v-if="ManaBall.Tech"
+      <g v-if="ManaBall.Tech"
         id="Mana_Tech"
       >
         <g>   
@@ -4390,8 +4389,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Nature"
+      <g v-if="ManaBall.Nature"
         id="Mana_Nature"
       >
         <g>
@@ -4500,8 +4498,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Myth"
+      <g v-if="ManaBall.Myth"
         id="Mana_Myth"
       >
         <linearGradient
@@ -4599,8 +4596,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Culture"
+      <g v-if="ManaBall.Culture"
         id="Mana_Culture"
       >
         <linearGradient
@@ -4698,8 +4694,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.MultiClass"
+      <g v-if="ManaBall.MultiClass"
         id="Mana_Multi_Class_00000138573625389748620110000017344787551045544120_"
       >
         <g id="Circle_Left_00000128463272406545689040000011345007199039120277_">
@@ -4803,8 +4798,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="ManaBall.HQ"
+      <g v-if="ManaBall.HQ"
         id="Mana_HQ"
       >
         <g id="Circle_Left_00000038387448793549582000000006435880124292487831_">
@@ -7731,18 +7725,17 @@
         <text>
           <tspan
             id="tspan2234-91-7"
-            :x="model.Health < 10 ? 149 : 144"
-            y="241"
+            :x="model.Health < 10 ? 150 : 146"
+            y="239"
             fill="#172736"
             fill-opacity="1"
             stroke-width=".5"
-            font-family="Roboto"
-            font-size="16"
+            font-family="Museo700-Regular"
+            font-size="13"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="500"
-            style="-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+            font-weight="700"
             text-anchor="start"
             writing-mode="lr-tb"
           >{{ model.Health }}</tspan>
@@ -7850,17 +7843,16 @@
         <text>
           <tspan
             id="tspan2234-91-7"
-            :x="model.Attack < 10 ? 41 : 36"
-            y="241"
+            :x="model.Attack < 10 ? 41 : 37"
+            y="239"
             fill="#172736"
             fill-opacity="1"
-            font-family="Roboto"
-            font-size="16"
+            font-family="Museo700-Regular"
+            font-size="13"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="500"
-            style="-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+            font-weight="700"
             text-anchor="start"
             writing-mode="lr-tb"
           >{{ model.Attack }}</tspan>
@@ -22713,9 +22705,17 @@
 
     <g>
       <defs>
-        <filter id="dropshadow" height="130%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="1"/> 
+        <filter id="dropshadow" height="160%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> 
           <feOffset dx="1" dy="1" result="offsetblur"/> 
+          <feMerge> 
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" /> 
+          </feMerge>
+        </filter>
+        <filter id="dropshadow_straight" height="160%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/> 
+          <feOffset dx="0" dy="0" result="offsetblur"/> 
           <feMerge> 
             <feMergeNode />
             <feMergeNode in="SourceGraphic" /> 
@@ -22732,7 +22732,7 @@
           font-family="Museo700-Regular"
           font-size="9"
           :stroke="getTitleStrokeColor()"
-          stroke-width=".4"
+          stroke-width=".2"
           fill="#FEF4EA"
           font-stretch="normal"
           font-style="normal"
@@ -22750,11 +22750,11 @@
           id="tspan2234"
           x="35"
           y="40"
-          font-family="Museo700-Regular"
-          font-size="13"
-          fill="#172736"
+          font-family="Museo500-Regular"
+          font-size="12"
+          fill="#FFF5E1"
           stroke="#050505"
-          stroke-width="0.2"
+          stroke-width="0.0"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22764,14 +22764,14 @@
       <text>
         <tspan
           id="tspan2525"
-          x="85"
+          x="99"
           y="241"
           fill="#FFDAA6"
           fill-opacity="1"
           stroke="#050505"
           stroke-width=".0"
           font-family="Roboto"
-          font-size="5.5"
+          font-size="4.5"
           font-style="medium"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22793,7 +22793,7 @@
             :y="getAbilityYPos(ability_index, line_index)"
             fill-opacity="1"
             :stroke="getTitleStrokeColor()"
-            stroke-width=".2"
+            stroke-width=".0"
             font-family="Roboto"
             :font-size="fontSize(getAbilityText())"
             fill="#FEF4EA"
@@ -22803,7 +22803,7 @@
             font-weight="500"
             text-anchor="middle"
             writing-mode="lr"
-            filter="url(#dropshadow)"
+            filter="url(#dropshadow_straight)"
           > {{ text }} </tspan>
         </text>
       </g>
@@ -23046,6 +23046,7 @@ export default {
       console.log("IBG", this.IBG)
       console.log("FramedIllustrationMask", this.FramedIllustrationMask)
       console.log("FullArtIllustrationMask", this.FullArtIllustrationMask)
+      console.log("FullArtGradients", this.FullArtGradients)
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return 
@@ -23129,7 +23130,7 @@ export default {
     getAbilityYPos(abilityIndex, lineIndex) {
       let startpos = 195
       let lineSpacing = 8
-      let abilitySpacing = 4
+      let abilitySpacing = 1
 
       let keywords = this.getKeywords()
 
