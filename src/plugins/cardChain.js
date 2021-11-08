@@ -120,15 +120,16 @@ export default {
         else if (webModel.type === "Headquarter") {
           cardContent.Delay = webModel.Delay
         }
-        console.log('parsed into:', cardContent)
-        return {
+        let cardobject = {
           content: {
             [webModel.type]: cardContent
           },
           image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
           FullArt: webModel.FullArt,
           Notes: webModel.Notes,
-        };
+        }
+        console.log('parsed into:', cardobject)
+        return cardobject
       }
       generateMnemonic () {
         let entropySize = 24 * 11 - 8
@@ -201,43 +202,44 @@ export default {
           })
       }
       saveContentToUnusedCardSchemeTx (card) {
-          return new Promise((resolve, reject) => {
-            this.getUserInfo(this.vue.$store.getters.getUserAddress)
-            .then(user => {
-              console.log(user)
-              if (!user.ownedCardSchemes) {
-                this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
-                throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own card schemes')
-              } else {
-                let reqBody = {
-                  'base_req': {
-                    'from': this.vue.$store.getters.getUserAddress,
-                    'chain_id': 'testCardchain',
-                    'gas': 'auto',
-                    'gas_adjustment': '10'
-                  },
-                  'owner': this.vue.$store.getters.getUserAddress,
-                  'content': JSON.stringify(card.content),
-                  'image': card.image,
-                  'cardid': user.ownedCardSchemes[0],
-                  'notes': card.Notes
-                }
-                return reqBody
+        return new Promise((resolve, reject) => {
+          this.getUserInfo(this.vue.$store.getters.getUserAddress)
+          .then(user => {
+            console.log(user)
+            if (!user.ownedCardSchemes) {
+              this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
+              throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own card schemes')
+            } else {
+              let reqBody = {
+                'base_req': {
+                  'from': this.vue.$store.getters.getUserAddress,
+                  'chain_id': 'testCardchain',
+                  'gas': 'auto',
+                  'gas_adjustment': '10'
+                },
+                'owner': this.vue.$store.getters.getUserAddress,
+                'content': JSON.stringify(card.content),
+                'image': card.image,
+                'cardid': user.ownedCardSchemes[0],
+                'notes': card.Notes,
+                'fullart': JSON.stringify(card.FullArt)
               }
-            })
-            .then(req => {
-              this.txQueue.enqueue(() => {
-                return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])
-                  .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
-                  .then(() => {
-                    this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
-                    resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
-                  })
-                  .catch(this.handleTxFail(reject))
-              })
+              return reqBody
+            }
+          })
+          .then(req => {
+            this.txQueue.enqueue(() => {
+              return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])
+                .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+                .then(() => {
+                  this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
+                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                })
+                .catch(this.handleTxFail(reject))
             })
           })
-        }
+        })
+      }
       saveContentToCardWithIdTx (card) {
         return new Promise((resolve, reject) => {
           let req = {
@@ -251,7 +253,8 @@ export default {
             'content': JSON.stringify(card.content),
             'image': card.image,
             'cardid': card.id,
-            'notes': card.Notes
+            'notes': card.Notes,
+            'fullart': JSON.stringify(card.FullArt)
           }
           this.txQueue.enqueue(() => {
             return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])

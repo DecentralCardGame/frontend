@@ -22930,6 +22930,8 @@ export default {
   methods: {
     update() {
       console.log("model", this.model.CardName, this.model)
+      this.FullArt = this.model.FullArt
+      console.log("fullart updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
@@ -22941,7 +22943,6 @@ export default {
         return x
       }
 
-      this.FullArt = this.model.FullArt
       let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type
 
       let cardClass = {
@@ -23195,15 +23196,12 @@ export default {
       }
 
       if (this.cardType && this.cardType.HQ) {
-        console.log("HQ color")
         return colors.HQ
       }
       else if (this.Classes > 2) {
-        console.log("MultiClass color")
         return colors.MultiClass
       }
       else {
-        console.log(colors[this.SecondaryColor] + " yes color")
         return colors[this.SecondaryColor]
       }
     },
