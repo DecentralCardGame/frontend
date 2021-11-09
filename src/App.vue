@@ -53,7 +53,12 @@ export default {
 </script>
 
 <style lang="scss">
-
+  @font-face {
+    font-family: 'Museo900-Regular';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/museo900regular.woff') format('woff');
+  }
   @font-face {
     font-family: 'Museo700-Regular';
     font-weight: normal;

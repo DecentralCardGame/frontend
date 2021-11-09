@@ -4229,63 +4229,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="false"
-        id="Shadow_00000165947357672395874560000007741549286065989015_"
-      >
-        <image
-          style="overflow:visible;opacity:0.75;"
-          width="98"
-          height="97"
-          href="../../assets/cardframe/Circle4.jpg"
-          transform="matrix(0.24 0 0 0.24 23.433 23.9452)"
-        />
-        <g>
-          <linearGradient
-            id="SVGID_00000166674715083791166860000013052515722465014406_"
-            gradientUnits="userSpaceOnUse"
-            x1="29.8536"
-            y1="26.2511"
-            x2="40.5679"
-            y2="44.809"
-          >
-            <stop
-              offset="0"
-              style="stop-color:#BBC7E1"
-            />
-            <stop
-              offset="0.0174"
-              style="stop-color:#B7C4DD"
-            />
-            <stop
-              offset="0.1553"
-              style="stop-color:#9DAFC5"
-            />
-            <stop
-              offset="0.3066"
-              style="stop-color:#889EB1"
-            />
-            <stop
-              offset="0.4761"
-              style="stop-color:#7993A3"
-            />
-            <stop
-              offset="0.6785"
-              style="stop-color:#718C9B"
-            />
-            <stop
-              offset="1"
-              style="stop-color:#6E8A99"
-            />
-          </linearGradient>
-          <circle
-            style="fill:none;stroke:url(#SVGID_00000166674715083791166860000013052515722465014406_);stroke-width:1.5;stroke-miterlimit:10;"
-            cx="35.21"
-            cy="35.53"
-            r="9.96"
-          />
-        </g>
-      </g>
+
       <image
         style="overflow:visible;opacity:0.75;"
         width="88"
@@ -5043,21 +4987,7 @@
       id="Action_Shadow_FullArt"
     >
       <g>
-        <defs>
-          <path
-            id="Tech_OBG_00000041998443503807048790000006620936977578331069_"
-            d="M165.23,27.78H47.32
-              c-2.57-4.04-7.08-6.73-12.23-6.73c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78
-              c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
-          />
-        </defs>
-        <clipPath id="Tech_OBG_00000118365965717951322730000011277831029025662854_">
-          <use
-            xlink:href="#Tech_OBG_00000041998443503807048790000006620936977578331069_"
-            style="overflow:visible;"
-          />
-        </clipPath>
-        <g style="clip-path:url(#Tech_OBG_00000118365965717951322730000011277831029025662854_);">
+        <g>
           <image
             style="overflow:visible;opacity:0.75;"
             width="640"
@@ -5441,23 +5371,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#39697B;stop-opacity:0"
           />
           <stop
             offset="0.0851"
-            style="stop-color:#F6F8F9;stop-opacity:0.0851"
+            style="stop-color:#39697B;stop-opacity:0.0851"
           />
           <stop
             offset="0.2241"
-            style="stop-color:#DEE6E9;stop-opacity:0.2241"
+            style="stop-color:#39697B;stop-opacity:0.2241"
           />
           <stop
             offset="0.3996"
-            style="stop-color:#B6C8CE;stop-opacity:0.3996"
+            style="stop-color:#39697B;stop-opacity:0.3996"
           />
           <stop
             offset="0.6048"
-            style="stop-color:#7F9EA9;stop-opacity:0.6048"
+            style="stop-color:#39697B;stop-opacity:0.6048"
           />
           <stop
             offset="0.8322"
@@ -5486,27 +5416,27 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#47015A;stop-opacity:0"
           />
           <stop
             offset="0.0851"
-            style="stop-color:#F8F6F9;stop-opacity:0.0851"
+            style="stop-color:#47015A;stop-opacity:0.0851"
           />
           <stop
             offset="0.2241"
-            style="stop-color:#E7DEE9;stop-opacity:0.2241"
+            style="stop-color:#47015A;stop-opacity:0.2241"
           />
           <stop
             offset="0.3996"
-            style="stop-color:#CAB6CF;stop-opacity:0.3996"
+            style="stop-color:#47015A;stop-opacity:0.3996"
           />
           <stop
             offset="0.6048"
-            style="stop-color:#A27FAC;stop-opacity:0.6048"
+            style="stop-color:#47015A;stop-opacity:0.6048"
           />
           <stop
             offset="0.8322"
-            style="stop-color:#70397E;stop-opacity:0.8322"
+            style="stop-color:#47015A;stop-opacity:0.8322"
           />
           <stop
             offset="1"
@@ -5531,23 +5461,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#953A39;stop-opacity:0"
           />
           <stop
             offset="0.0849"
-            style="stop-color:#FAF6F6;stop-opacity:0.0849"
+            style="stop-color:#953A39;stop-opacity:0.0849"
           />
           <stop
             offset="0.2235"
-            style="stop-color:#EDDEDE;stop-opacity:0.2235"
+            style="stop-color:#953A39;stop-opacity:0.2235"
           />
           <stop
             offset="0.3985"
-            style="stop-color:#D8B6B6;stop-opacity:0.3985"
+            style="stop-color:#953A39;stop-opacity:0.3985"
           />
           <stop
             offset="0.6031"
-            style="stop-color:#BA7F7F;stop-opacity:0.6031"
+            style="stop-color:#953A39;stop-opacity:0.6031"
           />
           <stop
             offset="0.8298"
@@ -5576,23 +5506,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#596F39;stop-opacity:0"
           />
           <stop
             offset="0.0849"
-            style="stop-color:#F7F8F6;stop-opacity:0.0849"
+            style="stop-color:#596F39;stop-opacity:0.0849"
           />
           <stop
             offset="0.2235"
-            style="stop-color:#E3E7DE;stop-opacity:0.2235"
+            style="stop-color:#596F39;stop-opacity:0.2235"
           />
           <stop
             offset="0.3985"
-            style="stop-color:#C2CAB6;stop-opacity:0.3985"
+            style="stop-color:#596F39;stop-opacity:0.3985"
           />
           <stop
             offset="0.6031"
-            style="stop-color:#93A27F;stop-opacity:0.6031"
+            style="stop-color:#596F39;stop-opacity:0.6031"
           />
           <stop
             offset="0.8298"
@@ -5621,23 +5551,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#7B625C;stop-opacity:0"
           />
           <stop
             offset="0.1179"
-            style="stop-color:#F8F6F6;stop-opacity:0.1179"
+            style="stop-color:#7B625C;stop-opacity:0.1179"
           />
           <stop
             offset="0.3103"
-            style="stop-color:#E4DFDE;stop-opacity:0.3103"
+            style="stop-color:#7B625C;stop-opacity:0.3103"
           />
           <stop
             offset="0.5532"
-            style="stop-color:#C4B9B6;stop-opacity:0.5532"
+            style="stop-color:#7B625C;stop-opacity:0.5532"
           />
           <stop
             offset="0.8344"
-            style="stop-color:#988480;stop-opacity:0.8344"
+            style="stop-color:#7B625C;stop-opacity:0.8344"
           />
           <stop
             offset="1"
@@ -5662,23 +5592,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#DAB479;stop-opacity:0"
           />
           <stop
             offset="0.1363"
-            style="stop-color:#FDFAF6;stop-opacity:0.1363"
+            style="stop-color:#DAB479;stop-opacity:0.1363"
           />
           <stop
             offset="0.3584"
-            style="stop-color:#F6ECDE;stop-opacity:0.3584"
+            style="stop-color:#DAB479;stop-opacity:0.3584"
           />
           <stop
             offset="0.639"
-            style="stop-color:#EBD6B6;stop-opacity:0.639"
+            style="stop-color:#DAB479;stop-opacity:0.639"
           />
           <stop
             offset="0.964"
-            style="stop-color:#DCB880;stop-opacity:0.964"
+            style="stop-color:#DAB479;stop-opacity:0.964"
           />
           <stop
             offset="1"
@@ -22708,20 +22638,20 @@
 
     <g>
       <defs>
-        <filter id="dropshadow" height="400%" width="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/> 
-          <feOffset dx="2" dy="2" result="offsetblur"/> 
-          <feMerge> 
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" /> 
-          </feMerge>
+        <filter id="dropshadow" height="160%">
+          <feDropShadow 
+            dx="2"
+            dy="2"
+            stdDeviation="2.5"
+            flood-opacity="0.60"
+          />
         </filter>
         <filter id="dropshadow_straight" height="160%">
           <feDropShadow 
             dx="1"
             dy="1"
             stdDeviation="2"
-            flood-opacity="0.9"
+            flood-opacity="1.0"
           />
         </filter>
       </defs>
@@ -22732,15 +22662,15 @@
           id="tspan2408"
           x="99"
           y="179"
-          font-family="Museo700-Regular"
+          font-family="Museo900-Regular"
           font-size="9"
           :stroke="getTitleStrokeColor()"
-          stroke-width=".2"
+          stroke-width=".5"
           fill="#FEF4EA"
           font-stretch="normal"
           font-style="normal"
           font-variant="normal"
-          font-weight="700"
+          font-weight="900"
           
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22768,7 +22698,7 @@
         <tspan
           id="tspan2525"
           x="99"
-          y="241"
+          y="240"
           fill="#FFDAA6"
           fill-opacity="1"
           stroke="#050505"
@@ -22803,7 +22733,7 @@
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="500"
+            font-weight="400"
             text-anchor="middle"
             writing-mode="lr"
             filter="url(#dropshadow_straight)"
