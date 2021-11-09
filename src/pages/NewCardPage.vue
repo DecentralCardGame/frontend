@@ -469,6 +469,19 @@
           class="creator-input-container"
         >
           <span class="creator-text">
+            My <b>beauty</b> must not be covered by borders
+          </span>
+          <input
+            v-model="model.FullArt"
+            type="checkbox"
+            @change="saveDraft"
+          > 
+        </div>
+        <div
+          v-if="activeStep == 3"
+          class="creator-input-container"
+        >
+          <span class="creator-text">
             My <b>flavor</b> is best expressed by the following sentences:
           </span>
           <input
@@ -732,13 +745,16 @@ export default {
       this.isBuySchemeModalVisible = false;
     },
     showAbilityModal(type) {
-      let atRules = R.curry(atPath)(this.$cardRules);
+      let atRules = R.curry(atPath)(this.$cardRules)
 
-      console.log("abilities", this.abilities);
-
-      this.isAbilityModalVisible = true;
+      this.isAbilityModalVisible = true
 
       if (type === "root") {
+        if (this.abilities.length >= 3) {
+          this.notifyFail("Number of Abilities", "A card can only have a maximum of 3 Abilities.")
+          this.isAbilityModalVisible = false
+          return
+        } 
         if (this.model.type === "no type" || this.model.type === undefined) {
           this.notifyFail(
             "No Type",
@@ -748,7 +764,6 @@ export default {
           return;
         }
 
-        console.log("getrulestype", this.getRulesType());
         let newAbility = {
           path: [
             "children",

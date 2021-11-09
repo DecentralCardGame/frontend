@@ -1,0 +1,12 @@
+href="../../assets/cardframe/ClassBallNature.jpg"
+
+href="../../assets/cardframe/ClassBallCulture.jpg"
+
+href="../../assets/cardframe/ClassBallTech.jpg"
+
+href="../../assets/cardframe/ClassBallMyth.jpg"
+
+href="../../assets/cardframe/ClassBall4.jpg"
+
+
+href="../../assets/cardframe/OBGTech.jpg"

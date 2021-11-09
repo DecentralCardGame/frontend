@@ -26,13 +26,17 @@
 
       <table class="keywordTable">
         <tbody>
-          <tr v-for="(keyword, index) in keywordDescriptions" :key="index">
-            <th scope="row"> <b> {{ keyword[0] }} </b> </th>  
+          <tr
+            v-for="(keyword, index) in keywordDescriptions"
+            :key="index"
+          >
+            <th scope="row">
+              <b> {{ keyword[0] }} </b>
+            </th>  
             <td> - {{ keyword[1] }}</td>  
           </tr>
         </tbody>
       </table>
-
     </div>
 
     <div>

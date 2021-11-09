@@ -93,8 +93,14 @@
               <a href="https://discord.gg/ZKKbhUs">
                 <h2>Discord 
                   <picture>
-                    <source type="image/webp" srcset="../../assets/icon/discord.webp">
-                    <source type="image/png" srcset="../../assets/icon/discord.png">
+                    <source
+                      type="image/webp"
+                      srcset="../../assets/icon/discord.webp"
+                    >
+                    <source
+                      type="image/png"
+                      srcset="../../assets/icon/discord.png"
+                    >
                     <img 
                       src="../../assets/icon/discord.png"
                       style="display:inline; max-height:33px;transform:translateY(5px);"
@@ -110,8 +116,14 @@
               <a href="https://github.com/DecentralCardGame">
                 <h2>Github 
                   <picture>
-                    <source type="image/webp" srcset="../../assets/icon/github.webp">
-                    <source type="image/png" srcset="../../assets/icon/github.png" >
+                    <source
+                      type="image/webp"
+                      srcset="../../assets/icon/github.webp"
+                    >
+                    <source
+                      type="image/png"
+                      srcset="../../assets/icon/github.png"
+                    >
                     <img 
                       src="../../assets/icon/github.png"
                       style="display:inline; max-height:33px;"

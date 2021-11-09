@@ -26,25 +26,29 @@
         </header>
 
         <div class="container-flex-row">
-
           <div>
             <CardComponent
               :model="model"
               :image-u-r-l="imageURL"
-              hoverBehavior="none"
+              hover-behavior="none"
               class="view__card"
             />
           </div>
 
           <div class="container-flex-column">
-            <div v-show="keywordDescriptions.length" class="modal__body">
-                <b>Keyword Explanations:</b>
-                  <div class="container-flex-row"
-                    v-for="(keyword, index) in keywordDescriptions"
-                    :key="index">
-                    <b> {{ keyword[0] }}</b>
-                     - {{ keyword[1] }}
-                  </div>
+            <div
+              v-show="keywordDescriptions.length"
+              class="modal__body"
+            >
+              <b>Keyword Explanations:</b>
+              <div
+                v-for="(keyword, index) in keywordDescriptions"
+                :key="index"
+                class="container-flex-row"
+              >
+                <b> {{ keyword[0] }}</b>
+                - {{ keyword[1] }}
+              </div>
             </div>
 
             <div class="modal__body no__bottomline">
@@ -148,6 +152,15 @@ export default {
       creditsAvailable: -1,
     }
   },
+  watch: {
+    "$store.state.lastInputEvent": function () {
+      let event = this.$store.state.lastInputEvent;
+
+      if (event.which == 27) {
+        this.$emit('close')
+      }
+    },
+  },
   mounted() {
   },
   methods: {
@@ -176,15 +189,6 @@ export default {
     },
     voteInappropriate() {
       this.$emit('voteInappropriate')
-    },
-  },
-  watch: {
-    "$store.state.lastInputEvent": function () {
-      let event = this.$store.state.lastInputEvent;
-
-      if (event.which == 27) {
-        this.$emit('close')
-      }
     },
   },
 }
