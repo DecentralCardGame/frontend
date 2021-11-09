@@ -22642,7 +22642,7 @@
           <feDropShadow 
             dx="2"
             dy="2"
-            stdDeviation="2.5"
+            stdDeviation="1.5"
             flood-opacity="0.60"
           />
         </filter>
@@ -22650,7 +22650,7 @@
           <feDropShadow 
             dx="1"
             dy="1"
-            stdDeviation="2"
+            stdDeviation="1"
             flood-opacity="1.0"
           />
         </filter>
