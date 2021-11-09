@@ -22705,9 +22705,9 @@
 
     <g>
       <defs>
-        <filter id="dropshadow" height="400%">
+        <filter id="dropshadow" height="400%" width="200%">
           <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/> 
-          <feOffset dx="1" dy="1" result="offsetblur"/> 
+          <feOffset dx="2" dy="2" result="offsetblur"/> 
           <feMerge> 
             <feMergeNode />
             <feMergeNode in="SourceGraphic" /> 
