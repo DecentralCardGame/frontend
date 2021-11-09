@@ -458,7 +458,7 @@ export default {
   margin: 1rem 0;
   text-shadow: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: auto;
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
@@ -511,10 +511,8 @@ export default {
 .cardContainer--element {
   position: relative;
   flex-grow: 1;
-  max-width: 300px;
+  max-width: 350px;
 }
-
-
 
 .button-container--top {
   margin-bottom: 2rem;

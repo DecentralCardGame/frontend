@@ -1,12 +1,14 @@
-<template id="theCardSvg">  
+<template id="theCardSvg">
+  <!-- original viewbox was 198.5 274.28 -->
   <svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0"
     y="0"
-    viewBox="0 0 198.5 274.28"
-    style="enable-background:new 0 0 198.5 274.28;"
+    viewBox="19 20 154 230"  
+    width="100%"
+    height="100%"
     xml:space="preserve"
   >
     <g id="_x31__Outer_Backgrounds">
