@@ -148,74 +148,6 @@
           </g>
         </g>
       </g>
-      <g v-if="OBG.Culture"
-        id="Culture_OBG"
-      >
-        <g>
-          <defs>
-            <path
-              id="SVGID_00000119812463234635084210000013573717043890764417_"
-              d="M165.23,27.78H47.32c-2.57-4.04-7.08-6.73-12.23-6.73
-                c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78c2.21,2.21,3.46,3.46,5.67,5.67h132.16
-                c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
-            />
-          </defs>
-          <clipPath id="SVGID_00000036214947869371402040000015316434939132618389_">
-            <use
-              xlink:href="#SVGID_00000119812463234635084210000013573717043890764417_"
-              style="overflow:visible;"
-            />
-          </clipPath>
-          <g style="clip-path:url(#SVGID_00000036214947869371402040000015316434939132618389_);">
-            <g>
-              <defs>
-                <rect
-                  id="SVGID_00000100355658060259172620000016036009990970849183_"
-                  x="15.6"
-                  y="16.05"
-                  width="160.31"
-                  height="239.23"
-                />
-              </defs>
-              <clipPath id="SVGID_00000111191599016012108220000018263252373964313004_">
-                <use
-                  xlink:href="#SVGID_00000100355658060259172620000016036009990970849183_"
-                  style="overflow:visible;"
-                />
-              </clipPath>
-              <g style="clip-path:url(#SVGID_00000111191599016012108220000018263252373964313004_);">
-                <defs>
-                  <rect
-                    id="SVGID_00000068638698377506979550000011737210559308050348_"
-                    x="15.6"
-                    y="16.05"
-                    width="160.31"
-                    height="239.23"
-                  />
-                </defs>
-                <clipPath id="SVGID_00000054977170368597439490000006287272654128581254_">
-                  <use
-                    xlink:href="#SVGID_00000068638698377506979550000011737210559308050348_"
-                    style="overflow:visible;"
-                  />
-                </clipPath>
-                <g
-                  transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="clip-path:url(#SVGID_00000054977170368597439490000006287272654128581254_);"
-                >
-                  <image
-                    style="overflow:visible;"
-                    width="335"
-                    height="500"
-                    href="../../assets/cardframe/OBGCulture.jpg"
-                    transform="matrix(0.48 0 0 0.48 15.4034 15.6756)"
-                  />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
       <g v-if="OBG.Myth"
         id="Myth_OBG"
       >
@@ -276,6 +208,74 @@
                     width="335"
                     height="500"
                     href="../../assets/cardframe/OBGMyth.jpg"
+                    transform="matrix(0.48 0 0 0.48 15.4034 15.6756)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g v-if="OBG.Culture"
+        id="Culture_OBG"
+      >
+        <g>
+          <defs>
+            <path
+              id="SVGID_00000119812463234635084210000013573717043890764417_"
+              d="M165.23,27.78H47.32c-2.57-4.04-7.08-6.73-12.23-6.73
+                c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78c2.21,2.21,3.46,3.46,5.67,5.67h132.16
+                c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
+            />
+          </defs>
+          <clipPath id="SVGID_00000036214947869371402040000015316434939132618389_">
+            <use
+              xlink:href="#SVGID_00000119812463234635084210000013573717043890764417_"
+              style="overflow:visible;"
+            />
+          </clipPath>
+          <g style="clip-path:url(#SVGID_00000036214947869371402040000015316434939132618389_);">
+            <g>
+              <defs>
+                <rect
+                  id="SVGID_00000100355658060259172620000016036009990970849183_"
+                  x="15.6"
+                  y="16.05"
+                  width="160.31"
+                  height="239.23"
+                />
+              </defs>
+              <clipPath id="SVGID_00000111191599016012108220000018263252373964313004_">
+                <use
+                  xlink:href="#SVGID_00000100355658060259172620000016036009990970849183_"
+                  style="overflow:visible;"
+                />
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000111191599016012108220000018263252373964313004_);">
+                <defs>
+                  <rect
+                    id="SVGID_00000068638698377506979550000011737210559308050348_"
+                    x="15.6"
+                    y="16.05"
+                    width="160.31"
+                    height="239.23"
+                  />
+                </defs>
+                <clipPath id="SVGID_00000054977170368597439490000006287272654128581254_">
+                  <use
+                    xlink:href="#SVGID_00000068638698377506979550000011737210559308050348_"
+                    style="overflow:visible;"
+                  />
+                </clipPath>
+                <g
+                  transform="matrix(1 0 0 1 0 9.536743e-07)"
+                  style="clip-path:url(#SVGID_00000054977170368597439490000006287272654128581254_);"
+                >
+                  <image
+                    style="overflow:visible;"
+                    width="335"
+                    height="500"
+                    href="../../assets/cardframe/OBGCulture.jpg"
                     transform="matrix(0.48 0 0 0.48 15.4034 15.6756)"
                   />
                 </g>
@@ -22716,12 +22716,12 @@
           </feMerge>
         </filter>
         <filter id="dropshadow_straight" height="160%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> 
-          <feOffset dx="1" dy="1" result="offsetblur"/> 
-          <feMerge> 
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" /> 
-          </feMerge>
+          <feDropShadow 
+            dx="1"
+            dy="1"
+            stdDeviation="2"
+            flood-opacity="0.9"
+          />
         </filter>
       </defs>
 
@@ -22730,7 +22730,7 @@
         <tspan
           id="tspan2408"
           x="99"
-          y="181"
+          y="179"
           font-family="Museo700-Regular"
           font-size="9"
           :stroke="getTitleStrokeColor()"
@@ -23131,7 +23131,7 @@ export default {
       }
     },
     getAbilityYPos(abilityIndex, lineIndex) {
-      let startpos = 195
+      let startpos = 190
       let lineSpacing = 8
       let abilitySpacing = 1
 
@@ -23165,7 +23165,7 @@ export default {
 
       let maxLength = 57
       if (text.length < 100)
-        maxLength = 35
+        maxLength = 32
       else if (text.length < 200)
         maxLength = 39
 
