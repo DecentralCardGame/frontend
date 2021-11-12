@@ -15,25 +15,25 @@
           :class="classStepPassed(0)"
           @click="activeStep = 0"
         >
-          Name, Type and Tags
+          Name, Artwork and Flavor
         </div>
         <div
           :class="classStepPassed(1)"
           @click="activeStep = 1"
         >
-          Costs and Properties
+          Type, Tags and Class
         </div>
         <div
           :class="classStepPassed(2)"
           @click="activeStep = 2"
         >
-          Rulings and Abilities
+          Costs and Properties
         </div>
         <div
           :class="classStepPassed(3)"
           @click="activeStep = 3"
         >
-          Style and Flavor
+          Abilities and Effects
         </div>
         <div
           :class="classStepPassed(4)"
@@ -43,12 +43,14 @@
         </div>
       </div>
     </div>
+
     <div class="creator">
       <div class="creator-input">
         <div
           v-if="activeStep == 0"
           class="creator-input-container"
         >
+          <!-- Name -->
           <span class="creator-text">Hey, my <b>name</b> is</span>
           <input
             v-model="model.CardName"
@@ -56,6 +58,115 @@
             @change="saveDraft"
           >
 
+          <!-- Artwork -->
+          <span class="creator-text">
+            Everybody needs a <b>face</b>, so do I. Please upload an image
+          </span>
+
+          <input
+            id="file"
+            class="inputfile"
+            name="file"
+            type="file"
+            @change="inputFile"
+          >
+          <label
+            class="button--file"
+            for="file"
+          >Choose a file</label>
+        </div>
+        <div
+          v-if="activeStep == 0" 
+        >
+          <cropper
+            class="cropper"
+            :src="cropImage"
+            :auto-zoom="true"
+            :stencil-size="{
+              width: 838,
+              height: 1300
+            }"
+            image-restriction="stencil"
+            @change="changeCrop"
+          />
+        </div>
+        <div
+          v-if="activeStep == 0" 
+        >
+          <!-- FullArt -->
+          <span class="creator-text">
+            My <b>beauty</b> must not be covered by borders
+          </span>
+          <input
+            v-model="model.FullArt"
+            type="checkbox"
+            @change="saveDraft"
+          >
+        </div>
+        <div
+          v-if="activeStep == 0"
+          class="creator-input-container"
+        >
+          <!-- Flavor -->
+          <span class="creator-text">
+            <br>My <b>flavor</b> is best expressed by the following sentences:
+          </span>
+          <input
+            v-model="model.FlavourText"
+            value="Card Name"
+            @change="saveDraft"
+          >
+        </div>
+
+
+        <div
+          v-if="activeStep == 1"
+          class="creator-input-container"
+        >
+          <!-- Classes -->
+          <div class="creator-text">
+            My <b>Classes</b> are: <br>
+          </div>
+          <div>
+            <label class="input--checkbox-label__left">  
+              <input
+                v-model="model.Class.Technology"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Technology <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                v-model="model.Class.Nature"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >  
+              Nature <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                v-model="model.Class.Culture"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Culture <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                v-model="model.Class.Mysticism"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Mysticism <br>
+            </label> 
+          </div>
+
+          <!-- Type -->
           <span 
             v-if="$cardRules"
             class="creator-text"
@@ -78,6 +189,7 @@
             </option>
           </select>
 
+          <!-- Tag -->
           <span             
             v-if="$cardRules"
             class="creator-text"
@@ -126,52 +238,13 @@
             </select>
           </div>
         </div>
-        <div
-          v-if="activeStep == 1"
+
+
+        <div 
+          v-if="activeStep == 2"
           class="creator-input-container"
         >
-          <div>
-            My <b>Classes</b> are: <br>
-          </div>
-          <div>
-            <label class="input--checkbox-label__left">  
-              <input
-                v-model="model.Class.Technology"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >
-              Technology <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
-              <input
-                v-model="model.Class.Nature"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >  
-              Nature <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
-              <input
-                v-model="model.Class.Culture"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >
-              Culture <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
-              <input
-                v-model="model.Class.Mysticism"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >
-              Mysticism <br>
-            </label> 
-          </div>
-          <!-- cost area -->
+          <!-- Mana Cost -->
           <div>
             <span
               v-if="$cardRules.children[getRulesType()] &&
@@ -349,8 +422,8 @@
             </span>
           </div>
 
+          <!-- Attack & Health -->
           <div>
-            <!-- Attack & Health -->
             <span v-if="model.type === 'Entity'">
               I have an <b>Attack</b> of <br>
               <br>
@@ -362,7 +435,6 @@
               <br>
             </span>
           </div>
-
           <div>
             <div>
               <div                 
@@ -408,8 +480,12 @@
             </div>
           </div>
         </div>
-        <!-- Abilities -->
-        <div v-if="activeStep == 2">
+
+
+        <div
+          v-if="activeStep == 3"
+        >
+          <!-- Abilities -->
           <p>
             In this step, you craft the heart of your card. Press the button to
             add <b>abilities / effects</b> to your card.
@@ -463,65 +539,7 @@
           </div>
         </div>
 
-
-        <div
-          v-if="activeStep == 3"
-          class="creator-input-container"
-        >
-          <span class="creator-text">
-            My <b>beauty</b> must not be covered by borders
-          </span>
-          <input
-            v-model="model.FullArt"
-            type="checkbox"
-            @change="saveDraft"
-          > 
-        </div>
-        <div
-          v-if="activeStep == 3"
-          class="creator-input-container"
-        >
-          <span class="creator-text">
-            My <b>flavor</b> is best expressed by the following sentences:
-          </span>
-          <input
-            v-model="model.FlavourText"
-            value="Card Name"
-            @change="saveDraft"
-          >
-
-          <span class="creator-text">
-            Everybody needs a <b>face</b>, so do I. Please upload an image
-          </span>
-
-          <input
-            id="file"
-            class="inputfile"
-            name="file"
-            type="file"
-            @change="inputFile"
-          >
-          <label
-            class="button--file"
-            for="file"
-          >Choose a file</label>
-        </div>
-        <div
-          v-if="activeStep == 3" 
-        >
-          <cropper
-            class="cropper"
-            :src="cropImage"
-            :auto-zoom="true"
-            :stencil-size="{
-              width: 838,
-              height: 1300
-            }"
-            image-restriction="stencil"
-            @change="changeCrop"
-          />
-        </div>
-
+          
         <div
           v-if="activeStep == 4"
           class="creator-input-container"
@@ -530,7 +548,7 @@
             Uh, uh, uh. I like my looks, i like my feels, let us get some
             victorieeessss. Seriously, thanks for creating and being part of the
             community. Be brave and publish me! P.S. I would like to give the
-            council the following notes for this card (optional):
+            council the following <b>notes</b> for this card (optional):
           </span>
           <input
             v-model="model.Notes"
@@ -820,6 +838,9 @@ export default {
       else if (keywordCount > 8) {
         this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.")
       }
+
+      this.model.Keywords = R.pluck("keywords", this.abilities);
+      this.model.RulesTexts = R.map(this.interactionTextToString, this.abilities);
     },
     resetAbilities() {
       console.log("RESET ABILITIES")
