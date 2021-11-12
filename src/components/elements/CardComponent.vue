@@ -22687,7 +22687,7 @@
           font-size="12"
           fill="#FFF5E1"
           stroke="#050505"
-          stroke-width="0.0"
+          stroke-width="0.2"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"

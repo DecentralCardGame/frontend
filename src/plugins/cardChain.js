@@ -31,11 +31,11 @@ export default {
           },
           run: function() {
             this.isRunning = true
-        
+
             if (!R.isEmpty(this.queue)) {
               const transaction = this.queue[0]
               this.queue = R.drop(1, this.queue)
-        
+
               transaction().finally(() => this.run())
             } else {
               this.isRunning = false
@@ -178,7 +178,7 @@ export default {
               return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.vue.$http.post('cardservice/buy_card_scheme', reqBody)])
                 .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
                 .then(() => { 
-                  this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a card scheme.') 
+                  this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.') 
                   resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
                 })
                 .catch(err => {
@@ -207,8 +207,8 @@ export default {
           .then(user => {
             console.log(user)
             if (!user.ownedCardSchemes) {
-              this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any card schemes. Please buy one before publishing.')
-              throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own card schemes')
+              this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
+              throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own Card Frames')
             } else {
               let reqBody = {
                 'base_req': {

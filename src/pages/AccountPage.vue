@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Account Settings</h2>
-    You have {{ user.ownedCardSchemes ? user.ownedCardSchemes.length : 0 }} Card Schemes, which allow you to create new cards. <br>
+    You have {{ user.ownedCardSchemes ? user.ownedCardSchemes.length : 0 }} Card Frames, which allow you to create new cards. <br>
     You have {{ user.voteRights ? user.voteRights.length : 0 }} Vote Rights for Cards, that will get you a reward.
     <br>
     <br>

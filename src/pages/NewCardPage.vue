@@ -567,7 +567,7 @@
             type="button"
             @click="showBuySchemeModal"
           >
-            Buy Card Scheme
+            Buy a Card Frame
           </button>
           <button
             v-if="activeStep == 4 && !model.id"

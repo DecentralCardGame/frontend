@@ -59,14 +59,15 @@
               id="modalDescription"
               class="modal__body choice-grid"
             >
-              <button
-                aria-label="Close modal"
-                class="choice-grid__button"
-                type="button"
-                @click="cardview(); close();"
-              >
-                Advanced Card Info
-              </button>
+              <router-link :to="{ path: '/cardview/'+model.id }">  
+                <button
+                  aria-label="Close modal"
+                  class="choice-grid__button"
+                  type="button"
+                >
+                  Advanced Card Info
+                </button>
+              </router-link>
               <button
                 aria-label="Close modal"
                 class="choice-grid__button"
@@ -162,6 +163,7 @@ export default {
     },
   },
   mounted() {
+    console.log("this.model", this.model.id)
   },
   methods: {
     doNothing () {
