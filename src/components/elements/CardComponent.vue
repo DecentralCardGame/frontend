@@ -22686,13 +22686,8 @@
           font-family="Museo700-Regular"
           font-size="12"
           fill="#FFF5E1"
-<<<<<<< HEAD
-          stroke="#050505"
-          stroke-width="0.2"
-=======
           stroke="#151515"
           stroke-width="0.5"
->>>>>>> 50473ff8ca70b208f0fdaeef50820b4b1d303102
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
