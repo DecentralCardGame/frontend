@@ -60,7 +60,7 @@
 
           <!-- Artwork -->
           <span class="creator-text">
-            Everybody needs a <b>face</b>, so do I. Please upload an image
+            Everybody needs a <b>face</b>, so do I. Please upload an image. By uploading you confirm you have the rights to upload this image.
           </span>
 
           <input
@@ -73,7 +73,7 @@
           <label
             class="button--file"
             for="file"
-          >Choose a file</label>
+          >Choose a file without copyright violation</label>
         </div>
         <div
           v-if="activeStep == 0" 
