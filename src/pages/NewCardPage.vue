@@ -86,6 +86,14 @@
               width: 838,
               height: 1300
             }"
+            :default-position="{
+              left: 0,
+              top: 0
+            }"
+            :default-size="{
+              width: 838,
+              height: 1300
+            }"
             image-restriction="stencil"
             @change="changeCrop"
           />
@@ -117,7 +125,6 @@
             @change="saveDraft"
           >
         </div>
-
 
         <div
           v-if="activeStep == 1"
@@ -238,7 +245,6 @@
             </select>
           </div>
         </div>
-
 
         <div 
           v-if="activeStep == 2"
