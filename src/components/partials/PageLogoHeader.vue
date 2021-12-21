@@ -164,7 +164,7 @@ header {
 }
 .image3 {
   transform: skewX(25deg);
-  margin: 3.2rem;
+  margin: 3.0rem 3.2rem 3.2rem 3.0rem;
   z-index: -1;
   top: 0rem;
   left: 1rem;
