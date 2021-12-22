@@ -22862,9 +22862,9 @@ export default {
   },
   methods: {
     update() {
-      console.log("model", this.model.CardName, this.model)
+      //console.log("model", this.model.CardName, this.model)
       this.FullArt = this.model.FullArt
-      console.log("this.FullArt updated:", this.FullArt)
+      //console.log("this.FullArt updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
@@ -22930,10 +22930,10 @@ export default {
         }
       }
 
-      console.log("frameType", frameType)
-      console.log("cardClass", cardClass)
-      console.log("cardType", cardType)
-      console.log("colorType", colorType)
+      //console.log("frameType", frameType)
+      //console.log("cardClass", cardClass)
+      //console.log("cardType", cardType)
+      //console.log("colorType", colorType)
 
       // here begins the part where the components are activated
       this.Class = cardClass
@@ -22942,8 +22942,8 @@ export default {
       this.SecondaryColor = R.last(R.invert(cardClass).true)
       this.PrimaryColor = R.head(R.invert(cardClass).true)
 
-      console.log("primary color:", this.PrimaryColor)
-      console.log("secondary color:", this.SecondaryColor)
+      //console.log("primary color:", this.PrimaryColor)
+      //console.log("secondary color:", this.SecondaryColor)
 
       this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
       this.GoldSquare = true
@@ -22968,6 +22968,7 @@ export default {
       this.attackFrame = cardType.Entity
       this.healthFrame = NonActionFilter(frameType)
 
+      /*
       console.log("Classes:", this.Classes)
       console.log("healthframe", this.healthFrame)
       console.log("attackframe", this.attackFrame)
@@ -22981,6 +22982,7 @@ export default {
       console.log("FramedIllustrationMask", this.FramedIllustrationMask)
       console.log("FullArtIllustrationMask", this.FullArtIllustrationMask)
       console.log("FullArtGradients", this.FullArtGradients)
+      */
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return 

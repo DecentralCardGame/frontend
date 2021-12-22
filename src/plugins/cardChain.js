@@ -76,7 +76,9 @@ export default {
 
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
-          if (!R.isNil(rawCard.FullArt)) card.FullArt = JSON.parse(rawCard.FullArt)
+
+          if (rawCard.FullArt && !R.isNil(rawCard.FullArt)) 
+            card.FullArt = JSON.parse(rawCard.FullArt)
 
           console.log('parsed card: ', card)
           return card

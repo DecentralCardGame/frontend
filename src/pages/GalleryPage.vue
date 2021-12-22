@@ -370,6 +370,11 @@ export default {
           this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
         this.cards = res
+        console.log("all card names:", R.pluck("CardName", res))
+      })
+      .catch(res => {
+        console.log("NOT ALL CARDS WERE PROPERLY LOADED")
+        console.log("all card names:", R.pluck("CardName", res))
       })
       console.log("all cards:", this.cards)
     },
