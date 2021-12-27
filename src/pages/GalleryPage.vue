@@ -7,24 +7,6 @@
       In the gallery, you can view cards that were created by the community.
     </p>
     <br>
-    <div class="button-container button-container--top">
-      <button
-        v-show="browsingBackward"
-        @click="prevPage"
-      >
-        back
-      </button>
-      <button @click="$store.commit('toggleGalleryFilter')">
-        {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
-        filters
-      </button>
-      <button
-        v-show="browsingForward"
-        @click="nextPage"
-      >
-        next
-      </button>
-    </div>
     <div
       v-show="$store.getters.getGalleryFilter.visible"
       class="gallery__filter-box"
@@ -163,6 +145,27 @@
           Apply
         </button>
       </div>
+    </div>
+    <div class="button-container button-container--top">
+      <button
+        v-show="browsingBackward"
+        @click="prevPage"
+      >
+        back
+      </button>
+      <button @click="$store.commit('toggleGalleryFilter')">
+        {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
+        filters
+      </button>
+      <button @click="loadAlphaCardList">
+        Alpha Set 
+      </button>
+      <button
+        v-show="browsingForward"
+        @click="nextPage"
+      >
+        next
+      </button>
     </div>
     <div class="gallery__view">
       <div
@@ -303,7 +306,7 @@ export default {
         (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
         (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
         (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
-        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "");
+        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
       return this.$cardChain
         .getCardList(
           this.$store.getters.getGalleryFilter.owner,
@@ -417,6 +420,59 @@ export default {
     },
     closeGalleryModal() {
       this.isGalleryModalVisible = false;
+    },
+    loadAlphaCardList() {
+      let classes =
+        (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
+        (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
+        (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
+        (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
+        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
+        
+      let requestedCards = [
+        // owners are hardcoded here because these are the alpha creators
+        this.$cardChain.getCardList(
+          "cosmos15ymvugyn9r0h5e44627aclzp9se3dstnwm9syg",
+          this.$store.getters.getGalleryFilter.status,
+          this.$store.getters.getGalleryFilter.cardType,
+          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
+          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
+          this.$store.getters.getGalleryFilter.nameContains,
+          this.$store.getters.getGalleryFilter.keywordsContains,
+          this.$store.getters.getGalleryFilter.notesContains
+        ),
+        this.$cardChain.getCardList(
+          "cosmos1aka9p2tc2td923044ve0508xnn8zuaftc2knxd",
+          this.$store.getters.getGalleryFilter.status,
+          this.$store.getters.getGalleryFilter.cardType,
+          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
+          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
+          this.$store.getters.getGalleryFilter.nameContains,
+          this.$store.getters.getGalleryFilter.keywordsContains,
+          this.$store.getters.getGalleryFilter.notesContains
+        )
+      ]
+
+      Promise.all(requestedCards)
+      .then((res) => {
+
+
+        let cardList = R.reduce(R.concat, [], R.pluck("cardList", res))
+
+        console.log("cardlistyes:", cardList)
+        if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
+          this.cardList = R.reverse(cardList)
+        } 
+        else {
+          this.cardList = cardList
+        }
+        this.pageId = 0
+        this.cards = []
+      })
+      .then(() => {
+        this.fillPage()
+      })
+
     },
     edit() {
       console.log("editing:", this.cards[this.clickedIndex])
