@@ -116,8 +116,7 @@ export default {
             // yesyoulike.json for harry
             let likelist = []
             R.mapObjIndexed((num, key) => { likelist.push({"keyword": key, "description": num.description}) }, R.filter(x => x.description, this.$rulesDefinitions))
-            
-            console.log("yes:", JSON.stringify(likelist))
+            //console.log("yes:", JSON.stringify(likelist))
           }
         })
     }

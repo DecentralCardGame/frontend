@@ -23064,15 +23064,16 @@ export default {
       }
     },
     getAbilityYPos(abilityIndex, lineIndex) {
-      let startpos = 190
-      let lineSpacing = 8
-      let abilitySpacing = 1
+      const startpos = 190
+      const lineSpacing = 8
+      const abilitySpacing = 2
 
-      let keywords = this.getKeywords()
+      let abilityText = this.getAbilityText()
 
       let summedLength = 0
       for (let i = 0; i < abilityIndex; i++) {
-        summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
+        console.log("lenght:", this.textToSvg(abilityText[i]).length)
+        summedLength += this.textToSvg(abilityText[i]).length
       }
 
       return startpos + lineSpacing*summedLength + abilitySpacing*abilityIndex + lineSpacing*lineIndex
