@@ -157,8 +157,11 @@
         {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
         filters
       </button>
-      <button @click="loadAlphaCardList">
-        Alpha Set 
+      <button @click="loadSpecialCardList('Finished')">
+        Alpha Set
+      </button>
+      <button @click="loadSpecialCardList('Artwork')">
+        Artwork Needed
       </button>
       <button
         v-show="browsingForward"
@@ -421,7 +424,7 @@ export default {
     closeGalleryModal() {
       this.isGalleryModalVisible = false;
     },
-    loadAlphaCardList() {
+    loadSpecialCardList(notes) {
       let classes =
         (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
         (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
@@ -432,31 +435,19 @@ export default {
       let requestedCards = [
         // owners are hardcoded here because these are the alpha creators
         this.$cardChain.getCardList(
-          "cosmos15ymvugyn9r0h5e44627aclzp9se3dstnwm9syg",
+          this.$store.getters.getGalleryFilter.owner,
           this.$store.getters.getGalleryFilter.status,
           this.$store.getters.getGalleryFilter.cardType,
           this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
           this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
           this.$store.getters.getGalleryFilter.nameContains,
           this.$store.getters.getGalleryFilter.keywordsContains,
-          this.$store.getters.getGalleryFilter.notesContains
-        ),
-        this.$cardChain.getCardList(
-          "cosmos1aka9p2tc2td923044ve0508xnn8zuaftc2knxd",
-          this.$store.getters.getGalleryFilter.status,
-          this.$store.getters.getGalleryFilter.cardType,
-          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
-          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
-          this.$store.getters.getGalleryFilter.nameContains,
-          this.$store.getters.getGalleryFilter.keywordsContains,
-          this.$store.getters.getGalleryFilter.notesContains
+          notes
         )
       ]
 
       Promise.all(requestedCards)
       .then((res) => {
-
-
         let cardList = R.reduce(R.concat, [], R.pluck("cardList", res))
 
         console.log("cardlistyes:", cardList)
@@ -472,7 +463,6 @@ export default {
       .then(() => {
         this.fillPage()
       })
-
     },
     edit() {
       console.log("editing:", this.cards[this.clickedIndex])
