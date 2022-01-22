@@ -329,10 +329,9 @@
                 v-if="model.AdditionalCost.DiscardCost"
                 class="creator-text"
               >
-                
                 <select
                   v-model="model.AdditionalCost.DiscardCost.Amount"
-                  @change="saveDraft"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
                     v-for="n in R.range(
@@ -354,7 +353,7 @@
               >
                 <select
                   v-model="model.AdditionalCost.SacrificeCost.Amount"
-                  @change="saveDraft"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
                     v-for="n in R.range(
@@ -375,7 +374,7 @@
               >                
                 <select
                   v-model="model.AdditionalCost.VoidCost.Amount"
-                  @change="saveDraft"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
                     v-for="n in R.range(
@@ -749,6 +748,7 @@ export default {
       this.model.AdditionalCost[event.target.value] = {
         Amount: 0
       }
+      this.updateAdditionalCostText()
     },
     printAdditionalCost(wholeString) {
       let countUppers = x => R.sum(R.map(
@@ -845,8 +845,40 @@ export default {
         this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.")
       }
 
+      this.updateRulesTexts()
+    },
+    updateRulesTexts() {
       this.model.Keywords = R.pluck("keywords", this.abilities);
       this.model.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+
+      this.updateAdditionalCostText()
+    },
+    updateAdditionalCostText() {
+      let setOrPrepend = (text) => {
+        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0]))) 
+            this.model.RulesTexts[0] = text
+          else
+            this.model.RulesTexts = R.prepend(text, this.model.RulesTexts)
+      }
+
+      if (!R.isEmpty(this.model.AdditionalCost)) {
+        if (this.model.AdditionalCost.SacrificeCost) {
+          let text = "Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity."
+          setOrPrepend(text)
+        }
+        else if (this.model.AdditionalCost.DiscardCost) {
+          let text = "Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card."
+          setOrPrepend(text)
+        }
+        else if (this.model.AdditionalCost.VoidCost) {
+          let text = "Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card."
+          setOrPrepend(text)
+        }
+      }
+      else {
+        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0]))) 
+          this.model.RulesTexts = R.drop(1, this.model.RulesTexts)
+      }
     },
     resetAbilities() {
       console.log("RESET ABILITIES")
@@ -995,8 +1027,7 @@ export default {
           newModel.Effects = R.map(
             R.pick(
               R.keys(
-                this.$cardRules.children.Action.children.Effects.children.Effect
-                  .children
+                this.$cardRules.children.Action.children.Effects.children.Effect.children
               )
             ),
             this.abilities
@@ -1005,13 +1036,27 @@ export default {
       }
 
       // check if the old Keywords and RulesTexts should be restored
+      let checkZeroAmount = () => {
+        return (this.model.AdditionalCost.SacrificeCost && this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
+          (this.model.AdditionalCost.DiscardCost && this.model.AdditionalCost.DiscardCost.Amount == 0) ||
+          (this.model.AdditionalCost.VoidCost && this.model.AdditionalCost.VoidCost.Amount == 0)
+      }
       if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
         newModel.Keywords = this.$store.getters.getCardCreatorEditCard.Keywords
         newModel.RulesTexts = this.$store.getters.getCardCreatorEditCard.RulesTexts
+
+        if (this.isAdditionalCostVisible) {
+          if (checkZeroAmount()) {
+            this.model.AdditionalCost = {}
+          }
+          this.updateAdditionalCostText()
+        }
       }
-      else {  
-        newModel.Keywords = R.pluck("keywords", this.abilities);
-        newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      else {
+        if (checkZeroAmount()) {
+          this.model.AdditionalCost = {}
+        }
+        this.updateRulesTexts()
       }
 
       let newCard = this.$cardChain.cardWebModelToCardobject(

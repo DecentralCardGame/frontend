@@ -23072,7 +23072,6 @@ export default {
 
       let summedLength = 0
       for (let i = 0; i < abilityIndex; i++) {
-        console.log("lenght:", this.textToSvg(abilityText[i]).length)
         summedLength += this.textToSvg(abilityText[i]).length
       }
 
@@ -23081,17 +23080,6 @@ export default {
     getAbilityText () {
       let additionalCostText = []
 
-      if (this.model.AdditionalCost) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostText.push("Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
-        }
-        else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostText.push("Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
-        }
-        else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostText.push("Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
-        }
-      }
       return R.concat(additionalCostText, this.model.RulesTexts)
     },
     textToSvg (text) {
