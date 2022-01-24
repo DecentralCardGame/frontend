@@ -231,7 +231,6 @@ export default {
 
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
         this.attachToAbility(['interaction'], this.ability.interaction)
-        console.log('this.ability after updateInteraction', this.ability)
 
         let newEntry = {}
         newEntry[selection.index] = {}

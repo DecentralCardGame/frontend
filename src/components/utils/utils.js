@@ -75,7 +75,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       let buttonEntry = entry.slice(1)
 
       let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type
-      console.log('type', type)
+      //console.log('interaction type', type)
       // array is different to other interactions, therefore we need special treatment
       if(type === 'array') {
         let nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath))
@@ -115,9 +115,14 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
 
   // check if the last interaction piece is just an ending text (no button) and if there exist an interaction text element before it,
   // if true then move pretext from the last piece to posttext of the second last piece and remove it.
-  if (interaction[interaction.length - 1].btn.type === null && interaction[interaction.length - 2]) {
+  if (interaction[interaction.length - 1].btn.type === null && interaction[interaction.length - 2]) {    
     interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
     interaction.splice(-1, 1)
+  }
+
+  console.log("pre : case?",interaction[0].pre[0])    
+  if (interaction[0].pre[0] == ":") {
+    console.log("pre : case, remove it")
   }
 
   console.log('created Interaction: ', interaction)
@@ -133,8 +138,8 @@ export function updateInteraction (ability, id, newInteraction) {
   if (id < ability.interaction.length - 1) {
     if (ability.interaction[id].post) {
       ability.interaction[id + 1].pre += ability.interaction[id].post
-    } else {
-      // sometimes there is no post-text, but there is pre-text we want to preserve
+    } else if (ability.interaction[id].pre != ": ") {
+      // sometimes there is no post-text, but there is pre-text we want to preserve, but don't do this if it is only a ":"
       newInteraction[0].pre = ability.interaction[id].pre + newInteraction[0].pre 
     }
   }
