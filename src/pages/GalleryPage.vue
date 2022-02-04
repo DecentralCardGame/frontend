@@ -287,7 +287,19 @@ export default {
     else next();
   },
   mounted() {
-    this.loadCardList();
+    let params = this.$route.params.params
+    console.log('params:', params)
+    
+    if (params == "alphaset") {
+      this.loadSpecialCardList("Finished")
+    }
+    else if (params == "artworkneeded") {
+      this.loadSpecialCardList("Artwork")
+    }
+    else {
+      this.loadCardList();
+    }
+
     this.loadVotableCards();
   },
   methods: {

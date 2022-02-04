@@ -46,6 +46,11 @@ export default new Router({
       component: GalleryPage
     },
     {
+      path: '/gallery/:params',
+      name: 'Gallery',
+      component: GalleryPage
+    },
+    {
       path: '/votingresults',
       name: 'VotingResults',
       component: VotingResultsPage
