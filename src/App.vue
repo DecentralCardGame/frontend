@@ -26,7 +26,10 @@ import './scss/main.scss'
 import '@starport/vue/lib/starport-vue.css'
 import Sidebar from './components/Sidebar'
 
+const default_layout = "default"
+
 export default {
+  name: 'CrowdControlApp',
   components: {
     Sidebar,
   },
@@ -39,6 +42,9 @@ export default {
     hasWallet() {
       return this.$store.hasModule(['common', 'wallet'])
     },
+    layout() {
+      return (this.$route.meta.layout || default_layout) + '-layout'
+    }
   },
   async created() {
     await this.$store.dispatch('common/env/init')
@@ -48,9 +54,16 @@ export default {
     console.log(err)
     return false
   },
+  methods: {
+    handleAnyInput(event) {
+      this.$store.commit(
+        "setLastInputEvent",
+        event
+      );
+    }
+  },
 }
 </script>
-
 
 <style lang="scss">
 @import './scss/variables';

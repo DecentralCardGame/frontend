@@ -19,6 +19,7 @@
     "@starport/vuex": "^0.1.55",
     "babel-eslint": "^10.1.0",
     "core-js": "^3.18.2",
+    "json-schema-ref-parser": "^8.0.0",
     "ramda": "^0.27.1",
     "vue": "^3.2.6",
     "vue-router": "^4.0.3",

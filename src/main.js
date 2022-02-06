@@ -5,9 +5,10 @@ import router from './router'
 import vueLib from '@starport/vue'
 import axios from 'axios'
 import * as R from 'ramda'
-
 import Notifications from '@kyvg/vue3-notification'
 
+import cardChain from './plugins/cardChain'
+import cardRules from './plugins/cardRules'
 
 const app = createApp(App)
 app.config.globalProperties.$axios = axios
