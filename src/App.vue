@@ -1,17 +1,24 @@
 <template>
-  <div v-if="initialized">
-    <SpWallet
-      ref="wallet"
-      @dropdown-opened="$refs.menu.closeDropdown()"
-    />
-    <SpLayout>
-      <template #sidebar>
-        <Sidebar />
-      </template>
-      <template #content>
-        <router-view />
-      </template>
-    </SpLayout>
+  <div
+    v-if="initialized"    
+    id="app"
+    tabindex="-1"
+    @auxclick="handleAnyInput"
+    @click="handleAnyInput"
+    @keyup.enter="handleAnyInput"
+    @keyup.esc="handleAnyInput"
+  >
+    <component :is="layout">
+      <router-view />
+    </component>
+
+    <div v-if="$store.state.loading">
+      <div class="spinner">
+        <div class="bounce1" />
+        <div class="bounce2" />
+        <div class="bounce3" />
+      </div>
+    </div>
 
     <notifications
       group="bottom-right-notification"
@@ -24,14 +31,13 @@
 <script>
 import './scss/main.scss'
 import '@starport/vue/lib/starport-vue.css'
-import Sidebar from './components/Sidebar'
+//import Sidebar from './components/Sidebar'
 
 const default_layout = "default"
 
 export default {
   name: 'CrowdControlApp',
   components: {
-    Sidebar,
   },
   data() {
     return {
