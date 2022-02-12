@@ -12,13 +12,6 @@
       <router-view />
     </component>
 
-    <div v-if="$store.state.loading">
-      <div class="spinner">
-        <div class="bounce1" />
-        <div class="bounce2" />
-        <div class="bounce3" />
-      </div>
-    </div>
 
     <notifications
       group="bottom-right-notification"
@@ -49,11 +42,12 @@ export default {
       return this.$store.hasModule(['common', 'wallet'])
     },
     layout() {
+      console.log("layout:", (this.$route.meta.layout || default_layout) + '-layout')
       return (this.$route.meta.layout || default_layout) + '-layout'
     }
   },
   async created() {
-    await this.$store.dispatch('common/env/init')
+    //await this.$store.dispatch('common/env/init')
     this.initialized = true
   },
   errorCaptured(err) {
@@ -65,7 +59,7 @@ export default {
       this.$store.commit(
         "setLastInputEvent",
         event
-      );
+      )
     }
   },
 }

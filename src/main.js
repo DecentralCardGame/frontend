@@ -14,7 +14,13 @@ const app = createApp(App)
 app.config.globalProperties.$axios = axios
 app.config.globalProperties._depsLoaded = true
 app.config.globalProperties.R = R
-app.use(store).use(router).use(vueLib).use(Notifications).mount('#app')
+app.use(store)
+    .use(router)
+    .use(vueLib)
+    .use(Notifications)
+    .use(cardChain)
+    .use(cardRules)
+    .mount('#app')
 
 app.mixin({
     methods: {

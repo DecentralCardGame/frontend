@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Index from '@/views/generated/Index.vue'
 import Types from '@/views/generated/Types.vue'
 import Relayers from '@/views/generated/Relayers.vue'
@@ -18,7 +18,6 @@ const CardMinter = () => import('@/views/CardMinterPage')
 const CardView = () => import('@/views/CardViewPage')
 const SteakDrop = () => import('@/views/SteakDropPage')
 
-const routerHistory = createWebHistory()
 const routes = [
   {
     path: '/about',
@@ -44,7 +43,7 @@ const routes = [
     component: GalleryPage
   },
   {
-    path: '/gallery/:params',
+    path: '/gallery/:params?',
     name: 'Gallery',
     component: GalleryPage
   },
@@ -122,7 +121,7 @@ const oldroutes = [
 ]
 
 const router = createRouter({
-  history: routerHistory,
+  history: createWebHashHistory(),
   routes,
 })
 
