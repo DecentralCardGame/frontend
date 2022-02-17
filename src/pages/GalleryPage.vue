@@ -90,7 +90,6 @@
             <br>
           </label>
         </div>
-
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
           class="clickable-option"
@@ -99,6 +98,7 @@
           <br><br>
           {{ $store.getters.getGalleryFilter.classORLogic? "Any: " : "All: " }}
         </span>
+        <br>
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
           :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.mysticism }"
@@ -106,19 +106,20 @@
         >
           Mysticism
         </span>
+                <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.nature }"
+          @click="$store.getters.getGalleryFilter.nature = !$store.getters.getGalleryFilter.nature"
+        >
+          Nature
+        </span>
+        <br>
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
           :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.technology }"
           @click="$store.getters.getGalleryFilter.technology = !$store.getters.getGalleryFilter.technology"
         >
           Technology
-        </span>
-        <span
-          v-if="$store.getters.getGalleryFilter.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.nature }"
-          @click="$store.getters.getGalleryFilter.nature = !$store.getters.getGalleryFilter.nature"
-        >
-          Nature
         </span>
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
@@ -560,7 +561,6 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
-
 .negated {
   text-decoration: line-through;
   font-weight: normal;
