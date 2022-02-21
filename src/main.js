@@ -9,6 +9,7 @@ import Notifications from '@kyvg/vue3-notification'
 
 import cardChain from './plugins/cardChain'
 import cardRules from './plugins/cardRules'
+import AppLayout from './layouts/Default'
 
 const app = createApp(App)
 app.config.globalProperties.$axios = axios
@@ -16,6 +17,7 @@ app.config.globalProperties._depsLoaded = true
 app.config.globalProperties.R = R
 app.use(store)
     .use(router)
+    .component('AppLayout', AppLayout)
     .use(vueLib)
     .use(Notifications)
     .use(cardChain)

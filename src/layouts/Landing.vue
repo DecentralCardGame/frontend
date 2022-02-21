@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="content">
     <PageLogoHeader v-if="!isMobileDevice()" />
     <PageMenu />
     <div v-if="$store.state.loading">
@@ -31,9 +31,14 @@ import PageFooter from '@/components/partials/PageFooter'
 export default {
   name: 'CrowdControlApp',
   components: { PageMenu, PageLogoHeader, PageFooter },
+  mounted () {
+    console.log("default loaded")
+  },
   methods: {
-  }
+  },
 }
 </script>
 
 <style lang="scss">
+
+</style>

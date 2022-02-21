@@ -275,6 +275,11 @@ export default {
 <style scoped lang="scss">
 @import "../scss/variables";
 
+.article-temp {
+  background-image: url('../assets/background.svg');
+  background-size: 100% auto;;
+}
+
 .grid {
   display: flex;
   flex-wrap : wrap;

@@ -1,17 +1,16 @@
 <template>
   <div
     v-if="initialized"    
-    id="app"
+    id="crapp"
     tabindex="-1"
     @auxclick="handleAnyInput"
     @click="handleAnyInput"
     @keyup.enter="handleAnyInput"
     @keyup.esc="handleAnyInput"
   >
-    <component :is="layout">
+    <AppLayout>
       <router-view />
-    </component>
-
+    </AppLayout>
 
     <notifications
       group="bottom-right-notification"
@@ -26,11 +25,14 @@ import './scss/main.scss'
 import '@starport/vue/lib/starport-vue.css'
 //import Sidebar from './components/Sidebar'
 
+import AppLayout from './layouts/Default.vue'
+
 const default_layout = "default"
 
 export default {
   name: 'CrowdControlApp',
   components: {
+    AppLayout
   },
   data() {
     return {
@@ -40,10 +42,23 @@ export default {
   computed: {
     hasWallet() {
       return this.$store.hasModule(['common', 'wallet'])
-    },
+    },/*
     layout() {
       console.log("layout:", (this.$route.meta.layout || default_layout) + '-layout')
       return (this.$route.meta.layout || default_layout) + '-layout'
+    }*/
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      async handler(route) {
+        try {
+          const component = await import(`@/layouts/${route.meta.layout}.vue`)
+          this.layout = component?.default || AppLayout
+        } catch (e) {
+          this.layout = AppLayout
+        }
+      }
     }
   },
   async created() {
@@ -67,6 +82,12 @@ export default {
 
 <style lang="scss">
 @import './scss/variables';
+
+.crapp {
+  background: url('./assets/background.svg') !important;
+  background-size: 100% auto;
+}
+
 .notification--info {
   border-left: $border-thickness-bold solid $black !important;
   background: $notification-info !important;
