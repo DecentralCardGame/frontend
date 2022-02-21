@@ -1,12 +1,15 @@
-<template id="theCardSvg">  
-  <svg
+<template id="theCardSvg">
+  <!-- original viewbox was 198.5 274.28 -->
+  <svg 
+    v-if="Classes > 0"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    x="0"
-    y="0"
-    viewBox="0 0 198.5 274.28"
-    style="enable-background:new 0 0 198.5 274.28;"
+    x="19"
+    y="20"
+    viewBox="19 20 154 230"  
+    width="100%"
+    height="100%"
     xml:space="preserve"
   >
     <g id="_x31__Outer_Backgrounds">
@@ -146,74 +149,6 @@
           </g>
         </g>
       </g>
-      <g v-if="OBG.Culture"
-        id="Culture_OBG"
-      >
-        <g>
-          <defs>
-            <path
-              id="SVGID_00000119812463234635084210000013573717043890764417_"
-              d="M165.23,27.78H47.32c-2.57-4.04-7.08-6.73-12.23-6.73
-                c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78c2.21,2.21,3.46,3.46,5.67,5.67h132.16
-                c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
-            />
-          </defs>
-          <clipPath id="SVGID_00000036214947869371402040000015316434939132618389_">
-            <use
-              xlink:href="#SVGID_00000119812463234635084210000013573717043890764417_"
-              style="overflow:visible;"
-            />
-          </clipPath>
-          <g style="clip-path:url(#SVGID_00000036214947869371402040000015316434939132618389_);">
-            <g>
-              <defs>
-                <rect
-                  id="SVGID_00000100355658060259172620000016036009990970849183_"
-                  x="15.6"
-                  y="16.05"
-                  width="160.31"
-                  height="239.23"
-                />
-              </defs>
-              <clipPath id="SVGID_00000111191599016012108220000018263252373964313004_">
-                <use
-                  xlink:href="#SVGID_00000100355658060259172620000016036009990970849183_"
-                  style="overflow:visible;"
-                />
-              </clipPath>
-              <g style="clip-path:url(#SVGID_00000111191599016012108220000018263252373964313004_);">
-                <defs>
-                  <rect
-                    id="SVGID_00000068638698377506979550000011737210559308050348_"
-                    x="15.6"
-                    y="16.05"
-                    width="160.31"
-                    height="239.23"
-                  />
-                </defs>
-                <clipPath id="SVGID_00000054977170368597439490000006287272654128581254_">
-                  <use
-                    xlink:href="#SVGID_00000068638698377506979550000011737210559308050348_"
-                    style="overflow:visible;"
-                  />
-                </clipPath>
-                <g
-                  transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="clip-path:url(#SVGID_00000054977170368597439490000006287272654128581254_);"
-                >
-                  <image
-                    style="overflow:visible;"
-                    width="335"
-                    height="500"
-                    href="../../assets/cardframe/OBGCulture.jpg"
-                    transform="matrix(0.48 0 0 0.48 15.4034 15.6756)"
-                  />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
       <g v-if="OBG.Myth"
         id="Myth_OBG"
       >
@@ -274,6 +209,74 @@
                     width="335"
                     height="500"
                     href="../../assets/cardframe/OBGMyth.jpg"
+                    transform="matrix(0.48 0 0 0.48 15.4034 15.6756)"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g v-if="OBG.Culture"
+        id="Culture_OBG"
+      >
+        <g>
+          <defs>
+            <path
+              id="SVGID_00000119812463234635084210000013573717043890764417_"
+              d="M165.23,27.78H47.32c-2.57-4.04-7.08-6.73-12.23-6.73
+                c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78c2.21,2.21,3.46,3.46,5.67,5.67h132.16
+                c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
+            />
+          </defs>
+          <clipPath id="SVGID_00000036214947869371402040000015316434939132618389_">
+            <use
+              xlink:href="#SVGID_00000119812463234635084210000013573717043890764417_"
+              style="overflow:visible;"
+            />
+          </clipPath>
+          <g style="clip-path:url(#SVGID_00000036214947869371402040000015316434939132618389_);">
+            <g>
+              <defs>
+                <rect
+                  id="SVGID_00000100355658060259172620000016036009990970849183_"
+                  x="15.6"
+                  y="16.05"
+                  width="160.31"
+                  height="239.23"
+                />
+              </defs>
+              <clipPath id="SVGID_00000111191599016012108220000018263252373964313004_">
+                <use
+                  xlink:href="#SVGID_00000100355658060259172620000016036009990970849183_"
+                  style="overflow:visible;"
+                />
+              </clipPath>
+              <g style="clip-path:url(#SVGID_00000111191599016012108220000018263252373964313004_);">
+                <defs>
+                  <rect
+                    id="SVGID_00000068638698377506979550000011737210559308050348_"
+                    x="15.6"
+                    y="16.05"
+                    width="160.31"
+                    height="239.23"
+                  />
+                </defs>
+                <clipPath id="SVGID_00000054977170368597439490000006287272654128581254_">
+                  <use
+                    xlink:href="#SVGID_00000068638698377506979550000011737210559308050348_"
+                    style="overflow:visible;"
+                  />
+                </clipPath>
+                <g
+                  transform="matrix(1 0 0 1 0 9.536743e-07)"
+                  style="clip-path:url(#SVGID_00000054977170368597439490000006287272654128581254_);"
+                >
+                  <image
+                    style="overflow:visible;"
+                    width="335"
+                    height="500"
+                    href="../../assets/cardframe/OBGCulture.jpg"
                     transform="matrix(0.48 0 0 0.48 15.4034 15.6756)"
                   />
                 </g>
@@ -4226,63 +4229,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="false"
-        id="Shadow_00000165947357672395874560000007741549286065989015_"
-      >
-        <image
-          style="overflow:visible;opacity:0.75;"
-          width="98"
-          height="97"
-          href="../../assets/cardframe/Circle4.jpg"
-          transform="matrix(0.24 0 0 0.24 23.433 23.9452)"
-        />
-        <g>
-          <linearGradient
-            id="SVGID_00000166674715083791166860000013052515722465014406_"
-            gradientUnits="userSpaceOnUse"
-            x1="29.8536"
-            y1="26.2511"
-            x2="40.5679"
-            y2="44.809"
-          >
-            <stop
-              offset="0"
-              style="stop-color:#BBC7E1"
-            />
-            <stop
-              offset="0.0174"
-              style="stop-color:#B7C4DD"
-            />
-            <stop
-              offset="0.1553"
-              style="stop-color:#9DAFC5"
-            />
-            <stop
-              offset="0.3066"
-              style="stop-color:#889EB1"
-            />
-            <stop
-              offset="0.4761"
-              style="stop-color:#7993A3"
-            />
-            <stop
-              offset="0.6785"
-              style="stop-color:#718C9B"
-            />
-            <stop
-              offset="1"
-              style="stop-color:#6E8A99"
-            />
-          </linearGradient>
-          <circle
-            style="fill:none;stroke:url(#SVGID_00000166674715083791166860000013052515722465014406_);stroke-width:1.5;stroke-miterlimit:10;"
-            cx="35.21"
-            cy="35.53"
-            r="9.96"
-          />
-        </g>
-      </g>
+
       <image
         style="overflow:visible;opacity:0.75;"
         width="88"
@@ -4291,8 +4238,7 @@
         transform="matrix(0.24 0 0 0.24 24.633 24.9052)"
       />
 
-      <g
-        v-if="ManaBall.Tech"
+      <g v-if="ManaBall.Tech"
         id="Mana_Tech"
       >
         <g>   
@@ -4390,8 +4336,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Nature"
+      <g v-if="ManaBall.Nature"
         id="Mana_Nature"
       >
         <g>
@@ -4500,8 +4445,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Myth"
+      <g v-if="ManaBall.Myth"
         id="Mana_Myth"
       >
         <linearGradient
@@ -4599,8 +4543,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Culture"
+      <g v-if="ManaBall.Culture"
         id="Mana_Culture"
       >
         <linearGradient
@@ -4698,8 +4641,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.MultiClass"
+      <g v-if="ManaBall.MultiClass"
         id="Mana_Multi_Class_00000138573625389748620110000017344787551045544120_"
       >
         <g id="Circle_Left_00000128463272406545689040000011345007199039120277_">
@@ -4803,8 +4745,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="ManaBall.HQ"
+      <g v-if="ManaBall.HQ"
         id="Mana_HQ"
       >
         <g id="Circle_Left_00000038387448793549582000000006435880124292487831_">
@@ -5046,21 +4987,7 @@
       id="Action_Shadow_FullArt"
     >
       <g>
-        <defs>
-          <path
-            id="Tech_OBG_00000041998443503807048790000006620936977578331069_"
-            d="M165.23,27.78H47.32
-              c-2.57-4.04-7.08-6.73-12.23-6.73c-8.01,0-14.5,6.49-14.5,14.5c0,5.18,2.72,9.71,6.81,12.27v196.78
-              c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
-          />
-        </defs>
-        <clipPath id="Tech_OBG_00000118365965717951322730000011277831029025662854_">
-          <use
-            xlink:href="#Tech_OBG_00000041998443503807048790000006620936977578331069_"
-            style="overflow:visible;"
-          />
-        </clipPath>
-        <g style="clip-path:url(#Tech_OBG_00000118365965717951322730000011277831029025662854_);">
+        <g>
           <image
             style="overflow:visible;opacity:0.75;"
             width="640"
@@ -5444,23 +5371,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#39697B;stop-opacity:0"
           />
           <stop
             offset="0.0851"
-            style="stop-color:#F6F8F9;stop-opacity:0.0851"
+            style="stop-color:#39697B;stop-opacity:0.0851"
           />
           <stop
             offset="0.2241"
-            style="stop-color:#DEE6E9;stop-opacity:0.2241"
+            style="stop-color:#39697B;stop-opacity:0.2241"
           />
           <stop
             offset="0.3996"
-            style="stop-color:#B6C8CE;stop-opacity:0.3996"
+            style="stop-color:#39697B;stop-opacity:0.3996"
           />
           <stop
             offset="0.6048"
-            style="stop-color:#7F9EA9;stop-opacity:0.6048"
+            style="stop-color:#39697B;stop-opacity:0.6048"
           />
           <stop
             offset="0.8322"
@@ -5489,27 +5416,27 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#47015A;stop-opacity:0"
           />
           <stop
             offset="0.0851"
-            style="stop-color:#F8F6F9;stop-opacity:0.0851"
+            style="stop-color:#47015A;stop-opacity:0.0851"
           />
           <stop
             offset="0.2241"
-            style="stop-color:#E7DEE9;stop-opacity:0.2241"
+            style="stop-color:#47015A;stop-opacity:0.2241"
           />
           <stop
             offset="0.3996"
-            style="stop-color:#CAB6CF;stop-opacity:0.3996"
+            style="stop-color:#47015A;stop-opacity:0.3996"
           />
           <stop
             offset="0.6048"
-            style="stop-color:#A27FAC;stop-opacity:0.6048"
+            style="stop-color:#47015A;stop-opacity:0.6048"
           />
           <stop
             offset="0.8322"
-            style="stop-color:#70397E;stop-opacity:0.8322"
+            style="stop-color:#47015A;stop-opacity:0.8322"
           />
           <stop
             offset="1"
@@ -5534,23 +5461,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#953A39;stop-opacity:0"
           />
           <stop
             offset="0.0849"
-            style="stop-color:#FAF6F6;stop-opacity:0.0849"
+            style="stop-color:#953A39;stop-opacity:0.0849"
           />
           <stop
             offset="0.2235"
-            style="stop-color:#EDDEDE;stop-opacity:0.2235"
+            style="stop-color:#953A39;stop-opacity:0.2235"
           />
           <stop
             offset="0.3985"
-            style="stop-color:#D8B6B6;stop-opacity:0.3985"
+            style="stop-color:#953A39;stop-opacity:0.3985"
           />
           <stop
             offset="0.6031"
-            style="stop-color:#BA7F7F;stop-opacity:0.6031"
+            style="stop-color:#953A39;stop-opacity:0.6031"
           />
           <stop
             offset="0.8298"
@@ -5579,23 +5506,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#596F39;stop-opacity:0"
           />
           <stop
             offset="0.0849"
-            style="stop-color:#F7F8F6;stop-opacity:0.0849"
+            style="stop-color:#596F39;stop-opacity:0.0849"
           />
           <stop
             offset="0.2235"
-            style="stop-color:#E3E7DE;stop-opacity:0.2235"
+            style="stop-color:#596F39;stop-opacity:0.2235"
           />
           <stop
             offset="0.3985"
-            style="stop-color:#C2CAB6;stop-opacity:0.3985"
+            style="stop-color:#596F39;stop-opacity:0.3985"
           />
           <stop
             offset="0.6031"
-            style="stop-color:#93A27F;stop-opacity:0.6031"
+            style="stop-color:#596F39;stop-opacity:0.6031"
           />
           <stop
             offset="0.8298"
@@ -5624,23 +5551,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#7B625C;stop-opacity:0"
           />
           <stop
             offset="0.1179"
-            style="stop-color:#F8F6F6;stop-opacity:0.1179"
+            style="stop-color:#7B625C;stop-opacity:0.1179"
           />
           <stop
             offset="0.3103"
-            style="stop-color:#E4DFDE;stop-opacity:0.3103"
+            style="stop-color:#7B625C;stop-opacity:0.3103"
           />
           <stop
             offset="0.5532"
-            style="stop-color:#C4B9B6;stop-opacity:0.5532"
+            style="stop-color:#7B625C;stop-opacity:0.5532"
           />
           <stop
             offset="0.8344"
-            style="stop-color:#988480;stop-opacity:0.8344"
+            style="stop-color:#7B625C;stop-opacity:0.8344"
           />
           <stop
             offset="1"
@@ -5665,23 +5592,23 @@
         >
           <stop
             offset="0"
-            style="stop-color:#FFFFFF;stop-opacity:0"
+            style="stop-color:#DAB479;stop-opacity:0"
           />
           <stop
             offset="0.1363"
-            style="stop-color:#FDFAF6;stop-opacity:0.1363"
+            style="stop-color:#DAB479;stop-opacity:0.1363"
           />
           <stop
             offset="0.3584"
-            style="stop-color:#F6ECDE;stop-opacity:0.3584"
+            style="stop-color:#DAB479;stop-opacity:0.3584"
           />
           <stop
             offset="0.639"
-            style="stop-color:#EBD6B6;stop-opacity:0.639"
+            style="stop-color:#DAB479;stop-opacity:0.639"
           />
           <stop
             offset="0.964"
-            style="stop-color:#DCB880;stop-opacity:0.964"
+            style="stop-color:#DAB479;stop-opacity:0.964"
           />
           <stop
             offset="1"
@@ -7731,18 +7658,17 @@
         <text>
           <tspan
             id="tspan2234-91-7"
-            :x="model.Health < 10 ? 149 : 144"
-            y="241"
+            :x="model.Health < 10 ? 150 : 146"
+            y="239"
             fill="#172736"
             fill-opacity="1"
             stroke-width=".5"
-            font-family="Roboto"
-            font-size="16"
+            font-family="Museo700-Regular"
+            font-size="13"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="500"
-            style="-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+            font-weight="700"
             text-anchor="start"
             writing-mode="lr-tb"
           >{{ model.Health }}</tspan>
@@ -7850,17 +7776,16 @@
         <text>
           <tspan
             id="tspan2234-91-7"
-            :x="model.Attack < 10 ? 41 : 36"
-            y="241"
+            :x="model.Attack < 10 ? 41 : 37"
+            y="239"
             fill="#172736"
             fill-opacity="1"
-            font-family="Roboto"
-            font-size="16"
+            font-family="Museo700-Regular"
+            font-size="13"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="500"
-            style="-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start"
+            font-weight="700"
             text-anchor="start"
             writing-mode="lr-tb"
           >{{ model.Attack }}</tspan>
@@ -22713,13 +22638,21 @@
 
     <g>
       <defs>
-        <filter id="dropshadow" height="130%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="1"/> 
-          <feOffset dx="1" dy="1" result="offsetblur"/> 
-          <feMerge> 
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" /> 
-          </feMerge>
+        <filter id="dropshadow" height="160%">
+          <feDropShadow 
+            dx="2"
+            dy="2"
+            stdDeviation="1.5"
+            flood-opacity="0.60"
+          />
+        </filter>
+        <filter id="dropshadow_straight" height="160%">
+          <feDropShadow 
+            dx="1"
+            dy="1"
+            stdDeviation="1"
+            flood-opacity="1.0"
+          />
         </filter>
       </defs>
 
@@ -22728,16 +22661,16 @@
         <tspan
           id="tspan2408"
           x="99"
-          y="181"
-          font-family="Museo700-Regular"
+          y="179"
+          font-family="Museo900-Regular"
           font-size="9"
           :stroke="getTitleStrokeColor()"
-          stroke-width=".4"
+          stroke-width=".5"
           fill="#FEF4EA"
           font-stretch="normal"
           font-style="normal"
           font-variant="normal"
-          font-weight="700"
+          font-weight="900"
           
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22751,10 +22684,10 @@
           x="35"
           y="40"
           font-family="Museo700-Regular"
-          font-size="13"
-          fill="#172736"
-          stroke="#050505"
-          stroke-width="0.2"
+          font-size="12"
+          fill="#FFF5E1"
+          stroke="#151515"
+          stroke-width="0.5"
           font-style="normal"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22764,14 +22697,14 @@
       <text>
         <tspan
           id="tspan2525"
-          x="85"
-          y="241"
+          x="99"
+          y="240"
           fill="#FFDAA6"
           fill-opacity="1"
           stroke="#050505"
           stroke-width=".0"
           font-family="Roboto"
-          font-size="5.5"
+          font-size="4.5"
           font-style="medium"
           text-anchor="middle"
           writing-mode="lr-tb"
@@ -22793,17 +22726,17 @@
             :y="getAbilityYPos(ability_index, line_index)"
             fill-opacity="1"
             :stroke="getTitleStrokeColor()"
-            stroke-width=".2"
+            stroke-width=".0"
             font-family="Roboto"
             :font-size="fontSize(getAbilityText())"
             fill="#FEF4EA"
             font-stretch="normal"
             font-style="normal"
             font-variant="normal"
-            font-weight="500"
+            font-weight="400"
             text-anchor="middle"
             writing-mode="lr"
-            filter="url(#dropshadow)"
+            filter="url(#dropshadow_straight)"
           > {{ text }} </tspan>
         </text>
       </g>
@@ -22929,7 +22862,9 @@ export default {
   },
   methods: {
     update() {
-      console.log("model", this.model.CardName, this.model)
+      //console.log("model", this.model.CardName, this.model)
+      this.FullArt = this.model.FullArt
+      //console.log("this.FullArt updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
@@ -22941,7 +22876,6 @@ export default {
         return x
       }
 
-      this.FullArt = this.model.FullArt
       let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type
 
       let cardClass = {
@@ -22996,10 +22930,10 @@ export default {
         }
       }
 
-      console.log("frameType", frameType)
-      console.log("cardClass", cardClass)
-      console.log("cardType", cardType)
-      console.log("colorType", colorType)
+      //console.log("frameType", frameType)
+      //console.log("cardClass", cardClass)
+      //console.log("cardType", cardType)
+      //console.log("colorType", colorType)
 
       // here begins the part where the components are activated
       this.Class = cardClass
@@ -23008,8 +22942,8 @@ export default {
       this.SecondaryColor = R.last(R.invert(cardClass).true)
       this.PrimaryColor = R.head(R.invert(cardClass).true)
 
-      console.log("primary color:", this.PrimaryColor)
-      console.log("secondary color:", this.SecondaryColor)
+      //console.log("primary color:", this.PrimaryColor)
+      //console.log("secondary color:", this.SecondaryColor)
 
       this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
       this.GoldSquare = true
@@ -23034,6 +22968,7 @@ export default {
       this.attackFrame = cardType.Entity
       this.healthFrame = NonActionFilter(frameType)
 
+      /*
       console.log("Classes:", this.Classes)
       console.log("healthframe", this.healthFrame)
       console.log("attackframe", this.attackFrame)
@@ -23046,6 +22981,8 @@ export default {
       console.log("IBG", this.IBG)
       console.log("FramedIllustrationMask", this.FramedIllustrationMask)
       console.log("FullArtIllustrationMask", this.FullArtIllustrationMask)
+      console.log("FullArtGradients", this.FullArtGradients)
+      */
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return 
@@ -23127,15 +23064,15 @@ export default {
       }
     },
     getAbilityYPos(abilityIndex, lineIndex) {
-      let startpos = 195
-      let lineSpacing = 8
-      let abilitySpacing = 4
+      const startpos = 190
+      const lineSpacing = 8
+      const abilitySpacing = 2
 
-      let keywords = this.getKeywords()
+      let abilityText = this.getAbilityText()
 
       let summedLength = 0
       for (let i = 0; i < abilityIndex; i++) {
-        summedLength += keywords[i].length > 1 ? keywords[i].length - 1 : keywords[i].length
+        summedLength += this.textToSvg(abilityText[i]).length
       }
 
       return startpos + lineSpacing*summedLength + abilitySpacing*abilityIndex + lineSpacing*lineIndex
@@ -23143,17 +23080,6 @@ export default {
     getAbilityText () {
       let additionalCostText = []
 
-      if (this.model.AdditionalCost) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostText.push("Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.")
-        }
-        else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostText.push("Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.")
-        }
-        else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostText.push("Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.")
-        }
-      }
       return R.concat(additionalCostText, this.model.RulesTexts)
     },
     textToSvg (text) {
@@ -23161,7 +23087,7 @@ export default {
 
       let maxLength = 57
       if (text.length < 100)
-        maxLength = 35
+        maxLength = 32
       else if (text.length < 200)
         maxLength = 39
 
@@ -23195,15 +23121,12 @@ export default {
       }
 
       if (this.cardType && this.cardType.HQ) {
-        console.log("HQ color")
         return colors.HQ
       }
       else if (this.Classes > 2) {
-        console.log("MultiClass color")
         return colors.MultiClass
       }
       else {
-        console.log(colors[this.SecondaryColor] + " yes color")
         return colors[this.SecondaryColor]
       }
     },

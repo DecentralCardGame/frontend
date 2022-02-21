@@ -44,10 +44,10 @@
       <b>Advanced Card Information:</b> <br>
       FlavourText: {{ FlavourText }} <br>
       Notes: {{ Notes }} <br>
-      InappropriateVotes: {{ InappropriateVotes }} <br>
-      UnderpoweredVotes: {{ UnderpoweredVotes }} <br>
-      OverpoweredVotes: {{ OverpoweredVotes }} <br>
-      FairEnoughVotes: {{ FairEnoughVotes }} <br>
+      Inappropriate Votes: {{ InappropriateVotes }} <br>
+      Underpowered Votes: {{ UnderpoweredVotes }} <br>
+      Overpowered Votes: {{ OverpoweredVotes }} <br>
+      Fair Enough Votes: {{ FairEnoughVotes }} <br>
       Nerflevel: {{ Nerflevel }} <br>
       Owner: {{ Owner }} <br>
       Status: {{ Status }} <br>
@@ -94,6 +94,7 @@ export default {
             this.cards = []
             this.cards.push(parsedCard)
             this.FlavourText = parsedCard.FlavourText
+            this.Notes = parsedCard.Notes
             this.InappropriateVotes = parsedCard.InappropriateVotes
             this.UnderpoweredVotes = parsedCard.UnderpoweredVotes
             this.OverpoweredVotes = parsedCard.OverpoweredVotes
@@ -116,8 +117,7 @@ export default {
             // yesyoulike.json for harry
             let likelist = []
             R.mapObjIndexed((num, key) => { likelist.push({"keyword": key, "description": num.description}) }, R.filter(x => x.description, this.$rulesDefinitions))
-            
-            console.log("yes:", JSON.stringify(likelist))
+            //console.log("yes:", JSON.stringify(likelist))
           }
         })
     }

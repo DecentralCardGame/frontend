@@ -367,6 +367,8 @@ export const exoskeletonData = R.merge(emptyCard, {
 export const communityCardData = R.merge(emptyCard, {
   CardName: 'Crowd Created Content',
   FlavourText: 'Big corporations hate this trick! \n You will be surprised when you see what happens in a community creating their own content!',
+  RulesTexts: ['Big corporations hate this trick! \n You will be surprised when you see what happens in a community creating their own content!'],
+  Keywords: [],
   abilities: [],
   Notes: '',
   type: 'HQ',
@@ -385,8 +387,10 @@ export const communityCardData = R.merge(emptyCard, {
 })
 export const botCommandCenterData = R.merge(emptyCard, {
   CardName: 'Bot Command Center',
-  FlavourText: 'Pay 10 Energy: Get 15 Wisdom \n Pay 4 Energy: Return target Entity to Owner\'s Hand.',
+  FlavourText: '',
   abilities: [],
+  RulesTexts: ['OnSpawn: Anthem BOT. \\n Pay 2: Anthem BOT.'],
+  Keywords: [],
   Notes: '',
   type: 'Place',
   Tags: ['Technocrat'],
@@ -406,6 +410,8 @@ export const drDollyData = R.merge(emptyCard, {
   CardName: 'Dr. Dolly',
   FlavourText: 'Whenever another entity dies, gain 1 Mana.',
   abilities: [],
+  RulesTexts: ['Avenge: Produce 1'],
+  Keywords: [],
   Notes: '',
   type: 'Entity',
   Tags: ['HUMAN'],
@@ -424,17 +430,18 @@ export const drDollyData = R.merge(emptyCard, {
 export const belloData = R.merge(emptyCard, {
   CardName: 'Bello, man\'s best friend',
   FlavourText: 'Periodic - If you control a Human, gain 5 Wisdom. \n If it´s Dr. Dolly instead gain 10 Wisdom.',
+  RulesTexts: ['Periodic: Count Human. Insight X'],
+  Keywords: [],
   abilities: [],
   Notes: '',
   type: 'Entity',
   Tags: ['Animal'],
   tagDummy: '',
   Class: {
-    Nature: false,
+    Nature: true,
     Culture: true,
     Technology: false,
     Mysticism: false,
-    
   },
   CastingCost: 3,
   Health: 2,
@@ -444,6 +451,7 @@ export const timeDeviceData = R.merge(emptyCard, {
   CardName: 'Time Manipulation Device',
   FlavourText: 'Periodic - Insight 3 \\n Pay 4: Bounce',
   abilities: [],
+  RulesTexts: ['Periodic: Insight 3 \\n Pay 4: Bounce TARGET'],
   Notes: '',
   type: 'Place',
   Tags: ['TECHNOCRAT'],

@@ -7,24 +7,6 @@
       In the gallery, you can view cards that were created by the community.
     </p>
     <br>
-    <div class="button-container button-container--top">
-      <button
-        v-show="browsingBackward"
-        @click="prevPage"
-      >
-        back
-      </button>
-      <button @click="$store.commit('toggleGalleryFilter')">
-        {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
-        filters
-      </button>
-      <button
-        v-show="browsingForward"
-        @click="nextPage"
-      >
-        next
-      </button>
-    </div>
     <div
       v-show="$store.getters.getGalleryFilter.visible"
       class="gallery__filter-box"
@@ -108,7 +90,6 @@
             <br>
           </label>
         </div>
-
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
           class="clickable-option"
@@ -117,6 +98,7 @@
           <br><br>
           {{ $store.getters.getGalleryFilter.classORLogic? "Any: " : "All: " }}
         </span>
+        <br>
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
           :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.mysticism }"
@@ -124,19 +106,20 @@
         >
           Mysticism
         </span>
+                <span
+          v-if="$store.getters.getGalleryFilter.classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.nature }"
+          @click="$store.getters.getGalleryFilter.nature = !$store.getters.getGalleryFilter.nature"
+        >
+          Nature
+        </span>
+        <br>
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
           :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.technology }"
           @click="$store.getters.getGalleryFilter.technology = !$store.getters.getGalleryFilter.technology"
         >
           Technology
-        </span>
-        <span
-          v-if="$store.getters.getGalleryFilter.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !$store.getters.getGalleryFilter.nature }"
-          @click="$store.getters.getGalleryFilter.nature = !$store.getters.getGalleryFilter.nature"
-        >
-          Nature
         </span>
         <span
           v-if="$store.getters.getGalleryFilter.classesVisible"
@@ -163,6 +146,30 @@
           Apply
         </button>
       </div>
+    </div>
+    <div class="button-container button-container--top">
+      <button
+        v-show="browsingBackward"
+        @click="prevPage"
+      >
+        back
+      </button>
+      <button @click="$store.commit('toggleGalleryFilter')">
+        {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
+        filters
+      </button>
+      <button @click="loadSpecialCardList('Finished')">
+        Alpha Set
+      </button>
+      <button @click="loadSpecialCardList('Artwork')">
+        Artwork Needed
+      </button>
+      <button
+        v-show="browsingForward"
+        @click="nextPage"
+      >
+        next
+      </button>
     </div>
     <div class="gallery__view">
       <div
@@ -281,7 +288,19 @@ export default {
     else next();
   },
   mounted() {
-    this.loadCardList();
+    let params = this.$route.params.params
+    console.log('params:', params)
+    
+    if (params == "alphaset") {
+      this.loadSpecialCardList("Finished")
+    }
+    else if (params == "artworkneeded") {
+      this.loadSpecialCardList("Artwork")
+    }
+    else {
+      this.loadCardList();
+    }
+
     this.loadVotableCards();
   },
   methods: {
@@ -303,7 +322,7 @@ export default {
         (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
         (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
         (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
-        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "");
+        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
       return this.$cardChain
         .getCardList(
           this.$store.getters.getGalleryFilter.owner,
@@ -373,6 +392,11 @@ export default {
           this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
         this.cards = res
+        console.log("all card names:", R.pluck("CardName", res))
+      })
+      .catch(res => {
+        console.log("NOT ALL CARDS WERE PROPERLY LOADED")
+        console.log("all card names:", R.pluck("CardName", res))
       })
       console.log("all cards:", this.cards)
     },
@@ -415,6 +439,46 @@ export default {
     },
     closeGalleryModal() {
       this.isGalleryModalVisible = false;
+    },
+    loadSpecialCardList(notes) {
+      let classes =
+        (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
+        (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
+        (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
+        (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
+        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
+        
+      let requestedCards = [
+        // owners are hardcoded here because these are the alpha creators
+        this.$cardChain.getCardList(
+          this.$store.getters.getGalleryFilter.owner,
+          this.$store.getters.getGalleryFilter.status,
+          this.$store.getters.getGalleryFilter.cardType,
+          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
+          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
+          this.$store.getters.getGalleryFilter.nameContains,
+          this.$store.getters.getGalleryFilter.keywordsContains,
+          notes
+        )
+      ]
+
+      Promise.all(requestedCards)
+      .then((res) => {
+        let cardList = R.reduce(R.concat, [], R.pluck("cardList", res))
+
+        console.log("cardlistyes:", cardList)
+        if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
+          this.cardList = R.reverse(cardList)
+        } 
+        else {
+          this.cardList = cardList
+        }
+        this.pageId = 0
+        this.cards = []
+      })
+      .then(() => {
+        this.fillPage()
+      })
     },
     edit() {
       console.log("editing:", this.cards[this.clickedIndex])
@@ -461,7 +525,7 @@ export default {
   margin: 1rem 0;
   text-shadow: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: auto;
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
@@ -500,7 +564,6 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
-
 .negated {
   text-decoration: line-through;
   font-weight: normal;
@@ -514,10 +577,8 @@ export default {
 .cardContainer--element {
   position: relative;
   flex-grow: 1;
-  max-width: 300px;
+  max-width: 350px;
 }
-
-
 
 .button-container--top {
   margin-bottom: 2rem;

@@ -15,25 +15,25 @@
           :class="classStepPassed(0)"
           @click="activeStep = 0"
         >
-          Name, Type and Tags
+          Name, Artwork and Flavor
         </div>
         <div
           :class="classStepPassed(1)"
           @click="activeStep = 1"
         >
-          Costs and Properties
+          Type, Tags and Class
         </div>
         <div
           :class="classStepPassed(2)"
           @click="activeStep = 2"
         >
-          Rulings and Abilities
+          Costs and Properties
         </div>
         <div
           :class="classStepPassed(3)"
           @click="activeStep = 3"
         >
-          Style and Flavor
+          Abilities and Effects
         </div>
         <div
           :class="classStepPassed(4)"
@@ -43,12 +43,14 @@
         </div>
       </div>
     </div>
+
     <div class="creator">
       <div class="creator-input">
         <div
           v-if="activeStep == 0"
           class="creator-input-container"
         >
+          <!-- Name -->
           <span class="creator-text">Hey, my <b>name</b> is</span>
           <input
             v-model="model.CardName"
@@ -56,6 +58,122 @@
             @change="saveDraft"
           >
 
+          <!-- Artwork -->
+          <span class="creator-text">
+            Everybody needs a <b>face</b>, so do I. Please upload an image. By uploading you confirm you have the rights to upload this image.
+          </span>
+
+          <input
+            id="file"
+            class="inputfile"
+            name="file"
+            type="file"
+            @change="inputFile"
+          >
+          <label
+            class="button--file"
+            for="file"
+          >Choose a file without copyright violation</label>
+        </div>
+        <div
+          v-if="activeStep == 0" 
+        >
+          <cropper
+            class="cropper"
+            :src="cropImage"
+            :auto-zoom="true"
+            :stencil-size="{
+              width: 838,
+              height: 1300
+            }"
+            :default-position="{
+              left: 0,
+              top: 0
+            }"
+            :default-size="{
+              width: 838,
+              height: 1300
+            }"
+            image-restriction="stencil"
+            @change="changeCrop"
+          />
+        </div>
+        <div
+          v-if="activeStep == 0" 
+        >
+          <!-- FullArt -->
+          <span class="creator-text">
+            My <b>beauty</b> must not be covered by borders
+          </span>
+          <input
+            v-model="model.FullArt"
+            type="checkbox"
+            @change="saveDraft"
+          >
+        </div>
+        <div
+          v-if="activeStep == 0"
+          class="creator-input-container"
+        >
+          <!-- Flavor -->
+          <span class="creator-text">
+            <br>My <b>flavor</b> is best expressed by the following sentences:
+          </span>
+          <input
+            v-model="model.FlavourText"
+            value="Card Name"
+            @change="saveDraft"
+          >
+        </div>
+
+        <div
+          v-if="activeStep == 1"
+          class="creator-input-container"
+        >
+          <!-- Classes -->
+          <div class="creator-text">
+            My <b>Classes</b> are: <br>
+          </div>
+          <div>
+            <label class="input--checkbox-label__left">  
+              <input
+                v-model="model.Class.Technology"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Technology <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                v-model="model.Class.Nature"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >  
+              Nature <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                v-model="model.Class.Culture"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Culture <br>
+            </label> 
+            <label class="input--checkbox-label__left"> 
+              <input
+                v-model="model.Class.Mysticism"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Mysticism <br>
+            </label> 
+          </div>
+
+          <!-- Type -->
           <span 
             v-if="$cardRules"
             class="creator-text"
@@ -78,6 +196,7 @@
             </option>
           </select>
 
+          <!-- Tag -->
           <span             
             v-if="$cardRules"
             class="creator-text"
@@ -126,52 +245,12 @@
             </select>
           </div>
         </div>
-        <div
-          v-if="activeStep == 1"
+
+        <div 
+          v-if="activeStep == 2"
           class="creator-input-container"
         >
-          <div>
-            My <b>Classes</b> are: <br>
-          </div>
-          <div>
-            <label class="input--checkbox-label__left">  
-              <input
-                v-model="model.Class.Technology"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >
-              Technology <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
-              <input
-                v-model="model.Class.Nature"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >  
-              Nature <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
-              <input
-                v-model="model.Class.Culture"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >
-              Culture <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
-              <input
-                v-model="model.Class.Mysticism"
-                class="input--checkbox__left"
-                type="checkbox"
-                @change="saveDraft"
-              >
-              Mysticism <br>
-            </label> 
-          </div>
-          <!-- cost area -->
+          <!-- Mana Cost -->
           <div>
             <span
               v-if="$cardRules.children[getRulesType()] &&
@@ -211,20 +290,21 @@
                 $cardRules.children[getRulesType()].children.AdditionalCost
             "
           >
+            Special cost:
             <input
               v-model="isAdditionalCostVisible"
               type="checkbox"
+              class="input--checkbox__right"
               @change="toggleAdditionalCost"
             >
-            Special cost:
           </div>    
 
           <div>
             <div
               v-if="isAdditionalCostVisible"
             >
-              To spawn me you need to 
-              <select
+              To spawn me you need to
+              <select 
                 @change="setAdditionalCost($event); saveDraft();"
               >
                 <option 
@@ -249,10 +329,9 @@
                 v-if="model.AdditionalCost.DiscardCost"
                 class="creator-text"
               >
-                
                 <select
                   v-model="model.AdditionalCost.DiscardCost.Amount"
-                  @change="saveDraft"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
                     v-for="n in R.range(
@@ -274,7 +353,7 @@
               >
                 <select
                   v-model="model.AdditionalCost.SacrificeCost.Amount"
-                  @change="saveDraft"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
                     v-for="n in R.range(
@@ -295,7 +374,7 @@
               >                
                 <select
                   v-model="model.AdditionalCost.VoidCost.Amount"
-                  @change="saveDraft"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
                     v-for="n in R.range(
@@ -348,8 +427,8 @@
             </span>
           </div>
 
+          <!-- Attack & Health -->
           <div>
-            <!-- Attack & Health -->
             <span v-if="model.type === 'Entity'">
               I have an <b>Attack</b> of <br>
               <br>
@@ -361,7 +440,6 @@
               <br>
             </span>
           </div>
-
           <div>
             <div>
               <div                 
@@ -407,8 +485,12 @@
             </div>
           </div>
         </div>
-        <!-- Abilities -->
-        <div v-if="activeStep == 2">
+
+
+        <div
+          v-if="activeStep == 3"
+        >
+          <!-- Abilities -->
           <p>
             In this step, you craft the heart of your card. Press the button to
             add <b>abilities / effects</b> to your card.
@@ -462,65 +544,7 @@
           </div>
         </div>
 
-
-        <div
-          v-if="activeStep == 3"
-          class="creator-input-container"
-        >
-          <span class="creator-text">
-            My <b>beauty</b> must not be covered by borders
-          </span>
-          <input
-            v-model="model.FullArt"
-            type="checkbox"
-            @change="saveDraft"
-          > 
-        </div>
-        <div
-          v-if="activeStep == 3"
-          class="creator-input-container"
-        >
-          <span class="creator-text">
-            My <b>flavor</b> is best expressed by the following sentences:
-          </span>
-          <input
-            v-model="model.FlavourText"
-            value="Card Name"
-            @change="saveDraft"
-          >
-
-          <span class="creator-text">
-            Everybody needs a <b>face</b>, so do I. Please upload an image
-          </span>
-
-          <input
-            id="file"
-            class="inputfile"
-            name="file"
-            type="file"
-            @change="inputFile"
-          >
-          <label
-            class="button--file"
-            for="file"
-          >Choose a file</label>
-        </div>
-        <div
-          v-if="activeStep == 3" 
-        >
-          <cropper
-            class="cropper"
-            :src="cropImage"
-            :auto-zoom="true"
-            :stencil-size="{
-              width: 838,
-              height: 1300
-            }"
-            image-restriction="stencil"
-            @change="changeCrop"
-          />
-        </div>
-
+          
         <div
           v-if="activeStep == 4"
           class="creator-input-container"
@@ -529,7 +553,7 @@
             Uh, uh, uh. I like my looks, i like my feels, let us get some
             victorieeessss. Seriously, thanks for creating and being part of the
             community. Be brave and publish me! P.S. I would like to give the
-            council the following notes for this card (optional):
+            council the following <b>notes</b> for this card (optional):
           </span>
           <input
             v-model="model.Notes"
@@ -566,7 +590,7 @@
             type="button"
             @click="showBuySchemeModal"
           >
-            Buy Card Scheme
+            Buy a Card Frame
           </button>
           <button
             v-if="activeStep == 4 && !model.id"
@@ -724,6 +748,7 @@ export default {
       this.model.AdditionalCost[event.target.value] = {
         Amount: 0
       }
+      this.updateAdditionalCostText()
     },
     printAdditionalCost(wholeString) {
       let countUppers = x => R.sum(R.map(
@@ -818,6 +843,41 @@ export default {
       }
       else if (keywordCount > 8) {
         this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.")
+      }
+
+      this.updateRulesTexts()
+    },
+    updateRulesTexts() {
+      this.model.Keywords = R.pluck("keywords", this.abilities);
+      this.model.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+
+      this.updateAdditionalCostText()
+    },
+    updateAdditionalCostText() {
+      let setOrPrepend = (text) => {
+        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0]))) 
+            this.model.RulesTexts[0] = text
+          else
+            this.model.RulesTexts = R.prepend(text, this.model.RulesTexts)
+      }
+
+      if (!R.isEmpty(this.model.AdditionalCost)) {
+        if (this.model.AdditionalCost.SacrificeCost) {
+          let text = "Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity."
+          setOrPrepend(text)
+        }
+        else if (this.model.AdditionalCost.DiscardCost) {
+          let text = "Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card."
+          setOrPrepend(text)
+        }
+        else if (this.model.AdditionalCost.VoidCost) {
+          let text = "Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card."
+          setOrPrepend(text)
+        }
+      }
+      else {
+        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0]))) 
+          this.model.RulesTexts = R.drop(1, this.model.RulesTexts)
       }
     },
     resetAbilities() {
@@ -967,8 +1027,7 @@ export default {
           newModel.Effects = R.map(
             R.pick(
               R.keys(
-                this.$cardRules.children.Action.children.Effects.children.Effect
-                  .children
+                this.$cardRules.children.Action.children.Effects.children.Effect.children
               )
             ),
             this.abilities
@@ -977,13 +1036,27 @@ export default {
       }
 
       // check if the old Keywords and RulesTexts should be restored
+      let checkZeroAmount = () => {
+        return (this.model.AdditionalCost.SacrificeCost && this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
+          (this.model.AdditionalCost.DiscardCost && this.model.AdditionalCost.DiscardCost.Amount == 0) ||
+          (this.model.AdditionalCost.VoidCost && this.model.AdditionalCost.VoidCost.Amount == 0)
+      }
       if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
         newModel.Keywords = this.$store.getters.getCardCreatorEditCard.Keywords
         newModel.RulesTexts = this.$store.getters.getCardCreatorEditCard.RulesTexts
+
+        if (this.isAdditionalCostVisible) {
+          if (checkZeroAmount()) {
+            this.model.AdditionalCost = {}
+          }
+          this.updateAdditionalCostText()
+        }
       }
-      else {  
-        newModel.Keywords = R.pluck("keywords", this.abilities);
-        newModel.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      else {
+        if (checkZeroAmount()) {
+          this.model.AdditionalCost = {}
+        }
+        this.updateRulesTexts()
       }
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
@@ -1000,6 +1073,7 @@ export default {
           .saveContentToCardWithIdTx(newCard, () => {})
           .then(this.updateCredits)
           .then(this.resetEditCard)
+          .then(() => this.$router.push("/gallery"))
           .catch((err) => {
             console.error(err);
           });
@@ -1234,6 +1308,11 @@ export default {
   }
   .input--checkbox-label__left {
     margin-left: 25px;
+  }
+  .input--checkbox__right {
+    position: absolute;
+    display: inline-block;
+    margin-top: 1px;
   }
 
 .tag-select {

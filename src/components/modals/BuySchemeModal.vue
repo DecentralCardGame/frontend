@@ -12,7 +12,7 @@
           class="modal__header"
         >
           <slot name="header">
-            Card Scheme Auction
+            Card Frame Auction
             <button
               aria-label="Close modal"
               class="btn--close"

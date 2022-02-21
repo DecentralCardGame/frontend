@@ -16,6 +16,7 @@ const VotingPage = () => import('@/pages/VotingPage')
 const AccountPage = () => import('@/pages/AccountPage')
 const CardMinter = () => import('@/pages/CardMinterPage')
 const CardView = () => import('@/pages/CardViewPage')
+const SteakDrop = () => import('@/pages/SteakDropPage')
 
 Vue.use(Router)
 
@@ -34,7 +35,18 @@ export default new Router({
       component: RoadmapPage
     },
     {
+      path: '/steakdrop',
+      name: 'Steakdrop',
+      meta: { layout: "default" },
+      component: SteakDrop
+    },
+    {
       path: '/gallery',
+      name: 'Gallery',
+      component: GalleryPage
+    },
+    {
+      path: '/gallery/:params',
       name: 'Gallery',
       component: GalleryPage
     },
