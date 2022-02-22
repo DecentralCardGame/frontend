@@ -28,8 +28,4 @@ export default {
 </script>
 
 <style lang="scss">
-.content {
-  background-image: url('../assets/background.svg');
-  background-size: 100% auto;
-}
 </style>

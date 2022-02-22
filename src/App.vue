@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="initialized"    
-    id="crapp"
+    id="app"
     tabindex="-1"
     @auxclick="handleAnyInput"
     @click="handleAnyInput"
@@ -25,7 +25,7 @@ import './scss/main.scss'
 import '@starport/vue/lib/starport-vue.css'
 //import Sidebar from './components/Sidebar'
 
-import AppLayout from './layouts/Default.vue'
+import AppLayout from './layouts/AppLayout.vue'
 
 const default_layout = "default"
 
@@ -47,19 +47,6 @@ export default {
       console.log("layout:", (this.$route.meta.layout || default_layout) + '-layout')
       return (this.$route.meta.layout || default_layout) + '-layout'
     }*/
-  },
-  watch: {
-    $route: {
-      immediate: true,
-      async handler(route) {
-        try {
-          const component = await import(`@/layouts/${route.meta.layout}.vue`)
-          this.layout = component?.default || AppLayout
-        } catch (e) {
-          this.layout = AppLayout
-        }
-      }
-    }
   },
   async created() {
     //await this.$store.dispatch('common/env/init')
@@ -83,8 +70,8 @@ export default {
 <style lang="scss">
 @import './scss/variables';
 
-.crapp {
-  background: url('./assets/background.svg') !important;
+#app {
+  background-image: url('./assets/background.svg');
   background-size: 100% auto;
 }
 

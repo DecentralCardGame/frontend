@@ -9,7 +9,7 @@
       </b>
       <div class="img--container adjust--top">
         <img
-          src="../assets/animations/sparkling_water.gif"
+          src="@/assets/animations/sparkling_water.gif"
           class="image2"
           alt="yes..."
         >
@@ -72,7 +72,7 @@
       <div class="dual--column--img scale--width">
         <div class="img--container adjust--mother--gif">
           <img
-            src="mother_popup.gif"
+            src="../assets/animations/mother_popup.gif"
             class="image3"
             alt="yes..."
             width="200%"
@@ -88,7 +88,7 @@
       >
         <div class="img--container adjust--flyin">
           <img
-            src="paper_flyin.gif"
+            src="../assets/animations/paper_flyin.gif"
             class="image3"
             alt="yes..."
           >
@@ -274,11 +274,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../scss/variables";
-
-.article-temp {
-  background-image: url('../assets/background.svg');
-  background-size: 100% auto;;
-}
 
 .grid {
   display: flex;
