@@ -1073,6 +1073,7 @@ export default {
           .saveContentToCardWithIdTx(newCard, () => {})
           .then(this.updateCredits)
           .then(this.resetEditCard)
+          .then(() => this.$router.push("/gallery"))
           .catch((err) => {
             console.error(err);
           });
