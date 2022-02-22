@@ -345,7 +345,7 @@ export default {
         })
         .then(() => {
           this.fillPage()
-        });
+        })
     },
     getCard(currentId) {
       let cardId = this.cardList[
