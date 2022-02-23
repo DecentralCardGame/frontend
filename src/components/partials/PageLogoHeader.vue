@@ -5,7 +5,7 @@
   >
     <div class="logo-container">
       <img
-        src="@/assets/logo.svg"
+        src="../../assets/logo.svg"
         class="image1"
         alt="Loading..."
         width="500"
@@ -22,11 +22,7 @@
         class="link--button"
         @click="scrollPastMenu"
       >
-        <div
-          id="scrollAnchor1"
-          class="img--container"
-          style="overflow-y: scroll"
-        >
+        <div class="img--container">
           <img
             src="../../assets/arrows/arrow_down.svg"
             class="image3"
@@ -80,13 +76,13 @@ header {
 
 .image1 {
   position: relative;
-  z-index: -3;
+  z-index: 1;
   width: 55vw;
   max-width: 95vw;
 }
 .image2 {
   position: absolute;
-  z-index: -3;
+  z-index: 1;
   max-width: 95vw;
 }
 .text--button {
@@ -105,7 +101,7 @@ header {
   position: relative;
   margin: 1rem auto;
   padding: 1.5rem 1rem;
-  max-width: 100px;
+  max-width: 150px;
   transform: skewX(-25deg);
   font-size: $font-size-small;
   cursor: pointer;
@@ -113,7 +109,7 @@ header {
   &:before {
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: 3;
     top: 0;
     left: 0;
     right: 0;
@@ -143,6 +139,7 @@ header {
 }
 .button--container {
   position: relative;
+  z-index: 4;
   top: 0rem;
   left: -1rem;
   margin: 0rem;
@@ -152,22 +149,22 @@ header {
 }
 
 .img--container {
-  overflow-y: hidden !important;
-  width: 100%;
+  width: 50%;
   position: absolute;
-  top: -2.0rem;
-  left: 0.5rem;
-  z-index: -1;
+  top: -2.2rem;
+  left: -0.25rem;
+  z-index: 5;
   pointer-events: none;
   display: flex;
   justify-content: center;
 }
 .image3 {
   transform: skewX(25deg);
+  position: absolute;
   margin: 3.0rem 3.2rem 3.2rem 3.0rem;
-  z-index: -1;
+  z-index: 6;
   top: 0rem;
   left: 1rem;
-  width: 100%;
+  width: 50%;
 }
 </style>

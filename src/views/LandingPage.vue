@@ -383,6 +383,8 @@ h2 {
   }
 }
 .text--medium {
+  z-index: 3;
+  position: relative;
   font-family: $font-family; 
   font-weight: $font-weight;
   line-height: 150%;
@@ -445,7 +447,7 @@ h2 {
 
 .img--container {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   display: flex;
   justify-content: center;
@@ -528,7 +530,7 @@ h2 {
 .image2 {
   margin: 0rem;
   margin-left: 0;
-  z-index: -1;
+  z-index: 0;
 
   width: 100%;
   max-width: 1000px;
@@ -538,7 +540,7 @@ h2 {
 .image3 {
   margin: 0rem;
   margin-left: 0;
-  z-index: -1;
+  z-index: 0;
 
   width: 100%;
 }
