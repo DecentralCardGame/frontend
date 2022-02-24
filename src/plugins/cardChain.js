@@ -1,4 +1,4 @@
-/*import * as R from 'ramda'
+import * as R from 'ramda'
 import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
@@ -7,6 +7,10 @@ import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
 export default {
   install (Vue) {
+
+    console.log("install cardchain vue", Vue)
+        console.log("install cardchain this", this)
+
     Vue.mixin({
       methods: {
         newCardChain () {
@@ -18,7 +22,7 @@ export default {
     class CardChain {
       constructor(vue) {
         this.vue = vue
-
+        
         this.txQueue = {
           isRunning: false,
           queue: [],
@@ -55,8 +59,8 @@ export default {
         }
       }
       updateUserCredits () {
-        if (this.vue.$store.getters.getUserAddress) {
-          this.getAccInfo(this.vue.$store.getters.getUserAddress)
+        if (this.vue.$store.getters['getUserAddress']) {
+          this.getAccInfo(this.vue.$store.getters['getUserAddress'])
           .then(acc => {
             this.vue.$store.commit('setUserCredits', creditsFromCoins(acc.coins))
           })
@@ -148,7 +152,7 @@ export default {
               'gas': 'auto',
               'gas_adjustment': '1.5'
             },
-            'new_user': this.vue.$store.getters.getUserAddress,
+            'new_user': this.vue.$store.getters['getUserAddress'],
             'creator': process.env.VUE_APP_CREATOR_ADDRESS,
             'alias': alias
           }
@@ -156,7 +160,7 @@ export default {
             return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.vue.$http.put('cardservice/create_user', reqBody)])
               .then(res => this.signAndBroadcast(process.env.VUE_APP_CREATOR_MNEMONIC, res))
               .then(() => {
-                resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
               })
               .catch((err) => {
                 reject(err)
@@ -168,20 +172,20 @@ export default {
           return new Promise((resolve, reject) => {
             let reqBody = {
               'base_req': {
-                'from': this.vue.$store.getters.getUserAddress,
+                'from': this.vue.$store.getters['getUserAddress'],
                 'chain_id': 'testCardchain',
                 'gas': 'auto',
                 'gas_adjustment': '1.5'
               },
               'amount': maxBid + 'credits',
-              'buyer': this.vue.$store.getters.getUserAddress
+              'buyer': this.vue.$store.getters['getUserAddress']
             }
             this.txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.vue.$http.post('cardservice/buy_card_scheme', reqBody)])
-                .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+              return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.vue.$http.post('cardservice/buy_card_scheme', reqBody)])
+                .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
                 .then(() => { 
                   this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.') 
-                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                  resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
                 })
                 .catch(err => {
                   console.error(err)
@@ -205,21 +209,21 @@ export default {
       }
       saveContentToUnusedCardSchemeTx (card) {
         return new Promise((resolve, reject) => {
-          this.getUserInfo(this.vue.$store.getters.getUserAddress)
+          this.getUserInfo(this.vue.$store.getters['getUserAddress'])
           .then(user => {
             console.log(user)
             if (!user.ownedCardSchemes) {
               this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
-              throw new Error('account ' + this.vue.$store.getters.getUserAddress + ' does not own Card Frames')
+              throw new Error('account ' + this.vue.$store.getters['getUserAddress'] + ' does not own Card Frames')
             } else {
               let reqBody = {
                 'base_req': {
-                  'from': this.vue.$store.getters.getUserAddress,
+                  'from': this.vue.$store.getters['getUserAddress'],
                   'chain_id': 'testCardchain',
                   'gas': 'auto',
                   'gas_adjustment': '10'
                 },
-                'owner': this.vue.$store.getters.getUserAddress,
+                'owner': this.vue.$store.getters['getUserAddress'],
                 'content': JSON.stringify(card.content),
                 'image': card.image,
                 'cardid': user.ownedCardSchemes[0],
@@ -231,11 +235,11 @@ export default {
           })
           .then(req => {
             this.txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])
-                .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+              return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.saveCardContentGenerateTx(req)])
+                .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
                 .then(() => {
                   this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
-                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                  resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
                 })
                 .catch(this.handleTxFail(reject))
             })
@@ -246,12 +250,12 @@ export default {
         return new Promise((resolve, reject) => {
           let req = {
             'base_req': {
-              'from': this.vue.$store.getters.getUserAddress,
+              'from': this.vue.$store.getters['getUserAddress'],
               'chain_id': 'testCardchain',
               'gas': 'auto',
               'gas_adjustment': '10'
             },
-            'owner': this.vue.$store.getters.getUserAddress,
+            'owner': this.vue.$store.getters['getUserAddress'],
             'content': JSON.stringify(card.content),
             'image': card.image,
             'cardid': card.id,
@@ -259,11 +263,11 @@ export default {
             'fullart': JSON.stringify(card.FullArt)
           }
           this.txQueue.enqueue(() => {
-            return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.saveCardContentGenerateTx(req)])
-              .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+            return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.saveCardContentGenerateTx(req)])
+              .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
               .then(() => {
                 this.vue.notifySuccess('EPIC WIN', 'You have successfully edited this card.')
-                resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
               })
               .catch(this.handleTxFail(reject))
           })
@@ -273,22 +277,22 @@ export default {
         return new Promise((resolve, reject) => {
           let req = {
             'base_req': {
-              'from': this.vue.$store.getters.getUserAddress,
+              'from': this.vue.$store.getters['getUserAddress'],
               'chain_id': 'testCardchain',
               'gas': 'auto',
               'gas_adjustment': '1.5'
             },
-            'voter': this.vue.$store.getters.getUserAddress,
+            'voter': this.vue.$store.getters['getUserAddress'],
             'votetype': voteType,
             'cardid': '' + cardid
           }
       
           this.txQueue.enqueue(() => {
-            return Promise.all([this.getAccInfo(this.vue.$store.getters.getUserAddress), this.voteCardGenerateTx(req)])
-              .then(res => this.signAndBroadcast(this.vue.$store.getters.getUserMnemonic, res))
+            return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.voteCardGenerateTx(req)])
+              .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
                 .then(() => {
                   this.vue.notifySuccess('VOTED', 'Vote Transaction successful!')
-                  resolve(this.getAccInfo(this.vue.$store.getters.getUserAddress))
+                  resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
                 })
                 .catch(this.handleTxFail(reject))
           })
@@ -539,6 +543,8 @@ export default {
         }).join(''))
       }
     }
+
+    Vue.config.globalProperties.$cardChain = new CardChain(Vue)
+
   }
 }
-*/

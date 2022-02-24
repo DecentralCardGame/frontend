@@ -4,6 +4,8 @@ import store from './store'
 import router from './router'
 import vueLib from '@starport/vue'
 import axios from 'axios'
+import axios2 from 'axios'
+import VueAxios from 'vue-axios'
 import * as R from 'ramda'
 import Notifications from '@kyvg/vue3-notification'
 
@@ -12,17 +14,32 @@ import cardRules from './plugins/cardRules'
 import AppLayout from './layouts/Default'
 
 const app = createApp(App)
-app.config.globalProperties.$axios = axios
+
 app.config.globalProperties._depsLoaded = true
 app.config.globalProperties.R = R
+/*
+app.config.globalProperties.$http = 
+app.config.globalProperties.$hottub = axios.create({
+  baseURL: process.env.VUE_APP_AUTH_API
+})
+  .use(VueAxios, { 
+    $http: axios.create({baseURL: process.env.VUE_APP_BLOCKCHAIN_API}),
+    $hottub: axios.create({baseURL: process.env.VUE_APP_AUTH_API}) 
+  })
+*/
 app.use(store)
-    .use(router)
-    .component('AppLayout', AppLayout)
-    .use(vueLib)
-    .use(Notifications)
-    .use(cardChain)
-    .use(cardRules)
-    .mount('#app')
+  .use(router)
+  .use(vueLib)
+  .component('AppLayout', AppLayout)
+  .use(VueAxios, { 
+    $http: axios.create({baseURL: process.env.VUE_APP_BLOCKCHAIN_API}),
+    $hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API}) 
+  })
+  .use(Notifications)
+  .use(cardChain)
+  .use(cardRules)
+  .mount('#app')
+
 
 app.mixin({
     methods: {

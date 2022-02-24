@@ -89,7 +89,7 @@
       <AbilityModal
         v-if="isAbilityModalVisible"
         :dialog-prop="dialog"
-        :ability="ability"
+        :ability-prop="ability"
         :cardmodel="model"
         @update:ability="updateAbility($event)"
         @close="closeAbilityModal"

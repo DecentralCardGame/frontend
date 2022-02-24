@@ -284,12 +284,11 @@ export function saveCardAsPng (element, name, scale = 5) {
 }
 
 export function icon(name) {
-  //let path = '../../assets/icon/'
   let item
   try {
     //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
     //console.log("retrieving:", '../../assets/icon/abilities/'+name+'.svg')
-    item = require('../../assets/icon/abilities/'+name+'.svg')
+    item = require('@/assets/icon/abilities/'+name+'.svg')
   } catch {
     if (name.length === 1) {
       return require('../../assets/icon/abilities/variable.svg')
@@ -305,5 +304,5 @@ export function icon(name) {
       }
     }
   }
-  return item
+  return item.default
 }

@@ -62,7 +62,6 @@
                 placeholder="enter text"
                 style="display: inline;color:black;height:50px"
               >
-
               <button
                 v-if="dialog.type === 'interface' || dialog.type === 'root'"
                 aria-label="Close modal"
@@ -267,6 +266,7 @@ export default {
         let rulesPath = pathAtSelection
         let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
+        console.log("this.ability", this.ability)
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
         this.attachToAbility(['interaction'], this.ability.interaction)
 

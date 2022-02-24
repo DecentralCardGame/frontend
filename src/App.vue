@@ -52,6 +52,8 @@ export default {
     //await this.$store.dispatch('common/env/init')
     this.initialized = true
   },
+  mounted () {
+  },
   errorCaptured(err) {
     console.log(err)
     return false

@@ -288,7 +288,6 @@ export default {
   },
   mounted() {
     let params = this.$route.params.params
-    console.log('params:', params)
     
     if (params == "alphaset") {
       this.loadSpecialCardList("Finished")

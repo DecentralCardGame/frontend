@@ -20,7 +20,6 @@ export default {
   name: 'CrowdControlApp',
   components: { PageMenu, PageLogoHeader, PageFooter },
   mounted () {
-    console.log("landing loaded")
   },
   methods: {
   },
