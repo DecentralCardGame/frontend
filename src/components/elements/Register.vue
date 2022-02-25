@@ -122,7 +122,7 @@ export default {
       this.$store.commit("setUserMnemonic", this.mnemonic);
       this.$store.commit("setUserAddress", wallet.address);
 
-      const encryptedMnemonic = this.CryptoJS.AES.encrypt(
+      const encryptedMnemonic = this.$CryptoJS.AES.encrypt(
         JSON.stringify(this.mnemonic),
         this.password
       ).toString();

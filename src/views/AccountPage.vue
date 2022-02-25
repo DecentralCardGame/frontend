@@ -85,7 +85,7 @@ export default {
       // TODO WHEN THIS FUNCTION IS USED THE ENCRYPTED MNEMONIC ON HOTTUB MUST BE OVERWRITTEN
       // overwriting localstorage is not enough
 
-      const encryptedMnemonic = this.CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.mnemonicConfirmationPassword).toString()
+      const encryptedMnemonic = this.$CryptoJS.AES.encrypt(JSON.stringify(this.mnemonic), this.mnemonicConfirmationPassword).toString()
       const post = {
         mnemonic: encryptedMnemonic
       }

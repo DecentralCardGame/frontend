@@ -3,13 +3,16 @@ import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
+import Vue from 'vue'
+
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
 export default {
-  install (Vue) {
+  install (Vue, store) {
 
     console.log("install cardchain vue", Vue)
-        console.log("install cardchain this", this)
+    console.log("install cardchain this", this)
+    console.log("install cardchain store", store)
 
     Vue.mixin({
       methods: {
@@ -22,6 +25,7 @@ export default {
     class CardChain {
       constructor(vue) {
         this.vue = vue
+        this.vue.$store = store
         
         this.txQueue = {
           isRunning: false,
@@ -545,6 +549,6 @@ export default {
     }
 
     Vue.config.globalProperties.$cardChain = new CardChain(Vue)
-
+    console.log("initialize cardchain with vue", Vue)
   }
 }

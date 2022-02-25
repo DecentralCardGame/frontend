@@ -8,6 +8,7 @@ import axios2 from 'axios'
 import VueAxios from 'vue-axios'
 import * as R from 'ramda'
 import Notifications from '@kyvg/vue3-notification'
+import VueCryptojs from 'vue-cryptojs'
 
 import cardChain from './plugins/cardChain'
 import cardRules from './plugins/cardRules'
@@ -17,26 +18,18 @@ const app = createApp(App)
 
 app.config.globalProperties._depsLoaded = true
 app.config.globalProperties.R = R
-/*
-app.config.globalProperties.$http = 
-app.config.globalProperties.$hottub = axios.create({
-  baseURL: process.env.VUE_APP_AUTH_API
-})
-  .use(VueAxios, { 
-    $http: axios.create({baseURL: process.env.VUE_APP_BLOCKCHAIN_API}),
-    $hottub: axios.create({baseURL: process.env.VUE_APP_AUTH_API}) 
-  })
-*/
+
 app.use(store)
   .use(router)
   .use(vueLib)
+  .use(VueCryptojs)
   .component('AppLayout', AppLayout)
   .use(VueAxios, { 
     $http: axios.create({baseURL: process.env.VUE_APP_BLOCKCHAIN_API}),
     $hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API}) 
   })
   .use(Notifications)
-  .use(cardChain)
+  .use(cardChain, store)
   .use(cardRules)
   .mount('#app')
 

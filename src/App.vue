@@ -24,6 +24,7 @@
 import './scss/main.scss'
 import '@starport/vue/lib/starport-vue.css'
 //import Sidebar from './components/Sidebar'
+//import cardChain from './plugins/cardChain'
 
 import AppLayout from './layouts/AppLayout.vue'
 
@@ -49,6 +50,8 @@ export default {
     }*/
   },
   async created() {
+    
+    //this.use(cardChain, this.$store)
     //await this.$store.dispatch('common/env/init')
     this.initialized = true
   },
