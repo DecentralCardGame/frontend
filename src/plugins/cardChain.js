@@ -3,17 +3,11 @@ import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 
-import Vue from 'vue'
 
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
 export default {
-  install (Vue, store) {
-
-    console.log("install cardchain vue", Vue)
-    console.log("install cardchain this", this)
-    console.log("install cardchain store", store)
-
+  install (Vue, store, that) {
     Vue.mixin({
       methods: {
         newCardChain () {
@@ -24,9 +18,13 @@ export default {
 
     class CardChain {
       constructor(vue) {
-        this.vue = vue
+        this.vue = Vue
         this.vue.$store = store
-        
+        this.notifyFail = Vue.$notify
+        this.bindVue = (that) => {
+          this.vue = that
+        }
+
         this.txQueue = {
           isRunning: false,
           queue: [],
@@ -152,7 +150,7 @@ export default {
           let reqBody = {
             'base_req': {
               'from': process.env.VUE_APP_CREATOR_ADDRESS,
-              'chain_id': 'testCardchain',
+              'chain_id': process.env.VUE_APP_CHAIN_ID,
               'gas': 'auto',
               'gas_adjustment': '1.5'
             },
@@ -177,7 +175,7 @@ export default {
             let reqBody = {
               'base_req': {
                 'from': this.vue.$store.getters['getUserAddress'],
-                'chain_id': 'testCardchain',
+                'chain_id': process.env.VUE_APP_CHAIN_ID,
                 'gas': 'auto',
                 'gas_adjustment': '1.5'
               },
@@ -215,7 +213,6 @@ export default {
         return new Promise((resolve, reject) => {
           this.getUserInfo(this.vue.$store.getters['getUserAddress'])
           .then(user => {
-            console.log(user)
             if (!user.ownedCardSchemes) {
               this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
               throw new Error('account ' + this.vue.$store.getters['getUserAddress'] + ' does not own Card Frames')
@@ -223,7 +220,7 @@ export default {
               let reqBody = {
                 'base_req': {
                   'from': this.vue.$store.getters['getUserAddress'],
-                  'chain_id': 'testCardchain',
+                  'chain_id': process.env.VUE_APP_CHAIN_ID,
                   'gas': 'auto',
                   'gas_adjustment': '10'
                 },
@@ -255,7 +252,7 @@ export default {
           let req = {
             'base_req': {
               'from': this.vue.$store.getters['getUserAddress'],
-              'chain_id': 'testCardchain',
+              'chain_id': process.env.VUE_APP_CHAIN_ID,
               'gas': 'auto',
               'gas_adjustment': '10'
             },
@@ -282,7 +279,7 @@ export default {
           let req = {
             'base_req': {
               'from': this.vue.$store.getters['getUserAddress'],
-              'chain_id': 'testCardchain',
+              'chain_id': process.env.VUE_APP_CHAIN_ID,
               'gas': 'auto',
               'gas_adjustment': '1.5'
             },
@@ -401,7 +398,7 @@ export default {
           memo: rawTx.value.memo
         }
         let signed = signTx(unsignedTx, signMeta, wallet)
-    
+        
         return {
           type: 'cosmos-sdk/StdTx',
           value: signed
@@ -427,7 +424,6 @@ export default {
           .catch(this.handlePutError)
       }
       handleGetUser = R.curry((res, address) => {
-        console.log('handleGetUser', res)
         if (res.data.result.Alias === '') {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           throw new Error('account ' + address + ' is not registered')
@@ -549,6 +545,5 @@ export default {
     }
 
     Vue.config.globalProperties.$cardChain = new CardChain(Vue)
-    console.log("initialize cardchain with vue", Vue)
   }
 }

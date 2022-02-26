@@ -50,7 +50,7 @@ export default {
     }*/
   },
   async created() {
-    
+    this.$cardChain.bindVue(this)
     //this.use(cardChain, this.$store)
     //await this.$store.dispatch('common/env/init')
     this.initialized = true
@@ -67,6 +67,15 @@ export default {
         "setLastInputEvent",
         event
       )
+    },
+    notify() {
+      this.$notify({
+          group: 'bottom-right-notification',
+          title: 'bla',
+          text: 'blubb',
+          type: 'notification--alert',
+          duration: 5000,
+        })
     }
   },
 }

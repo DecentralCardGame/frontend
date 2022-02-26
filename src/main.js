@@ -29,12 +29,7 @@ app.use(store)
     $hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API}) 
   })
   .use(Notifications)
-  .use(cardChain, store)
-  .use(cardRules)
-  .mount('#app')
-
-
-app.mixin({
+  .mixin({
     methods: {
       isMobileDevice: function () {
         let check = false
@@ -80,3 +75,6 @@ app.mixin({
       }),
     },
   })
+  .use(cardChain, store)
+  .use(cardRules)
+  .mount('#app')
