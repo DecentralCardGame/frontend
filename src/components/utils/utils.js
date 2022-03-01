@@ -218,7 +218,7 @@ export function shallowClone (obj) {
 
 // utility functions for uploading and downloading stuff
 
-export function uploadImg (file, callback) {
+export function uploadImg (file, callback, maxKB) {
   let resolution = {height: 1300, width: 838}
 
   const reader = new FileReader()
@@ -244,9 +244,17 @@ export function uploadImg (file, callback) {
       canvas.height = height
       canvas.getContext('2d').drawImage(image, -widthAdjust, 0, width, height)
 
-      let dataUrl = canvas.toDataURL('image/png')
-      
-      callback(dataUrl)
+      let quality = 0.9
+      let newDataURL = canvas.toDataURL('image/jpeg', quality)
+      while (Math.round(newDataURL.length)/1000 > maxKB) {
+        quality -= 0.1
+        newDataURL = canvas.toDataURL('image/jpeg', quality)
+        console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
+    
+        if (quality <= 0)
+          return ""
+      }
+      callback(newDataURL)
     }
     image.src = readerEvent.target.result
   }
@@ -254,17 +262,20 @@ export function uploadImg (file, callback) {
   reader.readAsDataURL(file)
 }
 
-export function compressImg(dataURL, maxKB) {
+export function compressImg(dataURL, maxKB, width, height) {
   var image = new Image()
   image.src = dataURL
+  console.log("dataURL", dataURL)
+  console.log("image bounds:", width, height)
 
   let canvas = document.createElement('canvas')
-  canvas.width = image.width
-  canvas.height = image.height
-  canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height)
+  canvas.width = width
+  canvas.height = height
+  canvas.getContext('2d').drawImage(image, 0, 0, width, height)
 
   let quality = 0.9
   let newDataURL = canvas.toDataURL('image/jpeg', quality)
+  console.log("newDataURL", newDataURL)
   console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
 
   while (Math.round(newDataURL.length)/1000 > maxKB) {

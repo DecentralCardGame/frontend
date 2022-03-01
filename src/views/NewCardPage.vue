@@ -626,7 +626,7 @@
           id="card"
           :active-step="activeStep"
           :display-notes="true"
-          :image-u-r-l="cardImage"
+          :image-u-r-l="getCardImage"
           :model="model"
         />
       </div>
@@ -678,7 +678,16 @@ export default {
       cardID: 0,
     };
   },
-  computed: {},
+  computed: {
+    getCardImage() {
+      console.log("getcardimage", this.$store.getters[this.isEditCardMode()
+            ? "getCardCreatorEditCard"
+            : "getCardCreatorDraft"].img)
+      return this.$store.getters[this.isEditCardMode()
+            ? "getCardCreatorEditCard"
+            : "getCardCreatorDraft"].img
+    },
+  },
   mounted() {
     if (!this.$cardRules) {
       // here comes a synchronous wait and it is intended
@@ -694,22 +703,22 @@ export default {
 
     // here a card is loaded if edit card via gallery was selected
     if (this.isEditCardMode()) {
-      console.log("edit card: ", this.$store.getters.getCardCreatorEditCard);
+      console.log("edit card: ", this.$store.getters['getCardCreatorEditCard']);
       this.model = R.merge(
         this.model,
-        this.$store.getters.getCardCreatorEditCard
+        this.$store.getters['getCardCreatorEditCard']
       );
 
-      this.cardImage = this.$store.getters.getCardCreatorEditCard.image;
-      this.cropImage = this.$store.getters.getCardCreatorEditCard.image;
+      this.cardImage = this.$store.getters['getCardCreatorEditCard'].image
+      this.cropImage = this.$store.getters['getCardCreatorEditCard'].image
       console.log("loaded card", this.model)
       return;
     }
     if (
-      !R.isEmpty(this.$store.getters.getCardCreatorDraft) &&
-      this.$store.getters.getCardCreatorDraft.model
+      !R.isEmpty(this.$store.getters['getCardCreatorDraft']) &&
+      this.$store.getters['getCardCreatorDraft'].model
     ) {
-      this.model = JSON.parse(this.$store.getters.getCardCreatorDraft.model);
+      this.model = JSON.parse(this.$store.getters['getCardCreatorDraft'].model);
 
       console.log("loaded model:", this.model, R.is(Object, this.model));
 
@@ -726,12 +735,11 @@ export default {
       }
     }
     if (
-      !R.isEmpty(this.$store.getters.getCardCreatorDraft) &&
-      this.$store.getters.getCardCreatorDraft.img
+      !R.isEmpty(this.$store.getters['getCardCreatorDraft']) &&
+      this.$store.getters['getCardCreatorDraft'].img
     ) {
-      this.cardImage = JSON.parse(
-        this.$store.getters.getCardCreatorDraft.img
-      );
+      console.log("getCardCreatorDraft", this.$store.getters['getCardCreatorDraft'])
+      this.cardImage = this.$store.getters['getCardCreatorDraft'].img
     }
   },
   methods: {
@@ -1002,7 +1010,7 @@ export default {
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
         if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
-          newModel.Abilities = R.clone(this.$store.getters.getCardCreatorEditCard.Abilities)
+          newModel.Abilities = R.clone(this.$store.getters['getCardCreatorEditCard.Abilities'])
         }
         // this writes the relevant part of the effects in the new model
         else {
@@ -1020,7 +1028,7 @@ export default {
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
         if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
-          newModel.Effects = this.$store.getters.getCardCreatorEditCard.Abilities
+          newModel.Effects = this.$store.getters['getCardCreatorEditCard.Abilities']
         }
         // this writes the relevant part of the effects in the new model
         else {
@@ -1042,8 +1050,8 @@ export default {
           (this.model.AdditionalCost.VoidCost && this.model.AdditionalCost.VoidCost.Amount == 0)
       }
       if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
-        newModel.Keywords = this.$store.getters.getCardCreatorEditCard.Keywords
-        newModel.RulesTexts = this.$store.getters.getCardCreatorEditCard.RulesTexts
+        newModel.Keywords = this.$store.getters['getCardCreatorEditCard.Keywords']
+        newModel.RulesTexts = this.$store.getters['getCardCreatorEditCard.RulesTexts']
 
         if (this.isAdditionalCostVisible) {
           if (checkZeroAmount()) {
@@ -1113,22 +1121,22 @@ export default {
       this.cropImage = sampleGradientImg;
     },
     isEditCardMode() {
-      return !R.isEmpty(this.$store.getters.getCardCreatorEditCard);
+      return !R.isEmpty(this.$store.getters['getCardCreatorEditCard']);
     },
     inputFile(event) {
       let file = event.target.files[0]
       uploadImg(file, (result) => {
-        console.log("result", result)
-        this.cropImage = result;
-        console.log("SAVING NEW IMG", compressImg(result, 500).length)
+        //console.log("result", result)
+        this.cropImage = result
+        //console.log("editcardmode", this.isEditCardMode())
         this.$store.commit(
-          this.isEditCardMode()
-            ? "setCardCreatorEditCardImg"
-            : "setCardCreatorDraftImg",
-          compressImg(result, 500)
-        );
-        console.log("saved img", this.$store.getters.getCardCreatorEditCard.img.length)
-      });
+          this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
+          result)
+        
+        console.log("saved img", this.$store.getters[this.isEditCardMode()
+            ? "getCardCreatorEditCard"
+            : "getCardCreatorDraft"].img)
+      }, 500)
     },
     classStepPassed(n) {
       let exportClass = "progress-item";
