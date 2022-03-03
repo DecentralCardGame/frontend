@@ -218,7 +218,7 @@ export function shallowClone (obj) {
 
 // utility functions for uploading and downloading stuff
 
-export function uploadImg (file, callback, maxKB) {
+export function uploadImg (file, maxKB, callback) {
   let resolution = {height: 1300, width: 838}
 
   const reader = new FileReader()
@@ -246,8 +246,9 @@ export function uploadImg (file, callback, maxKB) {
 
       let quality = 0.9
       let newDataURL = canvas.toDataURL('image/jpeg', quality)
+      console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
       while (Math.round(newDataURL.length)/1000 > maxKB) {
-        quality -= 0.1
+        quality *= 0.9
         newDataURL = canvas.toDataURL('image/jpeg', quality)
         console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
     

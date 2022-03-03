@@ -23186,7 +23186,6 @@ export default {
   },
   methods: {
     update() {
-      console.log("imageurl", this.imageURL)
       //console.log("model", this.model.CardName, this.model)
       this.FullArt = this.model.FullArt
       //console.log("this.FullArt updated:", this.FullArt)
@@ -23264,7 +23263,6 @@ export default {
       this.Class = cardClass
       this.Classes = R.countBy(x => x === true)(R.values(this.model.Class)).true
       this.Type = cardType
-      console.log("cardclass", R.invert(cardClass))
       let classTrueKeys = R.invert(cardClass).true
       this.SecondaryColor = R.last(classTrueKeys? classTrueKeys : [])
       this.PrimaryColor = R.head(classTrueKeys? classTrueKeys : [])

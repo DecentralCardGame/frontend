@@ -463,6 +463,7 @@ export default {
         }
       })
       handleGetCardList = R.curry((res, type) => {
+        console.log(res)
         if (res.data.result === '') {
           this.vue.notifyFail('Sad', 'Basically the CardList is valid, but it is empty.')
           throw new Error('CardList Empty: ' + res)

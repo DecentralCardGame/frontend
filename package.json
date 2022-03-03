@@ -26,7 +26,7 @@
     "json-schema-ref-parser": "^8.0.0",
     "ramda": "^0.27.1",
     "vue": "^3.2.31",
-    "vue-advanced-cropper": "^1.7.0",
+    "vue-advanced-cropper": "^2.8.1",
     "vue-axios": "^3.4.1",
     "vue-cryptojs": "^2.1.5",
     "vue-router": "^4.0.3",
