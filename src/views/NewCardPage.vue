@@ -748,10 +748,9 @@ export default {
       while (Math.round(newDataURL.length)/1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
         quality *= 0.9
         newDataURL = canvas.toDataURL('image/jpeg', quality)
-        console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
     
         if (quality <= 0)
-          return ""
+          this.notifyFail("Image Compression failed", "Image could not be compressed sufficiently, try to upload smaller image.")
       }
 
       this.$store.commit(
@@ -1135,8 +1134,8 @@ export default {
     },
     inputFile(event) {
       let file = event.target.files[0]
-      let maxKB = 500
-      uploadImg(file, maxKB, (result) => {
+
+      uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
         
         this.cropImage = result
         this.$store.commit(

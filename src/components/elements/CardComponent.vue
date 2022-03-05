@@ -23009,7 +23009,7 @@
           y="40"
           font-family="Museo700-Regular"
           font-size="12"
-          fill="#FFF5E1"
+          :fill="getManaCostColor()"
           stroke="#151515"
           stroke-width="0.5"
           font-style="normal"
@@ -23361,7 +23361,7 @@ export default {
       return this.model.CastingCost
     },
     getManaCostColor() {
-      return this.model.isNerfed ? "red" : this.model.isBuffed ? "mediumseagreen" : "black"
+      return this.model.isNerfed ? "red" : this.model.isBuffed ? "mediumseagreen" : "#FFF5E1"
     },
     tagLength () {
       if (this.model.Tags) {

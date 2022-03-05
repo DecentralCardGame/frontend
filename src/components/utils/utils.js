@@ -263,7 +263,7 @@ export function uploadImg (file, maxKB, callback) {
   reader.readAsDataURL(file)
 }
 
-export function compressImg(dataURL, maxKB, width, height) {
+export function compressImg(dataURL, width, height) {
   var image = new Image()
   image.src = dataURL
   console.log("dataURL", dataURL)
@@ -279,7 +279,7 @@ export function compressImg(dataURL, maxKB, width, height) {
   console.log("newDataURL", newDataURL)
   console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
 
-  while (Math.round(newDataURL.length)/1000 > maxKB) {
+  while (Math.round(newDataURL.length)/1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
     quality -= 0.1
     newDataURL = canvas.toDataURL('image/jpeg', quality)
     console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
