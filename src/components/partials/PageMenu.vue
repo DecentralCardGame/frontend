@@ -81,7 +81,7 @@
       </div>
     </nav>
     <div
-      v-if="this.$store.getters.loginBoxVisible"
+      v-if="$store.getters.loginBoxVisible"
       class="nav__authentication-modal"
     >
       <div 
@@ -133,7 +133,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../assets/styles/variables";
+  @import "../../scss/variables";
 
   .nav-wrapper {
     max-width: calc(#{$main-width} + 10vw);

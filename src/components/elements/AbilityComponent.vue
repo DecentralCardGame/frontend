@@ -88,8 +88,8 @@
     <div class="ability-modal-container">
       <AbilityModal
         v-if="isAbilityModalVisible"
-        :dialog="dialog"
-        :ability="ability"
+        :dialog-prop="dialog"
+        :ability-prop="ability"
         :cardmodel="model"
         @update:ability="updateAbility($event)"
         @close="closeAbilityModal"
@@ -105,17 +105,38 @@ import { createInteraction, updateInteraction, shallowClone, atPath } from '../u
 
 export default {
   name: 'AbilityComponent',
-  components: {AbilityModal},
+  components: { AbilityModal },
   props: {
-    dialog: {},
-    ability: {},
-    model: {},
+    dialogProp: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    abilityProp: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    model: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
   },
   data () {
     return {
+      ability: {},
+      dialog: {},
       selectedInt: 0,
       isAbilityModalVisible: false
     }
+  },
+  created () {
+    this.ability = this.abilityProp
+    this.dialog = this.dialogProp
   },
   methods: {
     showAbilityModal (ability, btn, index) {
@@ -342,7 +363,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../assets/styles/variables";
+  @import "../../scss/variables";
 
   .clickable-option {
     display: inline-block;

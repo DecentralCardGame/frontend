@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@import "../../scss/variables";
 
 .modal__backdrop {
   position: fixed;
@@ -56,14 +56,14 @@
 
 .modal__body {
   position: relative;
-  padding: ($font-size / 2);
+  padding: ($font-size * 0.5);
   border-bottom: $border-thickness solid $main-color-a;
 }
 
 .btn--default {
   border: none;
   font-size: $font-size;
-  padding: $font-size / 4 $font-size /2;
+  padding: $font-size*0.25 $font-size*0.5;
   cursor: pointer;
   font-weight: bold;
   background: transparent;
@@ -77,7 +77,7 @@
 .btn--close {
   border: none;
   font-size: $font-size;
-  padding: $font-size / 4 $font-size /2;
+  padding: $font-size*0.25 $font-size*0.5;
   cursor: pointer;
   font-weight: bold;
   background: transparent;

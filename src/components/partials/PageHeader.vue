@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../assets/styles/variables";
+  @import "../../scss/variables";
 
   header {
     background-color: $background-separator;

@@ -66,6 +66,8 @@ export default {
   },
   methods: {
     login () {
+      console.log("getit", this.$store.getters['getUserAddress'])
+
       const request = {
         username: this.username,
         password: this.password
@@ -77,8 +79,8 @@ export default {
             this.notifyFail('YOU FAIL', 'Login failed! ' + res.status)
           } else {
             console.log(res)
-            const decryptedMnemonicBytes = this.CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
-            const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.CryptoJS.enc.Utf8))
+            const decryptedMnemonicBytes = this.$CryptoJS.AES.decrypt(res.data.mnemonic, this.password)
+            const decryptedMnemonic = JSON.parse(decryptedMnemonicBytes.toString(this.$CryptoJS.enc.Utf8))
 
             this.$store.commit('setUserToken', res.data.token)
             this.$store.commit('setUserMnemonic', decryptedMnemonic)

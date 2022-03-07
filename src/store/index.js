@@ -1,30 +1,30 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import * as R from "ramda"
+import init from './config'
 
 import { emptyGalleryFilter } from "@/components/utils/utils.js"
-
-Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
-export default new Vuex.Store({
+const store = createStore({
   plugins: [vuexLocal.plugin],
-  state: {
-    jwt: '',
-    credits: -1,
-    mnemonic: '',
-    address: '',
-    cardCreatorDraft: {},
-    cardCreatorEditCard: {},
-    galleryFilter: R.clone(emptyGalleryFilter),
-    loading: false,
-    displayLogin: false,
-    lastInputEvent: {},
-    showTopLogo: false,
+  state() {
+    return {
+      jwt: '',
+      credits: -1,
+      mnemonic: '',
+      address: '',
+      cardCreatorDraft: {},
+      cardCreatorEditCard: {},
+      galleryFilter: R.clone(emptyGalleryFilter),
+      loading: false,
+      displayLogin: false,
+      lastInputEvent: {},
+      showTopLogo: false,
+    }
   },
   mutations: {
     logout (state) {
@@ -130,8 +130,7 @@ export default new Vuex.Store({
       return state.showTopLogo
     }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
 })
+init(store)
+export default store

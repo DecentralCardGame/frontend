@@ -17,8 +17,18 @@
 export default {
   name: 'BulletList',
   props: {
-    text: Array,
-    type: Array,
+    text: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    type: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
   },
   data () {
     return {

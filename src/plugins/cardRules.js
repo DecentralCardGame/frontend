@@ -10,9 +10,9 @@ export default {
                 console.error(err)
               } else {
                 console.log("loaded cardrules:", rules.Card)
-                Vue.prototype.$cardRules = rules.Card
-                Vue.prototype.$rulesDefinitions = rules.definitions
-                console.log("definitions", rules.definitions)
+                Vue.config.globalProperties.$cardRules = rules.Card
+                Vue.config.globalProperties.$rulesDefinitions = rules.definitions
+                console.log("loaded definitions", rules.definitions)
               }
             })
         }

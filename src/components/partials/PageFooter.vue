@@ -168,7 +168,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../assets/styles/variables";
+  @import "../../scss/variables";
 
   .footer-container {
     margin-top: 5rem;

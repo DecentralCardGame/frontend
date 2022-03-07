@@ -1,30 +1,26 @@
-# frontend-upgrade
+## App UI Template
+
+[Vue.js](https://vuejs.org/)-based web app template for your Cosmos SDK blockchain. Use the template to quickly bootstrap your app. To learn more, check out the components in `@starport/vue` and the [Starport documentation](https://docs.starport.network/).
+
 
 ## Project setup
+
 ```
-yarn install
+npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and reloads the app on save for development
+
 ```
-yarn serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
 ```
-yarn lint
+npm run build
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### Docker build and run
-```
-docker build . -t my-app  
-docker run -d -p 8080:80 my-app
-```
+See [Configuration Reference](https://cli.vuejs.org/config/).

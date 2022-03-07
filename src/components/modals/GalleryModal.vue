@@ -142,9 +142,22 @@ export default {
   props: {
     canVote: Boolean,
     isOwner: Boolean,
-    keywordDescriptions: Array,
-    model: Object,
-    imageURL: String
+    keywordDescriptions: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    model: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    imageURL: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {

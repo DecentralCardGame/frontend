@@ -13,7 +13,7 @@
         >
           <slot name="header">
             {{ dialog.title }}
-            <!-- TODO --><span
+            <span
               aria-label="Close modal"
               class="btn--close"
               type="button"
@@ -62,7 +62,6 @@
                 placeholder="enter text"
                 style="display: inline;color:black;height:50px"
               >
-
               <button
                 v-if="dialog.type === 'interface' || dialog.type === 'root'"
                 aria-label="Close modal"
@@ -122,18 +121,56 @@ import {atPath, createInteraction, filterSelection, icon, updateInteraction} fro
 export default {
   name: 'Modal',
   props: {
-    picked: {},
-    dialog: {},
-    options: [],
-    ability: {},
-    abilities: [],
-    cardmodel: {},
+    picked: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    dialogProp: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    options: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    abilityProp: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    abilitiesProp: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    cardmodel: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
   },
   data() {
     return {
+      abilitiesData: {},
+      ability: {},
+      dialog: {},
       selectedCount: 0,
       selectedString: ''
     }
+  },
+  created() {
+    this.dialog = this.dialogProp
+    this.ability = this.abilityProp
+    this.abilitiesData = this.abilitiesProp
   },
   mounted() {
   },
@@ -229,6 +266,7 @@ export default {
         let rulesPath = pathAtSelection
         let newInteraction = createInteraction(interactionText, abilityPath, R.append('children', rulesPath), this.$cardRules)
 
+        console.log("this.ability", this.ability)
         updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
         this.attachToAbility(['interaction'], this.ability.interaction)
 
@@ -298,7 +336,7 @@ export default {
           path: this.dialog.rulesPath
         }
         this.ability = newAbility
-        this.abilities.push(newAbility)
+        this.abilitiesData.push(newAbility)
 
         this.attachToAbility(['interaction'], newAbility.interaction)
         this.attachToAbility([selection.index, 'path'], this.dialog.rulesPath)
@@ -326,7 +364,7 @@ export default {
         path: this.dialog.rulesPath
       }
 
-      this.abilities.push(newAbility)
+      this.abilitiesData.push(newAbility)
       console.log('pushed new ability:', newAbility)
     },
     attachToAbility(path, object, updateKeywords=false) {

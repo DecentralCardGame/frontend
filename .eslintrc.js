@@ -12,6 +12,7 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
-    'no-debugger': 'off'
+    'no-debugger': 'off',
+    'no-unused-vars': 'off',
   }
 }

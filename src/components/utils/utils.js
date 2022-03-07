@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import * as svg1 from 'save-svg-as-png'
+//import * as svg1 from 'save-svg-as-png'
 
 export const emptyCard = {
   CardName: 'Name',
@@ -218,7 +218,7 @@ export function shallowClone (obj) {
 
 // utility functions for uploading and downloading stuff
 
-export function uploadImg (file, callback) {
+export function uploadImg (file, maxKB, callback) {
   let resolution = {height: 1300, width: 838}
 
   const reader = new FileReader()
@@ -244,9 +244,18 @@ export function uploadImg (file, callback) {
       canvas.height = height
       canvas.getContext('2d').drawImage(image, -widthAdjust, 0, width, height)
 
-      let dataUrl = canvas.toDataURL('image/png')
-      
-      callback(dataUrl)
+      let quality = 0.9
+      let newDataURL = canvas.toDataURL('image/jpeg', quality)
+      console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
+      while (Math.round(newDataURL.length)/1000 > maxKB) {
+        quality *= 0.9
+        newDataURL = canvas.toDataURL('image/jpeg', quality)
+        console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
+    
+        if (quality <= 0)
+          return ""
+      }
+      callback(newDataURL)
     }
     image.src = readerEvent.target.result
   }
@@ -254,20 +263,23 @@ export function uploadImg (file, callback) {
   reader.readAsDataURL(file)
 }
 
-export function compressImg(dataURL, maxKB) {
+export function compressImg(dataURL, width, height) {
   var image = new Image()
   image.src = dataURL
+  console.log("dataURL", dataURL)
+  console.log("image bounds:", width, height)
 
   let canvas = document.createElement('canvas')
-  canvas.width = image.width
-  canvas.height = image.height
-  canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height)
+  canvas.width = width
+  canvas.height = height
+  canvas.getContext('2d').drawImage(image, 0, 0, width, height)
 
   let quality = 0.9
   let newDataURL = canvas.toDataURL('image/jpeg', quality)
+  console.log("newDataURL", newDataURL)
   console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
 
-  while (Math.round(newDataURL.length)/1000 > maxKB) {
+  while (Math.round(newDataURL.length)/1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
     quality -= 0.1
     newDataURL = canvas.toDataURL('image/jpeg', quality)
     console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
@@ -279,16 +291,16 @@ export function compressImg(dataURL, maxKB) {
 }
 
 export function saveCardAsPng (element, name, scale = 5) {
-  svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
+  console.error("SAVE CARD AS PNG SHOULD BE DEACTIVATED")
+  //svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
 }
 
 export function icon(name) {
-  //let path = '../../assets/icon/'
   let item
   try {
     //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
     //console.log("retrieving:", '../../assets/icon/abilities/'+name+'.svg')
-    item = require('../../assets/icon/abilities/'+name+'.svg')
+    item = require('@/assets/icon/abilities/'+name+'.svg')
   } catch {
     if (name.length === 1) {
       return require('../../assets/icon/abilities/variable.svg')
@@ -304,5 +316,5 @@ export function icon(name) {
       }
     }
   }
-  return item
+  return item.default
 }
