@@ -1,0 +1,83 @@
+@import "variables";
+
+button, .button--file {
+  z-index: 1;
+  font-family: $font-family-header;
+  background-color: transparent;
+  color: $black;
+  font-size: 1em;
+  padding: 0.5rem 1em;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all $animation-duration ease-out;
+  &:after {
+    z-index: -1;
+    background: linear-gradient(to right, $main-color-a 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all $animation-duration ease-out;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: skewX($skew);
+    box-shadow: $border-thickness-bold $border-thickness-bold 0 black;
+  }
+  &:hover {
+    color: $white;
+    &:after {
+      background-position: left bottom;
+    }
+  }
+}
+
+select {
+  background-color: transparent;
+  border: $border-thickness solid $white;
+  font-size: 1em;
+  color: $white;
+  font-family: $font-family;
+}
+
+select option {
+  color: $main-color-a;
+  background-color: $white;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: $border-thickness solid $white;
+  color: $white;
+  font-size: 1em;
+  font-family: $font-family;
+}
+
+input::placeholder {
+  color: lightgray;
+}
+
+input[type="checkbox"]  {
+  position: absolute;
+  height: $font-size;
+  width: $font-size;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 2px solid $white;
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: -1px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: $white;
+}
