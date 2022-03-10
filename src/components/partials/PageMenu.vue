@@ -192,7 +192,7 @@ export default {
 
     a, .nav__menu__item {  
       font-family: $font-family-header;
-      padding: 1.5rem;
+      padding: 1.65rem;
       font-size: $font-size*1.15;
       color: $black;
       text-align: center;
