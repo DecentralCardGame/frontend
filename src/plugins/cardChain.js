@@ -319,7 +319,7 @@ export default {
             this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
             throw new Error('CardList status invalid: ' + status)
           }
-          return this.vue.$http.get('cardservice/cardList?' + 
+          return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cards?' + 
               (status ? 'status='+status : '') + 
               (owner? '&owner='+owner : '') + 
               (cardType? '&cardType='+cardType : '') + 
