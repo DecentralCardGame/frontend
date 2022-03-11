@@ -319,15 +319,15 @@ export default {
             this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
             throw new Error('CardList status invalid: ' + status)
           }
-          return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cards?' + 
-              (status ? 'status='+status : '') + 
-              (owner? '&owner='+owner : '') + 
-              (cardType? '&cardType='+cardType : '') + 
-              (classes? '&classes='+classes : '') + 
-              (sortBy? '&sortBy='+sortBy : '') + 
-              (nameContains? '&nameContains='+nameContains : '') +
-              (keywordsContains? '&keywordsContains='+keywordsContains : '') +
-              (notesContains? '&notesContains='+notesContains : '')
+          return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cards/' +
+              (owner? owner+'/' : '%22%22/') +
+              (status ? status+'/' : 'none/') +
+              (cardType? cardType+'/' : '%22%22/') + 
+              (classes? classes+'/' : '%22%22/') + 
+              (sortBy? sortBy+'/' : '%22%22/') + 
+              (nameContains? nameContains+'/' : '%22%22/') +
+              (keywordsContains? keywordsContains+'/' : '%22%22/') +
+              (notesContains? notesContains+'/' : '%22%22')
             )
             .catch(this.handleGetError)
             .then(this.handleGetCardList(R.__, status))
