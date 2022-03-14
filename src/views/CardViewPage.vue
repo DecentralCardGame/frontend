@@ -153,6 +153,6 @@ export default {
 .gallery__view__card {
   margin: auto;
   height: 75vh;
-  max-width:500px;
+  overflow: visible;
 }
 </style>
