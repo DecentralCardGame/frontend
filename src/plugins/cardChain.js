@@ -334,7 +334,7 @@ export default {
       }
       getVotableCards (address) {
           if (this.validAddress(address)) {
-          return this.vue.$http.get('cardservice/votable_cards/' + address)
+          return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_votable_cards/' + address)
               .catch(this.handleGetError)
               .then(this.handleGetVotableCards(R.__, address))
           } else {
@@ -500,6 +500,9 @@ export default {
         if (res.data) {
           this.vue.notifyFail('OH SHIT', 'Something went terribly wrong.')
           throw new Error(res.data)
+        } else if(res.response.data) {
+          this.vue.notifyFail('Code' + res.response.data.code, res.response.data.message)
+          throw new Error(res.response)
         } else {
           this.vue.notifyFail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
           throw new Error(res)
