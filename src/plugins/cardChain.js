@@ -7,7 +7,7 @@ import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
 export default {
-  install (Vue, store, that) {
+  install (Vue, store) {
     Vue.mixin({
       methods: {
         newCardChain () {
@@ -20,7 +20,6 @@ export default {
       constructor(vue) {
         this.vue = Vue
         this.vue.$store = store
-        this.notifyFail = Vue.$notify
         this.bindVue = (that) => {
           this.vue = that
         }
@@ -52,7 +51,11 @@ export default {
 
       getAccInfo (address) {
         if (this.validAddress(address)) {
-          return this.vue.$http.get('auth/accounts/' + address)
+          return this.vue.$http.get(
+            'cosmos/bank/v1beta1/balances/' + address, 
+            {
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            })
             .catch(this.handleGetError)
             .then(this.handleGetAcc(R.__, address))
         } else {
@@ -145,19 +148,21 @@ export default {
         return entropyToMnemonic(entropy)
       }
       registerAccTx (alias) {
-        return new Promise((resolve, reject) => {
-          // this tx is special because it is not signed by the user but by a special creator address
-          let reqBody = {
-            'base_req': {
-              'from': process.env.VUE_APP_CREATOR_ADDRESS,
-              'chain_id': process.env.VUE_APP_CHAIN_ID,
-              'gas': 'auto',
-              'gas_adjustment': '1.5'
-            },
-            'new_user': this.vue.$store.getters['getUserAddress'],
-            'creator': process.env.VUE_APP_CREATOR_ADDRESS,
-            'alias': alias
+        console.log("register", this.vue.$store.getters['common/wallet/address'])
+
+
+        let yo = this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
+          value: {
+            '@type': '/DecentralCardGame.cardchain.cardchain.MsgCreateuser',
+            creator: this.vue.$store.getters['common/wallet/address'],
+            newUser: this.vue.$store.getters['common/wallet/address'],
+            alias: alias
           }
+        })
+        console.log("yo", yo)
+        return yo
+          // TODO ordentliches chaining
+        /*
           this.txQueue.enqueue(() => {
             return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.vue.$http.put('cardservice/create_user', reqBody)])
               .then(res => this.signAndBroadcast(process.env.VUE_APP_CREATOR_MNEMONIC, res))
@@ -169,6 +174,7 @@ export default {
               })
           })
         })
+        */
       }
       buyCardSchemeTx (maxBid) {
           return new Promise((resolve, reject) => {
@@ -301,7 +307,7 @@ export default {
       }
       getUserInfo (address) {
           if (this.validAddress(address)) {
-            return this.vue.$http.get('cardservice/user/' + address)
+            return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_user/' + address)
               .catch(this.handleGetError)
               .then(this.handleGetUser(R.__, address))
           } else {
@@ -424,27 +430,29 @@ export default {
           .catch(this.handlePutError)
       }
       handleGetUser = R.curry((res, address) => {
-        if (res.data.result.Alias === '') {
+        console.log("handlegetuser", res)
+        if (!res || !res.data) {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           throw new Error('account ' + address + ' is not registered')
         } else {
           return {
-            alias: res.data.result.Alias,
-            ownedCardSchemes: res.data.result.OwnedCardSchemes,
-            ownedCards: res.data.result.OwnedCards,
-            voteRights: res.data.result.VoteRights
+            alias: res.data.alias,
+            councilStatus: res.data.CouncilStatus,
+            reportMatches: res.data.reportMatches,
+            ownedCardSchemes: res.data.ownedCardSchemes,
+            ownedPrototypes: res.data.ownedPrototypes,
+            ownedCards: res.data.cards,
+            voteRights: res.data.voteRights
           }
         }
       })
       handleGetAcc = R.curry((res, address) => {
-        if (res.data.result.value.address === '') {
-          this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
-          throw new Error('account ' + address + ' is not registered')
+        if (!res) {
+          this.vue.notifyFail('Account not registered', address + ' is not registered on the blockchain.')
+          throw new Error(address + ' is not registered on the blockchain.')
         } else {
           return {
-            coins: res.data.result.value.coins,
-            account_number: res.data.result.value.account_number,
-            sequence: res.data.result.value.sequence
+            coins: res.data.balances
           }
         }
       })
@@ -496,16 +504,14 @@ export default {
           }
         }
       })
-      handleGetError = (res) => {
-        if (res.data) {
-          this.vue.notifyFail('OH SHIT', 'Something went terribly wrong.')
-          throw new Error(res.data)
-        } else if(res.response.data) {
-          this.vue.notifyFail('Code' + res.response.data.code, res.response.data.message)
-          throw new Error(res.response)
+      handleGetError = (err) => {
+        console.log("handleGetError res", err.response)
+        if (err.response) {
+          this.vue.notifyFail('Code' + err.response.data.code, err.response.data.message)
+          //throw new Error(err)
         } else {
           this.vue.notifyFail('NO CONNECTION', 'No connection to the blockchain. Please freak out responsibly.')
-          throw new Error(res)
+          throw new Error(err)
         }
       }
       handlePutError = (err) => {
@@ -535,7 +541,7 @@ export default {
       })
       validAddress (address) {
         if (address) {
-          return address.startsWith('cosmos')
+          return address.startsWith('cc') && address.length === 41
         } else {
           return false
         }

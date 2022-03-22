@@ -24,11 +24,8 @@
 import './scss/main.scss'
 import '@starport/vue/lib/starport-vue.css'
 //import Sidebar from './components/Sidebar'
-//import cardChain from './plugins/cardChain'
 
 import AppLayout from './layouts/AppLayout.vue'
-
-const default_layout = "default"
 
 export default {
   name: 'CrowdControlApp',
@@ -40,22 +37,56 @@ export default {
       initialized: false,
     }
   },
+
   computed: {
     hasWallet() {
       return this.$store.hasModule(['common', 'wallet'])
-    },/*
-    layout() {
-      console.log("layout:", (this.$route.meta.layout || default_layout) + '-layout')
-      return (this.$route.meta.layout || default_layout) + '-layout'
-    }*/
+    }
+  },
+  
+  watch: {
+    '$store.state.common.wallet.selectedAddress': function () {
+
+      this.setLoginStatus()
+
+      if (this.isLoggedIn) {
+        this.getBalances()
+        .then(credits => {
+          console.log("credits:", credits)
+          if (credits < 10) {
+            return this.useFaucet()
+          }
+            
+        })
+        .then((faucetres) => {
+          console.log("faucetres", faucetres)
+          this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
+          return this.$cardChain.registerAccTx("gönni")
+        })
+        .then(reg => {
+          console.log("reg", reg)
+          return this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
+        })
+        .then(res => {
+          console.log("res", res)
+
+        })
+        
+        
+      }
+    }
   },
   async created() {
     this.$cardChain.bindVue(this)
-    //this.use(cardChain, this.$store)
-    //await this.$store.dispatch('common/env/init')
+    await this.$store.dispatch('common/env/init')
     this.initialized = true
+
+    console.log("initialized?", this.initialized)
+    //this.$cardChain.getUserInfo('cc1udpfedftjwrddrjhkk0qtc59434q6pdyld27qt')
+    this.$cardChain.getAccInfo('cc1xdpfedftjwrddrjhkk0qtc59434q6pdyld27qt')
   },
   mounted () {
+    console.log("store", this.$store)
   },
   errorCaptured(err) {
     console.log(err)
@@ -68,17 +99,49 @@ export default {
         event
       )
     },
-    notify() {
-      this.$notify({
-          group: 'bottom-right-notification',
-          title: 'bla',
-          text: 'blubb',
-          type: 'notification--alert',
-          duration: 5000,
+    setLoginStatus() {
+      this.walletName = this.$store.getters['common/wallet/walletName']
+      console.log('walletname:', this.walletName)
+      if (this.walletName != null) {
+        this.isLoggedIn = true
+      } else {
+        this.isLoggedIn = false
+      }
+    },
+    useFaucet() {
+      this.notifyInfo('Faucet', 'Get Credits from Faucet')
+      return this.$http.post(
+        process.env.VUE_APP_FAUCET,
+        {
+          address: this.$store.getters['common/wallet/address'],
+          coins: ['0ubpf', '5000ucredits'],
+        },
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        }
+      )
+    },
+    getBalances() {
+      return this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
+        .then((accData) => {
+            console.log("accData:", accData.coins)
+            let balances = accData.coins
+
+            balances.forEach((balance) => {
+              if (balance.denom == 'ucredits') {
+                this.$store.commit('setUserCredits', balance.amount)
+                console.log("storecreds", this.$store.getters['getUserCredits'])
+                console.log("return", balance.amount)
+                
+              }
+            })
+            return this.$store.getters['getUserCredits']
         })
     }
-  },
+  }
+
 }
+
 </script>
 
 <style lang="scss">

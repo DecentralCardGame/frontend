@@ -27,6 +27,12 @@
       class="account-box"
       to="/me"
     >
+      <SpWallet
+        ref="wallet"
+        class="wallet--local"
+        @dropdown-opened="$refs.menu.closeDropdown()"
+      />
+
       <button>My Account ({{ getUserCredits }} Credits)</button>
     </router-link>
   </header>
@@ -51,6 +57,19 @@ export default {
 <style scoped lang="scss">
   @import "../../scss/variables";
 
+  .wallet--local {
+    position: relative;
+    
+  }
+
+  .sp-wallet-menu-item {
+    color: black;
+  }
+
+  .sp-text {
+    color: black;
+  }
+
   header {
     background-color: $background-separator;
     padding: $font-size * 0.5;
@@ -59,6 +78,7 @@ export default {
   }
 
   .account-box {
+    color: black;
     position: absolute;
     top: 0;
     right: 2rem;

@@ -66,8 +66,9 @@ export default {
     }
   },
   mounted () {
-    this.mnemonic = this.$store.getters.getUserMnemonic
-    this.address = this.$store.getters.getUserAddress
+    //this.mnemonic = this.$store.getters.getUserMnemonic
+    /*
+    this.address = this.$store.getters['common/wallet/walletName']
 
     this.$cardChain.getUserInfo(this.address)
     .then(user => {
@@ -79,6 +80,7 @@ export default {
         this.$cardChain.registerAccTx("superNoob")
       }
     })
+    */
   },
   methods: {
     save () {

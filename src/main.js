@@ -25,7 +25,7 @@ app.use(store)
   .use(VueCryptojs)
   .component('AppLayout', AppLayout)
   .use(VueAxios, { 
-    $http: axios.create({baseURL: process.env.VUE_APP_BLOCKCHAIN_API}),
+    $http: axios.create({baseURL: process.env.VUE_APP_API_COSMOS}),
     $hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API}) 
   })
   .use(Notifications)
