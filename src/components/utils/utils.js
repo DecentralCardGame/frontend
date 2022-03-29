@@ -46,10 +46,11 @@ export const emptyGalleryFilter = {
 }
 
 // Global Utility functions
-export function creditsFromCoins(coins) {
+export function creditsFromCoins(accData) {
+  let coins = accData.coins
   let credits = -1
   for (let i = 0; i < coins.length; i++) {
-    if (coins[i].denom === 'credits') {
+    if (coins[i].denom === 'ucredits') {
       credits = coins[i].amount
       break
     }
@@ -101,7 +102,7 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
       else if(type === 'yes') {
         console.log(text)
       }
-      // this is the default case 
+      // this is the default case
       else {
         R.last(interaction).btn = makeBtn(R.append(buttonEntry, rulesPath), R.append(buttonEntry, abilityPath), interaction.length - 1)
         if (type === 'boolean') {
@@ -115,12 +116,12 @@ export function createInteraction (text, abilityPath, rulesPath, cardRules) {
 
   // check if the last interaction piece is just an ending text (no button) and if there exist an interaction text element before it,
   // if true then move pretext from the last piece to posttext of the second last piece and remove it.
-  if (interaction[interaction.length - 1].btn.type === null && interaction[interaction.length - 2]) {    
+  if (interaction[interaction.length - 1].btn.type === null && interaction[interaction.length - 2]) {
     interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre
     interaction.splice(-1, 1)
   }
 
-  console.log("pre : case?",interaction[0].pre[0])    
+  console.log("pre : case?",interaction[0].pre[0])
   if (interaction[0].pre[0] == ":") {
     console.log("pre : case, remove it")
   }
@@ -140,7 +141,7 @@ export function updateInteraction (ability, id, newInteraction) {
       ability.interaction[id + 1].pre += ability.interaction[id].post
     } else if (ability.interaction[id].pre != ": ") {
       // sometimes there is no post-text, but there is pre-text we want to preserve, but don't do this if it is only a ":"
-      newInteraction[0].pre = ability.interaction[id].pre + newInteraction[0].pre 
+      newInteraction[0].pre = ability.interaction[id].pre + newInteraction[0].pre
     }
   }
 
@@ -251,7 +252,7 @@ export function uploadImg (file, maxKB, callback) {
         quality *= 0.9
         newDataURL = canvas.toDataURL('image/jpeg', quality)
         console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
-    
+
         if (quality <= 0)
           return ""
       }

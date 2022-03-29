@@ -83,27 +83,24 @@ export default {
   mounted() {
     this.$cardChain.getGameInfo()
         .then(res => {
-          this.currentPrice = res.cardSchemePrice.amount + ' ' + res.cardSchemePrice.denom
-          this.currentBid = res.cardSchemePrice.amount
+          this.currentPrice = res.cardAuctionPrice.amount + ' ' + res.cardAuctionPrice.denom
+          this.currentBid = res.cardAuctionPrice.amount
         })
         .catch(res => {
           console.error(res)
           this.close()
           return res
         })
-    this.$cardChain.getAccInfo(this.$store.getters.getUserAddress)
+    this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
         .then(acc => {
-          if (acc.alias === '') {
-            this.notifyFail('NOT LOGGED IN', 'please login or register')
-            throw new Error('unregistered account: ', this.$store.getters.getUserAddress)
-          }
+          console.log("acc:", acc)
 
           if (!acc || !acc.coins) {
             this.notifyFail('NOT LOGGED IN', 'please login or register')
             throw new Error('no coins available for', this.$store.getters.getUserAddress)
           }
 
-          this.creditsAvailable = creditsFromCoins(acc.coins)
+          this.creditsAvailable = creditsFromCoins(acc)
           this.$store.commit('setUserCredits', this.creditsAvailable)
         })
         .catch(res => {

@@ -29,7 +29,7 @@ export default {
           queue: [],
           enqueue: function(transaction) {
               this.queue.push(transaction)
-          
+
               if (!this.isRunning) {
                 this.run()
               }
@@ -52,7 +52,7 @@ export default {
       getAccInfo (address) {
         if (this.validAddress(address)) {
           return this.vue.$http.get(
-            'cosmos/bank/v1beta1/balances/' + address, 
+            'cosmos/bank/v1beta1/balances/' + address,
             {
               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             })
@@ -60,7 +60,7 @@ export default {
             .then(this.handleGetAcc(R.__, address))
         } else {
           this.vue.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
-          throw new Error('please provide proper address')    
+          throw new Error('please provide proper address')
         }
       }
       updateUserCredits () {
@@ -86,7 +86,7 @@ export default {
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
 
-          if (rawCard.FullArt && !R.isNil(rawCard.FullArt)) 
+          if (rawCard.FullArt && !R.isNil(rawCard.FullArt))
             card.FullArt = JSON.parse(rawCard.FullArt)
 
           console.log('parsed card: ', card)
@@ -116,7 +116,7 @@ export default {
           console.log("additionalcost empty?", R.isEmpty(webModel.AdditionalCost))
           if (!R.isEmpty(webModel.AdditionalCost)) {
             cardContent.AdditionalCost = webModel.AdditionalCost
-          } 
+          }
         }
         if (webModel.type !== "Action") {
           cardContent.Health = webModel.Health
@@ -124,10 +124,10 @@ export default {
         }
         if (webModel.type === "Entity") {
           cardContent.Attack = webModel.Attack
-        } 
+        }
         else if (webModel.type === "Action") {
           cardContent.Effects = webModel.Effects
-        } 
+        }
         else if (webModel.type === "Headquarter") {
           cardContent.Delay = webModel.Delay
         }
@@ -148,10 +148,7 @@ export default {
         return entropyToMnemonic(entropy)
       }
       registerAccTx (alias) {
-        console.log("register", this.vue.$store.getters['common/wallet/address'])
-
-
-        let yo = this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
+        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
           value: {
             '@type': '/DecentralCardGame.cardchain.cardchain.MsgCreateuser',
             creator: this.vue.$store.getters['common/wallet/address'],
@@ -159,22 +156,6 @@ export default {
             alias: alias
           }
         })
-        console.log("yo", yo)
-        return yo
-          // TODO ordentliches chaining
-        /*
-          this.txQueue.enqueue(() => {
-            return Promise.all([this.getAccInfo(process.env.VUE_APP_CREATOR_ADDRESS), this.vue.$http.put('cardservice/create_user', reqBody)])
-              .then(res => this.signAndBroadcast(process.env.VUE_APP_CREATOR_MNEMONIC, res))
-              .then(() => {
-                resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
-              })
-              .catch((err) => {
-                reject(err)
-              })
-          })
-        })
-        */
       }
       buyCardSchemeTx (maxBid) {
           return new Promise((resolve, reject) => {
@@ -191,8 +172,8 @@ export default {
             this.txQueue.enqueue(() => {
               return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.vue.$http.post('cardservice/buy_card_scheme', reqBody)])
                 .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
-                .then(() => { 
-                  this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.') 
+                .then(() => {
+                  this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.')
                   resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
                 })
                 .catch(err => {
@@ -293,7 +274,7 @@ export default {
             'votetype': voteType,
             'cardid': '' + cardid
           }
-      
+
           this.txQueue.enqueue(() => {
             return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.voteCardGenerateTx(req)])
               .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
@@ -328,9 +309,9 @@ export default {
           return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cards/' +
               (owner? owner+'/' : '%22%22/') +
               (status ? status+'/' : 'none/') +
-              (cardType? cardType+'/' : '%22%22/') + 
-              (classes? classes+'/' : '%22%22/') + 
-              (sortBy? sortBy+'/' : '%22%22/') + 
+              (cardType? cardType+'/' : '%22%22/') +
+              (classes? classes+'/' : '%22%22/') +
+              (sortBy? sortBy+'/' : '%22%22/') +
               (nameContains? nameContains+'/' : '%22%22/') +
               (keywordsContains? keywordsContains+'/' : '%22%22/') +
               (notesContains? notesContains+'/' : '%22%22')
@@ -357,17 +338,16 @@ export default {
           .catch(this.handleGetError)
       }
       getGameInfo () {
-          return this.vue.$http.get('cardservice/cardchain_info')
+          return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cardchain_info')
           .then(res => {
-              return {
-              cardSchemePrice: res.data.result
-              }
+            console.log("game info", res)
+            return res.data
           })
           .catch(this.handleGetError)
       }
-    
+
       // From here on are functions which can be made private, since they don't need to be exposed
-      
+
       broadcast (signedTx) {
         this.vue.notifyInfo('BROADCASTING', 'Transaction successfully created, sending it now into the blockchain.')
         return this.vue.$http.post('txs', {
@@ -404,7 +384,7 @@ export default {
           memo: rawTx.value.memo
         }
         let signed = signTx(unsignedTx, signMeta, wallet)
-        
+
         return {
           type: 'cosmos-sdk/StdTx',
           value: signed

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="initialized"    
+    v-if="initialized"
     id="app"
     tabindex="-1"
     @auxclick="handleAnyInput"
@@ -43,36 +43,51 @@ export default {
       return this.$store.hasModule(['common', 'wallet'])
     }
   },
-  
+
   watch: {
     '$store.state.common.wallet.selectedAddress': function () {
-
       this.setLoginStatus()
 
       if (this.isLoggedIn) {
         this.getBalances()
         .then(credits => {
           console.log("credits:", credits)
-          if (credits < 10) {
+          if (credits < 1) {
+            console.log("using faucet")
             return this.useFaucet()
+            .then(async (faucetres) => {
+              console.log("faucetres", faucetres)
+              let active = -1
+              let count = 0
+              while (active === -1 && count < 100) {
+                  active = await this.getBalances();
+                  count++
+              }
+              if (active === -1) {
+                throw new Error('Faucet does not work.')
+              }
+              console.log("yes", active)
+              return this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
+            })
+            .then(register => {
+              if (register.code === 0) {
+                this.notifySuccess("Great Success!", "Registering was succesful.")
+              }
+              else {
+                this.notifyFail("EPIC FAIL", "Register did not work.")
+                console.error(register)
+              }
+            })
+          } else {
+            return "no faucet necessary"
           }
-            
         })
-        .then((faucetres) => {
-          console.log("faucetres", faucetres)
-          this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
-          return this.$cardChain.registerAccTx("gönni")
+        .catch(err => {
+          this.notifyFail("WTF", "Something went wrong in the login process.")
+          console.error(err)
         })
-        .then(reg => {
-          console.log("reg", reg)
-          return this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
-        })
-        .then(res => {
-          console.log("res", res)
-
-        })
-        
-        
+      } else {
+        this.notifyInfo('Logged', 'You have logged out.')
       }
     }
   },
@@ -83,7 +98,6 @@ export default {
 
     console.log("initialized?", this.initialized)
     //this.$cardChain.getUserInfo('cc1udpfedftjwrddrjhkk0qtc59434q6pdyld27qt')
-    this.$cardChain.getAccInfo('cc1xdpfedftjwrddrjhkk0qtc59434q6pdyld27qt')
   },
   mounted () {
     console.log("store", this.$store)
@@ -125,17 +139,16 @@ export default {
       return this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
         .then((accData) => {
             console.log("accData:", accData.coins)
-            let balances = accData.coins
+            let credits = -1
 
-            balances.forEach((balance) => {
+            accData.coins.forEach((balance) => {
               if (balance.denom == 'ucredits') {
                 this.$store.commit('setUserCredits', balance.amount)
-                console.log("storecreds", this.$store.getters['getUserCredits'])
-                console.log("return", balance.amount)
-                
+                credits = balance.amount
+
               }
             })
-            return this.$store.getters['getUserCredits']
+            return credits
         })
     }
   }
