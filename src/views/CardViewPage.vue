@@ -9,8 +9,8 @@
       You have opened the advanced card view without giving a card id. This makes no sense.
     </div>
 
-    <div 
-      v-else 
+    <div
+      v-else
       class="gallery__view__card"
       @click="saveCard"
     >
@@ -32,8 +32,8 @@
           >
             <th scope="row">
               <b> {{ keyword[0] }} </b>
-            </th>  
-            <td> - {{ keyword[1] }}</td>  
+            </th>
+            <td> - {{ keyword[1] }}</td>
           </tr>
         </tbody>
       </table>
@@ -88,23 +88,23 @@ export default {
     if (typeof id === 'number' && !isNaN(id))  {
       this.$cardChain.getCard(this.$route.params.id)
         .then(res => {
-          let parsedCard = this.$cardChain.cardObjectToWebModel(res.card)
+          let parsedCard = this.$cardChain.cardObjectToWebModel(res)
           console.log('downloaded card:', res)
           if (parsedCard) {
             this.cards = []
             this.cards.push(parsedCard)
             this.FlavourText = parsedCard.FlavourText
             this.Notes = parsedCard.Notes
-            this.InappropriateVotes = parsedCard.InappropriateVotes
-            this.UnderpoweredVotes = parsedCard.UnderpoweredVotes
-            this.OverpoweredVotes = parsedCard.OverpoweredVotes
-            this.FairEnoughVotes = parsedCard.FairEnoughVotes
-            this.Nerflevel = parsedCard.Nerflevel
-            this.Owner = parsedCard.Owner
-            this.Status = parsedCard.Status
-            this.VotePool = parsedCard.VotePool.amount
+            this.InappropriateVotes = parsedCard.inappropriateVotes
+            this.UnderpoweredVotes = parsedCard.underpoweredVotes
+            this.OverpoweredVotes = parsedCard.overpoweredVotes
+            this.FairEnoughVotes = parsedCard.fairEnoughVotes
+            this.Nerflevel = parsedCard.nerflevel
+            this.Owner = parsedCard.owner
+            this.Status = parsedCard.status
+            this.VotePool = parsedCard.votePool.amount
             console.log('parsed Card:', parsedCard)
-            
+
             let firstLetterToLower = string => {
               return string[0].toLowerCase() + string.substring(1)
             }
@@ -122,7 +122,7 @@ export default {
         })
     }
 
-    
+
   },
   methods: {
     saveCard () {

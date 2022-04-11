@@ -357,6 +357,7 @@ export default {
           let card = res
           card.id = cardId
           if (card.content) {
+            console.log(card)
             let candidate = this.$cardChain.cardObjectToWebModel(card)
             this.cards.push(candidate)
             return candidate
