@@ -1,31 +1,120 @@
+export declare enum CardchainCStatus {
+    Design = "design",
+    Finalized = "finalized",
+    Active = "active",
+    Archived = "archived"
+}
+export interface CardchainCollection {
+    name?: string;
+    cards?: string[];
+    artist?: string;
+    storyWriter?: string;
+    contributors?: string[];
+    story?: string;
+    /** @format byte */
+    artwork?: string;
+    status?: CardchainCStatus;
+    /** @format int64 */
+    timeStamp?: string;
+}
+export declare enum CardchainCouncelingStatus {
+    CouncilOpen = "councilOpen",
+    CouncilCreated = "councilCreated",
+    CouncilClosed = "councilClosed",
+    Commited = "commited",
+    Revealed = "revealed",
+    SuggestionsMade = "suggestionsMade"
+}
+export interface CardchainCouncil {
+    /** @format uint64 */
+    cardId?: string;
+    voters?: string[];
+    hashResponses?: CardchainWrapHashResponse[];
+    clearResponses?: CardchainWrapClearResponse[];
+    treasury?: string;
+    status?: CardchainCouncelingStatus;
+    /** @format uint64 */
+    trialStart?: string;
+}
+export declare enum CardchainCouncilStatus {
+    Available = "available",
+    Unavailable = "unavailable",
+    OpenCouncil = "openCouncil",
+    StartedCouncil = "startedCouncil"
+}
+export interface CardchainIgnoreMatches {
+    outcome?: boolean;
+    timestamp?: boolean;
+    reporter?: boolean;
+}
+export interface CardchainIgnoreSellOffers {
+    status?: boolean;
+    price?: boolean;
+    seller?: boolean;
+    buyer?: boolean;
+    card?: boolean;
+}
+export interface CardchainMatch {
+    /** @format uint64 */
+    timestamp?: string;
+    reporter?: string;
+    playerA?: string;
+    playerB?: string;
+    playerACards?: string[];
+    playerBCards?: string[];
+    outcome?: CardchainOutcome;
+}
+export declare type CardchainMsgAddArtworkResponse = object;
+export declare type CardchainMsgAddArtworkToCollectionResponse = object;
+export declare type CardchainMsgAddCardToCollectionResponse = object;
+export declare type CardchainMsgAddContributorToCollectionResponse = object;
+export declare type CardchainMsgAddStoryToCollectionResponse = object;
+export declare type CardchainMsgApointMatchReporterResponse = object;
+export declare type CardchainMsgBuyCardResponse = object;
 export declare type CardchainMsgBuyCardSchemeResponse = object;
+export declare type CardchainMsgBuyCollectionResponse = object;
+export declare type CardchainMsgChangeArtistResponse = object;
+export declare type CardchainMsgCommitCouncilResponseResponse = object;
+export declare type CardchainMsgCreateCollectionResponse = object;
+export declare type CardchainMsgCreateCouncilResponse = object;
+export declare type CardchainMsgCreateSellOfferResponse = object;
 export declare type CardchainMsgCreateuserResponse = object;
 export declare type CardchainMsgDonateToCardResponse = object;
+export declare type CardchainMsgFinalizeCollectionResponse = object;
+export declare type CardchainMsgRegisterForCouncilResponse = object;
+export declare type CardchainMsgRemoveCardFromCollectionResponse = object;
+export declare type CardchainMsgRemoveContributorFromCollectionResponse = object;
+export declare type CardchainMsgRemoveSellOfferResponse = object;
+export interface CardchainMsgReportMatchResponse {
+    /** @format uint64 */
+    matchId?: string;
+}
+export declare type CardchainMsgRestartCouncilResponse = object;
+export declare type CardchainMsgRevealCouncilResponseResponse = object;
+export declare type CardchainMsgRewokeCouncilRegistrationResponse = object;
 export declare type CardchainMsgSaveCardContentResponse = object;
+export declare type CardchainMsgSetCardRarityResponse = object;
+export declare type CardchainMsgSubmitCollectionProposalResponse = object;
+export declare type CardchainMsgSubmitCopyrightProposalResponse = object;
+export declare type CardchainMsgSubmitMatchReporterProposalResponse = object;
 export declare type CardchainMsgTransferCardResponse = object;
 export declare type CardchainMsgVoteCardResponse = object;
-/**
- * Params defines the parameters for the module.
- */
-export declare type CardchainParams = object;
-/**
- * QueryParamsResponse is response type for the Query/Params RPC method.
- */
-export interface CardchainQueryParamsResponse {
-    /** params holds all the parameters of this module. */
-    params?: CardchainParams;
+export declare enum CardchainOutcome {
+    AWon = "AWon",
+    BWon = "BWon",
+    Draw = "Draw",
+    Aborted = "Aborted"
 }
-export interface CardchainQueryQCardContentResponse {
-    content?: string;
-}
-export interface CardchainQueryQCardResponse {
+export interface CardchainOutpCard {
     owner?: string;
+    artist?: string;
     content?: string;
     image?: string;
-    fullArt?: string;
+    fullArt?: boolean;
     notes?: string;
-    status?: string;
+    status?: CardchaincardchainStatus;
     votePool?: string;
+    voters?: string[];
     /** @format uint64 */
     fairEnoughVotes?: string;
     /** @format uint64 */
@@ -37,17 +126,70 @@ export interface CardchainQueryQCardResponse {
     /** @format int64 */
     nerflevel?: string;
 }
+/**
+ * Params defines the parameters for the module.
+ */
+export interface CardchainParams {
+    /** @format int64 */
+    votingRightsExpirationTime?: string;
+    /** @format uint64 */
+    collectionSize?: string;
+    collectionPrice?: string;
+    /** @format uint64 */
+    activeCollectionsAmount?: string;
+    collectionCreationFee?: string;
+    collateralDeposit?: string;
+    /** @format int64 */
+    winnerReward?: string;
+    /** @format int64 */
+    voterReward?: string;
+    hourlyFaucet?: string;
+    inflationRate?: string;
+    /** @format uint64 */
+    raresPerPack?: string;
+    /** @format uint64 */
+    commonsPerPack?: string;
+    /** @format uint64 */
+    unCommonsPerPack?: string;
+    /** @format uint64 */
+    trialPeriod?: string;
+    /** @format int64 */
+    gameVoteRatio?: string;
+    /** @format int64 */
+    cardAuctionPriceReductionPeriod?: string;
+}
+/**
+ * QueryParamsResponse is response type for the Query/Params RPC method.
+ */
+export interface CardchainQueryParamsResponse {
+    /** params holds all the parameters of this module. */
+    params?: CardchainParams;
+}
+export interface CardchainQueryQCardContentResponse {
+    content?: string;
+}
 export interface CardchainQueryQCardchainInfoResponse {
     cardAuctionPrice?: string;
+    activeCollections?: string[];
+    /** @format uint64 */
+    cardsNumber?: string;
+    /** @format uint64 */
+    matchesNumber?: string;
+    /** @format uint64 */
+    sellOffersNumber?: string;
+    /** @format uint64 */
+    councilsNumber?: string;
 }
 export interface CardchainQueryQCardsResponse {
     cardsList?: string[];
 }
-export interface CardchainQueryQUserResponse {
-    alias?: string;
-    ownedCardSchemes?: string[];
-    ownedCards?: string[];
-    voteRights?: CardchainVoteRight[];
+export interface CardchainQueryQMatchesResponse {
+    matchesList?: string[];
+    matches?: CardchainMatch[];
+}
+export interface CardchainQueryQSellOffersResponse {
+    sellOffersIds?: string[];
+    sellOffers?: CardchainSellOffer[];
 }
 export interface CardchainQueryQVotableCardsResponse {
     unregistered?: boolean;
@@ -56,6 +198,33 @@ export interface CardchainQueryQVotableCardsResponse {
 }
 export interface CardchainQueryQVotingResultsResponse {
     lastVotingResults?: CardchainVotingResults;
+}
+export declare enum CardchainResponse {
+    Yes = "Yes",
+    No = "No",
+    Suggestion = "Suggestion"
+}
+export interface CardchainSellOffer {
+    seller?: string;
+    buyer?: string;
+    /** @format uint64 */
+    card?: string;
+    price?: string;
+    status?: CardchainSellOfferStatus;
+}
+export declare enum CardchainSellOfferStatus {
+    Open = "open",
+    Sold = "sold",
+    Removed = "removed"
+}
+export interface CardchainUser {
+    alias?: string;
+    ownedCardSchemes?: string[];
+    ownedPrototypes?: string[];
+    cards?: string[];
+    voteRights?: CardchainVoteRight[];
+    CouncilStatus?: CardchainCouncilStatus;
+    ReportMatches?: boolean;
 }
 export interface CardchainVoteRight {
     /** @format uint64 */
@@ -90,14 +259,34 @@ export interface CardchainVotingResults {
     cardResults?: CardchainVotingResult[];
     notes?: string;
 }
-export interface ProtobufAny {
-    "@type"?: string;
+export interface CardchainWrapClearResponse {
+    user?: string;
+    response?: CardchainResponse;
+    suggestion?: string;
 }
-export interface RpcStatus {
+export interface CardchainWrapHashResponse {
+    user?: string;
+    hash?: string;
+}
+export declare enum CardchaincardchainStatus {
+    Scheme = "scheme",
+    Prototype = "prototype",
+    Trial = "trial",
+    Permanent = "permanent",
+    Suspended = "suspended",
+    Banned = "banned",
+    BannedSoon = "bannedSoon",
+    BannedVerySoon = "bannedVerySoon",
+    None = "none"
+}
+export interface GooglerpcStatus {
     /** @format int32 */
     code?: number;
     message?: string;
     details?: ProtobufAny[];
+}
+export interface ProtobufAny {
+    "@type"?: string;
 }
 export declare type QueryParamsType = Record<string | number, any>;
 export declare type ResponseFormat = keyof Omit<Body, "body" | "bodyUsed">;
@@ -165,7 +354,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Parameters queries the parameters of the module.
      * @request GET:/DecentralCardGame/cardchain/cardchain/params
      */
-    queryParams: (params?: RequestParams) => Promise<HttpResponse<CardchainQueryParamsResponse, RpcStatus>>;
+    queryParams: (params?: RequestParams) => Promise<HttpResponse<CardchainQueryParamsResponse, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -174,7 +363,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QCard items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_card/{cardId}
      */
-    queryQCard: (cardId: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardResponse, RpcStatus>>;
+    queryQCard: (cardId: string, params?: RequestParams) => Promise<HttpResponse<CardchainOutpCard, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -183,7 +372,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QCardContent items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_card_content/{cardId}
      */
-    queryQCardContent: (cardId: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardContentResponse, RpcStatus>>;
+    queryQCardContent: (cardId: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardContentResponse, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -192,7 +381,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QCardchainInfo items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_cardchain_info
      */
-    queryQCardchainInfo: (params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardchainInfoResponse, RpcStatus>>;
+    queryQCardchainInfo: (params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardchainInfoResponse, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -201,7 +390,74 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QCards items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_cards/{owner}/{status}/{cardType}/{classes}/{sortBy}/{nameContains}/{keywordsContains}/{notesContains}
      */
-    queryQCards: (owner: string, status: string, cardType: string, classes: string, sortBy: string, nameContains: string, keywordsContains: string, notesContains: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardsResponse, RpcStatus>>;
+    queryQCards: (owner: string, status: "scheme" | "prototype" | "trial" | "permanent" | "suspended" | "banned" | "bannedSoon" | "bannedVerySoon" | "none", cardType: string, classes: string, sortBy: string, nameContains: string, keywordsContains: string, notesContains: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQCardsResponse, GooglerpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryQCollection
+     * @summary Queries a list of QCollection items.
+     * @request GET:/DecentralCardGame/cardchain/cardchain/q_collection/{collectionId}
+     */
+    queryQCollection: (collectionId: string, params?: RequestParams) => Promise<HttpResponse<CardchainCollection, GooglerpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryQCouncil
+     * @summary Queries a list of QCouncil items.
+     * @request GET:/DecentralCardGame/cardchain/cardchain/q_council/{councilId}
+     */
+    queryQCouncil: (councilId: string, params?: RequestParams) => Promise<HttpResponse<CardchainCouncil, GooglerpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryQMatch
+     * @summary Queries a list of QMatch items.
+     * @request GET:/DecentralCardGame/cardchain/cardchain/q_match/{matchId}
+     */
+    queryQMatch: (matchId: string, params?: RequestParams) => Promise<HttpResponse<CardchainMatch, GooglerpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryQMatches
+     * @summary Queries a list of QMatches items.
+     * @request GET:/DecentralCardGame/cardchain/cardchain/q_matches/{timestampDown}/{timestampUp}/{containsUsers}/{outcome}
+     */
+    queryQMatches: (timestampDown: string, timestampUp: string, containsUsers: string[], outcome: "AWon" | "BWon" | "Draw" | "Aborted", query?: {
+        reporter?: string;
+        cardsPlayed?: string[];
+        "ignore.outcome"?: boolean;
+        "ignore.timestamp"?: boolean;
+        "ignore.reporter"?: boolean;
+    }, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQMatchesResponse, GooglerpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryQSellOffer
+     * @summary Queries a list of QSellOffer items.
+     * @request GET:/DecentralCardGame/cardchain/cardchain/q_sell_offer/{sellOfferId}
+     */
+    queryQSellOffer: (sellOfferId: string, params?: RequestParams) => Promise<HttpResponse<CardchainSellOffer, GooglerpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryQSellOffers
+     * @summary Queries a list of QSellOffers items.
+     * @request GET:/DecentralCardGame/cardchain/cardchain/q_sell_offers/{priceDown}/{priceUp}/{seller}/{buyer}/{status}
+     */
+    queryQSellOffers: (priceDown: string, priceUp: string, seller: string, buyer: string, status: "open" | "sold" | "removed", query?: {
+        card?: string;
+        "ignore.status"?: boolean;
+        "ignore.price"?: boolean;
+        "ignore.seller"?: boolean;
+        "ignore.buyer"?: boolean;
+        "ignore.card"?: boolean;
+    }, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQSellOffersResponse, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -210,7 +466,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QUser items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_user/{address}
      */
-    queryQUser: (address: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQUserResponse, RpcStatus>>;
+    queryQUser: (address: string, params?: RequestParams) => Promise<HttpResponse<CardchainUser, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -219,7 +475,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QVotableCards items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_votable_cards/{address}
      */
-    queryQVotableCards: (address: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQVotableCardsResponse, RpcStatus>>;
+    queryQVotableCards: (address: string, params?: RequestParams) => Promise<HttpResponse<CardchainQueryQVotableCardsResponse, GooglerpcStatus>>;
     /**
      * No description
      *
@@ -228,6 +484,6 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @summary Queries a list of QVotingResults items.
      * @request GET:/DecentralCardGame/cardchain/cardchain/q_voting_results
      */
-    queryQVotingResults: (params?: RequestParams) => Promise<HttpResponse<CardchainQueryQVotingResultsResponse, RpcStatus>>;
+    queryQVotingResults: (params?: RequestParams) => Promise<HttpResponse<CardchainQueryQVotingResultsResponse, GooglerpcStatus>>;
 }
 export {};

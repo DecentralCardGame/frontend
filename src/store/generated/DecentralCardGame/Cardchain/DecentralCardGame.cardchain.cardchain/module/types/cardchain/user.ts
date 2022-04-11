@@ -5,14 +5,68 @@ import { VoteRight } from "../cardchain/vote_right";
 
 export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
 
+export enum CouncilStatus {
+  available = 0,
+  unavailable = 1,
+  openCouncil = 2,
+  startedCouncil = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function councilStatusFromJSON(object: any): CouncilStatus {
+  switch (object) {
+    case 0:
+    case "available":
+      return CouncilStatus.available;
+    case 1:
+    case "unavailable":
+      return CouncilStatus.unavailable;
+    case 2:
+    case "openCouncil":
+      return CouncilStatus.openCouncil;
+    case 3:
+    case "startedCouncil":
+      return CouncilStatus.startedCouncil;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return CouncilStatus.UNRECOGNIZED;
+  }
+}
+
+export function councilStatusToJSON(object: CouncilStatus): string {
+  switch (object) {
+    case CouncilStatus.available:
+      return "available";
+    case CouncilStatus.unavailable:
+      return "unavailable";
+    case CouncilStatus.openCouncil:
+      return "openCouncil";
+    case CouncilStatus.startedCouncil:
+      return "startedCouncil";
+    default:
+      return "UNKNOWN";
+  }
+}
+
 export interface User {
   alias: string;
   ownedCardSchemes: number[];
-  ownedCards: number[];
+  ownedPrototypes: number[];
+  cards: number[];
   voteRights: VoteRight[];
+  CouncilStatus: CouncilStatus;
+  ReportMatches: boolean;
 }
 
-const baseUser: object = { alias: "", ownedCardSchemes: 0, ownedCards: 0 };
+const baseUser: object = {
+  alias: "",
+  ownedCardSchemes: 0,
+  ownedPrototypes: 0,
+  cards: 0,
+  CouncilStatus: 0,
+  ReportMatches: false,
+};
 
 export const User = {
   encode(message: User, writer: Writer = Writer.create()): Writer {
@@ -25,12 +79,23 @@ export const User = {
     }
     writer.ldelim();
     writer.uint32(26).fork();
-    for (const v of message.ownedCards) {
+    for (const v of message.ownedPrototypes) {
+      writer.uint64(v);
+    }
+    writer.ldelim();
+    writer.uint32(34).fork();
+    for (const v of message.cards) {
       writer.uint64(v);
     }
     writer.ldelim();
     for (const v of message.voteRights) {
-      VoteRight.encode(v!, writer.uint32(34).fork()).ldelim();
+      VoteRight.encode(v!, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.CouncilStatus !== 0) {
+      writer.uint32(48).int32(message.CouncilStatus);
+    }
+    if (message.ReportMatches === true) {
+      writer.uint32(56).bool(message.ReportMatches);
     }
     return writer;
   },
@@ -40,7 +105,8 @@ export const User = {
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseUser } as User;
     message.ownedCardSchemes = [];
-    message.ownedCards = [];
+    message.ownedPrototypes = [];
+    message.cards = [];
     message.voteRights = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -66,14 +132,32 @@ export const User = {
           if ((tag & 7) === 2) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.ownedCards.push(longToNumber(reader.uint64() as Long));
+              message.ownedPrototypes.push(
+                longToNumber(reader.uint64() as Long)
+              );
             }
           } else {
-            message.ownedCards.push(longToNumber(reader.uint64() as Long));
+            message.ownedPrototypes.push(longToNumber(reader.uint64() as Long));
           }
           break;
         case 4:
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.cards.push(longToNumber(reader.uint64() as Long));
+            }
+          } else {
+            message.cards.push(longToNumber(reader.uint64() as Long));
+          }
+          break;
+        case 5:
           message.voteRights.push(VoteRight.decode(reader, reader.uint32()));
+          break;
+        case 6:
+          message.CouncilStatus = reader.int32() as any;
+          break;
+        case 7:
+          message.ReportMatches = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -86,7 +170,8 @@ export const User = {
   fromJSON(object: any): User {
     const message = { ...baseUser } as User;
     message.ownedCardSchemes = [];
-    message.ownedCards = [];
+    message.ownedPrototypes = [];
+    message.cards = [];
     message.voteRights = [];
     if (object.alias !== undefined && object.alias !== null) {
       message.alias = String(object.alias);
@@ -101,15 +186,33 @@ export const User = {
         message.ownedCardSchemes.push(Number(e));
       }
     }
-    if (object.ownedCards !== undefined && object.ownedCards !== null) {
-      for (const e of object.ownedCards) {
-        message.ownedCards.push(Number(e));
+    if (
+      object.ownedPrototypes !== undefined &&
+      object.ownedPrototypes !== null
+    ) {
+      for (const e of object.ownedPrototypes) {
+        message.ownedPrototypes.push(Number(e));
+      }
+    }
+    if (object.cards !== undefined && object.cards !== null) {
+      for (const e of object.cards) {
+        message.cards.push(Number(e));
       }
     }
     if (object.voteRights !== undefined && object.voteRights !== null) {
       for (const e of object.voteRights) {
         message.voteRights.push(VoteRight.fromJSON(e));
       }
+    }
+    if (object.CouncilStatus !== undefined && object.CouncilStatus !== null) {
+      message.CouncilStatus = councilStatusFromJSON(object.CouncilStatus);
+    } else {
+      message.CouncilStatus = 0;
+    }
+    if (object.ReportMatches !== undefined && object.ReportMatches !== null) {
+      message.ReportMatches = Boolean(object.ReportMatches);
+    } else {
+      message.ReportMatches = false;
     }
     return message;
   },
@@ -122,10 +225,15 @@ export const User = {
     } else {
       obj.ownedCardSchemes = [];
     }
-    if (message.ownedCards) {
-      obj.ownedCards = message.ownedCards.map((e) => e);
+    if (message.ownedPrototypes) {
+      obj.ownedPrototypes = message.ownedPrototypes.map((e) => e);
     } else {
-      obj.ownedCards = [];
+      obj.ownedPrototypes = [];
+    }
+    if (message.cards) {
+      obj.cards = message.cards.map((e) => e);
+    } else {
+      obj.cards = [];
     }
     if (message.voteRights) {
       obj.voteRights = message.voteRights.map((e) =>
@@ -134,13 +242,18 @@ export const User = {
     } else {
       obj.voteRights = [];
     }
+    message.CouncilStatus !== undefined &&
+      (obj.CouncilStatus = councilStatusToJSON(message.CouncilStatus));
+    message.ReportMatches !== undefined &&
+      (obj.ReportMatches = message.ReportMatches);
     return obj;
   },
 
   fromPartial(object: DeepPartial<User>): User {
     const message = { ...baseUser } as User;
     message.ownedCardSchemes = [];
-    message.ownedCards = [];
+    message.ownedPrototypes = [];
+    message.cards = [];
     message.voteRights = [];
     if (object.alias !== undefined && object.alias !== null) {
       message.alias = object.alias;
@@ -155,15 +268,33 @@ export const User = {
         message.ownedCardSchemes.push(e);
       }
     }
-    if (object.ownedCards !== undefined && object.ownedCards !== null) {
-      for (const e of object.ownedCards) {
-        message.ownedCards.push(e);
+    if (
+      object.ownedPrototypes !== undefined &&
+      object.ownedPrototypes !== null
+    ) {
+      for (const e of object.ownedPrototypes) {
+        message.ownedPrototypes.push(e);
+      }
+    }
+    if (object.cards !== undefined && object.cards !== null) {
+      for (const e of object.cards) {
+        message.cards.push(e);
       }
     }
     if (object.voteRights !== undefined && object.voteRights !== null) {
       for (const e of object.voteRights) {
         message.voteRights.push(VoteRight.fromPartial(e));
       }
+    }
+    if (object.CouncilStatus !== undefined && object.CouncilStatus !== null) {
+      message.CouncilStatus = object.CouncilStatus;
+    } else {
+      message.CouncilStatus = 0;
+    }
+    if (object.ReportMatches !== undefined && object.ReportMatches !== null) {
+      message.ReportMatches = object.ReportMatches;
+    } else {
+      message.ReportMatches = false;
     }
     return message;
   },

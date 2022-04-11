@@ -1,7 +1,14 @@
+import { Status, OutpCard } from "../cardchain/card";
+import { Outcome } from "../cardchain/tx";
+import { SellOfferStatus, SellOffer } from "../cardchain/sell_offer";
 import { Reader, Writer } from "protobufjs/minimal";
 import { Params } from "../cardchain/params";
-import { VoteRight } from "../cardchain/vote_right";
 import { VotingResults } from "../cardchain/voting_results";
+import { VoteRight } from "../cardchain/vote_right";
+import { Match } from "../cardchain/match";
+import { User } from "../cardchain/user";
+import { Collection } from "../cardchain/collection";
+import { Council } from "../cardchain/council";
 export declare const protobufPackage = "DecentralCardGame.cardchain.cardchain";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -14,20 +21,6 @@ export interface QueryParamsResponse {
 export interface QueryQCardRequest {
     cardId: string;
 }
-export interface QueryQCardResponse {
-    owner: string;
-    content: string;
-    image: string;
-    fullArt: string;
-    notes: string;
-    status: string;
-    votePool: string;
-    fairEnoughVotes: number;
-    overpoweredVotes: number;
-    underpoweredVotes: number;
-    inappropriateVotes: number;
-    nerflevel: number;
-}
 export interface QueryQCardContentRequest {
     cardId: string;
 }
@@ -37,16 +30,15 @@ export interface QueryQCardContentResponse {
 export interface QueryQUserRequest {
     address: string;
 }
-export interface QueryQUserResponse {
-    alias: string;
-    ownedCardSchemes: number[];
-    ownedCards: number[];
-    voteRights: VoteRight[];
-}
 export interface QueryQCardchainInfoRequest {
 }
 export interface QueryQCardchainInfoResponse {
     cardAuctionPrice: string;
+    activeCollections: number[];
+    cardsNumber: number;
+    matchesNumber: number;
+    sellOffersNumber: number;
+    councilsNumber: number;
 }
 export interface QueryQVotingResultsRequest {
 }
@@ -63,7 +55,7 @@ export interface QueryQVotableCardsResponse {
 }
 export interface QueryQCardsRequest {
     owner: string;
-    status: string;
+    status: Status;
     cardType: string;
     classes: string;
     sortBy: string;
@@ -73,6 +65,56 @@ export interface QueryQCardsRequest {
 }
 export interface QueryQCardsResponse {
     cardsList: number[];
+}
+export interface QueryQMatchRequest {
+    matchId: number;
+}
+export interface QueryQCollectionRequest {
+    collectionId: number;
+}
+export interface QueryQSellOfferRequest {
+    sellOfferId: number;
+}
+export interface QueryQCouncilRequest {
+    councilId: number;
+}
+export interface QueryQMatchesRequest {
+    timestampDown: number;
+    timestampUp: number;
+    containsUsers: string[];
+    reporter: string;
+    outcome: Outcome;
+    cardsPlayed: number[];
+    ignore: IgnoreMatches | undefined;
+}
+export interface IgnoreMatches {
+    outcome: boolean;
+    timestamp: boolean;
+    reporter: boolean;
+}
+export interface QueryQMatchesResponse {
+    matchesList: number[];
+    matches: Match[];
+}
+export interface QueryQSellOffersRequest {
+    priceDown: string;
+    priceUp: string;
+    seller: string;
+    buyer: string;
+    card: number;
+    status: SellOfferStatus;
+    ignore: IgnoreSellOffers | undefined;
+}
+export interface IgnoreSellOffers {
+    status: boolean;
+    price: boolean;
+    seller: boolean;
+    buyer: boolean;
+    card: boolean;
+}
+export interface QueryQSellOffersResponse {
+    sellOffersIds: number[];
+    sellOffers: SellOffer[];
 }
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: Writer): Writer;
@@ -95,13 +137,6 @@ export declare const QueryQCardRequest: {
     toJSON(message: QueryQCardRequest): unknown;
     fromPartial(object: DeepPartial<QueryQCardRequest>): QueryQCardRequest;
 };
-export declare const QueryQCardResponse: {
-    encode(message: QueryQCardResponse, writer?: Writer): Writer;
-    decode(input: Reader | Uint8Array, length?: number): QueryQCardResponse;
-    fromJSON(object: any): QueryQCardResponse;
-    toJSON(message: QueryQCardResponse): unknown;
-    fromPartial(object: DeepPartial<QueryQCardResponse>): QueryQCardResponse;
-};
 export declare const QueryQCardContentRequest: {
     encode(message: QueryQCardContentRequest, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): QueryQCardContentRequest;
@@ -122,13 +157,6 @@ export declare const QueryQUserRequest: {
     fromJSON(object: any): QueryQUserRequest;
     toJSON(message: QueryQUserRequest): unknown;
     fromPartial(object: DeepPartial<QueryQUserRequest>): QueryQUserRequest;
-};
-export declare const QueryQUserResponse: {
-    encode(message: QueryQUserResponse, writer?: Writer): Writer;
-    decode(input: Reader | Uint8Array, length?: number): QueryQUserResponse;
-    fromJSON(object: any): QueryQUserResponse;
-    toJSON(message: QueryQUserResponse): unknown;
-    fromPartial(object: DeepPartial<QueryQUserResponse>): QueryQUserResponse;
 };
 export declare const QueryQCardchainInfoRequest: {
     encode(_: QueryQCardchainInfoRequest, writer?: Writer): Writer;
@@ -186,16 +214,86 @@ export declare const QueryQCardsResponse: {
     toJSON(message: QueryQCardsResponse): unknown;
     fromPartial(object: DeepPartial<QueryQCardsResponse>): QueryQCardsResponse;
 };
+export declare const QueryQMatchRequest: {
+    encode(message: QueryQMatchRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQMatchRequest;
+    fromJSON(object: any): QueryQMatchRequest;
+    toJSON(message: QueryQMatchRequest): unknown;
+    fromPartial(object: DeepPartial<QueryQMatchRequest>): QueryQMatchRequest;
+};
+export declare const QueryQCollectionRequest: {
+    encode(message: QueryQCollectionRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQCollectionRequest;
+    fromJSON(object: any): QueryQCollectionRequest;
+    toJSON(message: QueryQCollectionRequest): unknown;
+    fromPartial(object: DeepPartial<QueryQCollectionRequest>): QueryQCollectionRequest;
+};
+export declare const QueryQSellOfferRequest: {
+    encode(message: QueryQSellOfferRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQSellOfferRequest;
+    fromJSON(object: any): QueryQSellOfferRequest;
+    toJSON(message: QueryQSellOfferRequest): unknown;
+    fromPartial(object: DeepPartial<QueryQSellOfferRequest>): QueryQSellOfferRequest;
+};
+export declare const QueryQCouncilRequest: {
+    encode(message: QueryQCouncilRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQCouncilRequest;
+    fromJSON(object: any): QueryQCouncilRequest;
+    toJSON(message: QueryQCouncilRequest): unknown;
+    fromPartial(object: DeepPartial<QueryQCouncilRequest>): QueryQCouncilRequest;
+};
+export declare const QueryQMatchesRequest: {
+    encode(message: QueryQMatchesRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQMatchesRequest;
+    fromJSON(object: any): QueryQMatchesRequest;
+    toJSON(message: QueryQMatchesRequest): unknown;
+    fromPartial(object: DeepPartial<QueryQMatchesRequest>): QueryQMatchesRequest;
+};
+export declare const IgnoreMatches: {
+    encode(message: IgnoreMatches, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): IgnoreMatches;
+    fromJSON(object: any): IgnoreMatches;
+    toJSON(message: IgnoreMatches): unknown;
+    fromPartial(object: DeepPartial<IgnoreMatches>): IgnoreMatches;
+};
+export declare const QueryQMatchesResponse: {
+    encode(message: QueryQMatchesResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQMatchesResponse;
+    fromJSON(object: any): QueryQMatchesResponse;
+    toJSON(message: QueryQMatchesResponse): unknown;
+    fromPartial(object: DeepPartial<QueryQMatchesResponse>): QueryQMatchesResponse;
+};
+export declare const QueryQSellOffersRequest: {
+    encode(message: QueryQSellOffersRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQSellOffersRequest;
+    fromJSON(object: any): QueryQSellOffersRequest;
+    toJSON(message: QueryQSellOffersRequest): unknown;
+    fromPartial(object: DeepPartial<QueryQSellOffersRequest>): QueryQSellOffersRequest;
+};
+export declare const IgnoreSellOffers: {
+    encode(message: IgnoreSellOffers, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): IgnoreSellOffers;
+    fromJSON(object: any): IgnoreSellOffers;
+    toJSON(message: IgnoreSellOffers): unknown;
+    fromPartial(object: DeepPartial<IgnoreSellOffers>): IgnoreSellOffers;
+};
+export declare const QueryQSellOffersResponse: {
+    encode(message: QueryQSellOffersResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryQSellOffersResponse;
+    fromJSON(object: any): QueryQSellOffersResponse;
+    toJSON(message: QueryQSellOffersResponse): unknown;
+    fromPartial(object: DeepPartial<QueryQSellOffersResponse>): QueryQSellOffersResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
     /** Queries a list of QCard items. */
-    QCard(request: QueryQCardRequest): Promise<QueryQCardResponse>;
+    QCard(request: QueryQCardRequest): Promise<OutpCard>;
     /** Queries a list of QCardContent items. */
     QCardContent(request: QueryQCardContentRequest): Promise<QueryQCardContentResponse>;
     /** Queries a list of QUser items. */
-    QUser(request: QueryQUserRequest): Promise<QueryQUserResponse>;
+    QUser(request: QueryQUserRequest): Promise<User>;
     /** Queries a list of QCardchainInfo items. */
     QCardchainInfo(request: QueryQCardchainInfoRequest): Promise<QueryQCardchainInfoResponse>;
     /** Queries a list of QVotingResults items. */
@@ -204,18 +302,36 @@ export interface Query {
     QVotableCards(request: QueryQVotableCardsRequest): Promise<QueryQVotableCardsResponse>;
     /** Queries a list of QCards items. */
     QCards(request: QueryQCardsRequest): Promise<QueryQCardsResponse>;
+    /** Queries a list of QMatch items. */
+    QMatch(request: QueryQMatchRequest): Promise<Match>;
+    /** Queries a list of QCollection items. */
+    QCollection(request: QueryQCollectionRequest): Promise<Collection>;
+    /** Queries a list of QSellOffer items. */
+    QSellOffer(request: QueryQSellOfferRequest): Promise<SellOffer>;
+    /** Queries a list of QCouncil items. */
+    QCouncil(request: QueryQCouncilRequest): Promise<Council>;
+    /** Queries a list of QMatches items. */
+    QMatches(request: QueryQMatchesRequest): Promise<QueryQMatchesResponse>;
+    /** Queries a list of QSellOffers items. */
+    QSellOffers(request: QueryQSellOffersRequest): Promise<QueryQSellOffersResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
     constructor(rpc: Rpc);
     Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
-    QCard(request: QueryQCardRequest): Promise<QueryQCardResponse>;
+    QCard(request: QueryQCardRequest): Promise<OutpCard>;
     QCardContent(request: QueryQCardContentRequest): Promise<QueryQCardContentResponse>;
-    QUser(request: QueryQUserRequest): Promise<QueryQUserResponse>;
+    QUser(request: QueryQUserRequest): Promise<User>;
     QCardchainInfo(request: QueryQCardchainInfoRequest): Promise<QueryQCardchainInfoResponse>;
     QVotingResults(request: QueryQVotingResultsRequest): Promise<QueryQVotingResultsResponse>;
     QVotableCards(request: QueryQVotableCardsRequest): Promise<QueryQVotableCardsResponse>;
     QCards(request: QueryQCardsRequest): Promise<QueryQCardsResponse>;
+    QMatch(request: QueryQMatchRequest): Promise<Match>;
+    QCollection(request: QueryQCollectionRequest): Promise<Collection>;
+    QSellOffer(request: QueryQSellOfferRequest): Promise<SellOffer>;
+    QCouncil(request: QueryQCouncilRequest): Promise<Council>;
+    QMatches(request: QueryQMatchesRequest): Promise<QueryQMatchesResponse>;
+    QSellOffers(request: QueryQSellOffersRequest): Promise<QueryQSellOffersResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

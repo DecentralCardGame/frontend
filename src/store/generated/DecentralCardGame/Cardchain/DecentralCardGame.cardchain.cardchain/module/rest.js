@@ -8,6 +8,60 @@
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
+export var CardchainCStatus;
+(function (CardchainCStatus) {
+    CardchainCStatus["Design"] = "design";
+    CardchainCStatus["Finalized"] = "finalized";
+    CardchainCStatus["Active"] = "active";
+    CardchainCStatus["Archived"] = "archived";
+})(CardchainCStatus || (CardchainCStatus = {}));
+export var CardchainCouncelingStatus;
+(function (CardchainCouncelingStatus) {
+    CardchainCouncelingStatus["CouncilOpen"] = "councilOpen";
+    CardchainCouncelingStatus["CouncilCreated"] = "councilCreated";
+    CardchainCouncelingStatus["CouncilClosed"] = "councilClosed";
+    CardchainCouncelingStatus["Commited"] = "commited";
+    CardchainCouncelingStatus["Revealed"] = "revealed";
+    CardchainCouncelingStatus["SuggestionsMade"] = "suggestionsMade";
+})(CardchainCouncelingStatus || (CardchainCouncelingStatus = {}));
+export var CardchainCouncilStatus;
+(function (CardchainCouncilStatus) {
+    CardchainCouncilStatus["Available"] = "available";
+    CardchainCouncilStatus["Unavailable"] = "unavailable";
+    CardchainCouncilStatus["OpenCouncil"] = "openCouncil";
+    CardchainCouncilStatus["StartedCouncil"] = "startedCouncil";
+})(CardchainCouncilStatus || (CardchainCouncilStatus = {}));
+export var CardchainOutcome;
+(function (CardchainOutcome) {
+    CardchainOutcome["AWon"] = "AWon";
+    CardchainOutcome["BWon"] = "BWon";
+    CardchainOutcome["Draw"] = "Draw";
+    CardchainOutcome["Aborted"] = "Aborted";
+})(CardchainOutcome || (CardchainOutcome = {}));
+export var CardchainResponse;
+(function (CardchainResponse) {
+    CardchainResponse["Yes"] = "Yes";
+    CardchainResponse["No"] = "No";
+    CardchainResponse["Suggestion"] = "Suggestion";
+})(CardchainResponse || (CardchainResponse = {}));
+export var CardchainSellOfferStatus;
+(function (CardchainSellOfferStatus) {
+    CardchainSellOfferStatus["Open"] = "open";
+    CardchainSellOfferStatus["Sold"] = "sold";
+    CardchainSellOfferStatus["Removed"] = "removed";
+})(CardchainSellOfferStatus || (CardchainSellOfferStatus = {}));
+export var CardchaincardchainStatus;
+(function (CardchaincardchainStatus) {
+    CardchaincardchainStatus["Scheme"] = "scheme";
+    CardchaincardchainStatus["Prototype"] = "prototype";
+    CardchaincardchainStatus["Trial"] = "trial";
+    CardchaincardchainStatus["Permanent"] = "permanent";
+    CardchaincardchainStatus["Suspended"] = "suspended";
+    CardchaincardchainStatus["Banned"] = "banned";
+    CardchaincardchainStatus["BannedSoon"] = "bannedSoon";
+    CardchaincardchainStatus["BannedVerySoon"] = "bannedVerySoon";
+    CardchaincardchainStatus["None"] = "none";
+})(CardchaincardchainStatus || (CardchaincardchainStatus = {}));
 export var ContentType;
 (function (ContentType) {
     ContentType["Json"] = "application/json";
@@ -203,6 +257,92 @@ export class Api extends HttpClient {
         this.queryQCards = (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains, params = {}) => this.request({
             path: `/DecentralCardGame/cardchain/cardchain/q_cards/${owner}/${status}/${cardType}/${classes}/${sortBy}/${nameContains}/${keywordsContains}/${notesContains}`,
             method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQCollection
+         * @summary Queries a list of QCollection items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_collection/{collectionId}
+         */
+        this.queryQCollection = (collectionId, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_collection/${collectionId}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQCouncil
+         * @summary Queries a list of QCouncil items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_council/{councilId}
+         */
+        this.queryQCouncil = (councilId, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_council/${councilId}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQMatch
+         * @summary Queries a list of QMatch items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_match/{matchId}
+         */
+        this.queryQMatch = (matchId, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_match/${matchId}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQMatches
+         * @summary Queries a list of QMatches items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_matches/{timestampDown}/{timestampUp}/{containsUsers}/{outcome}
+         */
+        this.queryQMatches = (timestampDown, timestampUp, containsUsers, outcome, query, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_matches/${timestampDown}/${timestampUp}/${containsUsers}/${outcome}`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQSellOffer
+         * @summary Queries a list of QSellOffer items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_sell_offer/{sellOfferId}
+         */
+        this.queryQSellOffer = (sellOfferId, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_sell_offer/${sellOfferId}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQSellOffers
+         * @summary Queries a list of QSellOffers items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_sell_offers/{priceDown}/{priceUp}/{seller}/{buyer}/{status}
+         */
+        this.queryQSellOffers = (priceDown, priceUp, seller, buyer, status, query, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_sell_offers/${priceDown}/${priceUp}/${seller}/${buyer}/${status}`,
+            method: "GET",
+            query: query,
             format: "json",
             ...params,
         });

@@ -54,7 +54,6 @@
           <span class="creator-text">Hey, my <b>name</b> is</span>
           <input
             v-model="model.CardName"
-            value="Card Name"
             @change="saveDraft"
           >
 
@@ -76,7 +75,7 @@
           >Choose a file without copyright violation</label>
         </div>
         <div
-          v-if="activeStep == 0" 
+          v-if="activeStep == 0"
         >
           <cropper
             class="cropper"
@@ -99,7 +98,7 @@
           />
         </div>
         <div
-          v-if="activeStep == 0" 
+          v-if="activeStep == 0"
         >
           <!-- FullArt -->
           <span class="creator-text">
@@ -121,7 +120,6 @@
           </span>
           <input
             v-model="model.FlavourText"
-            value="Card Name"
             @change="saveDraft"
           >
         </div>
@@ -135,7 +133,7 @@
             My <b>Classes</b> are: <br>
           </div>
           <div>
-            <label class="input--checkbox-label__left">  
+            <label class="input--checkbox-label__left">
               <input
                 v-model="model.Class.Technology"
                 class="input--checkbox__left"
@@ -143,17 +141,17 @@
                 @change="saveDraft"
               >
               Technology <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
+            </label>
+            <label class="input--checkbox-label__left">
               <input
                 v-model="model.Class.Nature"
                 class="input--checkbox__left"
                 type="checkbox"
                 @change="saveDraft"
-              >  
+              >
               Nature <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
+            </label>
+            <label class="input--checkbox-label__left">
               <input
                 v-model="model.Class.Culture"
                 class="input--checkbox__left"
@@ -161,8 +159,8 @@
                 @change="saveDraft"
               >
               Culture <br>
-            </label> 
-            <label class="input--checkbox-label__left"> 
+            </label>
+            <label class="input--checkbox-label__left">
               <input
                 v-model="model.Class.Mysticism"
                 class="input--checkbox__left"
@@ -170,11 +168,11 @@
                 @change="saveDraft"
               >
               Mysticism <br>
-            </label> 
+            </label>
           </div>
 
           <!-- Type -->
-          <span 
+          <span
             v-if="$cardRules"
             class="creator-text"
           >
@@ -197,12 +195,12 @@
           </select>
 
           <!-- Tag -->
-          <span             
+          <span
             v-if="$cardRules"
             class="creator-text"
           >
             People like to <b>tag</b> me as</span>
-          <div             
+          <div
             v-if="$cardRules"
           >
             <select
@@ -246,7 +244,7 @@
           </div>
         </div>
 
-        <div 
+        <div
           v-if="activeStep == 2"
           class="creator-input-container"
         >
@@ -297,19 +295,19 @@
               class="input--checkbox__right"
               @change="toggleAdditionalCost"
             >
-          </div>    
+          </div>
 
           <div>
             <div
               v-if="isAdditionalCostVisible"
             >
               To spawn me you need to
-              <select 
+              <select
                 @change="setAdditionalCost($event); saveDraft();"
               >
-                <option 
-                  disabled 
-                  selected="true" 
+                <option
+                  disabled
+                  selected="true"
                   value=""
                 >
                   Select Special Cost
@@ -369,9 +367,9 @@
                 Entitites.
               </span>
 
-              <span             
+              <span
                 v-if="model.AdditionalCost.VoidCost"
-              >                
+              >
                 <select
                   v-model="model.AdditionalCost.VoidCost.Amount"
                   @change="updateAdditionalCostText(); saveDraft();"
@@ -399,7 +397,7 @@
               As I am quite awesome, I can use my abilities after a <b>Delay</b> of <br>
             </span>
           </div>
-          <div                 
+          <div
             v-if="
               $cardRules.children[getRulesType()] &&
                 $cardRules.children[getRulesType()].children.Delay
@@ -433,7 +431,7 @@
               I have an <b>Attack</b> of <br>
               <br>
             </span>
-            
+
             <span v-if="model.type === 'Entity'"> and </span>
             <span v-if="model.type !== 'Action'">
               I have a <b>Defense</b> of <br>
@@ -442,7 +440,7 @@
           </div>
           <div>
             <div>
-              <div                 
+              <div
                 v-if="model.type === 'Entity' && $cardRules.children[getRulesType()]"
               >
                 <select
@@ -544,7 +542,7 @@
           </div>
         </div>
 
-          
+
         <div
           v-if="activeStep == 4"
           class="creator-input-container"
@@ -557,13 +555,12 @@
           </span>
           <input
             v-model="model.Notes"
-            value="Card Name"
             @change="saveDraft"
           >
         </div>
 
         <div v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)">
-          Clear Abilities of this card 
+          Clear Abilities of this card
           <input
             v-model="clearAbilities"
             type="checkbox"
@@ -612,7 +609,7 @@
           >
             Discard Changes
           </button>
-          
+
           <button
             v-show="activeStep == 4"
             @click="resetCardDraft"
@@ -748,7 +745,7 @@ export default {
       while (Math.round(newDataURL.length)/1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
         quality *= 0.9
         newDataURL = canvas.toDataURL('image/jpeg', quality)
-    
+
         if (quality <= 0)
           this.notifyFail("Image Compression failed", "Image could not be compressed sufficiently, try to upload smaller image.")
       }
@@ -773,8 +770,8 @@ export default {
       let countUppers = x => R.sum(R.map(
         x => x === R.toUpper(x) ? 1 : 0,
         R.split('', x)))
- 
-      let printString = ''  
+
+      let printString = ''
       while (countUppers(printString) < 2 && printString.length < wholeString.length ) {
         printString = R.take(printString.length + 1, wholeString)
       }
@@ -797,7 +794,7 @@ export default {
           this.notifyFail("Number of Abilities", "A card can only have a maximum of 3 Abilities.")
           this.isAbilityModalVisible = false
           return
-        } 
+        }
         if (this.model.type === "no type" || this.model.type === undefined) {
           this.notifyFail(
             "No Type",
@@ -874,7 +871,7 @@ export default {
     },
     updateAdditionalCostText() {
       let setOrPrepend = (text) => {
-        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0]))) 
+        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0])))
             this.model.RulesTexts[0] = text
           else
             this.model.RulesTexts = R.prepend(text, this.model.RulesTexts)
@@ -895,7 +892,7 @@ export default {
         }
       }
       else {
-        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0]))) 
+        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0])))
           this.model.RulesTexts = R.drop(1, this.model.RulesTexts)
       }
     },
@@ -1051,7 +1048,7 @@ export default {
             ),
             this.abilities
           );
-        }    
+        }
       }
 
       // check if the old Keywords and RulesTexts should be restored
@@ -1079,10 +1076,10 @@ export default {
       }
 
       let newCard = this.$cardChain.cardWebModelToCardobject(
-        newModel, 
+        newModel,
         this.getCardImage
       );
-    
+
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
         console.log("overwriting card with id:", this.model.id);
@@ -1136,13 +1133,13 @@ export default {
       let file = event.target.files[0]
 
       uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
-        
+
         this.cropImage = result
         this.$store.commit(
           this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
           result)
       })
-      
+
     },
     classStepPassed(n) {
       let exportClass = "progress-item";
@@ -1317,7 +1314,7 @@ export default {
   .input--checkbox__left {
     position: absolute;
     display: inline-block;
-    margin-left: -25px; 
+    margin-left: -25px;
   }
   .input--checkbox-label__left {
     margin-left: 25px;

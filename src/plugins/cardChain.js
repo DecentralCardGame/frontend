@@ -2,7 +2,7 @@ import * as R from 'ramda'
 import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
-
+import { coin } from "@cosmjs/proto-signing";
 
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
@@ -158,42 +158,26 @@ export default {
         })
       }
       buyCardSchemeTx (maxBid) {
-          return new Promise((resolve, reject) => {
-            let reqBody = {
-              'base_req': {
-                'from': this.vue.$store.getters['getUserAddress'],
-                'chain_id': process.env.VUE_APP_CHAIN_ID,
-                'gas': 'auto',
-                'gas_adjustment': '1.5'
-              },
-              'amount': maxBid + 'credits',
-              'buyer': this.vue.$store.getters['getUserAddress']
-            }
-            this.txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.vue.$http.post('cardservice/buy_card_scheme', reqBody)])
-                .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
-                .then(() => {
-                  this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.')
-                  resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
-                })
-                .catch(err => {
-                  console.error(err)
-                  if (err.response.data.error) {
-                    var errData = JSON.parse(err.response.data.error)
-                    if (errData.length > 0) {
-                      var errLog = JSON.parse(errData[0].log)
-                      this.vue.notifyFail('IGNORE FEMALE, ACQUIRE CURRENCY', errLog.message)
-                    } else {
-                      console.error(errData)
-                      this.vue.notifyFail('WHILE YOU WERE OUT', 'shit got serious.')
-                    }
-                  } else {
-                    console.error(err)
-                    this.vue.notifyFail('WHILE YOU WERE OUT', 'shit got serious.')
-                  }
-                  reject(err)
-                })
-            })
+        let msg = {
+          value: {
+            '@type':'/DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme',
+            creator: this.vue.$store.getters['common/wallet/address'],
+            bid: "100000000ucredits",
+          }
+        }
+        console.log("msg", msg)
+        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgBuyCardScheme', msg)
+          .then((res) => {
+            console.log("buycardscheme res", res)
+            this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.')
+            console.log(this.getUserInfo(this.vue.$store.getters['common/wallet/address']))
+            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
+          })
+          .catch(err => {
+            this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'Nope')
+            console.log(err)
+            throw new Error(err)
+
           })
       }
       saveContentToUnusedCardSchemeTx (card) {

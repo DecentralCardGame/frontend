@@ -138,14 +138,11 @@ export default {
     getBalances() {
       return this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
         .then((accData) => {
-            console.log("accData:", accData.coins)
             let credits = -1
-
             accData.coins.forEach((balance) => {
               if (balance.denom == 'ucredits') {
                 this.$store.commit('setUserCredits', balance.amount)
                 credits = balance.amount
-
               }
             })
             return credits

@@ -14,7 +14,7 @@
           type="image/png"
           srcset="../../assets/icon/discord.png"
         >
-        <img 
+        <img
           src="../../assets/icon/discord.png"
           style="display:inline; max-height:20px;transform:translateY(4px);"
           alt="Image description"
@@ -27,14 +27,13 @@
       class="account-box"
       to="/me"
     >
-      <SpWallet
-        ref="wallet"
-        class="wallet--local"
-        @dropdown-opened="$refs.menu.closeDropdown()"
-      />
-
       <button>My Account ({{ getUserCredits }} Credits)</button>
     </router-link>
+    <SpWallet
+      ref="wallet"
+      class="wallet--local"
+      @dropdown-opened="$refs.menu.closeDropdown()"
+    />
   </header>
 </template>
 
@@ -59,7 +58,7 @@ export default {
 
   .wallet--local {
     position: relative;
-    
+
   }
 
   .sp-wallet-menu-item {

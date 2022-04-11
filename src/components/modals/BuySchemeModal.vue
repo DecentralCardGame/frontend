@@ -93,8 +93,6 @@ export default {
         })
     this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
         .then(acc => {
-          console.log("acc:", acc)
-
           if (!acc || !acc.coins) {
             this.notifyFail('NOT LOGGED IN', 'please login or register')
             throw new Error('no coins available for', this.$store.getters.getUserAddress)
@@ -117,7 +115,8 @@ export default {
       this.$emit('close')
       this.$cardChain.buyCardSchemeTx(this.currentBid)
         .then(acc => {
-          this.creditsAvailable = creditsFromCoins(acc.coins)
+          console.log("acc res", acc)
+          this.creditsAvailable = creditsFromCoins(acc)
           this.$store.commit('setUserCredits', this.creditsAvailable)
         })
     },
