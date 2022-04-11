@@ -72,22 +72,22 @@ export default {
         }
       }
       cardObjectToWebModel (rawCard) {
-        if (rawCard.Content) {
+        if (rawCard.content) {
           let contentLens = R.lensProp('Content')
-          let parseContent = item => R.set(contentLens, JSON.parse(item.Content), item)
+          let parseContent = item => R.set(contentLens, JSON.parse(item.content), item)
           let card = R.merge(emptyCard, parseContent(rawCard))
           let cardType = R.keys(card.Content)
+          console.log(card)
           card = R.merge(card, card.Content[cardType[0]])
 
-          card.image = card.Image
-          card.nerflevel = parseInt(card.Nerflevel)
+          card.nerflevel = parseInt(card.nerflevel)
           card.type = cardType[0]
 
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
 
-          if (rawCard.FullArt && !R.isNil(rawCard.FullArt))
-            card.FullArt = JSON.parse(rawCard.FullArt)
+          if (rawCard.fullArt && !R.isNil(rawCard.fullArt))
+            card.fullArt = JSON.parse(rawCard.fullArt)
 
           console.log('parsed card: ', card)
           return card
@@ -271,6 +271,7 @@ export default {
         })
       }
       getUserInfo (address) {
+          console.log(this.validAddress(address))
           if (this.validAddress(address)) {
             return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_user/' + address)
               .catch(this.handleGetError)
@@ -281,7 +282,7 @@ export default {
           }
       }
       getCard (id) {
-          return this.vue.$http.get('cardservice/cards/' + id)
+          return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_card/' + id)
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
@@ -421,32 +422,29 @@ export default {
         }
       })
       handleGetCard = R.curry((res, cardId) => {
-        if (res.data.result.owner === '') {
+        if (res.data.owner === '') {
           this.vue.notifyFail('Card without Owner', 'If you can read this the programmers dun goofed.')
           throw new Error('Card without Owner: ' + cardId)
         }
-        if (!res.data.result) {
+        if (!res.data) {
           this.vue.notifyFail('WTF', 'A card was looked up that does not exist in the blockchain.')
           throw new Error('Card with ' + cardId + ' does not exist.')
         } else {
-          return {
-            card: res.data.result
-          }
+          // console.log(res.data)
+          return res.data
         }
       })
       handleGetCardList = R.curry((res, type) => {
         console.log(res)
-        if (res.data.result === '') {
+        if (res.data === '') {
           this.vue.notifyFail('Sad', 'Basically the CardList is valid, but it is empty.')
           throw new Error('CardList Empty: ' + res)
         }
-        if (!res.data.result) {
+        if (!res.data) {
           this.vue.notifyInfo('Empty', 'An empty cardList was returned by the blockchain.')
           throw new Error('CardList with type ' + type + ' did not return a proper result: ' + res)
         } else {
-          return {
-            cardList: res.data.result
-          }
+          return res.data
         }
       })
       handleGetVotableCards = R.curry((res, address) => {
@@ -457,14 +455,14 @@ export default {
             unregistered: true
           }
         } else {
-          if (res.data.result.unregistered == true) {
-            return res.data.result
+          if (res.data.unregistered == true) {
+            return res.data
           }
-          else if (res.data.result.noVoteRights == true) {
-            return res.data.result
+          else if (res.data.noVoteRights == true) {
+            return res.data
           }
           return {
-            votables: res.data.result
+            votables: res.data
           }
         }
       })

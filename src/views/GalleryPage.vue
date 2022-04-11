@@ -79,13 +79,13 @@
 
       <div class="gallery__filter__item">
         <div class="no--wrap">
-          <label class="gallery-checkbox__label"> 
+          <label class="gallery-checkbox__label">
             <input
               v-model="$store.getters.getGalleryFilter.classesVisible"
               class="gallery-checkbox"
               type="checkbox"
               @input="$store.getters.getGalleryFilter.classesVisible = !$store.getters.getGalleryFilter.classesVisible "
-            > 
+            >
             Filter Classes
             <br>
           </label>
@@ -212,8 +212,8 @@
         next
       </button>
     </div>
-    <div 
-      v-if="isGalleryModalVisible" 
+    <div
+      v-if="isGalleryModalVisible"
       class="container-modal"
       @click="closeGalleryModal"
     >
@@ -288,7 +288,7 @@ export default {
   },
   mounted() {
     let params = this.$route.params.params
-    
+
     if (params == "alphaset") {
       this.loadSpecialCardList("Finished")
     }
@@ -304,7 +304,7 @@ export default {
   methods: {
     loadVotableCards() {
       this.$cardChain
-        .getVotableCards(this.$store.getters.getUserAddress)
+        .getVotableCards(this.$store.getters['common/wallet/address'])
         .then((res) => {
           console.log("getVotableCards:", res);
           if (res.noVoteRights) {
@@ -333,11 +333,12 @@ export default {
           this.$store.getters.getGalleryFilter.notesContains
         )
         .then((res) => {
+          console.log(res)
           if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
-            this.cardList = R.reverse(res.cardList)
-          } 
+            this.cardList = R.reverse(res.cardsList)
+          }
           else {
-            this.cardList = res.cardList
+            this.cardList = res.cardsList
           }
           this.pageId = 0
           this.cards = []
@@ -353,13 +354,13 @@ export default {
       return this.$cardChain
         .getCard(cardId)
         .then((res) => {
-          let card = res.card
+          let card = res
           card.id = cardId
-          if (card.Content) {
+          if (card.content) {
             let candidate = this.$cardChain.cardObjectToWebModel(card)
             this.cards.push(candidate)
             return candidate
-          } else if (!card.Owner) {
+          } else if (!card.owner) {
             console.error("card without content and owner: ", res)
             return res
           } else {
@@ -369,6 +370,7 @@ export default {
         })
     },
     fillPage() {
+      console.log(this.cardList)
       if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
@@ -376,9 +378,10 @@ export default {
       else this.browsingBackward = true;
 
       let requestedCards = R.map(n => this.getCard(n),
-          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId)) 
+          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId))
         )
 
+      console.log(requestedCards)
       Promise.all(requestedCards)
       .then((res) => {
         // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
@@ -387,6 +390,7 @@ export default {
           this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
         this.cards = res
+        console.log(this.cards)
         console.log("all card names:", R.pluck("CardName", res))
       })
       .catch(res => {
@@ -413,7 +417,7 @@ export default {
     },
     showGalleryModal() {
       this.isGalleryModalVisible = true
-      
+
       this.canVote = R.any(
         (x) => x == this.cards[this.clickedIndex].id,
         R.pluck("CardId", this.votableCards)
@@ -421,7 +425,7 @@ export default {
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
         this.$store.getters.getUserAddress
-      
+
       this.keywordDescriptions = []
       let firstLetterToLower = string => {
         return string[0].toLowerCase() + string.substring(1)
@@ -442,7 +446,7 @@ export default {
         (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
         (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
         (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
-        
+
       let requestedCards = [
         // owners are hardcoded here because these are the alpha creators
         this.$cardChain.getCardList(
@@ -464,7 +468,7 @@ export default {
         console.log("cardlistyes:", cardList)
         if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
           this.cardList = R.reverse(cardList)
-        } 
+        }
         else {
           this.cardList = cardList
         }
@@ -600,7 +604,7 @@ export default {
 .gallery-checkbox {
   position: absolute;
   display: inline-block;
-  margin-left: -25px; 
+  margin-left: -25px;
 }
 .gallery-checkbox__label {
 margin-left: 25px;
