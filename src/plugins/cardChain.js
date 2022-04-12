@@ -188,13 +188,14 @@ export default {
             let msg = {
               value: {
                 "@type": "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent",
-                "creator": this.$store.getters['common/wallet/address'],
+                "creator": this.vue.$store.getters['common/wallet/address'],
                 "cardId": user.ownedCardSchemes[0],
-                "content": JSON.stringify(card.content),
+                "content": btoa(JSON.stringify(card.content)),
                 "notes": card.Notes,
-                "artist": this.$store.getters['common/wallet/address']
+                "artist": this.vue.$store.getters['common/wallet/address']
               }
             }
+            console.log("savecard msg:", msg)
             return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSaveCardContent', msg)
               .then((res) => {
                 this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
