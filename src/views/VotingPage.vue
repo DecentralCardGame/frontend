@@ -41,7 +41,7 @@
         </div>
       </div>
       <div v-if="!votingActive">
-        <span>You cannot vote on cards.</span>
+        <span>You cannot vote on cards. Please login with your wallet.</span>
         <div v-if="noMoreVotesLeft">
           <span>You have already voted on all cards. Come back tomorrow to vote again.</span>
         </div>

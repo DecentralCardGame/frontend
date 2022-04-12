@@ -117,9 +117,9 @@ export default {
       this.walletName = this.$store.getters['common/wallet/walletName']
       console.log('walletname:', this.walletName)
       if (this.walletName != null) {
-        this.isLoggedIn = true
+        this.$store.commit('setLoggedIn', true)
       } else {
-        this.isLoggedIn = false
+        this.$store.commit('setLoggedIn', false)
       }
     },
     useFaucet() {

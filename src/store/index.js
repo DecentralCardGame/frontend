@@ -79,6 +79,9 @@ const store = createStore({
     toggleLoginBox (state) {
       state.displayLogin = !state.displayLogin
     },
+    setLoggedIn (state, bool) {
+      state.loggedIn = bool
+    },
     setLastInputEvent (state, event) {
       state.lastInputEvent = event
     },
