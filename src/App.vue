@@ -71,7 +71,7 @@ export default {
             })
             .then(register => {
               if (register.code === 0) {
-                this.notifySuccess("Great Success!", "Registering was succesful.")
+                this.notifySuccess("Great Success!", "Registering was successful.")
               }
               else {
                 this.notifyFail("EPIC FAIL", "Register did not work.")
