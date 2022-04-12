@@ -58,6 +58,7 @@ export default {
 
   .wallet--local {
     position: relative;
+    color: black;
 
   }
 

@@ -68,7 +68,6 @@ const store = createStore({
     },
     resetGalleryFilter (state) {
       state.galleryFilter = R.clone(emptyGalleryFilter)
-      console.log("galleryfilter:", state.galleryFilter)
     },
     toggleGalleryFilter (state) {
       state.galleryFilter.visible = !state.galleryFilter.visible

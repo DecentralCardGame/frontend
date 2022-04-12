@@ -48,7 +48,7 @@ export default {
     '$store.state.common.wallet.selectedAddress': function () {
       this.setLoginStatus()
 
-      if (this.isLoggedIn) {
+      if (this.$store.getters.loggedIn) {
         this.getBalances()
         .then(credits => {
           console.log("credits:", credits)
@@ -87,7 +87,7 @@ export default {
           console.error(err)
         })
       } else {
-        this.notifyInfo('Logged', 'You have logged out.')
+        this.notifyInfo('Logout', 'You have logged out.')
       }
     }
   },
@@ -114,9 +114,8 @@ export default {
       )
     },
     setLoginStatus() {
-      this.walletName = this.$store.getters['common/wallet/walletName']
-      console.log('walletname:', this.walletName)
-      if (this.walletName != null) {
+      console.log('wallet name, adress', this.$store.getters['common/wallet/walletName'], this.$store.getters['common/wallet/address'])
+      if (this.$store.getters['common/wallet/walletName'] != null) {
         this.$store.commit('setLoggedIn', true)
       } else {
         this.$store.commit('setLoggedIn', false)

@@ -166,12 +166,9 @@ export default {
             bid: "100000000ucredits",
           }
         }
-        console.log("msg", msg)
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgBuyCardScheme', msg)
           .then((res) => {
-            console.log("buycardscheme res", res)
             this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.')
-            console.log(this.getUserInfo(this.vue.$store.getters['common/wallet/address']))
             return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
           })
           .catch(err => {
@@ -182,42 +179,35 @@ export default {
           })
       }
       saveContentToUnusedCardSchemeTx (card) {
-        return new Promise((resolve, reject) => {
-          this.getUserInfo(this.vue.$store.getters['getUserAddress'])
-          .then(user => {
-            if (!user.ownedCardSchemes) {
-              this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
-              throw new Error('account ' + this.vue.$store.getters['getUserAddress'] + ' does not own Card Frames')
-            } else {
-              let reqBody = {
-                'base_req': {
-                  'from': this.vue.$store.getters['getUserAddress'],
-                  'chain_id': process.env.VUE_APP_CHAIN_ID,
-                  'gas': 'auto',
-                  'gas_adjustment': '10'
-                },
-                'owner': this.vue.$store.getters['getUserAddress'],
-                'content': JSON.stringify(card.content),
-                'image': card.image,
-                'cardid': user.ownedCardSchemes[0],
-                'notes': card.Notes,
-                'fullart': JSON.stringify(card.FullArt)
+        this.getUserInfo(this.vue.$store.getters['common/wallet/address'])
+        .then(user => {
+          if (!user.ownedCardSchemes) {
+            this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
+            throw new Error('account ' + this.vue.$store.getters['getUserAddress'] + ' does not own Card Frames')
+          } else {
+            let msg = {
+              value: {
+                "@type": "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent",
+                "creator": this.$store.getters['common/wallet/address'],
+                "cardId": user.ownedCardSchemes[0],
+                "content": JSON.stringify(card.content),
+                "notes": card.Notes,
+                "artist": this.$store.getters['common/wallet/address']
               }
-              return reqBody
             }
-          })
-          .then(req => {
-            this.txQueue.enqueue(() => {
-              return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.saveCardContentGenerateTx(req)])
-                .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
-                .then(() => {
-                  this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
-                  resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
-                })
-                .catch(this.handleTxFail(reject))
-            })
-          })
+            return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSaveCardContent', msg)
+              .then((res) => {
+                this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
+                return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
+              })
+              .catch(err => {
+                this.vue.notifyFail('Save Card failed', err.message)
+                console.log(err)
+                throw new Error(err)
+              })
+          }
         })
+
       }
       saveContentToCardWithIdTx (card) {
         return new Promise((resolve, reject) => {
