@@ -28,7 +28,7 @@
         next
       </button>
     </div>
-    
+
     <div class="gallery__view">
       <div
         v-for="(card, index) in cards"
@@ -71,8 +71,8 @@
         next
       </button>
     </div>
-    <div 
-      v-if="isGalleryModalVisible" 
+    <div
+      v-if="isGalleryModalVisible"
       class="container-modal"
       @click="closeGalleryModal"
     >
@@ -158,13 +158,12 @@ export default {
       return this.$cardChain
         .getVotingResults()
         .then((res) => {
-          console.log(res)
-          this.TotalVotes = res.votingResult.TotalVotes
-          this.TotalFairEnoughVotes = res.votingResult.TotalFairEnoughVotes
-          this.TotalInappropriateVotes = res.votingResult.TotalInappropriateVotes
-          this.TotalOverpoweredVotes = res.votingResult.TotalOverpoweredVotes
-          this.TotalUnderpoweredVotes = res.votingResult.TotalUnderpoweredVotes
-          this.cardList = res.votingResult.CardResults
+          this.TotalVotes = res.lastVotingResults.totalVotes
+          this.TotalFairEnoughVotes = res.lastVotingResults.totalFairEnoughVotes
+          this.TotalInappropriateVotes = res.lastVotingResults.totalInappropriateVotes
+          this.TotalOverpoweredVotes = res.lastVotingResults.totalOverpoweredVotes
+          this.TotalUnderpoweredVotes = res.lastVotingResults.totalUnderpoweredVotes
+          this.cardList = res.lastVotingResults.cardResults
         })
         .then(() => {
           this.fillPage()
@@ -203,7 +202,7 @@ export default {
       else this.browsingBackward = true;
 
       let requestedCards = R.map(n => this.getCard(n),
-          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId)) 
+          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId))
         )
 
       Promise.all(requestedCards)
@@ -235,7 +234,7 @@ export default {
     },
     showGalleryModal() {
       this.isGalleryModalVisible = true
-      
+
       this.canVote = R.any(
         (x) => x == this.cards[this.clickedIndex].id,
         R.pluck("CardId", this.votableCards)
@@ -243,7 +242,7 @@ export default {
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
         this.$store.getters.getUserAddress
-      
+
       this.keywordDescriptions = []
       let firstLetterToLower = string => {
         return string[0].toLowerCase() + string.substring(1)
@@ -384,7 +383,7 @@ export default {
 .gallery-checkbox {
   position: absolute;
   display: inline-block;
-  margin-left: -25px; 
+  margin-left: -25px;
 }
 .gallery-checkbox__label {
 margin-left: 25px;

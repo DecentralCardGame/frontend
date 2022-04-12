@@ -50,6 +50,7 @@ export default {
       }
 
       getAccInfo (address) {
+        console.log(address)
         if (this.validAddress(address)) {
           return this.vue.$http.get(
             'cosmos/bank/v1beta1/balances/' + address,
@@ -314,11 +315,9 @@ export default {
           }
       }
       getVotingResults () {
-        return this.vue.$http.get('cardservice/cardchain_votingresults')
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_voting_results')
           .then(res => {
-            return {
-            votingResult: res.data.result
-            }
+            return res.data
           })
           .catch(this.handleGetError)
       }
