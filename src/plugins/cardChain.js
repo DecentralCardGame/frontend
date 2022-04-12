@@ -208,34 +208,19 @@ export default {
               })
           }
         })
-
       }
       saveContentToCardWithIdTx (card) {
-        return new Promise((resolve, reject) => {
-          let req = {
-            'base_req': {
-              'from': this.vue.$store.getters['getUserAddress'],
-              'chain_id': process.env.VUE_APP_CHAIN_ID,
-              'gas': 'auto',
-              'gas_adjustment': '10'
-            },
-            'owner': this.vue.$store.getters['getUserAddress'],
-            'content': JSON.stringify(card.content),
-            'image': card.image,
-            'cardid': card.id,
-            'notes': card.Notes,
-            'fullart': JSON.stringify(card.FullArt)
-          }
-          this.txQueue.enqueue(() => {
-            return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.saveCardContentGenerateTx(req)])
-              .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
-              .then(() => {
-                this.vue.notifySuccess('EPIC WIN', 'You have successfully edited this card.')
-                resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
-              })
-              .catch(this.handleTxFail(reject))
-          })
-        })
+
+      }
+      saveArtworkToCard (id, image, fullart) {
+        let msg = {
+          "@type":"/DecentralCardGame.cardchain.cardchain.MsgAddArtwork",
+          "creator": this.vue.$store.getters['common/wallet/address'],
+          "cardId":id,
+          "image":image,
+          "fullArt":fullart
+        }
+        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
       }
       voteCardTx (cardid, voteType) {
         return new Promise((resolve, reject) => {

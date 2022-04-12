@@ -78,7 +78,7 @@ export default {
   },
   mounted () {
     console.log('this in voting page', this)
-    this.$cardChain.getVotableCards(this.$store.getters.getUserAddress)
+    this.$cardChain.getVotableCards(this.$store.getters['common/wallet/address'])
       .then(res => {
         console.log('getVotableCards:', res)
         if (res.votables) {
@@ -120,7 +120,7 @@ export default {
       this.$cardChain.voteCardTx(this.currentCard.id, type)
       .then(acc => {
         this.creditsAvailable = creditsFromCoins(acc.coins)
-        this.$store.commit('setUserCredits', this.creditsAvailable) 
+        this.$store.commit('setUserCredits', this.creditsAvailable)
       })
       console.log('vote cast for cardid', this.currentCard.id, 'voted: ', type)
 
