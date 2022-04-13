@@ -427,7 +427,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgReportMatch(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -444,7 +444,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgCommitCouncilResponse(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -461,7 +461,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgBuyCardScheme(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -478,7 +478,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgChangeArtist(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -495,7 +495,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgSubmitMatchReporterProposal(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -512,7 +512,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgDonateToCard(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -529,7 +529,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgCreateSellOffer(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -546,7 +546,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgSaveCardContent(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -563,7 +563,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgApointMatchReporter(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -580,7 +580,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRevealCouncilResponse(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -597,7 +597,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgTransferCard(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -614,7 +614,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgSubmitCollectionProposal(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -631,7 +631,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgBuyCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -648,7 +648,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgSetCardRarity(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -665,7 +665,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgAddStoryToCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -682,7 +682,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRegisterForCouncil(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -699,7 +699,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgSubmitCopyrightProposal(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -716,7 +716,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgVoteCard(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -733,7 +733,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRestartCouncil(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -750,7 +750,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRewokeCouncilRegistration(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -767,7 +767,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgCreateuser(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -784,7 +784,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgCreateCouncil(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -801,7 +801,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgAddContributorToCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -818,7 +818,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRemoveContributorFromCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -832,10 +832,11 @@ export default {
         },
         async sendMsgAddArtwork({ rootGetters }, { value, fee = [], memo = '' }) {
             try {
+                console.log(value);
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgAddArtwork(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -852,7 +853,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgFinalizeCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -869,7 +870,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRemoveCardFromCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -886,7 +887,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgCreateCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -903,7 +904,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgBuyCard(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -920,7 +921,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgRemoveSellOffer(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -937,7 +938,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgAddArtworkToCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {
@@ -954,7 +955,7 @@ export default {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgAddCardToCollection(value);
                 const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
+                        gas: "3000000000" }, memo });
                 return result;
             }
             catch (e) {

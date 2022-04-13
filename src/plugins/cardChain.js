@@ -233,11 +233,13 @@ export default {
       }
       saveArtworkToCard (id, image, fullart) {
         let msg = {
-          "@type":"/DecentralCardGame.cardchain.cardchain.MsgAddArtwork",
-          "creator": this.vue.$store.getters['common/wallet/address'],
-          "cardId": id,
-          "image": btoa(image),
-          "fullArt": fullart
+          value: {
+            "@type":"/DecentralCardGame.cardchain.cardchain.MsgAddArtwork",
+            "creator": this.vue.$store.getters['common/wallet/address'],
+            "cardId": id,
+            "image": btoa(image),
+            "fullArt": fullart
+          }
         }
         console.log("saveart msg:", msg)
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
