@@ -1078,33 +1078,43 @@ export default {
       let newCard = this.$cardChain.cardWebModelToCardobject(
         newModel,
         this.getCardImage
-      );
+      )
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
         console.log("overwriting card with id:", this.model.id);
-        console.log("card:", newCard);
-        newCard.id = this.model.id;
+        console.log("card:", newCard)
+
         this.$cardChain
-          .saveContentToCardWithIdTx(newCard, () => {})
+          .saveContentToCardTx(newCard, this.model.id)
           .then(this.updateCredits)
+          .then(() => {
+            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
+          })
           .then(this.resetEditCard)
           .catch((err) => {
-            console.error(err);
-          });
+            this.notifyFail("Update Card failed", err)
+            console.error(err)
+          })
       } else {
         console.log("saving card with id (should be 0):", newCard.id);
         this.$cardChain
-          .saveContentToUnusedCardSchemeTx(newCard, () => {})
+          .saveContentToUnusedCardSchemeTx(newCard)
+          .then(yes => {
+            console.log("yes", yes)
+            return yes
+          })
           .then(this.updateCredits)
           .then(this.resetCardDraft)
           .catch((err) => {
-            console.error(err);
+            console.log(err)
+            this.notifyFail("Publish Card failed", err)
+            console.error(err)
           });
       }
     },
     updateCredits(acc) {
-      this.creditsAvailable = creditsFromCoins(acc.coins);
+      this.creditsAvailable = creditsFromCoins(acc);
       this.$store.commit("setUserCredits", this.creditsAvailable);
       return this.creditsAvailable;
     },

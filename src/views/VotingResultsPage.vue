@@ -241,7 +241,7 @@ export default {
       )
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
-        this.$store.getters.getUserAddress
+        this.$store.getters['common/wallet/address']
 
       this.keywordDescriptions = []
       let firstLetterToLower = string => {
@@ -282,7 +282,7 @@ export default {
         });
     },
     getOwnAddress() {
-      return this.$store.getters.getUserAddress;
+      return this.$store.getters['common/wallet/address'];
     },
     resetFilters() {
       console.log("reset filters");

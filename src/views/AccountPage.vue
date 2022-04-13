@@ -18,7 +18,7 @@
     <br>
 
     <h2>Address:</h2>
-    {{ $store.getters.getUserAddress }}
+    {{ $store.getters['common/wallet/address'] }}
     <br><br>
     <p>
       The following is the most important part of your account. It is what gives full control over your account.

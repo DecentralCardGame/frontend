@@ -26,6 +26,9 @@ import '@starport/vue/lib/starport-vue.css'
 //import Sidebar from './components/Sidebar'
 
 import AppLayout from './layouts/AppLayout.vue'
+import {
+  creditsFromCoins,
+} from "@/components/utils/utils.js";
 
 export default {
   name: 'CrowdControlApp',
@@ -49,18 +52,18 @@ export default {
       this.setLoginStatus()
 
       if (this.$store.getters.loggedIn) {
-        this.getBalances()
+        this.$cardChain.updateUserCredits()
         .then(credits => {
           console.log("credits:", credits)
           if (credits < 1) {
             console.log("using faucet")
-            return this.useFaucet()
+            return this.$cardChain.useFaucet()
             .then(async (faucetres) => {
               console.log("faucetres", faucetres)
               let active = -1
               let count = 0
               while (active === -1 && count < 100) {
-                  active = await this.getBalances();
+                  active = await this.$cardChain.updateUserCredits();
                   count++
               }
               if (active === -1) {
@@ -121,32 +124,6 @@ export default {
         this.$store.commit('setLoggedIn', false)
       }
     },
-    useFaucet() {
-      this.notifyInfo('Faucet', 'Get Credits from Faucet')
-      return this.$http.post(
-        process.env.VUE_APP_FAUCET,
-        {
-          address: this.$store.getters['common/wallet/address'],
-          coins: ['0ubpf', '5000ucredits'],
-        },
-        {
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        }
-      )
-    },
-    getBalances() {
-      return this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
-        .then((accData) => {
-            let credits = -1
-            accData.coins.forEach((balance) => {
-              if (balance.denom == 'ucredits') {
-                this.$store.commit('setUserCredits', balance.amount)
-                credits = balance.amount
-              }
-            })
-            return credits
-        })
-    }
   }
 
 }
