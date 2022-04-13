@@ -80,6 +80,7 @@ const store = createStore({
     },
     setLoggedIn (state, bool) {
       state.loggedIn = bool
+      console.log(state.loggedIn)
     },
     setLastInputEvent (state, event) {
       state.lastInputEvent = event
@@ -120,7 +121,7 @@ const store = createStore({
       return state.galleryFilter
     },
     loggedIn: state => {
-      return state.jwt !== ''
+      return state.loggedIn
     },
     loginBoxVisible: state => {
       return state.displayLogin
