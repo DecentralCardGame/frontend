@@ -79,7 +79,7 @@ export default {
         return this.vue.$http.post(
           process.env.VUE_APP_FAUCET,
           {
-            address: this.$store.getters['common/wallet/address'],
+            address: this.vue.$store.getters['common/wallet/address'],
             coins: ['0ubpf', '5000ucredits'],
           },
           {
