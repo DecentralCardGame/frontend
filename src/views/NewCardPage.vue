@@ -1089,7 +1089,7 @@ export default {
           .saveContentToCardTx(newCard, this.model.id)
           .then(this.updateCredits)
           .then(() => {
-            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
+            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.FullArt)
           })
           .then(this.resetEditCard)
           .catch((err) => {

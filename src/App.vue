@@ -101,7 +101,6 @@ export default {
     this.initialized = true
 
     console.log("initialized?", this.initialized)
-    //this.$cardChain.getUserInfo('cc1udpfedftjwrddrjhkk0qtc59434q6pdyld27qt')
   },
   mounted () {
     console.log("store", this.$store)

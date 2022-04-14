@@ -93,7 +93,6 @@ export default {
           let parseContent = item => R.set(contentLens, JSON.parse(item.content), item)
           let card = R.merge(emptyCard, parseContent(rawCard))
           let cardType = R.keys(card.Content)
-          console.log(card)
           card = R.merge(card, card.Content[cardType[0]])
 
           card.nerflevel = parseInt(card.nerflevel)
@@ -445,8 +444,8 @@ export default {
         }
       })
       handleGetVotableCards = R.curry((res, address) => {
-        // TODO check if it is possible to differentiate here between unregistered and no voting rights
-        if (res.data.result === null) {
+        console.log("votable res", res)
+        if (res.data === null) {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           return {
             unregistered: true

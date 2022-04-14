@@ -172,7 +172,7 @@ export default {
     getCard(currentId) {
       let cardId = this.cardList[
         this.cardList.length - 1 - this.pageId - currentId
-      ].CardId
+      ].cardId
       return this.$cardChain
         .getCard(cardId)
         .then((res) => {
@@ -237,7 +237,7 @@ export default {
 
       this.canVote = R.any(
         (x) => x == this.cards[this.clickedIndex].id,
-        R.pluck("CardId", this.votableCards)
+        R.pluck("cardId", this.votableCards)
       )
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===

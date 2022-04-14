@@ -77,12 +77,11 @@ export default {
     }
   },
   mounted () {
-    console.log('this in voting page', this)
     this.$cardChain.getVotableCards(this.$store.getters['common/wallet/address'])
       .then(res => {
         console.log('getVotableCards:', res)
         if (res.votables) {
-          this.voteRights = res.votables
+          this.voteRights = res.votables.voteRights
 
           if (this.voteRights.length > 0) {
             console.log('voteRights:', this.voteRights)
@@ -99,10 +98,10 @@ export default {
           this.votingActive = false
           this.noMoreVotesLeft = true
           console.log('no more voting rights')
-        } else if (res.unregistered === true) {
+        } else if (res.votables.unregistered === true) {
           this.unregistered = true
           this.notifyFail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
-        } else if (res.noVoteRights === true) {
+        } else if (res.votables.noVoteRights === true) {
           this.noMoreVotesLeft = true
           this.notifyFail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
         } else {
@@ -140,17 +139,19 @@ export default {
       console.log('votingRights.length:', this.voteRights.length)
       if (this.voteRights.length > 0) {
         let nextCard = R.last(this.voteRights)
+        console.log("nextCard", nextCard)
         this.voteRights = R.dropLast(1, this.voteRights)
 
-        return this.$cardChain.getCard(nextCard.CardId)
+        return this.$cardChain.getCard(nextCard.cardId)
           .then(res => {
-            let parsedCard = this.$cardChain.cardObjectToWebModel(res.card)
+            console.log("res", res)
+            let parsedCard = this.$cardChain.cardObjectToWebModel(res)
             console.log('currentCard', parsedCard)
             if (parsedCard) {
               this.cards.push(parsedCard)
-              R.last(this.cards).id = nextCard.CardId
+              R.last(this.cards).id = nextCard.cardId
             } else {
-              console.error('card could not be parsed', res.card)
+              console.error('card could not be parsed', res)
             }
           })
       } else {

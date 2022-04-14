@@ -260,7 +260,7 @@ export default {
       cards: [],
       browsingForward: true,
       browsingBackward: true,
-      votableCards: [],
+      Cards: [],
       canVote: false,
       isOwner: false,
       leavePageLock: false,
@@ -357,7 +357,6 @@ export default {
           let card = res
           card.id = cardId
           if (card.content) {
-            console.log(card)
             let candidate = this.$cardChain.cardObjectToWebModel(card)
             this.cards.push(candidate)
             return candidate
@@ -371,7 +370,6 @@ export default {
         })
     },
     fillPage() {
-      console.log(this.cardList)
       if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
@@ -382,7 +380,6 @@ export default {
           R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId))
         )
 
-      console.log(requestedCards)
       Promise.all(requestedCards)
       .then((res) => {
         // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
@@ -391,11 +388,11 @@ export default {
           this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
         this.cards = res
-        console.log(this.cards)
+        console.log("cards on page", this.cards)
         console.log("all card names:", R.pluck("CardName", res))
       })
       .catch(res => {
-        console.log("NOT ALL CARDS WERE PROPERLY LOADED")
+        console.err("NOT ALL CARDS WERE PROPERLY LOADED")
         console.log("all card names:", R.pluck("CardName", res))
       })
       console.log("all cards:", this.cards)
@@ -418,12 +415,12 @@ export default {
     },
     showGalleryModal() {
       this.isGalleryModalVisible = true
+      console.log("votable", this.votableCards)
 
       this.canVote = R.any(
         (x) => x == this.cards[this.clickedIndex].id,
-        R.pluck("CardId", this.votableCards)
+        R.pluck("cardId", this.votableCards)
       )
-      console.log("owner", this.clickedIndex, this.cards, this.$store.getters['common/wallet/address'])
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
         this.$store.getters['common/wallet/address']
@@ -462,7 +459,6 @@ export default {
           notes
         )
       ]
-
       Promise.all(requestedCards)
       .then((res) => {
         let cardList = R.reduce(R.concat, [], R.pluck("cardList", res))
