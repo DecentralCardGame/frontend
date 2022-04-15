@@ -415,12 +415,15 @@ export default {
     },
     showGalleryModal() {
       this.isGalleryModalVisible = true
-      console.log("votable", this.votableCards)
 
-      this.canVote = R.any(
-        (x) => x == this.cards[this.clickedIndex].id,
-        R.pluck("cardId", this.votableCards)
-      )
+      console.log("vot", this.votableCards)
+      if (this.votableCards) {
+        this.canVote = R.any(
+          (x) => x == this.cards[this.clickedIndex].id,
+          R.pluck("cardId", this.votableCards.voteRights)
+        )
+      }
+      
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
         this.$store.getters['common/wallet/address']
@@ -498,6 +501,7 @@ export default {
       this.$cardChain
         .voteCardTx(this.cards[this.clickedIndex].id, type)
         .then((acc) => {
+          console.log("acc", acc)
           this.creditsAvailable = creditsFromCoins(acc.coins);
           this.$store.commit("setUserCredits", this.creditsAvailable);
         });

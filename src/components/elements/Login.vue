@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button 
-      class="close-button" 
+    <button
+      class="close-button"
       type="button"
       @click="$store.commit('toggleLoginBox')"
     >
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     login () {
-      console.log("getit", this.$store.getters['getUserAddress'])
+      console.log("getit", this.vue.$store.getters['common/wallet/address'])
 
       const request = {
         username: this.username,

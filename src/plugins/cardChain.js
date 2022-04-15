@@ -201,7 +201,7 @@ export default {
             console.log("user info", user)
             if (R.isEmpty(user.ownedCardSchemes)) {
               this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
-              throw new Error('account ' + this.vue.$store.getters['getUserAddress'] + ' does not own Card Frames')
+              throw new Error('account ' + this.vue.$store.getters['common/wallet/address'] + ' does not own Card Frames')
             } else {
               return this.saveContentToCardTx(card, user.ownedCardSchemes[0])
             }
@@ -242,31 +242,28 @@ export default {
         }
         console.log("saveart msg:", msg)
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
+        // TODO error handling
       }
       voteCardTx (cardid, voteType) {
-        return new Promise((resolve, reject) => {
-          let req = {
-            'base_req': {
-              'from': this.vue.$store.getters['getUserAddress'],
-              'chain_id': process.env.VUE_APP_CHAIN_ID,
-              'gas': 'auto',
-              'gas_adjustment': '1.5'
-            },
-            'voter': this.vue.$store.getters['getUserAddress'],
-            'votetype': voteType,
-            'cardid': '' + cardid
+        let msg = {
+          value: {
+            "@type": "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
+            "creator": this.vue.$store.getters['common/wallet/address'],
+            "cardId": cardid,
+            "voteType": voteType
           }
-
-          this.txQueue.enqueue(() => {
-            return Promise.all([this.getAccInfo(this.vue.$store.getters['getUserAddress']), this.voteCardGenerateTx(req)])
-              .then(res => this.signAndBroadcast(this.vue.$store.getters['getUserMnemonic'], res))
-                .then(() => {
-                  this.vue.notifySuccess('VOTED', 'Vote Transaction successful!')
-                  resolve(this.getAccInfo(this.vue.$store.getters['getUserAddress']))
-                })
-                .catch(this.handleTxFail(reject))
+        }
+        console.log("votecard msg:", msg)
+        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgVoteCard', msg)
+          .then((res) => {
+            console.log("res", res)
+            this.vue.notifySuccess('VOTED', 'Vote Transaction successful!')
+            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
           })
-        })
+          .catch(err => {
+            console.log(err)
+            this.handleTxFail(err)
+          })
       }
       getUserInfo (address) {
           console.log(this.validAddress(address))
