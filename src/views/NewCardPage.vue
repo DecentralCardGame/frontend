@@ -1114,7 +1114,7 @@ export default {
       }
     },
     updateCredits(acc) {
-      this.creditsAvailable = creditsFromCoins(acc);
+      this.creditsAvailable = creditsFromCoins(acc.coins);
       this.$store.commit("setUserCredits", this.creditsAvailable);
       return this.creditsAvailable;
     },
