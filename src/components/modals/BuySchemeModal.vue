@@ -98,7 +98,7 @@ export default {
             throw new Error('no coins available for', this.$store.getters['common/wallet/address'])
           }
 
-          this.creditsAvailable = creditsFromCoins(acc)
+          this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)
         })
         .catch(res => {
@@ -115,7 +115,7 @@ export default {
       this.$emit('close')
       this.$cardChain.buyCardSchemeTx(this.currentBid)
         .then(acc => {
-          this.creditsAvailable = creditsFromCoins(acc)
+          this.creditsAvailable = creditsFromCoins(acc.coins)
           this.$store.commit('setUserCredits', this.creditsAvailable)
         })
     },

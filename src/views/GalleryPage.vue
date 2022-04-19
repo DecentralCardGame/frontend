@@ -423,7 +423,7 @@ export default {
           R.pluck("cardId", this.votableCards.voteRights)
         )
       }
-      
+
       this.isOwner =
         this.cards[this.clickedIndex].Owner ===
         this.$store.getters['common/wallet/address']

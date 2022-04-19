@@ -68,7 +68,7 @@ export default {
         if (this.vue.$store.getters['common/wallet/address']) {
           return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
             .then((accData) => {
-              let credits = creditsFromCoins(accData)
+              let credits = creditsFromCoins(accData.coins)
               this.vue.$store.commit('setUserCredits', credits)
               return credits
             })
