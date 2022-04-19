@@ -392,7 +392,7 @@ export default {
         console.log("all card names:", R.pluck("CardName", res))
       })
       .catch(res => {
-        console.err("NOT ALL CARDS WERE PROPERLY LOADED")
+        console.error("NOT ALL CARDS WERE PROPERLY LOADED")
         console.log("all card names:", R.pluck("CardName", res))
       })
       console.log("all cards:", this.cards)
