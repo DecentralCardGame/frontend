@@ -158,13 +158,6 @@ export default {
         console.log('parsed into:', cardobject)
         return cardobject
       }
-      /*
-      generateMnemonic () {
-        let entropySize = 24 * 11 - 8
-        let entropy = Random(entropySize / 8)
-        return entropyToMnemonic(entropy)
-      }
-      */
       registerAccTx (alias) {
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
           value: {
@@ -218,7 +211,7 @@ export default {
             "artist": this.vue.$store.getters['common/wallet/address']
           }
         }
-        this.vue.notifyInfo('Saving', 'sending card data to blockchain')
+        this.vue.notifyInfo('Saving', 'Sending card data to the blockchain.')
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSaveCardContent', msg)
           .then((res) => {
             this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
@@ -240,9 +233,18 @@ export default {
             "fullArt": fullart
           }
         }
+        this.vue.notifyInfo('Saving', 'Sending card artwork to the blockchain.')
         console.log("saveart msg:", msg)
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
-        // TODO error handling
+          .then((res) => {
+            if (res.code != 0) {
+              throw Error(res.rawLog)
+            }
+          })
+          .catch(err => {
+            console.log(err)
+            this.vue.notifyFail('Saving Artwork failed', err)
+          })
       }
       voteCardTx (cardid, voteType) {
         let msg = {
@@ -253,16 +255,20 @@ export default {
             "voteType": voteType
           }
         }
+        this.vue.notifyInfo('Voting', 'Sending vote to the blockchain.')
         console.log("votecard msg:", msg)
         return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgVoteCard', msg)
           .then((res) => {
+            if (res.code != 0) {
+              throw Error(res.rawLog)
+            }
             console.log("res", res)
             this.vue.notifySuccess('VOTED', 'Vote Transaction successful!')
             return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
           })
           .catch(err => {
             console.log(err)
-            this.handleTxFail(err)
+            this.vue.notifyFail('Voting failed', err)
           })
       }
       getUserInfo (address) {
@@ -479,21 +485,6 @@ export default {
           throw new Error(err)
         }
       }
-      handleTxFail = R.curry((reject, err) => {
-        console.log(err)
-        if (err.message === 'handled') {
-          reject(err)
-        }
-        else if(err.message) {
-          this.vue.notifyFail('FAIL HARD', err.message)
-          console.error(err)
-          reject(err.message)
-        }
-        else {
-          console.error(err)
-          reject(err)
-        }
-      })
       validAddress (address) {
         if (address) {
           return address.startsWith('cc') && address.length === 41
