@@ -22,6 +22,7 @@ const store = createStore({
       galleryFilter: R.clone(emptyGalleryFilter),
       loading: false,
       displayLogin: false,
+      loggedIn: false,
       lastInputEvent: {},
       showTopLogo: false,
     }
@@ -80,7 +81,6 @@ const store = createStore({
     },
     setLoggedIn (state, bool) {
       state.loggedIn = bool
-      console.log(state.loggedIn)
     },
     setLastInputEvent (state, event) {
       state.lastInputEvent = event

@@ -270,21 +270,26 @@ export default {
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
   watch: {
-    "$store.state.lastInputEvent": function () {
+    '$store.state.lastInputEvent': function () {
       let event = this.$store.state.lastInputEvent
 
       if (event.which == 5) {
-        this.leavePageLock = true
+        this.leavePageLock = true // Forward Mouse special button
         this.nextPage()
-      } else if (event.which == 4) {
+      } else if (event.which == 4) { // Backward Mouse special button
         this.leavePageLock = true
         this.prevPage()
-      } else if (event.which == 13) {
+      } else if (event.which == 13) { // Enter
         this.loadCardList()
       } else {
         this.leavePageLock = false
       }
     },
+    '$store.state.common.wallet.selectedAddress': function () {
+      if (this.$store.getters["loggedIn"]) {
+        this.loadVotableCards()
+      }
+    }
   },
   mounted() {
     let params = this.$route.params.params
@@ -296,10 +301,10 @@ export default {
       this.loadSpecialCardList("Artwork")
     }
     else {
-      this.loadCardList();
+      this.loadCardList()
     }
 
-    this.loadVotableCards();
+    this.loadVotableCards()
   },
   methods: {
     loadVotableCards() {
@@ -416,7 +421,6 @@ export default {
     showGalleryModal() {
       this.isGalleryModalVisible = true
 
-      console.log("vot", this.votableCards)
       if (this.votableCards) {
         this.canVote = R.any(
           (x) => x == this.cards[this.clickedIndex].id,
