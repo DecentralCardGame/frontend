@@ -76,44 +76,59 @@ export default {
       }
     }
   },
+  watch: {
+    '$store.state.common.wallet.selectedAddress': function () {
+      if (this.$store.getters["loggedIn"]) {
+        this.init()
+      }
+    }
+  },
   mounted () {
-    this.$cardChain.getVotableCards(this.$store.getters['common/wallet/address'])
-      .then(res => {
-        console.log('getVotableCards:', res)
-        if (res.votables) {
-          this.voteRights = res.votables.voteRights
-
-          if (this.voteRights.length > 0) {
-            console.log('voteRights:', this.voteRights)
-
-            this.getNextCard()
-              .then(() => {
-                this.showNextCard()
-              })
-            this.getNextCard()
-          } else {
-            this.votingActive = false
-          }
-        } else if (res.votables === null) {
-          this.votingActive = false
-          this.noMoreVotesLeft = true
-          console.log('no more voting rights')
-        } else if (res.votables.unregistered === true) {
-          this.unregistered = true
-          this.notifyFail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
-        } else if (res.votables.noVoteRights === true) {
-          this.noMoreVotesLeft = true
-          this.notifyFail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
-        } else {
-          this.votingActive = false
-          console.error('getVotableCards returned non-readable data: ', res)
-        }
-      })
-      .catch(res => {
-        this.notifyFail('OH NOES', res)
-      })
+    if (this.$store.getters["loggedIn"]) {
+      this.init()
+    }
+    else {
+      this.notifyInfo('Not logged in', 'You must login to be able to vote.')
+    }
   },
   methods: {
+    init () {
+      this.$cardChain.getVotableCards(this.$store.getters['common/wallet/address'])
+        .then(res => {
+          console.log('getVotableCards:', res)
+          if (res.votables) {
+            this.voteRights = res.votables.voteRights
+
+            if (this.voteRights.length > 0) {
+              console.log('voteRights:', this.voteRights)
+
+              this.getNextCard()
+                .then(() => {
+                  this.showNextCard()
+                })
+              this.getNextCard()
+            } else {
+              this.votingActive = false
+            }
+          } else if (res.votables === null) {
+            this.votingActive = false
+            this.noMoreVotesLeft = true
+            console.log('no more voting rights')
+          } else if (res.votables.unregistered === true) {
+            this.unregistered = true
+            this.notifyFail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
+          } else if (res.votables.noVoteRights === true) {
+            this.noMoreVotesLeft = true
+            this.notifyFail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
+          } else {
+            this.votingActive = false
+            console.error('getVotableCards returned non-readable data: ', res)
+          }
+        })
+        .catch(res => {
+          this.notifyFail('OH NOES', res)
+        })
+    },
     vote (type) {
       this.getNextCard()
       this.$cardChain.voteCardTx(this.currentCard.id, type)
