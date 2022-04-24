@@ -47,7 +47,7 @@
                 type="button"
                 @click="selectedString = option.name; addAbility();"
               >
-                <img 
+                <img
                   class="button--img"
                   :src="getIcon(option)"
                 >
@@ -76,8 +76,8 @@
                 <br>
                 <div
                   class="title"
-                > 
-                  {{ option.name }} 
+                >
+                  {{ option.name }}
                 </div>
                 <div class="info">
                   {{ option.description }}
@@ -96,9 +96,6 @@
           </slot>
         </section>
         <footer class="modal__footer">
-          <slot name="footer">
-            {{ picked }}
-          </slot>
           <button
             v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
             aria-label="Close modal"
@@ -197,9 +194,9 @@ export default {
         else {
           let ok = R.any(y => cardHasClass(y), x.classes)
           return ok
-        } 
+        }
       }
-      let valids = R.filter(ability => 
+      let valids = R.filter(ability =>
         abilityIsValid(ability),
       options)
 
@@ -273,11 +270,11 @@ export default {
         let newEntry = {}
         newEntry[selection.index] = {}
 
-        if (objAtSelection.singleUse) 
+        if (objAtSelection.singleUse)
           newEntry.singleUse = selection.index
-        
+
         this.attachToAbility(this.dialog.btn.abilityPath, newEntry, true)
-        
+
       } else if (objAtSelection.type === 'int') { // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false
         this.dialog.btn.type = "int"

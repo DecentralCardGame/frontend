@@ -1082,9 +1082,6 @@ export default {
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
-        console.log("overwriting card with id:", this.model.id);
-        console.log("card:", newCard)
-
         this.$cardChain
           .saveContentToCardTx(newCard, this.model.id)
           .then(this.updateCredits)
@@ -1097,17 +1094,11 @@ export default {
             console.error(err)
           })
       } else {
-        console.log("saving card with id (should be 0):", newCard.id);
         this.$cardChain
           .saveContentToUnusedCardSchemeTx(newCard)
-          .then(yes => {
-            console.log("yes", yes)
-            return yes
-          })
           .then(this.updateCredits)
           .then(this.resetCardDraft)
           .catch((err) => {
-            console.log(err)
             this.notifyFail("Publish Card failed", err)
             console.error(err)
           });

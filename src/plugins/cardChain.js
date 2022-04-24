@@ -191,12 +191,16 @@ export default {
       saveContentToUnusedCardSchemeTx (card) {
         return this.getUserInfo(this.vue.$store.getters['common/wallet/address'])
           .then(user => {
-            console.log("user info", user)
             if (R.isEmpty(user.ownedCardSchemes)) {
               this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', 'You don\'t own any Card Frames. Please buy one before publishing.')
               throw new Error('account ' + this.vue.$store.getters['common/wallet/address'] + ' does not own Card Frames')
             } else {
-              return this.saveContentToCardTx(card, user.ownedCardSchemes[0])
+              let id = user.ownedCardSchemes[0]
+              return this.saveContentToCardTx(card, id)
+                .then((saveContentReturn) => {
+                  this.saveArtworkToCard(id, card.image, card.FullArt)
+                  return saveContentReturn
+                })
             }
           })
       }

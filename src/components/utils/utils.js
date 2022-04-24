@@ -6,13 +6,13 @@ export const emptyCard = {
   FlavourText: '',
   abilities: [],
   Notes: '',
-  type: 'no type',
+  type: 'Entity',
   Tags: [],
   tagDummy: '',
   Class: {
     Culture: false,
     Mysticism: false,
-    Technology: false,
+    Technology: true,
     Nature: false
   },
   CastingCost: -1,
