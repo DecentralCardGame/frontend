@@ -6,7 +6,7 @@
     <br>
     <br>
     <button
-      v-if="$store.getters.loggedIn"
+      v-if="$store.getters['getLoggedIn']"
       @click="logout()"
     >
       Logout

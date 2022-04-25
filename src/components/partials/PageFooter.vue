@@ -4,7 +4,7 @@
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
         <a
-          v-if="userLoggedIn" 
+          v-if="userLoggedIn"
           @click="$store.commit('toggleLoginBox')"
         >
           <button>Join</button>
@@ -83,7 +83,7 @@
             simply join our growing
             Community. We would love
             to hear your voice.
-            
+
           </b>
           <div>
             <br>
@@ -91,7 +91,7 @@
           <ul class="footer__menu">
             <li>
               <a href="https://discord.gg/ZKKbhUs">
-                <h2>Discord 
+                <h2>Discord
                   <picture>
                     <source
                       type="image/webp"
@@ -101,7 +101,7 @@
                       type="image/png"
                       srcset="../../assets/icon/discord.png"
                     >
-                    <img 
+                    <img
                       src="../../assets/icon/discord.png"
                       style="display:inline; max-height:33px;transform:translateY(5px);"
                       alt="Image description"
@@ -114,7 +114,7 @@
 
             <li>
               <a href="https://github.com/DecentralCardGame">
-                <h2>Github 
+                <h2>Github
                   <picture>
                     <source
                       type="image/webp"
@@ -124,16 +124,16 @@
                       type="image/png"
                       srcset="../../assets/icon/github.png"
                     >
-                    <img 
+                    <img
                       src="../../assets/icon/github.png"
                       style="display:inline; max-height:33px;"
                       alt="Image description"
                     >
                   </picture>
-                </h2> 
+                </h2>
                 Checkout our codebase.
               </a>
-            </li> 
+            </li>
           </ul>
 
           <div class="img__default__container">
@@ -160,8 +160,8 @@ export default {
   },
   methods: {
     userLoggedIn () {
-      console.log(this.$store.getters.loggedIn)
-      return this.$store.getters.loggedIn
+      console.log(this.$store.getters["getLoggedIn"])
+      return this.$store.getters["getLoggedIn"]
     }
   }
 }

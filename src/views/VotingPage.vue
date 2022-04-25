@@ -78,13 +78,14 @@ export default {
   },
   watch: {
     '$store.state.common.wallet.selectedAddress': function () {
-      if (this.$store.getters["loggedIn"]) {
+      if (this.$store.getters["getLoggedIn"]) {
         this.init()
       }
     }
   },
   mounted () {
-    if (this.$store.getters["loggedIn"]) {
+    console.log("loggedin? ", this.$store.getters["getLoggedIn"])
+    if (this.$store.getters["getLoggedIn"]) {
       this.init()
     }
     else {

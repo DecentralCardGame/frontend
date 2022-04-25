@@ -23,7 +23,7 @@
       <b>Discord</b>. We would love to hear your voice.
     </a>
     <router-link
-      v-if="$store.getters.loggedIn"
+      v-if="$store.getters['getLoggedIn']"
       class="account-box"
       to="/me"
     >

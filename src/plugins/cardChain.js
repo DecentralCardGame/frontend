@@ -34,6 +34,17 @@ export default {
                 this.run()
               }
           },
+          dispatch: function(route, msg) {
+            return new Promise((resolve, reject) => {
+                this.enqueue(() => {
+                  return store.dispatch(route, msg)
+                    .then((res) => {
+                      resolve(res)
+                    })
+                    .catch(reject)
+                })
+              })
+          },
           run: function() {
             this.isRunning = true
 
@@ -50,7 +61,6 @@ export default {
       }
 
       getAccInfo (address) {
-        console.log(address)
         if (this.validAddress(address)) {
           return this.vue.$http.get(
             'cosmos/bank/v1beta1/balances/' + address,
@@ -76,16 +86,25 @@ export default {
       }
       useFaucet() {
         this.vue.notifyInfo('Faucet', 'Get Credits from Faucet')
-        return this.vue.$http.post(
-          process.env.VUE_APP_FAUCET,
-          {
-            address: this.vue.$store.getters['common/wallet/address'],
-            coins: ['0ubpf', '5000ucredits'],
-          },
-          {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          }
-        )
+        return new Promise((resolve, reject) => {
+            this.txQueue.enqueue(() => {
+              return this.vue.$http.post(
+                process.env.VUE_APP_FAUCET,
+                {
+                  address: this.vue.$store.getters['common/wallet/address'],
+                  coins: ['0ubpf', '5000ucredits'],
+                },
+                {
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                }
+              )
+              .then((res) => {
+                resolve(res)
+              })
+              .catch(reject)
+            })
+          })
+
       }
       cardObjectToWebModel (rawCard) {
         if (rawCard.content) {
@@ -159,7 +178,7 @@ export default {
         return cardobject
       }
       registerAccTx (alias) {
-        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
           value: {
             '@type': '/DecentralCardGame.cardchain.cardchain.MsgCreateuser',
             creator: this.vue.$store.getters['common/wallet/address'],
@@ -177,7 +196,7 @@ export default {
           }
         }
         this.vue.notifyInfo('Buying', 'sending bid to blockchain')
-        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgBuyCardScheme', msg)
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgBuyCardScheme', msg)
           .then((res) => {
             this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.')
             return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
@@ -216,7 +235,7 @@ export default {
           }
         }
         this.vue.notifyInfo('Saving', 'Sending card data to the blockchain.')
-        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSaveCardContent', msg)
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSaveCardContent', msg)
           .then((res) => {
             this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
             return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
@@ -239,7 +258,7 @@ export default {
         }
         this.vue.notifyInfo('Saving', 'Sending card artwork to the blockchain.')
         console.log("saveart msg:", msg)
-        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
           .then((res) => {
             if (res.code != 0) {
               throw Error(res.rawLog)
@@ -261,7 +280,7 @@ export default {
         }
         this.vue.notifyInfo('Voting', 'Sending vote to the blockchain.')
         console.log("votecard msg:", msg)
-        return this.vue.$store.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgVoteCard', msg)
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgVoteCard', msg)
           .then((res) => {
             if (res.code != 0) {
               throw Error(res.rawLog)
@@ -315,7 +334,7 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetVotableCards(R.__, address))
           } else {
-          return Promise.reject(new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.'))
+            return new Error('Address is invalid, please register your address in the blockchain. You can do this by clicking JOIN.')
           }
       }
       getVotingResults () {
@@ -334,69 +353,6 @@ export default {
           .catch(this.handleGetError)
       }
 
-      // From here on are functions which can be made private, since they don't need to be exposed
-
-      broadcast (signedTx) {
-        this.vue.notifyInfo('BROADCASTING', 'Transaction successfully created, sending it now into the blockchain.')
-        return this.vue.$http.post('txs', {
-          'tx': signedTx.value,
-          'mode': 'block'
-        }).catch(err => {
-          if (err.response) {
-            console.error(err.response.data)
-            this.vue.notifyFail('INVALID TX', err.response.data)
-          } else {
-            console.error(err)
-          }
-          this.vue.notifyFail('WTF', err)
-          throw err
-        }).then(res => {
-          if (res.data.code) {
-            this.vue.notifyFail('EPIC FAIL', res.data.raw_log)
-            throw new Error(res.data.raw_log)
-          }
-          this.getTx(res.data.txhash)
-            .then(tx => { console.log('looked up tx:', tx) })
-          return res
-        })
-      }
-      sign (rawTx, accData, wallet) {
-        const signMeta = {
-          account_number: accData.account_number.toString(),
-          chain_id: process.env.VUE_APP_CHAIN_ID,
-          sequence: accData.sequence.toString()
-        }
-        let unsignedTx = {
-          msg: rawTx.value.msg,
-          fee: rawTx.value.fee,
-          memo: rawTx.value.memo
-        }
-        let signed = signTx(unsignedTx, signMeta, wallet)
-
-        return {
-          type: 'cosmos-sdk/StdTx',
-          value: signed
-        }
-      }
-      signAndBroadcast (mnemonic, accInfoAndRawTx) {
-        let accData = accInfoAndRawTx[0]
-        let rawTx = accInfoAndRawTx[1].data
-        let wallet = createWalletFromMnemonic(mnemonic)
-        let signedTx = this.sign(rawTx, accData, wallet)
-        return this.broadcast(signedTx)
-      }
-      getTx (hash) {
-        return this.vue.$http.get('txs/' + hash)
-          .catch(this.handleGetError)
-      }
-      voteCardGenerateTx (reqBody) {
-        return this.vue.$http.put('cardservice/vote_card', reqBody)
-          .catch(this.handlePutError)
-      }
-      saveCardContentGenerateTx (reqBody) {
-        return this.vue.$http.put('cardservice/save_card_content', reqBody)
-          .catch(this.handlePutError)
-      }
       handleGetUser = R.curry((res, address) => {
         console.log("handlegetuser", res)
         if (!res || !res.data) {

@@ -48,8 +48,8 @@ export default {
   watch: {
     '$store.state.common.wallet.selectedAddress': function () {
       this.setLoginStatus()
-      
-      if (this.$store.getters.loggedIn) {
+
+      if (this.$store.getters["getLoggedIn"]) {
         this.notifyInfo('Login', 'You are now logged in.')
         this.$cardChain.updateUserCredits()
         .then(credits => {
@@ -118,10 +118,10 @@ export default {
       console.log('wallet name, adress', this.$store.getters['common/wallet/walletName'], this.$store.getters['common/wallet/address'])
       if (this.$store.getters['common/wallet/walletName'] != null) {
         this.$store.commit('setLoggedIn', true)
-        console.log("loggedin?", this.$store.getters["loggedIn"])
+        console.log("loggedin?", this.$store.getters["getLoggedIn"])
       } else {
         this.$store.commit('setLoggedIn', false)
-        console.log("loggedin?", this.$store.getters["loggedIn"])
+        console.log("loggedin?", this.$store.getters["getLoggedIn"])
       }
     },
   }

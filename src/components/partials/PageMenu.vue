@@ -70,7 +70,7 @@
             </router-link>
           </li>
           <li
-            v-if="!$store.getters.loggedIn"
+            v-if="!$store.getters['getLoggedIn']"
             @click="$store.commit('toggleLoginBox')"
           >
             <div :class="displayLoginDialogue ? 'nav__menu__item nav__menu__item--exposed' : 'nav__menu__item '">
@@ -84,7 +84,7 @@
       v-if="$store.getters.loginBoxVisible"
       class="nav__authentication-modal"
     >
-      <div 
+      <div
         class="container-auth"
         @click="$store.commit('toggleLoginBox')"
       >
@@ -190,7 +190,7 @@ export default {
       width: 100%;
     }
 
-    a, .nav__menu__item {  
+    a, .nav__menu__item {
       font-family: $font-family-header;
       padding: 1.65rem;
       font-size: $font-size*1.15;

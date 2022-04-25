@@ -120,7 +120,7 @@ const store = createStore({
     getGalleryFilter: state => {
       return state.galleryFilter
     },
-    loggedIn: state => {
+    getLoggedIn: state => {
       return state.loggedIn
     },
     loginBoxVisible: state => {

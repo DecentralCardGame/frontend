@@ -286,7 +286,7 @@ export default {
       }
     },
     '$store.state.common.wallet.selectedAddress': function () {
-      if (this.$store.getters["loggedIn"]) {
+      if (this.$store.getters["getLoggedIn"]) {
         this.loadVotableCards()
       }
     }
