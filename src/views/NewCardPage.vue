@@ -48,7 +48,7 @@
       <div class="creator-input">
         <div
           v-if="activeStep == 0"
-          class="creator-input-container"
+          class="creator-input-container ccbutton"
         >
           <!-- Name -->
           <span class="creator-text">Hey, my <b>name</b> is</span>
@@ -542,7 +542,6 @@
           </div>
         </div>
 
-
         <div
           v-if="activeStep == 4"
           class="creator-input-container"
@@ -567,7 +566,7 @@
           >
         </div>
 
-        <div class="creator-nav-container">
+        <div class="creator-nav-container ccbutton">
           <button
             v-if="activeStep > 0"
             class="back"
@@ -1145,7 +1144,7 @@ export default {
     classStepPassed(n) {
       let exportClass = "progress-item";
       if (this.activeStep > n) {
-        exportClass += " progress-item-active";
+        exportClass += " progress-item-finished";
       }
       if (this.activeStep === n) {
         exportClass += " progress-item-current";
@@ -1232,11 +1231,12 @@ export default {
   border: $border-thickness solid rgba(255, 255, 255, 0.7);
   padding: 0.25rem 0.5rem;
 
-  &.progress-item-active {
-    background-color: rgba(255, 255, 255, 0.2);
+  &.progress-item-finished {
+    color: $gray;
   }
 
   &.progress-item-current {
+    background-color: rgba(255, 255, 255, 0.2);
     border-color: $white;
   }
 }

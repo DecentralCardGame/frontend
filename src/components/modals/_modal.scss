@@ -139,13 +139,23 @@
 }
 
 .choice-grid__button {
+  z-index: 1;
+  font-family: $font-family-header;
+  background-color: transparent;
+  color: $black;
+  font-size: 1em;
+  padding: 0.5rem 1em;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all $animation-duration ease-out;
+
   margin: 0;
   width: 100%;
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  position: relative;
   -webkit-transition-property: color;
   transition-property: color;
   -webkit-transition-duration: $animation-duration;
@@ -178,6 +188,9 @@
 
   &:hover, &:focus, &:active {
     color: $white;
+    &:after {
+      background-position: left bottom;
+    }
   }
 
   &:hover:before, &:focus:before, &:active:before {
@@ -186,8 +199,20 @@
   }
 
   &:after {
+    z-index: -1;
+    background: linear-gradient(to right, $main-color-a 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all $animation-duration ease-out;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     box-shadow: none;
     transform: skewX(0);
   }
-}
 
+}

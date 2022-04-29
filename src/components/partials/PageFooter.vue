@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-container">
+  <div class="footer-container ccbutton">
     <div class="pre-footer">
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>

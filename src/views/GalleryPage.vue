@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery">
+  <div class="gallery ccbutton">
     <h2 class="header__h2">
       Gallery
     </h2>
@@ -136,7 +136,10 @@
         >
       </div>
       <div class="gallery__filter__item">
-        <button @click="resetFilters">
+        <button
+          class="ccbutton"
+          @click="resetFilters"
+        >
           Clear Filters
         </button>
       </div>
@@ -153,11 +156,15 @@
       >
         back
       </button>
-      <button @click="$store.commit('toggleGalleryFilter')">
+      <button
+        @click="$store.commit('toggleGalleryFilter')"
+      >
         {{ $store.getters.getGalleryFilter.visible ? "hide" : "show" }}
         filters
       </button>
-      <button @click="loadSpecialCardList('Finished')">
+      <button
+        @click="loadSpecialCardList('Finished')"
+      >
         Alpha Set
       </button>
       <button @click="loadSpecialCardList('Artwork')">

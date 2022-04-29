@@ -22,16 +22,17 @@
       </picture>
       <b>Discord</b>. We would love to hear your voice.
     </a>
-    <router-link
+    <!--router-link
       v-if="$store.getters['getLoggedIn']"
       class="account-box"
       to="/me"
     >
       <button>My Account ({{ getUserCredits }} Credits)</button>
-    </router-link>
+    </router-link-->
     <SpWallet
       ref="wallet"
       class="wallet--local"
+      type="button"
       @dropdown-opened="$refs.menu.closeDropdown()"
     />
   </header>
@@ -40,16 +41,6 @@
 <script>
 export default {
   name: 'PageHeader',
-    computed: {
-      getUserCredits () {
-        return this.$store.getters.getUserCredits
-      }
-    },
-    mounted () {
-      //this.$cardChain.updateUserCredits()
-    },
-    methods: {
-    }
 }
 </script>
 
@@ -57,9 +48,8 @@ export default {
   @import "../../scss/variables";
 
   .wallet--local {
-    position: relative;
+    position: absolute;
     color: black;
-
   }
 
   .sp-wallet-menu-item {
@@ -69,6 +59,7 @@ export default {
   .sp-text {
     color: black;
   }
+
 
   header {
     background-color: $background-separator;
