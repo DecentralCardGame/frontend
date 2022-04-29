@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery ccbutton">
+  <div class="gallery">
     <h2 class="header__h2">
       Gallery
     </h2>
@@ -9,7 +9,7 @@
     <br>
     <div
       v-show="$store.getters.getGalleryFilter.visible"
-      class="gallery__filter-box"
+      class="gallery__filter-box ccbutton"
     >
       <div class="gallery__filter__item">
         <select v-model="$store.getters.getGalleryFilter.status">
@@ -149,7 +149,7 @@
         </button>
       </div>
     </div>
-    <div class="button-container button-container--top">
+    <div class="button-container button-container--top ccbutton">
       <button
         v-show="browsingBackward"
         @click="prevPage"
@@ -205,7 +205,7 @@
         </div>
       </div>
     </div>
-    <div class="button-container button-container--bottom">
+    <div class="button-container button-container--bottom ccbutton">
       <button
         v-show="browsingBackward"
         @click="prevPage"

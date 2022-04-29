@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal-fade">
+  <transition name="modal-fade ccbutton">
     <div class="modal__backdrop">
       <div
         aria-describedby="modalDescription"

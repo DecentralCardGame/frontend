@@ -1142,11 +1142,30 @@ export default {
 
     },
     classStepPassed(n) {
-      let exportClass = "progress-item";
+      let exportClass = "progress-item"
+
       if (this.activeStep > n) {
-        exportClass += " progress-item-finished";
+        if (n === 0 && this.model.CardName && this.model.CardName !== "Name" && this.getCardImage)
+          exportClass += " progress-item-finished"
+
+        else if (n === 1 && this.model.Tags[0] && this.model.type && this.model.type !== "no type")
+          exportClass += " progress-item-finished"
+
+        else if (n === 2) {
+          if (this.model.type !== "Headquarter" && (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0))
+            return exportClass
+          if (this.model.type !== "Action" && R.isNil(this.model.Health))
+            return exportClass
+          if (this.model.type === "Entity" && R.isNil(this.model.Attack))
+            return exportClass
+
+          exportClass += " progress-item-finished"
+        }
+        else if (n === 3) {
+            exportClass += " progress-item-finished";
+        }
       }
-      if (this.activeStep === n) {
+      else if (this.activeStep === n) {
         exportClass += " progress-item-current";
       }
       return exportClass;
