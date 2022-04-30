@@ -323,7 +323,7 @@ export default {
               (sortBy? sortBy+'/' : '%22%22/') +
               (nameContains? nameContains+'/' : '%22%22/') +
               (keywordsContains? keywordsContains+'/' : '%22%22/') +
-              (notesContains? notesContains+'/' : '%22%22')
+              (notesContains? notesContains : '%22%22')
             )
             .catch(this.handleGetError)
             .then(this.handleGetCardList(R.__, status))
@@ -394,7 +394,7 @@ export default {
         }
       })
       handleGetCardList = R.curry((res, type) => {
-        console.log(res)
+        console.log(res.data)
         if (res.data === '') {
           this.vue.notifyFail('Sad', 'Basically the CardList is valid, but it is empty.')
           throw new Error('CardList Empty: ' + res)
