@@ -475,7 +475,7 @@ export default {
       ]
       Promise.all(requestedCards)
       .then((res) => {
-        let cardList = R.reduce(R.concat, [], R.pluck("cardList", res))
+        let cardList = R.reduce(R.concat, [], R.pluck("cardsList", res))
 
         console.log("cardlistyes:", cardList)
         if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {

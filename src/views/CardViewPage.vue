@@ -94,7 +94,7 @@ export default {
             this.cards = []
             this.cards.push(parsedCard)
             this.FlavourText = parsedCard.FlavourText
-            this.Notes = parsedCard.Notes
+            this.Notes = parsedCard.notes
             this.InappropriateVotes = parsedCard.inappropriateVotes
             this.UnderpoweredVotes = parsedCard.underpoweredVotes
             this.OverpoweredVotes = parsedCard.overpoweredVotes
