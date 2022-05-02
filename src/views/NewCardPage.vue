@@ -584,7 +584,7 @@
             v-if="activeStep == 4 && !model.id"
             class="btn"
             type="button"
-            @click="showBuySchemeModal"
+            @click="showBuyFrameModal"
           >
             Buy a Card Frame
           </button>
@@ -628,9 +628,9 @@
       </div>
     </div>
     <div class="ability-modal-container">
-      <BuySchemeModal
-        v-if="isBuySchemeModalVisible"
-        @close="closeBuySchemeModal"
+      <BuyFrameModal
+        v-if="isBuyFrameModalVisible"
+        @close="closeBuyFrameModal"
       />
     </div>
   </div>
@@ -640,7 +640,7 @@
 import * as R from "ramda";
 
 import CardComponent from "../components/elements/CardComponent";
-import BuySchemeModal from "../components/modals/BuySchemeModal.vue";
+import BuyFrameModal from "../components/modals/BuyFrameModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
 import AbilityComponent from "../components/elements/AbilityComponent.vue";
 
@@ -658,11 +658,11 @@ import 'vue-advanced-cropper/dist/style.css';
 
 export default {
   name: "NewCardPage",
-  components: { CardComponent, AbilityComponent, BuySchemeModal, AbilityModal, Cropper },
+  components: { CardComponent, AbilityComponent, BuyFrameModal, AbilityModal, Cropper },
   data() {
     return {
       isAbilityModalVisible: false,
-      isBuySchemeModalVisible: false,
+      isBuyFrameModalVisible: false,
       isAdditionalCostVisible: false,
       clearAbilities: false,
       activeStep: 0,
@@ -777,11 +777,11 @@ export default {
 
       return printString.length > 1 ? R.dropLast(1, printString) : ''
     },
-    showBuySchemeModal() {
-      this.isBuySchemeModalVisible = true;
+    showBuyFrameModal() {
+      this.isBuyFrameModalVisible = true;
     },
-    closeBuySchemeModal() {
-      this.isBuySchemeModalVisible = false;
+    closeBuyFrameModal() {
+      this.isBuyFrameModalVisible = false;
     },
     showAbilityModal(type) {
       let atRules = R.curry(atPath)(this.$cardRules)

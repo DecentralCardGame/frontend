@@ -94,6 +94,7 @@ export default {
 
       console.log("save")
 
+      // TODO Deprecated, hottub will be shutdown
       this.$hottub.put('/users/' + this.$store.getters.getUserInfo.id, post)
           .then((res) => {
             console.log(res)

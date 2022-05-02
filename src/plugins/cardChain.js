@@ -39,7 +39,11 @@ export default {
                 this.enqueue(() => {
                   return store.dispatch(route, msg)
                     .then((res) => {
-                      resolve(res)
+                      if (res.code != 0) {
+                        reject(res.rawLog)
+                      }
+                      else
+                        resolve(res)
                     })
                     .catch(reject)
                 })
