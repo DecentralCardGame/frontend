@@ -10,7 +10,7 @@
       </router-link>.
     </p>
     <br>
-    <div class="voter">
+    <div class="voter ccbutton">
       <div
         v-if="votingActive"
         class="box"
