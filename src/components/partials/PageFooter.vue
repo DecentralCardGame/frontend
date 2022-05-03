@@ -4,7 +4,7 @@
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
         <a
-          v-if="userLoggedIn"
+          v-if="false"
           @click="$store.commit('toggleLoginBox')"
         >
           <button>Join</button>
