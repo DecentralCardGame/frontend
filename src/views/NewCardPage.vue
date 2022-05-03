@@ -48,7 +48,7 @@
       <div class="creator-input">
         <div
           v-if="activeStep == 0"
-          class="creator-input-container"
+          class="creator-input-container ccbutton"
         >
           <!-- Name -->
           <span class="creator-text">Hey, my <b>name</b> is</span>
@@ -566,7 +566,7 @@
           >
         </div>
 
-        <div class="creator-nav-container">
+        <div class="creator-nav-container ccbutton">
           <button
             v-if="activeStep > 0"
             class="back"
