@@ -48,7 +48,7 @@
       <div class="creator-input">
         <div
           v-if="activeStep == 0"
-          class="creator-input-container ccbutton"
+          class="creator-input-container"
         >
           <!-- Name -->
           <span class="creator-text">Hey, my <b>name</b> is</span>
@@ -566,7 +566,7 @@
           >
         </div>
 
-        <div class="creator-nav-container ccbutton">
+        <div class="creator-nav-container">
           <button
             v-if="activeStep > 0"
             class="back"
@@ -1186,6 +1186,42 @@ export default {
     width: 80vw;
   }
 }
+
+.button--file {
+  z-index: 1;
+  font-family: $font-family-header;
+  background-color: transparent;
+  color: $black;
+  font-size: 1em;
+  padding: 0.5rem 1em;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all $animation-duration ease-out;
+  &:after {
+    z-index: -1;
+    background: linear-gradient(to right, $main-color-a 50%, $white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all $animation-duration ease-out;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: skewX($skew);
+    box-shadow: $border-thickness-bold $border-thickness-bold 0 black;
+  }
+  &:hover {
+    color: $white;
+    &:after {
+      background-position: left bottom;
+    }
+  }
+}
+
 
 .noWidth {
   width: 0%
