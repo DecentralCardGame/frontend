@@ -11,5 +11,14 @@ module.exports = {
       },
     },
     plugins: [new NodePolyfillPlugin()],
+  },
+  devServer: {
+    proxy: 'http://v2202008103543124756.megasrv.de:1318',
   }
+}
+
+// vue.config.js
+module.exports = {
+  // options...
+
 }
