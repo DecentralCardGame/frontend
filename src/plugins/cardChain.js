@@ -314,20 +314,22 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
-      getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
+      getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains, playable) {
+          status = status.toLowerCase()
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
             this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
             throw new Error('CardList status invalid: ' + status)
           }
           return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cards/' +
-              (owner? owner+'/' : '%22%22/') +
-              (status ? status+'/' : 'none/') +
-              (cardType? cardType+'/' : '%22%22/') +
-              (classes? classes+'/' : '%22%22/') +
-              (sortBy? sortBy+'/' : '%22%22/') +
-              (nameContains? nameContains+'/' : '%22%22/') +
-              (keywordsContains? keywordsContains+'/' : '%22%22/') +
-              (notesContains? notesContains : '%22%22')
+              (status ? status+'?' : 'none?') +
+              (owner ? "&owner="+owner : "") +
+              (cardType ? "&cardType"+cardType : "") +
+              (classes ? "&classes="+classes : "") +
+              (sortBy ? "&sortBy="+sortBy : "") +
+              (nameContains? "&nameContains="+nameContains : "") +
+              (keywordsContains? "&keywordsContains="+keywordsContains : "") +
+              (notesContains? "&notesContains="+notesContains : "") +
+              (playable? "&playable="+playable : "")  // has to be int from 0 to 3
             )
             .catch(this.handleGetError)
             .then(this.handleGetCardList(R.__, status))
