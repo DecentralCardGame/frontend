@@ -27,11 +27,7 @@ app.use(store)
   .use(VueAxios, {
     $http: axios.create({
       baseURL: process.env.VUE_APP_API_COSMOS,
-      headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      },
-    }),
+    })
     //$hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API})
   })
   .use(Notifications)
