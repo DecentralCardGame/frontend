@@ -70,7 +70,7 @@
             </router-link>
           </li>
           <li
-            v-if="!$store.getters['getLoggedIn']"
+            v-if="false && !$store.getters['getLoggedIn']"
             @click="$store.commit('toggleLoginBox')"
           >
             <div :class="displayLoginDialogue ? 'nav__menu__item nav__menu__item--exposed' : 'nav__menu__item '">
