@@ -26,7 +26,7 @@ app.use(store)
   .component('AppLayout', AppLayout)
   .use(VueAxios, {
     $http: axios.create({baseURL: process.env.VUE_APP_API_COSMOS}),
-    //$hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API}) 
+    //$hottub: axios2.create({baseURL: process.env.VUE_APP_AUTH_API})
   })
   .use(Notifications)
   .mixin({
