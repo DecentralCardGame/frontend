@@ -314,9 +314,9 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
-      getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains, playable) {
+      getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
-          if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '') {
+          if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '' && status != 'playable' && status != 'unplayable') {
             this.vue.notifyFail('INVALID STATUS', 'The requested card status is not valid.')
             throw new Error('CardList status invalid: ' + status)
           }
@@ -328,8 +328,7 @@ export default {
               (sortBy ? "&sortBy="+sortBy : "") +
               (nameContains? "&nameContains="+nameContains : "") +
               (keywordsContains? "&keywordsContains="+keywordsContains : "") +
-              (notesContains? "&notesContains="+notesContains : "") +
-              (playable? "&playable="+playable : "")  // has to be int from 0 to 3
+              (notesContains? "&notesContains="+notesContains : "")
             )
             .catch(this.handleGetError)
             .then(this.handleGetCardList(R.__, status))
