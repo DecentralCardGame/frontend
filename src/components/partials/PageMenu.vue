@@ -72,14 +72,6 @@
               How To Play
             </router-link>
           </li>
-          <li
-            v-if="false && !$store.getters['getLoggedIn']"
-            @click="$store.commit('toggleLoginBox')"
-          >
-            <div :class="displayLoginDialogue ? 'nav__menu__item nav__menu__item--exposed' : 'nav__menu__item '">
-              Login
-            </div>
-          </li>
         </ul>
       </div>
     </nav>
