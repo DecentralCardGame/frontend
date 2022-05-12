@@ -19,7 +19,7 @@
     "@starport/vue": "^0.1.55",
     "@starport/vuex": "^0.1.55",
     "@tendermint/sig": "^0.4.1",
-    "axios": "^0.19.2",
+    "axios": "^0.27.2",
     "babel-eslint": "^10.1.0",
     "bip39": "^3.0.2",
     "core-js": "^3.18.2",
