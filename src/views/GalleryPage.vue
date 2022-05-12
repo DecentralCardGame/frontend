@@ -19,6 +19,8 @@
           <option>Prototype</option>
           <option>Trial</option>
           <option>Permanent</option>
+          <option>Playable</option>
+          <option>Unplayable</option>
         </select>
       </div>
       <div class="gallery__filter__item">
@@ -43,19 +45,6 @@
           <option>Casting Cost (↓)</option>
           <option>Id (↑)</option>
           <option>Id (↓)</option>
-        </select>
-      </div>
-      <div class="gallery__filter__item">
-        <select v-model="$store.getters.getGalleryFilter.playable">
-          <option value="0">
-            all cards
-          </option>
-          <option value="1">
-            playable cards
-          </option>
-          <option value="2">
-            non-playable cards
-          </option>
         </select>
       </div>
       <div>
@@ -354,7 +343,6 @@ export default {
           this.$store.getters.getGalleryFilter.nameContains,
           this.$store.getters.getGalleryFilter.keywordsContains,
           this.$store.getters.getGalleryFilter.notesContains,
-          this.$store.getters.getGalleryFilter.playable
         )
         .then((res) => {
           console.log(res)
@@ -483,7 +471,6 @@ export default {
           this.$store.getters.getGalleryFilter.nameContains,
           this.$store.getters.getGalleryFilter.keywordsContains,
           notes,
-          this.$store.getters.getGalleryFilter.playable,
         )
       ]
       Promise.all(requestedCards)
