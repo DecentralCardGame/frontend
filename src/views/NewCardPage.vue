@@ -692,6 +692,10 @@ export default {
     },
   },
   mounted() {
+    if (!this.$store.getters["getLoggedIn"]) {
+      this.notifyInfo('Not logged in', 'You must login to create a card.')
+    }
+
     if (!this.$cardRules) {
       // here comes a synchronous wait and it is intended
       const end = Date.now() + 1000
