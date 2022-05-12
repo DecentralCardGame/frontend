@@ -300,10 +300,12 @@ export default {
       }
     },
     '$store.state.common.wallet.selectedAddress': function () {
+      this.loggedIn = this.$store.getters['common/wallet/address']
+      console.log("Hier", this.$store.getters['common/wallet/address'])
       if (this.$store.getters["getLoggedIn"]) {
-        this.loggedIn = this.$store.getters['common/wallet/address']
-        console.log("Hier", this.$store.getters['common/wallet/address'])
         this.loadVotableCards()
+      } else {
+        console.log("logout")
       }
     }
   },
