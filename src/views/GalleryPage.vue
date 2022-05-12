@@ -163,6 +163,12 @@
         filters
       </button>
       <button
+        v-show="loggedIn"
+        @click="loadMyCardList()"
+      >
+        My cards
+      </button>
+      <button
         @click="loadSpecialCardList('Finished')"
       >
         Alpha Set
@@ -267,6 +273,7 @@ export default {
       cards: [],
       browsingForward: true,
       browsingBackward: true,
+      loggedIn: this.$store.getters['common/wallet/address'],
       Cards: [],
       canVote: false,
       isOwner: false,
@@ -294,6 +301,8 @@ export default {
     },
     '$store.state.common.wallet.selectedAddress': function () {
       if (this.$store.getters["getLoggedIn"]) {
+        this.loggedIn = this.$store.getters['common/wallet/address']
+        console.log("Hier", this.$store.getters['common/wallet/address'])
         this.loadVotableCards()
       }
     }
@@ -452,7 +461,10 @@ export default {
     closeGalleryModal() {
       this.isGalleryModalVisible = false;
     },
-    loadSpecialCardList(notes) {
+    loadMyCardList() {
+      this.loadSpecialCardList(this.$store.getters.getGalleryFilter.notes, this.$store.getters['common/wallet/address'])
+    },
+    loadSpecialCardList(notes, owner) {
       let classes =
         (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
         (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
@@ -463,7 +475,7 @@ export default {
       let requestedCards = [
         // owners are hardcoded here because these are the alpha creators
         this.$cardChain.getCardList(
-          this.$store.getters.getGalleryFilter.owner,
+          (owner ? owner : this.$store.getters.getGalleryFilter.owner),
           this.$store.getters.getGalleryFilter.status,
           this.$store.getters.getGalleryFilter.cardType,
           this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
