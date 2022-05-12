@@ -50,10 +50,7 @@
             </router-link>
           </li>
           <li>
-            <router-link
-              v-if="$store.getters['getLoggedIn']"
-              to="/newcard"
-            >
+            <router-link to="/newcard">
               Card Creator
             </router-link>
           </li>

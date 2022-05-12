@@ -9,13 +9,7 @@
       process.
     </p>
     <br>
-    <p
-      v-if="!$store.getters['getLoggedIn']"
-      class="header__p"
-    >
-      You have to log in to use the card creator!
-    </p>
-    <div v-if="$store.getters['getLoggedIn']">
+    <div>
       <div class="progress-container">
         <div class="progress">
           <div
