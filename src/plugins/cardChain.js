@@ -323,7 +323,7 @@ export default {
           return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cards/' +
               (status ? status+'?' : 'none?') +
               (owner ? "&owner="+owner : "") +
-              (cardType ? "&cardType"+cardType : "") +
+              (cardType ? "&cardType="+cardType : "") +
               (classes ? "&classes="+classes : "") +
               (sortBy ? "&sortBy="+sortBy : "") +
               (nameContains? "&nameContains="+nameContains : "") +
