@@ -36,7 +36,6 @@ export default {
     AppLayout
   },
   data() {
-    this.setLoginStatus();
     return {
       initialized: false,
     }
@@ -102,6 +101,7 @@ export default {
     console.log("initialized?", this.initialized)
   },
   mounted () {
+    this.setLoginStatus();
     console.log("store", this.$store)
   },
   errorCaptured(err) {
