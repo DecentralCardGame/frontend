@@ -143,7 +143,7 @@ export default {
                             // Coin denomination to be displayed to the user.
                             coinDenom: "bpf",
                             // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-                            coinMinimalDenom: "ubpf",
+                            coinMinimalDenom: "bpf",
                             // # of decimal points to convert minimal denomination to user-facing denomination.
                             coinDecimals: 6,
                             // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
@@ -182,9 +182,9 @@ export default {
                             // Coin denomination to be displayed to the user.
                             coinDenom: "bpf",
                             // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-                            coinMinimalDenom: "ubpf",
+                            coinMinimalDenom: "bpf",
                             // # of decimal points to convert minimal denomination to user-facing denomination.
-                            coinDecimals: 6,
+                            coinDecimals: 0,
                             // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
                             // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
                             // coinGeckoId: ""
@@ -204,9 +204,9 @@ export default {
                             // Coin denomination to be displayed to the user.
                             coinDenom: "bpf",
                             // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-                            coinMinimalDenom: "ubpf",
+                            coinMinimalDenom: "bpf",
                             // # of decimal points to convert minimal denomination to user-facing denomination.
-                            coinDecimals: 6,
+                            coinDecimals: 0,
                             // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
                             // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
                             // coinGeckoId: ""
