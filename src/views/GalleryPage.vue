@@ -163,7 +163,7 @@
         filters
       </button>
       <button
-        v-show="loggedIn"
+        v-show="$store.getters['getLoggedIn']"
         @click="loadMyCardList()"
       >
         My cards
@@ -273,8 +273,6 @@ export default {
       cards: [],
       browsingForward: true,
       browsingBackward: true,
-      loggedIn: this.$store.getters['common/wallet/address'],
-      Cards: [],
       canVote: false,
       isOwner: false,
       leavePageLock: false,
@@ -301,8 +299,6 @@ export default {
     },
     '$store.state.common.wallet.selectedAddress': function () {
       if (this.$store.getters["getLoggedIn"]) {
-        this.loggedIn = this.$store.getters['common/wallet/address']
-        console.log("Hier", this.$store.getters['common/wallet/address'])
         this.loadVotableCards()
       }
     }
