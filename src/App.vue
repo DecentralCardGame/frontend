@@ -103,8 +103,6 @@ export default {
   mounted () {
     this.setLoginStatus();
     console.log("store", this.$store)
-
-        //document.getElementById("address").append(accounts[0].address);
   },
   errorCaptured(err) {
     console.log(err)
