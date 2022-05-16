@@ -3,7 +3,7 @@
     <div
       class="keplrButton"
       :class="{ 'clickable-option': true,}"
-      @click="keplrWalletLogin()"
+      @click="keplrWalletLogin(true)"
     >
       <img
         src="../../assets/icon/keplr-logo.png"
@@ -42,6 +42,7 @@
       ref="wallet"
       class="wallet--local"
       type="button"
+      @click="keplrWalletLogin(false)"
       @dropdown-opened="$refs.menu.closeDropdown()"
     />
   </header>
@@ -61,9 +62,11 @@ import {
 export default {
   name: 'PageHeader',
   methods: {
-    async keplrWalletLogin() {
+    async keplrWalletLogin(doAllert) {
       if (!window.getOfflineSigner || !window.keplr) {
-        alert("Please install keplr extension");
+        if (doAllert) {
+          alert("Please install keplr extension");
+        }
       } else {
         if (window.keplr.experimentalSuggestChain) {
           try {
