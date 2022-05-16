@@ -1,5 +1,14 @@
 <template>
   <header>
+    <div
+      class="keplrButton"
+      :class="{ 'clickable-option': true,}"
+      @click="keplrWalletLogin()"
+    >
+      <img
+        src="../../assets/icon/keplr-logo.png"
+      >
+    </div>
     <a
       id="Discordlink"
       href="https://discord.gg/ZKKbhUs"
@@ -39,9 +48,90 @@
 </template>
 
 <script>
+import { SigningCosmosClient } from '@cosmjs/launchpad'
+import {
+    DirectSecp256k1HdWallet
+} from '@cosmjs/proto-signing'
+
+import {
+    assertIsBroadcastTxSuccess,
+    SigningStargateClient,
+} from '@cosmjs/stargate'
+
 export default {
   name: 'PageHeader',
-}
+  methods: {
+    async keplrWalletLogin() {
+      if (!window.getOfflineSigner || !window.keplr) {
+        alert("Please install keplr extension");
+      } else {
+        if (window.keplr.experimentalSuggestChain) {
+          try {
+            await window.keplr.experimentalSuggestChain({
+              chainId: "Cardchain",
+              chainName: "Crowdcontrol mainnet",
+              rpc: "https://cardchain.crowdcontrol.network/tendermint/",
+              rest: "https://cardchain.crowdcontrol.network/cosmos",
+              stakeCurrency: {
+                coinDenom: "bpf",
+                coinMinimalDenom: "bpf",
+                coinDecimals: 0,
+                // coinGeckoId: ""
+              },
+              bip44: {
+                coinType: 118,
+              },
+              bech32Config: {
+                bech32PrefixAccAddr: "cc",
+                bech32PrefixAccPub: "cc",
+                bech32PrefixValAddr: "cc",
+                bech32PrefixValPub: "cc",
+                bech32PrefixConsAddr: "cc",
+                bech32PrefixConsPub: "cc"
+              },
+              currencies: [{
+                coinDenom: "bpf",
+                coinMinimalDenom: "bpf",
+                coinDecimals: 0,
+                // coinGeckoId: ""
+              }, {
+                coinDenom: "credits",
+                coinMinimalDenom: "ucredits",
+                coinDecimals: 6,
+              }],
+              feeCurrencies: [{
+                coinDenom: "bpf",
+                coinMinimalDenom: "bpf",
+                coinDecimals: 0,
+                // coinGeckoId: ""
+              },],
+              coinType: 118,
+              asPriceStep: {
+                low: 0.01,
+                average: 0.025,
+                high: 0.04
+              }
+            });
+          } catch {
+            console.log("Failed to suggest the chain");
+          }
+        } else {
+          alert("Please use the recent version of keplr extension");
+        }
+      }
+
+      const chainId = "Cardchain";
+      await window.keplr.enable(chainId);
+      const offlineSigner = window.getOfflineSigner(chainId);
+      const accounts = await offlineSigner.getAccounts();
+      const cosmJS = new SigningCosmosClient(
+        "https://cardchain.crowdcontrol.network/tendermint/",
+        accounts[0].address,
+        offlineSigner,
+      );
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -62,6 +152,23 @@ export default {
     color: black;
   }
 
+  .keplrButton {
+    display:inline;
+    margin-right: 3px;
+
+    img {
+      background-color: #7079d9;
+      border-radius: 3px;
+      padding-right: 3px;
+      display:inline;
+      max-height:20px;
+      transform:translateY(4px);
+    }
+  }
+
+  .keplrButton:hover {
+    cursor: pointer;
+  }
 
   header {
     background-color: $background-separator;
