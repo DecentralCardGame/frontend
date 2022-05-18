@@ -304,15 +304,10 @@ export default {
     }
   },
   mounted() {
-    let params = this.$route.params.params
-
-    if (params == "alphaset") {
-      this.loadSpecialCardList("Finished")
-    }
-    else if (params == "artworkneeded") {
-      this.loadSpecialCardList("Artwork")
-    }
-    else {
+    let query = this.$route.query
+    if (query) {
+      this.loadQueryCardList(this.normalizeQuery(query))
+    } else {
       this.loadCardList()
     }
 
@@ -332,37 +327,8 @@ export default {
         });
     },
     loadCardList() {
-      let classes =
-        (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
-        (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
-        (this.$store.getters.getGalleryFilter.nature ? "Nature," : "") +
-        (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
-        (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
-      return this.$cardChain
-        .getCardList(
-          this.$store.getters.getGalleryFilter.owner,
-          this.$store.getters.getGalleryFilter.status,
-          this.$store.getters.getGalleryFilter.cardType,
-          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
-          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
-          this.$store.getters.getGalleryFilter.nameContains,
-          this.$store.getters.getGalleryFilter.keywordsContains,
-          this.$store.getters.getGalleryFilter.notesContains,
-        )
-        .then((res) => {
-          console.log(res)
-          if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
-            this.cardList = R.reverse(res.cardsList)
-          }
-          else {
-            this.cardList = res.cardsList
-          }
-          this.pageId = 0
-          this.cards = []
-        })
-        .then(() => {
-          this.fillPage()
-        })
+      var query = this.getDefaultQuery()
+      this.loadQueryCardList(query)
     },
     getCard(currentId) {
       let cardId = this.cardList[
@@ -385,6 +351,18 @@ export default {
             return res
           }
         })
+    },
+    normalizeQuery(query) {
+      return {
+        status: query.status ? query.status.toLowerCase() : "",
+        owner: query.owner ? query.owner : "",
+        cardType: query.cardType ? query.cardType : "",
+        classes: query.classes ? query.classes : "",
+        sortBy: query.sortBy ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "") : "",
+        nameContains: query.nameContains ? query.nameContains : "",
+        keywordsContains: query.keywordsContains ? query.keywordsContains : "",
+        notesContains: query.snotesContains ? query.notesContains : "",
+      }
     },
     fillPage() {
       if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
@@ -460,7 +438,7 @@ export default {
     loadMyCardList() {
       this.loadSpecialCardList(this.$store.getters.getGalleryFilter.notes, this.$store.getters['common/wallet/address'])
     },
-    loadSpecialCardList(notes, owner) {
+    getDefaultQuery() {
       let classes =
         (this.$store.getters.getGalleryFilter.classORLogic ? "OR," : "") +
         (this.$store.getters.getGalleryFilter.mysticism ? "Mysticism," : "") +
@@ -468,17 +446,31 @@ export default {
         (this.$store.getters.getGalleryFilter.technology ? "Technology," : "") +
         (this.$store.getters.getGalleryFilter.culture ? "Culture," : "")
 
+      var query = this.$store.getters.getGalleryFilter
+      query.classes = query.classesVisible ? classes : ""
+      return this.normalizeQuery(query)
+    },
+    loadSpecialCardList(notes, owner) {
+      var query = this.getDefaultQuery()
+      query.notes = notes
+      if (owner) {
+        query.owner = owner
+      }
+      this.loadQueryCardList(query)
+    },
+    loadQueryCardList(query) {
+      console.log("query: ", query)
+      this.$router.push({ path: 'gallery', query: query })
       let requestedCards = [
-        // owners are hardcoded here because these are the alpha creators
         this.$cardChain.getCardList(
-          (owner ? owner : this.$store.getters.getGalleryFilter.owner),
-          this.$store.getters.getGalleryFilter.status,
-          this.$store.getters.getGalleryFilter.cardType,
-          this.$store.getters.getGalleryFilter.classesVisible ? classes : "",
-          this.$store.getters.getGalleryFilter.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, ""),
-          this.$store.getters.getGalleryFilter.nameContains,
-          this.$store.getters.getGalleryFilter.keywordsContains,
-          notes,
+          query.owner,
+          query.status,
+          query.cardType,
+          query.classes,
+          query.sortBy,
+          query.nameContains,
+          query.keywordsContains,
+          query.notes,
         )
       ]
       Promise.all(requestedCards)

@@ -43,11 +43,6 @@ const routes = [
     component: GalleryPage
   },
   {
-    path: '/gallery/:params?',
-    name: 'Gallery',
-    component: GalleryPage
-  },
-  {
     path: '/votingresults',
     name: 'VotingResults',
     component: VotingResultsPage
