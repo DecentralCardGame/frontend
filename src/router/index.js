@@ -7,6 +7,7 @@ const GalleryPage = () => import('@/views/GalleryPage')
 const VotingResultsPage = () => import('@/views/VotingResultsPage')
 const NewCardPage = () => import('@/views/NewCardPage')
 const AboutPage = () => import('@/views/AboutPage')
+const NotFound = () => import('@/views/NotFound')
 const RoadmapPage = () => import('@/views/RoadmapPage')
 const LandingPage = () => import('@/views/LandingPage')
 const ImprintPage = () => import('@/views/ImprintPage')
@@ -84,15 +85,15 @@ const routes = [
     component: VotingPage
   },
   {
-    path: '/cardview',
+    path: '/cardview/:id',
     name: 'CardView',
     component: CardView
   },
   {
-    path: '/cardview/:id',
-    name: 'CardView',
-    component: CardView
-  }
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
+  },
 ]
 
 const oldroutes = [
