@@ -460,6 +460,7 @@ export default {
     },
     loadQueryCardList(query) {
       console.log("query: ", query)
+      this.$router.push({ path: 'gallery', query: query })
       let requestedCards = [
         this.$cardChain.getCardList(
           query.owner,
