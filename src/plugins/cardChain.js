@@ -250,6 +250,44 @@ export default {
             throw new Error(err)
           })
       }
+      registerForCouncilTx () {
+        let msg = {
+          value: {
+            "@type": "/DecentralCardGame.cardchain.cardchain.MsgRegisterForCouncil",
+            "creator": this.vue.$store.getters['common/wallet/address'],
+          }
+        }
+        this.vue.notifyInfo('Registering', 'Registering for council.')
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgRegisterForCouncil', msg)
+          .then((res) => {
+            this.vue.notifySuccess('EPIC WIN', 'Your are now registered for council')
+            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
+          })
+          .catch(err => {
+            this.vue.notifyFail('Registration failed', err.message)
+            console.log(err)
+            throw new Error(err)
+          })
+      }
+      deRegisterFromCouncilTx () {
+        let msg = {
+          value: {
+            "@type": "/DecentralCardGame.cardchain.cardchain.MsgRewokeCouncilRegistration",
+            "creator": this.vue.$store.getters['common/wallet/address'],
+          }
+        }
+        this.vue.notifyInfo('Deregistering', 'Deregistering from council.')
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgRewokeCouncilRegistration', msg)
+          .then((res) => {
+            this.vue.notifySuccess('EPIC WIN', 'Your are now deregistered from council')
+            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
+          })
+          .catch(err => {
+            this.vue.notifyFail('Deregistration failed', err.message)
+            console.log(err)
+            throw new Error(err)
+          })
+      }
       saveArtworkToCard (id, image, fullart) {
         let msg = {
           value: {

@@ -69,6 +69,14 @@
               How To Play
             </router-link>
           </li>
+          <li>
+            <router-link
+              v-if="$store.getters['getLoggedIn']"
+              to="/user/me"
+            >
+              Account
+            </router-link>
+          </li>
         </ul>
       </div>
     </nav>
