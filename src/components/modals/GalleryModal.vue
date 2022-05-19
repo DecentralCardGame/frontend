@@ -59,7 +59,7 @@
               id="modalDescription"
               class="modal__body choice-grid"
             >
-              <router-link :to="{ path: '/cardview/'+model.id }">  
+              <router-link :to="{ path: '/cardview/'+model.id }">
                 <button
                   aria-label="Close modal"
                   class="choice-grid__button"
@@ -124,6 +124,14 @@
                 @click="voteInappropriate(); close();"
               >
                 Vote Inappropriate
+              </button>
+              <button
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="$router.push({name: 'UserView', params: {id: model.owner}});"
+              >
+                Owner profile
               </button>
             </section>
           </div>
@@ -239,4 +247,3 @@ export default {
   height: 50vh;
 }
 </style>
-

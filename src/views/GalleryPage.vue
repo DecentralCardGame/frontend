@@ -306,7 +306,12 @@ export default {
   mounted() {
     let query = this.$route.query
     if (query) {
-      this.loadQueryCardList(this.normalizeQuery(query))
+      if (query.cardList) {
+        this.cardList = query.cardList
+        this.fillPage()
+      } else {
+        this.loadQueryCardList(this.normalizeQuery(query))
+      }
     } else {
       this.loadCardList()
     }

@@ -16,6 +16,7 @@ const HowToPlayPage = () => import('@/views/HowToPlayPage')
 const VotingPage = () => import('@/views/VotingPage')
 const AccountPage = () => import('@/views/AccountPage')
 const CardView = () => import('@/views/CardViewPage')
+const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
 
 const routes = [
@@ -88,6 +89,11 @@ const routes = [
     path: '/cardview/:id',
     name: 'CardView',
     component: CardView
+  },
+  {
+    path: '/user/:id',
+    name: 'UserView',
+    component: UserView
   },
   {
     path: '/:pathMatch(.*)*',
