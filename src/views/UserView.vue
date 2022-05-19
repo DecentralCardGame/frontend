@@ -37,7 +37,7 @@
         Vote
       </button>
       <br>
-      Owned card schemes: {{ user.ownedCardSchemes.length }} <br>
+      Owned card frames: {{ user.ownedCardSchemes.length }} <br>
       Owned prototypes:
       <router-link
         :to="{ name: 'Gallery', query: { owner: address }}"
