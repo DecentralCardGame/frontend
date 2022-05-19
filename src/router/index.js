@@ -14,7 +14,6 @@ const ImprintPage = () => import('@/views/ImprintPage')
 const TeamPage = () => import('@/views/TeamPage')
 const HowToPlayPage = () => import('@/views/HowToPlayPage')
 const VotingPage = () => import('@/views/VotingPage')
-const AccountPage = () => import('@/views/AccountPage')
 const CardView = () => import('@/views/CardViewPage')
 const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
@@ -74,11 +73,6 @@ const routes = [
     path: '/imprint',
     name: 'Imprint',
     component: ImprintPage
-  },
-  {
-    path: '/me',
-    name: 'Account',
-    component: AccountPage
   },
   {
     path: '/vote',
