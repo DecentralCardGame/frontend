@@ -11,7 +11,7 @@
             type="image/jpg"
             srcset="../assets/team/patrick.jpg"
           >
-          <img 
+          <img
             src="../assets/team/patrick.webp"
             class="rounded"
           >
@@ -48,7 +48,7 @@
             type="image/jpg"
             srcset="../assets/team/marius.jpg"
           >
-          <img 
+          <img
             src="../assets/team/marius.webp"
             class="rounded"
           >
@@ -85,7 +85,7 @@
             type="image/jpg"
             srcset="../assets/team/anna.jpg"
           >
-          <img 
+          <img
             src="../assets/team/anna.webp"
             class="rounded"
           >
@@ -116,7 +116,7 @@
             type="image/jpg"
             srcset="../assets/team/jannik.jpg"
           >
-          <img 
+          <img
             src="../assets/team/jannik.webp"
             class="rounded"
           >
@@ -146,7 +146,7 @@
             type="image/jpg"
             srcset="../assets/team/stefi.jpg"
           >
-          <img 
+          <img
             src="../assets/team/stefi.webp"
             class="rounded"
           >
@@ -175,7 +175,7 @@
             type="image/jpg"
             srcset="../assets/team/noah.jpg"
           >
-          <img 
+          <img
             src="../assets/team/noah.webp"
             class="rounded"
           >
@@ -204,7 +204,7 @@
             type="image/jpg"
             srcset="../assets/team/niko.jpg"
           >
-          <img 
+          <img
             src="../assets/team/niko.webp"
             class="rounded"
           >
@@ -213,7 +213,7 @@
       <div>
         <h2> Niklavs Senvalds - Game Developer </h2>
         <p>
-          Niklavs, actually the right spelling is Niklāvs Šenvalds, but the title font cannot display these crazy letters, is also known as Niko. He is a displaced gamer, 
+          Niklavs, actually the right spelling is Niklāvs Šenvalds, but the title font cannot display these crazy letters, is also known as Niko. He is a displaced gamer,
           but has suddenly found himself developing games instead of playing them. Unlike literally everybody else on the planet earth, he has never played magic and therefore
           is at a slight disadvantage - he has never won a single game during playtesting. Still he has decided to participate in this project and works on the website as well
           as the game client. He also helps us by stomping everyone in chess, which he plays better than anyone else even when suffering vaccination side effects.
@@ -232,7 +232,7 @@
             type="image/jpg"
             srcset="../assets/team/harry.jpg"
           >
-          <img 
+          <img
             src="../assets/team/harry.webp"
             class="rounded"
           >
@@ -242,7 +242,7 @@
         <h2> Harold Zellner - Game Developer </h2>
         <p>
           He stomps out 110% of the code for the game client. When he is not coding relentlessly he likes to engage in exciting discussions about any imaginable topic.
-          In his past he was a Kindergarten teacher, thus he is optimally prepared to work together with us. It also helps him a lot to write code that we can understand. 
+          In his past he was a Kindergarten teacher, thus he is optimally prepared to work together with us. It also helps him a lot to write code that we can understand.
         </p>
       </div>
     </div>
@@ -258,7 +258,7 @@
             type="image/jpg"
             srcset="../assets/team/kosta.jpg"
           >
-          <img 
+          <img
             src="../assets/team/kosta.webp"
             class="rounded"
           >
@@ -281,7 +281,7 @@
       <div>
         <h2> Honorable Mentions </h2>
         <p>
-          Thilo Billerbeck has built most of the Website you see here. Jette and Danny Czoschke, they have created the design you can see here on this website and our non-corporate identity, which still guides us. 
+          Thilo Billerbeck has built most of the Website you see here. Jette and Danny Czoschke, they have created the design you can see here on this website and our non-corporate identity, which still guides us.
           Andy Frankenberger and Tom König helped us win the Diffusion Hackathon in 2019 with their incredible CORS skills.
         </p>
       </div>
@@ -312,15 +312,16 @@ export default {
   border-radius: 50%;
 }
 .team-entry {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr;
-    gap: 2rem 4rem;
-    @media (max-width: 480px) {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  gap: 2rem 4rem;
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
+
 img {
   display: inline;
   margin: 0 auto;

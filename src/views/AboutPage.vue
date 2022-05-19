@@ -9,7 +9,7 @@
       </p>
       <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
-    
+
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <h2>The Game</h2>
@@ -113,8 +113,8 @@
         <h2>The Gameplay</h2>
         <p>
           A turn begins by giving you Mana and Wisdom. Your HQ produces 10 Wisdom each turn, which let's you draw one card.
-          It also grows each turn, which increases the mana production. In turn 1 you get 1 Mana, in 
-          turn 2 you get 2 and so on. 
+          It also grows each turn, which increases the mana production. In turn 1 you get 1 Mana, in
+          turn 2 you get 2 and so on.
           Then both players may play cards at the same time, when both are finished, they decide which Entities should
           attack and which defend.
           Finally the Entities fight against each other and all unblocked ones may damage the opponents HQ or a Place.
@@ -150,7 +150,7 @@
             Voting
           </router-link>
           after you login with your account.
-          In the future there will also be a council, where new cards must be approved. A process, which earns 
+          In the future there will also be a council, where new cards must be approved. A process, which earns
           council members credits.
           Furthermore there will be sets, which bundle together 100 cards into a set and boosters can be bought from
           these sets, giving financial reward to those creating cards.

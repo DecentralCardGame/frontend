@@ -7,6 +7,7 @@ const GalleryPage = () => import('@/views/GalleryPage')
 const VotingResultsPage = () => import('@/views/VotingResultsPage')
 const NewCardPage = () => import('@/views/NewCardPage')
 const AboutPage = () => import('@/views/AboutPage')
+const NotFound = () => import('@/views/NotFound')
 const RoadmapPage = () => import('@/views/RoadmapPage')
 const LandingPage = () => import('@/views/LandingPage')
 const ImprintPage = () => import('@/views/ImprintPage')
@@ -14,7 +15,6 @@ const TeamPage = () => import('@/views/TeamPage')
 const HowToPlayPage = () => import('@/views/HowToPlayPage')
 const VotingPage = () => import('@/views/VotingPage')
 const AccountPage = () => import('@/views/AccountPage')
-const CardMinter = () => import('@/views/CardMinterPage')
 const CardView = () => import('@/views/CardViewPage')
 const SteakDrop = () => import('@/views/SteakDropPage')
 
@@ -85,25 +85,15 @@ const routes = [
     component: VotingPage
   },
   {
-    path: '/cardminter',
-    name: 'CardMinter',
-    component: CardMinter
-  },
-  {
-    path: '/cardminter/:id',
-    name: 'CardMint',
-    component: CardMinter
-  },
-  {
-    path: '/cardview',
-    name: 'CardView',
-    component: CardView
-  },
-  {
     path: '/cardview/:id',
     name: 'CardView',
     component: CardView
-  }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
+  },
 ]
 
 const oldroutes = [
