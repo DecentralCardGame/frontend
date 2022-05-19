@@ -119,6 +119,7 @@ export default {
   img {
     border-radius: 50%;
     width: 200px;
+    box-shadow: 2px 2px 4px;
   };
 }
 
