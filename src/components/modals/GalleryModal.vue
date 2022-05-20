@@ -69,14 +69,6 @@
                 </button>
               </router-link>
               <button
-                aria-label="Close modal"
-                class="choice-grid__button"
-                type="button"
-                @click="download(); close();"
-              >
-                Download PNG
-              </button>
-              <button
                 v-if="isOwner"
                 aria-label="Close modal"
                 class="choice-grid__button"
