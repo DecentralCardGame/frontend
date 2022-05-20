@@ -7,7 +7,9 @@
       >
     </div>
     <div class="dataBox">
-      <h2>Account details</h2>
+      <h2 class="header__h2">
+        Account details
+      </h2>
       Address: {{ address }}<br>
       Name: {{ user.alias }}<br>
       Council status: {{ user.councilStatus }}
@@ -49,7 +51,17 @@
         :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
       >
         {{ user.ownedCards.length }}
-      </router-link>
+      </router-link> <br>
+      Balance:
+      <div class="coinBox">
+        <div
+          v-for="coin in coins"
+          :key="coin"
+        >
+          {{ coin.amount+coin.denom }}
+          <br>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -61,6 +73,7 @@ export default {
   data () {
     return {
       address: "",
+      coins: [],
       user: {
         ownedCardSchemes: [],
         ownedPrototypes: [],
@@ -97,6 +110,10 @@ export default {
         console.log("received user data:", user)
         this.user = user
       })
+      this.$cardChain.getAccInfo(this.address)
+      .then(coins => {
+        this.coins = this.normalizeCoins(coins.coins)
+      })
     },
     register () {
       this.$cardChain.registerForCouncilTx().then(this.getUser)
@@ -104,6 +121,15 @@ export default {
     deRegister () {
       this.$cardChain.deRegisterFromCouncilTx().then(this.getUser)
     },
+    normalizeCoins(coins) {
+      for (var i = 0; i<coins.length; i++) {
+        if (coins[i].denom[0] == "u") {
+          coins[i].denom = coins[i].denom.slice(1)
+          coins[i].amount /= 10**6
+        }
+      }
+      return coins
+    }
   }
 }
 </script>
@@ -121,6 +147,11 @@ export default {
     width: 200px;
     box-shadow: 2px 2px 4px;
   };
+}
+
+.coinBox {
+  display: inline-table;
+  text-align: left;
 }
 
 </style>
