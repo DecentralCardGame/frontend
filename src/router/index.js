@@ -105,9 +105,19 @@ const oldroutes = [
   { path: '/relayers', component: Relayers },
 ]
 
+const delay = (t) => new Promise((r) => setTimeout(r, t))
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  async scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      await delay(0)
+      return { top: 0, behavior: 'smooth'}
+    }
+  },
 })
 
 export default router
