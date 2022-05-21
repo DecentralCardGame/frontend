@@ -62,16 +62,34 @@
           <br>
         </div>
       </div>
+      <button
+        v-if="address == $store.getters['common/wallet/address']"
+        type="button"
+        class="btn"
+        @click="showModal"
+      >
+        Transfer
+      </button>
+      <TransferModal
+        v-show="isModalVisible"
+        @close="closeModal"
+      />
     </div>
   </div>
 </template>
 
 <script>
 
+import TransferModal from '../components/modals/TransferModal.vue';
+
 export default {
   name: 'UserView',
+  components: {
+    TransferModal
+  },
   data () {
     return {
+      isModalVisible: false,
       address: "",
       coins: [],
       user: {
@@ -129,6 +147,13 @@ export default {
         }
       }
       return coins
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+      this.getUser()
     }
   }
 }
