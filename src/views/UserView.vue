@@ -100,28 +100,35 @@ export default {
       },
     }
   },
+  watch: {
+    "$route.params.id"(value) {
+      this.init()
+    }
+  },
   mounted () {
-    let id = this.$route.params.id
-    if (id === "me") {
-      if (this.$store.getters["getLoggedIn"]) {
-        this.address = this.$store.getters['common/wallet/address']
-      } else {
-        console.log("You're not logged in")
-        this.$router.push({name: "NotFound"})
-      }
-    } else {
-      this.address = id
-    }
-
-    if (! this.$cardChain.validAddress(this.address)) {
-      this.$router.push({name: "NotFound"})
-    }
-
-    this.$router.push({name: "UserView", params: {id: this.address}})
-
-    this.getUser()
+    this.init()
   },
   methods: {
+    init () {
+      let id = this.$route.params.id
+      if (id === "me") {
+        if (this.$store.getters["getLoggedIn"]) {
+          this.address = this.$store.getters['common/wallet/address']
+        } else {
+          console.log("You're not logged in")
+          this.$router.push({name: "NotFound"})
+        }
+      } else {
+        this.address = id
+      }
+
+      if (! this.$cardChain.validAddress(this.address)) {
+        this.$router.push({name: "NotFound"})
+      }
+
+      this.$router.push({name: "UserView", params: {id: this.address}})
+      this.getUser()
+    },
     getUser () {
       this.$cardChain.getUserInfo(this.address)
       .then(user => {
