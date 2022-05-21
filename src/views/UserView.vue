@@ -102,7 +102,10 @@ export default {
   },
   watch: {
     "$route.params.id"(value) {
-      this.init()
+      console.log(this.$route)
+      if (this.$route.name == "UserView") {
+        this.init()
+      }
     }
   },
   mounted () {
