@@ -109,7 +109,7 @@ export default {
                   cleaned.push(this.voteRights[i])
                 }
               }
-              
+
               this.voteRights = cleaned
 
               if (this.voteRights.length > 0) {
