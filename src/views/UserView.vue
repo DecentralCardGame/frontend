@@ -62,16 +62,34 @@
           <br>
         </div>
       </div>
+      <button
+        v-if="address == $store.getters['common/wallet/address']"
+        type="button"
+        class="btn"
+        @click="showModal"
+      >
+        Transfer
+      </button>
+      <TransferModal
+        v-show="isModalVisible"
+        @close="closeModal"
+      />
     </div>
   </div>
 </template>
 
 <script>
 
+import TransferModal from '../components/modals/TransferModal.vue';
+
 export default {
   name: 'UserView',
+  components: {
+    TransferModal
+  },
   data () {
     return {
+      isModalVisible: false,
       address: "",
       coins: [],
       user: {
@@ -82,28 +100,38 @@ export default {
       },
     }
   },
-  mounted () {
-    let id = this.$route.params.id
-    if (id === "me") {
-      if (this.$store.getters["getLoggedIn"]) {
-        this.address = this.$store.getters['common/wallet/address']
-      } else {
-        console.log("You're not logged in")
-        this.$router.push({name: "NotFound"})
+  watch: {
+    "$route.params.id"(value) {
+      console.log(this.$route)
+      if (this.$route.name == "UserView") {
+        this.init()
       }
-    } else {
-      this.address = id
     }
-
-    if (! this.$cardChain.validAddress(this.address)) {
-      this.$router.push({name: "NotFound"})
-    }
-
-    this.$router.push({name: "UserView", params: {id: this.address}})
-
-    this.getUser()
+  },
+  mounted () {
+    this.init()
   },
   methods: {
+    init () {
+      let id = this.$route.params.id
+      if (id === "me") {
+        if (this.$store.getters["getLoggedIn"]) {
+          this.address = this.$store.getters['common/wallet/address']
+        } else {
+          console.log("You're not logged in")
+          this.$router.push({name: "NotFound"})
+        }
+      } else {
+        this.address = id
+      }
+
+      if (! this.$cardChain.validAddress(this.address)) {
+        this.$router.push({name: "NotFound"})
+      }
+
+      this.$router.push({name: "UserView", params: {id: this.address}})
+      this.getUser()
+    },
     getUser () {
       this.$cardChain.getUserInfo(this.address)
       .then(user => {
@@ -129,6 +157,13 @@ export default {
         }
       }
       return coins
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+      this.getUser()
     }
   }
 }

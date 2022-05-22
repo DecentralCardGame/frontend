@@ -31,13 +31,6 @@
       </picture>
       <b>Discord</b>. We would love to hear your voice.
     </a>
-    <!--router-link
-      v-if="$store.getters['getLoggedIn']"
-      class="account-box"
-      to="/me"
-    >
-      <button>My Account ({{ getUserCredits }} Credits)</button>
-    </router-link-->
     <SpWallet
       ref="wallet"
       class="wallet--local"

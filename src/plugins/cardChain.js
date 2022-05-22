@@ -3,7 +3,7 @@ import { entropyToMnemonic } from 'bip39'
 import * as Random from 'randombytes'
 import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 import { coin } from "@cosmjs/proto-signing";
-
+// import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 
 export default {
@@ -309,6 +309,31 @@ export default {
           .catch(err => {
             console.log(err)
             this.vue.notifyFail('Saving Artwork failed', err)
+          })
+      }
+      transferCoin (to, coins) {
+        console.log(coins)
+        let msg = {
+          value: {
+            "@type":"/cosmos.bank.v1beta1.MsgSend",
+            "fromAddress": this.vue.$store.getters['common/wallet/address'],
+            "toAddress": to,
+            "amount": coins
+          }
+        }
+        this.vue.notifyInfo('Transfering', 'Sending request to the blockchain.')
+        console.log("transfer msg:", msg)
+        return this.txQueue.dispatch('cosmos.bank.v1beta1/sendMsgSend', msg)
+          .then((res) => {
+            if (res.code != 0) {
+              throw Error(res.rawLog)
+            } else {
+              this.vue.notifySuccess('Transfered', 'Transaction successful!')
+            }
+          })
+          .catch(err => {
+            console.log(err)
+            this.vue.notifyFail('Transfering failed', err)
           })
       }
       voteCardTx (cardid, voteType) {
