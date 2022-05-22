@@ -1,16 +1,6 @@
 <template>
   <div>
     <div
-      v-if="$route.params.id==null"
-      v-cloak
-      @drop.prevent="dropIt"
-      @dragover.prevent
-    >
-      You have opened the advanced card view without giving a card id. This makes no sense.
-    </div>
-
-    <div
-      v-else
       class="gallery__view__card"
       @click="saveCard"
     >
@@ -49,7 +39,12 @@
       Overpowered Votes: {{ OverpoweredVotes }} <br>
       Fair Enough Votes: {{ FairEnoughVotes }} <br>
       Nerflevel: {{ Nerflevel }} <br>
-      Owner: {{ Owner }} <br>
+      Owner:
+      <router-link
+        :to="{name: 'UserView', params: {id: Owner} }"
+      >
+        {{ Owner }}
+      </router-link> <br>
       Status: {{ Status }} <br>
       VotePool: {{ VotePool }} <br>
     </div>
@@ -76,7 +71,7 @@ export default {
       OverpoweredVotes: 0,
       FairEnoughVotes: 0,
       Nerflevel: 0,
-      Owner: "",
+      Owner: " ",
       Status: "",
       VotePool: 0,
       keywordDescriptions: []
