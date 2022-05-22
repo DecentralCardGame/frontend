@@ -366,7 +366,7 @@ export default {
         sortBy: query.sortBy ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "") : "",
         nameContains: query.nameContains ? query.nameContains : "",
         keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-        notesContains: query.snotesContains ? query.notesContains : "",
+        notesContains: query.notesContains ? query.notesContains : "",
       }
     },
     fillPage() {
@@ -457,7 +457,7 @@ export default {
     },
     loadSpecialCardList(notes, owner) {
       var query = this.getDefaultQuery()
-      query.notes = notes
+      query.notesContains = notes
       if (owner) {
         query.owner = owner
       }
@@ -475,7 +475,7 @@ export default {
           query.sortBy,
           query.nameContains,
           query.keywordsContains,
-          query.notes,
+          query.notesContains,
         )
       ]
       Promise.all(requestedCards)
