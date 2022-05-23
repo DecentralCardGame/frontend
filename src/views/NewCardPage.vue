@@ -1023,7 +1023,7 @@ export default {
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
         if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
-          newModel.Abilities = R.clone(this.$store.getters['getCardCreatorEditCard.Abilities'])
+          newModel.Abilities = R.clone(this.$store.getters['getCardCreatorEditCard'].Abilities)
         }
         // this writes the relevant part of the effects in the new model
         else {
@@ -1041,7 +1041,7 @@ export default {
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
         if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
-          newModel.Effects = this.$store.getters['getCardCreatorEditCard.Abilities']
+          newModel.Effects = R.clone(this.$store.getters['getCardCreatorEditCard'].Abilities)
         }
         // this writes the relevant part of the effects in the new model
         else {
