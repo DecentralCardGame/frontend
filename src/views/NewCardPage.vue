@@ -1084,6 +1084,7 @@ export default {
         newModel,
         this.getCardImage
       )
+      console.log("newCard", newCard)
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {

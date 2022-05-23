@@ -235,7 +235,7 @@ export default {
             "creator": this.vue.$store.getters['common/wallet/address'],
             "cardId": id,
             "content": btoa(JSON.stringify(card.content)),
-            "notes": card.Notes,
+            "notes": card.notes,
             "artist": this.vue.$store.getters['common/wallet/address']
           }
         }
