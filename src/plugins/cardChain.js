@@ -121,6 +121,7 @@ export default {
           card.nerflevel = parseInt(card.nerflevel)
           card.type = cardType[0]
           card.Owner = card.owner
+          card.Notes = card.notes
 
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
@@ -175,8 +176,8 @@ export default {
             [webModel.type]: cardContent
           },
           image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
-          FullArt: webModel.FullArt,
-          Notes: webModel.Notes,
+          fullArt: webModel.FullArt,
+          notes: webModel.Notes,
         }
         console.log('parsed into:', cardobject)
         return cardobject
@@ -234,7 +235,7 @@ export default {
             "creator": this.vue.$store.getters['common/wallet/address'],
             "cardId": id,
             "content": btoa(JSON.stringify(card.content)),
-            "notes": card.Notes,
+            "notes": card.notes,
             "artist": this.vue.$store.getters['common/wallet/address']
           }
         }
