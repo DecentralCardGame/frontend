@@ -137,7 +137,6 @@
       </div>
       <div class="gallery__filter__item">
         <button
-          class="ccbutton"
           @click="resetFilters"
         >
           Clear Filters
