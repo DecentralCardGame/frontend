@@ -77,7 +77,14 @@
               >
                 Edit Card
               </button>
-
+              <button
+                v-if="isOwner"
+                class="choice-grid__button"
+                type="button"
+                @click="showModal()"
+              >
+                Transfer card
+              </button>
               <button
                 v-if="canVote"
                 aria-label="Close modal"
@@ -128,6 +135,11 @@
             </section>
           </div>
         </div>
+        <TransferCardModal
+          v-show="isModalVisible"
+          :card="model.id"
+          @close="closeModal"
+        />
         <footer class="modal__footer" />
       </div>
     </div>
@@ -135,10 +147,11 @@
 </template>
 <script>
 import CardComponent from "@/components/elements/CardComponent";
+import TransferCardModal from './TransferCardModal.vue';
 
 export default {
   name: 'GalleryModal',
-  components: { CardComponent },
+  components: { CardComponent, TransferCardModal },
   props: {
     canVote: Boolean,
     isOwner: Boolean,
@@ -161,6 +174,7 @@ export default {
   },
   data() {
     return {
+      isModalVisible: false,
       currentPrice: -1,
       currentBid: -1,
       creditsAvailable: -1,
@@ -205,6 +219,13 @@ export default {
     voteInappropriate() {
       this.$emit('voteInappropriate')
     },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+      this.getUser()
+    }
   },
 }
 </script>
