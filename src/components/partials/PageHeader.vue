@@ -54,8 +54,20 @@ import {
 
 export default {
   name: 'PageHeader',
+  data() {
+    return {
+      showKeplr: true,
+    }
+  },
   methods: {
     async keplrWalletLogin(doAllert) {
+      if (!doAllert) {
+        if (this.showKeplr) {
+          this.showKeplr = false
+        } else {
+          return
+        }
+      }
       if (!window.getOfflineSigner || !window.keplr) {
         if (doAllert) {
           alert("Please install keplr extension");
