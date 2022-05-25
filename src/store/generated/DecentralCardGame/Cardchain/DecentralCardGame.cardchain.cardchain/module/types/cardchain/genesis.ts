@@ -8,6 +8,8 @@ import { SellOffer } from "../cardchain/sell_offer";
 import { Coin } from "../cosmos/base/v1beta1/coin";
 import { Council } from "../cardchain/council";
 import { RunningAverage } from "../cardchain/running_average";
+import { Image } from "../cardchain/image";
+import { Server } from "../cardchain/server";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
@@ -24,8 +26,10 @@ export interface GenesisState {
   pools: Coin[];
   cardAuctionPrice: string;
   councils: Council[];
-  /** this line is used by starport scaffolding # genesis/proto/state */
   RunningAverages: RunningAverage[];
+  images: Image[];
+  /** this line is used by starport scaffolding # genesis/proto/state */
+  Servers: Server[];
 }
 
 const baseGenesisState: object = { addresses: "", cardAuctionPrice: "" };
@@ -65,6 +69,12 @@ export const GenesisState = {
     for (const v of message.RunningAverages) {
       RunningAverage.encode(v!, writer.uint32(106).fork()).ldelim();
     }
+    for (const v of message.images) {
+      Image.encode(v!, writer.uint32(114).fork()).ldelim();
+    }
+    for (const v of message.Servers) {
+      Server.encode(v!, writer.uint32(122).fork()).ldelim();
+    }
     return writer;
   },
 
@@ -81,6 +91,8 @@ export const GenesisState = {
     message.pools = [];
     message.councils = [];
     message.RunningAverages = [];
+    message.images = [];
+    message.Servers = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -119,6 +131,12 @@ export const GenesisState = {
             RunningAverage.decode(reader, reader.uint32())
           );
           break;
+        case 14:
+          message.images.push(Image.decode(reader, reader.uint32()));
+          break;
+        case 15:
+          message.Servers.push(Server.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -138,6 +156,8 @@ export const GenesisState = {
     message.pools = [];
     message.councils = [];
     message.RunningAverages = [];
+    message.images = [];
+    message.Servers = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
     } else {
@@ -197,6 +217,16 @@ export const GenesisState = {
     ) {
       for (const e of object.RunningAverages) {
         message.RunningAverages.push(RunningAverage.fromJSON(e));
+      }
+    }
+    if (object.images !== undefined && object.images !== null) {
+      for (const e of object.images) {
+        message.images.push(Image.fromJSON(e));
+      }
+    }
+    if (object.Servers !== undefined && object.Servers !== null) {
+      for (const e of object.Servers) {
+        message.Servers.push(Server.fromJSON(e));
       }
     }
     return message;
@@ -265,6 +295,18 @@ export const GenesisState = {
     } else {
       obj.RunningAverages = [];
     }
+    if (message.images) {
+      obj.images = message.images.map((e) => (e ? Image.toJSON(e) : undefined));
+    } else {
+      obj.images = [];
+    }
+    if (message.Servers) {
+      obj.Servers = message.Servers.map((e) =>
+        e ? Server.toJSON(e) : undefined
+      );
+    } else {
+      obj.Servers = [];
+    }
     return obj;
   },
 
@@ -279,6 +321,8 @@ export const GenesisState = {
     message.pools = [];
     message.councils = [];
     message.RunningAverages = [];
+    message.images = [];
+    message.Servers = [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
     } else {
@@ -338,6 +382,16 @@ export const GenesisState = {
     ) {
       for (const e of object.RunningAverages) {
         message.RunningAverages.push(RunningAverage.fromPartial(e));
+      }
+    }
+    if (object.images !== undefined && object.images !== null) {
+      for (const e of object.images) {
+        message.images.push(Image.fromPartial(e));
+      }
+    }
+    if (object.Servers !== undefined && object.Servers !== null) {
+      for (const e of object.Servers) {
+        message.Servers.push(Server.fromPartial(e));
       }
     }
     return message;
