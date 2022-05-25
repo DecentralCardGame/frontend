@@ -1025,7 +1025,7 @@ export default {
         if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
           newModel.Abilities = R.clone(this.$store.getters['getCardCreatorEditCard'].Abilities)
         }
-        // this writes the relevant part of the effects in the new model
+        // this writes the relevant part of the abilities in the new model
         else {
           newModel.Abilities = R.map(
             R.pick(

@@ -6,7 +6,7 @@
         alt="Avatar"
       >
     </div>
-    <div class="dataBox">
+    <div class="dataBox ccbutton">
       <h2 class="header__h2">
         Account details
       </h2>
@@ -170,6 +170,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../scss/variables";
+
 .dataBox {
   // display: inline;
 }
