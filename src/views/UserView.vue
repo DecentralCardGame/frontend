@@ -2,9 +2,16 @@
   <div align="center">
     <div class="ppBox">
       <img
+        class="ppImage"
         :src="img"
         alt="Avatar"
       >
+      <button
+        v-if="loggedinHere"
+        @click="showChooseModal"
+      >
+        <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917651.svg?token=exp=1653516419~hmac=d1e0938182326647cdb5377a31e784f5">
+      </button>
     </div>
     <div class="dataBox ccbutton">
       <h2 class="header__h2">
@@ -14,7 +21,7 @@
       Name: {{ user.alias }}<br>
       Council status: {{ user.councilStatus }}
       <div
-        v-if="address == $store.getters['common/wallet/address']"
+        v-if="loggedinHere"
         style="display: inline"
       >
         <button
@@ -33,7 +40,7 @@
       <br>
       Vote rights: {{ user.voteRights.length }}
       <button
-        v-if="address == $store.getters['common/wallet/address']"
+        v-if="loggedinHere"
         @click="$router.push({name: 'Vote'})"
       >
         Vote
@@ -63,7 +70,7 @@
         </div>
       </div>
       <button
-        v-if="address == $store.getters['common/wallet/address']"
+        v-if="loggedinHere"
         type="button"
         class="btn"
         @click="showModal"
@@ -74,6 +81,11 @@
         v-show="isModalVisible"
         @close="closeModal"
       />
+      <ChoosePBModal
+        v-if="isChooseModalVisible"
+        :cards="user.ownedPrototypes"
+        @close="closeChooseModal"
+      />
     </div>
   </div>
 </template>
@@ -81,14 +93,18 @@
 <script>
 
 import TransferModal from '../components/modals/TransferModal.vue';
+import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 
 export default {
   name: 'UserView',
   components: {
-    TransferModal
+    TransferModal,
+    ChoosePBModal,
   },
   data () {
     return {
+      loggedinHere: false,
+      isChooseModalVisible: false,
       isModalVisible: false,
       address: "",
       coins: [],
@@ -108,6 +124,9 @@ export default {
       if (this.$route.name == "UserView") {
         this.init()
       }
+    },
+    '$store.state.common.wallet.selectedAddress': function () {
+      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
     }
   },
   mounted () {
@@ -126,6 +145,8 @@ export default {
       } else {
         this.address = id
       }
+
+      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
 
       if (! this.$cardChain.validAddress(this.address)) {
         this.$router.push({name: "NotFound"})
@@ -168,9 +189,15 @@ export default {
       this.isModalVisible = false;
       this.getUser()
     },
+    showChooseModal() {
+      this.isChooseModalVisible = true;
+    },
+    closeChooseModal() {
+      this.isChooseModalVisible = false;
+    },
     async getImg() {
       console.log(this.user.profileCard)
-      // this.user.profileCard = 178
+      this.user.profileCard = 178
       if (!this.user.profileCard) {
         this.img = "https://www.w3schools.com/howto/img_avatar2.png"
       } else {
@@ -197,13 +224,29 @@ export default {
 .ppBox {
   // display: inline;
   margin: 30px;
-  img {
+  position: relative;
+  width: 200px;
+  .ppImage {
     border-radius: 50%;
-    width: 200px;
     height: 200px;
+    width: 200px;
     box-shadow: 2px 2px 4px;
     object-fit: cover;
   };
+  button {
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    height: 15%;
+    width: 15%;
+    padding: 2px;
+    border-radius: 6px;
+    background-color: lightgray;
+    img {
+      width: 100%;
+      margin: 0;
+    }
+  }
 }
 
 .coinBox {
