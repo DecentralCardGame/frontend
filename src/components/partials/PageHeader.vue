@@ -65,13 +65,13 @@ export default {
           try {
             await window.keplr.experimentalSuggestChain({
               chainId: "Cardchain",
-              chainName: "Crowdcontrol mainnet",
+              chainName: "Crowdcontrol testnet",
               rpc: "https://cardchain.crowdcontrol.network/tendermint/",
               rest: "https://cardchain.crowdcontrol.network/cosmos",
               stakeCurrency: {
                 coinDenom: "bpf",
-                coinMinimalDenom: "bpf",
-                coinDecimals: 0,
+                coinMinimalDenom: "ubpf",
+                coinDecimals: 6,
                 // coinGeckoId: ""
               },
               bip44: {
@@ -87,8 +87,8 @@ export default {
               },
               currencies: [{
                 coinDenom: "bpf",
-                coinMinimalDenom: "bpf",
-                coinDecimals: 0,
+                coinMinimalDenom: "ubpf",
+                coinDecimals: 6,
                 // coinGeckoId: ""
               }, {
                 coinDenom: "credits",
@@ -96,11 +96,15 @@ export default {
                 coinDecimals: 6,
               }],
               feeCurrencies: [{
+                coinDenom: "credits",
+                coinMinimalDenom: "ucredits",
+                coinDecimals: 6,
+              }, {
                 coinDenom: "bpf",
-                coinMinimalDenom: "bpf",
-                coinDecimals: 0,
+                coinMinimalDenom: "ubpf",
+                coinDecimals: 6,
                 // coinGeckoId: ""
-              },],
+              }],
               coinType: 118,
               asPriceStep: {
                 low: 0.01,
