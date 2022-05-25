@@ -2,7 +2,7 @@
   <div align="center">
     <div class="ppBox">
       <img
-        src="https://www.w3schools.com/howto/img_avatar2.png"
+        :src="img"
         alt="Avatar"
       >
     </div>
@@ -92,11 +92,13 @@ export default {
       isModalVisible: false,
       address: "",
       coins: [],
+      img: "https://www.w3schools.com/howto/img_avatar2.png",
       user: {
         ownedCardSchemes: [],
         ownedPrototypes: [],
         ownedCards: [],
         voteRights: [],
+        profileCard: 0,
       },
     }
   },
@@ -131,6 +133,7 @@ export default {
 
       this.$router.push({name: "UserView", params: {id: this.address}})
       this.getUser()
+      this.getImg()
     },
     getUser () {
       this.$cardChain.getUserInfo(this.address)
@@ -164,6 +167,21 @@ export default {
     closeModal() {
       this.isModalVisible = false;
       this.getUser()
+    },
+    async getImg() {
+      console.log(this.user.profileCard)
+      // this.user.profileCard = 178
+      if (!this.user.profileCard) {
+        this.img = "https://www.w3schools.com/howto/img_avatar2.png"
+      } else {
+        var a = await this.getCard(this.user.profileCard)
+        this.img = a.image
+      }
+    },
+    async getCard(id) {
+      return this.$cardChain.getCard(id).then((res) => {
+        return res
+      })
     }
   }
 }
@@ -182,7 +200,9 @@ export default {
   img {
     border-radius: 50%;
     width: 200px;
+    height: 200px;
     box-shadow: 2px 2px 4px;
+    object-fit: cover;
   };
 }
 
