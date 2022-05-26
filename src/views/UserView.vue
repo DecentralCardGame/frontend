@@ -198,9 +198,10 @@ export default {
     },
     async getImg() {
       console.log(this.user.profileCard)
-      // this.user.profileCard = 178
-      if (!this.user.profileCard) {
-        this.img = "https://www.w3schools.com/howto/img_avatar2.png"
+      if (this.user.profileCard == 0) {
+        var myRandom = this.address.charCodeAt(this.address.length-1) % 4
+        console.log("random", myRandom)
+        this.img = "Avatar"+myRandom+".png"
       } else {
         var a = await this.getCard(this.user.profileCard)
         this.img = a.image
