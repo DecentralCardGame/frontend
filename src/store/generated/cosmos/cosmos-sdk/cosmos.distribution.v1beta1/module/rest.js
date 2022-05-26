@@ -1,3 +1,4 @@
+"use strict";
 /* eslint-disable */
 /* tslint:disable */
 /*
@@ -8,13 +9,15 @@
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
-export var ContentType;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Api = exports.HttpClient = exports.ContentType = void 0;
+var ContentType;
 (function (ContentType) {
     ContentType["Json"] = "application/json";
     ContentType["FormData"] = "multipart/form-data";
     ContentType["UrlEncoded"] = "application/x-www-form-urlencoded";
-})(ContentType || (ContentType = {}));
-export class HttpClient {
+})(ContentType = exports.ContentType || (exports.ContentType = {}));
+class HttpClient {
     constructor(apiConfig = {}) {
         this.baseUrl = "";
         this.securityData = null;
@@ -129,11 +132,12 @@ export class HttpClient {
         };
     }
 }
+exports.HttpClient = HttpClient;
 /**
  * @title cosmos/distribution/v1beta1/distribution.proto
  * @version version not set
  */
-export class Api extends HttpClient {
+class Api extends HttpClient {
     constructor() {
         super(...arguments);
         /**
@@ -157,10 +161,10 @@ export class Api extends HttpClient {
        * @name QueryDelegationTotalRewards
        * @summary DelegationTotalRewards queries the total rewards accrued by a each
       validator.
-       * @request GET:/cosmos/distribution/v1beta1/delegators/{delegatorAddress}/rewards
+       * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards
        */
-        this.queryDelegationTotalRewards = (delegatorAddress, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/rewards`,
+        this.queryDelegationTotalRewards = (delegator_address, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/delegators/${delegator_address}/rewards`,
             method: "GET",
             format: "json",
             ...params,
@@ -171,10 +175,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryDelegationRewards
          * @summary DelegationRewards queries the total rewards accrued by a delegation.
-         * @request GET:/cosmos/distribution/v1beta1/delegators/{delegatorAddress}/rewards/{validatorAddress}
+         * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}
          */
-        this.queryDelegationRewards = (delegatorAddress, validatorAddress, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/rewards/${validatorAddress}`,
+        this.queryDelegationRewards = (delegator_address, validator_address, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/delegators/${delegator_address}/rewards/${validator_address}`,
             method: "GET",
             format: "json",
             ...params,
@@ -185,10 +189,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryDelegatorValidators
          * @summary DelegatorValidators queries the validators of a delegator.
-         * @request GET:/cosmos/distribution/v1beta1/delegators/{delegatorAddress}/validators
+         * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators
          */
-        this.queryDelegatorValidators = (delegatorAddress, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/validators`,
+        this.queryDelegatorValidators = (delegator_address, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/delegators/${delegator_address}/validators`,
             method: "GET",
             format: "json",
             ...params,
@@ -199,10 +203,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryDelegatorWithdrawAddress
          * @summary DelegatorWithdrawAddress queries withdraw address of a delegator.
-         * @request GET:/cosmos/distribution/v1beta1/delegators/{delegatorAddress}/withdraw_address
+         * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address
          */
-        this.queryDelegatorWithdrawAddress = (delegatorAddress, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/withdraw_address`,
+        this.queryDelegatorWithdrawAddress = (delegator_address, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/delegators/${delegator_address}/withdraw_address`,
             method: "GET",
             format: "json",
             ...params,
@@ -227,10 +231,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryValidatorCommission
          * @summary ValidatorCommission queries accumulated commission for a validator.
-         * @request GET:/cosmos/distribution/v1beta1/validators/{validatorAddress}/commission
+         * @request GET:/cosmos/distribution/v1beta1/validators/{validator_address}/commission
          */
-        this.queryValidatorCommission = (validatorAddress, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/commission`,
+        this.queryValidatorCommission = (validator_address, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/validators/${validator_address}/commission`,
             method: "GET",
             format: "json",
             ...params,
@@ -241,10 +245,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryValidatorOutstandingRewards
          * @summary ValidatorOutstandingRewards queries rewards of a validator address.
-         * @request GET:/cosmos/distribution/v1beta1/validators/{validatorAddress}/outstanding_rewards
+         * @request GET:/cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards
          */
-        this.queryValidatorOutstandingRewards = (validatorAddress, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/outstanding_rewards`,
+        this.queryValidatorOutstandingRewards = (validator_address, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/validators/${validator_address}/outstanding_rewards`,
             method: "GET",
             format: "json",
             ...params,
@@ -255,10 +259,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryValidatorSlashes
          * @summary ValidatorSlashes queries slash events of a validator.
-         * @request GET:/cosmos/distribution/v1beta1/validators/{validatorAddress}/slashes
+         * @request GET:/cosmos/distribution/v1beta1/validators/{validator_address}/slashes
          */
-        this.queryValidatorSlashes = (validatorAddress, query, params = {}) => this.request({
-            path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/slashes`,
+        this.queryValidatorSlashes = (validator_address, query, params = {}) => this.request({
+            path: `/cosmos/distribution/v1beta1/validators/${validator_address}/slashes`,
             method: "GET",
             query: query,
             format: "json",
@@ -266,3 +270,4 @@ export class Api extends HttpClient {
         });
     }
 }
+exports.Api = Api;

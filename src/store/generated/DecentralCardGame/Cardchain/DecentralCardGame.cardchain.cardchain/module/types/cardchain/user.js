@@ -1,17 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = exports.councilStatusToJSON = exports.councilStatusFromJSON = exports.CouncilStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import { VoteRight } from "../cardchain/vote_right";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
-export var CouncilStatus;
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+const vote_right_1 = require("../cardchain/vote_right");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var CouncilStatus;
 (function (CouncilStatus) {
     CouncilStatus[CouncilStatus["available"] = 0] = "available";
     CouncilStatus[CouncilStatus["unavailable"] = 1] = "unavailable";
     CouncilStatus[CouncilStatus["openCouncil"] = 2] = "openCouncil";
     CouncilStatus[CouncilStatus["startedCouncil"] = 3] = "startedCouncil";
     CouncilStatus[CouncilStatus["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(CouncilStatus || (CouncilStatus = {}));
-export function councilStatusFromJSON(object) {
+})(CouncilStatus = exports.CouncilStatus || (exports.CouncilStatus = {}));
+function councilStatusFromJSON(object) {
     switch (object) {
         case 0:
         case "available":
@@ -31,7 +34,8 @@ export function councilStatusFromJSON(object) {
             return CouncilStatus.UNRECOGNIZED;
     }
 }
-export function councilStatusToJSON(object) {
+exports.councilStatusFromJSON = councilStatusFromJSON;
+function councilStatusToJSON(object) {
     switch (object) {
         case CouncilStatus.available:
             return "available";
@@ -45,6 +49,7 @@ export function councilStatusToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.councilStatusToJSON = councilStatusToJSON;
 const baseUser = {
     alias: "",
     ownedCardSchemes: 0,
@@ -52,9 +57,10 @@ const baseUser = {
     cards: 0,
     CouncilStatus: 0,
     ReportMatches: false,
+    profileCard: 0,
 };
-export const User = {
-    encode(message, writer = Writer.create()) {
+exports.User = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.alias !== "") {
             writer.uint32(10).string(message.alias);
         }
@@ -74,7 +80,7 @@ export const User = {
         }
         writer.ldelim();
         for (const v of message.voteRights) {
-            VoteRight.encode(v, writer.uint32(42).fork()).ldelim();
+            vote_right_1.VoteRight.encode(v, writer.uint32(42).fork()).ldelim();
         }
         if (message.CouncilStatus !== 0) {
             writer.uint32(48).int32(message.CouncilStatus);
@@ -82,10 +88,13 @@ export const User = {
         if (message.ReportMatches === true) {
             writer.uint32(56).bool(message.ReportMatches);
         }
+        if (message.profileCard !== 0) {
+            writer.uint32(64).uint64(message.profileCard);
+        }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseUser };
         message.ownedCardSchemes = [];
@@ -132,13 +141,16 @@ export const User = {
                     }
                     break;
                 case 5:
-                    message.voteRights.push(VoteRight.decode(reader, reader.uint32()));
+                    message.voteRights.push(vote_right_1.VoteRight.decode(reader, reader.uint32()));
                     break;
                 case 6:
                     message.CouncilStatus = reader.int32();
                     break;
                 case 7:
                     message.ReportMatches = reader.bool();
+                    break;
+                case 8:
+                    message.profileCard = longToNumber(reader.uint64());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -178,7 +190,7 @@ export const User = {
         }
         if (object.voteRights !== undefined && object.voteRights !== null) {
             for (const e of object.voteRights) {
-                message.voteRights.push(VoteRight.fromJSON(e));
+                message.voteRights.push(vote_right_1.VoteRight.fromJSON(e));
             }
         }
         if (object.CouncilStatus !== undefined && object.CouncilStatus !== null) {
@@ -192,6 +204,12 @@ export const User = {
         }
         else {
             message.ReportMatches = false;
+        }
+        if (object.profileCard !== undefined && object.profileCard !== null) {
+            message.profileCard = Number(object.profileCard);
+        }
+        else {
+            message.profileCard = 0;
         }
         return message;
     },
@@ -217,7 +235,7 @@ export const User = {
             obj.cards = [];
         }
         if (message.voteRights) {
-            obj.voteRights = message.voteRights.map((e) => e ? VoteRight.toJSON(e) : undefined);
+            obj.voteRights = message.voteRights.map((e) => e ? vote_right_1.VoteRight.toJSON(e) : undefined);
         }
         else {
             obj.voteRights = [];
@@ -226,6 +244,8 @@ export const User = {
             (obj.CouncilStatus = councilStatusToJSON(message.CouncilStatus));
         message.ReportMatches !== undefined &&
             (obj.ReportMatches = message.ReportMatches);
+        message.profileCard !== undefined &&
+            (obj.profileCard = message.profileCard);
         return obj;
     },
     fromPartial(object) {
@@ -259,7 +279,7 @@ export const User = {
         }
         if (object.voteRights !== undefined && object.voteRights !== null) {
             for (const e of object.voteRights) {
-                message.voteRights.push(VoteRight.fromPartial(e));
+                message.voteRights.push(vote_right_1.VoteRight.fromPartial(e));
             }
         }
         if (object.CouncilStatus !== undefined && object.CouncilStatus !== null) {
@@ -273,6 +293,12 @@ export const User = {
         }
         else {
             message.ReportMatches = false;
+        }
+        if (object.profileCard !== undefined && object.profileCard !== null) {
+            message.profileCard = object.profileCard;
+        }
+        else {
+            message.profileCard = 0;
         }
         return message;
     },
@@ -294,7 +320,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

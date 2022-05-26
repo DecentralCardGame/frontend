@@ -1,8 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OutpCard = exports.Card = exports.statusToJSON = exports.statusFromJSON = exports.Status = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
-export var Status;
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var Status;
 (function (Status) {
     Status[Status["scheme"] = 0] = "scheme";
     Status[Status["prototype"] = 1] = "prototype";
@@ -14,8 +17,8 @@ export var Status;
     Status[Status["bannedVerySoon"] = 7] = "bannedVerySoon";
     Status[Status["none"] = 8] = "none";
     Status[Status["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(Status || (Status = {}));
-export function statusFromJSON(object) {
+})(Status = exports.Status || (exports.Status = {}));
+function statusFromJSON(object) {
     switch (object) {
         case 0:
         case "scheme":
@@ -50,7 +53,8 @@ export function statusFromJSON(object) {
             return Status.UNRECOGNIZED;
     }
 }
-export function statusToJSON(object) {
+exports.statusFromJSON = statusFromJSON;
+function statusToJSON(object) {
     switch (object) {
         case Status.scheme:
             return "scheme";
@@ -74,9 +78,11 @@ export function statusToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.statusToJSON = statusToJSON;
 const baseCard = {
     owner: "",
     artist: "",
+    image_id: 0,
     fullArt: false,
     notes: "",
     status: 0,
@@ -88,8 +94,8 @@ const baseCard = {
     inappropriateVotes: 0,
     nerflevel: 0,
 };
-export const Card = {
-    encode(message, writer = Writer.create()) {
+exports.Card = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.owner !== "") {
             writer.uint32(10).string(message.owner);
         }
@@ -99,8 +105,8 @@ export const Card = {
         if (message.content.length !== 0) {
             writer.uint32(26).bytes(message.content);
         }
-        if (message.image.length !== 0) {
-            writer.uint32(34).bytes(message.image);
+        if (message.image_id !== 0) {
+            writer.uint32(32).uint64(message.image_id);
         }
         if (message.fullArt === true) {
             writer.uint32(40).bool(message.fullArt);
@@ -135,7 +141,7 @@ export const Card = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseCard };
         message.voters = [];
@@ -152,7 +158,7 @@ export const Card = {
                     message.content = reader.bytes();
                     break;
                 case 4:
-                    message.image = reader.bytes();
+                    message.image_id = longToNumber(reader.uint64());
                     break;
                 case 5:
                     message.fullArt = reader.bool();
@@ -209,8 +215,11 @@ export const Card = {
         if (object.content !== undefined && object.content !== null) {
             message.content = bytesFromBase64(object.content);
         }
-        if (object.image !== undefined && object.image !== null) {
-            message.image = bytesFromBase64(object.image);
+        if (object.image_id !== undefined && object.image_id !== null) {
+            message.image_id = Number(object.image_id);
+        }
+        else {
+            message.image_id = 0;
         }
         if (object.fullArt !== undefined && object.fullArt !== null) {
             message.fullArt = Boolean(object.fullArt);
@@ -283,8 +292,7 @@ export const Card = {
         message.artist !== undefined && (obj.artist = message.artist);
         message.content !== undefined &&
             (obj.content = base64FromBytes(message.content !== undefined ? message.content : new Uint8Array()));
-        message.image !== undefined &&
-            (obj.image = base64FromBytes(message.image !== undefined ? message.image : new Uint8Array()));
+        message.image_id !== undefined && (obj.image_id = message.image_id);
         message.fullArt !== undefined && (obj.fullArt = message.fullArt);
         message.notes !== undefined && (obj.notes = message.notes);
         message.status !== undefined && (obj.status = statusToJSON(message.status));
@@ -327,11 +335,11 @@ export const Card = {
         else {
             message.content = new Uint8Array();
         }
-        if (object.image !== undefined && object.image !== null) {
-            message.image = object.image;
+        if (object.image_id !== undefined && object.image_id !== null) {
+            message.image_id = object.image_id;
         }
         else {
-            message.image = new Uint8Array();
+            message.image_id = 0;
         }
         if (object.fullArt !== undefined && object.fullArt !== null) {
             message.fullArt = object.fullArt;
@@ -415,8 +423,8 @@ const baseOutpCard = {
     inappropriateVotes: 0,
     nerflevel: 0,
 };
-export const OutpCard = {
-    encode(message, writer = Writer.create()) {
+exports.OutpCard = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.owner !== "") {
             writer.uint32(10).string(message.owner);
         }
@@ -462,7 +470,7 @@ export const OutpCard = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseOutpCard };
         message.voters = [];
@@ -766,7 +774,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

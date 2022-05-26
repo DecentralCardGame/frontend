@@ -1,8 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VotingResults = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import { VotingResult } from "../cardchain/voting_result";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+const voting_result_1 = require("../cardchain/voting_result");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
 const baseVotingResults = {
     totalVotes: 0,
     totalFairEnoughVotes: 0,
@@ -11,8 +14,8 @@ const baseVotingResults = {
     totalInappropriateVotes: 0,
     notes: "",
 };
-export const VotingResults = {
-    encode(message, writer = Writer.create()) {
+exports.VotingResults = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.totalVotes !== 0) {
             writer.uint32(8).uint64(message.totalVotes);
         }
@@ -29,7 +32,7 @@ export const VotingResults = {
             writer.uint32(40).uint64(message.totalInappropriateVotes);
         }
         for (const v of message.cardResults) {
-            VotingResult.encode(v, writer.uint32(50).fork()).ldelim();
+            voting_result_1.VotingResult.encode(v, writer.uint32(50).fork()).ldelim();
         }
         if (message.notes !== "") {
             writer.uint32(58).string(message.notes);
@@ -37,7 +40,7 @@ export const VotingResults = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseVotingResults };
         message.cardResults = [];
@@ -60,7 +63,7 @@ export const VotingResults = {
                     message.totalInappropriateVotes = longToNumber(reader.uint64());
                     break;
                 case 6:
-                    message.cardResults.push(VotingResult.decode(reader, reader.uint32()));
+                    message.cardResults.push(voting_result_1.VotingResult.decode(reader, reader.uint32()));
                     break;
                 case 7:
                     message.notes = reader.string();
@@ -111,7 +114,7 @@ export const VotingResults = {
         }
         if (object.cardResults !== undefined && object.cardResults !== null) {
             for (const e of object.cardResults) {
-                message.cardResults.push(VotingResult.fromJSON(e));
+                message.cardResults.push(voting_result_1.VotingResult.fromJSON(e));
             }
         }
         if (object.notes !== undefined && object.notes !== null) {
@@ -134,7 +137,7 @@ export const VotingResults = {
         message.totalInappropriateVotes !== undefined &&
             (obj.totalInappropriateVotes = message.totalInappropriateVotes);
         if (message.cardResults) {
-            obj.cardResults = message.cardResults.map((e) => e ? VotingResult.toJSON(e) : undefined);
+            obj.cardResults = message.cardResults.map((e) => e ? voting_result_1.VotingResult.toJSON(e) : undefined);
         }
         else {
             obj.cardResults = [];
@@ -181,7 +184,7 @@ export const VotingResults = {
         }
         if (object.cardResults !== undefined && object.cardResults !== null) {
             for (const e of object.cardResults) {
-                message.cardResults.push(VotingResult.fromPartial(e));
+                message.cardResults.push(voting_result_1.VotingResult.fromPartial(e));
             }
         }
         if (object.notes !== undefined && object.notes !== null) {
@@ -210,7 +213,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

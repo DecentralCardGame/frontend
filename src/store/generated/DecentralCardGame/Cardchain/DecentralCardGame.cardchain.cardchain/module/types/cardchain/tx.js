@@ -1,17 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MsgBuyCardResponse = exports.MsgBuyCard = exports.MsgCreateSellOfferResponse = exports.MsgCreateSellOffer = exports.MsgSubmitCollectionProposalResponse = exports.MsgSubmitCollectionProposal = exports.MsgAddContributorToCollectionResponse = exports.MsgAddContributorToCollection = exports.MsgRemoveContributorFromCollectionResponse = exports.MsgRemoveContributorFromCollection = exports.MsgRemoveCardFromCollectionResponse = exports.MsgRemoveCardFromCollection = exports.MsgBuyCollectionResponse = exports.MsgBuyCollection = exports.MsgFinalizeCollectionResponse = exports.MsgFinalizeCollection = exports.MsgAddCardToCollectionResponse = exports.MsgAddCardToCollection = exports.MsgCreateCollectionResponse = exports.MsgCreateCollection = exports.MsgApointMatchReporterResponse = exports.MsgApointMatchReporter = exports.MsgSubmitMatchReporterProposalResponse = exports.MsgSubmitMatchReporterProposal = exports.MsgReportMatchResponse = exports.MsgReportMatch = exports.MsgRegisterForCouncilResponse = exports.MsgRegisterForCouncil = exports.MsgChangeArtistResponse = exports.MsgChangeArtist = exports.MsgSubmitCopyrightProposalResponse = exports.MsgSubmitCopyrightProposal = exports.MsgAddArtworkResponse = exports.MsgAddArtwork = exports.MsgDonateToCardResponse = exports.MsgDonateToCard = exports.MsgTransferCardResponse = exports.MsgTransferCard = exports.MsgSaveCardContentResponse = exports.MsgSaveCardContent = exports.MsgVoteCardResponse = exports.MsgVoteCard = exports.MsgBuyCardSchemeResponse = exports.MsgBuyCardScheme = exports.MsgCreateuserResponse = exports.MsgCreateuser = exports.outcomeToJSON = exports.outcomeFromJSON = exports.Outcome = exports.protobufPackage = void 0;
+exports.MsgClientImpl = exports.MsgSetProfileCardResponse = exports.MsgSetProfileCard = exports.MsgConfirmMatchResponse = exports.MsgConfirmMatch = exports.MsgRewokeCouncilRegistrationResponse = exports.MsgRewokeCouncilRegistration = exports.MsgRestartCouncilResponse = exports.MsgRestartCouncil = exports.MsgRevealCouncilResponseResponse = exports.MsgRevealCouncilResponse = exports.MsgCommitCouncilResponseResponse = exports.MsgCommitCouncilResponse = exports.MsgCreateCouncilResponse = exports.MsgCreateCouncil = exports.MsgSetCardRarityResponse = exports.MsgSetCardRarity = exports.MsgAddStoryToCollectionResponse = exports.MsgAddStoryToCollection = exports.MsgAddArtworkToCollectionResponse = exports.MsgAddArtworkToCollection = exports.MsgRemoveSellOfferResponse = exports.MsgRemoveSellOffer = void 0;
 /* eslint-disable */
-import { responseFromJSON, responseToJSON, } from "../cardchain/council";
-import { Reader, util, configure, Writer } from "protobufjs/minimal";
-import * as Long from "long";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
-export var Outcome;
+const council_1 = require("../cardchain/council");
+const minimal_1 = require("protobufjs/minimal");
+const Long = require("long");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var Outcome;
 (function (Outcome) {
     Outcome[Outcome["AWon"] = 0] = "AWon";
     Outcome[Outcome["BWon"] = 1] = "BWon";
     Outcome[Outcome["Draw"] = 2] = "Draw";
     Outcome[Outcome["Aborted"] = 3] = "Aborted";
     Outcome[Outcome["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(Outcome || (Outcome = {}));
-export function outcomeFromJSON(object) {
+})(Outcome = exports.Outcome || (exports.Outcome = {}));
+function outcomeFromJSON(object) {
     switch (object) {
         case 0:
         case "AWon":
@@ -31,7 +35,8 @@ export function outcomeFromJSON(object) {
             return Outcome.UNRECOGNIZED;
     }
 }
-export function outcomeToJSON(object) {
+exports.outcomeFromJSON = outcomeFromJSON;
+function outcomeToJSON(object) {
     switch (object) {
         case Outcome.AWon:
             return "AWon";
@@ -45,9 +50,10 @@ export function outcomeToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.outcomeToJSON = outcomeToJSON;
 const baseMsgCreateuser = { creator: "", newUser: "", alias: "" };
-export const MsgCreateuser = {
-    encode(message, writer = Writer.create()) {
+exports.MsgCreateuser = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -60,7 +66,7 @@ export const MsgCreateuser = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgCreateuser };
         while (reader.pos < end) {
@@ -135,12 +141,12 @@ export const MsgCreateuser = {
     },
 };
 const baseMsgCreateuserResponse = {};
-export const MsgCreateuserResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgCreateuserResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgCreateuserResponse };
         while (reader.pos < end) {
@@ -167,8 +173,8 @@ export const MsgCreateuserResponse = {
     },
 };
 const baseMsgBuyCardScheme = { creator: "", bid: "" };
-export const MsgBuyCardScheme = {
-    encode(message, writer = Writer.create()) {
+exports.MsgBuyCardScheme = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -178,7 +184,7 @@ export const MsgBuyCardScheme = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgBuyCardScheme };
         while (reader.pos < end) {
@@ -237,12 +243,12 @@ export const MsgBuyCardScheme = {
     },
 };
 const baseMsgBuyCardSchemeResponse = {};
-export const MsgBuyCardSchemeResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgBuyCardSchemeResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgBuyCardSchemeResponse,
@@ -275,8 +281,8 @@ export const MsgBuyCardSchemeResponse = {
     },
 };
 const baseMsgVoteCard = { creator: "", cardId: 0, voteType: "" };
-export const MsgVoteCard = {
-    encode(message, writer = Writer.create()) {
+exports.MsgVoteCard = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -289,7 +295,7 @@ export const MsgVoteCard = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgVoteCard };
         while (reader.pos < end) {
@@ -364,12 +370,12 @@ export const MsgVoteCard = {
     },
 };
 const baseMsgVoteCardResponse = {};
-export const MsgVoteCardResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgVoteCardResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgVoteCardResponse };
         while (reader.pos < end) {
@@ -401,8 +407,8 @@ const baseMsgSaveCardContent = {
     notes: "",
     artist: "",
 };
-export const MsgSaveCardContent = {
-    encode(message, writer = Writer.create()) {
+exports.MsgSaveCardContent = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -421,7 +427,7 @@ export const MsgSaveCardContent = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgSaveCardContent };
         while (reader.pos < end) {
@@ -526,12 +532,12 @@ export const MsgSaveCardContent = {
     },
 };
 const baseMsgSaveCardContentResponse = {};
-export const MsgSaveCardContentResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgSaveCardContentResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSaveCardContentResponse,
@@ -564,8 +570,8 @@ export const MsgSaveCardContentResponse = {
     },
 };
 const baseMsgTransferCard = { creator: "", cardId: 0, receiver: "" };
-export const MsgTransferCard = {
-    encode(message, writer = Writer.create()) {
+exports.MsgTransferCard = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -578,7 +584,7 @@ export const MsgTransferCard = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgTransferCard };
         while (reader.pos < end) {
@@ -653,12 +659,12 @@ export const MsgTransferCard = {
     },
 };
 const baseMsgTransferCardResponse = {};
-export const MsgTransferCardResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgTransferCardResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgTransferCardResponse,
@@ -691,8 +697,8 @@ export const MsgTransferCardResponse = {
     },
 };
 const baseMsgDonateToCard = { creator: "", cardId: 0, amount: "" };
-export const MsgDonateToCard = {
-    encode(message, writer = Writer.create()) {
+exports.MsgDonateToCard = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -705,7 +711,7 @@ export const MsgDonateToCard = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgDonateToCard };
         while (reader.pos < end) {
@@ -780,12 +786,12 @@ export const MsgDonateToCard = {
     },
 };
 const baseMsgDonateToCardResponse = {};
-export const MsgDonateToCardResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgDonateToCardResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgDonateToCardResponse,
@@ -818,8 +824,8 @@ export const MsgDonateToCardResponse = {
     },
 };
 const baseMsgAddArtwork = { creator: "", cardId: 0, fullArt: false };
-export const MsgAddArtwork = {
-    encode(message, writer = Writer.create()) {
+exports.MsgAddArtwork = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -835,7 +841,7 @@ export const MsgAddArtwork = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgAddArtwork };
         while (reader.pos < end) {
@@ -924,12 +930,12 @@ export const MsgAddArtwork = {
     },
 };
 const baseMsgAddArtworkResponse = {};
-export const MsgAddArtworkResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgAddArtworkResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgAddArtworkResponse };
         while (reader.pos < end) {
@@ -961,8 +967,8 @@ const baseMsgSubmitCopyrightProposal = {
     description: "",
     link: "",
 };
-export const MsgSubmitCopyrightProposal = {
-    encode(message, writer = Writer.create()) {
+exports.MsgSubmitCopyrightProposal = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -978,7 +984,7 @@ export const MsgSubmitCopyrightProposal = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSubmitCopyrightProposal,
@@ -1076,12 +1082,12 @@ export const MsgSubmitCopyrightProposal = {
     },
 };
 const baseMsgSubmitCopyrightProposalResponse = {};
-export const MsgSubmitCopyrightProposalResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgSubmitCopyrightProposalResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSubmitCopyrightProposalResponse,
@@ -1114,8 +1120,8 @@ export const MsgSubmitCopyrightProposalResponse = {
     },
 };
 const baseMsgChangeArtist = { creator: "", cardID: 0, artist: "" };
-export const MsgChangeArtist = {
-    encode(message, writer = Writer.create()) {
+exports.MsgChangeArtist = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -1128,7 +1134,7 @@ export const MsgChangeArtist = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgChangeArtist };
         while (reader.pos < end) {
@@ -1203,12 +1209,12 @@ export const MsgChangeArtist = {
     },
 };
 const baseMsgChangeArtistResponse = {};
-export const MsgChangeArtistResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgChangeArtistResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgChangeArtistResponse,
@@ -1241,15 +1247,15 @@ export const MsgChangeArtistResponse = {
     },
 };
 const baseMsgRegisterForCouncil = { creator: "" };
-export const MsgRegisterForCouncil = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRegisterForCouncil = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgRegisterForCouncil };
         while (reader.pos < end) {
@@ -1292,12 +1298,12 @@ export const MsgRegisterForCouncil = {
     },
 };
 const baseMsgRegisterForCouncilResponse = {};
-export const MsgRegisterForCouncilResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRegisterForCouncilResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRegisterForCouncilResponse,
@@ -1337,8 +1343,8 @@ const baseMsgReportMatch = {
     cardsB: 0,
     outcome: 0,
 };
-export const MsgReportMatch = {
-    encode(message, writer = Writer.create()) {
+exports.MsgReportMatch = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -1364,7 +1370,7 @@ export const MsgReportMatch = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgReportMatch };
         message.cardsA = [];
@@ -1516,15 +1522,15 @@ export const MsgReportMatch = {
     },
 };
 const baseMsgReportMatchResponse = { matchId: 0 };
-export const MsgReportMatchResponse = {
-    encode(message, writer = Writer.create()) {
+exports.MsgReportMatchResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.matchId !== 0) {
             writer.uint32(8).uint64(message.matchId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgReportMatchResponse };
         while (reader.pos < end) {
@@ -1572,8 +1578,8 @@ const baseMsgSubmitMatchReporterProposal = {
     deposit: "",
     description: "",
 };
-export const MsgSubmitMatchReporterProposal = {
-    encode(message, writer = Writer.create()) {
+exports.MsgSubmitMatchReporterProposal = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -1589,7 +1595,7 @@ export const MsgSubmitMatchReporterProposal = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSubmitMatchReporterProposal,
@@ -1687,12 +1693,12 @@ export const MsgSubmitMatchReporterProposal = {
     },
 };
 const baseMsgSubmitMatchReporterProposalResponse = {};
-export const MsgSubmitMatchReporterProposalResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgSubmitMatchReporterProposalResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSubmitMatchReporterProposalResponse,
@@ -1725,8 +1731,8 @@ export const MsgSubmitMatchReporterProposalResponse = {
     },
 };
 const baseMsgApointMatchReporter = { creator: "", reporter: "" };
-export const MsgApointMatchReporter = {
-    encode(message, writer = Writer.create()) {
+exports.MsgApointMatchReporter = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -1736,7 +1742,7 @@ export const MsgApointMatchReporter = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgApointMatchReporter };
         while (reader.pos < end) {
@@ -1795,12 +1801,12 @@ export const MsgApointMatchReporter = {
     },
 };
 const baseMsgApointMatchReporterResponse = {};
-export const MsgApointMatchReporterResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgApointMatchReporterResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgApointMatchReporterResponse,
@@ -1839,8 +1845,8 @@ const baseMsgCreateCollection = {
     storyWriter: "",
     contributors: "",
 };
-export const MsgCreateCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgCreateCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -1859,7 +1865,7 @@ export const MsgCreateCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgCreateCollection };
         message.contributors = [];
@@ -1973,12 +1979,12 @@ export const MsgCreateCollection = {
     },
 };
 const baseMsgCreateCollectionResponse = {};
-export const MsgCreateCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgCreateCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCreateCollectionResponse,
@@ -2015,8 +2021,8 @@ const baseMsgAddCardToCollection = {
     collectionId: 0,
     cardId: 0,
 };
-export const MsgAddCardToCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgAddCardToCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2029,7 +2035,7 @@ export const MsgAddCardToCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgAddCardToCollection };
         while (reader.pos < end) {
@@ -2105,12 +2111,12 @@ export const MsgAddCardToCollection = {
     },
 };
 const baseMsgAddCardToCollectionResponse = {};
-export const MsgAddCardToCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgAddCardToCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddCardToCollectionResponse,
@@ -2143,8 +2149,8 @@ export const MsgAddCardToCollectionResponse = {
     },
 };
 const baseMsgFinalizeCollection = { creator: "", collectionId: 0 };
-export const MsgFinalizeCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgFinalizeCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2154,7 +2160,7 @@ export const MsgFinalizeCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgFinalizeCollection };
         while (reader.pos < end) {
@@ -2214,12 +2220,12 @@ export const MsgFinalizeCollection = {
     },
 };
 const baseMsgFinalizeCollectionResponse = {};
-export const MsgFinalizeCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgFinalizeCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgFinalizeCollectionResponse,
@@ -2252,8 +2258,8 @@ export const MsgFinalizeCollectionResponse = {
     },
 };
 const baseMsgBuyCollection = { creator: "", collectionId: 0 };
-export const MsgBuyCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgBuyCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2263,7 +2269,7 @@ export const MsgBuyCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgBuyCollection };
         while (reader.pos < end) {
@@ -2323,12 +2329,12 @@ export const MsgBuyCollection = {
     },
 };
 const baseMsgBuyCollectionResponse = {};
-export const MsgBuyCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgBuyCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgBuyCollectionResponse,
@@ -2365,8 +2371,8 @@ const baseMsgRemoveCardFromCollection = {
     collectionId: 0,
     cardId: 0,
 };
-export const MsgRemoveCardFromCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRemoveCardFromCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2379,7 +2385,7 @@ export const MsgRemoveCardFromCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRemoveCardFromCollection,
@@ -2461,12 +2467,12 @@ export const MsgRemoveCardFromCollection = {
     },
 };
 const baseMsgRemoveCardFromCollectionResponse = {};
-export const MsgRemoveCardFromCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRemoveCardFromCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRemoveCardFromCollectionResponse,
@@ -2503,8 +2509,8 @@ const baseMsgRemoveContributorFromCollection = {
     collectionId: 0,
     user: "",
 };
-export const MsgRemoveContributorFromCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRemoveContributorFromCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2517,7 +2523,7 @@ export const MsgRemoveContributorFromCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRemoveContributorFromCollection,
@@ -2599,12 +2605,12 @@ export const MsgRemoveContributorFromCollection = {
     },
 };
 const baseMsgRemoveContributorFromCollectionResponse = {};
-export const MsgRemoveContributorFromCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRemoveContributorFromCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRemoveContributorFromCollectionResponse,
@@ -2641,8 +2647,8 @@ const baseMsgAddContributorToCollection = {
     collectionId: 0,
     user: "",
 };
-export const MsgAddContributorToCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgAddContributorToCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2655,7 +2661,7 @@ export const MsgAddContributorToCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddContributorToCollection,
@@ -2737,12 +2743,12 @@ export const MsgAddContributorToCollection = {
     },
 };
 const baseMsgAddContributorToCollectionResponse = {};
-export const MsgAddContributorToCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgAddContributorToCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddContributorToCollectionResponse,
@@ -2778,8 +2784,8 @@ const baseMsgSubmitCollectionProposal = {
     creator: "",
     collectionId: 0,
 };
-export const MsgSubmitCollectionProposal = {
-    encode(message, writer = Writer.create()) {
+exports.MsgSubmitCollectionProposal = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2789,7 +2795,7 @@ export const MsgSubmitCollectionProposal = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSubmitCollectionProposal,
@@ -2855,12 +2861,12 @@ export const MsgSubmitCollectionProposal = {
     },
 };
 const baseMsgSubmitCollectionProposalResponse = {};
-export const MsgSubmitCollectionProposalResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgSubmitCollectionProposalResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSubmitCollectionProposalResponse,
@@ -2893,8 +2899,8 @@ export const MsgSubmitCollectionProposalResponse = {
     },
 };
 const baseMsgCreateSellOffer = { creator: "", card: 0, price: "" };
-export const MsgCreateSellOffer = {
-    encode(message, writer = Writer.create()) {
+exports.MsgCreateSellOffer = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -2907,7 +2913,7 @@ export const MsgCreateSellOffer = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgCreateSellOffer };
         while (reader.pos < end) {
@@ -2982,12 +2988,12 @@ export const MsgCreateSellOffer = {
     },
 };
 const baseMsgCreateSellOfferResponse = {};
-export const MsgCreateSellOfferResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgCreateSellOfferResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCreateSellOfferResponse,
@@ -3020,8 +3026,8 @@ export const MsgCreateSellOfferResponse = {
     },
 };
 const baseMsgBuyCard = { creator: "", sellOfferId: 0 };
-export const MsgBuyCard = {
-    encode(message, writer = Writer.create()) {
+exports.MsgBuyCard = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3031,7 +3037,7 @@ export const MsgBuyCard = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgBuyCard };
         while (reader.pos < end) {
@@ -3091,12 +3097,12 @@ export const MsgBuyCard = {
     },
 };
 const baseMsgBuyCardResponse = {};
-export const MsgBuyCardResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgBuyCardResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgBuyCardResponse };
         while (reader.pos < end) {
@@ -3123,8 +3129,8 @@ export const MsgBuyCardResponse = {
     },
 };
 const baseMsgRemoveSellOffer = { creator: "", sellOfferId: 0 };
-export const MsgRemoveSellOffer = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRemoveSellOffer = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3134,7 +3140,7 @@ export const MsgRemoveSellOffer = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgRemoveSellOffer };
         while (reader.pos < end) {
@@ -3194,12 +3200,12 @@ export const MsgRemoveSellOffer = {
     },
 };
 const baseMsgRemoveSellOfferResponse = {};
-export const MsgRemoveSellOfferResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRemoveSellOfferResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRemoveSellOfferResponse,
@@ -3232,8 +3238,8 @@ export const MsgRemoveSellOfferResponse = {
     },
 };
 const baseMsgAddArtworkToCollection = { creator: "", collectionId: 0 };
-export const MsgAddArtworkToCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgAddArtworkToCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3246,7 +3252,7 @@ export const MsgAddArtworkToCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddArtworkToCollection,
@@ -3326,12 +3332,12 @@ export const MsgAddArtworkToCollection = {
     },
 };
 const baseMsgAddArtworkToCollectionResponse = {};
-export const MsgAddArtworkToCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgAddArtworkToCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddArtworkToCollectionResponse,
@@ -3368,8 +3374,8 @@ const baseMsgAddStoryToCollection = {
     collectionId: 0,
     story: "",
 };
-export const MsgAddStoryToCollection = {
-    encode(message, writer = Writer.create()) {
+exports.MsgAddStoryToCollection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3382,7 +3388,7 @@ export const MsgAddStoryToCollection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddStoryToCollection,
@@ -3464,12 +3470,12 @@ export const MsgAddStoryToCollection = {
     },
 };
 const baseMsgAddStoryToCollectionResponse = {};
-export const MsgAddStoryToCollectionResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgAddStoryToCollectionResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgAddStoryToCollectionResponse,
@@ -3507,8 +3513,8 @@ const baseMsgSetCardRarity = {
     collectionId: 0,
     rarity: "",
 };
-export const MsgSetCardRarity = {
-    encode(message, writer = Writer.create()) {
+exports.MsgSetCardRarity = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3524,7 +3530,7 @@ export const MsgSetCardRarity = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgSetCardRarity };
         while (reader.pos < end) {
@@ -3616,12 +3622,12 @@ export const MsgSetCardRarity = {
     },
 };
 const baseMsgSetCardRarityResponse = {};
-export const MsgSetCardRarityResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgSetCardRarityResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgSetCardRarityResponse,
@@ -3654,8 +3660,8 @@ export const MsgSetCardRarityResponse = {
     },
 };
 const baseMsgCreateCouncil = { creator: "", cardId: 0 };
-export const MsgCreateCouncil = {
-    encode(message, writer = Writer.create()) {
+exports.MsgCreateCouncil = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3665,7 +3671,7 @@ export const MsgCreateCouncil = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgCreateCouncil };
         while (reader.pos < end) {
@@ -3724,12 +3730,12 @@ export const MsgCreateCouncil = {
     },
 };
 const baseMsgCreateCouncilResponse = {};
-export const MsgCreateCouncilResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgCreateCouncilResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCreateCouncilResponse,
@@ -3767,8 +3773,8 @@ const baseMsgCommitCouncilResponse = {
     councilId: 0,
     suggestion: "",
 };
-export const MsgCommitCouncilResponse = {
-    encode(message, writer = Writer.create()) {
+exports.MsgCommitCouncilResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3784,7 +3790,7 @@ export const MsgCommitCouncilResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCommitCouncilResponse,
@@ -3881,12 +3887,12 @@ export const MsgCommitCouncilResponse = {
     },
 };
 const baseMsgCommitCouncilResponseResponse = {};
-export const MsgCommitCouncilResponseResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgCommitCouncilResponseResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCommitCouncilResponseResponse,
@@ -3924,8 +3930,8 @@ const baseMsgRevealCouncilResponse = {
     secret: "",
     councilId: 0,
 };
-export const MsgRevealCouncilResponse = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRevealCouncilResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -3941,7 +3947,7 @@ export const MsgRevealCouncilResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRevealCouncilResponse,
@@ -3979,7 +3985,7 @@ export const MsgRevealCouncilResponse = {
             message.creator = "";
         }
         if (object.response !== undefined && object.response !== null) {
-            message.response = responseFromJSON(object.response);
+            message.response = (0, council_1.responseFromJSON)(object.response);
         }
         else {
             message.response = 0;
@@ -4002,7 +4008,7 @@ export const MsgRevealCouncilResponse = {
         const obj = {};
         message.creator !== undefined && (obj.creator = message.creator);
         message.response !== undefined &&
-            (obj.response = responseToJSON(message.response));
+            (obj.response = (0, council_1.responseToJSON)(message.response));
         message.secret !== undefined && (obj.secret = message.secret);
         message.councilId !== undefined && (obj.councilId = message.councilId);
         return obj;
@@ -4039,12 +4045,12 @@ export const MsgRevealCouncilResponse = {
     },
 };
 const baseMsgRevealCouncilResponseResponse = {};
-export const MsgRevealCouncilResponseResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRevealCouncilResponseResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRevealCouncilResponseResponse,
@@ -4077,8 +4083,8 @@ export const MsgRevealCouncilResponseResponse = {
     },
 };
 const baseMsgRestartCouncil = { creator: "", councilId: 0 };
-export const MsgRestartCouncil = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRestartCouncil = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
@@ -4088,7 +4094,7 @@ export const MsgRestartCouncil = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgRestartCouncil };
         while (reader.pos < end) {
@@ -4147,12 +4153,12 @@ export const MsgRestartCouncil = {
     },
 };
 const baseMsgRestartCouncilResponse = {};
-export const MsgRestartCouncilResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRestartCouncilResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRestartCouncilResponse,
@@ -4185,15 +4191,15 @@ export const MsgRestartCouncilResponse = {
     },
 };
 const baseMsgRewokeCouncilRegistration = { creator: "" };
-export const MsgRewokeCouncilRegistration = {
-    encode(message, writer = Writer.create()) {
+exports.MsgRewokeCouncilRegistration = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.creator !== "") {
             writer.uint32(10).string(message.creator);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRewokeCouncilRegistration,
@@ -4242,12 +4248,12 @@ export const MsgRewokeCouncilRegistration = {
     },
 };
 const baseMsgRewokeCouncilRegistrationResponse = {};
-export const MsgRewokeCouncilRegistrationResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgRewokeCouncilRegistrationResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgRewokeCouncilRegistrationResponse,
@@ -4279,171 +4285,418 @@ export const MsgRewokeCouncilRegistrationResponse = {
         return message;
     },
 };
-export class MsgClientImpl {
+const baseMsgConfirmMatch = { creator: "", matchId: 0, outcome: 0 };
+exports.MsgConfirmMatch = {
+    encode(message, writer = minimal_1.Writer.create()) {
+        if (message.creator !== "") {
+            writer.uint32(10).string(message.creator);
+        }
+        if (message.matchId !== 0) {
+            writer.uint32(16).uint64(message.matchId);
+        }
+        if (message.outcome !== 0) {
+            writer.uint32(24).int32(message.outcome);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgConfirmMatch };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.creator = reader.string();
+                    break;
+                case 2:
+                    message.matchId = longToNumber(reader.uint64());
+                    break;
+                case 3:
+                    message.outcome = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgConfirmMatch };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = String(object.creator);
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.matchId !== undefined && object.matchId !== null) {
+            message.matchId = Number(object.matchId);
+        }
+        else {
+            message.matchId = 0;
+        }
+        if (object.outcome !== undefined && object.outcome !== null) {
+            message.outcome = outcomeFromJSON(object.outcome);
+        }
+        else {
+            message.outcome = 0;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.creator !== undefined && (obj.creator = message.creator);
+        message.matchId !== undefined && (obj.matchId = message.matchId);
+        message.outcome !== undefined &&
+            (obj.outcome = outcomeToJSON(message.outcome));
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgConfirmMatch };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = object.creator;
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.matchId !== undefined && object.matchId !== null) {
+            message.matchId = object.matchId;
+        }
+        else {
+            message.matchId = 0;
+        }
+        if (object.outcome !== undefined && object.outcome !== null) {
+            message.outcome = object.outcome;
+        }
+        else {
+            message.outcome = 0;
+        }
+        return message;
+    },
+};
+const baseMsgConfirmMatchResponse = {};
+exports.MsgConfirmMatchResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = {
+            ...baseMsgConfirmMatchResponse,
+        };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = {
+            ...baseMsgConfirmMatchResponse,
+        };
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = {
+            ...baseMsgConfirmMatchResponse,
+        };
+        return message;
+    },
+};
+const baseMsgSetProfileCard = { creator: "", cardId: 0 };
+exports.MsgSetProfileCard = {
+    encode(message, writer = minimal_1.Writer.create()) {
+        if (message.creator !== "") {
+            writer.uint32(10).string(message.creator);
+        }
+        if (message.cardId !== 0) {
+            writer.uint32(16).uint64(message.cardId);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseMsgSetProfileCard };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.creator = reader.string();
+                    break;
+                case 2:
+                    message.cardId = longToNumber(reader.uint64());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseMsgSetProfileCard };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = String(object.creator);
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.cardId !== undefined && object.cardId !== null) {
+            message.cardId = Number(object.cardId);
+        }
+        else {
+            message.cardId = 0;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.creator !== undefined && (obj.creator = message.creator);
+        message.cardId !== undefined && (obj.cardId = message.cardId);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseMsgSetProfileCard };
+        if (object.creator !== undefined && object.creator !== null) {
+            message.creator = object.creator;
+        }
+        else {
+            message.creator = "";
+        }
+        if (object.cardId !== undefined && object.cardId !== null) {
+            message.cardId = object.cardId;
+        }
+        else {
+            message.cardId = 0;
+        }
+        return message;
+    },
+};
+const baseMsgSetProfileCardResponse = {};
+exports.MsgSetProfileCardResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = {
+            ...baseMsgSetProfileCardResponse,
+        };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = {
+            ...baseMsgSetProfileCardResponse,
+        };
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = {
+            ...baseMsgSetProfileCardResponse,
+        };
+        return message;
+    },
+};
+class MsgClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
     }
     Createuser(request) {
-        const data = MsgCreateuser.encode(request).finish();
+        const data = exports.MsgCreateuser.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "Createuser", data);
-        return promise.then((data) => MsgCreateuserResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgCreateuserResponse.decode(new minimal_1.Reader(data)));
     }
     BuyCardScheme(request) {
-        const data = MsgBuyCardScheme.encode(request).finish();
+        const data = exports.MsgBuyCardScheme.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "BuyCardScheme", data);
-        return promise.then((data) => MsgBuyCardSchemeResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgBuyCardSchemeResponse.decode(new minimal_1.Reader(data)));
     }
     VoteCard(request) {
-        const data = MsgVoteCard.encode(request).finish();
+        const data = exports.MsgVoteCard.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "VoteCard", data);
-        return promise.then((data) => MsgVoteCardResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgVoteCardResponse.decode(new minimal_1.Reader(data)));
     }
     SaveCardContent(request) {
-        const data = MsgSaveCardContent.encode(request).finish();
+        const data = exports.MsgSaveCardContent.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "SaveCardContent", data);
-        return promise.then((data) => MsgSaveCardContentResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgSaveCardContentResponse.decode(new minimal_1.Reader(data)));
     }
     TransferCard(request) {
-        const data = MsgTransferCard.encode(request).finish();
+        const data = exports.MsgTransferCard.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "TransferCard", data);
-        return promise.then((data) => MsgTransferCardResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgTransferCardResponse.decode(new minimal_1.Reader(data)));
     }
     DonateToCard(request) {
-        const data = MsgDonateToCard.encode(request).finish();
+        const data = exports.MsgDonateToCard.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "DonateToCard", data);
-        return promise.then((data) => MsgDonateToCardResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgDonateToCardResponse.decode(new minimal_1.Reader(data)));
     }
     AddArtwork(request) {
-        const data = MsgAddArtwork.encode(request).finish();
+        const data = exports.MsgAddArtwork.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "AddArtwork", data);
-        return promise.then((data) => MsgAddArtworkResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgAddArtworkResponse.decode(new minimal_1.Reader(data)));
     }
     SubmitCopyrightProposal(request) {
-        const data = MsgSubmitCopyrightProposal.encode(request).finish();
+        const data = exports.MsgSubmitCopyrightProposal.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "SubmitCopyrightProposal", data);
-        return promise.then((data) => MsgSubmitCopyrightProposalResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgSubmitCopyrightProposalResponse.decode(new minimal_1.Reader(data)));
     }
     ChangeArtist(request) {
-        const data = MsgChangeArtist.encode(request).finish();
+        const data = exports.MsgChangeArtist.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "ChangeArtist", data);
-        return promise.then((data) => MsgChangeArtistResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgChangeArtistResponse.decode(new minimal_1.Reader(data)));
     }
     RegisterForCouncil(request) {
-        const data = MsgRegisterForCouncil.encode(request).finish();
+        const data = exports.MsgRegisterForCouncil.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RegisterForCouncil", data);
-        return promise.then((data) => MsgRegisterForCouncilResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRegisterForCouncilResponse.decode(new minimal_1.Reader(data)));
     }
     ReportMatch(request) {
-        const data = MsgReportMatch.encode(request).finish();
+        const data = exports.MsgReportMatch.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "ReportMatch", data);
-        return promise.then((data) => MsgReportMatchResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgReportMatchResponse.decode(new minimal_1.Reader(data)));
     }
     SubmitMatchReporterProposal(request) {
-        const data = MsgSubmitMatchReporterProposal.encode(request).finish();
+        const data = exports.MsgSubmitMatchReporterProposal.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "SubmitMatchReporterProposal", data);
-        return promise.then((data) => MsgSubmitMatchReporterProposalResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgSubmitMatchReporterProposalResponse.decode(new minimal_1.Reader(data)));
     }
     ApointMatchReporter(request) {
-        const data = MsgApointMatchReporter.encode(request).finish();
+        const data = exports.MsgApointMatchReporter.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "ApointMatchReporter", data);
-        return promise.then((data) => MsgApointMatchReporterResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgApointMatchReporterResponse.decode(new minimal_1.Reader(data)));
     }
     CreateCollection(request) {
-        const data = MsgCreateCollection.encode(request).finish();
+        const data = exports.MsgCreateCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "CreateCollection", data);
-        return promise.then((data) => MsgCreateCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgCreateCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     AddCardToCollection(request) {
-        const data = MsgAddCardToCollection.encode(request).finish();
+        const data = exports.MsgAddCardToCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "AddCardToCollection", data);
-        return promise.then((data) => MsgAddCardToCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgAddCardToCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     FinalizeCollection(request) {
-        const data = MsgFinalizeCollection.encode(request).finish();
+        const data = exports.MsgFinalizeCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "FinalizeCollection", data);
-        return promise.then((data) => MsgFinalizeCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgFinalizeCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     BuyCollection(request) {
-        const data = MsgBuyCollection.encode(request).finish();
+        const data = exports.MsgBuyCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "BuyCollection", data);
-        return promise.then((data) => MsgBuyCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgBuyCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     RemoveCardFromCollection(request) {
-        const data = MsgRemoveCardFromCollection.encode(request).finish();
+        const data = exports.MsgRemoveCardFromCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RemoveCardFromCollection", data);
-        return promise.then((data) => MsgRemoveCardFromCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRemoveCardFromCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     RemoveContributorFromCollection(request) {
-        const data = MsgRemoveContributorFromCollection.encode(request).finish();
+        const data = exports.MsgRemoveContributorFromCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RemoveContributorFromCollection", data);
-        return promise.then((data) => MsgRemoveContributorFromCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRemoveContributorFromCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     AddContributorToCollection(request) {
-        const data = MsgAddContributorToCollection.encode(request).finish();
+        const data = exports.MsgAddContributorToCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "AddContributorToCollection", data);
-        return promise.then((data) => MsgAddContributorToCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgAddContributorToCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     SubmitCollectionProposal(request) {
-        const data = MsgSubmitCollectionProposal.encode(request).finish();
+        const data = exports.MsgSubmitCollectionProposal.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "SubmitCollectionProposal", data);
-        return promise.then((data) => MsgSubmitCollectionProposalResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgSubmitCollectionProposalResponse.decode(new minimal_1.Reader(data)));
     }
     CreateSellOffer(request) {
-        const data = MsgCreateSellOffer.encode(request).finish();
+        const data = exports.MsgCreateSellOffer.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "CreateSellOffer", data);
-        return promise.then((data) => MsgCreateSellOfferResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgCreateSellOfferResponse.decode(new minimal_1.Reader(data)));
     }
     BuyCard(request) {
-        const data = MsgBuyCard.encode(request).finish();
+        const data = exports.MsgBuyCard.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "BuyCard", data);
-        return promise.then((data) => MsgBuyCardResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgBuyCardResponse.decode(new minimal_1.Reader(data)));
     }
     RemoveSellOffer(request) {
-        const data = MsgRemoveSellOffer.encode(request).finish();
+        const data = exports.MsgRemoveSellOffer.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RemoveSellOffer", data);
-        return promise.then((data) => MsgRemoveSellOfferResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRemoveSellOfferResponse.decode(new minimal_1.Reader(data)));
     }
     AddArtworkToCollection(request) {
-        const data = MsgAddArtworkToCollection.encode(request).finish();
+        const data = exports.MsgAddArtworkToCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "AddArtworkToCollection", data);
-        return promise.then((data) => MsgAddArtworkToCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgAddArtworkToCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     AddStoryToCollection(request) {
-        const data = MsgAddStoryToCollection.encode(request).finish();
+        const data = exports.MsgAddStoryToCollection.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "AddStoryToCollection", data);
-        return promise.then((data) => MsgAddStoryToCollectionResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgAddStoryToCollectionResponse.decode(new minimal_1.Reader(data)));
     }
     SetCardRarity(request) {
-        const data = MsgSetCardRarity.encode(request).finish();
+        const data = exports.MsgSetCardRarity.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "SetCardRarity", data);
-        return promise.then((data) => MsgSetCardRarityResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgSetCardRarityResponse.decode(new minimal_1.Reader(data)));
     }
     CreateCouncil(request) {
-        const data = MsgCreateCouncil.encode(request).finish();
+        const data = exports.MsgCreateCouncil.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "CreateCouncil", data);
-        return promise.then((data) => MsgCreateCouncilResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgCreateCouncilResponse.decode(new minimal_1.Reader(data)));
     }
     CommitCouncilResponse(request) {
-        const data = MsgCommitCouncilResponse.encode(request).finish();
+        const data = exports.MsgCommitCouncilResponse.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "CommitCouncilResponse", data);
-        return promise.then((data) => MsgCommitCouncilResponseResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgCommitCouncilResponseResponse.decode(new minimal_1.Reader(data)));
     }
     RevealCouncilResponse(request) {
-        const data = MsgRevealCouncilResponse.encode(request).finish();
+        const data = exports.MsgRevealCouncilResponse.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RevealCouncilResponse", data);
-        return promise.then((data) => MsgRevealCouncilResponseResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRevealCouncilResponseResponse.decode(new minimal_1.Reader(data)));
     }
     RestartCouncil(request) {
-        const data = MsgRestartCouncil.encode(request).finish();
+        const data = exports.MsgRestartCouncil.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RestartCouncil", data);
-        return promise.then((data) => MsgRestartCouncilResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRestartCouncilResponse.decode(new minimal_1.Reader(data)));
     }
     RewokeCouncilRegistration(request) {
-        const data = MsgRewokeCouncilRegistration.encode(request).finish();
+        const data = exports.MsgRewokeCouncilRegistration.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "RewokeCouncilRegistration", data);
-        return promise.then((data) => MsgRewokeCouncilRegistrationResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgRewokeCouncilRegistrationResponse.decode(new minimal_1.Reader(data)));
+    }
+    ConfirmMatch(request) {
+        const data = exports.MsgConfirmMatch.encode(request).finish();
+        const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "ConfirmMatch", data);
+        return promise.then((data) => exports.MsgConfirmMatchResponse.decode(new minimal_1.Reader(data)));
+    }
+    SetProfileCard(request) {
+        const data = exports.MsgSetProfileCard.encode(request).finish();
+        const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Msg", "SetProfileCard", data);
+        return promise.then((data) => exports.MsgSetProfileCardResponse.decode(new minimal_1.Reader(data)));
     }
 }
+exports.MsgClientImpl = MsgClientImpl;
 var globalThis = (() => {
     if (typeof globalThis !== "undefined")
         return globalThis;
@@ -4480,7 +4733,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

@@ -1,24 +1,114 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.QueryClientImpl = exports.QueryQServerResponse = exports.QueryQServerRequest = exports.QueryQSellOffersResponse = exports.IgnoreSellOffers = exports.QueryQSellOffersRequest = exports.QueryQMatchesResponse = exports.IgnoreMatches = exports.QueryQMatchesRequest = exports.QueryQCouncilRequest = exports.QueryQSellOfferRequest = exports.QueryQCollectionRequest = exports.QueryQMatchRequest = exports.QueryQCardsResponse = exports.QueryQCardsRequest = exports.QueryQVotableCardsResponse = exports.QueryQVotableCardsRequest = exports.QueryQVotingResultsResponse = exports.QueryQVotingResultsRequest = exports.QueryQCardchainInfoResponse = exports.QueryQCardchainInfoRequest = exports.QueryQUserRequest = exports.QueryQCardContentResponse = exports.QueryQCardContentRequest = exports.QueryQCardRequest = exports.QueryParamsResponse = exports.QueryParamsRequest = exports.queryQCardsRequest_StatusToJSON = exports.queryQCardsRequest_StatusFromJSON = exports.QueryQCardsRequest_Status = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { OutpCard, statusFromJSON, statusToJSON, } from "../cardchain/card";
-import { outcomeFromJSON, outcomeToJSON } from "../cardchain/tx";
-import { SellOffer, sellOfferStatusFromJSON, sellOfferStatusToJSON, } from "../cardchain/sell_offer";
-import { Reader, util, configure, Writer } from "protobufjs/minimal";
-import * as Long from "long";
-import { Params } from "../cardchain/params";
-import { VotingResults } from "../cardchain/voting_results";
-import { VoteRight } from "../cardchain/vote_right";
-import { Match } from "../cardchain/match";
-import { User } from "../cardchain/user";
-import { Collection } from "../cardchain/collection";
-import { Council } from "../cardchain/council";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
+const tx_1 = require("../cardchain/tx");
+const sell_offer_1 = require("../cardchain/sell_offer");
+const minimal_1 = require("protobufjs/minimal");
+const Long = require("long");
+const params_1 = require("../cardchain/params");
+const voting_results_1 = require("../cardchain/voting_results");
+const vote_right_1 = require("../cardchain/vote_right");
+const match_1 = require("../cardchain/match");
+const card_1 = require("../cardchain/card");
+const user_1 = require("../cardchain/user");
+const collection_1 = require("../cardchain/collection");
+const council_1 = require("../cardchain/council");
+const server_1 = require("../cardchain/server");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var QueryQCardsRequest_Status;
+(function (QueryQCardsRequest_Status) {
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["scheme"] = 0] = "scheme";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["prototype"] = 1] = "prototype";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["trial"] = 2] = "trial";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["permanent"] = 3] = "permanent";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["suspended"] = 4] = "suspended";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["banned"] = 5] = "banned";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["bannedSoon"] = 6] = "bannedSoon";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["bannedVerySoon"] = 7] = "bannedVerySoon";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["none"] = 8] = "none";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["playable"] = 9] = "playable";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["unplayable"] = 10] = "unplayable";
+    QueryQCardsRequest_Status[QueryQCardsRequest_Status["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+})(QueryQCardsRequest_Status = exports.QueryQCardsRequest_Status || (exports.QueryQCardsRequest_Status = {}));
+function queryQCardsRequest_StatusFromJSON(object) {
+    switch (object) {
+        case 0:
+        case "scheme":
+            return QueryQCardsRequest_Status.scheme;
+        case 1:
+        case "prototype":
+            return QueryQCardsRequest_Status.prototype;
+        case 2:
+        case "trial":
+            return QueryQCardsRequest_Status.trial;
+        case 3:
+        case "permanent":
+            return QueryQCardsRequest_Status.permanent;
+        case 4:
+        case "suspended":
+            return QueryQCardsRequest_Status.suspended;
+        case 5:
+        case "banned":
+            return QueryQCardsRequest_Status.banned;
+        case 6:
+        case "bannedSoon":
+            return QueryQCardsRequest_Status.bannedSoon;
+        case 7:
+        case "bannedVerySoon":
+            return QueryQCardsRequest_Status.bannedVerySoon;
+        case 8:
+        case "none":
+            return QueryQCardsRequest_Status.none;
+        case 9:
+        case "playable":
+            return QueryQCardsRequest_Status.playable;
+        case 10:
+        case "unplayable":
+            return QueryQCardsRequest_Status.unplayable;
+        case -1:
+        case "UNRECOGNIZED":
+        default:
+            return QueryQCardsRequest_Status.UNRECOGNIZED;
+    }
+}
+exports.queryQCardsRequest_StatusFromJSON = queryQCardsRequest_StatusFromJSON;
+function queryQCardsRequest_StatusToJSON(object) {
+    switch (object) {
+        case QueryQCardsRequest_Status.scheme:
+            return "scheme";
+        case QueryQCardsRequest_Status.prototype:
+            return "prototype";
+        case QueryQCardsRequest_Status.trial:
+            return "trial";
+        case QueryQCardsRequest_Status.permanent:
+            return "permanent";
+        case QueryQCardsRequest_Status.suspended:
+            return "suspended";
+        case QueryQCardsRequest_Status.banned:
+            return "banned";
+        case QueryQCardsRequest_Status.bannedSoon:
+            return "bannedSoon";
+        case QueryQCardsRequest_Status.bannedVerySoon:
+            return "bannedVerySoon";
+        case QueryQCardsRequest_Status.none:
+            return "none";
+        case QueryQCardsRequest_Status.playable:
+            return "playable";
+        case QueryQCardsRequest_Status.unplayable:
+            return "unplayable";
+        default:
+            return "UNKNOWN";
+    }
+}
+exports.queryQCardsRequest_StatusToJSON = queryQCardsRequest_StatusToJSON;
 const baseQueryParamsRequest = {};
-export const QueryParamsRequest = {
-    encode(_, writer = Writer.create()) {
+exports.QueryParamsRequest = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryParamsRequest };
         while (reader.pos < end) {
@@ -45,22 +135,22 @@ export const QueryParamsRequest = {
     },
 };
 const baseQueryParamsResponse = {};
-export const QueryParamsResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryParamsResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.params !== undefined) {
-            Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+            params_1.Params.encode(message.params, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryParamsResponse };
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.params = Params.decode(reader, reader.uint32());
+                    message.params = params_1.Params.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -72,7 +162,7 @@ export const QueryParamsResponse = {
     fromJSON(object) {
         const message = { ...baseQueryParamsResponse };
         if (object.params !== undefined && object.params !== null) {
-            message.params = Params.fromJSON(object.params);
+            message.params = params_1.Params.fromJSON(object.params);
         }
         else {
             message.params = undefined;
@@ -82,13 +172,13 @@ export const QueryParamsResponse = {
     toJSON(message) {
         const obj = {};
         message.params !== undefined &&
-            (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+            (obj.params = message.params ? params_1.Params.toJSON(message.params) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = { ...baseQueryParamsResponse };
         if (object.params !== undefined && object.params !== null) {
-            message.params = Params.fromPartial(object.params);
+            message.params = params_1.Params.fromPartial(object.params);
         }
         else {
             message.params = undefined;
@@ -97,15 +187,15 @@ export const QueryParamsResponse = {
     },
 };
 const baseQueryQCardRequest = { cardId: "" };
-export const QueryQCardRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCardRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.cardId !== "") {
             writer.uint32(10).string(message.cardId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQCardRequest };
         while (reader.pos < end) {
@@ -148,15 +238,15 @@ export const QueryQCardRequest = {
     },
 };
 const baseQueryQCardContentRequest = { cardId: "" };
-export const QueryQCardContentRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCardContentRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.cardId !== "") {
             writer.uint32(10).string(message.cardId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQCardContentRequest,
@@ -205,15 +295,15 @@ export const QueryQCardContentRequest = {
     },
 };
 const baseQueryQCardContentResponse = { content: "" };
-export const QueryQCardContentResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCardContentResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.content !== "") {
             writer.uint32(10).string(message.content);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQCardContentResponse,
@@ -262,15 +352,15 @@ export const QueryQCardContentResponse = {
     },
 };
 const baseQueryQUserRequest = { address: "" };
-export const QueryQUserRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQUserRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.address !== "") {
             writer.uint32(10).string(message.address);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQUserRequest };
         while (reader.pos < end) {
@@ -313,12 +403,12 @@ export const QueryQUserRequest = {
     },
 };
 const baseQueryQCardchainInfoRequest = {};
-export const QueryQCardchainInfoRequest = {
-    encode(_, writer = Writer.create()) {
+exports.QueryQCardchainInfoRequest = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQCardchainInfoRequest,
@@ -358,8 +448,8 @@ const baseQueryQCardchainInfoResponse = {
     sellOffersNumber: 0,
     councilsNumber: 0,
 };
-export const QueryQCardchainInfoResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCardchainInfoResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.cardAuctionPrice !== "") {
             writer.uint32(10).string(message.cardAuctionPrice);
         }
@@ -383,7 +473,7 @@ export const QueryQCardchainInfoResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQCardchainInfoResponse,
@@ -537,12 +627,12 @@ export const QueryQCardchainInfoResponse = {
     },
 };
 const baseQueryQVotingResultsRequest = {};
-export const QueryQVotingResultsRequest = {
-    encode(_, writer = Writer.create()) {
+exports.QueryQVotingResultsRequest = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQVotingResultsRequest,
@@ -575,15 +665,15 @@ export const QueryQVotingResultsRequest = {
     },
 };
 const baseQueryQVotingResultsResponse = {};
-export const QueryQVotingResultsResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQVotingResultsResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.lastVotingResults !== undefined) {
-            VotingResults.encode(message.lastVotingResults, writer.uint32(10).fork()).ldelim();
+            voting_results_1.VotingResults.encode(message.lastVotingResults, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQVotingResultsResponse,
@@ -592,7 +682,7 @@ export const QueryQVotingResultsResponse = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.lastVotingResults = VotingResults.decode(reader, reader.uint32());
+                    message.lastVotingResults = voting_results_1.VotingResults.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -607,7 +697,7 @@ export const QueryQVotingResultsResponse = {
         };
         if (object.lastVotingResults !== undefined &&
             object.lastVotingResults !== null) {
-            message.lastVotingResults = VotingResults.fromJSON(object.lastVotingResults);
+            message.lastVotingResults = voting_results_1.VotingResults.fromJSON(object.lastVotingResults);
         }
         else {
             message.lastVotingResults = undefined;
@@ -618,7 +708,7 @@ export const QueryQVotingResultsResponse = {
         const obj = {};
         message.lastVotingResults !== undefined &&
             (obj.lastVotingResults = message.lastVotingResults
-                ? VotingResults.toJSON(message.lastVotingResults)
+                ? voting_results_1.VotingResults.toJSON(message.lastVotingResults)
                 : undefined);
         return obj;
     },
@@ -628,7 +718,7 @@ export const QueryQVotingResultsResponse = {
         };
         if (object.lastVotingResults !== undefined &&
             object.lastVotingResults !== null) {
-            message.lastVotingResults = VotingResults.fromPartial(object.lastVotingResults);
+            message.lastVotingResults = voting_results_1.VotingResults.fromPartial(object.lastVotingResults);
         }
         else {
             message.lastVotingResults = undefined;
@@ -637,15 +727,15 @@ export const QueryQVotingResultsResponse = {
     },
 };
 const baseQueryQVotableCardsRequest = { address: "" };
-export const QueryQVotableCardsRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQVotableCardsRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.address !== "") {
             writer.uint32(10).string(message.address);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQVotableCardsRequest,
@@ -697,8 +787,8 @@ const baseQueryQVotableCardsResponse = {
     unregistered: false,
     noVoteRights: false,
 };
-export const QueryQVotableCardsResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQVotableCardsResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.unregistered === true) {
             writer.uint32(8).bool(message.unregistered);
         }
@@ -706,12 +796,12 @@ export const QueryQVotableCardsResponse = {
             writer.uint32(16).bool(message.noVoteRights);
         }
         for (const v of message.voteRights) {
-            VoteRight.encode(v, writer.uint32(26).fork()).ldelim();
+            vote_right_1.VoteRight.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQVotableCardsResponse,
@@ -727,7 +817,7 @@ export const QueryQVotableCardsResponse = {
                     message.noVoteRights = reader.bool();
                     break;
                 case 3:
-                    message.voteRights.push(VoteRight.decode(reader, reader.uint32()));
+                    message.voteRights.push(vote_right_1.VoteRight.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -755,7 +845,7 @@ export const QueryQVotableCardsResponse = {
         }
         if (object.voteRights !== undefined && object.voteRights !== null) {
             for (const e of object.voteRights) {
-                message.voteRights.push(VoteRight.fromJSON(e));
+                message.voteRights.push(vote_right_1.VoteRight.fromJSON(e));
             }
         }
         return message;
@@ -767,7 +857,7 @@ export const QueryQVotableCardsResponse = {
         message.noVoteRights !== undefined &&
             (obj.noVoteRights = message.noVoteRights);
         if (message.voteRights) {
-            obj.voteRights = message.voteRights.map((e) => e ? VoteRight.toJSON(e) : undefined);
+            obj.voteRights = message.voteRights.map((e) => e ? vote_right_1.VoteRight.toJSON(e) : undefined);
         }
         else {
             obj.voteRights = [];
@@ -793,7 +883,7 @@ export const QueryQVotableCardsResponse = {
         }
         if (object.voteRights !== undefined && object.voteRights !== null) {
             for (const e of object.voteRights) {
-                message.voteRights.push(VoteRight.fromPartial(e));
+                message.voteRights.push(vote_right_1.VoteRight.fromPartial(e));
             }
         }
         return message;
@@ -809,8 +899,8 @@ const baseQueryQCardsRequest = {
     keywordsContains: "",
     notesContains: "",
 };
-export const QueryQCardsRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCardsRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.owner !== "") {
             writer.uint32(10).string(message.owner);
         }
@@ -838,7 +928,7 @@ export const QueryQCardsRequest = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQCardsRequest };
         while (reader.pos < end) {
@@ -884,7 +974,7 @@ export const QueryQCardsRequest = {
             message.owner = "";
         }
         if (object.status !== undefined && object.status !== null) {
-            message.status = statusFromJSON(object.status);
+            message.status = queryQCardsRequest_StatusFromJSON(object.status);
         }
         else {
             message.status = 0;
@@ -931,7 +1021,8 @@ export const QueryQCardsRequest = {
     toJSON(message) {
         const obj = {};
         message.owner !== undefined && (obj.owner = message.owner);
-        message.status !== undefined && (obj.status = statusToJSON(message.status));
+        message.status !== undefined &&
+            (obj.status = queryQCardsRequest_StatusToJSON(message.status));
         message.cardType !== undefined && (obj.cardType = message.cardType);
         message.classes !== undefined && (obj.classes = message.classes);
         message.sortBy !== undefined && (obj.sortBy = message.sortBy);
@@ -998,8 +1089,8 @@ export const QueryQCardsRequest = {
     },
 };
 const baseQueryQCardsResponse = { cardsList: 0 };
-export const QueryQCardsResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCardsResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         writer.uint32(10).fork();
         for (const v of message.cardsList) {
             writer.uint64(v);
@@ -1008,7 +1099,7 @@ export const QueryQCardsResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQCardsResponse };
         message.cardsList = [];
@@ -1065,15 +1156,15 @@ export const QueryQCardsResponse = {
     },
 };
 const baseQueryQMatchRequest = { matchId: 0 };
-export const QueryQMatchRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQMatchRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.matchId !== 0) {
             writer.uint32(8).uint64(message.matchId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQMatchRequest };
         while (reader.pos < end) {
@@ -1116,15 +1207,15 @@ export const QueryQMatchRequest = {
     },
 };
 const baseQueryQCollectionRequest = { collectionId: 0 };
-export const QueryQCollectionRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCollectionRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.collectionId !== 0) {
             writer.uint32(8).uint64(message.collectionId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQCollectionRequest,
@@ -1174,15 +1265,15 @@ export const QueryQCollectionRequest = {
     },
 };
 const baseQueryQSellOfferRequest = { sellOfferId: 0 };
-export const QueryQSellOfferRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQSellOfferRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.sellOfferId !== 0) {
             writer.uint32(8).uint64(message.sellOfferId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQSellOfferRequest };
         while (reader.pos < end) {
@@ -1226,15 +1317,15 @@ export const QueryQSellOfferRequest = {
     },
 };
 const baseQueryQCouncilRequest = { councilId: 0 };
-export const QueryQCouncilRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQCouncilRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.councilId !== 0) {
             writer.uint32(8).uint64(message.councilId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQCouncilRequest };
         while (reader.pos < end) {
@@ -1284,8 +1375,8 @@ const baseQueryQMatchesRequest = {
     outcome: 0,
     cardsPlayed: 0,
 };
-export const QueryQMatchesRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQMatchesRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.timestampDown !== 0) {
             writer.uint32(8).uint64(message.timestampDown);
         }
@@ -1307,12 +1398,12 @@ export const QueryQMatchesRequest = {
         }
         writer.ldelim();
         if (message.ignore !== undefined) {
-            IgnoreMatches.encode(message.ignore, writer.uint32(58).fork()).ldelim();
+            exports.IgnoreMatches.encode(message.ignore, writer.uint32(58).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQMatchesRequest };
         message.containsUsers = [];
@@ -1347,7 +1438,7 @@ export const QueryQMatchesRequest = {
                     }
                     break;
                 case 7:
-                    message.ignore = IgnoreMatches.decode(reader, reader.uint32());
+                    message.ignore = exports.IgnoreMatches.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1384,7 +1475,7 @@ export const QueryQMatchesRequest = {
             message.reporter = "";
         }
         if (object.outcome !== undefined && object.outcome !== null) {
-            message.outcome = outcomeFromJSON(object.outcome);
+            message.outcome = (0, tx_1.outcomeFromJSON)(object.outcome);
         }
         else {
             message.outcome = 0;
@@ -1395,7 +1486,7 @@ export const QueryQMatchesRequest = {
             }
         }
         if (object.ignore !== undefined && object.ignore !== null) {
-            message.ignore = IgnoreMatches.fromJSON(object.ignore);
+            message.ignore = exports.IgnoreMatches.fromJSON(object.ignore);
         }
         else {
             message.ignore = undefined;
@@ -1416,7 +1507,7 @@ export const QueryQMatchesRequest = {
         }
         message.reporter !== undefined && (obj.reporter = message.reporter);
         message.outcome !== undefined &&
-            (obj.outcome = outcomeToJSON(message.outcome));
+            (obj.outcome = (0, tx_1.outcomeToJSON)(message.outcome));
         if (message.cardsPlayed) {
             obj.cardsPlayed = message.cardsPlayed.map((e) => e);
         }
@@ -1425,7 +1516,7 @@ export const QueryQMatchesRequest = {
         }
         message.ignore !== undefined &&
             (obj.ignore = message.ignore
-                ? IgnoreMatches.toJSON(message.ignore)
+                ? exports.IgnoreMatches.toJSON(message.ignore)
                 : undefined);
         return obj;
     },
@@ -1468,7 +1559,7 @@ export const QueryQMatchesRequest = {
             }
         }
         if (object.ignore !== undefined && object.ignore !== null) {
-            message.ignore = IgnoreMatches.fromPartial(object.ignore);
+            message.ignore = exports.IgnoreMatches.fromPartial(object.ignore);
         }
         else {
             message.ignore = undefined;
@@ -1476,26 +1567,16 @@ export const QueryQMatchesRequest = {
         return message;
     },
 };
-const baseIgnoreMatches = {
-    outcome: false,
-    timestamp: false,
-    reporter: false,
-};
-export const IgnoreMatches = {
-    encode(message, writer = Writer.create()) {
+const baseIgnoreMatches = { outcome: false };
+exports.IgnoreMatches = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.outcome === true) {
             writer.uint32(8).bool(message.outcome);
-        }
-        if (message.timestamp === true) {
-            writer.uint32(16).bool(message.timestamp);
-        }
-        if (message.reporter === true) {
-            writer.uint32(24).bool(message.reporter);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseIgnoreMatches };
         while (reader.pos < end) {
@@ -1503,12 +1584,6 @@ export const IgnoreMatches = {
             switch (tag >>> 3) {
                 case 1:
                     message.outcome = reader.bool();
-                    break;
-                case 2:
-                    message.timestamp = reader.bool();
-                    break;
-                case 3:
-                    message.reporter = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1525,25 +1600,11 @@ export const IgnoreMatches = {
         else {
             message.outcome = false;
         }
-        if (object.timestamp !== undefined && object.timestamp !== null) {
-            message.timestamp = Boolean(object.timestamp);
-        }
-        else {
-            message.timestamp = false;
-        }
-        if (object.reporter !== undefined && object.reporter !== null) {
-            message.reporter = Boolean(object.reporter);
-        }
-        else {
-            message.reporter = false;
-        }
         return message;
     },
     toJSON(message) {
         const obj = {};
         message.outcome !== undefined && (obj.outcome = message.outcome);
-        message.timestamp !== undefined && (obj.timestamp = message.timestamp);
-        message.reporter !== undefined && (obj.reporter = message.reporter);
         return obj;
     },
     fromPartial(object) {
@@ -1554,36 +1615,24 @@ export const IgnoreMatches = {
         else {
             message.outcome = false;
         }
-        if (object.timestamp !== undefined && object.timestamp !== null) {
-            message.timestamp = object.timestamp;
-        }
-        else {
-            message.timestamp = false;
-        }
-        if (object.reporter !== undefined && object.reporter !== null) {
-            message.reporter = object.reporter;
-        }
-        else {
-            message.reporter = false;
-        }
         return message;
     },
 };
 const baseQueryQMatchesResponse = { matchesList: 0 };
-export const QueryQMatchesResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQMatchesResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         writer.uint32(10).fork();
         for (const v of message.matchesList) {
             writer.uint64(v);
         }
         writer.ldelim();
         for (const v of message.matches) {
-            Match.encode(v, writer.uint32(18).fork()).ldelim();
+            match_1.Match.encode(v, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseQueryQMatchesResponse };
         message.matchesList = [];
@@ -1603,7 +1652,7 @@ export const QueryQMatchesResponse = {
                     }
                     break;
                 case 2:
-                    message.matches.push(Match.decode(reader, reader.uint32()));
+                    message.matches.push(match_1.Match.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1623,7 +1672,7 @@ export const QueryQMatchesResponse = {
         }
         if (object.matches !== undefined && object.matches !== null) {
             for (const e of object.matches) {
-                message.matches.push(Match.fromJSON(e));
+                message.matches.push(match_1.Match.fromJSON(e));
             }
         }
         return message;
@@ -1637,7 +1686,7 @@ export const QueryQMatchesResponse = {
             obj.matchesList = [];
         }
         if (message.matches) {
-            obj.matches = message.matches.map((e) => e ? Match.toJSON(e) : undefined);
+            obj.matches = message.matches.map((e) => e ? match_1.Match.toJSON(e) : undefined);
         }
         else {
             obj.matches = [];
@@ -1655,7 +1704,7 @@ export const QueryQMatchesResponse = {
         }
         if (object.matches !== undefined && object.matches !== null) {
             for (const e of object.matches) {
-                message.matches.push(Match.fromPartial(e));
+                message.matches.push(match_1.Match.fromPartial(e));
             }
         }
         return message;
@@ -1669,8 +1718,8 @@ const baseQueryQSellOffersRequest = {
     card: 0,
     status: 0,
 };
-export const QueryQSellOffersRequest = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQSellOffersRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.priceDown !== "") {
             writer.uint32(10).string(message.priceDown);
         }
@@ -1690,12 +1739,12 @@ export const QueryQSellOffersRequest = {
             writer.uint32(48).int32(message.status);
         }
         if (message.ignore !== undefined) {
-            IgnoreSellOffers.encode(message.ignore, writer.uint32(58).fork()).ldelim();
+            exports.IgnoreSellOffers.encode(message.ignore, writer.uint32(58).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQSellOffersRequest,
@@ -1722,7 +1771,7 @@ export const QueryQSellOffersRequest = {
                     message.status = reader.int32();
                     break;
                 case 7:
-                    message.ignore = IgnoreSellOffers.decode(reader, reader.uint32());
+                    message.ignore = exports.IgnoreSellOffers.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1766,13 +1815,13 @@ export const QueryQSellOffersRequest = {
             message.card = 0;
         }
         if (object.status !== undefined && object.status !== null) {
-            message.status = sellOfferStatusFromJSON(object.status);
+            message.status = (0, sell_offer_1.sellOfferStatusFromJSON)(object.status);
         }
         else {
             message.status = 0;
         }
         if (object.ignore !== undefined && object.ignore !== null) {
-            message.ignore = IgnoreSellOffers.fromJSON(object.ignore);
+            message.ignore = exports.IgnoreSellOffers.fromJSON(object.ignore);
         }
         else {
             message.ignore = undefined;
@@ -1787,10 +1836,10 @@ export const QueryQSellOffersRequest = {
         message.buyer !== undefined && (obj.buyer = message.buyer);
         message.card !== undefined && (obj.card = message.card);
         message.status !== undefined &&
-            (obj.status = sellOfferStatusToJSON(message.status));
+            (obj.status = (0, sell_offer_1.sellOfferStatusToJSON)(message.status));
         message.ignore !== undefined &&
             (obj.ignore = message.ignore
-                ? IgnoreSellOffers.toJSON(message.ignore)
+                ? exports.IgnoreSellOffers.toJSON(message.ignore)
                 : undefined);
         return obj;
     },
@@ -1835,7 +1884,7 @@ export const QueryQSellOffersRequest = {
             message.status = 0;
         }
         if (object.ignore !== undefined && object.ignore !== null) {
-            message.ignore = IgnoreSellOffers.fromPartial(object.ignore);
+            message.ignore = exports.IgnoreSellOffers.fromPartial(object.ignore);
         }
         else {
             message.ignore = undefined;
@@ -1843,34 +1892,19 @@ export const QueryQSellOffersRequest = {
         return message;
     },
 };
-const baseIgnoreSellOffers = {
-    status: false,
-    price: false,
-    seller: false,
-    buyer: false,
-    card: false,
-};
-export const IgnoreSellOffers = {
-    encode(message, writer = Writer.create()) {
+const baseIgnoreSellOffers = { status: false, card: false };
+exports.IgnoreSellOffers = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.status === true) {
             writer.uint32(8).bool(message.status);
         }
-        if (message.price === true) {
-            writer.uint32(16).bool(message.price);
-        }
-        if (message.seller === true) {
-            writer.uint32(24).bool(message.seller);
-        }
-        if (message.buyer === true) {
-            writer.uint32(32).bool(message.buyer);
-        }
         if (message.card === true) {
-            writer.uint32(40).bool(message.card);
+            writer.uint32(16).bool(message.card);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseIgnoreSellOffers };
         while (reader.pos < end) {
@@ -1880,15 +1914,6 @@ export const IgnoreSellOffers = {
                     message.status = reader.bool();
                     break;
                 case 2:
-                    message.price = reader.bool();
-                    break;
-                case 3:
-                    message.seller = reader.bool();
-                    break;
-                case 4:
-                    message.buyer = reader.bool();
-                    break;
-                case 5:
                     message.card = reader.bool();
                     break;
                 default:
@@ -1906,24 +1931,6 @@ export const IgnoreSellOffers = {
         else {
             message.status = false;
         }
-        if (object.price !== undefined && object.price !== null) {
-            message.price = Boolean(object.price);
-        }
-        else {
-            message.price = false;
-        }
-        if (object.seller !== undefined && object.seller !== null) {
-            message.seller = Boolean(object.seller);
-        }
-        else {
-            message.seller = false;
-        }
-        if (object.buyer !== undefined && object.buyer !== null) {
-            message.buyer = Boolean(object.buyer);
-        }
-        else {
-            message.buyer = false;
-        }
         if (object.card !== undefined && object.card !== null) {
             message.card = Boolean(object.card);
         }
@@ -1935,9 +1942,6 @@ export const IgnoreSellOffers = {
     toJSON(message) {
         const obj = {};
         message.status !== undefined && (obj.status = message.status);
-        message.price !== undefined && (obj.price = message.price);
-        message.seller !== undefined && (obj.seller = message.seller);
-        message.buyer !== undefined && (obj.buyer = message.buyer);
         message.card !== undefined && (obj.card = message.card);
         return obj;
     },
@@ -1949,24 +1953,6 @@ export const IgnoreSellOffers = {
         else {
             message.status = false;
         }
-        if (object.price !== undefined && object.price !== null) {
-            message.price = object.price;
-        }
-        else {
-            message.price = false;
-        }
-        if (object.seller !== undefined && object.seller !== null) {
-            message.seller = object.seller;
-        }
-        else {
-            message.seller = false;
-        }
-        if (object.buyer !== undefined && object.buyer !== null) {
-            message.buyer = object.buyer;
-        }
-        else {
-            message.buyer = false;
-        }
         if (object.card !== undefined && object.card !== null) {
             message.card = object.card;
         }
@@ -1977,20 +1963,20 @@ export const IgnoreSellOffers = {
     },
 };
 const baseQueryQSellOffersResponse = { sellOffersIds: 0 };
-export const QueryQSellOffersResponse = {
-    encode(message, writer = Writer.create()) {
+exports.QueryQSellOffersResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         writer.uint32(10).fork();
         for (const v of message.sellOffersIds) {
             writer.uint64(v);
         }
         writer.ldelim();
         for (const v of message.sellOffers) {
-            SellOffer.encode(v, writer.uint32(18).fork()).ldelim();
+            sell_offer_1.SellOffer.encode(v, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseQueryQSellOffersResponse,
@@ -2012,7 +1998,7 @@ export const QueryQSellOffersResponse = {
                     }
                     break;
                 case 2:
-                    message.sellOffers.push(SellOffer.decode(reader, reader.uint32()));
+                    message.sellOffers.push(sell_offer_1.SellOffer.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -2034,7 +2020,7 @@ export const QueryQSellOffersResponse = {
         }
         if (object.sellOffers !== undefined && object.sellOffers !== null) {
             for (const e of object.sellOffers) {
-                message.sellOffers.push(SellOffer.fromJSON(e));
+                message.sellOffers.push(sell_offer_1.SellOffer.fromJSON(e));
             }
         }
         return message;
@@ -2048,7 +2034,7 @@ export const QueryQSellOffersResponse = {
             obj.sellOffersIds = [];
         }
         if (message.sellOffers) {
-            obj.sellOffers = message.sellOffers.map((e) => e ? SellOffer.toJSON(e) : undefined);
+            obj.sellOffers = message.sellOffers.map((e) => e ? sell_offer_1.SellOffer.toJSON(e) : undefined);
         }
         else {
             obj.sellOffers = [];
@@ -2068,87 +2054,176 @@ export const QueryQSellOffersResponse = {
         }
         if (object.sellOffers !== undefined && object.sellOffers !== null) {
             for (const e of object.sellOffers) {
-                message.sellOffers.push(SellOffer.fromPartial(e));
+                message.sellOffers.push(sell_offer_1.SellOffer.fromPartial(e));
             }
         }
         return message;
     },
 };
-export class QueryClientImpl {
+const baseQueryQServerRequest = { id: 0 };
+exports.QueryQServerRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
+        if (message.id !== 0) {
+            writer.uint32(8).uint64(message.id);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryQServerRequest };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.id = longToNumber(reader.uint64());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryQServerRequest };
+        if (object.id !== undefined && object.id !== null) {
+            message.id = Number(object.id);
+        }
+        else {
+            message.id = 0;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.id !== undefined && (obj.id = message.id);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryQServerRequest };
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = 0;
+        }
+        return message;
+    },
+};
+const baseQueryQServerResponse = {};
+exports.QueryQServerResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryQServerResponse };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(_) {
+        const message = { ...baseQueryQServerResponse };
+        return message;
+    },
+    toJSON(_) {
+        const obj = {};
+        return obj;
+    },
+    fromPartial(_) {
+        const message = { ...baseQueryQServerResponse };
+        return message;
+    },
+};
+class QueryClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
     }
     Params(request) {
-        const data = QueryParamsRequest.encode(request).finish();
+        const data = exports.QueryParamsRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "Params", data);
-        return promise.then((data) => QueryParamsResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryParamsResponse.decode(new minimal_1.Reader(data)));
     }
     QCard(request) {
-        const data = QueryQCardRequest.encode(request).finish();
+        const data = exports.QueryQCardRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QCard", data);
-        return promise.then((data) => OutpCard.decode(new Reader(data)));
+        return promise.then((data) => card_1.OutpCard.decode(new minimal_1.Reader(data)));
     }
     QCardContent(request) {
-        const data = QueryQCardContentRequest.encode(request).finish();
+        const data = exports.QueryQCardContentRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QCardContent", data);
-        return promise.then((data) => QueryQCardContentResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQCardContentResponse.decode(new minimal_1.Reader(data)));
     }
     QUser(request) {
-        const data = QueryQUserRequest.encode(request).finish();
+        const data = exports.QueryQUserRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QUser", data);
-        return promise.then((data) => User.decode(new Reader(data)));
+        return promise.then((data) => user_1.User.decode(new minimal_1.Reader(data)));
     }
     QCardchainInfo(request) {
-        const data = QueryQCardchainInfoRequest.encode(request).finish();
+        const data = exports.QueryQCardchainInfoRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QCardchainInfo", data);
-        return promise.then((data) => QueryQCardchainInfoResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQCardchainInfoResponse.decode(new minimal_1.Reader(data)));
     }
     QVotingResults(request) {
-        const data = QueryQVotingResultsRequest.encode(request).finish();
+        const data = exports.QueryQVotingResultsRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QVotingResults", data);
-        return promise.then((data) => QueryQVotingResultsResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQVotingResultsResponse.decode(new minimal_1.Reader(data)));
     }
     QVotableCards(request) {
-        const data = QueryQVotableCardsRequest.encode(request).finish();
+        const data = exports.QueryQVotableCardsRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QVotableCards", data);
-        return promise.then((data) => QueryQVotableCardsResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQVotableCardsResponse.decode(new minimal_1.Reader(data)));
     }
     QCards(request) {
-        const data = QueryQCardsRequest.encode(request).finish();
+        const data = exports.QueryQCardsRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QCards", data);
-        return promise.then((data) => QueryQCardsResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQCardsResponse.decode(new minimal_1.Reader(data)));
     }
     QMatch(request) {
-        const data = QueryQMatchRequest.encode(request).finish();
+        const data = exports.QueryQMatchRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QMatch", data);
-        return promise.then((data) => Match.decode(new Reader(data)));
+        return promise.then((data) => match_1.Match.decode(new minimal_1.Reader(data)));
     }
     QCollection(request) {
-        const data = QueryQCollectionRequest.encode(request).finish();
+        const data = exports.QueryQCollectionRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QCollection", data);
-        return promise.then((data) => Collection.decode(new Reader(data)));
+        return promise.then((data) => collection_1.Collection.decode(new minimal_1.Reader(data)));
     }
     QSellOffer(request) {
-        const data = QueryQSellOfferRequest.encode(request).finish();
+        const data = exports.QueryQSellOfferRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QSellOffer", data);
-        return promise.then((data) => SellOffer.decode(new Reader(data)));
+        return promise.then((data) => sell_offer_1.SellOffer.decode(new minimal_1.Reader(data)));
     }
     QCouncil(request) {
-        const data = QueryQCouncilRequest.encode(request).finish();
+        const data = exports.QueryQCouncilRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QCouncil", data);
-        return promise.then((data) => Council.decode(new Reader(data)));
+        return promise.then((data) => council_1.Council.decode(new minimal_1.Reader(data)));
     }
     QMatches(request) {
-        const data = QueryQMatchesRequest.encode(request).finish();
+        const data = exports.QueryQMatchesRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QMatches", data);
-        return promise.then((data) => QueryQMatchesResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQMatchesResponse.decode(new minimal_1.Reader(data)));
     }
     QSellOffers(request) {
-        const data = QueryQSellOffersRequest.encode(request).finish();
+        const data = exports.QueryQSellOffersRequest.encode(request).finish();
         const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QSellOffers", data);
-        return promise.then((data) => QueryQSellOffersResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.QueryQSellOffersResponse.decode(new minimal_1.Reader(data)));
+    }
+    QServer(request) {
+        const data = exports.QueryQServerRequest.encode(request).finish();
+        const promise = this.rpc.request("DecentralCardGame.cardchain.cardchain.Query", "QServer", data);
+        return promise.then((data) => server_1.Server.decode(new minimal_1.Reader(data)));
     }
 }
+exports.QueryClientImpl = QueryClientImpl;
 var globalThis = (() => {
     if (typeof globalThis !== "undefined")
         return globalThis;
@@ -2166,7 +2241,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

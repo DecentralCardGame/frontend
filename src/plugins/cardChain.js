@@ -351,6 +351,7 @@ export default {
               throw Error(res.rawLog)
             }
             this.vue.notifySuccess('EPIC WIN', 'Setting profile card was successful!')
+            return res
           })
           .catch(err => {
             console.log(err)
@@ -473,15 +474,7 @@ export default {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           throw new Error('account ' + address + ' is not registered')
         } else {
-          return {
-            alias: res.data.alias,
-            councilStatus: res.data.CouncilStatus,
-            reportMatches: res.data.reportMatches,
-            ownedCardSchemes: res.data.ownedCardSchemes,
-            ownedPrototypes: res.data.ownedPrototypes,
-            ownedCards: res.data.cards,
-            voteRights: res.data.voteRights
-          }
+          return res.data
         }
       })
       handleGetAcc = R.curry((res, address) => {

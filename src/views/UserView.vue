@@ -57,7 +57,7 @@
       <router-link
         :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
       >
-        {{ user.ownedCards.length }}
+        {{ user.cards.length }}
       </router-link> <br>
       Balance:
       <div class="coinBox">
@@ -112,7 +112,7 @@ export default {
       user: {
         ownedCardSchemes: [],
         ownedPrototypes: [],
-        ownedCards: [],
+        cards: [],
         voteRights: [],
         profileCard: 0,
       },
@@ -154,13 +154,13 @@ export default {
 
       this.$router.push({name: "UserView", params: {id: this.address}})
       this.getUser()
-      this.getImg()
     },
     getUser () {
       this.$cardChain.getUserInfo(this.address)
       .then(user => {
         console.log("received user data:", user)
         this.user = user
+        this.getImg()
       })
       this.$cardChain.getAccInfo(this.address)
       .then(coins => {
@@ -194,10 +194,11 @@ export default {
     },
     closeChooseModal() {
       this.isChooseModalVisible = false;
+      this.getUser()
     },
     async getImg() {
       console.log(this.user.profileCard)
-      this.user.profileCard = 178
+      // this.user.profileCard = 178
       if (!this.user.profileCard) {
         this.img = "https://www.w3schools.com/howto/img_avatar2.png"
       } else {

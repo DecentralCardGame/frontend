@@ -79,9 +79,8 @@ export default {
       this.$emit('close')
     },
     send(id) {
-      console.log("yes")
       this.$cardChain.setProfileCard(id).then(res => {
-        console.log("yees")
+        console.log(res)
         this.close()
       })
     }
@@ -119,6 +118,9 @@ export default {
     box-shadow: 2px 2px 4px;
     object-fit: cover;
   };
+  img:hover {
+    box-shadow: 4px 4px 8px;
+  }
 }
 
 .warning {
