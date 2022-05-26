@@ -1,17 +1,21 @@
 <template>
   <div align="center">
-    <div class="ppBox">
-      <img
-        class="ppImage"
-        :src="img"
-        alt="Avatar"
-      >
-      <button
-        v-if="loggedinHere"
-        @click="showChooseModal"
-      >
-        <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917651.svg?token=exp=1653516419~hmac=d1e0938182326647cdb5377a31e784f5">
-      </button>
+    <div
+      class="ppBox"
+    >
+      <div v-show="img">
+        <img
+          class="ppImage"
+          :src="img"
+          alt="Avatar"
+        >
+        <button
+          v-if="loggedinHere"
+          @click="showChooseModal"
+        >
+          <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917651.svg?token=exp=1653516419~hmac=d1e0938182326647cdb5377a31e784f5">
+        </button>
+      </div>
     </div>
     <div class="dataBox ccbutton">
       <h2 class="header__h2">
@@ -108,7 +112,7 @@ export default {
       isModalVisible: false,
       address: "",
       coins: [],
-      img: "https://www.w3schools.com/howto/img_avatar2.png",
+      img: "",
       user: {
         ownedCardSchemes: [],
         ownedPrototypes: [],
@@ -196,15 +200,18 @@ export default {
       this.isChooseModalVisible = false;
       this.getUser()
     },
+    getDefaultImg() {
+      var myRandom = this.address.charCodeAt(this.address.length-1) % 4
+      console.log("random", myRandom)
+      return "Avatar"+myRandom+".png"
+    },
     async getImg() {
       console.log(this.user.profileCard)
-      if (this.user.profileCard == 0) {
-        var myRandom = this.address.charCodeAt(this.address.length-1) % 4
-        console.log("random", myRandom)
-        this.img = "Avatar"+myRandom+".png"
-      } else {
+      if (this.user.profileCard != 0) {
         var a = await this.getCard(this.user.profileCard)
         this.img = a.image
+      } else {
+        this.img = this.getDefaultImg()
       }
     },
     async getCard(id) {
@@ -228,12 +235,14 @@ export default {
   margin: 30px;
   position: relative;
   width: 200px;
+  height: 200px;
   .ppImage {
     border-radius: 50%;
     height: 200px;
     width: 200px;
     box-shadow: 2px 2px 4px;
     object-fit: cover;
+    background-color: transparent;
   };
   button {
     position: absolute;
