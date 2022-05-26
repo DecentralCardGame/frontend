@@ -19,19 +19,19 @@
       </h2>
       Address: {{ address }}<br>
       Name: {{ user.alias }}<br>
-      Council status: {{ user.councilStatus }}
+      Council status: {{ user.CouncilStatus }}
       <div
         v-if="loggedinHere"
         style="display: inline"
       >
         <button
-          v-if="user.councilStatus == 'unavailable'"
+          v-if="user.CouncilStatus == 'unavailable'"
           @click="register()"
         >
           Register for council
         </button>
         <button
-          v-if="user.councilStatus == 'available'"
+          v-if="user.CouncilStatus == 'available'"
           @click="deRegister()"
         >
           Deregister from council
@@ -242,7 +242,9 @@ export default {
     width: 15%;
     padding: 2px;
     border-radius: 6px;
-    background-color: lightgray;
+    border-color: $white;
+    background-color: $white;
+    cursor: pointer;
     img {
       width: 100%;
       margin: 0;
