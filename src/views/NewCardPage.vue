@@ -847,6 +847,7 @@ export default {
     closeAbilityModal() {
       console.log("ability after close modal: ", this.ability);
       this.isAbilityModalVisible = false;
+      window.scrollTo({top:0, left:0, behavior:"smooth"})
     },
     updateAbility($event, index) {
       this.ability = $event;
