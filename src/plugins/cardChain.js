@@ -220,7 +220,7 @@ export default {
               let id = user.ownedCardSchemes[0]
               return this.saveContentToCardTx(card, id)
                 .then((saveContentReturn) => {
-                  this.saveArtworkToCard(id, card.image, card.FullArt)
+                  this.saveArtworkToCard(id, card.image, card.fullArt)
                   return saveContentReturn
                 })
             }
