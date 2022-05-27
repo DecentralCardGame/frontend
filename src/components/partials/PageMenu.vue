@@ -64,11 +64,11 @@
               Voting
             </router-link>
           </li>
-          <li>
+          <!--li>
             <router-link to="/howtoplay">
               How To Play
             </router-link>
-          </li>
+          </li-->
           <li>
             <router-link
               v-if="$store.getters['getLoggedIn']"
