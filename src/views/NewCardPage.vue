@@ -1090,7 +1090,7 @@ export default {
       if (this.isEditCardMode()) {
         this.$cardChain
           .saveContentToCardTx(newCard, this.model.id)
-          .then(this.updateCredits)
+          .then(this.$cardChain.updateUserCredits())
           .then(() => {
             this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           })
@@ -1102,18 +1102,13 @@ export default {
       } else {
         this.$cardChain
           .saveContentToUnusedCardSchemeTx(newCard)
-          .then(this.updateCredits)
+          .then(this.$cardChain.updateUserCredits())
           .then(this.resetCardDraft)
           .catch((err) => {
             this.notifyFail("Publish Card failed", err)
             console.error(err)
           });
       }
-    },
-    updateCredits(acc) {
-      this.creditsAvailable = creditsFromCoins(acc.coins);
-      this.$store.commit("setUserCredits", this.creditsAvailable);
-      return this.creditsAvailable;
     },
     saveDraft() {
       this.$store.commit(

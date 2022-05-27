@@ -132,10 +132,7 @@ export default {
     buyCardFrame() {
       this.$emit('close')
       this.$cardChain.buyCardSchemeTx(this.currentBid * process.env.VUE_APP_UCREDITS_FACTOR)
-        .then(acc => {
-          this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)
-        })
+        .then(this.$cardChain.updateUserCredits())
     },
     isNumber: function (evt) {
       evt = evt || window.event

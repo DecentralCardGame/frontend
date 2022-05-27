@@ -180,36 +180,6 @@ export default {
         console.log('parsed into:', cardobject)
         return cardobject
       }
-      registerAccTx (alias) {
-        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgCreateuser', {
-          value: {
-            '@type': '/DecentralCardGame.cardchain.cardchain.MsgCreateuser',
-            creator: this.vue.$store.getters['common/wallet/address'],
-            newUser: this.vue.$store.getters['common/wallet/address'],
-            alias: alias
-          }
-        })
-      }
-      buyCardSchemeTx (maxBid) {
-        let msg = {
-          value: {
-            '@type':'/DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme',
-            creator: this.vue.$store.getters['common/wallet/address'],
-            bid: "100000000ucredits",
-          }
-        }
-        this.vue.notifyInfo('Buying', 'sending bid to blockchain')
-        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgBuyCardScheme', msg)
-          .then((res) => {
-            this.vue.notifySuccess('EPIC WIN', 'You have successfully bought a Card Frame.')
-            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
-          })
-          .catch(err => {
-            this.vue.notifyFail('YOU MUST CONSTRUCT ADDITIONAL PYLONS', err)
-            console.log(err)
-            throw new Error(err)
-          })
-      }
       saveContentToUnusedCardSchemeTx (card) {
         return this.getUserInfo(this.vue.$store.getters['common/wallet/address'])
           .then(user => {
@@ -219,34 +189,11 @@ export default {
             } else {
               let id = user.ownedCardSchemes[0]
               return this.saveContentToCardTx(card, id)
-                .then((saveContentReturn) => {
+                .then((res) => {
                   this.saveArtworkToCard(id, card.image, card.fullArt)
-                  return saveContentReturn
+                  return res
                 })
             }
-          })
-      }
-      saveContentToCardTx (card, id) {
-        let msg = {
-          value: {
-            "@type": "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent",
-            "creator": this.vue.$store.getters['common/wallet/address'],
-            "cardId": id,
-            "content": btoa(JSON.stringify(card.content)),
-            "notes": card.notes,
-            "artist": this.vue.$store.getters['common/wallet/address']
-          }
-        }
-        this.vue.notifyInfo('Saving', 'Sending card data to the blockchain.')
-        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSaveCardContent', msg)
-          .then((res) => {
-            this.vue.notifySuccess('EPIC WIN', 'You have successfully published this card.')
-            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
-          })
-          .catch(err => {
-            this.vue.notifyFail('Save Card failed', err.message)
-            console.log(err)
-            throw new Error(err)
           })
       }
       sendGenericTx (type, data) {
@@ -254,13 +201,12 @@ export default {
         let msg = {
           value: R.merge({
             "@type": "/"+type,
-            // "creator": this.vue.$store.getters['common/wallet/address'],
+            "creator": this.vue.$store.getters['common/wallet/address'],
           }, data)
         }
-        console.log(msg)
         this.vue.notifyInfo('Sending', 'Sending request "'+prettyMsg+'" to the blockchain.')
         return this.txQueue.dispatch(type.replace(".Msg", "/sendMsg"), msg)
-          .then((res) => {
+          .then(res => {
             this.vue.notifySuccess('EPIC WIN', prettyMsg+' was successful.')
             return res
           })
@@ -278,6 +224,31 @@ export default {
       }
       setProfileCard (id) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", {"cardId": id})
+      }
+      saveArtworkToCard (id, image, fullart) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {"cardId": id, "image": btoa(image), "fullArt": fullart})
+      }
+      transferCard (id, receiver) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
+      }
+      voteCardTx (cardId, voteType) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
+      }
+      saveContentToCardTx (card, id) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", {"cardId": id,
+          "content": btoa(JSON.stringify(card.content)),
+          "notes": card.notes,
+          "artist": this.vue.$store.getters['common/wallet/address']
+        })
+      }
+      buyCardSchemeTx (maxBid) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme", {bid: "100000000ucredits"})
+      }
+      registerAccTx (alias) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgCreateuser", {
+          newUser: this.vue.$store.getters['common/wallet/address'],
+          alias: alias
+        })
       }
       // transferCoin (to, coins) {
       //   return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"toAddress": to, "amount": coins, "fromAddress": this.vue.$store.getters['common/wallet/address']})
@@ -305,77 +276,6 @@ export default {
           .catch(err => {
             console.log(err)
             this.vue.notifyFail('Transfering failed', err)
-          })
-      }
-      saveArtworkToCard (id, image, fullart) {
-        let msg = {
-          value: {
-            "@type":"/DecentralCardGame.cardchain.cardchain.MsgAddArtwork",
-            "creator": this.vue.$store.getters['common/wallet/address'],
-            "cardId": id,
-            "image": btoa(image),
-            "fullArt": fullart
-          }
-        }
-        this.vue.notifyInfo('Saving', 'Sending card artwork to the blockchain.')
-        console.log("saveart msg:", msg)
-        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgAddArtwork', msg)
-          .then((res) => {
-            if (res.code != 0) {
-              throw Error(res.rawLog)
-            }
-          })
-          .catch(err => {
-            console.log(err)
-            this.vue.notifyFail('Saving Artwork failed', err)
-          })
-      }
-      transferCard (id, receiver) {
-        let msg = {
-          value: {
-            "@type":"/DecentralCardGame.cardchain.cardchain.MsgTransferCard",
-            "creator": this.vue.$store.getters['common/wallet/address'],
-            "cardId": id,
-            "receiver": receiver,
-          }
-        }
-        this.vue.notifyInfo('Transfering', 'Sending request to the blockchain.')
-        console.log("saveart msg:", msg)
-        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgTransferCard', msg)
-          .then((res) => {
-            if (res.code != 0) {
-              throw Error(res.rawLog)
-            }
-            this.vue.notifySuccess('EPIC WIN', 'Transfer was successful!')
-          })
-          .catch(err => {
-            console.log(err)
-            this.vue.notifyFail('Transfer failed', err)
-          })
-      }
-      voteCardTx (cardid, voteType) {
-        let msg = {
-          value: {
-            "@type": "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
-            "creator": this.vue.$store.getters['common/wallet/address'],
-            "cardId": cardid,
-            "voteType": voteType
-          }
-        }
-        this.vue.notifyInfo('Voting', 'Sending vote to the blockchain.')
-        console.log("votecard msg:", msg)
-        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgVoteCard', msg)
-          .then((res) => {
-            if (res.code != 0) {
-              throw Error(res.rawLog)
-            }
-            console.log("res", res)
-            this.vue.notifySuccess('VOTED', 'Vote Transaction successful!')
-            return this.getAccInfo(this.vue.$store.getters['common/wallet/address'])
-          })
-          .catch(err => {
-            console.log(err)
-            this.vue.notifyFail('Voting failed', err)
           })
       }
       getUserInfo (address) {
