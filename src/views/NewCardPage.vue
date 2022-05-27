@@ -106,7 +106,7 @@
               My <b>beauty</b> must not be covered by borders
             </span>
             <input
-              v-model="model.FullArt"
+              v-model="model.fullArt"
               type="checkbox"
               @change="saveDraft"
             >
@@ -554,7 +554,7 @@
               council the following <b>notes</b> for this card (optional):
             </span>
             <input
-              v-model="model.Notes"
+              v-model="model.notes"
               @change="saveDraft"
             >
           </div>
@@ -1092,7 +1092,7 @@ export default {
           .saveContentToCardTx(newCard, this.model.id)
           .then(this.updateCredits)
           .then(() => {
-            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.FullArt)
+            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           })
           .then(this.resetEditCard)
           .catch((err) => {

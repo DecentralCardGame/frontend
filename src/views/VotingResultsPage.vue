@@ -185,7 +185,7 @@ export default {
             candidate.isBanned = this.cardList[this.cardList.length - 1 - this.pageId - currentId].Result === 'ban'
             this.cards.push(candidate)
             return candidate
-          } else if (!card.Owner) {
+          } else if (!card.owner) {
             console.error("card without content and owner: ", res)
             return res
           } else {
@@ -240,7 +240,7 @@ export default {
         R.pluck("cardId", this.votableCards)
       )
       this.isOwner =
-        this.cards[this.clickedIndex].Owner ===
+        this.cards[this.clickedIndex].owner ===
         this.$store.getters['common/wallet/address']
 
       this.keywordDescriptions = []
