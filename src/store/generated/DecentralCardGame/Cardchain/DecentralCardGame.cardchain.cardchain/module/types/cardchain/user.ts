@@ -57,6 +57,7 @@ export interface User {
   voteRights: VoteRight[];
   CouncilStatus: CouncilStatus;
   ReportMatches: boolean;
+  profileCard: number;
 }
 
 const baseUser: object = {
@@ -66,6 +67,7 @@ const baseUser: object = {
   cards: 0,
   CouncilStatus: 0,
   ReportMatches: false,
+  profileCard: 0,
 };
 
 export const User = {
@@ -96,6 +98,9 @@ export const User = {
     }
     if (message.ReportMatches === true) {
       writer.uint32(56).bool(message.ReportMatches);
+    }
+    if (message.profileCard !== 0) {
+      writer.uint32(64).uint64(message.profileCard);
     }
     return writer;
   },
@@ -159,6 +164,9 @@ export const User = {
         case 7:
           message.ReportMatches = reader.bool();
           break;
+        case 8:
+          message.profileCard = longToNumber(reader.uint64() as Long);
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -214,6 +222,11 @@ export const User = {
     } else {
       message.ReportMatches = false;
     }
+    if (object.profileCard !== undefined && object.profileCard !== null) {
+      message.profileCard = Number(object.profileCard);
+    } else {
+      message.profileCard = 0;
+    }
     return message;
   },
 
@@ -246,6 +259,8 @@ export const User = {
       (obj.CouncilStatus = councilStatusToJSON(message.CouncilStatus));
     message.ReportMatches !== undefined &&
       (obj.ReportMatches = message.ReportMatches);
+    message.profileCard !== undefined &&
+      (obj.profileCard = message.profileCard);
     return obj;
   },
 
@@ -295,6 +310,11 @@ export const User = {
       message.ReportMatches = object.ReportMatches;
     } else {
       message.ReportMatches = false;
+    }
+    if (object.profileCard !== undefined && object.profileCard !== null) {
+      message.profileCard = object.profileCard;
+    } else {
+      message.profileCard = 0;
     }
     return message;
   },

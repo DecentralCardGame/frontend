@@ -335,6 +335,29 @@ export default {
             this.vue.notifyFail('Transfer failed', err)
           })
       }
+      setProfileCard (id) {
+        let msg = {
+          value: {
+            "@type":"/DecentralCardGame.cardchain.cardchain.MsgSetProfileCard",
+            "creator": this.vue.$store.getters['common/wallet/address'],
+            "cardId": id,
+          }
+        }
+        this.vue.notifyInfo('Setting pic', 'Sending request to the blockchain.')
+        console.log("saveart msg:", msg)
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgSetProfileCard', msg)
+          .then((res) => {
+            if (res.code != 0) {
+              throw Error(res.rawLog)
+            }
+            this.vue.notifySuccess('EPIC WIN', 'Setting profile card was successful!')
+            return res
+          })
+          .catch(err => {
+            console.log(err)
+            this.vue.notifyFail('Fail', err)
+          })
+      }
       transferCoin (to, coins) {
         console.log(coins)
         let msg = {
@@ -451,15 +474,7 @@ export default {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           throw new Error('account ' + address + ' is not registered')
         } else {
-          return {
-            alias: res.data.alias,
-            councilStatus: res.data.CouncilStatus,
-            reportMatches: res.data.reportMatches,
-            ownedCardSchemes: res.data.ownedCardSchemes,
-            ownedPrototypes: res.data.ownedPrototypes,
-            ownedCards: res.data.cards,
-            voteRights: res.data.voteRights
-          }
+          return res.data
         }
       })
       handleGetAcc = R.curry((res, address) => {

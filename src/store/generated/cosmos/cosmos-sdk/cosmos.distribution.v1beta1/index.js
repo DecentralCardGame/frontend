@@ -1,33 +1,52 @@
-import { txClient, queryClient, MissingWalletError, registry } from './module';
-// @ts-ignore
-import { SpVuexError } from '@starport/vuex';
-import { Params } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorHistoricalRewards } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorCurrentRewards } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorAccumulatedCommission } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorOutstandingRewards } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorSlashEvent } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorSlashEvents } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { FeePool } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { CommunityPoolSpendProposal } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { DelegatorStartingInfo } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { DelegationDelegatorReward } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { CommunityPoolSpendProposalWithDeposit } from "./module/types/cosmos/distribution/v1beta1/distribution";
-import { DelegatorWithdrawInfo } from "./module/types/cosmos/distribution/v1beta1/genesis";
-import { ValidatorOutstandingRewardsRecord } from "./module/types/cosmos/distribution/v1beta1/genesis";
-import { ValidatorAccumulatedCommissionRecord } from "./module/types/cosmos/distribution/v1beta1/genesis";
-import { ValidatorHistoricalRewardsRecord } from "./module/types/cosmos/distribution/v1beta1/genesis";
-import { ValidatorCurrentRewardsRecord } from "./module/types/cosmos/distribution/v1beta1/genesis";
-import { DelegatorStartingInfoRecord } from "./module/types/cosmos/distribution/v1beta1/genesis";
-import { ValidatorSlashEventRecord } from "./module/types/cosmos/distribution/v1beta1/genesis";
-export { Params, ValidatorHistoricalRewards, ValidatorCurrentRewards, ValidatorAccumulatedCommission, ValidatorOutstandingRewards, ValidatorSlashEvent, ValidatorSlashEvents, FeePool, CommunityPoolSpendProposal, DelegatorStartingInfo, DelegationDelegatorReward, CommunityPoolSpendProposalWithDeposit, DelegatorWithdrawInfo, ValidatorOutstandingRewardsRecord, ValidatorAccumulatedCommissionRecord, ValidatorHistoricalRewardsRecord, ValidatorCurrentRewardsRecord, DelegatorStartingInfoRecord, ValidatorSlashEventRecord };
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ValidatorSlashEventRecord = exports.DelegatorStartingInfoRecord = exports.ValidatorCurrentRewardsRecord = exports.ValidatorHistoricalRewardsRecord = exports.ValidatorAccumulatedCommissionRecord = exports.ValidatorOutstandingRewardsRecord = exports.DelegatorWithdrawInfo = exports.CommunityPoolSpendProposalWithDeposit = exports.DelegationDelegatorReward = exports.DelegatorStartingInfo = exports.CommunityPoolSpendProposal = exports.FeePool = exports.ValidatorSlashEvents = exports.ValidatorSlashEvent = exports.ValidatorOutstandingRewards = exports.ValidatorAccumulatedCommission = exports.ValidatorCurrentRewards = exports.ValidatorHistoricalRewards = exports.Params = void 0;
+const module_1 = require("./module");
+const distribution_1 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "Params", { enumerable: true, get: function () { return distribution_1.Params; } });
+const distribution_2 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "ValidatorHistoricalRewards", { enumerable: true, get: function () { return distribution_2.ValidatorHistoricalRewards; } });
+const distribution_3 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "ValidatorCurrentRewards", { enumerable: true, get: function () { return distribution_3.ValidatorCurrentRewards; } });
+const distribution_4 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "ValidatorAccumulatedCommission", { enumerable: true, get: function () { return distribution_4.ValidatorAccumulatedCommission; } });
+const distribution_5 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "ValidatorOutstandingRewards", { enumerable: true, get: function () { return distribution_5.ValidatorOutstandingRewards; } });
+const distribution_6 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "ValidatorSlashEvent", { enumerable: true, get: function () { return distribution_6.ValidatorSlashEvent; } });
+const distribution_7 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "ValidatorSlashEvents", { enumerable: true, get: function () { return distribution_7.ValidatorSlashEvents; } });
+const distribution_8 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "FeePool", { enumerable: true, get: function () { return distribution_8.FeePool; } });
+const distribution_9 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "CommunityPoolSpendProposal", { enumerable: true, get: function () { return distribution_9.CommunityPoolSpendProposal; } });
+const distribution_10 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "DelegatorStartingInfo", { enumerable: true, get: function () { return distribution_10.DelegatorStartingInfo; } });
+const distribution_11 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "DelegationDelegatorReward", { enumerable: true, get: function () { return distribution_11.DelegationDelegatorReward; } });
+const distribution_12 = require("./module/types/cosmos/distribution/v1beta1/distribution");
+Object.defineProperty(exports, "CommunityPoolSpendProposalWithDeposit", { enumerable: true, get: function () { return distribution_12.CommunityPoolSpendProposalWithDeposit; } });
+const genesis_1 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "DelegatorWithdrawInfo", { enumerable: true, get: function () { return genesis_1.DelegatorWithdrawInfo; } });
+const genesis_2 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "ValidatorOutstandingRewardsRecord", { enumerable: true, get: function () { return genesis_2.ValidatorOutstandingRewardsRecord; } });
+const genesis_3 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "ValidatorAccumulatedCommissionRecord", { enumerable: true, get: function () { return genesis_3.ValidatorAccumulatedCommissionRecord; } });
+const genesis_4 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "ValidatorHistoricalRewardsRecord", { enumerable: true, get: function () { return genesis_4.ValidatorHistoricalRewardsRecord; } });
+const genesis_5 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "ValidatorCurrentRewardsRecord", { enumerable: true, get: function () { return genesis_5.ValidatorCurrentRewardsRecord; } });
+const genesis_6 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "DelegatorStartingInfoRecord", { enumerable: true, get: function () { return genesis_6.DelegatorStartingInfoRecord; } });
+const genesis_7 = require("./module/types/cosmos/distribution/v1beta1/genesis");
+Object.defineProperty(exports, "ValidatorSlashEventRecord", { enumerable: true, get: function () { return genesis_7.ValidatorSlashEventRecord; } });
 async function initTxClient(vuexGetters) {
-    return await txClient(vuexGetters['common/wallet/signer'], {
+    return await (0, module_1.txClient)(vuexGetters['common/wallet/signer'], {
         addr: vuexGetters['common/env/apiTendermint']
     });
 }
 async function initQueryClient(vuexGetters) {
-    return await queryClient({
+    return await (0, module_1.queryClient)({
         addr: vuexGetters['common/env/apiCosmos']
     });
 }
@@ -64,33 +83,33 @@ const getDefaultState = () => {
         DelegatorWithdrawAddress: {},
         CommunityPool: {},
         _Structure: {
-            Params: getStructure(Params.fromPartial({})),
-            ValidatorHistoricalRewards: getStructure(ValidatorHistoricalRewards.fromPartial({})),
-            ValidatorCurrentRewards: getStructure(ValidatorCurrentRewards.fromPartial({})),
-            ValidatorAccumulatedCommission: getStructure(ValidatorAccumulatedCommission.fromPartial({})),
-            ValidatorOutstandingRewards: getStructure(ValidatorOutstandingRewards.fromPartial({})),
-            ValidatorSlashEvent: getStructure(ValidatorSlashEvent.fromPartial({})),
-            ValidatorSlashEvents: getStructure(ValidatorSlashEvents.fromPartial({})),
-            FeePool: getStructure(FeePool.fromPartial({})),
-            CommunityPoolSpendProposal: getStructure(CommunityPoolSpendProposal.fromPartial({})),
-            DelegatorStartingInfo: getStructure(DelegatorStartingInfo.fromPartial({})),
-            DelegationDelegatorReward: getStructure(DelegationDelegatorReward.fromPartial({})),
-            CommunityPoolSpendProposalWithDeposit: getStructure(CommunityPoolSpendProposalWithDeposit.fromPartial({})),
-            DelegatorWithdrawInfo: getStructure(DelegatorWithdrawInfo.fromPartial({})),
-            ValidatorOutstandingRewardsRecord: getStructure(ValidatorOutstandingRewardsRecord.fromPartial({})),
-            ValidatorAccumulatedCommissionRecord: getStructure(ValidatorAccumulatedCommissionRecord.fromPartial({})),
-            ValidatorHistoricalRewardsRecord: getStructure(ValidatorHistoricalRewardsRecord.fromPartial({})),
-            ValidatorCurrentRewardsRecord: getStructure(ValidatorCurrentRewardsRecord.fromPartial({})),
-            DelegatorStartingInfoRecord: getStructure(DelegatorStartingInfoRecord.fromPartial({})),
-            ValidatorSlashEventRecord: getStructure(ValidatorSlashEventRecord.fromPartial({})),
+            Params: getStructure(distribution_1.Params.fromPartial({})),
+            ValidatorHistoricalRewards: getStructure(distribution_2.ValidatorHistoricalRewards.fromPartial({})),
+            ValidatorCurrentRewards: getStructure(distribution_3.ValidatorCurrentRewards.fromPartial({})),
+            ValidatorAccumulatedCommission: getStructure(distribution_4.ValidatorAccumulatedCommission.fromPartial({})),
+            ValidatorOutstandingRewards: getStructure(distribution_5.ValidatorOutstandingRewards.fromPartial({})),
+            ValidatorSlashEvent: getStructure(distribution_6.ValidatorSlashEvent.fromPartial({})),
+            ValidatorSlashEvents: getStructure(distribution_7.ValidatorSlashEvents.fromPartial({})),
+            FeePool: getStructure(distribution_8.FeePool.fromPartial({})),
+            CommunityPoolSpendProposal: getStructure(distribution_9.CommunityPoolSpendProposal.fromPartial({})),
+            DelegatorStartingInfo: getStructure(distribution_10.DelegatorStartingInfo.fromPartial({})),
+            DelegationDelegatorReward: getStructure(distribution_11.DelegationDelegatorReward.fromPartial({})),
+            CommunityPoolSpendProposalWithDeposit: getStructure(distribution_12.CommunityPoolSpendProposalWithDeposit.fromPartial({})),
+            DelegatorWithdrawInfo: getStructure(genesis_1.DelegatorWithdrawInfo.fromPartial({})),
+            ValidatorOutstandingRewardsRecord: getStructure(genesis_2.ValidatorOutstandingRewardsRecord.fromPartial({})),
+            ValidatorAccumulatedCommissionRecord: getStructure(genesis_3.ValidatorAccumulatedCommissionRecord.fromPartial({})),
+            ValidatorHistoricalRewardsRecord: getStructure(genesis_4.ValidatorHistoricalRewardsRecord.fromPartial({})),
+            ValidatorCurrentRewardsRecord: getStructure(genesis_5.ValidatorCurrentRewardsRecord.fromPartial({})),
+            DelegatorStartingInfoRecord: getStructure(genesis_6.DelegatorStartingInfoRecord.fromPartial({})),
+            ValidatorSlashEventRecord: getStructure(genesis_7.ValidatorSlashEventRecord.fromPartial({})),
         },
-        _Registry: registry,
+        _Registry: module_1.registry,
         _Subscriptions: new Set(),
     };
 };
 // initial state
 const state = getDefaultState();
-export default {
+exports.default = {
     namespaced: true,
     state,
     mutations: {
@@ -191,7 +210,7 @@ export default {
                     await dispatch(sub.action, sub.payload);
                 }
                 catch (e) {
-                    throw new SpVuexError('Subscriptions: ' + e.message);
+                    throw new Error('Subscriptions: ' + e.message);
                 }
             });
         },
@@ -206,7 +225,7 @@ export default {
                 return getters['getParams']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryParams', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryParams API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryValidatorOutstandingRewards({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -220,7 +239,7 @@ export default {
                 return getters['getValidatorOutstandingRewards']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryValidatorOutstandingRewards', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryValidatorOutstandingRewards API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryValidatorCommission({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -234,7 +253,7 @@ export default {
                 return getters['getValidatorCommission']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryValidatorCommission', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryValidatorCommission API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryValidatorSlashes({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -252,7 +271,7 @@ export default {
                 return getters['getValidatorSlashes']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryValidatorSlashes', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryValidatorSlashes API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDelegationRewards({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -266,7 +285,7 @@ export default {
                 return getters['getDelegationRewards']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryDelegationRewards', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDelegationRewards API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDelegationTotalRewards({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -280,7 +299,7 @@ export default {
                 return getters['getDelegationTotalRewards']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryDelegationTotalRewards', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDelegationTotalRewards API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDelegatorValidators({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -294,7 +313,7 @@ export default {
                 return getters['getDelegatorValidators']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryDelegatorValidators', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDelegatorValidators API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDelegatorWithdrawAddress({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -308,7 +327,7 @@ export default {
                 return getters['getDelegatorWithdrawAddress']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryDelegatorWithdrawAddress', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDelegatorWithdrawAddress API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryCommunityPool({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -322,41 +341,7 @@ export default {
                 return getters['getCommunityPool']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryCommunityPool', 'API Node Unavailable. Could not perform query: ' + e.message);
-            }
-        },
-        async sendMsgWithdrawDelegatorReward({ rootGetters }, { value, fee = [], memo = '' }) {
-            try {
-                const txClient = await initTxClient(rootGetters);
-                const msg = await txClient.msgWithdrawDelegatorReward(value);
-                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
-                return result;
-            }
-            catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgWithdrawDelegatorReward:Init', 'Could not initialize signing client. Wallet is required.');
-                }
-                else {
-                    throw new SpVuexError('TxClient:MsgWithdrawDelegatorReward:Send', 'Could not broadcast Tx: ' + e.message);
-                }
-            }
-        },
-        async sendMsgWithdrawValidatorCommission({ rootGetters }, { value, fee = [], memo = '' }) {
-            try {
-                const txClient = await initTxClient(rootGetters);
-                const msg = await txClient.msgWithdrawValidatorCommission(value);
-                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
-                return result;
-            }
-            catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgWithdrawValidatorCommission:Init', 'Could not initialize signing client. Wallet is required.');
-                }
-                else {
-                    throw new SpVuexError('TxClient:MsgWithdrawValidatorCommission:Send', 'Could not broadcast Tx: ' + e.message);
-                }
+                throw new Error('QueryClient:QueryCommunityPool API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async sendMsgSetWithdrawAddress({ rootGetters }, { value, fee = [], memo = '' }) {
@@ -368,11 +353,11 @@ export default {
                 return result;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgSetWithdrawAddress:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgSetWithdrawAddress:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgSetWithdrawAddress:Send', 'Could not broadcast Tx: ' + e.message);
+                    throw new Error('TxClient:MsgSetWithdrawAddress:Send Could not broadcast Tx: ' + e.message);
                 }
             }
         },
@@ -385,41 +370,45 @@ export default {
                 return result;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgFundCommunityPool:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgFundCommunityPool:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgFundCommunityPool:Send', 'Could not broadcast Tx: ' + e.message);
+                    throw new Error('TxClient:MsgFundCommunityPool:Send Could not broadcast Tx: ' + e.message);
                 }
             }
         },
-        async MsgWithdrawDelegatorReward({ rootGetters }, { value }) {
-            try {
-                const txClient = await initTxClient(rootGetters);
-                const msg = await txClient.msgWithdrawDelegatorReward(value);
-                return msg;
-            }
-            catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgWithdrawDelegatorReward:Init', 'Could not initialize signing client. Wallet is required.');
-                }
-                else {
-                    throw new SpVuexError('TxClient:MsgWithdrawDelegatorReward:Create', 'Could not create message: ' + e.message);
-                }
-            }
-        },
-        async MsgWithdrawValidatorCommission({ rootGetters }, { value }) {
+        async sendMsgWithdrawValidatorCommission({ rootGetters }, { value, fee = [], memo = '' }) {
             try {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgWithdrawValidatorCommission(value);
-                return msg;
+                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
+                        gas: "200000" }, memo });
+                return result;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgWithdrawValidatorCommission:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgWithdrawValidatorCommission:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgWithdrawValidatorCommission:Create', 'Could not create message: ' + e.message);
+                    throw new Error('TxClient:MsgWithdrawValidatorCommission:Send Could not broadcast Tx: ' + e.message);
+                }
+            }
+        },
+        async sendMsgWithdrawDelegatorReward({ rootGetters }, { value, fee = [], memo = '' }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgWithdrawDelegatorReward(value);
+                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
+                        gas: "200000" }, memo });
+                return result;
+            }
+            catch (e) {
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgWithdrawDelegatorReward:Init Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new Error('TxClient:MsgWithdrawDelegatorReward:Send Could not broadcast Tx: ' + e.message);
                 }
             }
         },
@@ -430,11 +419,11 @@ export default {
                 return msg;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgSetWithdrawAddress:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgSetWithdrawAddress:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgSetWithdrawAddress:Create', 'Could not create message: ' + e.message);
+                    throw new Error('TxClient:MsgSetWithdrawAddress:Create Could not create message: ' + e.message);
                 }
             }
         },
@@ -445,11 +434,41 @@ export default {
                 return msg;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgFundCommunityPool:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgFundCommunityPool:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgFundCommunityPool:Create', 'Could not create message: ' + e.message);
+                    throw new Error('TxClient:MsgFundCommunityPool:Create Could not create message: ' + e.message);
+                }
+            }
+        },
+        async MsgWithdrawValidatorCommission({ rootGetters }, { value }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgWithdrawValidatorCommission(value);
+                return msg;
+            }
+            catch (e) {
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgWithdrawValidatorCommission:Init Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new Error('TxClient:MsgWithdrawValidatorCommission:Create Could not create message: ' + e.message);
+                }
+            }
+        },
+        async MsgWithdrawDelegatorReward({ rootGetters }, { value }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgWithdrawDelegatorReward(value);
+                return msg;
+            }
+            catch (e) {
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgWithdrawDelegatorReward:Init Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new Error('TxClient:MsgWithdrawDelegatorReward:Create Could not create message: ' + e.message);
                 }
             }
         },

@@ -1,16 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Collection = exports.cStatusToJSON = exports.cStatusFromJSON = exports.CStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
-export var CStatus;
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var CStatus;
 (function (CStatus) {
     CStatus[CStatus["design"] = 0] = "design";
     CStatus[CStatus["finalized"] = 1] = "finalized";
     CStatus[CStatus["active"] = 2] = "active";
     CStatus[CStatus["archived"] = 3] = "archived";
     CStatus[CStatus["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(CStatus || (CStatus = {}));
-export function cStatusFromJSON(object) {
+})(CStatus = exports.CStatus || (exports.CStatus = {}));
+function cStatusFromJSON(object) {
     switch (object) {
         case 0:
         case "design":
@@ -30,7 +33,8 @@ export function cStatusFromJSON(object) {
             return CStatus.UNRECOGNIZED;
     }
 }
-export function cStatusToJSON(object) {
+exports.cStatusFromJSON = cStatusFromJSON;
+function cStatusToJSON(object) {
     switch (object) {
         case CStatus.design:
             return "design";
@@ -44,6 +48,7 @@ export function cStatusToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.cStatusToJSON = cStatusToJSON;
 const baseCollection = {
     name: "",
     cards: 0,
@@ -54,8 +59,8 @@ const baseCollection = {
     status: 0,
     timeStamp: 0,
 };
-export const Collection = {
-    encode(message, writer = Writer.create()) {
+exports.Collection = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.name !== "") {
             writer.uint32(10).string(message.name);
         }
@@ -88,7 +93,7 @@ export const Collection = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseCollection };
         message.cards = [];
@@ -314,7 +319,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }
