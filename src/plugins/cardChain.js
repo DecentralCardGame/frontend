@@ -312,6 +312,29 @@ export default {
             this.vue.notifyFail('Saving Artwork failed', err)
           })
       }
+      transferCard (id, receiver) {
+        let msg = {
+          value: {
+            "@type":"/DecentralCardGame.cardchain.cardchain.MsgTransferCard",
+            "creator": this.vue.$store.getters['common/wallet/address'],
+            "cardId": id,
+            "receiver": receiver,
+          }
+        }
+        this.vue.notifyInfo('Transfering', 'Sending request to the blockchain.')
+        console.log("saveart msg:", msg)
+        return this.txQueue.dispatch('DecentralCardGame.cardchain.cardchain/sendMsgTransferCard', msg)
+          .then((res) => {
+            if (res.code != 0) {
+              throw Error(res.rawLog)
+            }
+            this.vue.notifySuccess('EPIC WIN', 'Transfer was successful!')
+          })
+          .catch(err => {
+            console.log(err)
+            this.vue.notifyFail('Transfer failed', err)
+          })
+      }
       transferCoin (to, coins) {
         console.log(coins)
         let msg = {
