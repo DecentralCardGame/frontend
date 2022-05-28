@@ -158,6 +158,7 @@ export default {
       return this.$cardChain
         .getVotingResults()
         .then((res) => {
+          console.log("res", res)
           this.TotalVotes = res.lastVotingResults.totalVotes
           this.TotalFairEnoughVotes = res.lastVotingResults.totalFairEnoughVotes
           this.TotalInappropriateVotes = res.lastVotingResults.totalInappropriateVotes
@@ -176,13 +177,13 @@ export default {
       return this.$cardChain
         .getCard(cardId)
         .then((res) => {
-          let card = res.card
+          let card = res
           card.id = cardId
-          if (card.Content) {
+          if (card.content) {
             let candidate = this.$cardChain.cardObjectToWebModel(card)
-            candidate.isNerfed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].Result === 'nerf'
-            candidate.isBuffed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].Result === 'buff'
-            candidate.isBanned = this.cardList[this.cardList.length - 1 - this.pageId - currentId].Result === 'ban'
+            candidate.isNerfed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'nerf'
+            candidate.isBuffed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'buff'
+            candidate.isBanned = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'ban'
             this.cards.push(candidate)
             return candidate
           } else if (!card.owner) {
