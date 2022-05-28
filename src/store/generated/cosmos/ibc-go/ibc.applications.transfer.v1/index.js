@@ -1,17 +1,20 @@
-import { txClient, queryClient, MissingWalletError, registry } from './module';
-// @ts-ignore
-import { SpVuexError } from '@starport/vuex';
-import { FungibleTokenPacketData } from "./module/types/ibc/applications/transfer/v1/transfer";
-import { DenomTrace } from "./module/types/ibc/applications/transfer/v1/transfer";
-import { Params } from "./module/types/ibc/applications/transfer/v1/transfer";
-export { FungibleTokenPacketData, DenomTrace, Params };
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Params = exports.DenomTrace = exports.FungibleTokenPacketData = void 0;
+const module_1 = require("./module");
+const transfer_1 = require("./module/types/ibc/applications/transfer/v1/transfer");
+Object.defineProperty(exports, "FungibleTokenPacketData", { enumerable: true, get: function () { return transfer_1.FungibleTokenPacketData; } });
+const transfer_2 = require("./module/types/ibc/applications/transfer/v1/transfer");
+Object.defineProperty(exports, "DenomTrace", { enumerable: true, get: function () { return transfer_2.DenomTrace; } });
+const transfer_3 = require("./module/types/ibc/applications/transfer/v1/transfer");
+Object.defineProperty(exports, "Params", { enumerable: true, get: function () { return transfer_3.Params; } });
 async function initTxClient(vuexGetters) {
-    return await txClient(vuexGetters['common/wallet/signer'], {
+    return await (0, module_1.txClient)(vuexGetters['common/wallet/signer'], {
         addr: vuexGetters['common/env/apiTendermint']
     });
 }
 async function initQueryClient(vuexGetters) {
-    return await queryClient({
+    return await (0, module_1.queryClient)({
         addr: vuexGetters['common/env/apiCosmos']
     });
 }
@@ -42,17 +45,17 @@ const getDefaultState = () => {
         DenomTraces: {},
         Params: {},
         _Structure: {
-            FungibleTokenPacketData: getStructure(FungibleTokenPacketData.fromPartial({})),
-            DenomTrace: getStructure(DenomTrace.fromPartial({})),
-            Params: getStructure(Params.fromPartial({})),
+            FungibleTokenPacketData: getStructure(transfer_1.FungibleTokenPacketData.fromPartial({})),
+            DenomTrace: getStructure(transfer_2.DenomTrace.fromPartial({})),
+            Params: getStructure(transfer_3.Params.fromPartial({})),
         },
-        _Registry: registry,
+        _Registry: module_1.registry,
         _Subscriptions: new Set(),
     };
 };
 // initial state
 const state = getDefaultState();
-export default {
+exports.default = {
     namespaced: true,
     state,
     mutations: {
@@ -117,7 +120,7 @@ export default {
                     await dispatch(sub.action, sub.payload);
                 }
                 catch (e) {
-                    throw new SpVuexError('Subscriptions: ' + e.message);
+                    throw new Error('Subscriptions: ' + e.message);
                 }
             });
         },
@@ -132,7 +135,7 @@ export default {
                 return getters['getDenomTrace']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryDenomTrace', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDenomTrace API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDenomTraces({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -150,7 +153,7 @@ export default {
                 return getters['getDenomTraces']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryDenomTraces', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDenomTraces API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryParams({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -164,7 +167,7 @@ export default {
                 return getters['getParams']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new SpVuexError('QueryClient:QueryParams', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryParams API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async sendMsgTransfer({ rootGetters }, { value, fee = [], memo = '' }) {
@@ -176,11 +179,11 @@ export default {
                 return result;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgTransfer:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgTransfer:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgTransfer:Send', 'Could not broadcast Tx: ' + e.message);
+                    throw new Error('TxClient:MsgTransfer:Send Could not broadcast Tx: ' + e.message);
                 }
             }
         },
@@ -191,11 +194,11 @@ export default {
                 return msg;
             }
             catch (e) {
-                if (e == MissingWalletError) {
-                    throw new SpVuexError('TxClient:MsgTransfer:Init', 'Could not initialize signing client. Wallet is required.');
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgTransfer:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new SpVuexError('TxClient:MsgTransfer:Create', 'Could not create message: ' + e.message);
+                    throw new Error('TxClient:MsgTransfer:Create Could not create message: ' + e.message);
                 }
             }
         },

@@ -1,11 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Any = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "google.protobuf";
-const baseAny = { typeUrl: "" };
-export const Any = {
-    encode(message, writer = Writer.create()) {
-        if (message.typeUrl !== "") {
-            writer.uint32(10).string(message.typeUrl);
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "google.protobuf";
+const baseAny = { type_url: "" };
+exports.Any = {
+    encode(message, writer = minimal_1.Writer.create()) {
+        if (message.type_url !== "") {
+            writer.uint32(10).string(message.type_url);
         }
         if (message.value.length !== 0) {
             writer.uint32(18).bytes(message.value);
@@ -13,14 +16,14 @@ export const Any = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseAny };
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.typeUrl = reader.string();
+                    message.type_url = reader.string();
                     break;
                 case 2:
                     message.value = reader.bytes();
@@ -34,11 +37,11 @@ export const Any = {
     },
     fromJSON(object) {
         const message = { ...baseAny };
-        if (object.typeUrl !== undefined && object.typeUrl !== null) {
-            message.typeUrl = String(object.typeUrl);
+        if (object.type_url !== undefined && object.type_url !== null) {
+            message.type_url = String(object.type_url);
         }
         else {
-            message.typeUrl = "";
+            message.type_url = "";
         }
         if (object.value !== undefined && object.value !== null) {
             message.value = bytesFromBase64(object.value);
@@ -47,18 +50,18 @@ export const Any = {
     },
     toJSON(message) {
         const obj = {};
-        message.typeUrl !== undefined && (obj.typeUrl = message.typeUrl);
+        message.type_url !== undefined && (obj.type_url = message.type_url);
         message.value !== undefined &&
             (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
         return obj;
     },
     fromPartial(object) {
         const message = { ...baseAny };
-        if (object.typeUrl !== undefined && object.typeUrl !== null) {
-            message.typeUrl = object.typeUrl;
+        if (object.type_url !== undefined && object.type_url !== null) {
+            message.type_url = object.type_url;
         }
         else {
-            message.typeUrl = "";
+            message.type_url = "";
         }
         if (object.value !== undefined && object.value !== null) {
             message.value = object.value;

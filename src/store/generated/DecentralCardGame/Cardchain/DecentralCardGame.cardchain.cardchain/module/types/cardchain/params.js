@@ -1,7 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Params = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
 const baseParams = {
     votingRightsExpirationTime: 0,
     collectionSize: 0,
@@ -20,8 +23,8 @@ const baseParams = {
     gameVoteRatio: 0,
     cardAuctionPriceReductionPeriod: 0,
 };
-export const Params = {
-    encode(message, writer = Writer.create()) {
+exports.Params = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.votingRightsExpirationTime !== 0) {
             writer.uint32(8).int64(message.votingRightsExpirationTime);
         }
@@ -73,7 +76,7 @@ export const Params = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseParams };
         while (reader.pos < end) {
@@ -404,7 +407,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

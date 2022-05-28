@@ -1,3 +1,4 @@
+"use strict";
 /* eslint-disable */
 /* tslint:disable */
 /*
@@ -8,14 +9,16 @@
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
-export var CardchainCStatus;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Api = exports.HttpClient = exports.ContentType = exports.CardchaincardchainStatus = exports.CardchainSellOfferStatus = exports.CardchainResponse = exports.CardchainQueryQCardsRequestStatus = exports.CardchainOutcome = exports.CardchainCouncilStatus = exports.CardchainCouncelingStatus = exports.CardchainCStatus = void 0;
+var CardchainCStatus;
 (function (CardchainCStatus) {
     CardchainCStatus["Design"] = "design";
     CardchainCStatus["Finalized"] = "finalized";
     CardchainCStatus["Active"] = "active";
     CardchainCStatus["Archived"] = "archived";
-})(CardchainCStatus || (CardchainCStatus = {}));
-export var CardchainCouncelingStatus;
+})(CardchainCStatus = exports.CardchainCStatus || (exports.CardchainCStatus = {}));
+var CardchainCouncelingStatus;
 (function (CardchainCouncelingStatus) {
     CardchainCouncelingStatus["CouncilOpen"] = "councilOpen";
     CardchainCouncelingStatus["CouncilCreated"] = "councilCreated";
@@ -23,34 +26,48 @@ export var CardchainCouncelingStatus;
     CardchainCouncelingStatus["Commited"] = "commited";
     CardchainCouncelingStatus["Revealed"] = "revealed";
     CardchainCouncelingStatus["SuggestionsMade"] = "suggestionsMade";
-})(CardchainCouncelingStatus || (CardchainCouncelingStatus = {}));
-export var CardchainCouncilStatus;
+})(CardchainCouncelingStatus = exports.CardchainCouncelingStatus || (exports.CardchainCouncelingStatus = {}));
+var CardchainCouncilStatus;
 (function (CardchainCouncilStatus) {
     CardchainCouncilStatus["Available"] = "available";
     CardchainCouncilStatus["Unavailable"] = "unavailable";
     CardchainCouncilStatus["OpenCouncil"] = "openCouncil";
     CardchainCouncilStatus["StartedCouncil"] = "startedCouncil";
-})(CardchainCouncilStatus || (CardchainCouncilStatus = {}));
-export var CardchainOutcome;
+})(CardchainCouncilStatus = exports.CardchainCouncilStatus || (exports.CardchainCouncilStatus = {}));
+var CardchainOutcome;
 (function (CardchainOutcome) {
     CardchainOutcome["AWon"] = "AWon";
     CardchainOutcome["BWon"] = "BWon";
     CardchainOutcome["Draw"] = "Draw";
     CardchainOutcome["Aborted"] = "Aborted";
-})(CardchainOutcome || (CardchainOutcome = {}));
-export var CardchainResponse;
+})(CardchainOutcome = exports.CardchainOutcome || (exports.CardchainOutcome = {}));
+var CardchainQueryQCardsRequestStatus;
+(function (CardchainQueryQCardsRequestStatus) {
+    CardchainQueryQCardsRequestStatus["Scheme"] = "scheme";
+    CardchainQueryQCardsRequestStatus["Prototype"] = "prototype";
+    CardchainQueryQCardsRequestStatus["Trial"] = "trial";
+    CardchainQueryQCardsRequestStatus["Permanent"] = "permanent";
+    CardchainQueryQCardsRequestStatus["Suspended"] = "suspended";
+    CardchainQueryQCardsRequestStatus["Banned"] = "banned";
+    CardchainQueryQCardsRequestStatus["BannedSoon"] = "bannedSoon";
+    CardchainQueryQCardsRequestStatus["BannedVerySoon"] = "bannedVerySoon";
+    CardchainQueryQCardsRequestStatus["None"] = "none";
+    CardchainQueryQCardsRequestStatus["Playable"] = "playable";
+    CardchainQueryQCardsRequestStatus["Unplayable"] = "unplayable";
+})(CardchainQueryQCardsRequestStatus = exports.CardchainQueryQCardsRequestStatus || (exports.CardchainQueryQCardsRequestStatus = {}));
+var CardchainResponse;
 (function (CardchainResponse) {
     CardchainResponse["Yes"] = "Yes";
     CardchainResponse["No"] = "No";
     CardchainResponse["Suggestion"] = "Suggestion";
-})(CardchainResponse || (CardchainResponse = {}));
-export var CardchainSellOfferStatus;
+})(CardchainResponse = exports.CardchainResponse || (exports.CardchainResponse = {}));
+var CardchainSellOfferStatus;
 (function (CardchainSellOfferStatus) {
     CardchainSellOfferStatus["Open"] = "open";
     CardchainSellOfferStatus["Sold"] = "sold";
     CardchainSellOfferStatus["Removed"] = "removed";
-})(CardchainSellOfferStatus || (CardchainSellOfferStatus = {}));
-export var CardchaincardchainStatus;
+})(CardchainSellOfferStatus = exports.CardchainSellOfferStatus || (exports.CardchainSellOfferStatus = {}));
+var CardchaincardchainStatus;
 (function (CardchaincardchainStatus) {
     CardchaincardchainStatus["Scheme"] = "scheme";
     CardchaincardchainStatus["Prototype"] = "prototype";
@@ -61,14 +78,14 @@ export var CardchaincardchainStatus;
     CardchaincardchainStatus["BannedSoon"] = "bannedSoon";
     CardchaincardchainStatus["BannedVerySoon"] = "bannedVerySoon";
     CardchaincardchainStatus["None"] = "none";
-})(CardchaincardchainStatus || (CardchaincardchainStatus = {}));
-export var ContentType;
+})(CardchaincardchainStatus = exports.CardchaincardchainStatus || (exports.CardchaincardchainStatus = {}));
+var ContentType;
 (function (ContentType) {
     ContentType["Json"] = "application/json";
     ContentType["FormData"] = "multipart/form-data";
     ContentType["UrlEncoded"] = "application/x-www-form-urlencoded";
-})(ContentType || (ContentType = {}));
-export class HttpClient {
+})(ContentType = exports.ContentType || (exports.ContentType = {}));
+class HttpClient {
     constructor(apiConfig = {}) {
         this.baseUrl = "";
         this.securityData = null;
@@ -183,11 +200,12 @@ export class HttpClient {
         };
     }
 }
+exports.HttpClient = HttpClient;
 /**
  * @title cardchain/card.proto
  * @version version not set
  */
-export class Api extends HttpClient {
+class Api extends HttpClient {
     constructor() {
         super(...arguments);
         /**
@@ -252,11 +270,12 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryQCards
          * @summary Queries a list of QCards items.
-         * @request GET:/DecentralCardGame/cardchain/cardchain/q_cards/{owner}/{status}/{cardType}/{classes}/{sortBy}/{nameContains}/{keywordsContains}/{notesContains}
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_cards/{status}
          */
-        this.queryQCards = (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains, params = {}) => this.request({
-            path: `/DecentralCardGame/cardchain/cardchain/q_cards/${owner}/${status}/${cardType}/${classes}/${sortBy}/${nameContains}/${keywordsContains}/${notesContains}`,
+        this.queryQCards = (status, query, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_cards/${status}`,
             method: "GET",
+            query: query,
             format: "json",
             ...params,
         });
@@ -308,10 +327,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryQMatches
          * @summary Queries a list of QMatches items.
-         * @request GET:/DecentralCardGame/cardchain/cardchain/q_matches/{timestampDown}/{timestampUp}/{containsUsers}/{outcome}
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_matches
          */
-        this.queryQMatches = (timestampDown, timestampUp, containsUsers, outcome, query, params = {}) => this.request({
-            path: `/DecentralCardGame/cardchain/cardchain/q_matches/${timestampDown}/${timestampUp}/${containsUsers}/${outcome}`,
+        this.queryQMatches = (query, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_matches`,
             method: "GET",
             query: query,
             format: "json",
@@ -337,12 +356,26 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryQSellOffers
          * @summary Queries a list of QSellOffers items.
-         * @request GET:/DecentralCardGame/cardchain/cardchain/q_sell_offers/{priceDown}/{priceUp}/{seller}/{buyer}/{status}
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_sell_offers/{status}
          */
-        this.queryQSellOffers = (priceDown, priceUp, seller, buyer, status, query, params = {}) => this.request({
-            path: `/DecentralCardGame/cardchain/cardchain/q_sell_offers/${priceDown}/${priceUp}/${seller}/${buyer}/${status}`,
+        this.queryQSellOffers = (status, query, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_sell_offers/${status}`,
             method: "GET",
             query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryQServer
+         * @summary Queries a list of QServer items.
+         * @request GET:/DecentralCardGame/cardchain/cardchain/q_server/{id}
+         */
+        this.queryQServer = (id, params = {}) => this.request({
+            path: `/DecentralCardGame/cardchain/cardchain/q_server/${id}`,
+            method: "GET",
             format: "json",
             ...params,
         });
@@ -390,3 +423,4 @@ export class Api extends HttpClient {
         });
     }
 }
+exports.Api = Api;

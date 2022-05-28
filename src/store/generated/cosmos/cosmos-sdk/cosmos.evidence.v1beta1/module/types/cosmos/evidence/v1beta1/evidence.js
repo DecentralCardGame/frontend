@@ -1,27 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Equivocation = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { Timestamp } from "../../../google/protobuf/timestamp";
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "cosmos.evidence.v1beta1";
-const baseEquivocation = { height: 0, power: 0, consensusAddress: "" };
-export const Equivocation = {
-    encode(message, writer = Writer.create()) {
+const timestamp_1 = require("../../../google/protobuf/timestamp");
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "cosmos.evidence.v1beta1";
+const baseEquivocation = { height: 0, power: 0, consensus_address: "" };
+exports.Equivocation = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.height !== 0) {
             writer.uint32(8).int64(message.height);
         }
         if (message.time !== undefined) {
-            Timestamp.encode(toTimestamp(message.time), writer.uint32(18).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.time), writer.uint32(18).fork()).ldelim();
         }
         if (message.power !== 0) {
             writer.uint32(24).int64(message.power);
         }
-        if (message.consensusAddress !== "") {
-            writer.uint32(34).string(message.consensusAddress);
+        if (message.consensus_address !== "") {
+            writer.uint32(34).string(message.consensus_address);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseEquivocation };
         while (reader.pos < end) {
@@ -31,13 +34,13 @@ export const Equivocation = {
                     message.height = longToNumber(reader.int64());
                     break;
                 case 2:
-                    message.time = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.time = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 3:
                     message.power = longToNumber(reader.int64());
                     break;
                 case 4:
-                    message.consensusAddress = reader.string();
+                    message.consensus_address = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -66,12 +69,12 @@ export const Equivocation = {
         else {
             message.power = 0;
         }
-        if (object.consensusAddress !== undefined &&
-            object.consensusAddress !== null) {
-            message.consensusAddress = String(object.consensusAddress);
+        if (object.consensus_address !== undefined &&
+            object.consensus_address !== null) {
+            message.consensus_address = String(object.consensus_address);
         }
         else {
-            message.consensusAddress = "";
+            message.consensus_address = "";
         }
         return message;
     },
@@ -82,8 +85,8 @@ export const Equivocation = {
             (obj.time =
                 message.time !== undefined ? message.time.toISOString() : null);
         message.power !== undefined && (obj.power = message.power);
-        message.consensusAddress !== undefined &&
-            (obj.consensusAddress = message.consensusAddress);
+        message.consensus_address !== undefined &&
+            (obj.consensus_address = message.consensus_address);
         return obj;
     },
     fromPartial(object) {
@@ -106,12 +109,12 @@ export const Equivocation = {
         else {
             message.power = 0;
         }
-        if (object.consensusAddress !== undefined &&
-            object.consensusAddress !== null) {
-            message.consensusAddress = object.consensusAddress;
+        if (object.consensus_address !== undefined &&
+            object.consensus_address !== null) {
+            message.consensus_address = object.consensus_address;
         }
         else {
-            message.consensusAddress = "";
+            message.consensus_address = "";
         }
         return message;
     },
@@ -145,7 +148,7 @@ function fromJsonTimestamp(o) {
         return new Date(o);
     }
     else {
-        return fromTimestamp(Timestamp.fromJSON(o));
+        return fromTimestamp(timestamp_1.Timestamp.fromJSON(o));
     }
 }
 function longToNumber(long) {
@@ -154,7 +157,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

@@ -1,15 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WrapHashResponse = exports.WrapClearResponse = exports.Council = exports.councelingStatusToJSON = exports.councelingStatusFromJSON = exports.CouncelingStatus = exports.responseToJSON = exports.responseFromJSON = exports.Response = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
-export var Response;
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var Response;
 (function (Response) {
     Response[Response["Yes"] = 0] = "Yes";
     Response[Response["No"] = 1] = "No";
     Response[Response["Suggestion"] = 2] = "Suggestion";
     Response[Response["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(Response || (Response = {}));
-export function responseFromJSON(object) {
+})(Response = exports.Response || (exports.Response = {}));
+function responseFromJSON(object) {
     switch (object) {
         case 0:
         case "Yes":
@@ -26,7 +29,8 @@ export function responseFromJSON(object) {
             return Response.UNRECOGNIZED;
     }
 }
-export function responseToJSON(object) {
+exports.responseFromJSON = responseFromJSON;
+function responseToJSON(object) {
     switch (object) {
         case Response.Yes:
             return "Yes";
@@ -38,7 +42,8 @@ export function responseToJSON(object) {
             return "UNKNOWN";
     }
 }
-export var CouncelingStatus;
+exports.responseToJSON = responseToJSON;
+var CouncelingStatus;
 (function (CouncelingStatus) {
     CouncelingStatus[CouncelingStatus["councilOpen"] = 0] = "councilOpen";
     CouncelingStatus[CouncelingStatus["councilCreated"] = 1] = "councilCreated";
@@ -47,8 +52,8 @@ export var CouncelingStatus;
     CouncelingStatus[CouncelingStatus["revealed"] = 4] = "revealed";
     CouncelingStatus[CouncelingStatus["suggestionsMade"] = 5] = "suggestionsMade";
     CouncelingStatus[CouncelingStatus["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(CouncelingStatus || (CouncelingStatus = {}));
-export function councelingStatusFromJSON(object) {
+})(CouncelingStatus = exports.CouncelingStatus || (exports.CouncelingStatus = {}));
+function councelingStatusFromJSON(object) {
     switch (object) {
         case 0:
         case "councilOpen":
@@ -74,7 +79,8 @@ export function councelingStatusFromJSON(object) {
             return CouncelingStatus.UNRECOGNIZED;
     }
 }
-export function councelingStatusToJSON(object) {
+exports.councelingStatusFromJSON = councelingStatusFromJSON;
+function councelingStatusToJSON(object) {
     switch (object) {
         case CouncelingStatus.councilOpen:
             return "councilOpen";
@@ -92,6 +98,7 @@ export function councelingStatusToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.councelingStatusToJSON = councelingStatusToJSON;
 const baseCouncil = {
     cardId: 0,
     voters: "",
@@ -99,8 +106,8 @@ const baseCouncil = {
     status: 0,
     trialStart: 0,
 };
-export const Council = {
-    encode(message, writer = Writer.create()) {
+exports.Council = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.cardId !== 0) {
             writer.uint32(8).uint64(message.cardId);
         }
@@ -108,10 +115,10 @@ export const Council = {
             writer.uint32(18).string(v);
         }
         for (const v of message.hashResponses) {
-            WrapHashResponse.encode(v, writer.uint32(26).fork()).ldelim();
+            exports.WrapHashResponse.encode(v, writer.uint32(26).fork()).ldelim();
         }
         for (const v of message.clearResponses) {
-            WrapClearResponse.encode(v, writer.uint32(34).fork()).ldelim();
+            exports.WrapClearResponse.encode(v, writer.uint32(34).fork()).ldelim();
         }
         if (message.treasury !== "") {
             writer.uint32(42).string(message.treasury);
@@ -125,7 +132,7 @@ export const Council = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseCouncil };
         message.voters = [];
@@ -141,10 +148,10 @@ export const Council = {
                     message.voters.push(reader.string());
                     break;
                 case 3:
-                    message.hashResponses.push(WrapHashResponse.decode(reader, reader.uint32()));
+                    message.hashResponses.push(exports.WrapHashResponse.decode(reader, reader.uint32()));
                     break;
                 case 4:
-                    message.clearResponses.push(WrapClearResponse.decode(reader, reader.uint32()));
+                    message.clearResponses.push(exports.WrapClearResponse.decode(reader, reader.uint32()));
                     break;
                 case 5:
                     message.treasury = reader.string();
@@ -180,12 +187,12 @@ export const Council = {
         }
         if (object.hashResponses !== undefined && object.hashResponses !== null) {
             for (const e of object.hashResponses) {
-                message.hashResponses.push(WrapHashResponse.fromJSON(e));
+                message.hashResponses.push(exports.WrapHashResponse.fromJSON(e));
             }
         }
         if (object.clearResponses !== undefined && object.clearResponses !== null) {
             for (const e of object.clearResponses) {
-                message.clearResponses.push(WrapClearResponse.fromJSON(e));
+                message.clearResponses.push(exports.WrapClearResponse.fromJSON(e));
             }
         }
         if (object.treasury !== undefined && object.treasury !== null) {
@@ -218,13 +225,13 @@ export const Council = {
             obj.voters = [];
         }
         if (message.hashResponses) {
-            obj.hashResponses = message.hashResponses.map((e) => e ? WrapHashResponse.toJSON(e) : undefined);
+            obj.hashResponses = message.hashResponses.map((e) => e ? exports.WrapHashResponse.toJSON(e) : undefined);
         }
         else {
             obj.hashResponses = [];
         }
         if (message.clearResponses) {
-            obj.clearResponses = message.clearResponses.map((e) => e ? WrapClearResponse.toJSON(e) : undefined);
+            obj.clearResponses = message.clearResponses.map((e) => e ? exports.WrapClearResponse.toJSON(e) : undefined);
         }
         else {
             obj.clearResponses = [];
@@ -253,12 +260,12 @@ export const Council = {
         }
         if (object.hashResponses !== undefined && object.hashResponses !== null) {
             for (const e of object.hashResponses) {
-                message.hashResponses.push(WrapHashResponse.fromPartial(e));
+                message.hashResponses.push(exports.WrapHashResponse.fromPartial(e));
             }
         }
         if (object.clearResponses !== undefined && object.clearResponses !== null) {
             for (const e of object.clearResponses) {
-                message.clearResponses.push(WrapClearResponse.fromPartial(e));
+                message.clearResponses.push(exports.WrapClearResponse.fromPartial(e));
             }
         }
         if (object.treasury !== undefined && object.treasury !== null) {
@@ -283,8 +290,8 @@ export const Council = {
     },
 };
 const baseWrapClearResponse = { user: "", response: 0, suggestion: "" };
-export const WrapClearResponse = {
-    encode(message, writer = Writer.create()) {
+exports.WrapClearResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.user !== "") {
             writer.uint32(10).string(message.user);
         }
@@ -297,7 +304,7 @@ export const WrapClearResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseWrapClearResponse };
         while (reader.pos < end) {
@@ -373,8 +380,8 @@ export const WrapClearResponse = {
     },
 };
 const baseWrapHashResponse = { user: "", hash: "" };
-export const WrapHashResponse = {
-    encode(message, writer = Writer.create()) {
+exports.WrapHashResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.user !== "") {
             writer.uint32(10).string(message.user);
         }
@@ -384,7 +391,7 @@ export const WrapHashResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseWrapHashResponse };
         while (reader.pos < end) {
@@ -459,7 +466,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

@@ -316,6 +316,21 @@ export interface MsgRewokeCouncilRegistration {
 
 export interface MsgRewokeCouncilRegistrationResponse {}
 
+export interface MsgConfirmMatch {
+  creator: string;
+  matchId: number;
+  outcome: Outcome;
+}
+
+export interface MsgConfirmMatchResponse {}
+
+export interface MsgSetProfileCard {
+  creator: string;
+  cardId: number;
+}
+
+export interface MsgSetProfileCardResponse {}
+
 const baseMsgCreateuser: object = { creator: "", newUser: "", alias: "" };
 
 export const MsgCreateuser = {
@@ -5070,6 +5085,266 @@ export const MsgRewokeCouncilRegistrationResponse = {
   },
 };
 
+const baseMsgConfirmMatch: object = { creator: "", matchId: 0, outcome: 0 };
+
+export const MsgConfirmMatch = {
+  encode(message: MsgConfirmMatch, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.matchId !== 0) {
+      writer.uint32(16).uint64(message.matchId);
+    }
+    if (message.outcome !== 0) {
+      writer.uint32(24).int32(message.outcome);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgConfirmMatch {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgConfirmMatch } as MsgConfirmMatch;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.matchId = longToNumber(reader.uint64() as Long);
+          break;
+        case 3:
+          message.outcome = reader.int32() as any;
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgConfirmMatch {
+    const message = { ...baseMsgConfirmMatch } as MsgConfirmMatch;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.matchId !== undefined && object.matchId !== null) {
+      message.matchId = Number(object.matchId);
+    } else {
+      message.matchId = 0;
+    }
+    if (object.outcome !== undefined && object.outcome !== null) {
+      message.outcome = outcomeFromJSON(object.outcome);
+    } else {
+      message.outcome = 0;
+    }
+    return message;
+  },
+
+  toJSON(message: MsgConfirmMatch): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.matchId !== undefined && (obj.matchId = message.matchId);
+    message.outcome !== undefined &&
+      (obj.outcome = outcomeToJSON(message.outcome));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgConfirmMatch>): MsgConfirmMatch {
+    const message = { ...baseMsgConfirmMatch } as MsgConfirmMatch;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.matchId !== undefined && object.matchId !== null) {
+      message.matchId = object.matchId;
+    } else {
+      message.matchId = 0;
+    }
+    if (object.outcome !== undefined && object.outcome !== null) {
+      message.outcome = object.outcome;
+    } else {
+      message.outcome = 0;
+    }
+    return message;
+  },
+};
+
+const baseMsgConfirmMatchResponse: object = {};
+
+export const MsgConfirmMatchResponse = {
+  encode(_: MsgConfirmMatchResponse, writer: Writer = Writer.create()): Writer {
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgConfirmMatchResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgConfirmMatchResponse,
+    } as MsgConfirmMatchResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgConfirmMatchResponse {
+    const message = {
+      ...baseMsgConfirmMatchResponse,
+    } as MsgConfirmMatchResponse;
+    return message;
+  },
+
+  toJSON(_: MsgConfirmMatchResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgConfirmMatchResponse>
+  ): MsgConfirmMatchResponse {
+    const message = {
+      ...baseMsgConfirmMatchResponse,
+    } as MsgConfirmMatchResponse;
+    return message;
+  },
+};
+
+const baseMsgSetProfileCard: object = { creator: "", cardId: 0 };
+
+export const MsgSetProfileCard = {
+  encode(message: MsgSetProfileCard, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.cardId !== 0) {
+      writer.uint32(16).uint64(message.cardId);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgSetProfileCard {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgSetProfileCard } as MsgSetProfileCard;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.cardId = longToNumber(reader.uint64() as Long);
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSetProfileCard {
+    const message = { ...baseMsgSetProfileCard } as MsgSetProfileCard;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.cardId !== undefined && object.cardId !== null) {
+      message.cardId = Number(object.cardId);
+    } else {
+      message.cardId = 0;
+    }
+    return message;
+  },
+
+  toJSON(message: MsgSetProfileCard): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.cardId !== undefined && (obj.cardId = message.cardId);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgSetProfileCard>): MsgSetProfileCard {
+    const message = { ...baseMsgSetProfileCard } as MsgSetProfileCard;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.cardId !== undefined && object.cardId !== null) {
+      message.cardId = object.cardId;
+    } else {
+      message.cardId = 0;
+    }
+    return message;
+  },
+};
+
+const baseMsgSetProfileCardResponse: object = {};
+
+export const MsgSetProfileCardResponse = {
+  encode(
+    _: MsgSetProfileCardResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgSetProfileCardResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgSetProfileCardResponse,
+    } as MsgSetProfileCardResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgSetProfileCardResponse {
+    const message = {
+      ...baseMsgSetProfileCardResponse,
+    } as MsgSetProfileCardResponse;
+    return message;
+  },
+
+  toJSON(_: MsgSetProfileCardResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgSetProfileCardResponse>
+  ): MsgSetProfileCardResponse {
+    const message = {
+      ...baseMsgSetProfileCardResponse,
+    } as MsgSetProfileCardResponse;
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   Createuser(request: MsgCreateuser): Promise<MsgCreateuserResponse>;
@@ -5141,10 +5416,14 @@ export interface Msg {
   RestartCouncil(
     request: MsgRestartCouncil
   ): Promise<MsgRestartCouncilResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   RewokeCouncilRegistration(
     request: MsgRewokeCouncilRegistration
   ): Promise<MsgRewokeCouncilRegistrationResponse>;
+  ConfirmMatch(request: MsgConfirmMatch): Promise<MsgConfirmMatchResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  SetProfileCard(
+    request: MsgSetProfileCard
+  ): Promise<MsgSetProfileCardResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -5569,6 +5848,32 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgRewokeCouncilRegistrationResponse.decode(new Reader(data))
+    );
+  }
+
+  ConfirmMatch(request: MsgConfirmMatch): Promise<MsgConfirmMatchResponse> {
+    const data = MsgConfirmMatch.encode(request).finish();
+    const promise = this.rpc.request(
+      "DecentralCardGame.cardchain.cardchain.Msg",
+      "ConfirmMatch",
+      data
+    );
+    return promise.then((data) =>
+      MsgConfirmMatchResponse.decode(new Reader(data))
+    );
+  }
+
+  SetProfileCard(
+    request: MsgSetProfileCard
+  ): Promise<MsgSetProfileCardResponse> {
+    const data = MsgSetProfileCard.encode(request).finish();
+    const promise = this.rpc.request(
+      "DecentralCardGame.cardchain.cardchain.Msg",
+      "SetProfileCard",
+      data
+    );
+    return promise.then((data) =>
+      MsgSetProfileCardResponse.decode(new Reader(data))
     );
   }
 }

@@ -1,15 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PageResponse = exports.PageRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "cosmos.base.query.v1beta1";
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "cosmos.base.query.v1beta1";
 const basePageRequest = {
     offset: 0,
     limit: 0,
-    countTotal: false,
+    count_total: false,
     reverse: false,
 };
-export const PageRequest = {
-    encode(message, writer = Writer.create()) {
+exports.PageRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.key.length !== 0) {
             writer.uint32(10).bytes(message.key);
         }
@@ -19,8 +22,8 @@ export const PageRequest = {
         if (message.limit !== 0) {
             writer.uint32(24).uint64(message.limit);
         }
-        if (message.countTotal === true) {
-            writer.uint32(32).bool(message.countTotal);
+        if (message.count_total === true) {
+            writer.uint32(32).bool(message.count_total);
         }
         if (message.reverse === true) {
             writer.uint32(40).bool(message.reverse);
@@ -28,7 +31,7 @@ export const PageRequest = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...basePageRequest };
         while (reader.pos < end) {
@@ -44,7 +47,7 @@ export const PageRequest = {
                     message.limit = longToNumber(reader.uint64());
                     break;
                 case 4:
-                    message.countTotal = reader.bool();
+                    message.count_total = reader.bool();
                     break;
                 case 5:
                     message.reverse = reader.bool();
@@ -73,11 +76,11 @@ export const PageRequest = {
         else {
             message.limit = 0;
         }
-        if (object.countTotal !== undefined && object.countTotal !== null) {
-            message.countTotal = Boolean(object.countTotal);
+        if (object.count_total !== undefined && object.count_total !== null) {
+            message.count_total = Boolean(object.count_total);
         }
         else {
-            message.countTotal = false;
+            message.count_total = false;
         }
         if (object.reverse !== undefined && object.reverse !== null) {
             message.reverse = Boolean(object.reverse);
@@ -93,7 +96,8 @@ export const PageRequest = {
             (obj.key = base64FromBytes(message.key !== undefined ? message.key : new Uint8Array()));
         message.offset !== undefined && (obj.offset = message.offset);
         message.limit !== undefined && (obj.limit = message.limit);
-        message.countTotal !== undefined && (obj.countTotal = message.countTotal);
+        message.count_total !== undefined &&
+            (obj.count_total = message.count_total);
         message.reverse !== undefined && (obj.reverse = message.reverse);
         return obj;
     },
@@ -117,11 +121,11 @@ export const PageRequest = {
         else {
             message.limit = 0;
         }
-        if (object.countTotal !== undefined && object.countTotal !== null) {
-            message.countTotal = object.countTotal;
+        if (object.count_total !== undefined && object.count_total !== null) {
+            message.count_total = object.count_total;
         }
         else {
-            message.countTotal = false;
+            message.count_total = false;
         }
         if (object.reverse !== undefined && object.reverse !== null) {
             message.reverse = object.reverse;
@@ -133,10 +137,10 @@ export const PageRequest = {
     },
 };
 const basePageResponse = { total: 0 };
-export const PageResponse = {
-    encode(message, writer = Writer.create()) {
-        if (message.nextKey.length !== 0) {
-            writer.uint32(10).bytes(message.nextKey);
+exports.PageResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
+        if (message.next_key.length !== 0) {
+            writer.uint32(10).bytes(message.next_key);
         }
         if (message.total !== 0) {
             writer.uint32(16).uint64(message.total);
@@ -144,14 +148,14 @@ export const PageResponse = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...basePageResponse };
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.nextKey = reader.bytes();
+                    message.next_key = reader.bytes();
                     break;
                 case 2:
                     message.total = longToNumber(reader.uint64());
@@ -165,8 +169,8 @@ export const PageResponse = {
     },
     fromJSON(object) {
         const message = { ...basePageResponse };
-        if (object.nextKey !== undefined && object.nextKey !== null) {
-            message.nextKey = bytesFromBase64(object.nextKey);
+        if (object.next_key !== undefined && object.next_key !== null) {
+            message.next_key = bytesFromBase64(object.next_key);
         }
         if (object.total !== undefined && object.total !== null) {
             message.total = Number(object.total);
@@ -178,18 +182,18 @@ export const PageResponse = {
     },
     toJSON(message) {
         const obj = {};
-        message.nextKey !== undefined &&
-            (obj.nextKey = base64FromBytes(message.nextKey !== undefined ? message.nextKey : new Uint8Array()));
+        message.next_key !== undefined &&
+            (obj.next_key = base64FromBytes(message.next_key !== undefined ? message.next_key : new Uint8Array()));
         message.total !== undefined && (obj.total = message.total);
         return obj;
     },
     fromPartial(object) {
         const message = { ...basePageResponse };
-        if (object.nextKey !== undefined && object.nextKey !== null) {
-            message.nextKey = object.nextKey;
+        if (object.next_key !== undefined && object.next_key !== null) {
+            message.next_key = object.next_key;
         }
         else {
-            message.nextKey = new Uint8Array();
+            message.next_key = new Uint8Array();
         }
         if (object.total !== undefined && object.total !== null) {
             message.total = object.total;
@@ -236,7 +240,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

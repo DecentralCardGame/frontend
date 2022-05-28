@@ -1,15 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SellOffer = exports.sellOfferStatusToJSON = exports.sellOfferStatusFromJSON = exports.SellOfferStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
-export var SellOfferStatus;
+const Long = require("long");
+const minimal_1 = require("protobufjs/minimal");
+exports.protobufPackage = "DecentralCardGame.cardchain.cardchain";
+var SellOfferStatus;
 (function (SellOfferStatus) {
     SellOfferStatus[SellOfferStatus["open"] = 0] = "open";
     SellOfferStatus[SellOfferStatus["sold"] = 1] = "sold";
     SellOfferStatus[SellOfferStatus["removed"] = 2] = "removed";
     SellOfferStatus[SellOfferStatus["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(SellOfferStatus || (SellOfferStatus = {}));
-export function sellOfferStatusFromJSON(object) {
+})(SellOfferStatus = exports.SellOfferStatus || (exports.SellOfferStatus = {}));
+function sellOfferStatusFromJSON(object) {
     switch (object) {
         case 0:
         case "open":
@@ -26,7 +29,8 @@ export function sellOfferStatusFromJSON(object) {
             return SellOfferStatus.UNRECOGNIZED;
     }
 }
-export function sellOfferStatusToJSON(object) {
+exports.sellOfferStatusFromJSON = sellOfferStatusFromJSON;
+function sellOfferStatusToJSON(object) {
     switch (object) {
         case SellOfferStatus.open:
             return "open";
@@ -38,6 +42,7 @@ export function sellOfferStatusToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.sellOfferStatusToJSON = sellOfferStatusToJSON;
 const baseSellOffer = {
     seller: "",
     buyer: "",
@@ -45,8 +50,8 @@ const baseSellOffer = {
     price: "",
     status: 0,
 };
-export const SellOffer = {
-    encode(message, writer = Writer.create()) {
+exports.SellOffer = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.seller !== "") {
             writer.uint32(10).string(message.seller);
         }
@@ -65,7 +70,7 @@ export const SellOffer = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseSellOffer };
         while (reader.pos < end) {
@@ -189,7 +194,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

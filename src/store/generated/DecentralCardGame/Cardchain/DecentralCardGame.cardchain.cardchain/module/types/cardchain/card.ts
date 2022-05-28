@@ -82,7 +82,7 @@ export interface Card {
   owner: string;
   artist: string;
   content: Uint8Array;
-  image: Uint8Array;
+  image_id: number;
   fullArt: boolean;
   notes: string;
   status: Status;
@@ -115,6 +115,7 @@ export interface OutpCard {
 const baseCard: object = {
   owner: "",
   artist: "",
+  image_id: 0,
   fullArt: false,
   notes: "",
   status: 0,
@@ -138,8 +139,8 @@ export const Card = {
     if (message.content.length !== 0) {
       writer.uint32(26).bytes(message.content);
     }
-    if (message.image.length !== 0) {
-      writer.uint32(34).bytes(message.image);
+    if (message.image_id !== 0) {
+      writer.uint32(32).uint64(message.image_id);
     }
     if (message.fullArt === true) {
       writer.uint32(40).bool(message.fullArt);
@@ -192,7 +193,7 @@ export const Card = {
           message.content = reader.bytes();
           break;
         case 4:
-          message.image = reader.bytes();
+          message.image_id = longToNumber(reader.uint64() as Long);
           break;
         case 5:
           message.fullArt = reader.bool();
@@ -248,8 +249,10 @@ export const Card = {
     if (object.content !== undefined && object.content !== null) {
       message.content = bytesFromBase64(object.content);
     }
-    if (object.image !== undefined && object.image !== null) {
-      message.image = bytesFromBase64(object.image);
+    if (object.image_id !== undefined && object.image_id !== null) {
+      message.image_id = Number(object.image_id);
+    } else {
+      message.image_id = 0;
     }
     if (object.fullArt !== undefined && object.fullArt !== null) {
       message.fullArt = Boolean(object.fullArt);
@@ -324,10 +327,7 @@ export const Card = {
       (obj.content = base64FromBytes(
         message.content !== undefined ? message.content : new Uint8Array()
       ));
-    message.image !== undefined &&
-      (obj.image = base64FromBytes(
-        message.image !== undefined ? message.image : new Uint8Array()
-      ));
+    message.image_id !== undefined && (obj.image_id = message.image_id);
     message.fullArt !== undefined && (obj.fullArt = message.fullArt);
     message.notes !== undefined && (obj.notes = message.notes);
     message.status !== undefined && (obj.status = statusToJSON(message.status));
@@ -367,10 +367,10 @@ export const Card = {
     } else {
       message.content = new Uint8Array();
     }
-    if (object.image !== undefined && object.image !== null) {
-      message.image = object.image;
+    if (object.image_id !== undefined && object.image_id !== null) {
+      message.image_id = object.image_id;
     } else {
-      message.image = new Uint8Array();
+      message.image_id = 0;
     }
     if (object.fullArt !== undefined && object.fullArt !== null) {
       message.fullArt = object.fullArt;

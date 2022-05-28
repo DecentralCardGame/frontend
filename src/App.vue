@@ -69,16 +69,7 @@ export default {
                 throw new Error('Faucet does not work.')
               }
               console.log("yes", active)
-              return this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
-            })
-            .then(register => {
-              if (register.code === 0) {
-                this.notifySuccess("Great Success!", "Registering was successful.")
-              }
-              else {
-                this.notifyFail("EPIC FAIL", "Register did not work.")
-                console.error(register)
-              }
+              this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
             })
           } else {
             return "no faucet necessary"

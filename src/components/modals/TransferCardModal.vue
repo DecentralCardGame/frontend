@@ -1,6 +1,9 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal__backdrop">
+    <div
+      class="modal__backdrop"
+      style="z-index: 1000;"
+    >
       <div
         aria-describedby="modalDescription"
         aria-labelledby="modalTitle"

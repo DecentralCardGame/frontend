@@ -1,10 +1,21 @@
 <template>
   <div align="center">
-    <div class="ppBox">
-      <img
-        src="https://www.w3schools.com/howto/img_avatar2.png"
-        alt="Avatar"
-      >
+    <div
+      class="ppBox"
+    >
+      <div v-show="img">
+        <img
+          class="ppImage"
+          :src="img"
+          alt="Avatar"
+        >
+        <button
+          v-if="loggedinHere"
+          @click="showChooseModal"
+        >
+          <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917651.svg?token=exp=1653516419~hmac=d1e0938182326647cdb5377a31e784f5">
+        </button>
+      </div>
     </div>
     <div class="dataBox ccbutton">
       <h2 class="header__h2">
@@ -12,19 +23,19 @@
       </h2>
       Address: {{ address }}<br>
       Name: {{ user.alias }}<br>
-      Council status: {{ user.councilStatus }}
+      Council status: {{ user.CouncilStatus }}
       <div
-        v-if="address == $store.getters['common/wallet/address']"
+        v-if="loggedinHere"
         style="display: inline"
       >
         <button
-          v-if="user.councilStatus == 'unavailable'"
+          v-if="user.CouncilStatus == 'unavailable'"
           @click="register()"
         >
           Register for council
         </button>
         <button
-          v-if="user.councilStatus == 'available'"
+          v-if="user.CouncilStatus == 'available'"
           @click="deRegister()"
         >
           Deregister from council
@@ -33,7 +44,7 @@
       <br>
       Vote rights: {{ user.voteRights.length }}
       <button
-        v-if="address == $store.getters['common/wallet/address']"
+        v-if="loggedinHere"
         @click="$router.push({name: 'Vote'})"
       >
         Vote
@@ -50,7 +61,7 @@
       <router-link
         :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
       >
-        {{ user.ownedCards.length }}
+        {{ user.cards.length }}
       </router-link> <br>
       Balance:
       <div class="coinBox">
@@ -63,7 +74,7 @@
         </div>
       </div>
       <button
-        v-if="address == $store.getters['common/wallet/address']"
+        v-if="loggedinHere"
         type="button"
         class="btn"
         @click="showModal"
@@ -74,6 +85,11 @@
         v-show="isModalVisible"
         @close="closeModal"
       />
+      <ChoosePBModal
+        v-if="isChooseModalVisible"
+        :cards="user.ownedPrototypes"
+        @close="closeChooseModal"
+      />
     </div>
   </div>
 </template>
@@ -81,22 +97,28 @@
 <script>
 
 import TransferModal from '../components/modals/TransferModal.vue';
+import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 
 export default {
   name: 'UserView',
   components: {
-    TransferModal
+    TransferModal,
+    ChoosePBModal,
   },
   data () {
     return {
+      loggedinHere: false,
+      isChooseModalVisible: false,
       isModalVisible: false,
       address: "",
       coins: [],
+      img: "",
       user: {
         ownedCardSchemes: [],
         ownedPrototypes: [],
-        ownedCards: [],
+        cards: [],
         voteRights: [],
+        profileCard: 0,
       },
     }
   },
@@ -106,6 +128,9 @@ export default {
       if (this.$route.name == "UserView") {
         this.init()
       }
+    },
+    '$store.state.common.wallet.selectedAddress': function () {
+      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
     }
   },
   mounted () {
@@ -125,6 +150,8 @@ export default {
         this.address = id
       }
 
+      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
+
       if (! this.$cardChain.validAddress(this.address)) {
         this.$router.push({name: "NotFound"})
       }
@@ -137,6 +164,7 @@ export default {
       .then(user => {
         console.log("received user data:", user)
         this.user = user
+        this.getImg()
       })
       this.$cardChain.getAccInfo(this.address)
       .then(coins => {
@@ -164,6 +192,32 @@ export default {
     closeModal() {
       this.isModalVisible = false;
       this.getUser()
+    },
+    showChooseModal() {
+      this.isChooseModalVisible = true;
+    },
+    closeChooseModal() {
+      this.isChooseModalVisible = false;
+      this.getUser()
+    },
+    getDefaultImg() {
+      var myRandom = this.address.charCodeAt(this.address.length-1) % 4
+      console.log("random", myRandom)
+      return "Avatar"+myRandom+".png"
+    },
+    async getImg() {
+      console.log(this.user.profileCard)
+      if (this.user.profileCard != 0) {
+        var a = await this.getCard(this.user.profileCard)
+        this.img = a.image
+      } else {
+        this.img = this.getDefaultImg()
+      }
+    },
+    async getCard(id) {
+      return this.$cardChain.getCard(id).then((res) => {
+        return res
+      })
     }
   }
 }
@@ -179,11 +233,33 @@ export default {
 .ppBox {
   // display: inline;
   margin: 30px;
-  img {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  .ppImage {
     border-radius: 50%;
+    height: 200px;
     width: 200px;
     box-shadow: 2px 2px 4px;
+    object-fit: cover;
+    background-color: transparent;
   };
+  button {
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    height: 15%;
+    width: 15%;
+    padding: 2px;
+    border-radius: 6px;
+    border-color: $white;
+    background-color: $white;
+    cursor: pointer;
+    img {
+      width: 100%;
+      margin: 0;
+    }
+  }
 }
 
 .coinBox {

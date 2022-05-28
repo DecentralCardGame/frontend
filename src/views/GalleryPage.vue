@@ -423,7 +423,7 @@ export default {
       }
 
       this.isOwner =
-        this.cards[this.clickedIndex].Owner ===
+        this.cards[this.clickedIndex].owner ===
         this.$store.getters['common/wallet/address']
 
       this.keywordDescriptions = []
@@ -515,11 +515,9 @@ export default {
     vote(type) {
       this.$cardChain
         .voteCardTx(this.cards[this.clickedIndex].id, type)
-        .then((acc) => {
-          console.log("acc", acc)
-          this.creditsAvailable = creditsFromCoins(acc.coins);
-          this.$store.commit("setUserCredits", this.creditsAvailable);
-        });
+        .then(_ => {
+          this.$cardChain.updateUserCredits()
+        })
     },
     getOwnAddress() {
       return this.$store.getters['common/wallet/address'];

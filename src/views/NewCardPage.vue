@@ -106,7 +106,7 @@
               My <b>beauty</b> must not be covered by borders
             </span>
             <input
-              v-model="model.FullArt"
+              v-model="model.fullArt"
               type="checkbox"
               @change="saveDraft"
             >
@@ -554,7 +554,7 @@
               council the following <b>notes</b> for this card (optional):
             </span>
             <input
-              v-model="model.Notes"
+              v-model="model.notes"
               @change="saveDraft"
             >
           </div>
@@ -847,6 +847,7 @@ export default {
     closeAbilityModal() {
       console.log("ability after close modal: ", this.ability);
       this.isAbilityModalVisible = false;
+      window.scrollTo({top:0, left:0, behavior:"smooth"})
     },
     updateAbility($event, index) {
       this.ability = $event;
@@ -1090,9 +1091,9 @@ export default {
       if (this.isEditCardMode()) {
         this.$cardChain
           .saveContentToCardTx(newCard, this.model.id)
-          .then(this.updateCredits)
+          .then(this.$cardChain.updateUserCredits())
           .then(() => {
-            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.FullArt)
+            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           })
           .then(this.resetEditCard)
           .catch((err) => {
@@ -1102,18 +1103,13 @@ export default {
       } else {
         this.$cardChain
           .saveContentToUnusedCardSchemeTx(newCard)
-          .then(this.updateCredits)
+          .then(this.$cardChain.updateUserCredits())
           .then(this.resetCardDraft)
           .catch((err) => {
             this.notifyFail("Publish Card failed", err)
             console.error(err)
           });
       }
-    },
-    updateCredits(acc) {
-      this.creditsAvailable = creditsFromCoins(acc.coins);
-      this.$store.commit("setUserCredits", this.creditsAvailable);
-      return this.creditsAvailable;
     },
     saveDraft() {
       this.$store.commit(

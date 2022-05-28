@@ -1,27 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MsgClientImpl = exports.MsgCreateVestingAccountResponse = exports.MsgCreateVestingAccount = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { Reader, util, configure, Writer } from "protobufjs/minimal";
-import * as Long from "long";
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
-export const protobufPackage = "cosmos.vesting.v1beta1";
+const minimal_1 = require("protobufjs/minimal");
+const Long = require("long");
+const coin_1 = require("../../../cosmos/base/v1beta1/coin");
+exports.protobufPackage = "cosmos.vesting.v1beta1";
 const baseMsgCreateVestingAccount = {
-    fromAddress: "",
-    toAddress: "",
-    endTime: 0,
+    from_address: "",
+    to_address: "",
+    end_time: 0,
     delayed: false,
 };
-export const MsgCreateVestingAccount = {
-    encode(message, writer = Writer.create()) {
-        if (message.fromAddress !== "") {
-            writer.uint32(10).string(message.fromAddress);
+exports.MsgCreateVestingAccount = {
+    encode(message, writer = minimal_1.Writer.create()) {
+        if (message.from_address !== "") {
+            writer.uint32(10).string(message.from_address);
         }
-        if (message.toAddress !== "") {
-            writer.uint32(18).string(message.toAddress);
+        if (message.to_address !== "") {
+            writer.uint32(18).string(message.to_address);
         }
         for (const v of message.amount) {
-            Coin.encode(v, writer.uint32(26).fork()).ldelim();
+            coin_1.Coin.encode(v, writer.uint32(26).fork()).ldelim();
         }
-        if (message.endTime !== 0) {
-            writer.uint32(32).int64(message.endTime);
+        if (message.end_time !== 0) {
+            writer.uint32(32).int64(message.end_time);
         }
         if (message.delayed === true) {
             writer.uint32(40).bool(message.delayed);
@@ -29,7 +32,7 @@ export const MsgCreateVestingAccount = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCreateVestingAccount,
@@ -39,16 +42,16 @@ export const MsgCreateVestingAccount = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.fromAddress = reader.string();
+                    message.from_address = reader.string();
                     break;
                 case 2:
-                    message.toAddress = reader.string();
+                    message.to_address = reader.string();
                     break;
                 case 3:
-                    message.amount.push(Coin.decode(reader, reader.uint32()));
+                    message.amount.push(coin_1.Coin.decode(reader, reader.uint32()));
                     break;
                 case 4:
-                    message.endTime = longToNumber(reader.int64());
+                    message.end_time = longToNumber(reader.int64());
                     break;
                 case 5:
                     message.delayed = reader.bool();
@@ -65,28 +68,28 @@ export const MsgCreateVestingAccount = {
             ...baseMsgCreateVestingAccount,
         };
         message.amount = [];
-        if (object.fromAddress !== undefined && object.fromAddress !== null) {
-            message.fromAddress = String(object.fromAddress);
+        if (object.from_address !== undefined && object.from_address !== null) {
+            message.from_address = String(object.from_address);
         }
         else {
-            message.fromAddress = "";
+            message.from_address = "";
         }
-        if (object.toAddress !== undefined && object.toAddress !== null) {
-            message.toAddress = String(object.toAddress);
+        if (object.to_address !== undefined && object.to_address !== null) {
+            message.to_address = String(object.to_address);
         }
         else {
-            message.toAddress = "";
+            message.to_address = "";
         }
         if (object.amount !== undefined && object.amount !== null) {
             for (const e of object.amount) {
-                message.amount.push(Coin.fromJSON(e));
+                message.amount.push(coin_1.Coin.fromJSON(e));
             }
         }
-        if (object.endTime !== undefined && object.endTime !== null) {
-            message.endTime = Number(object.endTime);
+        if (object.end_time !== undefined && object.end_time !== null) {
+            message.end_time = Number(object.end_time);
         }
         else {
-            message.endTime = 0;
+            message.end_time = 0;
         }
         if (object.delayed !== undefined && object.delayed !== null) {
             message.delayed = Boolean(object.delayed);
@@ -98,16 +101,16 @@ export const MsgCreateVestingAccount = {
     },
     toJSON(message) {
         const obj = {};
-        message.fromAddress !== undefined &&
-            (obj.fromAddress = message.fromAddress);
-        message.toAddress !== undefined && (obj.toAddress = message.toAddress);
+        message.from_address !== undefined &&
+            (obj.from_address = message.from_address);
+        message.to_address !== undefined && (obj.to_address = message.to_address);
         if (message.amount) {
-            obj.amount = message.amount.map((e) => (e ? Coin.toJSON(e) : undefined));
+            obj.amount = message.amount.map((e) => (e ? coin_1.Coin.toJSON(e) : undefined));
         }
         else {
             obj.amount = [];
         }
-        message.endTime !== undefined && (obj.endTime = message.endTime);
+        message.end_time !== undefined && (obj.end_time = message.end_time);
         message.delayed !== undefined && (obj.delayed = message.delayed);
         return obj;
     },
@@ -116,28 +119,28 @@ export const MsgCreateVestingAccount = {
             ...baseMsgCreateVestingAccount,
         };
         message.amount = [];
-        if (object.fromAddress !== undefined && object.fromAddress !== null) {
-            message.fromAddress = object.fromAddress;
+        if (object.from_address !== undefined && object.from_address !== null) {
+            message.from_address = object.from_address;
         }
         else {
-            message.fromAddress = "";
+            message.from_address = "";
         }
-        if (object.toAddress !== undefined && object.toAddress !== null) {
-            message.toAddress = object.toAddress;
+        if (object.to_address !== undefined && object.to_address !== null) {
+            message.to_address = object.to_address;
         }
         else {
-            message.toAddress = "";
+            message.to_address = "";
         }
         if (object.amount !== undefined && object.amount !== null) {
             for (const e of object.amount) {
-                message.amount.push(Coin.fromPartial(e));
+                message.amount.push(coin_1.Coin.fromPartial(e));
             }
         }
-        if (object.endTime !== undefined && object.endTime !== null) {
-            message.endTime = object.endTime;
+        if (object.end_time !== undefined && object.end_time !== null) {
+            message.end_time = object.end_time;
         }
         else {
-            message.endTime = 0;
+            message.end_time = 0;
         }
         if (object.delayed !== undefined && object.delayed !== null) {
             message.delayed = object.delayed;
@@ -149,12 +152,12 @@ export const MsgCreateVestingAccount = {
     },
 };
 const baseMsgCreateVestingAccountResponse = {};
-export const MsgCreateVestingAccountResponse = {
-    encode(_, writer = Writer.create()) {
+exports.MsgCreateVestingAccountResponse = {
+    encode(_, writer = minimal_1.Writer.create()) {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = {
             ...baseMsgCreateVestingAccountResponse,
@@ -186,16 +189,17 @@ export const MsgCreateVestingAccountResponse = {
         return message;
     },
 };
-export class MsgClientImpl {
+class MsgClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
     }
     CreateVestingAccount(request) {
-        const data = MsgCreateVestingAccount.encode(request).finish();
+        const data = exports.MsgCreateVestingAccount.encode(request).finish();
         const promise = this.rpc.request("cosmos.vesting.v1beta1.Msg", "CreateVestingAccount", data);
-        return promise.then((data) => MsgCreateVestingAccountResponse.decode(new Reader(data)));
+        return promise.then((data) => exports.MsgCreateVestingAccountResponse.decode(new minimal_1.Reader(data)));
     }
 }
+exports.MsgClientImpl = MsgClientImpl;
 var globalThis = (() => {
     if (typeof globalThis !== "undefined")
         return globalThis;
@@ -213,7 +217,7 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }

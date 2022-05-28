@@ -5,7 +5,7 @@ export const emptyCard = {
   CardName: 'Name',
   FlavourText: '',
   abilities: [],
-  Notes: '',
+  notes: '',
   type: 'Entity',
   Tags: [],
   tagDummy: '',
@@ -23,7 +23,7 @@ export const emptyCard = {
   Delay: 0,
   RulesTexts: [],
   Keywords: [],
-  FullArt: true
+  fullArt: true
 }
 
 export const emptyGalleryFilter = {

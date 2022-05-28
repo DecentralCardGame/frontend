@@ -1,3 +1,4 @@
+"use strict";
 /* eslint-disable */
 /* tslint:disable */
 /*
@@ -8,13 +9,15 @@
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
-export var ContentType;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Api = exports.HttpClient = exports.ContentType = void 0;
+var ContentType;
 (function (ContentType) {
     ContentType["Json"] = "application/json";
     ContentType["FormData"] = "multipart/form-data";
     ContentType["UrlEncoded"] = "application/x-www-form-urlencoded";
-})(ContentType || (ContentType = {}));
-export class HttpClient {
+})(ContentType = exports.ContentType || (exports.ContentType = {}));
+class HttpClient {
     constructor(apiConfig = {}) {
         this.baseUrl = "";
         this.securityData = null;
@@ -129,11 +132,12 @@ export class HttpClient {
         };
     }
 }
+exports.HttpClient = HttpClient;
 /**
  * @title cosmos/evidence/v1beta1/evidence.proto
  * @version version not set
  */
-export class Api extends HttpClient {
+class Api extends HttpClient {
     constructor() {
         super(...arguments);
         /**
@@ -157,13 +161,14 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryEvidence
          * @summary Evidence queries evidence based on evidence hash.
-         * @request GET:/cosmos/evidence/v1beta1/evidence/{evidenceHash}
+         * @request GET:/cosmos/evidence/v1beta1/evidence/{evidence_hash}
          */
-        this.queryEvidence = (evidenceHash, params = {}) => this.request({
-            path: `/cosmos/evidence/v1beta1/evidence/${evidenceHash}`,
+        this.queryEvidence = (evidence_hash, params = {}) => this.request({
+            path: `/cosmos/evidence/v1beta1/evidence/${evidence_hash}`,
             method: "GET",
             format: "json",
             ...params,
         });
     }
 }
+exports.Api = Api;

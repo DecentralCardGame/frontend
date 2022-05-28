@@ -1,10 +1,4 @@
 /* eslint-disable */
-import {
-  Status,
-  OutpCard,
-  statusFromJSON,
-  statusToJSON,
-} from "../cardchain/card";
 import { Outcome, outcomeFromJSON, outcomeToJSON } from "../cardchain/tx";
 import {
   SellOfferStatus,
@@ -18,9 +12,11 @@ import { Params } from "../cardchain/params";
 import { VotingResults } from "../cardchain/voting_results";
 import { VoteRight } from "../cardchain/vote_right";
 import { Match } from "../cardchain/match";
+import { OutpCard } from "../cardchain/card";
 import { User } from "../cardchain/user";
 import { Collection } from "../cardchain/collection";
 import { Council } from "../cardchain/council";
+import { Server } from "../cardchain/server";
 
 export const protobufPackage = "DecentralCardGame.cardchain.cardchain";
 
@@ -78,13 +74,103 @@ export interface QueryQVotableCardsResponse {
 
 export interface QueryQCardsRequest {
   owner: string;
-  status: Status;
+  status: QueryQCardsRequest_Status;
   cardType: string;
   classes: string;
   sortBy: string;
   nameContains: string;
   keywordsContains: string;
   notesContains: string;
+}
+
+export enum QueryQCardsRequest_Status {
+  scheme = 0,
+  prototype = 1,
+  trial = 2,
+  permanent = 3,
+  suspended = 4,
+  banned = 5,
+  bannedSoon = 6,
+  bannedVerySoon = 7,
+  none = 8,
+  playable = 9,
+  unplayable = 10,
+  UNRECOGNIZED = -1,
+}
+
+export function queryQCardsRequest_StatusFromJSON(
+  object: any
+): QueryQCardsRequest_Status {
+  switch (object) {
+    case 0:
+    case "scheme":
+      return QueryQCardsRequest_Status.scheme;
+    case 1:
+    case "prototype":
+      return QueryQCardsRequest_Status.prototype;
+    case 2:
+    case "trial":
+      return QueryQCardsRequest_Status.trial;
+    case 3:
+    case "permanent":
+      return QueryQCardsRequest_Status.permanent;
+    case 4:
+    case "suspended":
+      return QueryQCardsRequest_Status.suspended;
+    case 5:
+    case "banned":
+      return QueryQCardsRequest_Status.banned;
+    case 6:
+    case "bannedSoon":
+      return QueryQCardsRequest_Status.bannedSoon;
+    case 7:
+    case "bannedVerySoon":
+      return QueryQCardsRequest_Status.bannedVerySoon;
+    case 8:
+    case "none":
+      return QueryQCardsRequest_Status.none;
+    case 9:
+    case "playable":
+      return QueryQCardsRequest_Status.playable;
+    case 10:
+    case "unplayable":
+      return QueryQCardsRequest_Status.unplayable;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return QueryQCardsRequest_Status.UNRECOGNIZED;
+  }
+}
+
+export function queryQCardsRequest_StatusToJSON(
+  object: QueryQCardsRequest_Status
+): string {
+  switch (object) {
+    case QueryQCardsRequest_Status.scheme:
+      return "scheme";
+    case QueryQCardsRequest_Status.prototype:
+      return "prototype";
+    case QueryQCardsRequest_Status.trial:
+      return "trial";
+    case QueryQCardsRequest_Status.permanent:
+      return "permanent";
+    case QueryQCardsRequest_Status.suspended:
+      return "suspended";
+    case QueryQCardsRequest_Status.banned:
+      return "banned";
+    case QueryQCardsRequest_Status.bannedSoon:
+      return "bannedSoon";
+    case QueryQCardsRequest_Status.bannedVerySoon:
+      return "bannedVerySoon";
+    case QueryQCardsRequest_Status.none:
+      return "none";
+    case QueryQCardsRequest_Status.playable:
+      return "playable";
+    case QueryQCardsRequest_Status.unplayable:
+      return "unplayable";
+    default:
+      return "UNKNOWN";
+  }
 }
 
 export interface QueryQCardsResponse {
@@ -119,8 +205,6 @@ export interface QueryQMatchesRequest {
 
 export interface IgnoreMatches {
   outcome: boolean;
-  timestamp: boolean;
-  reporter: boolean;
 }
 
 export interface QueryQMatchesResponse {
@@ -140,9 +224,6 @@ export interface QueryQSellOffersRequest {
 
 export interface IgnoreSellOffers {
   status: boolean;
-  price: boolean;
-  seller: boolean;
-  buyer: boolean;
   card: boolean;
 }
 
@@ -150,6 +231,12 @@ export interface QueryQSellOffersResponse {
   sellOffersIds: number[];
   sellOffers: SellOffer[];
 }
+
+export interface QueryQServerRequest {
+  id: number;
+}
+
+export interface QueryQServerResponse {}
 
 const baseQueryParamsRequest: object = {};
 
@@ -1168,7 +1255,7 @@ export const QueryQCardsRequest = {
       message.owner = "";
     }
     if (object.status !== undefined && object.status !== null) {
-      message.status = statusFromJSON(object.status);
+      message.status = queryQCardsRequest_StatusFromJSON(object.status);
     } else {
       message.status = 0;
     }
@@ -1211,7 +1298,8 @@ export const QueryQCardsRequest = {
   toJSON(message: QueryQCardsRequest): unknown {
     const obj: any = {};
     message.owner !== undefined && (obj.owner = message.owner);
-    message.status !== undefined && (obj.status = statusToJSON(message.status));
+    message.status !== undefined &&
+      (obj.status = queryQCardsRequest_StatusToJSON(message.status));
     message.cardType !== undefined && (obj.cardType = message.cardType);
     message.classes !== undefined && (obj.classes = message.classes);
     message.sortBy !== undefined && (obj.sortBy = message.sortBy);
@@ -1787,22 +1875,12 @@ export const QueryQMatchesRequest = {
   },
 };
 
-const baseIgnoreMatches: object = {
-  outcome: false,
-  timestamp: false,
-  reporter: false,
-};
+const baseIgnoreMatches: object = { outcome: false };
 
 export const IgnoreMatches = {
   encode(message: IgnoreMatches, writer: Writer = Writer.create()): Writer {
     if (message.outcome === true) {
       writer.uint32(8).bool(message.outcome);
-    }
-    if (message.timestamp === true) {
-      writer.uint32(16).bool(message.timestamp);
-    }
-    if (message.reporter === true) {
-      writer.uint32(24).bool(message.reporter);
     }
     return writer;
   },
@@ -1816,12 +1894,6 @@ export const IgnoreMatches = {
       switch (tag >>> 3) {
         case 1:
           message.outcome = reader.bool();
-          break;
-        case 2:
-          message.timestamp = reader.bool();
-          break;
-        case 3:
-          message.reporter = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1838,24 +1910,12 @@ export const IgnoreMatches = {
     } else {
       message.outcome = false;
     }
-    if (object.timestamp !== undefined && object.timestamp !== null) {
-      message.timestamp = Boolean(object.timestamp);
-    } else {
-      message.timestamp = false;
-    }
-    if (object.reporter !== undefined && object.reporter !== null) {
-      message.reporter = Boolean(object.reporter);
-    } else {
-      message.reporter = false;
-    }
     return message;
   },
 
   toJSON(message: IgnoreMatches): unknown {
     const obj: any = {};
     message.outcome !== undefined && (obj.outcome = message.outcome);
-    message.timestamp !== undefined && (obj.timestamp = message.timestamp);
-    message.reporter !== undefined && (obj.reporter = message.reporter);
     return obj;
   },
 
@@ -1865,16 +1925,6 @@ export const IgnoreMatches = {
       message.outcome = object.outcome;
     } else {
       message.outcome = false;
-    }
-    if (object.timestamp !== undefined && object.timestamp !== null) {
-      message.timestamp = object.timestamp;
-    } else {
-      message.timestamp = false;
-    }
-    if (object.reporter !== undefined && object.reporter !== null) {
-      message.reporter = object.reporter;
-    } else {
-      message.reporter = false;
     }
     return message;
   },
@@ -2164,30 +2214,15 @@ export const QueryQSellOffersRequest = {
   },
 };
 
-const baseIgnoreSellOffers: object = {
-  status: false,
-  price: false,
-  seller: false,
-  buyer: false,
-  card: false,
-};
+const baseIgnoreSellOffers: object = { status: false, card: false };
 
 export const IgnoreSellOffers = {
   encode(message: IgnoreSellOffers, writer: Writer = Writer.create()): Writer {
     if (message.status === true) {
       writer.uint32(8).bool(message.status);
     }
-    if (message.price === true) {
-      writer.uint32(16).bool(message.price);
-    }
-    if (message.seller === true) {
-      writer.uint32(24).bool(message.seller);
-    }
-    if (message.buyer === true) {
-      writer.uint32(32).bool(message.buyer);
-    }
     if (message.card === true) {
-      writer.uint32(40).bool(message.card);
+      writer.uint32(16).bool(message.card);
     }
     return writer;
   },
@@ -2203,15 +2238,6 @@ export const IgnoreSellOffers = {
           message.status = reader.bool();
           break;
         case 2:
-          message.price = reader.bool();
-          break;
-        case 3:
-          message.seller = reader.bool();
-          break;
-        case 4:
-          message.buyer = reader.bool();
-          break;
-        case 5:
           message.card = reader.bool();
           break;
         default:
@@ -2229,21 +2255,6 @@ export const IgnoreSellOffers = {
     } else {
       message.status = false;
     }
-    if (object.price !== undefined && object.price !== null) {
-      message.price = Boolean(object.price);
-    } else {
-      message.price = false;
-    }
-    if (object.seller !== undefined && object.seller !== null) {
-      message.seller = Boolean(object.seller);
-    } else {
-      message.seller = false;
-    }
-    if (object.buyer !== undefined && object.buyer !== null) {
-      message.buyer = Boolean(object.buyer);
-    } else {
-      message.buyer = false;
-    }
     if (object.card !== undefined && object.card !== null) {
       message.card = Boolean(object.card);
     } else {
@@ -2255,9 +2266,6 @@ export const IgnoreSellOffers = {
   toJSON(message: IgnoreSellOffers): unknown {
     const obj: any = {};
     message.status !== undefined && (obj.status = message.status);
-    message.price !== undefined && (obj.price = message.price);
-    message.seller !== undefined && (obj.seller = message.seller);
-    message.buyer !== undefined && (obj.buyer = message.buyer);
     message.card !== undefined && (obj.card = message.card);
     return obj;
   },
@@ -2268,21 +2276,6 @@ export const IgnoreSellOffers = {
       message.status = object.status;
     } else {
       message.status = false;
-    }
-    if (object.price !== undefined && object.price !== null) {
-      message.price = object.price;
-    } else {
-      message.price = false;
-    }
-    if (object.seller !== undefined && object.seller !== null) {
-      message.seller = object.seller;
-    } else {
-      message.seller = false;
-    }
-    if (object.buyer !== undefined && object.buyer !== null) {
-      message.buyer = object.buyer;
-    } else {
-      message.buyer = false;
     }
     if (object.card !== undefined && object.card !== null) {
       message.card = object.card;
@@ -2404,6 +2397,102 @@ export const QueryQSellOffersResponse = {
   },
 };
 
+const baseQueryQServerRequest: object = { id: 0 };
+
+export const QueryQServerRequest = {
+  encode(
+    message: QueryQServerRequest,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.id !== 0) {
+      writer.uint32(8).uint64(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryQServerRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryQServerRequest } as QueryQServerRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = longToNumber(reader.uint64() as Long);
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryQServerRequest {
+    const message = { ...baseQueryQServerRequest } as QueryQServerRequest;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = Number(object.id);
+    } else {
+      message.id = 0;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryQServerRequest): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryQServerRequest>): QueryQServerRequest {
+    const message = { ...baseQueryQServerRequest } as QueryQServerRequest;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = 0;
+    }
+    return message;
+  },
+};
+
+const baseQueryQServerResponse: object = {};
+
+export const QueryQServerResponse = {
+  encode(_: QueryQServerResponse, writer: Writer = Writer.create()): Writer {
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryQServerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseQueryQServerResponse } as QueryQServerResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryQServerResponse {
+    const message = { ...baseQueryQServerResponse } as QueryQServerResponse;
+    return message;
+  },
+
+  toJSON(_: QueryQServerResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<QueryQServerResponse>): QueryQServerResponse {
+    const message = { ...baseQueryQServerResponse } as QueryQServerResponse;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -2444,6 +2533,8 @@ export interface Query {
   QSellOffers(
     request: QueryQSellOffersRequest
   ): Promise<QueryQSellOffersResponse>;
+  /** Queries a list of QServer items. */
+  QServer(request: QueryQServerRequest): Promise<Server>;
 }
 
 export class QueryClientImpl implements Query {
@@ -2611,6 +2702,16 @@ export class QueryClientImpl implements Query {
     return promise.then((data) =>
       QueryQSellOffersResponse.decode(new Reader(data))
     );
+  }
+
+  QServer(request: QueryQServerRequest): Promise<Server> {
+    const data = QueryQServerRequest.encode(request).finish();
+    const promise = this.rpc.request(
+      "DecentralCardGame.cardchain.cardchain.Query",
+      "QServer",
+      data
+    );
+    return promise.then((data) => Server.decode(new Reader(data)));
   }
 }
 
