@@ -146,10 +146,8 @@ export default {
     vote (type) {
       this.getNextCard()
       this.$cardChain.voteCardTx(this.currentCard.id, type)
-        .then(acc => {
-          console.log("acc", acc)
-          this.creditsAvailable = creditsFromCoins(acc.coins)
-          this.$store.commit('setUserCredits', this.creditsAvailable)
+        .then(_ => {
+          this.$cardChain.updateUserCredits()
         })
       console.log('vote cast for cardid', this.currentCard.id, 'voted: ', type)
 
