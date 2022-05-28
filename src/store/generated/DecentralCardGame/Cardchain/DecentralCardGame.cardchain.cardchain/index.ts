@@ -72,7 +72,7 @@ const getDefaultState = () => {
 				QMatches: {},
 				QSellOffers: {},
 				QServer: {},
-				
+
 				_Structure: {
 						Card: getStructure(Card.fromPartial({})),
 						CollectionProposal: getStructure(CollectionProposal.fromPartial({})),
@@ -91,7 +91,7 @@ const getDefaultState = () => {
 						VoteRight: getStructure(VoteRight.fromPartial({})),
 						VotingResult: getStructure(VotingResult.fromPartial({})),
 						VotingResults: getStructure(VotingResults.fromPartial({})),
-						
+
 		},
 		_Registry: registry,
 		_Subscriptions: new Set(),
@@ -209,7 +209,7 @@ export default {
 					}
 			return state.QServer[JSON.stringify(params)] ?? {}
 		},
-				
+
 		getTypeStructure: (state) => (type) => {
 			return state._Structure[type].fields
 		},
@@ -242,173 +242,173 @@ export default {
 				}
 			})
 		},
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
 		async QueryParams({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryParams()).data
-				
-					
+
+
 				commit('QUERY', { query: 'Params', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryParams', payload: { options: { all }, params: {...key},query }})
 				return getters['getParams']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryParams API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQCard({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQCard( key.cardId)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QCard', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQCard', payload: { options: { all }, params: {...key},query }})
 				return getters['getQCard']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQCard API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQCardContent({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQCardContent( key.cardId)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QCardContent', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQCardContent', payload: { options: { all }, params: {...key},query }})
 				return getters['getQCardContent']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQCardContent API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQUser({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQUser( key.address)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QUser', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQUser', payload: { options: { all }, params: {...key},query }})
 				return getters['getQUser']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQUser API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQCardchainInfo({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQCardchainInfo()).data
-				
-					
+
+
 				commit('QUERY', { query: 'QCardchainInfo', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQCardchainInfo', payload: { options: { all }, params: {...key},query }})
 				return getters['getQCardchainInfo']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQCardchainInfo API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQVotingResults({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQVotingResults()).data
-				
-					
+
+
 				commit('QUERY', { query: 'QVotingResults', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQVotingResults', payload: { options: { all }, params: {...key},query }})
 				return getters['getQVotingResults']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQVotingResults API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQVotableCards({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQVotableCards( key.address)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QVotableCards', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQVotableCards', payload: { options: { all }, params: {...key},query }})
 				return getters['getQVotableCards']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQVotableCards API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQCards({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQCards( key.status, query)).data
-				
-					
+
+
 				while (all && (<any> value).pagination && (<any> value).pagination.next_key!=null) {
 					let next_values=(await queryClient.queryQCards( key.status, {...query, 'pagination.key':(<any> value).pagination.next_key})).data
 					value = mergeResults(value, next_values);
@@ -418,111 +418,111 @@ export default {
 				return getters['getQCards']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQCards API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQMatch({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQMatch( key.matchId)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QMatch', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQMatch', payload: { options: { all }, params: {...key},query }})
 				return getters['getQMatch']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQMatch API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQCollection({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQCollection( key.collectionId)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QCollection', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQCollection', payload: { options: { all }, params: {...key},query }})
 				return getters['getQCollection']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQCollection API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQSellOffer({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQSellOffer( key.sellOfferId)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QSellOffer', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQSellOffer', payload: { options: { all }, params: {...key},query }})
 				return getters['getQSellOffer']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQSellOffer API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQCouncil({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQCouncil( key.councilId)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QCouncil', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQCouncil', payload: { options: { all }, params: {...key},query }})
 				return getters['getQCouncil']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQCouncil API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQMatches({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQMatches(query)).data
-				
-					
+
+
 				while (all && (<any> value).pagination && (<any> value).pagination.next_key!=null) {
 					let next_values=(await queryClient.queryQMatches({...query, 'pagination.key':(<any> value).pagination.next_key})).data
 					value = mergeResults(value, next_values);
@@ -532,23 +532,23 @@ export default {
 				return getters['getQMatches']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQMatches API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQSellOffers({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQSellOffers( key.status, query)).data
-				
-					
+
+
 				while (all && (<any> value).pagination && (<any> value).pagination.next_key!=null) {
 					let next_values=(await queryClient.queryQSellOffers( key.status, {...query, 'pagination.key':(<any> value).pagination.next_key})).data
 					value = mergeResults(value, next_values);
@@ -558,39 +558,39 @@ export default {
 				return getters['getQSellOffers']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQSellOffers API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
-		
-		
-		 		
-		
-		
+
+
+
+
+
+
+
 		async QueryQServer({ commit, rootGetters, getters }, { options: { subscribe, all} = { subscribe:false, all:false}, params, query=null }) {
 			try {
 				const key = params ?? {};
 				const queryClient=await initQueryClient(rootGetters)
 				let value= (await queryClient.queryQServer( key.id)).data
-				
-					
+
+
 				commit('QUERY', { query: 'QServer', key: { params: {...key}, query}, value })
 				if (subscribe) commit('SUBSCRIBE', { action: 'QueryQServer', payload: { options: { all }, params: {...key},query }})
 				return getters['getQServer']( { params: {...key}, query}) ?? {}
 			} catch (e) {
 				throw new Error('QueryClient:QueryQServer API Node Unavailable. Could not perform query: ' + e.message)
-				
+
 			}
 		},
-		
-		
+
+
 		async sendMsgRestartCouncil({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRestartCouncil(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -604,8 +604,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRemoveContributorFromCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -619,8 +619,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgCreateCouncil(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -634,8 +634,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgCreateuser(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -649,8 +649,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgBuyCard(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -664,8 +664,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgSubmitCollectionProposal(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -679,8 +679,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRewokeCouncilRegistration(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -694,8 +694,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgSubmitMatchReporterProposal(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -709,8 +709,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddContributorToCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -724,8 +724,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRemoveSellOffer(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -739,8 +739,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddArtwork(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -754,8 +754,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgApointMatchReporter(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -769,8 +769,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgFinalizeCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -784,8 +784,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRemoveCardFromCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -799,8 +799,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgChangeArtist(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -814,8 +814,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgVoteCard(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -829,8 +829,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgTransferCard(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -844,8 +844,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgSubmitCopyrightProposal(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -859,8 +859,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgCreateCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -874,8 +874,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgSaveCardContent(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -889,8 +889,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgCommitCouncilResponse(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -904,8 +904,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddCardToCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -919,8 +919,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgReportMatch(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -934,8 +934,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddStoryToCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -949,8 +949,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRegisterForCouncil(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -964,8 +964,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgBuyCardScheme(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -979,8 +979,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgConfirmMatch(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -994,8 +994,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgSetProfileCard(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1009,8 +1009,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgBuyCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1024,8 +1024,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddArtworkToCollection(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1039,8 +1039,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgDonateToCard(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1054,8 +1054,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgRevealCouncilResponse(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1069,8 +1069,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgCreateSellOffer(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1084,8 +1084,8 @@ export default {
 			try {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgSetCardRarity(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
+	gas: "30000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -1095,7 +1095,7 @@ export default {
 				}
 			}
 		},
-		
+
 		async MsgRestartCouncil({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -1538,6 +1538,6 @@ export default {
 				}
 			}
 		},
-		
+
 	}
 }

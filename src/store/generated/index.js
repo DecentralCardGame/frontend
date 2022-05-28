@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const DecentralCardGame_cardchain_cardchain_1 = require("./DecentralCardGame/Cardchain/DecentralCardGame.cardchain.cardchain");
 const cosmos_auth_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.auth.v1beta1");
 const cosmos_authz_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.authz.v1beta1");
+const cosmos_bank_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.bank.v1beta1");
 const cosmos_base_tendermint_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.base.tendermint.v1beta1");
 const cosmos_distribution_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.distribution.v1beta1");
 const cosmos_evidence_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.evidence.v1beta1");
@@ -21,6 +22,7 @@ exports.default = {
     DecentralCardGameCardchainDecentralCardGameCardchainCardchain: load(DecentralCardGame_cardchain_cardchain_1.default, 'DecentralCardGame.cardchain.cardchain'),
     CosmosCosmosSdkCosmosAuthV1Beta1: load(cosmos_auth_v1beta1_1.default, 'cosmos.auth.v1beta1'),
     CosmosCosmosSdkCosmosAuthzV1Beta1: load(cosmos_authz_v1beta1_1.default, 'cosmos.authz.v1beta1'),
+    CosmosCosmosSdkCosmosBankV1Beta1: load(cosmos_bank_v1beta1_1.default, 'cosmos.bank.v1beta1'),
     CosmosCosmosSdkCosmosBaseTendermintV1Beta1: load(cosmos_base_tendermint_v1beta1_1.default, 'cosmos.base.tendermint.v1beta1'),
     CosmosCosmosSdkCosmosDistributionV1Beta1: load(cosmos_distribution_v1beta1_1.default, 'cosmos.distribution.v1beta1'),
     CosmosCosmosSdkCosmosEvidenceV1Beta1: load(cosmos_evidence_v1beta1_1.default, 'cosmos.evidence.v1beta1'),
