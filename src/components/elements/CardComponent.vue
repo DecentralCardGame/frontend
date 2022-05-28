@@ -23128,7 +23128,7 @@ export default {
       clicked: false,
       keywordDescriptions: "",
 
-      FullArt: this.model.FullArt,
+      FullArt: this.model.fullArt,
       Classes: 0,
       Class: {
       },
@@ -23189,6 +23189,7 @@ export default {
     }
   },
   created () {
+    console.log(this.model)
     let firstLetterToLower = string => {
       return string[0].toLowerCase() + string.substring(1)
     }
@@ -23205,7 +23206,7 @@ export default {
   methods: {
     update() {
       //console.log("model", this.model.CardName, this.model)
-      this.FullArt = this.model.FullArt
+      this.FullArt = this.model.fullArt
       //console.log("this.FullArt updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)

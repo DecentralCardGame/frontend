@@ -120,8 +120,6 @@ export default {
 
           card.nerflevel = parseInt(card.nerflevel)
           card.type = cardType[0]
-          card.Owner = card.owner
-          card.Notes = card.notes
 
           card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
           card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
@@ -176,8 +174,8 @@ export default {
             [webModel.type]: cardContent
           },
           image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
-          fullArt: webModel.FullArt,
-          notes: webModel.Notes,
+          fullArt: webModel.fullArt,
+          notes: webModel.notes,
         }
         console.log('parsed into:', cardobject)
         return cardobject

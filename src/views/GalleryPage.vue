@@ -423,7 +423,7 @@ export default {
       }
 
       this.isOwner =
-        this.cards[this.clickedIndex].Owner ===
+        this.cards[this.clickedIndex].owner ===
         this.$store.getters['common/wallet/address']
 
       this.keywordDescriptions = []
