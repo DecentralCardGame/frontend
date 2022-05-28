@@ -250,33 +250,8 @@ export default {
           alias: alias
         })
       }
-      // transferCoin (to, coins) {
-      //   return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"toAddress": to, "amount": coins, "fromAddress": this.vue.$store.getters['common/wallet/address']})
-      // }
       transferCoin (to, coins) {
-        console.log(coins)
-        let msg = {
-          value: {
-            "@type":"/cosmos.bank.v1beta1.MsgSend",
-            "fromAddress": this.vue.$store.getters['common/wallet/address'],
-            "toAddress": to,
-            "amount": coins
-          }
-        }
-        this.vue.notifyInfo('Transfering', 'Sending request to the blockchain.')
-        console.log("transfer msg:", msg)
-        return this.txQueue.dispatch('cosmos.bank.v1beta1/sendMsgSend', msg)
-          .then((res) => {
-            if (res.code != 0) {
-              throw Error(res.rawLog)
-            } else {
-              this.vue.notifySuccess('Transfered', 'Transaction successful!')
-            }
-          })
-          .catch(err => {
-            console.log(err)
-            this.vue.notifyFail('Transfering failed', err)
-          })
+        return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"toAddress": to, "amount": coins, "fromAddress": this.vue.$store.getters['common/wallet/address']})
       }
       getUserInfo (address) {
           console.log(this.validAddress(address))
