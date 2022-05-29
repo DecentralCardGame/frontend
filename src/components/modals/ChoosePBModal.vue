@@ -109,19 +109,23 @@ export default {
 }
 
 .sppBox {
-  display: inline;
   margin: 10px;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px;
   img {
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    box-shadow: 2px 2px 4px;
-    object-fit: cover;
+    background-color: transparent;
+    object-fit: contain;
+    padding-top: -10%;
+    width: 100%;
     cursor: pointer;
   };
-  img:hover {
-    box-shadow: 4px 4px 8px;
-  }
+}
+.sppBox:hover {
+  box-shadow: 4px 4px 8px;
 }
 
 .warning {

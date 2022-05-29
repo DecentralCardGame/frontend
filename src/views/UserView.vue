@@ -4,11 +4,12 @@
       class="ppBox"
     >
       <div v-show="img">
-        <img
-          class="ppImage"
-          :src="img"
-          alt="Avatar"
-        >
+        <div class="ppImage">
+          <img
+            :src="img"
+            alt="Avatar"
+          >
+        </div>
         <button
           v-if="loggedinHere"
           @click="showChooseModal"
@@ -237,12 +238,18 @@ export default {
   width: 200px;
   height: 200px;
   .ppImage {
-    border-radius: 50%;
     height: 200px;
     width: 200px;
+    overflow: hidden;
+    display: block;
+    border-radius: 50%;
     box-shadow: 2px 2px 4px;
-    object-fit: cover;
-    background-color: transparent;
+    img{
+      background-color: transparent;
+      object-fit: contain;
+      padding-top: -10%;
+      width: 100%;
+    };
   };
   button {
     position: absolute;
