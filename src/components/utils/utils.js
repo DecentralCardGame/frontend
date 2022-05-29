@@ -316,5 +316,5 @@ export function icon(name) {
       }
     }
   }
-  return item.default
+  return item
 }
