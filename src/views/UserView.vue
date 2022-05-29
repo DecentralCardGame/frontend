@@ -13,7 +13,7 @@
           v-if="loggedinHere"
           @click="showChooseModal"
         >
-          <img src="https://www.flaticon.com/svg/vstatic/svg/3917/3917651.svg?token=exp=1653516419~hmac=d1e0938182326647cdb5377a31e784f5">
+          <img src="edit.svg">
         </button>
       </div>
     </div>

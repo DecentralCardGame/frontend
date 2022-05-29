@@ -117,6 +117,7 @@ export default {
     width: 150px;
     box-shadow: 2px 2px 4px;
     object-fit: cover;
+    cursor: pointer;
   };
   img:hover {
     box-shadow: 4px 4px 8px;
