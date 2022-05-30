@@ -82,9 +82,22 @@
       >
         Transfer
       </button>
+      <br>
+      <button
+        v-if="loggedinHere"
+        type="button"
+        class="btn"
+        @click="showGrantModal"
+      >
+        Manage authorisations
+      </button>
       <TransferModal
         v-show="isModalVisible"
         @close="closeModal"
+      />
+      <GrantModal
+        v-show="isGrantModalVisible"
+        @close="closeGrantModal"
       />
       <ChoosePBModal
         v-if="isChooseModalVisible"
@@ -99,10 +112,12 @@
 
 import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
+import GrantModal from '../components/modals/GrantModal.vue';
 
 export default {
   name: 'UserView',
   components: {
+    GrantModal,
     TransferModal,
     ChoosePBModal,
   },
@@ -111,6 +126,7 @@ export default {
       loggedinHere: false,
       isChooseModalVisible: false,
       isModalVisible: false,
+      isGrantModalVisible: false,
       address: "",
       coins: [],
       img: "",
@@ -193,6 +209,12 @@ export default {
     closeModal() {
       this.isModalVisible = false;
       this.getUser()
+    },
+    showGrantModal() {
+      this.isGrantModalVisible = true;
+    },
+    closeGrantModal() {
+      this.isGrantModalVisible = false;
     },
     showChooseModal() {
       this.isChooseModalVisible = true;
