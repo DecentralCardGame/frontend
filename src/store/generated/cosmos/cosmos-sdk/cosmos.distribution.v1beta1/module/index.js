@@ -10,9 +10,9 @@ const tx_2 = require("./types/cosmos/distribution/v1beta1/tx");
 const tx_3 = require("./types/cosmos/distribution/v1beta1/tx");
 const tx_4 = require("./types/cosmos/distribution/v1beta1/tx");
 const types = [
-    ["/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", tx_1.MsgSetWithdrawAddress],
-    ["/cosmos.distribution.v1beta1.MsgFundCommunityPool", tx_2.MsgFundCommunityPool],
-    ["/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission", tx_3.MsgWithdrawValidatorCommission],
+    ["/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission", tx_1.MsgWithdrawValidatorCommission],
+    ["/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", tx_2.MsgSetWithdrawAddress],
+    ["/cosmos.distribution.v1beta1.MsgFundCommunityPool", tx_3.MsgFundCommunityPool],
     ["/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward", tx_4.MsgWithdrawDelegatorReward],
 ];
 exports.MissingWalletError = new Error("wallet is required");
@@ -34,9 +34,9 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     const { address } = (await wallet.getAccounts())[0];
     return {
         signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => client.signAndBroadcast(address, msgs, fee, memo),
-        msgSetWithdrawAddress: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", value: tx_1.MsgSetWithdrawAddress.fromPartial(data) }),
-        msgFundCommunityPool: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPool", value: tx_2.MsgFundCommunityPool.fromPartial(data) }),
-        msgWithdrawValidatorCommission: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission", value: tx_3.MsgWithdrawValidatorCommission.fromPartial(data) }),
+        msgWithdrawValidatorCommission: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission", value: tx_1.MsgWithdrawValidatorCommission.fromPartial(data) }),
+        msgSetWithdrawAddress: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", value: tx_2.MsgSetWithdrawAddress.fromPartial(data) }),
+        msgFundCommunityPool: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPool", value: tx_3.MsgFundCommunityPool.fromPartial(data) }),
         msgWithdrawDelegatorReward: (data) => ({ typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward", value: tx_4.MsgWithdrawDelegatorReward.fromPartial(data) }),
     };
 };

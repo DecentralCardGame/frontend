@@ -18,7 +18,7 @@ exports.GenesisState = {
         for (const v of message.supply) {
             coin_1.Coin.encode(v, writer.uint32(26).fork()).ldelim();
         }
-        for (const v of message.denomMetadata) {
+        for (const v of message.denom_metadata) {
             bank_1.Metadata.encode(v, writer.uint32(34).fork()).ldelim();
         }
         return writer;
@@ -29,7 +29,7 @@ exports.GenesisState = {
         const message = { ...baseGenesisState };
         message.balances = [];
         message.supply = [];
-        message.denomMetadata = [];
+        message.denom_metadata = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -43,7 +43,7 @@ exports.GenesisState = {
                     message.supply.push(coin_1.Coin.decode(reader, reader.uint32()));
                     break;
                 case 4:
-                    message.denomMetadata.push(bank_1.Metadata.decode(reader, reader.uint32()));
+                    message.denom_metadata.push(bank_1.Metadata.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -56,7 +56,7 @@ exports.GenesisState = {
         const message = { ...baseGenesisState };
         message.balances = [];
         message.supply = [];
-        message.denomMetadata = [];
+        message.denom_metadata = [];
         if (object.params !== undefined && object.params !== null) {
             message.params = bank_1.Params.fromJSON(object.params);
         }
@@ -73,9 +73,9 @@ exports.GenesisState = {
                 message.supply.push(coin_1.Coin.fromJSON(e));
             }
         }
-        if (object.denomMetadata !== undefined && object.denomMetadata !== null) {
-            for (const e of object.denomMetadata) {
-                message.denomMetadata.push(bank_1.Metadata.fromJSON(e));
+        if (object.denom_metadata !== undefined && object.denom_metadata !== null) {
+            for (const e of object.denom_metadata) {
+                message.denom_metadata.push(bank_1.Metadata.fromJSON(e));
             }
         }
         return message;
@@ -96,11 +96,11 @@ exports.GenesisState = {
         else {
             obj.supply = [];
         }
-        if (message.denomMetadata) {
-            obj.denomMetadata = message.denomMetadata.map((e) => e ? bank_1.Metadata.toJSON(e) : undefined);
+        if (message.denom_metadata) {
+            obj.denom_metadata = message.denom_metadata.map((e) => e ? bank_1.Metadata.toJSON(e) : undefined);
         }
         else {
-            obj.denomMetadata = [];
+            obj.denom_metadata = [];
         }
         return obj;
     },
@@ -108,7 +108,7 @@ exports.GenesisState = {
         const message = { ...baseGenesisState };
         message.balances = [];
         message.supply = [];
-        message.denomMetadata = [];
+        message.denom_metadata = [];
         if (object.params !== undefined && object.params !== null) {
             message.params = bank_1.Params.fromPartial(object.params);
         }
@@ -125,9 +125,9 @@ exports.GenesisState = {
                 message.supply.push(coin_1.Coin.fromPartial(e));
             }
         }
-        if (object.denomMetadata !== undefined && object.denomMetadata !== null) {
-            for (const e of object.denomMetadata) {
-                message.denomMetadata.push(bank_1.Metadata.fromPartial(e));
+        if (object.denom_metadata !== undefined && object.denom_metadata !== null) {
+            for (const e of object.denom_metadata) {
+                message.denom_metadata.push(bank_1.Metadata.fromPartial(e));
             }
         }
         return message;

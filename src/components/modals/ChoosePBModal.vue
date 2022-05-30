@@ -72,7 +72,10 @@ export default {
   methods: {
     async getCard(id) {
       return this.$cardChain.getCard(id).then((res) => {
-        this.images.push({id: id, img: res.image})
+        console.log(res)
+        if (["permanent", "trial"].includes(res.status)) {
+          this.images.push({id: id, img: res.image})
+        }
       })
     },
     close() {

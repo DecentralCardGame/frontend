@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Balance = exports.Metadata = exports.DenomUnit = exports.Supply = exports.Output = exports.Input = exports.SendEnabled = exports.Params = exports.SendAuthorization = void 0;
 const module_1 = require("./module");
-// @ts-ignore
-const vuex_1 = require("@starport/vuex");
 const authz_1 = require("./module/types/cosmos/bank/v1beta1/authz");
 Object.defineProperty(exports, "SendAuthorization", { enumerable: true, get: function () { return authz_1.SendAuthorization; } });
 const bank_1 = require("./module/types/cosmos/bank/v1beta1/bank");
@@ -168,7 +166,7 @@ exports.default = {
                     await dispatch(sub.action, sub.payload);
                 }
                 catch (e) {
-                    throw new vuex_1.SpVuexError('Subscriptions: ' + e.message);
+                    throw new Error('Subscriptions: ' + e.message);
                 }
             });
         },
@@ -187,7 +185,7 @@ exports.default = {
                 return getters['getBalance']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QueryBalance', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryBalance API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryAllBalances({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -205,7 +203,7 @@ exports.default = {
                 return getters['getAllBalances']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QueryAllBalances', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryAllBalances API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryTotalSupply({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -223,7 +221,7 @@ exports.default = {
                 return getters['getTotalSupply']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QueryTotalSupply', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryTotalSupply API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QuerySupplyOf({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -237,7 +235,7 @@ exports.default = {
                 return getters['getSupplyOf']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QuerySupplyOf', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QuerySupplyOf API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryParams({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -251,7 +249,7 @@ exports.default = {
                 return getters['getParams']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QueryParams', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryParams API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDenomMetadata({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -265,7 +263,7 @@ exports.default = {
                 return getters['getDenomMetadata']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QueryDenomMetadata', 'API Node Unavailable. Could not perform query: ' + e.message);
+                throw new Error('QueryClient:QueryDenomMetadata API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async QueryDenomsMetadata({ commit, rootGetters, getters }, { options: { subscribe, all } = { subscribe: false, all: false }, params, query = null }) {
@@ -283,24 +281,7 @@ exports.default = {
                 return getters['getDenomsMetadata']({ params: { ...key }, query }) ?? {};
             }
             catch (e) {
-                throw new vuex_1.SpVuexError('QueryClient:QueryDenomsMetadata', 'API Node Unavailable. Could not perform query: ' + e.message);
-            }
-        },
-        async sendMsgMultiSend({ rootGetters }, { value, fee = [], memo = '' }) {
-            try {
-                const txClient = await initTxClient(rootGetters);
-                const msg = await txClient.msgMultiSend(value);
-                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
-                        gas: "200000" }, memo });
-                return result;
-            }
-            catch (e) {
-                if (e == module_1.MissingWalletError) {
-                    throw new vuex_1.SpVuexError('TxClient:MsgMultiSend:Init', 'Could not initialize signing client. Wallet is required.');
-                }
-                else {
-                    throw new vuex_1.SpVuexError('TxClient:MsgMultiSend:Send', 'Could not broadcast Tx: ' + e.message);
-                }
+                throw new Error('QueryClient:QueryDenomsMetadata API Node Unavailable. Could not perform query: ' + e.message);
             }
         },
         async sendMsgSend({ rootGetters }, { value, fee = [], memo = '' }) {
@@ -313,25 +294,27 @@ exports.default = {
             }
             catch (e) {
                 if (e == module_1.MissingWalletError) {
-                    throw new vuex_1.SpVuexError('TxClient:MsgSend:Init', 'Could not initialize signing client. Wallet is required.');
+                    throw new Error('TxClient:MsgSend:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new vuex_1.SpVuexError('TxClient:MsgSend:Send', 'Could not broadcast Tx: ' + e.message);
+                    throw new Error('TxClient:MsgSend:Send Could not broadcast Tx: ' + e.message);
                 }
             }
         },
-        async MsgMultiSend({ rootGetters }, { value }) {
+        async sendMsgMultiSend({ rootGetters }, { value, fee = [], memo = '' }) {
             try {
                 const txClient = await initTxClient(rootGetters);
                 const msg = await txClient.msgMultiSend(value);
-                return msg;
+                const result = await txClient.signAndBroadcast([msg], { fee: { amount: fee,
+                        gas: "200000" }, memo });
+                return result;
             }
             catch (e) {
                 if (e == module_1.MissingWalletError) {
-                    throw new vuex_1.SpVuexError('TxClient:MsgMultiSend:Init', 'Could not initialize signing client. Wallet is required.');
+                    throw new Error('TxClient:MsgMultiSend:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new vuex_1.SpVuexError('TxClient:MsgMultiSend:Create', 'Could not create message: ' + e.message);
+                    throw new Error('TxClient:MsgMultiSend:Send Could not broadcast Tx: ' + e.message);
                 }
             }
         },
@@ -343,10 +326,25 @@ exports.default = {
             }
             catch (e) {
                 if (e == module_1.MissingWalletError) {
-                    throw new vuex_1.SpVuexError('TxClient:MsgSend:Init', 'Could not initialize signing client. Wallet is required.');
+                    throw new Error('TxClient:MsgSend:Init Could not initialize signing client. Wallet is required.');
                 }
                 else {
-                    throw new vuex_1.SpVuexError('TxClient:MsgSend:Create', 'Could not create message: ' + e.message);
+                    throw new Error('TxClient:MsgSend:Create Could not create message: ' + e.message);
+                }
+            }
+        },
+        async MsgMultiSend({ rootGetters }, { value }) {
+            try {
+                const txClient = await initTxClient(rootGetters);
+                const msg = await txClient.msgMultiSend(value);
+                return msg;
+            }
+            catch (e) {
+                if (e == module_1.MissingWalletError) {
+                    throw new Error('TxClient:MsgMultiSend:Init Could not initialize signing client. Wallet is required.');
+                }
+                else {
+                    throw new Error('TxClient:MsgMultiSend:Create Could not create message: ' + e.message);
                 }
             }
         },

@@ -8,8 +8,8 @@ const rest_1 = require("./rest");
 const tx_1 = require("./types/cosmos/bank/v1beta1/tx");
 const tx_2 = require("./types/cosmos/bank/v1beta1/tx");
 const types = [
-    ["/cosmos.bank.v1beta1.MsgMultiSend", tx_1.MsgMultiSend],
-    ["/cosmos.bank.v1beta1.MsgSend", tx_2.MsgSend],
+    ["/cosmos.bank.v1beta1.MsgSend", tx_1.MsgSend],
+    ["/cosmos.bank.v1beta1.MsgMultiSend", tx_2.MsgMultiSend],
 ];
 exports.MissingWalletError = new Error("wallet is required");
 exports.registry = new proto_signing_1.Registry(types);
@@ -30,8 +30,8 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     const { address } = (await wallet.getAccounts())[0];
     return {
         signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => client.signAndBroadcast(address, msgs, fee, memo),
-        msgMultiSend: (data) => ({ typeUrl: "/cosmos.bank.v1beta1.MsgMultiSend", value: tx_1.MsgMultiSend.fromPartial(data) }),
-        msgSend: (data) => ({ typeUrl: "/cosmos.bank.v1beta1.MsgSend", value: tx_2.MsgSend.fromPartial(data) }),
+        msgSend: (data) => ({ typeUrl: "/cosmos.bank.v1beta1.MsgSend", value: tx_1.MsgSend.fromPartial(data) }),
+        msgMultiSend: (data) => ({ typeUrl: "/cosmos.bank.v1beta1.MsgMultiSend", value: tx_2.MsgMultiSend.fromPartial(data) }),
     };
 };
 exports.txClient = txClient;
