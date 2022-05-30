@@ -96,15 +96,6 @@ const routes = [
   },
 ]
 
-const oldroutes = [
-  {
-    path: '/',
-    component: Index,
-  },
-  { path: '/types', component: Types },
-  { path: '/relayers', component: Relayers },
-]
-
 const delay = (t) => new Promise((r) => setTimeout(r, t))
 
 const router = createRouter({

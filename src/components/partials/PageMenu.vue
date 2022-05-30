@@ -80,36 +80,12 @@
         </ul>
       </div>
     </nav>
-    <div
-      v-if="$store.getters.loginBoxVisible"
-      class="nav__authentication-modal"
-    >
-      <div
-        class="container-auth"
-        @click="$store.commit('toggleLoginBox')"
-      >
-        <div
-          class="box-auth"
-          @click.stop="doNothing"
-        >
-          <div class="box-login">
-            <LoginPage />
-          </div>
-          <div class="box-register">
-            <RegisterPage />
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import LoginPage from '../elements/Login'
-import RegisterPage from '../elements/Register'
 export default {
   name: 'PageMenu',
-  components: {RegisterPage, LoginPage},
   data () {
     return {
       displayMenu: false,
