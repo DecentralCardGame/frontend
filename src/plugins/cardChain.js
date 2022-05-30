@@ -251,7 +251,7 @@ export default {
         })
       }
       transferCoin (to, coins) {
-        return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"toAddress": to, "amount": coins, "fromAddress": this.vue.$store.getters['common/wallet/address']})
+        return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"to_address": to, "amount": coins, "from_address": this.vue.$store.getters['common/wallet/address']})
       }
       getUserInfo (address) {
           console.log(this.validAddress(address))

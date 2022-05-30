@@ -10,8 +10,8 @@ const tx_2 = require("./types/cosmos/authz/v1beta1/tx");
 const tx_3 = require("./types/cosmos/authz/v1beta1/tx");
 const types = [
     ["/cosmos.authz.v1beta1.MsgGrant", tx_1.MsgGrant],
-    ["/cosmos.authz.v1beta1.MsgRevoke", tx_2.MsgRevoke],
-    ["/cosmos.authz.v1beta1.MsgExec", tx_3.MsgExec],
+    ["/cosmos.authz.v1beta1.MsgExec", tx_2.MsgExec],
+    ["/cosmos.authz.v1beta1.MsgRevoke", tx_3.MsgRevoke],
 ];
 exports.MissingWalletError = new Error("wallet is required");
 exports.registry = new proto_signing_1.Registry(types);
@@ -33,8 +33,8 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     return {
         signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => client.signAndBroadcast(address, msgs, fee, memo),
         msgGrant: (data) => ({ typeUrl: "/cosmos.authz.v1beta1.MsgGrant", value: tx_1.MsgGrant.fromPartial(data) }),
-        msgRevoke: (data) => ({ typeUrl: "/cosmos.authz.v1beta1.MsgRevoke", value: tx_2.MsgRevoke.fromPartial(data) }),
-        msgExec: (data) => ({ typeUrl: "/cosmos.authz.v1beta1.MsgExec", value: tx_3.MsgExec.fromPartial(data) }),
+        msgExec: (data) => ({ typeUrl: "/cosmos.authz.v1beta1.MsgExec", value: tx_2.MsgExec.fromPartial(data) }),
+        msgRevoke: (data) => ({ typeUrl: "/cosmos.authz.v1beta1.MsgRevoke", value: tx_3.MsgRevoke.fromPartial(data) }),
     };
 };
 exports.txClient = txClient;

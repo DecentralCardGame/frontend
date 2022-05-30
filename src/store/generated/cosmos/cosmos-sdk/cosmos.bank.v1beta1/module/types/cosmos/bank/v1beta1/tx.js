@@ -6,14 +6,14 @@ const minimal_1 = require("protobufjs/minimal");
 const coin_1 = require("../../../cosmos/base/v1beta1/coin");
 const bank_1 = require("../../../cosmos/bank/v1beta1/bank");
 exports.protobufPackage = "cosmos.bank.v1beta1";
-const baseMsgSend = { fromAddress: "", toAddress: "" };
+const baseMsgSend = { from_address: "", to_address: "" };
 exports.MsgSend = {
     encode(message, writer = minimal_1.Writer.create()) {
-        if (message.fromAddress !== "") {
-            writer.uint32(10).string(message.fromAddress);
+        if (message.from_address !== "") {
+            writer.uint32(10).string(message.from_address);
         }
-        if (message.toAddress !== "") {
-            writer.uint32(18).string(message.toAddress);
+        if (message.to_address !== "") {
+            writer.uint32(18).string(message.to_address);
         }
         for (const v of message.amount) {
             coin_1.Coin.encode(v, writer.uint32(26).fork()).ldelim();
@@ -29,10 +29,10 @@ exports.MsgSend = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.fromAddress = reader.string();
+                    message.from_address = reader.string();
                     break;
                 case 2:
-                    message.toAddress = reader.string();
+                    message.to_address = reader.string();
                     break;
                 case 3:
                     message.amount.push(coin_1.Coin.decode(reader, reader.uint32()));
@@ -47,17 +47,17 @@ exports.MsgSend = {
     fromJSON(object) {
         const message = { ...baseMsgSend };
         message.amount = [];
-        if (object.fromAddress !== undefined && object.fromAddress !== null) {
-            message.fromAddress = String(object.fromAddress);
+        if (object.from_address !== undefined && object.from_address !== null) {
+            message.from_address = String(object.from_address);
         }
         else {
-            message.fromAddress = "";
+            message.from_address = "";
         }
-        if (object.toAddress !== undefined && object.toAddress !== null) {
-            message.toAddress = String(object.toAddress);
+        if (object.to_address !== undefined && object.to_address !== null) {
+            message.to_address = String(object.to_address);
         }
         else {
-            message.toAddress = "";
+            message.to_address = "";
         }
         if (object.amount !== undefined && object.amount !== null) {
             for (const e of object.amount) {
@@ -68,9 +68,9 @@ exports.MsgSend = {
     },
     toJSON(message) {
         const obj = {};
-        message.fromAddress !== undefined &&
-            (obj.fromAddress = message.fromAddress);
-        message.toAddress !== undefined && (obj.toAddress = message.toAddress);
+        message.from_address !== undefined &&
+            (obj.from_address = message.from_address);
+        message.to_address !== undefined && (obj.to_address = message.to_address);
         if (message.amount) {
             obj.amount = message.amount.map((e) => (e ? coin_1.Coin.toJSON(e) : undefined));
         }
@@ -82,17 +82,17 @@ exports.MsgSend = {
     fromPartial(object) {
         const message = { ...baseMsgSend };
         message.amount = [];
-        if (object.fromAddress !== undefined && object.fromAddress !== null) {
-            message.fromAddress = object.fromAddress;
+        if (object.from_address !== undefined && object.from_address !== null) {
+            message.from_address = object.from_address;
         }
         else {
-            message.fromAddress = "";
+            message.from_address = "";
         }
-        if (object.toAddress !== undefined && object.toAddress !== null) {
-            message.toAddress = object.toAddress;
+        if (object.to_address !== undefined && object.to_address !== null) {
+            message.to_address = object.to_address;
         }
         else {
-            message.toAddress = "";
+            message.to_address = "";
         }
         if (object.amount !== undefined && object.amount !== null) {
             for (const e of object.amount) {

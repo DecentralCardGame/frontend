@@ -6,11 +6,15 @@ const cosmos_auth_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.auth.v1beta1")
 const cosmos_authz_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.authz.v1beta1");
 const cosmos_bank_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.bank.v1beta1");
 const cosmos_base_tendermint_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.base.tendermint.v1beta1");
+const cosmos_crisis_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.crisis.v1beta1");
 const cosmos_distribution_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.distribution.v1beta1");
 const cosmos_evidence_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.evidence.v1beta1");
 const cosmos_feegrant_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.feegrant.v1beta1");
+const cosmos_gov_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.gov.v1beta1");
+const cosmos_mint_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.mint.v1beta1");
 const cosmos_params_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.params.v1beta1");
 const cosmos_slashing_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.slashing.v1beta1");
+const cosmos_staking_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.staking.v1beta1");
 const cosmos_tx_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.tx.v1beta1");
 const cosmos_upgrade_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.upgrade.v1beta1");
 const cosmos_vesting_v1beta1_1 = require("./cosmos/cosmos-sdk/cosmos.vesting.v1beta1");
@@ -24,11 +28,15 @@ exports.default = {
     CosmosCosmosSdkCosmosAuthzV1Beta1: load(cosmos_authz_v1beta1_1.default, 'cosmos.authz.v1beta1'),
     CosmosCosmosSdkCosmosBankV1Beta1: load(cosmos_bank_v1beta1_1.default, 'cosmos.bank.v1beta1'),
     CosmosCosmosSdkCosmosBaseTendermintV1Beta1: load(cosmos_base_tendermint_v1beta1_1.default, 'cosmos.base.tendermint.v1beta1'),
+    CosmosCosmosSdkCosmosCrisisV1Beta1: load(cosmos_crisis_v1beta1_1.default, 'cosmos.crisis.v1beta1'),
     CosmosCosmosSdkCosmosDistributionV1Beta1: load(cosmos_distribution_v1beta1_1.default, 'cosmos.distribution.v1beta1'),
     CosmosCosmosSdkCosmosEvidenceV1Beta1: load(cosmos_evidence_v1beta1_1.default, 'cosmos.evidence.v1beta1'),
     CosmosCosmosSdkCosmosFeegrantV1Beta1: load(cosmos_feegrant_v1beta1_1.default, 'cosmos.feegrant.v1beta1'),
+    CosmosCosmosSdkCosmosGovV1Beta1: load(cosmos_gov_v1beta1_1.default, 'cosmos.gov.v1beta1'),
+    CosmosCosmosSdkCosmosMintV1Beta1: load(cosmos_mint_v1beta1_1.default, 'cosmos.mint.v1beta1'),
     CosmosCosmosSdkCosmosParamsV1Beta1: load(cosmos_params_v1beta1_1.default, 'cosmos.params.v1beta1'),
     CosmosCosmosSdkCosmosSlashingV1Beta1: load(cosmos_slashing_v1beta1_1.default, 'cosmos.slashing.v1beta1'),
+    CosmosCosmosSdkCosmosStakingV1Beta1: load(cosmos_staking_v1beta1_1.default, 'cosmos.staking.v1beta1'),
     CosmosCosmosSdkCosmosTxV1Beta1: load(cosmos_tx_v1beta1_1.default, 'cosmos.tx.v1beta1'),
     CosmosCosmosSdkCosmosUpgradeV1Beta1: load(cosmos_upgrade_v1beta1_1.default, 'cosmos.upgrade.v1beta1'),
     CosmosCosmosSdkCosmosVestingV1Beta1: load(cosmos_vesting_v1beta1_1.default, 'cosmos.vesting.v1beta1'),

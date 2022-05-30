@@ -5,14 +5,14 @@ exports.Metadata = exports.DenomUnit = exports.Supply = exports.Output = exports
 const coin_1 = require("../../../cosmos/base/v1beta1/coin");
 const minimal_1 = require("protobufjs/minimal");
 exports.protobufPackage = "cosmos.bank.v1beta1";
-const baseParams = { defaultSendEnabled: false };
+const baseParams = { default_send_enabled: false };
 exports.Params = {
     encode(message, writer = minimal_1.Writer.create()) {
-        for (const v of message.sendEnabled) {
+        for (const v of message.send_enabled) {
             exports.SendEnabled.encode(v, writer.uint32(10).fork()).ldelim();
         }
-        if (message.defaultSendEnabled === true) {
-            writer.uint32(16).bool(message.defaultSendEnabled);
+        if (message.default_send_enabled === true) {
+            writer.uint32(16).bool(message.default_send_enabled);
         }
         return writer;
     },
@@ -20,15 +20,15 @@ exports.Params = {
         const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseParams };
-        message.sendEnabled = [];
+        message.send_enabled = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.sendEnabled.push(exports.SendEnabled.decode(reader, reader.uint32()));
+                    message.send_enabled.push(exports.SendEnabled.decode(reader, reader.uint32()));
                     break;
                 case 2:
-                    message.defaultSendEnabled = reader.bool();
+                    message.default_send_enabled = reader.bool();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -39,47 +39,47 @@ exports.Params = {
     },
     fromJSON(object) {
         const message = { ...baseParams };
-        message.sendEnabled = [];
-        if (object.sendEnabled !== undefined && object.sendEnabled !== null) {
-            for (const e of object.sendEnabled) {
-                message.sendEnabled.push(exports.SendEnabled.fromJSON(e));
+        message.send_enabled = [];
+        if (object.send_enabled !== undefined && object.send_enabled !== null) {
+            for (const e of object.send_enabled) {
+                message.send_enabled.push(exports.SendEnabled.fromJSON(e));
             }
         }
-        if (object.defaultSendEnabled !== undefined &&
-            object.defaultSendEnabled !== null) {
-            message.defaultSendEnabled = Boolean(object.defaultSendEnabled);
+        if (object.default_send_enabled !== undefined &&
+            object.default_send_enabled !== null) {
+            message.default_send_enabled = Boolean(object.default_send_enabled);
         }
         else {
-            message.defaultSendEnabled = false;
+            message.default_send_enabled = false;
         }
         return message;
     },
     toJSON(message) {
         const obj = {};
-        if (message.sendEnabled) {
-            obj.sendEnabled = message.sendEnabled.map((e) => e ? exports.SendEnabled.toJSON(e) : undefined);
+        if (message.send_enabled) {
+            obj.send_enabled = message.send_enabled.map((e) => e ? exports.SendEnabled.toJSON(e) : undefined);
         }
         else {
-            obj.sendEnabled = [];
+            obj.send_enabled = [];
         }
-        message.defaultSendEnabled !== undefined &&
-            (obj.defaultSendEnabled = message.defaultSendEnabled);
+        message.default_send_enabled !== undefined &&
+            (obj.default_send_enabled = message.default_send_enabled);
         return obj;
     },
     fromPartial(object) {
         const message = { ...baseParams };
-        message.sendEnabled = [];
-        if (object.sendEnabled !== undefined && object.sendEnabled !== null) {
-            for (const e of object.sendEnabled) {
-                message.sendEnabled.push(exports.SendEnabled.fromPartial(e));
+        message.send_enabled = [];
+        if (object.send_enabled !== undefined && object.send_enabled !== null) {
+            for (const e of object.send_enabled) {
+                message.send_enabled.push(exports.SendEnabled.fromPartial(e));
             }
         }
-        if (object.defaultSendEnabled !== undefined &&
-            object.defaultSendEnabled !== null) {
-            message.defaultSendEnabled = object.defaultSendEnabled;
+        if (object.default_send_enabled !== undefined &&
+            object.default_send_enabled !== null) {
+            message.default_send_enabled = object.default_send_enabled;
         }
         else {
-            message.defaultSendEnabled = false;
+            message.default_send_enabled = false;
         }
         return message;
     },
@@ -470,7 +470,7 @@ exports.Metadata = {
         if (message.description !== "") {
             writer.uint32(10).string(message.description);
         }
-        for (const v of message.denomUnits) {
+        for (const v of message.denom_units) {
             exports.DenomUnit.encode(v, writer.uint32(18).fork()).ldelim();
         }
         if (message.base !== "") {
@@ -491,7 +491,7 @@ exports.Metadata = {
         const reader = input instanceof Uint8Array ? new minimal_1.Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMetadata };
-        message.denomUnits = [];
+        message.denom_units = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -499,7 +499,7 @@ exports.Metadata = {
                     message.description = reader.string();
                     break;
                 case 2:
-                    message.denomUnits.push(exports.DenomUnit.decode(reader, reader.uint32()));
+                    message.denom_units.push(exports.DenomUnit.decode(reader, reader.uint32()));
                     break;
                 case 3:
                     message.base = reader.string();
@@ -522,16 +522,16 @@ exports.Metadata = {
     },
     fromJSON(object) {
         const message = { ...baseMetadata };
-        message.denomUnits = [];
+        message.denom_units = [];
         if (object.description !== undefined && object.description !== null) {
             message.description = String(object.description);
         }
         else {
             message.description = "";
         }
-        if (object.denomUnits !== undefined && object.denomUnits !== null) {
-            for (const e of object.denomUnits) {
-                message.denomUnits.push(exports.DenomUnit.fromJSON(e));
+        if (object.denom_units !== undefined && object.denom_units !== null) {
+            for (const e of object.denom_units) {
+                message.denom_units.push(exports.DenomUnit.fromJSON(e));
             }
         }
         if (object.base !== undefined && object.base !== null) {
@@ -564,11 +564,11 @@ exports.Metadata = {
         const obj = {};
         message.description !== undefined &&
             (obj.description = message.description);
-        if (message.denomUnits) {
-            obj.denomUnits = message.denomUnits.map((e) => e ? exports.DenomUnit.toJSON(e) : undefined);
+        if (message.denom_units) {
+            obj.denom_units = message.denom_units.map((e) => e ? exports.DenomUnit.toJSON(e) : undefined);
         }
         else {
-            obj.denomUnits = [];
+            obj.denom_units = [];
         }
         message.base !== undefined && (obj.base = message.base);
         message.display !== undefined && (obj.display = message.display);
@@ -578,16 +578,16 @@ exports.Metadata = {
     },
     fromPartial(object) {
         const message = { ...baseMetadata };
-        message.denomUnits = [];
+        message.denom_units = [];
         if (object.description !== undefined && object.description !== null) {
             message.description = object.description;
         }
         else {
             message.description = "";
         }
-        if (object.denomUnits !== undefined && object.denomUnits !== null) {
-            for (const e of object.denomUnits) {
-                message.denomUnits.push(exports.DenomUnit.fromPartial(e));
+        if (object.denom_units !== undefined && object.denom_units !== null) {
+            for (const e of object.denom_units) {
+                message.denom_units.push(exports.DenomUnit.fromPartial(e));
             }
         }
         if (object.base !== undefined && object.base !== null) {
