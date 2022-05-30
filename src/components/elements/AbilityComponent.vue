@@ -157,7 +157,7 @@ export default {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
             thereWillBeModal = false
             let copyButton = R.clone(this.ability.clickedBtn.template)
-            copyButton.pre = ''
+            copyButton.pre = ' '
 
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
 
