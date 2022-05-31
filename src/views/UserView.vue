@@ -96,7 +96,7 @@
         @close="closeModal"
       />
       <GrantModal
-        v-show="isGrantModalVisible"
+        v-if="isGrantModalVisible"
         @close="closeGrantModal"
       />
       <ChoosePBModal

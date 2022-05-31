@@ -28,6 +28,27 @@
           </button>
         </header>
         <div class="modal__body input--transfer">
+          Query Grants to
+          <input
+            v-model="qgrantee"
+            type="text"
+            placeholder="'qgrantee'"
+          >
+          <button
+            class="btn--default"
+            @click="getGrants"
+          >
+            Get
+          </button>
+          <div align="left">
+            <div
+              v-for="gt in grants"
+              :key="gt"
+            >
+              <p>{{ getShowName(gt.authorization.msg) }}</p>
+            </div>
+          </div>
+          <br>
           Grant action
           <select v-model="grant">
             <option
@@ -64,7 +85,6 @@
 
 <script>
 import * as R from 'ramda'
-import {atPath, createInteraction, filterSelection, icon, updateInteraction} from '../utils/utils.js'
 
 export default {
   name: 'GrantModal',
@@ -72,10 +92,14 @@ export default {
   },
   data() {
     return {
-      options: [["vote", "/DecentralCardGame.cardchain.cardchain.MsgVoteCard"]],
+      options: [
+        ["vote", "/DecentralCardGame.cardchain.cardchain.MsgVoteCard"],
+        ["add Artwork", "/DecentralCardGame.cardchain.cardchain.MsgAddArtwork"]],
       grant: "",
       grantee: "",
+      qgrantee: "",
       warningText: "",
+      grants: [],
     }
   },
   watch: {
@@ -92,16 +116,27 @@ export default {
     init() {
       if (this.$store.getters["getLoggedIn"]) {
         this.address = this.$store.getters['common/wallet/address']
-        // this.getCoins()
       }
     },
-    // getCoins() {
-    //   this.$cardChain.getAccInfo(this.address)
-    //   .then(coins => {
-    //     this.coins = coins.coins
-    //     console.log("Hier")
-    //   })
-    // },
+    getShowName(name) {
+      for (var i = 0; i<this.options.length; i++) {
+        if (this.options[i][1] == name) {
+          return this.options[i][0]
+        }
+      }
+      return ""
+    },
+    getGrants() {
+      if (! this.$cardChain.validAddress(this.qgrantee)) {
+        this.warningText = "Input a proper address!"
+        return
+      }
+      this.$cardChain.getGrants(this.qgrantee)
+      .then(grants => {
+        this.grants = grants.grants
+        console.log(grants)
+      })
+    },
     close() {
       this.$emit('close')
     },

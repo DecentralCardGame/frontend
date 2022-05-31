@@ -288,7 +288,7 @@ export default {
           }
       }
       getGrants (addr) {
-          return this.vue.$http.get('cosmos/authz/v1beta1/grants?granter=' + addr)
+          return this.vue.$http.get('/cosmos/authz/v1beta1/grants?granter='+this.vue.$store.getters['common/wallet/address']+"&grantee=" + addr)
               .catch(this.handleGetError)
               .then(this.handleGetGrants(R.__, addr))
       }
