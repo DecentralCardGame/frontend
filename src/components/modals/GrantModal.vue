@@ -42,10 +42,28 @@
           </button>
           <div align="left">
             <div
-              v-for="gt in grants"
+              v-for="(gt, i) in grants"
               :key="gt"
+              class="grantBox"
             >
-              <p>{{ getShowName(gt.authorization.msg) }}</p>
+              <div
+                class="clickBox"
+                @click="show_extra[i] = !show_extra[i]"
+              >
+                Grant
+                <a>{{ getShowName(gt.authorization.msg) }}</a>
+              </div>
+              <button
+                class="btn--default"
+                @click="revoke(gt.authorization.msg)"
+              >
+                Rewoke
+              </button>
+              <div
+                v-show="show_extra[i]"
+              >
+                Expires at: <a>{{ gt.expiration }}</a>
+              </div>
             </div>
           </div>
           <br>
@@ -100,6 +118,8 @@ export default {
       qgrantee: "",
       warningText: "",
       grants: [],
+      show_extra: [],
+      saved_grantee: "",
     }
   },
   watch: {
@@ -126,6 +146,12 @@ export default {
       }
       return ""
     },
+    revoke(msg) {
+      this.$cardChain.revokeAuthz(this.saved_grantee, msg).then(res => {
+        console.log(res)
+        this.getGrants()
+      })
+    },
     getGrants() {
       if (! this.$cardChain.validAddress(this.qgrantee)) {
         this.warningText = "Input a proper address!"
@@ -134,6 +160,11 @@ export default {
       this.$cardChain.getGrants(this.qgrantee)
       .then(grants => {
         this.grants = grants.grants
+        this.saved_grantee = this.qgrantee
+        this.show_extra = []
+        for (var i = 0; i<this.grants.length; i++) {
+          this.show_extra.push(false)
+        }
         console.log(grants)
       })
     },
@@ -151,7 +182,7 @@ export default {
       }
       this.warningText = ""
       this.$cardChain.grantAuthz(this.grantee, this.grant).then(res => {
-        console.log("yees")
+        console.log(res)
       })
     }
   }
@@ -176,6 +207,29 @@ export default {
     background-color: lightgray;
     display: inline;
   }
+}
+
+.grantBox {
+  margin: 5px;
+  padding: 7px;
+  position: relative;
+  box-shadow: 2px 2px 4px;
+  cursor: pointer;
+  a {
+    color: $black;
+    font-weight: bold;
+  }
+  button {
+    left: 80%;
+    top: 0%;
+    position: absolute;
+    margin-left: 2px;
+    color: red;
+  }
+}
+
+.grantBox:hover {
+  box-shadow: 4px 4px 8px;
 }
 
 .warning {

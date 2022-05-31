@@ -276,6 +276,9 @@ export default {
           }
         )
       }
+      revokeAuthz (grantee, msg) {
+        return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {"grantee": grantee, "msg_type_url": msg, "granter": this.vue.$store.getters['common/wallet/address']})
+      }
       getUserInfo (address) {
           console.log(this.validAddress(address))
           if (this.validAddress(address)) {
