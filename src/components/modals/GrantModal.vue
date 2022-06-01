@@ -32,7 +32,6 @@
           <input
             v-model="qgrantee"
             type="text"
-            placeholder="'qgrantee'"
           >
           <button
             class="btn--default"
@@ -81,7 +80,6 @@
           <input
             v-model="grantee"
             type="text"
-            placeholder="'grantee'"
           >
           <button
             class="btn--default"
@@ -112,10 +110,12 @@ export default {
     return {
       options: [
         ["vote", "/DecentralCardGame.cardchain.cardchain.MsgVoteCard"],
-        ["add Artwork", "/DecentralCardGame.cardchain.cardchain.MsgAddArtwork"]],
+        ["add artwork", "/DecentralCardGame.cardchain.cardchain.MsgAddArtwork"],
+        ["save card content", "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent"],
+        ["play game", "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch"]],
       grant: "",
-      grantee: "",
-      qgrantee: "",
+      grantee: this.getGrantee(),
+      qgrantee: this.getGrantee(),
       warningText: "",
       grants: [],
       show_extra: [],
@@ -136,6 +136,9 @@ export default {
     init() {
       if (this.$store.getters["getLoggedIn"]) {
         this.address = this.$store.getters['common/wallet/address']
+        if (this.getGrantee()) {
+          this.getGrants()
+        }
       }
     },
     getShowName(name) {
@@ -181,9 +184,18 @@ export default {
         return
       }
       this.warningText = ""
+      localStorage.authzAddress = this.grantee
+      console.log(localStorage.authzAddress)
       this.$cardChain.grantAuthz(this.grantee, this.grant).then(res => {
+        if (this.getGrantee()) {
+          this.getGrants()
+        }
         console.log(res)
       })
+    },
+    getGrantee() {
+      console.log(localStorage.authzAddress)
+      return localStorage.authzAddress
     }
   }
 }
