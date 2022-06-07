@@ -27,7 +27,7 @@
             x
           </button>
         </header>
-        <div class="modal__body input--transfer">
+        <div class="modal__body">
           Claimable airdrops:
           <div
             v-for="(drop, name) in airdrops"
@@ -41,6 +41,12 @@
             >
               {{ data[name].linkText }}
             </router-link>
+            <div
+              class="claimBox"
+              :style="{color: (!drop) ? 'red' : 'green',}"
+            >
+              {{ !drop ? "not" : "" }} claimed
+            </div>
           </div>
         </div>
       </div>
@@ -80,21 +86,17 @@ export default {
           linkData: ''
         },
         user: {
-          text: "Create a user",
+          text: "Create a user.",
           linkText: "",
           linkData: ''
         },
         buy: {
-          text: "Buy a",
-          linkText: "boosterpack",
+          text: "Buy a ",
+          linkText: "boosterpack.",
           linkData: '' // TODO: Needs
         },
       }
     }
-  },
-  created() {
-  },
-  mounted() {
   },
   methods: {
     close() {
@@ -108,26 +110,9 @@ export default {
 <style lang="scss">
 @import "modal";
 
-.input--transfer {
-  input {
-    padding: 0;
-    margin-right: 2px;
-    display: inline;
-    color: $black;
-    text-align: right;
-    background-color: lightgray;
-  }
-  select {
-    color: $black;
-    background-color: lightgray;
-    display: inline;
-  }
-}
-
 .airdropBox {
   margin: 5px;
   padding: 7px;
-  position: relative;
   box-shadow: 2px 2px 4px;
   text-align: left;
   cursor: pointer;
@@ -135,12 +120,11 @@ export default {
     color: $black;
     font-weight: bold;
   }
-  button {
-    left: 80%;
-    top: 0%;
-    position: absolute;
-    margin-left: 2px;
-    color: red;
+  .claimBox {
+    float: right;
+    text-align: right;
+    font-weight: bold;
+    margin-left: 10px;
   }
 }
 
