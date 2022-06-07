@@ -91,6 +91,15 @@
       >
         Manage authorisations
       </button>
+      <br>
+      <button
+        v-if="loggedinHere"
+        type="button"
+        class="btn"
+        @click="showAirdropsModal"
+      >
+        Claim airdrops
+      </button>
       <TransferModal
         v-show="isModalVisible"
         @close="closeModal"
@@ -104,6 +113,11 @@
         :cards="user.ownedPrototypes"
         @close="closeChooseModal"
       />
+      <AirdropsModal
+        v-if="isAirdropsModalVisible"
+        :airdrops="user.airDrops"
+        @close="closeAirdropsModal"
+      />
     </div>
   </div>
 </template>
@@ -113,6 +127,7 @@
 import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 import GrantModal from '../components/modals/GrantModal.vue';
+import AirdropsModal from '../components/modals/AirdropsModal.vue';
 
 export default {
   name: 'UserView',
@@ -120,11 +135,13 @@ export default {
     GrantModal,
     TransferModal,
     ChoosePBModal,
+    AirdropsModal
   },
   data () {
     return {
       loggedinHere: false,
       isChooseModalVisible: false,
+      isAirdropsModalVisible: false,
       isModalVisible: false,
       isGrantModalVisible: false,
       address: "",
@@ -136,6 +153,7 @@ export default {
         cards: [],
         voteRights: [],
         profileCard: 0,
+        airdrops: {},
       },
     }
   },
@@ -222,6 +240,12 @@ export default {
     closeChooseModal() {
       this.isChooseModalVisible = false;
       this.getUser()
+    },
+    showAirdropsModal() {
+      this.isAirdropsModalVisible = true;
+    },
+    closeAirdropsModal() {
+      this.isAirdropsModalVisible = false;
     },
     getDefaultImg() {
       var myRandom = this.address.charCodeAt(this.address.length-1) % 4
