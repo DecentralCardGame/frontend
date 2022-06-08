@@ -5,6 +5,8 @@ import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
+import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
   install (Vue, store) {
@@ -204,6 +206,7 @@ export default {
             "creator": this.vue.$store.getters['common/wallet/address'],
           }, data)
         }
+        console.log(msg)
         this.vue.notifyInfo('Sending', 'Sending request "'+prettyMsg+'" to the blockchain.')
         return this.txQueue.dispatch(type.replace(".Msg", "/sendMsg"), msg)
           .then(res => {
@@ -253,6 +256,29 @@ export default {
       transferCoin (to, coins) {
         return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"to_address": to, "amount": coins, "from_address": this.vue.$store.getters['common/wallet/address']})
       }
+      grantAuthz (addr, msg) {
+        let date = new Date()
+        date.setMonth(date.getMonth() + 1);
+        return this.sendGenericTx(
+          "cosmos.authz.v1beta1.MsgGrant",
+          {
+            "grantee": addr,
+            "grant": {
+              "authorization":{
+                "type_url": "/cosmos.authz.v1beta1.GenericAuthorization",
+                value: GenericAuthorization.encode(GenericAuthorization.fromPartial({
+                  msg: msg
+                })).finish()
+              },
+              "expiration": date
+            },
+            "granter": this.vue.$store.getters['common/wallet/address']
+          }
+        )
+      }
+      revokeAuthz (grantee, msg) {
+        return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {"grantee": grantee, "msg_type_url": msg, "granter": this.vue.$store.getters['common/wallet/address']})
+      }
       getUserInfo (address) {
           console.log(this.validAddress(address))
           if (this.validAddress(address)) {
@@ -263,6 +289,11 @@ export default {
             this.vue.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
             throw new Error('please provide proper address')
           }
+      }
+      getGrants (addr) {
+          return this.vue.$http.get('/cosmos/authz/v1beta1/grants?granter='+this.vue.$store.getters['common/wallet/address']+"&grantee=" + addr)
+              .catch(this.handleGetError)
+              .then(this.handleGetGrants(R.__, addr))
       }
       getCard (id) {
           return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_card/' + id)
@@ -304,6 +335,13 @@ export default {
           })
           .catch(this.handleGetError)
       }
+      getParams () {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/params')
+          .then(res => {
+            return res.data
+          })
+          .catch(this.handleGetError)
+      }
       getGameInfo () {
           return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cardchain_info')
           .then(res => {
@@ -321,6 +359,10 @@ export default {
         } else {
           return res.data
         }
+      })
+      handleGetGrants = R.curry((res, address) => {
+        console.log("handlegetgrants", res)
+        return res.data
       })
       handleGetAcc = R.curry((res, address) => {
         if (!res) {

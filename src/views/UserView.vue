@@ -82,14 +82,41 @@
       >
         Transfer
       </button>
+      <br>
+      <button
+        v-if="loggedinHere"
+        type="button"
+        class="btn"
+        @click="showGrantModal"
+      >
+        Manage authorisations
+      </button>
+      <br>
+      <button
+        v-if="loggedinHere"
+        type="button"
+        class="btn"
+        @click="showAirdropsModal"
+      >
+        Claim airdrops
+      </button>
       <TransferModal
         v-show="isModalVisible"
         @close="closeModal"
+      />
+      <GrantModal
+        v-if="isGrantModalVisible"
+        @close="closeGrantModal"
       />
       <ChoosePBModal
         v-if="isChooseModalVisible"
         :cards="user.ownedPrototypes"
         @close="closeChooseModal"
+      />
+      <AirdropsModal
+        v-if="isAirdropsModalVisible"
+        :airdrops="user.airDrops ? user.airDrops : {}"
+        @close="closeAirdropsModal"
       />
     </div>
   </div>
@@ -99,18 +126,24 @@
 
 import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
+import GrantModal from '../components/modals/GrantModal.vue';
+import AirdropsModal from '../components/modals/AirdropsModal.vue';
 
 export default {
   name: 'UserView',
   components: {
+    GrantModal,
     TransferModal,
     ChoosePBModal,
+    AirdropsModal
   },
   data () {
     return {
       loggedinHere: false,
       isChooseModalVisible: false,
+      isAirdropsModalVisible: false,
       isModalVisible: false,
+      isGrantModalVisible: false,
       address: "",
       coins: [],
       img: "",
@@ -120,6 +153,7 @@ export default {
         cards: [],
         voteRights: [],
         profileCard: 0,
+        airdrops: {},
       },
     }
   },
@@ -194,12 +228,24 @@ export default {
       this.isModalVisible = false;
       this.getUser()
     },
+    showGrantModal() {
+      this.isGrantModalVisible = true;
+    },
+    closeGrantModal() {
+      this.isGrantModalVisible = false;
+    },
     showChooseModal() {
       this.isChooseModalVisible = true;
     },
     closeChooseModal() {
       this.isChooseModalVisible = false;
       this.getUser()
+    },
+    showAirdropsModal() {
+      this.isAirdropsModalVisible = true;
+    },
+    closeAirdropsModal() {
+      this.isAirdropsModalVisible = false;
     },
     getDefaultImg() {
       var myRandom = this.address.charCodeAt(this.address.length-1) % 4
