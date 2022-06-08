@@ -335,6 +335,13 @@ export default {
           })
           .catch(this.handleGetError)
       }
+      getParams () {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/params')
+          .then(res => {
+            return res.data
+          })
+          .catch(this.handleGetError)
+      }
       getGameInfo () {
           return this.vue.$http.get('DecentralCardGame/cardchain/cardchain/q_cardchain_info')
           .then(res => {

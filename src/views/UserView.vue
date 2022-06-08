@@ -115,7 +115,7 @@
       />
       <AirdropsModal
         v-if="isAirdropsModalVisible"
-        :airdrops="user.airDrops"
+        :airdrops="user.airDrops ? user.airDrops : {}"
         @close="closeAirdropsModal"
       />
     </div>

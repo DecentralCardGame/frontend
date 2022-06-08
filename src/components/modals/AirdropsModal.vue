@@ -29,24 +29,30 @@
         </header>
         <div class="modal__body">
           Claimable airdrops:
-          <div
-            v-for="(drop, name) in airdrops"
-            v-show="!drop || true"
-            :key="name"
-            class="airdropBox"
-          >
-            {{ data[name].text }}
-            <router-link
-              :to="{name: data[name].linkData}"
-            >
-              {{ data[name].linkText }}
-            </router-link>
+          <div>
             <div
-              class="claimBox"
-              :style="{color: (!drop) ? 'red' : 'green',}"
+              v-for="(drop, name) in airdrops"
+              v-show="!drop || true"
+              :key="name"
+              class="airdropBox"
+              :class="{ 'blurOut': !isValid }"
             >
-              {{ !drop ? "not" : "" }} claimed
+              {{ data[name].text }}
+              <router-link
+                :to="{name: data[name].linkData}"
+              >
+                {{ data[name].linkText }}
+              </router-link>
+              <div
+                class="claimBox"
+                :style="{color: (!drop) ? 'red' : 'green',}"
+              >
+                {{ !drop ? "not" : "" }} claimed
+              </div>
             </div>
+          </div>
+          <div v-if="!isValid">
+            There are no claimable airdrops anymore!
           </div>
         </div>
       </div>
@@ -69,6 +75,7 @@ export default {
   },
   data() {
     return {
+      isValid: true,
       data: {
         create: {
           text: "Create a ",
@@ -98,10 +105,28 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getHeight()
+  },
   methods: {
     close() {
       this.$emit('close')
     },
+    getHeight() {
+      fetch(process.env.VUE_APP_API_TENDERMINT+"status").then(response => {
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`)
+        }
+        return response.json()
+      })
+      .then(data => {
+        this.$cardChain.getParams().then(res => {
+          this.isValid = (+data.result.sync_info.latest_block_height < +res.params.airDropMaxBlockHeight)
+          console.log(data.result.sync_info.latest_block_height, res.params.airDropMaxBlockHeight, this.isValid)
+        })
+      })
+      .catch(error => console.log(error))
+    }
   }
 }
 
@@ -130,6 +155,12 @@ export default {
 
 .airdropBox:hover {
   box-shadow: 4px 4px 8px;
+}
+
+.blurOut {
+  opacity: 0.6;
+  filter: grayscale(100%);
+  pointer-events: none;
 }
 
 </style>
