@@ -6,8 +6,8 @@
     >
       <CardComponent
         :id="'card'"
-        :model="cards[0]"
-        :image-u-r-l="cards[0].image"
+        :model="card"
+        :image-u-r-l="card.image"
       />
     </div>
 
@@ -47,6 +47,30 @@
       </router-link> <br>
       Status: {{ Status }} <br>
       VotePool: {{ VotePool }} <br>
+      <button
+        v-if="canVote"
+        @click="vote('underpowered');"
+      >
+        Vote Underpowered
+      </button>
+      <button
+        v-if="canVote"
+        @click="vote('overpowered');"
+      >
+        Vote Overpowered
+      </button>
+      <button
+        v-if="canVote"
+        @click="vote('fair_enough');"
+      >
+        Vote Fair Enough
+      </button>
+      <button
+        v-if="canVote"
+        @click="vote('inappropriate');"
+      >
+        Vote Inappropriate
+      </button>
     </div>
   </div>
 </template>
@@ -62,8 +86,9 @@ export default {
   components: {CardComponent},
   data () {
     return {
-      cards: [sampleCard],
-      cardImgs: [sampleGradientImg],
+      id: 0,
+      canVote: false,
+      card: sampleCard,
       FlavourText: "",
       Notes: "",
       InappropriateVotes: 0,
@@ -77,17 +102,23 @@ export default {
       keywordDescriptions: []
     }
   },
+  watch: {
+    '$store.state.common.wallet.selectedAddress': function () {
+      if (this.$store.getters["getLoggedIn"]) {
+        this.loadVotableCards()
+      }
+    }
+  },
   mounted () {
-    let id = parseInt(this.$route.params.id)
-    console.log('params id:', id)
-    if (typeof id === 'number' && !isNaN(id))  {
-      this.$cardChain.getCard(this.$route.params.id)
+    this.id = parseInt(this.$route.params.id)
+    console.log('params id:', this.id)
+    if (typeof this.id === 'number' && !isNaN(this.id))  {
+      this.$cardChain.getCard(this.id)
         .then(res => {
           let parsedCard = this.$cardChain.cardObjectToWebModel(res)
           console.log('downloaded card:', res)
           if (parsedCard) {
-            this.cards = []
-            this.cards.push(parsedCard)
+            this.card = parsedCard
             this.FlavourText = parsedCard.FlavourText
             this.Notes = parsedCard.notes
             this.InappropriateVotes = parsedCard.inappropriateVotes
@@ -112,12 +143,13 @@ export default {
             // yesyoulike.json for harry
             let likelist = []
             R.mapObjIndexed((num, key) => { likelist.push({"keyword": key, "description": num.description}) }, R.filter(x => x.description, this.$rulesDefinitions))
-            //console.log("yes:", JSON.stringify(likelist))
+            // console.log("yes:", JSON.stringify(likelist))
+            if (this.$store.getters["getLoggedIn"]) {
+              this.loadVotableCards()
+            }
           }
         })
     }
-
-
   },
   methods: {
     saveCard () {
@@ -125,6 +157,32 @@ export default {
         document.getElementById('card'),
         this.cards[0].CardName
       );
+    },
+    loadVotableCards() {
+      this.$cardChain
+      .getVotableCards(this.$store.getters['common/wallet/address'])
+      .then(res => {
+        var votableCards = []
+        console.log("getVotableCards:", res);
+        if (!res.noVoteRights) {
+          votableCards = res.votables;
+        }
+        this.canVote = false
+        for (var i = 0; i<votableCards.voteRights.length; i++) {
+          if (votableCards.voteRights[i].cardId == this.id) {
+            this.canVote = true
+          }
+        }
+        console.log(this.canVote)
+      })
+    },
+    vote(type) {
+      this.$cardChain
+        .voteCardTx(this.id, type)
+        .then(_ => {
+          this.$cardChain.updateUserCredits()
+          this.loadVotableCards()
+        })
     },
   }
 }
