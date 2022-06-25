@@ -226,7 +226,7 @@ export default {
     },
     closeModal() {
       this.isModalVisible = false;
-      this.getUser()
+      this.getUser();
     },
     showGrantModal() {
       this.isGrantModalVisible = true;
@@ -256,14 +256,21 @@ export default {
       console.log(this.user.profileCard)
       if (this.user.profileCard != 0) {
         var a = await this.getCard(this.user.profileCard)
-        this.img = a.image
+        if (a === null) {
+          this.img = this.getDefaultImg()
+        } else {
+          this.img = a.image
+        }
       } else {
         this.img = this.getDefaultImg()
       }
     },
     async getCard(id) {
-      return this.$cardChain.getCard(id).then((res) => {
+      return this.$cardChain.getCard(id).then(res => {
         return res
+      })
+      .catch(err => {
+        return null
       })
     }
   }

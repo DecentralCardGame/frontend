@@ -77,6 +77,9 @@ export default {
           this.images.push({id: id, img: res.image})
         }
       })
+      .catch(err => {
+        return
+      })
     },
     close() {
       this.$emit('close')

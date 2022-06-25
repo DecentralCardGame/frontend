@@ -376,7 +376,7 @@ export default {
       })
       handleGetCard = R.curry((res, cardId) => {
         if (res.data.owner === '') {
-          this.vue.notifyFail('Card without Owner', 'If you can read this the programmers dun goofed.')
+          // this.vue.notifyFail('Card without Owner', 'If you can read this the programmers dun goofed.')
           throw new Error('Card without Owner: ' + cardId)
         }
         if (!res.data) {
