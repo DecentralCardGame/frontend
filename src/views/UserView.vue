@@ -22,6 +22,14 @@
       <h2 class="header__h2">
         Account details
       </h2>
+      <button
+        v-if="loggedinHere"
+        type="button"
+        class="btn"
+        @click="showAirdropsModal"
+      >
+        Claim airdrops
+      </button> <br><br>
       Address: {{ address }}<br>
       Name: {{ user.alias }}<br>
       Council status: {{ user.CouncilStatus }}
@@ -92,14 +100,6 @@
         Manage authorisations
       </button>
       <br>
-      <button
-        v-if="loggedinHere"
-        type="button"
-        class="btn"
-        @click="showAirdropsModal"
-      >
-        Claim airdrops
-      </button>
       <TransferModal
         v-show="isModalVisible"
         @close="closeModal"
