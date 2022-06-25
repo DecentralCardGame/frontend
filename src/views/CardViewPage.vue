@@ -71,6 +71,13 @@
       >
         Vote Inappropriate
       </button>
+      <br>
+      <button
+        v-if="isOwner"
+        @click="edit();"
+      >
+        Edit card
+      </button>
     </div>
   </div>
 </template>
@@ -87,6 +94,7 @@ export default {
   data () {
     return {
       id: 0,
+      isOwner: false,
       canVote: false,
       card: sampleCard,
       FlavourText: "",
@@ -159,6 +167,9 @@ export default {
       );
     },
     loadVotableCards() {
+      this.isOwner =
+        this.Owner ===
+        this.$store.getters['common/wallet/address']
       this.$cardChain
       .getVotableCards(this.$store.getters['common/wallet/address'])
       .then(res => {
@@ -183,6 +194,14 @@ export default {
           this.$cardChain.updateUserCredits()
           this.loadVotableCards()
         })
+    },
+    edit() {
+      console.log("editing:", this.id)
+      this.$store.commit(
+        "setCardCreatorEditCard",
+        this.card
+      );
+      this.$router.push("/newCard")
     },
   }
 }
