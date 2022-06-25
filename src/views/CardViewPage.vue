@@ -46,27 +46,31 @@
         {{ Owner }}
       </router-link> <br>
       Status: {{ Status }} <br>
-      VotePool: {{ VotePool }} <br>
+      VotePool: {{ VotePool }} <br><br>
       <button
         v-if="canVote"
+        class="btn--default"
         @click="vote('underpowered');"
       >
         Vote Underpowered
       </button>
       <button
         v-if="canVote"
+        class="btn--default"
         @click="vote('overpowered');"
       >
         Vote Overpowered
       </button>
       <button
         v-if="canVote"
+        class="btn--default"
         @click="vote('fair_enough');"
       >
         Vote Fair Enough
       </button>
       <button
         v-if="canVote"
+        class="btn--default"
         @click="vote('inappropriate');"
       >
         Vote Inappropriate
@@ -74,6 +78,7 @@
       <br>
       <button
         v-if="isOwner"
+        class="btn--default"
         @click="edit();"
       >
         Edit card
@@ -207,7 +212,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../scss/variables";
 
 .keywordTable {
   color: #F5F5F5;
