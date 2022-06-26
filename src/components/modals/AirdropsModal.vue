@@ -28,6 +28,14 @@
           </button>
         </header>
         <div class="modal__body">
+          <b>Important:</b> <br>
+          We are running a testnet. <br>
+          This is not the mainnet. <br>
+          Whatever you claim here can be gone <br>
+          and will be gone, once the testnet resets. <br>
+          But we will have an airdrop to all engaged <br>
+          participants of our testnets. <br>
+          <br>
           Claimable airdrops:
           <div>
             <div
@@ -44,10 +52,17 @@
                 {{ data[name].linkText }}
               </router-link>
               <div
+                v-if="!R.isEmpty(data[name].linkData)"
                 class="claimBox"
                 :style="{color: (!drop) ? 'red' : 'green',}"
               >
                 {{ !drop ? "not" : "" }} claimed
+              </div>
+              <div 
+                v-else
+                class="claimBox"
+              >
+                not implemented
               </div>
             </div>
           </div>
@@ -95,7 +110,7 @@ export default {
         user: {
           text: "Create a user.",
           linkText: "",
-          linkData: ''
+          linkData: 'user'
         },
         buy: {
           text: "Buy a ",
