@@ -545,7 +545,7 @@
 
           <div
             v-if="activeStep == 4"
-            class="creator-input-container ccbutton"
+            class="creator-input-container"
           >
             <p>
               Uh, uh, uh. I like my looks, i like my feels, let us get some
