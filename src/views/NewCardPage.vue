@@ -545,14 +545,14 @@
 
           <div
             v-if="activeStep == 4"
-            class="creator-input-container"
+            class="creator-input-container ccbutton"
           >
-            <span class="creator-text">
+            <p>
               Uh, uh, uh. I like my looks, i like my feels, let us get some
               victorieeessss. Seriously, thanks for creating and being part of the
               community. Be brave and publish me! P.S. I would like to give the
               council the following <b>notes</b> for this card (optional):
-            </span>
+            </p>
             <input
               v-model="model.notes"
               @change="saveDraft"
@@ -567,7 +567,10 @@
             >
           </div>
 
-          <div class="creator-nav-container ccbutton">
+          <div
+            class="creator-nav-container ccbutton"
+            align="center"
+          >
             <button
               v-if="activeStep > 0"
               class="back"
@@ -583,8 +586,6 @@
             </button>
             <button
               v-if="activeStep == 4 && !model.id"
-              class="btn"
-              type="button"
               @click="showBuyFrameModal"
             >
               Buy a Card Frame
@@ -1323,8 +1324,8 @@ export default {
 
 .creator-nav-container {
   margin-top: 2rem;
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
   width: 100%;
 
   button.back {
