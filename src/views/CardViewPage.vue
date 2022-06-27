@@ -32,21 +32,21 @@
     <div>
       <br>
       <b>Advanced Card Information:</b> <br>
-      FlavourText: {{ FlavourText }} <br>
-      Notes: {{ Notes }} <br>
-      Inappropriate Votes: {{ InappropriateVotes }} <br>
-      Underpowered Votes: {{ UnderpoweredVotes }} <br>
-      Overpowered Votes: {{ OverpoweredVotes }} <br>
-      Fair Enough Votes: {{ FairEnoughVotes }} <br>
-      Nerflevel: {{ Nerflevel }} <br>
+      FlavourText: {{ card.FlavourText }} <br>
+      Notes: {{ card.notes }} <br>
+      Inappropriate Votes: {{ card.inappropriateVotes }} <br>
+      Underpowered Votes: {{ card.underpoweredVotes }} <br>
+      Overpowered Votes: {{ card.overpoweredVotes }} <br>
+      Fair Enough Votes: {{ card.fairEnoughVotes }} <br>
+      Nerflevel: {{ card.nerflevel }} <br>
       Owner:
       <router-link
-        :to="{name: 'UserView', params: {id: Owner} }"
+        :to="{name: 'UserView', params: {id: card.owner} }"
       >
-        {{ Owner }}
+        {{ card.owner }}
       </router-link> <br>
-      Status: {{ Status }} <br>
-      VotePool: {{ VotePool }} <br><br>
+      Status: {{ card.status }} <br>
+      VotePool: {{ card.votePool.amount }} <br><br>
       <button
         v-if="canVote"
         class="btn--default"
@@ -75,7 +75,7 @@
       >
         Vote Inappropriate
       </button>
-      <br>
+      <br><br>
       <button
         v-if="isOwner"
         class="btn--default"
@@ -83,6 +83,18 @@
       >
         Edit card
       </button>
+      <button
+        v-if="isOwner"
+        class="btn--default"
+        @click="showModal()"
+      >
+        Transfer card
+      </button>
+      <TransferCardModal
+        v-show="isModalVisible"
+        :card="id"
+        @close="closeModal"
+      />
     </div>
   </div>
 </template>
@@ -92,26 +104,18 @@ import * as R from 'ramda'
 import { saveCardAsPng } from "../components/utils/utils.js";
 import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
+import TransferCardModal from '@/components/modals/TransferCardModal.vue';
 
 export default {
   name: 'CardView',
-  components: {CardComponent},
+  components: {CardComponent, TransferCardModal},
   data () {
     return {
+      isModalVisible: false,
       id: 0,
       isOwner: false,
       canVote: false,
       card: sampleCard,
-      FlavourText: "",
-      Notes: "",
-      InappropriateVotes: 0,
-      UnderpoweredVotes: 0,
-      OverpoweredVotes: 0,
-      FairEnoughVotes: 0,
-      Nerflevel: 0,
-      Owner: " ",
-      Status: "",
-      VotePool: 0,
       keywordDescriptions: []
     }
   },
@@ -132,16 +136,7 @@ export default {
           console.log('downloaded card:', res)
           if (parsedCard) {
             this.card = parsedCard
-            this.FlavourText = parsedCard.FlavourText
-            this.Notes = parsedCard.notes
-            this.InappropriateVotes = parsedCard.inappropriateVotes
-            this.UnderpoweredVotes = parsedCard.underpoweredVotes
-            this.OverpoweredVotes = parsedCard.overpoweredVotes
-            this.FairEnoughVotes = parsedCard.fairEnoughVotes
-            this.Nerflevel = parsedCard.nerflevel
             this.Owner = parsedCard.owner
-            this.Status = parsedCard.status
-            this.VotePool = parsedCard.votePool.amount
             console.log('parsed Card:', parsedCard)
 
             let firstLetterToLower = string => {
@@ -173,7 +168,7 @@ export default {
     },
     loadVotableCards() {
       this.isOwner =
-        this.Owner ===
+        this.card.owner ===
         this.$store.getters['common/wallet/address']
       this.$cardChain
       .getVotableCards(this.$store.getters['common/wallet/address'])
@@ -208,6 +203,13 @@ export default {
       );
       this.$router.push("/newCard")
     },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+      this.getUser()
+    }
   }
 }
 </script>
