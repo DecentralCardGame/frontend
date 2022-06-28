@@ -1,5 +1,53 @@
 <template>
   <div>
+    <div class="ccbutton">
+      <button
+        v-if="canVote"
+        @click="vote('underpowered');"
+      >
+        Vote Underpowered
+      </button>
+      <button
+        v-if="canVote"
+        @click="vote('overpowered');"
+      >
+        Vote Overpowered
+      </button>
+      <button
+        v-if="canVote"
+        class="btn--default"
+        @click="vote('fair_enough');"
+      >
+        Vote Fair Enough
+      </button>
+      <button
+        v-if="canVote"
+        class="btn--default"
+        @click="vote('inappropriate');"
+      >
+        Vote Inappropriate
+      </button>
+      <br><br>
+      <button
+        v-if="isOwner"
+        class="btn--default"
+        @click="edit();"
+      >
+        Edit card
+      </button>
+      <button
+        v-if="isOwner"
+        class="btn--default"
+        @click="showModal()"
+      >
+        Transfer card
+      </button>
+      <TransferCardModal
+        v-show="isModalVisible"
+        :card="id"
+        @close="closeModal"
+      />
+    </div>
     <div
       class="gallery__view__card"
       @click="saveCard"
@@ -45,56 +93,8 @@
       >
         {{ card.owner }}
       </router-link> <br>
-      Status: {{ card.status }} <br>
-      VotePool: {{ card.votePool.amount }} <br><br>
-      <button
-        v-if="canVote"
-        class="btn--default"
-        @click="vote('underpowered');"
-      >
-        Vote Underpowered
-      </button>
-      <button
-        v-if="canVote"
-        class="btn--default"
-        @click="vote('overpowered');"
-      >
-        Vote Overpowered
-      </button>
-      <button
-        v-if="canVote"
-        class="btn--default"
-        @click="vote('fair_enough');"
-      >
-        Vote Fair Enough
-      </button>
-      <button
-        v-if="canVote"
-        class="btn--default"
-        @click="vote('inappropriate');"
-      >
-        Vote Inappropriate
-      </button>
-      <br><br>
-      <button
-        v-if="isOwner"
-        class="btn--default"
-        @click="edit();"
-      >
-        Edit card
-      </button>
-      <button
-        v-if="isOwner"
-        class="btn--default"
-        @click="showModal()"
-      >
-        Transfer card
-      </button>
-      <TransferCardModal
-        v-show="isModalVisible"
-        :card="id"
-        @close="closeModal"
-      />
+      Status: {{ Status }} <br>
+      VotePool: {{ VotePool }} <br><br>
     </div>
   </div>
 </template>
@@ -232,6 +232,7 @@ export default {
 }
 .gallery__view__card {
   margin: auto;
+  padding-top: 5vh;
   height: 75vh;
   overflow: visible;
 }

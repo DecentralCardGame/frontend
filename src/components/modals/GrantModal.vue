@@ -16,7 +16,7 @@
           class="modal__header"
         >
           <slot name="header">
-            Transfer coins
+            Grant Authz rights
           </slot>
           <button
             aria-label="Close modal"
