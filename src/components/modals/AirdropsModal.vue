@@ -40,7 +40,6 @@
           <div>
             <div
               v-for="(drop, name) in airdrops"
-              v-show="!drop || true"
               :key="name"
               class="airdropBox"
               :class="{ 'blurOut': !isValid }"
