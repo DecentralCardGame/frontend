@@ -16,7 +16,7 @@
           class="modal__header"
         >
           <slot name="header">
-            Grant Authz rights
+            Grant Authz Rights
           </slot>
           <button
             aria-label="Close modal"
