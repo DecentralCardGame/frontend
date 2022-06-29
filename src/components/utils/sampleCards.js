@@ -17,7 +17,7 @@ import botCommandCenterImg from './cardfiles/botCommandCenter.jpg'
 import drDollyImg from './cardfiles/drDollyCard.jpg'
 import belloImg from './cardfiles/bello.jpg'
 import timeDeviceImg from './cardfiles/timeDeviceCard.jpg'
-import sampleGradient from './cardfiles/sampleGradient.svg'
+import sampleGradient from './cardfiles/sampleGradient.jpg'
 
 export const sampleGradientImg = sampleGradient
 
@@ -54,7 +54,7 @@ export const sampleCard = R.merge(emptyCard, {
     Culture: true,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 8,
   Health: 5,
@@ -73,7 +73,7 @@ export const daisyData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: true,
-    
+
   },
   CastingCost: 7,
   Health: 3,
@@ -92,7 +92,7 @@ export const daisyPetData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: true,
-    
+
   },
   CastingCost: 7,
   Health: 1,
@@ -111,7 +111,7 @@ export const richardData = R.merge(emptyCard, {
     Culture: true,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 7,
   Health: 8,
@@ -130,7 +130,7 @@ export const richardBotData = R.merge(emptyCard, {
     Culture: true,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 7,
   Health: 1,
@@ -149,7 +149,7 @@ export const hurrwigData = R.merge(emptyCard, {
     Culture: true,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 8,
   Health: 5,
@@ -168,7 +168,7 @@ export const assoultHorseData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 3,
   Health: 3,
@@ -187,7 +187,7 @@ export const ulrichData = R.merge(emptyCard, {
     Culture: true,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 3,
   Health: 7,
@@ -206,7 +206,7 @@ export const steamData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 8,
   Health: 5,
@@ -225,7 +225,7 @@ export const AutomatedBotProductionData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 4,
   Health: 4,
@@ -244,7 +244,7 @@ export const AutomatedBotProductionBotData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 4,
   Health: 1,
@@ -263,7 +263,7 @@ export const wynnData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: false,
-    
+
   },
   CastingCost: 3,
   Health: 1,
@@ -282,7 +282,7 @@ export const furiousJackData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: false,
-    
+
   },
   CastingCost: 4,
   Health: 1,
@@ -301,7 +301,7 @@ export const miniLabData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: true,
-    
+
   },
   CastingCost: 4,
   Health: 18,
@@ -320,7 +320,7 @@ export const blasturnData = R.merge(emptyCard, {
     Culture: true,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 4,
   Health: 20,
@@ -339,7 +339,7 @@ export const evieData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: false,
-    
+
   },
   CastingCost: 1,
   Health: 2,
@@ -358,7 +358,7 @@ export const exoskeletonData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 6,
   Health: 2,
@@ -379,7 +379,7 @@ export const communityCardData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: false,
-    
+
   },
   CastingCost: -1,
   Health: 1,
@@ -400,7 +400,7 @@ export const botCommandCenterData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 4,
   Health: 3,
@@ -421,7 +421,7 @@ export const drDollyData = R.merge(emptyCard, {
     Culture: true,
     Technology: false,
     Mysticism: true,
-    
+
   },
   CastingCost: 5,
   Health: 4,
@@ -461,7 +461,7 @@ export const timeDeviceData = R.merge(emptyCard, {
     Culture: false,
     Technology: true,
     Mysticism: false,
-    
+
   },
   CastingCost: 8,
   Health: 5,

@@ -53,7 +53,8 @@ const store = createStore({
       state.cardCreatorDraft.model = model
     },
     setCardCreatorDraftImg (state, img) {
-      state.cardCreatorDraft.img = img
+      state.cardCreatorDraft.image = img
+      console.log(state.cardCreatorDraft)
     },
     setCardCreatorEditCard (state, draft) {
       state.cardCreatorEditCard = draft
@@ -62,7 +63,8 @@ const store = createStore({
       state.cardCreatorEditCard.model = model
     },
     setCardCreatorEditCardImg (state, img) {
-      state.cardCreatorEditCard.img = img
+      state.cardCreatorEditCard.image = img
+      console.log(state.cardCreatorEditCard)
     },
     setGalleryFilter (state, filter) {
       state.galleryFilter = filter

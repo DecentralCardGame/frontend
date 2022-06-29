@@ -676,8 +676,6 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
-      uploadedImg: undefined,
-      //cardImage: sampleGradientImg,
       cropImage: sampleGradientImg,
       model: R.clone(emptyCard),
       cardID: 0,
@@ -687,7 +685,7 @@ export default {
     getCardImage() {
       return this.$store.getters[this.isEditCardMode()
             ? "getCardCreatorEditCard"
-            : "getCardCreatorDraft"].img
+            : "getCardCreatorDraft"].image
     },
   },
   mounted() {
@@ -715,7 +713,6 @@ export default {
         this.$store.getters['getCardCreatorEditCard']
       );
 
-      //this.cardImage = this.$store.getters['getCardCreatorEditCard'].image
       this.cropImage = this.$store.getters['getCardCreatorEditCard'].image
       console.log("loaded card", this.model)
       return;
@@ -742,10 +739,10 @@ export default {
     }
     if (
       !R.isEmpty(this.$store.getters['getCardCreatorDraft']) &&
-      this.$store.getters['getCardCreatorDraft'].img
+      this.$store.getters['getCardCreatorDraft'].image
     ) {
       console.log("getCardCreatorDraft", this.$store.getters['getCardCreatorDraft'])
-      this.cropImage = this.$store.getters['getCardCreatorDraft'].img
+      this.cropImage = this.$store.getters['getCardCreatorDraft'].image
     }
   },
   methods: {
