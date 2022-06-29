@@ -84,11 +84,15 @@
               :auto-zoom="true"
               :stencil-size="{
                 width: 838,
-                height: 1300
+                height: model.fullArt ? 1300 : 838
               }"
               :default-position="{
                 left: 0,
                 top: 0
+              }"
+              :canvas="{
+                height:1300,
+                width:838
               }"
               :default-size="{
                 width: 838,
@@ -108,7 +112,7 @@
             <input
               v-model="model.fullArt"
               type="checkbox"
-              @change="saveDraft"
+              @change="saveDraft()"
             >
           </div>
           <div
@@ -605,14 +609,14 @@
 
             <button
               v-if="activeStep == 4 && model.id"
-              @click="resetEditCard"
+              @click="resetCard()"
             >
               Discard Changes
             </button>
 
             <button
               v-show="activeStep == 4"
-              @click="resetCardDraft"
+              @click="resetCard()"
             >
               Discard Draft
             </button>
@@ -641,6 +645,7 @@
 <script>
 import * as R from "ramda";
 
+import mergeImages from 'merge-images';
 import CardComponent from "../components/elements/CardComponent";
 import BuyFrameModal from "../components/modals/BuyFrameModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
@@ -745,19 +750,24 @@ export default {
   },
   methods: {
     changeCrop({canvas}) {
-      let quality = 0.9
-      let newDataURL = canvas.toDataURL('image/jpeg', quality)
-      while (Math.round(newDataURL.length)/1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
-        quality *= 0.9
-        newDataURL = canvas.toDataURL('image/jpeg', quality)
-
-        if (quality <= 0)
-          this.notifyFail("Image Compression failed", "Image could not be compressed sufficiently, try to upload smaller image.")
-      }
-
-      this.$store.commit(
-        this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
-        newDataURL)
+      mergeImages(['/BG.png', canvas.toDataURL('image/jpeg', 0.9)])
+      .then(b64 => {
+        //console.log(b64)
+        this.srcToFile(b64, "image.jpg", "image/jpeg")
+        .then(file => {
+          uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
+            this.$store.commit(
+              this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
+              result)
+          })
+        })
+      })
+    },
+    srcToFile(src, fileName, mimeType){
+      return (fetch(src)
+        .then(function(res){return res.arrayBuffer();})
+        .then(function(buf){return new File([buf], fileName, {type:mimeType});})
+      );
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
@@ -1095,7 +1105,7 @@ export default {
           .then(() => {
             this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           })
-          .then(this.resetEditCard)
+          .then(this.resetCard())
           .catch((err) => {
             this.notifyFail("Update Card failed", err)
             console.error(err)
@@ -1104,7 +1114,7 @@ export default {
         this.$cardChain
           .saveContentToUnusedCardSchemeTx(newCard)
           .then(this.$cardChain.updateUserCredits())
-          .then(this.resetCardDraft)
+          .then(this.resetCard())
           .catch((err) => {
             this.notifyFail("Publish Card failed", err)
             console.error(err)
@@ -1119,15 +1129,17 @@ export default {
         JSON.stringify(this.model)
       );
     },
-    resetEditCard() {
-      this.$store.commit("setCardCreatorEditCard", {})
+    resetCard() {
+      this.$store.commit(
+        this.isEditCardMode() ? "setCardCreatorEditCard" : "setCardCreatorDraft",
+        {}
+      )
       this.model = R.clone(emptyCard)
       this.cropImage = sampleGradientImg
-    },
-    resetCardDraft() {
-      this.$store.commit("setCardCreatorDraft", {})
-      this.model = R.clone(emptyCard)
-      this.cropImage = sampleGradientImg
+      this.$store.commit(
+        this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
+        ""
+      )
     },
     isEditCardMode() {
       return !R.isEmpty(this.$store.getters['getCardCreatorEditCard']);
