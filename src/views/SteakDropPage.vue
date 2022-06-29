@@ -51,11 +51,45 @@
       Please keep in mind that Stefi will check if everyone is drinking enough alcohol.<br>
       It is possible that we even have a tent/camper van for you, please contact us.<br>
       The same applies to (free) rides to the place, let's organize shared rides!<br>
+      <br>
+      <div 
+        class="dual--column--flex--wrap"
+      >
+        <img
+          src="../assets/misc/crossbow.jpg"
+          class="image"
+        >
+        <img
+          src="../assets/misc/fire1.jpg"
+          class="image"
+        >
+
+        <img
+          src="../assets/misc/water.jpg"
+          class="image"
+        >
+      </div>
+      <div 
+        class="dual--column--flex--wrap"
+      >
+        <img
+          src="../assets/misc/fire2.jpg"
+          class="image"
+        >
+        <img
+          src="../assets/misc/marshmallow.jpg"
+          class="image"
+        >
+        <img
+          src="../assets/misc/meat.jpg"
+          class="image"
+        >
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script> 
 
 export default {
   name: 'SteakDropPage',
@@ -73,5 +107,9 @@ export default {
 </script>
 
 <style scoped>
-
+.image {
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+}
 </style>
