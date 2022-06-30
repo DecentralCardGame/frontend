@@ -86,19 +86,15 @@
                 width: 838,
                 height: model.fullArt ? 1300 : 838
               }"
-              :default-position="{
-                left: 0,
-                top: 0
-              }"
               :canvas="{
-                height:1300,
-                width:838
+                height: model.fullArt ? 1300 : 838,
+                width: 838
               }"
               :default-size="{
                 width: 838,
-                height: 1300
+                height: model.fullArt ? 1300 : 838,
               }"
-              image-restriction="stencil"
+              image-restriction="fit-area"
               @change="changeCrop"
             />
           </div>
@@ -1146,13 +1142,8 @@ export default {
       let file = event.target.files[0]
 
       uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
-
         this.cropImage = result
-        this.$store.commit(
-          this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
-          result)
       })
-
     },
     classStepPassed(n) {
       let exportClass = "progress-item"
@@ -1192,7 +1183,7 @@ export default {
 
 .cropper {
   height: 300px;
-  width: 50vw;
+  width: 40vw;
   margin: 1rem;
   border: $border-thickness solid rgba(255, 255, 255, 0.7);
   @media (max-width: 480px) {
