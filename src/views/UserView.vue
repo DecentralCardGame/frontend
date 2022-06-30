@@ -30,75 +30,91 @@
       >
         Claim airdrops
       </button> <br><br>
-      Address: {{ address }}<br>
-      Name: {{ user.alias }}<br>
-      Council status: {{ user.CouncilStatus }}
-      <div
-        v-if="loggedinHere"
-        style="display: inline"
-      >
-        <button
-          v-if="user.CouncilStatus == 'unavailable'"
-          @click="register()"
+
+      <div>
+        Address: {{ address }}<br>
+        Name: {{ user.alias }}<br>  
+        Owned card frames: {{ user.ownedCardSchemes.length }} <br>
+        Owned prototypes:
+        <router-link
+          :to="{ name: 'Gallery', query: { owner: address }}"
         >
-          Register for council
-        </button>
-        <button
-          v-if="user.CouncilStatus == 'available'"
-          @click="deRegister()"
+          {{ user.ownedPrototypes.length }}
+        </router-link> <br>
+        Owned cards:
+        <router-link
+          :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
         >
-          Deregister from council
-        </button>
-      </div>
+          {{ user.cards.length }}
+        </router-link>
+      </div> 
       <br>
-      Vote rights: {{ user.voteRights.length }}
-      <button
-        v-if="loggedinHere"
-        @click="$router.push({name: 'Vote'})"
-      >
-        Vote
-      </button>
-      <br>
-      Owned card frames: {{ user.ownedCardSchemes.length }} <br>
-      Owned prototypes:
-      <router-link
-        :to="{ name: 'Gallery', query: { owner: address }}"
-      >
-        {{ user.ownedPrototypes.length }}
-      </router-link> <br>
-      Owned cards:
-      <router-link
-        :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
-      >
-        {{ user.cards.length }}
-      </router-link> <br>
-      Balance:
-      <div class="coinBox">
+
+      <div>
+        Council status: {{ user.CouncilStatus }} <br>
         <div
-          v-for="coin in coins"
-          :key="coin"
+          v-if="loggedinHere"
+          style="display: inline"
         >
-          {{ coin.amount+coin.denom }}
-          <br>
+          <button
+            v-if="user.CouncilStatus == 'unavailable'"
+            @click="register()"
+          >
+            Register for council
+          </button>
+          <button
+            v-if="user.CouncilStatus == 'available'"
+            @click="deRegister()"
+          >
+            Deregister from council
+          </button>
         </div>
       </div>
-      <button
-        v-if="loggedinHere"
-        type="button"
-        class="btn"
-        @click="showModal"
-      >
-        Transfer
-      </button>
+
       <br>
-      <button
-        v-if="loggedinHere"
-        type="button"
-        class="btn"
-        @click="showGrantModal"
-      >
-        Manage authorisations
-      </button>
+      <div>
+        Vote rights: {{ user.voteRights.length }} <br>
+        <button
+          v-if="loggedinHere"
+          @click="$router.push({name: 'Vote'})"
+        >
+          Vote
+        </button>
+      </div>
+      <br>
+      
+      <div>
+        Balance:
+        <div class="coinBox">
+          <div
+            v-for="coin in coins"
+            :key="coin"
+          >
+            {{ coin.amount+coin.denom }}
+            <br>
+          </div>
+        </div>
+        <br>
+        <button
+          v-if="loggedinHere"
+          type="button"
+          class="btn"
+          @click="showModal"
+        >
+          Transfer
+        </button>
+      </div>
+      <br>
+      <div>
+        <button
+          v-if="loggedinHere"
+          type="button"
+          class="btn"
+          @click="showGrantModal"
+        >
+          Manage authorisations
+        </button>
+      </div>
       <br>
       <TransferModal
         v-show="isModalVisible"

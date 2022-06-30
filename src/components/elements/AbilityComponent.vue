@@ -14,7 +14,7 @@
         @change="showAbilityModal(ability, entry.btn, index)"
       >
         <option
-          v-for="item in R.path(entry.btn.rulesPath, $cardRules).enum"
+          v-for="item in enumOptions(entry)"
           :key="item"
           :value="item"
         >
@@ -103,6 +103,8 @@ import * as R from 'ramda'
 import AbilityModal from '@/components//modals/AbilityModal.vue'
 import { createInteraction, updateInteraction, shallowClone, atPath } from '../utils/utils.js'
 
+const unrequiredLabel = "[ANY]"
+
 export default {
   name: 'AbilityComponent',
   components: { AbilityModal },
@@ -182,7 +184,7 @@ export default {
               let intX = {}
                 
               // variable case
-              if( isNaN(btn.label)) {
+              if (isNaN(btn.label)) {
                 intX.IntVariable = btn.label
               }
               // number case
@@ -190,15 +192,12 @@ export default {
                 intX.SimpleIntValue = btn.label
               }
 
-              console.log("intX", intX)
-
               this.attachToAbility(this.ability.clickedBtn.abilityPath, intX)
               
               this.dialog = "surpressed - no modal"
             }
             // default case
             else {
-
               // check singleUse case  // TODO check if this is still relevant
               let prevElements = atAbility(R.dropLast(1, btn.abilityPath))
               if (prevElements) {
@@ -207,22 +206,6 @@ export default {
                   options = R.dissoc(singleUseHappened, options)
                 }
               }
-              
-              // check if selection is optional // TODO check how to make this work again
-              /*
-              if (atRules(btn.rulesPath).optional) {
-                options.noSelect = {
-                  description: 'This means no condition will be checked here.',
-                  name: 'No Condition',
-                  schemaPath: [],
-                  abilityPath: [],
-                  type: 'interface',
-                  interactionText: 'no §Condition'
-                }
-              }
-              */
-
-              console.log("handle interface:", options)
 
               this.dialog = {
                 title: atRules(btn.rulesPath).name,
@@ -258,39 +241,13 @@ export default {
           case 'enum': {
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false
-            this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
 
-            /* in the past a dialog was created here:
-            this.dialog = {
-              title: atRules(btn.rulesPath).name,
-              description: 'pick one of the following:',
-              type: 'enum',
-              btn: btn,
-              options: []
+            if (btn.label === unrequiredLabel) {
+              btn.label = ""
+              this.attachToAbility(R.dropLast(1, this.ability.clickedBtn.abilityPath), {})
             }
-
-            // recursively go down until only strings are left
-            let traverseChildren = array => {
-              let isString = x => R.type(x) === "String"
-              if (R.all(isString)(array)) {
-                return array
-              } else {
-                return R.map(x => traverseChildren(x.children), array)
-              }
-            }
-
-            let strings = R.uniq(R.flatten(traverseChildren(node.enum)))
-
-            for (let prop in strings) {
-              this.dialog.options.push({
-                name: strings[prop],
-                schemaPath: [],         // how about paths TODO
-                abilityPath: [],
-                title: strings[prop],
-                description: ''
-              })
-            }
-            */
+            else 
+              this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
 
             break
           }
@@ -357,6 +314,17 @@ export default {
     },
     closeAbilityModal () {
       this.isAbilityModalVisible = false
+    },
+    enumOptions (entry) {
+      let required = R.path(R.dropLast(2, entry.btn.rulesPath), this.$cardRules).required
+      let name = R.last(entry.btn.rulesPath)
+      if ( required && R.includes(name, required) ) {
+        return R.path(entry.btn.rulesPath, this.$cardRules).enum
+      }
+      else {
+        return R.prepend(unrequiredLabel, R.path(entry.btn.rulesPath, this.$cardRules).enum)
+      }
+      
     }
   }
 }
