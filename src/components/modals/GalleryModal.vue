@@ -190,7 +190,6 @@ export default {
     },
   },
   mounted() {
-    console.log("this.model", this.model.id)
   },
   methods: {
     doNothing () {

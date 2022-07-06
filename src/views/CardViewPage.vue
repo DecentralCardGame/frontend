@@ -179,10 +179,12 @@ export default {
           votableCards = res.votables;
         }
         this.canVote = false
-        for (var i = 0; i<votableCards.voteRights.length; i++) {
-          if (votableCards.voteRights[i].cardId == this.id) {
-            this.canVote = true
-          }
+        if (!R.isEmpty(votableCards.voteRights)) {
+          for (var i = 0; i < votableCards.voteRights.length; i++) {
+            if (votableCards.voteRights[i].cardId == this.id) {
+              this.canVote = true
+            }
+          } 
         }
         console.log(this.canVote)
       })
