@@ -50,7 +50,6 @@
     </div>
     <div
       class="gallery__view__card"
-      @click="saveCard"
     >
       <CardComponent
         :id="'card'"
@@ -101,7 +100,6 @@
 
 <script>
 import * as R from 'ramda'
-import { saveCardAsPng } from "../components/utils/utils.js";
 import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
 import TransferCardModal from '@/components/modals/TransferCardModal.vue';
@@ -160,12 +158,6 @@ export default {
     }
   },
   methods: {
-    saveCard () {
-      saveCardAsPng(
-        document.getElementById('card'),
-        this.cards[0].CardName
-      );
-    },
     loadVotableCards() {
       this.isOwner =
         this.card.owner ===
@@ -176,15 +168,16 @@ export default {
         var votableCards = []
         console.log("getVotableCards:", res);
         if (!res.noVoteRights) {
-          votableCards = res.votables;
+          votableCards = res.voteRights;
         }
         this.canVote = false
-        for (var i = 0; i<votableCards.voteRights.length; i++) {
-          if (votableCards.voteRights[i].cardId == this.id) {
-            this.canVote = true
+        if (!R.isEmpty(votableCards)) {
+          for (var i = 0; i < votableCards.length; i++) {
+            if (votableCards.voteRights[i].cardId == this.id) {
+              this.canVote = true
+            }
           }
         }
-        console.log(this.canVote)
       })
     },
     vote(type) {

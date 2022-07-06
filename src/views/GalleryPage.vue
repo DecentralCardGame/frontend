@@ -415,7 +415,8 @@ export default {
     showGalleryModal() {
       this.isGalleryModalVisible = true
 
-      if (this.votableCards) {
+      console.log("votablecards", this.votableCards)
+      if (!R.isEmpty(this.votableCards)) {
         this.canVote = R.any(
           (x) => x == this.cards[this.clickedIndex].id,
           R.pluck("cardId", this.votableCards.voteRights)
