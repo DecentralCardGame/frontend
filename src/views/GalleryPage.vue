@@ -389,6 +389,7 @@ export default {
         this.cards = res
         console.log("cards on page", this.cards)
         console.log("all card names:", R.pluck("CardName", res))
+        console.log("name lengths", R.map(x => x.length, R.pluck("CardName", res)))
       })
       .catch(res => {
         console.error("NOT ALL CARDS WERE PROPERLY LOADED")
