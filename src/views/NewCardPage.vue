@@ -715,7 +715,7 @@ export default {
 
       if (this.model.Tags[0])
         this.model.tagDummy = this.model.Tags[0]
-      
+
       console.log("loaded card", this.model)
       return;
     }
@@ -1104,7 +1104,7 @@ export default {
           .then(() => {
             this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           })
-          .then(this.resetCard())
+          .then(this.resetCard)
           .catch((err) => {
             this.notifyFail("Update Card failed", err)
             console.error(err)
@@ -1113,7 +1113,7 @@ export default {
         this.$cardChain
           .saveContentToUnusedCardSchemeTx(newCard)
           .then(this.$cardChain.updateUserCredits())
-          .then(this.resetCard())
+          .then(this.resetCard)
           .catch((err) => {
             this.notifyFail("Publish Card failed", err)
             console.error(err)
