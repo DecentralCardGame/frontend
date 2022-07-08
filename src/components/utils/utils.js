@@ -231,18 +231,13 @@ export function uploadImg (file, maxKB, callback) {
       let maxSize = resolution.height
       let width = image.width
       let height = image.height
-      if (height > maxSize) {
-          width *= maxSize / height
-          height = maxSize
-      }
-      // centering
-      let widthAdjust = 0
-      if (width > resolution.width) {
-        widthAdjust = (width - resolution.width) / 2
-      }
+      //if (height > maxSize) {
+      //    width *= maxSize / height
+      //    height = maxSize
+      //}
       canvas.width = width
       canvas.height = height
-      canvas.getContext('2d').drawImage(image, -widthAdjust, 0, width, height)
+      canvas.getContext('2d').drawImage(image, 0, 0, width, height)
 
       let quality = 0.9
       let newDataURL = canvas.toDataURL('image/jpeg', quality)

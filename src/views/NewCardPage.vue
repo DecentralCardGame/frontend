@@ -84,17 +84,17 @@
               :auto-zoom="true"
               :stencil-size="{
                 width: 838,
-                height: 1300
+                height: model.fullArt ? 1300 : 838
               }"
-              :default-position="{
-                left: 0,
-                top: 0
+              :canvas="{
+                height: model.fullArt ? 1300 : 838,
+                width: 838
               }"
               :default-size="{
                 width: 838,
-                height: 1300
+                height: model.fullArt ? 1300 : 838,
               }"
-              image-restriction="stencil"
+              image-restriction="fit-area"
               @change="changeCrop"
             />
           </div>
@@ -108,7 +108,7 @@
             <input
               v-model="model.fullArt"
               type="checkbox"
-              @change="saveDraft"
+              @change="saveDraft()"
             >
           </div>
           <div
@@ -606,14 +606,14 @@
 
             <button
               v-if="activeStep == 4 && model.id"
-              @click="resetEditCard"
+              @click="resetCard()"
             >
               Discard Changes
             </button>
 
             <button
               v-show="activeStep == 4"
-              @click="resetCardDraft"
+              @click="resetCard()"
             >
               Discard Draft
             </button>
@@ -642,6 +642,7 @@
 <script>
 import * as R from "ramda";
 
+import mergeImages from 'merge-images';
 import CardComponent from "../components/elements/CardComponent";
 import BuyFrameModal from "../components/modals/BuyFrameModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
@@ -672,8 +673,6 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
-      uploadedImg: undefined,
-      //cardImage: sampleGradientImg,
       cropImage: sampleGradientImg,
       model: R.clone(emptyCard),
       cardID: 0,
@@ -683,7 +682,7 @@ export default {
     getCardImage() {
       return this.$store.getters[this.isEditCardMode()
             ? "getCardCreatorEditCard"
-            : "getCardCreatorDraft"].img
+            : "getCardCreatorDraft"].image
     },
   },
   mounted() {
@@ -698,6 +697,7 @@ export default {
 
       // if waiting did not help, route back to / (without $cardRules this page makes no sense)
       if (!this.$cardRules)
+        this.notifyFail("CardRules", "CardRules were not properly loaded. This is really bad.")
         this.$router.push("/");
     } else {
       console.log("cardRules:", this.$cardRules);
@@ -711,8 +711,11 @@ export default {
         this.$store.getters['getCardCreatorEditCard']
       );
 
-      //this.cardImage = this.$store.getters['getCardCreatorEditCard'].image
       this.cropImage = this.$store.getters['getCardCreatorEditCard'].image
+
+      if (this.model.Tags[0])
+        this.model.tagDummy = this.model.Tags[0]
+      
       console.log("loaded card", this.model)
       return;
     }
@@ -738,27 +741,32 @@ export default {
     }
     if (
       !R.isEmpty(this.$store.getters['getCardCreatorDraft']) &&
-      this.$store.getters['getCardCreatorDraft'].img
+      this.$store.getters['getCardCreatorDraft'].image
     ) {
       console.log("getCardCreatorDraft", this.$store.getters['getCardCreatorDraft'])
-      this.cropImage = this.$store.getters['getCardCreatorDraft'].img
+      this.cropImage = this.$store.getters['getCardCreatorDraft'].image
     }
   },
   methods: {
     changeCrop({canvas}) {
-      let quality = 0.9
-      let newDataURL = canvas.toDataURL('image/jpeg', quality)
-      while (Math.round(newDataURL.length)/1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
-        quality *= 0.9
-        newDataURL = canvas.toDataURL('image/jpeg', quality)
-
-        if (quality <= 0)
-          this.notifyFail("Image Compression failed", "Image could not be compressed sufficiently, try to upload smaller image.")
-      }
-
-      this.$store.commit(
-        this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
-        newDataURL)
+      mergeImages(['/BG.png', canvas.toDataURL('image/jpeg', 0.9)])
+      .then(b64 => {
+        //console.log(b64)
+        this.srcToFile(b64, "image.jpg", "image/jpeg")
+        .then(file => {
+          uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
+            this.$store.commit(
+              this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
+              result)
+          })
+        })
+      })
+    },
+    srcToFile(src, fileName, mimeType){
+      return (fetch(src)
+        .then(function(res){return res.arrayBuffer();})
+        .then(function(buf){return new File([buf], fileName, {type:mimeType});})
+      );
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
@@ -937,19 +945,19 @@ export default {
     },
     updateTags() {
       if (!this.model.Tags) {
-        this.model.Tags = [];
+        this.model.Tags = []
       }
-      this.model.Tags.splice(0, 1, this.model.tagDummy);
-      this.saveDraft();
+      this.model.Tags.splice(0, 1, this.model.tagDummy)
+      this.saveDraft()
     },
     interactionTextToString(ability) {
-      console.log("converting ability:", ability);
-      let string = "";
+      console.log("converting ability:", ability)
+      let string = ""
       ability.interaction.forEach((entry) => {
         if (entry.btn.type !== "expandArray")
           string += entry.pre + entry.btn.label + entry.post;
       });
-      return string;
+      return string
     },
     saveSubmit() {
       // first check all things that must be entered:
@@ -1096,7 +1104,7 @@ export default {
           .then(() => {
             this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           })
-          .then(this.resetEditCard)
+          .then(this.resetCard())
           .catch((err) => {
             this.notifyFail("Update Card failed", err)
             console.error(err)
@@ -1105,7 +1113,7 @@ export default {
         this.$cardChain
           .saveContentToUnusedCardSchemeTx(newCard)
           .then(this.$cardChain.updateUserCredits())
-          .then(this.resetCardDraft)
+          .then(this.resetCard())
           .catch((err) => {
             this.notifyFail("Publish Card failed", err)
             console.error(err)
@@ -1120,15 +1128,17 @@ export default {
         JSON.stringify(this.model)
       );
     },
-    resetEditCard() {
-      this.$store.commit("setCardCreatorEditCard", {})
+    resetCard() {
+      this.$store.commit(
+        this.isEditCardMode() ? "setCardCreatorEditCard" : "setCardCreatorDraft",
+        {}
+      )
       this.model = R.clone(emptyCard)
       this.cropImage = sampleGradientImg
-    },
-    resetCardDraft() {
-      this.$store.commit("setCardCreatorDraft", {})
-      this.model = R.clone(emptyCard)
-      this.cropImage = sampleGradientImg
+      this.$store.commit(
+        this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
+        ""
+      )
     },
     isEditCardMode() {
       return !R.isEmpty(this.$store.getters['getCardCreatorEditCard']);
@@ -1137,13 +1147,8 @@ export default {
       let file = event.target.files[0]
 
       uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
-
         this.cropImage = result
-        this.$store.commit(
-          this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
-          result)
       })
-
     },
     classStepPassed(n) {
       let exportClass = "progress-item"
@@ -1183,7 +1188,7 @@ export default {
 
 .cropper {
   height: 300px;
-  width: 50vw;
+  width: 40vw;
   margin: 1rem;
   border: $border-thickness solid rgba(255, 255, 255, 0.7);
   @media (max-width: 480px) {
