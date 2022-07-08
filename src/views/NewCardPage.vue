@@ -697,6 +697,7 @@ export default {
 
       // if waiting did not help, route back to / (without $cardRules this page makes no sense)
       if (!this.$cardRules)
+        this.notifyFail("CardRules", "CardRules were not properly loaded. This is really bad.")
         this.$router.push("/");
     } else {
       console.log("cardRules:", this.$cardRules);
@@ -711,6 +712,10 @@ export default {
       );
 
       this.cropImage = this.$store.getters['getCardCreatorEditCard'].image
+
+      if (this.model.Tags[0])
+        this.model.tagDummy = this.model.Tags[0]
+      
       console.log("loaded card", this.model)
       return;
     }
@@ -940,19 +945,19 @@ export default {
     },
     updateTags() {
       if (!this.model.Tags) {
-        this.model.Tags = [];
+        this.model.Tags = []
       }
-      this.model.Tags.splice(0, 1, this.model.tagDummy);
-      this.saveDraft();
+      this.model.Tags.splice(0, 1, this.model.tagDummy)
+      this.saveDraft()
     },
     interactionTextToString(ability) {
-      console.log("converting ability:", ability);
-      let string = "";
+      console.log("converting ability:", ability)
+      let string = ""
       ability.interaction.forEach((entry) => {
         if (entry.btn.type !== "expandArray")
           string += entry.pre + entry.btn.label + entry.post;
       });
-      return string;
+      return string
     },
     saveSubmit() {
       // first check all things that must be entered:
