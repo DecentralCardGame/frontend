@@ -23,6 +23,21 @@
         Create new collection
       </button>
     </div>
+    <div
+      v-for="collection in collections"
+      :key="collection"
+      class="collectionTile ccbutton"
+    >
+      <img
+        :src="getImage(collection)"
+      >
+      {{ collection.name }}
+      <button
+        @click="showCollectionEditModal"
+      >
+        Info
+      </button>
+    </div>
     <CollectionModal
       v-if="isCollectionModalVisible"
       @close="closeCollectionModal"
@@ -40,26 +55,58 @@ export default {
   data() {
     return {
       isCollectionModalVisible: false,
+      isEditCollectionModalVisible: false,
+      ids: [],
+      collections: [],
     }
   },
   mounted() {
-    this.$cardChain.getCollections("")
-    .then(res => {
-      console.log(res)
-    })
+    this.getCollections()
   },
   methods: {
+    getCollections() {
+      this.$cardChain.getCollections("")
+      .then(res => {
+        this.ids = res.collectionIds
+        for (var i = 0; i < this.ids.length; i++) {
+          this.$cardChain.getCollection(this.ids[i])
+          .then(res => {
+            this.collections.push(res)
+          })
+        }
+      })
+    },
     showCollectionModal() {
       this.isCollectionModalVisible = true;
     },
     closeCollectionModal() {
       this.isCollectionModalVisible = false;
     },
+    showEditCollectionModal() {
+      this.isEditCollectionModalVisible = true;
+    },
+    closeEditCollectionModal() {
+      this.isEditCollectionModalVisible = false;
+    },
+    getImage(collection) {
+      if (collection.image) {
+        return collection.Image
+      } else {
+        return "Avatar0.png"
+      }
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+
+.collectionTile {
+  img {
+    border-radius: 10px;
+    width: 200px;
+  }
+}
 
 </style>
 

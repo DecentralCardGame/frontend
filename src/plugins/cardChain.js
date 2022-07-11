@@ -311,6 +311,13 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
+      getCollection (id) {
+          return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_collection/' + id)
+              .then(res => {
+                return res.data
+              })
+              .catch(this.handleGetError)
+      }
       getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '' && status != 'playable' && status != 'unplayable') {
