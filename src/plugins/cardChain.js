@@ -237,6 +237,17 @@ export default {
       voteCardTx (cardId, voteType) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
       }
+      createCollection (name, artist, storyWriter, contributors) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgCreateCollection",
+          {
+            "name": name,
+            "artist": artist,
+            "storyWriter": storyWriter,
+            "contributors": contributors,
+          }
+        )
+      }
       saveContentToCardTx (card, id) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", {"cardId": id,
           "content": btoa(JSON.stringify(card.content)),

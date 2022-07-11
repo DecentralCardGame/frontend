@@ -18,21 +18,29 @@
       </button>
       <button
         v-show="$store.getters['getLoggedIn']"
-        @click="loadSpecialCardList('Artwork')"
+        @click="showCollectionModal"
       >
         Create new collection
       </button>
     </div>
+    <CollectionModal
+      v-if="isCollectionModalVisible"
+      @close="closeCollectionModal"
+    />
   </div>
 </template>
 
 <script>
 
+import CollectionModal from '../components/modals/CollectionModal.vue';
+
 export default {
   name: "BoosterPacks",
-  components: {},
+  components: { CollectionModal },
   data() {
-    return {}
+    return {
+      isCollectionModalVisible: false,
+    }
   },
   mounted() {
     this.$cardChain.getCollections("")
@@ -40,6 +48,14 @@ export default {
       console.log(res)
     })
   },
+  methods: {
+    showCollectionModal() {
+      this.isCollectionModalVisible = true;
+    },
+    closeCollectionModal() {
+      this.isCollectionModalVisible = false;
+    },
+  }
 }
 </script>
 
