@@ -29,11 +29,11 @@
       class="collectionTile ccbutton"
     >
       <img
-        :src="getImage(collection)"
+        :src="getImage(collection.c)"
       >
-      {{ collection.name }}
+      {{ collection.c.name }}
       <button
-        @click="showCollectionEditModal"
+        @click="currId = collection.id; showEditCollectionModal();"
       >
         Info
       </button>
@@ -42,22 +42,30 @@
       v-if="isCollectionModalVisible"
       @close="closeCollectionModal"
     />
+    <CollectionInfoModal
+      v-if="isEditCollectionModalVisible"
+      :id="currId"
+      @close="closeEditCollectionModal"
+    />
   </div>
 </template>
 
 <script>
 
 import CollectionModal from '../components/modals/CollectionModal.vue';
+import CollectionInfoModal from '../components/modals/CollectionInfoModal.vue';
+
 
 export default {
   name: "BoosterPacks",
-  components: { CollectionModal },
+  components: { CollectionModal, CollectionInfoModal },
   data() {
     return {
       isCollectionModalVisible: false,
       isEditCollectionModalVisible: false,
       ids: [],
       collections: [],
+      currId: 0,
     }
   },
   mounted() {
@@ -71,7 +79,9 @@ export default {
         for (var i = 0; i < this.ids.length; i++) {
           this.$cardChain.getCollection(this.ids[i])
           .then(res => {
-            this.collections.push(res)
+            this.collections.push(
+              res
+            )
           })
         }
       })
@@ -83,6 +93,7 @@ export default {
       this.isCollectionModalVisible = false;
     },
     showEditCollectionModal() {
+      console.log(this.collections)
       this.isEditCollectionModalVisible = true;
     },
     closeEditCollectionModal() {
@@ -90,7 +101,7 @@ export default {
     },
     getImage(collection) {
       if (collection.image) {
-        return collection.Image
+        return collection.image
       } else {
         return "Avatar0.png"
       }

@@ -314,7 +314,10 @@ export default {
       getCollection (id) {
           return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_collection/' + id)
               .then(res => {
-                return res.data
+                return {
+                  id: id,
+                  c: res.data
+                }
               })
               .catch(this.handleGetError)
       }

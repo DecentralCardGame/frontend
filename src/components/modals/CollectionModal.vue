@@ -139,7 +139,7 @@ export default {
       this.$cardChain.createCollection(
         this.name,
         this.artist,
-        this.storywriter,
+        this.storyWriter,
         this.contributors
       ).then(res => {
         console.log("yees")
