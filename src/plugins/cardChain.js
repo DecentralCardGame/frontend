@@ -234,6 +234,15 @@ export default {
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
       }
+      addStoryToCollection (id, story) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddStoryToCollection",
+          {
+            "collectionId": id,
+            "story": story
+          }
+        )
+      }
       voteCardTx (cardId, voteType) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
       }

@@ -2,7 +2,7 @@
   <transition name="modal-fade">
     <div
       class="modal__backdrop"
-      style="z-index: 1000;"
+      style="z-index: 10;"
     >
       <div
         aria-describedby="modalDescription"
@@ -28,14 +28,22 @@
           </button>
         </header>
         <div
-          class="modal__body input--editCollection"
+          class="modal__body input--editCollection ccbutton"
           align="center"
         >
           <img
             :src="getImage()"
           ><br>
           Story:
-          {{ collection.story }}<br>
+          <div class="multiline">
+            {{ collection.story }}
+          </div>
+          <button
+            v-if="$store.getters['common/wallet/address'] === collection.storyWriter"
+            @click="showCollectionStoryModal"
+          >
+            Edit story
+          </button><br>
           Contributors:
           <router-link
             v-for="contrib in collection.contributors"
@@ -56,18 +64,32 @@
           >
             <a>{{ collection.artist }}</a>
           </router-link><br>
+          Cards:
+          <router-link
+            :to="{ name: 'Gallery', query: { cardsList: collection.cards }}"
+          >
+            <a>{{ collection.cards.length }}</a>
+          </router-link><br>
         </div>
+        <CollectionStoryModal
+          v-if="isCollectionStoryModalVisible"
+          :id="id"
+          :inp-story="collection.story"
+          @close="closeCollectionStoryModal"
+        />
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import * as R from 'ramda'
-import {atPath, createInteraction, filterSelection, icon, updateInteraction} from '../utils/utils.js'
+
+import CollectionStoryModal from './CollectionStoryModal.vue';
+
 
 export default {
   name: 'CollectionInfoModal',
+  components: { CollectionStoryModal },
   props: {
     id: {
       type: Number,
@@ -76,11 +98,13 @@ export default {
   },
   data() {
     return {
+      isCollectionStoryModalVisible: false,
       collection: {
         name: "",
         artist: " ",
         storyWriter: " ",
         contributors: [],
+        cards: [],
       }
     }
   },
@@ -91,15 +115,18 @@ export default {
   created() {
   },
   mounted() {
-    this.$cardChain.getCollection(this.id)
-    .then(res => {
-      this.collection = res.c
-      console.log(this.collection)
-    })
+    this.init()
   },
   methods: {
     close() {
       this.$emit('close')
+    },
+    init() {
+      this.$cardChain.getCollection(this.id)
+      .then(res => {
+        this.collection = res.c
+        console.log(this.collection)
+      })
     },
     getImage() {
       if (this.collection.image) {
@@ -107,7 +134,14 @@ export default {
       } else {
         return "Avatar0.png"
       }
-    }
+    },
+    showCollectionStoryModal() {
+      this.isCollectionStoryModalVisible = true;
+    },
+    closeCollectionStoryModal() {
+      this.init()
+      this.isCollectionStoryModalVisible = false;
+    },
   }
 }
 
@@ -127,7 +161,7 @@ export default {
     background-color: lightgray;
   }
   a {
-    color: $black;
+    color: grey;
   }
   img {
     border-radius: 10px;
@@ -135,5 +169,12 @@ export default {
   }
 }
 
+.multiline {
+  white-space: pre-wrap;
+  text-align: left;
+  background-color: grey;
+  width:600px;
+  word-wrap: break-word;
+}
 
 </style>

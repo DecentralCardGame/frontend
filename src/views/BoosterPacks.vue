@@ -33,7 +33,7 @@
       >
       {{ collection.c.name }}
       <button
-        @click="currId = collection.id; showEditCollectionModal();"
+        @click="currId = +collection.id; showEditCollectionModal();"
       >
         Info
       </button>
