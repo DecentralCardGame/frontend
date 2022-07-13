@@ -243,6 +243,15 @@ export default {
           }
         )
       }
+      addArtworkToCollection (id, image) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddArtworkToCollection",
+          {
+            "collectionId": id,
+            "image": btoa(image)
+          }
+        )
+      }
       voteCardTx (cardId, voteType) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
       }

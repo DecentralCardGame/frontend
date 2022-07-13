@@ -31,9 +31,42 @@
           class="modal__body input--editCollection ccbutton"
           align="center"
         >
+          <div
+            v-if="$store.getters['common/wallet/address'] === collection.artist"
+          >
+            <cropper
+              class="cropper"
+              :src="collection.artwork"
+              :auto-zoom="true"
+              :stencil-size="{
+                width: 838,
+                height: 838
+              }"
+              :default-size="{
+                width: 838,
+                height: 838,
+              }"
+              image-restriction="fit-area"
+              @change="changeImage"
+            />
+            <input
+              id="file"
+              class="inputfile"
+              name="file"
+              type="file"
+              @change="inputFile"
+            >
+            <button
+              @click="sendImage"
+            >
+              Update image
+            </button><br>
+          </div>
           <img
-            :src="getImage()"
-          ><br>
+            v-else
+            :src="collection.artwork"
+          >
+          <br>
           Story:
           <div class="multiline">
             {{ collection.story }}
@@ -85,11 +118,13 @@
 <script>
 
 import CollectionStoryModal from './CollectionStoryModal.vue';
-
+import { Cropper } from 'vue-advanced-cropper'
+import { uploadImg } from "@/components/utils/utils.js";
+import 'vue-advanced-cropper/dist/style.css';
 
 export default {
   name: 'CollectionInfoModal',
-  components: { CollectionStoryModal },
+  components: { CollectionStoryModal, Cropper },
   props: {
     id: {
       type: Number,
@@ -99,12 +134,14 @@ export default {
   data() {
     return {
       isCollectionStoryModalVisible: false,
+      image: "",
       collection: {
         name: "",
         artist: " ",
         storyWriter: " ",
         contributors: [],
         cards: [],
+        artwork:"Avatar0.png",
       }
     }
   },
@@ -126,14 +163,10 @@ export default {
       .then(res => {
         this.collection = res.c
         console.log(this.collection)
+        if (!this.collection.artwork) {
+          this.collection.artwork = "Avatar0.png"
+        }
       })
-    },
-    getImage() {
-      if (this.collection.image) {
-        return this.collection.image
-      } else {
-        return "Avatar0.png"
-      }
     },
     showCollectionStoryModal() {
       this.isCollectionStoryModalVisible = true;
@@ -141,6 +174,24 @@ export default {
     closeCollectionStoryModal() {
       this.init()
       this.isCollectionStoryModalVisible = false;
+    },
+    inputFile(event) {
+      let file = event.target.files[0]
+
+      uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
+        this.collection.artwork = result
+      })
+    },
+    sendImage() {
+      this.$cardChain.addArtworkToCollection(
+        this.id,
+        this.image,
+      ).then(res => {
+        console.log("yees")
+      })
+    },
+    changeImage({canvas}) {
+      this.image = canvas.toDataURL('image/jpeg', 0.9)
     },
   }
 }
@@ -165,7 +216,17 @@ export default {
   }
   img {
     border-radius: 10px;
-    width: 200px;
+    width: 300px;
+  }
+}
+
+.cropper {
+  height: 300px;
+  width: 40vw;
+  margin: 1rem;
+  border: $border-thickness solid rgba(255, 255, 255, 0.7);
+  @media (max-width: 480px) {
+    width: 80vw;
   }
 }
 

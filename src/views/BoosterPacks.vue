@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     getCollections() {
+      this.collections = []
       this.$cardChain.getCollections("")
       .then(res => {
         this.ids = res.collectionIds
@@ -90,6 +91,7 @@ export default {
       this.isCollectionModalVisible = true;
     },
     closeCollectionModal() {
+      this.getCollections()
       this.isCollectionModalVisible = false;
     },
     showEditCollectionModal() {
@@ -97,11 +99,12 @@ export default {
       this.isEditCollectionModalVisible = true;
     },
     closeEditCollectionModal() {
+      this.getCollections()
       this.isEditCollectionModalVisible = false;
     },
     getImage(collection) {
-      if (collection.image) {
-        return collection.image
+      if (collection.artwork) {
+        return collection.artwork
       } else {
         return "Avatar0.png"
       }
