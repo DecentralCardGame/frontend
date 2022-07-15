@@ -77,6 +77,7 @@
           >
             Edit story
           </button><br>
+          Status: {{ collection.status[0].toUpperCase() + collection.status.slice(1) }}<br>
           Contributors:
           <div
             v-for="contrib in collection.contributors"
