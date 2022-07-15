@@ -150,7 +150,7 @@
                 </select>
               </button>
               <button
-                v-if="collectionsIn.length > 0 && isOwner"
+                v-if="collectionsIn.length > 0"
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
