@@ -133,7 +133,7 @@
                 Owner profile
               </button>
               <button
-                v-if="collections.length > 0"
+                v-if="collections.length > 0 && collectionsIn.length == 0 && isOwner"
                 aria-label="Close modal"
                 class="addColl choice-grid__button"
                 type="button"
@@ -148,6 +148,15 @@
                     {{ coll }}
                   </option>
                 </select>
+              </button>
+              <button
+                v-if="collectionsIn.length > 0 && isOwner"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="sendRemoveColl"
+              >
+                Remove from Collection {{ collectionsIn[0] }}
               </button>
             </section>
           </div>
@@ -195,6 +204,7 @@ export default {
       currentPrice: -1,
       currentBid: -1,
       creditsAvailable: -1,
+      collectionsIn: [],
       collections: [],
       addCollection: null,
     }
@@ -217,6 +227,12 @@ export default {
   methods: {
     init() {
       if (this.$store.getters['common/wallet/address']) {
+        this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'], this.model.id)
+        .then(res => {
+          console.log("yöyöyö")
+          this.collectionsIn = res.collectionIds
+          console.log(this.collectionsIn)
+        })
         this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'])
         .then(res => {
           console.log("yoyoyo")
@@ -230,8 +246,16 @@ export default {
         this.$cardChain.addCardToCollection(this.addCollection, this.model.id)
         .then(res => {
           console.log("yesyesyes")
+          this.init()
         })
       }
+    },
+    sendRemoveColl() {
+      this.$cardChain.removeCardFromCollection(this.collectionsIn[0], this.model.id)
+      .then(res => {
+        console.log("yesyesyes")
+        this.init()
+      })
     },
     doNothing () {
     },

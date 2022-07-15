@@ -240,6 +240,15 @@ export default {
           }
         )
       }
+      removeCardFromCollection (collectionId, cardId) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgRemoveCardFromCollection",
+          {
+            "cardId": cardId,
+            "collectionId": collectionId
+          }
+        )
+      }
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
       }
@@ -383,11 +392,12 @@ export default {
           })
           .catch(this.handleGetError)
       }
-      getCollections (status, contrib) {
+      getCollections (status, contrib, card) {
         return this.vue.$http.get('/DecentralCardGame/Cardchain/cardchain/q_collections/' +
             (status ? status : "active") + "/" +
-            (status ? false : true) +
-            (contrib ? "?contributors="+contrib : "")
+            (status ? false : true) + "?" +
+            (contrib ? "&contributors="+contrib : "") +
+            (card ? "&containsCards="+card : "")
           )
           .then(res => {
             return res.data
