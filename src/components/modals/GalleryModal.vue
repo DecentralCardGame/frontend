@@ -132,6 +132,23 @@
               >
                 Owner profile
               </button>
+              <button
+                v-if="collections.length > 0"
+                aria-label="Close modal"
+                class="addColl choice-grid__button"
+                type="button"
+                @click="sendAddColl"
+              >
+                Add to collection
+                <select v-model="addCollection">
+                  <option
+                    v-for="coll in collections"
+                    :key="coll"
+                  >
+                    {{ coll }}
+                  </option>
+                </select>
+              </button>
             </section>
           </div>
         </div>
@@ -178,6 +195,8 @@ export default {
       currentPrice: -1,
       currentBid: -1,
       creditsAvailable: -1,
+      collections: [],
+      addCollection: null,
     }
   },
   watch: {
@@ -188,10 +207,32 @@ export default {
         this.$emit('close')
       }
     },
+    '$store.state.common.wallet.selectedAddress': function () {
+      this.init()
+    }
   },
   mounted() {
+    this.init()
   },
   methods: {
+    init() {
+      if (this.$store.getters['common/wallet/address']) {
+        this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'])
+        .then(res => {
+          console.log("yoyoyo")
+          this.collections = res.collectionIds
+          console.log(this.collections)
+        })
+      }
+    },
+    sendAddColl() {
+      if (this.addCollection) {
+        this.$cardChain.addCardToCollection(this.addCollection, this.model.id)
+        .then(res => {
+          console.log("yesyesyes")
+        })
+      }
+    },
     doNothing () {
     },
     close() {
@@ -253,6 +294,14 @@ export default {
 
 .no__bottomline {
   border-bottom: initial;
+}
+
+.addColl {
+  select {
+    color: $black;
+    background-color: lightgray;
+    display: inline;
+  }
 }
 
 .view__card {

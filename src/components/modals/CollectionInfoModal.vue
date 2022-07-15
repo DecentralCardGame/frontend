@@ -99,7 +99,7 @@
           </router-link><br>
           Cards:
           <router-link
-            :to="{ name: 'Gallery', query: { cardsList: collection.cards }}"
+            :to="{ name: 'Gallery', query: { cardList: collection.cards }}"
           >
             <a>{{ collection.cards.length }}</a>
           </router-link><br>

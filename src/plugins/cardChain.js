@@ -231,6 +231,15 @@ export default {
       saveArtworkToCard (id, image, fullart) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {"cardId": id, "image": btoa(image), "fullArt": fullart})
       }
+      addCardToCollection (collectionId, cardId) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddCardToCollection",
+          {
+            "cardId": cardId,
+            "collectionId": collectionId
+          }
+        )
+      }
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
       }
@@ -374,10 +383,11 @@ export default {
           })
           .catch(this.handleGetError)
       }
-      getCollections (status) {
+      getCollections (status, contrib) {
         return this.vue.$http.get('/DecentralCardGame/Cardchain/cardchain/q_collections/' +
             (status ? status : "active") + "/" +
-            (status ? false : true)
+            (status ? false : true) +
+            (contrib ? "?contributors="+contrib : "")
           )
           .then(res => {
             return res.data
