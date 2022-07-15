@@ -114,6 +114,7 @@ export default {
       }
       cardObjectToWebModel (rawCard) {
         if (rawCard.content) {
+          console.log(">>", rawCard.content)
           let contentLens = R.lensProp('Content')
           let parseContent = item => R.set(contentLens, JSON.parse(item.content), item)
           let card = R.merge(emptyCard, parseContent(rawCard))
@@ -261,6 +262,16 @@ export default {
           }
         )
       }
+      setCardRarity (cardId, collectionId, rarity) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgSetCardRarity",
+          {
+            "cardId": cardId,
+            "collectionId": collectionId,
+            "rarity": rarity
+          }
+        )
+      }
       addArtworkToCollection (id, image) {
         return this.sendGenericTx(
           "DecentralCardGame.cardchain.cardchain.MsgAddArtworkToCollection",
@@ -392,12 +403,13 @@ export default {
           })
           .catch(this.handleGetError)
       }
-      getCollections (status, contrib, card) {
+      getCollections (status, contrib, card, owner) {
         return this.vue.$http.get('/DecentralCardGame/Cardchain/cardchain/q_collections/' +
             (status ? status : "active") + "/" +
             (status ? false : true) + "?" +
             (contrib ? "&contributors="+contrib : "") +
-            (card ? "&containsCards="+card : "")
+            (card ? "&containsCards="+card : "") +
+            (owner ? "&owner="+owner : "")
           )
           .then(res => {
             return res.data

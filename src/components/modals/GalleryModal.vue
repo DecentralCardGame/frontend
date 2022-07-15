@@ -158,6 +158,23 @@
               >
                 Remove from Collection {{ collectionsIn[0] }}
               </button>
+              <button
+                v-if="collectionsOwned.length > 0"
+                aria-label="Close modal"
+                class="addColl choice-grid__button"
+                type="button"
+                @click="sendSetRarity"
+              >
+                Set rarity
+                <select v-model="rarity">
+                  <option
+                    v-for="rar in rarities"
+                    :key="rar"
+                  >
+                    {{ rar }}
+                  </option>
+                </select>
+              </button>
             </section>
           </div>
         </div>
@@ -207,6 +224,9 @@ export default {
       collectionsIn: [],
       collections: [],
       addCollection: null,
+      collectionsOwned: [],
+      rarities: ["COMMON", "UNCOMMON", "RARE"],
+      rarity: null,
     }
   },
   watch: {
@@ -226,18 +246,26 @@ export default {
   },
   methods: {
     init() {
+      this.rarity = this.model.Rarity
       if (this.$store.getters['common/wallet/address']) {
+        console.log(this.model)
         this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'], this.model.id)
         .then(res => {
-          console.log("yöyöyö")
+          console.log("In")
           this.collectionsIn = res.collectionIds
           console.log(this.collectionsIn)
         })
         this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'])
         .then(res => {
-          console.log("yoyoyo")
+          console.log("all")
           this.collections = res.collectionIds
           console.log(this.collections)
+        })
+        this.$cardChain.getCollections("design", "", this.model.id, this.$store.getters['common/wallet/address'])
+        .then(res => {
+          console.log("owned")
+          this.collectionsOwned = res.collectionIds
+          console.log(this.collectionsOwned)
         })
       }
     },
@@ -256,6 +284,15 @@ export default {
         console.log("yesyesyes")
         this.init()
       })
+    },
+     sendSetRarity() {
+      if (this.rarity) {
+        this.$cardChain.setCardRarity(this.model.id, this.collectionsOwned[0], this.rarity)
+        .then(res => {
+          console.log("yesyesyes")
+          this.init()
+        })
+      }
     },
     doNothing () {
     },
