@@ -78,13 +78,37 @@
             Edit story
           </button><br>
           Contributors:
-          <router-link
+          <div
             v-for="contrib in collection.contributors"
             :key="contrib"
-            :to="{name: 'UserView', params: {id: contrib} }"
           >
-            <a>{{ contrib }}</a><br>
-          </router-link>
+            <router-link
+              :to="{name: 'UserView', params: {id: contrib} }"
+            >
+              <a>{{ contrib }}</a>
+            </router-link>
+            <button
+              v-if="$store.getters['common/wallet/address'] == collection.contributors[0]"
+              class="btn--default"
+              @click="sendRemoveContrib(contrib)"
+            >
+              -
+            </button>
+            <br>
+          </div>
+          <div v-if="$store.getters['common/wallet/address'] == collection.contributors[0]">
+            <input
+              v-model="tempContrib"
+              type="text"
+              placeholder=""
+            >
+            <button
+              class="btn--default"
+              @click="sendAddContrib()"
+            >
+              +
+            </button>
+          </div>
           Story writer:
           <router-link
             :to="{name: 'UserView', params: {id: collection.storyWriter} }"
@@ -133,6 +157,7 @@ export default {
   },
   data() {
     return {
+      tempContrib: "",
       isCollectionStoryModalVisible: false,
       image: "",
       collection: {
@@ -167,6 +192,14 @@ export default {
           this.collection.artwork = "Avatar0.png"
         }
       })
+    },
+    sendRemoveContrib(user) {
+      this.$cardChain.removeContributorFromCollection(this.id, user)
+      .then(this.init)
+    },
+    sendAddContrib() {
+      this.$cardChain.addContributorToCollection(this.id, this.tempContrib)
+      .then(this.init)
     },
     showCollectionStoryModal() {
       this.isCollectionStoryModalVisible = true;

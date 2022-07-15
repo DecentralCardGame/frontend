@@ -250,6 +250,24 @@ export default {
           }
         )
       }
+      removeContributorFromCollection (collectionId, user) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgRemoveContributorFromCollection",
+          {
+            "user": user,
+            "collectionId": collectionId
+          }
+        )
+      }
+      addContributorToCollection (collectionId, user) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddContributorToCollection",
+          {
+            "user": user,
+            "collectionId": collectionId
+          }
+        )
+      }
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
       }
