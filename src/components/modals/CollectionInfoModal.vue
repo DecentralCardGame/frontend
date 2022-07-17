@@ -128,6 +128,11 @@
           >
             <a>{{ collection.cards.length }}</a>
           </router-link><br>
+          <div
+            class="chartContainer"
+          >
+            <canvas id="myChart" />
+          </div>
         </div>
         <CollectionStoryModal
           v-if="isCollectionStoryModalVisible"
@@ -142,6 +147,7 @@
 
 <script>
 
+import Chart from "chart.js/auto";
 import CollectionStoryModal from './CollectionStoryModal.vue';
 import { Cropper } from 'vue-advanced-cropper'
 import { uploadImg } from "@/components/utils/utils.js";
@@ -167,7 +173,8 @@ export default {
         storyWriter: " ",
         contributors: [],
         cards: [],
-        artwork:"Avatar0.png",
+        artwork: "Avatar0.png",
+        status: "abc",
       }
     }
   },
@@ -185,6 +192,61 @@ export default {
       this.$emit('close')
     },
     init() {
+      this.$cardChain.getRarityDistribution(this.id)
+      .then(res => {
+        let ctx = document.querySelector("canvas");
+        const chart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: [
+              'RARE',
+              'UNCOMMON',
+              'COMMON',
+              'NONE'
+            ],
+            datasets: [{
+              label: 'Current',
+              data: res.current,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'grey'
+              ],
+              hoverOffset: 4
+            }, {
+              label: 'Wanted',
+              data: res.wanted,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'grey'
+              ],
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right',
+              },
+              title: {
+                display: true,
+                text: 'Rarity distribution'
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.dataset.label + ': ' + context.label + " " + context.parsed
+                  }
+                }
+              }
+            }
+          },
+        })
+      })
       this.$cardChain.getCollection(this.id)
       .then(res => {
         this.collection = res.c
@@ -237,6 +299,8 @@ export default {
 
 .input--editCollection {
   color: $black;
+  max-height:75vh;
+  overflow:auto;
   input {
     color: $black;
     padding: 0;
@@ -262,6 +326,10 @@ export default {
   @media (max-width: 480px) {
     width: 80vw;
   }
+}
+
+.chartContainer {
+  display: inline-block;
 }
 
 .multiline {

@@ -386,6 +386,13 @@ export default {
               })
               .catch(this.handleGetError)
       }
+      getRarityDistribution (id) {
+          return this.vue.$http.get('/DecentralCardGame/Cardchain/cardchain/rarity_distribution/' + id)
+              .then(res => {
+                return res.data
+              })
+              .catch(this.handleGetError)
+      }
       getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '' && status != 'playable' && status != 'unplayable') {
