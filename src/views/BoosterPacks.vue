@@ -73,16 +73,19 @@ export default {
   },
   methods: {
     getCollections() {
-      this.collections = []
       this.$cardChain.getCollections("")
       .then(res => {
         this.ids = res.collectionIds
         for (var i = 0; i < this.ids.length; i++) {
           this.$cardChain.getCollection(this.ids[i])
           .then(res => {
-            this.collections.push(
-              res
-            )
+            for (var j = 0; j < this.collections.length; j++) {
+              if (this.collections[j].name === res.name) {
+                this.collections[j] = res
+                return
+              }
+            }
+            this.collections.push(res)
           })
         }
       })
@@ -95,7 +98,6 @@ export default {
       this.isCollectionModalVisible = false;
     },
     showEditCollectionModal() {
-      console.log(this.collections)
       this.isEditCollectionModalVisible = true;
     },
     closeEditCollectionModal() {
