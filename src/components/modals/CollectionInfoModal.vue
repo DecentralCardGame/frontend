@@ -128,9 +128,7 @@
           >
             <a>{{ collection.cards.length }}</a>
           </router-link><br>
-          <div
-            class="chartContainer"
-          >
+          <div class="chartContainer">
             <canvas id="myChart" />
           </div>
         </div>
@@ -157,16 +155,19 @@ export default {
   name: 'CollectionInfoModal',
   components: { CollectionStoryModal, Cropper },
   props: {
-    id: {
-      type: Number,
-      default: 0
-    },
+    inpCol: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
   },
   data() {
     return {
       tempContrib: "",
       isCollectionStoryModalVisible: false,
       image: "",
+      id: null,
       collection: {
         name: "",
         artist: " ",
@@ -192,9 +193,14 @@ export default {
       this.$emit('close')
     },
     init() {
+      this.collection = this.inpCol.c
+      this.id = this.inpCol.id
+      if (!this.collection.artwork) {
+        this.collection.artwork = "Avatar0.png"
+      }
       this.$cardChain.getRarityDistribution(this.id)
       .then(res => {
-        let ctx = document.querySelector("canvas");
+        let ctx = document.getElementById("myChart");
         const chart = new Chart(ctx, {
           type: 'doughnut',
           data: {
@@ -247,6 +253,8 @@ export default {
           },
         })
       })
+    },
+    getCollection() {
       this.$cardChain.getCollection(this.id)
       .then(res => {
         this.collection = res.c
@@ -258,17 +266,17 @@ export default {
     },
     sendRemoveContrib(user) {
       this.$cardChain.removeContributorFromCollection(this.id, user)
-      .then(this.init)
+      .then(this.getCollection)
     },
     sendAddContrib() {
       this.$cardChain.addContributorToCollection(this.id, this.tempContrib)
-      .then(this.init)
+      .then(this.getCollection)
     },
     showCollectionStoryModal() {
       this.isCollectionStoryModalVisible = true;
     },
     closeCollectionStoryModal() {
-      this.init()
+      this.getCollection()
       this.isCollectionStoryModalVisible = false;
     },
     inputFile(event) {

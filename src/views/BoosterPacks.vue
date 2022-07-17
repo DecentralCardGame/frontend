@@ -33,7 +33,7 @@
       >
       {{ collection.c.name }}
       <button
-        @click="currId = +collection.id; showEditCollectionModal();"
+        @click="currColl = collection; showEditCollectionModal();"
       >
         Info
       </button>
@@ -44,7 +44,7 @@
     />
     <CollectionInfoModal
       v-if="isEditCollectionModalVisible"
-      :id="currId"
+      :inp-col="currColl"
       @close="closeEditCollectionModal"
     />
   </div>
@@ -65,7 +65,7 @@ export default {
       isEditCollectionModalVisible: false,
       ids: [],
       collections: [],
-      currId: 0,
+      currColl: {},
     }
   },
   mounted() {
