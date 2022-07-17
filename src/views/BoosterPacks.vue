@@ -80,7 +80,7 @@ export default {
           this.$cardChain.getCollection(this.ids[i])
           .then(res => {
             for (var j = 0; j < this.collections.length; j++) {
-              if (this.collections[j].name === res.name) {
+              if (this.collections[j].id === res.id) {
                 this.collections[j] = res
                 return
               }
