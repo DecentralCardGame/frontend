@@ -215,8 +215,7 @@ export default {
             return res
           })
           .catch(err => {
-            this.vue.notifyFail('Fail', err.message)
-            console.log(err)
+            this.vue.notifyFail('Fail', err)
             throw new Error(err)
           })
       }
@@ -264,6 +263,14 @@ export default {
           "DecentralCardGame.cardchain.cardchain.MsgAddContributorToCollection",
           {
             "user": user,
+            "collectionId": collectionId
+          }
+        )
+      }
+      finalizeCollection (collectionId) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgFinalizeCollection",
+          {
             "collectionId": collectionId
           }
         )

@@ -130,7 +130,14 @@
           </router-link><br>
           <div class="chartContainer">
             <canvas id="myChart" />
-          </div>
+          </div><br>
+          <button
+            v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collection.status === 'design'"
+            class="btn--default"
+            @click="sendFinalize()"
+          >
+            Finalize collection
+          </button>
         </div>
         <CollectionStoryModal
           v-if="isCollectionStoryModalVisible"
@@ -266,6 +273,10 @@ export default {
     },
     sendRemoveContrib(user) {
       this.$cardChain.removeContributorFromCollection(this.id, user)
+      .then(this.getCollection)
+    },
+    sendFinalize() {
+      this.$cardChain.finalizeCollection(this.id)
       .then(this.getCollection)
     },
     sendAddContrib() {
