@@ -132,7 +132,7 @@
             <canvas id="myChart" />
           </div><br>
           <button
-            v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collection.status === 'design'"
+            v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collectionstatus === 'design'"
             class="btn--default"
             @click="sendFinalize()"
           >
