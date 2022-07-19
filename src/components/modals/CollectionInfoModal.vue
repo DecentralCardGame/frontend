@@ -127,7 +127,18 @@
             :to="{ name: 'Gallery', query: { cardList: collection.cards }}"
           >
             <a>{{ collection.cards.length }}</a>
-          </router-link><br>
+          </router-link>
+          <router-link
+            :to="{ name: 'Gallery', query: { owner: $store.getters['common/wallet/address']}}"
+          >
+            <button
+              v-if="collection.contributors.includes($store.getters['common/wallet/address'])"
+              class="btn--default"
+            >
+              Add cards
+            </button>
+          </router-link>
+          <br>
           <div class="chartContainer">
             <canvas id="myChart" />
           </div><br>
