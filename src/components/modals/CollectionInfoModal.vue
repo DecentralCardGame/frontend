@@ -139,7 +139,7 @@
             Finalize collection
           </button>
           <button
-            v-if="$store.getters['common/wallet/address'] === collection.contributors[0] && collection.status === 'finalized'"
+            v-if="$store.getters['common/wallet/address'] === collection.contributors[0] && collection.status === 'finalized' && proposable"
             class="btn--default"
             @click="sendProposal()"
           >
@@ -182,6 +182,7 @@ export default {
       isCollectionStoryModalVisible: false,
       image: "",
       id: null,
+      proposable: false,
       chartData: {
         current: [0, 0, 0, 1],
         wanted: [0, 0, 0, 1],
@@ -216,6 +217,7 @@ export default {
       if (!this.collection.artwork) {
         this.collection.artwork = "Avatar0.png"
       }
+      this.getProposable()
       this.$cardChain.getRarityDistribution(this.id)
       .then(res => {
         console.log(this.chartData.current.toString() === this.chartData.wanted.toString(), this.chartData)
@@ -285,6 +287,18 @@ export default {
         }
       })
     },
+    getProposable() {
+      this.$cardChain.getProposals()
+      .then(res => {
+        for (var i = 0; i < res.proposals.length; i++) {
+          if (this.id === res.proposals[i].content.collectionId) {
+            this.proposable = false
+            return
+          }
+        }
+        this.proposable = true
+      })
+    },
     sendRemoveContrib(user) {
       this.$cardChain.removeContributorFromCollection(this.id, user)
       .then(this.getCollection)
@@ -295,7 +309,7 @@ export default {
     },
     sendProposal() {
       this.$cardChain.submitCollectionProposal(this.id)
-      .then(this.getCollection)
+      .then(this.getProposable)
     },
     sendAddContrib() {
       this.$cardChain.addContributorToCollection(this.id, this.tempContrib)

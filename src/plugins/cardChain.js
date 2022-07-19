@@ -6,6 +6,7 @@ import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import {CollectionProposal} from "../store/generated/DecentralCardGame/Cardchain/DecentralCardGame.cardchain.cardchain/module/types/cardchain/collection_proposal.js"
 import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
@@ -309,14 +310,6 @@ export default {
       voteCardTx (cardId, voteType) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
       }
-      submitCollectionProposal (id) {
-        return this.sendGenericTx(
-          "DecentralCardGame.cardchain.cardchain.MsgSubmitCollectionProposal",
-          {
-            "collectionId": id,
-          }
-        )
-      }
       createCollection (name, artist, storyWriter, contributors) {
         return this.sendGenericTx(
           "DecentralCardGame.cardchain.cardchain.MsgCreateCollection",
@@ -367,6 +360,22 @@ export default {
           }
         )
       }
+      submitCollectionProposal (id) {
+        return this.sendGenericTx(
+          "cosmos.gov.v1beta1.MsgSubmitProposal",
+          {
+            "content": {
+              "type_url": "/DecentralCardGame.cardchain.cardchain.CollectionProposal",
+              value: CollectionProposal.encode(CollectionProposal.fromPartial({
+                "title": "Collection proposal for collection "+id,
+                "description": "We request makeing this collection buyable in boosterpacks.",
+                "collectionId": id,
+              })).finish()
+            },
+            "proposer": this.vue.$store.getters['common/wallet/address']
+          }
+        )
+      }
       revokeAuthz (grantee, msg) {
         return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {"grantee": grantee, "msg_type_url": msg, "granter": this.vue.$store.getters['common/wallet/address']})
       }
@@ -398,6 +407,13 @@ export default {
                   id: id,
                   c: res.data
                 }
+              })
+              .catch(this.handleGetError)
+      }
+      getProposals () {
+          return this.vue.$http.get('/cosmos/gov/v1beta1/proposals')
+              .then(res => {
+                return res.data
               })
               .catch(this.handleGetError)
       }
