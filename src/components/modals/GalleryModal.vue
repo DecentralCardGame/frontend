@@ -145,7 +145,7 @@
                     v-for="coll in collections"
                     :key="coll"
                   >
-                    {{ coll }}
+                    {{ collectionNames[coll] }}
                   </option>
                 </select>
               </button>
@@ -156,7 +156,7 @@
                 type="button"
                 @click="sendRemoveColl"
               >
-                Remove from Collection {{ collectionsIn[0] }}
+                Remove from Collection: {{ collectionNames[collectionsIn[0]] }}
               </button>
               <button
                 v-if="collectionsOwned.length > 0"
@@ -223,6 +223,7 @@ export default {
       creditsAvailable: -1,
       collectionsIn: [],
       collections: [],
+      collectionNames: {},
       addCollection: null,
       collectionsOwned: [],
       rarities: ["COMMON", "UNCOMMON", "RARE"],
@@ -260,6 +261,13 @@ export default {
           console.log("all")
           this.collections = res.collectionIds
           console.log(this.collections)
+          for (var i = 0; i<this.collections.length; i++) {
+            this.$cardChain.getCollection(this.collections[i])
+            .then(res => {
+              this.collectionNames[res.id] = res.c.name
+              console.log(this.collectionNames)
+            })
+          }
         })
         this.$cardChain.getCollections("design", "", this.model.id, this.$store.getters['common/wallet/address'])
         .then(res => {
