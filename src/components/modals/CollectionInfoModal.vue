@@ -32,7 +32,7 @@
           align="center"
         >
           <div
-            v-if="$store.getters['common/wallet/address'] === collection.artist"
+            v-if="$store.getters['common/wallet/address'] === collection.artist && collection.status === 'design'"
           >
             <cropper
               class="cropper"
@@ -72,7 +72,7 @@
             {{ collection.story }}
           </div>
           <button
-            v-if="$store.getters['common/wallet/address'] === collection.storyWriter"
+            v-if="$store.getters['common/wallet/address'] === collection.storyWriter && collection.status === 'design'"
             @click="showCollectionStoryModal"
           >
             Edit story
@@ -89,7 +89,7 @@
               <a>{{ contrib }}</a>
             </router-link>
             <button
-              v-if="$store.getters['common/wallet/address'] == collection.contributors[0]"
+              v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collection.status === 'design'"
               class="btn--default"
               @click="sendRemoveContrib(contrib)"
             >
@@ -97,7 +97,7 @@
             </button>
             <br>
           </div>
-          <div v-if="$store.getters['common/wallet/address'] == collection.contributors[0]">
+          <div v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collection.status === 'design'">
             <input
               v-model="tempContrib"
               type="text"
@@ -132,11 +132,18 @@
             <canvas id="myChart" />
           </div><br>
           <button
-            v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collectionstatus === 'design'"
+            v-if="$store.getters['common/wallet/address'] === collection.contributors[0] && collection.status === 'design' && chartData.current.toString() === chartData.wanted.toString()"
             class="btn--default"
             @click="sendFinalize()"
           >
             Finalize collection
+          </button>
+          <button
+            v-if="$store.getters['common/wallet/address'] === collection.contributors[0] && collection.status === 'finalized'"
+            class="btn--default"
+            @click="sendProposal()"
+          >
+            Submit proposal
           </button>
         </div>
         <CollectionStoryModal
@@ -175,6 +182,10 @@ export default {
       isCollectionStoryModalVisible: false,
       image: "",
       id: null,
+      chartData: {
+        current: [0, 0, 0, 1],
+        wanted: [0, 0, 0, 1],
+      },
       collection: {
         name: "",
         artist: " ",
@@ -207,14 +218,17 @@ export default {
       }
       this.$cardChain.getRarityDistribution(this.id)
       .then(res => {
+        console.log(this.chartData.current.toString() === this.chartData.wanted.toString(), this.chartData)
+        this.chartData = res
+        console.log(this.chartData.current.toString() === this.chartData.wanted.toString(), this.chartData)
         let ctx = document.getElementById("myChart");
         const chart = new Chart(ctx, {
           type: 'doughnut',
           data: {
             labels: [
-              'RARE',
-              'UNCOMMON',
               'COMMON',
+              'UNCOMMON',
+              'RARE',
               'NONE'
             ],
             datasets: [{
@@ -277,6 +291,10 @@ export default {
     },
     sendFinalize() {
       this.$cardChain.finalizeCollection(this.id)
+      .then(this.getCollection)
+    },
+    sendProposal() {
+      this.$cardChain.submitCollectionProposal(this.id)
       .then(this.getCollection)
     },
     sendAddContrib() {

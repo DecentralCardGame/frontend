@@ -309,6 +309,14 @@ export default {
       voteCardTx (cardId, voteType) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
       }
+      submitCollectionProposal (id) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgSubmitCollectionProposal",
+          {
+            "collectionId": id,
+          }
+        )
+      }
       createCollection (name, artist, storyWriter, contributors) {
         return this.sendGenericTx(
           "DecentralCardGame.cardchain.cardchain.MsgCreateCollection",
