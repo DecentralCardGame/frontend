@@ -4510,12 +4510,27 @@
                     style="overflow:visible;"
                   />
                 </clipPath>
-                <g style="clip-path:url(#SVGID_00000098913711616471907980000006059033363696891059_);">
+                <g
+                  v-if="!Type.HQ"
+                  style="clip-path:url(#SVGID_00000098913711616471907980000006059033363696891059_);"
+                >
                   <image
                     style="overflow:visible;"
                     width="59"
                     height="59"
                     href="../../assets/cardframe/ManaBall.jpg"
+                    transform="matrix(0.48 0 0 0.48 21.1634 21.4356)"
+                  />
+                </g>
+                <g
+                  v-if="Type.HQ"
+                  style="clip-path:url(#SVGID_00000098913711616471907980000006059033363696891059_);"
+                >
+                  <image
+                    style="overflow:visible;"
+                    width="59"
+                    height="59"
+                    href="../../assets/cardframe/ManaBallHQ.jpg"
                     transform="matrix(0.48 0 0 0.48 21.1634 21.4356)"
                   />
                 </g>
@@ -5894,7 +5909,7 @@
           32.12,142.74 32.12,242.02 34.5,244.41 163.83,244.41 166.22,242.02 166.22,142.74 	"
         />
       </g>
-      <g v-if="FullArtGradients.HQ">
+      <g v-if="FullArtGradients.HQ && false">
         <linearGradient
           id="HQ_Gradient_00000082334860875157277820000012766281039454458790_"
           gradientUnits="userSpaceOnUse"
@@ -23300,7 +23315,7 @@ export default {
       this.FullArtIllustrationMask = FullArtfilter(cardType)
       this.ShadowFullArt = FullArtfilter(cardType)
       this.FramedIllustrationMask = Framedfilter(cardType)
-      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : frameType)
+      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType)
       this.FramedTextBox = Framedfilter(colorType)
       this.HQFramedTextBox = cardType.HQ && !this.FullArt
       this.ShadowTextBox = cardType
