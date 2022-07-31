@@ -103,7 +103,6 @@ export default {
               this.voteRights = res.votables.voteRights
 
               var cleaned = []
-              console.log(this.playableCards)
               for (var i = 0; i < this.voteRights.length; i++) {
                 if (cards.cardsList.includes(this.voteRights[i].cardId)) {
                   cleaned.push(this.voteRights[i])
@@ -127,10 +126,10 @@ export default {
               this.votingActive = false
               this.noMoreVotesLeft = true
               console.log('no more voting rights')
-            } else if (res.votables.unregistered === true) {
+            } else if (res.unregistered === true) {
               this.unregistered = true
               this.notifyFail('NOT REGISTERED', 'You are not registered in the blockchain. Please register to obtain voting rights.')
-            } else if (res.votables.noVoteRights === true) {
+            } else if (res.noVoteRights === true) {
               this.noMoreVotesLeft = true
               this.notifyFail('No Vote Rights', 'You do not have any voting rights, therefore you cannot vote on cards.')
             } else {
