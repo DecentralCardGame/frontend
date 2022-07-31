@@ -42,7 +42,7 @@ export default {
       params.append('address', this.$store.getters['common/wallet/address']);
       params.append('token', res)
 
-      const response = fetch('http://dragonapi.space:8081/api/claimTokens', {
+      const response = fetch('https://dragonapi.space:8081/api/claimTokens', {
           method: 'POST',
           body: params,
           headers: {
