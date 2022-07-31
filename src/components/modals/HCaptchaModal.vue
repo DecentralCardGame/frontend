@@ -48,28 +48,28 @@ export default {
           headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
           },
+      }).then(response => {
+        console.log("response", response)
+
+        if (response.status === 401) {
+          this.notifyFail('Error', 'Error captcha. Please reload page.')
+          return
+        }
+        else if (response.status === 402) {
+          this.notifyFail('Error', 'You have already claimed tokens')
+          return
+        }
+        else if (response.status === 403) {
+          this.notifyFail('Error', 'Probably the incorrect address')
+          return
+        }
+        else {
+          this.notifySuccess('Success', 'Registered Account')
+          return
+        }
       })
 
-      console.log("response", response)
 
-      const json = await response.json();
-
-      if (response.status === 401) {
-        this.notifyFail('Error', 'Error captcha. Please reload page.')
-        return
-      }
-      else if (response.status === 402) {
-        this.notifyFail('Error', 'You have already claimed tokens')
-        return
-      }
-      else if (response.status === 403) {
-        this.notifyFail('Error', 'Probably the incorrect address')
-        return
-      }
-      else {
-        this.notifySuccess('Success', 'Registered Account')
-        return
-      }
     }
   }
 }
