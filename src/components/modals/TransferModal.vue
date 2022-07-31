@@ -69,7 +69,6 @@
 
 <script>
 import * as R from 'ramda'
-import {atPath, createInteraction, filterSelection, icon, updateInteraction} from '../utils/utils.js'
 
 export default {
   name: 'TransferModal',
