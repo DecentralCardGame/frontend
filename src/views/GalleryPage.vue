@@ -275,7 +275,8 @@ export default {
       canVote: false,
       isOwner: false,
       leavePageLock: false,
-      keywordDescriptions: []
+      keywordDescriptions: [],
+      votableCards: []
     };
   },
   // this watch together with the following beforeRouteLeave make browsing

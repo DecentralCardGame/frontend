@@ -26,14 +26,11 @@ import '@starport/vue/lib/starport-vue.css'
 //import Sidebar from './components/Sidebar'
 
 import AppLayout from './layouts/AppLayout.vue'
-import {
-  creditsFromCoins,
-} from "@/components/utils/utils.js";
 
 export default {
   name: 'CrowdControlApp',
   components: {
-    AppLayout
+    AppLayout 
   },
   data() {
     return {
@@ -43,45 +40,6 @@ export default {
   computed: {
     hasWallet() {
       return this.$store.hasModule(['common', 'wallet'])
-    }
-  },
-  watch: {
-    '$store.state.common.wallet.selectedAddress': function () {
-      this.setLoginStatus()
-
-      if (this.$store.getters["getLoggedIn"]) {
-        this.notifyInfo('Login', 'You are now logged in.')
-        this.$cardChain.updateUserCredits()
-        .then(credits => {
-          console.log("credits:", credits)
-          if (credits < 1) {
-            console.log("using faucet")
-            return this.$cardChain.useFaucet()
-            .then(async (faucetres) => {
-              console.log("faucetres", faucetres)
-              let active = -1
-              let count = 0
-              while (active === -1 && count < 100) {
-                  active = await this.$cardChain.updateUserCredits();
-                  count++
-              }
-              if (active === -1) {
-                throw new Error('Faucet does not work.')
-              }
-              console.log("yes", active)
-              this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
-            })
-          } else {
-            return "no faucet necessary"
-          }
-        })
-        .catch(err => {
-          this.notifyFail("WTF", "Something went wrong in the login process.")
-          console.error(err)
-        })
-      } else {
-        this.notifyInfo('Logout', 'You have logged out.')
-      }
     }
   },
   async created() {
@@ -107,7 +65,7 @@ export default {
       )
     },
     setLoginStatus() {
-      console.log('wallet name, adress', this.$store.getters['common/wallet/walletName'], this.$store.getters['common/wallet/address'])
+      console.log('wallet name, adress', this.$store.getters['common/wallet/address'])
       if (this.$store.getters['common/wallet/walletName'] != null) {
         this.$store.commit('setLoggedIn', true)
         console.log("loggedin?", this.$store.getters["getLoggedIn"])

@@ -243,6 +243,7 @@
         <p>
           He stomps out 110% of the code for the game client. When he is not coding relentlessly he likes to engage in exciting discussions about any imaginable topic.
           In his past he was a Kindergarten teacher, thus he is optimally prepared to work together with us. It also helps him a lot to write code that we can understand.
+          Now that he has become a fulltime developer he has to take some vacation from time to time so he can focus on programming in his free time.
         </p>
       </div>
     </div>
@@ -272,6 +273,65 @@
             href="https://aynbath.com/stories"
             target="_blank"
           > Aynbath</a>, where he is already creating a darker collection of mystical journeys and an intricate world.
+        </p>
+      </div>
+    </div>
+
+    <div class="team-entry">
+      <div class="image--round">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="../assets/team/peer.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/peer.jpg"
+          >
+          <img
+            src="../assets/team/peer.webp"
+            class="rounded"
+          >
+        </picture>
+      </div>
+      <div>
+        <h2> Peer Meyer - Web & Blockchain development </h2>
+        <p>
+          We first met Peer as "Linuxgamer" and he really lives up to his name. He plays all his games on Linux and luckily we could play OpenRA with him and got into more contact. 
+          Initially he resisted and did not want to join us only providing minor excuses like he does not know how to code blockchains. But after seeing how fast he learns to command
+          Tanks in OpenRA, we convinced him he could learn to code blockchains also that fast. After a very short time he was able to join us and code with us. Speaking of games, well
+          actually he is already more succesful in game development than we are, just check out this awesome creation by him:          
+          <a
+            href="https://www.reddit.com/r/linux/comments/v93hle/pokete_a_terminal_based_pokemon_clone"
+            target="_blank"
+          > Pokete.</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="team-entry">
+      <div class="image--round">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="../assets/team/benny.webp"
+          >
+          <source
+            type="image/jpg"
+            srcset="../assets/team/benny.jpg"
+          >
+          <img
+            src="../assets/team/benny.webp"
+            class="rounded"
+          >
+        </picture>
+      </div>
+      <div>
+        <h2> Benny Renz - Illustration </h2>
+        <p>
+          Passionate freelance concept artist, joining us as an illustrator. 
+          He is trying out various different art styles from pixilation, cartoony and something more realistic while creating illustrations for the base deck.
+          In his spare time, he is, you might have guessed it - painting even more, but sometimes he is 3D modelling to relax in between. 
         </p>
       </div>
     </div>

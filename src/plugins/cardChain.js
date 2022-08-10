@@ -39,7 +39,7 @@ export default {
           },
           dispatch: function(route, msg) {
             return new Promise((resolve, reject) => {
-                this.enqueue(() => {
+                //this.enqueue(() => {
                   return store.dispatch(route, msg)
                     .then((res) => {
                       if (res.code != 0) {
@@ -49,7 +49,7 @@ export default {
                         resolve(res)
                     })
                     .catch(reject)
-                })
+                //})
               })
           },
           run: function() {

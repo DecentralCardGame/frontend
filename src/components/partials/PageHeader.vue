@@ -31,6 +31,12 @@
       </picture>
       <b>Discord</b>. We would love to hear your voice.
     </a>
+
+    <HCaptchaModal
+      v-show="showCaptcha"
+      @close="closeCaptcha"
+    />
+
     <SpWallet
       ref="wallet"
       class="wallet--local"
@@ -42,24 +48,76 @@
 </template>
 
 <script>
-import { SigningCosmosClient } from '@cosmjs/launchpad'
-import {
-    DirectSecp256k1HdWallet
-} from '@cosmjs/proto-signing'
-
-import {
-    assertIsBroadcastTxSuccess,
-    SigningStargateClient,
-} from '@cosmjs/stargate'
+import HCaptchaModal from '@/components/modals/HCaptchaModal.vue'
 
 export default {
   name: 'PageHeader',
+  components: {
+    HCaptchaModal
+  },
   data() {
     return {
       showKeplr: true,
+      showCaptcha: false,
+    }
+  },
+  watch: {
+    '$store.state.common.wallet.selectedAddress': function () {
+      this.setLoginStatus()
+
+      if (this.$store.getters["getLoggedIn"]) {
+        this.notifyInfo('Login', 'You are now logged in.')
+        this.$cardChain.updateUserCredits()
+        .then(credits => {
+          console.log("credits:", credits)
+          if (credits < 1) {
+            console.log("using faucet")
+
+            this.showCaptcha = true
+            /*
+            return this.$cardChain.useFaucet()
+            .then(async (faucetres) => {
+              console.log("faucetres", faucetres)
+              let active = -1
+              let count = 0
+              while (active === -1 && count < 100) {
+                  active = await this.$cardChain.updateUserCredits();
+                  count++
+              }
+              if (active === -1) {
+                throw new Error('Faucet does not work.')
+              }
+              
+              //console.log("yes", active)
+              //this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
+            })*/
+          } else {
+            return "no faucet necessary"
+          }
+        })
+        .catch(err => {
+          this.notifyFail("WTF", "Something went wrong in the login process.")
+          console.error(err)
+        })
+      } else {
+        this.notifyInfo('Logout', 'You have logged out.')
+      }
     }
   },
   methods: {
+    closeCaptcha() {
+      this.showCaptcha = false
+    }, 
+    setLoginStatus() {
+      console.log('wallet name, adress', this.$store.getters['common/wallet/address'])
+      if (this.$store.getters['common/wallet/walletName'] != null) {
+        this.$store.commit('setLoggedIn', true)
+        console.log("loggedin?", this.$store.getters["getLoggedIn"])
+      } else {
+        this.$store.commit('setLoggedIn', false)
+        console.log("loggedin?", this.$store.getters["getLoggedIn"])
+      }
+    },
     async keplrWalletLogin(doAllert) {
       if (!doAllert) {
         if (this.showKeplr) {
@@ -136,11 +194,7 @@ export default {
       await window.keplr.enable(chainId);
       const offlineSigner = window.getOfflineSigner(chainId);
       const accounts = await offlineSigner.getAccounts();
-      const cosmJS = new SigningCosmosClient(
-        "https://cardchain.crowdcontrol.network/tendermint/",
-        accounts[0].address,
-        offlineSigner,
-      );
+
     },
   },
 };
