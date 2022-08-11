@@ -39,7 +39,42 @@
         def
       </div>
       <div class="child image">
-        ghi
+        <div
+          v-if="$store.getters['common/wallet/address'] === collection.artist && collection.status === 'design'"
+        >
+          <cropper
+            class="cropper"
+            :src="collection.artwork"
+            :auto-zoom="true"
+            :stencil-size="{
+              width: 838,
+              height: 838
+            }"
+            :default-size="{
+              width: 838,
+              height: 838,
+            }"
+            image-restriction="fit-area"
+            @change="changeImage"
+          />
+          <input
+            id="file"
+            class="inputfile"
+            name="file"
+            type="file"
+            @change="inputFile"
+          >
+          <button
+            @click="sendImage"
+          >
+            Update image
+          </button><br>
+        </div>
+        <img
+          v-else
+          class="noEditImage"
+          :src="collection.artwork"
+        >
       </div>
     </div>
   </div>
@@ -48,10 +83,13 @@
 <script>
 
 import Chart from "chart.js/auto";
+import { Cropper } from 'vue-advanced-cropper'
+import { uploadImg } from "@/components/utils/utils.js";
+import 'vue-advanced-cropper/dist/style.css';
 
 export default {
   name: "Collections",
-  components: {},
+  components: { Cropper },
   data() {
     return {
       editStory: false,
@@ -144,12 +182,14 @@ export default {
 <style lang="scss">
 
 .peterSolar {
-  margin-top:10px;
+  margin-top:50px;
+  display: flex;
   .child {
     background: #F5F5F5;
-    margin:3%;
+    //margin:3%;
     padding:25px;
     display:inline-block;
+    // vertical-align: top;
   }
 }
 
@@ -159,6 +199,28 @@ export default {
 
 .chartContainer {
   display: inline-block;
+}
+
+.image {
+  width: 40%
+}
+
+.contribs {
+  width: 10%
+}
+
+.cropper {
+  height: 300px;
+  width: 100%;
+  border: 2px  solid rgba(255, 255, 255, 0.7);
+  @media (max-width: 480px) {
+    width: 80vw;
+  }
+}
+
+.noEditImage {
+    border-radius: 50%;
+    width: 100%;
 }
 
 </style>

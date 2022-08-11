@@ -272,7 +272,10 @@ export default {
               legend: {
                 position: 'right',
               },
-
+              title: {
+                display: true,
+                text: 'Rarity distribution'
+              },
               tooltip: {
                 callbacks: {
                   label: function(context) {
