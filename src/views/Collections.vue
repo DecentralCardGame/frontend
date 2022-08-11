@@ -10,7 +10,14 @@
             @click="editStory = true"
           >
             Edit story
-          </button>
+          </button><br><br>
+          Rarity distribution<br>
+          <div
+            class="chartContainer"
+            align="left"
+          >
+            <canvas id="myChart" />
+          </div><br>
         </div>
         <div v-else>
           <textarea
@@ -40,6 +47,8 @@
 
 <script>
 
+import Chart from "chart.js/auto";
+
 export default {
   name: "Collections",
   components: {},
@@ -51,11 +60,16 @@ export default {
         artwork: "",
         name: "",
       },
+      chartData: {
+        current: [0, 0, 0, 1],
+        wanted: [0, 0, 0, 1],
+      },
     }
   },
   mounted() {
     this.id = parseInt(this.$route.params.id)
     this.getCollection()
+    this.updateChart()
   },
   methods: {
     getCollection() {
@@ -66,6 +80,61 @@ export default {
         if (!this.collection.artwork) {
           this.collection.artwork = "Avatar0.png"
         }
+      })
+    },
+
+    updateChart() {
+     this.$cardChain.getRarityDistribution(this.id)
+      .then(res => {
+        this.chartData = res
+        let ctx = document.getElementById("myChart");
+        const chart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: [
+              'COMMON',
+              'UNCOMMON',
+              'RARE',
+              'NONE'
+            ],
+            datasets: [{
+              label: 'Current',
+              data: res.current,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'grey'
+              ],
+              hoverOffset: 4
+            }, {
+              label: 'Wanted',
+              data: res.wanted,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'grey'
+              ],
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right',
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.dataset.label + ': ' + context.label + " " + context.parsed
+                  }
+                }
+              }
+            }
+          },
+        })
       })
     }
   }
@@ -86,6 +155,10 @@ export default {
 
 .general {
   width: 50%
+}
+
+.chartContainer {
+  display: inline-block;
 }
 
 </style>
