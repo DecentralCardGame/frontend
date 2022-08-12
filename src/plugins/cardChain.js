@@ -245,7 +245,7 @@ export default {
         })
       }
       buyCardSchemeTx (maxBid) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme", {bid: "100000000ucredits"})
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme", {bid: maxBid+"ucredits"})
       }
       registerAccTx (alias) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgCreateuser", {
