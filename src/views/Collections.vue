@@ -36,7 +36,25 @@
         <br>
       </div>
       <div class="child contribs">
-        def
+        <div class="heading">
+          Contributors
+        </div>
+        <div class="body">
+          <div
+            v-for="contrib in collection.contributors"
+            :key="contrib"
+            class="listElement"
+          >
+            <a>{{ contrib }}</a>
+            <button
+              v-if="$store.getters['common/wallet/address'] == collection.contributors[0] && collection.status === 'design'"
+              class="remove"
+              @click="sendRemoveContrib(contrib)"
+            >
+              -
+            </button>
+          </div>
+        </div>
       </div>
       <div class="child image">
         <div
@@ -121,6 +139,11 @@ export default {
       })
     },
 
+    sendRemoveContrib(user) {
+      this.$cardChain.removeContributorFromCollection(this.id, user)
+      .then(this.getCollection)
+    },
+
     updateChart() {
      this.$cardChain.getRarityDistribution(this.id)
       .then(res => {
@@ -184,17 +207,18 @@ export default {
 .peterSolar {
   margin-top:50px;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
   .child {
-    background: #F5F5F5;
-    //margin:3%;
-    padding:25px;
     display:inline-block;
-    // vertical-align: top;
   }
 }
 
 .general {
-  width: 50%
+  background: #F5F5F5;
+  width: 40%;
+  min-width:15em;
 }
 
 .chartContainer {
@@ -202,11 +226,44 @@ export default {
 }
 
 .image {
-  width: 40%
+  width: 40%;
+  min-width:15em;
 }
 
 .contribs {
-  width: 10%
+  background: #F5F5F5;
+  width: 10%;
+  min-width:10em;
+  .heading {
+    padding-left:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    background: #757575;
+    color: #FFFFFF
+  }
+  .body {
+    padding:5px;
+    .listElement {
+      display: flex;
+      justify-content: space-between;
+      a {
+        color: black;
+        width: 80%;
+        overflow: hidden;
+      }
+      button {
+        color: white;
+        background: #757575;
+        border-width: 0px;
+        border-radius: 3px;
+        width: 20px;
+        margin: 2px;
+      }
+      button:hover {
+        background: #97979a;
+      }
+    }
+  }
 }
 
 .cropper {
