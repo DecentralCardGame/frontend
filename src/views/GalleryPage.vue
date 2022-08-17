@@ -272,7 +272,8 @@ export default {
       canVote: false,
       isOwner: false,
       leavePageLock: false,
-      keywordDescriptions: []
+      keywordDescriptions: [],
+      votableCards: []
     };
   },
   // this watch together with the following beforeRouteLeave make browsing
@@ -386,6 +387,7 @@ export default {
         this.cards = res
         console.log("cards on page", this.cards)
         console.log("all card names:", R.pluck("CardName", res))
+        console.log("name lengths", R.map(x => x.length, R.pluck("CardName", res)))
       })
       .catch(res => {
         console.error("NOT ALL CARDS WERE PROPERLY LOADED")
@@ -412,7 +414,8 @@ export default {
     showGalleryModal() {
       this.isGalleryModalVisible = true
 
-      if (this.votableCards) {
+      console.log("votablecards", this.votableCards)
+      if (!R.isEmpty(this.votableCards)) {
         this.canVote = R.any(
           (x) => x == this.cards[this.clickedIndex].id,
           R.pluck("cardId", this.votableCards.voteRights)
