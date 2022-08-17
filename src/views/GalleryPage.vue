@@ -172,9 +172,6 @@
       >
         Alpha Set
       </button>
-      <button @click="loadSpecialCardList('Artwork')">
-        Artwork Needed
-      </button>
       <button
         v-show="browsingForward"
         @click="nextPage"
