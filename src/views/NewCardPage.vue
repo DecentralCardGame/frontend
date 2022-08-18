@@ -1098,13 +1098,12 @@ export default {
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
-        this.$cardChain
-          .saveContentToCardTx(newCard, this.model.id)
+        Promise.all([
+            this.$cardChain.saveContentToCardTx(newCard, this.model.id),
+            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
+          ])
           .then(this.$cardChain.updateUserCredits())
-          .then(() => {
-            return this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
-          })
-          .then(this.resetCard)
+          .then(this.resetCard())
           .catch((err) => {
             this.notifyFail("Update Card failed", err)
             console.error(err)
