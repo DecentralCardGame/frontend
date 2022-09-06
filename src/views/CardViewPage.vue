@@ -146,10 +146,6 @@ export default {
               })
             })
 
-            // yesyoulike.json for harry
-            let likelist = []
-            R.mapObjIndexed((num, key) => { likelist.push({"keyword": key, "description": num.description}) }, R.filter(x => x.description, this.$rulesDefinitions))
-            // console.log("yes:", JSON.stringify(likelist))
             if (this.$store.getters["getLoggedIn"]) {
               this.loadVotableCards()
             }
@@ -166,14 +162,14 @@ export default {
       .getVotableCards(this.$store.getters['common/wallet/address'])
       .then(res => {
         var votableCards = []
-        console.log("getVotableCards:", res);
-        if (!res.noVoteRights) {
-          votableCards = res.voteRights;
+        if (!res.votables.noVoteRights) {
+          votableCards = res.votables.voteRights;
         }
+        console.log("votableCards:", votableCards);
         this.canVote = false
         if (!R.isEmpty(votableCards)) {
           for (var i = 0; i < votableCards.length; i++) {
-            if (votableCards.voteRights[i].cardId == this.id) {
+            if (votableCards[i].cardId == this.id) {
               this.canVote = true
             }
           }
@@ -189,7 +185,7 @@ export default {
         })
     },
     edit() {
-      console.log("editing:", this.id)
+      this.card.id = this.id
       this.$store.commit(
         "setCardCreatorEditCard",
         this.card

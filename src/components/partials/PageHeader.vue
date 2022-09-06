@@ -72,7 +72,6 @@ export default {
           console.log("credits:", credits)
           if (credits < 1) {
             console.log("using faucet")
-
             this.showCaptcha = true
           } else {
             return "no faucet necessary"
