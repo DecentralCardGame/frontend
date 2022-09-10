@@ -176,8 +176,6 @@ export default {
       this.$emit('close')
     },
     filterClasses (options) {
-      console.log("cardmodel", this.cardmodel)
-      console.log("options", options)
       if (!this.cardmodel.Class || !options) {
         return []
       }
@@ -189,6 +187,7 @@ export default {
       }
       let abilityIsValid = x => {
         if (!x.classes) {
+          if (x.name === "Spawn") return false // this is a temporary deactivation for cardobj upgrade
           return true
         }
         else {
