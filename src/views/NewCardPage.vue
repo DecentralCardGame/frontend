@@ -1101,7 +1101,7 @@ export default {
             this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
           ])
           .then(this.$cardChain.updateUserCredits())
-          .then(this.resetCard())
+          .then(this.resetCard)
           .catch((err) => {
             this.notifyFail("Update Card failed", err)
             console.error(err)
