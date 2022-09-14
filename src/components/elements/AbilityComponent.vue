@@ -182,7 +182,7 @@ export default {
               console.log('attaching:', btn.label, 'to', this.ability.clickedBtn.abilityPath)
 
               let intX = {}
-                
+
               // variable case
               if (isNaN(btn.label)) {
                 intX.IntVariable = btn.label
@@ -193,7 +193,7 @@ export default {
               }
 
               this.attachToAbility(this.ability.clickedBtn.abilityPath, intX)
-              
+
               this.dialog = "surpressed - no modal"
             }
             // default case
@@ -246,7 +246,7 @@ export default {
               btn.label = ""
               this.attachToAbility(R.dropLast(1, this.ability.clickedBtn.abilityPath), {})
             }
-            else 
+            else
               this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
 
             break
@@ -324,7 +324,7 @@ export default {
       else {
         return R.prepend(unrequiredLabel, R.path(entry.btn.rulesPath, this.$cardRules).enum)
       }
-      
+
     }
   }
 }
@@ -352,6 +352,7 @@ export default {
   }
 
   .ability-modal-container {
+    margin-top: 1vh;
     position: relative;
     z-index: 3;
   }
