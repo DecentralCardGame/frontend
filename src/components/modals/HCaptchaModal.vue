@@ -5,7 +5,7 @@
       style="z-index: 1000;"
     >
       <vue-hcaptcha
-        sitekey="8cc41448-0666-47c2-ae31-be4ea1263aab"
+        sitekey="sitekey"
         @verify="onVerify"
       />
     </div>
@@ -25,6 +25,7 @@ export default {
   },
   data() {
     return {
+      sitekey: process.env.VUE_APP_FAUCET_SITEKEY
     }
   },
   watch: {
@@ -42,7 +43,7 @@ export default {
       params.append('address', this.$store.getters['common/wallet/address']);
       params.append('token', res)
 
-      const response = fetch('https://dragonapi.space:8081/api/claimTokens', {
+      const response = fetch(process.env.VUE_APP_FAUCET, {
           method: 'POST',
           body: params,
           headers: {
