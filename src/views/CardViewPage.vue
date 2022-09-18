@@ -79,6 +79,7 @@
     <div>
       <br>
       <b>Advanced Card Information:</b> <br>
+      Status: {{ card.status }} <br>
       FlavourText: {{ card.FlavourText }} <br>
       Notes: {{ card.notes }} <br>
       Inappropriate Votes: {{ card.inappropriateVotes }} <br>
@@ -86,14 +87,19 @@
       Overpowered Votes: {{ card.overpoweredVotes }} <br>
       Fair Enough Votes: {{ card.fairEnoughVotes }} <br>
       Nerflevel: {{ card.nerflevel }} <br>
+      VotePool: {{ card.votePool.amount }}credits <br><br>
       Owner:
       <router-link
         :to="{name: 'UserView', params: {id: card.owner} }"
       >
         {{ card.owner }}
       </router-link> <br>
-      Status: {{ Status }} <br>
-      VotePool: {{ VotePool }} <br><br>
+      Artist:
+      <router-link
+        :to="{name: 'UserView', params: {id: card.artist} }"
+      >
+        {{ card.artist }}
+      </router-link> <br>
     </div>
   </div>
 </template>
