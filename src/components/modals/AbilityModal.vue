@@ -187,10 +187,11 @@ export default {
       }
       let abilityIsValid = x => {
         if (!x.classes) {
-          if (x.name === "Spawn") return false // this is a temporary deactivation for cardobj upgrade
+          if (x.name === "Spawn" || x.name === "Reassemble") return false // this is a temporary deactivation for cardobj upgrade
           return true
         }
         else {
+          if (x.name === "Reassemble") return false // this is a temporary deactivation for cardobj upgrade
           let ok = R.any(y => cardHasClass(y), x.classes)
           return ok
         }
