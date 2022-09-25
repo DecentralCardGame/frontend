@@ -219,6 +219,7 @@ export default {
   background: #F5F5F5;
   width: 40%;
   min-width:15em;
+  padding: 25px;
 }
 
 .chartContainer {
