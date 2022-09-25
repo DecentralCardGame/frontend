@@ -57,7 +57,6 @@
               v-model="model.CardName"
               @change="saveDraft"
             >
-
             <!-- Artwork -->
             <span class="creator-text">
               Everybody needs a <b>face</b>, so do I. Please upload an image. By uploading you confirm you have the rights to upload this image.
@@ -652,7 +651,6 @@ import {
   atPath,
   emptyCard,
   uploadImg,
-  creditsFromCoins,
 } from "@/components/utils/utils.js";
 
 import { sampleGradientImg } from '../components/utils/sampleCards.js'
@@ -1098,12 +1096,11 @@ export default {
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
-        this.$cardChain
-          .saveContentToCardTx(newCard, this.model.id)
+        Promise.all([
+            this.$cardChain.saveContentToCardTx(newCard, this.model.id),
+            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
+          ])
           .then(this.$cardChain.updateUserCredits())
-          .then(() => {
-            return this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
-          })
           .then(this.resetCard)
           .catch((err) => {
             this.notifyFail("Update Card failed", err)

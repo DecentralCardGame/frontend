@@ -23478,7 +23478,7 @@ export default {
         MultiClass: "#9A7038",
         HQ: "#9A7038"
       }
-      if (this.Type && this.Type.HQ) {
+      if (this.Type && this.Type.HQ && this.Classes != 2) {
         return colors.HQ
       }
       else if (this.Classes > 2) {

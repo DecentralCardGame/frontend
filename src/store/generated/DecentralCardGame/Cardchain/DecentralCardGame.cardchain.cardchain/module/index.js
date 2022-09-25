@@ -104,19 +104,23 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
                     throw new Error("Account does not exist on chain. Send some tokens there before trying to query sequence.");
                 }
 
+                // if sequence info is not yet defined, do it here
                 if (!sequenceInfo.height) {
                     sequenceInfo = {
                         height: height,
                         sequence: account.sequence
                     }
                 }
+                // if the sequence info is outdated, we update it
                 else if (sequenceInfo.height < height) {
-                    sequenceInfo = {
-                        height: height,
-                        sequence: account.sequence
+                    // we don't update the sequence if it is from last block
+                    // this fixes sequence error is tx got into new block and update would reset the sequence
+                    if (sequenceInfo.height + 1 < height) {
+                        sequenceInfo.sequence = account.sequence
                     }
+                    sequenceInfo.height = height
                 }
-
+                
                 let returnSequence = sequenceInfo.sequence
                 sequenceInfo.sequence++
 

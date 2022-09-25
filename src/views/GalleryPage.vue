@@ -172,9 +172,6 @@
       >
         Alpha Set
       </button>
-      <button @click="loadSpecialCardList('Artwork')">
-        Artwork Needed
-      </button>
       <button
         v-show="browsingForward"
         @click="nextPage"
@@ -500,7 +497,6 @@ export default {
       })
     },
     edit() {
-      console.log("editing:", this.cards[this.clickedIndex])
       this.$store.commit(
         "setCardCreatorEditCard",
         this.cards[this.clickedIndex]

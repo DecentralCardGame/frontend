@@ -192,11 +192,11 @@ export default {
               throw new Error('account ' + this.vue.$store.getters['common/wallet/address'] + ' does not own Card Frames')
             } else {
               let id = user.ownedCardSchemes[0]
-              return this.saveContentToCardTx(card, id)
-                .then((res) => {
-                  this.saveArtworkToCard(id, card.image, card.fullArt)
-                  return res
-                })
+
+              return Promise.all([
+                this.saveContentToCardTx(card, id),
+                this.saveArtworkToCard(id, card.image, card.fullArt)
+              ])
             }
           })
       }
