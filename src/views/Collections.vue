@@ -145,7 +145,7 @@ export default {
     },
 
     updateChart() {
-     this.$cardChain.getRarityDistribution(this.id)
+      this.$cardChain.getRarityDistribution(this.id)
       .then(res => {
         this.chartData = res
         let ctx = document.getElementById("myChart");

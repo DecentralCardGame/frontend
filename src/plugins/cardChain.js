@@ -418,7 +418,7 @@ export default {
               .catch(this.handleGetError)
       }
       getRarityDistribution (id) {
-          return this.vue.$http.get('/DecentralCardGame/Cardchain/cardchain/rarity_distribution/' + id)
+          return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/rarity_distribution/' + id)
               .then(res => {
                 return res.data
               })
