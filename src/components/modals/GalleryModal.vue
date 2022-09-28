@@ -132,6 +132,49 @@
               >
                 Owner profile
               </button>
+              <button
+                v-if="collections.length > 0 && collectionsIn.length == 0 && isOwner"
+                aria-label="Close modal"
+                class="addColl choice-grid__button"
+                type="button"
+                @click="sendAddColl"
+              >
+                Add to collection
+                <select v-model="addCollection">
+                  <option
+                    v-for="coll in collections"
+                    :key="coll"
+                  >
+                    {{ collectionNames[coll] }}
+                  </option>
+                </select>
+              </button>
+              <button
+                v-if="collectionsIn.length > 0"
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="sendRemoveColl"
+              >
+                Remove from Collection: {{ collectionNames[collectionsIn[0]] }}
+              </button>
+              <button
+                v-if="collectionsOwned.length > 0"
+                aria-label="Close modal"
+                class="addColl choice-grid__button"
+                type="button"
+                @click="sendSetRarity"
+              >
+                Set rarity
+                <select v-model="rarity">
+                  <option
+                    v-for="rar in rarities"
+                    :key="rar"
+                  >
+                    {{ rar }}
+                  </option>
+                </select>
+              </button>
             </section>
           </div>
         </div>
@@ -178,6 +221,13 @@ export default {
       currentPrice: -1,
       currentBid: -1,
       creditsAvailable: -1,
+      collectionsIn: [],
+      collections: [],
+      collectionNames: {},
+      addCollection: null,
+      collectionsOwned: [],
+      rarities: ["COMMON", "UNCOMMON", "RARE"],
+      rarity: null,
     }
   },
   watch: {
@@ -188,10 +238,70 @@ export default {
         this.$emit('close')
       }
     },
+    '$store.state.common.wallet.selectedAddress': function () {
+      this.init()
+    }
   },
   mounted() {
+    this.init()
   },
   methods: {
+    init() {
+      this.rarity = this.model.Rarity
+      if (this.$store.getters['common/wallet/address']) {
+        console.log(this.model)
+        this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'], this.model.id)
+        .then(res => {
+          console.log("In")
+          this.collectionsIn = res.collectionIds
+          console.log(this.collectionsIn)
+        })
+        this.$cardChain.getCollections("design", this.$store.getters['common/wallet/address'])
+        .then(res => {
+          console.log("all")
+          this.collections = res.collectionIds
+          console.log(this.collections)
+          for (var i = 0; i<this.collections.length; i++) {
+            this.$cardChain.getCollection(this.collections[i])
+            .then(res => {
+              this.collectionNames[res.id] = res.c.name
+              console.log(this.collectionNames)
+            })
+          }
+        })
+        this.$cardChain.getCollections("design", "", this.model.id, this.$store.getters['common/wallet/address'])
+        .then(res => {
+          console.log("owned")
+          this.collectionsOwned = res.collectionIds
+          console.log(this.collectionsOwned)
+        })
+      }
+    },
+    sendAddColl() {
+      if (this.addCollection) {
+        this.$cardChain.addCardToCollection(this.addCollection, this.model.id)
+        .then(res => {
+          console.log("yesyesyes")
+          this.init()
+        })
+      }
+    },
+    sendRemoveColl() {
+      this.$cardChain.removeCardFromCollection(this.collectionsIn[0], this.model.id)
+      .then(res => {
+        console.log("yesyesyes")
+        this.init()
+      })
+    },
+     sendSetRarity() {
+      if (this.rarity) {
+        this.$cardChain.setCardRarity(this.model.id, this.collectionsOwned[0], this.rarity)
+        .then(res => {
+          console.log("yesyesyes")
+          this.init()
+        })
+      }
+    },
     doNothing () {
     },
     close() {
@@ -253,6 +363,14 @@ export default {
 
 .no__bottomline {
   border-bottom: initial;
+}
+
+.addColl {
+  select {
+    color: $black;
+    background-color: lightgray;
+    display: inline;
+  }
 }
 
 .view__card {

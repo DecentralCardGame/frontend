@@ -6,6 +6,7 @@ import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import {CollectionProposal} from "../store/generated/DecentralCardGame/Cardchain/DecentralCardGame.cardchain.cardchain/module/types/cardchain/collection_proposal.js"
 import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
@@ -114,6 +115,7 @@ export default {
       }
       cardObjectToWebModel (rawCard) {
         if (rawCard.content) {
+          console.log(">>", rawCard.content)
           let contentLens = R.lensProp('Content')
           let parseContent = item => R.set(contentLens, JSON.parse(item.content), item)
           let card = R.merge(emptyCard, parseContent(rawCard))
@@ -214,8 +216,7 @@ export default {
             return res
           })
           .catch(err => {
-            this.vue.notifyFail('Fail', err.message)
-            console.log(err)
+            this.vue.notifyFail('Fail', err)
             throw new Error(err)
           })
       }
@@ -231,11 +232,94 @@ export default {
       saveArtworkToCard (id, image, fullart) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {"cardId": id, "image": btoa(image), "fullArt": fullart})
       }
+      addCardToCollection (collectionId, cardId) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddCardToCollection",
+          {
+            "cardId": cardId,
+            "collectionId": collectionId
+          }
+        )
+      }
+      removeCardFromCollection (collectionId, cardId) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgRemoveCardFromCollection",
+          {
+            "cardId": cardId,
+            "collectionId": collectionId
+          }
+        )
+      }
+      removeContributorFromCollection (collectionId, user) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgRemoveContributorFromCollection",
+          {
+            "user": user,
+            "collectionId": collectionId
+          }
+        )
+      }
+      addContributorToCollection (collectionId, user) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddContributorToCollection",
+          {
+            "user": user,
+            "collectionId": collectionId
+          }
+        )
+      }
+      finalizeCollection (collectionId) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgFinalizeCollection",
+          {
+            "collectionId": collectionId
+          }
+        )
+      }
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
       }
+      addStoryToCollection (id, story) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddStoryToCollection",
+          {
+            "collectionId": id,
+            "story": story
+          }
+        )
+      }
+      setCardRarity (cardId, collectionId, rarity) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgSetCardRarity",
+          {
+            "cardId": cardId,
+            "collectionId": collectionId,
+            "rarity": rarity
+          }
+        )
+      }
+      addArtworkToCollection (id, image) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgAddArtworkToCollection",
+          {
+            "collectionId": id,
+            "image": btoa(image)
+          }
+        )
+      }
       voteCardTx (cardId, voteType) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
+      }
+      createCollection (name, artist, storyWriter, contributors) {
+        return this.sendGenericTx(
+          "DecentralCardGame.cardchain.cardchain.MsgCreateCollection",
+          {
+            "name": name,
+            "artist": artist,
+            "storyWriter": storyWriter,
+            "contributors": contributors,
+          }
+        )
       }
       saveContentToCardTx (card, id) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", {"cardId": id,
@@ -276,6 +360,22 @@ export default {
           }
         )
       }
+      submitCollectionProposal (id) {
+        return this.sendGenericTx(
+          "cosmos.gov.v1beta1.MsgSubmitProposal",
+          {
+            "content": {
+              "type_url": "/DecentralCardGame.cardchain.cardchain.CollectionProposal",
+              value: CollectionProposal.encode(CollectionProposal.fromPartial({
+                "title": "Collection proposal for collection "+id,
+                "description": "We request makeing this collection buyable in boosterpacks.",
+                "collectionId": id,
+              })).finish()
+            },
+            "proposer": this.vue.$store.getters['common/wallet/address']
+          }
+        )
+      }
       revokeAuthz (grantee, msg) {
         return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {"grantee": grantee, "msg_type_url": msg, "granter": this.vue.$store.getters['common/wallet/address']})
       }
@@ -299,6 +399,30 @@ export default {
           return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_card/' + id)
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
+      }
+      getCollection (id) {
+          return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_collection/' + id)
+              .then(res => {
+                return {
+                  id: id,
+                  c: res.data
+                }
+              })
+              .catch(this.handleGetError)
+      }
+      getProposals () {
+          return this.vue.$http.get('/cosmos/gov/v1beta1/proposals')
+              .then(res => {
+                return res.data
+              })
+              .catch(this.handleGetError)
+      }
+      getRarityDistribution (id) {
+          return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/rarity_distribution/' + id)
+              .then(res => {
+                return res.data
+              })
+              .catch(this.handleGetError)
       }
       getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
@@ -330,6 +454,19 @@ export default {
       }
       getVotingResults () {
         return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_voting_results')
+          .then(res => {
+            return res.data
+          })
+          .catch(this.handleGetError)
+      }
+      getCollections (status, contrib, card, owner) {
+        return this.vue.$http.get('/DecentralCardGame/Cardchain/cardchain/q_collections/' +
+            (status ? status : "active") + "/" +
+            (status ? false : true) + "?" +
+            (contrib ? "&contributors="+contrib : "") +
+            (card ? "&containsCards="+card : "") +
+            (owner ? "&owner="+owner : "")
+          )
           .then(res => {
             return res.data
           })

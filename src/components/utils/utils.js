@@ -219,7 +219,6 @@ export function shallowClone (obj) {
 // utility functions for uploading and downloading stuff
 
 export function uploadImg (file, maxKB, callback) {
-  let resolution = {height: 1300, width: 838}
 
   const reader = new FileReader()
 
@@ -228,13 +227,8 @@ export function uploadImg (file, maxKB, callback) {
     image.onload = function () {
       // Resize the image
       let canvas = document.createElement('canvas')
-      let maxSize = resolution.height
       let width = image.width
       let height = image.height
-      //if (height > maxSize) {
-      //    width *= maxSize / height
-      //    height = maxSize
-      //}
       canvas.width = width
       canvas.height = height
       canvas.getContext('2d').drawImage(image, 0, 0, width, height)

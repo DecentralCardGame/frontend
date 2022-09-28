@@ -343,6 +343,7 @@ export default {
           card.id = cardId
           if (card.content) {
             let candidate = this.$cardChain.cardObjectToWebModel(card)
+            console.log(candidate)
             this.cards.push(candidate)
             return candidate
           } else if (!card.owner) {

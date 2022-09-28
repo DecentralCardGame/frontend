@@ -17,6 +17,8 @@ const VotingPage = () => import('@/views/VotingPage')
 const CardView = () => import('@/views/CardViewPage')
 const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
+const BoosterPacks = () => import('@/views/BoosterPacks')
+const Collections = () => import('@/views/Collections')
 
 const routes = [
   {
@@ -88,6 +90,16 @@ const routes = [
     path: '/user/:id',
     name: 'UserView',
     component: UserView
+  },
+  {
+    path: '/packs',
+    name: 'BoosterPacks',
+    component: BoosterPacks
+  },
+  {
+    path: '/collections/:id',
+    name: 'Collections',
+    component: Collections
   },
   {
     path: '/:pathMatch(.*)*',
