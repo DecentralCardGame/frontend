@@ -53,7 +53,7 @@
       <div class="dual--column--text">
         <div class="qbox--container">
           <p class="qbox--text">
-            Q2 2022
+            Q3 2022
           </p>
         </div>
         <h2>3. The Revolution starts</h2>
@@ -79,7 +79,7 @@
       <div class="dual--column--text">
         <div class="qbox--container">
           <p class="qbox--text">
-            Q3 2022
+            Q1 2023
           </p>
         </div>
         <h2>4. The Revolution unfolds</h2>
@@ -104,7 +104,7 @@
       <div class="dual--column--text">
         <div class="qbox--container">
           <p class="qbox--text">
-            Q4 2022
+            Q2 2023
           </p>
         </div>
         <h2>5. The Crowd is in Control</h2>

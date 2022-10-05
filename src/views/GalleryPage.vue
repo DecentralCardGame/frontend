@@ -496,7 +496,6 @@ export default {
       })
     },
     edit() {
-      console.log("editing:", this.cards[this.clickedIndex])
       this.$store.commit(
         "setCardCreatorEditCard",
         this.cards[this.clickedIndex]

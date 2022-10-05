@@ -72,25 +72,7 @@ export default {
           console.log("credits:", credits)
           if (credits < 1) {
             console.log("using faucet")
-
             this.showCaptcha = true
-            /*
-            return this.$cardChain.useFaucet()
-            .then(async (faucetres) => {
-              console.log("faucetres", faucetres)
-              let active = -1
-              let count = 0
-              while (active === -1 && count < 100) {
-                  active = await this.$cardChain.updateUserCredits();
-                  count++
-              }
-              if (active === -1) {
-                throw new Error('Faucet does not work.')
-              }
-              
-              //console.log("yes", active)
-              //this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
-            })*/
           } else {
             return "no faucet necessary"
           }
@@ -135,7 +117,7 @@ export default {
           try {
             await window.keplr.experimentalSuggestChain({
               chainId: "Cardchain",
-              chainName: "Crowdcontrol testnet",
+              chainName: "Crowdcontrol Testnet",
               rpc: "https://cardchain.crowdcontrol.network/tendermint/",
               rest: "https://cardchain.crowdcontrol.network/cosmos",
               stakeCurrency: {
@@ -156,14 +138,14 @@ export default {
                 bech32PrefixConsPub: "cc"
               },
               currencies: [{
+                coinDenom: "credits",
+                coinMinimalDenom: "ucredits",
+                coinDecimals: 6,
+              }, {
                 coinDenom: "bpf",
                 coinMinimalDenom: "ubpf",
                 coinDecimals: 6,
                 // coinGeckoId: ""
-              }, {
-                coinDenom: "credits",
-                coinMinimalDenom: "ucredits",
-                coinDecimals: 6,
               }],
               feeCurrencies: [{
                 coinDenom: "credits",
@@ -176,7 +158,7 @@ export default {
                 // coinGeckoId: ""
               }],
               coinType: 118,
-              asPriceStep: {
+              gasPriceStep: {
                 low: 0.01,
                 average: 0.025,
                 high: 0.04

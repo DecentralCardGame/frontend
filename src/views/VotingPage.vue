@@ -25,7 +25,43 @@
         </div>
 
         <br>
-        <div class="button-container">
+        <div 
+          v-if="councilStatus == 'available'"
+          class="button-container"
+        >
+          <div
+            :class="[isSelected[0] ? 'council-button--selected' : '', 'council-button']"
+            @click="setCouncilOption(0)"
+          >
+            Approve
+          </div>
+          <div
+            :class="[isSelected[1] ? 'council-button--selected' : '', 'council-button']"
+            @click="setCouncilOption(1)"
+          >
+            Reject
+          </div>
+          <div
+            :class="[isSelected[2] ? 'council-button--selected' : '', 'council-button']"
+            @click="setCouncilOption(2)"
+          >
+            Revise
+          </div>
+          <br>
+          <input 
+            v-if="isSelected[2]" 
+            placeholder="Notes"
+          >
+          
+          <button @click="publishCouncilDecision()">
+            Submit
+          </button>
+        </div>
+
+        <div 
+          v-if="councilStatus == 'unavailable'"
+          class="button-container"
+        >
           <button @click="vote('fair_enough')">
             Fair Enough
           </button>
@@ -73,7 +109,11 @@ export default {
       config: {
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
-      }
+      },
+      isSelected: [false, false, false],
+      councilDecision: -1,
+      councilNotes: "",
+      councilStatus: "",
     }
   },
   watch: {
@@ -94,6 +134,7 @@ export default {
   },
   methods: {
     init () {
+      console.log("initializing")
       this.$cardChain.getVotableCards(this.$store.getters['common/wallet/address'])
         .then(res => {
           this.$cardChain.getCardList("", "playable", "", "", "", "", "", "")
@@ -141,6 +182,17 @@ export default {
         .catch(res => {
           this.notifyFail('OH NOES', res)
         })
+        this.getUser()
+
+    },
+    getUser() {
+      console.log("getting user")
+      this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
+      .then(user => {
+        console.log("received user data: ", user)
+        this.councilStatus = user.CouncilStatus
+        console.log("council status: ", this.councilStatus)
+      })
     },
     vote (type) {
       this.getNextCard()
@@ -192,12 +244,25 @@ export default {
       }
       this.currentCard = R.last(this.cards)
       this.cards = R.dropLast(1, this.cards)
-    }
+    },
+    setCouncilOption(n) {
+      for (let i = 0; i < this.isSelected.length; i++) {
+        if(i === n) {
+          this.isSelected[i] = true
+          this.councilDecision = i
+        }
+        else this.isSelected[i] = false
+      }
+    },
+    publishCouncilDecision(){}
+    
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../scss/variables";
+
 .box {
   text-shadow: none;
   position: relative;
@@ -208,6 +273,20 @@ export default {
 .gallery__view__card {
   margin: auto;
   width: 50%;
+  height: 75vh;
   max-width:500px;
 }
+.council-button {
+  cursor: pointer;
+  display:inline;
+  margin: 0.25rem;
+  border: $border-thickness solid rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.5rem;
+
+  &.council-button--selected {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: $white;
+  }
+}
+
 </style>
