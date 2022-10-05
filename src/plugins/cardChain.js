@@ -223,27 +223,46 @@ export default {
       deRegisterFromCouncilTx () {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgRewokeCouncilRegistration", {})
       }
+      createCouncilTx (id) {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgCreateCouncil", {
+          "cardId": id
+        })
+      }
       setProfileCard (id) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", {"cardId": id})
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", {
+          "cardId": id
+        })
       }
       saveArtworkToCard (id, image, fullart) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {"cardId": id, "image": btoa(image), "fullArt": fullart})
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {
+          "cardId": id, 
+          "image": btoa(image), 
+          "fullArt": fullart
+        })
       }
       transferCard (id, receiver) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {
+          "cardId": id, 
+          "receiver": receiver
+        })
       }
       voteCardTx (cardId, voteType) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {"cardId": cardId, "voteType": voteType})
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgVoteCard", {
+          "cardId": cardId, "voteType": voteType
+        })
       }
       saveContentToCardTx (card, id) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", {"cardId": id,
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", {
+          "cardId": id,
           "content": btoa(JSON.stringify(card.content)),
           "notes": card.notes,
           "artist": this.vue.$store.getters['common/wallet/address']
         })
       }
       buyCardSchemeTx (maxBid) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme", {bid: maxBid+"ucredits"})
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme", {
+          "bid": maxBid+"ucredits"
+        })
       }
       registerAccTx (alias) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgCreateuser", {
@@ -252,7 +271,10 @@ export default {
         })
       }
       transferCoin (to, coins) {
-        return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {"to_address": to, "amount": coins, "from_address": this.vue.$store.getters['common/wallet/address']})
+        return this.sendGenericTx("cosmos.bank.v1beta1.MsgSend", {
+          "to_address": to, 
+          "amount": coins, 
+          "from_address": this.vue.$store.getters['common/wallet/address']})
       }
       grantAuthz (addr, msg) {
         let date = new Date()
@@ -275,7 +297,10 @@ export default {
         )
       }
       revokeAuthz (grantee, msg) {
-        return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {"grantee": grantee, "msg_type_url": msg, "granter": this.vue.$store.getters['common/wallet/address']})
+        return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {
+          "grantee": grantee, 
+          "msg_type_url": msg, 
+          "granter": this.vue.$store.getters['common/wallet/address']})
       }
       getUserInfo (address) {
           console.log(this.validAddress(address))

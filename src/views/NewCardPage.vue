@@ -606,6 +606,13 @@
 
             <button
               v-if="activeStep == 4 && model.id"
+              @click="sendToCouncil()"
+            >
+              Send to Council
+            </button>
+
+            <button
+              v-if="activeStep == 4 && model.id"
               @click="resetCard()"
             >
               Discard Changes
@@ -1118,6 +1125,9 @@ export default {
             console.error(err)
           });
       }
+    },
+    sendToCouncil() {
+      this.$cardChain.createCouncilTx(this.model.id)
     },
     saveDraft() {
       this.$store.commit(
