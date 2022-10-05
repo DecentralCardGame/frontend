@@ -50,14 +50,23 @@
           <br>
           <input 
             v-if="isSelected[2]" 
+            v-model="councilNotes"
             placeholder="Notes"
           >
           
-          <button @click="publishCouncilDecision()">
+          <button 
+            class="button-submit"
+            @click="publishCouncilDecision()"
+          >
             Submit
           </button>
         </div>
-
+        <button 
+          class="button-submit"
+          @click="debug()"
+        >
+          DEBUG
+        </button>
         <div 
           v-if="councilStatus == 'unavailable'"
           class="button-container"
@@ -186,12 +195,9 @@ export default {
 
     },
     getUser() {
-      console.log("getting user")
       this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
       .then(user => {
-        console.log("received user data: ", user)
         this.councilStatus = user.CouncilStatus
-        console.log("council status: ", this.councilStatus)
       })
     },
     vote (type) {
@@ -254,8 +260,45 @@ export default {
         else this.isSelected[i] = false
       }
     },
-    publishCouncilDecision(){}
-    
+    debug() {
+      console.log(this.currentCard.id)
+        this.$cardChain.getCouncil(this.currentCard.id).then( res => {
+          console.log("Council response: ", res)
+        }).catch(err => {
+          console.log("Get council err: ", err)
+        })
+    },
+    publishCouncilDecision(){
+      if(this.councilDecision === -1){
+        this.notifyFail("Careful there!", "Please make a choice before submitting")
+      }else if(this.councilDecision === 2 && this.councilNotes === ''){
+        this.notifyFail("Hold up!", "Please leave a note for the author!")
+      }else{
+        let decision
+        switch(this.councilDecision) {
+          case 0: {
+            decision = "Approve"
+            break
+          }
+          case 1: {
+            decision = "Reject"
+            break
+          }
+          case 2: {
+            decision = "Revise"
+            break
+          }
+        }
+
+        //Send submit transaction
+        this.$cardChain.commitCouncilResponseTx()
+        .catch ( err => {
+          console.log("Submit error: ", err)
+        })
+        
+      }
+    }
+     
   }
 }
 </script>
@@ -279,6 +322,7 @@ export default {
 .council-button {
   cursor: pointer;
   display:inline;
+  margin-top: 1rem;
   margin: 0.25rem;
   border: $border-thickness solid rgba(255, 255, 255, 0.7);
   padding: 0.25rem 0.5rem;
@@ -288,5 +332,7 @@ export default {
     border-color: $white;
   }
 }
-
+.button-submit {
+  margin-top: 1rem;
+}
 </style>

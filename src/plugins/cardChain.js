@@ -219,6 +219,23 @@ export default {
             throw new Error(err)
           })
       }
+      getCouncil (id) {
+        return this.vue.$http.get("/DecentralCardGame/cardchain/cardchain/q_council/" + id)
+          .catch(this.handleGetError)
+          
+      }
+      revealCouncilResponseTx() {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.sendMsgRevealCouncilResponse", {})
+      }
+      restartCouncilTx() {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.sendMsgRestartCouncil", {})
+      }
+      commitCouncilResponseTx() {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgCommitCouncilResponse", {})
+      }
+      createCouncilTx() {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.sendMsgCreateCouncil", {})
+      }
       registerForCouncilTx () {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgRegisterForCouncil", {})
       }
@@ -300,6 +317,7 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
+      
       getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '' && status != 'playable' && status != 'unplayable') {
