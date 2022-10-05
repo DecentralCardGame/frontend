@@ -219,6 +219,9 @@ export default {
             throw new Error(err)
           })
       }
+      queryCouncil (id) {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_council/' + id)
+      }
       registerForCouncilTx () {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgRegisterForCouncil", {})
       }
@@ -230,19 +233,24 @@ export default {
           "cardId": id
         })
       }
-      commitCouncilResponse () {
+      commitCouncilResponse (id, response, secret, suggestion) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgCommitCouncilResponse", {
-          
+          "councilId": id,
+          "response": response,
+          "secret": secret,
+          "suggestion": suggestion
         })
       }
-      restartCouncil () {
+      restartCouncil (id) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgRestartCouncil", {
-          
+          "councilId": id
         })
       }
-      revealCouncilResponse () {
+      revealCouncilResponse (id, response, secret) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgRevealCouncilResponse", {
-
+          "councilId": id,
+          "response": response,
+          "secret": secret,
         })
       }
       setProfileCard (id) {
