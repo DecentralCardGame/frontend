@@ -193,11 +193,15 @@ export default {
         })
         this.getUser()
 
+        // if(this.CouncilStatus === "available") {
+
+        // }
     },
     getUser() {
       this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
       .then(user => {
         this.councilStatus = user.CouncilStatus
+        console.log("user: ", user)
       })
     },
     vote (type) {
@@ -291,10 +295,10 @@ export default {
         }
 
         //Send submit transaction
-        this.$cardChain.commitCouncilResponseTx()
-        .catch ( err => {
-          console.log("Submit error: ", err)
-        })
+        // this.$cardChain.commitCouncilResponseTx()
+        // .catch ( err => {
+        //   console.log("Submit error: ", err)
+        // })
         
       }
     }
