@@ -228,6 +228,21 @@ export default {
           "cardId": id
         })
       }
+      commitCouncilResponse () {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgCommitCouncilResponse", {
+          
+        })
+      }
+      restartCouncil () {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgRestartCouncil", {
+          
+        })
+      }
+      revealCouncilResponse () {
+        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain/sendMsgRevealCouncilResponse", {
+
+        })
+      }
       setProfileCard (id) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", {
           "cardId": id
