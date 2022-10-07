@@ -229,7 +229,14 @@ export default {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", {"cardId": id})
       }
       saveArtworkToCard (id, image, fullart) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {"cardId": id, "image": btoa(image), "fullArt": fullart})
+        // this delay fixes the sequence conflict when firing a save card content at the same time
+        return new Promise(resolve => setTimeout(resolve, 20)).then(() => {
+          return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {
+            "cardId": id, 
+            "image": btoa(image), 
+            "fullArt": fullart
+          })
+        })
       }
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
