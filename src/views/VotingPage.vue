@@ -12,7 +12,7 @@
     <br>
     <div class="voter ccbutton">
       <div
-        v-if="votingActive"
+        v-if="votingActive || councilCardAvailable"
         class="box"
       >
         <div
@@ -26,7 +26,7 @@
 
         <br>
         <div 
-          v-if="councilStatus == 'available'"
+          v-if="councilCardAvailable"
           class="button-container"
         >
           <div
@@ -47,11 +47,17 @@
           >
             Revise
           </div>
-          <br>
+          <br><br>
           <input 
             v-if="isSelected[2]" 
             v-model="councilNotes"
             placeholder="Notes"
+          >
+          <br>
+          Add a password to your response. You will need this to reveal your decision after all council members have voted.
+          <input 
+            v-model="councilSecret"
+            placeholder="Secret"
           >
           
           <button 
@@ -68,7 +74,7 @@
           DEBUG
         </button>
         <div 
-          v-if="councilStatus == 'unavailable'"
+          v-if="!councilCardAvailable"
           class="button-container"
         >
           <button @click="vote('fair_enough')">
@@ -85,10 +91,10 @@
           </button>
         </div>
       </div>
-      <div v-if="!votingActive">
-        <span>You cannot vote on cards. Please login with your wallet.</span>
-        <div v-if="noMoreVotesLeft">
-          <span>You have already voted on all cards. Come back tomorrow to vote again.</span>
+      <div v-if="!votingActive && !councilCardAvailable">
+        <span>You cannot vote on cards. Please make sure you are logged in with your wallet.</span>
+        <div v-if="noMoreVotesLeft && !councilCardAvailable">
+          <span>Perhaps you have already voted on all cards. Come back tomorrow to vote again.</span>
         </div>
         <div v-if="unregistered">
           <span>You are not registered. To vote on cards you have to register, press the Join button to register. </span>
@@ -119,10 +125,14 @@ export default {
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
       },
+      user: {},
       isSelected: [false, false, false],
+      councilCardAvailable: false,
+      councilId: -1,
       councilDecision: -1,
       councilNotes: "",
-      councilStatus: "",
+      councilCard: -1,
+      councilSecret: "",
     }
   },
   watch: {
@@ -144,11 +154,24 @@ export default {
   methods: {
     init () {
       console.log("initializing")
+
+      this.getUser()
+
+
       this.$cardChain.getVotableCards(this.$store.getters['common/wallet/address'])
         .then(res => {
+          console.log("getting card list: " , res)
           this.$cardChain.getCardList("", "playable", "", "", "", "", "", "")
           .then(cards => {
-            console.log('getVotableCards:', res)
+            console.log('getVotableCards: ', res)
+
+            console.log("inside get votable cards")
+              if (this.user.CouncilStatus === "startedCouncil") {
+                //Load the council card
+                console.log("Initializing council: ", this.user.CouncilStatus)
+                this.initCouncil()
+              }
+            
             if (res.votables) {
               this.voteRights = res.votables.voteRights
 
@@ -160,15 +183,17 @@ export default {
               }
 
               this.voteRights = cleaned
+              
 
               if (this.voteRights.length > 0) {
                 console.log('voteRights:', this.voteRights)
-
+                if(!this.councilCardAvailable) { //Only show the next card already if there's no council card to vote on
                 this.getNextCard()
                   .then(() => {
                     this.showNextCard()
                   })
                 this.getNextCard()
+                }
               } else {
                 this.votingActive = false
               }
@@ -191,16 +216,45 @@ export default {
         .catch(res => {
           this.notifyFail('OH NOES', res)
         })
-        this.getUser()
-
-        // if(this.CouncilStatus === "available") {
-
-        // }
+    },
+    initCouncil(){
+      //this.debug()
+      console.log("initializing council")
+      this.$cardChain.getGameInfo() //Query to get the amoun of councils?
+      .then(res => {
+        let councilsNumber = res.councilsNumber 
+        for(let i = 0; i < councilsNumber; i++) { //Cycle through all councils to see which ones contains our user.
+          this.$cardChain.getCouncil(i)
+          .then(res => {
+            console.log("init council res: ", res)
+            let users = res.data.voters
+            console.log("Voters: ", users)
+            if(!users) {
+              console.log("No users in council")
+              return;
+            }
+            for(let i = 0; i < users.length; i++){
+              if(users[i] === this.$store.getters['common/wallet/address']) {
+                this.councilId = i
+                this.councilCard = res.data.cardId //If user address is found in querried council, add the card
+                this.councilCardAvailable = true
+                console.log("User council found!")
+                this.getNextCard().then(() => {
+                  this.showNextCard()
+                })
+                return;
+              }
+            }
+          })
+        }
+      }).catch(res => {
+        console.error(res)
+      })
     },
     getUser() {
       this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
       .then(user => {
-        this.councilStatus = user.CouncilStatus
+        this.user = user
         console.log("user: ", user)
       })
     },
@@ -224,16 +278,31 @@ export default {
         this.showNextCard()
       }
     },
-    getNextCard () {
+    getNextCouncilCard(id){
+      return this.$cardChain.getCard(id)
+          .then(res => {
+            console.log("council card res", res)
+            let parsedCard = this.$cardChain.cardObjectToWebModel(res)
+            console.log('current council card', parsedCard)
+            if (parsedCard) {
+              this.cards.push(parsedCard)
+              R.last(this.cards).id = id
+            } else {
+              console.error('council card could not be parsed', res)
+            }
+          })
+    },
+    getNextVoteCard() {
       console.log('votingRights.length:', this.voteRights.length)
       if (this.voteRights.length > 0) {
+
         let nextCard = R.last(this.voteRights)
-        console.log("nextCard", nextCard)
+        //console.log("nextCard", nextCard)
         this.voteRights = R.dropLast(1, this.voteRights)
 
         return this.$cardChain.getCard(nextCard.cardId)
           .then(res => {
-            console.log("res", res)
+            //console.log("res", res)
             let parsedCard = this.$cardChain.cardObjectToWebModel(res)
             console.log('currentCard', parsedCard)
             if (parsedCard) {
@@ -246,6 +315,16 @@ export default {
       } else {
         console.error('no cards left')
       }
+    },
+    getNextCard () {
+      if(this.councilCardAvailable) {
+        console.log("Council card: ", this.councilCard)
+        return this.getNextCouncilCard(this.councilCard)
+      }
+      else {
+        this.councilCardAvailable = false
+        return this.getNextVoteCard()
+      }      
     },
     showNextCard () {
       this.votingActive = true
@@ -264,21 +343,18 @@ export default {
         else this.isSelected[i] = false
       }
     },
-    debug() {
-      console.log(this.currentCard.id)
-        this.$cardChain.getCouncil(this.currentCard.id).then( res => {
-          console.log("Council response: ", res)
-        }).catch(err => {
-          console.log("Get council err: ", err)
-        })
-    },
+
     publishCouncilDecision(){
+      this.notifyInfo("Committing!", "Council response is being sent, please wait!")
+      let decision
       if(this.councilDecision === -1){
         this.notifyFail("Careful there!", "Please make a choice before submitting")
-      }else if(this.councilDecision === 2 && this.councilNotes === ''){
+      }else if((this.councilDecision === 2 && this.councilNotes === '')){
         this.notifyFail("Hold up!", "Please leave a note for the author!")
+      }else if(this.councilSecret === ''){
+        this.notifyFail("Hold up!", "Please add a password for your decision")
       }else{
-        let decision
+        
         switch(this.councilDecision) {
           case 0: {
             decision = "Approve"
@@ -292,18 +368,35 @@ export default {
             decision = "Revise"
             break
           }
+          default: {
+            break
+          }
         }
 
         //Send submit transaction
-        // this.$cardChain.commitCouncilResponseTx()
-        // .catch ( err => {
-        //   console.log("Submit error: ", err)
-        // })
-        
+         this.$cardChain.commitCouncilResponse(this.councilId, decision, this.councilSecret, this.councilNotes)
+         .then(res => {
+            console.log("council committed: ", res)
+            this.councilCardAvailable = false
+         }).catch(err => {
+          console.log("council commit error: ", err)
+          //If committing failed, return so the user doesnt have to refresh to get back to council options
+          return
+         })    
       }
+      //Move on to voting for cards
+      if (R.isEmpty(this.cards)) {
+        if (!R.isEmpty(this.voteRights)) {
+          this.getNextCard()
+            .then(this.showNextCard())
+        } else {
+          this.votingActive = false
+          this.noMoreVotesLeft = true
+        }
+
     }
-     
   }
+}
 }
 </script>
 
