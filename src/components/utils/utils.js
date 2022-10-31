@@ -247,7 +247,8 @@ export function uploadImg (file, maxKB, callback) {
         newDataURL = canvas.toDataURL('image/jpeg', quality)
         console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
 
-        if (quality <= 0)
+        if (quality <= 0.01)
+          callback("error, compression did not work, try smaller file")
           return ""
       }
       callback(newDataURL)
