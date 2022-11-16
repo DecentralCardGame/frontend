@@ -23010,7 +23010,9 @@
       </defs>
 
       <!-- Title of the card -->
-      <text>
+      <text 
+        text-overflow="visible"
+      >
         <tspan
           id="tspan2408"
           x="99"
@@ -23024,7 +23026,6 @@
           font-style="normal"
           font-variant="normal"
           font-weight="900"
-
           text-anchor="middle"
           writing-mode="lr-tb"
           filter="url(#dropshadow)"
