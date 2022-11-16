@@ -11,6 +11,7 @@
         width="500"
       >
       <img
+        v-if="!isSafari"
         src="../../assets/animations/sparkling_water.gif"
         class="image2"
         alt="Loading..."
@@ -37,9 +38,15 @@
 <script>
 export default {
   name: 'PageHeader',
+    data() {
+      return {
+        isSafari: false
+      };
+    },
     computed: {
     },
     mounted () {
+      this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
     },
     methods: {
       scrollPastMenu() {

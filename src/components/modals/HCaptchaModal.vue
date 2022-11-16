@@ -41,7 +41,8 @@ export default {
 
       const data = {
               address: this.$store.getters['common/wallet/address'],
-              token: res
+              token: res,
+              alias: this.$store.getters['common/wallet/walletName']
       }
 
       const request = new Request(process.env.VUE_APP_FAUCET, {
