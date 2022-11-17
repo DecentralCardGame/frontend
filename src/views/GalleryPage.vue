@@ -356,7 +356,7 @@ export default {
     },
     normalizeQuery(query) {
       return {
-        status: query.status ? query.status.toLowerCase() : "",
+        status: query.status ? query.status.toLowerCase() : "playable", // try default playable
         owner: query.owner ? query.owner : "",
         cardType: query.cardType ? query.cardType : "",
         classes: query.classes ? query.classes : "",
