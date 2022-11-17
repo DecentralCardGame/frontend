@@ -23014,9 +23014,7 @@
       </defs>
 
       <!-- Title of the card -->
-      <text 
-        text-overflow="visible"
-      >
+      <text>
         <tspan
           id="tspan2408"
           x="99"
