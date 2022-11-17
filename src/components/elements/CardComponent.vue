@@ -22987,7 +22987,9 @@
       <defs>
         <filter
           id="dropshadow"
-          height="160%"
+          x="-100px"
+          height="100px"
+          width="200px"
         >
           <feDropShadow
             dx="2"
@@ -22998,7 +23000,9 @@
         </filter>
         <filter
           id="dropshadow_straight"
-          height="160%"
+          x="-100px"
+          height="100px"
+          width="200px"
         >
           <feDropShadow
             dx="1"
@@ -23024,7 +23028,6 @@
           font-style="normal"
           font-variant="normal"
           font-weight="900"
-
           text-anchor="middle"
           writing-mode="lr-tb"
           filter="url(#dropshadow)"
