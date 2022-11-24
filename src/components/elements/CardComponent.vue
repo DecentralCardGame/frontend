@@ -22989,7 +22989,7 @@
           id="dropshadow"
           x="-100px"
           y="-100px"
-          height="200px"
+          height="160%"
           width="200px"
         >
           <feDropShadow
@@ -23001,8 +23001,8 @@
         </filter>
         <filter
           id="dropshadow_straight"
-          x="-100px"
-          y="-100px"
+          x="00px"
+          y="00px"
           height="200px"
           width="200px"
         >
