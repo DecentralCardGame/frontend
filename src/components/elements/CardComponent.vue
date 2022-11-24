@@ -22987,24 +22987,24 @@
       <defs>
         <filter
           id="dropshadow"
-          x="-100px"
-          y="-100px"
-          height="200px"
-          width="200px"
+          x="-1em"
+          y="-1em"
+          height="2em"
+          width="2em"
         >
           <feDropShadow
             dx="2"
             dy="2"
             stdDeviation="1.5"
-            flood-opacity="1.00"
+            flood-opacity="0.60"
           />
         </filter>
         <filter
           id="dropshadow_straight"
-          x="00px"
-          y="00px"
-          height="200px"
-          width="200px"
+          x="-1em"
+          y="-1em"
+          height="2em"
+          width="2em"
         >
           <feDropShadow
             dx="1"
