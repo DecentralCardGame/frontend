@@ -22987,10 +22987,7 @@
       <defs>
         <filter
           id="dropshadow"
-          x="-100px"
-          y="-100px"
           height="160%"
-          width="200px"
         >
           <feDropShadow
             dx="2"
@@ -23001,10 +22998,10 @@
         </filter>
         <filter
           id="dropshadow_straight"
-          x="00px"
-          y="00px"
-          height="200px"
-          width="200px"
+          x="-100px"
+          y="-100px"
+          height="200%"
+          width="200%"
         >
           <feDropShadow
             dx="1"
