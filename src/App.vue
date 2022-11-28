@@ -44,10 +44,20 @@ export default {
   },
   async created() {
     this.$cardChain.bindVue(this)
-    await this.$store.dispatch('common/env/init')
+
+    //await this.$store.dispatch('common/env/setTxAPI', process.env.VUE_APP_API_COSMOS_FALLBACK)
+
+
+    await this.$store.dispatch('common/env/init', {
+      apiNode: process.env.VUE_APP_API_COSMOS_FALLBACK,
+      rpcNode: process.env.VUE_APP_API_TENDERMINT_FALLBACK,
+      wsNode: process.env.VUE_APP_WS_TENDERMINT_FALLBACK,
+      getTXApi: process.env.VUE_APP_API_TENDERMINT_FALLBACK + '/tx?hash=0x',
+    })
     this.initialized = true
 
     console.log("initialized?", this.initialized)
+    console.log("API COSMOS:", this.$store.getters['common/env/apiCosmos'])
   },
   mounted () {
     this.setLoginStatus();
@@ -68,10 +78,8 @@ export default {
       console.log('wallet name, adress', this.$store.getters['common/wallet/address'])
       if (this.$store.getters['common/wallet/walletName'] != null) {
         this.$store.commit('setLoggedIn', true)
-        console.log("loggedin?", this.$store.getters["getLoggedIn"])
       } else {
         this.$store.commit('setLoggedIn', false)
-        console.log("loggedin?", this.$store.getters["getLoggedIn"])
       }
     },
   }
