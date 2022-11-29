@@ -17,6 +17,7 @@ const app = createApp(App)
 
 app.config.globalProperties._depsLoaded = true
 app.config.globalProperties.R = R
+app.config.globalProperties.apiFallback = false
 
 let api_address = process.env.VUE_APP_API_COSMOS
 
@@ -24,14 +25,12 @@ axios.get(api_address+"/DecentralCardGame/cardchain/cardchain/q_cardchain_info")
 .then(() => {
   console.log("connetion works")
 }).catch(err => {
-  console.log("FAILED using fallback connection", err)
+  console.error("main connection FAILED - using fallback connection", err)
+  app.config.globalProperties.apiFallback = true
   api_address = process.env.VUE_APP_API_COSMOS_FALLBACK
 
   console.log("fallback:", api_address)
 
-  //common/env/apiCosmos
-  //common/env/apiTendermint
-  //common/env/apiWS
 })
 .finally(() => {
 

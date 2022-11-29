@@ -11,6 +11,7 @@
       enter address
       <input
         v-model="address"
+        size="50"
         @change="updateAddress"
       >
     </div>
@@ -43,7 +44,7 @@ export default {
   name: 'GameOfChainsPage',
   data () {
     return {
-      address: "cosmos1ra2l6ftxenajvzx0asa3d3e8w7a9sxrjw0jyq7",
+      address: "cosmos1...",
       count: 0,
       txs: []
     }
@@ -65,7 +66,7 @@ export default {
       .catch(err => {
         console.error(err)
         this.txs = []
-        this.count = "invalid address"
+        this.count = "invalid address - please enter valid address"
       })
       .then(res => {
         this.txs = res.data.tx_data
@@ -79,7 +80,7 @@ export default {
       .catch(err => {
         console.error(err)
         this.txs = []
-        this.count = "invalid address"
+        this.count = "invalid address - please enter valid address"
       })
       .then(res => {
         this.count = res.data.count_relayed_packets 
