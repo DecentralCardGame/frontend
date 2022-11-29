@@ -23004,7 +23004,7 @@
           x="-1em"
           y="-1em"
           height="2em"
-          width="2em"
+          width="4em"
         >
           <feDropShadow
             dx="1"
