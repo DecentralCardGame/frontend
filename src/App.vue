@@ -46,15 +46,28 @@ export default {
     this.$cardChain.bindVue(this)
 
     console.log("Fallback?", this.apiFallback)
+    
     /*
+    await this.$store.dispatch('common/env/init', {
+      starportUrl: 'http://localhost:12345',
+      apiNode: this.apiFallback ? process.env.VUE_APP_API_COSMOS_FALLBACK : process.env.VUE_APP_API_COSMOS,
+      rpcNode: this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK,
+      wsNode: this.apiFallback ? process.env.VUE_APP_WS_TENDERMINT_FALLBACK : process.env.VUE_APP_WS_TENDERMINT_FALLBACK,
+      chainId: process.env.VUE_APP_CHAIN_ID,
+      addrPrefix: process.env.VUE_APP_ADDRESS_PREFIX,
+      chainName: process.env.VUE_APP_CHAIN_NAME="Cardchain",
+      sdkVersion: 'Stargate',
+      getTXApi: (this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK) + '/tx?hash=0x',
+      offline: false,
+      refresh: 5000
+    })
+    */
+    
     await this.$store.dispatch('common/env/init', {
       apiNode: this.apiFallback ? process.env.VUE_APP_API_COSMOS_FALLBACK : process.env.VUE_APP_API_COSMOS,
       rpcNode: this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK,
       wsNode: this.apiFallback ? process.env.VUE_APP_WS_TENDERMINT_FALLBACK : process.env.VUE_APP_WS_TENDERMINT_FALLBACK,
-      getTXApi: (this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK) + '/tx?hash=0x',
-    })
-    */
-    await this.$store.dispatch('common/env/init', {
+      refresh: 5000
     })
     this.initialized = true
 
