@@ -21,6 +21,7 @@ app.config.globalProperties.apiFallback = false
 
 let api_address = process.env.VUE_APP_API_COSMOS
 
+
 axios.get(api_address+"/DecentralCardGame/cardchain/cardchain/q_cardchain_info")
 .then(() => {
   console.log("connetion works")
