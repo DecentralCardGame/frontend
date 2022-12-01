@@ -67,6 +67,25 @@ export default {
 
       if (this.$store.getters["getLoggedIn"]) {
         this.notifyInfo('Login', 'You are now logged in.')
+
+        // first we check if the blockchain gives proper response
+        this.$cardChain.getGameInfo()
+          .then(res => {
+            // then we check if the user exists and if not, we go through the faucet process
+            this.$cardChain.checkIfCardchainUserExists(this.$store.getters['common/wallet/address'])
+              .then(user => {
+                return "no faucet necessary"
+              })
+              .catch(res => {
+                this.showCaptcha = true
+              })
+          })
+          .catch(res => {
+            console.error(res)
+            this.notifyFail("FAILED", "No connection to the blockchain...")
+          })
+
+        /*
         this.$cardChain.updateUserCredits()
         .then(credits => {
           console.log("credits:", credits)
@@ -81,6 +100,8 @@ export default {
           this.notifyFail("WTF", "Something went wrong in the login process.")
           console.error(err)
         })
+        */
+
       } else {
         this.notifyInfo('Logout', 'You have logged out.')
       }
@@ -89,7 +110,7 @@ export default {
   methods: {
     closeCaptcha() {
       this.showCaptcha = false
-    }, 
+    },
     setLoginStatus() {
       console.log('wallet name, adress', this.$store.getters['common/wallet/address'])
       if (this.$store.getters['common/wallet/walletName'] != null) {
