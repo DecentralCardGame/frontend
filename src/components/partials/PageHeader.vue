@@ -84,24 +84,6 @@ export default {
             console.error(res)
             this.notifyFail("FAILED", "No connection to the blockchain...")
           })
-
-        /*
-        this.$cardChain.updateUserCredits()
-        .then(credits => {
-          console.log("credits:", credits)
-          if (credits < 1) {
-            console.log("using faucet")
-            this.showCaptcha = true
-          } else {
-            return "no faucet necessary"
-          }
-        })
-        .catch(err => {
-          this.notifyFail("WTF", "Something went wrong in the login process.")
-          console.error(err)
-        })
-        */
-
       } else {
         this.notifyInfo('Logout', 'You have logged out.')
       }
