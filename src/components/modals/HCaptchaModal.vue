@@ -40,9 +40,9 @@ export default {
       this.$emit('close')
 
       const data = {
-              address: this.$store.getters['common/wallet/address'],
-              token: res,
-              alias: this.$store.getters['common/wallet/walletName']
+        address: this.$store.getters['common/wallet/address'],
+        token: res,
+        alias: this.$store.getters['common/wallet/walletName']
       }
 
       const request = new Request(process.env.VUE_APP_FAUCET, {

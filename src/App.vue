@@ -44,10 +44,25 @@ export default {
   },
   async created() {
     this.$cardChain.bindVue(this)
-    await this.$store.dispatch('common/env/init')
+
+    console.log("Fallback?", this.apiFallback)
+    await this.$store.dispatch('common/env/init', {
+      apiNode: this.apiFallback ? process.env.VUE_APP_API_COSMOS_FALLBACK : process.env.VUE_APP_API_COSMOS,
+      rpcNode: this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK,
+      wsNode: this.apiFallback ? process.env.VUE_APP_WS_TENDERMINT_FALLBACK : process.env.VUE_APP_WS_TENDERMINT_FALLBACK,
+      getTXApi: (this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK) + '/tx?hash=0x',
+      chainId: process.env.VUE_APP_CHAIN_ID,
+      addrPrefix: process.env.VUE_APP_ADDRESS_PREFIX,
+      chainName: process.env.VUE_APP_CHAIN_NAME,
+      offline: false,
+      sdkVersion: 'Stargate',
+      starportUrl: 'http://localhost:12345',
+      refresh: 5000
+    })
     this.initialized = true
 
     console.log("initialized?", this.initialized)
+    console.log("API COSMOS:", this.$store.getters['common/env/apiCosmos'])
   },
   mounted () {
     this.setLoginStatus();
@@ -65,17 +80,13 @@ export default {
       )
     },
     setLoginStatus() {
-      console.log('wallet name, adress', this.$store.getters['common/wallet/address'])
       if (this.$store.getters['common/wallet/walletName'] != null) {
         this.$store.commit('setLoggedIn', true)
-        console.log("loggedin?", this.$store.getters["getLoggedIn"])
       } else {
         this.$store.commit('setLoggedIn', false)
-        console.log("loggedin?", this.$store.getters["getLoggedIn"])
       }
     },
   }
-
 }
 
 </script>
