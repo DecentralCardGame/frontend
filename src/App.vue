@@ -48,9 +48,9 @@ export default {
     console.log("Fallback?", this.apiFallback)
     await this.$store.dispatch('common/env/init', {
       apiNode: this.apiFallback ? process.env.VUE_APP_API_COSMOS_FALLBACK : process.env.VUE_APP_API_COSMOS,
-      rpcNode: this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK,
-      wsNode: this.apiFallback ? process.env.VUE_APP_WS_TENDERMINT_FALLBACK : process.env.VUE_APP_WS_TENDERMINT_FALLBACK,
-      getTXApi: (this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT_FALLBACK) + '/tx?hash=0x',
+      rpcNode: this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT,
+      wsNode: this.apiFallback ? process.env.VUE_APP_WS_TENDERMINT_FALLBACK : process.env.VUE_APP_WS_TENDERMINT,
+      getTXApi: (this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT) + '/tx?hash=0x',
       chainId: process.env.VUE_APP_CHAIN_ID,
       addrPrefix: process.env.VUE_APP_ADDRESS_PREFIX,
       chainName: process.env.VUE_APP_CHAIN_NAME,
