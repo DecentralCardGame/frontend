@@ -36,7 +36,7 @@
         <!-- General -->
         <h3>Advanced Card Information</h3>
         <a>
-          Votepool: {{ card.votePool }} <br>
+          Votepool: {{ votePool }} <br>
           Status: {{ card.status }} <br>
           Owner:
           <router-link
@@ -69,6 +69,7 @@
 import * as R from 'ramda'
 import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
+import { Coin } from '@/utils/coins'
 import TransferCardModal from '@/components/modals/TransferCardModal.vue';
 
 export default {
@@ -81,6 +82,7 @@ export default {
       isOwner: false,
       canVote: false,
       card: sampleCard,
+      votePool: "",
       keywordDescriptions: []
     }
   },
@@ -99,6 +101,7 @@ export default {
           let parsedCard = this.$cardChain.cardObjectToWebModel(res)
           if (parsedCard) {
             this.card = parsedCard
+            this.votePool = new Coin(this.card.votePool).nornalize().pretty()
 
             let firstLetterToLower = string => {
               return string[0].toLowerCase() + string.substring(1)
