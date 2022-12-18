@@ -46,6 +46,8 @@ export const sampleCard = R.merge(emptyCard, {
   FlavourText: 'Whenever you play CrowdControl your happiness increases by 1.',
   abilities: [],
   Notes: '',
+  artist: " ",
+  owner: " ",
   type: 'Entity',
   Tags: ['TECHNOCRAT','HUMAN'],
   tagDummy: 'TECHNOCRAT',

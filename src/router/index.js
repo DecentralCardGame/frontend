@@ -1,7 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Index from '@/views/generated/Index.vue'
-import Types from '@/views/generated/Types.vue'
-import Relayers from '@/views/generated/Relayers.vue'
 
 const GalleryPage = () => import('@/views/GalleryPage')
 const VotingResultsPage = () => import('@/views/VotingResultsPage')
@@ -18,6 +15,7 @@ const CardView = () => import('@/views/CardViewPage')
 const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
 const GameOfChains = () => import('@/views/GameOfChainsPage')
+const AdvancedCardView = () => import('@/views/AdvancedCardViewPage.vue')
 
 const routes = [
   {
@@ -90,6 +88,11 @@ const routes = [
     path: '/cardview/:id',
     name: 'CardView',
     component: CardView
+  },
+  {
+    path: '/advancedcardview/:id',
+    name: 'AdvancedCardView',
+    component: AdvancedCardView
   },
   {
     path: '/user/:id',
