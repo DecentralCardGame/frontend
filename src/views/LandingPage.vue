@@ -7,7 +7,10 @@
           A Trading Card Game YOU OWN
         </center>
       </b>
-      <div class="img--container adjust--top">
+      <div
+        v-if="!isSafari"
+        class="img--container adjust--top"
+      >
         <img
           src="@/assets/animations/sparkling_water.gif"
           class="image2"
@@ -264,10 +267,14 @@ export default {
   components: { },
   data() {
     return {
-      cardJpgs:cardJpgs, botCommandCenterData:botCommandCenterData
+      cardJpgs: cardJpgs, 
+      botCommandCenterData: botCommandCenterData,
+      isSafari: false
     };
   },
   mounted() {
+    this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+    console.log("is Safari?", this.isSafari)
   },
 };
 </script>

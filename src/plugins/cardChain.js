@@ -1,12 +1,12 @@
 import * as R from 'ramda'
 import { entropyToMnemonic } from 'bip39'
-import * as Random from 'randombytes'
-import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
-import { coin } from "@cosmjs/proto-signing";
+//import * as Random from 'randombytes'
+//import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
+//import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
-import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
+//import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
   install (Vue, store) {
@@ -341,6 +341,9 @@ export default {
             this.vue.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
             throw new Error('please provide proper address')
           }
+      }
+      checkIfCardchainUserExists (address) {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_user/' + address)
       }
       getGrants (addr) {
           return this.vue.$http.get('/cosmos/authz/v1beta1/grants?granter='+this.vue.$store.getters['common/wallet/address']+"&grantee=" + addr)

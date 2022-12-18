@@ -17,6 +17,7 @@ const VotingPage = () => import('@/views/VotingPage')
 const CardView = () => import('@/views/CardViewPage')
 const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
+const GameOfChains = () => import('@/views/GameOfChainsPage')
 
 const routes = [
   {
@@ -36,6 +37,12 @@ const routes = [
     name: 'Steakdrop',
     meta: { layout: "default" },
     component: SteakDrop
+  },
+  {
+    path: '/goc',
+    name: 'Game of Chains',
+    meta: { layout: "default" },
+    component: GameOfChains
   },
   {
     path: '/gallery',

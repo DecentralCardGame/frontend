@@ -760,6 +760,10 @@ export default {
         this.srcToFile(b64, "image.jpg", "image/jpeg")
         .then(file => {
           uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
+            if(result.startsWith("Error")) {
+              this.notifyFail("Failed to Upload", result)
+              return 
+            }
             this.$store.commit(
               this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
               result)
@@ -1154,6 +1158,10 @@ export default {
       let file = event.target.files[0]
 
       uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
+        if(result.startsWith("Error")) {
+          this.notifyFail("Failed to Upload", result)
+          return 
+        }
         this.cropImage = result
       })
     },
