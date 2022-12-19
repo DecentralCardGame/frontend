@@ -246,4 +246,12 @@ export default {
   padding: 1em;
 }
 
+h2 {
+  color: white;
+}
+
+h3 {
+  color: white;
+}
+
 </style>
