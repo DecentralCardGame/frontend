@@ -54,7 +54,7 @@
           </router-link>
         </a><br> <br>
         <!-- Voting -->
-        <h3>Advanced Card Information</h3>
+        <h3>Latest Voting Results</h3>
         <a>
           Inappropriate Votes: {{ card.inappropriateVotes }} <br>
           Underpowered Votes: {{ card.underpoweredVotes }} <br>
