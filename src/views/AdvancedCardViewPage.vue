@@ -2,6 +2,7 @@
   <div align="center">
     <h2>{{ card.CardName }}</h2>
     <a class="FlavourText">"{{ card.FlavourText }}"</a>
+    <br><br>
     <div class="Container">
       <!-- Keyword Element -->
       <div
@@ -59,7 +60,55 @@
           Overpowered Votes: {{ card.overpoweredVotes }} <br>
           Fair Enough Votes: {{ card.fairEnoughVotes }} <br>
           Nerflevel: {{ card.nerflevel }} <br>
-        </a>
+        </a> <br>
+        <div class="ccbutton">
+          <button
+            v-if="canVote"
+            @click="vote('underpowered');"
+          >
+            Vote Underpowered
+          </button>
+          <button
+            v-if="canVote"
+            @click="vote('overpowered');"
+          >
+            Vote Overpowered
+          </button>
+          <button
+            v-if="canVote"
+            class="btn--default"
+            @click="vote('fair_enough');"
+          >
+            Vote Fair Enough
+          </button>
+          <button
+            v-if="canVote"
+            class="btn--default"
+            @click="vote('inappropriate');"
+          >
+            Vote Inappropriate
+          </button>
+          <br><br>
+          <button
+            v-if="isOwner"
+            class="btn--default"
+            @click="edit();"
+          >
+            Edit card
+          </button>
+          <button
+            v-if="isOwner"
+            class="btn--default"
+            @click="showModal()"
+          >
+            Transfer card
+          </button>
+          <TransferCardModal
+            v-show="isModalVisible"
+            :card="String(id)"
+            @close="closeModal"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -68,13 +117,13 @@
 <script>
 import * as R from 'ramda'
 import CardComponent from '@/components/elements/CardComponent'
-import { sampleCard, sampleGradientImg } from '../components/utils/sampleCards.js'
+import { sampleCard } from "@/components/utils/sampleCards"
 import { Coin } from '@/utils/coins'
 import TransferCardModal from '@/components/modals/TransferCardModal.vue';
 
 export default {
-  name: 'AdvancedCardView',
-  components: { CardComponent },
+  name: 'CardView',
+  components: { CardComponent, TransferCardModal },
   data () {
     return {
       isModalVisible: false,
@@ -94,7 +143,7 @@ export default {
     }
   },
   mounted () {
-    this.id = parseInt(this.$route.params.id)
+    this.id = parseInt(String(this.$route.params.id))
     if (typeof this.id === 'number' && !isNaN(this.id))  {
       this.$cardChain.getCard(this.id)
         .then(res => {
@@ -120,27 +169,27 @@ export default {
     }
   },
   methods: {
-    loadVotableCards() {
+    loadVotableCards: function() {
       this.isOwner =
         this.card.owner ===
-        this.$store.getters['common/wallet/address']
+        this.$store.getters["common/wallet/address"];
       this.$cardChain
-      .getVotableCards(this.$store.getters['common/wallet/address'])
-      .then(res => {
-        var votableCards = []
-        if (!res.votables.noVoteRights) {
-          votableCards = res.votables.voteRights;
-        }
-        console.log("votableCards:", votableCards);
-        this.canVote = false
-        if (!R.isEmpty(votableCards)) {
-          for (var i = 0; i < votableCards.length; i++) {
-            if (votableCards[i].cardId == this.id) {
-              this.canVote = true
+        .getVotableCards(this.$store.getters["common/wallet/address"])
+        .then(res => {
+          let votableCards = []
+          if (!res.votables.noVoteRights) {
+            votableCards = res.votables.voteRights;
+          }
+          console.log("votableCards:", votableCards);
+          this.canVote = false
+          if (!R.isEmpty(votableCards)) {
+            for (let i = 0; i < votableCards.length; i++) {
+              if (votableCards[i].cardId == this.id) {
+                this.canVote = true
+              }
             }
           }
-        }
-      })
+        });
     },
     vote(type) {
       this.$cardChain
@@ -190,25 +239,7 @@ export default {
   position: relative;
   flex-grow: 1;
   max-width: 25em;
+  padding: 1em;
 }
 
-.keywordTable {
-  color: #F5F5F5;
-  border-collapse: separate;
-  border-spacing: 10px;
-}
-.gallery__view {
-  text-shadow: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
-}
-.gallery__view__card {
-  margin: auto;
-  padding-top: 5vh;
-  height: 75vh;
-  overflow: visible;
-}
 </style>

@@ -11,11 +11,10 @@ const ImprintPage = () => import('@/views/ImprintPage')
 const TeamPage = () => import('@/views/TeamPage')
 const HowToPlayPage = () => import('@/views/HowToPlayPage')
 const VotingPage = () => import('@/views/VotingPage')
-const CardView = () => import('@/views/CardViewPage')
 const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
 const GameOfChains = () => import('@/views/GameOfChainsPage')
-const AdvancedCardView = () => import('@/views/AdvancedCardViewPage.vue')
+const CardView = () => import('@/views/AdvancedCardViewPage.vue')
 
 const routes = [
   {
@@ -88,11 +87,6 @@ const routes = [
     path: '/cardview/:id',
     name: 'CardView',
     component: CardView
-  },
-  {
-    path: '/advancedcardview/:id',
-    name: 'AdvancedCardView',
-    component: AdvancedCardView
   },
   {
     path: '/user/:id',
