@@ -181,12 +181,12 @@ export default {
           if (!res.votables.noVoteRights) {
             votableCards = res.votables.voteRights;
           }
-          console.log("votableCards:", votableCards);
           this.canVote = false
           if (!R.isEmpty(votableCards)) {
             for (let i = 0; i < votableCards.length; i++) {
               if (votableCards[i].cardId == this.id) {
                 this.canVote = true
+                break
               }
             }
           }
