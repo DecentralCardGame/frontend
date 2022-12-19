@@ -15,7 +15,7 @@
           v-for="(keyword, index) in keywordDescriptions"
           :key="index"
         >
-          <a>{{ keyword[0] }}</a>
+          <a class="Keyword">{{ keyword[0] }}</a>
           <br>
           <a>{{ keyword[1] }}</a>
           <br><br>
@@ -248,6 +248,10 @@ export default {
 
 h3 {
   color: white;
+}
+
+.Keyword {
+  font-weight: bold;
 }
 
 </style>
