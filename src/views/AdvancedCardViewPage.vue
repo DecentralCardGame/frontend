@@ -39,6 +39,7 @@
         <a>
           Votepool: {{ votePool }} <br>
           Status: {{ card.status }} <br>
+          Notes: {{ card.notes }} <br>
           Owner:
           <router-link
             :to="{name: 'UserView', params: {id: card.owner} }"
