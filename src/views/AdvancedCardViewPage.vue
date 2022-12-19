@@ -167,6 +167,9 @@ export default {
             }
           }
         })
+      .catch(_ => {
+        this.$router.push({name: "NotFound"})
+      })
     }
   },
   methods: {
