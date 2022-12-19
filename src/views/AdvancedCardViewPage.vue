@@ -1,6 +1,6 @@
 <template>
   <div align="center">
-    <h2>{{ card.CardName }}</h2>
+    <h1>{{ card .CardName }}</h1>
     <a class="FlavourText">"{{ card.FlavourText }}"</a>
     <br><br>
     <div class="Container">
@@ -244,10 +244,6 @@ export default {
   flex-grow: 1;
   max-width: 25em;
   padding: 1em;
-}
-
-h2 {
-  color: white;
 }
 
 h3 {
