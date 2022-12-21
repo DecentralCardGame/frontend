@@ -90,7 +90,7 @@
             v-for="coin in coins"
             :key="coin"
           >
-            {{ coin.amount+coin.denom }}
+            {{ coin.pretty() }}
             <br>
           </div>
         </div>
@@ -144,6 +144,7 @@ import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 import GrantModal from '../components/modals/GrantModal.vue';
 import AirdropsModal from '../components/modals/AirdropsModal.vue';
+import { Coin } from '@/utils/coins'
 
 export default {
   name: 'UserView',
@@ -229,13 +230,11 @@ export default {
       this.$cardChain.deRegisterFromCouncilTx().then(this.getUser)
     },
     normalizeCoins(coins) {
-      for (var i = 0; i<coins.length; i++) {
-        if (coins[i].denom[0] == "u") {
-          coins[i].denom = coins[i].denom.slice(1)
-          coins[i].amount /= 10**6
-        }
+      let newCoins = [];
+      for (let i = 0; i<coins.length; i++) {
+        newCoins.push(new Coin(coins[i]).nornalize())
       }
-      return coins
+      return newCoins
     },
     showModal() {
       this.isModalVisible = true;
