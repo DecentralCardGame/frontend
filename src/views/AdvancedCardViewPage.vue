@@ -1,7 +1,10 @@
 <template>
   <div align="center">
     <h1>{{ card .CardName }}</h1>
-    <a class="FlavourText">"{{ card.FlavourText }}"</a>
+    <a
+      v-if="card.FlavourText"
+      class="FlavourText"
+    >"{{ card.FlavourText }}"</a>
     <br><br>
     <div class="Container">
       <!-- Keyword Element -->
