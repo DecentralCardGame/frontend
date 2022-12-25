@@ -23030,7 +23030,6 @@
           font-style="normal"
           font-variant="normal"
           font-weight="900"
-
           text-anchor="middle"
           writing-mode="lr-tb"
           filter="url(#dropshadow)"

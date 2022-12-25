@@ -176,8 +176,6 @@ export default {
       this.$emit('close')
     },
     filterClasses (options) {
-      console.log("cardmodel", this.cardmodel)
-      console.log("options", options)
       if (!this.cardmodel.Class || !options) {
         return []
       }

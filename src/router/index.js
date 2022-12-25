@@ -1,7 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Index from '@/views/generated/Index.vue'
-import Types from '@/views/generated/Types.vue'
-import Relayers from '@/views/generated/Relayers.vue'
 
 const GalleryPage = () => import('@/views/GalleryPage')
 const VotingResultsPage = () => import('@/views/VotingResultsPage')
@@ -14,9 +11,10 @@ const ImprintPage = () => import('@/views/ImprintPage')
 const TeamPage = () => import('@/views/TeamPage')
 const HowToPlayPage = () => import('@/views/HowToPlayPage')
 const VotingPage = () => import('@/views/VotingPage')
-const CardView = () => import('@/views/CardViewPage')
 const UserView = () => import('@/views/UserView')
 const SteakDrop = () => import('@/views/SteakDropPage')
+const GameOfChains = () => import('@/views/GameOfChainsPage')
+const CardView = () => import('@/views/AdvancedCardViewPage.vue')
 
 const routes = [
   {
@@ -36,6 +34,12 @@ const routes = [
     name: 'Steakdrop',
     meta: { layout: "default" },
     component: SteakDrop
+  },
+  {
+    path: '/goc',
+    name: 'Game of Chains',
+    meta: { layout: "default" },
+    component: GameOfChains
   },
   {
     path: '/gallery',

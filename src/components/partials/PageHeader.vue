@@ -67,38 +67,23 @@ export default {
 
       if (this.$store.getters["getLoggedIn"]) {
         this.notifyInfo('Login', 'You are now logged in.')
-        this.$cardChain.updateUserCredits()
-        .then(credits => {
-          console.log("credits:", credits)
-          if (credits < 1) {
-            console.log("using faucet")
 
-            this.showCaptcha = true
-            /*
-            return this.$cardChain.useFaucet()
-            .then(async (faucetres) => {
-              console.log("faucetres", faucetres)
-              let active = -1
-              let count = 0
-              while (active === -1 && count < 100) {
-                  active = await this.$cardChain.updateUserCredits();
-                  count++
-              }
-              if (active === -1) {
-                throw new Error('Faucet does not work.')
-              }
-              
-              //console.log("yes", active)
-              //this.$cardChain.registerAccTx(this.$store.getters['common/wallet/walletName'])
-            })*/
-          } else {
-            return "no faucet necessary"
-          }
-        })
-        .catch(err => {
-          this.notifyFail("WTF", "Something went wrong in the login process.")
-          console.error(err)
-        })
+        // first we check if the blockchain gives proper response
+        this.$cardChain.getGameInfo()
+          .then(res => {
+            // then we check if the user exists and if not, we go through the faucet process
+            this.$cardChain.checkIfCardchainUserExists(this.$store.getters['common/wallet/address'])
+              .then(user => {
+                return "no faucet necessary"
+              })
+              .catch(res => {
+                this.showCaptcha = true
+              })
+          })
+          .catch(res => {
+            console.error(res)
+            this.notifyFail("FAILED", "No connection to the blockchain...")
+          })
       } else {
         this.notifyInfo('Logout', 'You have logged out.')
       }
@@ -107,7 +92,7 @@ export default {
   methods: {
     closeCaptcha() {
       this.showCaptcha = false
-    }, 
+    },
     setLoginStatus() {
       console.log('wallet name, adress', this.$store.getters['common/wallet/address'])
       if (this.$store.getters['common/wallet/walletName'] != null) {
@@ -135,7 +120,7 @@ export default {
           try {
             await window.keplr.experimentalSuggestChain({
               chainId: "Cardchain",
-              chainName: "Crowdcontrol testnet",
+              chainName: "Crowdcontrol Testnet",
               rpc: "https://cardchain.crowdcontrol.network/tendermint/",
               rest: "https://cardchain.crowdcontrol.network/cosmos",
               stakeCurrency: {
@@ -156,14 +141,14 @@ export default {
                 bech32PrefixConsPub: "cc"
               },
               currencies: [{
+                coinDenom: "credits",
+                coinMinimalDenom: "ucredits",
+                coinDecimals: 6,
+              }, {
                 coinDenom: "bpf",
                 coinMinimalDenom: "ubpf",
                 coinDecimals: 6,
                 // coinGeckoId: ""
-              }, {
-                coinDenom: "credits",
-                coinMinimalDenom: "ucredits",
-                coinDecimals: 6,
               }],
               feeCurrencies: [{
                 coinDenom: "credits",
@@ -176,7 +161,7 @@ export default {
                 // coinGeckoId: ""
               }],
               coinType: 118,
-              asPriceStep: {
+              gasPriceStep: {
                 low: 0.01,
                 average: 0.025,
                 high: 0.04

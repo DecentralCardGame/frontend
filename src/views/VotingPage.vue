@@ -208,6 +208,7 @@ export default {
 .gallery__view__card {
   margin: auto;
   width: 50%;
+  height: 75vh;
   max-width:500px;
 }
 </style>

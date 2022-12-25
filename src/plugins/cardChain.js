@@ -1,12 +1,12 @@
 import * as R from 'ramda'
 import { entropyToMnemonic } from 'bip39'
-import * as Random from 'randombytes'
-import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
-import { coin } from "@cosmjs/proto-signing";
+//import * as Random from 'randombytes'
+//import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
+//import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
-import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
+//import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
   install (Vue, store) {
@@ -190,9 +190,11 @@ export default {
               throw new Error('account ' + this.vue.$store.getters['common/wallet/address'] + ' does not own Card Frames')
             } else {
               let id = user.ownedCardSchemes[0]
-              return [this.saveContentToCardTx(card, id),
-                      this.saveArtworkToCard(id, card.image, card.fullArt)]
-              
+
+              return Promise.all([
+                this.saveContentToCardTx(card, id),
+                this.saveArtworkToCard(id, card.image, card.fullArt)
+              ])
             }
           })
       }
@@ -227,7 +229,14 @@ export default {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", {"cardId": id})
       }
       saveArtworkToCard (id, image, fullart) {
-        return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {"cardId": id, "image": btoa(image), "fullArt": fullart})
+        // this delay fixes the sequence conflict when firing a save card content at the same time
+        return new Promise(resolve => setTimeout(resolve, 20)).then(() => {
+          return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgAddArtwork", {
+            "cardId": id, 
+            "image": btoa(image), 
+            "fullArt": fullart
+          })
+        })
       }
       transferCard (id, receiver) {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgTransferCard", {"cardId": id, "receiver": receiver})
@@ -287,6 +296,9 @@ export default {
             this.vue.notifyFail('Do you even?', 'Have a proper address? Please login or register.')
             throw new Error('please provide proper address')
           }
+      }
+      checkIfCardchainUserExists (address) {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_user/' + address)
       }
       getGrants (addr) {
           return this.vue.$http.get('/cosmos/authz/v1beta1/grants?granter='+this.vue.$store.getters['common/wallet/address']+"&grantee=" + addr)
