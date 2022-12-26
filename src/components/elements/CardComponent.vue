@@ -23001,10 +23001,10 @@
         </filter>
         <filter
           id="dropshadow_straight"
-          x="-2em"
+          x="-1.8em"
           y="-1em"
           height="2em"
-          width="4em"
+          width="3.6em"
         >
           <feDropShadow
             dx="1"
