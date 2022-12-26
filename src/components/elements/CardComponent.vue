@@ -22987,7 +22987,7 @@
       <defs>
         <filter
           id="dropshadow"
-          x="-2.2em"
+          x="-1.8em"
           y="-1em"
           height="4em"
           width="4.4em"
@@ -23004,7 +23004,7 @@
           x="-1.8em"
           y="-1em"
           height="2em"
-          width="3.6em"
+          width="3.9em"
         >
           <feDropShadow
             dx="1"
