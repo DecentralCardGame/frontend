@@ -22990,7 +22990,7 @@
           x="-1.8em"
           y="-1em"
           height="4em"
-          width="4.4em"
+          width="4.8em"
         >
           <feDropShadow
             dx="2"
@@ -23004,7 +23004,7 @@
           x="-1.8em"
           y="-1em"
           height="2em"
-          width="3.9em"
+          width="4.2em"
         >
           <feDropShadow
             dx="1"
