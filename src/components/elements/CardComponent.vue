@@ -22987,10 +22987,10 @@
       <defs>
         <filter
           id="dropshadow"
-          x="-2em"
+          x="-2.2em"
           y="-1em"
           height="4em"
-          width="4em"
+          width="4.4em"
         >
           <feDropShadow
             dx="2"
