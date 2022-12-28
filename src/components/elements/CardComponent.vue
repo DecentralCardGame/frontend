@@ -23016,7 +23016,7 @@
       </defs>
 
       <!-- Title of the card -->
-      <text>
+      <text v-if="textVisible">
         <tspan
           id="tspan2408"
           x="99"
@@ -23070,33 +23070,35 @@
         </tspan>
       </text>
       <!-- Human readable text of the abilities -->
-      <g
-        v-for="(ability, ability_index) in getAbilityText()"
-        :key="'ability#'+ability_index"
-      >
-        <text
-          v-for="(text, line_index) in textToSvg(ability)"
-          :key="'abilityText'+line_index"
+      <g v-if="textVisible">
+        <g
+          v-for="(ability, ability_index) in getAbilityText()"
+          :key="'ability#'+ability_index"
         >
-          <tspan
-            id="tspan2430"
-            x="99"
-            :y="getAbilityYPos(ability_index, line_index)"
-            fill-opacity="1"
-            :stroke="getTitleStrokeColor()"
-            stroke-width=".0"
-            font-family="Roboto"
-            :font-size="fontSize(getAbilityText())"
-            fill="#FEF4EA"
-            font-stretch="normal"
-            font-style="normal"
-            font-variant="normal"
-            font-weight="400"
-            text-anchor="middle"
-            writing-mode="lr"
-            filter="url(#dropshadow_straight)"
-          > {{ text }} </tspan>
-        </text>
+          <text 
+            v-for="(text, line_index) in textToSvg(ability)"
+            :key="'abilityText'+line_index"
+          >
+            <tspan
+              id="tspan2430"
+              x="99"
+              :y="getAbilityYPos(ability_index, line_index)"
+              fill-opacity="1"
+              :stroke="getTitleStrokeColor()"
+              stroke-width=".0"
+              font-family="Roboto"
+              :font-size="fontSize(getAbilityText())"
+              fill="#FEF4EA"
+              font-stretch="normal"
+              font-style="normal"
+              font-variant="normal"
+              font-weight="400"
+              text-anchor="middle"
+              writing-mode="lr"
+              filter="url(#dropshadow_straight)"
+            > {{ text }} </tspan>
+          </text>
+        </g>
       </g>
     </g>
   </svg>
@@ -23147,6 +23149,7 @@ export default {
       opaque: 1,
       clicked: false,
       keywordDescriptions: "",
+      textVisible: true,
 
       FullArt: this.model.fullArt,
       Classes: 0,
@@ -23209,7 +23212,6 @@ export default {
     }
   },
   created () {
-    console.log(this.model)
     let firstLetterToLower = string => {
       return string[0].toLowerCase() + string.substring(1)
     }
@@ -23222,6 +23224,10 @@ export default {
     })
 
     this.update()
+    this.textVisible = false
+  },
+  mounted () {
+    this.textVisible = true
   },
   methods: {
     update() {
