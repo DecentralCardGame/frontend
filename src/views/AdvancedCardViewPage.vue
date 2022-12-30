@@ -1,6 +1,6 @@
 <template>
   <div align="center">
-    <h1>{{ card .CardName }}</h1>
+    <h1>{{ card.CardName }}</h1>
     <a
       v-if="card.FlavourText"
       class="FlavourText"
@@ -14,15 +14,9 @@
       >
         <h3>Used Keywords</h3>
         <br>
-        <div
-          v-for="(keyword, index) in keywordDescriptions"
-          :key="index"
-        >
-          <a class="Keyword">{{ keyword[0] }}</a>
-          <br>
-          <a>{{ keyword[1] }}</a>
-          <br><br>
-        </div>
+        <keyword-component
+          :keywords="card.Keywords"
+        />
       </div>
       <!-- Card Element -->
       <div class="ELement">
@@ -124,10 +118,11 @@ import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard } from "@/components/utils/sampleCards"
 import { Coin } from '@/utils/coins'
 import TransferCardModal from '@/components/modals/TransferCardModal.vue';
+import KeywordComponent from '@/components/elements/KeywordComponent.vue';
 
 export default {
   name: 'CardView',
-  components: { CardComponent, TransferCardModal },
+  components: { CardComponent, TransferCardModal, KeywordComponent },
   data () {
     return {
       isModalVisible: false,
@@ -136,7 +131,6 @@ export default {
       canVote: false,
       card: sampleCard,
       votePool: "",
-      keywordDescriptions: []
     }
   },
   watch: {
@@ -155,15 +149,6 @@ export default {
           if (parsedCard) {
             this.card = parsedCard
             this.votePool = new Coin(this.card.votePool).nornalize().pretty()
-
-            let firstLetterToLower = string => {
-              return string[0].toLowerCase() + string.substring(1)
-            }
-            parsedCard.Keywords.forEach(ability => {
-              ability.forEach(keyword => {
-                this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
-              })
-            })
 
             if (this.$store.getters["getLoggedIn"]) {
               this.loadVotableCards()
@@ -226,7 +211,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../scss/variables";
+@import "@/scss/variables";
 
 .FlavourText {
   font-style: italic;
@@ -253,8 +238,10 @@ h3 {
   color: white;
 }
 
-.Keyword {
-  font-weight: bold;
+:deep(.Keywords) {
+  p {
+    color: white;
+  }
 }
 
 </style>
