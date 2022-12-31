@@ -10,12 +10,14 @@
     <br>
     <button
       class="ModeButton"
+      :style="`font-weight: ${ getThiccness(Mode.ENCOUNTER) }`"
       @click="mode = Mode.ENCOUNTER"
     >
       <a>Encounters</a>
     </button>
     <button
       class="ModeButton"
+      :style="`font-weight: ${ getThiccness(Mode.COUNCIL) }`"
       @click="mode = Mode.COUNCIL"
     >
       <a>Council</a>
@@ -48,6 +50,15 @@ export default {
       Mode: Mode,
     }
   },
+  methods: {
+    getThiccness(mode) {
+      if (mode === this.mode) {
+        return "bold"
+      } else {
+        return "normal"
+      }
+    }
+  }
 }
 </script>
 
