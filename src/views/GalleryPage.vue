@@ -363,7 +363,7 @@ export default {
         sortBy: query.sortBy ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "") : "",
         nameContains: query.nameContains ? query.nameContains : "",
         keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-        notesContains: query.notesContains ? query.notesContains : "",
+        notesContains: query.notesContains ? query.notesContains : this.$store.getters["getLoggedIn"] ? "" : "Finished", // load alpha set for nubs
       }
     },
     fillPage() {
