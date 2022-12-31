@@ -254,6 +254,9 @@ export default {
 .Info {
   text-align: left;
   width: 15em;
+  h3 {
+    color: black;
+  }
 }
 
 .ELement {
