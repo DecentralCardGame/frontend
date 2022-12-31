@@ -8,7 +8,7 @@
       <div>
         <div class="InfoContainer">
           <div
-            v-if="votingActive"
+            v-if="status === Status.VOTING"
             class="ELement Info"
           >
             <h3>{{ currentCard.CardName }}</h3>
@@ -30,7 +30,7 @@
             />
           </div>
           <div
-            v-if="votingActive"
+            v-if="status === Status.VOTING"
             class="ELement"
           >
             <CardComponent
@@ -39,7 +39,7 @@
             />
           </div>
           <div
-            v-if="noMoreVotesLeft && $store.getters['getLoggedIn']"
+            v-if="status === Status.NOVOTESLEFT"
             class="ELement"
           >
             <img
@@ -50,12 +50,12 @@
             <p>It seams like you have voted on all cards you've encountered. Come back here, when you've played more matches.</p>
           </div>
           <div
-            v-if="!$store.getters['getLoggedIn']"
+            v-if="status === Status.NOTLOGGEDIN"
             class="ELement"
           >
             <p>You cannot vote on cards. Please login with your wallet.</p>
           </div>
-          <div v-if="unregistered">
+          <div v-if="status === Status.UNREGISTERED">
             <p>You are not registered. To vote on cards you have to register, press the Join button to register.</p>
             <p>Afer registering it might take a few seconds until your account becomes active.</p>
           </div>
@@ -64,7 +64,7 @@
 
       <br>
       <div
-        v-if="votingActive"
+        v-if="status === Status.VOTING"
         class="button-container"
       >
         <button @click="vote('fair_enough')">
@@ -90,14 +90,20 @@ import { Coin } from "@/utils/coins";
 import CardComponent from "@/components/elements/CardComponent";
 import KeywordComponent from "@/components/elements/KeywordComponent.vue";
 
+const Status = {
+  "VOTING": 0,
+  "UNREGISTERED": 1,
+  "NOVOTESLEFT": 2,
+  "NOTLOGGEDIN": 3,
+}
+
 export default {
   name: "EncounterVotingComponent",
   components: { CardComponent, KeywordComponent },
   data() {
     return {
-      unregistered: false,
-      votingActive: false,
-      noMoreVotesLeft: false,
+      status: Status.NOTLOGGEDIN,
+      Status: Status,
       voteRights: [],
       cards: [],
       currentCard: {},
@@ -112,6 +118,8 @@ export default {
     "$store.state.common.wallet.selectedAddress": function() {
       if (this.$store.getters["getLoggedIn"]) {
         this.init();
+      } else {
+        this.status = Status.NOTLOGGEDIN
       }
     }
   },
@@ -141,9 +149,7 @@ export default {
                 }
 
                 this.voteRights = cleaned;
-                this.unregistered = false;
-                this.noMoreVotesLeft = false;
-                this.votingActive = false;
+                this.status = Status.VOTING
 
                 if (this.voteRights.length > 0) {
                   console.log("voteRights:", this.voteRights);
@@ -154,20 +160,19 @@ export default {
                     });
                   this.getNextCard();
                 } else {
-                  this.votingActive = false;
+                  this.status = Status.NOVOTESLEFT
                 }
               } else if (res.votables === null) {
-                this.votingActive = false;
-                this.noMoreVotesLeft = true;
+                this.status = Status.NOVOTESLEFT
                 console.log("no more voting rights");
               } else if (res.unregistered === true) {
-                this.unregistered = true;
+                this.status = Status.UNREGISTERED
                 this.notifyFail("NOT REGISTERED", "You are not registered in the blockchain. Please register to obtain voting rights.");
               } else if (res.noVoteRights === true) {
-                this.noMoreVotesLeft = true;
+                this.status = Status.NOVOTESLEFT
                 this.notifyInfo("No Vote Rights", "You do not have any voting rights, therefore you cannot vote on cards.");
               } else {
-                this.votingActive = false;
+                this.status = Status.NOVOTESLEFT
                 console.error("getVotableCards returned non-readable data: ", res);
               }
             });
@@ -189,8 +194,7 @@ export default {
           this.getNextCard()
             .then(this.showNextCard);
         } else {
-          this.votingActive = false;
-          this.noMoreVotesLeft = true;
+          this.status = Status.NOVOTESLEFT
         }
       } else {
         this.showNextCard();
@@ -220,7 +224,10 @@ export default {
       }
     },
     showNextCard() {
-      this.votingActive = !R.isEmpty(this.cards);
+      if (R.isEmpty(this.cards)) {
+        this.status = Status.NOVOTESLEFT
+        return
+      }
       this.currentCard = R.last(this.cards);
       this.votePool = new Coin(this.currentCard.votePool).nornalize().pretty();
       this.cards = R.dropLast(1, this.cards);
