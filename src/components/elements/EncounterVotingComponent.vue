@@ -243,6 +243,7 @@ export default {
   padding: 2em;
   background-color: $main-color-c;
   display: grid;
+  box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $minor-color-c;
   grid-template-columns: repeat(auto-fit, minmax(15em, 25em));
   grid-template-rows: auto;
   grid-column-gap: 2rem;
