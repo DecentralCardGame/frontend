@@ -1,28 +1,11 @@
 <template>
   <div align="center">
     <div class="InfoContainer">
-      <div
+      <info-component
         v-if="status === Status.VOTING"
         class="ELement Info"
-      >
-        <h3>{{ card.CardName }}</h3>
-        <p
-          v-if="currentCard.FlavourText"
-          class="FlavourText"
-        >
-          "{{ card.FlavourText }}"
-        </p>
-        <br>
-        <h3>Advanced Card Information</h3>
-        <p>
-          Votepool: {{ votePool }} <br>
-          Status: {{ card.status }} <br>
-        </p>
-        <br><br>
-        <keyword-component
-          :keywords="card.Keywords"
-        />
-      </div>
+        :current-card="currentCard"
+      />
       <div
         v-if="status === Status.VOTING"
         class="ELement"
@@ -50,13 +33,12 @@
 </template>
 
 <script>
-import { Coin } from "@/utils/coins";
 import CardComponent from "@/components/elements/CardComponent";
-import KeywordComponent from "@/components/elements/KeywordComponent.vue";
+import InfoComponent from "@/components/elements/VotingComponents/InfoComponent.vue";
 
 export default {
   name: "CouncilComponent",
-  components: { CardComponent, KeywordComponent },
+  components: { InfoComponent, CardComponent },
   props: {
     councilId: {
       type: Number,
