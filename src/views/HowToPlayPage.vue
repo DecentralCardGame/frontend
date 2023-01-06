@@ -38,14 +38,14 @@
       <picture>
         <source 
           type="image/webp" 
-          srcset="../components/utils/cardfiles/HQ_Dolly.webp"
+          srcset="@/assets/cardfiles/HQ_Dolly.webp"
         >
         <source 
           type="image/png" 
-          srcset="../components/utils/cardfiles/HQ_Dolly.png"
+          srcset="@/assets/cardfiles/HQ_Dolly.png"
         >
         <img 
-          src="../components/utils/cardfiles/HQ_Dolly.webp"
+          src="@/assets/cardfiles/HQ_Dolly.webp"
           class="mockcard"
         >
       </picture>
@@ -72,14 +72,14 @@
       <picture>
         <source 
           type="image/webp" 
-          srcset="../components/utils/cardfiles/Dr.Dolly.webp"
+          srcset="@/assets/cardfiles/Dr.Dolly.webp"
         >
         <source 
           type="image/png" 
-          srcset="../components/utils/cardfiles/Dr.Dolly.png"
+          srcset="@/assets/cardfiles/Dr.Dolly.png"
         >
         <img 
-          src="../components/utils/cardfiles/Dr.Dolly.webp"
+          src="@/assets/cardfiles/Dr.Dolly.webp"
           class="mockcard"
         >
       </picture>
@@ -380,14 +380,14 @@
             <picture>
               <source 
                 type="image/webp" 
-                srcset="../assets/arrows/arrow_up.webp"
+                srcset="@/assets/arrows/arrow_up.webp"
               >
               <source
                 type="image/png" 
-                srcset="../assets/arrows/arrow_up.png"
+                srcset="@/assets/arrows/arrow_up.png"
               >
               <img 
-                src="../assets/arrows/arrow_up.webp"
+                src="@/assets/arrows/arrow_up.webp"
                 class="image_arrow"
               >
             </picture>
@@ -434,14 +434,14 @@
             <picture>
               <source 
                 type="image/webp" 
-                srcset="../assets/arrows/arrow_up.webp"
+                srcset="@/assets/arrows/arrow_up.webp"
               >
               <source
                 type="image/png" 
-                srcset="../assets/arrows/arrow_up.png"
+                srcset="@/assets/arrows/arrow_up.png"
               >
               <img 
-                src="../assets/arrows/arrow_up.webp"
+                src="@/assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
               >
             </picture>
@@ -464,14 +464,14 @@
             <picture>
               <source 
                 type="image/webp" 
-                srcset="../assets/arrows/arrow_up.webp"
+                srcset="@/assets/arrows/arrow_up.webp"
               >
               <source
                 type="image/png" 
-                srcset="../assets/arrows/arrow_up.png"
+                srcset="@/assets/arrows/arrow_up.png"
               >
               <img 
-                src="../assets/arrows/arrow_up.webp"
+                src="@/assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
               >
             </picture>
@@ -494,14 +494,14 @@
             <picture>
               <source 
                 type="image/webp" 
-                srcset="../assets/arrows/arrow_up.webp"
+                srcset="@/assets/arrows/arrow_up.webp"
               >
               <source
                 type="image/png" 
-                srcset="../assets/arrows/arrow_up.png"
+                srcset="@/assets/arrows/arrow_up.png"
               >
               <img 
-                src="../assets/arrows/arrow_up.webp"
+                src="@/assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
               >
             </picture>
@@ -524,14 +524,14 @@
             <picture>
               <source 
                 type="image/webp" 
-                srcset="../assets/arrows/arrow_up.webp"
+                srcset="@/assets/arrows/arrow_up.webp"
               >
               <source
                 type="image/png" 
-                srcset="../assets/arrows/arrow_up.png"
+                srcset="@/assets/arrows/arrow_up.png"
               >
               <img 
-                src="../assets/arrows/arrow_up.webp"
+                src="@/assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
               >
             </picture>
@@ -554,14 +554,14 @@
             <picture>
               <source 
                 type="image/webp" 
-                srcset="../assets/arrows/arrow_up.webp"
+                srcset="@/assets/arrows/arrow_up.webp"
               >
               <source
                 type="image/png" 
-                srcset="../assets/arrows/arrow_up.png"
+                srcset="@/assets/arrows/arrow_up.png"
               >
               <img 
-                src="../assets/arrows/arrow_up.webp"
+                src="@/assets/arrows/arrow_up.webp"
                 class="image_arrow rot90"
               >
             </picture>
