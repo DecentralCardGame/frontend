@@ -26,15 +26,15 @@
     <encounter-voting-component
       v-if="mode === Mode.ENCOUNTER"
     />
-    <div v-if="mode === Mode.COUNCIL">
-      <br>
-      <p>Not yet implemented</p>
-    </div>
+    <card-council-voting-component
+      v-if="mode === Mode.COUNCIL"
+    />
   </div>
 </template>
 
 <script>
 import EncounterVotingComponent from '@/components/elements/EncounterVotingComponent.vue'
+import CardCouncilVotingComponent from '@/components/elements/CardCouncilVotingComponent.vue'
 
 const Mode = {
   ENCOUNTER: 0,
@@ -43,7 +43,7 @@ const Mode = {
 
 export default {
   name: 'VotingPage',
-  components: { EncounterVotingComponent },
+  components: { EncounterVotingComponent, CardCouncilVotingComponent },
   data () {
     return {
       mode: Mode.ENCOUNTER,

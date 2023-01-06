@@ -310,6 +310,11 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
+      getCouncil (id) {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_council/' + id)
+              .catch(this.handleGetError)
+              .then(this.handleGetCouncil(R.__, id))
+      }
       getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '' && status != 'playable' && status != 'unplayable') {
@@ -393,7 +398,17 @@ export default {
           this.vue.notifyFail('WTF', 'A card was looked up that does not exist in the blockchain.')
           throw new Error('Card with ' + cardId + ' does not exist.')
         } else {
-          // console.log(res.data)
+          return res.data
+        }
+      })
+      handleGetCouncil = R.curry((res, id) => {
+        if (res.data.status === "councilDoesNotExist") {
+          throw new Error("Council " + id + " does not exist")
+        }
+        if (!res.data) {
+          this.vue.notifyFail('WTF', 'A council was looked up that does not exist in the blockchain.')
+          throw new Error('Council with ' + id + ' does not exist.')
+        } else {
           return res.data
         }
       })
