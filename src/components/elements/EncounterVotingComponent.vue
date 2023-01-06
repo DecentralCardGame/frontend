@@ -7,28 +7,11 @@
       <br>
       <div>
         <div class="InfoContainer">
-          <div
+          <info-component
             v-if="status === Status.VOTING"
             class="ELement Info"
-          >
-            <h3>{{ currentCard.CardName }}</h3>
-            <p
-              v-if="currentCard.FlavourText"
-              class="FlavourText"
-            >
-              "{{ currentCard.FlavourText }}"
-            </p>
-            <br>
-            <h3>Advanced Card Information</h3>
-            <p>
-              Votepool: {{ votePool }} <br>
-              Status: {{ currentCard.status }} <br>
-            </p>
-            <br><br>
-            <keyword-component
-              :keywords="currentCard.Keywords"
-            />
-          </div>
+            :current-card="currentCard"
+          />
           <div
             v-if="status === Status.VOTING"
             class="ELement"
@@ -47,7 +30,10 @@
               src="@/assets/icon/noCard.png"
             >
             <br><br>
-            <p>It seams like you have voted on all cards you've encountered. Come back here, when you've played more matches.</p>
+            <p>
+              It seams like you have voted on all cards you've encountered. Come back here, when you've played more
+              matches.
+            </p>
           </div>
           <div
             v-if="status === Status.NOTLOGGEDIN"
@@ -86,20 +72,19 @@
 
 <script>
 import * as R from "ramda";
-import { Coin } from "@/utils/coins";
 import CardComponent from "@/components/elements/CardComponent";
-import KeywordComponent from "@/components/elements/KeywordComponent.vue";
+import InfoComponent from "@/components/elements/VotingComponents/InfoComponent.vue";
 
 const Status = {
   "VOTING": 0,
   "UNREGISTERED": 1,
   "NOVOTESLEFT": 2,
-  "NOTLOGGEDIN": 3,
-}
+  "NOTLOGGEDIN": 3
+};
 
 export default {
   name: "EncounterVotingComponent",
-  components: { CardComponent, KeywordComponent },
+  components: { CardComponent, InfoComponent },
   data() {
     return {
       status: Status.NOTLOGGEDIN,
@@ -107,7 +92,6 @@ export default {
       voteRights: [],
       cards: [],
       currentCard: {},
-      votePool: "",
       config: {
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
@@ -119,7 +103,7 @@ export default {
       if (this.$store.getters["getLoggedIn"]) {
         this.init();
       } else {
-        this.status = Status.NOTLOGGEDIN
+        this.status = Status.NOTLOGGEDIN;
       }
     }
   },
@@ -149,7 +133,7 @@ export default {
                 }
 
                 this.voteRights = cleaned;
-                this.status = Status.VOTING
+                this.status = Status.VOTING;
 
                 if (this.voteRights.length > 0) {
                   console.log("voteRights:", this.voteRights);
@@ -160,19 +144,19 @@ export default {
                     });
                   this.getNextCard();
                 } else {
-                  this.status = Status.NOVOTESLEFT
+                  this.status = Status.NOVOTESLEFT;
                 }
               } else if (res.votables === null) {
-                this.status = Status.NOVOTESLEFT
+                this.status = Status.NOVOTESLEFT;
                 console.log("no more voting rights");
               } else if (res.unregistered === true) {
-                this.status = Status.UNREGISTERED
+                this.status = Status.UNREGISTERED;
                 this.notifyFail("NOT REGISTERED", "You are not registered in the blockchain. Please register to obtain voting rights.");
               } else if (res.noVoteRights === true) {
-                this.status = Status.NOVOTESLEFT
+                this.status = Status.NOVOTESLEFT;
                 this.notifyInfo("No Vote Rights", "You do not have any voting rights, therefore you cannot vote on cards.");
               } else {
-                this.status = Status.NOVOTESLEFT
+                this.status = Status.NOVOTESLEFT;
                 console.error("getVotableCards returned non-readable data: ", res);
               }
             });
@@ -194,7 +178,7 @@ export default {
           this.getNextCard()
             .then(this.showNextCard);
         } else {
-          this.status = Status.NOVOTESLEFT
+          this.status = Status.NOVOTESLEFT;
         }
       } else {
         this.showNextCard();
@@ -225,11 +209,10 @@ export default {
     },
     showNextCard() {
       if (R.isEmpty(this.cards)) {
-        this.status = Status.NOVOTESLEFT
-        return
+        this.status = Status.NOVOTESLEFT;
+        return;
       }
       this.currentCard = R.last(this.cards);
-      this.votePool = new Coin(this.currentCard.votePool).nornalize().pretty();
       this.cards = R.dropLast(1, this.cards);
     }
   }
@@ -255,6 +238,7 @@ export default {
 .Info {
   text-align: left;
   width: 15em;
+
   h3 {
     color: black;
   }
@@ -268,10 +252,6 @@ export default {
 
 .voter {
   min-height: 10vh;
-}
-
-.FlavourText {
-  font-style: italic;
 }
 
 :deep(p) {
