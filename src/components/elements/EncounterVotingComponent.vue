@@ -10,7 +10,7 @@
           <info-component
             v-if="status === Status.VOTING"
             class="ELement Info"
-            :current-card="currentCard"
+            :card="currentCard"
           />
           <div
             v-if="status === Status.VOTING"
@@ -74,6 +74,7 @@
 import * as R from "ramda";
 import CardComponent from "@/components/elements/CardComponent";
 import InfoComponent from "@/components/elements/VotingComponents/InfoComponent.vue";
+import { Card } from "@/model/Card";
 
 const Status = {
   "VOTING": 0,
@@ -91,7 +92,7 @@ export default {
       Status: Status,
       voteRights: [],
       cards: [],
-      currentCard: {},
+      currentCard: new Card(),
       config: {
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
@@ -194,7 +195,7 @@ export default {
         return this.$cardChain.getCard(nextCard.cardId)
           .then(res => {
             console.log("res", res);
-            let parsedCard = this.$cardChain.cardObjectToWebModel(res);
+            let parsedCard = res
             console.log("currentCard", parsedCard);
             if (parsedCard) {
               this.cards.push(parsedCard);

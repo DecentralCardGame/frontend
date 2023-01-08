@@ -6,6 +6,7 @@ import { entropyToMnemonic } from 'bip39'
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
 import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
 import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import { Card, ChainCard } from "@/model/Card";
 //import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
@@ -88,51 +89,6 @@ export default {
               this.vue.$store.commit('setUserCredits', credits)
               return credits
             })
-        }
-      }
-      useFaucet() {
-        this.vue.notifyInfo('Faucet', 'Get Credits from Faucet')
-        return new Promise((resolve, reject) => {
-            this.txQueue.enqueue(() => {
-              return this.vue.$http.post(
-                process.env.VUE_APP_FAUCET,
-                {
-                  address: this.vue.$store.getters['common/wallet/address'],
-                  coins: ['0ubpf', '5000ucredits'],
-                },
-                {
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                }
-              )
-              .then((res) => {
-                resolve(res)
-              })
-              .catch(reject)
-            })
-          })
-
-      }
-      cardObjectToWebModel (rawCard) {
-        if (rawCard.content) {
-          let contentLens = R.lensProp('Content')
-          let parseContent = item => R.set(contentLens, JSON.parse(item.content), item)
-          let card = R.merge(emptyCard, parseContent(rawCard))
-          let cardType = R.keys(card.Content)
-          card = R.merge(card, card.Content[cardType[0]])
-
-          card.nerflevel = parseInt(card.nerflevel)
-          card.type = cardType[0]
-
-          card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
-          card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
-
-          if (rawCard.fullArt && !R.isNil(rawCard.fullArt))
-            card.fullArt = JSON.parse(rawCard.fullArt)
-
-          console.log('parsed card: ', card)
-          return card
-        } else {
-          return emptyCard
         }
       }
       cardWebModelToCardobject (webModel, cardImageUrl) {
@@ -398,7 +354,8 @@ export default {
           this.vue.notifyFail('WTF', 'A card was looked up that does not exist in the blockchain.')
           throw new Error('Card with ' + cardId + ' does not exist.')
         } else {
-          return res.data
+          //console.log(res.data)
+          return ChainCard.from(res.data).toCard()
         }
       })
       handleGetCouncil = R.curry((res, id) => {

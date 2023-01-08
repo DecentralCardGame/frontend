@@ -81,7 +81,6 @@ const defaultFee = {
     amount: [],
     gas: "200000",
 };
-var sequenceInfo = {}
 const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657" }) => {
     if (!wallet)
         throw exports.MissingWalletError;
@@ -94,43 +93,7 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     }
     const { address } = (await wallet.getAccounts())[0];
     return {
-        signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => {
-            // code injection to get sequence fast firing working
-            client.getSequence = async function (address) {
-                const height = await this.getHeight()
-                const account = await this.getAccount(address);
-
-                if (!account) {
-                    throw new Error("Account does not exist on chain. Send some tokens there before trying to query sequence.");
-                }
-
-                // if sequence info is not yet defined, do it here
-                if (!sequenceInfo.height) {
-                    sequenceInfo = {
-                        height: height,
-                        sequence: account.sequence
-                    }
-                }
-                // if the sequence info is outdated, we update it
-                else if (sequenceInfo.height < height) {
-                    // we don't update the sequence if it is from last block
-                    // this fixes sequence error is tx got into new block and update would reset the sequence
-                    if (sequenceInfo.height + 1 < height) {
-                        sequenceInfo.sequence = account.sequence
-                    }
-                    sequenceInfo.height = height
-                }
-                
-                let returnSequence = sequenceInfo.sequence
-                sequenceInfo.sequence++
-
-                return {
-                    accountNumber: account.accountNumber,
-                    sequence: returnSequence,
-                };
-            }
-            return client.signAndBroadcast(address, msgs, fee, memo)
-        },
+        signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => client.signAndBroadcast(address, msgs, fee, memo),
         msgApointMatchReporter: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgApointMatchReporter", value: tx_1.MsgApointMatchReporter.fromPartial(data) }),
         msgSetProfileCard: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", value: tx_2.MsgSetProfileCard.fromPartial(data) }),
         msgCreateuser: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateuser", value: tx_3.MsgCreateuser.fromPartial(data) }),

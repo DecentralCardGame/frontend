@@ -34,7 +34,7 @@
         <!-- General -->
         <h3>Advanced Card Information</h3>
         <a>
-          Votepool: {{ votePool }} <br>
+          Votepool: {{ card.votePool.normalize().pretty() }} <br>
           Status: {{ card.status }} <br>
           Notes: {{ card.notes }} <br>
           Owner:
@@ -116,7 +116,6 @@
 import * as R from 'ramda'
 import CardComponent from '@/components/elements/CardComponent'
 import { sampleCard } from "@/components/utils/sampleCards"
-import { Coin } from '@/utils/coins'
 import TransferCardModal from '@/components/modals/TransferCardModal.vue';
 import KeywordComponent from '@/components/elements/KeywordComponent.vue';
 
@@ -130,7 +129,6 @@ export default {
       isOwner: false,
       canVote: false,
       card: sampleCard,
-      votePool: "",
     }
   },
   watch: {
@@ -145,17 +143,17 @@ export default {
     if (typeof this.id === 'number' && !isNaN(this.id))  {
       this.$cardChain.getCard(this.id)
         .then(res => {
-          let parsedCard = this.$cardChain.cardObjectToWebModel(res)
+          let parsedCard = res
           if (parsedCard) {
             this.card = parsedCard
-            this.votePool = new Coin(this.card.votePool).nornalize().pretty()
 
             if (this.$store.getters["getLoggedIn"]) {
               this.loadVotableCards()
             }
           }
         })
-      .catch(_ => {
+      .catch(err => {
+        console.log(err)
         this.$router.push({name: "NotFound"})
       })
     }

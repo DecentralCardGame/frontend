@@ -144,7 +144,7 @@ import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 import GrantModal from '../components/modals/GrantModal.vue';
 import AirdropsModal from '../components/modals/AirdropsModal.vue';
-import { Coin } from '@/utils/coins'
+import { Coin } from '@/model/Coin'
 
 export default {
   name: 'UserView',

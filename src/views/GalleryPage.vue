@@ -341,8 +341,8 @@ export default {
         .then((res) => {
           let card = res
           card.id = cardId
-          if (card.content) {
-            let candidate = this.$cardChain.cardObjectToWebModel(card)
+          if (card.Content) {
+            let candidate = card
             this.cards.push(candidate)
             return candidate
           } else if (!card.owner) {

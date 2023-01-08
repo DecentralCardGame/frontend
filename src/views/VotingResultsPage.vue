@@ -180,7 +180,7 @@ export default {
           let card = res
           card.id = cardId
           if (card.content) {
-            let candidate = this.$cardChain.cardObjectToWebModel(card)
+            let candidate = card
             candidate.isNerfed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'nerf'
             candidate.isBuffed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'buff'
             candidate.isBanned = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'ban'
