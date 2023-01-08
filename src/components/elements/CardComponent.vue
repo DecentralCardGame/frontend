@@ -23109,13 +23109,14 @@ import * as R from 'ramda'
 //import * as svg1 from 'save-svg-as-png'
 import { icon } from '@/components/utils/utils.js'
 import { emptyCard } from '../utils/utils'
+import { Card } from "@/model/Card";
 
 export default {
   name: 'CardComponent',
   props: {
     model: {
-      type: Object,
-      default: emptyCard
+      type: Card,
+      default: new Card()
     },
     imageURL: {
       type: String,

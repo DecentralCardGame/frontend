@@ -79,7 +79,7 @@ class Card {
         this.Keywords = [];
     }
     static from(json) {
-        return Object.assign(new ChainCard(), json);
+        return Object.assign(new Card(), json);
     }
 }
 exports.Card = Card;

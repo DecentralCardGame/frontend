@@ -42,8 +42,8 @@
     <div class="dual--column--flex--wrap reverse-column">
       <div class="dual--column--img">
         <CardComponent
-          :model="drDollyData"
-          :image-u-r-l="cardJpgs.drDollyImg"
+          :model="healingPriestCard"
+          :image-u-r-l="cardJpgs.healingPriestImg"
         />
       </div>
       <div class="dual--column--text">
@@ -96,8 +96,8 @@
       </div>
       <div class="dual--column--img">
         <CardComponent
-          :model="timeDeviceData"
-          :image-u-r-l="cardJpgs.timeDeviceImg"
+          :model="churchCard"
+          :image-u-r-l="cardJpgs.churchImg"
         />
       </div>
     </div>
@@ -105,8 +105,8 @@
     <div class="dual--column--flex--wrap reverse-column">
       <div class="dual--column--img">
         <CardComponent
-          :model="belloData"
-          :image-u-r-l="cardJpgs.belloImg"
+          :model="armedSupplierCard"
+          :image-u-r-l="cardJpgs.armedSupplierImg"
         />
       </div>
       <div class="dual--column--text">
@@ -158,8 +158,8 @@
       </div>
       <div class="dual--column--img">
         <CardComponent
-          :model="botCommandCenterData"
-          :image-u-r-l="cardJpgs.botCommandCenterImg"
+          :model="wildAllianceCard"
+          :image-u-r-l="cardJpgs.wildAllianceImg"
         />
       </div>
     </div>
@@ -181,7 +181,11 @@
 import CardComponent from "@/components/elements/CardComponent";
 import {
   cardJpgs,
-  communityCardData, botCommandCenterData, belloData, timeDeviceData, drDollyData
+  churchCard,
+  armedSupplierCard,
+  wildAllianceCard,
+  healingPriestCard,
+  communityCardData
 } from "../components/utils/sampleCards.js";
 
 export default {
@@ -190,7 +194,11 @@ export default {
   data() {
     return {
       cardJpgs:cardJpgs,
-      communityCardData:communityCardData , botCommandCenterData:botCommandCenterData, belloData:belloData, timeDeviceData:timeDeviceData, drDollyData:drDollyData
+      churchCard:churchCard,
+      armedSupplierCard:armedSupplierCard,
+      healingPriestCard:healingPriestCard,
+      wildAllianceCard:wildAllianceCard,
+      communityCardData:communityCardData
     };
   },
   mounted() {},

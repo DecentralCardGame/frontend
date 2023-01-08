@@ -96,7 +96,7 @@ export class Card {
   Keywords: Array<Array<string>> = [];
 
   static from(json) {
-    return Object.assign(new ChainCard(), json);
+    return Object.assign(new Card(), json);
   }
 }
 
