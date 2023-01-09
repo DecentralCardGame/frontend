@@ -4,7 +4,7 @@ export class ChainCard {
   owner: string;
   status: string;
   artist: string;
-  content: string;
+  content: any;
   image: string;
   fullArt: boolean;
   nerflevel: string;
@@ -37,6 +37,7 @@ export class ChainCard {
       card.Attack = parseInt(content[cardType].Attack);
       card.Delay = parseInt(content[cardType].Delay);
       card.RulesTexts = content[cardType].RulesTexts;
+      card.Effects = content[cardType].Effects;
       card.Keywords = [];
       content[cardType].Keywords.forEach(keyword => {
         card.Keywords.push(JSON.parse(keyword));
@@ -66,7 +67,7 @@ export class ChainCard {
 
 export class Card {
   notes: string = "";
-  type: string = "";
+  type: string = "Entity";
   owner: string = "";
   status: string = "";
   artist: string = "";
@@ -83,10 +84,10 @@ export class Card {
   votePool: Coin = new Coin();
 
   Abilities: Array<any> = [];
-  CardName: string = "";
+  CardName: string = "Name";
   FlavourText: string = "";
   Tags: Array<string> = [];
-  Class: CardClass = new CardClass();
+  Class: CardClass = CardClass.technology();
   CastingCost: number = -1;
   AdditionalCost: any = {};
   Health: number = 0;
@@ -94,9 +95,55 @@ export class Card {
   Delay: number = 0;
   RulesTexts: Array<string> = [];
   Keywords: Array<Array<string>> = [];
+  Effects: Array<any> = [];
 
   static from(json) {
     return Object.assign(new Card(), json);
+  }
+
+  toChainCard() {
+    console.log("trying to parse ", this);
+    let cardContent = Object.assign(new CardContent(), {
+      CardName: this.CardName,
+      Tags: this.Tags.filter(tag => {
+        return tag != null;
+      }),
+      FlavourText: this.FlavourText,
+      Class: this.Class,
+      Keywords: [],
+      RulesTexts: this.RulesTexts
+    });
+    this.Keywords.forEach(keyword => {
+      cardContent.Keywords.push(JSON.stringify(keyword));
+    });
+    // in the following part we check things that are only required for specific card types
+    if (this.type !== "Headquarter") {
+      cardContent.CastingCost = this.CastingCost;
+      if (!this.AdditionalCost) {
+        cardContent.AdditionalCost = this.AdditionalCost;
+      }
+    }
+    if (this.type !== "Action") {
+      cardContent.Health = this.Health;
+      cardContent.Abilities = this.Abilities;
+    }
+    if (this.type === "Entity") {
+      cardContent.Attack = this.Attack;
+    } else if (this.type === "Action") {
+      cardContent.Effects = this.Effects;
+    } else if (this.type === "Headquarter") {
+      cardContent.Delay = this.Delay;
+    }
+
+    let cc = new ChainCard();
+    cc.content = {
+      [this.type]: cardContent
+    };
+    cc.image = this.image ? this.image : "if you read this, someone was able to upload a card without proper image...";
+    cc.fullArt = this.fullArt;
+    cc.notes = this.notes;
+    console.log("parsed into:", cc);
+    return cc;
   }
 }
 
@@ -135,4 +182,20 @@ export class CardClass {
     obj.Nature = true;
     return obj;
   }
+}
+
+class CardContent {
+  Abilities: Array<any> = [];
+  CardName: string = "";
+  FlavourText: string = "";
+  Tags: Array<string> = [];
+  Class: CardClass = new CardClass();
+  CastingCost: number = -1;
+  AdditionalCost: any = undefined;
+  Health: number = 0;
+  Attack: number = 0;
+  Delay: number = 0;
+  RulesTexts: Array<string> = [];
+  Keywords: Array<string> = [];
+  Effects: Array<any> = [];
 }

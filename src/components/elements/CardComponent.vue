@@ -23216,6 +23216,7 @@ export default {
     let firstLetterToLower = string => {
       return string[0].toLowerCase() + string.substring(1)
     }
+    console.log(this.model)
     this.model.Keywords.forEach(ability => {
       ability.forEach(keyword => {
         this.keywordDescriptions = R.concat(this.keywordDescriptions,

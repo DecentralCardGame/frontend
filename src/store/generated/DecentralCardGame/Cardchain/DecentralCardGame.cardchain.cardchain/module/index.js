@@ -73,13 +73,17 @@ const types = [
     ["/DecentralCardGame.cardchain.cardchain.MsgSubmitCollectionProposal", tx_31.MsgSubmitCollectionProposal],
     ["/DecentralCardGame.cardchain.cardchain.MsgDonateToCard", tx_32.MsgDonateToCard],
     ["/DecentralCardGame.cardchain.cardchain.MsgTransferCard", tx_33.MsgTransferCard],
-    ["/DecentralCardGame.cardchain.cardchain.MsgAddCardToCollection", tx_34.MsgAddCardToCollection],
+    ["/DecentralCardGame.cardchain.cardchain.MsgAddCardToCollection", tx_34.MsgAddCardToCollection]
 ];
 exports.MissingWalletError = new Error("wallet is required");
 exports.registry = new proto_signing_1.Registry(types);
 const defaultFee = {
     amount: [],
-    gas: "200000",
+    gas: "200000"
+};
+let sequenceInfo = {
+    height: null,
+    sequence: null
 };
 const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657" }) => {
     if (!wallet)
@@ -93,41 +97,178 @@ const txClient = async (wallet, { addr: addr } = { addr: "http://localhost:26657
     }
     const { address } = (await wallet.getAccounts())[0];
     return {
-        signAndBroadcast: (msgs, { fee, memo } = { fee: defaultFee, memo: "" }) => client.signAndBroadcast(address, msgs, fee, memo),
-        msgApointMatchReporter: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgApointMatchReporter", value: tx_1.MsgApointMatchReporter.fromPartial(data) }),
-        msgSetProfileCard: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSetProfileCard", value: tx_2.MsgSetProfileCard.fromPartial(data) }),
-        msgCreateuser: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateuser", value: tx_3.MsgCreateuser.fromPartial(data) }),
-        msgRevealCouncilResponse: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRevealCouncilResponse", value: tx_4.MsgRevealCouncilResponse.fromPartial(data) }),
-        msgBuyCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgBuyCollection", value: tx_5.MsgBuyCollection.fromPartial(data) }),
-        msgAddArtwork: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddArtwork", value: tx_6.MsgAddArtwork.fromPartial(data) }),
-        msgChangeArtist: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgChangeArtist", value: tx_7.MsgChangeArtist.fromPartial(data) }),
-        msgRemoveCardFromCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRemoveCardFromCollection", value: tx_8.MsgRemoveCardFromCollection.fromPartial(data) }),
-        msgCreateCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateCollection", value: tx_9.MsgCreateCollection.fromPartial(data) }),
-        msgSaveCardContent: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", value: tx_10.MsgSaveCardContent.fromPartial(data) }),
-        msgAddArtworkToCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddArtworkToCollection", value: tx_11.MsgAddArtworkToCollection.fromPartial(data) }),
-        msgFinalizeCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgFinalizeCollection", value: tx_12.MsgFinalizeCollection.fromPartial(data) }),
-        msgRewokeCouncilRegistration: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRewokeCouncilRegistration", value: tx_13.MsgRewokeCouncilRegistration.fromPartial(data) }),
-        msgSubmitMatchReporterProposal: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSubmitMatchReporterProposal", value: tx_14.MsgSubmitMatchReporterProposal.fromPartial(data) }),
-        msgRestartCouncil: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRestartCouncil", value: tx_15.MsgRestartCouncil.fromPartial(data) }),
-        msgSubmitCopyrightProposal: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSubmitCopyrightProposal", value: tx_16.MsgSubmitCopyrightProposal.fromPartial(data) }),
-        msgSetCardRarity: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSetCardRarity", value: tx_17.MsgSetCardRarity.fromPartial(data) }),
-        msgRemoveSellOffer: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRemoveSellOffer", value: tx_18.MsgRemoveSellOffer.fromPartial(data) }),
-        msgRegisterForCouncil: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRegisterForCouncil", value: tx_19.MsgRegisterForCouncil.fromPartial(data) }),
-        msgCreateCouncil: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateCouncil", value: tx_20.MsgCreateCouncil.fromPartial(data) }),
-        msgReportMatch: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgReportMatch", value: tx_21.MsgReportMatch.fromPartial(data) }),
-        msgBuyCardScheme: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme", value: tx_22.MsgBuyCardScheme.fromPartial(data) }),
-        msgConfirmMatch: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch", value: tx_23.MsgConfirmMatch.fromPartial(data) }),
-        msgCommitCouncilResponse: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCommitCouncilResponse", value: tx_24.MsgCommitCouncilResponse.fromPartial(data) }),
-        msgAddContributorToCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddContributorToCollection", value: tx_25.MsgAddContributorToCollection.fromPartial(data) }),
-        msgCreateSellOffer: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateSellOffer", value: tx_26.MsgCreateSellOffer.fromPartial(data) }),
-        msgBuyCard: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgBuyCard", value: tx_27.MsgBuyCard.fromPartial(data) }),
-        msgVoteCard: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgVoteCard", value: tx_28.MsgVoteCard.fromPartial(data) }),
-        msgRemoveContributorFromCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRemoveContributorFromCollection", value: tx_29.MsgRemoveContributorFromCollection.fromPartial(data) }),
-        msgAddStoryToCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddStoryToCollection", value: tx_30.MsgAddStoryToCollection.fromPartial(data) }),
-        msgSubmitCollectionProposal: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSubmitCollectionProposal", value: tx_31.MsgSubmitCollectionProposal.fromPartial(data) }),
-        msgDonateToCard: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgDonateToCard", value: tx_32.MsgDonateToCard.fromPartial(data) }),
-        msgTransferCard: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgTransferCard", value: tx_33.MsgTransferCard.fromPartial(data) }),
-        msgAddCardToCollection: (data) => ({ typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddCardToCollection", value: tx_34.MsgAddCardToCollection.fromPartial(data) }),
+        signAndBroadcast: (msgs, { fee, memo } = {
+            fee: defaultFee,
+            memo: ""
+        }) => {
+            // code injection to get sequence fast firing working
+            client.getSequence = async function (address) {
+                const height = await this.getHeight();
+                const account = await this.getAccount(address);
+                if (!account) {
+                    throw new Error("Account does not exist on chain. Send some tokens there before trying to query sequence.");
+                }
+                // if sequence info is not yet defined, do it here
+                if (!sequenceInfo.height) {
+                    sequenceInfo = {
+                        height: height,
+                        sequence: account.sequence
+                    };
+                }
+                // if the sequence info is outdated, we update it
+                else if (sequenceInfo.height < height) {
+                    // we don't update the sequence if it is from last block
+                    // this fixes sequence error is tx got into new block and update would reset the sequence
+                    if (sequenceInfo.height + 1 < height) {
+                        sequenceInfo.sequence = account.sequence;
+                    }
+                    sequenceInfo.height = height;
+                }
+                let returnSequence = sequenceInfo.sequence;
+                sequenceInfo.sequence++;
+                return {
+                    accountNumber: account.accountNumber,
+                    sequence: returnSequence
+                };
+            };
+            return client.signAndBroadcast(address, msgs, fee, memo);
+        },
+        msgApointMatchReporter: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgApointMatchReporter",
+            value: tx_1.MsgApointMatchReporter.fromPartial(data)
+        }),
+        msgSetProfileCard: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSetProfileCard",
+            value: tx_2.MsgSetProfileCard.fromPartial(data)
+        }),
+        msgCreateuser: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateuser",
+            value: tx_3.MsgCreateuser.fromPartial(data)
+        }),
+        msgRevealCouncilResponse: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRevealCouncilResponse",
+            value: tx_4.MsgRevealCouncilResponse.fromPartial(data)
+        }),
+        msgBuyCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgBuyCollection",
+            value: tx_5.MsgBuyCollection.fromPartial(data)
+        }),
+        msgAddArtwork: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddArtwork",
+            value: tx_6.MsgAddArtwork.fromPartial(data)
+        }),
+        msgChangeArtist: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgChangeArtist",
+            value: tx_7.MsgChangeArtist.fromPartial(data)
+        }),
+        msgRemoveCardFromCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRemoveCardFromCollection",
+            value: tx_8.MsgRemoveCardFromCollection.fromPartial(data)
+        }),
+        msgCreateCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateCollection",
+            value: tx_9.MsgCreateCollection.fromPartial(data)
+        }),
+        msgSaveCardContent: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent",
+            value: tx_10.MsgSaveCardContent.fromPartial(data)
+        }),
+        msgAddArtworkToCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddArtworkToCollection",
+            value: tx_11.MsgAddArtworkToCollection.fromPartial(data)
+        }),
+        msgFinalizeCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgFinalizeCollection",
+            value: tx_12.MsgFinalizeCollection.fromPartial(data)
+        }),
+        msgRewokeCouncilRegistration: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRewokeCouncilRegistration",
+            value: tx_13.MsgRewokeCouncilRegistration.fromPartial(data)
+        }),
+        msgSubmitMatchReporterProposal: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSubmitMatchReporterProposal",
+            value: tx_14.MsgSubmitMatchReporterProposal.fromPartial(data)
+        }),
+        msgRestartCouncil: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRestartCouncil",
+            value: tx_15.MsgRestartCouncil.fromPartial(data)
+        }),
+        msgSubmitCopyrightProposal: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSubmitCopyrightProposal",
+            value: tx_16.MsgSubmitCopyrightProposal.fromPartial(data)
+        }),
+        msgSetCardRarity: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSetCardRarity",
+            value: tx_17.MsgSetCardRarity.fromPartial(data)
+        }),
+        msgRemoveSellOffer: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRemoveSellOffer",
+            value: tx_18.MsgRemoveSellOffer.fromPartial(data)
+        }),
+        msgRegisterForCouncil: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRegisterForCouncil",
+            value: tx_19.MsgRegisterForCouncil.fromPartial(data)
+        }),
+        msgCreateCouncil: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateCouncil",
+            value: tx_20.MsgCreateCouncil.fromPartial(data)
+        }),
+        msgReportMatch: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgReportMatch",
+            value: tx_21.MsgReportMatch.fromPartial(data)
+        }),
+        msgBuyCardScheme: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgBuyCardScheme",
+            value: tx_22.MsgBuyCardScheme.fromPartial(data)
+        }),
+        msgConfirmMatch: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch",
+            value: tx_23.MsgConfirmMatch.fromPartial(data)
+        }),
+        msgCommitCouncilResponse: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCommitCouncilResponse",
+            value: tx_24.MsgCommitCouncilResponse.fromPartial(data)
+        }),
+        msgAddContributorToCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddContributorToCollection",
+            value: tx_25.MsgAddContributorToCollection.fromPartial(data)
+        }),
+        msgCreateSellOffer: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgCreateSellOffer",
+            value: tx_26.MsgCreateSellOffer.fromPartial(data)
+        }),
+        msgBuyCard: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgBuyCard",
+            value: tx_27.MsgBuyCard.fromPartial(data)
+        }),
+        msgVoteCard: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
+            value: tx_28.MsgVoteCard.fromPartial(data)
+        }),
+        msgRemoveContributorFromCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgRemoveContributorFromCollection",
+            value: tx_29.MsgRemoveContributorFromCollection.fromPartial(data)
+        }),
+        msgAddStoryToCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddStoryToCollection",
+            value: tx_30.MsgAddStoryToCollection.fromPartial(data)
+        }),
+        msgSubmitCollectionProposal: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgSubmitCollectionProposal",
+            value: tx_31.MsgSubmitCollectionProposal.fromPartial(data)
+        }),
+        msgDonateToCard: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgDonateToCard",
+            value: tx_32.MsgDonateToCard.fromPartial(data)
+        }),
+        msgTransferCard: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgTransferCard",
+            value: tx_33.MsgTransferCard.fromPartial(data)
+        }),
+        msgAddCardToCollection: (data) => ({
+            typeUrl: "/DecentralCardGame.cardchain.cardchain.MsgAddCardToCollection",
+            value: tx_34.MsgAddCardToCollection.fromPartial(data)
+        })
     };
 };
 exports.txClient = txClient;

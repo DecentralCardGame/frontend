@@ -22,6 +22,7 @@ class ChainCard {
             card.Attack = parseInt(content[cardType].Attack);
             card.Delay = parseInt(content[cardType].Delay);
             card.RulesTexts = content[cardType].RulesTexts;
+            card.Effects = content[cardType].Effects;
             card.Keywords = [];
             content[cardType].Keywords.forEach(keyword => {
                 card.Keywords.push(JSON.parse(keyword));
@@ -50,7 +51,7 @@ exports.ChainCard = ChainCard;
 class Card {
     constructor() {
         this.notes = "";
-        this.type = "";
+        this.type = "Entity";
         this.owner = "";
         this.status = "";
         this.artist = "";
@@ -66,10 +67,10 @@ class Card {
         this.underpoweredVotes = 0;
         this.votePool = new Coin_1.Coin();
         this.Abilities = [];
-        this.CardName = "";
+        this.CardName = "Name";
         this.FlavourText = "";
         this.Tags = [];
-        this.Class = new CardClass();
+        this.Class = CardClass.technology();
         this.CastingCost = -1;
         this.AdditionalCost = {};
         this.Health = 0;
@@ -77,9 +78,55 @@ class Card {
         this.Delay = 0;
         this.RulesTexts = [];
         this.Keywords = [];
+        this.Effects = [];
     }
     static from(json) {
         return Object.assign(new Card(), json);
+    }
+    toChainCard() {
+        console.log("trying to parse ", this);
+        let cardContent = Object.assign(new CardContent(), {
+            CardName: this.CardName,
+            Tags: this.Tags.filter(tag => {
+                return tag != null;
+            }),
+            FlavourText: this.FlavourText,
+            Class: this.Class,
+            Keywords: [],
+            RulesTexts: this.RulesTexts
+        });
+        this.Keywords.forEach(keyword => {
+            cardContent.Keywords.push(JSON.stringify(keyword));
+        });
+        // in the following part we check things that are only required for specific card types
+        if (this.type !== "Headquarter") {
+            cardContent.CastingCost = this.CastingCost;
+            if (!this.AdditionalCost) {
+                cardContent.AdditionalCost = this.AdditionalCost;
+            }
+        }
+        if (this.type !== "Action") {
+            cardContent.Health = this.Health;
+            cardContent.Abilities = this.Abilities;
+        }
+        if (this.type === "Entity") {
+            cardContent.Attack = this.Attack;
+        }
+        else if (this.type === "Action") {
+            cardContent.Effects = this.Effects;
+        }
+        else if (this.type === "Headquarter") {
+            cardContent.Delay = this.Delay;
+        }
+        let cc = new ChainCard();
+        cc.content = {
+            [this.type]: cardContent
+        };
+        cc.image = this.image ? this.image : "if you read this, someone was able to upload a card without proper image...";
+        cc.fullArt = this.fullArt;
+        cc.notes = this.notes;
+        console.log("parsed into:", cc);
+        return cc;
     }
 }
 exports.Card = Card;
@@ -115,3 +162,20 @@ class CardClass {
     }
 }
 exports.CardClass = CardClass;
+class CardContent {
+    constructor() {
+        this.Abilities = [];
+        this.CardName = "";
+        this.FlavourText = "";
+        this.Tags = [];
+        this.Class = new CardClass();
+        this.CastingCost = -1;
+        this.AdditionalCost = undefined;
+        this.Health = 0;
+        this.Attack = 0;
+        this.Delay = 0;
+        this.RulesTexts = [];
+        this.Keywords = [];
+        this.Effects = [];
+    }
+}

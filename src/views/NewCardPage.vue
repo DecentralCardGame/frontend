@@ -650,13 +650,13 @@ import AbilityComponent from "../components/elements/AbilityComponent.vue";
 
 import {
   atPath,
-  emptyCard,
   uploadImg,
 } from "@/components/utils/utils.js";
 
-import { sampleGradientImg } from '../components/utils/sampleCards.js'
+import { sampleGradientImg } from '@/components/utils/sampleCards.js'
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css';
+import { Card } from "@/model/Card";
 
 
 export default {
@@ -673,7 +673,7 @@ export default {
       abilities: [],
       abilityDialog: {},
       cropImage: sampleGradientImg,
-      model: R.clone(emptyCard),
+      model: new Card(),
       cardID: 0,
     };
   },
@@ -705,10 +705,11 @@ export default {
     // here a card is loaded if edit card via gallery was selected
     if (this.isEditCardMode()) {
       console.log("edit card: ", this.$store.getters['getCardCreatorEditCard']);
-      this.model = R.merge(
-        this.model,
+      this.model = Object.assign(
+        new Card(),
         this.$store.getters['getCardCreatorEditCard']
       );
+      console.log(this.model)
 
       this.cropImage = this.$store.getters['getCardCreatorEditCard'].image
 
@@ -722,20 +723,20 @@ export default {
       !R.isEmpty(this.$store.getters['getCardCreatorDraft']) &&
       this.$store.getters['getCardCreatorDraft'].model
     ) {
-      this.model = JSON.parse(this.$store.getters['getCardCreatorDraft'].model);
+      this.model = Object.assign(new Card(), JSON.parse(this.$store.getters['getCardCreatorDraft'].model));
 
       console.log("loaded model:", this.model, R.is(Object, this.model));
 
       // if the loaded model is not an object, something is 100% wrong
       if (!R.is(Object, this.model)) {
         console.error("loaded model is not an object, overwriting with empty model")
-        this.model = R.clone(emptyCard)
+        this.model = new Card()
       }
 
       // this is automated fix for old (and wrong) data in store
       if (this.isEditCardMode()) {
         console.log("automated fix!");
-        this.$store.commit("setCardCreatorDraft", R.clone(emptyCard));
+        this.$store.commit("setCardCreatorDraft", new Card());
       }
     }
     if (
@@ -773,7 +774,7 @@ export default {
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
-        this.model.AdditionalCost = emptyCard.AdditionalCost
+        this.model.AdditionalCost = {}
       }
     },
     setAdditionalCost(event) {
@@ -1032,6 +1033,7 @@ export default {
       // finalize abilties or effects
       // this should potentially moved to somewhere else? maybe where abilities are saved
       let newModel = this.model;
+      console.log(newModel)
 
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
@@ -1093,10 +1095,11 @@ export default {
         this.updateRulesTexts()
       }
 
-      let newCard = this.$cardChain.cardWebModelToCardobject(
-        newModel,
-        this.getCardImage
-      )
+      console.log(newModel)
+      newModel.image = this.getCardImage
+      let newCard = newModel.toChainCard()
+
+      console.log("yes", this.$cardChain.cardWebModelToCardobject(newModel, newModel.image))
       console.log("newCard", newCard)
 
       // check if a card is edited with pre-existing ID
@@ -1135,7 +1138,7 @@ export default {
         this.isEditCardMode() ? "setCardCreatorEditCard" : "setCardCreatorDraft",
         {}
       )
-      this.model = R.clone(emptyCard)
+      this.model = new Card()
       this.cropImage = sampleGradientImg
       this.$store.commit(
         this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",

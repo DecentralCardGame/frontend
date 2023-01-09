@@ -4,8 +4,8 @@ import { entropyToMnemonic } from 'bip39'
 //import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 //import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
-import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
-import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import { creditsFromCoins } from '@/components/utils/utils.js'
+import { GenericAuthorization } from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
 import { Card, ChainCard } from "@/model/Card";
 //import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
