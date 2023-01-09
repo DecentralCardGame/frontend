@@ -665,7 +665,7 @@ export default {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddArtwork(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
-	gas: "20000000" }, memo})
+	gas: "200000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
@@ -740,7 +740,7 @@ export default {
 				const txClient=await initTxClient(rootGetters)
 				const msg = await txClient.msgAddArtworkToCollection(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee,
-	gas: "200000000" }, memo})
+	gas: "20000000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
