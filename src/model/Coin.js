@@ -16,5 +16,8 @@ class Coin {
     pretty() {
         return this.amount + this.denom;
     }
+    static from(json) {
+        return Object.assign(new Coin(), json);
+    }
 }
 exports.Coin = Coin;

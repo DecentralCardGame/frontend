@@ -43,7 +43,7 @@
         </router-link> <br>
         Owned cards:
         <router-link
-          :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
+          :to="{ name: 'Gallery', query: { cardList: user.cards }}"
         >
           {{ user.cards.length }}
         </router-link>
@@ -51,19 +51,19 @@
       <br>
 
       <div>
-        Council status: {{ user.CouncilStatus }} <br>
+        Council status: {{ user.councilParticipation.status }} <br>
         <div
           v-if="loggedinHere"
           style="display: inline"
         >
           <button
-            v-if="user.CouncilStatus == 'unavailable'"
+            v-if="user.councilParticipation.status === 'unavailable'"
             @click="register()"
           >
             Register for council
           </button>
           <button
-            v-if="user.CouncilStatus == 'available'"
+            v-if="user.councilParticipation.status === 'available'"
             @click="deRegister()"
           >
             Deregister from council
@@ -144,7 +144,7 @@ import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 import GrantModal from '../components/modals/GrantModal.vue';
 import AirdropsModal from '../components/modals/AirdropsModal.vue';
-import { Coin } from '@/model/Coin'
+import { User } from "@/model/User";
 
 export default {
   name: 'UserView',
@@ -164,25 +164,18 @@ export default {
       address: "",
       coins: [],
       img: "",
-      user: {
-        ownedCardSchemes: [],
-        ownedPrototypes: [],
-        cards: [],
-        voteRights: [],
-        profileCard: 0,
-        airdrops: {},
-      },
+      user: new User()
     }
   },
   watch: {
-    "$route.params.id"(value) {
+    "$route.params.id"(_) {
       console.log(this.$route)
-      if (this.$route.name == "UserView") {
+      if (this.$route.name === "UserView") {
         this.init()
       }
     },
     '$store.state.common.wallet.selectedAddress': function () {
-      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
+      this.loggedinHere = (this.address === this.$store.getters['common/wallet/address'])
     }
   },
   mounted () {
@@ -202,7 +195,7 @@ export default {
         this.address = id
       }
 
-      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
+      this.loggedinHere = (this.address === this.$store.getters['common/wallet/address'])
 
       if (! this.$cardChain.validAddress(this.address)) {
         this.$router.push({name: "NotFound"})
@@ -231,9 +224,9 @@ export default {
     },
     normalizeCoins(coins) {
       let newCoins = [];
-      for (let i = 0; i<coins.length; i++) {
-        newCoins.push(new Coin(coins[i]).nornalize())
-      }
+      coins.forEach(coin => {
+        newCoins.push(coin.normalize())
+      })
       return newCoins
     },
     showModal() {
@@ -263,14 +256,13 @@ export default {
       this.isAirdropsModalVisible = false;
     },
     getDefaultImg() {
-      var myRandom = this.address.charCodeAt(this.address.length-1) % 4
-      console.log("random", myRandom)
+      let myRandom = this.address.charCodeAt(this.address.length-1) % 4
       return "Avatar"+myRandom+".png"
     },
     async getImg() {
       console.log(this.user.profileCard)
-      if (this.user.profileCard != 0) {
-        var a = await this.getCard(this.user.profileCard)
+      if (this.user.profileCard !== 0) {
+        let a = await this.getCard(this.user.profileCard)
         if (a === null) {
           this.img = this.getDefaultImg()
         } else {
@@ -284,7 +276,7 @@ export default {
       return this.$cardChain.getCard(id).then(res => {
         return res
       })
-      .catch(err => {
+      .catch(_ => {
         return null
       })
     }
