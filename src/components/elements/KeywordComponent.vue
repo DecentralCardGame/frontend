@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import * as R from "ramda";
 
 export default {
   name: "KeywordComponent",
@@ -46,15 +47,13 @@ export default {
   },
   methods: {
     init() {
-      this.keywordDescriptions = []
-      this.keywords.forEach(ability => {
-        ability.forEach(keyword => {
-          this.keywordDescriptions.push([keyword, this.$rulesDefinitions[this.firstLetterToLower(keyword)].description]);
-        });
-      });
+      this.keywordDescriptions = R.map(
+        keyword => [keyword, this.$rulesDefinitions[this.firstLetterToLower(keyword)].description],
+        R.uniq(R.flatten(this.keywords))
+      )
     },
     firstLetterToLower(string) {
-        return string[0].toLowerCase() + string.substring(1);
+      return string[0].toLowerCase() + string.substring(1);
     },
   }
 };
