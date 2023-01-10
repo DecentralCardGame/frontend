@@ -55,6 +55,7 @@
             <span class="creator-text">Hey, my <b>name</b> is</span>
             <input
               v-model="model.CardName"
+              maxLength="25"
               @change="saveDraft"
             >
             <!-- Artwork -->

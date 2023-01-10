@@ -1,27 +1,36 @@
 import * as R from "ramda"
 import { emptyCard } from "@/components/utils/utils.js"
-import daisyImg from "./cardfiles/daisy.jpg"
-import richardImg from "./cardfiles/richard.jpg"
-import hurrwigImg from './cardfiles/hurrwig.jpg'
-import assoultHorseImg from './cardfiles/assoultHorse.jpg'
-import ulrichImg from './cardfiles/ulrich.jpg'
-import steamImg from './cardfiles/steam.jpg'
-import automatedBotProductionImg from './cardfiles/automatedBotProduction.jpg'
-import wynnImg from './cardfiles/wynn.jpg'
-import furiousJackImg from './cardfiles/furiousJack.jpg'
-import miniLabImg from './cardfiles/miniLab.jpg'
-import evieImg from './cardfiles/evie.jpg'
-import exoskeletonImg from './cardfiles/exoskeleton.jpg'
-import communityCardImg from './cardfiles/communityCard.jpg'
-import botCommandCenterImg from './cardfiles/botCommandCenter.jpg'
-import drDollyImg from './cardfiles/drDollyCard.jpg'
-import belloImg from './cardfiles/bello.jpg'
-import timeDeviceImg from './cardfiles/timeDeviceCard.jpg'
-import sampleGradient from './cardfiles/sampleGradient.jpg'
+import healingPriestImg from "@/assets/cardfiles/healingpriest.jpg"
+import churchImg from "@/assets/cardfiles/church.jpg"
+import armedSupplierImg from "@/assets/cardfiles/armedSupplier.jpg"
+import wildAllianceImg from "@/assets/cardfiles/wildAlliance.jpg"
+
+import daisyImg from "@/assets/cardfiles/daisy.jpg"
+import richardImg from "@/assets/cardfiles/richard.jpg"
+import hurrwigImg from '@/assets/cardfiles/hurrwig.jpg'
+import assoultHorseImg from '@/assets/cardfiles/assoultHorse.jpg'
+import ulrichImg from '@/assets/cardfiles/ulrich.jpg'
+import steamImg from '@/assets/cardfiles/steam.jpg'
+import automatedBotProductionImg from '@/assets/cardfiles/automatedBotProduction.jpg'
+import wynnImg from '@/assets/cardfiles/wynn.jpg'
+import furiousJackImg from '@/assets/cardfiles/furiousJack.jpg'
+import miniLabImg from '@/assets/cardfiles/miniLab.jpg'
+import evieImg from '@/assets/cardfiles/evie.jpg'
+import exoskeletonImg from '@/assets/cardfiles/exoskeleton.jpg'
+import communityCardImg from '@/assets/cardfiles/communityCard.jpg'
+import botCommandCenterImg from '@/assets/cardfiles/botCommandCenter.jpg'
+import drDollyImg from '@/assets/cardfiles/drDollyCard.jpg'
+import belloImg from '@/assets/cardfiles/bello.jpg'
+import timeDeviceImg from '@/assets/cardfiles/timeDeviceCard.jpg'
+import sampleGradient from '@/assets/cardfiles/sampleGradient.jpg'
 
 export const sampleGradientImg = sampleGradient
 
 export const cardJpgs = {
+  churchImg: churchImg,
+  armedSupplierImg: armedSupplierImg,
+  wildAllianceImg: wildAllianceImg,
+  healingPriestImg: healingPriestImg,
   daisyImg: daisyImg,
   richardImg: richardImg,
   hurrwigImg: hurrwigImg,
@@ -62,6 +71,88 @@ export const sampleCard = R.merge(emptyCard, {
   Health: 5,
   Attack: 3
 })
+export const churchCard = R.merge(emptyCard, {
+  CardName: 'Church',
+  FlavourText: '',
+  abilities: [],
+  RulesTexts: ["OnSpawn: Spawn 2 1/1 recruit", "Pay 1: Strengthen TARGET 1."],
+  Notes: '',
+  artist: " ",
+  owner: " ",
+  type: 'Headquarter',
+  Tags: ['BUILDING'],
+  tagDummy: 'TECHNOCRAT',
+  Class: {
+    Nature: false,
+    Culture: true,
+    Technology: false,
+    Mysticism: false,
+  },
+  Delay: 1,
+  Health: 21
+})
+export const armedSupplierCard = R.merge(emptyCard, {
+  CardName: 'Armed Supplier',
+  FlavourText: '',
+  abilities: [],
+  RulesTexts: ["OnConstruction: Produce 1."],
+  Notes: '',
+  artist: " ",
+  owner: " ",
+  type: 'Entity',
+  Tags: ['HUMAN', 'TECHNOCRAT'],
+  tagDummy: 'TECHNOCRAT',
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: true,
+    Mysticism: false,
+  },
+  CastingCost: 3,
+  Attack: 2,
+  Health: 4
+})
+export const healingPriestCard = R.merge(emptyCard, {
+  CardName: 'Healing Priest',
+  FlavourText: '',
+  abilities: [],
+  RulesTexts: ['OnSpawn: Heal TARGET'],
+  Notes: '',
+  artist: " ",
+  owner: " ",
+  type: 'Entity',
+  Tags: ['HUMAN'],
+  tagDummy: 'TECHNOCRAT',
+  Class: {
+    Nature: false,
+    Culture: false,
+    Technology: false,
+    Mysticism: true,
+  },
+  CastingCost: 3,
+  Attack: 2,
+  Health: 3
+})
+export const wildAllianceCard = R.merge(emptyCard, {
+  CardName: 'Wild Alliance',
+  FlavourText: '',
+  abilities: [],
+  RulesTexts: ['Anthem ANIMAL.', 'Count Forces 3.', 'Spawn X 3/3 beast'],
+  Notes: '',
+  artist: " ",
+  owner: " ",
+  type: 'Action',
+  Tags: ['ANIMAL', 'EVENT'],
+  tagDummy: 'TECHNOCRAT',
+  Class: {
+    Nature: true,
+    Culture: false,
+    Technology: false,
+    Mysticism: false,
+  },
+  CastingCost: 8
+})
+
 export const daisyData = R.merge(emptyCard, {
   CardName: 'Saint Daisy, Triplet',
   FlavourText: 'ETB - Create a 1/1 pet for each human you control',
