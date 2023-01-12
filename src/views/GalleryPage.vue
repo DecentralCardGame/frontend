@@ -165,12 +165,19 @@
         v-show="$store.getters['getLoggedIn']"
         @click="loadMyCardList()"
       >
-        My cards
+        My Cards
       </button>
       <button
+        v-show="$route.query.notesContains!='Finished'"
         @click="loadSpecialCardList('Finished')"
       >
         Alpha Set
+      </button>
+      <button
+        v-show="$route.query.notesContains=='Finished'"
+        @click="loadSpecialCardList('')"
+      >
+        All Cards
       </button>
       <button
         v-show="browsingForward"
@@ -356,14 +363,16 @@ export default {
     },
     normalizeQuery(query) {
       return {
-        status: query.status ? query.status.toLowerCase() : "playable", // try default playable
+        status: query.status ? query.status.toLowerCase() : "playable", // default playable
         owner: query.owner ? query.owner : "",
         cardType: query.cardType ? query.cardType : "",
         classes: query.classes ? query.classes : "",
         sortBy: query.sortBy ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "") : "",
         nameContains: query.nameContains ? query.nameContains : "",
         keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-        notesContains: query.notesContains ? query.notesContains : this.$store.getters["getLoggedIn"] ? "" : "Finished", // load alpha set for nubs
+        notesContains: query.notesContains ? query.notesContains :
+          query.status || query.owner || query.cardType || query.classes || query.sortBy || query.nameContains || query.keywordsContains || query.notesContains ? "" :
+          this.$store.getters["getLoggedIn"] ? "" : "Finished" // non-logged in users (noobs), without any filters, will only see the alpha set
       }
     },
     fillPage() {
