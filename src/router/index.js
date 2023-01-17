@@ -79,7 +79,7 @@ const routes = [
     component: ImprintPage
   },
   {
-    path: '/vote',
+    path: '/vote/:mode?',
     name: 'Vote',
     component: VotingPage
   },

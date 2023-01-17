@@ -2,12 +2,10 @@
   <div align="center">
     <div class="InfoContainer">
       <info-component
-        v-if="status === Status.VOTING"
         class="ELement Info"
-        :current-card="currentCard"
+        :current-card="card"
       />
       <div
-        v-if="status === Status.VOTING"
         class="ELement"
       >
         <CardComponent
@@ -16,7 +14,6 @@
         />
       </div>
       <div
-        v-if="status === Status.NOVOTESLEFT"
         class="ELement"
       >
         <img
@@ -35,6 +32,8 @@
 <script>
 import CardComponent from "@/components/elements/CardComponent";
 import InfoComponent from "@/components/elements/VotingComponents/InfoComponent.vue";
+import { Council } from "@/model/Council";
+import { Card } from "@/model/Card";
 
 export default {
   name: "CouncilComponent",
@@ -49,8 +48,8 @@ export default {
   },
   data() {
     return {
-      council: {},
-      card: {},
+      council: new Council(),
+      card: new Card(),
     };
   },
   watch: {

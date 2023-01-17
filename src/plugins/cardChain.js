@@ -9,6 +9,7 @@ import { GenericAuthorization } from "../store/generated/cosmos/cosmos-sdk/cosmo
 import { Card, ChainCard } from "@/model/Card";
 import { User } from "@/model/User";
 import { Coin } from "@/model/Coin";
+import { Council } from "@/model/Council";
 //import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
@@ -325,7 +326,7 @@ export default {
           this.vue.notifyFail('WTF', 'A council was looked up that does not exist in the blockchain.')
           throw new Error('Council with ' + id + ' does not exist.')
         } else {
-          return res.data
+          return Council.from(res.data)
         }
       })
       handleGetCardList = R.curry((res, type) => {
