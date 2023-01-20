@@ -16,7 +16,7 @@
             :class="classStepPassed(0)"
             @click="activeStep = 0"
           >
-            Name, Artwork and Flavor
+            Name, Flavor and Type
           </div>
           <div
             :class="classStepPassed(1)"
@@ -46,20 +46,105 @@
       </div>
 
       <div class="creator">
+        <div class="creator-preview">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage"
+            :model="model"
+          />
+        </div>
+
         <div class="creator-input">
           <div
             v-if="activeStep == 0"
             class="creator-input-container ccbutton"
           >
             <!-- Name -->
-            <span class="creator-text">Hey, my <b>name</b> is</span>
+            <span class="creator-text"><b>Name:</b> </span>
             <input
               v-model="model.CardName"
               @change="saveDraft"
             >
+            <!-- Flavor -->
+            <span class="creator-text">
+              <br><b>Flavor Text:</b>
+            </span>
+            <input
+              v-model="model.FlavourText"
+              @change="saveDraft"
+            >
+
+            <!-- Type -->
+            <span
+              v-if="$cardRules"
+              class="creator-text"
+            >
+              My <b>type</b> is
+            </span>
+            <select
+              v-if="$cardRules"
+              v-model="model.type"
+              @change="
+                resetAbilities();
+                saveDraft();
+              "
+            >
+              <option
+                v-for="val in getTypes()"
+                :key="val"
+              >
+                {{ val }}
+              </option>
+            </select>
+
+            <!-- Classes -->
+            <div class="creator-text">
+              <b>Classes:</b> <br>
+            </div>
+            <div>
+              <label class="input--checkbox-label__left">
+                <input
+                  v-model="model.Class.Technology"
+                  class="input--checkbox__left"
+                  type="checkbox"
+                  @change="saveDraft"
+                >
+                Technology <br>
+              </label>
+              <label class="input--checkbox-label__left">
+                <input
+                  v-model="model.Class.Nature"
+                  class="input--checkbox__left"
+                  type="checkbox"
+                  @change="saveDraft"
+                >
+                Nature <br>
+              </label>
+              <label class="input--checkbox-label__left">
+                <input
+                  v-model="model.Class.Culture"
+                  class="input--checkbox__left"
+                  type="checkbox"
+                  @change="saveDraft"
+                >
+                Culture <br>
+              </label>
+              <label class="input--checkbox-label__left">
+                <input
+                  v-model="model.Class.Mysticism"
+                  class="input--checkbox__left"
+                  type="checkbox"
+                  @change="saveDraft"
+                >
+                Mysticism <br>
+              </label>
+            </div>
+
             <!-- Artwork -->
             <span class="creator-text">
-              Everybody needs a <b>face</b>, so do I. Please upload an image. By uploading you confirm you have the rights to upload this image.
+              Please upload an image. By uploading you confirm you have the rights to upload this image.
             </span>
 
             <input
@@ -110,138 +195,12 @@
               @change="saveDraft()"
             >
           </div>
-          <div
-            v-if="activeStep == 0"
-            class="creator-input-container"
-          >
-            <!-- Flavor -->
-            <span class="creator-text">
-              <br>My <b>flavor</b> is best expressed by the following sentences:
-            </span>
-            <input
-              v-model="model.FlavourText"
-              @change="saveDraft"
-            >
-          </div>
 
           <div
             v-if="activeStep == 1"
             class="creator-input-container"
           >
-            <!-- Classes -->
-            <div class="creator-text">
-              My <b>Classes</b> are: <br>
-            </div>
-            <div>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Technology"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                  @change="saveDraft"
-                >
-                Technology <br>
-              </label>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Nature"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                  @change="saveDraft"
-                >
-                Nature <br>
-              </label>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Culture"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                  @change="saveDraft"
-                >
-                Culture <br>
-              </label>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Mysticism"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                  @change="saveDraft"
-                >
-                Mysticism <br>
-              </label>
-            </div>
-
-            <!-- Type -->
-            <span
-              v-if="$cardRules"
-              class="creator-text"
-            >
-              My <b>type</b> is
-            </span>
-            <select
-              v-if="$cardRules"
-              v-model="model.type"
-              @change="
-                resetAbilities();
-                saveDraft();
-              "
-            >
-              <option
-                v-for="val in getTypes()"
-                :key="val"
-              >
-                {{ val }}
-              </option>
-            </select>
-
-            <!-- Tag -->
-            <span
-              v-if="$cardRules"
-              class="creator-text"
-            >
-              People like to <b>tag</b> me as</span>
-            <div
-              v-if="$cardRules"
-            >
-              <select
-                v-model="model.tagDummy"
-                class="tag-select"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(0)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-              <select
-                v-if="model.Tags && model.Tags[0]"
-                v-model="model.Tags[1]"
-                class="tag-select"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(1)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-              <select
-                v-if="model.Tags && model.Tags[1]"
-                v-model="model.Tags[2]"
-                class="tag-select tag-select-last"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(2)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-            </div>
+            <!-- Here could be your HTML -->
           </div>
 
           <div
@@ -254,8 +213,8 @@
                 v-if="$cardRules.children[getRulesType()] &&
                   $cardRules.children[getRulesType()].children.CastingCost"
                 class="creator-text"
-              >As I am quite awesome to get me rolling you need to
-                <b>pay</b>:
+              >
+                <b>Casting Cost:</b>
               </span>
             </div>
             <div
@@ -301,7 +260,7 @@
               <div
                 v-if="isAdditionalCostVisible"
               >
-                To spawn me you need to
+                Special Cost:
                 <select
                   @change="setAdditionalCost($event); saveDraft();"
                 >
@@ -394,7 +353,7 @@
             <div v-if="model.type === 'Headquarter'">
               <span class="creator-text">
 
-                As I am quite awesome, I can use my abilities after a <b>Delay</b> of <br>
+                <b>Delay</b> of Activation: <br>
               </span>
             </div>
             <div
@@ -428,13 +387,13 @@
             <!-- Attack & Health -->
             <div>
               <span v-if="model.type === 'Entity'">
-                I have an <b>Attack</b> of <br>
+                <b>Attack:</b><br>
                 <br>
               </span>
 
               <span v-if="model.type === 'Entity'"> and </span>
               <span v-if="model.type !== 'Action'">
-                I have a <b>Defense</b> of <br>
+                <b>Defense:</b> <br>
                 <br>
               </span>
             </div>
@@ -481,6 +440,55 @@
                   </option>
                 </select>
               </div>
+            </div>
+
+            <!-- Tag -->
+            <span
+              v-if="$cardRules"
+              class="creator-text"
+            >
+              <b>Tags:</b> </span>
+            <div
+              v-if="$cardRules"
+            >
+              <select
+                v-model="model.tagDummy"
+                class="tag-select"
+                @change="updateTags"
+              >
+                <option
+                  v-for="tag in getTags(0)"
+                  :key="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
+              <select
+                v-if="model.Tags && model.Tags[0]"
+                v-model="model.Tags[1]"
+                class="tag-select"
+                @change="updateTags"
+              >
+                <option
+                  v-for="tag in getTags(1)"
+                  :key="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
+              <select
+                v-if="model.Tags && model.Tags[1]"
+                v-model="model.Tags[2]"
+                class="tag-select tag-select-last"
+                @change="updateTags"
+              >
+                <option
+                  v-for="tag in getTags(2)"
+                  :key="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
             </div>
           </div>
 
@@ -547,10 +555,7 @@
             class="creator-input-container"
           >
             <p>
-              Uh, uh, uh. I like my looks, i like my feels, let us get some
-              victorieeessss. Seriously, thanks for creating and being part of the
-              community. Be brave and publish me! P.S. I would like to give the
-              council the following <b>notes</b> for this card (optional):
+              <b>Notes</b> for the council:
             </p>
             <input
               v-model="model.notes"
@@ -559,7 +564,7 @@
           </div>
 
           <div v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)">
-            Clear Abilities of this card
+            Clear Abilities
             <input
               v-model="clearAbilities"
               type="checkbox"
@@ -617,15 +622,6 @@
               Discard Draft
             </button>
           </div>
-        </div>
-        <div class="creator-preview">
-          <CardComponent
-            id="card"
-            :active-step="activeStep"
-            :display-notes="true"
-            :image-u-r-l="getCardImage"
-            :model="model"
-          />
         </div>
       </div>
       <div class="ability-modal-container">
