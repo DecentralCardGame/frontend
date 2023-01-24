@@ -136,10 +136,9 @@ export default {
         }
       }
       cardWebModelToCardobject (webModel, cardImageUrl) {
-        console.log('trying to parse ', webModel)
         let cardContent = {
           CardName: webModel.CardName,
-          Tags: R.reject(R.isNil, webModel.Tags),
+          Tags: R.reject(R.or(R.isEmpty, R.isNil), webModel.Tags),
           FlavourText: webModel.FlavourText,
           Class: {
             Nature: webModel.Class.Nature == true,
