@@ -2,10 +2,12 @@
   <div align="center">
     <div class="InfoContainer">
       <info-component
+        v-if="councilId != null"
         class="ELement Info"
         :current-card="card"
       />
       <div
+        v-if="councilId != null"
         class="ELement"
       >
         <CardComponent
@@ -14,6 +16,7 @@
         />
       </div>
       <div
+        v-if="councilId == null"
         class="ELement"
       >
         <img

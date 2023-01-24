@@ -37,6 +37,8 @@ class CouncilParticipation {
   status: string = ""
 
   static from(json) {
-    return Object.assign(new CouncilParticipation(), json);
+    let cp = Object.assign(new CouncilParticipation(), json);
+    cp.council = parseInt(json.council)
+    return cp
   }
 }
