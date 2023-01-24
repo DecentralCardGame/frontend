@@ -4,7 +4,7 @@
       <info-component
         v-if="councilId != null"
         class="ELement Info"
-        :current-card="card"
+        :card="card"
       />
       <div
         v-if="councilId != null"
