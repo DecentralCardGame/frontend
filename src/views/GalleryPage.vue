@@ -309,7 +309,7 @@ export default {
   },
   mounted() {
     let query = this.$route.query
-    if (query) {
+    if (!R.isEmpty(query)) {
       if (query.cardList) {
         this.cardList = query.cardList
         this.fillPage()
@@ -324,16 +324,21 @@ export default {
   },
   methods: {
     loadVotableCards() {
-      this.$cardChain
+      if(this.$store.getters['common/wallet/address']) {
+        this.$cardChain
         .getVotableCards(this.$store.getters['common/wallet/address'])
         .then((res) => {
-          console.log("getVotableCards:", res);
           if (res.noVoteRights) {
             this.votableCards = [];
           } else {
             this.votableCards = res.votables;
           }
-        });
+        })
+      }
+      else {
+        this.votableCards = [];
+      }
+      
     },
     loadCardList() {
       var query = this.getDefaultQuery()
@@ -396,13 +401,11 @@ export default {
         this.cards = res
         console.log("cards on page", this.cards)
         console.log("all card names:", R.pluck("CardName", res))
-        console.log("name lengths", R.map(x => x.length, R.pluck("CardName", res)))
       })
       .catch(res => {
         console.error("NOT ALL CARDS WERE PROPERLY LOADED")
         console.log("all card names:", R.pluck("CardName", res))
       })
-      console.log("all cards:", this.cards)
     },
     nextPage() {
       if (!this.browsingForward) return;
@@ -472,7 +475,6 @@ export default {
       this.loadQueryCardList(query)
     },
     loadQueryCardList(query) {
-      console.log("query: ", query)
       this.$router.push({ path: 'gallery', query: query })
       let requestedCards = [
         this.$cardChain.getCardList(
@@ -490,7 +492,6 @@ export default {
       .then((res) => {
         let cardList = R.reduce(R.concat, [], R.pluck("cardsList", res))
 
-        console.log("cardlistyes:", cardList)
         if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
           this.cardList = R.reverse(cardList)
         }

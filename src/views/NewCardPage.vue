@@ -1050,11 +1050,10 @@ export default {
             this.abilities
           );
         }
-
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
         if (this.isEditCardMode() && !this.clearAbilities && R.isEmpty(this.abilities)) {
-          newModel.Effects = R.clone(this.$store.getters['getCardCreatorEditCard'].Abilities)
+          newModel.Effects = R.clone(this.$store.getters['getCardCreatorEditCard'].Effects)
         }
         // this writes the relevant part of the effects in the new model
         else {
