@@ -106,7 +106,7 @@ export class Card {
     let cardContent = Object.assign(new CardContent(), {
       CardName: this.CardName,
       Tags: this.Tags.filter(tag => {
-        return tag != null;
+        return tag != null || tag != "";
       }),
       FlavourText: this.FlavourText,
       Class: this.Class,
