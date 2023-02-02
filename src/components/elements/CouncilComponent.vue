@@ -1,6 +1,16 @@
 <template>
   <div align="center">
     <div class="InfoContainer">
+      <council-participant-component
+        v-if="councilId != null"
+        class="ELement Info"
+        :council="council"
+      />
+      <council-info-component
+        v-if="councilId != null"
+        class="ELement Info"
+        :council="council"
+      />
       <info-component
         v-if="councilId != null"
         class="ELement Info"
@@ -35,12 +45,14 @@
 <script>
 import CardComponent from "@/components/elements/CardComponent";
 import InfoComponent from "@/components/elements/VotingComponents/InfoComponent.vue";
+import CouncilParticipantComponent from "@/components/elements/VotingComponents/CouncilParticipantComponent.vue";
+import CouncilInfoComponent from "@/components/elements/VotingComponents/CouncilInfoComponent.vue";
 import { Council } from "@/model/Council";
 import { Card } from "@/model/Card";
 
 export default {
   name: "CouncilComponent",
-  components: { InfoComponent, CardComponent },
+  components: { InfoComponent, CardComponent, CouncilParticipantComponent, CouncilInfoComponent },
   props: {
     councilId: {
       type: Number,
@@ -72,6 +84,7 @@ export default {
       this.$cardChain.getCouncil(this.councilId)
         .then(res => {
           this.council = res;
+          console.log("####", res)
           this.$cardChain.getCard(this.council.cardId)
           .then(res => {
             this.card = res

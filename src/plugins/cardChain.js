@@ -326,7 +326,7 @@ export default {
           this.vue.notifyFail('WTF', 'A council was looked up that does not exist in the blockchain.')
           throw new Error('Council with ' + id + ' does not exist.')
         } else {
-          return Council.from(res.data)
+          return Council.from(res.data, id)
         }
       })
       handleGetCardList = R.curry((res, type) => {

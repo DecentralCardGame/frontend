@@ -1,6 +1,7 @@
 import { Coin } from "./Coin";
 
 export class Council {
+  id: number
   cardId: number
   voters: Array<string>
   hashResponses: Array<WrapHashResponse> = []
@@ -9,7 +10,7 @@ export class Council {
   status: CouncelingStatus
   trialStart: number
 
-  static from(json) {
+  static from(json, id) {
     let council = Object.assign(new Council(), json);
     console.log(json)
     council.hoshResponses = json.hoshResponses?.map(resp => {
@@ -20,6 +21,7 @@ export class Council {
     })
     council.treasury = Coin.from(json.treasury)
     council.status = CouncelingStatus[json.status]
+    council.id = id
 	return council
   }
 }

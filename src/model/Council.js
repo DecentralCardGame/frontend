@@ -7,7 +7,7 @@ class Council {
         this.hashResponses = [];
         this.clearResponses = [];
     }
-    static from(json) {
+    static from(json, id) {
         let council = Object.assign(new Council(), json);
         console.log(json);
         council.hoshResponses = json.hoshResponses?.map(resp => {
@@ -18,6 +18,7 @@ class Council {
         });
         council.treasury = Coin_1.Coin.from(json.treasury);
         council.status = CouncelingStatus[json.status];
+        council.id = id;
         return council;
     }
 }
