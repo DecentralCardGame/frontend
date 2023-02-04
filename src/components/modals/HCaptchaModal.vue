@@ -13,8 +13,13 @@
 </template>
 
 <script>
-import * as R from 'ramda'
 import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
+import { env } from "@/env"
+import { useAddress } from "@/def-composables/useAddress";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+
+const { loggedIn } = useLoggedIn();
+const { address } = useAddress()
 
 export default {
   name: 'HCaptchaModal',
@@ -25,7 +30,7 @@ export default {
   },
   data() {
     return {
-      siteKey: process.env.VUE_APP_FAUCET_SITEKEY
+      siteKey: env.faucetSiteKey
     }
   },
   watch: {
@@ -37,15 +42,16 @@ export default {
   methods: {
     onVerify (res) {
       console.log("res", res)
+      console.log(env)
       this.$emit('close')
 
       const data = {
-        address: this.$store.getters['common/wallet/address'],
+        address: address.value,
         token: res,
-        alias: this.$store.getters['common/wallet/walletName']
+        alias: "" //this.$store.getters['common/wallet/walletName']
       }
 
-      const request = new Request(process.env.VUE_APP_FAUCET, {
+      const request = new Request(env.faucetNode, {
           method: 'POST',
           headers: {
               'Accept': 'application/json'

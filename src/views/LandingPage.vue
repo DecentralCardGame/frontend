@@ -260,7 +260,7 @@
 import {
   cardJpgs,
   botCommandCenterData
-} from "../components/utils/sampleCards.js"
+} from "@/components/utils/sampleCards"
 
 export default {
   name: "LandingPage",
@@ -274,7 +274,6 @@ export default {
   },
   mounted() {
     this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-    console.log("is Safari?", this.isSafari)
   },
 };
 </script>

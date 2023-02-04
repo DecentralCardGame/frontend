@@ -1,11 +1,14 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",                            
-    "lib": ["DOM","DOM.Iterable","ES2020","ScriptHost"],
-    "module": "commonjs",                               
-    "moduleResolution": "node",                       
-//    "outDir": "./lib",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
-  }
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ]
 }

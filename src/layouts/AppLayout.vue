@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppLayoutDefault from './Default'
+import AppLayoutDefault from './Default.vue'
 export default {
   name: "AppLayout",
   data: () => ({
@@ -16,7 +16,7 @@ export default {
       immediate: true,
       async handler(route) {
         try {
-          const component = await import(`@/layouts/${route.meta.layout}.vue`)
+          const component = await import( /* @vite-ignore */ `./${route.meta.layout}.vue`)
           this.layout = component?.default || AppLayoutDefault
         } catch (e) {
           this.layout = AppLayoutDefault

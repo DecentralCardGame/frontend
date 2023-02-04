@@ -127,7 +127,7 @@
 </template>
 
 <script>
-import BulletList from '@/components/elements/BulletList'
+import BulletList from '@/components/elements/BulletList.vue'
 
 export default {
   name: "RoadmapPage",

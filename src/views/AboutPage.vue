@@ -178,7 +178,7 @@
 </template>
 
 <script>
-import CardComponent from "@/components/elements/CardComponent";
+import CardComponent from "@/components/elements/CardComponent.vue";
 import {
   cardJpgs,
   churchCard,
@@ -186,7 +186,7 @@ import {
   wildAllianceCard,
   healingPriestCard,
   communityCardData
-} from "../components/utils/sampleCards.js";
+} from "@/components/utils/sampleCards";
 
 export default {
   name: "AboutPage",

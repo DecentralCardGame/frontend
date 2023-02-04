@@ -71,7 +71,7 @@
           </li-->
           <li>
             <router-link
-              v-if="$store.getters['getLoggedIn']"
+              v-if="loggedIn"
               to="/user/me"
             >
               Account
@@ -84,13 +84,19 @@
 </template>
 
 <script>
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+
 export default {
   name: 'PageMenu',
   data () {
     return {
       displayMenu: false,
-      displayLoginDialogue: false
+      displayLoginDialogue: false,
     }
+  },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    return { loggedIn }
   },
   computed: {
     showMenuClass () {
@@ -102,8 +108,6 @@ export default {
     }
   },
   methods: {
-    doNothing () {
-    }
   },
 }
 </script>

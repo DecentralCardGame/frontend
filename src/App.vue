@@ -22,10 +22,9 @@
 
 <script>
 import './scss/main.scss'
-import '@starport/vue/lib/starport-vue.css'
-//import Sidebar from './components/Sidebar'
+//import '@starport/vue/lib/starport-vue.css'
+import AppLayout from '@/layouts/AppLayout.vue'
 
-import AppLayout from './layouts/AppLayout.vue'
 
 export default {
   name: 'CrowdControlApp',
@@ -43,30 +42,10 @@ export default {
     }
   },
   async created() {
-    this.$cardChain.bindVue(this)
-
-    console.log("Fallback?", this.apiFallback)
-    await this.$store.dispatch('common/env/init', {
-      apiNode: this.apiFallback ? process.env.VUE_APP_API_COSMOS_FALLBACK : process.env.VUE_APP_API_COSMOS,
-      rpcNode: this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT,
-      wsNode: this.apiFallback ? process.env.VUE_APP_WS_TENDERMINT_FALLBACK : process.env.VUE_APP_WS_TENDERMINT,
-      getTXApi: (this.apiFallback ? process.env.VUE_APP_API_TENDERMINT_FALLBACK : process.env.VUE_APP_API_TENDERMINT) + '/tx?hash=0x',
-      chainId: process.env.VUE_APP_CHAIN_ID,
-      addrPrefix: process.env.VUE_APP_ADDRESS_PREFIX,
-      chainName: process.env.VUE_APP_CHAIN_NAME,
-      offline: false,
-      sdkVersion: 'Stargate',
-      starportUrl: 'http://localhost:12345',
-      refresh: 5000
-    })
     this.initialized = true
-
     console.log("initialized?", this.initialized)
-    console.log("API COSMOS:", this.$store.getters['common/env/apiCosmos'])
   },
   mounted () {
-    this.setLoginStatus();
-    console.log("store", this.$store)
   },
   errorCaptured(err) {
     console.log(err)
@@ -74,17 +53,10 @@ export default {
   },
   methods: {
     handleAnyInput(event) {
-      this.$store.commit(
-        "setLastInputEvent",
-        event
-      )
-    },
-    setLoginStatus() {
-      if (this.$store.getters['common/wallet/walletName'] != null) {
-        this.$store.commit('setLoggedIn', true)
-      } else {
-        this.$store.commit('setLoggedIn', false)
-      }
+      //this.$store.commit(
+        //"setLastInputEvent",
+        //event
+      //)
     },
   }
 }

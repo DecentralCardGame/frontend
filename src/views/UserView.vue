@@ -11,7 +11,7 @@
           >
         </div>
         <button
-          v-if="loggedinHere"
+          v-if="loggedIn"
           @click="showChooseModal"
         >
           <img src="edit.svg">
@@ -75,7 +75,7 @@
       <div>
         Vote rights: {{ user.voteRights.length }} <br>
         <button
-          v-if="loggedinHere"
+          v-if="loggedIn"
           @click="$router.push({name: 'Vote'})"
         >
           Vote
@@ -96,7 +96,7 @@
         </div>
         <br>
         <button
-          v-if="loggedinHere"
+          v-if="loggedIn"
           type="button"
           class="btn"
           @click="showModal"
@@ -107,7 +107,7 @@
       <br>
       <div>
         <button
-          v-if="loggedinHere"
+          v-if="loggedIn"
           type="button"
           class="btn"
           @click="showGrantModal"
@@ -138,13 +138,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
 import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 import GrantModal from '../components/modals/GrantModal.vue';
 import AirdropsModal from '../components/modals/AirdropsModal.vue';
-import { Coin } from '@/utils/coins'
+import { Coin } from '@/utils/coins.js'
+import { useAddress } from "@/def-composables/useAddress";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useQuery } from "@/def-composables/useQuery";
+import { validAddress } from "@/utils/validation";
+
+const { queryQCard, queryQUser, queryAllBalances } = useQuery()
 
 export default {
   name: 'UserView',
@@ -171,8 +177,15 @@ export default {
         voteRights: [],
         profileCard: 0,
         airdrops: {},
+        CouncilStatus: "",
       },
     }
+  },
+  setup() {
+    const { address } = useAddress();
+    const { loggedIn } = useLoggedIn()
+
+    return { userAddress: address, loggedIn }
   },
   watch: {
     "$route.params.id"(value) {
@@ -181,9 +194,6 @@ export default {
         this.init()
       }
     },
-    '$store.state.common.wallet.selectedAddress': function () {
-      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
-    }
   },
   mounted () {
     this.init()
@@ -192,8 +202,8 @@ export default {
     init () {
       let id = this.$route.params.id
       if (id === "me") {
-        if (this.$store.getters["getLoggedIn"]) {
-          this.address = this.$store.getters['common/wallet/address']
+        if (this.loggedIn) {
+          this.address = this.userAddress
         } else {
           console.log("You're not logged in")
           this.$router.push({name: "NotFound"})
@@ -202,9 +212,7 @@ export default {
         this.address = id
       }
 
-      this.loggedinHere = (this.address == this.$store.getters['common/wallet/address'])
-
-      if (! this.$cardChain.validAddress(this.address)) {
+      if (!validAddress(this.address)) {
         this.$router.push({name: "NotFound"})
       }
 
@@ -212,15 +220,17 @@ export default {
       this.getUser()
     },
     getUser () {
-      this.$cardChain.getUserInfo(this.address)
-      .then(user => {
+      queryQUser(this.address)
+      .then(res => {
+        let user = res.data
         console.log("received user data:", user)
         this.user = user
         this.getImg()
       })
-      this.$cardChain.getAccInfo(this.address)
-      .then(coins => {
-        this.coins = this.normalizeCoins(coins.coins)
+      queryAllBalances(this.address)
+      .then(res => {
+        let coins = res.data
+        this.coins = this.normalizeCoins(coins.balances)
       })
     },
     register () {
@@ -270,7 +280,7 @@ export default {
     async getImg() {
       console.log(this.user.profileCard)
       if (this.user.profileCard != 0) {
-        var a = await this.getCard(this.user.profileCard)
+        let a = await this.getCard(this.user.profileCard)
         if (a === null) {
           this.img = this.getDefaultImg()
         } else {
@@ -281,11 +291,9 @@ export default {
       }
     },
     async getCard(id) {
-      return this.$cardChain.getCard(id).then(res => {
-        return res
-      })
-      .catch(err => {
-        return null
+      return queryQCard(id)
+      .then(res => {
+        return res.data
       })
     }
   }

@@ -67,8 +67,12 @@
   </transition>
 </template>
 
-<script>
-import * as R from 'ramda'
+<script lang=ts>
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useQuery } from "@/def-composables/useQuery";
+import { useAddress } from "@/def-composables/useAddress";
+
+const { queryAllBalances } = useQuery()
 
 export default {
   name: 'TransferModal',
@@ -88,6 +92,12 @@ export default {
       this.init()
     }
   },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    const { address } = useAddress()
+
+    return { loggedIn, address }
+  },
   created() {
   },
   mounted() {
@@ -95,16 +105,14 @@ export default {
   },
   methods: {
     init() {
-      if (this.$store.getters["getLoggedIn"]) {
-        this.address = this.$store.getters['common/wallet/address']
+      if (this.loggedIn.value) {
         this.getCoins()
       }
     },
     getCoins() {
-      this.$cardChain.getAccInfo(this.address)
+      queryAllBalances(this.address.value)
       .then(coins => {
         this.coins = coins.coins
-        console.log("Hier")
       })
     },
     close() {
@@ -112,7 +120,7 @@ export default {
     },
     isNumber: function (evt) {
       evt = evt || window.event
-      var charCode = (evt.which) ? evt.which : evt.keyCode
+      let charCode = (evt.which) ? evt.which : evt.keyCode
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
         evt.preventDefault()
       } else {
@@ -128,7 +136,7 @@ export default {
         this.warningText = "Choose a denom!"
         return
       }
-      for (var i = 0; i < this.coins.length; i++) {
+      for (let i = 0; i < this.coins.length; i++) {
         if ((this.coins[i].denom == this.denom) && (Number(this.amount) > this.coins[i].amount)) {
           this.warningText = "You don't have that many coins!"
           return

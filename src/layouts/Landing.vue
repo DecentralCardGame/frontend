@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import PageLogoHeader from '@/components/partials/PageLogoHeader'
-import PageMenu from '@/components/partials/PageMenu'
-import PageFooter from '@/components/partials/PageFooter'
+import PageLogoHeader from '../components/partials/PageLogoHeader.vue'
+import PageMenu from '../components/partials/PageMenu.vue'
+import PageFooter from '../components/partials/PageFooter.vue'
 
 export default {
   name: 'CrowdControlApp',

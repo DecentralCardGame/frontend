@@ -23268,8 +23268,8 @@ export default {
       }
       cardType[tempType] = true
 
-      let frameType = R.merge(cardClass, {HQ: false, MultiClass: false})
-      let colorType = R.merge(cardClass, {MultiClass: false})
+      let frameType = R.mergeAll(cardClass, {HQ: false, MultiClass: false})
+      let colorType = R.mergeAll(cardClass, {MultiClass: false})
 
       if (R.countBy(x => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
