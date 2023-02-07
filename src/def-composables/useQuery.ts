@@ -3,7 +3,7 @@ import { useClient } from "@/composables/useClient";
 const useQueryInstance = () => {
   const client = useClient()
 
-  return Object.assign(client.DecentralCardGameCardchainCardchain.query, client.CosmosBankV1Beta1.query)
+  return Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query)
 }
 
 let instance: ReturnType<typeof useQueryInstance>;

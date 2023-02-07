@@ -71,8 +71,11 @@
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
+import { validAddress } from "@/utils/validation";
+import { useTx } from "@/def-composables/useTx";
 
 const { queryAllBalances } = useQuery()
+const { send } = useTx()
 
 export default {
   name: 'TransferModal',
@@ -88,7 +91,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.common.wallet.selectedAddress': function () {
+    loggedIn() {
       this.init()
     }
   },
@@ -105,14 +108,14 @@ export default {
   },
   methods: {
     init() {
-      if (this.loggedIn.value) {
+      if (this.loggedIn) {
         this.getCoins()
       }
     },
     getCoins() {
-      queryAllBalances(this.address.value)
-      .then(coins => {
-        this.coins = coins.coins
+      queryAllBalances(this.address)
+      .then(res => {
+        this.coins = res.data.balances
       })
     },
     close() {
@@ -142,12 +145,12 @@ export default {
           return
         }
       }
-      if (! this.$cardChain.validAddress(this.recipient)) {
+      if (!validAddress(this.recipient)) {
         this.warningText = "Input a proper address!"
         return
       }
       this.warningText = ""
-      this.$cardChain.transferCoin(
+      send(
         this.recipient,
         [
           {
@@ -155,8 +158,7 @@ export default {
             denom: this.denom
           }
         ]
-      ).then(res => {
-        console.log("yees")
+      ).then(_ => {
         this.amount = 0
         this.denom = ""
       })

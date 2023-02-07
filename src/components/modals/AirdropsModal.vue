@@ -51,7 +51,7 @@
                 {{ data[name].linkText }}
               </router-link>
               <div
-                v-if="!R.isEmpty(data[name].linkData)"
+                v-if="data[name].linkData"
                 class="claimBox"
                 :style="{color: (!drop) ? 'red' : 'green',}"
               >
@@ -74,8 +74,11 @@
   </transition>
 </template>
 
-<script>
-import * as R from 'ramda'
+<script lang=ts>
+import { useQuery } from "@/def-composables/useQuery";
+import { env } from "@/env";
+
+const { queryParams } = useQuery()
 
 export default {
   name: 'AirdropsModal',
@@ -127,16 +130,15 @@ export default {
       this.$emit('close')
     },
     getHeight() {
-      fetch(process.env.VUE_APP_API_TENDERMINT+"status").then(response => {
+      fetch(env.rpcNode + "/status").then(response => {
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`)
         }
         return response.json()
       })
       .then(data => {
-        this.$cardChain.getParams().then(res => {
-          this.isValid = (+data.result.sync_info.latest_block_height < +res.params.airDropMaxBlockHeight)
-          console.log(data.result.sync_info.latest_block_height, res.params.airDropMaxBlockHeight, this.isValid)
+        queryParams().then(res => {
+          this.isValid = (+data.result.sync_info.latest_block_height < +res.data.params.airDropMaxBlockHeight)
         })
       })
       .catch(error => console.log(error))

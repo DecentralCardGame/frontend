@@ -23,7 +23,7 @@
         Account details
       </h2>
       <button
-        v-if="loggedinHere"
+        v-if="loggedIn"
         type="button"
         class="btn"
         @click="showAirdropsModal"
@@ -53,7 +53,7 @@
       <div>
         Council status: {{ user.CouncilStatus }} <br>
         <div
-          v-if="loggedinHere"
+          v-if="loggedIn"
           style="display: inline"
         >
           <button
@@ -149,8 +149,10 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
 import { validAddress } from "@/utils/validation";
+import { useTx } from "@/def-composables/useTx";
 
 const { queryQCard, queryQUser, queryAllBalances } = useQuery()
+const { registerForCouncil, rewokeCouncilRegistration } = useTx()
 
 export default {
   name: 'UserView',
@@ -162,7 +164,6 @@ export default {
   },
   data () {
     return {
-      loggedinHere: false,
       isChooseModalVisible: false,
       isAirdropsModalVisible: false,
       isModalVisible: false,
@@ -223,7 +224,6 @@ export default {
       queryQUser(this.address)
       .then(res => {
         let user = res.data
-        console.log("received user data:", user)
         this.user = user
         this.getImg()
       })
@@ -234,10 +234,10 @@ export default {
       })
     },
     register () {
-      this.$cardChain.registerForCouncilTx().then(this.getUser)
+      registerForCouncil().then(this.getUser)
     },
     deRegister () {
-      this.$cardChain.deRegisterFromCouncilTx().then(this.getUser)
+      rewokeCouncilRegistration().then(this.getUser)
     },
     normalizeCoins(coins) {
       let newCoins = [];
@@ -273,12 +273,10 @@ export default {
       this.isAirdropsModalVisible = false;
     },
     getDefaultImg() {
-      var myRandom = this.address.charCodeAt(this.address.length-1) % 4
-      console.log("random", myRandom)
+      let myRandom = this.address.charCodeAt(this.address.length-1) % 4
       return "Avatar"+myRandom+".png"
     },
     async getImg() {
-      console.log(this.user.profileCard)
       if (this.user.profileCard != 0) {
         let a = await this.getCard(this.user.profileCard)
         if (a === null) {
