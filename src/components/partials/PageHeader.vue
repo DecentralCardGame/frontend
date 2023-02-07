@@ -44,7 +44,7 @@
   </header>
 </template>
 
-<script setup lang=ts>
+<script setup lang="ts">
 import HCaptchaModal from "@/components/modals/HCaptchaModal.vue";
 import IgntAcc from "@/components/IgntAcc.vue";
 import { useAddress } from "@/def-composables/useAddress";
@@ -60,50 +60,31 @@ const { queryQUser } = useQuery();
 
 watch(address, () => {
   if (loggedIn) {
-    //this.notifyInfo("Login", "You are now logged in.");
-
-    // first we check if the blockchain gives proper response
     queryQUser(address.value)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err.response)
-      if (err.response.status === 500) {
-        state.showCaptcha = true;
-        console.log("yes")
-      } else {
-        throw err
-      }
-    })
-
-    //this.$cardChain.getGameInfo()
-     // .then(res => {
-        // then we check if the user exists and if not, we go through the faucet process
-       // this.$cardChain.checkIfCardchainUserExists(this.$store.getters["common/wallet/address"])
-         // .then(user => {
-           // return "no faucet necessary";
-          //})
-          //.catch(res => {
-            //this.showCaptcha = true;
-          //});
-      //})
-      //.catch(res => {
-        //console.error(res);
-        //this.notifyFail("FAILED", "No connection to the blockchain...");
-      //})
-    }
- })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response);
+        if (err.response.status === 500) {
+          state.showCaptcha = true;
+          console.log("yes");
+        } else {
+          throw err;
+        }
+      });
+  }
+});
 
 // state
 const state = reactive({
   showKeplr: true,
   showCaptcha: false
-})
+});
 
 const closeCaptcha = () => {
   state.showCaptcha = false;
-}
+};
 
 </script>
 

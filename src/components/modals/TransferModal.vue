@@ -115,7 +115,7 @@ export default {
     getCoins() {
       queryAllBalances(this.address)
       .then(res => {
-        this.coins = res.data.balances
+        this.coins = res.balances
       })
     },
     close() {

@@ -138,18 +138,18 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang=ts>
 
 import TransferModal from '../components/modals/TransferModal.vue';
 import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
 import GrantModal from '../components/modals/GrantModal.vue';
 import AirdropsModal from '../components/modals/AirdropsModal.vue';
-import { Coin } from '@/utils/coins.js'
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
 import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
+import { User } from "@/model/User";
 
 const { queryQCard, queryQUser, queryAllBalances } = useQuery()
 const { registerForCouncil, rewokeCouncilRegistration } = useTx()
@@ -171,15 +171,7 @@ export default {
       address: "",
       coins: [],
       img: "",
-      user: {
-        ownedCardSchemes: [],
-        ownedPrototypes: [],
-        cards: [],
-        voteRights: [],
-        profileCard: 0,
-        airdrops: {},
-        CouncilStatus: "",
-      },
+      user: new User()
     }
   },
   setup() {
@@ -222,14 +214,12 @@ export default {
     },
     getUser () {
       queryQUser(this.address)
-      .then(res => {
-        let user = res.data
+      .then(user => {
         this.user = user
         this.getImg()
       })
       queryAllBalances(this.address)
-      .then(res => {
-        let coins = res.data
+      .then(coins => {
         this.coins = this.normalizeCoins(coins.balances)
       })
     },
@@ -241,9 +231,9 @@ export default {
     },
     normalizeCoins(coins) {
       let newCoins = [];
-      for (let i = 0; i<coins.length; i++) {
-        newCoins.push(new Coin(coins[i]).nornalize())
-      }
+      coins.forEach(coin => {
+        newCoins.push(coin.normalize())
+      })
       return newCoins
     },
     showModal() {
@@ -290,8 +280,8 @@ export default {
     },
     async getCard(id) {
       return queryQCard(id)
-      .then(res => {
-        return res.data
+      .then(card => {
+        return card
       })
     }
   }
