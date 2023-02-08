@@ -10,7 +10,10 @@
     </p>
     <br>
     <div>
-      <div class="progress-container">
+      <div 
+        v-if="!artistMode"
+        class="progress-container"
+      >
         <div class="progress">
           <div
             :class="classStepPassed(0)"
@@ -22,7 +25,7 @@
             :class="classStepPassed(1)"
             @click="activeStep = 1"
           >
-            Type, Tags and Class
+            Artwork
           </div>
           <div
             :class="classStepPassed(2)"
@@ -46,19 +49,10 @@
       </div>
 
       <div class="creator">
-        <div class="creator-preview">
-          <CardComponent
-            id="card"
-            :active-step="activeStep"
-            :display-notes="true"
-            :image-u-r-l="getCardImage"
-            :model="model"
-          />
-        </div>
-
         <div class="creator-input">
+          <!-- Name, Flavor and Type section -->
           <div
-            v-if="activeStep == 0"
+            v-if="activeStep == 0 && !artistMode"
             class="creator-input-container ccbutton"
           >
             <!-- Name -->
@@ -75,13 +69,12 @@
               v-model="model.FlavourText"
               @change="saveDraft"
             >
-
             <!-- Type -->
             <span
               v-if="$cardRules"
               class="creator-text"
             >
-              My <b>type</b> is
+              My <b>type</b> is:
             </span>
             <select
               v-if="$cardRules"
@@ -141,82 +134,123 @@
                 Mysticism <br>
               </label>
             </div>
+          </div>
 
-            <!-- Artwork -->
-            <span class="creator-text">
-              Please upload an image. By uploading you confirm you have the rights to upload this image.
-            </span>
-
-            <input
-              id="file"
-              class="inputfile"
-              name="file"
-              type="file"
-              @change="inputFile"
+          <!-- Artwork section -->
+          <div
+            v-if="activeStep == 1 || artistMode"
+            class="creator-input-single-column"
+          >
+            <label 
+              v-if="!artistMode"
+              class="input--checkbox-label__left"
             >
-            <label
-              class="button--file"
-              for="file"
-            >Choose a file without copyright violation</label>
-          </div>
-          <div
-            v-if="activeStep == 0"
-          >
-            <cropper
-              class="cropper"
-              :src="cropImage"
-              :auto-zoom="true"
-              :stencil-size="{
-                width: 838,
-                height: model.fullArt ? 1300 : 838
-              }"
-              :canvas="{
-                height: model.fullArt ? 1300 : 838,
-                width: 838
-              }"
-              :default-size="{
-                width: 838,
-                height: model.fullArt ? 1300 : 838,
-              }"
-              image-restriction="fit-area"
-              @change="changeCrop"
-            />
-          </div>
-          <div
-            v-if="activeStep == 0"
-          >
-            <!-- FullArt -->
-            <span class="creator-text">
-              My <b>beauty</b> must not be covered by borders
-            </span>
-            <input
-              v-model="model.fullArt"
-              type="checkbox"
-              @change="saveDraft()"
+              <input
+                v-model="designateArtist"
+                class="input--checkbox__left"
+                type="checkbox"
+                @change="saveDraft"
+              >
+              Designate other Artist (not yourself) <br>
+            </label>
+            <div
+              v-if="designateArtist && !artistMode"
             >
+              <span class="creator-text"><b>Address:</b> </span>
+              <input
+                v-model="artistAddress"
+                @change="saveDraft"
+              >
+            </div>
+            <!-- Self-service Artwork -->
+            <div
+              v-if="!designateArtist || artistMode"
+            >
+              <span class="creator-text">
+                Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
+              </span>
+            </div>
+            <div
+              v-if="!designateArtist || artistMode"
+            >
+              <input
+                id="file"
+                class="inputfile"
+                name="file"
+                type="file"
+                @change="inputFile"
+              >
+              <label
+                class="button--file"
+                for="file"
+              >Choose a file without copyright violation
+              </label>
+            </div>
+            <div
+              v-if="!designateArtist || artistMode"
+            >
+              <cropper
+                class="cropper"
+                :src="cropImage"
+                :auto-zoom="true"
+                :stencil-size="{
+                  width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x
+                }"
+                :canvas="{
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                  width: cardBounds.x
+                }"
+                :default-size="{
+                  width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                }"
+                image-restriction="fit-area"
+                @change="changeCrop"
+              />
+            </div>
+
+            <!-- The fullart toggle is deactivated -->
+            <div 
+              v-if="activeStep == 1 && !designateArtist && false" 
+            >
+              <!-- FullArt -->
+              <span class="creator-text">
+                My <b>beauty</b> must not be covered by borders
+              </span>
+              <input
+                v-model="model.fullArt"
+                type="checkbox"
+                @change="saveDraft()"
+              >
+            </div>
+            <div
+              v-if="artistMode"
+              class="creator-nav-container ccbutton"
+              align="center"
+            >
+              <button
+                @click="saveSubmit()"
+              >
+                Update Artwork
+              </button>
+            </div>
           </div>
 
+          <!-- Cost and Properties section -->
           <div
-            v-if="activeStep == 1"
-            class="creator-input-container"
-          >
-            <!-- Here could be your HTML -->
-          </div>
-
-          <div
-            v-if="activeStep == 2"
+            v-if="activeStep == 2 && !artistMode"
             class="creator-input-container"
           >
             <!-- Mana Cost -->
-            <div>
-              <span
-                v-if="$cardRules.children[getRulesType()] &&
-                  $cardRules.children[getRulesType()].children.CastingCost"
-                class="creator-text"
-              >
-                <b>Casting Cost:</b>
-              </span>
-            </div>
+            <span
+              v-if="$cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.CastingCost"
+              class="creator-text"
+            >
+              <b>Casting Cost:</b>
+            </span>
+            
             <div
               v-if="
                 $cardRules.children[getRulesType()] &&
@@ -246,116 +280,120 @@
                 $cardRules.children[getRulesType()] &&
                   $cardRules.children[getRulesType()].children.AdditionalCost
               "
+              class="creator-text"
             >
-              Special cost:
               <input
                 v-model="isAdditionalCostVisible"
                 type="checkbox"
                 class="input--checkbox__right"
                 @change="toggleAdditionalCost"
               >
+              Special Cost:
             </div>
-
-            <div>
-              <div
-                v-if="isAdditionalCostVisible"
+            <div
+              v-if="!isAdditionalCostVisible &&
+                $cardRules.children[getRulesType()] &&
+                $cardRules.children[getRulesType()].children.AdditionalCost"
+            >
+              <!-- this div is to fix the grid -->
+            </div>
+            <div
+              v-if="isAdditionalCostVisible"
+            >
+              <select
+                @change="setAdditionalCost($event); saveDraft();"
               >
-                Special Cost:
+                <option
+                  disabled
+                  selected="true"
+                  value=""
+                >
+                  Select Special Cost
+                </option>
+                <option
+                  v-for="n in R.keys(
+                    $cardRules.children[getRulesType()].children.AdditionalCost.children
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ printAdditionalCost(n) }}
+                </option>
+              </select>
+
+              <span
+                v-if="model.AdditionalCost.DiscardCost"
+                class="creator-text"
+              >
                 <select
-                  @change="setAdditionalCost($event); saveDraft();"
+                  v-model="model.AdditionalCost.DiscardCost.Amount"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
                   <option
-                    disabled
-                    selected="true"
-                    value=""
-                  >
-                    Select Special Cost
-                  </option>
-                  <option
-                    v-for="n in R.keys(
-                      $cardRules.children[getRulesType()].children.AdditionalCost.children
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
                     )"
                     :key="n"
                     :value="n"
                   >
-                    {{ printAdditionalCost(n) }}
+                    {{ n }}
                   </option>
                 </select>
 
-                <span
-                  v-if="model.AdditionalCost.DiscardCost"
-                  class="creator-text"
-                >
-                  <select
-                    v-model="model.AdditionalCost.DiscardCost.Amount"
-                    @change="updateAdditionalCostText(); saveDraft();"
-                  >
-                    <option
-                      v-for="n in R.range(
-                        $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
-                        $cardRules.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
-                      )"
-                      :key="n"
-                      :value="n"
-                    >
-                      {{ n }}
-                    </option>
-                  </select>
+                cards from your hand.
+              </span>
 
-                  cards from your hand.
-                </span>
-
-                <span
-                  v-if="model.AdditionalCost.SacrificeCost"
+              <span
+                v-if="model.AdditionalCost.SacrificeCost"
+              >
+                <select
+                  v-model="model.AdditionalCost.SacrificeCost.Amount"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
-                  <select
-                    v-model="model.AdditionalCost.SacrificeCost.Amount"
-                    @change="updateAdditionalCostText(); saveDraft();"
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
                   >
-                    <option
-                      v-for="n in R.range(
-                        $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
-                        $cardRules.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
-                      )"
-                      :key="n"
-                      :value="n"
-                    >
-                      {{ n }}
-                    </option>
-                  </select>
-                  Entitites.
-                </span>
+                    {{ n }}
+                  </option>
+                </select>
+                Entitites.
+              </span>
 
-                <span
-                  v-if="model.AdditionalCost.VoidCost"
+              <span
+                v-if="model.AdditionalCost.VoidCost"
+              >
+                <select
+                  v-model="model.AdditionalCost.VoidCost.Amount"
+                  @change="updateAdditionalCostText(); saveDraft();"
                 >
-                  <select
-                    v-model="model.AdditionalCost.VoidCost.Amount"
-                    @change="updateAdditionalCostText(); saveDraft();"
+                  <option
+                    v-for="n in R.range(
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
+                      $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
+                    )"
+                    :key="n"
+                    :value="n"
                   >
-                    <option
-                      v-for="n in R.range(
-                        $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
-                        $cardRules.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
-                      )"
-                      :key="n"
-                      :value="n"
-                    >
-                      {{ n }}
-                    </option>
-                  </select>
-                  cards from your graveyard.
-                </span>
-              </div>
+                    {{ n }}
+                  </option>
+                </select>
+                cards from your graveyard.
+              </span>
             </div>
 
             <!-- HQ Delay -->
-            <div v-if="model.type === 'Headquarter'">
-              <span class="creator-text">
-
-                <b>Delay</b> of Activation: <br>
-              </span>
-            </div>
+            <span 
+              v-if="model.type === 'Headquarter'"
+              class="creator-text"
+            >
+              <b>Delay</b> of Activation: <br>
+            </span>
             <div
               v-if="
                 $cardRules.children[getRulesType()] &&
@@ -364,7 +402,6 @@
             >
               <span class="creator-text">
                 <select
-
                   v-model="model.Delay"
                   @change="saveDraft"
                 >
@@ -384,62 +421,59 @@
               </span>
             </div>
 
-            <!-- Attack & Health -->
-            <div>
-              <span v-if="model.type === 'Entity'">
-                <b>Attack:</b><br>
-                <br>
-              </span>
-
-              <span v-if="model.type === 'Entity'"> and </span>
-              <span v-if="model.type !== 'Action'">
-                <b>Defense:</b> <br>
-                <br>
-              </span>
+            <!-- Attack -->
+            <span
+              v-if="model.type === 'Entity' && $cardRules.children[getRulesType()]"
+              class="creator-text"
+            >
+              <b>Attack:</b>
+            </span>
+            <div
+              v-if="model.type === 'Entity' && $cardRules.children[getRulesType()]"
+            >
+              <select
+                v-model="model.Attack"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range(
+                    $cardRules.children[getRulesType()].children.Attack.min || 0,
+                    $cardRules.children[getRulesType()].children.Attack.max + 1
+                  )"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
             </div>
-            <div>
-              <div>
-                <div
-                  v-if="model.type === 'Entity' && $cardRules.children[getRulesType()]"
-                >
-                  <select
-                    v-model="model.Attack"
-                    @change="saveDraft"
-                  >
-                    <option
-                      v-for="n in R.range(
-                        $cardRules.children[getRulesType()].children.Attack.min || 0,
-                        $cardRules.children[getRulesType()].children.Attack.max + 1
-                      )"
-                      :key="n"
-                      :value="n"
-                    >
-                      {{ n }}
-                    </option>
-                  </select>
-                  <br>
-                  <br>
-                </div>
 
-                <select
-                  v-if="
-                    model.type !== 'Action' && $cardRules.children[getRulesType()]
-                  "
-                  v-model="model.Health"
-                  @change="saveDraft"
+            <!-- Health -->
+            <span
+              v-if="model.type !== 'Action' && $cardRules.children[getRulesType()]"
+              class="creator-text"
+            >
+              <b>Defense:</b> <br>
+              <br>
+            </span>
+            <div                 
+              v-if="model.type !== 'Action' && $cardRules.children[getRulesType()]"
+            >
+              <select
+                v-model="model.Health"
+                @change="saveDraft"
+              >
+                <option
+                  v-for="n in R.range(
+                    $cardRules.children[getRulesType()].children.Health.min || 0,
+                    $cardRules.children[getRulesType()].children.Health.max + 1
+                  )"
+                  :key="n"
+                  :value="n"
                 >
-                  <option
-                    v-for="n in R.range(
-                      $cardRules.children[getRulesType()].children.Health.min || 0,
-                      $cardRules.children[getRulesType()].children.Health.max + 1
-                    )"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-              </div>
+                  {{ n }}
+                </option>
+              </select>
             </div>
 
             <!-- Tag -->
@@ -492,11 +526,10 @@
             </div>
           </div>
 
-
+          <!-- Abilities section -->
           <div
-            v-if="activeStep == 3"
+            v-if="activeStep == 3 && !artistMode"
           >
-            <!-- Abilities -->
             <p>
               In this step, you craft the heart of your card. Press the button to
               add <b>abilities / effects</b> to your card.
@@ -550,13 +583,15 @@
             </div>
           </div>
 
+          <!-- Buy Frames and Submit section -->
           <div
-            v-if="activeStep == 4"
+            v-if="activeStep == 4 && !artistMode"
             class="creator-input-container"
           >
-            <p>
+            <span class="creator-text">
+
               <b>Notes</b> for the council:
-            </p>
+            </span>
             <input
               v-model="model.notes"
               @change="saveDraft"
@@ -571,7 +606,9 @@
             >
           </div>
 
+          <!-- Navigation buttons -->
           <div
+            v-if="!artistMode"
             class="creator-nav-container ccbutton"
             align="center"
           >
@@ -623,6 +660,15 @@
             </button>
           </div>
         </div>
+        <div class="creator-preview">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage"
+            :model="model"
+          />
+        </div>
       </div>
       <div class="ability-modal-container">
         <BuyFrameModal
@@ -655,7 +701,7 @@ import 'vue-advanced-cropper/dist/style.css';
 
 
 export default {
-  name: "NewCardPage",
+  name: "CardCreator",
   components: { CardComponent, AbilityComponent, BuyFrameModal, AbilityModal, Cropper },
   data() {
     return {
@@ -667,6 +713,10 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
+      artistMode: false,
+      designateArtist: false,
+      artistAddress: "cc1...",
+      cardBounds: {x: process.env.VUE_APP_CARDIMG_SIZE_X, y: process.env.VUE_APP_CARDIMG_SIZE_Y},
       cropImage: sampleGradientImg,
       model: R.clone(emptyCard),
       cardID: 0,
@@ -709,6 +759,13 @@ export default {
 
       if (this.model.Tags[0])
         this.model.tagDummy = this.model.Tags[0]
+
+      this.designateArtist = this.model.artist != this.model.owner
+      if (this.designateArtist) {
+        this.artistAddress = this.model.artist
+        if (this.artistAddress === this.$store.getters['common/wallet/address'])
+          this.artistMode = true
+      }
 
       console.log("loaded card", this.model)
       return;
@@ -958,21 +1015,47 @@ export default {
       return string
     },
     saveSubmit() {
-      // first check all things that must be entered:
+      // if the artist is just uploading a new image, this is easy:
+      if (this.artistMode) {
+        if (!this.getCardImage) {
+          this.notifyFail(
+            "No Image",
+            "Card has no image, please upload an image."
+          )
+          return
+        }
+        this.$cardChain.saveArtworkToCard(this.model.id, this.getCardImage, this.model.fullArt)
+          .then(this.$cardChain.updateUserCredits())
+          .then(this.resetCard)
+          .catch((err) => {
+            this.notifyFail("Update Artwork failed", err)
+            console.error(err)
+          })
+        return
+      }
+        
+      // otherwise: check all things that must be entered:
       if (!this.model.CardName) {
-        this.notifyFail("No Name", "Card has no name, please enter a name.");
-        return;
+        this.notifyFail("No Name", "Card has no name, please enter a name.")
+        return
       }
       if (!this.model.type || this.model.type === "no type") {
-        this.notifyFail("Wrong Type", "please pick a type");
-        return;
+        this.notifyFail("Wrong Type", "please pick a type")
+        return
       }
-      if (!this.getCardImage) {
+      if (!this.designateArtist && !this.getCardImage) {
         this.notifyFail(
           "No Image",
           "Card has no image, please upload an image."
-        );
-        return;
+        )
+        return
+      }
+      if (this.designateArtist && !this.$cardChain.validAddress(this.artistAddress)) {
+        this.notifyFail(
+          "Invalid Address",
+          "The address given for designated artist is invalid."
+        )
+        return
       }
       if (!this.model.Tags[0]) {
         this.notifyFail(
@@ -1000,7 +1083,7 @@ export default {
         if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
           this.notifyFail(
             "No Cost",
-            "Card has no ressource cost, please pick a number."
+            "Card has no Casting Cost, please pick a number."
           );
           return;
         }
@@ -1092,13 +1175,16 @@ export default {
         newModel,
         this.getCardImage
       )
+
+      newCard.artist = this.designateArtist ? this.artistAddress : this.$store.getters['common/wallet/address']
       console.log("newCard", newCard)
 
       // check if a card is edited with pre-existing ID
       if (this.isEditCardMode()) {
+
         Promise.all([
             this.$cardChain.saveContentToCardTx(newCard, this.model.id),
-            this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt)
+            !this.designateArtist ? this.$cardChain.saveArtworkToCard(this.model.id, newCard.image, newCard.fullArt) : ""
           ])
           .then(this.$cardChain.updateUserCredits())
           .then(this.resetCard)
@@ -1108,7 +1194,7 @@ export default {
           })
       } else {
         this.$cardChain
-          .saveContentToUnusedCardSchemeTx(newCard)
+          .saveContentToUnusedCardSchemeTx(newCard, !this.designateArtist)
           .then(this.$cardChain.updateUserCredits())
           .then(this.resetCard)
           .catch((err) => {
@@ -1131,6 +1217,7 @@ export default {
         {}
       )
       this.model = R.clone(emptyCard)
+      this.artistMode = false
       this.cropImage = sampleGradientImg
       this.$store.commit(
         this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
@@ -1245,6 +1332,13 @@ export default {
   @media (min-width: 480px) {
     grid-template-areas: "creator-input creator-preview";
   }
+}
+
+.creator-input-single-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem 1rem;
 }
 
 .creator-input-container {
@@ -1386,13 +1480,12 @@ export default {
     margin-left: 25px;
   }
   .input--checkbox__right {
-    position: absolute;
+    position: relative;
     display: inline-block;
     margin-top: 1px;
   }
 
 .tag-select {
-  width: 100%;
   margin-bottom: 1rem;
 
   &.tag-select-last {

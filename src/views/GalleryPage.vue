@@ -230,6 +230,7 @@
         <GalleryModal
           :can-vote="canVote"
           :is-owner="isOwner"
+          :is-artist="isArtist"
           :keyword-descriptions="keywordDescriptions"
           :model="cards[clickedIndex]"
           :image-u-r-l="cards[clickedIndex].image"
@@ -271,6 +272,7 @@ export default {
       browsingBackward: true,
       canVote: false,
       isOwner: false,
+      isArtist: false,
       leavePageLock: false,
       keywordDescriptions: [],
       votableCards: []
@@ -422,9 +424,8 @@ export default {
         )
       }
 
-      this.isOwner =
-        this.cards[this.clickedIndex].owner ===
-        this.$store.getters['common/wallet/address']
+      this.isOwner = this.cards[this.clickedIndex].owner === this.$store.getters['common/wallet/address']
+      this.isArtist = this.cards[this.clickedIndex].artist === this.$store.getters['common/wallet/address']
 
       this.keywordDescriptions = []
       let firstLetterToLower = string => {
@@ -500,7 +501,7 @@ export default {
         "setCardCreatorEditCard",
         this.cards[this.clickedIndex]
       );
-      this.$router.push("newCard")
+      this.$router.push("cardCreator")
     },
     cardview() {
       this.$router.push('cardview/' + this.cards[this.clickedIndex].id)

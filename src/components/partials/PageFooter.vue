@@ -32,7 +32,7 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/newcard">
+            <router-link to="/cardCreator">
               <h2>Card Creator</h2>
               Get creative and rule the world.
             </router-link>
