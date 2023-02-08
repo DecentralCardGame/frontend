@@ -165,12 +165,19 @@
         v-show="$store.getters['getLoggedIn']"
         @click="loadMyCardList()"
       >
-        My cards
+        My Cards
       </button>
       <button
+        v-show="$route.query.notesContains!='Finished'"
         @click="loadSpecialCardList('Finished')"
       >
         Alpha Set
+      </button>
+      <button
+        v-show="$route.query.notesContains=='Finished'"
+        @click="loadSpecialCardList('')"
+      >
+        All Cards
       </button>
       <button
         v-show="browsingForward"
@@ -304,7 +311,7 @@ export default {
   },
   mounted() {
     let query = this.$route.query
-    if (query) {
+    if (!R.isEmpty(query)) {
       if (query.cardList) {
         this.cardList = query.cardList
         this.fillPage()
@@ -319,16 +326,21 @@ export default {
   },
   methods: {
     loadVotableCards() {
-      this.$cardChain
+      if(this.$store.getters['common/wallet/address']) {
+        this.$cardChain
         .getVotableCards(this.$store.getters['common/wallet/address'])
         .then((res) => {
-          console.log("getVotableCards:", res);
           if (res.noVoteRights) {
             this.votableCards = [];
           } else {
             this.votableCards = res.votables;
           }
-        });
+        })
+      }
+      else {
+        this.votableCards = [];
+      }
+      
     },
     loadCardList() {
       var query = this.getDefaultQuery()
@@ -358,14 +370,16 @@ export default {
     },
     normalizeQuery(query) {
       return {
-        status: query.status ? query.status.toLowerCase() : "playable", // try default playable
+        status: query.status ? query.status.toLowerCase() : "playable", // default playable
         owner: query.owner ? query.owner : "",
         cardType: query.cardType ? query.cardType : "",
         classes: query.classes ? query.classes : "",
         sortBy: query.sortBy ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "") : "",
         nameContains: query.nameContains ? query.nameContains : "",
         keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-        notesContains: query.notesContains ? query.notesContains : this.$store.getters["getLoggedIn"] ? "" : "Finished", // load alpha set for nubs
+        notesContains: query.notesContains ? query.notesContains :
+          query.status || query.owner || query.cardType || query.classes || query.sortBy || query.nameContains || query.keywordsContains || query.notesContains ? "" :
+          this.$store.getters["getLoggedIn"] ? "" : "Finished" // non-logged in users (noobs), without any filters, will only see the alpha set
       }
     },
     fillPage() {
@@ -389,13 +403,11 @@ export default {
         this.cards = res
         console.log("cards on page", this.cards)
         console.log("all card names:", R.pluck("CardName", res))
-        console.log("name lengths", R.map(x => x.length, R.pluck("CardName", res)))
       })
       .catch(res => {
         console.error("NOT ALL CARDS WERE PROPERLY LOADED")
         console.log("all card names:", R.pluck("CardName", res))
       })
-      console.log("all cards:", this.cards)
     },
     nextPage() {
       if (!this.browsingForward) return;
@@ -464,7 +476,6 @@ export default {
       this.loadQueryCardList(query)
     },
     loadQueryCardList(query) {
-      console.log("query: ", query)
       this.$router.push({ path: 'gallery', query: query })
       let requestedCards = [
         this.$cardChain.getCardList(
@@ -482,7 +493,6 @@ export default {
       .then((res) => {
         let cardList = R.reduce(R.concat, [], R.pluck("cardsList", res))
 
-        console.log("cardlistyes:", cardList)
         if (R.any(x => R.includes(x, this.$store.getters.getGalleryFilter.sortBy), ["A-Z", "↑"])) {
           this.cardList = R.reverse(cardList)
         }

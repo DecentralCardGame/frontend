@@ -136,10 +136,9 @@ export default {
         }
       }
       cardWebModelToCardobject (webModel, cardImageUrl) {
-        console.log('trying to parse ', webModel)
         let cardContent = {
           CardName: webModel.CardName,
-          Tags: R.reject(R.isNil, webModel.Tags),
+          Tags: R.reject(R.or(R.isEmpty, R.isNil), webModel.Tags),
           FlavourText: webModel.FlavourText,
           Class: {
             Nature: webModel.Class.Nature == true,
@@ -397,7 +396,6 @@ export default {
         }
       })
       handleGetCardList = R.curry((res, type) => {
-        console.log(res.data)
         if (res.data === '') {
           this.vue.notifyFail('Sad', 'Basically the CardList is valid, but it is empty.')
           throw new Error('CardList Empty: ' + res)
