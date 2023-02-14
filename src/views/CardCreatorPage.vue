@@ -702,10 +702,8 @@ import {
   uploadImg,
 } from "@/components/utils/utils.js";
 
-import { sampleGradientImg } from '../components/utils/sampleCards.js'
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css';
-
 
 export default {
   name: "CardCreator",
@@ -724,7 +722,7 @@ export default {
       designateArtist: false,
       artistAddress: "cc1...",
       cardBounds: {x: process.env.VUE_APP_CARDIMG_SIZE_X, y: process.env.VUE_APP_CARDIMG_SIZE_Y},
-      cropImage: sampleGradientImg,
+      cropImage: "",
       model: R.clone(emptyCard),
       cardID: 0,
     };
@@ -1224,7 +1222,7 @@ export default {
       )
       this.model = R.clone(emptyCard)
       this.artistMode = false
-      this.cropImage = sampleGradientImg
+      this.cropImage = ""
       this.$store.commit(
         this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
         ""
