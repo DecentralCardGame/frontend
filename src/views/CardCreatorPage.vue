@@ -590,8 +590,7 @@
             class="creator-input-container"
           >
             <span class="creator-text">
-
-              <b>Notes</b> for the council:
+              <b>Notes</b> for the Council
             </span>
             <input
               v-model="model.notes"
@@ -599,12 +598,19 @@
             >
           </div>
 
-          <div v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)">
-            Clear Abilities
-            <input
-              v-model="clearAbilities"
-              type="checkbox"
-            >
+          <div 
+            v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)"
+            class="creator-input-container"
+          >
+            <span class="creator-text">
+              Clear Abilities
+            </span>
+            <div>
+              <input
+                v-model="clearAbilities"
+                type="checkbox"
+              >
+            </div>
           </div>
 
           <!-- Navigation buttons -->
