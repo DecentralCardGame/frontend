@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const GalleryPage = () => import('@/views/GalleryPage')
 const VotingResultsPage = () => import('@/views/VotingResultsPage')
-const NewCardPage = () => import('@/views/NewCardPage')
+const CardCreatorPage = () => import('@/views/CardCreatorPage')
 const AboutPage = () => import('@/views/AboutPage')
 const NotFound = () => import('@/views/NotFound')
 const RoadmapPage = () => import('@/views/RoadmapPage')
@@ -52,9 +52,9 @@ const routes = [
     component: VotingResultsPage
   },
   {
-    path: '/newcard',
-    name: 'New Card',
-    component: NewCardPage,
+    path: '/cardCreator',
+    name: 'Card Creator',
+    component: CardCreatorPage,
     meta: { layout: "default" },
   },
   {
