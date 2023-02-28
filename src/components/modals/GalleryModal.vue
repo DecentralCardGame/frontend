@@ -146,7 +146,7 @@
   </transition>
 </template>
 <script>
-import CardComponent from "@/components/elements/CardComponent";
+import CardComponent from "@/components/elements/CardComponent.vue";
 import TransferCardModal from './TransferCardModal.vue';
 
 export default {
