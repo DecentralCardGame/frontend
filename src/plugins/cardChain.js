@@ -94,7 +94,7 @@ export default {
             })
         }
       }
-      saveContentToUnusedCardSchemeTx (card) {
+    saveContentToUnusedCardSchemeTx (card, saveArtwork) {
         return this.getUserInfo(this.vue.$store.getters['common/wallet/address'])
           .then(user => {
             if (R.isEmpty(user.ownedCardSchemes)) {
@@ -105,7 +105,7 @@ export default {
 
               return Promise.all([
                 this.saveContentToCardTx(card, id),
-                this.saveArtworkToCard(id, card.image, card.fullArt)
+                saveArtwork ? this.saveArtworkToCard(id, card.image, card.fullArt) : ""
               ])
             }
           })
@@ -160,7 +160,7 @@ export default {
         return this.sendGenericTx("DecentralCardGame.cardchain.cardchain.MsgSaveCardContent", {"cardId": id,
           "content": btoa(JSON.stringify(card.content)),
           "notes": card.notes,
-          "artist": this.vue.$store.getters['common/wallet/address']
+          "artist": card.artist
         })
       }
       buyCardSchemeTx (maxBid) {
@@ -199,7 +199,6 @@ export default {
         return this.sendGenericTx("cosmos.authz.v1beta1.MsgRevoke", {"grantee": grantee, "msg_type_url": msg, "granter": this.vue.$store.getters['common/wallet/address']})
       }
       getUserInfo (address) {
-          console.log(this.validAddress(address))
           if (this.validAddress(address)) {
             return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_user/' + address)
               .catch(this.handleGetError)

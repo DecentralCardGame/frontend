@@ -219,7 +219,7 @@ export function shallowClone (obj) {
 // utility functions for uploading and downloading stuff
 
 export function uploadImg (file, maxKB, callback) {
-  let resolution = {height: 1300, width: 838}
+  // let resolution = {height: 1300, width: 838} // this is outdated because now the cropper does it
 
   const reader = new FileReader()
 
@@ -228,7 +228,7 @@ export function uploadImg (file, maxKB, callback) {
     image.onload = function () {
       // Resize the image
       let canvas = document.createElement('canvas')
-      let maxSize = resolution.height
+      //let maxSize = resolution.height
       let width = image.width
       let height = image.height
       //if (height > maxSize) {

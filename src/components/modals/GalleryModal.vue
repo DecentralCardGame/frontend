@@ -69,13 +69,22 @@
                 </button>
               </router-link>
               <button
-                v-if="isOwner"
+                v-if="isArtist && !isOwner"
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
                 @click="edit(); close();"
               >
-                Edit Card
+                Edit artwork
+              </button>
+              <button
+                v-if="isOwner "
+                aria-label="Close modal"
+                class="choice-grid__button"
+                type="button"
+                @click="edit(); close();"
+              >
+                Edit card
               </button>
               <button
                 v-if="isOwner"
@@ -155,6 +164,7 @@ export default {
   props: {
     canVote: Boolean,
     isOwner: Boolean,
+    isArtist: Boolean,
     keywordDescriptions: {
       type: Array,
       default() {

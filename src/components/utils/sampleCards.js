@@ -19,10 +19,9 @@ import botCommandCenterImg from '@/assets/cardfiles/botCommandCenter.jpg'
 import drDollyImg from '@/assets/cardfiles/drDollyCard.jpg'
 import belloImg from '@/assets/cardfiles/bello.jpg'
 import timeDeviceImg from '@/assets/cardfiles/timeDeviceCard.jpg'
-import sampleGradient from '@/assets/cardfiles/sampleGradient.jpg'
 import { Card, CardClass } from "@/model/Card";
-
-export const sampleGradientImg = sampleGradient
+//import sampleGradient from '@/assets/cardfiles/sampleGradient.jpg'
+//export const sampleGradientImg = sampleGradient // if you need a sample image for cards, this is what should be uncommented
 
 export const cardJpgs = {
   churchImg: churchImg,

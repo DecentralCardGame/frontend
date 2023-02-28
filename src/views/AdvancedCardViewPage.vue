@@ -88,6 +88,13 @@
           </button>
           <br><br>
           <button
+            v-if="isArtist"
+            class="btn--default"
+            @click="edit();"
+          >
+            Edit artwork
+          </button>
+          <button
             v-if="isOwner"
             class="btn--default"
             @click="edit();"
@@ -160,9 +167,8 @@ export default {
   },
   methods: {
     loadVotableCards: function() {
-      this.isOwner =
-        this.card.owner ===
-        this.$store.getters["common/wallet/address"];
+      this.isOwner = this.card.owner === this.$store.getters["common/wallet/address"]
+      this.isArtist = this.card.artist === this.$store.getters["common/wallet/address"]
       this.$cardChain
         .getVotableCards(this.$store.getters["common/wallet/address"])
         .then(res => {
@@ -195,7 +201,7 @@ export default {
         "setCardCreatorEditCard",
         this.card
       );
-      this.$router.push("/newCard")
+      this.$router.push("/cardCreator")
     },
     showModal() {
       this.isModalVisible = true;

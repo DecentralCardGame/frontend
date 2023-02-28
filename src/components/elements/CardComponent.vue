@@ -2123,7 +2123,10 @@
       v-if="Classes==1"
       id="One_Class"
     >
-      <g id="One_Class_BG_Update">
+      <g
+        v-if="false"
+        id="One_Class_BG_Update"
+      >
         <g>
           <defs>
             <circle
@@ -2170,6 +2173,7 @@
           </g>
         </g>
       </g>
+
       <g
         v-if="Class.Tech"
         id="One_Class_Tech"
@@ -2621,7 +2625,7 @@
               id="SVGID_00000147195682572854366750000007259757851676331441_"
               cx="160.12"
               cy="38.56"
-              r="4.75"
+              r="6.75"
             />
           </defs>
           <clipPath id="SVGID_00000072254103079198760010000014783955248518345144_">
@@ -2651,10 +2655,10 @@
 
                 <image
                   style="overflow:visible;"
-                  width="41"
-                  height="42"
+                  width="14"
+                  height="14"
                   href="../../assets/cardframe/ClassBallCulture.jpg"
-                  transform="matrix(0.48 0 0 0.48 150.2834 28.6356)"
+                  transform="translate(153 31.5)"
                 />
               </g>
             </g>
@@ -2672,7 +2676,7 @@
               id="SVGID_00000156559406394118111540000013925437124346651535_"
               cx="160.12"
               cy="38.56"
-              r="4.75"
+              r="6.75"
             />
           </defs>
           <clipPath id="SVGID_00000114752215421267990370000005882056638645857159_">
@@ -2702,10 +2706,10 @@
 
                 <image
                   style="overflow:visible;"
-                  width="41"
-                  height="42"
+                  width="14"
+                  height="14"
                   href="../../assets/cardframe/ClassBallMyth.jpg"
-                  transform="matrix(0.48 0 0 0.48 150.2834 28.6356)"
+                  transform="translate(153 31.5)"
                 />
               </g>
             </g>
@@ -2723,7 +2727,7 @@
               id="SVGID_00000026862957781861731480000005679935451104365990_"
               cx="160.12"
               cy="38.56"
-              r="4.75"
+              r="6.75"
             />
           </defs>
           <clipPath id="SVGID_00000003095285404708387020000009338513492393715090_">
@@ -2753,10 +2757,10 @@
 
                 <image
                   style="overflow:visible;"
-                  width="41"
-                  height="42"
-                  href="../../assets/cardframe/ClassBallNature.jpg"
-                  transform="matrix(0.48 0 0 0.48 150.2834 28.6356)"
+                  width="14.0"
+                  height="14.0"
+                  xlink:href="../../assets/cardframe/ClassBallNature.jpg"
+                  transform="translate(153 31.5)"
                 />
               </g>
             </g>
@@ -2774,7 +2778,7 @@
               id="SVGID_00000107588503972137515170000016701659475360646797_"
               cx="160.12"
               cy="38.56"
-              r="4.75"
+              r="6.75"
             />
           </defs>
           <clipPath id="SVGID_00000082348601697565598730000015316112118774549635_">
@@ -2804,10 +2808,10 @@
 
                 <image
                   style="overflow:visible;"
-                  width="41"
-                  height="42"
-                  href="../../assets/cardframe/ClassBallTech.jpg"
-                  transform="matrix(0.48 0 0 0.48 150.2834 28.6356)"
+                  width="14"
+                  height="14"
+                  xlink:href="../../assets/cardframe/ClassBallTech.jpg"
+                  transform="translate(153 31.5)"
                 />
               </g>
             </g>
@@ -2815,7 +2819,10 @@
         </g>
       </g>
 
+      <!-- deactivated because of class symbols -->
       <path
+        
+        v-if="false" 
         id="Gold_Right_Update"
         class="st12"
         d="M163.67,35.02c-0.91-0.95-2.22-1.51-3.55-1.53c-1.33,0-2.65,0.54-3.59,1.49
