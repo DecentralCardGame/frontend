@@ -11,7 +11,7 @@
       <select
         v-if="entry.btn.type === 'enum'"
         v-model="entry.btn.label"
-        @change="showAbilityModal(ability, entry.btn, index)"
+        @change="showAbilityModal(ability, entry.btn)"
       >
         <option
           v-for="item in enumOptions(entry)"
@@ -26,10 +26,10 @@
       <select
         v-else-if="entry.btn.type === 'int'"
         v-model="entry.btn.label"
-        @change="showAbilityModal(ability, entry.btn, index)"
+        @change="showAbilityModal(ability, entry.btn)"
       >
         <option
-          v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).min || 0, R.path(entry.btn.rulesPath, $cardRules).max + 1)"
+          v-for="n in intRange(entry)"
           :key="n"
           :value="n"
         >
@@ -41,17 +41,17 @@
       <select
         v-else-if="entry.btn.type === 'intX'"
         v-model="entry.btn.label"
-        @change="showAbilityModal(ability, entry.btn, index)"
+        @change="showAbilityModal(ability, entry.btn)"
       >
         <option
-          v-for="n in R.range(R.path(entry.btn.rulesPath, $cardRules).children.SimpleIntValue.min || 0, R.path(entry.btn.rulesPath, $cardRules).children.SimpleIntValue.max + 1)"
+          v-for="n in intXRange(entry)"
           :key="n"
           :value="n"
         >
           {{ n }}
         </option>
         <option
-          v-for="n in R.path(entry.btn.rulesPath, $cardRules).children.IntVariable.enum"
+          v-for="n in enumRange(entry)"
           :key="n"
           :value="n"
         >
@@ -63,7 +63,7 @@
       <div
         v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
         class="clickable-option--negated"
-        @click="showAbilityModal(ability, entry.btn, index)"
+        @click="showAbilityModal(ability, entry.btn)"
       >
         {{ entry.btn.label }}
       </div>
@@ -72,7 +72,7 @@
       <div
         v-else
         class="clickable-option"
-        @click="showAbilityModal(ability, entry.btn, index)"
+        @click="showAbilityModal(ability, entry.btn)"
       >
         {{ entry.btn.label }}
       </div>
@@ -102,6 +102,7 @@
 import * as R from 'ramda'
 import AbilityModal from '@/components//modals/AbilityModal.vue'
 import { createInteraction, updateInteraction, shallowClone, atPath } from '../utils/utils.js'
+import { useCardsRules } from "@/def-composables/useCardRules";
 
 const unrequiredLabel = "[ANY]"
 
@@ -140,12 +141,25 @@ export default {
     this.ability = this.abilityProp
     this.dialog = this.dialogProp
   },
+  setup() {
+    const { rules } = useCardsRules()
+
+    return { cardRules: rules }
+  },
   methods: {
-    showAbilityModal (ability, btn, index) {
-      let atRules = R.curry(atPath)(this.$cardRules)
+    intRange(entry) {
+      return R.range(R.path(entry.btn.rulesPath, this.cardRules.Card).min || 0, R.path(entry.btn.rulesPath, this.cardRules.Card).max + 1)
+    },
+    intXRange(entry) {
+      return R.range(R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue.min || 0, R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue.max + 1)
+    },
+    enumRange(entry) {
+      return R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable.enum
+    },
+    showAbilityModal (ability, btn) {
+      let atRules = R.curry(atPath)(this.cardRules.Card)
       let atAbility = R.curry(atPath)(ability)
 
-      index; // currently not in use TODO check if it should be removed alltogether
       this.ability.clickedBtn = btn
 
       let node = atRules(btn.rulesPath)
@@ -175,7 +189,7 @@ export default {
             let options = atRules(btn.rulesPath).children
 
             // special case intX: IntVariable + SimpleIntValue = condense in one thing, don't show dialog
-            if (R.contains("IntVariable", R.keys(options)) && R.contains("SimpleIntValue", R.keys(options))) {
+            if (R.includes("IntVariable", R.keys(options)) && R.includes("SimpleIntValue", R.keys(options))) {
               console.log("special case")
               thereWillBeModal = false
 
@@ -316,13 +330,13 @@ export default {
       this.isAbilityModalVisible = false
     },
     enumOptions (entry) {
-      let required = R.path(R.dropLast(2, entry.btn.rulesPath), this.$cardRules).required
+      let required = R.path(R.dropLast(2, entry.btn.rulesPath), this.cardRules.Card).required
       let name = R.last(entry.btn.rulesPath)
       if ( required && R.includes(name, required) ) {
-        return R.path(entry.btn.rulesPath, this.$cardRules).enum
+        return R.path(entry.btn.rulesPath, this.cardRules.Card).enum
       }
       else {
-        return R.prepend(unrequiredLabel, R.path(entry.btn.rulesPath, this.$cardRules).enum)
+        return R.prepend(unrequiredLabel, R.path(entry.btn.rulesPath, this.cardRules.Card).enum)
       }
 
     }

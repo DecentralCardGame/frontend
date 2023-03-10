@@ -1,4 +1,9 @@
 import * as R from 'ramda'
+import * as yes from '../../assets/icon/abilities/variable.svg'
+
+console.log(yes)
+const yes2 = await import('../../assets/icon/abilities/variable.svg')
+console.log(yes2)
 //import * as svg1 from 'save-svg-as-png'
 
 export const emptyCard = {
@@ -24,25 +29,6 @@ export const emptyCard = {
   RulesTexts: [],
   Keywords: [],
   fullArt: true
-}
-
-export const emptyGalleryFilter = {
-  visible: false,
-  owner: "",
-  status: "",
-  cardType: "",
-  classes: "",
-  keywordsContains: "",
-  sortBy: "",
-  nameContains: "",
-  notesContains: "",
-  cardsPerPage: 30,
-  classesVisible: false,
-  classORLogic: false,
-  mysticism: false,
-  nature: false,
-  technology: false,
-  culture: false,
 }
 
 // Global Utility functions
@@ -171,7 +157,7 @@ export function makeButton (cardRules, rulesPath, abilityPath, id) {
   }
 
   // special case: IntVariable + SimpleIntValue = condense in one thing, don't show dialog
-  if (R.contains("IntVariable", R.keys(atRules(rulesPath).children)) && R.contains("SimpleIntValue", R.keys(atRules(rulesPath).children))) {
+  if (R.includes("IntVariable", R.keys(atRules(rulesPath).children)) && R.includes("SimpleIntValue", R.keys(atRules(rulesPath).children))) {
     console.log("special case")
     console.log(atRules(rulesPath))
     button.type = 'intX'
@@ -186,7 +172,7 @@ export function climbRulesTree(cardRules, path) {
   while (ascending) {
     if (R.keys(atRules(path)).length === 1) {
       path.push(R.keys(atRules(path))[0])
-    } else if (R.contains('children', R.keys(atRules(path)))) {
+    } else if (R.includes('children', R.keys(atRules(path)))) {
       path.push('children')
     } else {
       ascending = false
@@ -199,6 +185,19 @@ export function filterSelection (options) {
   let found = {}
   R.forEachObjIndexed((item, idx) => {
     if (item.selected) {
+      found = {
+        index: idx,
+        option: item
+      }
+    }
+  }, options)
+  return found
+}
+
+export function filterSelection2 (options, option) {
+  let found = {}
+  R.forEachObjIndexed((item, idx) => {
+    if (item === option) {
       found = {
         index: idx,
         option: item
@@ -292,26 +291,29 @@ export function saveCardAsPng (element, name, scale = 5) {
   //svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
 }
 
-export function icon(name) {
+export async function icon(name) {
   let item
   try {
     //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
     //console.log("retrieving:", '../../assets/icon/abilities/'+name+'.svg')
-    item = require('@/assets/icon/abilities/'+name+'.svg')
+    //item = require('../../assets/icon/abilities/'+name+'.svg')
+    item = await import('../../assets/icon/abilities/'+name+'.svg')
   } catch {
     if (name.length === 1) {
-      return require('../../assets/icon/abilities/variable.svg')
-    }
-    try {
-      item = require('../../assets/icon/abilities/'+name+'s.svg')
-    } catch {
+      item = await import('../../assets/icon/abilities/variable.svg')
+    } else {
       try {
-        item = require('../../assets/icon/abilities/'+name+'r.svg')
-      }  catch {
-        console.log('was not able to retrieve', name, 'icon')
-        return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"
+        item = await import('../../assets/icon/abilities/'+name+'s.svg')
+      } catch {
+        try {
+          item = await import('../../assets/icon/abilities/'+name+'r.svg')
+        }  catch (e) {
+          console.log('was not able to retrieve', name, 'icon', e)
+          return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"
+        }
       }
     }
   }
-  return item
+  console.log(JSON.stringify(item))
+  return item.default
 }

@@ -8,9 +8,13 @@ import * as R from "ramda";
 import { env, setFallback } from "./env";
 import "./assets/index.css";
 import "@ignt/vue-library/dist/style.css";
-import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import Notifications from '@kyvg/vue3-notification'
+import { useCardsRules } from "@/def-composables/useCardRules";
+import AppLayout from "@/layouts/AppLayout.vue"
 
 const app = createApp(App);
+
+useCardsRules()
 
 let api_address = env.apiNode;
 
@@ -28,6 +32,8 @@ axios.get(api_address + "/DecentralCardGame/cardchain/cardchain/q_cardchain_info
     app.use(createPinia());
     app.use(router);
     app.use(VueQueryPlugin);
+    app.component('AppLayout', AppLayout)
+    app.use(Notifications)
     app.mixin({
       methods: {
         isMobileDevice: function() {

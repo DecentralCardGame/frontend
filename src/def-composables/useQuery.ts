@@ -2,7 +2,7 @@ import { useClient } from "@/composables/useClient";
 import type { AxiosResponse } from "axios";
 import { ChainCard, Card } from "@/model/Card";
 import { User } from "@/model/User";
-import { Coin } from "@/model/Coin"
+import { Coin } from "@/model/Coin";
 
 
 const handlers: { [key: string]: (res: AxiosResponse) => any } = {
@@ -16,12 +16,16 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
     return User.from(res.data);
   },
   queryAllBalances: (res) => {
-    let coins: Coin[] = []
+    let coins: Coin[] = [];
     res.data.balances.forEach((coin: any) => {
-      coins.push(Coin.from(coin))
-    })
-    res.data.balances = coins
-    return res.data
+      coins.push(Coin.from(coin));
+    });
+    res.data.balances = coins;
+    return res.data;
+  },
+  queryQCardchainInfo: (res) => {
+    res.data.cardAuctionPrice = Coin.from(res.data.cardAuctionPrice);
+    return res.data;
   }
 };
 

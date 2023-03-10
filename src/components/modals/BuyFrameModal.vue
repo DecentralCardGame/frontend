@@ -78,8 +78,16 @@
   </transition>
 </template>
 
-<script>
-import { creditsFromCoins } from '../utils/utils.js'
+<script lang=ts>
+import * as R from "ramda"
+import { useQuery } from "@/def-composables/useQuery";
+import { useAddress } from "@/def-composables/useAddress";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useTx } from "@/def-composables/useTx";
+import { Coin } from "@/model/Coin";
+
+const { queryQUser, queryQCardchainInfo, queryAllBalances } = useQuery();
+const { buyCardScheme } = useTx();
 
 export default {
   name: 'BuyFrameModal',
@@ -91,18 +99,27 @@ export default {
       creditsAvailable: -1
     }
   },
+  setup() {
+    const { loggedIn } = useLoggedIn();
+    const { address } = useAddress();
+
+    return {
+      loggedIn, address
+    }
+  },
   mounted() {
-    this.$cardChain.getGameInfo()
+    queryQCardchainInfo()
       .then(res => {
-        let credits = parseInt(Math.ceil(res.cardAuctionPrice.amount / process.env.VUE_APP_UCREDITS_FACTOR))
-        this.currentPrice = credits
+        console.log(res)
+        let credits = res.cardAuctionPrice.normalize().amount
         this.currentBid = credits
+        this.currentPrice = credits
       })
       .catch(res => {
         console.error(res)
         this.close()
       })
-    this.$cardChain.getUserInfo(this.$store.getters['common/wallet/address'])
+    queryQUser(this.address)
       .then(user => {
         this.ownedCardFrames = user.ownedCardSchemes.length
         console.log("user", user)
@@ -111,14 +128,13 @@ export default {
         console.error(res)
         this.close()
       })
-    this.$cardChain.getAccInfo(this.$store.getters['common/wallet/address'])
+    queryAllBalances(this.address)
       .then(acc => {
-        if (!acc || !acc.coins) {
-          this.notifyFail('NOT LOGGED IN', 'please login or register')
-          throw new Error('no coins available for', this.$store.getters['common/wallet/address'])
+        let usableCoins: Coin[] = R.filter((coin: Coin) => { return coin.denom == "ucredits" }, acc.balances)
+        if (usableCoins.length == 0) {
+          throw new Error("No usable coins available")
         }
-        this.creditsAvailable = parseInt(Math.floor(creditsFromCoins(acc.coins) / process.env.VUE_APP_UCREDITS_FACTOR))
-        this.$store.commit('setUserCredits', this.creditsAvailable)
+        this.creditsAvailable = usableCoins[0].normalize().amount
       })
       .catch(res => {
         console.error(res)
@@ -131,12 +147,13 @@ export default {
     },
     buyCardFrame() {
       this.$emit('close')
-      this.$cardChain.buyCardSchemeTx(this.currentBid * process.env.VUE_APP_UCREDITS_FACTOR)
-        .then(this.$cardChain.updateUserCredits())
+      buyCardScheme(new Coin("credits", this.currentBid).denormalize()).then(res => {
+        console.log(res)
+      })
     },
     isNumber: function (evt) {
       evt = evt || window.event
-      var charCode = (evt.which) ? evt.which : evt.keyCode
+      let charCode = (evt.which) ? evt.which : evt.keyCode
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
         evt.preventDefault()
       } else {

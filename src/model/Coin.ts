@@ -7,7 +7,7 @@ export class Coin {
     this.amount = amount;
   }
 
-  normalize() {
+  normalize(): Coin {
     if (this.denom[0] == "u") {
       this.denom = this.denom.slice(1);
       this.amount /= 10 ** 6;
@@ -15,11 +15,19 @@ export class Coin {
     return this;
   }
 
-  pretty() {
+  denormalize(): Coin {
+    if (this.denom[0] != "u") {
+      this.denom = "u"+this.denom;
+      this.amount *= 10 ** 6;
+    }
+    return this;
+  }
+
+  pretty(): string {
     return this.amount + this.denom;
   }
 
-  static from(json: any) {
+  static from(json: any): Coin {
     return Object.assign(new Coin(), json);
   }
 }
