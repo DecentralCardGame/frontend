@@ -5,6 +5,8 @@ import type { Coin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import { Coin as CosmosCoin } from "DecentralCardGame-Cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin"
+import { useNotifications } from "@/def-composables/useNotifications";
+
 
 const FEE: StdFee = {
   amount: [{ amount: "0", denom: "stake" }],
@@ -12,6 +14,7 @@ const FEE: StdFee = {
 };
 
 const { address } = useAddress();
+const { notifyFail, notifyInfo, notifySuccess } = useNotifications()
 
 class Content {
   fee: StdFee;
@@ -28,12 +31,21 @@ class Content {
   }
 }
 
+const stdHandler = (res: any) => {
+  console.log(res)
+  if (res.code) {
+    notifyFail("Failed to broadcast message", res)
+    throw new Error("Message Failed: " + res)
+  }
+  return res
+}
+
 export const useTxInstance: () => {
   registerForCouncil: () => Promise<DeliverTxResponse>;
   rewokeCouncilRegistration: () => Promise<DeliverTxResponse>;
   buyCardScheme: (coin: Coin) => Promise<DeliverTxResponse>;
   send: (coins: Coin[], to: string) => Promise<DeliverTxResponse>;
-  saveCardContent: (cardId: number, card: Card) => Promise<DeliverTxResponse>;
+  saveCardContent: (cardId: number, card: ChainCard) => Promise<DeliverTxResponse>;
   addArtwork: (cardId: number, image: string, fullArt: boolean) => Promise<DeliverTxResponse>
 } = () => {
   const client = useClient();
@@ -47,17 +59,17 @@ export const useTxInstance: () => {
   };
 
   const registerForCouncil = () => {
-    return client.DecentralCardGameCardchainCardchain.tx.sendMsgRegisterForCouncil(new Content());
+    return client.DecentralCardGameCardchainCardchain.tx.sendMsgRegisterForCouncil(new Content()).then(stdHandler);
   };
 
   const rewokeCouncilRegistration = () => {
-    return client.DecentralCardGameCardchainCardchain.tx.sendMsgRewokeCouncilRegistration(new Content());
+    return client.DecentralCardGameCardchainCardchain.tx.sendMsgRewokeCouncilRegistration(new Content()).then(stdHandler);
   };
 
   const buyCardScheme = (coin: Coin) => {
     return client.DecentralCardGameCardchainCardchain.tx.sendMsgBuyCardScheme(new Content({
       bid: CosmosCoin.fromJSON(coin)
-    }));
+    })).then(stdHandler);
   };
 
   const saveCardContent = (cardId: number, card: ChainCard) => {
@@ -67,7 +79,7 @@ export const useTxInstance: () => {
         content: btoa(JSON.stringify(card.content)),
         notes: card.notes,
         artist: card.artist
-      }));
+      })).then(stdHandler);
   };
 
   const addArtwork = (cardId: number, image: string, fullArt: boolean) => {
@@ -76,7 +88,7 @@ export const useTxInstance: () => {
         cardId,
         image: btoa(image),
         fullArt
-      }));
+      })).then(stdHandler);
   };
 
   return {

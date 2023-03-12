@@ -96,12 +96,17 @@ export class Card {
   RulesTexts: Array<string> = [];
   Keywords: Array<Array<string>> = [];
   Effects: Array<any> = [];
+  id: number = -1;
 
   static from(json: any) {
     return Object.assign(new Card(), json);
   }
 
-  toChainCard() {
+  isEditCard() {
+    return this.id != -1
+  }
+
+  toChainCard(): ChainCard {
     console.log("trying to parse ", this);
     let cardContent = Object.assign(new CardContent(), {
       CardName: this.CardName,

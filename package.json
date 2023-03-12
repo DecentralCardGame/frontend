@@ -16,6 +16,7 @@
     "dayjs": "^1.11.6",
     "DecentralCardGame-Cardchain-client-ts": "file:../Cardchain/ts-client",
     "gradient-avatar": "^1.0.2",
+    "lodash": "^4.17.21",
     "long": "^5.2.0",
     "merge-images": "^2.0.0",
     "node-fetch": "^3.3.0",

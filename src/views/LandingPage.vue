@@ -261,6 +261,7 @@ import {
   cardJpgs,
   botCommandCenterData
 } from "@/components/utils/sampleCards"
+import { useNotifications } from "@/def-composables/useNotifications";
 
 export default {
   name: "LandingPage",
@@ -271,6 +272,11 @@ export default {
       botCommandCenterData: botCommandCenterData,
       isSafari: false
     };
+  },
+  setup() {
+    const { isMobileDevice } = useNotifications()
+
+    return { isMobileDevice }
   },
   mounted() {
     this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)

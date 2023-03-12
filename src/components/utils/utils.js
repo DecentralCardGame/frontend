@@ -1,11 +1,6 @@
 import * as R from 'ramda'
 import * as yes from '../../assets/icon/abilities/variable.svg'
 
-console.log(yes)
-const yes2 = await import('../../assets/icon/abilities/variable.svg')
-console.log(yes2)
-//import * as svg1 from 'save-svg-as-png'
-
 export const emptyCard = {
   CardName: 'Name',
   FlavourText: '',

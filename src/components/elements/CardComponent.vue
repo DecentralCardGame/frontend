@@ -23109,6 +23109,7 @@ import * as R from 'ramda'
 //import * as svg1 from 'save-svg-as-png'
 import { icon } from '@/components/utils/utils.js'
 import { emptyCard } from '../utils/utils'
+import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
   name: 'CardComponent',
@@ -23211,6 +23212,13 @@ export default {
       deep: true
     }
   },
+  setup() {
+    const { rules } = useCardsRules();
+
+    return {
+      cardRules: rules,
+    };
+  },
   created () {
     let firstLetterToLower = string => {
       return string[0].toLowerCase() + string.substring(1)
@@ -23218,7 +23226,7 @@ export default {
     this.model.Keywords.forEach(ability => {
       ability.forEach(keyword => {
         this.keywordDescriptions = R.concat(this.keywordDescriptions,
-          keyword + " - " + this.$rulesDefinitions[firstLetterToLower(keyword)].description + " \\n "
+          keyword + " - " + this.cardRules.definitions[firstLetterToLower(keyword)].description + " \\n "
         )
       })
     })

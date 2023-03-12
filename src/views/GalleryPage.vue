@@ -263,8 +263,10 @@ import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
 import { useQuery } from "@/def-composables/useQuery";
+import { useCardsRules } from "@/def-composables/useCardRules";
+import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 
-const { queryQCards } = useQuery()
+const { queryQCards, queryQCard } = useQuery()
 
 export default {
   name: "GalleryPage",
@@ -316,9 +318,11 @@ export default {
   setup() {
     const { loggedIn } = useLoggedIn()
     const { address } = useAddress()
+    const { rules } = useCardsRules()
+    const { editCard } = useCardCreatorCards()
     const { galleryFilters, toggleGalleryFilters } = useGalleryFilters
 
-    return { loggedIn, address, galleryFilters, toggleGalleryFilters }
+    return { loggedIn, address, galleryFilters, toggleGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
   },
   mounted() {
 
@@ -357,15 +361,14 @@ export default {
 
     },
     loadCardList() {
-      var query = this.getDefaultQuery()
+      let query = this.getDefaultQuery()
       this.loadQueryCardList(query)
     },
     getCard(currentId) {
       let cardId = this.cardList[
         this.cardList.length - 1 - this.pageId - currentId
       ];
-      return this.$cardChain
-        .getCard(cardId)
+      return queryQCard(cardId)
         .then((res) => {
           let card = res
           card.id = cardId
@@ -451,8 +454,7 @@ export default {
       }
 
       this.isOwner =
-        this.cards[this.clickedIndex].owner ===
-        this.$store.getters['common/wallet/address']
+        this.cards[this.clickedIndex].owner === this.address
 
       this.keywordDescriptions = []
       let firstLetterToLower = string => {
@@ -460,7 +462,7 @@ export default {
       }
       this.cards[this.clickedIndex].Keywords.forEach(ability => {
         ability.forEach(keyword => {
-          this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
+          this.keywordDescriptions.push([keyword, this.cardRules.definitions[firstLetterToLower(keyword)].description])
         })
       })
     },
@@ -468,7 +470,7 @@ export default {
       this.isGalleryModalVisible = false;
     },
     loadMyCardList() {
-      this.loadSpecialCardList(this.galleryFilters.notes, this.$store.getters['common/wallet/address'])
+      this.loadSpecialCardList(this.galleryFilters.notes, this.address)
     },
     getDefaultQuery() {
       let classes =
@@ -478,7 +480,7 @@ export default {
         (this.galleryFilters.technology ? "Technology," : "") +
         (this.galleryFilters.culture ? "Culture," : "")
 
-      var query = this.galleryFilters
+      let query = this.galleryFilters
       query.classes = query.classesVisible ? classes : ""
       return this.normalizeQuery(query)
     },
@@ -525,10 +527,7 @@ export default {
       })
     },
     edit() {
-      this.$store.commit(
-        "setCardCreatorEditCard",
-        this.cards[this.clickedIndex]
-      );
+      this.cardCreatorEditCard = this.cards[this.clickedIndex]
       this.$router.push("newCard")
     },
     cardview() {

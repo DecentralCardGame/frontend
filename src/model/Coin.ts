@@ -19,6 +19,7 @@ export class Coin {
     if (this.denom[0] != "u") {
       this.denom = "u"+this.denom;
       this.amount *= 10 ** 6;
+      this.amount = Math.ceil(this.amount)
     }
     return this;
   }
