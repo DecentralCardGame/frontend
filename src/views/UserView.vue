@@ -224,10 +224,10 @@ export default {
       })
     },
     register () {
-      registerForCouncil().then(this.getUser)
+      registerForCouncil(this.getUser, () => {})
     },
     deRegister () {
-      rewokeCouncilRegistration().then(this.getUser)
+      rewokeCouncilRegistration(this.getUser, () => {})
     },
     normalizeCoins(coins) {
       let newCoins = [];

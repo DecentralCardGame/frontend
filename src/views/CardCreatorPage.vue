@@ -1192,16 +1192,13 @@ export default {
 
       // check if a card is edited with pre-existing ID
       if (this.mode == Mode.EDIT) {
+        let handleErr = (err) => {
+          this.notifyFail("Update Card failed", err);
+          console.error(err);
+        };
 
-        Promise.all([
-          saveCardContent(this.model.id, newCard),
-          !this.designateArtist ? addArtwork(this.model.id, newCard.image, newCard.fullArt) : ""
-        ])
-          .then(this.resetCard)
-          .catch((err) => {
-            this.notifyFail("Update Card failed", err);
-            console.error(err);
-          });
+        saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
+        if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
       } else {
         queryQUser(this.address).then((res: User) => {
           if (R.isEmpty(res.ownedCardSchemes)) {
@@ -1209,16 +1206,13 @@ export default {
             throw new Error("account " + this.address + " does not own Card Frames");
           } else {
             let id = res.ownedCardSchemes[0];
+            let handleErr = (err) => {
+              this.notifyFail("Publish Card failed", err);
+              console.error(err);
+            };
 
-            Promise.all([
-              saveCardContent(id, newCard),
-              !this.designateArtist ? addArtwork(this.model.id, newCard.image, newCard.fullArt) : ""
-            ])
-              .then(this.resetCard)
-              .catch((err) => {
-                this.notifyFail("Publish Card failed", err);
-                console.error(err);
-              });
+            saveCardContent(id, newCard, this.resetCard, handleErr);
+            if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
           }
         });
       }

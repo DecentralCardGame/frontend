@@ -147,9 +147,9 @@ export default {
     },
     buyCardFrame() {
       this.$emit('close')
-      buyCardScheme(new Coin("credits", this.currentBid).denormalize()).then(res => {
+      buyCardScheme(new Coin("credits", this.currentBid).denormalize(), res => {
         console.log(res)
-      })
+      }, () => {})
     },
     isNumber: function (evt) {
       evt = evt || window.event
