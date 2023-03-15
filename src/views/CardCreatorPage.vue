@@ -298,9 +298,7 @@
                   Select Special Cost
                 </option>
                 <option
-                  v-for="n in R.keys(
-                    cardRules.Card.children[getRulesType()].children.AdditionalCost.children
-                  )"
+                  v-for="n in getSpecialCostRange()"
                   :key="n"
                   :value="n"
                 >
@@ -317,10 +315,7 @@
                   @change="updateAdditionalCostText();"
                 >
                   <option
-                    v-for="n in R.range(
-                      cardRules.Card.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.min || 0,
-                      cardRules.Card.children[getRulesType()].children.AdditionalCost.children.DiscardCost.children.Amount.max + 1
-                    )"
+                    v-for="n in getGenericCostRange('DiscardCost')"
                     :key="n"
                     :value="n"
                   >
@@ -339,10 +334,7 @@
                   @change="updateAdditionalCostText();"
                 >
                   <option
-                    v-for="n in R.range(
-                      cardRules.Card.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.min || 0,
-                      cardRules.Card.children[getRulesType()].children.AdditionalCost.children.SacrificeCost.children.Amount.max + 1
-                    )"
+                    v-for="n in getGenericCostRange('SacrificeCost')"
                     :key="n"
                     :value="n"
                   >
@@ -360,10 +352,7 @@
                   @change="updateAdditionalCostText();"
                 >
                   <option
-                    v-for="n in R.range(
-                      cardRules.Card.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.min || 0,
-                      cardRules.Card.children[getRulesType()].children.AdditionalCost.children.VoidCost.children.Amount.max + 1
-                    )"
+                    v-for="n in getGenericCostRange('VoidCost')"
                     :key="n"
                     :value="n"
                   >
@@ -392,10 +381,7 @@
                   v-model="model.Delay"
                 >
                   <option
-                    v-for="n in R.range(
-                      cardRules.Card.children[getRulesType()].children.Delay.min || 0,
-                      cardRules.Card.children[getRulesType()].children.Delay.max + 1
-                    )"
+                    v-for="n in getHQDelayRange()"
                     :key="n"
                     :value="n"
                   >
@@ -796,6 +782,23 @@ export default {
     }
   },
   methods: {
+    getHQDelayRange() {
+      return R.range(
+        this.cardRules.Card.children[this.getRulesType()].children.Delay.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children.Delay.max + 1
+      );
+    },
+    getGenericCostRange(key: string) {
+      return R.range(
+        cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
+        cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
+      );
+    },
+    getSpecialCostRange() {
+      return R.keys(
+        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children
+      );
+    },
     getGenericCardRange(key: string): number[] {
       let range: number[] = [];
       for (
@@ -1039,12 +1042,10 @@ export default {
           );
           return;
         }
-        addArtwork(this.model.id, this.model.image, this.model.fullArt)
-          .then(this.resetCard)
-          .catch((err) => {
-            this.notifyFail("Update Artwork failed", err);
-            console.error(err);
-          });
+        addArtwork(this.model.id, this.model.image, this.model.fullArt, this.resetCard, (err) => {
+          this.notifyFail("Update Artwork failed", err);
+          console.error(err);
+        });
         return;
       }
 
@@ -1205,14 +1206,14 @@ export default {
             this.notifyFail("YOU MUST CONSTRUCT ADDITIONAL PYLONS", "You don't own any Card Frames. Please buy one before publishing.");
             throw new Error("account " + this.address + " does not own Card Frames");
           } else {
-            let id = res.ownedCardSchemes[0];
+            let id = +res.ownedCardSchemes[0];
             let handleErr = (err) => {
               this.notifyFail("Publish Card failed", err);
               console.error(err);
             };
 
             saveCardContent(id, newCard, this.resetCard, handleErr);
-            if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
+            if (!this.designateArtist) addArtwork(id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
           }
         });
       }
