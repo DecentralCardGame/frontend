@@ -52,9 +52,10 @@
   </transition>
 </template>
 
-<script>
-import * as R from 'ramda'
-import {atPath, createInteraction, filterSelection, icon, updateInteraction} from '../utils/utils.js'
+<script lang=ts>
+
+import { validAddress } from "@/utils/validation";
+import { useTx } from "@/def-composables/useTx";
 
 export default {
   name: 'TransferCardModal',
@@ -70,21 +71,24 @@ export default {
       warningText: "",
     }
   },
+  setup() {
+    const { transferCard } = useTx()
+
+    return { transferCard }
+  },
   methods: {
     close() {
       this.$emit('close')
     },
     send() {
-      if (! this.$cardChain.validAddress(this.recipient)) {
+      if (!validAddress(this.recipient)) {
         this.warningText = "Input a proper address!"
         return
       }
-      console.log("yes")
       this.warningText = ""
-      this.$cardChain.transferCard(this.card, this.recipient).then(res => {
-        console.log("yees")
+      this.transferCard(this.card, this.recipient, _ => {
         this.close()
-      })
+      }, () => {})
     }
   }
 }

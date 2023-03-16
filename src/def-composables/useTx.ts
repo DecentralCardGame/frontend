@@ -175,6 +175,15 @@ export const useTxInstance: () => {
       }), then, err);
   };
 
+  const transferCard = (cardId: number, receiver: string, then: (res: any) => void,
+                    err: (res: any) => void) => {
+    messageScheduler.schedule(
+            client.DecentralCardGameCardchainCardchain.tx.sendMsgTransferCard,
+            new Content({
+              cardId,
+              receiver
+            }), then, err);
+  };
 
   return {
     send,
@@ -183,7 +192,8 @@ export const useTxInstance: () => {
     buyCardScheme,
     saveCardContent,
     addArtwork,
-    voteCard
+    voteCard,
+    transferCard
   };
 };
 
