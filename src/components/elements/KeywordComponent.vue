@@ -18,6 +18,7 @@
 
 <script>
 import * as R from "ramda";
+import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
   name: "KeywordComponent",
@@ -42,13 +43,18 @@ export default {
       deep: true
     }
   },
+  setup() {
+    const { rules } = useCardsRules()
+
+    return { cardRules: rules }
+  },
   mounted() {
     this.init();
   },
   methods: {
     init() {
       this.keywordDescriptions = R.map(
-        keyword => [keyword, this.$rulesDefinitions[this.firstLetterToLower(keyword)].description],
+        keyword => [keyword, this.cardRules.definitions[this.firstLetterToLower(keyword)].description],
         R.uniq(R.flatten(this.keywords))
       )
     },
