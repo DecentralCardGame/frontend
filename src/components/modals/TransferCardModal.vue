@@ -9,7 +9,6 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
-        @click.stop="doNothing"
       >
         <header
           id="modalTitle"
