@@ -14,7 +14,7 @@ const VotingPage = () => {} //import('@/views/VotingPage')
 const UserView = () => import('@/views/UserView.vue')
 const SteakDrop = () => {} //import('@/views/SteakDropPage')
 const GameOfChains = () => {} //import('@/views/GameOfChainsPage')
-const CardView = () => {} //import('@/views/AdvancedCardViewPage.vue')
+const CardView = () => import('@/views/AdvancedCardViewPage.vue')
 
 const routes = [
   {
@@ -52,7 +52,7 @@ const routes = [
     component: VotingResultsPage
   },
   {
-    path: '/newcard',
+    path: '/cardCreator',
     name: 'New Card',
     component: NewCardPage,
     meta: {layout: "default"},

@@ -528,7 +528,7 @@ export default {
     },
     edit() {
       this.cardCreatorEditCard = this.cards[this.clickedIndex]
-      this.$router.push("newCard")
+      this.$router.push("cardCreator")
     },
     cardview() {
       this.$router.push('cardview/' + this.cards[this.clickedIndex].id)

@@ -50,7 +50,7 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/newcard">
+            <router-link to="/cardCreator">
               Card Creator
             </router-link>
           </li>

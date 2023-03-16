@@ -108,6 +108,7 @@ const stdHandler = (res: any) => {
 
 export const useTxInstance: () => {
   registerForCouncil: (then: (res: any) => void, err: (res: any) => void) => void;
+  voteCard: (cardId: number, voteType: string, then: (res: any) => void, err: (res: any) => void) => void;
   rewokeCouncilRegistration: (then: (res: any) => void, err: (res: any) => void) => void;
   buyCardScheme: (coin: Coin, then: (res: any) => void, err: (res: any) => void) => void;
   send: (coins: Coin[], to: string, then: (res: any) => void, err: (res: any) => void) => void;
@@ -164,13 +165,25 @@ export const useTxInstance: () => {
       }), then, err);
   };
 
+  const voteCard = (cardId: number, voteType: string, then: (res: any) => void,
+                    err: (res: any) => void) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgVoteCard,
+      new Content({
+        cardId,
+        voteType
+      }), then, err);
+  };
+
+
   return {
     send,
     registerForCouncil,
     rewokeCouncilRegistration,
     buyCardScheme,
     saveCardContent,
-    addArtwork
+    addArtwork,
+    voteCard
   };
 };
 

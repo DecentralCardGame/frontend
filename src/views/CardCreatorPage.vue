@@ -728,11 +728,12 @@ export default {
   computed: {},
   watch: {
     model() {
-      if (this.mode == Mode.EDIT) {
+      if (this.mode === Mode.EDIT) {
         this.cardCreatorEditCard = this.model;
       } else {
         this.cardCreatorDraft = this.model;
       }
+      this.setMode();
     }
   },
   mounted() {
@@ -1219,10 +1220,10 @@ export default {
       }
     },
     resetCard() {
+      console.log(this.mode)
       this.model = new Card();
       this.artistMode = false;
       this.cropImage = "";
-      this.mode = Mode.CREATE;
     },
     inputFile(event) {
       let file = event.target.files[0];
