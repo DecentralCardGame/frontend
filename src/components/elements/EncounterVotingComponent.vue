@@ -84,11 +84,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as R from "ramda";
-import { Coin } from "@/utils/coins";
-import CardComponent from "@/components/elements/CardComponent";
+import CardComponent from "@/components/elements/CardComponent.vue";
 import KeywordComponent from "@/components/elements/KeywordComponent.vue";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { Card } from "@/model/Card";
+import { useAddress } from "@/def-composables/useAddress";
+import { useNotifications } from "@/def-composables/useNotifications";
+import { useQuery } from "@/def-composables/useQuery";
+import { useTx } from "@/def-composables/useTx";
 
 const Status = {
   "VOTING": 0,
@@ -106,7 +111,7 @@ export default {
       Status: Status,
       voteRights: [],
       cards: [],
-      currentCard: {},
+      currentCard: new Card(),
       votePool: "",
       config: {
         minThrowOutDistance: 250,
@@ -114,9 +119,18 @@ export default {
       }
     };
   },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    const { address } = useAddress()
+    const { queryQCards, queryQCard, queryQVotableCards } = useQuery();
+    const { notifyInfo } = useNotifications()
+    const { voteCard } = useTx()
+
+    return { loggedIn, address, queryQVotableCards, queryQCards, notifyInfo, queryQCard, voteCard }
+  },
   watch: {
-    "$store.state.common.wallet.selectedAddress": function() {
-      if (this.$store.getters["getLoggedIn"]) {
+    loggedIn() {
+      if (this.loggedIn) {
         this.init();
       } else {
         this.status = Status.NOTLOGGEDIN
@@ -124,8 +138,7 @@ export default {
     }
   },
   mounted() {
-    console.log("loggedin? ", this.$store.getters["getLoggedIn"]);
-    if (this.$store.getters["getLoggedIn"]) {
+    if (this.loggedIn) {
       this.init();
     } else {
       this.notifyInfo("Not logged in", "You must login to be able to vote.");
@@ -133,13 +146,13 @@ export default {
   },
   methods: {
     init() {
-      this.$cardChain.getVotableCards(this.$store.getters["common/wallet/address"])
+      this.queryQVotableCards(this.address)
         .then(res => {
-          this.$cardChain.getCardList("", "playable", "", "", "", "", "", "")
+          this.queryQCards("playable", {})
             .then(cards => {
               console.log("getVotableCards:", res);
               if (res.votables) {
-                this.voteRights = res.votables.voteRights;
+                this.voteRights = res.voteRights;
 
                 let cleaned = [];
                 for (let i = 0; i < this.voteRights.length; i++) {
@@ -183,10 +196,7 @@ export default {
     },
     vote(type) {
       this.getNextCard();
-      this.$cardChain.voteCardTx(this.currentCard.id, type)
-        .then(_ => {
-          this.$cardChain.updateUserCredits();
-        });
+      this.voteCard(this.currentCard.id, type, _ => {}, _ => {})
       console.log("vote cast for cardid", this.currentCard.id, "voted: ", type);
 
       if (R.isEmpty(this.cards)) {
@@ -207,10 +217,8 @@ export default {
         console.log("nextCard", nextCard);
         this.voteRights = R.dropLast(1, this.voteRights);
 
-        return this.$cardChain.getCard(nextCard.cardId)
-          .then(res => {
-            console.log("res", res);
-            let parsedCard = this.$cardChain.cardObjectToWebModel(res);
+        return this.queryQCard(nextCard.cardId)
+          .then((parsedCard: Card) => {
             console.log("currentCard", parsedCard);
             if (parsedCard) {
               this.cards.push(parsedCard);
@@ -229,7 +237,7 @@ export default {
         return
       }
       this.currentCard = R.last(this.cards);
-      this.votePool = new Coin(this.currentCard.votePool).nornalize().pretty();
+      this.votePool = this.currentCard.votePool.nornalize().pretty();
       this.cards = R.dropLast(1, this.cards);
     }
   }
