@@ -1,30 +1,4 @@
 import * as R from 'ramda'
-import * as yes from '../../assets/icon/abilities/variable.svg'
-
-export const emptyCard = {
-  CardName: 'Name',
-  FlavourText: '',
-  abilities: [],
-  notes: '',
-  type: 'Entity',
-  Tags: [],
-  tagDummy: '',
-  Class: {
-    Culture: false,
-    Mysticism: false,
-    Technology: true,
-    Nature: false
-  },
-  CastingCost: -1,
-  AdditionalCost: {
-  },
-  Health: 0,
-  Attack: 0,
-  Delay: 0,
-  RulesTexts: [],
-  Keywords: [],
-  fullArt: true
-}
 
 // Global Utility functions
 export function creditsFromCoins(coins) {
@@ -284,31 +258,4 @@ export function compressImg(dataURL, width, height) {
 export function saveCardAsPng (element, name, scale = 5) {
   console.error("SAVE CARD AS PNG SHOULD BE DEACTIVATED")
   //svg1.saveSvgAsPng(element, name + '.png', {scale: scale})
-}
-
-export async function icon(name) {
-  let item
-  try {
-    //item = require(path+name+'.svg')  // only god knows why this line doesn't work and the one below does
-    //console.log("retrieving:", '../../assets/icon/abilities/'+name+'.svg')
-    //item = require('../../assets/icon/abilities/'+name+'.svg')
-    item = await import('../../assets/icon/abilities/'+name+'.svg')
-  } catch {
-    if (name.length === 1) {
-      item = await import('../../assets/icon/abilities/variable.svg')
-    } else {
-      try {
-        item = await import('../../assets/icon/abilities/'+name+'s.svg')
-      } catch {
-        try {
-          item = await import('../../assets/icon/abilities/'+name+'r.svg')
-        }  catch (e) {
-          console.log('was not able to retrieve', name, 'icon', e)
-          return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIieWVQRHDIBBFvwQkREIlRAJSKiEOWgk4aBwUCXEQHDQO6AFomRaWhZBDp39mLzvsfyywA/APugKwAG5Rbva5y15z6Y1CBMU52WI8wu14ZQBWv3asMbeZSAHiYEHC+bYAZg5AHw2YdgDOlLEAcCeKOQDrPUQKoAqFXICFm50vbR0BjxSgVFQDiNe+pDoCVAogACwdAAsylwzQQ8YFkLOgOwA0BTi8gxPo51oCbN6D1AD3CkwFwPiaoWT+2Q0XUNx1ThLvTuLxD9+oQeOP9jt6AvOXA3NEG5uaAAAAAElFTkSuQmCC"
-        }
-      }
-    }
-  }
-  console.log(JSON.stringify(item))
-  return item.default
 }

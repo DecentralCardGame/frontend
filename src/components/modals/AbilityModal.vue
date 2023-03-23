@@ -116,9 +116,7 @@ import * as R from "ramda";
 import {
   atPath,
   createInteraction,
-  filterSelection,
   filterSelection2,
-  icon,
   updateInteraction
 } from "../utils/utils.js";
 import { useCardsRules } from "@/def-composables/useCardRules";

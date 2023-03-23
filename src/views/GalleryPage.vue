@@ -256,9 +256,9 @@
 
 <script lang=ts>
 import * as R from "ramda";
-import GalleryModal from "../components/modals/GalleryModal.vue";
+import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
-import { saveCardAsPng, creditsFromCoins } from "../components/utils/utils.js";
+import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useGalleryFilters } from "@/def-composables/useGalleryFilters";

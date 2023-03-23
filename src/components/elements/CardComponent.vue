@@ -23106,9 +23106,7 @@
 
 <script>
 import * as R from 'ramda'
-//import * as svg1 from 'save-svg-as-png'
-import { icon } from '@/components/utils/utils.js'
-import { emptyCard } from '../utils/utils'
+import { Card } from '@/model/Card'
 import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
@@ -23116,7 +23114,7 @@ export default {
   props: {
     model: {
       type: Object,
-      default: emptyCard
+      default: new Card()
     },
     imageURL: {
       type: String,
@@ -23525,9 +23523,6 @@ export default {
       return additionalCostPseudoKeyword[0].length > 0 ?
         R.concat(additionalCostPseudoKeyword, this.model.Keywords) :
         this.model.Keywords
-    },
-    getIcon(name) {
-      return icon(R.toLower(R.split('-', name)[0]))
     },
     fontSize (rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)

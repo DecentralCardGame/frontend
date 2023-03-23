@@ -48,20 +48,6 @@ export const cardJpgs = {
   timeDeviceImg: timeDeviceImg
 }
 
-export const sampleCard = Card.from({
-  CardName: 'Sample Card',
-  FlavourText: 'Whenever you play CrowdControl your happiness increases by 1.',
-  artist: " ",
-  owner: " ",
-  type: 'Entity',
-  Tags: ['TECHNOCRAT','HUMAN'],
-  tagDummy: 'TECHNOCRAT',
-  Class: CardClass.technology(),
-  CastingCost: 8,
-  Health: 5,
-  Attack: 3
-})
-
 export const churchCard = Card.from({
   CardName: 'Church',
   RulesTexts: ["OnSpawn: Spawn 2 1/1 recruit", "Pay 1: Strengthen TARGET 1."],
