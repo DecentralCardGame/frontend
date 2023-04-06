@@ -52,6 +52,13 @@
           </li>
 
           <li>
+            <a href="https://twitter.com/CrowdControlNet">
+              <h2>Twitter</h2>
+              Get the latest Tweets.
+            </a>
+          </li>
+
+          <li>
             <a href="https://t.me/DecentralCardNetwork">
               <h2>Telegram</h2>
               For 'crypto enthusiasts'.
