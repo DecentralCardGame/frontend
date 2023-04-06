@@ -9,7 +9,7 @@
     Patrick Wieth <br>
     Eschollbrücker Straße 28a <br>
     64283 Darmstadt <br>
-    Telefon: +49 0176 96845226 <br>
+    Telefon: +49 0176 96845236 <br>
     E-Mail: patrick.wieth@googlemail.de <br><br>
 
     <b>Haftungsausschluss (Disclaimer)</b><br>
