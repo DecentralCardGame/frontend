@@ -96,19 +96,19 @@ export default {
   font-family: 'Museo900-Regular';
   font-weight: normal;
   font-style: normal;
-  src: url('~@/assets/fonts/museo900regular.woff') format('woff');
+  src: url('@/assets/fonts/museo900regular.woff') format('woff');
 }
 @font-face {
   font-family: 'Museo700-Regular';
   font-weight: normal;
   font-style: normal;
-  src: url('~@/assets/fonts/Museo700-Regular-webfont.woff2') format('woff2'),
-    url('~@/assets/fonts/Museo700-Regular-webfont.woff') format('woff');
+  src: url('@/assets/fonts/Museo700-Regular-webfont.woff2') format('woff2'),
+    url('@/assets/fonts/Museo700-Regular-webfont.woff') format('woff');
 }
 @font-face {
   font-family: 'Museo500-Regular';
-  src: url('~@/assets/fonts/Museo500-Regular-webfont.woff2') format('woff2'),
-    url('~@/assets/fonts/Museo500-Regular-webfont.woff') format('woff');
+  src: url('@/assets/fonts/Museo500-Regular-webfont.woff2') format('woff2'),
+    url('@/assets/fonts/Museo500-Regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

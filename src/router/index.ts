@@ -1,7 +1,7 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 
 const GalleryPage = () => import('@/views/GalleryPage.vue')
-const VotingResultsPage = () => {} //import('@/views/VotingResultsPage')
+const VotingResultsPage = () => import('@/views/VotingResultsPage.vue')
 const NewCardPage = () => import('@/views/CardCreatorPage.vue')
 const AboutPage = () => import('@/views/AboutPage.vue')
 const NotFound = () => import('@/views/NotFound.vue')
