@@ -15,11 +15,13 @@ export default {
     $route: {
       immediate: true,
       async handler(route) {
-        try {
-          const component = await import( /* @vite-ignore */ `./${route.meta.layout}.vue`)
-          this.layout = component?.default || AppLayoutDefault
-        } catch (e) {
-          this.layout = AppLayoutDefault
+        if (route.meta.layout) {
+          try {
+            const component = await import( /* @vite-ignore */ `./${route.meta.layout}.vue`)
+            this.layout = component?.default || AppLayoutDefault
+          } catch (e) {
+            this.layout = AppLayoutDefault
+          }
         }
       }
     }

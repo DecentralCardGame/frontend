@@ -20,25 +20,25 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    meta: {layout: "default"},
+    meta: {layout: "Default"},
     component: AboutPage
   },
   {
     path: '/roadmap',
     name: 'Roadmap',
-    meta: {layout: "default"},
+    meta: {layout: "Default"},
     component: RoadmapPage
   },
   {
     path: '/steakdrop',
     name: 'Steakdrop',
-    meta: {layout: "default"},
+    meta: {layout: "Default"},
     component: SteakDrop
   },
   {
     path: '/goc',
     name: 'Game of Chains',
-    meta: {layout: "default"},
+    meta: {layout: "Default"},
     component: GameOfChains
   },
   {
@@ -55,7 +55,7 @@ const routes = [
     path: '/cardCreator',
     name: 'New Card',
     component: NewCardPage,
-    meta: {layout: "default"},
+    meta: {layout: "Default"},
   },
   {
     path: '/',
