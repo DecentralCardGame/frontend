@@ -20,9 +20,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import './scss/main.scss'
-//import '@starport/vue/lib/starport-vue.css'
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import AppLayout from '@/layouts/AppLayout.vue'
 
 
@@ -35,6 +35,11 @@ export default {
     return {
       initialized: false,
     }
+  },
+  setup() {
+    const { setLastInputEvent } = useLastInputEvent()
+
+    return { setLastInputEvent }
   },
   computed: {
     hasWallet() {
@@ -53,10 +58,7 @@ export default {
   },
   methods: {
     handleAnyInput(event) {
-      //this.$store.commit(
-        //"setLastInputEvent",
-        //event
-      //)
+      this.setLastInputEvent(event)
     },
   }
 }

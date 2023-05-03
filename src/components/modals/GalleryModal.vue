@@ -145,8 +145,9 @@
     </div>
   </transition>
 </template>
-<script>
+<script lang="ts">
 import CardComponent from "@/components/elements/CardComponent.vue";
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import TransferCardModal from './TransferCardModal.vue';
 
 export default {
@@ -180,9 +181,14 @@ export default {
       creditsAvailable: -1,
     }
   },
+  setup() {
+    const { lastInputEvent } = useLastInputEvent()
+
+    return { lastInputEvent }
+  },
   watch: {
-    "$store.state.lastInputEvent": function () {
-      let event = this.$store.state.lastInputEvent;
+    lastInputEvent() {
+      let event = this.lastInputEvent;
 
       if (event.which == 27) {
         this.$emit('close')

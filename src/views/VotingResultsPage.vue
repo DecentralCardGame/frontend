@@ -102,6 +102,7 @@
 import * as R from "ramda";
 import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import { saveCardAsPng } from "@/components/utils/utils.js";
 
 export default {
@@ -133,11 +134,16 @@ export default {
       TotalUnderpoweredVotes: 0,
     };
   },
+  setup() {
+    const { lastInputEvent } = useLastInputEvent()
+
+    return { lastInputEvent }
+  },
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
   watch: {
-    "$store.state.lastInputEvent": function () {
-      let event = this.$store.state.lastInputEvent
+    lastInputEvent() {
+      let event = this.lastInputEvent;
 
       if (event.which == 5) {
         this.leavePageLock = true

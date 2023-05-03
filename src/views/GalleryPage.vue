@@ -262,6 +262,7 @@ import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import { useQuery } from "@/def-composables/useQuery";
 import { useCardsRules } from "@/def-composables/useCardRules";
 import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
@@ -294,8 +295,8 @@ export default {
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
   watch: {
-    '$store.state.lastInputEvent': function () {
-      let event = this.$store.state.lastInputEvent
+    lastInputEvent() {
+      let event = this.lastInputEvent;
 
       if (event.which == 5) {
         this.leavePageLock = true // Forward Mouse special button
@@ -321,8 +322,9 @@ export default {
     const { rules } = useCardsRules()
     const { editCard } = useCardCreatorCards()
     const { galleryFilters, toggleGalleryFilters } = useGalleryFilters
+    const { lastInputEvent } = useLastInputEvent()
 
-    return { loggedIn, address, galleryFilters, toggleGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
+    return { lastInputEvent, loggedIn, address, galleryFilters, toggleGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
   },
   mounted() {
 
