@@ -52,7 +52,7 @@
           </b>
           <p class="text--medium extra--bottom--margin">
             On Crowd Control you can create and <br>
-            design your own trading cards. Your Cards <br>
+            design your own trading cards. Your cards <br>
             become a part of the game for everyone.<br>
           </p>
 
@@ -155,7 +155,7 @@
             </b>
             <p class="text--medium">
               Make your own cards on the blockchain <br>
-              with our <router-link :to="{ name: 'New Card' }">
+              with our <router-link :to="{ name: 'Card Creator' }">
                 <b>Card Creator</b>
               </router-link>.
             </p>
@@ -208,7 +208,7 @@
         We are not a company
       </b>
       <p class="text--medium">
-        Crowd Control is not a company, but a Decentralized Autonomous Organization (DAO). This is realized
+        Crowd Control is not a company but a Decentralized Autonomous Organization (DAO). This is realized
         with a blockchain built on Cosmos technology. Read our <a
           href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
           target="_blank"

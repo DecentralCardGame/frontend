@@ -2,9 +2,9 @@
   <div align="center">
     <h1>Voting</h1>
     <p>
-      Vote to develop the game and earn Tokens with it!<br>
-      See results of <router-link :to="{ name: 'VotingResults' }">
-        last weeks voting here
+      Vote to develop the game and earn credits!<br>
+      See the results of <router-link :to="{ name: 'VotingResults' }">
+        last week's voting here
       </router-link>.
     </p>
     <br>

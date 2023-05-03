@@ -86,7 +86,7 @@
               type="checkbox"
               @input="$store.getters.getGalleryFilter.classesVisible = !$store.getters.getGalleryFilter.classesVisible "
             >
-            Filter Classes
+            Filter classes
             <br>
           </label>
         </div>
