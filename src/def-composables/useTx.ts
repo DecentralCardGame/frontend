@@ -6,7 +6,7 @@ import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import {
   Coin as CosmosCoin
-} from "DecentralCardGame-Cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
+} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
 
