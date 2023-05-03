@@ -130,7 +130,7 @@ export default {
       this.$emit('close')
     },
     getHeight() {
-      fetch(env.rpcNode + "/status").then(response => {
+      fetch(env.rpcURL + "/status").then(response => {
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`)
         }
