@@ -62,7 +62,7 @@ class MessageScheduler {
   }
 
   executeMessage(msg: UnEvaledMessage) {
-    notifyInfo('Sending', 'Sending request to the blockchain.')
+    notifyInfo("Sending", "Sending request to the blockchain.");
     this.blocked.value = true;
     msg.execute().then(res => {
       this.blocked.value = false;
@@ -104,8 +104,8 @@ const stdHandler = (res: DeliverTxResponse) => {
     notifyFail("Failed to broadcast message", res.rawLog ? res.rawLog : "General Error");
     throw new Error("Message Failed: " + res.rawLog);
   }
-  let messageName = res.rawLog ? JSON.parse(res.rawLog)[0].events[0].attributes[0].value.split(".").at(-1).replace("Msg", "") : ""
-  notifySuccess("EPIC WIN", messageName + " was successfull")
+  let messageName = res.rawLog ? JSON.parse(res.rawLog)[0].events[0].attributes[0].value.split(".").at(-1).replace("Msg", "") : "";
+  notifySuccess("EPIC WIN", messageName + " was successfull");
   return res;
 };
 
@@ -179,13 +179,22 @@ export const useTxInstance: () => {
   };
 
   const transferCard = (cardId: number, receiver: string, then: (res: any) => void,
-                    err: (res: any) => void) => {
+                        err: (res: any) => void) => {
     messageScheduler.schedule(
-            client.DecentralCardGameCardchainCardchain.tx.sendMsgTransferCard,
-            new Content({
-              cardId,
-              receiver
-            }), then, err);
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgTransferCard,
+      new Content({
+        cardId,
+        receiver
+      }), then, err);
+  };
+
+  const setProfileCard = (cardId: number, then: (res: any) => void,
+                        err: (res: any) => void) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard,
+      new Content({
+        cardId,
+      }), then, err);
   };
 
   return {
@@ -196,7 +205,8 @@ export const useTxInstance: () => {
     saveCardContent,
     addArtwork,
     voteCard,
-    transferCard
+    transferCard,
+    setProfileCard,
   };
 };
 

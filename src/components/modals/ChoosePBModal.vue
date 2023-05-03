@@ -44,7 +44,9 @@
   </transition>
 </template>
 
-<script>
+<script lang="ts">
+import { useQuery } from "@/def-composables/useQuery";
+import { useTx } from "@/def-composables/useTx";
 
 export default {
   name: 'ChoosePBModal',
@@ -61,6 +63,12 @@ export default {
       images: []
     }
   },
+  setup() {
+    const { queryQCard } = useQuery();
+    const { setProfileCard } = useTx();
+
+    return { queryQCard, setProfileCard };
+  },
   mounted() {
     for (let i = 0; i < this.cards.length; i++) {
       this.getCard(this.cards[i])
@@ -69,24 +77,21 @@ export default {
   },
   methods: {
     async getCard(id) {
-      return this.$cardChain.getCard(id).then((res) => {
+      this.queryQCard(id).then((res: Card) => {
         console.log(res)
         if (["permanent", "trial"].includes(res.status)) {
           this.images.push({id: id, img: res.image})
         }
-      })
-      .catch(err => {
-        return
       })
     },
     close() {
       this.$emit('close')
     },
     send(id) {
-      this.$cardChain.setProfileCard(id).then(res => {
+      this.setProfileCard(id, (res) => {
         console.log(res)
         this.close()
-      })
+      }, () => {})
     }
   }
 }
