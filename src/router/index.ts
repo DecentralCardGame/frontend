@@ -44,12 +44,14 @@ const routes = [
   {
     path: '/gallery',
     name: 'Gallery',
-    component: GalleryPage
+    component: GalleryPage,
+    meta: {layout: "Default"},
   },
   {
     path: '/votingresults',
     name: 'VotingResults',
-    component: VotingResultsPage
+    component: VotingResultsPage,
+    meta: {layout: "Default"},
   },
   {
     path: '/cardCreator',
