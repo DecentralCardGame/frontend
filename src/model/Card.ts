@@ -16,6 +16,7 @@ export class ChainCard {
   votePool: Coin = new Coin();
   voters: Array<string> = [];
   balanceAnchor: boolean = false;
+  hash: string = "";
 
   static from(json: any) {
     return Object.assign(new ChainCard(), json);
@@ -60,6 +61,7 @@ export class ChainCard {
       card.votePool = Object.assign(new Coin(), this.votePool);
       card.voters = this.voters;
       card.balanceAnchor = this.balanceAnchor
+      card.hash = this.hash
 
       console.log("parsed card: ", card);
     }
@@ -100,6 +102,7 @@ export class Card {
   Effects: Array<any> = [];
   id: number = -1;
   balanceAnchor: boolean = false;
+  hash: string = "";
 
   static from(json: any) {
     return Object.assign(new Card(), json);
