@@ -15,6 +15,7 @@ export class ChainCard {
   underpoweredVotes: string = "";
   votePool: Coin = new Coin();
   voters: Array<string> = [];
+  balanceAnchor: boolean = false;
 
   static from(json: any) {
     return Object.assign(new ChainCard(), json);
@@ -58,6 +59,7 @@ export class ChainCard {
       card.underpoweredVotes = parseInt(this.underpoweredVotes);
       card.votePool = Object.assign(new Coin(), this.votePool);
       card.voters = this.voters;
+      card.balanceAnchor = this.balanceAnchor
 
       console.log("parsed card: ", card);
     }
@@ -97,6 +99,7 @@ export class Card {
   Keywords: Array<Array<string>> = [];
   Effects: Array<any> = [];
   id: number = -1;
+  balanceAnchor: boolean = false;
 
   static from(json: any) {
     return Object.assign(new Card(), json);

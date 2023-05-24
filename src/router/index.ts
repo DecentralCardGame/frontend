@@ -9,11 +9,8 @@ const RoadmapPage = () => import('@/views/RoadmapPage.vue')
 const LandingPage = () => import('@/views/LandingPage.vue')
 const ImprintPage = () => import('@/views/ImprintPage.vue')
 const TeamPage = () => import('@/views/TeamPage.vue')
-const HowToPlayPage = () => {} //import('@/views/HowToPlayPage')
 const VotingPage = () => import('@/views/VotingPage.vue')
 const UserView = () => import('@/views/UserView.vue')
-const SteakDrop = () => {} //import('@/views/SteakDropPage')
-const GameOfChains = () => {} //import('@/views/GameOfChainsPage')
 const CardView = () => import('@/views/AdvancedCardViewPage.vue')
 
 const routes = [
@@ -28,18 +25,6 @@ const routes = [
     name: 'Roadmap',
     meta: {layout: "Default"},
     component: RoadmapPage
-  },
-  {
-    path: '/steakdrop',
-    name: 'Steakdrop',
-    meta: {layout: "Default"},
-    component: SteakDrop
-  },
-  {
-    path: '/goc',
-    name: 'Game of Chains',
-    meta: {layout: "Default"},
-    component: GameOfChains
   },
   {
     path: '/gallery',
@@ -64,11 +49,6 @@ const routes = [
     name: 'Landing',
     meta: {layout: "Landing"},
     component: LandingPage,
-  },
-  {
-    path: '/howtoplay',
-    name: 'How To Play',
-    component: HowToPlayPage
   },
   {
     path: '/team',

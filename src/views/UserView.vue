@@ -14,7 +14,7 @@
           v-if="loggedIn"
           @click="showChooseModal"
         >
-          <img src="edit.svg">
+          <img src="@/assets/edit.svg">
         </button>
       </div>
     </div>
