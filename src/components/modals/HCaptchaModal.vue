@@ -16,10 +16,7 @@
 import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
 import { env } from "@/env"
 import { useAddress } from "@/def-composables/useAddress";
-import { useLoggedIn } from "@/def-composables/useLoggedIn";
-
-const { loggedIn } = useLoggedIn();
-const { address } = useAddress()
+import { useNotifications } from "@/def-composables/useNotifications";
 
 export default {
   name: 'HCaptchaModal',
@@ -39,6 +36,12 @@ export default {
   },
   mounted() {
   },
+  setup() {
+    const { address } = useAddress()
+    const { notifySuccess, notifyFail } = useNotifications()
+
+    return { address, notifySuccess, notifyFail }
+  },
   methods: {
     onVerify (res) {
       console.log("res", res)
@@ -46,7 +49,7 @@ export default {
       this.$emit('close')
 
       const data = {
-        address: address.value,
+        address: this.address,
         token: res,
         alias: "" //this.$store.getters['common/wallet/walletName']
       }
@@ -79,8 +82,6 @@ export default {
           return
         }
       })
-
-
     }
   }
 }

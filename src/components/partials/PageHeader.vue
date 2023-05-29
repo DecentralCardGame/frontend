@@ -66,12 +66,7 @@ watch(address, () => {
       })
       .catch(err => {
         console.log(err.response);
-        if (err.response.status === 500) {
-          state.showCaptcha = true;
-          console.log("yes");
-        } else {
-          throw err;
-        }
+        state.showCaptcha = true;
       });
   }
 });
