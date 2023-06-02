@@ -9,6 +9,7 @@ import {
 } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
+import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
 
 
 const FEE: StdFee = {
@@ -114,9 +115,12 @@ export const useTxInstance: () => {
   voteCard: (cardId: number, voteType: string, then: (res: any) => void, err: (res: any) => void) => void;
   rewokeCouncilRegistration: (then: (res: any) => void, err: (res: any) => void) => void;
   buyCardScheme: (coin: Coin, then: (res: any) => void, err: (res: any) => void) => void;
+  multiVoteCard: (votes: SingleVote[], then: (res: any) => void, err: (res: any) => void) => void;
+  setProfileCard: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
   send: (coins: Coin[], to: string, then: (res: any) => void, err: (res: any) => void) => void;
   saveCardContent: (cardId: number, card: ChainCard, then: (res: any) => void, err: (res: any) => void) => void;
-  addArtwork: (cardId: number, image: string, fullArt: boolean, then: (res: any) => void, err: (res: any) => void) => void
+  addArtwork: (cardId: number, image: string, fullArt: boolean, then: (res: any) => void, err: (res: any) => void) => void;
+  transferCard: (cardId: number, receiver: string, then: (res: any) => void, err: (res: any) => void) => void
 } = () => {
   const client = useClient();
   const messageScheduler = new MessageScheduler();
@@ -197,6 +201,15 @@ export const useTxInstance: () => {
       }), then, err);
   };
 
+  const multiVoteCard = (votes: SingleVote[], then: (res: any) => void,
+                          err: (res: any) => void) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgMultiVoteCard,
+      new Content({
+        votes,
+      }), then, err);
+  };
+
   return {
     send,
     registerForCouncil,
@@ -207,6 +220,7 @@ export const useTxInstance: () => {
     voteCard,
     transferCard,
     setProfileCard,
+    multiVoteCard,
   };
 };
 

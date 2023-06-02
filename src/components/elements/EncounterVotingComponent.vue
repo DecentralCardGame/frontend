@@ -7,15 +7,9 @@
       <br>
       <div>
         <div class="InfoContainer">
-          <div
-            v-if="status === Status.VOTING"
-            class="ELement Info"
-          >
+          <div v-if="status === Status.VOTING" class="ELement Info">
             <h3>{{ currentCard.CardName }}</h3>
-            <p
-              v-if="currentCard.FlavourText"
-              class="FlavourText"
-            >
+            <p v-if="currentCard.FlavourText" class="FlavourText">
               "{{ currentCard.FlavourText }}"
             </p>
             <br>
@@ -25,34 +19,23 @@
               Status: {{ currentCard.status }} <br>
             </p>
             <br><br>
-            <keyword-component
-              :keywords="currentCard.Keywords"
-            />
+            <keyword-component :keywords="currentCard.Keywords" />
           </div>
-          <div
-            v-if="status === Status.VOTING"
-            class="ELement"
-          >
-            <CardComponent
-              :model="currentCard"
-              :image-u-r-l="currentCard.image"
-            />
+          <div v-if="status === Status.VOTING" class="ELement">
+            <CardComponent :model="currentCard" :image-u-r-l="currentCard.image" />
           </div>
-          <div
-            v-if="status === Status.NOVOTESLEFT"
-            class="ELement"
-          >
-            <img
-              style="max-width:25em;"
-              src="@/assets/icon/noCard.png"
-            >
+          <div v-if="status === Status.NOVOTESLEFT" class="ELement">
+            <img style="max-width:25em;" src="@/assets/icon/noCard.png">
             <br><br>
-            <p>It seams like you have voted on all cards you've encountered. Come back here, when you've played more matches.</p>
+            <p>It seams like you have voted on all cards you've encountered. Come back here, when you've played more
+              matches.</p>
           </div>
-          <div
-            v-if="status === Status.NOTLOGGEDIN"
-            class="ELement"
-          >
+          <div v-if="status === Status.READY_TO_SEND" class="ELement">
+            <button @click="sendToChain()">
+              Send votes to chain
+            </button>
+          </div>
+          <div v-if="status === Status.NOTLOGGEDIN" class="ELement">
             <p>You cannot vote on cards. Please login with your wallet.</p>
           </div>
           <div v-if="status === Status.UNREGISTERED">
@@ -63,10 +46,7 @@
       </div>
 
       <br>
-      <div
-        v-if="status === Status.VOTING"
-        class="button-container"
-      >
+      <div v-if="status === Status.VOTING" class="button-container">
         <button @click="vote('fair_enough')">
           Fair Enough
         </button>
@@ -78,6 +58,12 @@
         </button>
         <button @click="vote('inappropriate')">
           Inappropriate
+        </button>
+        <button 
+          style="margin-left: 50px;"
+          @click="sendToChain()"
+        >
+          Send votes to chain
         </button>
       </div>
     </div>
@@ -94,12 +80,15 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
+import { useVoting } from "@/def-composables/useVoting";
+import type { CardchainVoteRight } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/rest";
 
 const Status = {
   "VOTING": 0,
   "UNREGISTERED": 1,
   "NOVOTESLEFT": 2,
   "NOTLOGGEDIN": 3,
+  "READY_TO_SEND": 4,
 }
 
 export default {
@@ -109,8 +98,8 @@ export default {
     return {
       status: Status.NOTLOGGEDIN,
       Status: Status,
-      voteRights: [],
-      cards: [],
+      voteRights: new Array<CardchainVoteRight>(),
+      cards: new Array<Card>(),
       currentCard: new Card(),
       votePool: "",
       config: {
@@ -123,10 +112,11 @@ export default {
     const { loggedIn } = useLoggedIn()
     const { address } = useAddress()
     const { queryQCards, queryQCard, queryQVotableCards } = useQuery();
-    const { notifyInfo } = useNotifications()
+    const { notifyInfo, notifyFail, notifySuccess } = useNotifications()
     const { voteCard } = useTx()
+    const { add, send, isEmpty, filterCards } = useVoting()
 
-    return { loggedIn, address, queryQVotableCards, queryQCards, notifyInfo, queryQCard, voteCard }
+    return { loggedIn, address, queryQVotableCards, queryQCards, notifyInfo, queryQCard, voteCard, add, send, isEmpty, filterCards, notifyFail, notifySuccess}
   },
   watch: {
     loggedIn() {
@@ -148,11 +138,12 @@ export default {
     init() {
       this.queryQVotableCards(this.address)
         .then(res => {
-          this.queryQCards("playable", {})
+          let voteRights = this.filterCards(res.voteRights)
+          this.queryQCards("playable")
             .then(cards => {
               console.log("getVotableCards:", res);
-              if (res.votables) {
-                this.voteRights = res.voteRights;
+              if (res.voteRights) {
+                this.voteRights = voteRights;
 
                 let cleaned = [];
                 for (let i = 0; i < this.voteRights.length; i++) {
@@ -167,23 +158,24 @@ export default {
                 if (this.voteRights.length > 0) {
                   console.log("voteRights:", this.voteRights);
 
-                  this.getNextCard()
-                    .then(() => {
-                      this.showNextCard();
-                    });
                   this.getNextCard();
                 } else {
                   this.status = Status.NOVOTESLEFT
                 }
-              } else if (res.votables === null) {
-                this.status = Status.NOVOTESLEFT
-                console.log("no more voting rights");
               } else if (res.unregistered === true) {
                 this.status = Status.UNREGISTERED
                 this.notifyFail("NOT REGISTERED", "You are not registered in the blockchain. Please register to obtain voting rights.");
               } else if (res.noVoteRights === true) {
                 this.status = Status.NOVOTESLEFT
                 this.notifyInfo("No Vote Rights", "You do not have any voting rights, therefore you cannot vote on cards.");
+              } else if (res.votables === null) {
+                if (!this.isEmpty()) {
+                  this.status = Status.READY_TO_SEND
+                  console.log("ready to send");
+                } else {
+                  this.status = Status.NOVOTESLEFT
+                  console.log("no more voting rights");
+                }
               } else {
                 this.status = Status.NOVOTESLEFT
                 console.error("getVotableCards returned non-readable data: ", res);
@@ -194,17 +186,22 @@ export default {
           this.notifyFail("OH NOES", res);
         });
     },
-    vote(type) {
+    vote(type: string) {
       this.getNextCard();
-      this.voteCard(this.currentCard.id, type, _ => {}, _ => {})
+      this.add(this.currentCard.id, type)
       console.log("vote cast for cardid", this.currentCard.id, "voted: ", type);
 
       if (R.isEmpty(this.cards)) {
         if (!R.isEmpty(this.voteRights)) {
           this.getNextCard()
-            .then(this.showNextCard);
         } else {
-          this.status = Status.NOVOTESLEFT
+          if (!this.isEmpty()) {
+            this.status = Status.READY_TO_SEND
+            console.log("ready to send");
+          } else {
+            this.status = Status.NOVOTESLEFT
+            console.log("no more voting rights");
+          }
         }
       } else {
         this.showNextCard();
@@ -213,19 +210,20 @@ export default {
     getNextCard() {
       console.log("votingRights.length:", this.voteRights.length);
       if (this.voteRights.length > 0) {
-        let nextCard = R.last(this.voteRights);
+        let nextCard = this.voteRights.at(-1)!;
         console.log("nextCard", nextCard);
         this.voteRights = R.dropLast(1, this.voteRights);
 
-        return this.queryQCard(nextCard.cardId)
+        this.queryQCard(nextCard.cardId)
           .then((parsedCard: Card) => {
             console.log("currentCard", parsedCard);
             if (parsedCard) {
               this.cards.push(parsedCard);
-              R.last(this.cards).id = nextCard.cardId;
+              this.cards.at(-1)!.id = parseInt(nextCard.cardId!);
             } else {
-              console.error("card could not be parsed", res);
+              console.error("card could not be parsed", parsedCard);
             }
+            this.showNextCard()
           });
       } else {
         console.error("no cards left");
@@ -233,12 +231,22 @@ export default {
     },
     showNextCard() {
       if (R.isEmpty(this.cards)) {
+        if (!this.isEmpty()) {
+          this.status = Status.READY_TO_SEND
+          console.log("ready to send");
+          return
+        }
         this.status = Status.NOVOTESLEFT
         return
       }
-      this.currentCard = R.last(this.cards);
-      this.votePool = this.currentCard.votePool.nornalize().pretty();
+      this.currentCard = this.cards.at(-1)!;
+      this.votePool = this.currentCard.votePool.normalize().pretty();
       this.cards = R.dropLast(1, this.cards);
+    },
+    sendToChain() {
+      this.send(_ => {
+        this.notifySuccess("Success!", "Voted succesfully!")
+      }, err => {console.log(err)})
     }
   }
 };
@@ -262,6 +270,7 @@ export default {
 .Info {
   text-align: left;
   width: 15em;
+
   h3 {
     color: black;
   }
@@ -284,5 +293,4 @@ export default {
 :deep(p) {
   color: black;
 }
-
 </style>
