@@ -9,7 +9,6 @@ const useLastInputEventInstance = () => {
 
   const set = (event: Event) => {
     state.value = event
-    console.log(event)
   }
 
   return { lastInputEvent: readonly(state), setLastInputEvent: set };
