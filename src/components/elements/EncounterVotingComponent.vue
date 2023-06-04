@@ -187,7 +187,6 @@ export default {
         });
     },
     vote(type: string) {
-      this.getNextCard();
       this.add(this.currentCard.id, type)
       console.log("vote cast for cardid", this.currentCard.id, "voted: ", type);
 
@@ -244,6 +243,7 @@ export default {
       this.cards = R.dropLast(1, this.cards);
     },
     sendToChain() {
+      console.log("clicked")
       this.send(_ => {
         this.notifySuccess("Success!", "Voted succesfully!")
       }, err => {console.log(err)})

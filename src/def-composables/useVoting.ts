@@ -23,6 +23,7 @@ const useVotingInstance = () => {
   );
 
   const send = (then: (res: any) => void, err: (res: any) => void) => {
+    console.log("send", votes.value)
     multiVoteCard(
       votes.value,
       (res: any) => {
@@ -31,6 +32,7 @@ const useVotingInstance = () => {
       },
       err
     );
+    votes.value = []
   };
 
   const add = (cardId: number, voteType: string) => {
