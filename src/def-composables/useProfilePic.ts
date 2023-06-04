@@ -1,14 +1,16 @@
 import type { User } from "@/model/User"
-import { ref } from "vue"
+import { ref, type Ref } from "vue"
 import { useQuery } from "./useQuery"
-import { useAddress } from "./useAddress"
 import type { Card } from "@/model/Card"
+import { useAddress } from "./useAddress"
 
 const useProfilePicInstance = () => {
-  const { queryQCard } = useQuery()
+  const { queryQCard, queryQUser } = useQuery()
+  const { address } = useAddress()
+  const loggedInProfilePic = ref("")
 
-  const getDefaultImg = (address: string) => {
-    let myRandom = address.charCodeAt(address.length - 1) % 4
+  const getDefaultImg = (addr: string) => {
+    let myRandom = addr.charCodeAt(addr.length - 1) % 4
     return "Avatar" + myRandom + ".png"
   }
 
@@ -19,8 +21,7 @@ const useProfilePicInstance = () => {
       })
   }
 
-  const getImg = (user: User, address: string) => {
-    const img = ref("")
+  const getImg = (user: User, address: string, img: Ref<string> = ref("")) => {
     if (user.profileCard != 0) {
       getCard(user.profileCard).then(a => {
         if (a === null) {
@@ -36,7 +37,14 @@ const useProfilePicInstance = () => {
     return img
   }
 
-  return { getImg }
+  const setLoggedInProfilePic = () => {
+    queryQUser(address.value)
+    .then(user => {
+      getImg(user, address.value, loggedInProfilePic)
+    })
+  }
+
+  return { getImg, setLoggedInProfilePic, loggedInProfilePic }
 }
 
 let instance: ReturnType<typeof useProfilePicInstance>;

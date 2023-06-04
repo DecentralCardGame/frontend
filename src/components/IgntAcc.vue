@@ -134,7 +134,6 @@ import { IgntButton } from "@ignt/vue-library";
 import { IgntExternalArrowIcon } from "@ignt/vue-library";
 import { IgntKeplrIcon } from "@ignt/vue-library";
 import { IgntModal } from "@ignt/vue-library";
-import { IgntProfileIcon } from "@ignt/vue-library";
 import { IgntSpinner } from "@ignt/vue-library";
 import { IgntWarningIcon } from "@ignt/vue-library";
 import { useClient } from "@/composables/useClient";
