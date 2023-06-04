@@ -150,8 +150,11 @@ import { useQuery } from "@/def-composables/useQuery";
 import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
 import { User } from "@/model/User";
+import { useProfilePic } from '@/def-composables/useProfilePic';
+import type { Coin } from '@/model/Coin';
+import { ref } from 'vue';
 
-const { queryQCard, queryQUser, queryAllBalances } = useQuery()
+const { queryQUser, queryAllBalances } = useQuery()
 const { registerForCouncil, rewokeCouncilRegistration } = useTx()
 
 export default {
@@ -169,16 +172,17 @@ export default {
       isModalVisible: false,
       isGrantModalVisible: false,
       address: "",
-      coins: [],
-      img: "",
+      coins: new Array<Coin>,
+      img: ref(""),
       user: new User()
     }
   },
   setup() {
     const { address } = useAddress();
     const { loggedIn } = useLoggedIn()
+    const { getImg } = useProfilePic()
 
-    return { userAddress: address, loggedIn }
+    return { userAddress: address, loggedIn, getImg }
   },
   watch: {
     "$route.params.id"(value) {
@@ -216,7 +220,7 @@ export default {
       queryQUser(this.address)
       .then(user => {
         this.user = user
-        this.getImg()
+        this.img = this.getImg(this.user, this.address)
       })
       queryAllBalances(this.address)
       .then(coins => {
@@ -229,8 +233,8 @@ export default {
     deRegister () {
       rewokeCouncilRegistration(this.getUser, () => {})
     },
-    normalizeCoins(coins) {
-      let newCoins = [];
+    normalizeCoins(coins: Coin[]) {
+      let newCoins: Coin[] = [];
       coins.forEach(coin => {
         newCoins.push(coin.normalize())
       })
@@ -261,28 +265,6 @@ export default {
     },
     closeAirdropsModal() {
       this.isAirdropsModalVisible = false;
-    },
-    getDefaultImg() {
-      let myRandom = this.address.charCodeAt(this.address.length-1) % 4
-      return "Avatar"+myRandom+".png"
-    },
-    async getImg() {
-      if (this.user.profileCard != 0) {
-        let a = await this.getCard(this.user.profileCard)
-        if (a === null) {
-          this.img = this.getDefaultImg()
-        } else {
-          this.img = a.image
-        }
-      } else {
-        this.img = this.getDefaultImg()
-      }
-    },
-    async getCard(id) {
-      return queryQCard(id)
-      .then(card => {
-        return card
-      })
     }
   }
 }

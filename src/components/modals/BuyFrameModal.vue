@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    queryQCardchainInfo()
+    queryQCardchainInfo({})
       .then(res => {
         console.log(res)
         let credits = res.cardAuctionPrice.normalize().amount

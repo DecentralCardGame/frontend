@@ -8,7 +8,7 @@
         >Connected wallet</span
       >
       <div class="mb-3 flex items-center">
-        <IgntProfileIcon :address="address" />
+        <CCProfileIcon />
         <div class="flex flex-col ml-3">
           <span class="text-[13px] font-bold">
             {{ accName }}
@@ -136,8 +136,8 @@ import { useAddress } from "../def-composables/useAddress";
 import { useClipboard } from "../def-composables/useClipboard";
 import { IgntChevronRightIcon } from "@ignt/vue-library";
 import { IgntExternalArrowIcon } from "@ignt/vue-library";
-import { IgntProfileIcon } from "@ignt/vue-library";
 import { IgntCopyIcon } from "@ignt/vue-library";
+import CCProfileIcon from "./elements/CCProfileIcon.vue";
 
 enum UI_STATE {
   "DEFAULT" = 1,

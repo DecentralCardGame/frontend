@@ -9,7 +9,6 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
-        @click.stop="doNothing"
       >
         <header
           id="modalTitle"
@@ -47,12 +46,24 @@
 <script lang="ts">
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
+import type { Card } from "@/model/Card";
+
+class Pic {
+  id: number
+  img: string
+
+  constructor(id: number, img: string) {
+    this.id = id
+    this.img = img
+  }
+
+}
 
 export default {
   name: 'ChoosePBModal',
   props: {
     cards: {
-      type: Array,
+      type: Array<number>,
       default() {
         return []
       }
@@ -60,7 +71,7 @@ export default {
   },
   data() {
     return {
-      images: []
+      images: new Array<Pic>()
     }
   },
   setup() {
@@ -76,18 +87,18 @@ export default {
     console.log(this.cards)
   },
   methods: {
-    async getCard(id) {
+    async getCard(id: number) {
       this.queryQCard(id).then((res: Card) => {
         console.log(res)
         if (["permanent", "trial"].includes(res.status)) {
-          this.images.push({id: id, img: res.image})
+          this.images.push(new Pic(id, res.image))
         }
       })
     },
     close() {
       this.$emit('close')
     },
-    send(id) {
+    send(id: number) {
       this.setProfileCard(id, (res) => {
         console.log(res)
         this.close()

@@ -8,7 +8,7 @@
       @click="state.accountDropdown = !state.accountDropdown"
     >
       <div class="flex items-center">
-        <IgntProfileIcon :address="state.keplrParams?.bech32Address" />
+        <CCProfileIcon />
         <span class="mx-2">
           {{ getAccName() }}
         </span>
@@ -140,6 +140,7 @@ import { IgntWarningIcon } from "@ignt/vue-library";
 import { useClient } from "@/composables/useClient";
 import { useWalletStore } from "@/stores/useWalletStore";
 import useCosmosBaseTendermintV1Beta1 from "@/composables/useCosmosBaseTendermintV1Beta1";
+import CCProfileIcon from "./elements/CCProfileIcon.vue";
 
 export interface State {
   modalPage: string;
