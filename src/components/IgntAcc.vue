@@ -2,7 +2,7 @@
   <div class="sp-acc">
     <div
       v-if="wallet"
-      class="shadow-std acc-dd-btn flex items-center p-3 rounded-lg mr-3 hover:bg-gray-100 text-sm font-bold"
+      class="shadow-std acc-dd-btn flex items-center p-3 rounded-lg bg-gray-100 mr-3 hover:bg-gray-100 text-sm font-bold"
       :class="[state.accountDropdown ? 'active' : '']"
       style="display: flex; align-items: center"
       @click="state.accountDropdown = !state.accountDropdown"
