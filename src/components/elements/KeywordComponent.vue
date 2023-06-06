@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as R from "ramda";
 import { useCardsRules } from "@/def-composables/useCardRules";
 
@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      keywordDescriptions: []
+      keywordDescriptions: new Array<Array<String>>()
     };
   },
   watch: {
@@ -54,11 +54,11 @@ export default {
   methods: {
     init() {
       this.keywordDescriptions = R.map(
-        keyword => [keyword, this.cardRules.definitions[this.firstLetterToLower(keyword)].description],
+        (keyword) => [keyword, this.cardRules.definitions[this.firstLetterToLower(keyword as String)].description],
         R.uniq(R.flatten(this.keywords))
       )
     },
-    firstLetterToLower(string) {
+    firstLetterToLower(string: String) {
       return string[0].toLowerCase() + string.substring(1);
     },
   }

@@ -4,6 +4,7 @@
       <br>
       <h1>Vote Encounters</h1>
       <p>Vote on cards that you enountered in-game.</p>
+      <p>To make your votes take effect, you have to send them to the chain.</p>
       <br>
       <div>
         <div class="InfoContainer">
@@ -31,6 +32,7 @@
               matches.</p>
           </div>
           <div v-if="status === Status.READY_TO_SEND" class="ELement">
+            To make your votes take effect, you have to send them to the chain.
             <button @click="sendToChain()">
               Send votes to chain
             </button>

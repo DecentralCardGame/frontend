@@ -23111,7 +23111,7 @@
   </svg>
 </template>
 
-<script>
+<script lang="ts">
 import * as R from 'ramda'
 import { Card } from '@/model/Card'
 import { useCardsRules } from "@/def-composables/useCardRules";
@@ -23139,10 +23139,6 @@ export default {
       type: String,
       default: "none"
     },
-    // cardType: {
-    //   type: String,
-    //   default: ""
-    // },
   },
   data () {
     return {
@@ -23225,11 +23221,11 @@ export default {
     };
   },
   created () {
-    let firstLetterToLower = string => {
+    let firstLetterToLower = (string: String) => {
       return string[0].toLowerCase() + string.substring(1)
     }
-    this.model.Keywords.forEach(ability => {
-      ability.forEach(keyword => {
+    this.model.Keywords.forEach((ability: Array<String>) => {
+      ability.forEach((keyword: String) => {
         this.keywordDescriptions = R.concat(this.keywordDescriptions,
           keyword + " - " + this.cardRules.definitions[firstLetterToLower(keyword)].description + " \\n "
         )
@@ -23351,21 +23347,6 @@ export default {
       this.attackFrame = cardType.Entity
       this.healthFrame = NonActionFilter(frameType)
 
-      /*
-      console.log("Classes:", this.Classes)
-      console.log("healthframe", this.healthFrame)
-      console.log("attackframe", this.attackFrame)
-      console.log("FullArtFrames", this.FullArtFrames)
-      console.log("framed", this.framed)
-      console.log("tagsbar", this.Tagsbar)
-      console.log("framedaddition", this.FramedAddition)
-      console.log("border", this.Border)
-      console.log("OBG", this.OBG)
-      console.log("IBG", this.IBG)
-      console.log("FramedIllustrationMask", this.FramedIllustrationMask)
-      console.log("FullArtIllustrationMask", this.FullArtIllustrationMask)
-      console.log("FullArtGradients", this.FullArtGradients)
-      */
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return
