@@ -1,36 +1,19 @@
 <template>
   <header>
-    <a
-      id="Discordlink"
-      href="https://discord.gg/ZKKbhUs"
-    >
+    <a id="Discordlink" href="https://discord.gg/ZKKbhUs">
       Discuss the latest News or simply join our growing Community
       <picture>
-        <source
-          type="image/webp"
-          srcset="../../assets/icon/discord.webp"
-        >
-        <source
-          type="image/png"
-          srcset="../../assets/icon/discord.png"
-        >
-        <img
-          src="../../assets/icon/discord.png"
-          style="display:inline; max-height:20px;transform:translateY(4px);"
-          alt="Image description"
-        >
+        <source type="image/webp" srcset="../../assets/icon/discord.webp">
+        <source type="image/png" srcset="../../assets/icon/discord.png">
+        <img src="../../assets/icon/discord.png" style="display:inline; max-height:20px;transform:translateY(4px);"
+          alt="Image description">
       </picture>
       <b>Discord</b>. We would love to hear your voice.
     </a>
 
-    <HCaptchaModal
-      v-show="state.showCaptcha"
-      @close="closeCaptcha"
-    />
+    <HCaptchaModal v-show="state.showCaptcha" @close="closeCaptcha" />
 
-    <div
-      class="wallet--local"
-    >
+    <div class="wallet--local">
       <IgntAcc />
     </div>
   </header>
@@ -84,43 +67,10 @@ const closeCaptcha = () => {
   color: black;
 }
 
-.sp-wallet-menu-item {
-  color: black;
-}
-
-.sp-text {
-  color: black;
-}
-
-.keplrButton {
-  display: inline;
-  margin-right: 3px;
-
-  img {
-    background-color: #7079d9;
-    border-radius: 3px;
-    padding-right: 3px;
-    display: inline;
-    max-height: 20px;
-    transform: translateY(4px);
-  }
-}
-
-.keplrButton:hover {
-  cursor: pointer;
-}
-
 header {
   background-color: $background-separator;
   padding: $font-size * 0.5;
   text-align: center;
   border-bottom: $border-thickness-bold solid $white;
-}
-
-.account-box {
-  color: black;
-  position: absolute;
-  top: 0;
-  right: 2rem;
 }
 </style>
