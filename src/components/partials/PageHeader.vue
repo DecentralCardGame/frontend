@@ -1,13 +1,5 @@
 <template>
   <header>
-    <div
-      class="keplrButton"
-      :class="{ 'clickable-option': true,}"
-    >
-      <img
-        src="../../assets/icon/keplr-logo.png"
-      >
-    </div>
     <a
       id="Discordlink"
       href="https://discord.gg/ZKKbhUs"
@@ -49,13 +41,11 @@ import HCaptchaModal from "@/components/modals/HCaptchaModal.vue";
 import IgntAcc from "@/components/IgntAcc.vue";
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
-import { reactive, ref, watch } from "vue";
-import { useCardchainInfo } from "@/def-composables/useCardchainInfo";
+import { reactive, watch } from "vue";
 import { useQuery } from "@/def-composables/useQuery";
 
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const { info } = useCardchainInfo();
 const { queryQUser } = useQuery();
 
 watch(address, () => {
