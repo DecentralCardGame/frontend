@@ -7,7 +7,7 @@ import { useAddress } from "./useAddress"
 const useProfilePicInstance = () => {
   const { queryQCard, queryQUser } = useQuery()
   const { address } = useAddress()
-  const loggedInProfilePic = ref("")
+  const loggedInProfilePic = ref("spinner.svg")
 
   const getDefaultImg = (addr: string) => {
     let myRandom = addr.charCodeAt(addr.length - 1) % 4
