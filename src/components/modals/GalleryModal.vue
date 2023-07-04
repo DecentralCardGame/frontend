@@ -152,6 +152,7 @@ import TransferCardModal from './TransferCardModal.vue';
 import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
 import { useProfilePic } from '@/def-composables/useProfilePic';
+import { normalizeCoins } from '@/utils/utils';
 
 const { queryQUser, queryAllBalances } = useQuery()
 
@@ -213,15 +214,8 @@ export default {
       })
       queryAllBalances(this.userAddress)
       .then(coins => {
-        this.coins = this.normalizeCoins(coins.balances)
+        this.coins = normalizeCoins(coins.balances)
       })
-    },
-    normalizeCoins(coins: Coin[]) {
-      let newCoins: Coin[] = [];
-      coins.forEach(coin => {
-        newCoins.push(coin.normalize())
-      })
-      return newCoins
     },
     doNothing () {
     },

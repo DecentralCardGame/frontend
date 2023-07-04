@@ -33,7 +33,7 @@
 
       <div>
         Address: {{ address }}<br>
-        Name: {{ user.alias }}<br>  
+        Name: {{ user.alias }}<br>
         Owned card frames: {{ user.ownedCardSchemes.length }} <br>
         Owned prototypes:
         <router-link
@@ -47,7 +47,7 @@
         >
           {{ user.cards.length }}
         </router-link>
-      </div> 
+      </div>
       <br>
 
       <div>
@@ -82,7 +82,7 @@
         </button>
       </div>
       <br>
-      
+
       <div>
         Balance:
         <div class="coinBox">
@@ -152,6 +152,7 @@ import { useTx } from "@/def-composables/useTx";
 import { User } from "@/model/User";
 import { useProfilePic } from '@/def-composables/useProfilePic';
 import type { Coin } from '@/model/Coin';
+import { normalizeCoins } from '@/utils/utils';
 import { ref } from 'vue';
 
 const { queryQUser, queryAllBalances } = useQuery()
@@ -224,7 +225,7 @@ export default {
       })
       queryAllBalances(this.address)
       .then(coins => {
-        this.coins = this.normalizeCoins(coins.balances)
+        this.coins = normalizeCoins(coins.balances)
       })
     },
     register () {
@@ -232,13 +233,6 @@ export default {
     },
     deRegister () {
       rewokeCouncilRegistration(this.getUser, () => {})
-    },
-    normalizeCoins(coins: Coin[]) {
-      let newCoins: Coin[] = [];
-      coins.forEach(coin => {
-        newCoins.push(coin.normalize())
-      })
-      return newCoins
     },
     showModal() {
       this.isModalVisible = true;
