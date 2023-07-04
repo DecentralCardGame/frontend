@@ -29,7 +29,7 @@ import AppLayout from '@/layouts/AppLayout.vue'
 export default {
   name: 'CrowdControlApp',
   components: {
-    AppLayout 
+    AppLayout
   },
   data() {
     return {
@@ -48,7 +48,6 @@ export default {
   },
   async created() {
     this.initialized = true
-    console.log("initialized?", this.initialized)
   },
   mounted () {
   },

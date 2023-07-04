@@ -32,7 +32,7 @@ const { address } = useAddress();
 const { queryQUser } = useQuery();
 
 watch(address, () => {
-  if (loggedIn) {
+  if (loggedIn && address.value != "") {
     queryQUser(address.value)
       .then(res => {
         console.log(res);
