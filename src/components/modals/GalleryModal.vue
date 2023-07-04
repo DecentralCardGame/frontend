@@ -149,6 +149,11 @@
 import CardComponent from "@/components/elements/CardComponent.vue";
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import TransferCardModal from './TransferCardModal.vue';
+import { useQuery } from "@/def-composables/useQuery";
+import { useAddress } from "@/def-composables/useAddress";
+import { useProfilePic } from '@/def-composables/useProfilePic';
+
+const { queryQUser, queryAllBalances } = useQuery()
 
 export default {
   name: 'GalleryModal',
@@ -182,9 +187,11 @@ export default {
     }
   },
   setup() {
+    const { address } = useAddress()
     const { lastInputEvent } = useLastInputEvent()
+    const { getImg } = useProfilePic()
 
-    return { lastInputEvent }
+    return { userAddress: address, getImg, lastInputEvent }
   },
   watch: {
     lastInputEvent() {
@@ -198,6 +205,24 @@ export default {
   mounted() {
   },
   methods: {
+    getUser () {
+      queryQUser(this.userAddress)
+      .then(user => {
+        this.user = user
+        this.img = this.getImg(this.user, this.userAddress)
+      })
+      queryAllBalances(this.userAddress)
+      .then(coins => {
+        this.coins = this.normalizeCoins(coins.balances)
+      })
+    },
+    normalizeCoins(coins: Coin[]) {
+      let newCoins: Coin[] = [];
+      coins.forEach(coin => {
+        newCoins.push(coin.normalize())
+      })
+      return newCoins
+    },
     doNothing () {
     },
     close() {
