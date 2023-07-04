@@ -32,14 +32,15 @@ const { address } = useAddress();
 const { queryQUser } = useQuery();
 
 watch(address, () => {
-  if (loggedIn && address.value != "") {
+  if (loggedIn) {
     queryQUser(address.value)
       .then(res => {
         console.log(res);
       })
       .catch(err => {
         console.log(err.response);
-        state.showCaptcha = true;
+        if (address.value != "")
+          state.showCaptcha = true;
       });
   }
 });
