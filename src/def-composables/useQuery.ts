@@ -26,6 +26,9 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   queryQCardchainInfo: (res) => {
     res.data.cardAuctionPrice = Coin.from(res.data.cardAuctionPrice);
     return res.data;
+  },
+  queryQVotingResults: (res) => {
+    return res.data;
   }
 };
 

@@ -101,6 +101,8 @@
 
 <script>
 import * as R from 'ramda'
+import { useAddress } from "@/def-composables/useAddress";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
 
 export default {
   name: 'GrantModal',
@@ -122,8 +124,14 @@ export default {
       saved_grantee: "",
     }
   },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    const { address } = useAddress()
+
+    return { loggedIn, address }
+  },
   watch: {
-    '$store.state.common.wallet.selectedAddress': function () {
+    loggedIn() {
       this.init()
     }
   },
@@ -134,8 +142,7 @@ export default {
   },
   methods: {
     init() {
-      if (this.$store.getters["getLoggedIn"]) {
-        this.address = this.$store.getters['common/wallet/address']
+      if (this.loggedIn) {
         if (this.getGrantee()) {
           this.getGrants()
         }

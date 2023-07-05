@@ -109,7 +109,7 @@ export default {
         minThrowOutDistance: 250,
         maxThrowOutDistance: 300
       }
-    };
+    }
   },
   setup() {
     const { loggedIn } = useLoggedIn()

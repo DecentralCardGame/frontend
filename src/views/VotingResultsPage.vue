@@ -100,6 +100,7 @@
 
 <script>
 import * as R from "ramda";
+import { useQuery } from "@/def-composables/useQuery";
 import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
@@ -136,10 +137,13 @@ export default {
     };
   },
   setup() {
-    const { lastInputEvent } = useLastInputEvent()
     const { address } = useAddress()
+    const { lastInputEvent } = useLastInputEvent()
+    const { queryQVotingResults } = useQuery()
 
-    return { lastInputEvent, address }
+    console.log("queryQVotingResults", queryQVotingResults)
+
+    return { lastInputEvent, address, queryQVotingResults }
   },
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
@@ -165,8 +169,8 @@ export default {
   },
   methods: {
     loadCardList() {
-      return this.$cardChain
-        .getVotingResults()
+      console.log(queryQVotingResults)
+      return queryQVotingResults({})
         .then((res) => {
           console.log("res", res)
           this.TotalVotes = res.lastVotingResults.totalVotes
