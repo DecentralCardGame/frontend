@@ -114,7 +114,7 @@ export default {
   setup() {
     const { loggedIn } = useLoggedIn()
     const { address } = useAddress()
-    const { queryQCards, queryQCard, queryQVotableCards } = useQuery();
+    const { queryQCards, queryQCard, queryQVotableCards } = useQuery()
     const { notifyInfo, notifyFail, notifySuccess } = useNotifications()
     const { voteCard } = useTx()
     const { add, send, isEmpty, filterCards } = useVoting()
@@ -171,7 +171,7 @@ export default {
               } else if (res.noVoteRights === true) {
                 this.status = Status.NOVOTESLEFT
                 this.notifyInfo("No Vote Rights", "You do not have any voting rights, therefore you cannot vote on cards.");
-              } else if (res.votables === null) {
+              } else if (res.voteRights === null) {
                 if (!this.isEmpty()) {
                   this.status = Status.READY_TO_SEND
                   console.log("ready to send");

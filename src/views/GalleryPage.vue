@@ -321,10 +321,11 @@ export default {
     const { address } = useAddress()
     const { rules } = useCardsRules()
     const { editCard } = useCardCreatorCards()
+    const { queryQVotableCards } = useQuery()
     const { galleryFilters, toggleGalleryFilters } = useGalleryFilters
     const { lastInputEvent } = useLastInputEvent()
 
-    return { lastInputEvent, loggedIn, address, galleryFilters, toggleGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
+    return { lastInputEvent, loggedIn, address, queryQVotableCards, galleryFilters, toggleGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
   },
   mounted() {
 
@@ -347,13 +348,12 @@ export default {
   methods: {
     loadVotableCards() {
       if(this.loggedIn) {
-        this.$cardChain
-        .getVotableCards(this.$store.getters['common/wallet/address'])
+        this.queryQVotableCards(this.address)
         .then((res) => {
           if (res.noVoteRights) {
-            this.votableCards = [];
+            this.votableCards = []
           } else {
-            this.votableCards = res.votables;
+            this.votableCards = res
           }
         })
       }
@@ -447,7 +447,6 @@ export default {
     showGalleryModal() {
       this.isGalleryModalVisible = true
 
-      console.log("votablecards", this.votableCards)
       if (!R.isEmpty(this.votableCards)) {
         this.canVote = R.any(
           (x) => x == this.cards[this.clickedIndex].id,
@@ -549,7 +548,7 @@ export default {
         })
     },
     getOwnAddress() {
-      return this.$store.getters['common/wallet/address'];
+      return this.address // TODO is this needed?
     },
     resetFilters() {
       console.log("reset filters");
