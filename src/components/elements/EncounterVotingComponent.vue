@@ -61,7 +61,8 @@
         <button @click="vote('inappropriate')">
           Inappropriate
         </button>
-        <button 
+        <button
+          v-if="!isEmpty()"
           style="margin-left: 50px;"
           @click="sendToChain()"
         >
@@ -245,9 +246,10 @@ export default {
       this.cards = R.dropLast(1, this.cards);
     },
     sendToChain() {
-      console.log("clicked")
       this.send(_ => {
         this.notifySuccess("Success!", "Voted succesfully!")
+        if (this.voteRights.length == 0)
+          this.status = Status.NOVOTESLEFT
       }, err => {console.log(err)})
     }
   }

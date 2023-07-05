@@ -122,7 +122,6 @@ export default {
     queryQUser(this.address)
       .then(user => {
         this.ownedCardFrames = user.ownedCardSchemes.length
-        console.log("user", user)
       })
       .catch(res => {
         console.error(res)
@@ -148,7 +147,6 @@ export default {
     buyCardFrame() {
       this.$emit('close')
       buyCardScheme(new Coin("credits", this.currentBid).denormalize(), res => {
-        console.log(res)
       }, () => {})
     },
     isNumber: function (evt) {
