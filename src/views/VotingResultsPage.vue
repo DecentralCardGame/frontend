@@ -104,6 +104,7 @@ import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import { saveCardAsPng } from "@/components/utils/utils.js";
+import { useAddress } from "@/def-composables/useAddress";
 
 export default {
   name: "VotingResultsPage",
@@ -136,8 +137,9 @@ export default {
   },
   setup() {
     const { lastInputEvent } = useLastInputEvent()
+    const { address } = useAddress()
 
-    return { lastInputEvent }
+    return { lastInputEvent, address }
   },
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
@@ -249,8 +251,8 @@ export default {
         R.pluck("cardId", this.votableCards)
       )
 
-      this.isOwner = this.cards[this.clickedIndex].owner === this.$store.getters['common/wallet/address']
-      this.isArtist = this.cards[this.clickedIndex].artist === this.$store.getters['common/wallet/address']
+      this.isOwner = this.cards[this.clickedIndex].owner === this.address
+      this.isArtist = this.cards[this.clickedIndex].artist === this.address
 
       this.keywordDescriptions = []
       let firstLetterToLower = string => {
@@ -288,9 +290,6 @@ export default {
         .then(_ => {
           this.$cardChain.updateUserCredits()
         })
-    },
-    getOwnAddress() {
-      return this.$store.getters['common/wallet/address'];
     },
     resetFilters() {
       console.log("reset filters");
