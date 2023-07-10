@@ -1188,6 +1188,7 @@ export default {
 
       console.log(newModel);
       newModel.image = this.model.image;
+      newModel.balanceAnchor = false;  // uncomment this to use the balance anchor
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
       console.log("newCard", newCard);

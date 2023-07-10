@@ -169,8 +169,8 @@ export default {
   },
   methods: {
     loadCardList() {
-      console.log(queryQVotingResults)
-      return queryQVotingResults({})
+      console.log(this.queryQVotingResults)
+      return this.queryQVotingResults({})
         .then((res) => {
           console.log("res", res)
           this.TotalVotes = res.lastVotingResults.totalVotes

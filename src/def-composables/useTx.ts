@@ -157,7 +157,8 @@ export const useTxInstance: () => {
         cardId,
         content: btoa(JSON.stringify(card.content)),
         notes: card.notes,
-        artist: card.artist
+        artist: card.artist,
+        balanceAnchor: card.balanceAnchor
       }), then, err);
   };
 
