@@ -153,6 +153,7 @@ export class Card {
     cc.image = this.image ? this.image : "if you read this, someone was able to upload a card without proper image...";
     cc.fullArt = this.fullArt;
     cc.notes = this.notes;
+    cc.balanceAnchor = this.balanceAnchor;
     console.log("parsed into:", cc);
     return cc;
   }
