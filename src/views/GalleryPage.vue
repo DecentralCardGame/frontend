@@ -261,7 +261,7 @@ import CardComponent from "@/components/elements/CardComponent.vue";
 import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
-import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
+import { useGalleryFilters, resetGalleryFilters } from "@/def-composables/useGalleryFilters";
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import { useQuery } from "@/def-composables/useQuery";
 import { useCardsRules } from "@/def-composables/useCardRules";
@@ -322,14 +322,14 @@ export default {
     const { rules } = useCardsRules()
     const { editCard } = useCardCreatorCards()
     const { queryQVotableCards } = useQuery()
-    const { galleryFilters, toggleGalleryFilters } = useGalleryFilters
+    const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } = useGalleryFilters
     const { lastInputEvent } = useLastInputEvent()
 
-    return { lastInputEvent, loggedIn, address, queryQVotableCards, galleryFilters, toggleGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
+    return { lastInputEvent, loggedIn, address, queryQVotableCards, galleryFilters, toggleGalleryFilters, resetGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
   },
   mounted() {
 
-    console.log("Yees", this.galleryFilters)
+    console.log("Yees galleryFilters", this.galleryFilters)
 
     let query = this.$route.query
     if (!R.isEmpty(query)) {
@@ -541,20 +541,17 @@ export default {
       );
     },
     vote(type) {
-      this.$cardChain
-        .voteCardTx(this.cards[this.clickedIndex].id, type)
-        .then(_ => {
-          this.$cardChain.updateUserCredits()
-        })
+      this.add(this.cards[this.clickedIndex].id, type)
+      this.notifyInfo("Vote saved", "Don't forget to send your votes on the Voting page!")
     },
     getOwnAddress() {
       return this.address // TODO is this needed?
     },
     resetFilters() {
-      console.log("reset filters");
-      this.$store.commit("resetGalleryFilter");
+      console.log("reset filters")
+      this.resetGalleryFilters()
 
-      this.loadCardList();
+      this.loadCardList()
     },
   },
 };

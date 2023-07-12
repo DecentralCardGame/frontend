@@ -1,6 +1,6 @@
 import { useTx } from "@/def-composables/useTx";
 import { ref, watch, type Ref } from "vue";
-import _ from "lodash";
+import * as R from 'ramda'
 import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
 import type { CardchainVoteRight } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/rest";
 
@@ -15,7 +15,7 @@ const useVotingInstance = () => {
   );
 
   watch(
-    () => _.cloneDeep(votes.value),
+    () => R.clone(votes.value),
     (currentValue, oldValue) => {
       console.log(currentValue);
       window.localStorage.setItem(KEY, JSON.stringify(currentValue));

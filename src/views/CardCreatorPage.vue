@@ -737,6 +737,7 @@ export default {
     }
   },
   mounted() {
+    console.log("print model after mounted", this.model)
     if (this.loggedIn) {
       this.notifyInfo("Not logged in", "You must login to create a card.");
     }
@@ -759,6 +760,7 @@ export default {
     // here a card is loaded if edit card via gallery was selected
     if (this.mode == Mode.EDIT) {
       this.model = this.cardCreatorEditCard;
+      if (!this.model.AdditionalCost) this.model.AdditionalCost = {}
       console.log("edit card: ", this.model);
 
       this.cropImage = this.model.image;
@@ -967,7 +969,7 @@ export default {
           this.model.RulesTexts = R.prepend(text, this.model.RulesTexts);
       };
 
-      if (!R.isEmpty(this.model.AdditionalCost)) {
+      if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
         if (this.model.AdditionalCost.SacrificeCost) {
           let text = "Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.";
           setOrPrepend(text);
@@ -987,7 +989,6 @@ export default {
       return this.model.image;
     },
     resetAbilities() {
-      console.log("RESET ABILITIES");
       this.abilities = [];
     },
     getRulesType() {
@@ -1080,7 +1081,8 @@ export default {
         );
         return;
       }
-      if (!this.model.FlavourText[0] && !this.model.abilities) {
+      if (!this.model.FlavourText[0] && !this.abilities) {
+        console.log("abilities mecker:" , this.model)
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
@@ -1155,7 +1157,7 @@ export default {
           newModel.Effects = R.map(
             R.pick(
               R.keys(
-                this.cardRules.Card.definitions.Card.children.Action.children.Effects.children.Effect.children
+                this.cardRules.definitions.Card.children.Action.children.Effects.children.Effect.children
               )
             ),
             this.abilities
@@ -1221,7 +1223,6 @@ export default {
       }
     },
     resetCard() {
-      console.log(this.mode)
       this.model = new Card();
       this.artistMode = false;
       this.cropImage = "";

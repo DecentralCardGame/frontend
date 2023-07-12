@@ -42,9 +42,6 @@ export default {
     return { setLastInputEvent }
   },
   computed: {
-    hasWallet() {
-      return this.$store.hasModule(['common', 'wallet'])
-    }
   },
   async created() {
     this.initialized = true

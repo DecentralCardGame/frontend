@@ -235,7 +235,6 @@ export default {
       if (R.isEmpty(this.cards)) {
         if (!this.isEmpty()) {
           this.status = Status.READY_TO_SEND
-          console.log("ready to send");
           return
         }
         this.status = Status.NOVOTESLEFT

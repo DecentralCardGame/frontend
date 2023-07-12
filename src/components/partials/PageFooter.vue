@@ -4,13 +4,6 @@
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
         <a
-          v-if="false"
-          @click="$store.commit('toggleLoginBox')"
-        >
-          <button>Join</button>
-        </a>
-        <a
-          v-else
           href="https://discord.gg/ZKKbhUs"
         >
           <button>Join</button>
@@ -159,10 +152,6 @@ export default {
   mounted () {
   },
   methods: {
-    userLoggedIn () {
-      console.log(this.$store.getters["getLoggedIn"])
-      return this.$store.getters["getLoggedIn"]
-    }
   }
 }
 </script>

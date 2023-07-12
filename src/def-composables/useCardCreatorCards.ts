@@ -1,6 +1,6 @@
 import { Card } from "@/model/Card"
 import { ref, watch, type Ref } from "vue";
-import _ from "lodash";
+import * as R from 'ramda'
 
 class UseCardCreatorCard {
   key: string
@@ -11,13 +11,12 @@ class UseCardCreatorCard {
     let stored = window.localStorage.getItem(key)
     this.card = ref(stored !== null ? Object.assign(new Card(), JSON.parse(stored)) : new Card())
 
-    watch(() => _.cloneDeep(this.card.value), (currentValue, oldValue) => {
+    watch(() => R.clone(this.card.value), (currentValue, oldValue) => {
       this.set(currentValue)
     });
   }
 
   set(card: Card) {
-    console.log("Hier:", card)
     window.localStorage.setItem(this.key, JSON.stringify(card))
   }
 }

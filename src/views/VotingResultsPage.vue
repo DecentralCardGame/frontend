@@ -106,6 +106,12 @@ import CardComponent from "@/components/elements/CardComponent.vue";
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useAddress } from "@/def-composables/useAddress";
+import { useVoting } from "@/def-composables/useVoting";
+import { useNotifications } from "@/def-composables/useNotifications";
+import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
+const { notifyInfo, notifyFail, notifySuccess } = useNotifications()
+const { queryQCards, queryQCard } = useQuery()
+const { add } = useVoting()
 
 export default {
   name: "VotingResultsPage",
@@ -140,10 +146,10 @@ export default {
     const { address } = useAddress()
     const { lastInputEvent } = useLastInputEvent()
     const { queryQVotingResults } = useQuery()
+    const { galleryFilters } = useGalleryFilters
+    const { editCard } = useCardCreatorCards()
 
-    console.log("queryQVotingResults", queryQVotingResults)
-
-    return { lastInputEvent, address, queryQVotingResults }
+    return { lastInputEvent, address, queryQVotingResults, cardCreatorEditCard: editCard.card  }
   },
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
@@ -188,8 +194,7 @@ export default {
       let cardId = this.cardList[
         this.cardList.length - 1 - this.pageId - currentId
       ].cardId
-      return this.$cardChain
-        .getCard(cardId)
+      return queryQCard(cardId)
         .then((res) => {
           let card = res
           card.id = cardId
@@ -210,14 +215,14 @@ export default {
         })
     },
     fillPage() {
-      if (this.pageId + this.$store.getters.getGalleryFilter.cardsPerPage >= this.cardList.length)
+      if (this.pageId + this.galleryFilters.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
       let requestedCards = R.map(n => this.getCard(n),
-          R.times(R.identity, R.min(this.$store.getters.getGalleryFilter.cardsPerPage, this.cardList.length - this.pageId))
+          R.times(R.identity, R.min(this.galleryFilters.cardsPerPage, this.cardList.length - this.pageId))
         )
 
       Promise.all(requestedCards)
@@ -234,7 +239,7 @@ export default {
     nextPage() {
       if (!this.browsingForward) return;
 
-      this.pageId += this.$store.getters.getGalleryFilter.cardsPerPage;
+      this.pageId += this.galleryFilters.cardsPerPage;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0)
@@ -242,7 +247,7 @@ export default {
     prevPage() {
       if (!this.browsingBackward) return;
 
-      this.pageId -= this.$store.getters.getGalleryFilter.cardsPerPage;
+      this.pageId -= this.galleryFilters.cardsPerPage;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0);
@@ -272,11 +277,7 @@ export default {
       this.isGalleryModalVisible = false;
     },
     edit() {
-      console.log("editing:", this.cards[this.clickedIndex])
-      this.$store.commit(
-        "setCardCreatorEditCard",
-        this.cards[this.clickedIndex]
-      );
+      this.cardCreatorEditCard = this.cards[this.clickedIndex]
       this.$router.push("cardCreator")
     },
     cardview() {
@@ -289,17 +290,8 @@ export default {
       );
     },
     vote(type) {
-      this.$cardChain
-        .voteCardTx(this.cards[this.clickedIndex].id, type)
-        .then(_ => {
-          this.$cardChain.updateUserCredits()
-        })
-    },
-    resetFilters() {
-      console.log("reset filters");
-      this.$store.commit("resetGalleryFilter");
-
-      this.loadCardList();
+      this.add(this.cards[this.clickedIndex].id, type)
+      this.notifyInfo("Vote saved", "Don't forget to send your votes on the Voting page!")
     },
   },
 };
