@@ -98,7 +98,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as R from "ramda";
 import { useQuery } from "@/def-composables/useQuery";
 import GalleryModal from "@/components/modals/GalleryModal.vue";

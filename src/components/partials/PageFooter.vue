@@ -133,7 +133,7 @@
             <img
               alt="Crowd Control"
               width="80%"
-              src="logo.svg"
+              src="../../assets/logo.svg"
             >
           </div>
         </div>

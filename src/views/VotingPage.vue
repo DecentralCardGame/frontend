@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import EncounterVotingComponent from '@/components/elements/EncounterVotingComponent.vue'
 
 const Mode = {
@@ -46,7 +46,7 @@ export default {
   components: { EncounterVotingComponent },
   data () {
     return {
-      mode: Mode.ENCOUNTER,
+      mode: Mode.ENCOUNTE,
       Mode: Mode,
     }
   },
