@@ -103,7 +103,7 @@ import * as R from "ramda";
 import { useQuery } from "@/def-composables/useQuery";
 import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
-import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent'
 import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useAddress } from "@/def-composables/useAddress";
 import { useVoting } from "@/def-composables/useVoting";

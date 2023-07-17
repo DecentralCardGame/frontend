@@ -46,7 +46,7 @@ export default {
   components: { EncounterVotingComponent },
   data () {
     return {
-      mode: Mode.ENCOUNTE,
+      mode: Mode.ENCOUNTER,
       Mode: Mode,
     }
   },
