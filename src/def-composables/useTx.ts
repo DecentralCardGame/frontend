@@ -4,6 +4,7 @@ import type { Card, ChainCard } from "@/model/Card";
 import type { Coin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
+import type { Grant } from "/home/wieth/src/frontend/node_modules/decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
 import {
   Coin as CosmosCoin
 } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
@@ -120,7 +121,9 @@ export const useTxInstance: () => {
   send: (coins: Coin[], to: string, then: (res: any) => void, err: (res: any) => void) => void;
   saveCardContent: (cardId: number, card: ChainCard, then: (res: any) => void, err: (res: any) => void) => void;
   addArtwork: (cardId: number, image: string, fullArt: boolean, then: (res: any) => void, err: (res: any) => void) => void;
-  transferCard: (cardId: number, receiver: string, then: (res: any) => void, err: (res: any) => void) => void
+  transferCard: (cardId: number, receiver: string, then: (res: any) => void, err: (res: any) => void) => void;
+  grantAuthz: (granter: string, grantee: string, grant: Grant, then: (res: any) => void, err: (res: any) => void) => void;
+  revokeAuthz: (granter: string, grantee: string, msgTypeUrl: string, then: (res: any) => void, err: (res: any) => void) => void;
 } = () => {
   const client = useClient();
   const messageScheduler = new MessageScheduler();
@@ -130,6 +133,24 @@ export const useTxInstance: () => {
       new Content({
         amount: coins,
         toAddress: to
+      }), then, err);
+  };
+
+  const revokeAuthz = (granter: string, grantee: string, msgTypeUrl: string, then: (res: any) => void, err: (res: any) => void) => {
+    messageScheduler.schedule(client.CosmosAuthzV1Beta1.tx.sendMsgRevoke,
+      new Content({
+        granter: granter,
+        grantee: grantee,
+        msgTypeUrl: msgTypeUrl
+      }), then, err);
+  };
+
+  const grantAuthz = (granter: string, grantee: string, grant: Grant, then: (res: any) => void, err: (res: any) => void) => {
+    messageScheduler.schedule(client.CosmosAuthzV1Beta1.tx.sendMsgGrant,
+      new Content({
+        granter: granter,
+        grantee: grantee,
+        grant: grant
       }), then, err);
   };
 
@@ -222,6 +243,8 @@ export const useTxInstance: () => {
     transferCard,
     setProfileCard,
     multiVoteCard,
+    grantAuthz,
+    revokeAuthz,
   };
 };
 
