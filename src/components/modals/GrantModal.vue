@@ -103,6 +103,12 @@
 import * as R from 'ramda'
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useTx } from "@/def-composables/useTx";
+import { useQuery } from "@/def-composables/useQuery";
+import { validAddress } from "@/utils/validation";
+
+const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
+const { grantAuthz, revokeAuthz } = useTx()
 
 export default {
   name: 'GrantModal',
@@ -157,25 +163,25 @@ export default {
       return ""
     },
     revoke(msg) {
-      this.$cardChain.revokeAuthz(this.saved_grantee, msg).then(res => {
-        console.log(res)
+      revokeAuthz(address, this.saved_grantee, msg).then(res => {
+        console.log("revoke res", res)
         this.getGrants()
       })
     },
     getGrants() {
-      if (! this.$cardChain.validAddress(this.qgrantee)) {
+      if (!validAddress(this.qgrantee)) {
         this.warningText = "Input a proper address!"
         return
       }
-      this.$cardChain.getGrants(this.qgrantee)
+      queryGranteeGrants(this.qgrantee)
       .then(grants => {
+        console.log("grants", grants)
         this.grants = grants.grants
         this.saved_grantee = this.qgrantee
         this.show_extra = []
         for (var i = 0; i<this.grants.length; i++) {
           this.show_extra.push(false)
         }
-        console.log(grants)
       })
     },
     close() {
@@ -186,14 +192,14 @@ export default {
         this.warningText = "Choose an action!"
         return
       }
-      if (! this.$cardChain.validAddress(this.grantee)) {
+      if (!validAddress(this.grantee)) {
         this.warningText = "Input a proper address!"
         return
       }
       this.warningText = ""
       localStorage.authzAddress = this.grantee
-      console.log(localStorage.authzAddress)
-      this.$cardChain.grantAuthz(this.grantee, this.grant).then(res => {
+      console.log("authz address from localstorage", localStorage.authzAddress)
+      grantAuthz(address, this.grantee, this.grant).then(res => {
         if (this.getGrantee()) {
           this.getGrants()
         }
@@ -201,7 +207,6 @@ export default {
       })
     },
     getGrantee() {
-      console.log(localStorage.authzAddress)
       return localStorage.authzAddress
     }
   }

@@ -29,13 +29,22 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   },
   queryQVotingResults: (res) => {
     return res.data;
-  }
+  },
+  queryGrants: (res) => {
+    return res.data;
+  },
+  queryGranterGrants: (res) => {
+    return res.data;
+  },
+  queryGranteeGrants: (res) => {
+    return res.data;
+  },
 };
 
 // Do not touch
 const useQueryInstance = () => {
   const client = useClient();
-  const unified = Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query);
+  const unified = Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query, client.CosmosAuthzV1Beta1.query);
   const keys = Object.keys(unified);
 
   let queries: { [id: string]: (args: any) => Promise<any> } = {};
