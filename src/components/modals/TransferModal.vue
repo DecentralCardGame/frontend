@@ -73,6 +73,7 @@ import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
 import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
+import { errorMonitor } from "events";
 
 const { queryAllBalances } = useQuery()
 const { send } = useTx()
@@ -151,17 +152,21 @@ export default {
       }
       this.warningText = ""
       send(
-        this.recipient,
         [
           {
             amount: this.amount,
             denom: this.denom
           }
-        ]
-      ).then(_ => {
-        this.amount = 0
-        this.denom = ""
-      })
+        ],
+        this.recipient,
+        _ => {
+          this.amount = 0
+          this.denom = ""
+        },
+        err => {
+          console.error(errorMonitor)
+        }
+      )
     }
   }
 }
