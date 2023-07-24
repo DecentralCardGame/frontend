@@ -9,7 +9,6 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
-        @click.stop="doNothing"
       >
         <header
           id="modalTitle"
@@ -69,8 +68,8 @@
           Grant action
           <select v-model="grant">
             <option
-              v-for="option in options"
-              :key="option"
+              v-for="option, i in options"
+              :key="i"
               :value="option[1]"
             >
               {{ option[0] }}
@@ -99,16 +98,12 @@
   </transition>
 </template>
 
-<script>
-import * as R from 'ramda'
+<script lang="ts">
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useTx } from "@/def-composables/useTx";
 import { useQuery } from "@/def-composables/useQuery";
 import { validAddress } from "@/utils/validation";
-
-const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
-const { grantAuthz, revokeAuthz } = useTx()
 
 export default {
   name: 'GrantModal',
@@ -125,16 +120,18 @@ export default {
       grantee: this.getGrantee(),
       qgrantee: this.getGrantee(),
       warningText: "",
-      grants: [],
-      show_extra: [],
+      grants: new Array<any>(),
+      show_extra: new Array<boolean>(),
       saved_grantee: "",
     }
   },
   setup() {
     const { loggedIn } = useLoggedIn()
     const { address } = useAddress()
+    const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
+    const { grantAuthz, revokeAuthz } = useTx()
 
-    return { loggedIn, address }
+    return { loggedIn, address, queryGrants, queryGranterGrants, queryGranteeGrants, grantAuthz, revokeAuthz }
   },
   watch: {
     loggedIn() {
@@ -154,7 +151,7 @@ export default {
         }
       }
     },
-    getShowName(name) {
+    getShowName(name: string) {
       for (var i = 0; i<this.options.length; i++) {
         if (this.options[i][1] == name) {
           return this.options[i][0]
@@ -162,18 +159,18 @@ export default {
       }
       return ""
     },
-    revoke(msg) {
-      revokeAuthz(address, this.saved_grantee, msg).then(res => {
+    revoke(msg:string) {
+      this.revokeAuthz(this.address, this.saved_grantee, msg, res => {
         console.log("revoke res", res)
         this.getGrants()
-      })
+      }, _=> {})
     },
     getGrants() {
       if (!validAddress(this.qgrantee)) {
         this.warningText = "Input a proper address!"
         return
       }
-      queryGranteeGrants(this.qgrantee)
+      this.queryGranteeGrants(this.qgrantee)
       .then(grants => {
         console.log("grants", grants)
         this.grants = grants.grants
@@ -199,12 +196,13 @@ export default {
       this.warningText = ""
       localStorage.authzAddress = this.grantee
       console.log("authz address from localstorage", localStorage.authzAddress)
-      grantAuthz(address, this.grantee, this.grant).then(res => {
+      this.grantAuthz(this.address, this.grantee, this.grant, res => {
         if (this.getGrantee()) {
           this.getGrants()
         }
         console.log(res)
-      })
+      },
+      _=>{})
     },
     getGrantee() {
       return localStorage.authzAddress
