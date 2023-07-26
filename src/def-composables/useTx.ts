@@ -4,18 +4,18 @@ import type { Card, ChainCard } from "@/model/Card";
 import type { Coin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
-import type { Grant } from "/home/wieth/src/frontend/node_modules/decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
 import {
-  Coin as CosmosCoin
-} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
+  GenericAuthorization,
+  Grant,
+} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
+import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
 import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
 
-
 const FEE: StdFee = {
   amount: [{ amount: "0", denom: "stake" }],
-  gas: "2000000000"
+  gas: "2000000000",
 };
 
 const { address } = useAddress();
@@ -66,11 +66,13 @@ class MessageScheduler {
   executeMessage(msg: UnEvaledMessage) {
     notifyInfo("Sending", "Sending request to the blockchain.");
     this.blocked.value = true;
-    msg.execute().then(res => {
-      this.blocked.value = false;
-      return res;
-    })
-      .catch(err => {
+    msg
+      .execute()
+      .then((res) => {
+        this.blocked.value = false;
+        return res;
+      })
+      .catch((err) => {
         this.blocked.value = false;
         throw err;
       })
@@ -79,9 +81,15 @@ class MessageScheduler {
       .catch(msg.err);
   }
 
-  schedule(message: (content: Content) => Promise<DeliverTxResponse>, content: Content, then: (res: any) => void,
-           err: (res: any) => void) {
-    this.messageList.value.push(new UnEvaledMessage(message, content, then, err));
+  schedule(
+    message: (content: Content) => Promise<DeliverTxResponse>,
+    content: Content,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) {
+    this.messageList.value.push(
+      new UnEvaledMessage(message, content, then, err)
+    );
   }
 }
 
@@ -91,10 +99,13 @@ class Content {
   value: any;
 
   constructor(value: any = {}) {
-    this.value = Object.assign({
-      fromAddress: address.value,
-      creator: address.value
-    }, value);
+    this.value = Object.assign(
+      {
+        fromAddress: address.value,
+        creator: address.value,
+      },
+      value
+    );
     this.fee = FEE;
     this.memo = "";
   }
@@ -103,75 +114,209 @@ class Content {
 const stdHandler = (res: DeliverTxResponse) => {
   console.log(res);
   if (res.code) {
-    notifyFail("Failed to broadcast message", res.rawLog ? res.rawLog : "General Error");
+    notifyFail(
+      "Failed to broadcast message",
+      res.rawLog ? res.rawLog : "General Error"
+    );
     throw new Error("Message Failed: " + res.rawLog);
   }
-  let messageName = res.rawLog ? JSON.parse(res.rawLog)[0].events[0].attributes[0].value.split(".").at(-1).replace("Msg", "") : "";
+  let messageName = res.rawLog
+    ? JSON.parse(res.rawLog)[0]
+        .events[0].attributes[0].value.split(".")
+        .at(-1)
+        .replace("Msg", "")
+    : "";
   notifySuccess("EPIC WIN", messageName + " was successfull");
   return res;
 };
 
 export const useTxInstance: () => {
-  registerForCouncil: (then: (res: any) => void, err: (res: any) => void) => void;
-  voteCard: (cardId: number, voteType: string, then: (res: any) => void, err: (res: any) => void) => void;
-  rewokeCouncilRegistration: (then: (res: any) => void, err: (res: any) => void) => void;
-  buyCardScheme: (coin: Coin, then: (res: any) => void, err: (res: any) => void) => void;
-  multiVoteCard: (votes: SingleVote[], then: (res: any) => void, err: (res: any) => void) => void;
-  setProfileCard: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
-  send: (coins: Coin[], to: string, then: (res: any) => void, err: (res: any) => void) => void;
-  saveCardContent: (cardId: number, card: ChainCard, then: (res: any) => void, err: (res: any) => void) => void;
-  addArtwork: (cardId: number, image: string, fullArt: boolean, then: (res: any) => void, err: (res: any) => void) => void;
-  transferCard: (cardId: number, receiver: string, then: (res: any) => void, err: (res: any) => void) => void;
-  grantAuthz: (granter: string, grantee: string, grant: Grant, then: (res: any) => void, err: (res: any) => void) => void;
-  revokeAuthz: (granter: string, grantee: string, msgTypeUrl: string, then: (res: any) => void, err: (res: any) => void) => void;
+  registerForCouncil: (
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  voteCard: (
+    cardId: number,
+    voteType: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  rewokeCouncilRegistration: (
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  buyCardScheme: (
+    coin: Coin,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  multiVoteCard: (
+    votes: SingleVote[],
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  setProfileCard: (
+    cardId: number,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  send: (
+    coins: Coin[],
+    to: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  saveCardContent: (
+    cardId: number,
+    card: ChainCard,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  addArtwork: (
+    cardId: number,
+    image: string,
+    fullArt: boolean,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  transferCard: (
+    cardId: number,
+    receiver: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  grantAuthz: (
+    granter: string,
+    grantee: string,
+    grant: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  revokeAuthz: (
+    granter: string,
+    grantee: string,
+    msgTypeUrl: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
 } = () => {
   const client = useClient();
   const messageScheduler = new MessageScheduler();
 
-  const send = (coins: Coin[], to: string, then: (res: any) => void, err: (res: any) => void) => {
-    messageScheduler.schedule(client.CosmosBankV1Beta1.tx.sendMsgSend,
+  const send = (
+    coins: Coin[],
+    to: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    messageScheduler.schedule(
+      client.CosmosBankV1Beta1.tx.sendMsgSend,
       new Content({
         amount: coins,
-        toAddress: to
-      }), then, err);
+        toAddress: to,
+      }),
+      then,
+      err
+    );
   };
 
-  const revokeAuthz = (granter: string, grantee: string, msgTypeUrl: string, then: (res: any) => void, err: (res: any) => void) => {
-    messageScheduler.schedule(client.CosmosAuthzV1Beta1.tx.sendMsgRevoke,
+  const revokeAuthz = (
+    granter: string,
+    grantee: string,
+    msgTypeUrl: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    messageScheduler.schedule(
+      client.CosmosAuthzV1Beta1.tx.sendMsgRevoke,
       new Content({
         granter: granter,
         grantee: grantee,
-        msgTypeUrl: msgTypeUrl
-      }), then, err);
+        msgTypeUrl: msgTypeUrl,
+      }),
+      then,
+      err
+    );
   };
 
-  const grantAuthz = (granter: string, grantee: string, grant: Grant, then: (res: any) => void, err: (res: any) => void) => {
-    messageScheduler.schedule(client.CosmosAuthzV1Beta1.tx.sendMsgGrant,
+  const grantAuthz = (
+    granter: string,
+    grantee: string,
+    grant: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    let date = new Date();
+    date.setMonth(date.getMonth() + 1);
+
+    messageScheduler.schedule(
+      client.CosmosAuthzV1Beta1.tx.sendMsgGrant,
       new Content({
         granter: granter,
         grantee: grantee,
-        grant: grant
-      }), then, err);
+        grant: {
+          authorization: {
+            typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization",
+            value: GenericAuthorization.encode(
+              GenericAuthorization.fromPartial({
+                msg: grant,
+              })
+            ).finish(),
+          },
+          expiration: date,
+        },
+      }),
+      then,
+      err
+    );
   };
 
-  const registerForCouncil = (then: (res: any) => void, err: (res: any) => void) => {
-    messageScheduler.schedule(client.DecentralCardGameCardchainCardchain.tx.sendMsgRegisterForCouncil, new Content(), then, err);
+  const registerForCouncil = (
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgRegisterForCouncil,
+      new Content(),
+      then,
+      err
+    );
   };
 
-  const rewokeCouncilRegistration = (then: (res: any) => void, err: (res: any) => void) => {
-    messageScheduler.schedule(client.DecentralCardGameCardchainCardchain.tx.sendMsgRewokeCouncilRegistration, new Content(), then, err);
+  const rewokeCouncilRegistration = (
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx
+        .sendMsgRewokeCouncilRegistration,
+      new Content(),
+      then,
+      err
+    );
   };
 
-  const buyCardScheme = (coin: Coin, then: (res: any) => void, err: (res: any) => void) => {
+  const buyCardScheme = (
+    coin: Coin,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgBuyCardScheme,
       new Content({
-        bid: CosmosCoin.fromJSON(coin)
-      }), then, err);
+        bid: CosmosCoin.fromJSON(coin),
+      }),
+      then,
+      err
+    );
   };
 
-  const saveCardContent = (cardId: number, card: ChainCard, then: (res: any) => void,
-                           err: (res: any) => void) => {
+  const saveCardContent = (
+    cardId: number,
+    card: ChainCard,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgSaveCardContent,
       new Content({
@@ -179,57 +324,94 @@ export const useTxInstance: () => {
         content: btoa(JSON.stringify(card.content)),
         notes: card.notes,
         artist: card.artist,
-        balanceAnchor: card.balanceAnchor
-      }), then, err);
+        balanceAnchor: card.balanceAnchor,
+      }),
+      then,
+      err
+    );
   };
 
-  const addArtwork = (cardId: number, image: string, fullArt: boolean, then: (res: any) => void,
-                      err: (res: any) => void) => {
+  const addArtwork = (
+    cardId: number,
+    image: string,
+    fullArt: boolean,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgAddArtwork,
       new Content({
         cardId,
         image: btoa(image),
-        fullArt
-      }), then, err);
+        fullArt,
+      }),
+      then,
+      err
+    );
   };
 
-  const voteCard = (cardId: number, voteType: string, then: (res: any) => void,
-                    err: (res: any) => void) => {
+  const voteCard = (
+    cardId: number,
+    voteType: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgVoteCard,
       new Content({
         cardId,
-        voteType
-      }), then, err);
+        voteType,
+      }),
+      then,
+      err
+    );
   };
 
-  const transferCard = (cardId: number, receiver: string, then: (res: any) => void,
-                        err: (res: any) => void) => {
+  const transferCard = (
+    cardId: number,
+    receiver: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgTransferCard,
       new Content({
         cardId,
-        receiver
-      }), then, err);
+        receiver,
+      }),
+      then,
+      err
+    );
   };
 
-  const setProfileCard = (cardId: number, then: (res: any) => void,
-                        err: (res: any) => void) => {
+  const setProfileCard = (
+    cardId: number,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard,
       new Content({
         cardId,
-      }), then, err);
+      }),
+      then,
+      err
+    );
   };
 
-  const multiVoteCard = (votes: SingleVote[], then: (res: any) => void,
-                          err: (res: any) => void) => {
+  const multiVoteCard = (
+    votes: SingleVote[],
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
     messageScheduler.schedule(
       client.DecentralCardGameCardchainCardchain.tx.sendMsgMultiVoteCard,
       new Content({
         votes,
-      }), then, err);
+      }),
+      then,
+      err
+    );
   };
 
   return {

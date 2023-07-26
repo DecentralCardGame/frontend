@@ -9,7 +9,6 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
-        @click.stop="doNothing"
       >
         <header
           id="modalTitle"
@@ -37,8 +36,8 @@
           >
           <select v-model="denom">
             <option
-              v-for="coin in coins"
-              :key="coin"
+              v-for="coin, i in coins"
+              :key="i"
             >
               {{ coin.denom }}
             </option>
@@ -74,6 +73,7 @@ import { useAddress } from "@/def-composables/useAddress";
 import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
 import { errorMonitor } from "events";
+import { Coin } from "@/model/Coin";
 
 const { queryAllBalances } = useQuery()
 const { send } = useTx()
@@ -86,7 +86,7 @@ export default {
     return {
       amount: 0,
       denom: "",
-      coins: [],
+      coins: new Array<Coin>(),
       recipient: "",
       warningText: "",
     }
@@ -122,7 +122,7 @@ export default {
     close() {
       this.$emit('close')
     },
-    isNumber: function (evt) {
+    isNumber: function (evt: any) {
       evt = evt || window.event
       let charCode = (evt.which) ? evt.which : evt.keyCode
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
@@ -153,10 +153,10 @@ export default {
       this.warningText = ""
       send(
         [
-          {
-            amount: this.amount,
-            denom: this.denom
-          }
+          new Coin(
+            this.denom,
+            this.amount
+          )
         ],
         this.recipient,
         _ => {

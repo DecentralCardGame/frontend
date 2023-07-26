@@ -196,13 +196,18 @@ export default {
       this.warningText = ""
       localStorage.authzAddress = this.grantee
       console.log("authz address from localstorage", localStorage.authzAddress)
-      this.grantAuthz(this.address, this.grantee, this.grant, res => {
-        if (this.getGrantee()) {
-          this.getGrants()
-        }
-        console.log(res)
-      },
-      _=>{})
+
+      
+      this.grantAuthz(this.address, this.grantee, this.grant, 
+        res => {
+          if (this.getGrantee()) {
+            this.getGrants()
+          }
+          console.log(res)
+        },
+        err => {
+          console.error(err)
+        })
     },
     getGrantee() {
       return localStorage.authzAddress
