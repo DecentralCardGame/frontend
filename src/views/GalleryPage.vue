@@ -8,11 +8,11 @@
     </p>
     <br>
     <div
-      v-show="galleryFilters.visible"
+      v-show="getGalleryFilters().visible"
       class="gallery__filter-box ccbutton"
     >
       <div class="gallery__filter__item">
-        <select v-model="galleryFilters.status">
+        <select v-model="getGalleryFilters().status">
           <option value="">
             any card status
           </option>
@@ -24,7 +24,7 @@
         </select>
       </div>
       <div class="gallery__filter__item">
-        <select v-model="galleryFilters.cardType">
+        <select v-model="getGalleryFilters().cardType">
           <option value="">
             any card type
           </option>
@@ -35,7 +35,7 @@
         </select>
       </div>
       <div class="gallery__filter__item">
-        <select v-model="galleryFilters.sortBy">
+        <select v-model="getGalleryFilters().sortBy">
           <option value="">
             default sort
           </option>
@@ -50,7 +50,7 @@
       <div>
         <div class="gallery__filter__item">
           <input
-            v-model="galleryFilters.nameContains"
+            v-model="getGalleryFilters().nameContains"
             placeholder="Name contains"
           >
         </div>
@@ -58,22 +58,22 @@
       <div>
         <div class="gallery__filter__item">
           <input
-            v-model="galleryFilters.keywordsContains"
+            v-model="getGalleryFilters().keywordsContains"
             placeholder="Ability/Effect contains"
           >
         </div>
       </div>
       <div class="gallery__filter__item">
         <input
-          v-model="galleryFilters.notesContains"
+          v-model="getGalleryFilters().notesContains"
           placeholder="Notes contain"
         >
       </div>
       <div class="gallery__filter__item">
         <input
-          v-model="galleryFilters.owner"
+          v-model="getGalleryFilters().owner"
           placeholder="Owner is"
-          @click="galleryFilters.owner = getOwnAddress()"
+          @click="getGalleryFilters().owner = getOwnAddress()"
         >
       </div>
 
@@ -81,10 +81,10 @@
         <div class="no--wrap">
           <label class="gallery-checkbox__label">
             <input
-              v-model="galleryFilters.classesVisible"
+              v-model="getGalleryFilters().classesVisible"
               class="gallery-checkbox"
               type="checkbox"
-              @input="galleryFilters.classesVisible = !galleryFilters.classesVisible "
+              @input="getGalleryFilters().classesVisible = !getGalleryFilters().classesVisible "
             >
             Filter Classes
             <br>
@@ -92,38 +92,38 @@
         </div>
 
         <span
-          v-if="galleryFilters.classesVisible"
+          v-if="getGalleryFilters().classesVisible"
           class="clickable-option"
-          @click="galleryFilters.classORLogic = !galleryFilters.classORLogic"
+          @click="getGalleryFilters().classORLogic = !getGalleryFilters().classORLogic"
         >
           <br><br>
-          {{ galleryFilters.classORLogic? "Any: " : "All: " }}
+          {{ getGalleryFilters().classORLogic? "Any: " : "All: " }}
         </span>
         <span
-          v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.mysticism }"
-          @click="galleryFilters.mysticism = !galleryFilters.mysticism"
+          v-if="getGalleryFilters().classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !getGalleryFilters().mysticism }"
+          @click="getGalleryFilters().mysticism = !getGalleryFilters().mysticism"
         >
           Mysticism
         </span>
         <span
-          v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.technology }"
-          @click="galleryFilters.technology = !galleryFilters.technology"
+          v-if="getGalleryFilters().classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !getGalleryFilters().technology }"
+          @click="getGalleryFilters().technology = !getGalleryFilters().technology"
         >
           Technology
         </span>
         <span
-          v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.nature }"
-          @click="galleryFilters.nature = !galleryFilters.nature"
+          v-if="getGalleryFilters().classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !getGalleryFilters().nature }"
+          @click="getGalleryFilters().nature = !getGalleryFilters().nature"
         >
           Nature
         </span>
         <span
-          v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.culture }"
-          @click="galleryFilters.culture = !galleryFilters.culture"
+          v-if="getGalleryFilters().classesVisible"
+          :class="{ 'clickable-option': true, 'negated': !getGalleryFilters().culture }"
+          @click="getGalleryFilters().culture = !getGalleryFilters().culture"
         >
           Culture
         </span>
@@ -132,7 +132,7 @@
       <div class="gallery__filter__item">
         <input
           placeholder="cards per page"
-          @input="galleryFilters.cardsPerPage = $event.target.value"
+          @input="getGalleryFilters().cardsPerPage = $event.target.value"
         >
       </div>
       <div class="gallery__filter__item">
@@ -158,7 +158,7 @@
       <button
         @click="toggleGalleryFilters"
       >
-        {{ galleryFilters.visible ? "hide" : "show" }}
+        {{ getGalleryFilters().visible ? "hide" : "show" }}
         filters
       </button>
       <button
@@ -261,7 +261,7 @@ import CardComponent from "@/components/elements/CardComponent.vue";
 import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
-import { useGalleryFilters, resetGalleryFilters } from "@/def-composables/useGalleryFilters";
+import { setGalleryFilters, useGalleryFilters, resetGalleryFilters } from "@/def-composables/useGalleryFilters";
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import { useQuery } from "@/def-composables/useQuery";
 import { useCardsRules } from "@/def-composables/useCardRules";
@@ -322,15 +322,12 @@ export default {
     const { rules } = useCardsRules()
     const { editCard } = useCardCreatorCards()
     const { queryQVotableCards } = useQuery()
-    const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } = useGalleryFilters
+    const { toggleGalleryFilters, getGalleryFilters, setGalleryFilters, resetGalleryFilters } = useGalleryFilters
     const { lastInputEvent } = useLastInputEvent()
 
-    return { lastInputEvent, loggedIn, address, queryQVotableCards, galleryFilters, toggleGalleryFilters, resetGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
+    return { lastInputEvent, loggedIn, address, queryQVotableCards, toggleGalleryFilters, getGalleryFilters, setGalleryFilters, resetGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
   },
   mounted() {
-
-    console.log("Yees galleryFilters", this.galleryFilters)
-
     let query = this.$route.query
     if (!R.isEmpty(query)) {
       if (query.cardList) {
@@ -364,6 +361,7 @@ export default {
     },
     loadCardList() {
       let query = this.getDefaultQuery()
+      this.setGalleryFilters(query)
       this.loadQueryCardList(query)
     },
     getCard(currentId) {
@@ -402,14 +400,14 @@ export default {
       }
     },
     fillPage() {
-      if (this.pageId + this.galleryFilters.cardsPerPage >= this.cardList.length)
+      if (this.pageId + this.getGalleryFilters().cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
       let requestedCards = R.map(n => this.getCard(n),
-          R.times(R.identity, R.min(this.galleryFilters.cardsPerPage, this.cardList.length - this.pageId))
+          R.times(R.identity, R.min(this.getGalleryFilters().cardsPerPage, this.cardList.length - this.pageId))
         )
 
       Promise.all(requestedCards)
@@ -431,7 +429,7 @@ export default {
     nextPage() {
       if (!this.browsingForward) return;
 
-      this.pageId += this.galleryFilters.cardsPerPage;
+      this.pageId += this.getGalleryFilters().cardsPerPage;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0)
@@ -439,7 +437,7 @@ export default {
     prevPage() {
       if (!this.browsingBackward) return;
 
-      this.pageId -= this.galleryFilters.cardsPerPage;
+      this.pageId -= this.getGalleryFilters().cardsPerPage;
       this.cards = [];
       this.fillPage();
       window.scrollTo(0, 0);
@@ -471,17 +469,17 @@ export default {
       this.isGalleryModalVisible = false;
     },
     loadMyCardList() {
-      this.loadSpecialCardList(this.galleryFilters.notes, this.address)
+      this.loadSpecialCardList(this.getGalleryFilters().notes, this.address)
     },
     getDefaultQuery() {
       let classes =
-        (this.galleryFilters.classORLogic ? "OR," : "") +
-        (this.galleryFilters.mysticism ? "Mysticism," : "") +
-        (this.galleryFilters.nature ? "Nature," : "") +
-        (this.galleryFilters.technology ? "Technology," : "") +
-        (this.galleryFilters.culture ? "Culture," : "")
+        (this.getGalleryFilters().classORLogic ? "OR," : "") +
+        (this.getGalleryFilters().mysticism ? "Mysticism," : "") +
+        (this.getGalleryFilters().nature ? "Nature," : "") +
+        (this.getGalleryFilters().technology ? "Technology," : "") +
+        (this.getGalleryFilters().culture ? "Culture," : "")
 
-      let query = this.galleryFilters
+      let query = this.getGalleryFilters()
       query.classes = query.classesVisible ? classes : ""
       return this.normalizeQuery(query)
     },
@@ -514,7 +512,7 @@ export default {
       .then((res) => {
         let cardList = R.reduce(R.concat, [], R.pluck("cardsList", res))
 
-        if (R.any(x => R.includes(x, this.galleryFilters.sortBy), ["A-Z", "↑"])) {
+        if (R.any(x => R.includes(x, this.getGalleryFilters().sortBy), ["A-Z", "↑"])) {
           this.cardList = R.reverse(cardList)
         }
         else {
@@ -548,9 +546,7 @@ export default {
       return this.address // TODO is this needed?
     },
     resetFilters() {
-      console.log("reset filters")
       this.resetGalleryFilters()
-
       this.loadCardList()
     },
   },

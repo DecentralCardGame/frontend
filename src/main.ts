@@ -18,7 +18,7 @@ const { queryQCardchainInfo } = useQuery()
 
 queryQCardchainInfo({})
   .then(() => {
-    console.log("connetion works");
+    console.log("connection works");
   }).catch(err => {
   console.error("main connection FAILED - using fallback connection", err);
   setFallback(true);
