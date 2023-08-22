@@ -73,7 +73,7 @@
                   class="button--img"
                   :src="getIcon(option)"
                 >
-                <br>
+                
                 <div
                   class="title"
                 >
