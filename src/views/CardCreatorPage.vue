@@ -4,8 +4,8 @@
       Card Creator
     </h2>
     <p class="header__p">
-      With our card creator, you can design and craft your own cards by
-      following a simple step-by-step wizard which takes you through the whole
+      Our Card Creator lets you can design and craft your own cards by
+      following a simple step-by-step wizard that guides you through the whole
       process.
     </p>
     <br>

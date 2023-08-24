@@ -28,7 +28,7 @@
           <li>
             <router-link to="/about">
               <h2>The Game</h2>
-              Rules, Ideas and historical Context.
+              Rules, ideas and historical context.
             </router-link>
           </li>
           <li>
@@ -80,15 +80,15 @@
           <li>
             <router-link to="/imprint">
               <h2>Imprint</h2>
-              Terms and Conditions *yaaawn*.
+              Terms and conditions *yaaawn*.
             </router-link>
           </li>
         </ul>
         <div class="footer__other">
           <b>
-            Discuss the latest News or
+            Discuss the latest news or
             simply join our growing
-            Community. We would love
+            community. We would love
             to hear your voice.
 
           </b>
