@@ -23116,13 +23116,14 @@ import * as R from 'ramda'
 //import * as svg1 from 'save-svg-as-png'
 import { icon } from '@/components/utils/utils.js'
 import { emptyCard } from '../utils/utils'
+import { Card } from "@/model/Card";
 
 export default {
   name: 'CardComponent',
   props: {
     model: {
-      type: Object,
-      default: emptyCard
+      type: Card,
+      default: new Card()
     },
     imageURL: {
       type: String,
@@ -23222,6 +23223,7 @@ export default {
     let firstLetterToLower = string => {
       return string[0].toLowerCase() + string.substring(1)
     }
+    console.log(this.model)
     this.model.Keywords.forEach(ability => {
       ability.forEach(keyword => {
         this.keywordDescriptions = R.concat(this.keywordDescriptions,

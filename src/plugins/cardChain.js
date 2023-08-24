@@ -4,8 +4,12 @@ import { entropyToMnemonic } from 'bip39'
 //import { signTx, createWalletFromMnemonic } from '@tendermint/sig/dist/web'
 //import { coin } from "@cosmjs/proto-signing";
 // import { Coin } from "../store/generated/cosmos/cosmos-sdk/cosmos.bank.v1beta1/module/types/cosmos/base/v1beta1/coin.js"
-import { creditsFromCoins, emptyCard } from '../components/utils/utils.js'
-import {GenericAuthorization} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import { creditsFromCoins } from '@/components/utils/utils.js'
+import { GenericAuthorization } from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/cosmos/authz/v1beta1/authz.js"
+import { Card, ChainCard } from "@/model/Card";
+import { User } from "@/model/User";
+import { Coin } from "@/model/Coin";
+import { Council } from "@/model/Council";
 //import {Any} from "../store/generated/cosmos/cosmos-sdk/cosmos.authz.v1beta1/module/types/google/protobuf/any.js"
 
 export default {
@@ -90,98 +94,7 @@ export default {
             })
         }
       }
-      useFaucet() {
-        this.vue.notifyInfo('Faucet', 'Get Credits from Faucet')
-        return new Promise((resolve, reject) => {
-            this.txQueue.enqueue(() => {
-              return this.vue.$http.post(
-                process.env.VUE_APP_FAUCET,
-                {
-                  address: this.vue.$store.getters['common/wallet/address'],
-                  coins: ['0ubpf', '5000ucredits'],
-                },
-                {
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                }
-              )
-              .then((res) => {
-                resolve(res)
-              })
-              .catch(reject)
-            })
-          })
-
-      }
-      cardObjectToWebModel (rawCard) {
-        if (rawCard.content) {
-          let contentLens = R.lensProp('Content')
-          let parseContent = item => R.set(contentLens, JSON.parse(item.content), item)
-          let card = R.merge(emptyCard, parseContent(rawCard))
-          let cardType = R.keys(card.Content)
-          card = R.merge(card, card.Content[cardType[0]])
-
-          card.nerflevel = parseInt(card.nerflevel)
-          card.type = cardType[0]
-
-          card.RulesTexts = card.RulesTexts ? card.RulesTexts : []
-          card.Keywords = card.Keywords ? R.map(JSON.parse, card.Keywords) : []
-
-          if (rawCard.fullArt && !R.isNil(rawCard.fullArt))
-            card.fullArt = JSON.parse(rawCard.fullArt)
-
-          console.log('parsed card: ', card)
-          return card
-        } else {
-          return emptyCard
-        }
-      }
-      cardWebModelToCardobject (webModel, cardImageUrl) {
-        let cardContent = {
-          CardName: webModel.CardName,
-          Tags: R.reject(R.or(R.isEmpty, R.isNil), webModel.Tags),
-          FlavourText: webModel.FlavourText,
-          Class: {
-            Nature: webModel.Class.Nature == true,
-            Technology: webModel.Class.Technology == true,
-            Culture: webModel.Class.Culture == true,
-            Mysticism: webModel.Class.Mysticism == true,
-          },
-          Keywords: R.map(JSON.stringify, webModel.Keywords),
-          RulesTexts: webModel.RulesTexts
-        }
-        // in the following part we check things that are only required for specific card types
-        if (webModel.type !== "Headquarter") {
-          cardContent.CastingCost = webModel.CastingCost
-          console.log("additionalcost empty?", R.isEmpty(webModel.AdditionalCost))
-          if (!R.isEmpty(webModel.AdditionalCost)) {
-            cardContent.AdditionalCost = webModel.AdditionalCost
-          }
-        }
-        if (webModel.type !== "Action") {
-          cardContent.Health = webModel.Health
-          cardContent.Abilities = webModel.Abilities
-        }
-        if (webModel.type === "Entity") {
-          cardContent.Attack = webModel.Attack
-        }
-        else if (webModel.type === "Action") {
-          cardContent.Effects = webModel.Effects
-        }
-        else if (webModel.type === "Headquarter") {
-          cardContent.Delay = webModel.Delay
-        }
-        let cardobject = {
-          content: {
-            [webModel.type]: cardContent
-          },
-          image: cardImageUrl ? cardImageUrl : "if you read this, someone was able to upload a card without proper image...",
-          fullArt: webModel.fullArt,
-          notes: webModel.notes,
-        }
-        console.log('parsed into:', cardobject)
-        return cardobject
-      }
-      saveContentToUnusedCardSchemeTx (card, saveArtwork) {
+    saveContentToUnusedCardSchemeTx (card, saveArtwork) {
         return this.getUserInfo(this.vue.$store.getters['common/wallet/address'])
           .then(user => {
             if (R.isEmpty(user.ownedCardSchemes)) {
@@ -308,6 +221,11 @@ export default {
               .catch(this.handleGetError)
               .then(this.handleGetCard(R.__, id))
       }
+      getCouncil (id) {
+        return this.vue.$http.get('/DecentralCardGame/cardchain/cardchain/q_council/' + id)
+              .catch(this.handleGetError)
+              .then(this.handleGetCouncil(R.__, id))
+      }
       getCardList (owner, status, cardType, classes, sortBy, nameContains, keywordsContains, notesContains) {
           status = status.toLowerCase()
           if (status != 'scheme' && status != 'prototype' && status != 'counciled' && status != 'trial' && status != 'permanent' && status != '' && status != 'playable' && status != 'unplayable') {
@@ -365,7 +283,7 @@ export default {
           this.vue.notifyFail('YOU SHALL NOT PASS!', address + ' is not registered. Please click Join and register in the blockchain.')
           throw new Error('account ' + address + ' is not registered')
         } else {
-          return res.data
+          return User.from(res.data)
         }
       })
       handleGetGrants = R.curry((res, address) => {
@@ -377,8 +295,12 @@ export default {
           this.vue.notifyFail('Account not registered', address + ' is not registered on the blockchain.')
           throw new Error(address + ' is not registered on the blockchain.')
         } else {
+          let coins = []
+          res.data.balances.forEach(coin => {
+            coins.push(Coin.from(coin))
+          })
           return {
-            coins: res.data.balances
+            coins: coins
           }
         }
       })
@@ -391,8 +313,19 @@ export default {
           this.vue.notifyFail('WTF', 'A card was looked up that does not exist in the blockchain.')
           throw new Error('Card with ' + cardId + ' does not exist.')
         } else {
-          // console.log(res.data)
-          return res.data
+          //console.log(res.data)
+          return ChainCard.from(res.data).toCard()
+        }
+      })
+      handleGetCouncil = R.curry((res, id) => {
+        if (res.data.status === "councilDoesNotExist") {
+          throw new Error("Council " + id + " does not exist")
+        }
+        if (!res.data) {
+          this.vue.notifyFail('WTF', 'A council was looked up that does not exist in the blockchain.')
+          throw new Error('Council with ' + id + ' does not exist.')
+        } else {
+          return Council.from(res.data, id)
         }
       })
       handleGetCardList = R.curry((res, type) => {

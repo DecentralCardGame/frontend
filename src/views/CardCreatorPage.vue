@@ -10,7 +10,7 @@
     </p>
     <br>
     <div>
-      <div 
+      <div
         v-if="!artistMode"
         class="progress-container"
       >
@@ -142,7 +142,7 @@
             v-if="activeStep == 1 || artistMode"
             class="creator-input-single-column"
           >
-            <label 
+            <label
               v-if="!artistMode"
               class="input--checkbox-label__left"
             >
@@ -212,8 +212,8 @@
             </div>
 
             <!-- The fullart toggle is deactivated -->
-            <div 
-              v-if="activeStep == 1 && !designateArtist && false" 
+            <div
+              v-if="activeStep == 1 && !designateArtist && false"
             >
               <!-- FullArt -->
               <span class="creator-text">
@@ -251,7 +251,7 @@
             >
               <b>Casting Cost:</b>
             </span>
-            
+
             <div
               v-if="
                 $cardRules.children[getRulesType()] &&
@@ -389,7 +389,7 @@
             </div>
 
             <!-- HQ Delay -->
-            <span 
+            <span
               v-if="model.type === 'Headquarter'"
               class="creator-text"
             >
@@ -457,7 +457,7 @@
               <b>Defense:</b> <br>
               <br>
             </span>
-            <div                 
+            <div
               v-if="model.type !== 'Action' && $cardRules.children[getRulesType()]"
             >
               <select
@@ -598,7 +598,7 @@
             >
           </div>
 
-          <div 
+          <div
             v-if="activeStep == 4 && isEditCardMode() && R.isEmpty(abilities)"
             class="creator-input-container"
           >
@@ -698,12 +698,12 @@ import AbilityComponent from "../components/elements/AbilityComponent.vue";
 
 import {
   atPath,
-  emptyCard,
   uploadImg,
 } from "@/components/utils/utils.js";
 
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css';
+import { Card } from "@/model/Card";
 
 export default {
   name: "CardCreator",
@@ -718,12 +718,12 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
+      model: new Card(),
       artistMode: false,
       designateArtist: false,
       artistAddress: "cc1...",
       cardBounds: {x: process.env.VUE_APP_CARDIMG_SIZE_X, y: process.env.VUE_APP_CARDIMG_SIZE_Y},
       cropImage: "",
-      model: R.clone(emptyCard),
       cardID: 0,
     };
   },
@@ -755,10 +755,11 @@ export default {
     // here a card is loaded if edit card via gallery was selected
     if (this.isEditCardMode()) {
       console.log("edit card: ", this.$store.getters['getCardCreatorEditCard']);
-      this.model = R.merge(
-        this.model,
+      this.model = Object.assign(
+        new Card(),
         this.$store.getters['getCardCreatorEditCard']
       );
+      console.log(this.model)
 
       this.cropImage = this.$store.getters['getCardCreatorEditCard'].image
 
@@ -779,20 +780,20 @@ export default {
       !R.isEmpty(this.$store.getters['getCardCreatorDraft']) &&
       this.$store.getters['getCardCreatorDraft'].model
     ) {
-      this.model = JSON.parse(this.$store.getters['getCardCreatorDraft'].model);
+      this.model = Object.assign(new Card(), JSON.parse(this.$store.getters['getCardCreatorDraft'].model));
 
       console.log("loaded model:", this.model, R.is(Object, this.model));
 
       // if the loaded model is not an object, something is 100% wrong
       if (!R.is(Object, this.model)) {
         console.error("loaded model is not an object, overwriting with empty model")
-        this.model = R.clone(emptyCard)
+        this.model = new Card()
       }
 
       // this is automated fix for old (and wrong) data in store
       if (this.isEditCardMode()) {
         console.log("automated fix!");
-        this.$store.commit("setCardCreatorDraft", R.clone(emptyCard));
+        this.$store.commit("setCardCreatorDraft", new Card());
       }
     }
     if (
@@ -813,7 +814,7 @@ export default {
           uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
             if(result.startsWith("Error")) {
               this.notifyFail("Failed to Upload", result)
-              return 
+              return
             }
             this.$store.commit(
               this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
@@ -830,7 +831,7 @@ export default {
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
-        this.model.AdditionalCost = emptyCard.AdditionalCost
+        this.model.AdditionalCost = {}
       }
     },
     setAdditionalCost(event) {
@@ -1038,7 +1039,7 @@ export default {
           })
         return
       }
-        
+
       // otherwise: check all things that must be entered:
       if (!this.model.CardName) {
         this.notifyFail("No Name", "Card has no name, please enter a name.")
@@ -1115,6 +1116,7 @@ export default {
       // finalize abilties or effects
       // this should potentially moved to somewhere else? maybe where abilities are saved
       let newModel = this.model;
+      console.log(newModel)
 
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
@@ -1175,11 +1177,9 @@ export default {
         this.updateRulesTexts()
       }
 
-      let newCard = this.$cardChain.cardWebModelToCardobject(
-        newModel,
-        this.getCardImage
-      )
-
+      console.log(newModel)
+      newModel.image = this.getCardImage
+      let newCard = newModel.toChainCard()
       newCard.artist = this.designateArtist ? this.artistAddress : this.$store.getters['common/wallet/address']
       console.log("newCard", newCard)
 
@@ -1220,7 +1220,7 @@ export default {
         this.isEditCardMode() ? "setCardCreatorEditCard" : "setCardCreatorDraft",
         {}
       )
-      this.model = R.clone(emptyCard)
+      this.model = new Card()
       this.artistMode = false
       this.artistAddress = "cc1..."
       this.cropImage = ""
@@ -1238,7 +1238,7 @@ export default {
       uploadImg(file, process.env.VUE_APP_CARDIMG_MAXKB, (result) => {
         if(result.startsWith("Error")) {
           this.notifyFail("Failed to Upload", result)
-          return 
+          return
         }
         this.cropImage = result
       })

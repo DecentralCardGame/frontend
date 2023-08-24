@@ -1,10 +1,7 @@
-import * as R from "ramda"
-import { emptyCard } from "@/components/utils/utils.js"
 import healingPriestImg from "@/assets/cardfiles/healingpriest.jpg"
 import churchImg from "@/assets/cardfiles/church.jpg"
 import armedSupplierImg from "@/assets/cardfiles/armedSupplier.jpg"
 import wildAllianceImg from "@/assets/cardfiles/wildAlliance.jpg"
-
 import daisyImg from "@/assets/cardfiles/daisy.jpg"
 import richardImg from "@/assets/cardfiles/richard.jpg"
 import hurrwigImg from '@/assets/cardfiles/hurrwig.jpg'
@@ -22,6 +19,7 @@ import botCommandCenterImg from '@/assets/cardfiles/botCommandCenter.jpg'
 import drDollyImg from '@/assets/cardfiles/drDollyCard.jpg'
 import belloImg from '@/assets/cardfiles/bello.jpg'
 import timeDeviceImg from '@/assets/cardfiles/timeDeviceCard.jpg'
+import { Card, CardClass } from "@/model/Card";
 //import sampleGradient from '@/assets/cardfiles/sampleGradient.jpg'
 //export const sampleGradientImg = sampleGradient // if you need a sample image for cards, this is what should be uncommented
 
@@ -49,512 +47,287 @@ export const cardJpgs = {
   timeDeviceImg: timeDeviceImg
 }
 
-export const sampleCard = R.merge(emptyCard, {
+export const sampleCard = Card.from({
   CardName: 'Sample Card',
   FlavourText: 'Whenever you play CrowdControl your happiness increases by 1.',
-  abilities: [],
-  Notes: '',
   artist: " ",
   owner: " ",
   type: 'Entity',
   Tags: ['TECHNOCRAT','HUMAN'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 8,
   Health: 5,
   Attack: 3
 })
-export const churchCard = R.merge(emptyCard, {
+
+export const churchCard = Card.from({
   CardName: 'Church',
-  FlavourText: '',
-  abilities: [],
   RulesTexts: ["OnSpawn: Spawn 2 1/1 recruit", "Pay 1: Strengthen TARGET 1."],
-  Notes: '',
-  artist: " ",
-  owner: " ",
   type: 'Headquarter',
   Tags: ['BUILDING'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: false,
-  },
+  Class: CardClass.culture(),
   Delay: 1,
   Health: 21
 })
-export const armedSupplierCard = R.merge(emptyCard, {
+
+export const armedSupplierCard = Card.from({
   CardName: 'Armed Supplier',
-  FlavourText: '',
-  abilities: [],
   RulesTexts: ["OnConstruction: Produce 1."],
-  Notes: '',
-  artist: " ",
-  owner: " ",
   type: 'Entity',
   Tags: ['HUMAN', 'TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-  },
+  Class: CardClass.technology(),
   CastingCost: 3,
   Attack: 2,
   Health: 4
 })
-export const healingPriestCard = R.merge(emptyCard, {
+export const healingPriestCard = Card.from({
   CardName: 'Healing Priest',
-  FlavourText: '',
-  abilities: [],
   RulesTexts: ['OnSpawn: Heal TARGET'],
-  Notes: '',
-  artist: " ",
-  owner: " ",
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: false,
-    Mysticism: true,
-  },
+  Class: CardClass.mysticism(),
   CastingCost: 3,
   Attack: 2,
   Health: 3
 })
-export const wildAllianceCard = R.merge(emptyCard, {
+export const wildAllianceCard = Card.from({
   CardName: 'Wild Alliance',
-  FlavourText: '',
-  abilities: [],
   RulesTexts: ['Anthem ANIMAL.', 'Count Forces 3.', 'Spawn X 3/3 beast'],
-  Notes: '',
-  artist: " ",
-  owner: " ",
   type: 'Action',
   Tags: ['ANIMAL', 'EVENT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: true,
-    Culture: false,
-    Technology: false,
-    Mysticism: false,
-  },
+  Class: CardClass.nature(),
   CastingCost: 8
 })
 
-export const daisyData = R.merge(emptyCard, {
+export const daisyData = Card.from({
   CardName: 'Saint Daisy, Triplet',
   FlavourText: 'ETB - Create a 1/1 pet for each human you control',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['HUMAN'],
-  tagDummy: '',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: true,
-
-  },
+  Class: CardClass.culture(),
   CastingCost: 7,
   Health: 3,
   Attack: 3
 })
-export const daisyPetData = R.merge(emptyCard, {
+export const daisyPetData = Card.from({
   CardName: 'Saint Daisy, Triplet',
   FlavourText: 'PET',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['PET'],
-  tagDummy: '',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: true,
-
-  },
+  Class: CardClass.mysticism(),
   CastingCost: 7,
   Health: 1,
   Attack: 1
 })
-export const richardData = R.merge(emptyCard, {
+export const richardData = Card.from({
   CardName: 'Richard, Bot Commander',
   FlavourText: 'When Richard is attacking, create a 1/1 Bot token that is also attacking. When Richard blocks, all Bots gain +0/+1.',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 7,
   Health: 8,
   Attack: 5
 })
-export const richardBotData = R.merge(emptyCard, {
+export const richardBotData = Card.from({
   CardName: 'Richard, Bot Commander',
   FlavourText: 'BOT',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 7,
   Health: 1,
   Attack: 1
 })
-export const hurrwigData = R.merge(emptyCard, {
+export const hurrwigData = Card.from({
   CardName: 'Hurrwig, Bot Manufacturer',
   FlavourText: 'Whenever an entity with the tag \'Bot\' enters the battlefield, you may deal 2 damage to target entity.',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['TECHNOCRAT','HUMAN'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 8,
   Health: 5,
   Attack: 3
 })
-export const assoultHorseData = R.merge(emptyCard, {
+export const assoultHorseData = Card.from({
   CardName: 'Assoult Horse',
   FlavourText: 'Charge!',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['BOT'],
   tagDummy: 'BOT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 3,
   Health: 3,
   Attack: 2
 })
-export const ulrichData = R.merge(emptyCard, {
+export const ulrichData = Card.from({
   CardName: 'Ulrich, the Tinker',
   FlavourText: 'Whenever an Entity with the tag \'Bot\' is destroyed, draw a card.',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 3,
   Health: 7,
   Attack: 3
 })
-export const steamData = R.merge(emptyCard, {
+export const steamData = Card.from({
   CardName: 'Steam Processor',
   FlavourText: 'Production: 6 \\nPay 6: gain 10 Wisdom.',
-  abilities: [],
-  Notes: '',
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 8,
   Health: 5,
   Attack: 3
 })
-export const AutomatedBotProductionData = R.merge(emptyCard, {
+export const AutomatedBotProductionData = Card.from({
   CardName: 'Automated Bot Production',
   FlavourText: 'Periodic - Create a 1/1 Bot token.',
-  abilities: [],
-  Notes: '',
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 4,
   Health: 4,
   Attack: 3
 })
-export const AutomatedBotProductionBotData = R.merge(emptyCard, {
+export const AutomatedBotProductionBotData = Card.from({
   CardName: 'Automated Bot Production',
   FlavourText: 'BOT',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 4,
   Health: 1,
   Attack: 1
 })
-export const wynnData = R.merge(emptyCard, {
+export const wynnData = Card.from({
   CardName: 'Wynn, the Brainless Baby',
   FlavourText: 'Periodic - If Dr. Dolly is on your field. gain 5 Wisdom and +1/+1',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['HUMAN'],
-  tagDummy: '',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: false,
-
-  },
+  Class: CardClass.culture(),
   CastingCost: 3,
   Health: 1,
   Attack: 1
 })
-export const furiousJackData = R.merge(emptyCard, {
+export const furiousJackData = Card.from({
   CardName: 'Furious Jack',
   FlavourText: 'ETB - Deal 2 damage to target entity.',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: 'HUMAN',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: false,
-
-  },
+  Class: CardClass.culture(),
   CastingCost: 4,
   Health: 1,
   Attack: 2
 })
-export const miniLabData = R.merge(emptyCard, {
+export const miniLabData = Card.from({
   CardName: 'Dr. Dolly\'s Mini Lab',
   FlavourText: 'Hand size 5. Additionally, start with Dr. Dolly in your hand. Produce Wisdom 10. Pay 3 Mana: Get 10 Wisdom. Whenever Dr. Dolly dies, move him back to your hand.',
-  abilities: [],
-  Notes: '',
   type: 'HQ',
   Tags: ['HUMAN'],
   tagDummy: 'HUMAN',
-  Class: {
-    Nature: true,
-    Culture: true,
-    Technology: false,
-    Mysticism: true,
-
-  },
+  Class: CardClass.mysticism(),
   CastingCost: 4,
   Health: 18,
   Attack: 2
 })
-export const blasturnData = R.merge(emptyCard, {
+export const blasturnData = Card.from({
   CardName: 'Blasturn, the capital',
   FlavourText: 'Sacrifice a place: draw a card.',
-  abilities: [],
-  Notes: '',
   type: 'HQ',
   Tags: ['HUMAN','TECHNOCRAT'],
   tagDummy: 'HUMAN',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 4,
   Health: 20,
   Attack: 2
 })
-export const evieData = R.merge(emptyCard, {
+export const evieData = Card.from({
   CardName: 'Evie, Damsel in Distress',
   FlavourText: 'On materialization - Manipulate target entity on the field by +2 or -2 Attack.',
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['HUMAN'],
   tagDummy: 'HUMAN',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: false,
-
-  },
+  Class: CardClass.culture(),
   CastingCost: 1,
   Health: 2,
   Attack: 1
 })
-export const exoskeletonData = R.merge(emptyCard, {
+export const exoskeletonData = Card.from({
   CardName: 'Provide Exoskeleton',
   FlavourText: 'Target entity gets +3 HP and gets the ability: Regeneration (whenever this Entity recieves damage, gain the same costAmount of health back.',
-  abilities: [],
-  Notes: '',
   type: 'Action',
   Tags: ['',null],
-  tagDummy: '',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 6,
   Health: 2,
   Attack: 1
 })
-export const communityCardData = R.merge(emptyCard, {
+export const communityCardData = Card.from({
   CardName: 'Crowd Created Content',
   FlavourText: 'Big corporations hate this trick! \n You will be surprised when you see what happens in a community creating their own content!',
   RulesTexts: ['Big corporations hate this trick! \n You will be surprised when you see what happens in a community creating their own content!'],
-  Keywords: [],
-  abilities: [],
-  Notes: '',
   type: 'HQ',
   Tags: ['Community','Awesome'],
   tagDummy: 'HUMAN',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: false,
-
-  },
+  Class: CardClass.culture(),
   CastingCost: -1,
   Health: 1,
   Attack: 1
 })
-export const botCommandCenterData = R.merge(emptyCard, {
+export const botCommandCenterData = Card.from({
   CardName: 'Bot Command Center',
-  FlavourText: '',
-  abilities: [],
   RulesTexts: ['OnSpawn: Anthem BOT. \\n Pay 2: Anthem BOT.'],
-  Keywords: [],
-  Notes: '',
   type: 'Place',
   Tags: ['Technocrat'],
-  tagDummy: '',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 4,
   Health: 3,
   Attack: 1
 })
-export const drDollyData = R.merge(emptyCard, {
+export const drDollyData = Card.from({
   CardName: 'Dr. Dolly',
   FlavourText: 'Whenever another entity dies, gain 1 Mana.',
-  abilities: [],
   RulesTexts: ['Avenge: Produce 1'],
-  Keywords: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['HUMAN'],
-  tagDummy: '',
-  Class: {
-    Nature: false,
-    Culture: true,
-    Technology: false,
-    Mysticism: true,
-
-  },
+  Class: CardClass.mysticism(),
   CastingCost: 5,
   Health: 4,
   Attack: 1
 })
-export const belloData = R.merge(emptyCard, {
+export const belloData = Card.from({
   CardName: 'Bello, man\'s best friend',
   FlavourText: 'Periodic - If you control a Human, gain 5 Wisdom. \n If it´s Dr. Dolly instead gain 10 Wisdom.',
   RulesTexts: ['Periodic: Count Human. Insight X'],
-  Keywords: [],
-  abilities: [],
-  Notes: '',
   type: 'Entity',
   Tags: ['Animal'],
-  tagDummy: '',
-  Class: {
-    Nature: true,
-    Culture: true,
-    Technology: false,
-    Mysticism: false,
-  },
+  Class: CardClass.culture(),
   CastingCost: 3,
   Health: 2,
   Attack: 2
 })
-export const timeDeviceData = R.merge(emptyCard, {
+export const timeDeviceData = Card.from({
   CardName: 'Time Manipulation Device',
   FlavourText: 'Periodic - Insight 3 \\n Pay 4: Bounce',
-  abilities: [],
   RulesTexts: ['Periodic: Insight 3 \\n Pay 4: Bounce TARGET'],
-  Notes: '',
   type: 'Place',
   Tags: ['TECHNOCRAT'],
   tagDummy: 'TECHNOCRAT',
-  Class: {
-    Nature: false,
-    Culture: false,
-    Technology: true,
-    Mysticism: false,
-
-  },
+  Class: CardClass.technology(),
   CastingCost: 8,
   Health: 5,
   Attack: 3

@@ -11,14 +11,14 @@
     <button
       class="ModeButton"
       :style="`font-weight: ${ getThiccness(Mode.ENCOUNTER) }`"
-      @click="mode = Mode.ENCOUNTER"
+      @click="setMode(Mode.ENCOUNTER)"
     >
       <a>Encounters</a>
     </button>
     <button
       class="ModeButton"
       :style="`font-weight: ${ getThiccness(Mode.COUNCIL) }`"
-      @click="mode = Mode.COUNCIL"
+      @click="setMode(Mode.COUNCIL)"
     >
       <a>Council</a>
     </button>
@@ -26,15 +26,15 @@
     <encounter-voting-component
       v-if="mode === Mode.ENCOUNTER"
     />
-    <div v-if="mode === Mode.COUNCIL">
-      <br>
-      <p>Not yet implemented</p>
-    </div>
+    <card-council-voting-component
+      v-if="mode === Mode.COUNCIL"
+    />
   </div>
 </template>
 
 <script>
 import EncounterVotingComponent from '@/components/elements/EncounterVotingComponent.vue'
+import CardCouncilVotingComponent from '@/components/elements/CardCouncilVotingComponent.vue'
 
 const Mode = {
   ENCOUNTER: 0,
@@ -43,14 +43,27 @@ const Mode = {
 
 export default {
   name: 'VotingPage',
-  components: { EncounterVotingComponent },
+  components: { EncounterVotingComponent, CardCouncilVotingComponent },
   data () {
     return {
       mode: Mode.ENCOUNTER,
       Mode: Mode,
     }
   },
+  mounted() {
+    let mode = this.$route.params.mode
+    console.log("yees", mode)
+    if (mode) {
+      this.mode = parseInt(String(mode))
+    } else {
+      this.setMode(this.mode)
+    }
+  },
   methods: {
+    setMode(mode) {
+      this.mode = mode
+      this.$router.push({name: "Vote", params: {mode: this.mode}})
+    },
     getThiccness(mode) {
       if (mode === this.mode) {
         return "bold"
