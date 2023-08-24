@@ -162,7 +162,7 @@
             <div class="button--container">
               <div class="link--button">
                 <router-link
-                  to="/newcard"
+                  to="/cardCreator"
                   style="text-decoration: none; color: inherit;"
                 >
                   <p class="text--button">

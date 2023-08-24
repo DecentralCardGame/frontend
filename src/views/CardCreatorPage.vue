@@ -1222,6 +1222,7 @@ export default {
       )
       this.model = R.clone(emptyCard)
       this.artistMode = false
+      this.artistAddress = "cc1..."
       this.cropImage = ""
       this.$store.commit(
         this.isEditCardMode() ? "setCardCreatorEditCardImg" : "setCardCreatorDraftImg",
