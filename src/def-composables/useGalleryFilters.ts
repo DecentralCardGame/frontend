@@ -8,7 +8,7 @@ const toggle = () => {
 }
 
 const reset = () => {
-  state = reactive(new GalleryFilters())
+  Object.assign(state, new GalleryFilters())
 }
 
 export const useGalleryFilters = { galleryFilters: state, toggleGalleryFilters: toggle, resetGalleryFilters: reset };
