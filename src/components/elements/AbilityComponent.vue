@@ -167,7 +167,7 @@ export default {
 
       // depending on type, create dialog
       if (node.type) {
-        console.log('node type', node.type)
+        console.log('node type:', node.type, " btn:", btn)
         switch (node.type) {
           case 'array': {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
@@ -175,7 +175,8 @@ export default {
             let copyButton = R.clone(this.ability.clickedBtn.template)
             copyButton.pre = ' '
 
-            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] += 1
+            // adjust the effect array id in the abilityPath
+            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] = R.path(R.dropLast(1, copyButton.btn.abilityPath), this.ability).length
 
             this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction)
 
@@ -183,6 +184,8 @@ export default {
             this.ability.interaction.forEach((item, idx) => {
               item.btn.id = idx
             })
+
+            
             break
           }
           case 'interface': {

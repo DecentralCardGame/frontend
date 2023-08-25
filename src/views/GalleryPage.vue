@@ -86,7 +86,7 @@
               type="checkbox"
               @input="galleryFilters.classesVisible = !galleryFilters.classesVisible "
             >
-            Filter Classes
+            Filter classes
             <br>
           </label>
         </div>
@@ -237,6 +237,7 @@
         <GalleryModal
           :can-vote="canVote"
           :is-owner="isOwner"
+          :is-artist="isArtist"
           :keyword-descriptions="keywordDescriptions"
           :model="cards[clickedIndex]"
           :image-u-r-l="cards[clickedIndex].image"
@@ -287,6 +288,7 @@ export default {
       browsingBackward: true,
       canVote: false,
       isOwner: false,
+      isArtist: false,
       leavePageLock: false,
       keywordDescriptions: [],
       votableCards: []

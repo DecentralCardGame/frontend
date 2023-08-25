@@ -21,7 +21,7 @@
           <li>
             <router-link to="/about">
               <h2>The Game</h2>
-              Rules, Ideas and historical Context.
+              Rules, ideas and historical context.
             </router-link>
           </li>
           <li>
@@ -42,6 +42,13 @@
               <h2>Roadmap</h2>
               Know what we're up to.
             </router-link>
+          </li>
+
+          <li>
+            <a href="https://twitter.com/CrowdControlNet">
+              <h2>Twitter</h2>
+              Get the latest Tweets.
+            </a>
           </li>
 
           <li>
@@ -66,15 +73,15 @@
           <li>
             <router-link to="/imprint">
               <h2>Imprint</h2>
-              Terms and Conditions *yaaawn*.
+              Terms and conditions *yaaawn*.
             </router-link>
           </li>
         </ul>
         <div class="footer__other">
           <b>
-            Discuss the latest News or
+            Discuss the latest news or
             simply join our growing
-            Community. We would love
+            community. We would love
             to hear your voice.
 
           </b>

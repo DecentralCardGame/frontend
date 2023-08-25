@@ -1,6 +1,8 @@
 <template>
   <div align="center">
-    <h1>{{ card.CardName }}</h1>
+    <h1 class="header__h2">
+      {{ card.CardName }}
+    </h1>
     <a
       v-if="card.FlavourText"
       class="FlavourText"

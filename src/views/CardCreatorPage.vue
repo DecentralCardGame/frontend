@@ -4,8 +4,8 @@
       Card Creator
     </h2>
     <p class="header__p">
-      With our card creator, you can design and craft your own cards by
-      following a simple step-by-step wizard which takes you through the whole
+      Our Card Creator lets you can design and craft your own cards by
+      following a simple step-by-step wizard that guides you through the whole
       process.
     </p>
     <br>
@@ -241,7 +241,6 @@
             >
               <b>Casting Cost:</b>
             </span>
-
             <div
               v-if="
                 cardRules.Card.children[getRulesType()] &&
@@ -1053,19 +1052,26 @@ export default {
 
       // otherwise: check all things that must be entered:
       if (!this.model.CardName) {
-        this.notifyFail("No Name", "Card has no name, please enter a name.");
-        return;
+        this.notifyFail("No Name", "Card has no name, please enter a name.")
+        return
       }
       if (!this.model.type || this.model.type === "no type") {
-        this.notifyFail("Wrong Type", "please pick a type");
-        return;
+        this.notifyFail("Wrong Type", "please pick a type")
+        return
       }
       if (!this.designateArtist && !this.model.image) {
         this.notifyFail(
           "No Image",
           "Card has no image, please upload an image."
-        );
-        return;
+        )
+        return
+      }
+      if (this.designateArtist && !this.$cardChain.validAddress(this.artistAddress)) {
+        this.notifyFail(
+          "Invalid Address",
+          "The address given for designated artist is invalid."
+        )
+        return
       }
       if (this.designateArtist && !validAddress(this.artistAddress)) {
         this.notifyFail(
