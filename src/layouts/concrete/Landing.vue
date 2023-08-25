@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import PageLogoHeader from '../components/partials/PageLogoHeader.vue'
-import PageMenu from '../components/partials/PageMenu.vue'
-import PageFooter from '../components/partials/PageFooter.vue'
+import PageLogoHeader from '@/components/partials/PageLogoHeader.vue'
+import PageMenu from '@/components/partials/PageMenu.vue'
+import PageFooter from '@/components/partials/PageFooter.vue'
 import { useNotifications } from "@/def-composables/useNotifications";
 
 export default {
