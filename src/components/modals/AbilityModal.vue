@@ -213,7 +213,7 @@ export default {
       return valids;
     },
     getIcon(option) {
-      return "/src/assets/icon/abilities/"+R.toLower(R.split("-", option.name.replace(/ /g, ""))[0])+".svg"
+      return "/icon/abilities/"+R.toLower(R.split("-", option.name.replace(/ /g, ""))[0])+".svg"
     },
     addAbility() {
       console.log("dialog type:", this.dialog.type);
