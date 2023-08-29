@@ -52,6 +52,9 @@ module.exports = {
         error: "#D80228",
         negative: "#D80228",
         notification: "#FE475F",
+        red: {
+          100: "#D82027",
+        },
       },
       boxShadow: {
         border: "0px 0.5px 0px #CBCBCB",

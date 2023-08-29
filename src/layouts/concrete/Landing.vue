@@ -20,7 +20,7 @@ import { useNotifications } from "@/def-composables/useNotifications";
 export default {
   name: 'CrowdControlApp',
   components: { PageMenu, PageLogoHeader, PageFooter },
-  mounted () {
+  mounted() {
   },
   setup() {
     const { isMobileDevice } = useNotifications()
@@ -32,6 +32,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

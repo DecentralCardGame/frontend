@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/',
     name: 'Landing',
-    meta: {layout: "Landing"},
+    meta: {layout: "Default"},
     component: LandingPage,
   },
   {

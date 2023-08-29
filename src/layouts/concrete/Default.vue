@@ -1,7 +1,6 @@
 <template>
   <div id="content">
-    <PageHeader />
-    <PageMenu />
+    <PageTopMenu />
     <main>
       <div class="footer__content">
         <router-view />
@@ -12,19 +11,17 @@
 </template>
 
 <script>
-import PageHeader from '@/components/partials/PageHeader.vue'
-import PageMenu from '@/components/partials/PageMenu.vue'
+import PageTopMenu from '@/components/partials/PageTopMenu.vue'
 import PageFooter from '@/components/partials/PageFooter.vue'
 
 export default {
   name: 'CrowdControlApp',
-  components: {PageFooter, PageMenu, PageHeader},
-  mounted () {
+  components: { PageTopMenu, PageFooter },
+  mounted() {
   },
   methods: {
   }
 }
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
