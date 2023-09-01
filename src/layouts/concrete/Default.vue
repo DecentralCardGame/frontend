@@ -3,9 +3,7 @@
     <PageTopMenu />
     <PageNavMenu />
     <main>
-      <div class="footer__content">
-        <router-view />
-      </div>
+      <router-view />
     </main>
     <PageFooter />
   </div>

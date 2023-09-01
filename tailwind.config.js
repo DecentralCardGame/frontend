@@ -55,6 +55,9 @@ module.exports = {
         red: {
           100: "#D82027",
         },
+        yellow: {
+          100: "#FEC560",
+        },
       },
       boxShadow: {
         border: "0px 0.5px 0px #CBCBCB",
