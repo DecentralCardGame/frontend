@@ -557,6 +557,19 @@
             <input
               v-model="model.notes"
             >
+
+            <span v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
+              class="creator-text">
+              Balance Anchor 
+            </span>
+              
+            <input
+              v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
+              v-model="model.balanceAnchor"
+              type="checkbox"
+              class="input--checkbox__right"
+            >
+
           </div>
 
           <div
@@ -822,7 +835,6 @@ export default {
     changeCrop({ canvas }) {
       mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)])
         .then(b64 => {
-          //console.log(b64)
           this.srcToFile(b64, "image.jpg", "image/jpeg")
             .then(file => {
               uploadImg(file, env.cardImgMaxKB, (result) => {
@@ -1134,7 +1146,6 @@ export default {
       // finalize abilties or effects
       // this should potentially moved to somewhere else? maybe where abilities are saved
       let newModel = this.model;
-      console.log(newModel);
 
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
@@ -1143,7 +1154,6 @@ export default {
         }
         // this writes the relevant part of the abilities in the new model
         else {
-          console.log(this.cardRules.Card);
           newModel.Abilities = R.map(
             R.pick(
               R.keys(
@@ -1194,9 +1204,8 @@ export default {
         this.updateRulesTexts();
       }
 
-      console.log(newModel);
       newModel.image = this.model.image;
-      newModel.balanceAnchor = false;  // uncomment this to use the balance anchor
+      newModel.balanceAnchor = this.model.balanceAnchor;
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
       console.log("newCard", newCard);
