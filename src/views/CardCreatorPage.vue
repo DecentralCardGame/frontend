@@ -805,8 +805,8 @@ export default {
     },
     getGenericCostRange(key: string) {
       return R.range(
-        cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
-        cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
+        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
       );
     },
     getSpecialCostRange() {
@@ -882,7 +882,11 @@ export default {
       return printString.length > 1 ? R.dropLast(1, printString) : "";
     },
     showBuyFrameModal() {
-      this.isBuyFrameModalVisible = true;
+      if (!this.address) {
+        this.notifyFail("Buy Card Frame failed", "You must be logged in with an activated account for this.");
+      }
+      else
+        this.isBuyFrameModalVisible = true;
     },
     closeBuyFrameModal() {
       this.isBuyFrameModalVisible = false;
@@ -1219,7 +1223,11 @@ export default {
 
         saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
         if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
-      } else {
+      }
+      else if (!this.address) {
+        this.notifyFail("Publish Card failed", "You must be logged in with an activated account!");
+      } 
+      else {
         queryQUser(this.address).then((res: User) => {
           if (R.isEmpty(res.ownedCardSchemes)) {
             this.notifyFail("YOU MUST CONSTRUCT ADDITIONAL PYLONS", "You don't own any Card Frames. Please buy one before publishing.");
@@ -1234,6 +1242,10 @@ export default {
             saveCardContent(id, newCard, this.resetCard, handleErr);
             if (!this.designateArtist) addArtwork(id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
           }
+        })
+        .catch(err => {
+          console.error(err);
+          this.notifyFail("Publish Card failed", err);
         });
       }
     },
