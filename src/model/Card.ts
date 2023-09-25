@@ -98,7 +98,7 @@ export class Card {
   Attack: number = 0;
   Delay: number = 0;
   RulesTexts: Array<string> = [];
-  Keywords: Array<Array<string>> = [];
+  Keywords: Array<Array<string>> = new Array<Array<string>>();
   Effects: Array<any> = [];
   id: number = -1;
   balanceAnchor: boolean = false;
