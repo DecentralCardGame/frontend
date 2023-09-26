@@ -4,8 +4,8 @@ import { useQuery } from "./useQuery"
 import type { Card } from "@/model/Card"
 import { useAddress } from "./useAddress"
 
-const useProfilePicInstance = () => {
-  const { queryQCard, queryQUser } = useQuery()
+const useProfilePicInstance = async () => {
+  const { queryQCard, queryQUser } = await useQuery()
   const { address } = useAddress()
   const loggedInProfilePic = ref("spinner.svg")
 
@@ -47,11 +47,11 @@ const useProfilePicInstance = () => {
   return { getImg, setLoggedInProfilePic, loggedInProfilePic }
 }
 
-let instance: ReturnType<typeof useProfilePicInstance>;
+let instance: Awaited<ReturnType<typeof useProfilePicInstance>>;
 
-export const useProfilePic = () => {
+export const useProfilePic = async () => {
   if (!instance) {
-    instance = useProfilePicInstance();
+    instance = await useProfilePicInstance(); 
   }
   return instance;
 };

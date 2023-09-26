@@ -1,8 +1,36 @@
-export const env = {
+type ApiSet = {
+  apiURL: string,
+  rpcURL: string
+}
+
+interface Env {
+  apiURL: string,
+  rpcURL: string
+  chainId: string,
+  apiSets: Array<ApiSet>,
+  chainName: string,
+  prefix: string,
+  faucetSiteKey: string,
+  faucetNode: string,
+  cardImgMaxKB: number,
+  cardImgSizeX: number,
+  cardImgSizeY: number,
+}
+
+export const env: Env = {
   apiURL: import.meta.env.VITE_API_COSMOS,
   rpcURL: import.meta.env.VITE_WS_TENDERMINT,
   chainId: import.meta.env.VITE_APP_CHAIN_ID,
-  addrPrefix: import.meta.env.VITE_APP_ADDRESS_PREFIX,
+  apiSets : [
+    {
+      apiURL: import.meta.env.VITE_API_COSMOS,
+      rpcURL: import.meta.env.VITE_WS_TENDERMINT
+    },
+    {
+      apiURL: import.meta.env.VITE_API_COSMOS_FALLBACK,
+      rpcURL: import.meta.env.VITE_WS_TENDERMINT_FALLBACK
+    }
+  ],
   chainName: import.meta.env.VITE_APP_CHAIN_NAME,
   prefix: import.meta.env.VITE_APP_ADDRESS_PREFIX,
   faucetSiteKey: import.meta.env.VITE_APP_FAUCET_SITEKEY,
@@ -12,7 +40,9 @@ export const env = {
   cardImgSizeY: import.meta.env.VITE_APP_CARDIMG_SIZE_Y,
 };
 
-export const setFallback = (apiFallback: boolean) => {
-  env.apiURL = apiFallback ? import.meta.env.VITE_API_COSMOS_FALLBACK : import.meta.env.VITE_API_COSMOS
-  env.rpcURL = apiFallback ? import.meta.env.VITE_WS_TENDERMINT_FALLBACK : import.meta.env.VITE_WS_TENDERMINT
+export const setApiSet = (id: number) => {
+  let apiSet = env.apiSets[id]
+
+  env.apiURL = apiSet.apiURL
+  env.rpcURL = apiSet.rpcURL
 }

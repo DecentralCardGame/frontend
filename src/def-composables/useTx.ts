@@ -1,17 +1,17 @@
 import { useClient } from "@/composables/useClient";
 import { useAddress } from "@/def-composables/useAddress";
-import type { Card, ChainCard } from "@/model/Card";
+import type { ChainCard } from "@/model/Card";
 import type { Coin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import {
   GenericAuthorization,
-  Grant,
 } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
 import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
 import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
+import testForApiAvailability from "@/utils/testApiAvailability";
 
 const FEE: StdFee = {
   amount: [{ amount: "0", denom: "stake" }],
@@ -64,9 +64,10 @@ class MessageScheduler {
   }
 
   executeMessage(msg: UnEvaledMessage) {
-    notifyInfo("Sending", "Sending request to the blockchain.");
-    this.blocked.value = true;
-    msg
+    testForApiAvailability().then(() => {
+      notifyInfo("Sending", "Sending request to the blockchain.");
+      this.blocked.value = true;
+      msg
       .execute()
       .then((res) => {
         this.blocked.value = false;
@@ -79,6 +80,7 @@ class MessageScheduler {
       .then(stdHandler)
       .then(msg.then)
       .catch(msg.err);
+    })
   }
 
   schedule(

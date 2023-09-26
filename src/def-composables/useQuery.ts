@@ -42,8 +42,8 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
 };
 
 // Do not touch
-const useQueryInstance = () => {
-  const client = useClient();
+const useQueryInstance = async () => {
+  const client = await useClient();
   const unified = Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query, client.CosmosAuthzV1Beta1.query);
   const keys = Object.keys(unified);
 
@@ -60,11 +60,11 @@ const useQueryInstance = () => {
   return queries;
 };
 
-let instance: ReturnType<typeof useQueryInstance>;
+let instance: Awaited<ReturnType<typeof useQueryInstance>>;
 
-export const useQuery = () => {
+export const useQuery = async () => {
   if (!instance) {
-    instance = useQueryInstance();
+    instance = await useQueryInstance();
   }
   return instance;
 };
