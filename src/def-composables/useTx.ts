@@ -1,7 +1,7 @@
 import { useClient } from "@/composables/useClient";
 import { useAddress } from "@/def-composables/useAddress";
 import type { Card, ChainCard } from "@/model/Card";
-import type { Coin } from "@/model/Coin";
+import type { CompatCoin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import {
@@ -146,7 +146,7 @@ export const useTxInstance: () => {
     err: (res: any) => void
   ) => void;
   buyCardScheme: (
-    coin: Coin,
+    coin: CompatCoin,
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
@@ -161,7 +161,7 @@ export const useTxInstance: () => {
     err: (res: any) => void
   ) => void;
   send: (
-    coins: Coin[],
+    coins: CompatCoin[],
     to: string,
     then: (res: any) => void,
     err: (res: any) => void
@@ -199,12 +199,18 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
+  createUser: (
+    newUser: string,
+    alias: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+    ) => void;
 } = () => {
   const client = useClient();
   const messageScheduler = new MessageScheduler();
 
   const send = (
-    coins: Coin[],
+    coins: CompatCoin[],
     to: string,
     then: (res: any) => void,
     err: (res: any) => void
@@ -297,7 +303,7 @@ export const useTxInstance: () => {
   };
 
   const buyCardScheme = (
-    coin: Coin,
+    coin: CompatCoin,
     then: (res: any) => void,
     err: (res: any) => void
   ) => {
@@ -414,6 +420,23 @@ export const useTxInstance: () => {
     );
   };
 
+  const createUser = (
+    newUser: string,
+    alias: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+    ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgCreateuser,
+      new Content({
+        newUser,
+        alias
+      }),
+      then,
+      err
+      );
+  };
+
   return {
     send,
     registerForCouncil,
@@ -427,6 +450,7 @@ export const useTxInstance: () => {
     multiVoteCard,
     grantAuthz,
     revokeAuthz,
+    createUser,
   };
 };
 

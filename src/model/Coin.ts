@@ -28,7 +28,16 @@ export class Coin {
     return this.amount + this.denom;
   }
 
+  toCompatCoin(): CompatCoin {
+    return {denom: this.denom, amount: ""+this.amount}
+  }
+
   static from(json: any): Coin {
     return Object.assign(new Coin(), json);
   }
+}
+
+export type CompatCoin = {
+  denom: string;
+  amount: string;
 }
