@@ -7,3 +7,7 @@ export const normalizeCoins = (coins: Coin[]) => {
   })
   return newCoins
 }
+
+export function isASCII(str) {
+  return /^[\x00-\x7F]*$/.test(str);
+}

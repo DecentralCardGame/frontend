@@ -687,6 +687,7 @@ import { useTx } from "@/def-composables/useTx";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { validAddress } from "@/utils/validation";
 import { useQuery } from "@/def-composables/useQuery";
+import { isASCII } from '@/utils/utils';
 
 const { saveCardContent, addArtwork } = useTx();
 const { queryQUser } = useQuery();
@@ -1100,7 +1101,6 @@ export default {
         return;
       }
       if (!this.model.FlavourText[0] && !this.abilities) {
-        console.log("abilities mecker:" , this.model)
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
@@ -1204,8 +1204,21 @@ export default {
         this.updateRulesTexts();
       }
 
-      newModel.image = this.model.image;
-      newModel.balanceAnchor = this.model.balanceAnchor;
+      newModel.image = this.model.image
+      newModel.balanceAnchor = this.model.balanceAnchor
+
+      let checkASCII = (string, origin) => {
+        string.split('').forEach(char => {
+          if (!isASCII(char)) {
+            console.error("char "+char+" is not ASCII compatible.")
+            this.notifyFail("INVALID CHARACTER", "You used symbol "+char+" in "+origin+" and it is not supported.")
+          }
+        })
+      }
+
+      checkASCII(newModel.FlavourText, "Flavour Text")
+      checkASCII(newModel.CardName, "Card Name")
+
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
       console.log("newCard", newCard);
