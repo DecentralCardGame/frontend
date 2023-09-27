@@ -1208,12 +1208,17 @@ export default {
       newModel.balanceAnchor = this.model.balanceAnchor;
       console.log("newmodel:", newModel)
 
-      newModel.FlavourText.split('').forEach(char => {
-        if (!isASCII(char)) {
-          console.error("char "+char+" is not ASCII compatible.")
-          this.notifyFail("INVALID CHARACTER", "You used symbol "+char+" in Flavor Text and it is not supported.")
-        }
-      })
+      let checkASCII = (string, origin) => {
+        string.split('').forEach(char => {
+          if (!isASCII(char)) {
+            console.error("char "+char+" is not ASCII compatible.")
+            this.notifyFail("INVALID CHARACTER", "You used symbol "+char+" in "+origin+" and it is not supported.")
+          }
+        })
+      }
+
+      checkASCII(newModel.FlavourText, "Flavour Text")
+      checkASCII(newModel.CardName, "Card Name")
 
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
