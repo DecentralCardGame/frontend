@@ -277,7 +277,7 @@ export const useTxInstance: () => {
         "/DecentralCardGame.cardchain.cardchain.MsgBuyCollection",
         "/DecentralCardGame.cardchain.cardchain.MsgOpenBoosterPack",
         "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
-        "/DecentralCardGame.cardchain.cardchain.MsgReportMatch",
+        "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch",
       ].map((msgPath: string) => {
         return client.CosmosAuthzV1Beta1.tx.msgGrant({
           value: MsgGrant.fromPartial({
