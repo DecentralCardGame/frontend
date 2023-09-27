@@ -883,7 +883,7 @@ export default {
     },
     showBuyFrameModal() {
       if (!this.address) {
-        this.notifyFail("Buy Card Frame failed", "You must be logged in with an activated account for this.");
+        this.notifyFail("Unable to buy Card Frame", "You must be logged in with an activated account for this.");
       }
       else
         this.isBuyFrameModalVisible = true;
@@ -1225,7 +1225,7 @@ export default {
         if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
       }
       else if (!this.address) {
-        this.notifyFail("Publish Card failed", "You must be logged in with an activated account!");
+        this.notifyFail("Unable publish Card", "You must be logged in with an activated account!");
       } 
       else {
         queryQUser(this.address).then((res: User) => {
