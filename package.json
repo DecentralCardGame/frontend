@@ -1,8 +1,9 @@
 {
   "dependencies": {
     "@cosmjs/encoding": "^0.29.3",
-    "@cosmjs/launchpad": "^0.27.1",
+    "@cosmjs/launchpad": "^0.27.0",
     "@cosmjs/stargate": "^0.27.0",
+    "@cosmjs/proto-signing": "^0.27.0",
     "@hcaptcha/vue3-hcaptcha": "^1.0.1",
     "@headlessui/tailwindcss": "^0.1.1",
     "@headlessui/vue": "^1.7.3",
@@ -29,7 +30,6 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@cosmjs/proto-signing": "^0.29.3",
     "@keplr-wallet/types": "^0.11.14",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rushstack/eslint-patch": "^1.2.0",

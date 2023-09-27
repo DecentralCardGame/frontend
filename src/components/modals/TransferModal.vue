@@ -156,7 +156,7 @@ export default {
           new Coin(
             this.denom,
             this.amount
-          )
+          ).toCompatCoin()
         ],
         this.recipient,
         _ => {

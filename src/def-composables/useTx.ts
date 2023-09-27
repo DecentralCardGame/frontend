@@ -1,17 +1,30 @@
 import { useClient } from "@/composables/useClient";
 import { useAddress } from "@/def-composables/useAddress";
-import type { Card, ChainCard } from "@/model/Card";
-import type { Coin } from "@/model/Coin";
+import type { ChainCard } from "@/model/Card";
+import { Coin, type CompatCoin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import {
   GenericAuthorization,
-  Grant,
 } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
 import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
-import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
+import {
+  msgTypes as CCMsgTypes,
+  type SingleVote,
+} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
+import { SigningStargateClient } from "@cosmjs/stargate";
+import { env } from "@/env";
+import { type EncodeObject, Registry } from "@cosmjs/proto-signing";
+import { msgTypes as BankMsgTypes } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1";
+import { msgTypes as AuthzMsgTypes } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1";
+import { MsgSend } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/module";
+import { MsgGrant } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/module";
+
+export const registry: Registry = new Registry(
+  CCMsgTypes.concat(BankMsgTypes).concat(AuthzMsgTypes)
+);
 
 const FEE: StdFee = {
   amount: [{ amount: "0", denom: "stake" }],
@@ -146,7 +159,7 @@ export const useTxInstance: () => {
     err: (res: any) => void
   ) => void;
   buyCardScheme: (
-    coin: Coin,
+    coin: CompatCoin,
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
@@ -161,7 +174,7 @@ export const useTxInstance: () => {
     err: (res: any) => void
   ) => void;
   send: (
-    coins: Coin[],
+    coins: CompatCoin[],
     to: string,
     then: (res: any) => void,
     err: (res: any) => void
@@ -199,12 +212,97 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
+  createUser: (
+    newUser: string,
+    alias: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
+  authzGameclient: (
+    gameclientAddr: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
 } = () => {
   const client = useClient();
   const messageScheduler = new MessageScheduler();
 
+  const multiBroadCast = async (
+    msgs: EncodeObject[],
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    const b = async (): Promise<DeliverTxResponse> => {
+      if (!client.signer) {
+        throw new Error(
+          "MultiBroadCast: Unable to sign Tx. Signer is not present."
+        );
+      }
+      try {
+        const { address } = (await client.signer.getAccounts())[0];
+        const signingClient = await SigningStargateClient.connectWithSigner(
+          env.rpcURL,
+          client.signer,
+          { registry, prefix: env.prefix }
+        );
+        return await signingClient.signAndBroadcast(address, msgs, FEE, "");
+      } catch (e: any) {
+        throw new Error(
+          "TMultiBroadCast: Could not broadcast Tx: " + e.message
+        );
+      }
+    };
+
+    messageScheduler.schedule(b, new Content({}), then, err);
+  };
+
+  const authzGameclient = (
+    gameclientAddr: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    let date = new Date();
+    date.setMonth(date.getMonth() + 12);
+
+    const msgs: EncodeObject[] = [
+      client.CosmosBankV1Beta1.tx.msgSend({
+        value: MsgSend.fromPartial({
+          fromAddress: address.value,
+          toAddress: gameclientAddr,
+          amount: [new Coin("ucredits", 11).toCompatCoin()],
+        }),
+      }),
+    ].concat(
+      [
+        "/DecentralCardGame.cardchain.cardchain.MsgBuyCollection",
+        "/DecentralCardGame.cardchain.cardchain.MsgOpenBoosterPack",
+        "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
+        "/DecentralCardGame.cardchain.cardchain.MsgReportMatch",
+      ].map((msgPath: string) => {
+        return client.CosmosAuthzV1Beta1.tx.msgGrant({
+          value: MsgGrant.fromPartial({
+            granter: address.value,
+            grantee: gameclientAddr,
+            grant: {
+              authorization: {
+                typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization",
+                value: GenericAuthorization.encode(
+                  GenericAuthorization.fromPartial({
+                    msg: msgPath,
+                  })
+                ).finish(),
+              },
+              expiration: date,
+            },
+          }),
+        });
+      })
+    );
+    multiBroadCast(msgs, then, err);
+  };
+
   const send = (
-    coins: Coin[],
+    coins: CompatCoin[],
     to: string,
     then: (res: any) => void,
     err: (res: any) => void
@@ -297,7 +395,7 @@ export const useTxInstance: () => {
   };
 
   const buyCardScheme = (
-    coin: Coin,
+    coin: CompatCoin,
     then: (res: any) => void,
     err: (res: any) => void
   ) => {
@@ -414,6 +512,23 @@ export const useTxInstance: () => {
     );
   };
 
+  const createUser = (
+    newUser: string,
+    alias: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgCreateuser,
+      new Content({
+        newUser,
+        alias,
+      }),
+      then,
+      err
+    );
+  };
+
   return {
     send,
     registerForCouncil,
@@ -427,6 +542,8 @@ export const useTxInstance: () => {
     multiVoteCard,
     grantAuthz,
     revokeAuthz,
+    createUser,
+    authzGameclient,
   };
 };
 

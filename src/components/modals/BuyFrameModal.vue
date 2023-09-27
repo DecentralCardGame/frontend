@@ -146,7 +146,7 @@ export default {
     },
     buyCardFrame() {
       this.$emit('close')
-      buyCardScheme(new Coin("credits", this.currentBid).denormalize(), res => {
+      buyCardScheme(new Coin("credits", this.currentBid).denormalize().toCompatCoin(), res => {
       }, () => {})
     },
     isNumber: function (evt) {
