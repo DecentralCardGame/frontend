@@ -1,12 +1,11 @@
 import { useClient } from "@/composables/useClient";
 import { useAddress } from "@/def-composables/useAddress";
-import type { Card, ChainCard } from "@/model/Card";
+import type { ChainCard } from "@/model/Card";
 import { Coin, type CompatCoin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import {
   GenericAuthorization,
-  Grant,
 } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
 import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
@@ -15,7 +14,6 @@ import {
   msgTypes as CCMsgTypes,
   type SingleVote,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
-import type { Client } from "decentralcardgame-cardchain-client-ts";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { env } from "@/env";
 import { type EncodeObject, Registry } from "@cosmjs/proto-signing";
@@ -220,7 +218,7 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
-  authzGemclient: (
+  authzGameclient: (
     gameclientAddr: string,
     then: (res: any) => void,
     err: (res: any) => void
@@ -258,7 +256,7 @@ export const useTxInstance: () => {
     messageScheduler.schedule(b, new Content({}), then, err);
   };
 
-  const authzGemclient = (
+  const authzGameclient = (
     gameclientAddr: string,
     then: (res: any) => void,
     err: (res: any) => void
@@ -545,7 +543,7 @@ export const useTxInstance: () => {
     grantAuthz,
     revokeAuthz,
     createUser,
-    authzGemclient,
+    authzGameclient,
   };
 };
 

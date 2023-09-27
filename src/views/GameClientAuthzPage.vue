@@ -46,7 +46,7 @@ enum CurrentState {
 
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const { authzGemclient } = useTx();
+const { authzGameclient } = useTx();
 const route = useRoute();
 const router = useRouter();
 
@@ -69,7 +69,7 @@ onMounted(() => {
 
 const sendTransActions = () => {
   state.currentState = CurrentState.LOADING;
-  authzGemclient(
+  authzGameclient(
     route.params.authzAddress.toString(),
     () => {
       state.currentState = CurrentState.DONE;
