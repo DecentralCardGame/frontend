@@ -1,5 +1,5 @@
 import { Client } from 'decentralcardgame-cardchain-client-ts'
-import { env } from '../env';
+import { env } from "@/env";
 
 const useClientInstance = () => {
   const client = new Client(env);
@@ -7,7 +7,7 @@ const useClientInstance = () => {
 };
 let clientInstance: ReturnType<typeof useClientInstance>;
 
-export const useClient = () => {
+export const useClient: () => any = () => {
   if (!clientInstance) {
     clientInstance = useClientInstance();
   }

@@ -162,7 +162,7 @@ import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
 import { useProfilePic } from '@/def-composables/useProfilePic';
 
-const { queryQUser, queryAllBalances } = useQuery()
+const { queryQUser } = useQuery()
 
 export default {
   name: 'GalleryModal',
