@@ -1204,9 +1204,8 @@ export default {
         this.updateRulesTexts();
       }
 
-      newModel.image = this.model.image;
-      newModel.balanceAnchor = this.model.balanceAnchor;
-      console.log("newmodel:", newModel)
+      newModel.image = this.model.image
+      newModel.balanceAnchor = this.model.balanceAnchor
 
       let checkASCII = (string, origin) => {
         string.split('').forEach(char => {
