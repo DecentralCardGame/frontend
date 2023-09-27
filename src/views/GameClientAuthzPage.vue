@@ -16,7 +16,7 @@
         </div>
         <div v-else-if="state.currentState == CurrentState.LOADING">
           <p>Authenticating...</p>
-          <img alt="loading spinner" src="spinner.svg" class="w-40 p-5" />
+          <img alt="loading spinner" src="/spinner.svg" class="w-40 p-5" />
         </div>
         <div v-else-if="state.currentState == CurrentState.DONE">
           <p>Gameclient Authenticated!</p>
