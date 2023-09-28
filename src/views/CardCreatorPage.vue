@@ -687,6 +687,7 @@ import { useTx } from "@/def-composables/useTx";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { validAddress } from "@/utils/validation";
 import { useQuery } from "@/def-composables/useQuery";
+import { isASCII } from '@/utils/utils';
 
 const { saveCardContent, addArtwork } = useTx();
 const { queryQUser } = useQuery();
@@ -805,8 +806,8 @@ export default {
     },
     getGenericCostRange(key: string) {
       return R.range(
-        cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
-        cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
+        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
       );
     },
     getSpecialCostRange() {
@@ -882,7 +883,11 @@ export default {
       return printString.length > 1 ? R.dropLast(1, printString) : "";
     },
     showBuyFrameModal() {
-      this.isBuyFrameModalVisible = true;
+      if (!this.address) {
+        this.notifyFail("Unable to buy Card Frame", "You must be logged in with an activated account for this.");
+      }
+      else
+        this.isBuyFrameModalVisible = true;
     },
     closeBuyFrameModal() {
       this.isBuyFrameModalVisible = false;
@@ -1100,7 +1105,6 @@ export default {
         return;
       }
       if (!this.model.FlavourText[0] && !this.abilities) {
-        console.log("abilities mecker:" , this.model)
         this.notifyFail(
           "No Flavor Text",
           "Card has no flavor text and no abilities, please enter something."
@@ -1204,8 +1208,21 @@ export default {
         this.updateRulesTexts();
       }
 
-      newModel.image = this.model.image;
-      newModel.balanceAnchor = this.model.balanceAnchor;
+      newModel.image = this.model.image
+      newModel.balanceAnchor = this.model.balanceAnchor
+
+      let checkASCII = (string, origin) => {
+        string.split('').forEach(char => {
+          if (!isASCII(char)) {
+            console.error("char "+char+" is not ASCII compatible.")
+            this.notifyFail("INVALID CHARACTER", "You used symbol "+char+" in "+origin+" and it is not supported.")
+          }
+        })
+      }
+
+      checkASCII(newModel.FlavourText, "Flavour Text")
+      checkASCII(newModel.CardName, "Card Name")
+
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
       console.log("newCard", newCard);
@@ -1219,7 +1236,11 @@ export default {
 
         saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
         if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
-      } else {
+      }
+      else if (!this.address) {
+        this.notifyFail("Unable publish Card", "You must be logged in with an activated account!");
+      } 
+      else {
         queryQUser(this.address).then((res: User) => {
           if (R.isEmpty(res.ownedCardSchemes)) {
             this.notifyFail("YOU MUST CONSTRUCT ADDITIONAL PYLONS", "You don't own any Card Frames. Please buy one before publishing.");
@@ -1234,6 +1255,10 @@ export default {
             saveCardContent(id, newCard, this.resetCard, handleErr);
             if (!this.designateArtist) addArtwork(id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
           }
+        })
+        .catch(err => {
+          console.error(err);
+          this.notifyFail("Publish Card failed", err);
         });
       }
     },
