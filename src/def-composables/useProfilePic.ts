@@ -14,20 +14,13 @@ const useProfilePicInstance = () => {
     return "Avatar" + myRandom + ".png"
   }
 
-  const getCard = (id: number) => {
-    return queryQCard(id)
-      .then((card: Card) => {
-        return card
-      })
-  }
-
   const getImg = (user: User, address: string, img: Ref<string> = ref("")) => {
     if (user.profileCard != 0) {
-      getCard(user.profileCard).then(a => {
-        if (a === null) {
+      queryQCard(user.profileCard).then((card: Card) => {
+        if (card === null) {
           img.value = getDefaultImg(address)
         } else {
-          img.value = a.image
+          img.value = card.image
         }
       }
       )
