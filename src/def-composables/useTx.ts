@@ -2,7 +2,7 @@ import { useClient } from "@/composables/useClient";
 import { useAddress } from "@/def-composables/useAddress";
 import type { ChainCard } from "@/model/Card";
 import { Coin, type CompatCoin } from "@/model/Coin";
-import type { StdFee } from "@cosmjs/launchpad";
+import type { StdFee } from "@cosmjs/amino";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
 import {
   GenericAuthorization,

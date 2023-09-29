@@ -34,7 +34,7 @@ const useProfilePicInstance = () => {
     queryQUser(address.value)
     .then(user => {
       getImg(user, address.value, loggedInProfilePic)
-    })
+    }).catch(_ => setTimeout(setLoggedInProfilePic, 1))
   }
 
   return { getImg, setLoggedInProfilePic, loggedInProfilePic }
