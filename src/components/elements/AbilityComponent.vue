@@ -13,11 +13,7 @@
         v-model="entry.btn.label"
         @change="showAbilityModal(ability, entry.btn)"
       >
-        <option
-          v-for="item in enumOptions(entry)"
-          :key="item"
-          :value="item"
-        >
+        <option v-for="item in enumOptions(entry)" :key="item" :value="item">
           {{ item }}
         </option>
       </select>
@@ -28,11 +24,7 @@
         v-model="entry.btn.label"
         @change="showAbilityModal(ability, entry.btn)"
       >
-        <option
-          v-for="n in intRange(entry)"
-          :key="n"
-          :value="n"
-        >
+        <option v-for="n in intRange(entry)" :key="n" :value="n">
           {{ n }}
         </option>
       </select>
@@ -43,18 +35,10 @@
         v-model="entry.btn.label"
         @change="showAbilityModal(ability, entry.btn)"
       >
-        <option
-          v-for="n in intXRange(entry)"
-          :key="n"
-          :value="n"
-        >
+        <option v-for="n in intXRange(entry)" :key="n" :value="n">
           {{ n }}
         </option>
-        <option
-          v-for="n in enumRange(entry)"
-          :key="n"
-          :value="n"
-        >
+        <option v-for="n in enumRange(entry)" :key="n" :value="n">
           {{ n }}
         </option>
       </select>
@@ -79,12 +63,7 @@
       {{ entry.post }}
     </div>
 
-    <span
-      class="text-close"
-      @click="deleteAbility()"
-    >
-      X
-    </span>
+    <span class="text-close" @click="deleteAbility()"> X </span>
     <div class="ability-modal-container">
       <AbilityModal
         v-if="isAbilityModalVisible"
@@ -99,128 +78,157 @@
 </template>
 
 <script>
-import * as R from 'ramda'
-import AbilityModal from '@/components//modals/AbilityModal.vue'
-import { createInteraction, updateInteraction, shallowClone, atPath } from '../utils/utils.js'
+import * as R from "ramda";
+import AbilityModal from "@/components//modals/AbilityModal.vue";
+import {
+  createInteraction,
+  updateInteraction,
+  shallowClone,
+  atPath,
+} from "../utils/utils.js";
 import { useCardsRules } from "@/def-composables/useCardRules";
 
-const unrequiredLabel = "[ANY]"
+const unrequiredLabel = "[ANY]";
 
 export default {
-  name: 'AbilityComponent',
+  name: "AbilityComponent",
   components: { AbilityModal },
   props: {
     dialogProp: {
       type: Object,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     abilityProp: {
       type: Object,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     model: {
       type: Object,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
   },
-  data () {
+  data() {
     return {
       ability: {},
       dialog: {},
       selectedInt: 0,
-      isAbilityModalVisible: false
-    }
+      isAbilityModalVisible: false,
+    };
   },
-  created () {
-    this.ability = this.abilityProp
-    this.dialog = this.dialogProp
+  created() {
+    this.ability = this.abilityProp;
+    this.dialog = this.dialogProp;
   },
   setup() {
-    const { rules } = useCardsRules()
+    const { rules } = useCardsRules();
 
-    return { cardRules: rules }
+    return { cardRules: rules };
   },
   methods: {
     intRange(entry) {
-      return R.range(R.path(entry.btn.rulesPath, this.cardRules.Card).min || 0, R.path(entry.btn.rulesPath, this.cardRules.Card).max + 1)
+      return R.range(
+        R.path(entry.btn.rulesPath, this.cardRules.Card).min || 0,
+        R.path(entry.btn.rulesPath, this.cardRules.Card).max + 1
+      );
     },
     intXRange(entry) {
-      return R.range(R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue.min || 0, R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue.max + 1)
+      return R.range(
+        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
+          .min || 0,
+        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
+          .max + 1
+      );
     },
     enumRange(entry) {
-      return R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable.enum
+      return R.path(entry.btn.rulesPath, this.cardRules.Card).children
+        .IntVariable.enum;
     },
-    showAbilityModal (ability, btn) {
-      let atRules = R.curry(atPath)(this.cardRules.Card)
-      let atAbility = R.curry(atPath)(ability)
+    showAbilityModal(ability, btn) {
+      let atRules = R.curry(atPath)(this.cardRules.Card);
+      let atAbility = R.curry(atPath)(ability);
 
-      this.ability.clickedBtn = btn
+      this.ability.clickedBtn = btn;
 
-      let node = atRules(btn.rulesPath)
-      let thereWillBeModal = true
+      let node = atRules(btn.rulesPath);
+      let thereWillBeModal = true;
 
       // depending on type, create dialog
       if (node.type) {
-        console.log('node type:', node.type, " btn:", btn)
+        console.log("node type:", node.type, " btn:", btn);
         switch (node.type) {
-          case 'array': {
+          case "array": {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
-            thereWillBeModal = false
-            let copyButton = R.clone(this.ability.clickedBtn.template)
-            copyButton.pre = ' '
+            thereWillBeModal = false;
+            let copyButton = R.clone(this.ability.clickedBtn.template);
+            copyButton.pre = " ";
 
             // adjust the effect array id in the abilityPath
-            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] = R.path(R.dropLast(1, copyButton.btn.abilityPath), this.ability).length
+            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] =
+              R.path(
+                R.dropLast(1, copyButton.btn.abilityPath),
+                this.ability
+              ).length;
 
-            this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction)
+            this.ability.interaction = R.insert(
+              btn.id,
+              copyButton,
+              this.ability.interaction
+            );
 
             // update all btn ids
             this.ability.interaction.forEach((item, idx) => {
-              item.btn.id = idx
-            })
+              item.btn.id = idx;
+            });
 
-            
-            break
+            break;
           }
-          case 'interface': {
-            let options = atRules(btn.rulesPath).children
+          case "interface": {
+            let options = atRules(btn.rulesPath).children;
 
             // special case intX: IntVariable + SimpleIntValue = condense in one thing, don't show dialog
-            if (R.includes("IntVariable", R.keys(options)) && R.includes("SimpleIntValue", R.keys(options))) {
-              console.log("special case")
-              thereWillBeModal = false
+            if (
+              R.includes("IntVariable", R.keys(options)) &&
+              R.includes("SimpleIntValue", R.keys(options))
+            ) {
+              console.log("special case");
+              thereWillBeModal = false;
 
-              console.log('attaching:', btn.label, 'to', this.ability.clickedBtn.abilityPath)
+              console.log(
+                "attaching:",
+                btn.label,
+                "to",
+                this.ability.clickedBtn.abilityPath
+              );
 
-              let intX = {}
+              let intX = {};
 
               // variable case
               if (isNaN(btn.label)) {
-                intX.IntVariable = btn.label
+                intX.IntVariable = btn.label;
               }
               // number case
               else {
-                intX.SimpleIntValue = btn.label
+                intX.SimpleIntValue = btn.label;
               }
 
-              this.attachToAbility(this.ability.clickedBtn.abilityPath, intX)
+              this.attachToAbility(this.ability.clickedBtn.abilityPath, intX);
 
-              this.dialog = "surpressed - no modal"
+              this.dialog = "surpressed - no modal";
             }
             // default case
             else {
               // check singleUse case  // TODO check if this is still relevant
-              let prevElements = atAbility(R.dropLast(1, btn.abilityPath))
+              let prevElements = atAbility(R.dropLast(1, btn.abilityPath));
               if (prevElements) {
-                let singleUseHappened = R.pluck('singleUse', prevElements)
+                let singleUseHappened = R.pluck("singleUse", prevElements);
                 if (!singleUseHappened.isEmpty) {
-                  options = R.dissoc(singleUseHappened, options)
+                  options = R.dissoc(singleUseHappened, options);
                 }
               }
 
@@ -231,155 +239,182 @@ export default {
                 btn: btn,
                 options: options,
                 rulesPath: btn.rulesPath,
-                abilityPath: btn.abilityPath
-              }
+                abilityPath: btn.abilityPath,
+              };
             }
-            break
+            break;
           }
-          case 'struct': {
+          case "struct": {
             // In this case there is no modal to be displayed just update the interaction
-            thereWillBeModal = false
+            thereWillBeModal = false;
 
-            let interactionText = atRules(btn.rulesPath).interactionText
-            let newInteraction = createInteraction(interactionText, btn.abilityPath, R.append('children', btn.rulesPath), this.$cardRules)
+            let interactionText = atRules(btn.rulesPath).interactionText;
+            let newInteraction = createInteraction(
+              interactionText,
+              btn.abilityPath,
+              R.append("children", btn.rulesPath),
+              this.$cardRules
+            );
 
-            updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction)
-            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children))
-            break
+            updateInteraction(
+              this.ability,
+              this.ability.clickedBtn.id,
+              newInteraction
+            );
+            this.attachToAbility(
+              btn.abilityPath,
+              shallowClone(atRules(btn.rulesPath).children)
+            );
+            break;
           }
           // this is a terminal case, specify an integer
-          case 'int':
+          case "int":
             // In this case there is no modal to be displayed just update the interaction
-            thereWillBeModal = false
+            thereWillBeModal = false;
 
-            this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
-            break
+            this.attachToAbility(
+              this.ability.clickedBtn.abilityPath,
+              btn.label
+            );
+            break;
           // this is a terminal case, pick one string from enum
-          case 'enum': {
+          case "enum": {
             // In this case there is no modal to be displayed just update the interaction
-            thereWillBeModal = false
+            thereWillBeModal = false;
 
             if (btn.label === unrequiredLabel) {
-              btn.label = ""
-              this.attachToAbility(R.dropLast(1, this.ability.clickedBtn.abilityPath), {})
-            }
-            else
-              this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label)
+              btn.label = "";
+              this.attachToAbility(
+                R.dropLast(1, this.ability.clickedBtn.abilityPath),
+                {}
+              );
+            } else
+              this.attachToAbility(
+                this.ability.clickedBtn.abilityPath,
+                btn.label
+              );
 
-            break
+            break;
           }
           // this is a terminal case, enter a string or pick one if enums are present
-          case 'string': {
+          case "string": {
             this.dialog = {
               title: atRules(btn.rulesPath).name,
-              description: 'please write down:',
-              type: 'stringEnter',
+              description: "please write down:",
+              type: "stringEnter",
               btn: btn,
-              options: [{
-                name: '',
-                schemaPath: [],
-                abilityPath: [],
-                title: btn.type,
-                description: ''
-              }],
-              entries: []
-            }
-            break
+              options: [
+                {
+                  name: "",
+                  schemaPath: [],
+                  abilityPath: [],
+                  title: btn.type,
+                  description: "",
+                },
+              ],
+              entries: [],
+            };
+            break;
           }
           // this is a terminal case, yes or no
-          case 'boolean': {
+          case "boolean": {
             // In this case there is no modal to be displayed just update the interaction
-            thereWillBeModal = false
+            thereWillBeModal = false;
 
-            let negated = R.takeLast(1, this.ability.clickedBtn.label) !== '!'
-            this.ability.clickedBtn.label = R.dropLast(1, this.ability.clickedBtn.label) + (negated ? '!' : '-')
+            let negated = R.takeLast(1, this.ability.clickedBtn.label) !== "!";
+            this.ability.clickedBtn.label =
+              R.dropLast(1, this.ability.clickedBtn.label) +
+              (negated ? "!" : "-");
 
-            this.attachToAbility(this.ability.clickedBtn.abilityPath, negated)
-            break
+            this.attachToAbility(this.ability.clickedBtn.abilityPath, negated);
+            break;
           }
           default:
-            console.error('node.type is unknown')
-            break
+            console.error("node.type is unknown");
+            break;
         }
 
         // this is the bugfix for replay selection bug
-        R.forEachObjIndexed(function(option) {
-          if (option.selected)
-            delete option.selected
-        }, this.dialog.options)
+        R.forEachObjIndexed(function (option) {
+          if (option.selected) delete option.selected;
+        }, this.dialog.options);
 
-        console.log('created dialog: ', this.dialog)
+        console.log("created dialog: ", this.dialog);
       } else {
-        console.error('node.type not defined')
+        console.error("node.type not defined");
       }
 
-      this.isAbilityModalVisible = thereWillBeModal
+      this.isAbilityModalVisible = thereWillBeModal;
     },
-    attachToAbility (path, object) {
-      let ability = R.assocPath(path, object, this.ability)
+    attachToAbility(path, object) {
+      let ability = R.assocPath(path, object, this.ability);
 
-      this.ability = ability
-      this.$emit('update:ability', ability)
+      this.ability = ability;
+      this.$emit("update:ability", ability);
     },
-    updateAbility (ability) {
-      this.ability = ability
-      this.$emit('update:ability', ability)
+    updateAbility(ability) {
+      this.ability = ability;
+      this.$emit("update:ability", ability);
     },
-    deleteAbility () {
-      this.ability = null
-      this.$emit('update:ability', null)
+    deleteAbility() {
+      this.ability = null;
+      this.$emit("update:ability", null);
     },
-    closeAbilityModal () {
-      this.isAbilityModalVisible = false
+    closeAbilityModal() {
+      this.isAbilityModalVisible = false;
     },
-    enumOptions (entry) {
-      let required = R.path(R.dropLast(2, entry.btn.rulesPath), this.cardRules.Card).required
-      let name = R.last(entry.btn.rulesPath)
-      if ( required && R.includes(name, required) ) {
-        return R.path(entry.btn.rulesPath, this.cardRules.Card).enum
+    enumOptions(entry) {
+      let required = R.path(
+        R.dropLast(2, entry.btn.rulesPath),
+        this.cardRules.Card
+      ).required;
+      let name = R.last(entry.btn.rulesPath);
+      if (required && R.includes(name, required)) {
+        return R.path(entry.btn.rulesPath, this.cardRules.Card).enum;
+      } else {
+        return R.prepend(
+          unrequiredLabel,
+          R.path(entry.btn.rulesPath, this.cardRules.Card).enum
+        );
       }
-      else {
-        return R.prepend(unrequiredLabel, R.path(entry.btn.rulesPath, this.cardRules.Card).enum)
-      }
-
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../scss/variables";
+@import "../../scss/variables";
 
-  .clickable-option {
-    display: inline-block;
-    border: dotted 1px white;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.clickable-option {
+  display: inline-block;
+  border: dotted 1px white;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .clickable-option--negated {
-    text-decoration: line-through;
-    display: inline-block;
-    border: dotted 1px white;
-    cursor: pointer;
-  }
+.clickable-option--negated {
+  text-decoration: line-through;
+  display: inline-block;
+  border: dotted 1px white;
+  cursor: pointer;
+}
 
-  .ability {
-    display: inline-block;
-  }
+.ability {
+  display: inline-block;
+}
 
-  .ability-modal-container {
-    margin-top: 1vh;
-    position: relative;
-    z-index: 3;
-  }
+.ability-modal-container {
+  margin-top: 1vh;
+  position: relative;
+  z-index: 3;
+}
 
-  .text-close {
-    position: absolute;
-    right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 0.25rem;
-    line-height: 100%;
-  }
+.text-close {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.25rem;
+  line-height: 100%;
+}
 </style>

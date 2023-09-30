@@ -36,7 +36,6 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive } from "vue";
 import { validAddress } from "@/utils/validation";
-import { Coin } from "@/model/Coin";
 
 enum CurrentState {
   NONE,

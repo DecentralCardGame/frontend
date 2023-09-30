@@ -4,9 +4,7 @@ import type { ChainCard } from "@/model/Card";
 import { Coin, type CompatCoin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/amino";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
-import {
-  GenericAuthorization,
-} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
+import { GenericAuthorization } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
 import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";

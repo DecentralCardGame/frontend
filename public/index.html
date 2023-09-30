@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval';
@@ -14,48 +14,61 @@
     font-src 'self' https://fonts.gstatic.com;
     connect-src 'self' data: https://*.crowdcontrol.network"-->
 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- LOAD PERFORMANCE CRITICAL ASSETS -->
     <style>
-        body {
-            background: url("<%= BASE_URL %>background.svg");
-            background-size: 100% auto;
-        }
-        .loading-container {
-            position: fixed;
-            flex-flow: column;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            gap: 1rem;
-        }
-        .image1 {
-            position: relative;
-            z-index: 3;
-            max-width: 95vw;
-        }
-        .image2 {
-            position: absolute;
-            z-index: 1;
-            max-width: 95vw;
-        }
+      body {
+        background: url("<%= BASE_URL %>background.svg");
+        background-size: 100% auto;
+      }
+      .loading-container {
+        position: fixed;
+        flex-flow: column;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        gap: 1rem;
+      }
+      .image1 {
+        position: relative;
+        z-index: 3;
+        max-width: 95vw;
+      }
+      .image2 {
+        position: absolute;
+        z-index: 1;
+        max-width: 95vw;
+      }
     </style>
-</head>
-<body>
-<noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.</strong>
-</noscript>
-<div id="app">
-    <div class="loading-container">
-        <img src="<%= BASE_URL %>logo.svg" class="image1" alt="Loading..." width="500">
-        <img src="<%= BASE_URL %>sparkling_water.gif" class="image2" alt="Loading..." width="1200">
+  </head>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
+    </noscript>
+    <div id="app">
+      <div class="loading-container">
+        <img
+          src="<%= BASE_URL %>logo.svg"
+          class="image1"
+          alt="Loading..."
+          width="500"
+        />
+        <img
+          src="<%= BASE_URL %>sparkling_water.gif"
+          class="image2"
+          alt="Loading..."
+          width="1200"
+        />
+      </div>
     </div>
-</div>
-<!-- built files will be auto injected -->
-</body>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

@@ -9,17 +9,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 body {
@@ -36,7 +36,12 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-family-header;
 }
 
@@ -83,7 +88,7 @@ b {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease;
   @media (max-width: 480px) {
-    bottom:0;
+    bottom: 0;
     overflow-y: scroll;
   }
 }
@@ -98,8 +103,8 @@ b {
   @media (max-width: 480px) {
     margin-top: 0;
     grid-template-columns: 1fr;
-    max-height:300vh;
-    height:auto;
+    max-height: 300vh;
+    height: auto;
   }
   background-color: $white;
   text-shadow: none;
@@ -125,11 +130,15 @@ b {
     transition: all $animation-duration ease-out;
     &:after {
       z-index: -1;
-      background: linear-gradient(to right, $main-color-a 50%, darken($white, 10%) 50%);
+      background: linear-gradient(
+        to right,
+        $main-color-a 50%,
+        darken($white, 10%) 50%
+      );
       background-position: right bottom;
       background-size: 200% 100%;
       transition: all $animation-duration ease-out;
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 0;
@@ -159,7 +168,8 @@ b {
     flex-flow: column;
   }
 
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: darken($white, 50%);
     opacity: 1; /* Firefox */
   }
@@ -176,16 +186,15 @@ b {
     }
   }
 
-  input[type="checkbox"]  {
+  input[type="checkbox"] {
     border: 2px solid $main-color-a;
   }
 
   input[type="checkbox"]:checked {
     background-color: $minor-color-c;
-
   }
-  input[type="checkbox"]:checked::after{
-    content: '\2714';
+  input[type="checkbox"]:checked::after {
+    content: "\2714";
     position: absolute;
     top: -25%;
     left: 5%;
@@ -222,7 +231,7 @@ b {
       background-size: 200% 100%;
       background-position: right bottom;
       transition: all $animation-duration ease-out;
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 0;
@@ -259,10 +268,15 @@ h1 {
     margin-bottom: 1.15rem;
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     margin: 2.75rem 0 1.05rem;
     font-family: $font-family-header, sans-serif;
-    text-shadow: $border-thickness-bold $border-thickness-bold 0 $black-transparent;
+    text-shadow: $border-thickness-bold $border-thickness-bold 0
+      $black-transparent;
     line-height: $line-height-headline;
   }
 
@@ -271,15 +285,26 @@ h1 {
     font-size: 3.052em;
   }
 
-  h2 {font-size: 2.441em;}
+  h2 {
+    font-size: 2.441em;
+  }
 
-  h3 {font-size: 1.953em;}
+  h3 {
+    font-size: 1.953em;
+  }
 
-  h4 {font-size: 1.563em;}
+  h4 {
+    font-size: 1.563em;
+  }
 
-  h5 {font-size: 1.25em;}
+  h5 {
+    font-size: 1.25em;
+  }
 
-  small, .text--small {font-size: 0.8em;}
+  small,
+  .text--small {
+    font-size: 0.8em;
+  }
 
   .text--big {
     z-index: 3;
@@ -289,7 +314,8 @@ h1 {
 
 .header__h2 {
   font-family: $font-family-header;
-  text-shadow: $border-thickness-bold $border-thickness-bold 0 $black-transparent;
+  text-shadow: $border-thickness-bold $border-thickness-bold 0
+    $black-transparent;
   margin: 0 0 0.5rem;
   line-height: $line-height;
   font-size: 2.441em;

@@ -1,6 +1,6 @@
 import { useTx } from "@/def-composables/useTx";
 import { ref, watch, type Ref } from "vue";
-import * as R from 'ramda'
+import * as R from "ramda";
 import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
 import type { CardchainVoteRight } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/rest";
 
@@ -23,7 +23,7 @@ const useVotingInstance = () => {
   );
 
   const send = (then: (res: any) => void, err: (res: any) => void) => {
-    console.log("send", votes.value)
+    console.log("send", votes.value);
     multiVoteCard(
       votes.value,
       (res: any) => {
@@ -32,7 +32,7 @@ const useVotingInstance = () => {
       },
       err
     );
-    votes.value = []
+    votes.value = [];
   };
 
   const add = (cardId: number, voteType: string) => {

@@ -13,6 +13,10 @@ export const env = {
 };
 
 export const setFallback = (apiFallback: boolean) => {
-  env.apiURL = apiFallback ? import.meta.env.VITE_API_COSMOS_FALLBACK : import.meta.env.VITE_API_COSMOS
-  env.rpcURL = apiFallback ? import.meta.env.VITE_WS_TENDERMINT_FALLBACK : import.meta.env.VITE_WS_TENDERMINT
-}
+  env.apiURL = apiFallback
+    ? import.meta.env.VITE_API_COSMOS_FALLBACK
+    : import.meta.env.VITE_API_COSMOS;
+  env.rpcURL = apiFallback
+    ? import.meta.env.VITE_WS_TENDERMINT_FALLBACK
+    : import.meta.env.VITE_WS_TENDERMINT;
+};

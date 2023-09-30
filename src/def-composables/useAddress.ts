@@ -11,7 +11,7 @@ const useAddressInstance = (callback: (address: string) => void) => {
     } else {
       address.value = "";
     }
-    callback(address.value)
+    callback(address.value);
   };
   client.on("signer-changed", () => {
     setAddress();

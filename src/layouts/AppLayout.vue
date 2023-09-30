@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import AppLayoutDefault from '@/layouts/concrete/Default.vue'
+import AppLayoutDefault from "@/layouts/concrete/Default.vue";
 export default {
   name: "AppLayout",
   data: () => ({
-    layout: AppLayoutDefault
+    layout: AppLayoutDefault,
   }),
   watch: {
     $route: {
@@ -17,14 +17,16 @@ export default {
       async handler(route) {
         if (route.meta.layout) {
           try {
-            const component = await import( /* @vite-ignore */ `@/layouts/concrete/${route.meta.layout}.vue`)
-            this.layout = component?.default || AppLayoutDefault
+            const component = await import(
+              /* @vite-ignore */ `@/layouts/concrete/${route.meta.layout}.vue`
+            );
+            this.layout = component?.default || AppLayoutDefault;
           } catch (e) {
-            this.layout = AppLayoutDefault
+            this.layout = AppLayoutDefault;
           }
         }
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 </script>

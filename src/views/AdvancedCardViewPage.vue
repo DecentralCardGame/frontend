@@ -3,114 +3,83 @@
     <h1 class="header__h2">
       {{ card.CardName }}
     </h1>
-    <a
-      v-if="card.FlavourText"
-      class="FlavourText"
-    >"{{ card.FlavourText }}"</a>
-    <br><br>
+    <a v-if="card.FlavourText" class="FlavourText">"{{ card.FlavourText }}"</a>
+    <br /><br />
     <div class="Container">
       <!-- Keyword Element -->
-      <div
-        class="Element"
-        align="left"
-      >
+      <div class="Element" align="left">
         <h3>Used Keywords</h3>
-        <br>
-        <keyword-component
-          :keywords="card.Keywords"
-        />
+        <br />
+        <keyword-component :keywords="card.Keywords" />
       </div>
       <!-- Card Element -->
       <div class="ELement">
-        <CardComponent
-          :id="'card'"
-          :model="card"
-          :image-u-r-l="card.image"
-        />
+        <CardComponent :id="'card'" :model="card" :image-u-r-l="card.image" />
       </div>
       <!-- Basic Element -->
-      <div
-        class="Element"
-        align="left"
-      >
+      <div class="Element" align="left">
         <!-- General -->
         <h3>Advanced Card Information</h3>
         <a>
-          Votepool: {{ card.votePool.normalize().pretty() }} <br>
-          Status: {{ card.status }} <br>
-          Notes: {{ card.notes }} <br>
+          Votepool: {{ card.votePool.normalize().pretty() }} <br />
+          Status: {{ card.status }} <br />
+          Notes: {{ card.notes }} <br />
           Owner:
           <router-link
             v-if="card.owner"
-            :to="{name: 'UserView', params: {id: card.owner} }"
+            :to="{ name: 'UserView', params: { id: card.owner } }"
           >
             {{ card.owner }}
           </router-link>
-          <br>
+          <br />
           Artist:
           <router-link
             v-if="card.artist"
-            :to="{name: 'UserView', params: {id: card.artist} }"
+            :to="{ name: 'UserView', params: { id: card.artist } }"
           >
             {{ card.artist }}
-          </router-link>
-        </a><br> <br>
+          </router-link> </a
+        ><br />
+        <br />
         <!-- Voting -->
         <h3>Latest Voting Results</h3>
         <a>
-          Inappropriate Votes: {{ card.inappropriateVotes }} <br>
-          Underpowered Votes: {{ card.underpoweredVotes }} <br>
-          Overpowered Votes: {{ card.overpoweredVotes }} <br>
-          Fair Enough Votes: {{ card.fairEnoughVotes }} <br>
-          Nerflevel: {{ card.nerflevel }} <br>
-        </a> <br>
+          Inappropriate Votes: {{ card.inappropriateVotes }} <br />
+          Underpowered Votes: {{ card.underpoweredVotes }} <br />
+          Overpowered Votes: {{ card.overpoweredVotes }} <br />
+          Fair Enough Votes: {{ card.fairEnoughVotes }} <br />
+          Nerflevel: {{ card.nerflevel }} <br />
+        </a>
+        <br />
         <div class="ccbutton">
-          <button
-            v-if="canVote"
-            @click="vote('underpowered');"
-          >
+          <button v-if="canVote" @click="vote('underpowered')">
             Vote Underpowered
           </button>
-          <button
-            v-if="canVote"
-            @click="vote('overpowered');"
-          >
+          <button v-if="canVote" @click="vote('overpowered')">
             Vote Overpowered
           </button>
           <button
             v-if="canVote"
             class="btn--default"
-            @click="vote('fair_enough');"
+            @click="vote('fair_enough')"
           >
             Vote Fair Enough
           </button>
           <button
             v-if="canVote"
             class="btn--default"
-            @click="vote('inappropriate');"
+            @click="vote('inappropriate')"
           >
             Vote Inappropriate
           </button>
-          <br><br>
-          <button
-            v-if="isArtist"
-            class="btn--default"
-            @click="edit();"
-          >
+          <br /><br />
+          <button v-if="isArtist" class="btn--default" @click="edit()">
             Edit artwork
           </button>
-          <button
-            v-if="isOwner"
-            class="btn--default"
-            @click="edit();"
-          >
+          <button v-if="isOwner" class="btn--default" @click="edit()">
             Edit card
           </button>
-          <button
-            v-if="isOwner"
-            class="btn--default"
-            @click="showModal()"
-          >
+          <button v-if="isOwner" class="btn--default" @click="showModal()">
             Transfer card
           </button>
           <TransferCardModal
@@ -136,7 +105,6 @@ import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { Card } from "@/model/Card";
 import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 
-
 export default {
   name: "CardView",
   components: { CardComponent, TransferCardModal, KeywordComponent },
@@ -147,7 +115,7 @@ export default {
       isOwner: false,
       isArtist: false,
       canVote: false,
-      card: new Card()
+      card: new Card(),
     };
   },
   setup() {
@@ -157,7 +125,14 @@ export default {
     const { address } = useAddress();
     const { loggedIn } = useLoggedIn();
 
-    return { voteCard, address, loggedIn, queryQCard, queryQVotableCards, cardCreatorEditCard: editCard.card };
+    return {
+      voteCard,
+      address,
+      loggedIn,
+      queryQCard,
+      queryQVotableCards,
+      cardCreatorEditCard: editCard.card,
+    };
   },
   watch: {
     loggedIn() {
@@ -168,7 +143,7 @@ export default {
         this.isArtist = false;
         this.canVote = false;
       }
-    }
+    },
   },
   mounted() {
     this.id = parseInt(String(this.$route.params.id));
@@ -180,23 +155,22 @@ export default {
     loadVotableCards() {
       this.isOwner = this.card.owner === this.address;
       this.isArtist = this.card.artist === this.address;
-      this.queryQVotableCards(this.address)
-        .then(res => {
-          console.log(res);
-          let votableCards = [];
-          if (!res.noVoteRights) {
-            votableCards = res.voteRights;
-          }
-          this.canVote = false;
-          if (!R.isEmpty(votableCards)) {
-            for (let i = 0; i < votableCards.length; i++) {
-              if (votableCards[i].cardId == this.id) {
-                this.canVote = true;
-                break;
-              }
+      this.queryQVotableCards(this.address).then((res) => {
+        console.log(res);
+        let votableCards = [];
+        if (!res.noVoteRights) {
+          votableCards = res.voteRights;
+        }
+        this.canVote = false;
+        if (!R.isEmpty(votableCards)) {
+          for (let i = 0; i < votableCards.length; i++) {
+            if (votableCards[i].cardId == this.id) {
+              this.canVote = true;
+              break;
             }
           }
-        });
+        }
+      });
     },
     getCard() {
       this.queryQCard(this.id)
@@ -206,16 +180,20 @@ export default {
             this.loadVotableCards();
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           this.$router.push({ name: "NotFound" });
         });
     },
     vote(type) {
-      this.voteCard(this.id, type, _ => {
-        this.loadVotableCards();
-      }, () => {
-      });
+      this.voteCard(
+        this.id,
+        type,
+        (_) => {
+          this.loadVotableCards();
+        },
+        () => {}
+      );
     },
     edit() {
       this.card.id = this.id;
@@ -228,8 +206,8 @@ export default {
     closeModal() {
       this.isModalVisible = false;
       this.getCard();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -266,5 +244,4 @@ h3 {
     color: white;
   }
 }
-
 </style>

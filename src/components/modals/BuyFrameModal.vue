@@ -7,10 +7,7 @@
         class="modal"
         role="dialog"
       >
-        <header
-          id="modalTitle"
-          class="modal__header"
-        >
+        <header id="modalTitle" class="modal__header">
           <slot name="header">
             Card Frame Auction
             <button
@@ -23,27 +20,30 @@
             </button>
           </slot>
         </header>
-        <section
-          id="modalDescription"
-          class="modal__body"
-        >
+        <section id="modalDescription" class="modal__body">
           <slot name="body">
             <table class="table--buy-scard-frame">
               <tr>
                 <td>You have:</td>
-                <td><b>{{ ownedCardFrames }} Card Frames</b></td>
+                <td>
+                  <b>{{ ownedCardFrames }} Card Frames</b>
+                </td>
               </tr>
               <tr>
-                <br>
+                <br />
               </tr>
               <tr>
                 <td>Current price:</td>
-                <td><b>{{ currentPrice }}</b></td>
+                <td>
+                  <b>{{ currentPrice }}</b>
+                </td>
                 <td>credits</td>
               </tr>
               <tr>
                 <td>You have:</td>
-                <td><b>{{ creditsAvailable }} </b></td>
+                <td>
+                  <b>{{ creditsAvailable }} </b>
+                </td>
                 <td>credits</td>
               </tr>
               <tr>
@@ -51,11 +51,11 @@
                 <td>
                   <input
                     v-model="currentBid"
-                    :placeholder="[[ currentBid ]]"
+                    :placeholder="[[currentBid]]"
                     size="3"
                     type="text"
                     @keypress="isNumber($event)"
-                  >
+                  />
                 </td>
                 <td>credits</td>
               </tr>
@@ -78,8 +78,8 @@
   </transition>
 </template>
 
-<script lang=ts>
-import * as R from "ramda"
+<script lang="ts">
+import * as R from "ramda";
 import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
@@ -90,76 +90,86 @@ const { queryQUser, queryQCardchainInfo, queryAllBalances } = useQuery();
 const { buyCardScheme } = useTx();
 
 export default {
-  name: 'BuyFrameModal',
+  name: "BuyFrameModal",
   data() {
     return {
       ownedCardFrames: 0,
       currentPrice: -1,
       currentBid: -1,
-      creditsAvailable: -1
-    }
+      creditsAvailable: -1,
+    };
   },
   setup() {
     const { loggedIn } = useLoggedIn();
     const { address } = useAddress();
 
     return {
-      loggedIn, address
-    }
+      loggedIn,
+      address,
+    };
   },
   mounted() {
     queryQCardchainInfo({})
-      .then(res => {
-        console.log(res)
-        let credits = res.cardAuctionPrice.normalize().amount
-        this.currentBid = credits
-        this.currentPrice = credits
+      .then((res) => {
+        console.log(res);
+        let credits = res.cardAuctionPrice.normalize().amount;
+        this.currentBid = credits;
+        this.currentPrice = credits;
       })
-      .catch(res => {
-        console.error(res)
-        this.close()
-      })
+      .catch((res) => {
+        console.error(res);
+        this.close();
+      });
     queryQUser(this.address)
-      .then(user => {
-        this.ownedCardFrames = user.ownedCardSchemes.length
+      .then((user) => {
+        this.ownedCardFrames = user.ownedCardSchemes.length;
       })
-      .catch(res => {
-        console.error(res)
-        this.close()
-      })
+      .catch((res) => {
+        console.error(res);
+        this.close();
+      });
     queryAllBalances(this.address)
-      .then(acc => {
-        let usableCoins: Coin[] = R.filter((coin: Coin) => { return coin.denom == "ucredits" }, acc.balances)
+      .then((acc) => {
+        let usableCoins: Coin[] = R.filter((coin: Coin) => {
+          return coin.denom == "ucredits";
+        }, acc.balances);
         if (usableCoins.length == 0) {
-          throw new Error("No usable coins available")
+          throw new Error("No usable coins available");
         }
-        this.creditsAvailable = usableCoins[0].normalize().amount
+        this.creditsAvailable = usableCoins[0].normalize().amount;
       })
-      .catch(res => {
-        console.error(res)
-        this.close()
-      })
+      .catch((res) => {
+        console.error(res);
+        this.close();
+      });
   },
   methods: {
     close() {
-      this.$emit('close')
+      this.$emit("close");
     },
     buyCardFrame() {
-      this.$emit('close')
-      buyCardScheme(new Coin("credits", this.currentBid).denormalize().toCompatCoin(), res => {
-      }, () => {})
+      this.$emit("close");
+      buyCardScheme(
+        new Coin("credits", this.currentBid).denormalize().toCompatCoin(),
+        (res) => {},
+        () => {}
+      );
     },
     isNumber: function (evt) {
-      evt = evt || window.event
-      let charCode = (evt.which) ? evt.which : evt.keyCode
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault()
+      evt = evt || window.event;
+      let charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
       } else {
-        return true
+        return true;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">

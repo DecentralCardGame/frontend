@@ -1,11 +1,10 @@
 import * as R from "ramda";
 import { notify } from "@kyvg/vue3-notification";
 
-
 const useNotificationsInstance = () => {
   const isMobileDevice = () => {
     let check = false;
-    (function(a) {
+    (function (a) {
       if (
         /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(
           a
@@ -19,33 +18,33 @@ const useNotificationsInstance = () => {
     return check;
   };
 
-  const notifyFail = R.curry(function(title: string, text: string) {
+  const notifyFail = R.curry(function (title: string, text: string) {
     notify({
       group: "bottom-right-notification",
       title: title,
       text: text,
       type: "notification--alert",
-      duration: 5000
+      duration: 5000,
     });
   });
 
-  const notifySuccess = R.curry(function(title: string, text: string) {
+  const notifySuccess = R.curry(function (title: string, text: string) {
     notify({
       group: "bottom-right-notification",
       title: title,
       text: text,
       type: "notification--success",
-      duration: 5000
+      duration: 5000,
     });
   });
 
-  const notifyInfo = R.curry(function(title: string, text: string) {
+  const notifyInfo = R.curry(function (title: string, text: string) {
     notify({
       group: "bottom-right-notification",
       title: title,
       text: text,
       type: "notification--info",
-      duration: 5000
+      duration: 5000,
     });
   });
 
@@ -53,7 +52,7 @@ const useNotificationsInstance = () => {
     notifyInfo,
     notifyFail,
     notifySuccess,
-    isMobileDevice
+    isMobileDevice,
   };
 };
 

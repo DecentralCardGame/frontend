@@ -1,48 +1,25 @@
 <template>
   <div class="card-generator-container">
-    <h2 class="header__h2">
-      Card Creator
-    </h2>
+    <h2 class="header__h2">Card Creator</h2>
     <p class="header__p">
-      Our Card Creator lets you can design and craft your own cards by
-      following a simple step-by-step wizard that guides you through the whole
-      process.
+      Our Card Creator lets you can design and craft your own cards by following
+      a simple step-by-step wizard that guides you through the whole process.
     </p>
-    <br>
+    <br />
     <div>
-      <div
-        v-if="!artistMode"
-        class="progress-container"
-      >
+      <div v-if="!artistMode" class="progress-container">
         <div class="progress">
-          <div
-            :class="classStepPassed(0)"
-            @click="activeStep = 0"
-          >
+          <div :class="classStepPassed(0)" @click="activeStep = 0">
             Name, Flavor and Type
           </div>
-          <div
-            :class="classStepPassed(1)"
-            @click="activeStep = 1"
-          >
-            Artwork
-          </div>
-          <div
-            :class="classStepPassed(2)"
-            @click="activeStep = 2"
-          >
+          <div :class="classStepPassed(1)" @click="activeStep = 1">Artwork</div>
+          <div :class="classStepPassed(2)" @click="activeStep = 2">
             Costs and Properties
           </div>
-          <div
-            :class="classStepPassed(3)"
-            @click="activeStep = 3"
-          >
+          <div :class="classStepPassed(3)" @click="activeStep = 3">
             Abilities and Effects
           </div>
-          <div
-            :class="classStepPassed(4)"
-            @click="activeStep = 4"
-          >
+          <div :class="classStepPassed(4)" @click="activeStep = 4">
             Summary and Publish
           </div>
         </div>
@@ -57,75 +34,58 @@
           >
             <!-- Name -->
             <span class="creator-text"><b>Name:</b> </span>
-            <input
-              v-model="model.CardName"
-              maxLength="25"
-            >
+            <input v-model="model.CardName" maxLength="25" />
             <!-- Flavor -->
-            <span class="creator-text">
-              <br><b>Flavor Text:</b>
-            </span>
-            <input
-              v-model="model.FlavourText"
-            >
+            <span class="creator-text"> <br /><b>Flavor Text:</b> </span>
+            <input v-model="model.FlavourText" />
             <!-- Type -->
-            <span
-              v-if="cardRules.Card"
-              class="creator-text"
-            >
+            <span v-if="cardRules.Card" class="creator-text">
               My <b>type</b> is:
             </span>
             <select
               v-if="cardRules.Card"
               v-model="model.type"
-              @change="
-                resetAbilities();
-              "
+              @change="resetAbilities()"
             >
-              <option
-                v-for="val in getTypes()"
-                :key="val"
-              >
+              <option v-for="val in getTypes()" :key="val">
                 {{ val }}
               </option>
             </select>
 
             <!-- Classes -->
-            <div class="creator-text">
-              <b>Classes:</b> <br>
-            </div>
+            <div class="creator-text"><b>Classes:</b> <br /></div>
             <div>
               <label class="input--checkbox-label__left">
                 <input
                   v-model="model.Class.Technology"
                   class="input--checkbox__left"
                   type="checkbox"
-                >
-                Technology <br>
+                />
+                Technology <br />
               </label>
               <label class="input--checkbox-label__left">
                 <input
                   v-model="model.Class.Nature"
                   class="input--checkbox__left"
                   type="checkbox"
-                >
-                Nature <br>
+                />
+                Nature <br />
               </label>
               <label class="input--checkbox-label__left">
                 <input
                   v-model="model.Class.Culture"
                   class="input--checkbox__left"
                   type="checkbox"
-                >
-                Culture <br>
+                />
+                Culture <br />
               </label>
               <label class="input--checkbox-label__left">
                 <input
                   v-model="model.Class.Mysticism"
                   class="input--checkbox__left"
                   type="checkbox"
-                >
-                Mysticism <br>
+                />
+                Mysticism <br />
               </label>
             </div>
           </div>
@@ -135,63 +95,49 @@
             v-if="activeStep == 1 || artistMode"
             class="creator-input-single-column"
           >
-            <label
-              v-if="!artistMode"
-              class="input--checkbox-label__left"
-            >
+            <label v-if="!artistMode" class="input--checkbox-label__left">
               <input
                 v-model="designateArtist"
                 class="input--checkbox__left"
                 type="checkbox"
-              >
-              Designate other Artist (not yourself) <br>
+              />
+              Designate other Artist (not yourself) <br />
             </label>
-            <div
-              v-if="designateArtist && !artistMode"
-            >
+            <div v-if="designateArtist && !artistMode">
               <span class="creator-text"><b>Address:</b> </span>
-              <input
-                v-model="artistAddress"
-              >
+              <input v-model="artistAddress" />
             </div>
             <!-- Self-service Artwork -->
-            <div
-              v-if="!designateArtist || artistMode"
-            >
+            <div v-if="!designateArtist || artistMode">
               <span class="creator-text">
-                Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
+                Please upload an image. <br />By uploading you confirm you have
+                the rights to upload this image.
               </span>
             </div>
-            <div
-              v-if="!designateArtist || artistMode"
-            >
+            <div v-if="!designateArtist || artistMode">
               <input
                 id="file"
                 class="inputfile"
                 name="file"
                 type="file"
                 @change="inputFile"
-              >
-              <label
-                class="button--file"
-                for="file"
-              >Choose a file without copyright violation
+              />
+              <label class="button--file" for="file"
+                >Choose a file without copyright violation
               </label>
             </div>
-            <div
-              v-if="!designateArtist || artistMode"
-            >
+            <div v-if="!designateArtist || artistMode">
               <cropper
                 class="cropper"
                 :src="cropImage"
                 :auto-zoom="true"
                 :stencil-size="{
                   width: cardBounds.x,
-                  height: model.fullArt ? cardBounds.y : cardBounds.x
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
                 }"
                 :canvas="{
                   height: model.fullArt ? cardBounds.y : cardBounds.x,
-                  width: cardBounds.x
+                  width: cardBounds.x,
                 }"
                 :default-size="{
                   width: cardBounds.x,
@@ -203,28 +149,19 @@
             </div>
 
             <!-- The fullart toggle is deactivated -->
-            <div
-              v-if="activeStep == 1 && !designateArtist && false"
-            >
+            <div v-if="activeStep == 1 && !designateArtist && false">
               <!-- FullArt -->
               <span class="creator-text">
                 My <b>beauty</b> must not be covered by borders
               </span>
-              <input
-                v-model="model.fullArt"
-                type="checkbox"
-              >
+              <input v-model="model.fullArt" type="checkbox" />
             </div>
             <div
               v-if="artistMode"
               class="creator-nav-container ccbutton"
               align="center"
             >
-              <button
-                @click="saveSubmit()"
-              >
-                Update Artwork
-              </button>
+              <button @click="saveSubmit()">Update Artwork</button>
             </div>
           </div>
 
@@ -235,8 +172,10 @@
           >
             <!-- Mana Cost -->
             <span
-              v-if="cardRules.Card.children[getRulesType()] &&
-                cardRules.Card.children[getRulesType()].children.CastingCost"
+              v-if="
+                cardRules.Card.children[getRulesType()] &&
+                cardRules.Card.children[getRulesType()].children.CastingCost
+              "
               class="creator-text"
             >
               <b>Casting Cost:</b>
@@ -244,12 +183,10 @@
             <div
               v-if="
                 cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.CastingCost
+                cardRules.Card.children[getRulesType()].children.CastingCost
               "
             >
-              <select
-                v-model="model.CastingCost"
-              >
+              <select v-model="model.CastingCost">
                 <option
                   v-for="n in getGenericCardRange('CastingCost')"
                   :key="n"
@@ -264,7 +201,7 @@
             <div
               v-if="
                 cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.AdditionalCost
+                cardRules.Card.children[getRulesType()].children.AdditionalCost
               "
               class="creator-text"
             >
@@ -273,34 +210,24 @@
                 type="checkbox"
                 class="input--checkbox__right"
                 @change="toggleAdditionalCost"
-              >
+              />
               Special Cost:
             </div>
             <div
-              v-if="!isAdditionalCostVisible &&
+              v-if="
+                !isAdditionalCostVisible &&
                 cardRules.Card.children[getRulesType()] &&
-                cardRules.Card.children[getRulesType()].children.AdditionalCost"
+                cardRules.Card.children[getRulesType()].children.AdditionalCost
+              "
             >
               <!-- this div is to fix the grid -->
             </div>
-            <div
-              v-if="isAdditionalCostVisible"
-            >
-              <select
-                @change="setAdditionalCost($event);"
-              >
-                <option
-                  disabled
-                  selected="true"
-                  value=""
-                >
+            <div v-if="isAdditionalCostVisible">
+              <select @change="setAdditionalCost($event)">
+                <option disabled selected="true" value="">
                   Select Special Cost
                 </option>
-                <option
-                  v-for="n in getSpecialCostRange()"
-                  :key="n"
-                  :value="n"
-                >
+                <option v-for="n in getSpecialCostRange()" :key="n" :value="n">
                   {{ printAdditionalCost(n) }}
                 </option>
               </select>
@@ -311,7 +238,7 @@
               >
                 <select
                   v-model="model.AdditionalCost.DiscardCost.Amount"
-                  @change="updateAdditionalCostText();"
+                  @change="updateAdditionalCostText()"
                 >
                   <option
                     v-for="n in getGenericCostRange('DiscardCost')"
@@ -325,12 +252,10 @@
                 cards from your hand.
               </span>
 
-              <span
-                v-if="model.AdditionalCost.SacrificeCost"
-              >
+              <span v-if="model.AdditionalCost.SacrificeCost">
                 <select
                   v-model="model.AdditionalCost.SacrificeCost.Amount"
-                  @change="updateAdditionalCostText();"
+                  @change="updateAdditionalCostText()"
                 >
                   <option
                     v-for="n in getGenericCostRange('SacrificeCost')"
@@ -343,12 +268,10 @@
                 Entitites.
               </span>
 
-              <span
-                v-if="model.AdditionalCost.VoidCost"
-              >
+              <span v-if="model.AdditionalCost.VoidCost">
                 <select
                   v-model="model.AdditionalCost.VoidCost.Amount"
-                  @change="updateAdditionalCostText();"
+                  @change="updateAdditionalCostText()"
                 >
                   <option
                     v-for="n in getGenericCostRange('VoidCost')"
@@ -363,48 +286,43 @@
             </div>
 
             <!-- HQ Delay -->
-            <span
-              v-if="model.type === 'Headquarter'"
-              class="creator-text"
-            >
-              <b>Delay</b> of Activation: <br>
+            <span v-if="model.type === 'Headquarter'" class="creator-text">
+              <b>Delay</b> of Activation: <br />
             </span>
             <div
               v-if="
                 cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.Delay
+                cardRules.Card.children[getRulesType()].children.Delay
               "
             >
               <span class="creator-text">
-                <select
-                  v-model="model.Delay"
-                >
-                  <option
-                    v-for="n in getHQDelayRange()"
-                    :key="n"
-                    :value="n"
-                  >
+                <select v-model="model.Delay">
+                  <option v-for="n in getHQDelayRange()" :key="n" :value="n">
                     {{ n }}
                   </option>
                 </select>
 
-                turns.<br>
+                turns.<br />
               </span>
             </div>
 
             <!-- Attack -->
             <span
-              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
+              v-if="
+                model.type === 'Entity' &&
+                cardRules.Card.children[getRulesType()]
+              "
               class="creator-text"
             >
               <b>Attack:</b>
             </span>
             <div
-              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
+              v-if="
+                model.type === 'Entity' &&
+                cardRules.Card.children[getRulesType()]
+              "
             >
-              <select
-                v-model="model.Attack"
-              >
+              <select v-model="model.Attack">
                 <option
                   v-for="n in getGenericCardRange('Attack')"
                   :key="n"
@@ -417,18 +335,22 @@
 
             <!-- Health -->
             <span
-              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
+              v-if="
+                model.type !== 'Action' &&
+                cardRules.Card.children[getRulesType()]
+              "
               class="creator-text"
             >
-              <b>Defense:</b> <br>
-              <br>
+              <b>Defense:</b> <br />
+              <br />
             </span>
             <div
-              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
+              v-if="
+                model.type !== 'Action' &&
+                cardRules.Card.children[getRulesType()]
+              "
             >
-              <select
-                v-model="model.Health"
-              >
+              <select v-model="model.Health">
                 <option
                   v-for="n in getGenericCardRange('Health')"
                   :key="n"
@@ -440,23 +362,16 @@
             </div>
 
             <!-- Tag -->
-            <span
-              v-if="cardRules.Card"
-              class="creator-text"
-            >
-              <b>Tags:</b> </span>
-            <div
-              v-if="cardRules.Card"
-            >
+            <span v-if="cardRules.Card" class="creator-text">
+              <b>Tags:</b>
+            </span>
+            <div v-if="cardRules.Card">
               <select
                 v-model="model.tagDummy"
                 class="tag-select"
                 @change="updateTags"
               >
-                <option
-                  v-for="tag in getTags(0)"
-                  :key="tag"
-                >
+                <option v-for="tag in getTags(0)" :key="tag">
                   {{ tag }}
                 </option>
               </select>
@@ -466,10 +381,7 @@
                 class="tag-select"
                 @change="updateTags"
               >
-                <option
-                  v-for="tag in getTags(1)"
-                  :key="tag"
-                >
+                <option v-for="tag in getTags(1)" :key="tag">
                   {{ tag }}
                 </option>
               </select>
@@ -479,10 +391,7 @@
                 class="tag-select tag-select-last"
                 @change="updateTags"
               >
-                <option
-                  v-for="tag in getTags(2)"
-                  :key="tag"
-                >
+                <option v-for="tag in getTags(2)" :key="tag">
                   {{ tag }}
                 </option>
               </select>
@@ -490,12 +399,10 @@
           </div>
 
           <!-- Abilities section -->
-          <div
-            v-if="activeStep == 3 && !artistMode"
-          >
+          <div v-if="activeStep == 3 && !artistMode">
             <p>
-              In this step, you craft the heart of your card. Press the button to
-              add <b>abilities / effects</b> to your card.
+              In this step, you craft the heart of your card. Press the button
+              to add <b>abilities / effects</b> to your card.
             </p>
             <div>
               <div
@@ -521,10 +428,7 @@
                 Add Effect
               </button>
             </div>
-            <div
-              v-else
-              class="creator-text"
-            >
+            <div v-else class="creator-text">
               <button
                 class="btn btn-abilitycreator"
                 type="button"
@@ -551,39 +455,31 @@
             v-if="activeStep == 4 && !artistMode"
             class="creator-input-container"
           >
-            <span class="creator-text">
-              <b>Notes</b> for the Council
-            </span>
-            <input
-              v-model="model.notes"
-            >
+            <span class="creator-text"> <b>Notes</b> for the Council </span>
+            <input v-model="model.notes" />
 
-            <span v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
-              class="creator-text">
-              Balance Anchor 
+            <span
+              v-if="address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
+              class="creator-text"
+            >
+              Balance Anchor
             </span>
-              
+
             <input
-              v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
+              v-if="address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
               v-model="model.balanceAnchor"
               type="checkbox"
               class="input--checkbox__right"
-            >
-
+            />
           </div>
 
           <div
             v-if="activeStep == 4 && mode == Mode.EDIT && !abilities"
             class="creator-input-container"
           >
-            <span class="creator-text">
-              Clear Abilities
-            </span>
+            <span class="creator-text"> Clear Abilities </span>
             <div>
-              <input
-                v-model="clearAbilities"
-                type="checkbox"
-              >
+              <input v-model="clearAbilities" type="checkbox" />
             </div>
           </div>
 
@@ -593,17 +489,10 @@
             class="creator-nav-container ccbutton"
             align="center"
           >
-            <button
-              v-if="activeStep > 0"
-              class="back"
-              @click="activeStep--"
-            >
+            <button v-if="activeStep > 0" class="back" @click="activeStep--">
               Go Back
             </button>
-            <button
-              v-if="activeStep < 4"
-              @click="activeStep++"
-            >
+            <button v-if="activeStep < 4" @click="activeStep++">
               Next Step >
             </button>
             <button
@@ -671,10 +560,7 @@ import AbilityModal from "../components/modals/AbilityModal.vue";
 import AbilityComponent from "../components/elements/AbilityComponent.vue";
 import { env } from "@/env";
 
-import {
-  atPath,
-  uploadImg
-} from "@/components/utils/utils.js";
+import { atPath, uploadImg } from "@/components/utils/utils.js";
 
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
@@ -687,7 +573,7 @@ import { useTx } from "@/def-composables/useTx";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { validAddress } from "@/utils/validation";
 import { useQuery } from "@/def-composables/useQuery";
-import { isASCII } from '@/utils/utils';
+import { isASCII } from "@/utils/utils";
 
 const { saveCardContent, addArtwork } = useTx();
 const { queryQUser } = useQuery();
@@ -699,7 +585,13 @@ enum Mode {
 
 export default {
   name: "CardCreator",
-  components: { CardComponent, AbilityComponent, BuyFrameModal, AbilityModal, Cropper },
+  components: {
+    CardComponent,
+    AbilityComponent,
+    BuyFrameModal,
+    AbilityModal,
+    Cropper,
+  },
   data() {
     return {
       isAbilityModalVisible: false,
@@ -718,7 +610,7 @@ export default {
       cropImage: "",
       cardID: 0,
       mode: Mode.CREATE,
-      Mode: Mode
+      Mode: Mode,
     };
   },
   setup() {
@@ -735,7 +627,7 @@ export default {
       loggedIn,
       address,
       notifyInfo,
-      notifyFail
+      notifyFail,
     };
   },
   computed: {},
@@ -747,10 +639,10 @@ export default {
         this.cardCreatorDraft = this.model;
       }
       this.setMode();
-    }
+    },
   },
   mounted() {
-    console.log("print model after mounted", this.model)
+    console.log("print model after mounted", this.model);
     if (this.loggedIn) {
       this.notifyInfo("Not logged in", "You must login to create a card.");
     }
@@ -762,7 +654,10 @@ export default {
 
       // if waiting did not help, route back to / (without cardRules.Card this page makes no sense)
       if (!this.cardRules)
-        this.notifyFail("CardRules", "CardRules were not properly loaded. This is really bad.");
+        this.notifyFail(
+          "CardRules",
+          "CardRules were not properly loaded. This is really bad."
+        );
       this.$router.push("/");
     } else {
       console.log("cardRules:", this.cardRules);
@@ -773,19 +668,17 @@ export default {
     // here a card is loaded if edit card via gallery was selected
     if (this.mode == Mode.EDIT) {
       this.model = this.cardCreatorEditCard;
-      if (!this.model.AdditionalCost) this.model.AdditionalCost = {}
+      if (!this.model.AdditionalCost) this.model.AdditionalCost = {};
       console.log("edit card: ", this.model);
 
       this.cropImage = this.model.image;
 
-      if (this.model.Tags[0])
-        this.model.tagDummy = this.model.Tags[0];
+      if (this.model.Tags[0]) this.model.tagDummy = this.model.Tags[0];
 
       this.designateArtist = this.model.artist != this.model.owner;
       if (this.designateArtist) {
         this.artistAddress = this.model.artist;
-        if (this.artistAddress === this.address)
-          this.artistMode = true;
+        if (this.artistAddress === this.address) this.artistMode = true;
       }
       return;
     } else {
@@ -800,26 +693,33 @@ export default {
   methods: {
     getHQDelayRange() {
       return R.range(
-        this.cardRules.Card.children[this.getRulesType()].children.Delay.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children.Delay.min ||
+          0,
         this.cardRules.Card.children[this.getRulesType()].children.Delay.max + 1
       );
     },
     getGenericCostRange(key: string) {
       return R.range(
-        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
-        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
+        this.cardRules.Card.children[this.getRulesType()].children
+          .AdditionalCost.children[key].children.Amount.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children
+          .AdditionalCost.children[key].children.Amount.max + 1
       );
     },
     getSpecialCostRange() {
       return R.keys(
-        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children
+        this.cardRules.Card.children[this.getRulesType()].children
+          .AdditionalCost.children
       );
     },
     getGenericCardRange(key: string): number[] {
       let range: number[] = [];
       for (
-        let i = this.cardRules.Card.children[this.getRulesType()].children[key].min || 0;
-        i < this.cardRules.Card.children[this.getRulesType()].children[key].max + 1;
+        let i =
+          this.cardRules.Card.children[this.getRulesType()].children[key].min ||
+          0;
+        i <
+        this.cardRules.Card.children[this.getRulesType()].children[key].max + 1;
         i++
       ) {
         range.push(i);
@@ -834,29 +734,28 @@ export default {
       }
     },
     changeCrop({ canvas }) {
-      mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)])
-        .then(b64 => {
-          this.srcToFile(b64, "image.jpg", "image/jpeg")
-            .then(file => {
-              uploadImg(file, env.cardImgMaxKB, (result) => {
-                if (result.startsWith("Error")) {
-                  this.notifyFail("Failed to Upload", result);
-                  return;
-                }
-                this.model.image = result;
-              });
+      mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)]).then(
+        (b64) => {
+          this.srcToFile(b64, "image.jpg", "image/jpeg").then((file) => {
+            uploadImg(file, env.cardImgMaxKB, (result) => {
+              if (result.startsWith("Error")) {
+                this.notifyFail("Failed to Upload", result);
+                return;
+              }
+              this.model.image = result;
             });
-        });
+          });
+        }
+      );
     },
     srcToFile(src, fileName, mimeType) {
-      return (fetch(src)
-          .then(function(res) {
-            return res.arrayBuffer();
-          })
-          .then(function(buf) {
-            return new File([buf], fileName, { type: mimeType });
-          })
-      );
+      return fetch(src)
+        .then(function (res) {
+          return res.arrayBuffer();
+        })
+        .then(function (buf) {
+          return new File([buf], fileName, { type: mimeType });
+        });
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
@@ -866,17 +765,19 @@ export default {
     setAdditionalCost(event) {
       this.model.AdditionalCost = {};
       this.model.AdditionalCost[event.target.value] = {
-        Amount: 0
+        Amount: 0,
       };
       this.updateAdditionalCostText();
     },
     printAdditionalCost(wholeString) {
-      let countUppers = x => R.sum(R.map(
-        x => x === R.toUpper(x) ? 1 : 0,
-        R.split("", x)));
+      let countUppers = (x) =>
+        R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
 
       let printString = "";
-      while (countUppers(printString) < 2 && printString.length < wholeString.length) {
+      while (
+        countUppers(printString) < 2 &&
+        printString.length < wholeString.length
+      ) {
         printString = R.take(printString.length + 1, wholeString);
       }
 
@@ -884,10 +785,11 @@ export default {
     },
     showBuyFrameModal() {
       if (!this.address) {
-        this.notifyFail("Unable to buy Card Frame", "You must be logged in with an activated account for this.");
-      }
-      else
-        this.isBuyFrameModalVisible = true;
+        this.notifyFail(
+          "Unable to buy Card Frame",
+          "You must be logged in with an activated account for this."
+        );
+      } else this.isBuyFrameModalVisible = true;
     },
     closeBuyFrameModal() {
       this.isBuyFrameModalVisible = false;
@@ -899,7 +801,10 @@ export default {
 
       if (type === "root") {
         if (this.abilities.length >= 3) {
-          this.notifyFail("Number of Abilities", "A card can only have a maximum of 3 Abilities.");
+          this.notifyFail(
+            "Number of Abilities",
+            "A card can only have a maximum of 3 Abilities."
+          );
           this.isAbilityModalVisible = false;
           return;
         }
@@ -920,8 +825,8 @@ export default {
             this.getRulesType() === "Action" ? "Effects" : "Abilities",
             "children",
             this.getRulesType() === "Action" ? "Effect" : "Ability",
-            "children"
-          ]
+            "children",
+          ],
         };
 
         let options = atRules(newAbility.path);
@@ -932,13 +837,13 @@ export default {
           type: "root",
           options: options,
           rulesPath: newAbility.path,
-          abilityPath: []
+          abilityPath: [],
         };
 
         console.log("dialog", dialog);
 
         // this is the bugfix for replay selection bug
-        R.forEachObjIndexed(function(option) {
+        R.forEachObjIndexed(function (option) {
           if (option.selected) delete option.selected;
         }, dialog.options);
 
@@ -962,42 +867,69 @@ export default {
       }
       console.log("abilities after update", this.abilities);
 
-      let keywordCount = R.length(R.flatten(R.pluck("keywords", this.abilities)));
+      let keywordCount = R.length(
+        R.flatten(R.pluck("keywords", this.abilities))
+      );
       if (keywordCount >= 6 && keywordCount <= 8) {
-        this.notifyInfo("Number of Keywords", "You have added " + keywordCount + " Keywords to this card. 8 is the maximum.");
+        this.notifyInfo(
+          "Number of Keywords",
+          "You have added " +
+            keywordCount +
+            " Keywords to this card. 8 is the maximum."
+        );
       } else if (keywordCount > 8) {
-        this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.");
+        this.notifyFail(
+          "Number of Keywords",
+          "You have added more than 8 Keywords to this card. Please limit to 8."
+        );
       }
 
       this.updateRulesTexts();
     },
     updateRulesTexts() {
       this.model.Keywords = R.pluck("keywords", this.abilities);
-      this.model.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      this.model.RulesTexts = R.map(
+        this.interactionTextToString,
+        this.abilities
+      );
 
       this.updateAdditionalCostText();
     },
     updateAdditionalCostText() {
       let setOrPrepend = (text) => {
-        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0])))
+        if (
+          this.model.RulesTexts[0] &&
+          R.equals("Extra", R.take(5, this.model.RulesTexts[0]))
+        )
           this.model.RulesTexts[0] = text;
-        else
-          this.model.RulesTexts = R.prepend(text, this.model.RulesTexts);
+        else this.model.RulesTexts = R.prepend(text, this.model.RulesTexts);
       };
 
       if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
         if (this.model.AdditionalCost.SacrificeCost) {
-          let text = "Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.";
+          let text =
+            "Extra Cost - Sacrifice " +
+            this.model.AdditionalCost.SacrificeCost.Amount +
+            " Entity.";
           setOrPrepend(text);
         } else if (this.model.AdditionalCost.DiscardCost) {
-          let text = "Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.";
+          let text =
+            "Extra Cost - Discard " +
+            this.model.AdditionalCost.DiscardCost.Amount +
+            " Card.";
           setOrPrepend(text);
         } else if (this.model.AdditionalCost.VoidCost) {
-          let text = "Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.";
+          let text =
+            "Extra Cost - Void " +
+            this.model.AdditionalCost.VoidCost.Amount +
+            " Card.";
           setOrPrepend(text);
         }
       } else {
-        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0])))
+        if (
+          this.model.RulesTexts[0] &&
+          R.equals("Extra", R.take(5, this.model.RulesTexts[0]))
+        )
           this.model.RulesTexts = R.drop(1, this.model.RulesTexts);
       }
     },
@@ -1017,8 +949,8 @@ export default {
     getTags(idx) {
       if (this.cardRules.Card) {
         let usedTags = [];
-        let allTags = this.cardRules.Card.children.Action.children.Tags.children.Tag
-          .enum;
+        let allTags =
+          this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
         if (this.model.Tags[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.Tags[idx], this.model.Tags);
@@ -1060,35 +992,44 @@ export default {
           );
           return;
         }
-        addArtwork(this.model.id, this.model.image, this.model.fullArt, this.resetCard, (err) => {
-          this.notifyFail("Update Artwork failed", err);
-          console.error(err);
-        });
+        addArtwork(
+          this.model.id,
+          this.model.image,
+          this.model.fullArt,
+          this.resetCard,
+          (err) => {
+            this.notifyFail("Update Artwork failed", err);
+            console.error(err);
+          }
+        );
         return;
       }
 
       // otherwise: check all things that must be entered:
       if (!this.model.CardName) {
-        this.notifyFail("No Name", "Card has no name, please enter a name.")
-        return
+        this.notifyFail("No Name", "Card has no name, please enter a name.");
+        return;
       }
       if (!this.model.type || this.model.type === "no type") {
-        this.notifyFail("Wrong Type", "please pick a type")
-        return
+        this.notifyFail("Wrong Type", "please pick a type");
+        return;
       }
       if (!this.designateArtist && !this.model.image) {
         this.notifyFail(
           "No Image",
           "Card has no image, please upload an image."
-        )
-        return
+        );
+        return;
       }
-      if (this.designateArtist && !this.$cardChain.validAddress(this.artistAddress)) {
+      if (
+        this.designateArtist &&
+        !this.$cardChain.validAddress(this.artistAddress)
+      ) {
         this.notifyFail(
           "Invalid Address",
           "The address given for designated artist is invalid."
-        )
-        return
+        );
+        return;
       }
       if (this.designateArtist && !validAddress(this.artistAddress)) {
         this.notifyFail(
@@ -1153,7 +1094,11 @@ export default {
 
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
-        if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
+        if (
+          this.mode == Mode.EDIT &&
+          !this.clearAbilities &&
+          R.isEmpty(this.abilities)
+        ) {
           newModel.Abilities = R.clone(this.cardCreatorEditCard.Abilities);
         }
         // this writes the relevant part of the abilities in the new model
@@ -1161,7 +1106,8 @@ export default {
           newModel.Abilities = R.map(
             R.pick(
               R.keys(
-                this.cardRules.Card.children.Entity.children.Abilities.children.Ability.children
+                this.cardRules.Card.children.Entity.children.Abilities.children
+                  .Ability.children
               )
             ),
             this.abilities
@@ -1169,7 +1115,11 @@ export default {
         }
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
-        if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
+        if (
+          this.mode == Mode.EDIT &&
+          !this.clearAbilities &&
+          R.isEmpty(this.abilities)
+        ) {
           newModel.Effects = R.clone(this.cardCreatorEditCard.Effects);
         }
         // this writes the relevant part of the effects in the new model
@@ -1177,7 +1127,8 @@ export default {
           newModel.Effects = R.map(
             R.pick(
               R.keys(
-                this.cardRules.definitions.Card.children.Action.children.Effects.children.Effect.children
+                this.cardRules.definitions.Card.children.Action.children.Effects
+                  .children.Effect.children
               )
             ),
             this.abilities
@@ -1187,11 +1138,20 @@ export default {
 
       // check if the old Keywords and RulesTexts should be restored
       let checkZeroAmount = () => {
-        return (this.model.AdditionalCost.SacrificeCost && this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
-          (this.model.AdditionalCost.DiscardCost && this.model.AdditionalCost.DiscardCost.Amount == 0) ||
-          (this.model.AdditionalCost.VoidCost && this.model.AdditionalCost.VoidCost.Amount == 0);
+        return (
+          (this.model.AdditionalCost.SacrificeCost &&
+            this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
+          (this.model.AdditionalCost.DiscardCost &&
+            this.model.AdditionalCost.DiscardCost.Amount == 0) ||
+          (this.model.AdditionalCost.VoidCost &&
+            this.model.AdditionalCost.VoidCost.Amount == 0)
+        );
       };
-      if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
+      if (
+        this.mode == Mode.EDIT &&
+        !this.clearAbilities &&
+        R.isEmpty(this.abilities)
+      ) {
         newModel.Keywords = this.cardCreatorEditCard.Keywords;
         newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
 
@@ -1208,20 +1168,27 @@ export default {
         this.updateRulesTexts();
       }
 
-      newModel.image = this.model.image
-      newModel.balanceAnchor = this.model.balanceAnchor
+      newModel.image = this.model.image;
+      newModel.balanceAnchor = this.model.balanceAnchor;
 
       let checkASCII = (string, origin) => {
-        string.split('').forEach(char => {
+        string.split("").forEach((char) => {
           if (!isASCII(char)) {
-            console.error("char "+char+" is not ASCII compatible.")
-            this.notifyFail("INVALID CHARACTER", "You used symbol "+char+" in "+origin+" and it is not supported.")
+            console.error("char " + char + " is not ASCII compatible.");
+            this.notifyFail(
+              "INVALID CHARACTER",
+              "You used symbol " +
+                char +
+                " in " +
+                origin +
+                " and it is not supported."
+            );
           }
-        })
-      }
+        });
+      };
 
-      checkASCII(newModel.FlavourText, "Flavour Text")
-      checkASCII(newModel.CardName, "Card Name")
+      checkASCII(newModel.FlavourText, "Flavour Text");
+      checkASCII(newModel.CardName, "Card Name");
 
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
@@ -1235,31 +1202,52 @@ export default {
         };
 
         saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
-        if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
-      }
-      else if (!this.address) {
-        this.notifyFail("Unable publish Card", "You must be logged in with an activated account!");
-      } 
-      else {
-        queryQUser(this.address).then((res: User) => {
-          if (R.isEmpty(res.ownedCardSchemes)) {
-            this.notifyFail("YOU MUST CONSTRUCT ADDITIONAL PYLONS", "You don't own any Card Frames. Please buy one before publishing.");
-            throw new Error("account " + this.address + " does not own Card Frames");
-          } else {
-            let id = +res.ownedCardSchemes[0];
-            let handleErr = (err) => {
-              this.notifyFail("Publish Card failed", err);
-              console.error(err);
-            };
+        if (!this.designateArtist)
+          addArtwork(
+            this.model.id,
+            newCard.image,
+            newCard.fullArt,
+            this.resetCard,
+            handleErr
+          );
+      } else if (!this.address) {
+        this.notifyFail(
+          "Unable publish Card",
+          "You must be logged in with an activated account!"
+        );
+      } else {
+        queryQUser(this.address)
+          .then((res: User) => {
+            if (R.isEmpty(res.ownedCardSchemes)) {
+              this.notifyFail(
+                "YOU MUST CONSTRUCT ADDITIONAL PYLONS",
+                "You don't own any Card Frames. Please buy one before publishing."
+              );
+              throw new Error(
+                "account " + this.address + " does not own Card Frames"
+              );
+            } else {
+              let id = +res.ownedCardSchemes[0];
+              let handleErr = (err) => {
+                this.notifyFail("Publish Card failed", err);
+                console.error(err);
+              };
 
-            saveCardContent(id, newCard, this.resetCard, handleErr);
-            if (!this.designateArtist) addArtwork(id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          this.notifyFail("Publish Card failed", err);
-        });
+              saveCardContent(id, newCard, this.resetCard, handleErr);
+              if (!this.designateArtist)
+                addArtwork(
+                  id,
+                  newCard.image,
+                  newCard.fullArt,
+                  this.resetCard,
+                  handleErr
+                );
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            this.notifyFail("Publish Card failed", err);
+          });
       }
     },
     resetCard() {
@@ -1282,14 +1270,25 @@ export default {
       let exportClass = "progress-item";
 
       if (this.activeStep > n) {
-        if (n === 0 && this.model.CardName && this.model.CardName !== "Name" && this.model.image)
+        if (
+          n === 0 &&
+          this.model.CardName &&
+          this.model.CardName !== "Name" &&
+          this.model.image
+        )
           exportClass += " progress-item-finished";
-
-        else if (n === 1 && this.model.Tags[0] && this.model.type && this.model.type !== "no type")
+        else if (
+          n === 1 &&
+          this.model.Tags[0] &&
+          this.model.type &&
+          this.model.type !== "no type"
+        )
           exportClass += " progress-item-finished";
-
         else if (n === 2) {
-          if (this.model.type !== "Headquarter" && (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0))
+          if (
+            this.model.type !== "Headquarter" &&
+            (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0)
+          )
             return exportClass;
           if (this.model.type !== "Action" && R.isNil(this.model.Health))
             return exportClass;
@@ -1304,8 +1303,8 @@ export default {
         exportClass += " progress-item-current";
       }
       return exportClass;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -1340,7 +1339,7 @@ export default {
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all $animation-duration ease-out;
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     top: 0;
@@ -1360,9 +1359,8 @@ export default {
   }
 }
 
-
 .noWidth {
-  width: 0%
+  width: 0%;
 }
 
 .creator {
