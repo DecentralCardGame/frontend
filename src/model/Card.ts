@@ -60,8 +60,8 @@ export class ChainCard {
       card.underpoweredVotes = parseInt(this.underpoweredVotes);
       card.votePool = Object.assign(new Coin(), this.votePool);
       card.voters = this.voters;
-      card.balanceAnchor = this.balanceAnchor
-      card.hash = this.hash
+      card.balanceAnchor = this.balanceAnchor;
+      card.hash = this.hash;
 
       console.log("parsed card: ", card);
     }
@@ -109,22 +109,22 @@ export class Card {
   }
 
   isEditCard() {
-    return this.id != -1
+    return this.id != -1;
   }
 
   toChainCard(): ChainCard {
     console.log("trying to parse ", this);
     let cardContent = Object.assign(new CardContent(), {
       CardName: this.CardName,
-      Tags: this.Tags.filter(tag => {
+      Tags: this.Tags.filter((tag) => {
         return tag != null || tag != "";
       }),
       FlavourText: this.FlavourText,
       Class: this.Class,
       Keywords: [],
-      RulesTexts: this.RulesTexts
+      RulesTexts: this.RulesTexts,
     });
-    this.Keywords.forEach(keyword => {
+    this.Keywords.forEach((keyword) => {
       cardContent.Keywords.push(JSON.stringify(keyword));
     });
     // in the following part we check things that are only required for specific card types
@@ -148,9 +148,11 @@ export class Card {
 
     let cc = new ChainCard();
     cc.content = {
-      [this.type]: cardContent
+      [this.type]: cardContent,
     };
-    cc.image = this.image ? this.image : "if you read this, someone was able to upload a card without proper image...";
+    cc.image = this.image
+      ? this.image
+      : "if you read this, someone was able to upload a card without proper image...";
     cc.fullArt = this.fullArt;
     cc.notes = this.notes;
     cc.balanceAnchor = this.balanceAnchor;

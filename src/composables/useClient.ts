@@ -1,4 +1,4 @@
-import { Client } from 'decentralcardgame-cardchain-client-ts'
+import { Client } from "decentralcardgame-cardchain-client-ts";
 import { env } from "@/env";
 
 const useClientInstance = () => {

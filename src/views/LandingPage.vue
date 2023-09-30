@@ -1,21 +1,16 @@
 <template>
   <div class="article-temp">
-    <div class="hero--with--img less--margin">  
+    <div class="hero--with--img less--margin">
       <b class="text--very--huge">
-        <br>
-        <center>
-          A Trading Card Game YOU OWN
-        </center>
+        <br />
+        <center>A Trading Card Game YOU OWN</center>
       </b>
-      <div
-        v-if="!isSafari"
-        class="img--container adjust--top"
-      >
+      <div v-if="!isSafari" class="img--container adjust--top">
         <img
           src="@/assets/animations/sparkling_water.gif"
           class="image2"
           alt="yes..."
-        >
+        />
       </div>
     </div>
 
@@ -23,10 +18,7 @@
       <div class="dual--column--text scale--width">
         <div class="hero--with--img">
           <div class="img--container adjust--pentagon">
-            <svg
-              viewBox="0 0 985.399 969.501"
-              class="image3"
-            >
+            <svg viewBox="0 0 985.399 969.501" class="image3">
               <path
                 id="Pfad_298"
                 data-name="Pfad 298"
@@ -47,26 +39,22 @@
           </div>
 
           <b class="text--huge">
-            <br>
+            <br />
             YOU CREATE
           </b>
           <p class="text--medium extra--bottom--margin">
-            On Crowd Control you can create and <br>
-            design your own trading cards. Your cards <br>
-            become a part of the game for everyone.<br>
+            On Crowd Control you can create and <br />
+            design your own trading cards. Your cards <br />
+            become a part of the game for everyone.<br />
           </p>
 
-          <b class="text--huge">
-            YOU BALANCE
-          </b>
+          <b class="text--huge"> YOU BALANCE </b>
           <p class="text--medium extra--bottom--margin">
-            Join the council and vote on cards. You can <br>
+            Join the council and vote on cards. You can <br />
             be part of the balancing process.
           </p>
 
-          <b class="text--huge">
-            YOU EARN
-          </b>
+          <b class="text--huge"> YOU EARN </b>
           <p class="text--medium extra--bottom--margin">
             Create cards or vote to earn coins!
           </p>
@@ -79,32 +67,26 @@
             class="image3"
             alt="yes..."
             width="200%"
-          >
+          />
         </div>
       </div>
     </div>
 
     <div class="dual--column--flex--wrap reverse-column">
-      <div
-        v-if="!isMobileDevice()"
-        class="dual--column--img scale--width"
-      >
+      <div v-if="!isMobileDevice()" class="dual--column--img scale--width">
         <div class="img--container adjust--flyin">
           <img
             src="../assets/animations/paper_flyin.gif"
             class="image3"
             alt="yes..."
-          >
+          />
         </div>
       </div>
 
       <div class="dual--column--text scale--width adjust--mobile">
         <div class="hero--with--img">
           <div class="img--container adjust--trapez">
-            <svg
-              viewBox="0 0 859.168 1347.934"
-              class="image3 show--overflow"
-            >
+            <svg viewBox="0 0 859.168 1347.934" class="image3 show--overflow">
               <path
                 id="Pfad_297"
                 data-name="Pfad 297"
@@ -126,74 +108,67 @@
 
           <div class="info--item">
             <b class="text--huge">
-              <br>
+              <br />
               Gallery
             </b>
             <p class="text--medium">
-              Check out the cards created by fellow <br>
-              trading card gamers in the <router-link :to="{ name: 'Gallery' }">
-                <b>Gallery</b>
-              </router-link>. <br>
+              Check out the cards created by fellow <br />
+              trading card gamers in the
+              <router-link :to="{ name: 'Gallery' }">
+                <b>Gallery</b> </router-link
+              >. <br />
             </p>
             <div class="button--container">
               <div class="link--button">
                 <router-link
                   to="/gallery"
-                  style="text-decoration: none; color: inherit;"
+                  style="text-decoration: none; color: inherit"
                 >
-                  <p class="text--button">
-                    Go to Gallery >
-                  </p>
+                  <p class="text--button">Go to Gallery ></p>
                 </router-link>
               </div>
             </div>
           </div>
 
           <div class="info--item">
-            <b class="text--huge">
-              Card Creator
-            </b>
+            <b class="text--huge"> Card Creator </b>
             <p class="text--medium">
-              Make your own cards on the blockchain <br>
-              with our <router-link :to="{ name: 'Card Creator' }">
-                <b>Card Creator</b>
-              </router-link>.
+              Make your own cards on the blockchain <br />
+              with our
+              <router-link :to="{ path: '/cardCreator' }">
+                <b>Card Creator</b> </router-link
+              >.
             </p>
             <div class="button--container">
               <div class="link--button">
                 <router-link
                   to="/cardCreator"
-                  style="text-decoration: none; color: inherit;"
+                  style="text-decoration: none; color: inherit"
                 >
-                  <p class="text--button">
-                    Go to Card Creator >
-                  </p>
+                  <p class="text--button">Go to Card Creator ></p>
                 </router-link>
               </div>
             </div>
           </div>
 
           <div class="info--item">
-            <b class="text--huge">
-              The Game
-            </b>
+            <b class="text--huge"> The Game </b>
             <p class="text--medium">
-              Crowd Control has unique game mechanics <br>
-              and a new kind of gameplay. Read more <br>
-              about the game rules on 
+              Crowd Control has unique game mechanics <br />
+              and a new kind of gameplay. Read more <br />
+              about the game rules on
               <router-link :to="{ name: 'About' }">
                 <b>the Game</b>
-              </router-link> page.
+              </router-link>
+              page.
             </p>
             <div class="button--container">
               <div class="link--button">
                 <router-link
                   to="/about"
-                  style="text-decoration: none; color: inherit;"
+                  style="text-decoration: none; color: inherit"
                 >
-                  <p class="text--button">
-                    Find out more >
-                  </p>
+                  <p class="text--button">Find out more ></p>
                 </router-link>
               </div>
             </div>
@@ -202,26 +177,26 @@
       </div>
     </div>
 
-
     <div class="hero">
-      <b class="text--huge">
-        We are not a company
-      </b>
+      <b class="text--huge"> We are not a company </b>
       <p class="text--medium">
-        Crowd Control is not a company but a Decentralized Autonomous Organization (DAO). This is realized
-        with a blockchain built on Cosmos technology. Read our <a
+        Crowd Control is not a company but a Decentralized Autonomous
+        Organization (DAO). This is realized with a blockchain built on Cosmos
+        technology. Read our
+        <a
           href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
           target="_blank"
-        ><b> Whitepaper</b></a> 
+          ><b> Whitepaper</b></a
+        >
         to find out more.
       </p>
 
-
       <p class="text--medium">
-        Or check out our <router-link :to="{ name: 'Roadmap' }">
+        Or check out our
+        <router-link :to="{ name: 'Roadmap' }">
           <b>Roadmap</b>
         </router-link>
-        to see what we are planning next. <br><br>
+        to see what we are planning next. <br /><br />
       </p>
 
       <div class="grid">
@@ -230,11 +205,9 @@
             <a
               href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
               target="_blank"
-              style="text-decoration: none; color: inherit;"
-            >   
-              <p class="text--button">
-                Go to Whitepaper >
-              </p> 
+              style="text-decoration: none; color: inherit"
+            >
+              <p class="text--button">Go to Whitepaper ></p>
             </a>
           </div>
         </div>
@@ -243,11 +216,9 @@
           <div class="link--button">
             <router-link
               to="/roadmap"
-              style="text-decoration: none; color: inherit;"
+              style="text-decoration: none; color: inherit"
             >
-              <p class="text--button">
-                Go to Roadmap >
-              </p>
+              <p class="text--button">Go to Roadmap ></p>
             </router-link>
           </div>
         </div>
@@ -257,29 +228,26 @@
 </template>
 
 <script>
-import {
-  cardJpgs,
-  botCommandCenterData
-} from "@/components/utils/sampleCards"
+import { cardJpgs, botCommandCenterData } from "@/components/utils/sampleCards";
 import { useNotifications } from "@/def-composables/useNotifications";
 
 export default {
   name: "LandingPage",
-  components: { },
+  components: {},
   data() {
     return {
-      cardJpgs: cardJpgs, 
+      cardJpgs: cardJpgs,
       botCommandCenterData: botCommandCenterData,
-      isSafari: false
+      isSafari: false,
     };
   },
   setup() {
-    const { isMobileDevice } = useNotifications()
+    const { isMobileDevice } = useNotifications();
 
-    return { isMobileDevice }
+    return { isMobileDevice };
   },
   mounted() {
-    this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+    this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   },
 };
 </script>
@@ -289,8 +257,8 @@ export default {
 
 .grid {
   display: flex;
-  flex-wrap : wrap;
-  margin: auto; 
+  flex-wrap: wrap;
+  margin: auto;
   flex-direction: row;
   align-items: center;
   justify-content: left;
@@ -310,7 +278,7 @@ h2 {
 }
 
 .show--overflow {
-  overflow: visible
+  overflow: visible;
 }
 
 .extra--bottom--margin {
@@ -323,7 +291,7 @@ h2 {
 .scale--width {
   min-width: 400px;
   max-width: 1000px;
-  width: 50%
+  width: 50%;
 }
 
 .hero--with--img {
@@ -384,7 +352,7 @@ h2 {
   }
 }
 .text--huge {
-  font-family: $font-family-header; 
+  font-family: $font-family-header;
   position: relative;
   z-index: 3;
   top: 0rem;
@@ -397,7 +365,7 @@ h2 {
 .text--medium {
   z-index: 3;
   position: relative;
-  font-family: $font-family; 
+  font-family: $font-family;
   font-weight: $font-weight;
   line-height: 150%;
 
@@ -407,7 +375,7 @@ h2 {
   }
 }
 .text--button {
-  font-family: $font-family-header; 
+  font-family: $font-family-header;
   font-weight: normal;
   padding: 0.5rem 1rem;
   font-size: $font-size-small;
@@ -418,7 +386,7 @@ h2 {
 
 .link--button {
   background-color: $main-color-c;
-  box-shadow: $border-thickness-bold * 1.0 $border-thickness-bold * 1.0 0 $black;
+  box-shadow: $border-thickness-bold * 1 $border-thickness-bold * 1 0 $black;
   position: relative;
   margin: 0rem 5rem;
   transform: skewX(-25deg);
@@ -445,16 +413,20 @@ h2 {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
   }
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     color: $minor-color-c;
   }
-  &:hover:before, &:focus:before, &:active:before {
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
   @media (max-width: 1178px) {
     transform: skewX(-25deg);
-  }  
+  }
 }
 
 .img--container {
@@ -469,7 +441,7 @@ h2 {
   top: -17rem;
   left: 0;
   right: 0;
-  
+
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {
@@ -508,7 +480,7 @@ h2 {
   @media (max-width: 1400px) {
   }
   @media (max-width: 1000px) {
-    left: -6rem
+    left: -6rem;
   }
   @media (max-width: 800px) {
   }
@@ -519,7 +491,7 @@ h2 {
   width: 120%;
   left: -5vw;
   top: -3vw;
-  
+
   @media (max-width: 1700px) {
   }
   @media (max-width: 1400px) {

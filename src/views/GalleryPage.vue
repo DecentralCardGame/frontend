@@ -1,21 +1,14 @@
 <template>
   <div class="gallery">
-    <h2 class="header__h2">
-      Gallery
-    </h2>
+    <h2 class="header__h2">Gallery</h2>
     <p class="header__p">
       In the gallery, you can view cards that were created by the community.
     </p>
-    <br>
-    <div
-      v-show="galleryFilters.visible"
-      class="gallery__filter-box ccbutton"
-    >
+    <br />
+    <div v-show="galleryFilters.visible" class="gallery__filter-box ccbutton">
       <div class="gallery__filter__item">
         <select v-model="galleryFilters.status">
-          <option value="">
-            any card status
-          </option>
+          <option value="">any card status</option>
           <option>Prototype</option>
           <option>Trial</option>
           <option>Permanent</option>
@@ -25,9 +18,7 @@
       </div>
       <div class="gallery__filter__item">
         <select v-model="galleryFilters.cardType">
-          <option value="">
-            any card type
-          </option>
+          <option value="">any card type</option>
           <option>Headquarter</option>
           <option>Entity</option>
           <option>Action</option>
@@ -36,9 +27,7 @@
       </div>
       <div class="gallery__filter__item">
         <select v-model="galleryFilters.sortBy">
-          <option value="">
-            default sort
-          </option>
+          <option value="">default sort</option>
           <option>Name (A-Z)</option>
           <option>Name (Z-A)</option>
           <option>Casting Cost (↑)</option>
@@ -52,7 +41,7 @@
           <input
             v-model="galleryFilters.nameContains"
             placeholder="Name contains"
-          >
+          />
         </div>
       </div>
       <div>
@@ -60,21 +49,21 @@
           <input
             v-model="galleryFilters.keywordsContains"
             placeholder="Ability/Effect contains"
-          >
+          />
         </div>
       </div>
       <div class="gallery__filter__item">
         <input
           v-model="galleryFilters.notesContains"
           placeholder="Notes contain"
-        >
+        />
       </div>
       <div class="gallery__filter__item">
         <input
           v-model="galleryFilters.owner"
           placeholder="Owner is"
           @click="galleryFilters.owner = getOwnAddress()"
-        >
+        />
       </div>
 
       <div class="gallery__filter__item">
@@ -84,10 +73,12 @@
               v-model="galleryFilters.classesVisible"
               class="gallery-checkbox"
               type="checkbox"
-              @input="galleryFilters.classesVisible = !galleryFilters.classesVisible "
-            >
+              @input="
+                galleryFilters.classesVisible = !galleryFilters.classesVisible
+              "
+            />
             Filter classes
-            <br>
+            <br />
           </label>
         </div>
 
@@ -96,33 +87,42 @@
           class="clickable-option"
           @click="galleryFilters.classORLogic = !galleryFilters.classORLogic"
         >
-          <br><br>
-          {{ galleryFilters.classORLogic? "Any: " : "All: " }}
+          <br /><br />
+          {{ galleryFilters.classORLogic ? "Any: " : "All: " }}
         </span>
         <span
           v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.mysticism }"
+          :class="{
+            'clickable-option': true,
+            negated: !galleryFilters.mysticism,
+          }"
           @click="galleryFilters.mysticism = !galleryFilters.mysticism"
         >
           Mysticism
         </span>
         <span
           v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.technology }"
+          :class="{
+            'clickable-option': true,
+            negated: !galleryFilters.technology,
+          }"
           @click="galleryFilters.technology = !galleryFilters.technology"
         >
           Technology
         </span>
         <span
           v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.nature }"
+          :class="{ 'clickable-option': true, negated: !galleryFilters.nature }"
           @click="galleryFilters.nature = !galleryFilters.nature"
         >
           Nature
         </span>
         <span
           v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, 'negated': !galleryFilters.culture }"
+          :class="{
+            'clickable-option': true,
+            negated: !galleryFilters.culture,
+          }"
           @click="galleryFilters.culture = !galleryFilters.culture"
         >
           Culture
@@ -133,58 +133,35 @@
         <input
           placeholder="cards per page"
           @input="galleryFilters.cardsPerPage = $event.target.value"
-        >
+        />
       </div>
       <div class="gallery__filter__item">
-        <button
-          @click="resetFilters"
-        >
-          Clear Filters
-        </button>
+        <button @click="resetFilters">Clear Filters</button>
       </div>
       <div class="gallery__filter__item">
-        <button @click="loadCardList">
-          Apply
-        </button>
+        <button @click="loadCardList">Apply</button>
       </div>
     </div>
     <div class="button-container button-container--top ccbutton">
-      <button
-        v-show="browsingBackward"
-        @click="prevPage"
-      >
-        back
-      </button>
-      <button
-        @click="toggleGalleryFilters"
-      >
+      <button v-show="browsingBackward" @click="prevPage">back</button>
+      <button @click="toggleGalleryFilters">
         {{ galleryFilters.visible ? "hide" : "show" }}
         filters
       </button>
+      <button v-show="loggedIn" @click="loadMyCardList()">My Cards</button>
       <button
-        v-show="loggedIn"
-        @click="loadMyCardList()"
-      >
-        My Cards
-      </button>
-      <button
-        v-show="$route.query.notesContains!='Finished'"
+        v-show="$route.query.notesContains != 'Finished'"
         @click="loadSpecialCardList('Finished')"
       >
         Alpha Set
       </button>
       <button
-        v-show="$route.query.notesContains=='Finished'"
+        v-show="$route.query.notesContains == 'Finished'"
         @click="loadSpecialCardList('')"
       >
         All Cards
       </button>
-      <button
-        v-show="browsingForward"
-        @click="nextPage"
-      >
-        next
-      </button>
+      <button v-show="browsingForward" @click="nextPage">next</button>
     </div>
     <div class="gallery__view">
       <div
@@ -215,18 +192,8 @@
       </div>
     </div>
     <div class="button-container button-container--bottom ccbutton">
-      <button
-        v-show="browsingBackward"
-        @click="prevPage"
-      >
-        back
-      </button>
-      <button
-        v-show="browsingForward"
-        @click="nextPage"
-      >
-        next
-      </button>
+      <button v-show="browsingBackward" @click="prevPage">back</button>
+      <button v-show="browsingForward" @click="nextPage">next</button>
     </div>
     <div
       v-if="isGalleryModalVisible"
@@ -255,20 +222,23 @@
   </div>
 </template>
 
-<script lang=ts>
+<script lang="ts">
 import * as R from "ramda";
 import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
 import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
-import { useGalleryFilters, resetGalleryFilters } from "@/def-composables/useGalleryFilters";
-import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
+import {
+  useGalleryFilters,
+  resetGalleryFilters,
+} from "@/def-composables/useGalleryFilters";
+import { useLastInputEvent } from "@/def-composables/useLastInputEvent.ts";
 import { useQuery } from "@/def-composables/useQuery";
 import { useCardsRules } from "@/def-composables/useCardRules";
 import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 
-const { queryQCards, queryQCard } = useQuery()
+const { queryQCards, queryQCard } = useQuery();
 
 export default {
   name: "GalleryPage",
@@ -291,7 +261,7 @@ export default {
       isArtist: false,
       leavePageLock: false,
       keywordDescriptions: [],
-      votableCards: []
+      votableCards: [],
     };
   },
   // this watch together with the following beforeRouteLeave make browsing
@@ -301,93 +271,100 @@ export default {
       let event = this.lastInputEvent;
 
       if (event.which == 5) {
-        this.leavePageLock = true // Forward Mouse special button
-        this.nextPage()
-      } else if (event.which == 4) { // Backward Mouse special button
-        this.leavePageLock = true
-        this.prevPage()
-      } else if (event.which == 13) { // Enter
-        this.loadCardList()
+        this.leavePageLock = true; // Forward Mouse special button
+        this.nextPage();
+      } else if (event.which == 4) {
+        // Backward Mouse special button
+        this.leavePageLock = true;
+        this.prevPage();
+      } else if (event.which == 13) {
+        // Enter
+        this.loadCardList();
       } else {
-        this.leavePageLock = false
+        this.leavePageLock = false;
       }
     },
-    loggedIn (_, newLoggedIn) {
+    loggedIn(_, newLoggedIn) {
       if (newLoggedIn) {
-        this.loadVotableCards()
+        this.loadVotableCards();
       }
-    }
+    },
   },
   setup() {
-    const { loggedIn } = useLoggedIn()
-    const { address } = useAddress()
-    const { rules } = useCardsRules()
-    const { editCard } = useCardCreatorCards()
-    const { queryQVotableCards } = useQuery()
-    const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } = useGalleryFilters
-    const { lastInputEvent } = useLastInputEvent()
+    const { loggedIn } = useLoggedIn();
+    const { address } = useAddress();
+    const { rules } = useCardsRules();
+    const { editCard } = useCardCreatorCards();
+    const { queryQVotableCards } = useQuery();
+    const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
+      useGalleryFilters;
+    const { lastInputEvent } = useLastInputEvent();
 
-    return { lastInputEvent, loggedIn, address, queryQVotableCards, galleryFilters, toggleGalleryFilters, resetGalleryFilters, cardRules: rules, cardCreatorEditCard: editCard.card }
+    return {
+      lastInputEvent,
+      loggedIn,
+      address,
+      queryQVotableCards,
+      galleryFilters,
+      toggleGalleryFilters,
+      resetGalleryFilters,
+      cardRules: rules,
+      cardCreatorEditCard: editCard.card,
+    };
   },
   mounted() {
+    console.log("Yees galleryFilters", this.galleryFilters);
 
-    console.log("Yees galleryFilters", this.galleryFilters)
-
-    let query = this.$route.query
+    let query = this.$route.query;
     if (!R.isEmpty(query)) {
       if (query.cardList) {
-        this.cardList = query.cardList
-        this.fillPage()
+        this.cardList = query.cardList;
+        this.fillPage();
       } else {
-        this.loadQueryCardList(this.normalizeQuery(query))
+        this.loadQueryCardList(this.normalizeQuery(query));
       }
     } else {
-      this.loadCardList()
+      this.loadCardList();
     }
 
-    this.loadVotableCards()
+    this.loadVotableCards();
   },
   methods: {
     loadVotableCards() {
-      if(this.loggedIn) {
-        this.queryQVotableCards(this.address)
-        .then((res) => {
+      if (this.loggedIn) {
+        this.queryQVotableCards(this.address).then((res) => {
           if (res.noVoteRights) {
-            this.votableCards = []
+            this.votableCards = [];
           } else {
-            this.votableCards = res
+            this.votableCards = res;
           }
-        })
-      }
-      else {
+        });
+      } else {
         this.votableCards = [];
       }
-
     },
     loadCardList() {
-      let query = this.getDefaultQuery()
-      this.loadQueryCardList(query)
+      let query = this.getDefaultQuery();
+      this.loadQueryCardList(query);
     },
     getCard(currentId) {
-      let cardId = this.cardList[
-        this.cardList.length - 1 - this.pageId - currentId
-      ];
-      return queryQCard(cardId)
-        .then((res) => {
-          let card = res
-          card.id = cardId
-          if (card.Content) {
-            let candidate = card
-            this.cards.push(candidate)
-            return candidate
-          } else if (!card.owner) {
-            console.error("card without content and owner: ", res)
-            return res
-          } else {
-            console.error("card without content: ", res)
-            return res
-          }
-        })
+      let cardId =
+        this.cardList[this.cardList.length - 1 - this.pageId - currentId];
+      return queryQCard(cardId).then((res) => {
+        let card = res;
+        card.id = cardId;
+        if (card.Content) {
+          let candidate = card;
+          this.cards.push(candidate);
+          return candidate;
+        } else if (!card.owner) {
+          console.error("card without content and owner: ", res);
+          return res;
+        } else {
+          console.error("card without content: ", res);
+          return res;
+        }
+      });
     },
     normalizeQuery(query) {
       return {
@@ -395,40 +372,67 @@ export default {
         owner: query.owner ? query.owner : "",
         cardType: query.cardType ? query.cardType : "",
         classes: query.classes ? query.classes : "",
-        sortBy: query.sortBy ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "") : "",
+        sortBy: query.sortBy
+          ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "")
+          : "",
         nameContains: query.nameContains ? query.nameContains : "",
         keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-        notesContains: query.notesContains ? query.notesContains :
-          query.status || query.owner || query.cardType || query.classes || query.sortBy || query.nameContains || query.keywordsContains || query.notesContains ? "" :
-          this.loggedIn ? "" : "Finished" // non-logged in users (noobs), without any filters, will only see the alpha set
-      }
+        notesContains: query.notesContains
+          ? query.notesContains
+          : query.status ||
+            query.owner ||
+            query.cardType ||
+            query.classes ||
+            query.sortBy ||
+            query.nameContains ||
+            query.keywordsContains ||
+            query.notesContains
+          ? ""
+          : this.loggedIn
+          ? ""
+          : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set
+      };
     },
     fillPage() {
-      if (this.pageId + this.galleryFilters.cardsPerPage >= this.cardList.length)
+      if (
+        this.pageId + this.galleryFilters.cardsPerPage >=
+        this.cardList.length
+      )
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
-      let requestedCards = R.map(n => this.getCard(n),
-          R.times(R.identity, R.min(this.galleryFilters.cardsPerPage, this.cardList.length - this.pageId))
+      let requestedCards = R.map(
+        (n) => this.getCard(n),
+        R.times(
+          R.identity,
+          R.min(
+            this.galleryFilters.cardsPerPage,
+            this.cardList.length - this.pageId
+          )
         )
+      );
 
       Promise.all(requestedCards)
-      .then((res) => {
-        // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
-        // therefore the clickedindex must be adjusted (if something was clicked)
-        if (!R.equals(this.cards[this.clickedIndex], res[this.clickedIndex] )) {
-          this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
-        }
-        this.cards = res
-        console.log("cards on page", this.cards)
-        console.log("all card names:", R.pluck("CardName", res))
-      })
-      .catch(res => {
-        console.error("NOT ALL CARDS WERE PROPERLY LOADED")
-        console.log("all card names:", R.pluck("CardName", res))
-      })
+        .then((res) => {
+          // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
+          // therefore the clickedindex must be adjusted (if something was clicked)
+          if (
+            !R.equals(this.cards[this.clickedIndex], res[this.clickedIndex])
+          ) {
+            this.clickedIndex = R.findIndex(
+              R.propEq("id", this.cards[this.clickedIndex].id)
+            )(res);
+          }
+          this.cards = res;
+          console.log("cards on page", this.cards);
+          console.log("all card names:", R.pluck("CardName", res));
+        })
+        .catch((res) => {
+          console.error("NOT ALL CARDS WERE PROPERLY LOADED");
+          console.log("all card names:", R.pluck("CardName", res));
+        });
     },
     nextPage() {
       if (!this.browsingForward) return;
@@ -436,7 +440,7 @@ export default {
       this.pageId += this.galleryFilters.cardsPerPage;
       this.cards = [];
       this.fillPage();
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     },
     prevPage() {
       if (!this.browsingBackward) return;
@@ -447,33 +451,35 @@ export default {
       window.scrollTo(0, 0);
     },
     showGalleryModal() {
-      this.isGalleryModalVisible = true
+      this.isGalleryModalVisible = true;
 
       if (!R.isEmpty(this.votableCards)) {
         this.canVote = R.any(
           (x) => x == this.cards[this.clickedIndex].id,
           R.pluck("cardId", this.votableCards.voteRights)
-        )
+        );
       }
 
-      this.isOwner =
-        this.cards[this.clickedIndex].owner === this.address
+      this.isOwner = this.cards[this.clickedIndex].owner === this.address;
 
-      this.keywordDescriptions = []
-      let firstLetterToLower = string => {
-        return string[0].toLowerCase() + string.substring(1)
-      }
-      this.cards[this.clickedIndex].Keywords.forEach(ability => {
-        ability.forEach(keyword => {
-          this.keywordDescriptions.push([keyword, this.cardRules.definitions[firstLetterToLower(keyword)].description])
-        })
-      })
+      this.keywordDescriptions = [];
+      let firstLetterToLower = (string) => {
+        return string[0].toLowerCase() + string.substring(1);
+      };
+      this.cards[this.clickedIndex].Keywords.forEach((ability) => {
+        ability.forEach((keyword) => {
+          this.keywordDescriptions.push([
+            keyword,
+            this.cardRules.definitions[firstLetterToLower(keyword)].description,
+          ]);
+        });
+      });
     },
     closeGalleryModal() {
       this.isGalleryModalVisible = false;
     },
     loadMyCardList() {
-      this.loadSpecialCardList(this.galleryFilters.notes, this.address)
+      this.loadSpecialCardList(this.galleryFilters.notes, this.address);
     },
     getDefaultQuery() {
       let classes =
@@ -481,60 +487,61 @@ export default {
         (this.galleryFilters.mysticism ? "Mysticism," : "") +
         (this.galleryFilters.nature ? "Nature," : "") +
         (this.galleryFilters.technology ? "Technology," : "") +
-        (this.galleryFilters.culture ? "Culture," : "")
+        (this.galleryFilters.culture ? "Culture," : "");
 
-      let query = this.galleryFilters
-      query.classes = query.classesVisible ? classes : ""
-      return this.normalizeQuery(query)
+      let query = this.galleryFilters;
+      query.classes = query.classesVisible ? classes : "";
+      return this.normalizeQuery(query);
     },
     loadSpecialCardList(notes, owner) {
-      var query = this.getDefaultQuery()
-      query.notesContains = notes
+      var query = this.getDefaultQuery();
+      query.notesContains = notes;
       if (owner) {
-        query.owner = owner
+        query.owner = owner;
       }
-      this.loadQueryCardList(query)
+      this.loadQueryCardList(query);
     },
     loadQueryCardList(query) {
-      this.$router.push({ path: 'gallery', query: query })
+      this.$router.push({ path: "gallery", query: query });
 
       let requestedCards = [
-        queryQCards(
-        query.status,
-        {
+        queryQCards(query.status, {
           owner: query.owner,
           cardType: query.cardType,
           classes: query.classes,
           sortBy: query.sortBy,
           nameContains: query.nameContains,
           keywordsContains: query.keywordsContains,
-          notesContains: query.notesContains
-        }
-      )
-      ]
+          notesContains: query.notesContains,
+        }),
+      ];
       Promise.all(requestedCards)
-      .then((res) => {
-        let cardList = R.reduce(R.concat, [], R.pluck("cardsList", res))
+        .then((res) => {
+          let cardList = R.reduce(R.concat, [], R.pluck("cardsList", res));
 
-        if (R.any(x => R.includes(x, this.galleryFilters.sortBy), ["A-Z", "↑"])) {
-          this.cardList = R.reverse(cardList)
-        }
-        else {
-          this.cardList = cardList
-        }
-        this.pageId = 0
-        this.cards = []
-      })
-      .then(() => {
-        this.fillPage()
-      })
+          if (
+            R.any(
+              (x) => R.includes(x, this.galleryFilters.sortBy),
+              ["A-Z", "↑"]
+            )
+          ) {
+            this.cardList = R.reverse(cardList);
+          } else {
+            this.cardList = cardList;
+          }
+          this.pageId = 0;
+          this.cards = [];
+        })
+        .then(() => {
+          this.fillPage();
+        });
     },
     edit() {
-      this.cardCreatorEditCard = this.cards[this.clickedIndex]
-      this.$router.push("cardCreator")
+      this.cardCreatorEditCard = this.cards[this.clickedIndex];
+      this.$router.push("cardCreator");
     },
     cardview() {
-      this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
+      this.$router.push("cardview/" + this.cards[this.clickedIndex].id);
     },
     downloadPng() {
       saveCardAsPng(
@@ -543,17 +550,20 @@ export default {
       );
     },
     vote(type) {
-      this.add(this.cards[this.clickedIndex].id, type)
-      this.notifyInfo("Vote saved", "Don't forget to send your votes on the Voting page!")
+      this.add(this.cards[this.clickedIndex].id, type);
+      this.notifyInfo(
+        "Vote saved",
+        "Don't forget to send your votes on the Voting page!"
+      );
     },
     getOwnAddress() {
-      return this.address // TODO is this needed?
+      return this.address; // TODO is this needed?
     },
     resetFilters() {
-      console.log("reset filters")
-      this.resetGalleryFilters()
+      console.log("reset filters");
+      this.resetGalleryFilters();
 
-      this.loadCardList()
+      this.loadCardList();
     },
   },
 };
@@ -639,7 +649,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease;
   @media (max-width: 480px) {
-    bottom:0;
+    bottom: 0;
     overflow-y: scroll;
   }
 }
@@ -649,7 +659,7 @@ export default {
   margin-left: -25px;
 }
 .gallery-checkbox__label {
-margin-left: 25px;
+  margin-left: 25px;
 }
 .ability-modal-container {
   margin: auto;
@@ -658,12 +668,11 @@ margin-left: 25px;
   max-height: 95vh;
   @media (max-width: 480px) {
     margin-top: 0;
-    max-height:300vh;
-    height:auto;
+    max-height: 300vh;
+    height: auto;
   }
   //OLD:
   // position: relative;
-   z-index: 3;
+  z-index: 3;
 }
-
 </style>

@@ -1,15 +1,15 @@
-import {ref} from "vue";
-import {useAddress} from "@/def-composables/useAddress";
+import { ref } from "vue";
+import { useAddress } from "@/def-composables/useAddress";
 
 const useLoggedInInstance = () => {
-  const loggedIn = ref(false)
+  const loggedIn = ref(false);
 
   useAddress((address: string) => {
-    loggedIn.value = address != ""
-  })
+    loggedIn.value = address != "";
+  });
 
-  return { loggedIn }
-}
+  return { loggedIn };
+};
 
 let loggedInInstance: ReturnType<typeof useLoggedInInstance>;
 

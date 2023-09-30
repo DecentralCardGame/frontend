@@ -17,9 +17,9 @@ export class Coin {
 
   denormalize(): Coin {
     if (this.denom[0] != "u") {
-      this.denom = "u"+this.denom;
+      this.denom = "u" + this.denom;
       this.amount *= 10 ** 6;
-      this.amount = Math.ceil(this.amount)
+      this.amount = Math.ceil(this.amount);
     }
     return this;
   }
@@ -29,7 +29,7 @@ export class Coin {
   }
 
   toCompatCoin(): CompatCoin {
-    return {denom: this.denom, amount: ""+this.amount}
+    return { denom: this.denom, amount: "" + this.amount };
   }
 
   static from(json: any): Coin {
@@ -40,4 +40,4 @@ export class Coin {
 export type CompatCoin = {
   denom: string;
   amount: string;
-}
+};

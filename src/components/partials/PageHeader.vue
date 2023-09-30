@@ -3,10 +3,13 @@
     <a id="Discordlink" href="https://discord.gg/ZKKbhUs">
       Discuss the latest News or simply join our growing Community
       <picture>
-        <source type="image/webp" srcset="../../assets/icon/discord.webp">
-        <source type="image/png" srcset="../../assets/icon/discord.png">
-        <img src="../../assets/icon/discord.png" style="display:inline; max-height:20px;transform:translateY(4px);"
-          alt="Image description">
+        <source type="image/webp" srcset="../../assets/icon/discord.webp" />
+        <source type="image/png" srcset="../../assets/icon/discord.png" />
+        <img
+          src="../../assets/icon/discord.png"
+          style="display: inline; max-height: 20px; transform: translateY(4px)"
+          alt="Image description"
+        />
       </picture>
       <b>Discord</b>. We would love to hear your voice.
     </a>
@@ -34,13 +37,12 @@ const { queryQUser } = useQuery();
 watch(address, () => {
   if (loggedIn) {
     queryQUser(address.value)
-      .then(res => {
+      .then((res) => {
         console.log(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.response);
-        if (address.value != "")
-          state.showCaptcha = true;
+        if (address.value != "") state.showCaptcha = true;
       });
   }
 });
@@ -48,13 +50,12 @@ watch(address, () => {
 // state
 const state = reactive({
   showKeplr: true,
-  showCaptcha: false
+  showCaptcha: false,
 });
 
 const closeCaptcha = () => {
   state.showCaptcha = false;
 };
-
 </script>
 
 <style scoped lang="scss">

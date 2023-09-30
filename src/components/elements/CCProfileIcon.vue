@@ -1,6 +1,6 @@
 <template>
   <div class="ppImage">
-    <img :src="loggedInProfilePic" alt="Avatar">
+    <img :src="loggedInProfilePic" alt="Avatar" />
   </div>
 </template>
 
@@ -8,10 +8,9 @@
 import { onMounted } from "vue";
 import { useProfilePic } from "@/def-composables/useProfilePic";
 
-const { setLoggedInProfilePic, loggedInProfilePic } = useProfilePic()
+const { setLoggedInProfilePic, loggedInProfilePic } = useProfilePic();
 
 onMounted(setLoggedInProfilePic);
-
 </script>
 
 <style scoped lang="scss">
@@ -28,6 +27,5 @@ onMounted(setLoggedInProfilePic);
     padding-top: -10%;
     width: 100%;
   }
-
 }
 </style>
