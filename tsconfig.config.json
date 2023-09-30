@@ -4,6 +4,6 @@
   "compilerOptions": {
     "composite": true,
     "moduleResolution": "Node",
-    "types": ["node", "crypto-js", "qrcode", "events"]
+    "types": ["node","crypto-js", "qrcode", "events"]
   }
 }

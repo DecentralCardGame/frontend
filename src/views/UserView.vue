@@ -1,17 +1,27 @@
 <template>
   <div align="center">
-    <div class="ppBox">
+    <div
+      class="ppBox"
+    >
       <div v-show="img">
         <div class="ppImage">
-          <img :src="img" alt="Avatar" />
+          <img
+            :src="img"
+            alt="Avatar"
+          >
         </div>
-        <button v-if="loggedIn" @click="showChooseModal">
-          <img src="@/assets/edit.svg" />
+        <button
+          v-if="loggedIn"
+          @click="showChooseModal"
+        >
+          <img src="@/assets/edit.svg">
         </button>
       </div>
     </div>
     <div class="dataBox ccbutton">
-      <h2 class="header__h2">Account details</h2>
+      <h2 class="header__h2">
+        Account details
+      </h2>
       <button
         v-if="loggedIn"
         type="button"
@@ -19,30 +29,33 @@
         @click="showAirdropsModal"
       >
         Claim airdrops
-      </button>
-      <br /><br />
+      </button> <br><br>
 
       <div>
-        Address: {{ address }}<br />
-        Name: {{ user.alias }}<br />
-        Owned card frames: {{ user.ownedCardSchemes.length }} <br />
+        Address: {{ address }}<br>
+        Name: {{ user.alias }}<br>
+        Owned card frames: {{ user.ownedCardSchemes.length }} <br>
         Owned prototypes:
-        <router-link :to="{ name: 'Gallery', query: { owner: address } }">
+        <router-link
+          :to="{ name: 'Gallery', query: { owner: address }}"
+        >
           {{ user.ownedPrototypes.length }}
-        </router-link>
-        <br />
+        </router-link> <br>
         Owned cards:
         <router-link
-          :to="{ name: 'Gallery', query: { cardList: user.ownedCards } }"
+          :to="{ name: 'Gallery', query: { cardList: user.ownedCards }}"
         >
           {{ user.cards.length }}
         </router-link>
       </div>
-      <br />
+      <br>
 
       <div>
-        Council status: {{ user.CouncilStatus }} <br />
-        <div v-if="loggedIn" style="display: inline">
+        Council status: {{ user.CouncilStatus }} <br>
+        <div
+          v-if="loggedIn"
+          style="display: inline"
+        >
           <button
             v-if="user.CouncilStatus == 'unavailable'"
             @click="register()"
@@ -58,29 +71,40 @@
         </div>
       </div>
 
-      <br />
+      <br>
       <div>
-        Vote rights: {{ user.voteRights.length }} <br />
-        <button v-if="loggedIn" @click="$router.push({ name: 'Vote' })">
+        Vote rights: {{ user.voteRights.length }} <br>
+        <button
+          v-if="loggedIn"
+          @click="$router.push({name: 'Vote'})"
+        >
           Vote
         </button>
       </div>
-      <br />
+      <br>
 
       <div>
         Balance:
         <div class="coinBox">
-          <div v-for="coin in coins" :key="coin">
+          <div
+            v-for="coin in coins"
+            :key="coin"
+          >
             {{ coin.pretty() }}
-            <br />
+            <br>
           </div>
         </div>
-        <br />
-        <button v-if="loggedIn" type="button" class="btn" @click="showModal">
+        <br>
+        <button
+          v-if="loggedIn"
+          type="button"
+          class="btn"
+          @click="showModal"
+        >
           Transfer
         </button>
       </div>
-      <br />
+      <br>
       <div>
         <button
           v-if="loggedIn"
@@ -91,9 +115,15 @@
           Manage authorisations
         </button>
       </div>
-      <br />
-      <TransferModal v-show="isModalVisible" @close="closeModal" />
-      <GrantModal v-if="isGrantModalVisible" @close="closeGrantModal" />
+      <br>
+      <TransferModal
+        v-show="isModalVisible"
+        @close="closeModal"
+      />
+      <GrantModal
+        v-if="isGrantModalVisible"
+        @close="closeGrantModal"
+      />
       <ChoosePBModal
         v-if="isChooseModalVisible"
         :cards="user.ownedPrototypes"
@@ -108,98 +138,101 @@
   </div>
 </template>
 
-<script lang="ts">
-import TransferModal from "../components/modals/TransferModal.vue";
-import ChoosePBModal from "../components/modals/ChoosePBModal.vue";
-import GrantModal from "../components/modals/GrantModal.vue";
-import AirdropsModal from "../components/modals/AirdropsModal.vue";
+<script lang=ts>
+
+import TransferModal from '../components/modals/TransferModal.vue';
+import ChoosePBModal from '../components/modals/ChoosePBModal.vue';
+import GrantModal from '../components/modals/GrantModal.vue';
+import AirdropsModal from '../components/modals/AirdropsModal.vue';
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
 import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
 import { User } from "@/model/User";
-import { useProfilePic } from "@/def-composables/useProfilePic";
-import type { Coin } from "@/model/Coin";
-import { normalizeCoins } from "@/utils/utils";
-import { ref } from "vue";
+import { useProfilePic } from '@/def-composables/useProfilePic';
+import type { Coin } from '@/model/Coin';
+import { normalizeCoins } from '@/utils/utils';
+import { ref } from 'vue';
 
-const { queryQUser, queryAllBalances } = useQuery();
-const { registerForCouncil, rewokeCouncilRegistration } = useTx();
+const { queryQUser, queryAllBalances } = useQuery()
+const { registerForCouncil, rewokeCouncilRegistration } = useTx()
 
 export default {
-  name: "UserView",
+  name: 'UserView',
   components: {
     GrantModal,
     TransferModal,
     ChoosePBModal,
-    AirdropsModal,
+    AirdropsModal
   },
-  data() {
+  data () {
     return {
       isChooseModalVisible: false,
       isAirdropsModalVisible: false,
       isModalVisible: false,
       isGrantModalVisible: false,
       address: "",
-      coins: new Array<Coin>(),
+      coins: new Array<Coin>,
       img: ref(""),
-      user: new User(),
-    };
+      user: new User()
+    }
   },
   setup() {
     const { address } = useAddress();
-    const { loggedIn } = useLoggedIn();
-    const { getImg } = useProfilePic();
+    const { loggedIn } = useLoggedIn()
+    const { getImg } = useProfilePic()
 
-    return { userAddress: address, loggedIn, getImg };
+    return { userAddress: address, loggedIn, getImg }
   },
   watch: {
     "$route.params.id"(value) {
-      console.log(this.$route);
+      console.log(this.$route)
       if (this.$route.name == "UserView") {
-        this.init();
+        this.init()
       }
     },
   },
-  mounted() {
-    this.init();
+  mounted () {
+    this.init()
   },
   methods: {
-    init() {
-      let id = this.$route.params.id;
+    init () {
+      let id = this.$route.params.id
       if (id === "me") {
         if (this.loggedIn) {
-          this.address = this.userAddress;
+          this.address = this.userAddress
         } else {
-          console.log("You're not logged in");
-          this.$router.push({ name: "NotFound" });
+          console.log("You're not logged in")
+          this.$router.push({name: "NotFound"})
         }
       } else {
-        this.address = id;
+        this.address = id
       }
 
       if (!validAddress(this.address)) {
-        this.$router.push({ name: "NotFound" });
+        this.$router.push({name: "NotFound"})
       }
 
-      this.$router.push({ name: "UserView", params: { id: this.address } });
-      this.getUser();
+      this.$router.push({name: "UserView", params: {id: this.address}})
+      this.getUser()
     },
-    getUser() {
-      queryQUser(this.address).then((user) => {
-        this.user = user;
-        this.img = this.getImg(this.user, this.address);
-      });
-      queryAllBalances(this.address).then((coins) => {
-        this.coins = normalizeCoins(coins.balances);
-      });
+    getUser () {
+      queryQUser(this.address)
+      .then(user => {
+        this.user = user
+        this.img = this.getImg(this.user, this.address)
+      })
+      queryAllBalances(this.address)
+      .then(coins => {
+        this.coins = normalizeCoins(coins.balances)
+      })
     },
-    register() {
-      registerForCouncil(this.getUser, () => {});
+    register () {
+      registerForCouncil(this.getUser, () => {})
     },
-    deRegister() {
-      rewokeCouncilRegistration(this.getUser, () => {});
+    deRegister () {
+      rewokeCouncilRegistration(this.getUser, () => {})
     },
     showModal() {
       this.isModalVisible = true;
@@ -219,16 +252,16 @@ export default {
     },
     closeChooseModal() {
       this.isChooseModalVisible = false;
-      this.getUser();
+      this.getUser()
     },
     showAirdropsModal() {
       this.isAirdropsModalVisible = true;
     },
     closeAirdropsModal() {
       this.isAirdropsModalVisible = false;
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -251,13 +284,13 @@ export default {
     display: block;
     border-radius: 50%;
     box-shadow: 2px 2px 4px;
-    img {
+    img{
       background-color: transparent;
       object-fit: contain;
       padding-top: -10%;
       width: 100%;
-    }
-  }
+    };
+  };
   button {
     position: absolute;
     top: 80%;
@@ -280,4 +313,5 @@ export default {
   display: inline-table;
   text-align: left;
 }
+
 </style>

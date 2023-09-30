@@ -3,7 +3,9 @@
     <div class="pre-footer">
       <div class="pre-footer__content">
         <p>Ok, ok I have read enough. I am ready to</p>
-        <a href="https://discord.gg/ZKKbhUs">
+        <a
+          href="https://discord.gg/ZKKbhUs"
+        >
           <button>Join</button>
         </a>
 
@@ -57,9 +59,7 @@
           </li>
 
           <li>
-            <a
-              href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
-            >
+            <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
               <h2>Whitepaper</h2>
               Read how it all started.
             </a>
@@ -79,35 +79,33 @@
         </ul>
         <div class="footer__other">
           <b>
-            Discuss the latest news or simply join our growing community. We
-            would love to hear your voice.
+            Discuss the latest news or
+            simply join our growing
+            community. We would love
+            to hear your voice.
+
           </b>
           <div>
-            <br />
+            <br>
           </div>
           <ul class="footer__menu">
             <li>
               <a href="https://discord.gg/ZKKbhUs">
-                <h2>
-                  Discord
+                <h2>Discord
                   <picture>
                     <source
                       type="image/webp"
                       srcset="../../assets/icon/discord.webp"
-                    />
+                    >
                     <source
                       type="image/png"
                       srcset="../../assets/icon/discord.png"
-                    />
+                    >
                     <img
                       src="../../assets/icon/discord.png"
-                      style="
-                        display: inline;
-                        max-height: 33px;
-                        transform: translateY(5px);
-                      "
+                      style="display:inline; max-height:33px;transform:translateY(5px);"
                       alt="Image description"
-                    />
+                    >
                   </picture>
                 </h2>
                 Get in touch. Not physical, thooo.
@@ -116,22 +114,21 @@
 
             <li>
               <a href="https://github.com/DecentralCardGame">
-                <h2>
-                  Github
+                <h2>Github
                   <picture>
                     <source
                       type="image/webp"
                       srcset="../../assets/icon/github.webp"
-                    />
+                    >
                     <source
                       type="image/png"
                       srcset="../../assets/icon/github.png"
-                    />
+                    >
                     <img
                       src="../../assets/icon/github.png"
-                      style="display: inline; max-height: 33px"
+                      style="display:inline; max-height:33px;"
                       alt="Image description"
-                    />
+                    >
                   </picture>
                 </h2>
                 Checkout our codebase.
@@ -140,7 +137,11 @@
           </ul>
 
           <div class="img__default__container">
-            <img alt="Crowd Control" width="80%" src="../../assets/logo.svg" />
+            <img
+              alt="Crowd Control"
+              width="80%"
+              src="../../assets/logo.svg"
+            >
           </div>
         </div>
       </div>
@@ -154,180 +155,182 @@
 
 <script>
 export default {
-  name: "PageFooter",
-  mounted() {},
-  methods: {},
-};
+  name: 'PageFooter',
+  mounted () {
+  },
+  methods: {
+  }
+}
 </script>
 
 <style scoped lang="scss">
-@import "../../scss/variables";
+  @import "../../scss/variables";
 
-.footer-container {
-  margin-top: 5rem;
-}
-
-footer {
-  background-color: teal;
-  // text-shadow: 0.1em 0.1em 0 #0d9393ff;
-  text-shadow: 0.1em 0.1em 0 darken($background-color, 5%);
-
-  @media (max-width: 480px) {
-    padding: 1rem;
+  .footer-container {
+    margin-top: 5rem;
   }
 
-  ::selection {
-    background-color: $main-color-a;
-    color: white;
-  }
-}
+  footer {
+    background-color: teal;
+    // text-shadow: 0.1em 0.1em 0 #0d9393ff;
+    text-shadow: 0.1em 0.1em 0 darken($background-color, 5%);
 
-h2 {
-  font-weight: bold;
-}
-
-.pre-footer {
-  position: relative;
-  padding: $font-size * 0.5;
-  @media (min-width: 480px) {
-    max-height: $font-size * 3;
-  }
-  background-color: $background-separator;
-  text-shadow: 0.1em 0.1em 0 darken($background-separator, 5%);
-}
-
-.pre-footer__content {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  max-width: 80vw;
-  @media (max-width: 480px) {
-    max-width: 100%;
-    flex-flow: column;
-  }
-
-  p {
-    margin: 0 1.5rem;
     @media (max-width: 480px) {
-      margin: 0.25rem 0.5rem;
+      padding: 1rem;
+    }
+
+    ::selection {
+      background-color: $main-color-a;
+      color: white;
     }
   }
 
-  button {
-    font-weight: $font-weight;
-    font-size: 3rem;
-    margin: -0.5em 0;
+  h2 {
+    font-weight: bold;
+  }
+
+  .pre-footer {
+    position: relative;
+    padding: $font-size * 0.5;
+    @media (min-width: 480px) {
+      max-height: $font-size * 3;
+    }
+    background-color: $background-separator;
+    text-shadow: 0.1em 0.1em 0 darken($background-separator, 5%);
+  }
+
+  .pre-footer__content {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    max-width: 80vw;
+    @media (max-width: 480px) {
+      max-width: 100%;
+      flex-flow: column;
+    }
+
+    p {
+      margin: 0 1.5rem;
+      @media (max-width: 480px) {
+        margin: 0.25rem 0.5rem;
+      }
+    }
+
+    button {
+      font-weight: $font-weight;
+      font-size: 3rem;
+      margin: -0.5em 0;
+
+      @media (max-width: 480px) {
+        margin: 0.25rem 0;
+        font-size: 2em;
+      }
+    }
+  }
+
+  .footer__content {
+    margin: auto;
+    padding-top: 4rem;
+    @media (max-width: 480px) {
+      padding-top: 1rem;
+    }
+    max-width: 70vw;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
 
     @media (max-width: 480px) {
-      margin: 0.25rem 0;
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+  }
+
+  .footer__terms {
+    margin: auto;
+    max-width: 70vw;
+    width: 100%;
+    padding-bottom: 2rem;
+
+    @media (max-width: 480px) {
+      max-width: 100%;
+    }
+
+    h2 {
       font-size: 2em;
     }
   }
-}
 
-.footer__content {
-  margin: auto;
-  padding-top: 4rem;
-  @media (max-width: 480px) {
-    padding-top: 1rem;
-  }
-  max-width: 70vw;
-  display: grid;
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
-}
-
-.footer__terms {
-  margin: auto;
-  max-width: 70vw;
-  width: 100%;
-  padding-bottom: 2rem;
-
-  @media (max-width: 480px) {
-    max-width: 100%;
+  .footer__menu {
+    list-style-type: none;
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    li {
+      padding-bottom: 2em;
+    }
   }
 
-  h2 {
-    font-size: 2em;
+  .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0;
+    border-top: 300px solid $minor-color-a;
+    border-left: 100px solid transparent;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
-}
 
-.footer__menu {
-  list-style-type: none;
-  a {
-    color: $white;
-    text-decoration: none;
+  .triangle-pre {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 150px;
+    border-top: $font-size * 3.14 solid #f29121ff;
+    border-left: 20px solid transparent;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
-  h2 {
-    font-size: 2em;
+
+  .square-pre {
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0;
+    top: 0;
+    border-top: $font-size * 3.14 solid $minor-color-a;
+    border-left: 150px solid transparent;
+    background-color: #f29121ff;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
-  li {
-    padding-bottom: 2em;
+
+  .footer__other > img {
+    margin-top: 2rem;
+    user-select: none;
+    @media (max-width: 480px) {
+      display: block;
+      margin: 1rem 0;
+      width: 100%;
+    }
   }
-}
 
-.triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  right: 0;
-  border-top: 300px solid $minor-color-a;
-  border-left: 100px solid transparent;
-
-  @media (max-width: 480px) {
-    display: none;
+  .footer__copyright {
+    border-top: $border-thickness solid $white;
+    padding: 1rem 0 1rem 0;
+    text-align: center;
   }
-}
-
-.triangle-pre {
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 0;
-  right: 150px;
-  border-top: $font-size * 3.14 solid #f29121ff;
-  border-left: 20px solid transparent;
-
-  @media (max-width: 480px) {
-    display: none;
-  }
-}
-
-.square-pre {
-  position: absolute;
-  width: 0;
-  height: 0;
-  right: 0;
-  top: 0;
-  border-top: $font-size * 3.14 solid $minor-color-a;
-  border-left: 150px solid transparent;
-  background-color: #f29121ff;
-
-  @media (max-width: 480px) {
-    display: none;
-  }
-}
-
-.footer__other > img {
-  margin-top: 2rem;
-  user-select: none;
-  @media (max-width: 480px) {
-    display: block;
-    margin: 1rem 0;
-    width: 100%;
-  }
-}
-
-.footer__copyright {
-  border-top: $border-thickness solid $white;
-  padding: 1rem 0 1rem 0;
-  text-align: center;
-}
 </style>

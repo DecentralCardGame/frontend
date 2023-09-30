@@ -14,6 +14,7 @@
   @media (max-width: 480px) {
     position: static;
   }
+
 }
 
 .modal__backdrop__embed {
@@ -31,12 +32,12 @@
 .modal {
   background: $white;
   text-shadow: none;
-  box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0
-    rgba(0, 0, 0, 0.25);
+  box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 rgba(0, 0, 0, 0.25);
   overflow-x: auto;
   display: flex;
   flex-direction: column;
   @media (max-width: 480px) {
+
   }
 }
 
@@ -70,7 +71,7 @@
   transition: all $animation-duration ease-out;
   border: none;
   font-size: $font-size;
-  padding: $font-size * 0.25 $font-size * 0.5;
+  padding: $font-size*0.25 $font-size*0.5;
   cursor: pointer;
   font-weight: bold;
   background: transparent;
@@ -80,7 +81,7 @@
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all $animation-duration ease-out;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -109,7 +110,7 @@
   transition: all $animation-duration ease-out;
   border: none;
   font-size: $font-size;
-  padding: $font-size * 0.25 $font-size * 0.5;
+  padding: $font-size*0.25 $font-size*0.5;
   cursor: pointer;
   font-weight: bold;
   background: transparent;
@@ -119,7 +120,7 @@
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all $animation-duration ease-out;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -232,22 +233,18 @@
     transition-timing-function: ease-out;
   }
 
-  &:hover img {
+  &:hover img{
     -webkit-filter: invert(100%);
   }
 
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover, &:focus, &:active {
     color: $white;
     &:after {
       background-position: left bottom;
     }
   }
 
-  &:hover:before,
-  &:focus:before,
-  &:active:before {
+  &:hover:before, &:focus:before, &:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
@@ -258,7 +255,7 @@
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all $animation-duration ease-out;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -268,4 +265,5 @@
     box-shadow: none;
     transform: skewX(0);
   }
+
 }

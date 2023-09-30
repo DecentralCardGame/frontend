@@ -1,2 +1,1 @@
-export const validAddress = (address: string) =>
-  !!address && address.startsWith("cc") && address.length === 41;
+export const validAddress = (address: string) => !!address && address.startsWith('cc') && address.length === 41

@@ -7,14 +7,15 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang=ts>
+
 export default {
   name: "NotFound",
   data() {
     return {};
   },
   mounted() {
-    this.$router.push({ path: "NotFound" });
+    this.$router.push({ path: 'NotFound' })
   },
 };
 </script>

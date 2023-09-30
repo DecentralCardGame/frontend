@@ -1,10 +1,10 @@
 <template>
   <div>
     <ul>
-      <li
+      <li       
         v-for="(line, index) in text"
         :key="index"
-        :class="{ filled: type[index] === 'filled' }"
+        :class="{ 'filled': type[index]==='filled' }"
       >
         {{ line }}
       </li>
@@ -13,52 +13,58 @@
 </template>
 
 <script>
+
 export default {
-  name: "BulletList",
+  name: 'BulletList',
   props: {
     text: {
       type: Array,
       default() {
-        return [];
-      },
+        return []
+      }
     },
     type: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
-  data() {
-    return {};
+  data () {
+    return {
+    }
   },
-  mounted() {},
-  methods: {},
-};
+  mounted () {
+  },
+  methods: {
+  }
+}
 </script>
 
 <style scoped lang="scss">
+
 ul {
-  list-style: none;
+  list-style:none;
   padding-left: 1em;
 }
 li {
   margin: 1rem;
   &:before {
-    content: "";
+    content: '';
     display: inline-block;
     height: 1rem;
     width: 1rem;
     background-image: url(../../assets/misc/bulletpoint.svg);
     background-size: contain;
     background-repeat: no-repeat;
-    margin-right: 0.5em;
+    margin-right:0.5em;
   }
 }
 
-.filled {
+.filled{
   &:before {
-    background-image: url(../../assets/misc/bulletpoint-filled.svg);
+    background-image: url(../../assets/misc/bulletpoint-filled.svg)
   }
 }
+
 </style>

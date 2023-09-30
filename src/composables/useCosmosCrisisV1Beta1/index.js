@@ -1,5 +1,5 @@
-import { useClient } from "../useClient";
+import { useClient } from '../useClient';
 export default function useCosmosCrisisV1Beta1() {
-  const client = useClient();
-  return {};
+    const client = useClient();
+    return {};
 }

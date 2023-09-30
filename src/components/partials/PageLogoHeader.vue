@@ -1,28 +1,34 @@
 <template>
-  <div id="main" class="main">
+  <div
+    id="main"
+    class="main"
+  >
     <div class="logo-container">
       <img
         src="../../assets/logo.svg"
         class="image1"
         alt="Loading..."
         width="500"
-      />
+      >
       <img
         v-if="!isSafari"
         src="../../assets/animations/sparkling_water.gif"
         class="image2"
         alt="Loading..."
         width="1200"
-      />
+      >
     </div>
     <div class="button--container extra--margin">
-      <div class="link--button" @click="scrollPastMenu">
+      <div
+        class="link--button"
+        @click="scrollPastMenu"
+      >
         <div class="img--container">
           <img
             src="../../assets/arrows/arrow_down.svg"
             class="image3"
             alt="yes..."
-          />
+          >
         </div>
       </div>
     </div>
@@ -31,29 +37,28 @@
 
 <script>
 export default {
-  name: "PageHeader",
-  data() {
-    return {
-      isSafari: false,
-    };
-  },
-  computed: {},
-  mounted() {
-    this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  },
-  methods: {
-    scrollPastMenu() {
-      const mainElement = document
-        .getElementById("main")
-        .getBoundingClientRect();
-      window.scrollTo({
-        left: 0,
-        top: mainElement.bottom + document.documentElement.scrollTop,
-        behavior: "smooth",
-      });
+  name: 'PageHeader',
+    data() {
+      return {
+        isSafari: false
+      };
     },
-  },
-};
+    computed: {
+    },
+    mounted () {
+      this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+    },
+    methods: {
+      scrollPastMenu() {
+        const mainElement = document.getElementById('main').getBoundingClientRect();
+        window.scrollTo({
+          left: 0,
+          top: mainElement.bottom + document.documentElement.scrollTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+}
 </script>
 
 <style scoped lang="scss">
@@ -66,14 +71,14 @@ header {
   height: 0;
 }
 .main {
-  padding: 25vh 10vh;
+  padding: 25vh 10vh
 }
 .logo-container {
-  position: relative;
-  flex-flow: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: relative;
+    flex-flow: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .image1 {
@@ -88,7 +93,7 @@ header {
   max-width: 95vw;
 }
 .text--button {
-  font-family: $font-family-header;
+  font-family: $font-family-header; 
   font-weight: normal;
   padding: 0.25rem 1rem;
   font-size: $font-size-small;
@@ -99,7 +104,7 @@ header {
 
 .link--button {
   background-color: $main-color-c;
-  box-shadow: $border-thickness-bold * 1 $border-thickness-bold * 1 0 $black;
+  box-shadow: $border-thickness-bold * 1.0 $border-thickness-bold * 1.0 0 $black;
   position: relative;
   margin: 1rem auto;
   padding: 1.5rem 1rem;
@@ -128,20 +133,16 @@ header {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
   }
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover, &:focus, &:active {
     color: $minor-color-c;
   }
-  &:hover:before,
-  &:focus:before,
-  &:active:before {
+  &:hover:before, &:focus:before, &:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
   @media (max-width: 1178px) {
     transform: skewX(-25deg);
-  }
+  }  
 }
 .button--container {
   position: relative;
@@ -167,7 +168,7 @@ header {
 .image3 {
   transform: skewX(25deg);
   position: absolute;
-  margin: 3rem 3.2rem 3.2rem 3rem;
+  margin: 3.0rem 3.2rem 3.2rem 3.0rem;
   z-index: 6;
   top: 0rem;
   left: 1rem;

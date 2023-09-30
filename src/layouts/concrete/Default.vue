@@ -12,16 +12,19 @@
 </template>
 
 <script>
-import PageHeader from "@/components/partials/PageHeader.vue";
-import PageMenu from "@/components/partials/PageMenu.vue";
-import PageFooter from "@/components/partials/PageFooter.vue";
+import PageHeader from '@/components/partials/PageHeader.vue'
+import PageMenu from '@/components/partials/PageMenu.vue'
+import PageFooter from '@/components/partials/PageFooter.vue'
 
 export default {
-  name: "CrowdControlApp",
-  components: { PageFooter, PageMenu, PageHeader },
-  mounted() {},
-  methods: {},
-};
+  name: 'CrowdControlApp',
+  components: {PageFooter, PageMenu, PageHeader},
+  mounted () {
+  },
+  methods: {
+  }
+}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+</style>

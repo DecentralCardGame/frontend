@@ -1,22 +1,32 @@
 <template>
   <div class="gallery">
-    <h2 class="header__h2">Voting Results</h2>
+    <h2 class="header__h2">
+      Voting Results
+    </h2>
     <p class="header__p">
-      Here you can see the outome of the last week's voting. <br /><br />
-      Total Votes: {{ TotalVotes }} <br />
-      Total <b>Fair Enough</b> Votes: {{ TotalFairEnoughVotes }} <br />
-      Total <b>Inappropriate</b> Votes: {{ TotalInappropriateVotes }} <br />
-      Total <b>Overpowered</b> Votes: {{ TotalOverpoweredVotes }} <br />
-      Total <b>Underpowered</b> Votes: {{ TotalUnderpoweredVotes }} <br />
-      <br />
-      Nerfed Mana Costs are <span style="color: #ff0000">red</span> and buffed
-      Mana Costs are <span style="color: #3cb38f">green</span>. <br />
+      Here you can see the outome of the last week's voting. <br><br>
+      Total Votes: {{ TotalVotes }} <br>
+      Total <b>Fair Enough</b> Votes: {{ TotalFairEnoughVotes }} <br>
+      Total <b>Inappropriate</b> Votes: {{ TotalInappropriateVotes }} <br>
+      Total <b>Overpowered</b> Votes: {{ TotalOverpoweredVotes }} <br>
+      Total <b>Underpowered</b> Votes: {{ TotalUnderpoweredVotes }} <br> <br>
+      Nerfed Mana Costs are <span style="color: #ff0000">red</span> and buffed Mana Costs are <span style="color: #3CB38F">green</span>. <br>
       Banned Cards have their Mana Cost removed.
     </p>
-    <br />
+    <br>
     <div class="button-container button-container--top">
-      <button v-show="browsingBackward" @click="prevPage">back</button>
-      <button v-show="browsingForward" @click="nextPage">next</button>
+      <button
+        v-show="browsingBackward"
+        @click="prevPage"
+      >
+        back
+      </button>
+      <button
+        v-show="browsingForward"
+        @click="nextPage"
+      >
+        next
+      </button>
     </div>
 
     <div class="gallery__view">
@@ -48,8 +58,18 @@
       </div>
     </div>
     <div class="button-container button-container--bottom">
-      <button v-show="browsingBackward" @click="prevPage">back</button>
-      <button v-show="browsingForward" @click="nextPage">next</button>
+      <button
+        v-show="browsingBackward"
+        @click="prevPage"
+      >
+        back
+      </button>
+      <button
+        v-show="browsingForward"
+        @click="nextPage"
+      >
+        next
+      </button>
     </div>
     <div
       v-if="isGalleryModalVisible"
@@ -83,15 +103,15 @@ import * as R from "ramda";
 import { useQuery } from "@/def-composables/useQuery";
 import GalleryModal from "@/components/modals/GalleryModal.vue";
 import CardComponent from "@/components/elements/CardComponent.vue";
-import { useLastInputEvent } from "@/def-composables/useLastInputEvent";
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent'
 import { saveCardAsPng } from "@/components/utils/utils.js";
 import { useAddress } from "@/def-composables/useAddress";
 import { useVoting } from "@/def-composables/useVoting";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
-const { notifyInfo, notifyFail, notifySuccess } = useNotifications();
-const { queryQCards, queryQCard } = useQuery();
-const { add } = useVoting();
+const { notifyInfo, notifyFail, notifySuccess } = useNotifications()
+const { queryQCards, queryQCard } = useQuery()
+const { add } = useVoting()
 
 export default {
   name: "VotingResultsPage",
@@ -123,18 +143,13 @@ export default {
     };
   },
   setup() {
-    const { address } = useAddress();
-    const { lastInputEvent } = useLastInputEvent();
-    const { queryQVotingResults } = useQuery();
-    const { galleryFilters } = useGalleryFilters;
-    const { editCard } = useCardCreatorCards();
+    const { address } = useAddress()
+    const { lastInputEvent } = useLastInputEvent()
+    const { queryQVotingResults } = useQuery()
+    const { galleryFilters } = useGalleryFilters
+    const { editCard } = useCardCreatorCards()
 
-    return {
-      lastInputEvent,
-      address,
-      queryQVotingResults,
-      cardCreatorEditCard: editCard.card,
-    };
+    return { lastInputEvent, address, queryQVotingResults, cardCreatorEditCard: editCard.card  }
   },
   // this watch together with the following beforeRouteLeave make browsing
   // through the Gallery with mouse back and forward (x1, x2) buttons possible
@@ -143,103 +158,83 @@ export default {
       let event = this.lastInputEvent;
 
       if (event.which == 5) {
-        this.leavePageLock = true;
-        this.nextPage();
+        this.leavePageLock = true
+        this.nextPage()
       } else if (event.which == 4) {
-        this.leavePageLock = true;
-        this.prevPage();
+        this.leavePageLock = true
+        this.prevPage()
       } else if (event.which == 13) {
-        this.loadCardList();
+        this.loadCardList()
       } else {
-        this.leavePageLock = false;
+        this.leavePageLock = false
       }
     },
   },
   mounted() {
-    this.loadCardList();
+    this.loadCardList()
   },
   methods: {
     loadCardList() {
-      console.log(this.queryQVotingResults);
+      console.log(this.queryQVotingResults)
       return this.queryQVotingResults({})
         .then((res) => {
-          console.log("res", res);
-          this.TotalVotes = res.lastVotingResults.totalVotes;
-          this.TotalFairEnoughVotes =
-            res.lastVotingResults.totalFairEnoughVotes;
-          this.TotalInappropriateVotes =
-            res.lastVotingResults.totalInappropriateVotes;
-          this.TotalOverpoweredVotes =
-            res.lastVotingResults.totalOverpoweredVotes;
-          this.TotalUnderpoweredVotes =
-            res.lastVotingResults.totalUnderpoweredVotes;
-          this.cardList = res.lastVotingResults.cardResults;
+          console.log("res", res)
+          this.TotalVotes = res.lastVotingResults.totalVotes
+          this.TotalFairEnoughVotes = res.lastVotingResults.totalFairEnoughVotes
+          this.TotalInappropriateVotes = res.lastVotingResults.totalInappropriateVotes
+          this.TotalOverpoweredVotes = res.lastVotingResults.totalOverpoweredVotes
+          this.TotalUnderpoweredVotes = res.lastVotingResults.totalUnderpoweredVotes
+          this.cardList = res.lastVotingResults.cardResults
         })
         .then(() => {
-          this.fillPage();
+          this.fillPage()
         });
     },
     getCard(currentId) {
-      let cardId =
-        this.cardList[this.cardList.length - 1 - this.pageId - currentId]
-          .cardId;
-      return queryQCard(cardId).then((res) => {
-        let card = res;
-        card.id = cardId;
-        if (card.content) {
-          let candidate = card;
-          candidate.isNerfed =
-            this.cardList[this.cardList.length - 1 - this.pageId - currentId]
-              .result === "nerf";
-          candidate.isBuffed =
-            this.cardList[this.cardList.length - 1 - this.pageId - currentId]
-              .result === "buff";
-          candidate.isBanned =
-            this.cardList[this.cardList.length - 1 - this.pageId - currentId]
-              .result === "ban";
-          this.cards.push(candidate);
-          return candidate;
-        } else if (!card.owner) {
-          console.error("card without content and owner: ", res);
-          return res;
-        } else {
-          console.error("card without content: ", res);
-          return res;
-        }
-      });
+      let cardId = this.cardList[
+        this.cardList.length - 1 - this.pageId - currentId
+      ].cardId
+      return queryQCard(cardId)
+        .then((res) => {
+          let card = res
+          card.id = cardId
+          if (card.content) {
+            let candidate = card
+            candidate.isNerfed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'nerf'
+            candidate.isBuffed = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'buff'
+            candidate.isBanned = this.cardList[this.cardList.length - 1 - this.pageId - currentId].result === 'ban'
+            this.cards.push(candidate)
+            return candidate
+          } else if (!card.owner) {
+            console.error("card without content and owner: ", res)
+            return res
+          } else {
+            console.error("card without content: ", res)
+            return res
+          }
+        })
     },
     fillPage() {
-      if (
-        this.pageId + this.galleryFilters.cardsPerPage >=
-        this.cardList.length
-      )
+      if (this.pageId + this.galleryFilters.cardsPerPage >= this.cardList.length)
         this.browsingForward = false;
       else this.browsingForward = true;
       if (this.pageId <= 0) this.browsingBackward = false;
       else this.browsingBackward = true;
 
-      let requestedCards = R.map(
-        (n) => this.getCard(n),
-        R.times(
-          R.identity,
-          R.min(
-            this.galleryFilters.cardsPerPage,
-            this.cardList.length - this.pageId
-          )
+      let requestedCards = R.map(n => this.getCard(n),
+          R.times(R.identity, R.min(this.galleryFilters.cardsPerPage, this.cardList.length - this.pageId))
         )
-      );
 
-      Promise.all(requestedCards).then((res) => {
+      Promise.all(requestedCards)
+      .then((res) => {
         // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
         // therefore the clickedindex must be adjusted (if something was clicked)
-        if (!R.equals(this.cards[this.clickedIndex], res[this.clickedIndex])) {
-          this.clickedIndex = R.findIndex(
-            R.propEq("id", this.cards[this.clickedIndex].id)
-          )(res);
+        if (!R.equals(this.cards[this.clickedIndex], res[this.clickedIndex] )) {
+          this.clickedIndex = R.findIndex(R.propEq('id', this.cards[this.clickedIndex].id))(res)
         }
-        this.cards = res;
-      });
-      console.log("all cards:", this.cards);
+        this.cards = res
+      })
+      console.log("all cards:", this.cards)
     },
     nextPage() {
       if (!this.browsingForward) return;
@@ -247,7 +242,7 @@ export default {
       this.pageId += this.galleryFilters.cardsPerPage;
       this.cards = [];
       this.fillPage();
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
     },
     prevPage() {
       if (!this.browsingBackward) return;
@@ -258,38 +253,35 @@ export default {
       window.scrollTo(0, 0);
     },
     showGalleryModal() {
-      this.isGalleryModalVisible = true;
+      this.isGalleryModalVisible = true
 
       this.canVote = R.any(
         (x) => x == this.cards[this.clickedIndex].id,
         R.pluck("cardId", this.votableCards)
-      );
+      )
 
-      this.isOwner = this.cards[this.clickedIndex].owner === this.address;
-      this.isArtist = this.cards[this.clickedIndex].artist === this.address;
+      this.isOwner = this.cards[this.clickedIndex].owner === this.address
+      this.isArtist = this.cards[this.clickedIndex].artist === this.address
 
-      this.keywordDescriptions = [];
-      let firstLetterToLower = (string) => {
-        return string[0].toLowerCase() + string.substring(1);
-      };
-      this.cards[this.clickedIndex].Keywords.forEach((ability) => {
-        ability.forEach((keyword) => {
-          this.keywordDescriptions.push([
-            keyword,
-            this.$rulesDefinitions[firstLetterToLower(keyword)].description,
-          ]);
-        });
-      });
+      this.keywordDescriptions = []
+      let firstLetterToLower = string => {
+        return string[0].toLowerCase() + string.substring(1)
+      }
+      this.cards[this.clickedIndex].Keywords.forEach(ability => {
+        ability.forEach(keyword => {
+          this.keywordDescriptions.push([keyword, this.$rulesDefinitions[firstLetterToLower(keyword)].description])
+        })
+      })
     },
     closeGalleryModal() {
       this.isGalleryModalVisible = false;
     },
     edit() {
-      this.cardCreatorEditCard = this.cards[this.clickedIndex];
-      this.$router.push("cardCreator");
+      this.cardCreatorEditCard = this.cards[this.clickedIndex]
+      this.$router.push("cardCreator")
     },
     cardview() {
-      this.$router.push("cardview/" + this.cards[this.clickedIndex].id);
+      this.$router.push('cardview/' + this.cards[this.clickedIndex].id)
     },
     downloadPng() {
       saveCardAsPng(
@@ -298,11 +290,8 @@ export default {
       );
     },
     vote(type) {
-      this.add(this.cards[this.clickedIndex].id, type);
-      this.notifyInfo(
-        "Vote saved",
-        "Don't forget to send your votes on the Voting page!"
-      );
+      this.add(this.cards[this.clickedIndex].id, type)
+      this.notifyInfo("Vote saved", "Don't forget to send your votes on the Voting page!")
     },
   },
 };
@@ -371,6 +360,8 @@ export default {
   max-width: 300px;
 }
 
+
+
 .button-container--top {
   margin-bottom: 2rem;
 }
@@ -388,7 +379,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease;
   @media (max-width: 480px) {
-    bottom: 0;
+    bottom:0;
     overflow-y: scroll;
   }
 }
@@ -398,7 +389,7 @@ export default {
   margin-left: -25px;
 }
 .gallery-checkbox__label {
-  margin-left: 25px;
+margin-left: 25px;
 }
 .ability-modal-container {
   margin: auto;
@@ -407,11 +398,12 @@ export default {
   max-height: 95vh;
   @media (max-width: 480px) {
     margin-top: 0;
-    max-height: 300vh;
-    height: auto;
+    max-height:300vh;
+    height:auto;
   }
   //OLD:
   // position: relative;
-  z-index: 3;
+   z-index: 3;
 }
+
 </style>

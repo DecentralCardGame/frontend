@@ -8,7 +8,10 @@
         role="dialog"
         @click.stop="doNothing"
       >
-        <header id="modalTitle" class="modal__header">
+        <header
+          id="modalTitle"
+          class="modal__header"
+        >
           <slot name="header">
             Card Info & Interactions
             <button
@@ -33,7 +36,10 @@
           </div>
 
           <div class="container-flex-column">
-            <div v-show="keywordDescriptions.length" class="modal__body">
+            <div
+              v-show="keywordDescriptions.length"
+              class="modal__body"
+            >
               <b>Keyword Explanations:</b>
               <div
                 v-for="(keyword, index) in keywordDescriptions"
@@ -49,8 +55,11 @@
               <b>Card Interactions:</b>
             </div>
 
-            <section id="modalDescription" class="modal__body choice-grid">
-              <router-link :to="{ path: '/cardview/' + model.id }">
+            <section
+              id="modalDescription"
+              class="modal__body choice-grid"
+            >
+              <router-link :to="{ path: '/cardview/'+model.id }">
                 <button
                   aria-label="Close modal"
                   class="choice-grid__button"
@@ -64,22 +73,16 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  edit();
-                  close();
-                "
+                @click="edit(); close();"
               >
                 Edit artwork
               </button>
               <button
-                v-if="isOwner"
+                v-if="isOwner "
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  edit();
-                  close();
-                "
+                @click="edit(); close();"
               >
                 Edit card
               </button>
@@ -96,10 +99,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteUP();
-                  close();
-                "
+                @click="voteUP(); close();"
               >
                 Vote Underpowered
               </button>
@@ -109,10 +109,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteOP();
-                  close();
-                "
+                @click="voteOP(); close();"
               >
                 Vote Overpowered
               </button>
@@ -122,10 +119,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteFair();
-                  close();
-                "
+                @click="voteFair(); close();"
               >
                 Vote Fair Enough
               </button>
@@ -135,10 +129,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteInappropriate();
-                  close();
-                "
+                @click="voteInappropriate(); close();"
               >
                 Vote Inappropriate
               </button>
@@ -146,12 +137,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  $router.push({
-                    name: 'UserView',
-                    params: { id: model.owner },
-                  })
-                "
+                @click="$router.push({name: 'UserView', params: {id: model.owner}});"
               >
                 Owner profile
               </button>
@@ -170,16 +156,16 @@
 </template>
 <script lang="ts">
 import CardComponent from "@/components/elements/CardComponent.vue";
-import { useLastInputEvent } from "@/def-composables/useLastInputEvent.ts";
-import TransferCardModal from "./TransferCardModal.vue";
+import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
+import TransferCardModal from './TransferCardModal.vue';
 import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
-import { useProfilePic } from "@/def-composables/useProfilePic";
+import { useProfilePic } from '@/def-composables/useProfilePic';
 
-const { queryQUser } = useQuery();
+const { queryQUser } = useQuery()
 
 export default {
-  name: "GalleryModal",
+  name: 'GalleryModal',
   components: { CardComponent, TransferCardModal },
   props: {
     canVote: Boolean,
@@ -188,19 +174,19 @@ export default {
     keywordDescriptions: {
       type: Array,
       default() {
-        return [];
-      },
+        return []
+      }
     },
     model: {
       type: Object,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     imageURL: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   data() {
     return {
@@ -208,66 +194,69 @@ export default {
       currentPrice: -1,
       currentBid: -1,
       creditsAvailable: -1,
-    };
+    }
   },
   setup() {
-    const { address } = useAddress();
-    const { lastInputEvent } = useLastInputEvent();
-    const { getImg } = useProfilePic();
+    const { address } = useAddress()
+    const { lastInputEvent } = useLastInputEvent()
+    const { getImg } = useProfilePic()
 
-    return { userAddress: address, getImg, lastInputEvent };
+    return { userAddress: address, getImg, lastInputEvent }
   },
   watch: {
     lastInputEvent() {
       let event = this.lastInputEvent;
 
       if (event.which == 27) {
-        this.$emit("close");
+        this.$emit('close')
       }
     },
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
-    getUser() {
-      queryQUser(this.userAddress).then((user) => {
-        this.user = user;
-        this.img = this.getImg(this.user, this.userAddress);
-      });
+    getUser () {
+      queryQUser(this.userAddress)
+      .then(user => {
+        this.user = user
+        this.img = this.getImg(this.user, this.userAddress)
+      })
     },
-    doNothing() {},
+    doNothing () {
+    },
     close() {
-      this.$emit("close");
+      this.$emit('close')
     },
     download() {
-      this.$emit("download");
+      this.$emit('download')
     },
     cardview() {
-      this.$emit("cardview");
+      this.$emit('cardview')
     },
     edit() {
-      this.$emit("edit");
+      this.$emit('edit')
     },
     voteOP() {
-      this.$emit("voteOP");
+      this.$emit('voteOP')
     },
     voteUP() {
-      this.$emit("voteUP");
+      this.$emit('voteUP')
     },
     voteFair() {
-      this.$emit("voteFair");
+      this.$emit('voteFair')
     },
     voteInappropriate() {
-      this.$emit("voteInappropriate");
+      this.$emit('voteInappropriate')
     },
     showModal() {
       this.isModalVisible = true;
     },
     closeModal() {
       this.isModalVisible = false;
-      this.getUser();
-    },
+      this.getUser()
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">

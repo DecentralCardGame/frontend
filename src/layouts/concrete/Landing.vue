@@ -12,22 +12,26 @@
 </template>
 
 <script>
-import PageLogoHeader from "@/components/partials/PageLogoHeader.vue";
-import PageMenu from "@/components/partials/PageMenu.vue";
-import PageFooter from "@/components/partials/PageFooter.vue";
+import PageLogoHeader from '@/components/partials/PageLogoHeader.vue'
+import PageMenu from '@/components/partials/PageMenu.vue'
+import PageFooter from '@/components/partials/PageFooter.vue'
 import { useNotifications } from "@/def-composables/useNotifications";
 
 export default {
-  name: "CrowdControlApp",
+  name: 'CrowdControlApp',
   components: { PageMenu, PageLogoHeader, PageFooter },
-  mounted() {},
-  setup() {
-    const { isMobileDevice } = useNotifications();
-
-    return { isMobileDevice };
+  mounted () {
   },
-  methods: {},
-};
+  setup() {
+    const { isMobileDevice } = useNotifications()
+
+    return { isMobileDevice }
+  },
+  methods: {
+  },
+}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+</style>
