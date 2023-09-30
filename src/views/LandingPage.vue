@@ -135,7 +135,7 @@
             <p class="text--medium">
               Make your own cards on the blockchain <br />
               with our
-              <router-link :to="{ name: 'Card Creator' }">
+              <router-link :to="{ path: '/cardCreator' }">
                 <b>Card Creator</b> </router-link
               >.
             </p>
