@@ -5,12 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { useProfilePic } from "@/def-composables/useProfilePic";
 
-const { setLoggedInProfilePic, loggedInProfilePic } = useProfilePic()
-
-onMounted(setLoggedInProfilePic);
+const { loggedInProfilePic } = useProfilePic()
 
 </script>
 

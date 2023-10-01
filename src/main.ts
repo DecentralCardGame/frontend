@@ -10,11 +10,13 @@ import Notifications from '@kyvg/vue3-notification'
 import { useCardsRules } from "@/def-composables/useCardRules";
 import AppLayout from "@/layouts/AppLayout.vue"
 import { useQuery } from "./def-composables/useQuery";
+import { useUser } from "./def-composables/useUser";
 
 const app = createApp(App);
 
 useCardsRules()
 const { queryQCardchainInfo } = useQuery()
+const { user } = useUser()
 
 queryQCardchainInfo({})
   .then(() => {
