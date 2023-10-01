@@ -274,7 +274,7 @@ export const useTxInstance: () => {
       }),
     ].concat(
       [
-        "/DecentralCardGame.cardchain.cardchain.MsgBuyCollection",
+        "/DecentralCardGame.cardchain.cardchain.MsgBuyBoosterPack",
         "/DecentralCardGame.cardchain.cardchain.MsgOpenBoosterPack",
         "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
         "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch",
