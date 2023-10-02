@@ -7,10 +7,7 @@
         class="modal"
         role="dialog"
       >
-        <header
-          id="modalTitle"
-          class="modal__header"
-        >
+        <header id="modalTitle" class="modal__header">
           <slot name="header">
             Card Frame Auction
             <button
@@ -23,39 +20,42 @@
             </button>
           </slot>
         </header>
-        <section
-          id="modalDescription"
-          class="modal__body"
-        >
+        <section id="modalDescription" class="modal__body">
           <slot name="body">
             <table class="table--buy-scard-frame">
               <tr>
                 <td>You have:</td>
-                <td><b>{{ ownedCardFrames }} Card Frames</b></td>
+                <td>
+                  <b>{{ state.ownedCardFrames }} Card Frames</b>
+                </td>
               </tr>
               <tr>
-                <br>
+                <br />
               </tr>
               <tr>
                 <td>Current price:</td>
-                <td><b>{{ currentPrice }}</b></td>
+                <td>
+                  <b>{{ state.currentPrice }}</b>
+                </td>
                 <td>credits</td>
               </tr>
               <tr>
                 <td>You have:</td>
-                <td><b>{{ creditsAvailable }} </b></td>
+                <td>
+                  <b>{{ state.creditsAvailable }} </b>
+                </td>
                 <td>credits</td>
               </tr>
               <tr>
                 <td>Your bid:</td>
                 <td>
                   <input
-                    v-model="currentBid"
-                    :placeholder="[[ currentBid ]]"
+                    v-model="state.currentBid"
+                    :placeholder="[[state.currentBid]]"
                     size="3"
                     type="text"
                     @keypress="isNumber($event)"
-                  >
+                  />
                 </td>
                 <td>credits</td>
               </tr>
@@ -78,86 +78,69 @@
   </transition>
 </template>
 
-<script lang=ts>
-import * as R from "ramda"
+<script setup lang="ts">
 import { useQuery } from "@/def-composables/useQuery";
-import { useAddress } from "@/def-composables/useAddress";
-import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useTx } from "@/def-composables/useTx";
 import { Coin } from "@/model/Coin";
+import { computed, type ComputedRef, onMounted, reactive } from "vue";
+import { useUser } from "@/def-composables/useUser";
 
-const { queryQUser, queryQCardchainInfo, queryAllBalances } = useQuery();
+const { queryQCardchainInfo } = useQuery();
 const { buyCardScheme } = useTx();
+const { user, coins, queryUser, queryCoins } = useUser();
 
-export default {
-  name: 'BuyFrameModal',
-  data() {
-    return {
-      ownedCardFrames: 0,
-      currentPrice: -1,
-      currentBid: -1,
-      creditsAvailable: -1
-    }
-  },
-  setup() {
-    const { loggedIn } = useLoggedIn();
-    const { address } = useAddress();
+const emit = defineEmits(["close"]);
 
-    return {
-      loggedIn, address
+const initialState: {
+  ownedCardFrames: ComputedRef<number>,
+  currentPrice: number,
+  currentBid: number,
+  creditsAvailable: ComputedRef<number>
+} = {
+  ownedCardFrames: computed(() => user.value.ownedCardSchemes.length),
+  currentPrice: -1,
+  currentBid: -1,
+  creditsAvailable: computed(() => {
+    let usableCoins: Coin[] = coins.value.filter((coin: Coin) => coin.denom == "ucredits");
+    if (usableCoins.length == 0) {
+      throw new Error("No usable coins available");
     }
-  },
-  mounted() {
-    queryQCardchainInfo({})
-      .then(res => {
-        console.log(res)
-        let credits = res.cardAuctionPrice.normalize().amount
-        this.currentBid = credits
-        this.currentPrice = credits
-      })
-      .catch(res => {
-        console.error(res)
-        this.close()
-      })
-    queryQUser(this.address)
-      .then(user => {
-        this.ownedCardFrames = user.ownedCardSchemes.length
-      })
-      .catch(res => {
-        console.error(res)
-        this.close()
-      })
-    queryAllBalances(this.address)
-      .then(acc => {
-        let usableCoins: Coin[] = R.filter((coin: Coin) => { return coin.denom == "ucredits" }, acc.balances)
-        if (usableCoins.length == 0) {
-          throw new Error("No usable coins available")
-        }
-        this.creditsAvailable = usableCoins[0].normalize().amount
-      })
-      .catch(res => {
-        console.error(res)
-        this.close()
-      })
-  },
-  methods: {
-    close() {
-      this.$emit('close')
-    },
-    buyCardFrame() {
-      this.$emit('close')
-      buyCardScheme(new Coin("credits", this.currentBid).denormalize().toCompatCoin(), res => {
-      }, () => {})
-    },
-    isNumber: function (evt) {
-      evt = evt || window.event
-      let charCode = (evt.which) ? evt.which : evt.keyCode
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault()
-      } else {
-        return true
-      }
-    }
+    return Coin.from(usableCoins[0]).normalize().amount;
+  })
+};
+
+const state = reactive(initialState);
+
+onMounted(() => {
+  queryQCardchainInfo({})
+    .then(res => {
+      console.log(res);
+      let credits = res.cardAuctionPrice.normalize().amount;
+      state.currentBid = credits;
+      state.currentPrice = credits;
+    })
+    .catch(res => {
+      console.error(res);
+      close();
+    });
+})
+
+const close = () => emit("close");
+const buyCardFrame = () => {
+  emit("close");
+  buyCardScheme(
+    new Coin("credits", state.currentBid).denormalize().toCompatCoin(),
+    () => {queryUser(); queryCoins()},
+    console.log
+  );
+};
+const isNumber = (evt: any) => {
+  evt = evt || window.event;
+  let charCode = (evt.which) ? evt.which : evt.keyCode;
+  if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+    evt.preventDefault();
+  } else {
+    return true;
   }
 }
 </script>
@@ -170,6 +153,7 @@ export default {
     text-align: right;
     padding: 0.25rem;
   }
+
   input {
     padding: 0;
     margin: 0;
