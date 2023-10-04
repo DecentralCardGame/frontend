@@ -751,7 +751,7 @@ export default {
   },
   mounted() {
     console.log("print model after mounted", this.model)
-    if (this.loggedIn) {
+    if (!this.loggedIn) {
       this.notifyInfo("Not logged in", "You must login to create a card.");
     }
 
