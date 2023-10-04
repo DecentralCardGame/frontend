@@ -177,7 +177,7 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import CardComponent from "@/components/elements/CardComponent.vue";
 import {
   cardJpgs,
@@ -187,22 +187,6 @@ import {
   healingPriestCard,
   communityCardData
 } from "@/components/utils/sampleCards";
-
-export default {
-  name: "AboutPage",
-  components: { CardComponent },
-  data() {
-    return {
-      cardJpgs:cardJpgs,
-      churchCard:churchCard,
-      armedSupplierCard:armedSupplierCard,
-      healingPriestCard:healingPriestCard,
-      wildAllianceCard:wildAllianceCard,
-      communityCardData:communityCardData
-    };
-  },
-  mounted() {},
-};
 </script>
 
 <style scoped lang="scss">
