@@ -24,7 +24,7 @@ import { onMounted, reactive, watch } from "vue";
 const { rules } = useCardsRules()
 
 const props = withDefaults(defineProps<{
-  keywords: Array<string>
+  keywords: Array<Array<string>>
 }>(), {
   keywords: () => [],
 })

@@ -16,7 +16,7 @@ const useVotingInstance = () => {
 
   watch(
     () => R.clone(votes.value),
-    (currentValue, oldValue) => {
+    (currentValue) => {
       console.log(currentValue);
       window.localStorage.setItem(KEY, JSON.stringify(currentValue));
     }
