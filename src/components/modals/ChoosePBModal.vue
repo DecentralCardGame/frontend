@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { useProfilePic } from "@/def-composables/useProfilePic";
+import { useUser } from "@/def-composables/useUser";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
 import type { Card } from "@/model/Card";
@@ -78,9 +78,9 @@ export default {
   setup() {
     const { queryQCard } = useQuery();
     const { setProfileCard } = useTx();
-    const { setLoggedInProfilePic } = useProfilePic()
+    const { queryUser } = useUser()
 
-    return { queryQCard, setProfileCard, setLoggedInProfilePic };
+    return { queryQCard, setProfileCard, queryUser };
   },
   mounted() {
     for (let i = 0; i < this.cards.length; i++) {
@@ -103,7 +103,7 @@ export default {
     send(id: number) {
       this.setProfileCard(id, (res) => {
         console.log(res)
-        this.setLoggedInProfilePic()
+        this.queryUser()
         this.close()
       }, () => {})
     }

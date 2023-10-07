@@ -6,12 +6,8 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
-        @click.stop="doNothing"
       >
-        <header
-          id="modalTitle"
-          class="modal__header"
-        >
+        <header id="modalTitle" class="modal__header">
           <slot name="header">
             Card Info & Interactions
             <button
@@ -36,10 +32,7 @@
           </div>
 
           <div class="container-flex-column">
-            <div
-              v-show="keywordDescriptions.length"
-              class="modal__body"
-            >
+            <div v-show="keywordDescriptions.length" class="modal__body">
               <b>Keyword Explanations:</b>
               <div
                 v-for="(keyword, index) in keywordDescriptions"
@@ -55,11 +48,8 @@
               <b>Card Interactions:</b>
             </div>
 
-            <section
-              id="modalDescription"
-              class="modal__body choice-grid"
-            >
-              <router-link :to="{ path: '/cardview/'+model.id }">
+            <section id="modalDescription" class="modal__body choice-grid">
+              <router-link :to="{ path: '/cardview/' + model.id }">
                 <button
                   aria-label="Close modal"
                   class="choice-grid__button"
@@ -73,16 +63,22 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="edit(); close();"
+                @click="
+                  edit();
+                  close();
+                "
               >
                 Edit artwork
               </button>
               <button
-                v-if="isOwner "
+                v-if="isOwner"
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="edit(); close();"
+                @click="
+                  edit();
+                  close();
+                "
               >
                 Edit card
               </button>
@@ -99,7 +95,10 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="voteUP(); close();"
+                @click="
+                  voteUP();
+                  close();
+                "
               >
                 Vote Underpowered
               </button>
@@ -109,7 +108,10 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="voteOP(); close();"
+                @click="
+                  voteOP();
+                  close();
+                "
               >
                 Vote Overpowered
               </button>
@@ -119,7 +121,10 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="voteFair(); close();"
+                @click="
+                  voteFair();
+                  close();
+                "
               >
                 Vote Fair Enough
               </button>
@@ -129,7 +134,10 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="voteInappropriate(); close();"
+                @click="
+                  voteInappropriate();
+                  close();
+                "
               >
                 Vote Inappropriate
               </button>
@@ -137,7 +145,12 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="$router.push({name: 'UserView', params: {id: model.owner}});"
+                @click="
+                  $router.push({
+                    name: 'UserView',
+                    params: { id: model.owner },
+                  })
+                "
               >
                 Owner profile
               </button>
@@ -145,8 +158,8 @@
           </div>
         </div>
         <TransferCardModal
-          v-show="isModalVisible"
-          :card="model.id"
+          v-show="state.isModalVisible"
+          :card="model.id.toString()"
           @close="closeModal"
         />
         <footer class="modal__footer" />
@@ -154,109 +167,77 @@
     </div>
   </transition>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import CardComponent from "@/components/elements/CardComponent.vue";
-import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
-import TransferCardModal from './TransferCardModal.vue';
-import { useQuery } from "@/def-composables/useQuery";
-import { useAddress } from "@/def-composables/useAddress";
-import { useProfilePic } from '@/def-composables/useProfilePic';
+import { useLastInputEvent } from "@/def-composables/useLastInputEvent";
+import TransferCardModal from "./TransferCardModal.vue";
+import { useUser } from "@/def-composables/useUser";
+import { Card } from "@/model/Card";
+import { reactive, watch } from "vue";
 
-const { queryQUser } = useQuery()
+const { lastInputEvent } = useLastInputEvent();
+const { queryCoins, queryUser } = useUser();
 
-export default {
-  name: 'GalleryModal',
-  components: { CardComponent, TransferCardModal },
-  props: {
-    canVote: Boolean,
-    isOwner: Boolean,
-    isArtist: Boolean,
-    keywordDescriptions: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    model: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    imageURL: {
-      type: String,
-      default: ""
-    }
-  },
-  data() {
-    return {
-      isModalVisible: false,
-      currentPrice: -1,
-      currentBid: -1,
-      creditsAvailable: -1,
-    }
-  },
-  setup() {
-    const { address } = useAddress()
-    const { lastInputEvent } = useLastInputEvent()
-    const { getImg } = useProfilePic()
+const emit = defineEmits([
+  "close",
+  "download",
+  "cardview",
+  "edit",
+  "voteOP",
+  "voteUP",
+  "voteFair",
+  "voteInappropriate",
+]);
 
-    return { userAddress: address, getImg, lastInputEvent }
-  },
-  watch: {
-    lastInputEvent() {
-      let event = this.lastInputEvent;
+const props = withDefaults(
+  defineProps<{
+    canVote: boolean;
+    isOwner: boolean;
+    isArtist: boolean;
+    keywordDescriptions: Array<string>;
+    model: Card;
+    imageURL: string;
+  }>(),
+  {
+    canVote: false,
+    isOwner: false,
+    isArtist: false,
+    keywordDescriptions: () => [],
+    model: () => new Card(),
+    imageURL: "",
+  }
+);
 
-      if (event.which == 27) {
-        this.$emit('close')
-      }
-    },
-  },
-  mounted() {
-  },
-  methods: {
-    getUser () {
-      queryQUser(this.userAddress)
-      .then(user => {
-        this.user = user
-        this.img = this.getImg(this.user, this.userAddress)
-      })
-    },
-    doNothing () {
-    },
-    close() {
-      this.$emit('close')
-    },
-    download() {
-      this.$emit('download')
-    },
-    cardview() {
-      this.$emit('cardview')
-    },
-    edit() {
-      this.$emit('edit')
-    },
-    voteOP() {
-      this.$emit('voteOP')
-    },
-    voteUP() {
-      this.$emit('voteUP')
-    },
-    voteFair() {
-      this.$emit('voteFair')
-    },
-    voteInappropriate() {
-      this.$emit('voteInappropriate')
-    },
-    showModal() {
-      this.isModalVisible = true;
-    },
-    closeModal() {
-      this.isModalVisible = false;
-      this.getUser()
-    }
-  },
-}
+const initialState: {
+  isModalVisible: boolean;
+} = {
+  isModalVisible: false,
+};
+
+const state = reactive(initialState);
+
+watch(lastInputEvent, (event) => {
+  if (event.which == 27) {
+    emit("close");
+  }
+});
+
+const close = () => emit("close");
+const download = () => emit("download");
+const cardview = () => emit("cardview");
+const edit = () => emit("edit");
+const voteOP = () => emit("voteOP");
+const voteUP = () => emit("voteUP");
+const voteFair = () => emit("voteFair");
+const voteInappropriate = () => emit("voteInappropriate");
+const showModal = () => {
+  state.isModalVisible = true;
+};
+const closeModal = () => {
+  state.isModalVisible = false;
+  queryUser();
+  queryCoins();
+};
 </script>
 
 <style lang="scss">

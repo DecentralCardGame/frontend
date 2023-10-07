@@ -1,43 +1,43 @@
 import type { User } from "@/model/User"
-import { ref, type Ref } from "vue"
+import { ref, watch, type Ref } from "vue";
 import { useQuery } from "./useQuery"
 import type { Card } from "@/model/Card"
 import { useAddress } from "./useAddress"
+import { useUser } from "./useUser";
 
 const useProfilePicInstance = () => {
-  const { queryQCard, queryQUser } = useQuery()
+  const { queryQCard } = useQuery()
   const { address } = useAddress()
+  const { user } = useUser()
   const loggedInProfilePic = ref("spinner.svg")
+
+  watch(user, (u) => {
+    getImg(u, address.value).then(img => {
+      loggedInProfilePic.value = img
+    })
+  }, {deep: true})
 
   const getDefaultImg = (addr: string) => {
     let myRandom = addr.charCodeAt(addr.length - 1) % 4
     return "Avatar" + myRandom + ".png"
   }
 
-  const getImg = (user: User, address: string, img: Ref<string> = ref("")) => {
+  const getImg = (user: User, address: string) => {
+    console.log(user)
     if (user.profileCard != 0) {
-      queryQCard(user.profileCard).then((card: Card) => {
+      return queryQCard(user.profileCard).then((card: Card) => {
         if (card === null) {
-          img.value = getDefaultImg(address)
+          return getDefaultImg(address)
         } else {
-          img.value = card.image
+          return card.image
         }
-      }
-      )
+      })
     } else {
-      img.value = getDefaultImg(address)
+      return Promise.resolve(getDefaultImg(address))
     }
-    return img
   }
 
-  const setLoggedInProfilePic = () => {
-    queryQUser(address.value)
-    .then(user => {
-      getImg(user, address.value, loggedInProfilePic)
-    })
-  }
-
-  return { getImg, setLoggedInProfilePic, loggedInProfilePic }
+  return { getImg, loggedInProfilePic }
 }
 
 let instance: ReturnType<typeof useProfilePicInstance>;

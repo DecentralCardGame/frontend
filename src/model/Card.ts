@@ -104,7 +104,7 @@ export class Card {
   balanceAnchor: boolean = false;
   hash: string = "";
 
-  static from(json: any) {
+  static from(json: any): Card {
     return Object.assign(new Card(), json);
   }
 

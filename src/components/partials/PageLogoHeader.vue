@@ -12,7 +12,7 @@
       >
       <img
         v-if="!isSafari"
-        src="../../assets/animations/sparkling_water.gif"
+        src="@/assets/animations/sparkling_water.gif"
         class="image2"
         alt="Loading..."
         width="1200"

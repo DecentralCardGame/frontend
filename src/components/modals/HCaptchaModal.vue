@@ -13,7 +13,6 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useNotifications } from "@/def-composables/useNotifications";
 import useKeplr from '@/def-composables/useKeplr';
 import type { Key } from '@keplr-wallet/types';
-import { useProfilePic } from '@/def-composables/useProfilePic';
 
 
 export default {
@@ -38,9 +37,8 @@ export default {
     const { address } = useAddress()
     const { notifySuccess, notifyFail } = useNotifications()
     const { getKeplrAccParams } = useKeplr()
-    const { setLoggedInProfilePic } = useProfilePic()
 
-    return { address, notifySuccess, notifyFail, getKeplrAccParams, setLoggedInProfilePic }
+    return { address, notifySuccess, notifyFail, getKeplrAccParams }
   },
   methods: {
     onVerify(res) {
@@ -81,7 +79,6 @@ export default {
           }
           else {
             this.notifySuccess('Success', 'Registered Account')
-            this.setLoggedInProfilePic()
             return
           }
         })
