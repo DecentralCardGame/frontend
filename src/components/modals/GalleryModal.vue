@@ -163,7 +163,7 @@ import { useUser } from "@/def-composables/useUser";
 import { Card } from "@/model/Card";
 import { computed, reactive, watch } from "vue";
 import { useVoting } from "@/def-composables/useVoting";
-import type { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
 
 const { add, send, isEmpty, cardsLeft, current } = useVoting();
 const { lastInputEvent } = useLastInputEvent();
@@ -209,9 +209,10 @@ const cardview = () => emit("cardview");
 const edit = () => emit("edit");
 
 const vote = (type: VoteType) => {
-  add(current.value!, type);
+  add(props.model.id, type);
   send(
-    () => {},
+    () => {
+    },
     (err) => {
       console.log(err);
     }
