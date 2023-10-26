@@ -13,7 +13,7 @@ let stored = window.localStorage.getItem(KEY);
 const votes: Ref<SingleVote[]> = ref(
   stored ? Object.assign([], JSON.parse(stored)) : []
 );
-const votableCards = computed(() => user.value.votableCards);
+const votableCards = computed(() => user.value.votableCards.map(v => Number(v)));
 const cardsLeft = computed(() => {
   let taken = votes.value.map((v) => v.cardId);
   return votableCards.value.filter((v) => !taken.includes(v));

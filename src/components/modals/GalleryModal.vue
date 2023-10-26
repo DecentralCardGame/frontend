@@ -194,7 +194,7 @@ const initialState: {
   isModalVisible: false,
 };
 
-const canVote = computed(() => cardsLeft.value.includes(props.model.id))
+const canVote = computed(() => cardsLeft.value.includes(Number(props.model.id)))
 
 const state = reactive(initialState);
 
