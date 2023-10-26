@@ -47,10 +47,10 @@ const useQueryInstance = () => {
   const unified = Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query, client.CosmosAuthzV1Beta1.query);
   const keys = Object.keys(unified);
 
-  let queries: { [id: string]: (args: any) => Promise<any> } = {};
+  let queries: { [id: string]: (...args: any[]) => Promise<any> } = {};
 
   keys.forEach(key => {
-    queries[key] = (...args: any) => {
+    queries[key] = (...args: any[]) => {
       return new Promise((myResolve, _) => {
         myResolve((unified as any)[key](...args).then(handlers.hasOwnProperty(key) ? handlers[key] : handlers.defaultHandler));
       });
