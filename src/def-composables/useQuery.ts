@@ -1,8 +1,8 @@
 import { useClient } from "@/composables/useClient";
 import type { AxiosResponse } from "axios";
 import { ChainCard, Card } from "@/model/Card";
-import { User } from "@/model/User";
 import { Coin } from "@/model/Coin";
+import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 
 const handlers: { [key: string]: (res: AxiosResponse) => any } = {
@@ -13,7 +13,7 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
     return ChainCard.from(res.data).toCard();
   },
   queryQUser: (res): User => {
-    return User.from(res.data);
+    return res.data;
   },
   queryAllBalances: (res) => {
     let coins: Coin[] = [];

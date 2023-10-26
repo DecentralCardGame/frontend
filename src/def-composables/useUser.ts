@@ -1,15 +1,15 @@
-import { User } from "@/model/User"
 import { ref, type Ref, watch } from "vue";
 import { useQuery } from "./useQuery"
 import { useAddress } from "./useAddress"
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import type { Coin } from "@/model/Coin";
+import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 const useUserInstance = () => {
   const { queryQUser, queryAllBalances } = useQuery()
   const { address } = useAddress()
   const { loggedIn } = useLoggedIn()
-  const user: Ref<User> = ref(new User())
+  const user: Ref<User> = ref(User.fromPartial({}))
   const coins: Ref<Array<Coin>> = ref([])
 
   watch(loggedIn, (val) => {
