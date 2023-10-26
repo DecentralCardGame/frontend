@@ -94,13 +94,15 @@ const votePool = computed(() => state.currentCard.votePool.normalize().pretty())
 const vote = (type: VoteType) => add(current.value!, type);
 
 const getCard = () => {
-  queryQCard(current.value!).then((parsedCard: Card) => {
-    if (parsedCard) {
-      state.currentCard = parsedCard;
-    } else {
-      console.error("card could not be parsed", parsedCard);
-    }
-  });
+  if (current.value) {
+    queryQCard(current.value!).then((parsedCard: Card) => {
+      if (parsedCard) {
+        state.currentCard = parsedCard;
+      } else {
+        console.error("card could not be parsed", parsedCard);
+      }
+    });
+  }
 };
 
 onMounted(() => {
