@@ -9,7 +9,6 @@
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
-        @click.stop="doNothing"
       >
         <header
           id="modalTitle"
@@ -112,7 +111,7 @@ export default {
         user: {
           text: "Create a user.",
           linkText: "",
-          linkData: 'user'
+          linkData: 'UserView'
         },
         buy: {
           text: "Buy a ",
@@ -138,7 +137,7 @@ export default {
       })
       .then(data => {
         queryParams().then(res => {
-          this.isValid = (+data.result.sync_info.latest_block_height < +res.data.params.airDropMaxBlockHeight)
+          this.isValid = (+data.result.sync_info.latest_block_height < +res.params.airDropMaxBlockHeight)
         })
       })
       .catch(error => console.log(error))

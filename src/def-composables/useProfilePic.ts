@@ -1,9 +1,9 @@
-import type { User } from "@/model/User"
 import { ref, watch, type Ref } from "vue";
 import { useQuery } from "./useQuery"
 import type { Card } from "@/model/Card"
 import { useAddress } from "./useAddress"
 import { useUser } from "./useUser";
+import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 const useProfilePicInstance = () => {
   const { queryQCard } = useQuery()
