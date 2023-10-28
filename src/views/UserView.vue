@@ -101,7 +101,7 @@
       <GrantModal v-if="state.isGrantModalVisible" @close="closeGrantModal" />
       <ChoosePBModal
         v-if="state.isChooseModalVisible"
-        :cards="state.user.ownedPrototypes"
+        :cardIds="state.user.ownedPrototypes"
         @close="closeChooseModal"
       />
       <AirdropsModal

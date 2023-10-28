@@ -19,6 +19,7 @@ const cardsLeft = computed(() => {
   return votableCards.value.filter((v) => !taken.includes(v));
 });
 const current = computed(() => cardsLeft.value.at(0));
+const next = computed(() => cardsLeft.value.at(1));
 
 watch(
   () => R.clone(votes.value),
@@ -53,5 +54,5 @@ const add = (cardId: number, voteType: VoteType) => {
 const isEmpty = computed(() => votes.value.length == 0);
 
 export const useVoting = () => {
-  return { add, send, isEmpty, current, cardsLeft };
+  return { add, send, isEmpty, current, next, cardsLeft };
 };

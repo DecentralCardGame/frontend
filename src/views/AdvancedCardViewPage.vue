@@ -108,12 +108,14 @@ import {
   VoteType
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
 import { useVoting } from "@/def-composables/useVoting";
+import { useCards } from "@/def-composables/useCards";
 
 const { queryQCard } = useQuery();
 const { editCard } = useCardCreatorCards();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { add, send, isEmpty, cardsLeft, current } = useVoting();
+const { getCard } = useCards()
 const route = useRoute();
 const router = useRouter()
 
@@ -135,19 +137,12 @@ const isArtist = computed(() => state.card.artist === address.value && loggedIn.
 onMounted(() => {
   state.id = parseInt(route.params.id as string);
   if (!isNaN(state.id)) {
-    getCard();
+    loadCard();
   }
 });
 
-const getCard = () => {
-  queryQCard(state.id)
-    .then((res: Card) => {
-      state.card = res;
-    })
-    .catch((err) => {
-      console.log(err);
-      router.push({ name: "NotFound" });
-    });
+const loadCard = async () => {
+  state.card = await getCard(state.id)
 };
 const vote = (type: VoteType) => {
   add(state.id, type);
@@ -167,7 +162,7 @@ const edit = () => {
 const showModal = () => state.isModalVisible = true
 const closeModal = () => {
   state.isModalVisible = false;
-  getCard();
+  loadCard();
 };
 </script>
 

@@ -230,8 +230,9 @@ import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 import type { Card } from "@/model/Card";
 import { onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useCards } from "@/def-composables/useCards";
 
-const { queryQCards, queryQCard } = useQuery();
+const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
 const { rules } = useCardsRules();
@@ -239,6 +240,7 @@ const { editCard } = useCardCreatorCards();
 const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
   useGalleryFilters;
 const { lastInputEvent } = useLastInputEvent();
+const { getCard } = useCards()
 const route = useRoute();
 const router = useRouter();
 
@@ -296,9 +298,7 @@ onMounted(() => {
   }
 });
 
-watch(lastInputEvent, () => {
-  let event = lastInputEvent.value;
-
+watch(lastInputEvent, (_, event) => {
   if (event.which == 5) {
     state.leavePageLock = true; // Forward Mouse special button
     nextPage();
@@ -319,24 +319,18 @@ const loadCardList = () => {
   loadQueryCardList(q);
 };
 
-const getCard = (currentId: number) => {
+const loadCard = async (currentId: number) => {
   let cardId =
     state.cardList[state.cardList.length - 1 - state.pageId - currentId];
-  return queryQCard(cardId).then((res) => {
-    let card = res;
-    card.id = cardId;
-    if (card.Content) {
-      let candidate = card;
-      state.cards.push(candidate);
-      return candidate;
-    } else if (!card.owner) {
-      console.error("card without content and owner: ", res);
-      return res;
-    } else {
-      console.error("card without content: ", res);
-      return res;
-    }
-  });
+  let card:Card = await getCard(cardId);
+  if (card.Content) {
+    state.cards.push(card);
+  } else if (!card.owner) {
+    console.error("card without content and owner: ", card);
+  } else {
+    console.error("card without content: ", card);
+  }
+  return card;
 };
 const normalizeQuery = (query: PageQuery): PageQuery => {
   return {
@@ -371,7 +365,7 @@ const fillPage = () => {
   state.browsingBackward = state.pageId > 0;
 
   let requestedCards = R.map(
-    (n: number) => getCard(n),
+    loadCard,
     R.times(
       R.identity,
       R.min(galleryFilters.cardsPerPage, state.cardList.length - state.pageId)
