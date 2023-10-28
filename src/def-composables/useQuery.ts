@@ -1,8 +1,8 @@
 import { useClient } from "@/composables/useClient";
 import type { AxiosResponse } from "axios";
 import { ChainCard, Card } from "@/model/Card";
-import { User } from "@/model/User";
 import { Coin } from "@/model/Coin";
+import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 
 const handlers: { [key: string]: (res: AxiosResponse) => any } = {
@@ -13,7 +13,7 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
     return ChainCard.from(res.data).toCard();
   },
   queryQUser: (res): User => {
-    return User.from(res.data);
+    return res.data;
   },
   queryAllBalances: (res) => {
     let coins: Coin[] = [];
@@ -47,10 +47,10 @@ const useQueryInstance = () => {
   const unified = Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query, client.CosmosAuthzV1Beta1.query);
   const keys = Object.keys(unified);
 
-  let queries: { [id: string]: (args: any) => Promise<any> } = {};
+  let queries: { [id: string]: (...args: any[]) => Promise<any> } = {};
 
   keys.forEach(key => {
-    queries[key] = (...args: any) => {
+    queries[key] = (...args: any[]) => {
       return new Promise((myResolve, _) => {
         myResolve((unified as any)[key](...args).then(handlers.hasOwnProperty(key) ? handlers[key] : handlers.defaultHandler));
       });
