@@ -13,7 +13,7 @@
     "@tanstack/vue-query": "^4.13.5",
     "axios": "^1.5.1",
     "bignumber.js": "^9.1.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "decentralcardgame-cardchain-client-ts": "^0.0.18",
     "long": "^5.2.0",
     "merge-images": "^2.0.0",
