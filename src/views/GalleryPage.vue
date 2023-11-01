@@ -143,7 +143,6 @@
       </div>
     </div>
     <div class="button-container button-container--top ccbutton">
-      <!--<button v-show="state.browsingBackward" @click="prevPage">back</button>-->
       <button @click="toggleGalleryFilters">
         {{ galleryFilters.visible ? "hide" : "show" }}
         filters
@@ -161,7 +160,6 @@
       >
         All Cards
       </button>
-      <!--<button v-show="state.browsingForward" @click="nextPage">next</button>-->
     </div>
     <GalleryComponent
       :cards-per-page="galleryFilters.cardsPerPage"

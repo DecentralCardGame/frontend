@@ -62,10 +62,12 @@ const props = withDefaults(
   defineProps<{
     allCardIds: Array<number>;
     cardsPerPage: number;
+    cardCallback: (card: Card) => void
   }>(),
   {
     allCardIds: () => [],
     cardsPerPage: 100,
+    cardCallback: () => {}
   }
 );
 
@@ -97,7 +99,7 @@ const cardIdsOnPage = computed(() => {
 });
 
 const maxPageID = computed(() =>
-  Math.ceil(props.allCardIds.length / props.cardsPerPage)
+  Math.ceil(props.allCardIds.length / props.cardsPerPage) - 1
 );
 
 onBeforeRouteLeave((to, from, next) => {
@@ -148,6 +150,7 @@ const showGalleryModal = (card: Card) => {
 
 const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
+  props.cardCallback(card)
   if (card.Content) {
     state.cards.push(card);
   } else if (!card.owner) {
