@@ -143,7 +143,6 @@
       </div>
     </div>
     <div class="button-container button-container--top ccbutton">
-      <button v-show="state.browsingBackward" @click="prevPage">back</button>
       <button @click="toggleGalleryFilters">
         {{ galleryFilters.visible ? "hide" : "show" }}
         filters
@@ -161,86 +160,29 @@
       >
         All Cards
       </button>
-      <button v-show="state.browsingForward" @click="nextPage">next</button>
     </div>
-    <div class="gallery__view">
-      <div
-        v-for="(card, index) in state.cards"
-        :key="index"
-        @click="
-          state.clickedIndex = index;
-          showGalleryModal();
-        "
-      >
-        <div
-          class="cardContainer"
-          @click="
-            showGalleryModal();
-            state.clickedIndex = index;
-          "
-        >
-          <div class="cardContainer--element">
-            <CardComponent
-              :id="'card' + index"
-              :model="card"
-              :image-u-r-l="card.image"
-              hover-behavior="none"
-              class="gallery__view__card"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="button-container button-container--bottom ccbutton">
-      <button v-show="state.browsingBackward" @click="prevPage">back</button>
-      <button v-show="state.browsingForward" @click="nextPage">next</button>
-    </div>
-    <div
-      v-if="state.isGalleryModalVisible"
-      class="container-modal"
-      @click="closeGalleryModal"
-    >
-      <div class="ability-modal-container">
-        <GalleryModal
-          :is-owner="state.isOwner"
-          :is-artist="state.isArtist"
-          :keyword-descriptions="state.keywordDescriptions"
-          :model="state.cards[state.clickedIndex]"
-          :image-u-r-l="state.cards[state.clickedIndex].image"
-          @close="closeGalleryModal"
-          @cardview="cardview"
-          @edit="edit"
-        />
-      </div>
-    </div>
+    <GalleryComponent
+      :cards-per-page="galleryFilters.cardsPerPage"
+      :all-card-ids="state.cardList"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import * as R from "ramda";
-import GalleryModal from "@/components/modals/GalleryModal.vue";
-import CardComponent from "@/components/elements/CardComponent.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
-import { useLastInputEvent } from "@/def-composables/useLastInputEvent";
 import { useQuery } from "@/def-composables/useQuery";
-import { useCardsRules } from "@/def-composables/useCardRules";
-import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
-import type { Card } from "@/model/Card";
-import { onMounted, reactive, watch } from "vue";
+import { onMounted, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useCards } from "@/def-composables/useCards";
+import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const { rules } = useCardsRules();
-const { editCard } = useCardCreatorCards();
 const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
   useGalleryFilters;
-const { lastInputEvent } = useLastInputEvent();
-const { getCard } = useCards()
 const route = useRoute();
 const router = useRouter();
 
@@ -256,40 +198,17 @@ type PageQuery = {
 };
 
 const initialState: {
-  clickedIndex: number;
-  isGalleryModalVisible: boolean;
-  pageId: number;
   cardList: Array<number>;
-  cards: Array<Card>;
-  browsingForward: boolean;
-  browsingBackward: boolean;
-  isOwner: boolean;
-  isArtist: boolean;
-  leavePageLock: boolean;
-  keywordDescriptions: string[][];
 } = {
-  clickedIndex: 0,
-  isGalleryModalVisible: false,
-  pageId: 0,
   cardList: [],
-  cards: [],
-  browsingForward: true,
-  browsingBackward: true,
-  isOwner: false,
-  isArtist: false,
-  leavePageLock: false,
-  keywordDescriptions: [],
 };
 
 const state = reactive(initialState);
 
 onMounted(() => {
-  console.log("Yees galleryFilters", galleryFilters);
-
   if (!R.isEmpty(route.query)) {
     if (route.query.cardList) {
       state.cardList = (route.query.cardList as string[]).map((v) => Number(v));
-      fillPage();
     } else {
       loadQueryCardList(normalizeQuery(route.query as PageQuery));
     }
@@ -298,40 +217,9 @@ onMounted(() => {
   }
 });
 
-watch(lastInputEvent, (_, event) => {
-  if (event.which == 5) {
-    state.leavePageLock = true; // Forward Mouse special button
-    nextPage();
-  } else if (event.which == 4) {
-    // Backward Mouse special button
-    state.leavePageLock = true;
-    prevPage();
-  } else if (event.which == 13) {
-    // Enter
-    loadCardList();
-  } else {
-    state.leavePageLock = false;
-  }
-});
 
-const loadCardList = () => {
-  let q = getDefaultQuery();
-  loadQueryCardList(q);
-};
+const loadCardList = () => loadQueryCardList(getDefaultQuery())
 
-const loadCard = async (currentId: number) => {
-  let cardId =
-    state.cardList[state.cardList.length - 1 - state.pageId - currentId];
-  let card:Card = await getCard(cardId);
-  if (card.Content) {
-    state.cards.push(card);
-  } else if (!card.owner) {
-    console.error("card without content and owner: ", card);
-  } else {
-    console.error("card without content: ", card);
-  }
-  return card;
-};
 const normalizeQuery = (query: PageQuery): PageQuery => {
   return {
     status: query.status ? query.status.toLowerCase() : "playable", // default playable
@@ -359,71 +247,7 @@ const normalizeQuery = (query: PageQuery): PageQuery => {
       : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set
   };
 };
-const fillPage = () => {
-  state.browsingForward =
-    state.pageId + galleryFilters.cardsPerPage < state.cardList.length;
-  state.browsingBackward = state.pageId > 0;
 
-  let requestedCards = R.map(
-    loadCard,
-    R.times(
-      R.identity,
-      R.min(galleryFilters.cardsPerPage, state.cardList.length - state.pageId)
-    )
-  );
-
-  Promise.all(requestedCards)
-    .then((res) => {
-      // here the asynchronous order of this.cards gets overwritten by the ordered requestedCards,
-      // therefore the clickedindex must be adjusted (if something was clicked)
-      if (!R.equals(state.cards[state.clickedIndex], res[state.clickedIndex])) {
-        state.clickedIndex = R.findIndex(
-          R.propEq("id", state.cards[state.clickedIndex].id)
-        )(res);
-      }
-      state.cards = res;
-      console.log("cards on page", state.cards);
-      console.log("all card names:", R.pluck("CardName", res));
-    })
-    .catch(() => {
-      console.error("NOT ALL CARDS WERE PROPERLY LOADED");
-    });
-};
-const nextPage = () => {
-  if (!state.browsingForward) return;
-
-  state.pageId += galleryFilters.cardsPerPage;
-  state.cards = [];
-  fillPage();
-  window.scrollTo(0, 0);
-};
-const prevPage = () => {
-  if (!state.browsingBackward) return;
-
-  state.pageId -= galleryFilters.cardsPerPage;
-  state.cards = [];
-  fillPage();
-  window.scrollTo(0, 0);
-};
-const showGalleryModal = () => {
-  state.isGalleryModalVisible = true;
-
-  state.isOwner = state.cards[state.clickedIndex].owner === address.value;
-
-  state.keywordDescriptions = [];
-  const firstLetterToLower = (s: string) => {
-    return s[0].toLowerCase() + s.substring(1);
-  };
-  state.cards[state.clickedIndex].Keywords.forEach((ability) => {
-    ability.forEach((keyword) => {
-      state.keywordDescriptions.push([
-        keyword,
-        rules.value.definitions[firstLetterToLower(keyword)].description,
-      ]);
-    });
-  });
-};
-const closeGalleryModal = () => (state.isGalleryModalVisible = false);
 const loadMyCardList = () =>
   loadSpecialCardList(galleryFilters.notesContains, address.value);
 const getDefaultQuery = (): PageQuery => {
@@ -471,19 +295,11 @@ const loadQueryCardList = (query: PageQuery) => {
       if (R.any((x) => R.includes(x, galleryFilters.sortBy), ["A-Z", "↑"])) {
         state.cardList = R.reverse(cardList).map((v) => Number(v));
       } else {
-        state.cardList = cardList;
+        state.cardList = R.reverse(cardList);
       }
-      state.pageId = 0;
-      state.cards = [];
     })
-    .then(fillPage);
 };
-const edit = () => {
-  editCard.card.value = state.cards[state.clickedIndex];
-  router.push("cardCreator");
-};
-const cardview = () =>
-  router.push("cardview/" + state.cards[state.clickedIndex].id);
+
 const resetFilters = () => {
   console.log("reset filters");
   resetGalleryFilters();
@@ -548,18 +364,8 @@ const resetFilters = () => {
   display: flex;
 }
 
-.cardContainer--element {
-  position: relative;
-  flex-grow: 1;
-  max-width: 350px;
-}
-
 .button-container--top {
   margin-bottom: 2rem;
-}
-
-.button-container--bottom {
-  margin-top: 2rem;
 }
 
 .container-modal {
@@ -585,20 +391,5 @@ const resetFilters = () => {
 
 .gallery-checkbox__label {
   margin-left: 25px;
-}
-
-.ability-modal-container {
-  margin: auto;
-  margin-top: 5vh;
-  max-width: 800px;
-  max-height: 95vh;
-  @media (max-width: 480px) {
-    margin-top: 0;
-    max-height: 300vh;
-    height: auto;
-  }
-  //OLD:
-  // position: relative;
-  z-index: 3;
 }
 </style>

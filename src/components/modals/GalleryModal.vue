@@ -164,24 +164,22 @@ import { Card } from "@/model/Card";
 import { computed, reactive, watch } from "vue";
 import { useVoting } from "@/def-composables/useVoting";
 import { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import { useAddress } from "@/def-composables/useAddress";
 
 const { add, send, isEmpty, cardsLeft, current } = useVoting();
 const { lastInputEvent } = useLastInputEvent();
 const { queryCoins, queryUser } = useUser();
+const { address } = useAddress()
 
 const emit = defineEmits(["close", "cardview", "edit"]);
 
 const props = withDefaults(
   defineProps<{
-    isOwner: boolean;
-    isArtist: boolean;
     keywordDescriptions: Array<Array<string>>;
     model: Card;
     imageURL: string;
   }>(),
   {
-    isOwner: false,
-    isArtist: false,
     keywordDescriptions: () => [],
     model: () => new Card(),
     imageURL: "",
@@ -195,7 +193,8 @@ const initialState: {
 };
 
 const canVote = computed(() => cardsLeft.value.includes(Number(props.model.id)))
-
+const isOwner = computed(() => props.model.owner == address.value)
+const isArtist = computed(() => props.model.artist == address.value)
 const state = reactive(initialState);
 
 watch(lastInputEvent, (event) => {
