@@ -183,4 +183,28 @@ const closeGalleryModal = () => (state.isGalleryModalVisible = false);
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
 }
+
+.ability-modal-container {
+  margin: 5vh auto auto;
+  max-width: 800px;
+  max-height: 95vh;
+  @media (max-width: 480px) {
+    margin-top: 0;
+    max-height: 300vh;
+    height: auto;
+  }
+  //OLD:
+  // position: relative;
+  z-index: 3;
+}
+
+.cardContainer--element {
+  position: relative;
+  flex-grow: 1;
+  max-width: 350px;
+}
+
+.button-container--bottom {
+  margin-top: 2rem;
+}
 </style>

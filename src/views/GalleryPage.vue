@@ -176,21 +176,15 @@ import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
 import { useQuery } from "@/def-composables/useQuery";
-import { useCardsRules } from "@/def-composables/useCardRules";
-import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 import { onMounted, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useCards } from "@/def-composables/useCards";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const { rules } = useCardsRules();
-const { editCard } = useCardCreatorCards();
 const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
   useGalleryFilters;
-const { getCard } = useCards()
 const route = useRoute();
 const router = useRouter();
 
@@ -372,18 +366,8 @@ const resetFilters = () => {
   display: flex;
 }
 
-.cardContainer--element {
-  position: relative;
-  flex-grow: 1;
-  max-width: 350px;
-}
-
 .button-container--top {
   margin-bottom: 2rem;
-}
-
-.button-container--bottom {
-  margin-top: 2rem;
 }
 
 .container-modal {
@@ -409,20 +393,5 @@ const resetFilters = () => {
 
 .gallery-checkbox__label {
   margin-left: 25px;
-}
-
-.ability-modal-container {
-  margin: auto;
-  margin-top: 5vh;
-  max-width: 800px;
-  max-height: 95vh;
-  @media (max-width: 480px) {
-    margin-top: 0;
-    max-height: 300vh;
-    height: auto;
-  }
-  //OLD:
-  // position: relative;
-  z-index: 3;
 }
 </style>
