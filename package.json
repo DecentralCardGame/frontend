@@ -14,7 +14,7 @@
     "axios": "^1.5.1",
     "bignumber.js": "^9.1.0",
     "crypto-js": "^4.2.0",
-    "decentralcardgame-cardchain-client-ts": "^0.0.23",
+    "decentralcardgame-cardchain-client-ts": "^0.0.24",
     "long": "^5.2.0",
     "merge-images": "^2.0.0",
     "pinia": "^2.0.23",
