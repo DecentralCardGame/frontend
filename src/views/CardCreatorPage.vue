@@ -1185,6 +1185,21 @@ export default {
         }
       }
 
+      // if an ability was created, but it has no effect, then this should be fixed
+      if (newModel.Abilities.length > 0) {
+        let effectsList = R.flatten(R.map(
+              x => R.values(R.pluck("Effects", x)),
+            newModel.Abilities))
+        
+        if (R.any(y => y === undefined, effectsList)) {
+          this.notifyFail(
+            "Useless Ability",
+            "Card has an Ability, which does not do anything. Please add an Effect to the Ability."
+          );
+          return;
+        }
+      }
+
       // check if the old Keywords and RulesTexts should be restored
       let checkZeroAmount = () => {
         return (this.model.AdditionalCost.SacrificeCost && this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
@@ -1211,6 +1226,7 @@ export default {
       newModel.image = this.model.image
       newModel.balanceAnchor = this.model.balanceAnchor
 
+      // many characters will not make it into the blockchain, so here we check if all is valid ASCII
       let checkASCII = (string, origin) => {
         string.split('').forEach(char => {
           if (!isASCII(char)) {
