@@ -1,285 +1,76 @@
 <template>
-  <div class="nav-wrapper">
-    <nav class="nav">
-      <div class="nav__content">
-        <router-link
-          to="/"
-          class="nav__logo"
-        >
-          <img
-            alt="Crowd Control"
-            src="@/assets/logo.svg"
-          >
-        </router-link>
-        <div
-          class="nav__button"
-          @click="displayMenu = !displayMenu"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-menu"
-          ><line
-            x1="3"
-            y1="12"
-            x2="21"
-            y2="12"
-          /><line
-            x1="3"
-            y1="6"
-            x2="21"
-            y2="6"
-          /><line
-            x1="3"
-            y1="18"
-            x2="21"
-            y2="18"
-          /></svg>
+  <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+    <div class="mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <DisclosureButton class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <span class="absolute -inset-0.5" />
+            <span class="sr-only">Open main menu</span>
+            <!--<Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
+            <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />-->
+          </DisclosureButton>
         </div>
-        <ul :class="showMenuClass">
-          <li>
-            <router-link to="/about">
-              The Game
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/cardCreator">
-              Card Creator
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/gallery">
-              Gallery
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/vote">
-              Voting
-            </router-link>
-          </li>
-          <!--li>
-            <router-link to="/howtoplay">
-              How To Play
-            </router-link>
-          </li-->
-          <li>
-            <router-link
-              v-if="loggedIn"
-              to="/user/me"
-            >
-              Account
-            </router-link>
-          </li>
-        </ul>
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="absolute -inset-1.5" />
+            <span class="sr-only">View notifications</span>
+            <!-- <BellIcon class="h-6 w-6" aria-hidden="true" /> -->
+          </button>
+
+          <!-- Profile dropdown -->
+          <Menu as="div" class="relative ml-3">
+            <div>
+              <MenuButton class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <span class="absolute -inset-1.5" />
+                <span class="sr-only">Open user menu</span>
+                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+              </MenuButton>
+            </div>
+            <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+              <MenuItems class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <MenuItem v-slot="{ active }">
+                  <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Your Profile</a>
+                </MenuItem>
+                <MenuItem v-slot="{ active }">
+                  <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
+                </MenuItem>
+                <MenuItem v-slot="{ active }">
+                  <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
+                </MenuItem>
+              </MenuItems>
+            </transition>
+          </Menu>
+        </div>
       </div>
-    </nav>
-  </div>
+    </div>
+
+    <DisclosurePanel class="sm:hidden">
+      <div class="space-y-1 px-2 pb-3 pt-2">
+        <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+      </div>
+    </DisclosurePanel>
+  </Disclosure>
 </template>
 
-<script>
-import { useLoggedIn } from "@/def-composables/useLoggedIn";
+<script setup>
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+//import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
-export default {
-  name: 'PageMenu',
-  data () {
-    return {
-      displayMenu: false,
-      displayLoginDialogue: false,
-    }
-  },
-  setup() {
-    const { loggedIn } = useLoggedIn()
-    return { loggedIn }
-  },
-  computed: {
-    showMenuClass () {
-      if (this.displayMenu) {
-        return "nav__menu "
-      } else {
-        return "nav__menu nav__menu--hidden"
-      }
-    }
-  },
-  methods: {
-  },
-}
+const navigation = [
+  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Team', href: '#', current: false },
+  { name: 'Projects', href: '#', current: false },
+  { name: 'Calendar', href: '#', current: false },
+  ]
 </script>
-
-<style scoped lang="scss">
-  @import "../../scss/variables";
-
-  .nav-wrapper {
-    max-width: calc(#{$main-width} + 10vw);
-    margin: auto;
-    @media (max-width: 1178px) {
-      margin: auto auto 3vh auto;
-    }
-    @media (max-width: 480px) {
-      max-width: 100vw;
-    }
-  }
-
-  .nav {
-    font-weight: bold;
-    background-color: $main-color-c;
-    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 0 $minor-color-c;
-    position: relative;
-    margin: 2.5rem 5rem;
-    transform: skewX(-15deg);
-
-    @media (max-width: 1178px) {
-      transform: skewX(0);
-      margin: 0;
-    }
-  }
-
-  .nav__content {
-    position: relative;
-    transform: skewX(15deg);
-    display: flex;
-    flex-flow: row;
-
-    @media (max-width: 1178px) {
-      transform: skewX(0);
-      display: flex;
-      flex-flow: column;
-    }
-  }
-
-  .nav__menu {
-    width: auto;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    @media (max-width:  1396px) {
-      margin: 0em 5.5em;
-    }
-  }
-
-  .nav__menu li {
-    float: left;
-    @media (max-width: 1178px) {
-      width: 100%;
-    }
-
-    a, .nav__menu__item {
-      font-family: $font-family-header;
-      padding: 1.65rem;
-      font-size: $font-size*1.15;
-      color: $black;
-      text-align: center;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      vertical-align: middle;
-      -webkit-transform: perspective(1px) translateZ(0);
-      transform: perspective(1px) translateZ(0);
-      position: relative;
-      -webkit-transition-property: color;
-      transition-property: color;
-      -webkit-transition-duration: $animation-duration;
-      transition-duration: $animation-duration;
-      &:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: $white;
-        -webkit-transform: scaleX(0);
-        transform: scaleX(0);
-        -webkit-transform-origin: 0 50%;
-        transform-origin: 0 50%;
-        -webkit-transition-property: transform;
-        transition-property: transform;
-        -webkit-transition-duration: $animation-duration;
-        transition-duration: $animation-duration;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-      }
-      &:hover, &:focus, &:active {
-        color: $minor-color-c;
-      }
-      &:hover:before, &:focus:before, &:active:before {
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1);
-      }
-      @media (max-width: 1178px) {
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-    &.nav__menu__item--exposed {
-      transform: skewX(-15deg);
-      background-color: $white;
-      a {
-        color: $black;
-      }
-
-      @media (max-width: 1178px) {
-        transform: skewX(0deg);
-      }
-    }
-  }
-
-  .nav__authentication-modal {
-    position: absolute;
-    width: 60vw;
-    right: 5.5rem;
-    margin-top: -2.5rem;
-    z-index: 10000000;
-    box-shadow: $border-thickness-bold * 1.5 $border-thickness-bold * 1.5 rgba(0,0,0,0.3);
-    @media (max-width: 1178px) {
-      width: 100vw;
-      margin-top: -1px;
-      right: 0;
-    }
-  }
-
-  .nav__logo {
-    position: relative;
-    display: inline-block;
-    margin: -1em 1em -2em 0em;
-    -webkit-user-drag: none;
-    width: 350px;
-    height: 100%;
-
-    @media (max-width: 1396px) {
-      margin: 1em auto;
-    }
-    @media (max-width: 1178px) {
-      position: relative;
-      display: inline-block;
-      margin: 1em auto;
-      width: 47%;
-    }
-  }
-
-  .nav__button {
-    @media (min-width: 1178px) {
-      display: none;
-      width: 100%;
-    }
-    color: $black;
-    position: absolute;
-    right: 1.5em;
-    top: 8vw;
-  }
-
-  .nav__menu--hidden {
-    @media (max-width: 1178px) {
-      display: none;
-    }
-  }
-</style>
