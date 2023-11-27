@@ -13,6 +13,7 @@ const VotingPage = () => import('@/views/VotingPage.vue')
 const UserView = () => import('@/views/UserView.vue')
 const CardView = () => import('@/views/AdvancedCardViewPage.vue')
 const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue")
+const Demo = () => import("@/views/Demo.vue")
 
 const routes = [
   {
@@ -75,6 +76,11 @@ const routes = [
     path: '/user/:id',
     name: 'UserView',
     component: UserView
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: Demo
   },
   {
     path: '/gameclientAuthz/:authzAddress',

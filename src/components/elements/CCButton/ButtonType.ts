@@ -3,4 +3,5 @@ export enum ButtonType {
   RED,
   WHITE,
   YELLOW,
+  TEAL
 }
