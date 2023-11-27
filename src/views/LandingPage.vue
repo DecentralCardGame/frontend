@@ -11,6 +11,8 @@
       <br>
       <BaseCCButton :type="ButtonType.WHITE">CREATE CARDS</BaseCCButton>
       <br>
+      <BaseCCButton :type="ButtonType.TEAL">CREATE CARDS</BaseCCButton>
+      <br>
     </div>
   </div>
 </template>
