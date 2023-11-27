@@ -1,19 +1,26 @@
 <template>
-  <div class="">
+  <div>
     <button
+      @click="emit('click')"
       :class="[
         'w-80',
-        'h-12',
-        'rounded-sm',
+        'h-14',
+        'rounded',
         'shadow-md',
         'shadow-black/25',
         'text-center',
         'font-bold',
         'font-[roboto]',
+        'uppercase',
         getTextColor(),
         getButtonColor(),
         'active:bg-[#552026]',
         'active:text-white',
+        'active:border-0',
+        'hover:text-black',
+        'hover:bg-white',
+        'hover:border-black',
+        'hover:border-4',
       ]"
     >
       <slot></slot>
@@ -22,7 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import {ButtonType} from "@/components/elements/CCButton/ButtonType";
+import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+
+const emit = defineEmits(["click"]);
 
 const props = withDefaults(
   defineProps<{
@@ -53,7 +62,7 @@ const getButtonColor = () => {
     case ButtonType.WHITE:
       return "bg-white";
     case ButtonType.TEAL:
-      return "bg-[#40C1C7]"
+      return "bg-[#40C1C7]";
     case ButtonType.RED:
       return "bg-[#D82027]";
   }
