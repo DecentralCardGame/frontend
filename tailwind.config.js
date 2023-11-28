@@ -17,6 +17,12 @@ module.exports = {
           'roboto',
           ],
       },
+      dropShadow: {
+        glow: [
+          "0px 0px 24px rgba(216, 32, 39, 0.90)",
+        ]
+      }
+
     }
   },
   plugins: [require("@headlessui/tailwindcss")],
