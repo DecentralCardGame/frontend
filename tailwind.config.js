@@ -10,7 +10,14 @@ module.exports = {
     "./node_modules/@ignt/vue-library/src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        sans: [
+          'Roboto',
+          'roboto',
+          ],
+      },
+    }
   },
   plugins: [require("@headlessui/tailwindcss")],
 };
