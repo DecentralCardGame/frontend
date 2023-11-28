@@ -17,25 +17,39 @@
           Pages
         </div>
         <div>
-          Gallery
+          <router-link :to="{ name: 'Gallery' }">
+            Gallery
+          </router-link>
         </div>
         <div>
-          Sets and Boosters
+          <router-link :to="{ name: 'Sets' }">
+            Sets and Boosters
+          </router-link>
         </div>
         <div>
-          GitBook
+          <a href="https://crowdcontrol-network.gitbook.io/">
+            GitBook
+          </a>
         </div>
         <div>
-          About
+          <router-link :to="{ name: 'About' }">
+            About
+          </router-link>
         </div>
         <div>
-          Roadmap
+          <router-link :to="{ name: 'Roadmap' }">
+            Roadmap
+          </router-link>
         </div>
         <div>
-          Whitepaper
+            <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
+              Whitepaper
+            </a>
         </div>
         <div>
-          Imprint
+          <router-link :to="{ name: 'Imprint' }">
+            Imprint
+          </router-link>
         </div>
       </div>
 
