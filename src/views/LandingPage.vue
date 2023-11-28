@@ -35,8 +35,10 @@
       :src="car"
       class="w-[100%] object-cover h-[120rem]"
     />
-    <div class="absolute top-10 sm:top-20 left-0 right-0 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40">
-      <div class="flex justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20">
+    <div class="absolute top-0 left-0 right-0">
+      <div
+        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 my-10 sm:my-32"
+      >
         <div class="justify-self-center">
           <p class="text-6xl font-bold pb-6">New Sets and Boosters</p>
           <p class="text-3xl pb-6">Promoted Sets and Boosters</p>
@@ -46,7 +48,27 @@
           <BaseCCButton :type="ButtonType.BLACK">Visit Gallery</BaseCCButton>
         </div>
         <div>
-          <img alt="multiple cards" class="h-[30rem] object-scale-down" :src="multiCards" />
+          <img
+            alt="multiple cards"
+            class="h-[20rem] object-scale-down"
+            :src="multiCards"
+          />
+        </div>
+      </div>
+      <div class="bg-black/90 py-4 sm:py-10 lg:py-20">
+        <div class="flex justify-center">
+          <div class="text-center">
+            <p class="text-6xl text-red-500 font-bold">Get started now</p>
+            <div class="text-white text-3xl pt-4">
+              <p>CrowdControl is built on Cosmos Blockchain and</p>
+              <p>let’s <b>YOU</b> be part of every step of the game.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
+          <div v-for="cardBack in [cardBack1, cardBack2, cardBack3, cardBack4]">
+            <img alt="cardback" :src="cardBack" class="h-[20rem] drop-shadow-glow" />
+          </div>
         </div>
       </div>
     </div>
@@ -54,6 +76,10 @@
 </template>
 
 <script setup lang="ts">
+import cardBack1 from "@/assets/figma/Cardbacks/1.png";
+import cardBack2 from "@/assets/figma/Cardbacks/2.png";
+import cardBack3 from "@/assets/figma/Cardbacks/3.png";
+import cardBack4 from "@/assets/figma/Cardbacks/4.png";
 import multiCards from "@/assets/figma/Multicards.png";
 import car from "@/assets/figma/Car.jpeg";
 import logoBig from "@/assets/figma/LogoBig.png";
