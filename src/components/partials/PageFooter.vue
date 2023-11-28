@@ -2,12 +2,14 @@
   <div class="bg-black text-white font-normal font-['Roboto']">
 
     <div class="p-10 text-center text-xs font-bold underline uppercase space-y-2">
-      <div class="flex justify-evenly">
-        <img :src="triangle" alt="navigation triangle" class="w-3"/>
-      </div>
-      <div class="flex justify-evenly">
-         GO BACK TO TOP
-      </div>
+      <button @click="scrollup">
+        <div class="flex justify-evenly">
+          <img :src="triangle" alt="navigation triangle" class="w-3"/>
+        </div>
+        <div class="flex justify-evenly">
+           GO BACK TO TOP
+        </div>
+       </button>
     </div>
 
     <div class="p-12 flex flex-wrap flex-row text-white text-xs space-x-80 justify-center">
@@ -163,4 +165,8 @@
 
 <script setup lang="ts">
 import triangle from "@/assets/figma/Navigation_Triangle.svg";
+
+function scrollup() {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+}
 </script>
