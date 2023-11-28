@@ -31,6 +31,6 @@ import { StencilPreview } from "vue-advanced-cropper";
 
 <style lang="scss">
 .LogoBox {
-  background-image: url("@/assets/figma/LandingBackground.jpeg");
+  background-image: url("@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg");
 }
 </style>
