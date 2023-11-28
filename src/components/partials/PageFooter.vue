@@ -1,7 +1,7 @@
 <template>
   <div class="bg-black text-white font-normal font-['Roboto']">
 
-    <div class="p-10 text-center text-xs font-bold underline uppercase space-y-2">
+    <div class="p-10 text-center text-base font-bold underline uppercase space-y-2">
       <button @click="scrollup">
         <div class="flex justify-evenly">
           <img :src="triangle" alt="navigation triangle" class="w-3"/>
@@ -12,10 +12,10 @@
        </button>
     </div>
 
-    <div class="p-12 flex flex-wrap flex-row text-white text-xs space-x-80 justify-center">
+    <div class="p-12 flex flex-wrap flex-row text-white text-base space-x-80 justify-center">
 
       <div class="flex-row space-y-5">
-        <div class="text-xl font-bold">
+        <div class="text-3xl font-bold">
           Pages
         </div>
         <div>
@@ -57,7 +57,7 @@
 
       <div class="flex flex-col space-y-5">
 
-        <div class="text-xl font-bold">
+        <div class="text-3xl font-bold">
           Social
         </div>
 
