@@ -6,13 +6,13 @@ env:
   # Setting an environment variable with the value of a configuration variable
   tag_name: ${{
     contains(github.event.pull_request.labels.*.name, 'deploy_5173') && 'deploy_5173' || 
-    (contains(github.event.pull_request.labels.*.name, 'deploy_5174') && 'deploy_5175' || "")
+    (contains(github.event.pull_request.labels.*.name, 'deploy_5174') && 'deploy_5175' || '')
     }}
 
 
 jobs:
   run_pull:
-    if: ${{ env.tag_name != "" }}
+    if: ${{ env.tag_name != '' }}
     name: run pull
     runs-on: ubuntu-latest
     
