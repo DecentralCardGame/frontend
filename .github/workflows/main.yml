@@ -6,7 +6,7 @@ env:
   # Setting an environment variable with the value of a configuration variable
   LABEL: ${{
     contains(github.event.pull_request.labels.*.name, 'deploy_5173') && 'deploy_5173' || 
-    (contains(github.event.pull_request.labels.*.name, 'deploy_5174') && 'deploy_5175' || 'none')
+    (contains(github.event.pull_request.labels.*.name, 'deploy_5174') && 'deploy_5174' || 'none')
     }}
 
 
