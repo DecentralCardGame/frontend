@@ -66,8 +66,16 @@
           </div>
         </div>
         <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
-          <div v-for="cardBack in [cardBack1, cardBack2, cardBack3, cardBack4]">
-            <img alt="cardback" :src="cardBack" class="h-[20rem] drop-shadow-glow" />
+          <div class="relative" v-for="cardBack in cardBacks">
+            <img
+              alt="cardback"
+              :src="cardBack.cardBack"
+              class="h-[20rem] drop-shadow-glow"
+            />
+            <div class="absolute top-52 left-0 right-0 text-center">
+              <p class="text-3xl font-bold">{{ cardBack.heading }}</p>
+              <p>{{ cardBack.text }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -90,4 +98,17 @@ import hackatomLogo from "@/assets/figma/PresentationLogos/hackatom.png";
 import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+
+type CardBack = {
+  cardBack: string;
+  heading: string;
+  text: string;
+};
+
+const cardBacks: CardBack[] = [
+  { cardBack: cardBack1, heading: "CREATE", text: "Assets, Games, Worlds" },
+  { cardBack: cardBack2, heading: "PLAY", text: "Games, Characters, Stories" },
+  { cardBack: cardBack3, heading: "VOTE", text: "Balance, Decide, Govern" },
+  { cardBack: cardBack4, heading: "OWN", text: "Earn, Collect, Trade" },
+];
 </script>
