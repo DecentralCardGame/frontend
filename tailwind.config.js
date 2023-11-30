@@ -18,11 +18,13 @@ module.exports = {
           ],
       },
       dropShadow: {
-        glow: [
+        glowRed: [
           "0px 0px 24px rgba(216, 32, 39, 0.90)",
-        ]
+        ],
+        glowTeal: [
+          "0px 0px 24px #40C1C7",
+          ]
       }
-
     }
   },
   plugins: [require("@headlessui/tailwindcss")],

@@ -70,7 +70,7 @@
             <img
               alt="cardback"
               :src="cardBack.cardBack"
-              class="h-[20rem] drop-shadow-glow"
+              class="h-[20rem] drop-shadow-glowRed"
             />
             <div class="absolute top-52 left-0 right-0 text-center">
               <p class="text-3xl font-bold">{{ cardBack.heading }}</p>
@@ -81,10 +81,28 @@
       </div>
     </div>
   </div>
-  <FadeTeaser></FadeTeaser>
+  <FadeTeaser>
+    <div class="absolute top-20 xl:py-20 left-0 right-0">
+      <div class="flex flex-col text-center">
+        <p class="text-6xl text-teal-500 font-bold">Be part of the game</p>
+        <div class="text-black text-3xl pt-4">
+          <p>Crowd Control is a growing community based on open source and</p>
+          <p>collaboration. Learn the game and give us your review.</p>
+        </div>
+        <br />
+        <BaseCCButton :type="ButtonType.TEAL">Join Us</BaseCCButton>
+        <img
+          alt="gameboard"
+          class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
+          :src="gameBoard"
+        />
+      </div>
+    </div>
+  </FadeTeaser>
 </template>
 
 <script setup lang="ts">
+import gameBoard from "@/assets/figma/GameBoard.gif";
 import cardBack1 from "@/assets/figma/Cardbacks/1.png";
 import cardBack2 from "@/assets/figma/Cardbacks/2.png";
 import cardBack3 from "@/assets/figma/Cardbacks/3.png";

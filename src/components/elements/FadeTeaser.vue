@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-[25rem] md:h-[50rem] lg:h-[75rem] xl:h-[100rem] overflow-hidden">
+  <div class="relative h-[50rem] xl:h-[80rem] overflow-hidden">
     <img
       alt="worm bg"
       class="absolute left-[-30rem] md:left-[-10rem] h-[100%]"
