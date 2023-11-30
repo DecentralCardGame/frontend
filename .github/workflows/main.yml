@@ -30,6 +30,6 @@ jobs:
         echo "${{ secrets.LXGR_DEPLOY_PRIV }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.LXGR_HOST }} > ~/.ssh/known_hosts
     - name: connect and pull
-      run: ssh ${{ secrets.LXGR_USER }}@${{ secrets.LXGR_HOST }} "cd ~/$LABEL && git fetch && git checkout ${{ github.event.pull_request.head.ref }} && git pull && npm i && npm run build && exit"
+      run: ssh ${{ secrets.LXGR_USER }}@${{ secrets.LXGR_HOST }} "cd ~/$LABEL && git fetch && git checkout ${{ github.event.pull_request.head.ref }} && git pull && npm i && npm run build && chgrp -R www-data ~/$LABEL && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
