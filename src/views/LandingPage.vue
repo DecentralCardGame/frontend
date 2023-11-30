@@ -81,6 +81,7 @@
       </div>
     </div>
   </div>
+  <FadeTeaser></FadeTeaser>
 </template>
 
 <script setup lang="ts">
@@ -98,6 +99,7 @@ import hackatomLogo from "@/assets/figma/PresentationLogos/hackatom.png";
 import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import FadeTeaser from "@/components/elements/FadeTeaser.vue";
 
 type CardBack = {
   cardBack: string;
