@@ -165,38 +165,3 @@ const closeModal = () => {
   loadCard();
 };
 </script>
-
-<style scoped lang="scss">
-@import "@/scss/variables";
-
-.FlavourText {
-  font-style: italic;
-}
-
-.Container {
-  margin: 1rem 0;
-  text-shadow: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-}
-
-.ELement {
-  position: relative;
-  flex-grow: 1;
-  max-width: 25em;
-  padding: 1em;
-}
-
-h3 {
-  color: white;
-}
-
-:deep(.Keywords) {
-  p {
-    color: white;
-  }
-}
-</style>
