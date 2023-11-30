@@ -146,36 +146,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss">
-@import "modal";
-
-.airdropBox {
-  margin: 5px;
-  padding: 7px;
-  box-shadow: 2px 2px 4px;
-  text-align: left;
-  cursor: pointer;
-  a {
-    color: $black;
-    font-weight: bold;
-  }
-  .claimBox {
-    float: right;
-    text-align: right;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-}
-
-.airdropBox:hover {
-  box-shadow: 4px 4px 8px;
-}
-
-.blurOut {
-  opacity: 0.6;
-  filter: grayscale(100%);
-  pointer-events: none;
-}
-
-</style>

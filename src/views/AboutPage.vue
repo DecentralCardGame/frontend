@@ -188,37 +188,3 @@ import {
   communityCardData
 } from "@/components/utils/sampleCards";
 </script>
-
-<style scoped lang="scss">
-@import "../scss/variables";
-
-.hero {
-  margin: 10rem 0;
-  text-align: center;
-  @media (max-width: 480px) {
-    margin: 0;
-  }
-}
-
-.about {
-  align-items: flex-start;
-  align-self: center;
-  display: grid;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-  h2 {
-    margin-top: 0;
-  }
-  svg {
-    height: $font-size * 20;
-  }
-  margin-bottom: $font-size * 4;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-</style>

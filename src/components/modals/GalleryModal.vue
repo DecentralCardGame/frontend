@@ -227,34 +227,3 @@ const closeModal = () => {
   queryCoins();
 };
 </script>
-
-<style lang="scss">
-@import "modal";
-
-.container-flex-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 1rem;
-  white-space: pre-wrap;
-}
-
-.container-flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.keywordTable {
-  border-collapse: separate;
-  border-spacing: 10px;
-  color: $black;
-}
-
-.no__bottomline {
-  border-bottom: initial;
-}
-
-.view__card {
-  height: 50vh;
-}
-</style>

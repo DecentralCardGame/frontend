@@ -360,33 +360,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  @import "../scss/variables";
-
-.image--round {
-  width: 200px;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.team-entry {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-}
-
-img {
-  display: inline;
-  margin: 0 auto;
-  height: 100%;
-  width: auto;
-  float:left;
-}
-</style>
