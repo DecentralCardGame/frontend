@@ -347,8 +347,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  @import "../../scss/variables";
+<style>
 
   .clickable-option {
     display: inline-block;

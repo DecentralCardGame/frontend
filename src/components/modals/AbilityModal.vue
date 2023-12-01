@@ -396,8 +396,7 @@ export default {
 
 </script>
 
-<style lang="scss">
-@import "modal";
+<style>
 
 .title {
   font-size: $font-size-big
@@ -406,7 +405,6 @@ export default {
 .info {
   font-family: $font-family;
 }
-
 
 .button--img {
   max-width: 40px;

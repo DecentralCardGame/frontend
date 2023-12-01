@@ -145,8 +145,7 @@ const isNumber = (evt: any) => {
 }
 </script>
 
-<style lang="scss">
-@import "modal";
+<style>
 
 .table--buy-scard-frame {
   td {

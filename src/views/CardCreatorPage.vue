@@ -1,14 +1,224 @@
 <template>
-  <div class="card-generator-container">
-    <h2 class="header__h2">
+  <div class="bg-pink-950">
+    <div class="p-8 text-white text-lg font-normal font-['Roboto']">
       Card Creator
-    </h2>
-    <p class="header__p">
-      Our Card Creator lets you can design and craft your own cards by
-      following a simple step-by-step wizard that guides you through the whole
-      process.
-    </p>
-    <br>
+    </div>
+    <div
+      class="grid grid-cols-3 grid-rows-9 p-8  text-white text-center text-lg font-normal font-['Roboto'] bg-white bg-opacity-20 shadow"
+    >
+      <!-- Progress Bar -->
+      <div class="w-11/12 h-12 col-start-1 col-span-3 mx-auto">
+        <div
+          class="bg-red-600 bg-red-600 rounded-full h-1 flex items-center justify-between"
+        >
+          <div
+            v-for="(item, idx) in progressBar"
+            class="flex justify-between bg-red-600 rounded-full h-1 items-center relative"
+            @click="activeStep = idx"
+          >
+            <div
+              v-if="item == 'done' || item == 'active'"
+              class="bg-red-600 rounded-full h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2"
+            >
+              <img
+                v-if="item == 'active'"
+                src="@/assets/figma/CCLogoSmallInvert.png"
+                alt="check"
+              />
+            </div>
+            <div
+              v-if="item == 'open'"
+              class="bg-white dark:bg-gray-700 h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative"
+            >
+              <div class="h-3 w-3 bg-red-600 rounded-full rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class Selection -->
+      <div v-if="activeStep==0"
+        class="row-start-2 col-start-1 col-span-3"
+      >
+        <div class="pt-8 p-3 text-xs font-bold">CLASSES</div>
+        <div class="text-xs">Select one or multiple classes for your card.</div>
+
+        <div class="flex justify-between">
+          <div
+            v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
+            class="p-5"
+            :class="{ grayscale: model.Class[item] }"
+            @click="
+              model.Class[item] = !model.Class[item];
+            "
+          >
+            <img class="h-32" :src="'src/assets/figma/' + item + 'Icon.svg'" />
+            <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Type Selection -->
+      <div v-if="activeStep==1"
+        class="row-start-2 col-start-1 col-span-3">
+        <div class="pt-8 p-3 text-xs font-bold">TYPE</div>
+        <div class="text-xs">Select the type of card you want.</div>
+
+        <div class="flex justify-between">
+          <div
+            v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
+            class="p-5"
+            @click="
+              model.type = item
+            "
+          >
+            <img v-show="item!==model.type"
+              class="scale-[1]"
+              :src="'src/assets/figma/' + item + 'Off.png'" />
+            <img v-show="item==model.type"
+              class="scale-[1]"
+              :src="'src/assets/figma/' + item + 'On.png'" />
+            <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Name -->
+      <div v-if="activeStep==2"
+        class="row-start-3 row-span-6 col-start-1 col-span-1 flex"
+      >
+        <div class="p-8">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage()"
+            :model="model"
+          />
+        </div>
+        <div class="row-start-3 col-start-2 col-span-2">
+          <div class="pt-8 p-3 text-xs font-bold">NAME</div>
+          <div class="text-xs">Pick a name for your card.</div>
+          <div class="bg-zinc-300 bg-opacity-20 shadow-inner">
+            <input
+              class=" bg-transparent text-white text-opacity-50 text-xs font-normal font-['Roboto']"
+              v-model="model.CardName"
+              maxLength="25"
+            >
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- Image Upload -->
+      <div v-if="activeStep==3"
+        @drop.prevent="onDrop"
+        @dragover.prevent="dragActive=true; console.log('dragover')"
+        @dragleave.prevent="dragActive=false"
+        :class="{ 'bg-white bg-opacity-50': dragActive }">
+
+
+          <div
+            v-if="true || artistMode"
+            class="creator-input-single-column"
+          >
+            <label
+              v-if="!artistMode"
+              class="input--checkbox-label__left"
+            >
+              <input
+                v-model="designateArtist"
+                class="input--checkbox__left"
+                type="checkbox"
+              >
+              Designate other Artist (not yourself) <br>
+            </label>
+            <div
+              v-if="designateArtist && !artistMode"
+            >
+              <span class="creator-text"><b>Address:</b> </span>
+              <input
+                v-model="artistAddress"
+              >
+            </div>
+
+            <div
+              v-if="!designateArtist || artistMode"
+            >
+              <span class="creator-text">
+                Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
+              </span>
+            </div>
+            <div
+              v-if="!designateArtist || artistMode"
+            >
+              <BaseCCButton>Choose a file without copyright violation
+              </BaseCCButton>
+              <input
+                id="file"
+                class="inputfile"
+                name="file"
+                type="file"
+                @change="inputFile"
+              >
+              <label
+                class="button--file"
+                for="file"
+              >
+              </label>
+            </div>
+        </div>
+
+        <div
+          v-if="!designateArtist || artistMode"
+        >
+          <cropper
+            class="cropper"
+            :src="cropImage"
+            :auto-zoom="true"
+            :stencil-size="{
+              width: cardBounds.x,
+              height: model.fullArt ? cardBounds.y : cardBounds.x
+            }"
+            :canvas="{
+              height: model.fullArt ? cardBounds.y : cardBounds.x,
+              width: cardBounds.x
+            }"
+            :default-size="{
+              width: cardBounds.x,
+              height: model.fullArt ? cardBounds.y : cardBounds.x,
+            }"
+            image-restriction="fit-area"
+            @change="changeCrop"
+          />
+        </div>
+      </div>
+
+
+
+      <!-- Navigation Buttons -->
+      <div
+        class="row-start-6 col-start-3 flex flex-row space-x-3 justify-end">
+        <NavigateCCButtons
+          class="scale-150"
+          @forward="activeStep = Math.min(activeStep+1, progressBar.length-1)"
+          @backward="activeStep = Math.max(activeStep-1, 0)"
+         >
+        </NavigateCCButtons>
+
+        <BaseCCButton
+          :type="ButtonType.RED"
+          @click="activeStep = Math.min(activeStep+1, progressBar.length-1)"
+        >Next</BaseCCButton>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!--
+
     <div>
       <div
         v-if="!artistMode"
@@ -50,25 +260,25 @@
 
       <div class="creator">
         <div class="creator-input">
-          <!-- Name, Flavor and Type section -->
+          Name, Flavor and Type section
           <div
             v-if="activeStep == 0 && !artistMode"
             class="creator-input-container ccbutton"
           >
-            <!-- Name -->
+
             <span class="creator-text"><b>Name:</b> </span>
             <input
               v-model="model.CardName"
               maxLength="25"
             >
-            <!-- Flavor -->
+
             <span class="creator-text">
               <br><b>Flavor Text:</b>
             </span>
             <input
               v-model="model.FlavourText"
             >
-            <!-- Type -->
+
             <span
               v-if="cardRules.Card"
               class="creator-text"
@@ -90,7 +300,7 @@
               </option>
             </select>
 
-            <!-- Classes -->
+
             <div class="creator-text">
               <b>Classes:</b> <br>
             </div>
@@ -130,7 +340,7 @@
             </div>
           </div>
 
-          <!-- Artwork section -->
+
           <div
             v-if="activeStep == 1 || artistMode"
             class="creator-input-single-column"
@@ -154,7 +364,7 @@
                 v-model="artistAddress"
               >
             </div>
-            <!-- Self-service Artwork -->
+
             <div
               v-if="!designateArtist || artistMode"
             >
@@ -202,11 +412,11 @@
               />
             </div>
 
-            <!-- The fullart toggle is deactivated -->
+
             <div
               v-if="activeStep == 1 && !designateArtist && false"
             >
-              <!-- FullArt -->
+
               <span class="creator-text">
                 My <b>beauty</b> must not be covered by borders
               </span>
@@ -228,12 +438,12 @@
             </div>
           </div>
 
-          <!-- Cost and Properties section -->
+
           <div
             v-if="activeStep == 2 && !artistMode"
             class="creator-input-container"
           >
-            <!-- Mana Cost -->
+
             <span
               v-if="cardRules.Card.children[getRulesType()] &&
                 cardRules.Card.children[getRulesType()].children.CastingCost"
@@ -281,7 +491,7 @@
                 cardRules.Card.children[getRulesType()] &&
                 cardRules.Card.children[getRulesType()].children.AdditionalCost"
             >
-              <!-- this div is to fix the grid -->
+
             </div>
             <div
               v-if="isAdditionalCostVisible"
@@ -362,7 +572,7 @@
               </span>
             </div>
 
-            <!-- HQ Delay -->
+
             <span
               v-if="model.type === 'Headquarter'"
               class="creator-text"
@@ -392,7 +602,7 @@
               </span>
             </div>
 
-            <!-- Attack -->
+
             <span
               v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
               class="creator-text"
@@ -415,7 +625,7 @@
               </select>
             </div>
 
-            <!-- Health -->
+
             <span
               v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
               class="creator-text"
@@ -439,7 +649,7 @@
               </select>
             </div>
 
-            <!-- Tag -->
+
             <span
               v-if="cardRules.Card"
               class="creator-text"
@@ -489,7 +699,7 @@
             </div>
           </div>
 
-          <!-- Abilities section -->
+
           <div
             v-if="activeStep == 3 && !artistMode"
           >
@@ -546,7 +756,7 @@
             </div>
           </div>
 
-          <!-- Buy Frames and Submit section -->
+
           <div
             v-if="activeStep == 4 && !artistMode"
             class="creator-input-container"
@@ -587,7 +797,7 @@
             </div>
           </div>
 
-          <!-- Navigation buttons -->
+
           <div
             v-if="!artistMode"
             class="creator-nav-container ccbutton"
@@ -659,6 +869,7 @@
       </div>
     </div>
   </div>
+  -->
 </template>
 
 <script lang="ts">
@@ -671,10 +882,7 @@ import AbilityModal from "../components/modals/AbilityModal.vue";
 import AbilityComponent from "../components/elements/AbilityComponent.vue";
 import { env } from "@/env";
 
-import {
-  atPath,
-  uploadImg
-} from "@/components/utils/utils.js";
+import { atPath, uploadImg } from "@/components/utils/utils.js";
 
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
@@ -687,7 +895,11 @@ import { useTx } from "@/def-composables/useTx";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { validAddress } from "@/utils/validation";
 import { useQuery } from "@/def-composables/useQuery";
-import { isASCII } from '@/utils/utils';
+import { isASCII } from "@/utils/utils";
+
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
+import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import NavigateCCButtons from "@/components/elements/CCButton/NavigateCCButtons.vue";
 
 const { saveCardContent, addArtwork } = useTx();
 const { queryQUser } = useQuery();
@@ -699,9 +911,28 @@ enum Mode {
 
 export default {
   name: "CardCreator",
-  components: { CardComponent, AbilityComponent, BuyFrameModal, AbilityModal, Cropper },
+  components: {
+    NavigateCCButtons,
+    BaseCCButton,
+    CardComponent,
+    AbilityComponent,
+    BuyFrameModal,
+    AbilityModal,
+    Cropper,
+  },
   data() {
     return {
+      progressBar: [
+        "done",
+        "done",
+        "active",
+        "open",
+        "open",
+        "open",
+        "open",
+        "open",
+      ],
+      dragActive: false,
       isAbilityModalVisible: false,
       isBuyFrameModalVisible: false,
       isAdditionalCostVisible: false,
@@ -718,7 +949,7 @@ export default {
       cropImage: "",
       cardID: 0,
       mode: Mode.CREATE,
-      Mode: Mode
+      Mode: Mode,
     };
   },
   setup() {
@@ -735,11 +966,20 @@ export default {
       loggedIn,
       address,
       notifyInfo,
-      notifyFail
+      notifyFail,
     };
   },
-  computed: {},
+  computed: {
+    ButtonType() {
+      return ButtonType
+    }
+  },
   watch: {
+    activeStep() {
+      this.progressBar.forEach((item, idx) => {
+        this.progressBar[idx] = idx > this.activeStep ? "open" : idx < this.activeStep ? "done" : "active"
+      })
+    },
     model() {
       if (this.mode === Mode.EDIT) {
         this.cardCreatorEditCard = this.model;
@@ -747,10 +987,10 @@ export default {
         this.cardCreatorDraft = this.model;
       }
       this.setMode();
-    }
+    },
   },
   mounted() {
-    console.log("print model after mounted", this.model)
+    console.log("print model after mounted", this.model);
     if (!this.loggedIn) {
       this.notifyInfo("Not logged in", "You must login to create a card.");
     }
@@ -762,7 +1002,10 @@ export default {
 
       // if waiting did not help, route back to / (without cardRules.Card this page makes no sense)
       if (!this.cardRules)
-        this.notifyFail("CardRules", "CardRules were not properly loaded. This is really bad.");
+        this.notifyFail(
+          "CardRules",
+          "CardRules were not properly loaded. This is really bad."
+        );
       this.$router.push("/");
     } else {
       console.log("cardRules:", this.cardRules);
@@ -773,19 +1016,17 @@ export default {
     // here a card is loaded if edit card via gallery was selected
     if (this.mode == Mode.EDIT) {
       this.model = this.cardCreatorEditCard;
-      if (!this.model.AdditionalCost) this.model.AdditionalCost = {}
+      if (!this.model.AdditionalCost) this.model.AdditionalCost = {};
       console.log("edit card: ", this.model);
 
       this.cropImage = this.model.image;
 
-      if (this.model.Tags[0])
-        this.model.tagDummy = this.model.Tags[0];
+      if (this.model.Tags[0]) this.model.tagDummy = this.model.Tags[0];
 
       this.designateArtist = this.model.artist != this.model.owner;
       if (this.designateArtist) {
         this.artistAddress = this.model.artist;
-        if (this.artistAddress === this.address)
-          this.artistMode = true;
+        if (this.artistAddress === this.address) this.artistMode = true;
       }
       return;
     } else {
@@ -800,26 +1041,33 @@ export default {
   methods: {
     getHQDelayRange() {
       return R.range(
-        this.cardRules.Card.children[this.getRulesType()].children.Delay.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children.Delay.min ||
+          0,
         this.cardRules.Card.children[this.getRulesType()].children.Delay.max + 1
       );
     },
     getGenericCostRange(key: string) {
       return R.range(
-        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.min || 0,
-        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children[key].children.Amount.max + 1
+        this.cardRules.Card.children[this.getRulesType()].children
+          .AdditionalCost.children[key].children.Amount.min || 0,
+        this.cardRules.Card.children[this.getRulesType()].children
+          .AdditionalCost.children[key].children.Amount.max + 1
       );
     },
     getSpecialCostRange() {
       return R.keys(
-        this.cardRules.Card.children[this.getRulesType()].children.AdditionalCost.children
+        this.cardRules.Card.children[this.getRulesType()].children
+          .AdditionalCost.children
       );
     },
     getGenericCardRange(key: string): number[] {
       let range: number[] = [];
       for (
-        let i = this.cardRules.Card.children[this.getRulesType()].children[key].min || 0;
-        i < this.cardRules.Card.children[this.getRulesType()].children[key].max + 1;
+        let i =
+          this.cardRules.Card.children[this.getRulesType()].children[key].min ||
+          0;
+        i <
+        this.cardRules.Card.children[this.getRulesType()].children[key].max + 1;
         i++
       ) {
         range.push(i);
@@ -834,29 +1082,28 @@ export default {
       }
     },
     changeCrop({ canvas }) {
-      mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)])
-        .then(b64 => {
-          this.srcToFile(b64, "image.jpg", "image/jpeg")
-            .then(file => {
-              uploadImg(file, env.cardImgMaxKB, (result) => {
-                if (result.startsWith("Error")) {
-                  this.notifyFail("Failed to Upload", result);
-                  return;
-                }
-                this.model.image = result;
-              });
+      mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)]).then(
+        (b64) => {
+          this.srcToFile(b64, "image.jpg", "image/jpeg").then((file) => {
+            uploadImg(file, env.cardImgMaxKB, (result) => {
+              if (result.startsWith("Error")) {
+                this.notifyFail("Failed to Upload", result);
+                return;
+              }
+              this.model.image = result;
             });
-        });
+          });
+        }
+      );
     },
     srcToFile(src, fileName, mimeType) {
-      return (fetch(src)
-          .then(function(res) {
-            return res.arrayBuffer();
-          })
-          .then(function(buf) {
-            return new File([buf], fileName, { type: mimeType });
-          })
-      );
+      return fetch(src)
+        .then(function (res) {
+          return res.arrayBuffer();
+        })
+        .then(function (buf) {
+          return new File([buf], fileName, { type: mimeType });
+        });
     },
     toggleAdditionalCost() {
       if (!this.isAdditionalCostVisible) {
@@ -866,17 +1113,19 @@ export default {
     setAdditionalCost(event) {
       this.model.AdditionalCost = {};
       this.model.AdditionalCost[event.target.value] = {
-        Amount: 0
+        Amount: 0,
       };
       this.updateAdditionalCostText();
     },
     printAdditionalCost(wholeString) {
-      let countUppers = x => R.sum(R.map(
-        x => x === R.toUpper(x) ? 1 : 0,
-        R.split("", x)));
+      let countUppers = (x) =>
+        R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
 
       let printString = "";
-      while (countUppers(printString) < 2 && printString.length < wholeString.length) {
+      while (
+        countUppers(printString) < 2 &&
+        printString.length < wholeString.length
+      ) {
         printString = R.take(printString.length + 1, wholeString);
       }
 
@@ -884,10 +1133,11 @@ export default {
     },
     showBuyFrameModal() {
       if (!this.address) {
-        this.notifyFail("Unable to buy Card Frame", "You must be logged in with an activated account for this.");
-      }
-      else
-        this.isBuyFrameModalVisible = true;
+        this.notifyFail(
+          "Unable to buy Card Frame",
+          "You must be logged in with an activated account for this."
+        );
+      } else this.isBuyFrameModalVisible = true;
     },
     closeBuyFrameModal() {
       this.isBuyFrameModalVisible = false;
@@ -899,7 +1149,10 @@ export default {
 
       if (type === "root") {
         if (this.abilities.length >= 3) {
-          this.notifyFail("Number of Abilities", "A card can only have a maximum of 3 Abilities.");
+          this.notifyFail(
+            "Number of Abilities",
+            "A card can only have a maximum of 3 Abilities."
+          );
           this.isAbilityModalVisible = false;
           return;
         }
@@ -920,8 +1173,8 @@ export default {
             this.getRulesType() === "Action" ? "Effects" : "Abilities",
             "children",
             this.getRulesType() === "Action" ? "Effect" : "Ability",
-            "children"
-          ]
+            "children",
+          ],
         };
 
         let options = atRules(newAbility.path);
@@ -932,13 +1185,13 @@ export default {
           type: "root",
           options: options,
           rulesPath: newAbility.path,
-          abilityPath: []
+          abilityPath: [],
         };
 
         console.log("dialog", dialog);
 
         // this is the bugfix for replay selection bug
-        R.forEachObjIndexed(function(option) {
+        R.forEachObjIndexed(function (option) {
           if (option.selected) delete option.selected;
         }, dialog.options);
 
@@ -962,42 +1215,69 @@ export default {
       }
       console.log("abilities after update", this.abilities);
 
-      let keywordCount = R.length(R.flatten(R.pluck("keywords", this.abilities)));
+      let keywordCount = R.length(
+        R.flatten(R.pluck("keywords", this.abilities))
+      );
       if (keywordCount >= 6 && keywordCount <= 8) {
-        this.notifyInfo("Number of Keywords", "You have added " + keywordCount + " Keywords to this card. 8 is the maximum.");
+        this.notifyInfo(
+          "Number of Keywords",
+          "You have added " +
+            keywordCount +
+            " Keywords to this card. 8 is the maximum."
+        );
       } else if (keywordCount > 8) {
-        this.notifyFail("Number of Keywords", "You have added more than 8 Keywords to this card. Please limit to 8.");
+        this.notifyFail(
+          "Number of Keywords",
+          "You have added more than 8 Keywords to this card. Please limit to 8."
+        );
       }
 
       this.updateRulesTexts();
     },
     updateRulesTexts() {
       this.model.Keywords = R.pluck("keywords", this.abilities);
-      this.model.RulesTexts = R.map(this.interactionTextToString, this.abilities);
+      this.model.RulesTexts = R.map(
+        this.interactionTextToString,
+        this.abilities
+      );
 
       this.updateAdditionalCostText();
     },
     updateAdditionalCostText() {
       let setOrPrepend = (text) => {
-        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0])))
+        if (
+          this.model.RulesTexts[0] &&
+          R.equals("Extra", R.take(5, this.model.RulesTexts[0]))
+        )
           this.model.RulesTexts[0] = text;
-        else
-          this.model.RulesTexts = R.prepend(text, this.model.RulesTexts);
+        else this.model.RulesTexts = R.prepend(text, this.model.RulesTexts);
       };
 
       if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
         if (this.model.AdditionalCost.SacrificeCost) {
-          let text = "Extra Cost - Sacrifice " + this.model.AdditionalCost.SacrificeCost.Amount + " Entity.";
+          let text =
+            "Extra Cost - Sacrifice " +
+            this.model.AdditionalCost.SacrificeCost.Amount +
+            " Entity.";
           setOrPrepend(text);
         } else if (this.model.AdditionalCost.DiscardCost) {
-          let text = "Extra Cost - Discard " + this.model.AdditionalCost.DiscardCost.Amount + " Card.";
+          let text =
+            "Extra Cost - Discard " +
+            this.model.AdditionalCost.DiscardCost.Amount +
+            " Card.";
           setOrPrepend(text);
         } else if (this.model.AdditionalCost.VoidCost) {
-          let text = "Extra Cost - Void " + this.model.AdditionalCost.VoidCost.Amount + " Card.";
+          let text =
+            "Extra Cost - Void " +
+            this.model.AdditionalCost.VoidCost.Amount +
+            " Card.";
           setOrPrepend(text);
         }
       } else {
-        if (this.model.RulesTexts[0] && R.equals("Extra", R.take(5, this.model.RulesTexts[0])))
+        if (
+          this.model.RulesTexts[0] &&
+          R.equals("Extra", R.take(5, this.model.RulesTexts[0]))
+        )
           this.model.RulesTexts = R.drop(1, this.model.RulesTexts);
       }
     },
@@ -1017,8 +1297,8 @@ export default {
     getTags(idx) {
       if (this.cardRules.Card) {
         let usedTags = [];
-        let allTags = this.cardRules.Card.children.Action.children.Tags.children.Tag
-          .enum;
+        let allTags =
+          this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
         if (this.model.Tags[idx]) {
           // all tags already used except self
           usedTags = R.without(this.model.Tags[idx], this.model.Tags);
@@ -1060,35 +1340,44 @@ export default {
           );
           return;
         }
-        addArtwork(this.model.id, this.model.image, this.model.fullArt, this.resetCard, (err) => {
-          this.notifyFail("Update Artwork failed", err);
-          console.error(err);
-        });
+        addArtwork(
+          this.model.id,
+          this.model.image,
+          this.model.fullArt,
+          this.resetCard,
+          (err) => {
+            this.notifyFail("Update Artwork failed", err);
+            console.error(err);
+          }
+        );
         return;
       }
 
       // otherwise: check all things that must be entered:
       if (!this.model.CardName) {
-        this.notifyFail("No Name", "Card has no name, please enter a name.")
-        return
+        this.notifyFail("No Name", "Card has no name, please enter a name.");
+        return;
       }
       if (!this.model.type || this.model.type === "no type") {
-        this.notifyFail("Wrong Type", "please pick a type")
-        return
+        this.notifyFail("Wrong Type", "please pick a type");
+        return;
       }
       if (!this.designateArtist && !this.model.image) {
         this.notifyFail(
           "No Image",
           "Card has no image, please upload an image."
-        )
-        return
+        );
+        return;
       }
-      if (this.designateArtist && !this.$cardChain.validAddress(this.artistAddress)) {
+      if (
+        this.designateArtist &&
+        !this.$cardChain.validAddress(this.artistAddress)
+      ) {
         this.notifyFail(
           "Invalid Address",
           "The address given for designated artist is invalid."
-        )
-        return
+        );
+        return;
       }
       if (this.designateArtist && !validAddress(this.artistAddress)) {
         this.notifyFail(
@@ -1153,7 +1442,11 @@ export default {
 
       if (this.model.type !== "Action") {
         // check if the old abilities should be restored
-        if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
+        if (
+          this.mode == Mode.EDIT &&
+          !this.clearAbilities &&
+          R.isEmpty(this.abilities)
+        ) {
           newModel.Abilities = R.clone(this.cardCreatorEditCard.Abilities);
         }
         // this writes the relevant part of the abilities in the new model
@@ -1161,7 +1454,8 @@ export default {
           newModel.Abilities = R.map(
             R.pick(
               R.keys(
-                this.cardRules.Card.children.Entity.children.Abilities.children.Ability.children
+                this.cardRules.Card.children.Entity.children.Abilities.children
+                  .Ability.children
               )
             ),
             this.abilities
@@ -1169,7 +1463,11 @@ export default {
         }
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
-        if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
+        if (
+          this.mode == Mode.EDIT &&
+          !this.clearAbilities &&
+          R.isEmpty(this.abilities)
+        ) {
           newModel.Effects = R.clone(this.cardCreatorEditCard.Effects);
         }
         // this writes the relevant part of the effects in the new model
@@ -1177,7 +1475,8 @@ export default {
           newModel.Effects = R.map(
             R.pick(
               R.keys(
-                this.cardRules.definitions.Card.children.Action.children.Effects.children.Effect.children
+                this.cardRules.definitions.Card.children.Action.children.Effects
+                  .children.Effect.children
               )
             ),
             this.abilities
@@ -1187,11 +1486,20 @@ export default {
 
       // check if the old Keywords and RulesTexts should be restored
       let checkZeroAmount = () => {
-        return (this.model.AdditionalCost.SacrificeCost && this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
-          (this.model.AdditionalCost.DiscardCost && this.model.AdditionalCost.DiscardCost.Amount == 0) ||
-          (this.model.AdditionalCost.VoidCost && this.model.AdditionalCost.VoidCost.Amount == 0);
+        return (
+          (this.model.AdditionalCost.SacrificeCost &&
+            this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
+          (this.model.AdditionalCost.DiscardCost &&
+            this.model.AdditionalCost.DiscardCost.Amount == 0) ||
+          (this.model.AdditionalCost.VoidCost &&
+            this.model.AdditionalCost.VoidCost.Amount == 0)
+        );
       };
-      if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
+      if (
+        this.mode == Mode.EDIT &&
+        !this.clearAbilities &&
+        R.isEmpty(this.abilities)
+      ) {
         newModel.Keywords = this.cardCreatorEditCard.Keywords;
         newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
 
@@ -1208,20 +1516,27 @@ export default {
         this.updateRulesTexts();
       }
 
-      newModel.image = this.model.image
-      newModel.balanceAnchor = this.model.balanceAnchor
+      newModel.image = this.model.image;
+      newModel.balanceAnchor = this.model.balanceAnchor;
 
       let checkASCII = (string, origin) => {
-        string.split('').forEach(char => {
+        string.split("").forEach((char) => {
           if (!isASCII(char)) {
-            console.error("char "+char+" is not ASCII compatible.")
-            this.notifyFail("INVALID CHARACTER", "You used symbol "+char+" in "+origin+" and it is not supported.")
+            console.error("char " + char + " is not ASCII compatible.");
+            this.notifyFail(
+              "INVALID CHARACTER",
+              "You used symbol " +
+                char +
+                " in " +
+                origin +
+                " and it is not supported."
+            );
           }
-        })
-      }
+        });
+      };
 
-      checkASCII(newModel.FlavourText, "Flavour Text")
-      checkASCII(newModel.CardName, "Card Name")
+      checkASCII(newModel.FlavourText, "Flavour Text");
+      checkASCII(newModel.CardName, "Card Name");
 
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
@@ -1235,37 +1550,70 @@ export default {
         };
 
         saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
-        if (!this.designateArtist) addArtwork(this.model.id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
-      }
-      else if (!this.address) {
-        this.notifyFail("Unable publish Card", "You must be logged in with an activated account!");
-      } 
-      else {
-        queryQUser(this.address).then((res: User) => {
-          if (R.isEmpty(res.ownedCardSchemes)) {
-            this.notifyFail("YOU MUST CONSTRUCT ADDITIONAL PYLONS", "You don't own any Card Frames. Please buy one before publishing.");
-            throw new Error("account " + this.address + " does not own Card Frames");
-          } else {
-            let id = +res.ownedCardSchemes[0];
-            let handleErr = (err) => {
-              this.notifyFail("Publish Card failed", err);
-              console.error(err);
-            };
+        if (!this.designateArtist)
+          addArtwork(
+            this.model.id,
+            newCard.image,
+            newCard.fullArt,
+            this.resetCard,
+            handleErr
+          );
+      } else if (!this.address) {
+        this.notifyFail(
+          "Unable publish Card",
+          "You must be logged in with an activated account!"
+        );
+      } else {
+        queryQUser(this.address)
+          .then((res: User) => {
+            if (R.isEmpty(res.ownedCardSchemes)) {
+              this.notifyFail(
+                "YOU MUST CONSTRUCT ADDITIONAL PYLONS",
+                "You don't own any Card Frames. Please buy one before publishing."
+              );
+              throw new Error(
+                "account " + this.address + " does not own Card Frames"
+              );
+            } else {
+              let id = +res.ownedCardSchemes[0];
+              let handleErr = (err) => {
+                this.notifyFail("Publish Card failed", err);
+                console.error(err);
+              };
 
-            saveCardContent(id, newCard, this.resetCard, handleErr);
-            if (!this.designateArtist) addArtwork(id, newCard.image, newCard.fullArt, this.resetCard, handleErr);
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          this.notifyFail("Publish Card failed", err);
-        });
+              saveCardContent(id, newCard, this.resetCard, handleErr);
+              if (!this.designateArtist)
+                addArtwork(
+                  id,
+                  newCard.image,
+                  newCard.fullArt,
+                  this.resetCard,
+                  handleErr
+                );
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            this.notifyFail("Publish Card failed", err);
+          });
       }
     },
     resetCard() {
       this.model = new Card();
       this.artistMode = false;
       this.cropImage = "";
+    },
+    onDrop(event) {
+      console.log("ondrop worked")
+      let file = event.dataTransfer.files[0];
+
+      uploadImg(file, env.cardImgMaxKB, (result) => {
+        if (result.startsWith("Error")) {
+          this.notifyFail("Failed to Upload", result);
+          return;
+        }
+        this.cropImage = result;
+      });
     },
     inputFile(event) {
       let file = event.target.files[0];
@@ -1282,14 +1630,25 @@ export default {
       let exportClass = "progress-item";
 
       if (this.activeStep > n) {
-        if (n === 0 && this.model.CardName && this.model.CardName !== "Name" && this.model.image)
+        if (
+          n === 0 &&
+          this.model.CardName &&
+          this.model.CardName !== "Name" &&
+          this.model.image
+        )
           exportClass += " progress-item-finished";
-
-        else if (n === 1 && this.model.Tags[0] && this.model.type && this.model.type !== "no type")
+        else if (
+          n === 1 &&
+          this.model.Tags[0] &&
+          this.model.type &&
+          this.model.type !== "no type"
+        )
           exportClass += " progress-item-finished";
-
         else if (n === 2) {
-          if (this.model.type !== "Headquarter" && (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0))
+          if (
+            this.model.type !== "Headquarter" &&
+            (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0)
+          )
             return exportClass;
           if (this.model.type !== "Action" && R.isNil(this.model.Health))
             return exportClass;
@@ -1304,236 +1663,7 @@ export default {
         exportClass += " progress-item-current";
       }
       return exportClass;
-    }
-  }
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "../scss/variables";
-
-.cropper {
-  height: 300px;
-  width: 40vw;
-  margin: 1rem;
-  border: $border-thickness solid rgba(255, 255, 255, 0.7);
-  @media (max-width: 480px) {
-    width: 80vw;
-  }
-}
-
-.button--file {
-  z-index: 1;
-  font-family: $font-family-header;
-  background-color: transparent;
-  color: $black;
-  font-size: 1em;
-  padding: 0.5rem 1em;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  transition: all $animation-duration ease-out;
-
-  &:after {
-    z-index: -1;
-    background: linear-gradient(to right, $main-color-a 50%, $white 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all $animation-duration ease-out;
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transform: skewX($skew);
-    box-shadow: $border-thickness-bold $border-thickness-bold 0 black;
-  }
-
-  &:hover {
-    color: $white;
-
-    &:after {
-      background-position: left bottom;
-    }
-  }
-}
-
-
-.noWidth {
-  width: 0%
-}
-
-.creator {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (min-width: 480px) {
-    grid-template-areas: "creator-input creator-preview";
-  }
-}
-
-.creator-input-single-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem 1rem;
-}
-
-.creator-input-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  gap: 1rem 1rem;
-  grid-template-areas: ". ." ". .";
-}
-
-.creator-text {
-  text-align: right;
-}
-
-@media (max-width: 480px) {
-  .creator-input-container {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    grid-template-areas: ".";
-  }
-
-  .creator {
-    display: grid;
-    padding: 1rem;
-    grid-template-columns: 1fr;
-    grid-template-areas: "";
-  }
-
-  .creator-text {
-    text-align: left;
-  }
-}
-
-.progress {
-  display: flex;
-  font-size: 1rem;
-  text-shadow: none;
-  margin-bottom: 1.5rem;
-
-  @media (max-width: 480px) {
-    flex-flow: column;
-    font-size: 1em;
-  }
-}
-
-.progress-item {
-  cursor: pointer;
-  margin: 0.25rem;
-  border: $border-thickness solid rgba(255, 255, 255, 0.7);
-  padding: 0.25rem 0.5rem;
-
-  &.progress-item-finished {
-    color: $gray;
-  }
-
-  &.progress-item-current {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: $white;
-  }
-}
-
-.progress-container {
-  display: flex;
-  justify-content: center;
-}
-
-.inputfile {
-  display: none;
-}
-
-.ability {
-  width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid $white;
-  border-radius: 4px;
-  color: $white;
-  resize: vertical;
-  background-color: transparent;
-  font-size: $font-size;
-}
-
-.creator-nav-container {
-  margin-top: 2rem;
-  //display: flex;
-  //justify-content: center;
-  width: 100%;
-
-  button.back {
-    color: $white;
-    text-decoration: underline;
-
-    &:after {
-      background: transparent;
-      box-shadow: none;
-    }
-  }
-}
-
-.ability-modal-container {
-  position: relative;
-  z-index: 3;
-}
-
-.ability-frame {
-  position: relative;
-  padding: $font-size;
-  border: $border-thickness solid $white;
-  margin: 1rem 0;
-}
-
-.btn-abilitycreator {
-  z-index: 1;
-  background-color: transparent;
-  color: $white;
-  border: $border-thickness dotted $white;
-  font-size: 1em;
-  padding: 0.3em 1em;
-  width: 100%;
-  cursor: pointer;
-  position: relative;
-  transition: all $animation-duration ease-out;
-
-  &:after {
-    display: none;
-  }
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-.input--checkbox__left {
-  position: absolute;
-  display: inline-block;
-  margin-left: -25px;
-}
-
-.input--checkbox-label__left {
-  margin-left: 25px;
-}
-
-.input--checkbox__right {
-  position: relative;
-  display: inline-block;
-  margin-top: 1px;
-}
-
-.tag-select {
-  margin-bottom: 1rem;
-
-  &.tag-select-last {
-    margin-bottom: 0;
-  }
-}
-</style>
