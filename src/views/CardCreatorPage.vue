@@ -4,7 +4,7 @@
       Card Creator
     </div>
     <div
-      class="grid grid-cols-3 grid-rows-9 p-8  text-white text-center text-lg font-normal font-['Roboto'] bg-white bg-opacity-20 shadow"
+      class="grid grid-cols-3 grid-rows-9 p-8 text-white text-center text-lg font-normal font-['Roboto'] bg-white bg-opacity-20 shadow"
     >
       <!-- Progress Bar -->
       <div class="w-11/12 h-12 col-start-1 col-span-3 mx-auto">
@@ -49,7 +49,7 @@
             class="p-5"
             :class="{ grayscale: model.Class[item] }"
             @click="
-              model.Class[item] = !model.Class[item];
+              model.Class[item] = !model.Class[item]; console.log(item, model.Class);
             "
           >
             <img class="h-32" :src="'src/assets/figma/' + item + 'Icon.svg'" />
@@ -60,7 +60,8 @@
 
       <!-- Type Selection -->
       <div v-if="activeStep==1"
-        class="row-start-2 col-start-1 col-span-3">
+        class="row-start-2 col-start-1 col-span-3"
+      >
         <div class="pt-8 p-3 text-xs font-bold">TYPE</div>
         <div class="text-xs">Select the type of card you want.</div>
 
@@ -85,9 +86,9 @@
 
       <!-- Card Name -->
       <div v-if="activeStep==2"
-        class="row-start-3 row-span-6 col-start-1 col-span-1 flex"
+        class="row-start-2 row-span-4 col-start-1 col-span-1"
       >
-        <div class="p-8">
+        <div class="px-8">
           <CardComponent
             id="card"
             :active-step="activeStep"
@@ -96,12 +97,17 @@
             :model="model"
           />
         </div>
-        <div class="row-start-3 col-start-2 col-span-2">
-          <div class="pt-8 p-3 text-xs font-bold">NAME</div>
-          <div class="text-xs">Pick a name for your card.</div>
+      </div>
+       <div v-if="activeStep==2"
+        class="row-start-2 row-span-4 col-start-2 col-span-2"
+      >
+        <div class="text-left">
+          <div class="py-3 text-xs font-bold">NAME</div>
+          <div class="py-3 text-xs">Pick a name for your card.</div>
           <div class="bg-zinc-300 bg-opacity-20 shadow-inner">
             <input
-              class=" bg-transparent text-white text-opacity-50 text-xs font-normal font-['Roboto']"
+              class="py-4 px-2 mx-3 bg-transparent text-white text-opacity-50 text-xs font-normal font-['Roboto']"
+              placeholder="Coolest Name around here"
               v-model="model.CardName"
               maxLength="25"
             >
@@ -114,64 +120,14 @@
       <!-- Image Upload -->
       <div v-if="activeStep==3"
         @drop.prevent="onDrop"
-        @dragover.prevent="dragActive=true; console.log('dragover')"
+        @dragover.prevent="dragActive=true"
         @dragleave.prevent="dragActive=false"
-        :class="{ 'bg-white bg-opacity-50': dragActive }">
-
-
-          <div
-            v-if="true || artistMode"
-            class="creator-input-single-column"
-          >
-            <label
-              v-if="!artistMode"
-              class="input--checkbox-label__left"
-            >
-              <input
-                v-model="designateArtist"
-                class="input--checkbox__left"
-                type="checkbox"
-              >
-              Designate other Artist (not yourself) <br>
-            </label>
-            <div
-              v-if="designateArtist && !artistMode"
-            >
-              <span class="creator-text"><b>Address:</b> </span>
-              <input
-                v-model="artistAddress"
-              >
-            </div>
-
-            <div
-              v-if="!designateArtist || artistMode"
-            >
-              <span class="creator-text">
-                Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
-              </span>
-            </div>
-            <div
-              v-if="!designateArtist || artistMode"
-            >
-              <BaseCCButton>Choose a file without copyright violation
-              </BaseCCButton>
-              <input
-                id="file"
-                class="inputfile"
-                name="file"
-                type="file"
-                @change="inputFile"
-              >
-              <label
-                class="button--file"
-                for="file"
-              >
-              </label>
-            </div>
-        </div>
+        :class="{ 'bg-white bg-opacity-50': dragActive }"
+      >
 
         <div
           v-if="!designateArtist || artistMode"
+          class="row-start-3 row-span-6 col-start-1 col-span-1"
         >
           <cropper
             class="cropper"
@@ -193,8 +149,59 @@
             @change="changeCrop"
           />
         </div>
-      </div>
 
+        <div
+          v-if="true || artistMode"
+          class="row-start-3 row-span-6 col-start-6 col-span-2"
+        >
+          <label
+            v-if="!artistMode"
+            class="input--checkbox-label__left"
+          >
+            <input
+              v-model="designateArtist"
+              class="input--checkbox__left"
+              type="checkbox"
+            >
+            Designate other Artist (not yourself) <br>
+          </label>
+          <div
+            v-if="designateArtist && !artistMode"
+          >
+            <span class="creator-text"><b>Address:</b> </span>
+            <input
+              v-model="artistAddress"
+            >
+          </div>
+
+          <div
+            v-if="!designateArtist || artistMode"
+          >
+            <span class="creator-text">
+              Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
+            </span>
+          </div>
+          <div
+            v-if="!designateArtist || artistMode"
+          >
+
+            <input
+              id="file"
+              class="inputfile"
+              name="file"
+              type="file"
+              @change="inputFile"
+            >
+            <label
+              class="button--file"
+              for="file"
+            >
+            </label>
+          </div>
+        </div>
+
+
+      </div>
 
 
       <!-- Navigation Buttons -->
