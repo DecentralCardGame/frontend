@@ -4,10 +4,10 @@
       Card Creator
     </div>
     <div
-      class="grid grid-cols-3 grid-rows-9 p-8 text-white text-center text-lg font-normal font-['Roboto'] bg-white bg-opacity-20 shadow"
+      class="p-8 text-white text-center text-lg font-normal font-['Roboto'] bg-white bg-opacity-20 shadow"
     >
       <!-- Progress Bar -->
-      <div class="w-11/12 h-12 col-start-1 col-span-3 mx-auto">
+      <div class="w-11/12 h-12 mx-auto">
         <div
           class="bg-red-600 bg-red-600 rounded-full h-1 flex items-center justify-between"
         >
@@ -36,9 +36,26 @@
         </div>
       </div>
 
+      <DefineNavigationButtons>
+        <div
+          class="flex flex-row justify-end space-x-3">
+          <NavigateCCButtons
+            class="pr-4 scale-[2]"
+            @forward="activeStep = Math.min(activeStep+1, progressBar.length-1)"
+            @backward="activeStep = Math.max(activeStep-1, 0)"
+           >
+          </NavigateCCButtons>
+
+          <BaseCCButton
+            :type="ButtonType.RED"
+            @click="activeStep = Math.min(activeStep+1, progressBar.length-1)"
+          >Next</BaseCCButton>
+        </div>
+      </DefineNavigationButtons>
+
       <!-- Class Selection -->
       <div v-if="activeStep==0"
-        class="row-start-2 col-start-1 col-span-3"
+        class=""
       >
         <div class="pt-8 p-3 text-xs font-bold">CLASSES</div>
         <div class="text-xs">Select one or multiple classes for your card.</div>
@@ -56,11 +73,12 @@
             <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
           </div>
         </div>
+        <NavigationButtons />
       </div>
 
       <!-- Type Selection -->
       <div v-if="activeStep==1"
-        class="row-start-2 col-start-1 col-span-3"
+        class=""
       >
         <div class="pt-8 p-3 text-xs font-bold">TYPE</div>
         <div class="text-xs">Select the type of card you want.</div>
@@ -82,11 +100,12 @@
             <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
           </div>
         </div>
+        <NavigationButtons />
       </div>
 
       <!-- Card Name -->
       <div v-if="activeStep==2"
-        class="row-start-2 row-span-4 col-start-1 col-span-1"
+        class="flex flex-row justify-center"
       >
         <div class="px-8">
           <CardComponent
@@ -97,37 +116,37 @@
             :model="model"
           />
         </div>
-      </div>
-       <div v-if="activeStep==2"
-        class="row-start-2 row-span-4 col-start-2 col-span-2"
-      >
-        <div class="text-left">
-          <div class="py-3 text-xs font-bold">NAME</div>
-          <div class="py-3 text-xs">Pick a name for your card.</div>
-          <div class="bg-zinc-300 bg-opacity-20 shadow-inner">
-            <input
-              class="py-4 px-2 mx-3 bg-transparent text-white text-opacity-50 text-xs font-normal font-['Roboto']"
-              placeholder="Coolest Name around here"
-              v-model="model.CardName"
-              maxLength="25"
-            >
+        <div class="text-left flex flex-col justify-between">
+          <div class="py-5 justify-center">
+            <div class="py-3 text-s font-bold">NAME</div>
+            <div class="py-3 text-s">Pick a name for your card.</div>
+            <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+              <input
+                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s font-normal font-['Roboto']"
+                placeholder="Coolest Name around here"
+                v-model="model.CardName"
+                maxLength="25"
+              >
+            </div>
+          </div>
+          <div class="pl-10">
+            <NavigationButtons />
           </div>
         </div>
-
       </div>
-
 
       <!-- Image Upload -->
       <div v-if="activeStep==3"
         @drop.prevent="onDrop"
         @dragover.prevent="dragActive=true"
         @dragleave.prevent="dragActive=false"
+        @paste="onPaste"
         :class="{ 'bg-white bg-opacity-50': dragActive }"
+        class="flex flex-row"
       >
-
         <div
           v-if="!designateArtist || artistMode"
-          class="row-start-3 row-span-6 col-start-1 col-span-1"
+          class="m-8 max-h-[50vh] max-w-[50vh] flex"
         >
           <cropper
             class="cropper"
@@ -149,121 +168,400 @@
             @change="changeCrop"
           />
         </div>
+        <div
+          v-if="designateArtist && !artistMode"
+        >
+          <div class="text-bold">
+            Address:
+          </div>
+          <input
+            class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s font-normal font-['Roboto']"
+            v-model="artistAddress"
+          >
+        </div>
 
         <div
           v-if="true || artistMode"
-          class="row-start-3 row-span-6 col-start-6 col-span-2"
+          class="m-8 flex-row"
         >
-          <label
-            v-if="!artistMode"
-            class="input--checkbox-label__left"
-          >
-            <input
-              v-model="designateArtist"
-              class="input--checkbox__left"
-              type="checkbox"
-            >
-            Designate other Artist (not yourself) <br>
-          </label>
           <div
-            v-if="designateArtist && !artistMode"
-          >
-            <span class="creator-text"><b>Address:</b> </span>
-            <input
-              v-model="artistAddress"
-            >
+            class="p-3 font-bold text-left">
+            ARTWORK
           </div>
-
-          <div
-            v-if="!designateArtist || artistMode"
-          >
-            <span class="creator-text">
-              Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
-            </span>
-          </div>
-          <div
-            v-if="!designateArtist || artistMode"
-          >
-
+          <div class="pl-3 pb-2 flex items-start">
             <input
+              class=""
               id="file"
-              class="inputfile"
               name="file"
               type="file"
               @change="inputFile"
             >
-            <label
-              class="button--file"
-              for="file"
-            >
-            </label>
+          </div>
+          <div class="pl-3 pb-8 text-left">
+            Or drop / paste to upload an artwork.
+          </div>
+          <div
+            class="p-3 text-left font-bold">
+            COPYRIGHT
+          </div>
+
+          <div
+            v-if="!artistMode"
+            class="flex flex-col"
+          >
+            <div class="p-3 flex flex-row items-start">
+              <input id="false" class="p-3 border-red-600 text-red-600" type="radio" checked v-model="designateArtist" v-bind:value="false" />
+              <div class="px-3 text-left">I hereby confirm that I own the rights to commercially use this artwork.</div>
+            </div>
+            <div class="p-3 flex flex-row">
+              <input id="true" class="p-3 border-red-600 text-red-600" type="radio" v-model="designateArtist" v-bind:value="true" />
+              <div class="px-3 text-left">I rather would like to designate an artist as a collaborator for the artwork.</div>
+            </div>
+          </div>
+
+          <div class="pt-20 justify-end">
+            <NavigationButtons />
           </div>
         </div>
-
-
       </div>
 
-
-      <!-- Navigation Buttons -->
-      <div
-        class="row-start-6 col-start-3 flex flex-row space-x-3 justify-end">
-        <NavigateCCButtons
-          class="scale-150"
-          @forward="activeStep = Math.min(activeStep+1, progressBar.length-1)"
-          @backward="activeStep = Math.max(activeStep-1, 0)"
-         >
-        </NavigateCCButtons>
-
-        <BaseCCButton
-          :type="ButtonType.RED"
-          @click="activeStep = Math.min(activeStep+1, progressBar.length-1)"
-        >Next</BaseCCButton>
+      <!-- Flavor -->
+      <div v-if="activeStep==4"
+        class="flex flex-row justify-center"
+      >
+        <div class="px-8">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage()"
+            :model="model"
+          />
+        </div>
+        <div class="text-left flex flex-col justify-between">
+          <div class="py-5 justify-center">
+            <div class="py-3 text-s font-bold">FLAVOR</div>
+            <div class="py-3 text-s">Now let's add some spice to your creation.</div>
+            <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+              <input
+                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s font-normal font-['Roboto']"
+                placeholder="Quote that represents this card."
+                v-model="model.FlavourText"
+                maxLength="25"
+              >
+            </div>
+          </div>
+          <div class="pl-10">
+            <NavigationButtons />
+          </div>
+        </div>
       </div>
 
+      <!-- Costs and Powers -->
+      <div v-if="activeStep==5"
+        class="flex flex-row justify-center"
+      >
+        <div class="px-8">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage()"
+            :model="model"
+          />
+        </div>
+
+        <div class="text-left flex flex-col justify-between">
+          <div class="py-5 justify-center">
+            <div class="py-3 text-s font-bold">COSTS AND POWERS</div>
+
+
+            <div v-if="cardRules.Card.children[getRulesType()] &&
+                    cardRules.Card.children[getRulesType()].children.CastingCost"
+              class=""
+            >
+              Casting Cost
+
+              <div class="dropdown">
+              <div tabindex="0" role="button" class="btn m-1">Click</div>
+              <div tabindex="0" class="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-primary text-primary-content">
+                <div class="card-body">
+                  <h3 class="card-title">Card title!</h3>
+                  <p>you can use any element as a dropdown.</p>
+                </div>
+              </div>
+            </div>
+
+              <select
+                class="text-red-400  bg-opacity-20 rounded-sm border-neutral-300 "
+                style="border-top: 6px solid #f00; background-color: red);"
+                v-model="model.CastingCost"
+              >
+                <option
+                  class="text-red-400 bg-black bg-opacity-20 rounded-sm"
+                  v-for="n in getGenericCardRange('CastingCost')"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+              Mana
+        </div>
+
+        <div v-if="
+            cardRules.Card.children[getRulesType()] &&
+              cardRules.Card.children[getRulesType()].children.AdditionalCost
+          "
+          class=""
+        >
+          <input
+            v-model="isAdditionalCostVisible"
+            type="checkbox"
+            class="input--checkbox__right"
+            @change="toggleAdditionalCost"
+          >
+          Special Cost:
+        </div>
+
+            <div
+              v-if="!isAdditionalCostVisible &&
+                cardRules.Card.children[getRulesType()] &&
+                cardRules.Card.children[getRulesType()].children.AdditionalCost"
+            >
+
+            </div>
+
+            <div
+              v-if="isAdditionalCostVisible"
+            >
+              <select
+                @change="setAdditionalCost($event);"
+              >
+                <option
+                  disabled
+                  selected="true"
+                  value=""
+                >
+                  Select Special Cost
+                </option>
+                <option
+                  v-for="n in getSpecialCostRange()"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ printAdditionalCost(n) }}
+                </option>
+              </select>
+
+              <span
+                v-if="model.AdditionalCost.DiscardCost"
+                class="creator-text"
+              >
+                <select
+                  v-model="model.AdditionalCost.DiscardCost.Amount"
+                  @change="updateAdditionalCostText();"
+                >
+                  <option
+                    v-for="n in getGenericCostRange('DiscardCost')"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+
+                cards from your hand.
+              </span>
+
+              <span
+                v-if="model.AdditionalCost.SacrificeCost"
+              >
+                <select
+                  v-model="model.AdditionalCost.SacrificeCost.Amount"
+                  @change="updateAdditionalCostText();"
+                >
+                  <option
+                    v-for="n in getGenericCostRange('SacrificeCost')"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                Entitites.
+              </span>
+
+              <span
+                v-if="model.AdditionalCost.VoidCost"
+              >
+                <select
+                  v-model="model.AdditionalCost.VoidCost.Amount"
+                  @change="updateAdditionalCostText();"
+                >
+                  <option
+                    v-for="n in getGenericCostRange('VoidCost')"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+                cards from your graveyard.
+              </span>
+            </div>
+
+
+            <span
+              v-if="model.type === 'Headquarter'"
+              class="creator-text"
+            >
+              <b>Delay</b> of Activation: <br>
+            </span>
+            <div
+              v-if="
+                cardRules.Card.children[getRulesType()] &&
+                  cardRules.Card.children[getRulesType()].children.Delay
+              "
+            >
+              <span class="creator-text">
+                <select
+                  v-model="model.Delay"
+                >
+                  <option
+                    v-for="n in getHQDelayRange()"
+                    :key="n"
+                    :value="n"
+                  >
+                    {{ n }}
+                  </option>
+                </select>
+
+                turns.<br>
+              </span>
+            </div>
+
+
+            <span
+              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
+              class="creator-text"
+            >
+              <b>Attack:</b>
+            </span>
+            <div
+              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
+            >
+              <select
+                v-model="model.Attack"
+              >
+                <option
+                  v-for="n in getGenericCardRange('Attack')"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+            </div>
+
+
+            <span
+              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
+              class="creator-text"
+            >
+              <b>Defense:</b> <br>
+              <br>
+            </span>
+            <div
+              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
+            >
+              <select
+                v-model="model.Health"
+              >
+                <option
+                  v-for="n in getGenericCardRange('Health')"
+                  :key="n"
+                  :value="n"
+                >
+                  {{ n }}
+                </option>
+              </select>
+            </div>
+
+
+            <span
+              v-if="cardRules.Card"
+              class="creator-text"
+            >
+              <b>Tags:</b> </span>
+            <div
+              v-if="cardRules.Card"
+            >
+              <select
+                v-model="model.tagDummy"
+                class="tag-select"
+                @change="updateTags"
+              >
+                <option
+                  v-for="tag in getTags(0)"
+                  :key="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
+              <select
+                v-if="model.Tags && model.Tags[0]"
+                v-model="model.Tags[1]"
+                class="tag-select"
+                @change="updateTags"
+              >
+                <option
+                  v-for="tag in getTags(1)"
+                  :key="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
+              <select
+                v-if="model.Tags && model.Tags[1]"
+                v-model="model.Tags[2]"
+                class="tag-select tag-select-last"
+                @change="updateTags"
+              >
+                <option
+                  v-for="tag in getTags(2)"
+                  :key="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
+            </div>
+
+
+            </div>
+            <div class="pl-10">
+              <NavigationButtons />
+            </div>
+          </div>
+      </div>
+
+      <div v-if="activeStep==6">
+        <NavigationButtons />
+      </div>
+
+      <div v-if="activeStep==7">
+        <NavigationButtons />
+      </div>
+
+      <div v-if="activeStep==8">
+        <NavigationButtons />
+      </div>
 
     </div>
   </div>
 
   <!--
 
-    <div>
-      <div
-        v-if="!artistMode"
-        class="progress-container"
-      >
-        <div class="progress">
-          <div
-            :class="classStepPassed(0)"
-            @click="activeStep = 0"
-          >
-            Name, Flavor and Type
-          </div>
-          <div
-            :class="classStepPassed(1)"
-            @click="activeStep = 1"
-          >
-            Artwork
-          </div>
-          <div
-            :class="classStepPassed(2)"
-            @click="activeStep = 2"
-          >
-            Costs and Properties
-          </div>
-          <div
-            :class="classStepPassed(3)"
-            @click="activeStep = 3"
-          >
-            Abilities and Effects
-          </div>
-          <div
-            :class="classStepPassed(4)"
-            @click="activeStep = 4"
-          >
-            Summary and Publish
-          </div>
-        </div>
-      </div>
 
       <div class="creator">
         <div class="creator-input">
@@ -881,6 +1179,7 @@
 
 <script lang="ts">
 import * as R from "ramda";
+import { createReusableTemplate } from '@vueuse/core'
 
 import mergeImages from "merge-images";
 import CardComponent from "../components/elements/CardComponent.vue";
@@ -906,8 +1205,9 @@ import { isASCII } from "@/utils/utils";
 
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
-import NavigateCCButtons from "@/components/elements/CCButton/NavigateCCButtons.vue";
+import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 
+const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate()
 const { saveCardContent, addArtwork } = useTx();
 const { queryQUser } = useQuery();
 
@@ -919,6 +1219,8 @@ enum Mode {
 export default {
   name: "CardCreator",
   components: {
+    DefineNavigationButtons,
+    NavigationButtons,
     NavigateCCButtons,
     BaseCCButton,
     CardComponent,
@@ -1611,7 +1913,8 @@ export default {
       this.cropImage = "";
     },
     onDrop(event) {
-      console.log("ondrop worked")
+      this.dragActive=false;
+
       let file = event.dataTransfer.files[0];
 
       uploadImg(file, env.cardImgMaxKB, (result) => {
@@ -1621,6 +1924,24 @@ export default {
         }
         this.cropImage = result;
       });
+    },
+    onPaste(event) {
+      const clipboardData = event.clipboardData || window.clipboardData
+      const items = clipboardData.items
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf("image") !== -1) {
+          const imageFile = items[i].getAsFile();
+          uploadImg(imageFile, env.cardImgMaxKB, (result) => {
+            if (result.startsWith("Error")) {
+              this.notifyFail("Failed to Upload", result);
+              return;
+            }
+            this.cropImage = result;
+          })
+          break
+        }
+      }
+
     },
     inputFile(event) {
       let file = event.target.files[0];

@@ -6,7 +6,7 @@
         'w-80',
         'h-14',
         'rounded',
-        'shadow-md',
+        'shadow-xl',
         'shadow-black/25',
         'text-center',
         'font-bold',
