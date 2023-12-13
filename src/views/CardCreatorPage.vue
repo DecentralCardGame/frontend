@@ -281,59 +281,32 @@
               class=""
             >
               Casting Cost
-
-              <div class="dropdown">
-              <div tabindex="0" role="button" class="btn m-1">Click</div>
-              <div tabindex="0" class="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-primary text-primary-content">
-                <div class="card-body">
-                  <h3 class="card-title">Card title!</h3>
-                  <p>you can use any element as a dropdown.</p>
-                </div>
-              </div>
-            </div>
-
-              <select
-                class="text-red-400  bg-opacity-20 rounded-sm border-neutral-300 "
-                style="border-top: 6px solid #f00; background-color: red);"
-                v-model="model.CastingCost"
-              >
-                <option
-                  class="text-red-400 bg-black bg-opacity-20 rounded-sm"
-                  v-for="n in getGenericCardRange('CastingCost')"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
+             <Dropdown
+              v-model="model.CastingCost"
+              :options="getGenericCardRange('CastingCost')"
+             />
               Mana
         </div>
 
+        <!-- Special Cost -->
         <div v-if="
             cardRules.Card.children[getRulesType()] &&
               cardRules.Card.children[getRulesType()].children.AdditionalCost
           "
           class=""
         >
-          <input
-            v-model="isAdditionalCostVisible"
-            type="checkbox"
-            class="input--checkbox__right"
-            @change="toggleAdditionalCost"
-          >
           Special Cost:
-        </div>
+        
+        
+            <Dropdown
+              initial="Select Special Cost"
+              :options="getSpecialCostRange()"
+              :displayFn="specialCostLabels"
+              @change="setAdditionalCost($event)"
+             />
 
             <div
-              v-if="!isAdditionalCostVisible &&
-                cardRules.Card.children[getRulesType()] &&
-                cardRules.Card.children[getRulesType()].children.AdditionalCost"
-            >
-
-            </div>
-
-            <div
-              v-if="isAdditionalCostVisible"
+              v-if="true"
             >
               <select
                 @change="setAdditionalCost($event);"
@@ -410,7 +383,7 @@
                 cards from your graveyard.
               </span>
             </div>
-
+          </div>
 
             <span
               v-if="model.type === 'Headquarter'"
@@ -441,100 +414,45 @@
               </span>
             </div>
 
-
-            <span
-              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
-              class="creator-text"
-            >
-              <b>Attack:</b>
-            </span>
+            <!-- Attack -->
             <div
               v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
+              class=""
             >
-              <select
+              Attack
+              <Dropdown
                 v-model="model.Attack"
-              >
-                <option
-                  v-for="n in getGenericCardRange('Attack')"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
+                :options="getGenericCardRange('Attack')"
+              />
             </div>
 
-
-            <span
-              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
-              class="creator-text"
-            >
-              <b>Defense:</b> <br>
-              <br>
-            </span>
+            <!-- Defense -->
             <div
               v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
+              class=""
             >
-              <select
+              Defense
+              <Dropdown
                 v-model="model.Health"
-              >
-                <option
-                  v-for="n in getGenericCardRange('Health')"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
+                :options="getGenericCardRange('Health')"
+              />
             </div>
 
-
-            <span
-              v-if="cardRules.Card"
-              class="creator-text"
-            >
-              <b>Tags:</b> </span>
             <div
               v-if="cardRules.Card"
+              class=""
             >
-              <select
-                v-model="model.tagDummy"
-                class="tag-select"
+              Tags:
+              <Dropdown
+                v-model="model.Tags[0]"
+                :options="getTags(0)"
                 @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(0)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-              <select
-                v-if="model.Tags && model.Tags[0]"
+              />
+              <Dropdown
+                v-if="model.Tags[0]"
                 v-model="model.Tags[1]"
-                class="tag-select"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(1)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-              <select
-                v-if="model.Tags && model.Tags[1]"
-                v-model="model.Tags[2]"
-                class="tag-select tag-select-last"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(2)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
+                :options="getTags1"
+              />
             </div>
 
 
@@ -1206,6 +1124,8 @@ import { isASCII } from "@/utils/utils";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
+import Dropdown from "@/components/elements/Dropdown/Dropdown.vue"; // Adjust the path based on your project structure
+
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate()
 const { saveCardContent, addArtwork } = useTx();
@@ -1219,6 +1139,7 @@ enum Mode {
 export default {
   name: "CardCreator",
   components: {
+    Dropdown,
     DefineNavigationButtons,
     NavigationButtons,
     NavigateCCButtons,
@@ -1364,10 +1285,54 @@ export default {
       );
     },
     getSpecialCostRange() {
-      return R.keys(
+       let specialCosts = R.keys(
         this.cardRules.Card.children[this.getRulesType()].children
           .AdditionalCost.children
       );
+      console.log(specialCosts)
+      return specialCosts
+    },
+    toggleAdditionalCost() {
+      if (!this.isAdditionalCostVisible) {
+        this.model.AdditionalCost = {};
+      }
+    },
+    setAdditionalCost(event) {
+      this.model.AdditionalCost = {};
+      this.model.AdditionalCost[event.target.value] = {
+        Amount: 0,
+      };
+      this.updateAdditionalCostText();
+    },
+    specialCostLabels(wholeString) {
+      return () => {
+        let countUppers = (x) =>
+          R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
+
+        let printString = "";
+        while (
+          countUppers(printString) < 2 &&
+          printString.length < wholeString.length
+        ) {
+          printString = R.take(printString.length + 1, wholeString);
+        }
+
+        return printString.length > 1 ? R.dropLast(1, printString) : "";
+      } 
+    },
+    printAdditionalCost(wholeString) {
+      let countUppers = (x) =>
+        R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
+
+      let printString = "";
+      while (
+        countUppers(printString) < 2 &&
+        printString.length < wholeString.length
+      ) {
+        printString = R.take(printString.length + 1, wholeString);
+      }
+
+      return printString.length > 1 ? R.dropLast(1, printString) : "";
     },
     getGenericCardRange(key: string): number[] {
       let range: number[] = [];
@@ -1413,32 +1378,6 @@ export default {
         .then(function (buf) {
           return new File([buf], fileName, { type: mimeType });
         });
-    },
-    toggleAdditionalCost() {
-      if (!this.isAdditionalCostVisible) {
-        this.model.AdditionalCost = {};
-      }
-    },
-    setAdditionalCost(event) {
-      this.model.AdditionalCost = {};
-      this.model.AdditionalCost[event.target.value] = {
-        Amount: 0,
-      };
-      this.updateAdditionalCostText();
-    },
-    printAdditionalCost(wholeString) {
-      let countUppers = (x) =>
-        R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
-
-      let printString = "";
-      while (
-        countUppers(printString) < 2 &&
-        printString.length < wholeString.length
-      ) {
-        printString = R.take(printString.length + 1, wholeString);
-      }
-
-      return printString.length > 1 ? R.dropLast(1, printString) : "";
     },
     showBuyFrameModal() {
       if (!this.address) {
@@ -1604,25 +1543,53 @@ export default {
       return R.keys(this.cardRules.Card.children);
     },
     getTags(idx) {
-      if (this.cardRules.Card) {
-        let usedTags = [];
-        let allTags =
+      return () => {
+        if (this.cardRules.Card) {
+          let usedTags = [];
+          let allTags =
           this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
-        if (this.model.Tags[idx]) {
-          // all tags already used except self
-          usedTags = R.without(this.model.Tags[idx], this.model.Tags);
-        }
-        // if this is the last dropdown, allow to select nothing
-        if (R.length(R.filter((x) => x, this.model.Tags)) === idx + 1) {
-          return R.append("", R.without(usedTags, allTags));
+          if (this.model.Tags[idx]) {
+            // all tags already used except self
+            usedTags = R.without(this.model.Tags[idx], this.model.Tags);
+          }
+          // if this is the last dropdown, allow to select nothing
+          if (R.length(R.filter((x) => x, this.model.Tags)) === idx + 1) {
+            console.log("returning", R.append("", R.without(usedTags, allTags)))
+            return R.append("", R.without(usedTags, allTags));
+          } else {
+            // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
+            return R.without(usedTags, allTags);
+          }
         } else {
-          // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
-          return R.without(usedTags, allTags);
+          console.error("shit cardschema not available");
+          return [];
         }
-      } else {
-        console.error("shit cardschema not available");
-        return [];
       }
+
+    },
+    getTags1() {
+        if (this.cardRules.Card) {
+          let usedTags = [];
+          let allTags =
+          this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
+          if (this.model.Tags[1]) {
+            // all tags already used except self
+            usedTags = R.without(this.model.Tags[1], this.model.Tags);
+          }
+          // if this is the last dropdown, allow to select nothing
+          if (R.length(R.filter((x) => x, this.model.Tags)) === 1 + 1) {
+            console.log("returning", R.append("", R.without(usedTags, allTags)))
+            return R.append("", R.without(usedTags, allTags));
+          } else {
+            // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
+            return R.without(usedTags, allTags);
+          }
+        } else {
+          console.error("shit cardschema not available");
+          return [];
+        }
+
+
     },
     updateTags() {
       if (!this.model.Tags) {
