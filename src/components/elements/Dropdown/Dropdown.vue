@@ -4,7 +4,7 @@
     <button class="p-2 bg-[#8F6173] rounded-sm flex items-center shadow-xl"
       :class="{'ring ring-black ring-opacity-50': isOpen}"
     >
-      {{ selectedOption }}
+      {{ display(selectedOption) }}
       <img class="w-4 pr-1 rotate-180" src="@/assets/figma/Navigation_Triangle.svg" alt="navigation triangle" />
     </button>
 
@@ -12,7 +12,7 @@
     <div v-if="isOpen" class="absolute z-30 bg-[#8F6173] rounded-sm w-full text-center ring ring-black ring-opacity-50">
       <ul>
         <li v-for="option in dropdownOptions" :key="getOptionKey(option)" @click="selectOption(option)">
-          {{ typeof option === 'object' ? option.label : option }}
+          {{ display(option) }}
         </li>
       </ul>
     </div>
@@ -35,10 +35,14 @@ const props = defineProps(['options', 'initial', 'displayFn']); // Define a prop
 const isOpen = ref(false);
 const selectedOption = ref<string>(props.initial ? props.initial : '?');
 
-const dropdownOptions: (Option | number)[] = props.options || []; // Use the prop or an empty array if not provided
+const dropdownOptions: (Option | number)[] = ref(props.options) || ref([]); // Use the prop or an empty array if not provided
 
-console.log(dropdownOptions)
-console.log(props.displayFn(dropdownOptions[0]))
+const display = (option) => {
+  if (typeof props.displayFn == "function")
+    return typeof option === 'object' ? props.displayFn(option.label) : props.displayFn(option)
+  else
+    return typeof option === 'object' ? option.label : option
+}
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
@@ -56,5 +60,6 @@ const selectOption = (option: Option | number) => {
   }
   // Emit the selected option to the parent component
   emit('update:modelValue', option);
+  emit('change', option);
 };
 </script>

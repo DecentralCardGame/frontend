@@ -281,180 +281,99 @@
               class=""
             >
               Casting Cost
-             <Dropdown
-              v-model="model.CastingCost"
-              :options="getGenericCardRange('CastingCost')"
-             />
+              <Dropdown
+                v-model="model.CastingCost"
+                :options="getGenericCardRange('CastingCost')"
+              />
               Mana
-        </div>
-
-        <!-- Special Cost -->
-        <div v-if="
-            cardRules.Card.children[getRulesType()] &&
-              cardRules.Card.children[getRulesType()].children.AdditionalCost
-          "
-          class=""
-        >
-          Special Cost:
-        
-        
-            <Dropdown
-              initial="Select Special Cost"
-              :options="getSpecialCostRange()"
-              :displayFn="specialCostLabels"
-              @change="setAdditionalCost($event)"
-             />
-
-            <div
-              v-if="true"
-            >
-              <select
-                @change="setAdditionalCost($event);"
-              >
-                <option
-                  disabled
-                  selected="true"
-                  value=""
-                >
-                  Select Special Cost
-                </option>
-                <option
-                  v-for="n in getSpecialCostRange()"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ printAdditionalCost(n) }}
-                </option>
-              </select>
-
-              <span
-                v-if="model.AdditionalCost.DiscardCost"
-                class="creator-text"
-              >
-                <select
-                  v-model="model.AdditionalCost.DiscardCost.Amount"
-                  @change="updateAdditionalCostText();"
-                >
-                  <option
-                    v-for="n in getGenericCostRange('DiscardCost')"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-
-                cards from your hand.
-              </span>
-
-              <span
-                v-if="model.AdditionalCost.SacrificeCost"
-              >
-                <select
-                  v-model="model.AdditionalCost.SacrificeCost.Amount"
-                  @change="updateAdditionalCostText();"
-                >
-                  <option
-                    v-for="n in getGenericCostRange('SacrificeCost')"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-                Entitites.
-              </span>
-
-              <span
-                v-if="model.AdditionalCost.VoidCost"
-              >
-                <select
-                  v-model="model.AdditionalCost.VoidCost.Amount"
-                  @change="updateAdditionalCostText();"
-                >
-                  <option
-                    v-for="n in getGenericCostRange('VoidCost')"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-                cards from your graveyard.
-              </span>
             </div>
-          </div>
 
-            <span
-              v-if="model.type === 'Headquarter'"
-              class="creator-text"
-            >
-              <b>Delay</b> of Activation: <br>
-            </span>
-            <div
-              v-if="
+            <!-- Special Cost -->
+            <div v-if="
                 cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.Delay
-              "
+                cardRules.Card.children[getRulesType()].children.AdditionalCost"
+              class=""
             >
-              <span class="creator-text">
-                <select
+              Special Cost:
+                <Dropdown
+                  initial="Select Special Cost"
+                  :options="getSpecialCostRange()"
+                  :displayFn="specialCostLabels"
+                  @change="setAdditionalCost($event)"
+                 />
+                <span v-if="model.AdditionalCost.DiscardCost">
+                  <Dropdown
+                    v-model="model.AdditionalCost.DiscardCost.Amount"
+                    :options="getGenericCostRange('DiscardCost')"
+                  />
+                  cards from your hand.
+                </span>
+                <span v-if="model.AdditionalCost.SacrificeCost">
+                  <Dropdown
+                    v-model="model.AdditionalCost.SacrificeCost.Amount"
+                    :options="getGenericCostRange('SacrificeCost')"
+                  />
+                  Entitites.
+                </span>
+                <span v-if="model.AdditionalCost.VoidCost">
+                  <Dropdown
+                    v-model="model.AdditionalCost.VoidCost.Amount"
+                    :options="getGenericCostRange('VoidCost')"
+                  />
+                  cards from your graveyard.
+                </span>
+              </div>
+
+              <!-- Delay -->
+              <div v-if="model.type === 'Headquarter'">
+                <b>Delay</b> of Activation:
+                <Dropdown
                   v-model="model.Delay"
-                >
-                  <option
-                    v-for="n in getHQDelayRange()"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
+                  :options="getHQDelayRange()"
+                />
+                turns.
+              </div>
 
-                turns.<br>
-              </span>
-            </div>
+              <!-- Attack -->
+              <div v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]">
+                Attack
+                <Dropdown
+                  v-model="model.Attack"
+                  :options="getGenericCardRange('Attack')"
+                />
+                turns.
+              </div>
 
-            <!-- Attack -->
-            <div
-              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
-              class=""
-            >
-              Attack
-              <Dropdown
-                v-model="model.Attack"
-                :options="getGenericCardRange('Attack')"
-              />
-            </div>
+              <!-- Defense -->
+              <div v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]">
+                Defense
+                <Dropdown
+                  v-model="model.Health"
+                  :options="getGenericCardRange('Health')"
+                />
+              </div>
 
-            <!-- Defense -->
-            <div
-              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
-              class=""
-            >
-              Defense
-              <Dropdown
-                v-model="model.Health"
-                :options="getGenericCardRange('Health')"
-              />
-            </div>
-
-            <div
-              v-if="cardRules.Card"
-              class=""
-            >
-              Tags:
-              <Dropdown
-                v-model="model.Tags[0]"
-                :options="getTags(0)"
-                @change="updateTags"
-              />
-              <Dropdown
-                v-if="model.Tags[0]"
-                v-model="model.Tags[1]"
-                :options="getTags1"
-              />
-            </div>
-
+              <!-- Tags -->
+              <div
+                v-if="cardRules.Card"
+                class=""
+              >
+                Tags:
+                <Dropdown
+                  initial="Select 1st"
+                  v-model="model.Tags[0]"
+                  :options="getTags(0)"
+                  @change="updateTags"
+                />
+                <Dropdown
+                  initial="Select 2nd"
+                  v-if="model.Tags[0]"
+                  v-model="model.Tags[1]"
+                  :options="getTags(1)"
+                  :displayFn="x => x == '' ? '<remove>' : x"
+                  @change="updateTags"
+                />
+              </div>
 
             </div>
             <div class="pl-10">
@@ -479,89 +398,6 @@
   </div>
 
   <!--
-
-
-      <div class="creator">
-        <div class="creator-input">
-          Name, Flavor and Type section
-          <div
-            v-if="activeStep == 0 && !artistMode"
-            class="creator-input-container ccbutton"
-          >
-
-            <span class="creator-text"><b>Name:</b> </span>
-            <input
-              v-model="model.CardName"
-              maxLength="25"
-            >
-
-            <span class="creator-text">
-              <br><b>Flavor Text:</b>
-            </span>
-            <input
-              v-model="model.FlavourText"
-            >
-
-            <span
-              v-if="cardRules.Card"
-              class="creator-text"
-            >
-              My <b>type</b> is:
-            </span>
-            <select
-              v-if="cardRules.Card"
-              v-model="model.type"
-              @change="
-                resetAbilities();
-              "
-            >
-              <option
-                v-for="val in getTypes()"
-                :key="val"
-              >
-                {{ val }}
-              </option>
-            </select>
-
-
-            <div class="creator-text">
-              <b>Classes:</b> <br>
-            </div>
-            <div>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Technology"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                >
-                Technology <br>
-              </label>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Nature"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                >
-                Nature <br>
-              </label>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Culture"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                >
-                Culture <br>
-              </label>
-              <label class="input--checkbox-label__left">
-                <input
-                  v-model="model.Class.Mysticism"
-                  class="input--checkbox__left"
-                  type="checkbox"
-                >
-                Mysticism <br>
-              </label>
-            </div>
-          </div>
 
 
           <div
@@ -662,265 +498,7 @@
           </div>
 
 
-          <div
-            v-if="activeStep == 2 && !artistMode"
-            class="creator-input-container"
-          >
 
-            <span
-              v-if="cardRules.Card.children[getRulesType()] &&
-                cardRules.Card.children[getRulesType()].children.CastingCost"
-              class="creator-text"
-            >
-              <b>Casting Cost:</b>
-            </span>
-            <div
-              v-if="
-                cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.CastingCost
-              "
-            >
-              <select
-                v-model="model.CastingCost"
-              >
-                <option
-                  v-for="n in getGenericCardRange('CastingCost')"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-              Mana
-            </div>
-
-            <div
-              v-if="
-                cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.AdditionalCost
-              "
-              class="creator-text"
-            >
-              <input
-                v-model="isAdditionalCostVisible"
-                type="checkbox"
-                class="input--checkbox__right"
-                @change="toggleAdditionalCost"
-              >
-              Special Cost:
-            </div>
-            <div
-              v-if="!isAdditionalCostVisible &&
-                cardRules.Card.children[getRulesType()] &&
-                cardRules.Card.children[getRulesType()].children.AdditionalCost"
-            >
-
-            </div>
-            <div
-              v-if="isAdditionalCostVisible"
-            >
-              <select
-                @change="setAdditionalCost($event);"
-              >
-                <option
-                  disabled
-                  selected="true"
-                  value=""
-                >
-                  Select Special Cost
-                </option>
-                <option
-                  v-for="n in getSpecialCostRange()"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ printAdditionalCost(n) }}
-                </option>
-              </select>
-
-              <span
-                v-if="model.AdditionalCost.DiscardCost"
-                class="creator-text"
-              >
-                <select
-                  v-model="model.AdditionalCost.DiscardCost.Amount"
-                  @change="updateAdditionalCostText();"
-                >
-                  <option
-                    v-for="n in getGenericCostRange('DiscardCost')"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-
-                cards from your hand.
-              </span>
-
-              <span
-                v-if="model.AdditionalCost.SacrificeCost"
-              >
-                <select
-                  v-model="model.AdditionalCost.SacrificeCost.Amount"
-                  @change="updateAdditionalCostText();"
-                >
-                  <option
-                    v-for="n in getGenericCostRange('SacrificeCost')"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-                Entitites.
-              </span>
-
-              <span
-                v-if="model.AdditionalCost.VoidCost"
-              >
-                <select
-                  v-model="model.AdditionalCost.VoidCost.Amount"
-                  @change="updateAdditionalCostText();"
-                >
-                  <option
-                    v-for="n in getGenericCostRange('VoidCost')"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-                cards from your graveyard.
-              </span>
-            </div>
-
-
-            <span
-              v-if="model.type === 'Headquarter'"
-              class="creator-text"
-            >
-              <b>Delay</b> of Activation: <br>
-            </span>
-            <div
-              v-if="
-                cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.Delay
-              "
-            >
-              <span class="creator-text">
-                <select
-                  v-model="model.Delay"
-                >
-                  <option
-                    v-for="n in getHQDelayRange()"
-                    :key="n"
-                    :value="n"
-                  >
-                    {{ n }}
-                  </option>
-                </select>
-
-                turns.<br>
-              </span>
-            </div>
-
-
-            <span
-              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
-              class="creator-text"
-            >
-              <b>Attack:</b>
-            </span>
-            <div
-              v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
-            >
-              <select
-                v-model="model.Attack"
-              >
-                <option
-                  v-for="n in getGenericCardRange('Attack')"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-            </div>
-
-
-            <span
-              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
-              class="creator-text"
-            >
-              <b>Defense:</b> <br>
-              <br>
-            </span>
-            <div
-              v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
-            >
-              <select
-                v-model="model.Health"
-              >
-                <option
-                  v-for="n in getGenericCardRange('Health')"
-                  :key="n"
-                  :value="n"
-                >
-                  {{ n }}
-                </option>
-              </select>
-            </div>
-
-
-            <span
-              v-if="cardRules.Card"
-              class="creator-text"
-            >
-              <b>Tags:</b> </span>
-            <div
-              v-if="cardRules.Card"
-            >
-              <select
-                v-model="model.tagDummy"
-                class="tag-select"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(0)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-              <select
-                v-if="model.Tags && model.Tags[0]"
-                v-model="model.Tags[1]"
-                class="tag-select"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(1)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-              <select
-                v-if="model.Tags && model.Tags[1]"
-                v-model="model.Tags[2]"
-                class="tag-select tag-select-last"
-                @change="updateTags"
-              >
-                <option
-                  v-for="tag in getTags(2)"
-                  :key="tag"
-                >
-                  {{ tag }}
-                </option>
-              </select>
-            </div>
-          </div>
 
 
           <div
@@ -1251,8 +829,6 @@ export default {
 
       this.cropImage = this.model.image;
 
-      if (this.model.Tags[0]) this.model.tagDummy = this.model.Tags[0];
-
       this.designateArtist = this.model.artist != this.model.owner;
       if (this.designateArtist) {
         this.artistAddress = this.model.artist;
@@ -1289,7 +865,6 @@ export default {
         this.cardRules.Card.children[this.getRulesType()].children
           .AdditionalCost.children
       );
-      console.log(specialCosts)
       return specialCosts
     },
     toggleAdditionalCost() {
@@ -1297,15 +872,14 @@ export default {
         this.model.AdditionalCost = {};
       }
     },
-    setAdditionalCost(event) {
+    setAdditionalCost(costType) {
       this.model.AdditionalCost = {};
-      this.model.AdditionalCost[event.target.value] = {
+      this.model.AdditionalCost[costType] = {
         Amount: 0,
       };
       this.updateAdditionalCostText();
     },
     specialCostLabels(wholeString) {
-      return () => {
         let countUppers = (x) =>
           R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
 
@@ -1318,21 +892,6 @@ export default {
         }
 
         return printString.length > 1 ? R.dropLast(1, printString) : "";
-      } 
-    },
-    printAdditionalCost(wholeString) {
-      let countUppers = (x) =>
-        R.sum(R.map((x) => (x === R.toUpper(x) ? 1 : 0), R.split("", x)));
-
-      let printString = "";
-      while (
-        countUppers(printString) < 2 &&
-        printString.length < wholeString.length
-      ) {
-        printString = R.take(printString.length + 1, wholeString);
-      }
-
-      return printString.length > 1 ? R.dropLast(1, printString) : "";
     },
     getGenericCardRange(key: string): number[] {
       let range: number[] = [];
@@ -1543,59 +1102,35 @@ export default {
       return R.keys(this.cardRules.Card.children);
     },
     getTags(idx) {
-      return () => {
+        console.log("get tags called", idx)
         if (this.cardRules.Card) {
           let usedTags = [];
-          let allTags =
-          this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
+          let allTags = this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
           if (this.model.Tags[idx]) {
             // all tags already used except self
             usedTags = R.without(this.model.Tags[idx], this.model.Tags);
           }
           // if this is the last dropdown, allow to select nothing
-          if (R.length(R.filter((x) => x, this.model.Tags)) === idx + 1) {
-            console.log("returning", R.append("", R.without(usedTags, allTags)))
+          if (idx == 1) {
+            console.log("last tag, returning", R.append("", R.without(usedTags, allTags)) )
             return R.append("", R.without(usedTags, allTags));
           } else {
             // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
+            console.log("returning", R.without(usedTags, allTags) )
             return R.without(usedTags, allTags);
           }
         } else {
           console.error("shit cardschema not available");
           return [];
         }
-      }
-
-    },
-    getTags1() {
-        if (this.cardRules.Card) {
-          let usedTags = [];
-          let allTags =
-          this.cardRules.Card.children.Action.children.Tags.children.Tag.enum;
-          if (this.model.Tags[1]) {
-            // all tags already used except self
-            usedTags = R.without(this.model.Tags[1], this.model.Tags);
-          }
-          // if this is the last dropdown, allow to select nothing
-          if (R.length(R.filter((x) => x, this.model.Tags)) === 1 + 1) {
-            console.log("returning", R.append("", R.without(usedTags, allTags)))
-            return R.append("", R.without(usedTags, allTags));
-          } else {
-            // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
-            return R.without(usedTags, allTags);
-          }
-        } else {
-          console.error("shit cardschema not available");
-          return [];
-        }
-
-
     },
     updateTags() {
+      console.log("this model tags", this.model.Tags)
+      if (this.model.Tags[1] == "")
+        this.model.Tags = [this.model.Tags[0]]
       if (!this.model.Tags) {
         this.model.Tags = [];
       }
-      this.model.Tags.splice(0, 1, this.model.tagDummy);
     },
     interactionTextToString(ability) {
       console.log("converting ability:", ability);
