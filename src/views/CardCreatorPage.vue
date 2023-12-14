@@ -1167,6 +1167,20 @@ export default {
             this.abilities
           );
         }
+        // if an ability was created, but it has no effect, then this should be fixed
+        if (newModel.Abilities.length > 0) {
+          let effectsList = R.flatten(R.map(
+                x => R.values(R.pluck("Effects", x)),
+              newModel.Abilities))
+          
+          if (R.any(y => y === undefined, effectsList)) {
+            this.notifyFail(
+              "Useless Ability",
+              "Card has an Ability, which does not do anything. Please add an Effect to the Ability."
+            );
+            return;
+          }
+        }
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
         if (this.mode == Mode.EDIT && !this.clearAbilities && R.isEmpty(this.abilities)) {
@@ -1183,20 +1197,15 @@ export default {
             this.abilities
           );
         }
-      }
-
-      // if an ability was created, but it has no effect, then this should be fixed
-      if (newModel.Abilities.length > 0) {
-        let effectsList = R.flatten(R.map(
-              x => R.values(R.pluck("Effects", x)),
-            newModel.Abilities))
-        
-        if (R.any(y => y === undefined, effectsList)) {
+        // if an ability was created, but it has no effect, then this should be fixed
+        if (newModel.Effects.length == 0) {
+          console.log("newmodel", newModel)
           this.notifyFail(
-            "Useless Ability",
-            "Card has an Ability, which does not do anything. Please add an Effect to the Ability."
+            "No Effects",
+            "Card has no effect. Maybe you forgot to add an effect?"
           );
           return;
+        
         }
       }
 
