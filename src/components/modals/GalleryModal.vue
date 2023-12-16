@@ -95,10 +95,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteUP();
-                  close();
-                "
+                @click="vote(VoteType.underpowered)"
               >
                 Vote Underpowered
               </button>
@@ -108,10 +105,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteOP();
-                  close();
-                "
+                @click="vote(VoteType.overpowered)"
               >
                 Vote Overpowered
               </button>
@@ -121,10 +115,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteFair();
-                  close();
-                "
+                @click="vote(VoteType.fairEnough)"
               >
                 Vote Fair Enough
               </button>
@@ -134,10 +125,7 @@
                 aria-label="Close modal"
                 class="choice-grid__button"
                 type="button"
-                @click="
-                  voteInappropriate();
-                  close();
-                "
+                @click="vote(VoteType.inappropriate)"
               >
                 Vote Inappropriate
               </button>
@@ -173,35 +161,25 @@ import { useLastInputEvent } from "@/def-composables/useLastInputEvent";
 import TransferCardModal from "./TransferCardModal.vue";
 import { useUser } from "@/def-composables/useUser";
 import { Card } from "@/model/Card";
-import { reactive, watch } from "vue";
+import { computed, reactive, watch } from "vue";
+import { useVoting } from "@/def-composables/useVoting";
+import { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import { useAddress } from "@/def-composables/useAddress";
 
+const { add, send, isEmpty, cardsLeft, current } = useVoting();
 const { lastInputEvent } = useLastInputEvent();
 const { queryCoins, queryUser } = useUser();
+const { address } = useAddress()
 
-const emit = defineEmits([
-  "close",
-  "download",
-  "cardview",
-  "edit",
-  "voteOP",
-  "voteUP",
-  "voteFair",
-  "voteInappropriate",
-]);
+const emit = defineEmits(["close", "cardview", "edit"]);
 
 const props = withDefaults(
   defineProps<{
-    canVote: boolean;
-    isOwner: boolean;
-    isArtist: boolean;
-    keywordDescriptions: Array<string>;
+    keywordDescriptions: Array<Array<string>>;
     model: Card;
     imageURL: string;
   }>(),
   {
-    canVote: false,
-    isOwner: false,
-    isArtist: false,
     keywordDescriptions: () => [],
     model: () => new Card(),
     imageURL: "",
@@ -214,6 +192,9 @@ const initialState: {
   isModalVisible: false,
 };
 
+const canVote = computed(() => cardsLeft.value.includes(Number(props.model.id)))
+const isOwner = computed(() => props.model.owner == address.value)
+const isArtist = computed(() => props.model.artist == address.value)
 const state = reactive(initialState);
 
 watch(lastInputEvent, (event) => {
@@ -223,13 +204,20 @@ watch(lastInputEvent, (event) => {
 });
 
 const close = () => emit("close");
-const download = () => emit("download");
 const cardview = () => emit("cardview");
 const edit = () => emit("edit");
-const voteOP = () => emit("voteOP");
-const voteUP = () => emit("voteUP");
-const voteFair = () => emit("voteFair");
-const voteInappropriate = () => emit("voteInappropriate");
+
+const vote = (type: VoteType) => {
+  add(props.model.id, type);
+  send(
+    () => {
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+  close();
+};
 const showModal = () => {
   state.isModalVisible = true;
 };

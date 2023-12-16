@@ -3,7 +3,7 @@
     <div class="ppBox">
       <div v-show="state.img">
         <div class="ppImage">
-          <img :src="state.img"/>
+          <img :src="state.img" />
         </div>
         <button v-if="state.userIsUser" @click="showChooseModal">
           <img src="@/assets/edit.svg" />
@@ -60,7 +60,7 @@
 
       <br />
       <div>
-        Vote rights: {{ state.user.voteRights.length }} <br />
+        Vote rights: {{ state.user.votableCards.length }} <br />
         <button v-if="state.userIsUser" @click="$router.push({ name: 'Vote' })">
           Vote
         </button>
@@ -76,7 +76,12 @@
           </div>
         </div>
         <br />
-        <button v-if="state.userIsUser" type="button" class="btn" @click="showModal">
+        <button
+          v-if="state.userIsUser"
+          type="button"
+          class="btn"
+          @click="showModal"
+        >
           Transfer
         </button>
       </div>
@@ -96,7 +101,7 @@
       <GrantModal v-if="state.isGrantModalVisible" @close="closeGrantModal" />
       <ChoosePBModal
         v-if="state.isChooseModalVisible"
-        :cards="state.user.ownedPrototypes"
+        :cardIds="state.user.ownedPrototypes"
         @close="closeChooseModal"
       />
       <AirdropsModal
@@ -118,13 +123,19 @@ import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
 import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
-import { User } from "@/model/User";
 import { useProfilePic } from "@/def-composables/useProfilePic";
 import type { Coin } from "@/model/Coin";
 import { normalizeCoins } from "@/utils/utils";
-import { computed, type ComputedRef, onMounted, reactive, type Ref, ref, watch } from "vue";
+import {
+  computed,
+  type ComputedRef,
+  onMounted,
+  reactive,
+  watch,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUser } from "@/def-composables/useUser";
+import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 const { queryQUser, queryAllBalances } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
@@ -132,7 +143,7 @@ const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { getImg } = useProfilePic();
 const { user, coins, queryCoins, queryUser } = useUser();
-const { loggedInProfilePic } = useProfilePic()
+const { loggedInProfilePic } = useProfilePic();
 const route = useRoute();
 const router = useRouter();
 
@@ -144,15 +155,15 @@ const initialState: {
   addr: string;
   user: User;
   coins: Array<Coin>;
-  userIsUser: ComputedRef<boolean>
-  img: string
+  userIsUser: ComputedRef<boolean>;
+  img: string;
 } = {
   isChooseModalVisible: false,
   isAirdropsModalVisible: false,
   isModalVisible: false,
   isGrantModalVisible: false,
   addr: "",
-  user: new User(),
+  user: User.fromPartial({}),
   coins: new Array<Coin>(),
   userIsUser: computed(() => loggedIn.value && state.addr == address.value),
   img: "jaja",
@@ -168,7 +179,7 @@ watch(coins, (val) => {
 });
 watch(loggedInProfilePic, (val) => {
   if (state.userIsUser) state.img = val;
-})
+});
 
 const init = () => {
   let id = route.params.id.toString();
@@ -186,7 +197,7 @@ const init = () => {
   if (state.userIsUser) {
     state.user = user.value;
     state.coins = normalizeCoins(coins.value);
-    state.img = loggedInProfilePic.value
+    state.img = loggedInProfilePic.value;
   }
 
   if (!validAddress(state.addr)) {
@@ -198,7 +209,7 @@ const init = () => {
   getCoins();
 };
 
-onMounted(init)
+onMounted(init);
 
 const getUser = () => {
   if (state.userIsUser) {
@@ -206,8 +217,8 @@ const getUser = () => {
   } else {
     queryQUser(state.addr).then((user) => {
       state.user = user;
-      getImg(state.user, state.addr).then(img => {
-        state.img = img
+      getImg(state.user, state.addr).then((img) => {
+        state.img = img;
       });
     });
   }

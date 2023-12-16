@@ -104,12 +104,31 @@ export class Card {
   balanceAnchor: boolean = false;
   hash: string = "";
 
+  // Values used for nerfstatus
+  isBanned = false
+  isNerfed = false
+  isBuffed = false
+
   static from(json: any): Card {
     return Object.assign(new Card(), json);
   }
 
   isEditCard() {
     return this.id != -1
+  }
+
+  setNerfStatus(status: NerfStatus) {
+    switch(status) {
+      case NerfStatus.BANNED:
+        this.isBanned = true
+        break
+      case NerfStatus.BUFFED:
+        this.isBuffed = true
+        break
+      case NerfStatus.NERFED:
+        this.isNerfed = true
+        break
+    }
   }
 
   toChainCard(): ChainCard {
@@ -210,4 +229,16 @@ class CardContent {
   RulesTexts: Array<string> = [];
   Keywords: Array<string> = [];
   Effects: Array<any> = [];
+}
+
+export enum NerfStatus {
+  BANNED = 0,
+  BUFFED = 1,
+  NERFED = 2,
+}
+
+export namespace NerfStatus {
+  export function fromString(status: string): NerfStatus | undefined {
+    return {bann: NerfStatus.BANNED, buff: NerfStatus.BUFFED, nerf: NerfStatus.NERFED}[status]
+  }
 }

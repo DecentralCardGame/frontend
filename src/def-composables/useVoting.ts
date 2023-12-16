@@ -1,70 +1,58 @@
 import { useTx } from "@/def-composables/useTx";
-import { ref, watch, type Ref } from "vue";
-import * as R from 'ramda'
+import { ref, watch, type Ref, computed } from "vue";
+import * as R from "ramda";
 import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
-import type { CardchainVoteRight } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/rest";
+import type { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import { useUser } from "./useUser";
 
 const KEY = "votingList";
+const { multiVoteCard } = useTx();
+const { user, queryUser } = useUser();
 
-const useVotingInstance = () => {
-  const { multiVoteCard } = useTx();
+let stored = window.localStorage.getItem(KEY);
+const votes: Ref<SingleVote[]> = ref(
+  stored ? Object.assign([], JSON.parse(stored)) : []
+);
+const votableCards = computed(() => user.value.votableCards.map(v => Number(v)));
+const cardsLeft = computed(() => {
+  let taken = votes.value.map((v) => v.cardId);
+  return votableCards.value.filter((v) => !taken.includes(v));
+});
+const current = computed(() => cardsLeft.value.at(0));
+const next = computed(() => cardsLeft.value.at(1));
 
-  let stored = window.localStorage.getItem(KEY);
-  const votes: Ref<SingleVote[]> = ref(
-    stored ? Object.assign([], JSON.parse(stored)) : []
-  );
+watch(
+  () => R.clone(votes.value),
+  (currentValue) => {
+    console.log("Saving current votes: ", currentValue);
+    window.localStorage.setItem(KEY, JSON.stringify(currentValue));
+  }
+);
 
-  watch(
-    () => R.clone(votes.value),
-    (currentValue) => {
-      console.log(currentValue);
-      window.localStorage.setItem(KEY, JSON.stringify(currentValue));
-    }
-  );
-
-  const send = (then: (res: any) => void, err: (res: any) => void) => {
-    console.log("send", votes.value)
-    multiVoteCard(
-      votes.value,
-      (res: any) => {
+const send = (then: (res: any) => void, err: (res: any) => void) => {
+  console.log("send", votes.value);
+  multiVoteCard(
+    votes.value,
+    (res: any) => {
+      queryUser().then(() => {
         votes.value = [];
-        then(res);
-      },
-      err
-    );
-    votes.value = []
-  };
-
-  const add = (cardId: number, voteType: string) => {
-    votes.value.push({
-      cardId,
-      voteType,
-    });
-  };
-
-  const isEmpty = () => {
-    return votes.value.length == 0;
-  };
-
-  const filterCards = (voteRights: CardchainVoteRight[]) => {
-    return voteRights.filter((right: CardchainVoteRight) => {
-      for (const vote of votes.value) {
-        if (right.cardId == vote.cardId.toString()) {
-          return false;
-        }
-      }
-      return true;
-    });
-  };
-
-  return { add, send, isEmpty, filterCards };
+      });
+      then(res);
+    },
+    err
+  );
 };
 
-let instance: ReturnType<typeof useVotingInstance>;
+const add = (cardId: number, voteType: VoteType) => {
+  console.log("vote ", voteType, " for ", cardId);
+  votes.value.push({
+    cardId,
+    voteType,
+  });
+};
+
+const isEmpty = computed(() => votes.value.length == 0);
 
 export const useVoting = () => {
-  if (!instance) {
-    instance = useVotingInstance();
-  }
-  return instance;
+  return { add, send, isEmpty, current, next, cardsLeft };
 };
