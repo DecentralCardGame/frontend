@@ -1,43 +1,40 @@
 <template>
-  <div class="relative">
-    <img
-      alt="langing bg image"
-      :src="landingBackground"
-      class="w-[100%] object-cover h-[40rem] 2xl:h-[50rem]"
-    />
-    <div class="absolute top-20 m-auto left-0 right-0">
-      <div class="flex text-center justify-center z-10">
-        <div class="w-5/6 md:w-3/6">
-          <img :src="logoBig" alt="big cc logo" class="w-[100%]" />
-          <p class="text-3xl text-white font-bold">
-            A trading card game made by players.
-          </p>
-          <br />
-          <BaseCCButton class="pb-4" :type="ButtonType.YELLOW"
-            >CREATE CARDS
-          </BaseCCButton>
-          <BaseCCButton :type="ButtonType.WHITE">Play the game</BaseCCButton>
+  <div>
+    <div class="relative">
+      <img
+        alt="langing bg image"
+        :src="landingBackground"
+        class="w-[100%] object-cover h-[40rem] 2xl:h-[50rem]"
+      />
+      <div class="absolute top-20 m-auto left-0 right-0">
+        <div class="flex text-center justify-center z-10">
+          <div class="w-5/6 md:w-3/6">
+            <img :src="logoBig" alt="big cc logo" class="w-[100%]" />
+            <p class="text-3xl text-white font-bold">
+              A trading card game made by players.
+            </p>
+            <br />
+            <BaseCCButton class="pb-4" :type="ButtonType.YELLOW"
+              >CREATE CARDS
+            </BaseCCButton>
+            <BaseCCButton :type="ButtonType.WHITE">Play the game</BaseCCButton>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="bg-black w-[100%] flex flex-wrap gap-x-4 justify-evenly">
-    <img
-      alt="company logo"
-      class="object-contain h-20 my-10"
-      :src="logo"
-      v-for="logo in [icfLogo, gonftLogo, coinliveLogo, hackatomLogo]"
-    />
-  </div>
-  <div class="relative">
-    <img
-      alt="langing bg image"
-      :src="car"
-      class="w-[100%] object-cover h-[120rem]"
-    />
-    <div class="absolute top-0 left-0 right-0">
+    <div class="bg-black w-[100%] flex flex-wrap gap-x-4 justify-evenly">
+      <img
+        alt="company logo"
+        class="object-contain h-20 my-10"
+        :src="logo"
+        v-for="logo in [icfLogo, gonftLogo, coinliveLogo, hackatomLogo]"
+      />
+    </div>
+    <div
+      class="bg-center bg-cover bg-[url('@/assets/figma/Car.jpeg')] pt-10 sm:pt-32"
+    >
       <div
-        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 my-10 sm:my-32"
+        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32"
       >
         <div class="justify-self-center">
           <p class="text-6xl font-bold pb-6">New Sets and Boosters</p>
@@ -55,7 +52,7 @@
           />
         </div>
       </div>
-      <div class="bg-black/90 py-4 sm:py-10 lg:py-20">
+      <div class="bg-black/90 py-40">
         <div class="flex justify-center">
           <div class="text-center">
             <p class="text-6xl text-red-500 font-bold">Get started now</p>
@@ -80,25 +77,25 @@
         </div>
       </div>
     </div>
-  </div>
-  <FadeTeaser>
-    <div class="absolute top-20 xl:py-20 left-0 right-0">
-      <div class="flex flex-col text-center">
-        <p class="text-6xl text-teal-500 font-bold">Be part of the game</p>
-        <div class="text-black text-3xl pt-4">
-          <p>Crowd Control is a growing community based on open source and</p>
-          <p>collaboration. Learn the game and give us your review.</p>
+    <FadeTeaser>
+      <div class="absolute top-20 xl:py-20 left-0 right-0">
+        <div class="flex flex-col text-center">
+          <p class="text-6xl text-teal-500 font-bold">Be part of the game</p>
+          <div class="text-black text-3xl pt-4">
+            <p>Crowd Control is a growing community based on open source and</p>
+            <p>collaboration. Learn the game and give us your review.</p>
+          </div>
+          <br />
+          <BaseCCButton :type="ButtonType.TEAL">Join Us</BaseCCButton>
+          <img
+            alt="gameboard"
+            class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
+            :src="gameBoard"
+          />
         </div>
-        <br />
-        <BaseCCButton :type="ButtonType.TEAL">Join Us</BaseCCButton>
-        <img
-          alt="gameboard"
-          class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
-          :src="gameBoard"
-        />
       </div>
-    </div>
-  </FadeTeaser>
+    </FadeTeaser>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -118,6 +115,7 @@ import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackg
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaser from "@/components/elements/FadeTeaser.vue";
+import { DialogBackdrop } from "@headlessui/vue";
 
 type CardBack = {
   cardBack: string;
