@@ -3,7 +3,7 @@
     <PageHeader />
     <PageMenu />
     <main>
-      <div class="footer__content">
+      <div>
         <router-view />
       </div>
     </main>
