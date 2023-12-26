@@ -9,8 +9,8 @@
       <div class="absolute top-20 m-auto left-0 right-0">
         <div class="flex text-center justify-center z-10">
           <div class="w-5/6 md:w-3/6">
-            <img :src="logoBig" alt="big cc logo" class="w-[100%]" />
-            <p class="text-3xl text-white font-bold">
+            <img :src="logoBig" alt="big cc logo" class="w-[100%] drop-shadow-header" />
+            <p class="text-4xl text-white font-bold py-6">
               A trading card game made by players.
             </p>
             <br />
