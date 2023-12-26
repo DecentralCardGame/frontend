@@ -1,8 +1,6 @@
 <template>
   <router-link :to="props.to">
-    <BaseCCButton
-      :type="props.type"
-    >
+    <BaseCCButton :type="props.type">
       <slot></slot>
     </BaseCCButton>
   </router-link>
@@ -13,7 +11,7 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 
 const props = withDefaults(
   defineProps<{
-    to: any,
+    to: any;
     type: ButtonType;
   }>(),
   {
