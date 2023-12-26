@@ -27,7 +27,7 @@
         alt="company logo"
         class="object-contain h-20 my-10"
         :src="logo"
-        v-for="logo in [icfLogo, gonftLogo, coinliveLogo, hackatomLogo]"
+        v-for="logo in [icfLogo, gonftLogo, hackatomLogo, coinliveLogo]"
       />
     </div>
     <div
@@ -105,7 +105,6 @@ import cardBack2 from "@/assets/figma/Cardbacks/2.png";
 import cardBack3 from "@/assets/figma/Cardbacks/3.png";
 import cardBack4 from "@/assets/figma/Cardbacks/4.png";
 import multiCards from "@/assets/figma/Multicards.png";
-import car from "@/assets/figma/Car.jpeg";
 import logoBig from "@/assets/figma/LogoBig.png";
 import icfLogo from "@/assets/figma/PresentationLogos/ICF.png";
 import gonftLogo from "@/assets/figma/PresentationLogos/GoNFTs.png";
@@ -115,7 +114,6 @@ import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackg
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaser from "@/components/elements/FadeTeaser.vue";
-import { DialogBackdrop } from "@headlessui/vue";
 
 type CardBack = {
   cardBack: string;

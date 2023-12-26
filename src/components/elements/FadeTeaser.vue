@@ -2,12 +2,12 @@
   <div class="relative h-[50rem] xl:h-[80rem] overflow-hidden">
     <img
       alt="worm bg"
-      class="absolute left-[-30rem] md:left-[-10rem] h-[100%]"
+      class="absolute left-[-15rem] md:left-[-10rem] h-[100%]"
       :src="voidWormBg"
     />
     <img
       alt="priest bg"
-      class="absolute right-[-30rem] md:right-[-10rem] h-[100%] overflow-hidden"
+      class="absolute right-[-15rem] md:right-[-10rem] h-[100%] overflow-hidden"
       :src="healingPriestBg"
     />
     <div
