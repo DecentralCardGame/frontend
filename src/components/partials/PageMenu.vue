@@ -3,7 +3,7 @@
     <router-link class="my-auto" to="/"><img class="h-16" :src="CCLogo" alt="CC logo" /></router-link>
     <a class="grow" />
     <div class="my-auto max-md:hidden">
-      <BaseCCButton :type="ButtonType.RED">Download Gameclient</BaseCCButton>
+      <RouterCCButton :type="ButtonType.RED">Download Gameclient</RouterCCButton>
     </div>
     <button class="my-auto text-white font-bold uppercase flex hover:underline">
       <img class="h-8 pr-4" :src="Profile" alt="CC logo" />
@@ -23,6 +23,7 @@ import Menu from "@/assets/figma/Menu.svg";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import {reactive} from "vue";
+import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 
 type NavigationElement = {
   routeName: string,
