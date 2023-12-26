@@ -34,7 +34,7 @@
       class="bg-center bg-cover bg-[url('@/assets/figma/Car.jpeg')] pt-10 sm:pt-32"
     >
       <div
-        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32"
+        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32 xl:w-[70%] xl:mx-auto"
       >
         <div class="justify-self-center">
           <p class="text-6xl font-bold pb-6">New Sets and Boosters</p>
