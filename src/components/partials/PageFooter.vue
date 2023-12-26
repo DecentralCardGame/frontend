@@ -1,7 +1,11 @@
 <template>
   <div class="bg-black text-white font-normal font-['Roboto']">
 
+<<<<<<< HEAD
     <div class="pt-10 text-center text-base font-bold underline uppercase space-y-2">
+=======
+    <div class="p-10 text-center text-xs font-bold underline uppercase space-y-2">
+>>>>>>> c09ab16 (fix scroll back to top)
       <button @click="scrollup">
         <div class="flex justify-evenly">
           <img :src="triangle" alt="navigation triangle" class="w-3"/>
