@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import VueHcaptcha from '@hcaptcha/vue3-hcaptcha'
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha/types'
 import { env } from "@/env"
 import { useAddress } from "@/def-composables/useAddress";
 import { useNotifications } from "@/def-composables/useNotifications";
