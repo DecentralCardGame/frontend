@@ -2,9 +2,9 @@
   <div class="bg-black flex flex-col">
     <div class="my-[25rem] text-center">
       <h2 class="text-white text-5xl font-bold p-7">
-        {{ state.signUp ? "Sign up" : "Log in" }}
+        {{ isSignUpRequired ? "Sign up" : "Log in" }}
       </h2>
-      <BaseCCButton v-if="!state.signUp" @click="login"
+      <BaseCCButton v-if="!isSignUpRequired" @click="login"
         >Login with keplr
       </BaseCCButton>
       <div v-else>
@@ -12,7 +12,7 @@
           <p class="text-white p-7">You have to sign up first</p>
           <vue-hcaptcha
             :sitekey="state.siteKey"
-            @verify="(res) => {onVerify(res).then(checkSignUp)}"
+            @verify="onVerify"
             class="mx-auto"
           />
         </div>
@@ -40,23 +40,15 @@ import { onMounted, reactive } from "vue";
 import { env } from "@/env";
 
 const { isKeplrAvailable } = useKeplr();
-const { login, signUpRequired, onVerify } = useLogin();
+const { checkSignUpRequired, login, isSignUpRequired, onVerify } = useLogin();
 
 const initialState: {
-  signUp: Boolean;
   siteKey: string;
 } = {
-  signUp: false,
   siteKey: env.faucetSiteKey,
 };
 
 const state = reactive(initialState);
 
-const checkSignUp = () => {
-  console.log("yes")
-  signUpRequired().then((value) => (state.signUp = value));
-}
-
-onMounted(checkSignUp);
-
+onMounted(checkSignUpRequired);
 </script>

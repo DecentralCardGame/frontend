@@ -4,17 +4,16 @@ import {useAddress} from "@/def-composables/useAddress";
 import {env} from "@/env";
 import {useNotifications} from "@/def-composables/useNotifications";
 import type {Key} from "@keplr-wallet/types";
-import {useClient} from "@/composables/useClient";
 import {useQuery} from "@/def-composables/useQuery";
-import {useLoggedIn} from "@/def-composables/useLoggedIn";
 import { Client } from "decentralcardgame-cardchain-client-ts";
+import { ref } from "vue";
 
 const useLoginInstance = () => {
   const {connectToKeplr, isKeplrAvailable, getKeplrAccParams} = useKeplr()
   const router = useRouter()
-  const {address} = useAddress()
   const {notifyFail, notifyInfo, notifySuccess} = useNotifications()
   const { queryQUser } = useQuery()
+  const isSignUpRequired = ref(true)
   
   const tryLogin = () => {
     signUpRequired().then((required) => {
@@ -47,16 +46,20 @@ const useLoginInstance = () => {
     return true
   }
   
+  const checkSignUpRequired = () => {
+    return signUpRequired().then(value => {
+      isSignUpRequired.value = value
+      return value
+    })
+  }
+
   const onVerify = (res: any) => {
-    console.log(res)
     return getKeplrAccParams(env.chainId).then((value: Key) => {
       const data = {
         address: value.bech32Address,
         token: res,
         alias: value.name,
       };
-      
-      console.log(data)
 
       const request = new Request(env.faucetNode, {
         method: "POST",
@@ -68,6 +71,7 @@ const useLoginInstance = () => {
       
       return fetch(request).then((response) => {
         console.log("response", response);
+        checkSignUpRequired()
 
         if (response.status === 401) {
           notifyFail("Error", "Error captcha. Please reload page.");
@@ -86,7 +90,9 @@ const useLoginInstance = () => {
     });
   };
   
-  return {login, signUpRequired, tryLogin, onVerify}
+  checkSignUpRequired()
+
+  return {login, checkSignUpRequired, isSignUpRequired, tryLogin, onVerify}
 }
 
 let loginInstance: ReturnType<typeof useLoginInstance>;
