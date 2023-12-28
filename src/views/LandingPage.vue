@@ -1,23 +1,130 @@
 <template>
-  <div class="LogoBox flex text-center justify-center p-80">
-    <div>
-      <img :src="logoBig" alt="big cc logo" class="box-shadow-2xl" />
-      <p class="text-xl font-lg">A trading card game made by players.</p>
-      <BaseCCButton :type="ButtonType.YELLOW">CREATE CARDS</BaseCCButton>
+  <div>
+    <div class="relative">
+      <img
+        alt="langing bg image"
+        :src="landingBackground"
+        class="w-[100%] object-cover h-[40rem] 2xl:h-[50rem]"
+      />
+      <div class="absolute top-20 m-auto left-0 right-0">
+        <div class="flex text-center justify-center z-10">
+          <div class="w-5/6 md:w-3/6">
+            <img :src="logoBig" alt="big cc logo" class="w-[100%] drop-shadow-header" />
+            <p class="text-4xl text-white font-bold py-6">
+              A trading card game made by players.
+            </p>
+            <br />
+            <BaseCCButton class="pb-4" :type="ButtonType.YELLOW"
+              >CREATE CARDS
+            </BaseCCButton>
+            <BaseCCButton :type="ButtonType.WHITE">Play the game</BaseCCButton>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="bg-black w-[100%] flex flex-wrap gap-x-4 justify-evenly">
+      <img
+        alt="company logo"
+        class="object-contain h-20 my-10"
+        :src="logo"
+        v-for="logo in [icfLogo, gonftLogo, hackatomLogo, coinliveLogo]"
+      />
+    </div>
+    <div
+      class="bg-center bg-cover bg-[url('@/assets/figma/Car.jpeg')] pt-10 sm:pt-32"
+    >
+      <div
+        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32 xl:w-[70%] xl:mx-auto"
+      >
+        <div class="justify-self-center">
+          <p class="text-6xl font-bold pb-6">New Sets and Boosters</p>
+          <p class="text-3xl pb-6">Promoted Sets and Boosters</p>
+          <BaseCCButton class="pb-4" :type="ButtonType.BLACK"
+            >Buy Boosters
+          </BaseCCButton>
+          <BaseCCButton :type="ButtonType.BLACK">Visit Gallery</BaseCCButton>
+        </div>
+        <div>
+          <img
+            alt="multiple cards"
+            class="h-[20rem] object-scale-down"
+            :src="multiCards"
+          />
+        </div>
+      </div>
+      <div class="bg-black/90 py-40">
+        <div class="flex justify-center">
+          <div class="text-center">
+            <p class="text-6xl text-red-500 font-bold">Get started now</p>
+            <div class="text-white text-3xl pt-4">
+              <p>CrowdControl is built on Cosmos Blockchain and</p>
+              <p>let’s <b>YOU</b> be part of every step of the game.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
+          <div class="relative" v-for="cardBack in cardBacks">
+            <img
+              alt="cardback"
+              :src="cardBack.cardBack"
+              class="h-[20rem] drop-shadow-glowRed"
+            />
+            <div class="absolute top-52 left-0 right-0 text-center">
+              <p class="text-3xl font-bold">{{ cardBack.heading }}</p>
+              <p>{{ cardBack.text }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <FadeTeaser>
+      <div class="absolute top-20 xl:py-20 left-0 right-0">
+        <div class="flex flex-col text-center">
+          <p class="text-6xl text-teal-500 font-bold">Be part of the game</p>
+          <div class="text-black text-3xl pt-4">
+            <p>Crowd Control is a growing community based on open source and</p>
+            <p>collaboration. Learn the game and give us your review.</p>
+          </div>
+          <br />
+          <BaseCCButton :type="ButtonType.TEAL">Join Us</BaseCCButton>
+          <img
+            alt="gameboard"
+            class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
+            :src="gameBoard"
+          />
+        </div>
+      </div>
+    </FadeTeaser>
   </div>
 </template>
 
 <script setup lang="ts">
+import gameBoard from "@/assets/figma/GameBoard.gif";
+import cardBack1 from "@/assets/figma/Cardbacks/1.png";
+import cardBack2 from "@/assets/figma/Cardbacks/2.png";
+import cardBack3 from "@/assets/figma/Cardbacks/3.png";
+import cardBack4 from "@/assets/figma/Cardbacks/4.png";
+import multiCards from "@/assets/figma/Multicards.png";
 import logoBig from "@/assets/figma/LogoBig.png";
-import landingBackground from "@/assets/figma/LandingBackground.jpeg";
+import icfLogo from "@/assets/figma/PresentationLogos/ICF.png";
+import gonftLogo from "@/assets/figma/PresentationLogos/GoNFTs.png";
+import coinliveLogo from "@/assets/figma/PresentationLogos/coinlive.png";
+import hackatomLogo from "@/assets/figma/PresentationLogos/hackatom.png";
+import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
-import { StencilPreview } from "vue-advanced-cropper";
-</script>
+import FadeTeaser from "@/components/elements/FadeTeaser.vue";
 
-<style lang="scss">
-.LogoBox {
-  background-image: url("@/assets/figma/LandingBackground.jpeg");
-}
-</style>
+type CardBack = {
+  cardBack: string;
+  heading: string;
+  text: string;
+};
+
+const cardBacks: CardBack[] = [
+  { cardBack: cardBack1, heading: "CREATE", text: "Assets, Games, Worlds" },
+  { cardBack: cardBack2, heading: "PLAY", text: "Games, Characters, Stories" },
+  { cardBack: cardBack3, heading: "VOTE", text: "Balance, Decide, Govern" },
+  { cardBack: cardBack4, heading: "OWN", text: "Earn, Collect, Trade" },
+];
+</script>

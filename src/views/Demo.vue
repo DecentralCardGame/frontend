@@ -29,6 +29,6 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 
 <style lang="scss">
 .LogoBox {
-  background-image: url("@/assets/figma/LandingBackground.jpeg");
+  background-image: url("@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg");
 }
 </style>
