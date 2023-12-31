@@ -1,0 +1,198 @@
+<template>
+  <div class="flex bg-black text-white justify-center p-16">
+    <div class="text-center">
+      <div class="p-24">
+        <img :src="state.img" class="w-64" alt="Profile pic" />
+      </div>
+      <UserViewHeadingContainer>
+        <template v-slot:heading>Council status</template>
+        <template v-slot:body>{{ user.CouncilStatus }}</template>
+      </UserViewHeadingContainer>
+      <div>
+        <UserViewHeadingContainer v-for="coin in normalizeCoins(coins)">
+          <template v-slot:heading
+            ><a class="uppercase">{{ coin.denom }}</a> Balance
+          </template>
+          <template v-slot:body>{{ coin.amount }}</template>
+        </UserViewHeadingContainer>
+      </div>
+    </div>
+    <div class="text-left">
+      <h1 class="text-4xl text-white font-bold pb-12">
+        {{ state.userIsUser ? "My Account" : state.user.alias }}
+      </h1>
+      <div class="grid grid-cols-3 gap-16">
+        <UserViewHeadingContainer>
+          <template v-slot:heading>Wallet</template>
+          <template v-slot:body>
+            <b>Address</b> <br />{{ state.addr }}
+          </template>
+        </UserViewHeadingContainer>
+        <UserViewHeadingContainer>
+          <template v-slot:heading>My Cards</template>
+          <template v-slot:body>
+            <b
+              >{{ state.user.ownedCardSchemes.length }} Card Frame{{
+                state.user.ownedCardSchemes.length == 1 ? "" : "s"
+              }}</b
+            >
+            <div
+              v-for="[arr, name] in [
+                [state.user.ownedCardSchemes, 'Master Card'],
+                [state.user.cards, 'Card'],
+              ]"
+              class="pb-6"
+            >
+              <p class="pb-3">
+                <b
+                  >{{ arr.length }} {{ name
+                  }}{{ arr.length == 1 ? "" : "s" }}</b
+                >
+              </p>
+              <RouterCCButton>View in gallery</RouterCCButton>
+            </div>
+          </template>
+        </UserViewHeadingContainer>
+        <UserViewHeadingContainer>
+          <template v-slot:heading>Recent Activity</template>
+          <template v-slot:body>
+            <RouterCCButton :to="{name: 'Vote'}">Go to Voting</RouterCCButton>
+          </template>
+        </UserViewHeadingContainer>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useAddress } from "@/def-composables/useAddress";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useQuery } from "@/def-composables/useQuery";
+import { validAddress } from "@/utils/validation";
+import { useTx } from "@/def-composables/useTx";
+import { useProfilePic } from "@/def-composables/useProfilePic";
+import type { Coin } from "@/model/Coin";
+import { normalizeCoins } from "@/utils/utils";
+import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useUser } from "@/def-composables/useUser";
+import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
+import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
+import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
+
+const { queryQUser, queryAllBalances } = useQuery();
+const { registerForCouncil, rewokeCouncilRegistration } = useTx();
+const { address } = useAddress();
+const { loggedIn } = useLoggedIn();
+const { getImg } = useProfilePic();
+const { user, coins, queryCoins, queryUser } = useUser();
+const { loggedInProfilePic } = useProfilePic();
+const route = useRoute();
+const router = useRouter();
+
+const initialState: {
+  isChooseModalVisible: boolean;
+  isAirdropsModalVisible: boolean;
+  isModalVisible: boolean;
+  isGrantModalVisible: boolean;
+  addr: string;
+  user: User;
+  coins: Array<Coin>;
+  userIsUser: ComputedRef<boolean>;
+  img: string;
+} = {
+  isChooseModalVisible: false,
+  isAirdropsModalVisible: false,
+  isModalVisible: false,
+  isGrantModalVisible: false,
+  addr: "",
+  user: User.fromPartial({}),
+  coins: new Array<Coin>(),
+  userIsUser: computed(() => loggedIn.value && state.addr == address.value),
+  img: "jaja",
+};
+
+const state = reactive(initialState);
+
+watch(user, (val) => {
+  if (state.userIsUser) state.user = val;
+});
+watch(coins, (val) => {
+  if (state.userIsUser) state.coins = normalizeCoins(val);
+});
+watch(loggedInProfilePic, (val) => {
+  if (state.userIsUser) state.img = val;
+});
+
+const init = () => {
+  state.addr = route.params.id.toString();
+
+  if (state.userIsUser) {
+    state.user = user.value;
+    state.coins = normalizeCoins(coins.value);
+    state.img = loggedInProfilePic.value;
+  }
+
+  if (!validAddress(state.addr)) {
+    router.push({ name: "NotFound" });
+  }
+
+  router.push({ name: "UserView", params: { id: state.addr } });
+  getUser();
+  getCoins();
+};
+
+onMounted(init);
+
+const getUser = () => {
+  if (state.userIsUser) {
+    queryUser();
+  } else {
+    queryQUser(state.addr).then((user) => {
+      state.user = user;
+      getImg(state.user, state.addr).then((img) => {
+        state.img = img;
+      });
+    });
+  }
+};
+
+const getCoins = () => {
+  if (state.userIsUser) {
+    queryCoins();
+  } else {
+    queryAllBalances(state.addr).then((coins) => {
+      state.coins = normalizeCoins(coins.balances);
+    });
+  }
+};
+
+const register = () => registerForCouncil(getUser, console.log);
+const deRegister = () => rewokeCouncilRegistration(getUser, console.log);
+const showModal = () => {
+  state.isModalVisible = true;
+};
+const closeModal = () => {
+  state.isModalVisible = false;
+  getCoins();
+};
+const showGrantModal = () => {
+  state.isGrantModalVisible = true;
+};
+const closeGrantModal = () => {
+  state.isGrantModalVisible = false;
+};
+const showChooseModal = () => {
+  state.isChooseModalVisible = true;
+};
+const closeChooseModal = () => {
+  state.isChooseModalVisible = false;
+  getUser();
+};
+const showAirdropsModal = () => {
+  state.isAirdropsModalVisible = true;
+};
+const closeAirdropsModal = () => {
+  state.isAirdropsModalVisible = false;
+};
+</script>

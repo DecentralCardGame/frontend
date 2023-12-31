@@ -8,7 +8,9 @@
       :src="loggedIn ? loggedInProfilePic : Profile"
       alt="PP"
     />
-    <a class="my-auto">{{isSignUpRequired ? "Log in / Sign up" : loggedIn ? "Profile" : "Login"}}</a>
+    <a class="my-auto">{{
+      isSignUpRequired ? "Log in / Sign up" : loggedIn ? "Profile" : "Login"
+    }}</a>
   </button>
 </template>
 
@@ -17,17 +19,17 @@ import Profile from "@/assets/figma/Profile.png";
 import { useProfilePic } from "@/def-composables/useProfilePic";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useLogin } from "@/def-composables/useLogin";
-import {onMounted} from "vue";
+import { onMounted } from "vue";
 
 const { loggedInProfilePic } = useProfilePic();
 const { loggedIn } = useLoggedIn();
 const { tryLogin, isSignUpRequired, checkSignUpRequired } = useLogin();
 
 onMounted(() => {
-  checkSignUpRequired().then(value => {
+  checkSignUpRequired().then((value) => {
     if (!value) {
-      tryLogin()
+      tryLogin();
     }
-  })
-})
+  });
+});
 </script>

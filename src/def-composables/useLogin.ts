@@ -7,6 +7,7 @@ import type {Key} from "@keplr-wallet/types";
 import {useQuery} from "@/def-composables/useQuery";
 import { Client } from "decentralcardgame-cardchain-client-ts";
 import { ref } from "vue";
+import {useLoggedIn} from "@/def-composables/useLoggedIn";
 
 const useLoginInstance = () => {
   const {connectToKeplr, isKeplrAvailable, getKeplrAccParams} = useKeplr()
@@ -14,8 +15,13 @@ const useLoginInstance = () => {
   const {notifyFail, notifyInfo, notifySuccess} = useNotifications()
   const { queryQUser } = useQuery()
   const isSignUpRequired = ref(true)
+  const {loggedIn} = useLoggedIn()
+  const {address} = useAddress()
   
   const tryLogin = () => {
+    if (loggedIn.value) {
+      router.push({name: "UserView", params: {id: address.value}})
+    }
     signUpRequired().then((required) => {
       console.log(required)
       if (!required) {
