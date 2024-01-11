@@ -275,7 +275,6 @@
           <div class="py-5 justify-center">
             <div class="py-3 text-s font-bold">COSTS AND POWERS</div>
 
-
             <div v-if="cardRules.Card.children[getRulesType()] &&
                     cardRules.Card.children[getRulesType()].children.CastingCost"
               class=""
@@ -380,6 +379,80 @@
               <NavigationButtons />
             </div>
           </div>
+      </div>
+
+      <!-- Flavor -->
+      <div v-if="activeStep==6"
+        class="flex flex-row justify-center"
+      >
+        <div class="px-8">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage()"
+            :model="model"
+          />
+        </div>
+        <div class="text-left flex flex-col justify-between">
+          <div class="py-5 justify-center">
+            <div class="py-3 text-s font-bold">ABILITIES AND EFFECTS</div>
+            <div class="py-3 text-s">Click to add abilities or effects to your card.</div>
+
+            <div>
+              <div
+                v-for="(abilityEntry, index) in abilities"
+                :key="abilityEntry.ability"
+              >
+                <AbilityComponent
+                  class="ability-frame"
+                  :abilities="abilities"
+                  :ability-prop="abilityEntry"
+                  :dialog-prop="abilityDialog"
+                  :model="model"
+                  @update:ability="updateAbility($event, index)"
+                />
+              </div>
+            </div>
+            <div v-if="model.type === 'Action'">
+              <button
+                class="btn btn-abilitycreator"
+                type="button"
+                @click="showAbilityModal('root')"
+              >
+                Add Effect
+              </button>
+            </div>
+            <div
+              v-else
+              class="creator-text"
+            >
+              <button
+                class="btn btn-abilitycreator"
+                type="button"
+                @click="showAbilityModal('root')"
+              >
+                Add Ability
+              </button>
+            </div>
+            <div class="ability-modal-container">
+              <AbilityModal
+                v-if="isAbilityModalVisible"
+                :abilities-prop="abilities"
+                :ability="ability"
+                :dialog-prop="abilityDialog"
+                :cardmodel="model"
+                @close="closeAbilityModal"
+                @update:ability="ability = $event"
+              />
+            </div>
+
+
+          </div>
+          <div class="pl-10">
+            <NavigationButtons />
+          </div>
+        </div>
       </div>
 
       <div v-if="activeStep==6">
