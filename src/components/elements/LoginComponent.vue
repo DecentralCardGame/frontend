@@ -3,8 +3,9 @@
     class="text-white font-bold uppercase flex hover:underline my-auto"
     @click="tryLogin"
   >
-    <img
-      class="h-8 pr-4"
+    <ProfilePicComponent
+      class="h-8 w-8 mr-4"
+      size="8"
       :src="loggedIn ? loggedInProfilePic : Profile"
       alt="PP"
     />
@@ -20,6 +21,7 @@ import { useProfilePic } from "@/def-composables/useProfilePic";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useLogin } from "@/def-composables/useLogin";
 import { onMounted } from "vue";
+import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 
 const { loggedInProfilePic } = useProfilePic();
 const { loggedIn } = useLoggedIn();

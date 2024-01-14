@@ -1,12 +1,22 @@
 <template>
   <div class="flex bg-black text-white justify-center p-16">
-    <div class="text-center">
-      <div class="p-24">
-        <img :src="state.img" class="w-64" alt="Profile pic" />
+    <div class="text-center pr-24">
+      <div class="py-24">
+        <ProfilePicComponent :src="state.img" size="64" class="mx-auto h-64 w-64" alt="Profile pic" />
       </div>
       <UserViewHeadingContainer>
         <template v-slot:heading>Council status</template>
-        <template v-slot:body>{{ user.CouncilStatus }}</template>
+        <template v-slot:body>
+          <p>{{ user.CouncilStatus }}</p>
+          <BaseCCButton v-if="state.userIsUser" @click="state.user.CouncilStatus == 'unavailable' ? register() : deRegister()">
+            {{
+              state.user.CouncilStatus == "unavailable"
+                ? "Register for"
+                : "Deregister from"
+            }}
+            council
+          </BaseCCButton>
+        </template>
       </UserViewHeadingContainer>
       <div>
         <UserViewHeadingContainer v-for="coin in normalizeCoins(coins)">
@@ -18,14 +28,16 @@
       </div>
     </div>
     <div class="text-left">
-      <h1 class="text-4xl text-white font-bold pb-12">
+      <h1 class="text-5xl text-white font-bold pb-12">
         {{ state.userIsUser ? "My Account" : state.user.alias }}
       </h1>
-      <div class="grid grid-cols-3 gap-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <UserViewHeadingContainer>
           <template v-slot:heading>Wallet</template>
           <template v-slot:body>
-            <b>Address</b> <br />{{ state.addr }}
+            <b>Address</b> <br />{{ state.addr }}<br />
+            <br />
+            <b>Alias</b> <br />{{ state.user.alias }}
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
@@ -56,7 +68,7 @@
         <UserViewHeadingContainer>
           <template v-slot:heading>Recent Activity</template>
           <template v-slot:body>
-            <RouterCCButton :to="{name: 'Vote'}">Go to Voting</RouterCCButton>
+            <RouterCCButton :to="{ name: 'Vote' }">Go to Voting</RouterCCButton>
           </template>
         </UserViewHeadingContainer>
       </div>
@@ -79,6 +91,8 @@ import { useUser } from "@/def-composables/useUser";
 import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
+import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 
 const { queryQUser, queryAllBalances } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();

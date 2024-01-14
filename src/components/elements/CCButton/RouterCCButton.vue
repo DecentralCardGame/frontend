@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -20,5 +21,4 @@ const props = withDefaults(
   }
 );
 
-import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 </script>
