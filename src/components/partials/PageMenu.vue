@@ -16,7 +16,7 @@
   </div>
   <div
     :class="[
-      'bg-[#D82027]',
+      'bg-cc-red',
       'flex',
       'flex-row',
       'uppercase',

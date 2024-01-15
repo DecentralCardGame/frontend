@@ -2,13 +2,29 @@
   <div class="flex bg-black text-white justify-center p-16">
     <div class="text-center pr-24">
       <div class="py-24">
-        <ProfilePicComponent :src="state.img" size="64" class="mx-auto h-64 w-64" alt="Profile pic" />
+        <div class="mx-auto h-64 w-64 relative group">
+          <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
+          <button
+            v-if="state.userIsUser"
+            @click="showChooseModal"
+            class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible group-hover:visible"
+          >
+            <img :src="editImg" alt="edit" class="hover:drop-shadow-md" />
+          </button>
+        </div>
       </div>
       <UserViewHeadingContainer>
         <template v-slot:heading>Council status</template>
         <template v-slot:body>
           <p>{{ user.CouncilStatus }}</p>
-          <BaseCCButton v-if="state.userIsUser" @click="state.user.CouncilStatus == 'unavailable' ? register() : deRegister()">
+          <BaseCCButton
+            v-if="state.userIsUser"
+            @click="
+              state.user.CouncilStatus == 'unavailable'
+                ? register()
+                : deRegister()
+            "
+          >
             {{
               state.user.CouncilStatus == "unavailable"
                 ? "Register for"
@@ -74,6 +90,12 @@
       </div>
     </div>
   </div>
+  <ChoosePBModal
+    v-if="state.isChooseModalVisible"
+    :cardIds="state.user.ownedPrototypes"
+    :current="state.user.profileCard"
+    @close="closeChooseModal"
+  />
 </template>
 
 <script setup lang="ts">
@@ -93,6 +115,8 @@ import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
+import editImg from "@/assets/figma/edit.png";
+import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 
 const { queryQUser, queryAllBalances } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();

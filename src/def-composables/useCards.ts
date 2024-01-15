@@ -13,11 +13,11 @@ const updateCard = async (id: number) => {
   return card
 }
 
-const getCard = async (id: number) => {
+const getCard = (id: number) => {
   if (Object.keys(state.value).includes(""+id)) {
-    return state.value[id]
+    return Promise.resolve(state.value[id])
   }
-  return await updateCard(id)
+  return updateCard(id)
 }
 
 export const useCards = () => {

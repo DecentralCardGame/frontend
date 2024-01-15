@@ -14,13 +14,13 @@
 const props = withDefaults(
   defineProps<{
     src: any;
-    size: number;
+    size: number | string;
     alt: string;
   }>(),
   {
     src: {},
     size: 64,
-    alt: "",
+    alt: "Profile Pic",
   }
 );
 </script>

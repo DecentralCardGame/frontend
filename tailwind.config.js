@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'cc-red': '#D82027',
+      },
       fontFamily: {
         sans: [
           'Roboto',
