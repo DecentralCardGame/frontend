@@ -23,8 +23,8 @@
       :type="ButtonType.RED"
       @click="send"
       class="mx-auto text-center"
-      >Save</BaseCCButton
-    >
+      >Save
+    </BaseCCButton>
   </ModalFrame>
 </template>
 
@@ -41,8 +41,8 @@ import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 
-const { address } = useAddress()
-const { getDefaultImg } = useProfilePic()
+const { address } = useAddress();
+const { getDefaultImg } = useProfilePic();
 const { setProfileCard } = useTx();
 const { queryUser } = useUser();
 const { getCard } = useCards();

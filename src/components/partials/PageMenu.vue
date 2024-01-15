@@ -6,10 +6,10 @@
     <a class="grow" />
     <div class="my-auto max-md:hidden">
       <RouterCCButton :type="ButtonType.RED"
-        >Download Gameclient</RouterCCButton
-      >
+        >Download Gameclient
+      </RouterCCButton>
     </div>
-    <LoginComponent/>
+    <LoginComponent />
     <button class="my-auto" @click="toggleBar">
       <img class="h-14 md:hidden" :src="Menu" alt="Menu button" />
     </button>

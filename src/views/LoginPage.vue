@@ -25,8 +25,8 @@
             </p>
             <a href="https://www.keplr.app/download" class="mx-auto">
               <BaseCCButton :type="ButtonType.TEAL">
-                Download Keplr</BaseCCButton
-              >
+                Download Keplr
+              </BaseCCButton>
             </a>
           </div>
         </div>

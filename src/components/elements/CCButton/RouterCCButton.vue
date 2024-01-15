@@ -20,5 +20,4 @@ const props = withDefaults(
     type: ButtonType.YELLOW,
   }
 );
-
 </script>
