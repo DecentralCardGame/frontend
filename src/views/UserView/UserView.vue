@@ -18,6 +18,7 @@
         <template v-slot:body>
           <p>{{ user.CouncilStatus }}</p>
           <BaseCCButton
+            :type="ButtonType.YELLOW"
             v-if="state.userIsUser"
             @click="
               state.user.CouncilStatus == 'unavailable'
@@ -77,17 +78,44 @@
                   }}{{ arr.length == 1 ? "" : "s" }}</b
                 >
               </p>
-              <RouterCCButton>View in gallery</RouterCCButton>
+              <RouterCCButton :type="ButtonType.YELLOW"
+                >View in gallery
+              </RouterCCButton>
             </div>
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
           <template v-slot:heading>Recent Activity</template>
           <template v-slot:body>
-            <RouterCCButton :to="{ name: 'Vote' }">Go to Voting</RouterCCButton>
+            <RouterCCButton :type="ButtonType.YELLOW" :to="{ name: 'Vote' }"
+              >Go to Voting
+            </RouterCCButton>
           </template>
         </UserViewHeadingContainer>
       </div>
+      <UserViewHeadingContainer class="pt-8">
+        <template v-slot:heading>Play History</template>
+        <template v-slot:body>
+          <div class="flex flex-wrap">
+            <UserViewHeadingContainer
+              class="pr-16"
+              v-for="(match, key) in state.matches"
+              :key="key"
+            >
+              <template v-slot:heading>Match {{ key }}</template>
+              <template v-slot:body>
+                {{
+                  (match.playerA.addr == state.addr &&
+                    match.outcome == "AWon") ||
+                  (match.playerB.addr == state.addr && match.outcome == "BWon")
+                    ? "WIN"
+                    : "LOSE"
+                }}
+              </template>
+            </UserViewHeadingContainer>
+          </div>
+        </template>
+      </UserViewHeadingContainer>
     </div>
   </div>
   <ChoosePBModal
@@ -111,14 +139,16 @@ import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUser } from "@/def-composables/useUser";
 import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
+import { Match } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
+import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 
-const { queryQUser, queryAllBalances } = useQuery();
+const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
@@ -130,24 +160,20 @@ const router = useRouter();
 
 const initialState: {
   isChooseModalVisible: boolean;
-  isAirdropsModalVisible: boolean;
-  isModalVisible: boolean;
-  isGrantModalVisible: boolean;
   addr: string;
   user: User;
   coins: Array<Coin>;
   userIsUser: ComputedRef<boolean>;
   img: string;
+  matches: { [key: string]: Match };
 } = {
   isChooseModalVisible: false,
-  isAirdropsModalVisible: false,
-  isModalVisible: false,
-  isGrantModalVisible: false,
   addr: "",
   user: User.fromPartial({}),
   coins: new Array<Coin>(),
   userIsUser: computed(() => loggedIn.value && state.addr == address.value),
   img: "jaja",
+  matches: {},
 };
 
 const state = reactive(initialState);
@@ -178,6 +204,7 @@ const init = () => {
   router.push({ name: "UserView", params: { id: state.addr } });
   getUser();
   getCoins();
+  getMatches();
 };
 
 onMounted(init);
@@ -205,32 +232,25 @@ const getCoins = () => {
   }
 };
 
+const getMatches = () => {
+  queryQMatches({ containsUsers: state.addr, "ignore.outcome": true }).then(
+    (res) => {
+      state.matches = {}
+      res.matches.forEach((value: Match, idx: number) => {
+        state.matches[res.matchesList[idx]] = value;
+      });
+    }
+  );
+};
+
 const register = () => registerForCouncil(getUser, console.log);
 const deRegister = () => rewokeCouncilRegistration(getUser, console.log);
-const showModal = () => {
-  state.isModalVisible = true;
-};
-const closeModal = () => {
-  state.isModalVisible = false;
-  getCoins();
-};
-const showGrantModal = () => {
-  state.isGrantModalVisible = true;
-};
-const closeGrantModal = () => {
-  state.isGrantModalVisible = false;
-};
+
 const showChooseModal = () => {
   state.isChooseModalVisible = true;
 };
 const closeChooseModal = () => {
   state.isChooseModalVisible = false;
   getUser();
-};
-const showAirdropsModal = () => {
-  state.isAirdropsModalVisible = true;
-};
-const closeAirdropsModal = () => {
-  state.isAirdropsModalVisible = false;
 };
 </script>
