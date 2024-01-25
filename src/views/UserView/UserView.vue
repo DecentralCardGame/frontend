@@ -1,6 +1,11 @@
 <template>
-  <div class="flex bg-black text-white justify-center p-16">
-    <div class="text-center pr-24">
+  <div
+    class="flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16 max-md:flex-wrap"
+  >
+    <div class="text-center">
+      <h1 class="md:hidden text-5xl font-bold pb-12">
+        {{ heading }}
+      </h1>
       <div class="py-24">
         <div class="mx-auto h-64 w-64 relative group">
           <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
@@ -44,9 +49,9 @@
         </UserViewHeadingContainer>
       </div>
     </div>
-    <div class="text-left">
-      <h1 class="text-5xl text-white font-bold pb-12">
-        {{ state.userIsUser ? "My Account" : state.user.alias }}
+    <div class="text-center md:text-left">
+      <h1 class="max-md:hidden text-5xl font-bold pb-12">
+        {{ heading }}
       </h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <UserViewHeadingContainer>
@@ -96,9 +101,8 @@
       <UserViewHeadingContainer class="pt-8">
         <template v-slot:heading>Play History</template>
         <template v-slot:body>
-          <div class="flex flex-wrap">
+          <div class="grid gap-8 md:grid-cols-4">
             <UserViewHeadingContainer
-              class="pr-16"
               v-for="(match, key) in state.matches"
               :key="key"
             >
@@ -178,6 +182,10 @@ const initialState: {
 
 const state = reactive(initialState);
 
+const heading = computed(() => {
+  return state.userIsUser ? "My Account" : state.user.alias;
+});
+
 watch(user, (val) => {
   if (state.userIsUser) state.user = val;
 });
@@ -235,7 +243,7 @@ const getCoins = () => {
 const getMatches = () => {
   queryQMatches({ containsUsers: state.addr, "ignore.outcome": true }).then(
     (res) => {
-      state.matches = {}
+      state.matches = {};
       res.matches.forEach((value: Match, idx: number) => {
         state.matches[res.matchesList[idx]] = value;
       });
