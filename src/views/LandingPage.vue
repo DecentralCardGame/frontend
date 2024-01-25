@@ -9,15 +9,21 @@
       <div class="absolute top-20 m-auto left-0 right-0">
         <div class="flex text-center justify-center z-10">
           <div class="w-5/6 md:w-3/6">
-            <img :src="logoBig" alt="big cc logo" class="w-[100%] drop-shadow-header" />
+            <img
+              :src="logoBig"
+              alt="big cc logo"
+              class="w-[100%] drop-shadow-header"
+            />
             <p class="text-4xl text-white font-bold py-6">
               A trading card game made by players.
             </p>
             <br />
-            <BaseCCButton class="pb-4" :type="ButtonType.YELLOW"
+            <RouterCCButton class="pb-4" to="/c" :type="ButtonType.YELLOW"
               >CREATE CARDS
-            </BaseCCButton>
-            <BaseCCButton :type="ButtonType.WHITE">Play the game</BaseCCButton>
+            </RouterCCButton>
+            <RouterCCButton :type="ButtonType.WHITE" to="/b"
+              >Play the game</RouterCCButton
+            >
           </div>
         </div>
       </div>
@@ -39,10 +45,10 @@
         <div class="justify-self-center">
           <p class="text-6xl font-bold pb-6">New Sets and Boosters</p>
           <p class="text-3xl pb-6">Promoted Sets and Boosters</p>
-          <BaseCCButton class="pb-4" :type="ButtonType.BLACK"
+          <RouterCCButton class="pb-4" to="/b" :type="ButtonType.BLACK"
             >Buy Boosters
-          </BaseCCButton>
-          <BaseCCButton :type="ButtonType.BLACK">Visit Gallery</BaseCCButton>
+          </RouterCCButton>
+          <RouterCCButton to="/g" :type="ButtonType.BLACK">Visit Gallery</RouterCCButton>
         </div>
         <div>
           <img
@@ -63,7 +69,7 @@
           </div>
         </div>
         <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
-          <div class="relative" v-for="cardBack in cardBacks">
+          <div class="relative hover:scale-105" v-for="cardBack in cardBacks">
             <img
               alt="cardback"
               :src="cardBack.cardBack"
@@ -86,7 +92,9 @@
             <p>collaboration. Learn the game and give us your review.</p>
           </div>
           <br />
-          <BaseCCButton :type="ButtonType.TEAL">Join Us</BaseCCButton>
+          <LinkCCButton :type="ButtonType.TEAL" to="https://discord.gg/ZKKbhUs"
+            >Join Us</LinkCCButton
+          >
           <img
             alt="gameboard"
             class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
@@ -99,7 +107,7 @@
 </template>
 
 <script setup lang="ts">
-import gameBoard from "@/assets/figma/GameBoard.gif";
+import gameBoard from "@/assets/figma/GameBoard.png";
 import cardBack1 from "@/assets/figma/Cardbacks/1.png";
 import cardBack2 from "@/assets/figma/Cardbacks/2.png";
 import cardBack3 from "@/assets/figma/Cardbacks/3.png";
@@ -114,6 +122,8 @@ import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackg
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaser from "@/components/elements/FadeTeaser.vue";
+import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
+import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 
 type CardBack = {
   cardBack: string;

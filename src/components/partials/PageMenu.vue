@@ -5,7 +5,7 @@
     /></router-link>
     <a class="grow" />
     <div class="my-auto max-md:hidden">
-      <RouterCCButton :type="ButtonType.RED"
+      <RouterCCButton :type="ButtonType.RED" to="/d"
         >Download Gameclient</RouterCCButton
       >
     </div>
@@ -55,9 +55,9 @@ type NavigationElement = {
 };
 
 const elems: NavigationElement[] = [
-  { routeName: "/", display: "Abc", highlighted: false },
-  { routeName: "def", display: "Def", highlighted: true },
-  { routeName: "ghi", display: "Ghi", highlighted: false },
+  { routeName: "/g", display: "Gallery", highlighted: false },
+  { routeName: "/s", display: "Sets and Boosters", highlighted: true },
+  { routeName: "/l", display: "Learn", highlighted: false },
 ];
 
 const state = reactive({

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <router-link :to="props.to" class="mx-auto">
+    <a :href="props.to" class="mx-auto">
       <BaseCCButton :type="props.type">
         <slot></slot>
       </BaseCCButton>
-    </router-link>
+    </a>
   </div>
 </template>
 
@@ -13,11 +13,11 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 
 const props = withDefaults(
   defineProps<{
-    to: any;
+    to: string;
     type: ButtonType;
   }>(),
   {
-    to: {},
+    to: "dummy",
     type: ButtonType.YELLOW,
   }
 );
