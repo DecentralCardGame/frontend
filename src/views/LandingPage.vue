@@ -86,7 +86,7 @@
             <p>collaboration. Learn the game and give us your review.</p>
           </div>
           <br />
-          <BaseCCButton :type="ButtonType.TEAL">Join Us</BaseCCButton>
+          <LinkCCButton :type="ButtonType.TEAL" to="https://discord.gg/ZKKbhUs">Join Us</LinkCCButton>
           <img
             alt="gameboard"
             class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
@@ -114,6 +114,7 @@ import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackg
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaser from "@/components/elements/FadeTeaser.vue";
+import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
 
 type CardBack = {
   cardBack: string;
