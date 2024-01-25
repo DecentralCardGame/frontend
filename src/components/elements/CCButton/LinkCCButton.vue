@@ -1,25 +1,26 @@
 <template>
   <div>
-    <router-link :to="props.to" class="mx-auto">
+    <a :href="props.to" class="mx-auto">
       <BaseCCButton :type="props.type">
         <slot></slot>
       </BaseCCButton>
-    </router-link>
+    </a>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
-import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 
 const props = withDefaults(
   defineProps<{
-    to: any;
+    to: string;
     type: ButtonType;
   }>(),
   {
-    to: {},
+    to: "dummy",
     type: ButtonType.YELLOW,
   }
 );
+
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 </script>
