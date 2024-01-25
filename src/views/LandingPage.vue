@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
-          <div class="relative" v-for="cardBack in cardBacks">
+          <div class="relative hover:scale-105" v-for="cardBack in cardBacks">
             <img
               alt="cardback"
               :src="cardBack.cardBack"
@@ -99,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import gameBoard from "@/assets/figma/GameBoard.gif";
+import gameBoard from "@/assets/figma/GameBoard.png";
 import cardBack1 from "@/assets/figma/Cardbacks/1.png";
 import cardBack2 from "@/assets/figma/Cardbacks/2.png";
 import cardBack3 from "@/assets/figma/Cardbacks/3.png";
