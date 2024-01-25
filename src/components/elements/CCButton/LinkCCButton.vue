@@ -1,9 +1,11 @@
 <template>
-  <a :href="props.to" class="mx-auto">
-    <BaseCCButton :type="props.type">
-      <slot></slot>
-    </BaseCCButton>
-  </a>
+  <div>
+    <a :href="props.to" class="mx-auto">
+      <BaseCCButton :type="props.type">
+        <slot></slot>
+      </BaseCCButton>
+    </a>
+  </div>
 </template>
 
 <script setup lang="ts">

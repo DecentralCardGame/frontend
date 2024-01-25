@@ -1,9 +1,11 @@
 <template>
-  <router-link :to="props.to" class="mx-auto">
-    <BaseCCButton :type="props.type">
-      <slot></slot>
-    </BaseCCButton>
-  </router-link>
+  <div>
+    <router-link :to="props.to" class="mx-auto">
+      <BaseCCButton :type="props.type">
+        <slot></slot>
+      </BaseCCButton>
+    </router-link>
+  </div>
 </template>
 
 <script setup lang="ts">
