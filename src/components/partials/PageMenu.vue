@@ -9,17 +9,14 @@
         >Download Gameclient</RouterCCButton
       >
     </div>
-    <button class="my-auto text-white font-bold uppercase flex hover:underline">
-      <img class="h-8 pr-4" :src="Profile" alt="CC logo" />
-      <a class="my-auto">Login / Sign up</a>
-    </button>
+    <LoginComponent />
     <button class="my-auto" @click="toggleBar">
       <img class="h-14 md:hidden" :src="Menu" alt="Menu button" />
     </button>
   </div>
   <div
     :class="[
-      'bg-[#D82027]',
+      'bg-cc-red',
       'flex',
       'flex-row',
       'uppercase',
@@ -42,11 +39,11 @@
 
 <script setup lang="ts">
 import CCLogo from "@/assets/figma/CCLogo.png";
-import Profile from "@/assets/figma/Profile.png";
 import Menu from "@/assets/figma/Menu.svg";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import { reactive } from "vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
+import LoginComponent from "@/components/elements/LoginComponent.vue";
 
 type NavigationElement = {
   routeName: string;

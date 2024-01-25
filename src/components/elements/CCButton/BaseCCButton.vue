@@ -64,7 +64,7 @@ const getButtonColor = () => {
     case ButtonType.TEAL:
       return "bg-[#40C1C7]";
     case ButtonType.RED:
-      return "bg-[#D82027]";
+      return "bg-cc-red";
   }
 };
 </script>

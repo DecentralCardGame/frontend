@@ -10,10 +10,11 @@ const LandingPage = () => import('@/views/LandingPage.vue')
 const ImprintPage = () => import('@/views/ImprintPage.vue')
 const TeamPage = () => import('@/views/TeamPage.vue')
 const VotingPage = () => import('@/views/VotingPage.vue')
-const UserView = () => import('@/views/UserView.vue')
+const UserView = () => import('@/views/UserView/UserView.vue')
 const CardView = () => import('@/views/AdvancedCardViewPage.vue')
 const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue")
 const Demo = () => import("@/views/Demo.vue")
+const Login = () => import("@/views/LoginPage.vue")
 
 const routes = [
   {
@@ -21,6 +22,12 @@ const routes = [
     name: 'About',
     meta: {layout: "Default"},
     component: AboutPage
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {layout: "Default"},
+    component: Login
   },
   {
     path: '/roadmap',
