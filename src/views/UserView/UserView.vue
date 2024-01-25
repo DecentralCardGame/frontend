@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16 max-md:flex-wrap"
+    class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16"
   >
     <div class="text-center">
       <h1 class="md:hidden text-5xl font-bold pb-12">
