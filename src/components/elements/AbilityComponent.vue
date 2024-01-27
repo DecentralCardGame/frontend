@@ -3,7 +3,7 @@
     <div
       v-for="(entry, index) in ability.interaction"
       :key="index"
-      class="ability"
+      class="text-sm"
     >
       {{ entry.pre }}
 

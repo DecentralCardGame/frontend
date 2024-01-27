@@ -9,7 +9,7 @@
       <!-- Progress Bar -->
       <div class="w-11/12 h-12 mx-auto">
         <div
-          class="bg-red-600 bg-red-600 rounded-full h-1 flex items-center justify-between"
+          class="bg-red-600 rounded-full h-1 flex items-center justify-between"
         >
           <div
             v-for="(item, idx) in progressBar"
@@ -244,7 +244,7 @@
             <div class="py-3 text-s">Now let's add some spice to your creation.</div>
             <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
               <input
-                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s font-normal font-['Roboto']"
+                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s"
                 placeholder="Quote that represents this card."
                 v-model="model.FlavourText"
                 maxLength="25"
@@ -381,7 +381,7 @@
           </div>
       </div>
 
-      <!-- Flavor -->
+      <!-- Abilities and Effects -->
       <div v-if="activeStep==6"
         class="flex flex-row justify-center"
       >
@@ -399,13 +399,14 @@
             <div class="py-3 text-s font-bold">ABILITIES AND EFFECTS</div>
             <div class="py-3 text-s">Click to add abilities or effects to your card.</div>
 
-            <div>
+            <div class="flex flex-row">
               <div
                 v-for="(abilityEntry, index) in abilities"
                 :key="abilityEntry.ability"
+                class="flex flex-row"
               >
                 <AbilityComponent
-                  class="ability-frame"
+                  class="px-6 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold  border-4 border-gray-100 border-opacity-50"
                   :abilities="abilities"
                   :ability-prop="abilityEntry"
                   :dialog-prop="abilityDialog"
@@ -428,11 +429,11 @@
               class="creator-text"
             >
               <button
-                class="btn btn-abilitycreator"
+                class="px-60 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold  border-4 border-gray-100 border-opacity-50"
                 type="button"
                 @click="showAbilityModal('root')"
               >
-                Add Ability
+                +
               </button>
             </div>
             <div class="ability-modal-container">
@@ -453,10 +454,6 @@
             <NavigationButtons />
           </div>
         </div>
-      </div>
-
-      <div v-if="activeStep==6">
-        <NavigationButtons />
       </div>
 
       <div v-if="activeStep==7">

@@ -1,21 +1,21 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal__backdrop_embed">
+    <div class="">
       <div
         aria-describedby="modalDescription"
         aria-labelledby="modalTitle"
-        class="modal"
+        class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
         <header
           id="modalTitle"
-          class="modal__header"
+          class=""
         >
           <slot name="header">
             {{ dialog.title }}
             <span
               aria-label="Close modal"
-              class="btn--close"
+              class=""
               type="button"
               @click="close"
             >
@@ -25,13 +25,14 @@
         </header>
         <section
           id="modalDescription"
-          class="modal__body choice-grid"
+          class="flex flex-wrap flex-row justify-start"
         >
           <slot name="body">
             <!-- {{ dialog.description }} -->
             <div
               v-for="(option, index) in filterClasses(dialog.options)"
               :key="index"
+              class="m-2 p-2 w-44 bg-white bg-opacity-80 rounded-sm text-black flex flex-col justify-center"
             >
               <input
                 v-if="dialog.type==='boolean'"
@@ -43,17 +44,16 @@
               <button
                 v-if="dialog.type === 'enum'"
                 aria-label="Close modal"
-                class="choice-grid__button"
+                class="text-center"
                 type="button"
                 @click="selected = option; addAbility();"
               >
-                <img
-                  class="button--img"
-                  :src="getIcon(option)"
-                >
-                <br>
-                <b>{{ option.name }}</b><br>
-                - <span v-if="option.description">  {{ option.description }} </span>
+              <img
+                class="justify-self-center"
+                :src="getIcon(option)"
+              >
+                {{ option.name }}
+                <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
               <input
@@ -65,18 +65,15 @@
               <button
                 v-if="dialog.type === 'interface' || dialog.type === 'root'"
                 aria-label="Close modal"
-                class="choice-grid__button"
+                class="flex flex-col justify-center"
                 type="button"
                 @click="selected = option; addAbility();"
               >
                 <img
-                  class="button--img"
+                  class="w-12"
                   :src="getIcon(option)"
                 >
-                
-                <div
-                  class="title"
-                >
+                <div class="font-bold">
                   {{ option.name }}
                 </div>
                 <div class="info">
