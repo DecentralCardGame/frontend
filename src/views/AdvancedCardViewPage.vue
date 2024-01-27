@@ -9,7 +9,7 @@
         class="lg:flex justify-center space-y-20 lg:space-y-0 lg:space-x-20 p-6"
       >
         <div>
-          <p class="text-center max-w-xs pb-8" v-if="state.card.FlavourText">
+          <p class="text-center max-w-xs pb-8 mx-auto" v-if="state.card.FlavourText">
             <i>"{{ state.card.FlavourText }}"</i>
           </p>
           <div>
