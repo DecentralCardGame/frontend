@@ -164,6 +164,7 @@
     <GalleryComponent
       :cards-per-page="galleryFilters.cardsPerPage"
       :all-card-ids="state.cardList"
+      :rarity-filter="state.rarity"
     />
   </div>
 </template>
@@ -192,6 +193,7 @@ type PageQuery = {
   cardType: string;
   classes: string;
   sortBy: string;
+  rarity: string;
   nameContains: string;
   keywordsContains: string;
   notesContains: string;
@@ -217,10 +219,10 @@ onMounted(() => {
   }
 });
 
-
 const loadCardList = () => loadQueryCardList(getDefaultQuery())
 
 const normalizeQuery = (query: PageQuery): PageQuery => {
+  state.rarity = query.rarity
   return {
     status: query.status ? query.status.toLowerCase() : "playable", // default playable
     owner: query.owner ? query.owner : "",
@@ -229,6 +231,7 @@ const normalizeQuery = (query: PageQuery): PageQuery => {
     sortBy: query.sortBy
       ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "")
       : "",
+    rarity: query.rarity,
     nameContains: query.nameContains ? query.nameContains : "",
     keywordsContains: query.keywordsContains ? query.keywordsContains : "",
     notesContains: query.notesContains
@@ -244,7 +247,7 @@ const normalizeQuery = (query: PageQuery): PageQuery => {
       ? ""
       : loggedIn.value
       ? ""
-      : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set
+      : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set, this is a HACK to cheat in notesContains
   };
 };
 

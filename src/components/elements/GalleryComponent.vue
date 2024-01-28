@@ -62,11 +62,13 @@ const props = withDefaults(
   defineProps<{
     allCardIds: Array<number>;
     cardsPerPage: number;
+    rarityFilter: string;
     cardCallback: (card: Card) => void
   }>(),
   {
     allCardIds: () => [],
     cardsPerPage: 100,
+    rarityFilter: "none",
     cardCallback: () => {}
   }
 );
@@ -94,7 +96,6 @@ const cardIdsOnPage = computed(() => {
     state.pageId * props.cardsPerPage,
     (state.pageId + 1) * props.cardsPerPage
   );
-  console.log(r);
   return r;
 });
 
@@ -152,7 +153,11 @@ const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
   props.cardCallback(card)
   if (card.Content) {
-    state.cards.push(card);
+    // TODO remove this "if" once proper rarity search from blockchain side works
+    if (card.rarity == props.rarityFilter || props.rarityFilter == "none") {
+      state.cards.push(card);
+    }
+      
   } else if (!card.owner) {
     console.error("card without content and owner: ", card);
   } else {
