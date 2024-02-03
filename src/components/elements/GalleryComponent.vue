@@ -1,163 +1,95 @@
 <template>
-  <div class="gallery__view">
-    <div
-      v-for="card in state.cards"
-      :key="card.id"
-      @click="showGalleryModal(card)"
-    >
-      <div class="cardContainer" @click="showGalleryModal(card)">
-        <div class="cardContainer--element">
-          <CardComponent
-            :model="card"
-            :image-u-r-l="card.image"
-            hover-behavior="none"
-            class="gallery__view__card"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="button-container button-container--bottom ccbutton">
-    <button v-show="state.pageId > 0" @click="prevPage">back</button>
-    <button v-show="state.pageId + 1 <= maxPageID" @click="nextPage">
-      next
-    </button>
-  </div>
   <div
-    v-if="state.isGalleryModalVisible"
-    class="container-modal"
-    @click="closeGalleryModal"
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8"
+    id="galleryWrapper"
   >
-    <div class="ability-modal-container">
-      <GalleryModal
-        :keyword-descriptions="state.keywordDescriptions"
-        :model="state.clickedCard"
-        :image-u-r-l="state.clickedCard.image"
-        @close="closeGalleryModal"
-        @cardview="cardview"
-        @edit="edit"
-      />
+    <div v-for="card in state.cards" :key="card.id">
+      <div>
+        <CardComponent :model="card" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import GalleryModal from "@/components/modals/GalleryModal.vue";
-import { computed, reactive, watch } from "vue";
-import { useLastInputEvent } from "@/def-composables/useLastInputEvent";
+import { computed, onBeforeUnmount, onMounted, reactive, watch } from "vue";
 import { useCards } from "@/def-composables/useCards";
-import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { Card } from "@/model/Card";
 import CardComponent from "@/components/elements/CardComponent.vue";
 import { useCardsRules } from "@/def-composables/useCardRules";
-import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 
-const { lastInputEvent } = useLastInputEvent();
 const { getCard } = useCards();
 const { rules } = useCardsRules();
-const { editCard } = useCardCreatorCards();
 const router = useRouter();
 
 const props = withDefaults(
   defineProps<{
     allCardIds: Array<number>;
     cardsPerPage: number;
-    rarityFilter: string;
-    cardCallback: (card: Card) => void
+    cardCallback: (card: Card) => void;
   }>(),
   {
     allCardIds: () => [],
     cardsPerPage: 100,
-    rarityFilter: "none",
-    cardCallback: () => {}
+    cardCallback: () => {},
   }
 );
 
 const initialState: {
   clickedCard: Card;
-  isGalleryModalVisible: boolean;
-  pageId: number;
   cards: Array<Card>;
-  leavePageLock: boolean;
-  keywordDescriptions: string[][];
+  cardsOnPage: number;
 } = {
   clickedCard: new Card(),
-  isGalleryModalVisible: false,
-  pageId: 0,
   cards: [],
-  leavePageLock: false,
-  keywordDescriptions: [],
+  cardsOnPage: 0,
 };
 
 const state = reactive(initialState);
 
 const cardIdsOnPage = computed(() => {
-  let r = props.allCardIds.slice(
-    state.pageId * props.cardsPerPage,
-    (state.pageId + 1) * props.cardsPerPage
-  );
-  return r;
+  return props.allCardIds.slice(0, state.cardsOnPage);
 });
 
-const maxPageID = computed(() =>
-  Math.ceil(props.allCardIds.length / props.cardsPerPage) - 1
+onMounted(() => {
+  state.cardsOnPage = props.cardsPerPage;
+  window.addEventListener("scroll", onScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", onScroll);
+});
+
+watch(cardIdsOnPage, (cardIds, oldCardIds) =>
+  cardIds.filter((cardId) => !oldCardIds.includes(cardId)).forEach(loadCard)
 );
 
-onBeforeRouteLeave((to, from, next) => {
-  if (state.leavePageLock) next(false);
-  else next();
-});
-
-watch(cardIdsOnPage, (cardIds) => {
-  state.cards = [];
-  cardIds.forEach(loadCard);
-});
-
-watch(lastInputEvent, (event) => {
-  if (event.which == 5) {
-    state.leavePageLock = true; // Forward Mouse special button
-    nextPage();
-  } else if (event.which == 4) {
-    // Backward Mouse special button
-    state.leavePageLock = true;
-    prevPage();
-  } else {
-    state.leavePageLock = false;
+watch(
+  () => props.allCardIds,
+  () => {
+    state.cards = [];
+    state.cardsOnPage = props.cardsPerPage;
   }
-});
+);
 
-const edit = () => {
-  editCard.card.value = state.clickedCard;
-  router.push("cardCreator");
-};
-
-const showGalleryModal = (card: Card) => {
-  state.clickedCard = card;
-  state.isGalleryModalVisible = true;
-
-  state.keywordDescriptions = [];
-  const firstLetterToLower = (s: string) => {
-    return s[0].toLowerCase() + s.substring(1);
-  };
-  state.clickedCard.Keywords.forEach((ability) => {
-    ability.forEach((keyword) => {
-      state.keywordDescriptions.push([
-        keyword,
-        rules.value.definitions[firstLetterToLower(keyword)].description,
-      ]);
-    });
-  });
+const onScroll = () => {
+  const galleryWrapperElement = document.getElementById("galleryWrapper")!;
+  if (
+    window.top!.scrollY + window.innerHeight + 200 >=
+      galleryWrapperElement.offsetTop + galleryWrapperElement.offsetHeight &&
+    state.cardsOnPage < props.allCardIds.length
+  ) {
+    state.cardsOnPage += 10;
+    console.log(state.cardsOnPage);
+  }
 };
 
 const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
-  props.cardCallback(card)
+  props.cardCallback(card);
   if (card.Content) {
-    // TODO remove this "if" once proper rarity search from blockchain side works
-    if (card.rarity == props.rarityFilter || props.rarityFilter == "none") {
-      state.cards.push(card);
-    }
-      
+    state.cards.push(card);
   } else if (!card.owner) {
     console.error("card without content and owner: ", card);
   } else {
@@ -166,15 +98,5 @@ const loadCard = async (cardId: number) => {
   return card;
 };
 
-const nextPage = () => {
-  if (state.pageId + 1 <= maxPageID.value) state.pageId += 1;
-};
-
-const prevPage = () => {
-  if (state.pageId > 0) state.pageId -= 1;
-};
-
 const cardview = () => router.push("cardview/" + state.clickedCard.id);
-
-const closeGalleryModal = () => (state.isGalleryModalVisible = false);
 </script>

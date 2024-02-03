@@ -6,8 +6,8 @@
     <a class="grow" />
     <div class="my-auto max-md:hidden">
       <RouterCCButton :type="ButtonType.RED" to="/d"
-        >Download Gameclient</RouterCCButton
-      >
+        >Download Gameclient
+      </RouterCCButton>
     </div>
     <LoginComponent />
     <button class="my-auto" @click="toggleBar">
@@ -52,7 +52,7 @@ type NavigationElement = {
 };
 
 const elems: NavigationElement[] = [
-  { routeName: "/g", display: "Gallery", highlighted: false },
+  { routeName: "/gallery", display: "Gallery", highlighted: false },
   { routeName: "/s", display: "Sets and Boosters", highlighted: true },
   { routeName: "/l", display: "Learn", highlighted: false },
 ];
