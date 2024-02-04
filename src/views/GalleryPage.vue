@@ -1,171 +1,46 @@
 <template>
-  <div class="gallery">
-    <h2 class="header__h2">Gallery</h2>
-    <p class="header__p">
-      In the gallery, you can view cards that were created by the community.
-    </p>
-    <br />
-    <div v-show="galleryFilters.visible" class="gallery__filter-box ccbutton">
-      <div class="gallery__filter__item">
-        <select v-model="galleryFilters.status">
-          <option value="">any card status</option>
-          <option>Prototype</option>
-          <option>Trial</option>
-          <option>Permanent</option>
-          <option>Playable</option>
-          <option>Unplayable</option>
-        </select>
-      </div>
-      <div class="gallery__filter__item">
-        <select v-model="galleryFilters.cardType">
-          <option value="">any card type</option>
-          <option>Headquarter</option>
-          <option>Entity</option>
-          <option>Action</option>
-          <option>Place</option>
-        </select>
-      </div>
-      <div class="gallery__filter__item">
-        <select v-model="galleryFilters.sortBy">
-          <option value="">default sort</option>
-          <option>Name (A-Z)</option>
-          <option>Name (Z-A)</option>
-          <option>Casting Cost (↑)</option>
-          <option>Casting Cost (↓)</option>
-          <option>Id (↑)</option>
-          <option>Id (↓)</option>
-        </select>
-      </div>
+  <div class="flex">
+    <div class="flex justify-center p-16 w-[35rem] bg-[#552026] max-md:hidden">
       <div>
-        <div class="gallery__filter__item">
-          <input
-            v-model="galleryFilters.nameContains"
-            placeholder="Name contains"
+        <button
+          v-for="classButton in classButtons"
+          class="text-white font-bold uppercase px-2"
+          :key="classButton.label"
+          @click="
+            galleryFilters[classButton.name] = !galleryFilters[classButton.name]
+          "
+        >
+          <img
+            :src="
+              galleryFilters[classButton.name]
+                ? classButton.active
+                : classButton.inactive
+            "
+            class="w-12"
+            :alt="classButton.name + ' classbutton'"
           />
-        </div>
-      </div>
-      <div>
-        <div class="gallery__filter__item">
-          <input
-            v-model="galleryFilters.keywordsContains"
-            placeholder="Ability/Effect contains"
-          />
-        </div>
-      </div>
-      <div class="gallery__filter__item">
-        <input
-          v-model="galleryFilters.notesContains"
-          placeholder="Notes contain"
-        />
-      </div>
-      <div class="gallery__filter__item">
-        <input
-          v-model="galleryFilters.owner"
-          placeholder="Owner is"
-          @click="galleryFilters.owner = address"
-        />
-      </div>
-
-      <div class="gallery__filter__item">
-        <div class="no--wrap">
-          <label class="gallery-checkbox__label">
-            <input
-              v-model="galleryFilters.classesVisible"
-              class="gallery-checkbox"
-              type="checkbox"
-              @input="
-                galleryFilters.classesVisible = !galleryFilters.classesVisible
-              "
-            />
-            Filter classes
-            <br />
-          </label>
-        </div>
-
-        <span
-          v-if="galleryFilters.classesVisible"
-          class="clickable-option"
-          @click="galleryFilters.classORLogic = !galleryFilters.classORLogic"
-        >
-          <br /><br />
-          {{ galleryFilters.classORLogic ? "Any: " : "All: " }}
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{
-            'clickable-option': true,
-            negated: !galleryFilters.mysticism,
-          }"
-          @click="galleryFilters.mysticism = !galleryFilters.mysticism"
-        >
-          Mysticism
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{
-            'clickable-option': true,
-            negated: !galleryFilters.technology,
-          }"
-          @click="galleryFilters.technology = !galleryFilters.technology"
-        >
-          Technology
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, negated: !galleryFilters.nature }"
-          @click="galleryFilters.nature = !galleryFilters.nature"
-        >
-          Nature
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{
-            'clickable-option': true,
-            negated: !galleryFilters.culture,
-          }"
-          @click="galleryFilters.culture = !galleryFilters.culture"
-        >
-          Culture
-        </span>
-      </div>
-
-      <div class="gallery__filter__item">
-        <input
-          placeholder="cards per page"
-          @input="galleryFilters.cardsPerPage = $event.target.value"
-        />
-      </div>
-      <div class="gallery__filter__item">
-        <button @click="resetFilters">Clear Filters</button>
-      </div>
-      <div class="gallery__filter__item">
-        <button @click="loadCardList">Apply</button>
+          {{ classButton.label }}
+        </button>
       </div>
     </div>
-    <div class="button-container button-container--top ccbutton">
-      <button @click="toggleGalleryFilters">
-        {{ galleryFilters.visible ? "hide" : "show" }}
-        filters
-      </button>
-      <button v-show="loggedIn" @click="loadMyCardList()">My Cards</button>
-      <button
-        v-show="$route.query.notesContains != 'Finished'"
-        @click="loadSpecialCardList('Finished')"
-      >
-        Alpha Set
-      </button>
-      <button
-        v-show="$route.query.notesContains == 'Finished'"
-        @click="loadSpecialCardList('')"
-      >
-        All Cards
-      </button>
+    <div class="bg-black py-8 md:p-8 lg:p-16 text-white">
+      <div class="mx-16">
+        <div class="flex justify-center md:justify-between">
+          <p class="text-xl my-auto max-md:hidden">
+            {{ state.cardList.length }} Results
+          </p>
+          <p class="text-5xl text-center">Gallery</p>
+          <p class="text-xl my-auto max-md:hidden">Sort by</p>
+        </div>
+        <div class="mt-8 h-1 rounded w-full bg-white"></div>
+      </div>
+
+      <GalleryComponent
+        class="p-16"
+        :cards-per-page="galleryFilters.cardsPerPage"
+        :all-card-ids="state.cardList"
+      />
     </div>
-    <GalleryComponent
-      :cards-per-page="galleryFilters.cardsPerPage"
-      :all-card-ids="state.cardList"
-      :rarity-filter="state.rarity"
-    />
   </div>
 </template>
 
@@ -178,6 +53,14 @@ import { useQuery } from "@/def-composables/useQuery";
 import { onMounted, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
+import techActive from "@/assets/figma/ClassesButtons/tech.png";
+import techInactive from "@/assets/figma/ClassesButtons/tech_unselected.png";
+import cultureActive from "@/assets/figma/ClassesButtons/culture.png";
+import cultureInactive from "@/assets/figma/ClassesButtons/culture_unselected.png";
+import natureActive from "@/assets/figma/ClassesButtons/nature.png";
+import natureInactive from "@/assets/figma/ClassesButtons/nature_unselected.png";
+import mystActive from "@/assets/figma/ClassesButtons/myst.png";
+import mystInactive from "@/assets/figma/ClassesButtons/myst_unselected.png";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
@@ -186,6 +69,38 @@ const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
   useGalleryFilters;
 const route = useRoute();
 const router = useRouter();
+
+const classButtons: Array<{
+  active: any;
+  inactive: any;
+  label: string;
+  name: string;
+}> = [
+  {
+    active: techActive,
+    inactive: techInactive,
+    label: "tec",
+    name: "technology",
+  },
+  {
+    active: cultureActive,
+    inactive: cultureInactive,
+    label: "cul",
+    name: "culture",
+  },
+  {
+    active: natureActive,
+    inactive: natureInactive,
+    label: "nat",
+    name: "nature",
+  },
+  {
+    active: mystActive,
+    inactive: mystInactive,
+    label: "mys",
+    name: "mysticism",
+  },
+];
 
 type PageQuery = {
   status: string;
@@ -219,10 +134,9 @@ onMounted(() => {
   }
 });
 
-const loadCardList = () => loadQueryCardList(getDefaultQuery())
+const loadCardList = () => loadQueryCardList(getDefaultQuery());
 
 const normalizeQuery = (query: PageQuery): PageQuery => {
-  state.rarity = query.rarity
   return {
     status: query.status ? query.status.toLowerCase() : "playable", // default playable
     owner: query.owner ? query.owner : "",
@@ -287,20 +201,19 @@ const loadQueryCardList = (query: PageQuery) => {
       notesContains: query.notesContains,
     }),
   ];
-  Promise.all(requestedCards)
-    .then((res) => {
-      let cardList: number[] = R.reduce<unknown, number[]>(
-        R.concat,
-        [],
-        R.pluck("cardsList", res)
-      );
+  Promise.all(requestedCards).then((res) => {
+    let cardList: number[] = R.reduce<unknown, number[]>(
+      R.concat,
+      [],
+      R.pluck("cardsList", res)
+    );
 
-      if (R.any((x) => R.includes(x, galleryFilters.sortBy), ["A-Z", "↑"])) {
-        state.cardList = R.reverse(cardList).map((v) => Number(v));
-      } else {
-        state.cardList = R.reverse(cardList);
-      }
-    })
+    if (R.any((x) => R.includes(x, galleryFilters.sortBy), ["A-Z", "↑"])) {
+      state.cardList = R.reverse(cardList).map((v) => Number(v));
+    } else {
+      state.cardList = R.reverse(cardList);
+    }
+  });
 };
 
 const resetFilters = () => {

@@ -12,26 +12,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'cc-red': '#D82027',
+        "cc-red": "#D82027",
+        "cc-yellow": "#FEC560",
       },
       fontFamily: {
-        sans: [
-          'Roboto',
-          'roboto',
-          ],
+        sans: ["Roboto", "roboto"],
       },
       dropShadow: {
-        glowRed: [
-          "0px 0px 24px rgba(216, 32, 39, 0.90)",
-        ],
-        header : [
-          "8px 8px 3px rgba(0, 0, 0, 0.25)",
-        ],
-        glowTeal: [
-          "0px 0px 24px #40C1C7",
-          ]
-      }
-    }
+        glowRed: ["0px 0px 24px rgba(216, 32, 39, 0.90)"],
+        header: ["8px 8px 3px rgba(0, 0, 0, 0.25)"],
+        glowTeal: ["0px 0px 24px #40C1C7"],
+        glowCCYellow: ["0px 0px 24px #FEC560"],
+      },
+    },
   },
   plugins: [require("@headlessui/tailwindcss")],
 };

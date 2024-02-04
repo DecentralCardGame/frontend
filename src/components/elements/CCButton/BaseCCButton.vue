@@ -58,7 +58,7 @@ const getButtonColor = () => {
     case ButtonType.BLACK:
       return "bg-black";
     case ButtonType.YELLOW:
-      return "bg-[#FEC560]";
+      return "bg-cc-yellow";
     case ButtonType.WHITE:
       return "bg-white";
     case ButtonType.TEAL:

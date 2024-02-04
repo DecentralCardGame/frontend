@@ -1,9 +1,13 @@
 <template>
   <div
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8"
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-16"
     id="galleryWrapper"
   >
-    <div v-for="card in state.cards" :key="card.id">
+    <div
+      v-for="card in state.cards"
+      :key="card.id"
+      class="hover:scale-105 drop-shadow-glowCCYellow"
+    >
       <div>
         <CardComponent :model="card" />
       </div>

@@ -22,8 +22,8 @@
               >CREATE CARDS
             </RouterCCButton>
             <RouterCCButton :type="ButtonType.WHITE" to="/b"
-              >Play the game</RouterCCButton
-            >
+              >Play the game
+            </RouterCCButton>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
       class="bg-center bg-cover bg-[url('@/assets/figma/Car.jpeg')] pt-10 sm:pt-32"
     >
       <div
-        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-[#FEC560]/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32 xl:w-[70%] xl:mx-auto"
+        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-cc-yellow/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32 xl:w-[70%] xl:mx-auto"
       >
         <div class="justify-self-center">
           <p class="text-6xl font-bold pb-6">New Sets and Boosters</p>
@@ -48,7 +48,9 @@
           <RouterCCButton class="pb-4" to="/b" :type="ButtonType.BLACK"
             >Buy Boosters
           </RouterCCButton>
-          <RouterCCButton to="/g" :type="ButtonType.BLACK">Visit Gallery</RouterCCButton>
+          <RouterCCButton to="/g" :type="ButtonType.BLACK"
+            >Visit Gallery
+          </RouterCCButton>
         </div>
         <div>
           <img
@@ -93,8 +95,8 @@
           </div>
           <br />
           <LinkCCButton :type="ButtonType.TEAL" to="https://discord.gg/ZKKbhUs"
-            >Join Us</LinkCCButton
-          >
+            >Join Us
+          </LinkCCButton>
           <img
             alt="gameboard"
             class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
@@ -119,7 +121,6 @@ import gonftLogo from "@/assets/figma/PresentationLogos/GoNFTs.png";
 import coinliveLogo from "@/assets/figma/PresentationLogos/coinlive.png";
 import hackatomLogo from "@/assets/figma/PresentationLogos/hackatom.png";
 import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg";
-import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaser from "@/components/elements/FadeTeaser.vue";
 import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
