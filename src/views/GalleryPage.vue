@@ -23,7 +23,7 @@
         </button>
       </div>
     </div>
-    <div class="bg-black py-8 md:p-8 lg:p-16 text-white">
+    <div class="bg-black py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
         <div class="flex justify-center md:justify-between">
           <p class="text-xl my-auto max-md:hidden">

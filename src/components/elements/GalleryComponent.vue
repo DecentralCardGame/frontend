@@ -7,6 +7,7 @@
       v-for="card in state.cards"
       :key="card.id"
       class="hover:scale-105 drop-shadow-glowCCYellow"
+      @click="router.push({ name: 'CardView', params: { id: card.id } })"
     >
       <div>
         <CardComponent :model="card" />
