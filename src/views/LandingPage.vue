@@ -48,7 +48,7 @@
           <RouterCCButton class="pb-4" to="/b" :type="ButtonType.BLACK"
             >Buy Boosters
           </RouterCCButton>
-          <RouterCCButton to="/g" :type="ButtonType.BLACK"
+          <RouterCCButton to="/gallery" :type="ButtonType.BLACK"
             >Visit Gallery
           </RouterCCButton>
         </div>
