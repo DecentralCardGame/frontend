@@ -18,7 +18,7 @@
           >
             <div
               v-if="item == 'done' || item == 'active'"
-              class="bg-red-600 rounded-full h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2"
+              class="bg-white rounded-full h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2"
             >
               <img
                 v-if="item == 'active'"
@@ -28,7 +28,7 @@
             </div>
             <div
               v-if="item == 'open'"
-              class="bg-white dark:bg-gray-700 h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative"
+              class="bg-red-600 h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative"
             >
               <div class="h-3 w-3 bg-red-600 rounded-full rounded-full"></div>
             </div>
@@ -43,10 +43,13 @@
             class="pr-4 scale-[2]"
             @forward="activeStep = Math.min(activeStep+1, progressBar.length-1)"
             @backward="activeStep = Math.max(activeStep-1, 0)"
+            :start="activeStep == 0"
+            :end="activeStep == progressBar.length-1"
            >
           </NavigateCCButtons>
 
           <BaseCCButton
+            v-if="activeStep<progressBar.length-1"
             :type="ButtonType.RED"
             @click="activeStep = Math.min(activeStep+1, progressBar.length-1)"
           >Next</BaseCCButton>
@@ -122,7 +125,9 @@
             <div class="py-3 text-s">Pick a name for your card.</div>
             <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
               <input
-                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s font-normal font-['Roboto']"
+                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s
+                  focus:border-black border-0 border-solid focus:outline-none focus:ring-0
+                  placeholder-white placeholder-opacity-50"
                 placeholder="Coolest Name around here"
                 v-model="model.CardName"
                 maxLength="25"
@@ -175,7 +180,9 @@
             Address:
           </div>
           <input
-            class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s font-normal font-['Roboto']"
+            class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s
+              focus:border-black border-0 border-solid focus:outline-none focus:ring-0
+              placeholder-white placeholder-opacity-50"
             v-model="artistAddress"
           >
         </div>
@@ -244,7 +251,9 @@
             <div class="py-3 text-s">Now let's add some spice to your creation.</div>
             <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
               <input
-                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-50 text-s"
+                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s
+                        focus:border-black border-0 border-solid focus:outline-none focus:ring-0
+                        placeholder-white placeholder-opacity-50"
                 placeholder="Quote that represents this card."
                 v-model="model.FlavourText"
                 maxLength="25"
@@ -277,7 +286,7 @@
 
             <div v-if="cardRules.Card.children[getRulesType()] &&
                     cardRules.Card.children[getRulesType()].children.CastingCost"
-              class=""
+              class="h-14"
             >
               Casting Cost
               <Dropdown
@@ -291,7 +300,7 @@
             <div v-if="
                 cardRules.Card.children[getRulesType()] &&
                 cardRules.Card.children[getRulesType()].children.AdditionalCost"
-              class=""
+              class="h-14"
             >
               Special Cost:
                 <Dropdown
@@ -299,11 +308,13 @@
                   :options="getSpecialCostRange()"
                   :displayFn="specialCostLabels"
                   @change="setAdditionalCost($event)"
+                  class="m-2"
                  />
                 <span v-if="model.AdditionalCost.DiscardCost">
                   <Dropdown
                     v-model="model.AdditionalCost.DiscardCost.Amount"
                     :options="getGenericCostRange('DiscardCost')"
+                    class="m-2"
                   />
                   cards from your hand.
                 </span>
@@ -311,6 +322,7 @@
                   <Dropdown
                     v-model="model.AdditionalCost.SacrificeCost.Amount"
                     :options="getGenericCostRange('SacrificeCost')"
+                    class="m-2"
                   />
                   Entitites.
                 </span>
@@ -318,13 +330,17 @@
                   <Dropdown
                     v-model="model.AdditionalCost.VoidCost.Amount"
                     :options="getGenericCostRange('VoidCost')"
+                    class="m-2"
                   />
                   cards from your graveyard.
                 </span>
               </div>
 
               <!-- Delay -->
-              <div v-if="model.type === 'Headquarter'">
+              <div
+                v-if="model.type === 'Headquarter'"
+                class="h-14"
+              >
                 <b>Delay</b> of Activation:
                 <Dropdown
                   v-model="model.Delay"
@@ -334,7 +350,10 @@
               </div>
 
               <!-- Attack -->
-              <div v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]">
+              <div
+                v-if="model.type === 'Entity' && cardRules.Card.children[getRulesType()]"
+                class="h-14"
+              >
                 Attack
                 <Dropdown
                   v-model="model.Attack"
@@ -344,7 +363,10 @@
               </div>
 
               <!-- Defense -->
-              <div v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]">
+              <div
+                v-if="model.type !== 'Action' && cardRules.Card.children[getRulesType()]"
+                class="h-14"
+              >
                 Defense
                 <Dropdown
                   v-model="model.Health"
@@ -355,7 +377,7 @@
               <!-- Tags -->
               <div
                 v-if="cardRules.Card"
-                class=""
+                class="h-14"
               >
                 Tags:
                 <Dropdown
@@ -363,6 +385,7 @@
                   v-model="model.Tags[0]"
                   :options="getTags(0)"
                   @change="updateTags"
+                  class="m-2"
                 />
                 <Dropdown
                   initial="Select 2nd"
@@ -371,6 +394,7 @@
                   :options="getTags(1)"
                   :displayFn="x => x == '' ? '<remove>' : x"
                   @change="updateTags"
+                  class="m-2"
                 />
               </div>
 
@@ -399,11 +423,11 @@
             <div class="py-3 text-s font-bold">ABILITIES AND EFFECTS</div>
             <div class="py-3 text-s">Click to add abilities or effects to your card.</div>
 
-            <div class="flex flex-row">
+            <div class="">
               <div
                 v-for="(abilityEntry, index) in abilities"
                 :key="abilityEntry.ability"
-                class="flex flex-row"
+                class="flex flex-col"
               >
                 <AbilityComponent
                   class="px-6 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold  border-4 border-gray-100 border-opacity-50"
@@ -456,12 +480,82 @@
         </div>
       </div>
 
-      <div v-if="activeStep==7">
-        <NavigationButtons />
+      <!-- Council Notes -->
+      <div v-if="activeStep==7"
+        class="flex flex-row justify-center"
+      >
+        <div class="px-8">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage()"
+            :model="model"
+          />
+        </div>
+        <div class="text-left flex flex-col justify-between">
+          <div class="py-5 justify-center">
+            <div class="py-3 text-s font-bold">NOTES TO THE COUNCIL</div>
+            <div class="py-3 text-s">Anything that you believe needs explaining.</div>
+            <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+              <input
+                class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s
+                        focus:border-black border-0 border-solid focus:outline-none focus:ring-0
+                        placeholder-white placeholder-opacity-50"
+                placeholder="Or some kind words."
+                v-model="model.notes"
+                maxLength="25"
+              >
+            </div>
+
+            <!-- this only shows to Jannik and should not be available to ordinary users, design is irrelevant here -->
+            <span v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej' || true"
+              class="">
+              Balance Anchor
+            </span>
+            <input
+              v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej' || true"
+              v-model="model.balanceAnchor"
+              type="checkbox"
+              class=""
+            >
+
+          </div>
+          <div class="pl-10">
+            <NavigationButtons />
+          </div>
+        </div>
       </div>
 
-      <div v-if="activeStep==8">
-        <NavigationButtons />
+      <div v-if="activeStep==8"
+        class="flex flex-row justify-center">
+         <div class="px-8">
+          <CardComponent
+            id="card"
+            :active-step="activeStep"
+            :display-notes="true"
+            :image-u-r-l="getCardImage()"
+            :model="model"
+          />
+        </div>
+        <div class="text-left flex flex-col justify-between">
+          <div class="py-5 justify-center">
+            <div class="py-3 text-s font-bold">SUMMARY</div>
+            <div class="py-3 text-s"> "{{ model.FlavourText }}" </div>
+
+
+
+          </div>
+          <div class="pl-10 flex flex-row space-x-1">
+            <NavigationButtons />
+            <BaseCCButton
+
+              :type="ButtonType.RED"
+              @click="activeStep = Math.min(activeStep+1, progressBar.length-1)"
+              >Mint Card
+            </BaseCCButton>
+          </div>
+         </div>
       </div>
 
     </div>
@@ -543,18 +637,6 @@
 
 
             <div
-              v-if="activeStep == 1 && !designateArtist && false"
-            >
-
-              <span class="creator-text">
-                My <b>beauty</b> must not be covered by borders
-              </span>
-              <input
-                v-model="model.fullArt"
-                type="checkbox"
-              >
-            </div>
-            <div
               v-if="artistMode"
               class="creator-nav-container ccbutton"
               align="center"
@@ -566,8 +648,6 @@
               </button>
             </div>
           </div>
-
-
 
 
 
@@ -627,31 +707,6 @@
             </div>
           </div>
 
-
-          <div
-            v-if="activeStep == 4 && !artistMode"
-            class="creator-input-container"
-          >
-            <span class="creator-text">
-              <b>Notes</b> for the Council
-            </span>
-            <input
-              v-model="model.notes"
-            >
-
-            <span v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
-              class="creator-text">
-              Balance Anchor 
-            </span>
-              
-            <input
-              v-if="address=='cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
-              v-model="model.balanceAnchor"
-              type="checkbox"
-              class="input--checkbox__right"
-            >
-
-          </div>
 
           <div
             v-if="activeStep == 4 && mode == Mode.EDIT && !abilities"
@@ -772,7 +827,7 @@ import { isASCII } from "@/utils/utils";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
-import Dropdown from "@/components/elements/Dropdown/Dropdown.vue"; // Adjust the path based on your project structure
+import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate()
@@ -804,6 +859,7 @@ export default {
         "done",
         "done",
         "active",
+        "open",
         "open",
         "open",
         "open",

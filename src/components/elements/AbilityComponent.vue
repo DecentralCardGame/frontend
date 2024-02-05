@@ -3,26 +3,27 @@
     <div
       v-for="(entry, index) in ability.interaction"
       :key="index"
-      class="text-sm"
+      class="text-[24px] flex flex-row"
     >
       {{ entry.pre }}
 
       <!-- pick one entry of an enum via dropdown -->
-      <select
-        v-if="entry.btn.type === 'enum'"
-        v-model="entry.btn.label"
-        @change="showAbilityModal(ability, entry.btn)"
-      >
-        <option
-          v-for="item in enumOptions(entry)"
-          :key="item"
-          :value="item"
-        >
-          {{ item }}
-        </option>
-      </select>
+      <div v-if="entry.btn.type === 'enum'">
+        <Dropdown
+          v-model="entry.btn.label"
+          :options="enumOptions(entry)"
+          @change="showAbilityModal(ability, entry.btn)"
+        />
+      </div>
 
       <!-- pick an int from a dropdown case -->
+      <div v-if="entry.btn.type === 'int'">
+        <Dropdown
+          v-model="entry.btn.label"
+          :options="intRange(entry)"
+          @change="showAbilityModal(ability, entry.btn)"
+        />
+      </div>
       <select
         v-else-if="entry.btn.type === 'int'"
         v-model="entry.btn.label"
@@ -38,6 +39,13 @@
       </select>
 
       <!-- pick an int or a variable from dropdown case -->
+      <div v-if="entry.btn.type === 'intX'">
+        <Dropdown
+          v-model="entry.btn.label"
+          :options="intXRange(entry)"
+          @change="showAbilityModal(ability, entry.btn)"
+        />
+      </div>
       <select
         v-else-if="entry.btn.type === 'intX'"
         v-model="entry.btn.label"
@@ -71,7 +79,7 @@
       <!-- default case (interfaces and rest) -->
       <div
         v-else
-        class="clickable-option"
+        class="text-xs"
         @click="showAbilityModal(ability, entry.btn)"
       >
         {{ entry.btn.label }}
@@ -80,12 +88,12 @@
     </div>
 
     <span
-      class="text-close"
+      class="text-xs"
       @click="deleteAbility()"
     >
       X
     </span>
-    <div class="ability-modal-container">
+    <div class="text-xs">
       <AbilityModal
         v-if="isAbilityModalVisible"
         :dialog-prop="dialog"
@@ -101,6 +109,7 @@
 <script>
 import * as R from 'ramda'
 import AbilityModal from '@/components//modals/AbilityModal.vue'
+import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 import { createInteraction, updateInteraction, shallowClone, atPath } from '../utils/utils.js'
 import { useCardsRules } from "@/def-composables/useCardRules";
 
@@ -108,7 +117,7 @@ const unrequiredLabel = "[ANY]"
 
 export default {
   name: 'AbilityComponent',
-  components: { AbilityModal },
+  components: { AbilityModal, Dropdown, },
   props: {
     dialogProp: {
       type: Object,

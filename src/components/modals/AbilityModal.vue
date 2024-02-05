@@ -32,7 +32,7 @@
             <div
               v-for="(option, index) in filterClasses(dialog.options)"
               :key="index"
-              class="m-2 p-2 w-44 bg-white bg-opacity-80 rounded-sm text-black flex flex-col justify-center"
+              class="m-2 p-2 w-44 bg-white bg-opacity-80 rounded-sm text-black text-s flex flex-col justify-center items-center"
             >
               <input
                 v-if="dialog.type==='boolean'"
@@ -44,46 +44,53 @@
               <button
                 v-if="dialog.type === 'enum'"
                 aria-label="Close modal"
-                class="text-center"
+                class="text-s"
                 type="button"
                 @click="selected = option; addAbility();"
               >
               <img
-                class="justify-self-center"
+                class=""
                 :src="getIcon(option)"
               >
                 {{ option.name }}
                 <span v-if="option.description">  {{ option.description }} </span>
               </button>
 
+              <!-- check if this is in use or deprecated -->
               <input
+                aria-label="string select"
                 v-if="dialog.type==='stringEnter'"
                 v-model="selectedString"
                 placeholder="enter text"
                 style="display: inline;color:black;height:50px"
               >
+
+              <!-- This is the standard case -->
               <button
                 v-if="dialog.type === 'interface' || dialog.type === 'root'"
                 aria-label="Close modal"
-                class="flex flex-col justify-center"
+                class=""
                 type="button"
                 @click="selected = option; addAbility();"
               >
-                <img
-                  class="w-12"
-                  :src="getIcon(option)"
-                >
-                <div class="font-bold">
-                  {{ option.name }}
-                </div>
-                <div class="info">
-                  {{ option.description }}
+                <div class="flex flex-col items-center aspect-square justify-evenly">
+                  <div class="w-9">
+                    <img :src="getIcon(option)">
+                  </div>
+                  <div class="font-bold h-9 text-xs place-content-center">
+                    {{ option.name }}
+
+                  </div>
+                   <div class="leading-5 text-xs place-content-start">
+                    {{ option.description }}
+                  </div>
                 </div>
               </button>
 
               <label
                 v-if="dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'enum'"
                 for="index"
+                class="text-s"
               > {{ option.name }}
               </label>
             </div>
@@ -92,11 +99,11 @@
             </div>
           </slot>
         </section>
-        <footer class="modal__footer">
+        <footer class="">
           <button
             v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
             aria-label="Close modal"
-            class="btn--default"
+            class="text-s"
             type="button"
             @click="addAbility"
           >

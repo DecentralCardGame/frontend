@@ -2,16 +2,21 @@
   <div class="relative inline-block" @click="toggleDropdown">
     <!-- Trigger button -->
     <button class="p-2 bg-[#8F6173] rounded-sm flex items-center shadow-xl"
-      :class="{'ring ring-black ring-opacity-50': isOpen}"
+      :class="{'ring ring-white ring-opacity-100': isOpen}"
     >
       {{ display(selectedOption) }}
       <img class="w-4 pr-1 rotate-180" src="@/assets/figma/Navigation_Triangle.svg" alt="navigation triangle" />
     </button>
 
     <!-- Dropdown menu -->
-    <div v-if="isOpen" class="absolute z-30 bg-[#8F6173] rounded-sm w-full text-center ring ring-black ring-opacity-50">
+    <div v-if="isOpen"
+      class="absolute z-30 bg-[#8F6173] rounded-sm w-full text-center ring ring-white ring-opacity-100 hover:cursor-pointer"
+    >
       <ul>
-        <li v-for="option in dropdownOptions" :key="getOptionKey(option)" @click="selectOption(option)">
+        <li
+          v-for="option in dropdownOptions" :key="getOptionKey(option)" @click="selectOption(option)"
+          class="hover:bg-white hover:bg-opacity-70 hover:text-[#D82027]"
+        >
           {{ display(option) }}
         </li>
       </ul>
