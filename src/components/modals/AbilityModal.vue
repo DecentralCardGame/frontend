@@ -399,18 +399,3 @@ export default {
 };
 
 </script>
-
-<style>
-
-.title {
-  font-size: $font-size-big
-}
-
-.info {
-  font-family: $font-family;
-}
-
-.button--img {
-  max-width: 40px;
-}
-</style>

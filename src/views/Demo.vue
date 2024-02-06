@@ -23,14 +23,12 @@
 
 <script setup lang="ts">
 import logoBig from "@/assets/figma/LogoBig.png";
-import landingBackground from "@/assets/figma/LandingBackground.jpeg";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
-import { StencilPreview } from "vue-advanced-cropper";
 </script>
 
 <style lang="scss">
 .LogoBox {
-  background-image: url("@/assets/figma/LandingBackground.jpeg");
+  background-image: url("@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg");
 }
 </style>

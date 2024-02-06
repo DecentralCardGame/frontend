@@ -172,27 +172,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss">
-@import "modal";
-
-.input--transfer {
-  input {
-    padding: 0;
-    margin-right: 2px;
-    display: inline;
-    color: $black;
-    text-align: right;
-    background-color: lightgray;
-  }
-  select {
-    color: $black;
-    background-color: lightgray;
-    display: inline;
-  }
-}
-
-.warning {
-  color: red;
-}
-</style>

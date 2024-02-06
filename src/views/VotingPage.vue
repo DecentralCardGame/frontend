@@ -61,21 +61,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  @import "@/scss/variables";
-
-  .ModeButton {
-    padding: 20px;
-    background-color: transparent;
-    border: 0;
-  }
-
-  .ModeButton:hover {
-    background-color: $main-color-c;
-    a {
-      color: black;
-    }
-  }
-
-</style>

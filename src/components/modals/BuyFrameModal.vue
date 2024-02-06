@@ -144,23 +144,3 @@ const isNumber = (evt: any) => {
   }
 }
 </script>
-
-<style>
-
-.table--buy-scard-frame {
-  td {
-    text-align: right;
-    padding: 0.25rem;
-  }
-
-  input {
-    padding: 0;
-    margin: 0;
-    display: inline;
-    color: $black;
-    text-align: right;
-    background-color: lightgray;
-    font-weight: bold;
-  }
-}
-</style>

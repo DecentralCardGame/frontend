@@ -62,11 +62,13 @@ const props = withDefaults(
   defineProps<{
     allCardIds: Array<number>;
     cardsPerPage: number;
+    rarityFilter: string;
     cardCallback: (card: Card) => void
   }>(),
   {
     allCardIds: () => [],
     cardsPerPage: 100,
+    rarityFilter: "none",
     cardCallback: () => {}
   }
 );
@@ -94,7 +96,6 @@ const cardIdsOnPage = computed(() => {
     state.pageId * props.cardsPerPage,
     (state.pageId + 1) * props.cardsPerPage
   );
-  console.log(r);
   return r;
 });
 
@@ -152,7 +153,11 @@ const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
   props.cardCallback(card)
   if (card.Content) {
-    state.cards.push(card);
+    // TODO remove this "if" once proper rarity search from blockchain side works
+    if (card.rarity == props.rarityFilter || props.rarityFilter == "none") {
+      state.cards.push(card);
+    }
+      
   } else if (!card.owner) {
     console.error("card without content and owner: ", card);
   } else {
@@ -173,41 +178,3 @@ const cardview = () => router.push("cardview/" + state.clickedCard.id);
 
 const closeGalleryModal = () => (state.isGalleryModalVisible = false);
 </script>
-
-<style scoped lang="scss">
-@import "@/scss/variables";
-
-.gallery__view {
-  margin: 1rem 0;
-  text-shadow: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-}
-
-.ability-modal-container {
-  margin: 5vh auto auto;
-  max-width: 800px;
-  max-height: 95vh;
-  @media (max-width: 480px) {
-    margin-top: 0;
-    max-height: 300vh;
-    height: auto;
-  }
-  //OLD:
-  // position: relative;
-  z-index: 3;
-}
-
-.cardContainer--element {
-  position: relative;
-  flex-grow: 1;
-  max-width: 350px;
-}
-
-.button-container--bottom {
-  margin-top: 2rem;
-}
-</style>

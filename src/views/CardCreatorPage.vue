@@ -1306,10 +1306,7 @@ export default {
         );
         return;
       }
-      if (
-        this.designateArtist &&
-        !this.$cardChain.validAddress(this.artistAddress)
-      ) {
+      if (this.designateArtist && !validAddress(this.artistAddress)) {
         this.notifyFail(
           "Invalid Address",
           "The address given for designated artist is invalid."

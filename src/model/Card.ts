@@ -16,6 +16,7 @@ export class ChainCard {
   votePool: Coin = new Coin();
   voters: Array<string> = [];
   balanceAnchor: boolean = false;
+  rarity: string ="";
   hash: string = "";
 
   static from(json: any) {
@@ -47,6 +48,7 @@ export class ChainCard {
 
       card.type = cardType;
       card.owner = this.owner;
+      card.rarity = this.rarity;
       card.status = this.status;
       card.artist = this.artist;
       card.Content = content;

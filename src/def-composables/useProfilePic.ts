@@ -35,7 +35,7 @@ const useProfilePicInstance = () => {
     }
   };
 
-  return { getImg, loggedInProfilePic };
+  return { getImg, getDefaultImg, loggedInProfilePic };
 }
 
 let instance: ReturnType<typeof useProfilePicInstance>;

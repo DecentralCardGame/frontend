@@ -355,39 +355,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-  .clickable-option {
-    display: inline-block;
-    border: dotted 1px white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .clickable-option--negated {
-    text-decoration: line-through;
-    display: inline-block;
-    border: dotted 1px white;
-    cursor: pointer;
-  }
-
-  .ability {
-    display: inline-block;
-  }
-
-  .ability-modal-container {
-    margin-top: 1vh;
-    position: relative;
-    z-index: 3;
-  }
-
-  .text-close {
-    position: absolute;
-    right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 0.25rem;
-    line-height: 100%;
-  }
-</style>

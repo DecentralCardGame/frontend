@@ -164,6 +164,7 @@
     <GalleryComponent
       :cards-per-page="galleryFilters.cardsPerPage"
       :all-card-ids="state.cardList"
+      :rarity-filter="state.rarity"
     />
   </div>
 </template>
@@ -192,6 +193,7 @@ type PageQuery = {
   cardType: string;
   classes: string;
   sortBy: string;
+  rarity: string;
   nameContains: string;
   keywordsContains: string;
   notesContains: string;
@@ -217,10 +219,10 @@ onMounted(() => {
   }
 });
 
-
 const loadCardList = () => loadQueryCardList(getDefaultQuery())
 
 const normalizeQuery = (query: PageQuery): PageQuery => {
+  state.rarity = query.rarity
   return {
     status: query.status ? query.status.toLowerCase() : "playable", // default playable
     owner: query.owner ? query.owner : "",
@@ -229,6 +231,7 @@ const normalizeQuery = (query: PageQuery): PageQuery => {
     sortBy: query.sortBy
       ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "")
       : "",
+    rarity: query.rarity,
     nameContains: query.nameContains ? query.nameContains : "",
     keywordsContains: query.keywordsContains ? query.keywordsContains : "",
     notesContains: query.notesContains
@@ -244,7 +247,7 @@ const normalizeQuery = (query: PageQuery): PageQuery => {
       ? ""
       : loggedIn.value
       ? ""
-      : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set
+      : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set, this is a HACK to cheat in notesContains
   };
 };
 
@@ -306,90 +309,3 @@ const resetFilters = () => {
   loadCardList();
 };
 </script>
-
-<style scoped lang="scss">
-@import "../scss/variables";
-
-.gallery__view {
-  margin: 1rem 0;
-  text-shadow: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-}
-
-.gallery__view__card:hover {
-  cursor: pointer;
-}
-
-.gallery__filter-box {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  border: $border-thickness solid $white;
-  padding: 1rem;
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 4rem;
-  grid-row-gap: 1rem;
-}
-
-.gallery__filter__item {
-  width: 20%;
-}
-
-.no--wrap {
-  display: inline;
-  float: left;
-  white-space: nowrap;
-}
-
-.clickable-option {
-  display: inline;
-  white-space: nowrap;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.negated {
-  text-decoration: line-through;
-  font-weight: normal;
-}
-
-.cardContainer {
-  position: relative;
-  display: flex;
-}
-
-.button-container--top {
-  margin-bottom: 2rem;
-}
-
-.container-modal {
-  position: fixed;
-  z-index: 4;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease;
-  @media (max-width: 480px) {
-    bottom: 0;
-    overflow-y: scroll;
-  }
-}
-
-.gallery-checkbox {
-  position: absolute;
-  display: inline-block;
-  margin-left: -25px;
-}
-
-.gallery-checkbox__label {
-  margin-left: 25px;
-}
-</style>
