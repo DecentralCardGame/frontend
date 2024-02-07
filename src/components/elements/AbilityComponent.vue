@@ -79,7 +79,8 @@
       <!-- default case (interfaces and rest) -->
       <div
         v-else
-        class="text-xs"
+        id="btn.label"
+        class="text-[24px] bg-gray-300 bg-opacity-40 hover:bg-red-600 hover:bg-opacity-50  font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
         @click="showAbilityModal(ability, entry.btn)"
       >
         {{ entry.btn.label }}
