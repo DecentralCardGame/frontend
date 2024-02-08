@@ -34,7 +34,7 @@ interface Option {
   label: string;
 }
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue'], ['change']);
 const props = defineProps(['options', 'initial', 'displayFn']); // Define a prop named 'options' that will be passed from the parent component
 
 const isOpen = ref(false);

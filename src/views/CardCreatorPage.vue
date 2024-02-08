@@ -430,7 +430,8 @@
                 class="flex flex-col"
               >
                 <AbilityComponent
-                  class="px-6 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold  border-4 border-gray-100 border-opacity-50"
+                  id="AbilityComponent"
+                  class="px-3 bg-white bg-opacity-[15%] text-white text-opacity-50 font-bold  border-4 border-gray-100 border-opacity-50"
                   :abilities="abilities"
                   :ability-prop="abilityEntry"
                   :dialog-prop="abilityDialog"
@@ -543,8 +544,6 @@
             <div class="py-3 text-s font-bold">SUMMARY</div>
             <div class="py-3 text-s"> "{{ model.FlavourText }}" </div>
 
-
-
           </div>
           <div class="pl-10 flex flex-row space-x-1">
             <NavigationButtons />
@@ -562,150 +561,6 @@
   </div>
 
   <!--
-
-
-          <div
-            v-if="activeStep == 1 || artistMode"
-            class="creator-input-single-column"
-          >
-            <label
-              v-if="!artistMode"
-              class="input--checkbox-label__left"
-            >
-              <input
-                v-model="designateArtist"
-                class="input--checkbox__left"
-                type="checkbox"
-              >
-              Designate other Artist (not yourself) <br>
-            </label>
-            <div
-              v-if="designateArtist && !artistMode"
-            >
-              <span class="creator-text"><b>Address:</b> </span>
-              <input
-                v-model="artistAddress"
-              >
-            </div>
-
-            <div
-              v-if="!designateArtist || artistMode"
-            >
-              <span class="creator-text">
-                Please upload an image. <br>By uploading you confirm you have the rights to upload this image.
-              </span>
-            </div>
-            <div
-              v-if="!designateArtist || artistMode"
-            >
-              <input
-                id="file"
-                class="inputfile"
-                name="file"
-                type="file"
-                @change="inputFile"
-              >
-              <label
-                class="button--file"
-                for="file"
-              >Choose a file without copyright violation
-              </label>
-            </div>
-            <div
-              v-if="!designateArtist || artistMode"
-            >
-              <cropper
-                class="cropper"
-                :src="cropImage"
-                :auto-zoom="true"
-                :stencil-size="{
-                  width: cardBounds.x,
-                  height: model.fullArt ? cardBounds.y : cardBounds.x
-                }"
-                :canvas="{
-                  height: model.fullArt ? cardBounds.y : cardBounds.x,
-                  width: cardBounds.x
-                }"
-                :default-size="{
-                  width: cardBounds.x,
-                  height: model.fullArt ? cardBounds.y : cardBounds.x,
-                }"
-                image-restriction="fit-area"
-                @change="changeCrop"
-              />
-            </div>
-
-
-            <div
-              v-if="artistMode"
-              class="creator-nav-container ccbutton"
-              align="center"
-            >
-              <button
-                @click="saveSubmit()"
-              >
-                Update Artwork
-              </button>
-            </div>
-          </div>
-
-
-
-          <div
-            v-if="activeStep == 3 && !artistMode"
-          >
-            <p>
-              In this step, you craft the heart of your card. Press the button to
-              add <b>abilities / effects</b> to your card.
-            </p>
-            <div>
-              <div
-                v-for="(abilityEntry, index) in abilities"
-                :key="abilityEntry.ability"
-              >
-                <AbilityComponent
-                  class="ability-frame"
-                  :abilities="abilities"
-                  :ability-prop="abilityEntry"
-                  :dialog-prop="abilityDialog"
-                  :model="model"
-                  @update:ability="updateAbility($event, index)"
-                />
-              </div>
-            </div>
-            <div v-if="model.type === 'Action'">
-              <button
-                class="btn btn-abilitycreator"
-                type="button"
-                @click="showAbilityModal('root')"
-              >
-                Add Effect
-              </button>
-            </div>
-            <div
-              v-else
-              class="creator-text"
-            >
-              <button
-                class="btn btn-abilitycreator"
-                type="button"
-                @click="showAbilityModal('root')"
-              >
-                Add Ability
-              </button>
-            </div>
-            <div class="ability-modal-container">
-              <AbilityModal
-                v-if="isAbilityModalVisible"
-                :abilities-prop="abilities"
-                :ability="ability"
-                :dialog-prop="abilityDialog"
-                :cardmodel="model"
-                @close="closeAbilityModal"
-                @update:ability="ability = $event"
-              />
-            </div>
-          </div>
 
 
           <div

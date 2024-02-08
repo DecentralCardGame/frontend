@@ -3,12 +3,16 @@
     <div
       v-for="(entry, index) in ability.interaction"
       :key="index"
-      class="text-[24px] flex flex-row"
+      class="text-[24px] flex flex-row justify-start items-center"
     >
-      {{ entry.pre }}
+      <div id="pre" class="">
+        {{ entry.pre }}
+      </div>
 
       <!-- pick one entry of an enum via dropdown -->
-      <div v-if="entry.btn.type === 'enum'">
+      <div
+        id="enum dropdown"
+        v-if="entry.btn.type === 'enum'">
         <Dropdown
           v-model="entry.btn.label"
           :options="enumOptions(entry)"
@@ -17,60 +21,29 @@
       </div>
 
       <!-- pick an int from a dropdown case -->
-      <div v-if="entry.btn.type === 'int'">
+      <div id="int"
+        v-else-if="entry.btn.type === 'int'">
         <Dropdown
           v-model="entry.btn.label"
           :options="intRange(entry)"
           @change="showAbilityModal(ability, entry.btn)"
         />
       </div>
-      <select
-        v-else-if="entry.btn.type === 'int'"
-        v-model="entry.btn.label"
-        @change="showAbilityModal(ability, entry.btn)"
-      >
-        <option
-          v-for="n in intRange(entry)"
-          :key="n"
-          :value="n"
-        >
-          {{ n }}
-        </option>
-      </select>
 
-      <!-- pick an int or a variable from dropdown case -->
-      <div v-if="entry.btn.type === 'intX'">
+      <!-- pick an int or a variable (X) from dropdown case -->
+      <div id="intX"
+        v-else-if="entry.btn.type === 'intX'">
         <Dropdown
           v-model="entry.btn.label"
           :options="intXRange(entry)"
           @change="showAbilityModal(ability, entry.btn)"
         />
       </div>
-      <select
-        v-else-if="entry.btn.type === 'intX'"
-        v-model="entry.btn.label"
-        @change="showAbilityModal(ability, entry.btn)"
-      >
-        <option
-          v-for="n in intXRange(entry)"
-          :key="n"
-          :value="n"
-        >
-          {{ n }}
-        </option>
-        <option
-          v-for="n in enumRange(entry)"
-          :key="n"
-          :value="n"
-        >
-          {{ n }}
-        </option>
-      </select>
 
       <!-- toggle a bool via click case -->
       <div
         v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
-        class="clickable-option--negated"
+        class=""
         @click="showAbilityModal(ability, entry.btn)"
       >
         {{ entry.btn.label }}
@@ -80,7 +53,7 @@
       <div
         v-else
         id="btn.label"
-        class="text-[24px] bg-gray-300 bg-opacity-40 hover:bg-red-600 hover:bg-opacity-50  font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+        class="text-[24px] bg-transparent hover:bg-black uppercase hover:text-white py-2 px-4 border-2 border-gray-300 hover:border-transparent"
         @click="showAbilityModal(ability, entry.btn)"
       >
         {{ entry.btn.label }}
@@ -89,12 +62,12 @@
     </div>
 
     <span
-      class="text-xs"
+      class="text-[24px]"
       @click="deleteAbility()"
     >
       X
     </span>
-    <div class="text-xs">
+    <div class="">
       <AbilityModal
         v-if="isAbilityModalVisible"
         :dialog-prop="dialog"

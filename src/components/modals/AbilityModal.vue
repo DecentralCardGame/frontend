@@ -32,7 +32,7 @@
             <div
               v-for="(option, index) in filterClasses(dialog.options)"
               :key="index"
-              class="m-2 p-2 w-44 bg-white bg-opacity-80 rounded-sm text-black text-s flex flex-col justify-center items-center"
+              class="m-2 p-2 w-44 bg-white bg-opacity-80 rounded-sm text-black flex flex-col justify-center items-center"
             >
               <input
                 v-if="dialog.type==='boolean'"
@@ -44,7 +44,7 @@
               <button
                 v-if="dialog.type === 'enum'"
                 aria-label="Close modal"
-                class="text-s"
+                class=""
                 type="button"
                 @click="selected = option; addAbility();"
               >
@@ -77,11 +77,11 @@
                   <div class="w-9">
                     <img :src="getIcon(option)">
                   </div>
-                  <div class="font-bold h-9 text-xs place-content-center">
+                  <div class="font-bold h-9 text-[20px] place-content-center">
                     {{ option.name }}
 
                   </div>
-                   <div class="leading-5 text-xs place-content-start">
+                   <div class="leading-5 text-[16px] place-content-start">
                     {{ option.description }}
                   </div>
                 </div>
