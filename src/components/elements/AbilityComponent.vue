@@ -1,73 +1,77 @@
 <template>
-  <div>
-    <div
-      v-for="(entry, index) in ability.interaction"
-      :key="index"
-      class="text-[24px] flex flex-row justify-start items-center"
-    >
-      <div id="pre" class="">
-        {{ entry.pre }}
-      </div>
+  <div id="AbilityComponentInside"
+    class="flex flex-row">
 
-      <!-- pick one entry of an enum via dropdown -->
       <div
-        id="enum dropdown"
-        v-if="entry.btn.type === 'enum'">
-        <Dropdown
-          v-model="entry.btn.label"
-          :options="enumOptions(entry)"
-          @change="showAbilityModal(ability, entry.btn)"
-        />
-      </div>
-
-      <!-- pick an int from a dropdown case -->
-      <div id="int"
-        v-else-if="entry.btn.type === 'int'">
-        <Dropdown
-          v-model="entry.btn.label"
-          :options="intRange(entry)"
-          @change="showAbilityModal(ability, entry.btn)"
-        />
-      </div>
-
-      <!-- pick an int or a variable (X) from dropdown case -->
-      <div id="intX"
-        v-else-if="entry.btn.type === 'intX'">
-        <Dropdown
-          v-model="entry.btn.label"
-          :options="intXRange(entry)"
-          @change="showAbilityModal(ability, entry.btn)"
-        />
-      </div>
-
-      <!-- toggle a bool via click case -->
-      <div
-        v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
-        class=""
-        @click="showAbilityModal(ability, entry.btn)"
+        id="interaction"
+        v-for="(entry, index) in ability.interaction"
+        :key="index"
+        class="text-[24px] flex flex-row justify-start items-center"
       >
-        {{ entry.btn.label }}
-      </div>
+        <div id="pre" class="">
+          {{ entry.pre }}
+        </div>
 
-      <!-- default case (interfaces and rest) -->
+        <!-- pick one entry of an enum via dropdown -->
+        <div
+          id="enum dropdown"
+          v-if="entry.btn.type === 'enum'">
+          <Dropdown
+            v-model="entry.btn.label"
+            :options="enumOptions(entry)"
+            @change="showAbilityModal(ability, entry.btn)"
+          />
+        </div>
+
+        <!-- pick an int from a dropdown case -->
+        <div id="int"
+          v-else-if="entry.btn.type === 'int'">
+          <Dropdown
+            v-model="entry.btn.label"
+            :options="intRange(entry)"
+            @change="showAbilityModal(ability, entry.btn)"
+          />
+        </div>
+
+        <!-- pick an int or a variable (X) from dropdown case -->
+        <div id="intX"
+          v-else-if="entry.btn.type === 'intX'">
+          <Dropdown
+            v-model="entry.btn.label"
+            :options="intXRange(entry)"
+            @change="showAbilityModal(ability, entry.btn)"
+          />
+        </div>
+
+        <!-- toggle a bool via click case -->
+        <div
+          v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
+          class=""
+          @click="showAbilityModal(ability, entry.btn)"
+        >
+          {{ entry.btn.label }}
+        </div>
+
+        <!-- default case (interfaces and rest) -->
+        <div
+          v-else
+          id="btn.label"
+          class="m-2 py-2 px-4 text-[24px] uppercase bg-transparent hover:bg-white hover:bg-opacity-70 hover:text-[#D82027] border-2 border-gray-300 hover:cursor-pointer "
+          @click="showAbilityModal(ability, entry.btn)"
+        >
+          {{ entry.btn.label }}
+        </div>
+        {{ entry.post }}
+      </div>
       <div
-        v-else
-        id="btn.label"
-        class="text-[24px] bg-transparent hover:bg-black uppercase hover:text-white py-2 px-4 border-2 border-gray-300 hover:border-transparent"
-        @click="showAbilityModal(ability, entry.btn)"
+        class="m-2 py-2 px-4 text-[24px] text-center border-2 border-gray-300 bg-transparent cursor-pointer hover:bg-black hover:text-white border-2 border-gray-300"
+        @click="deleteAbility()"
       >
-        {{ entry.btn.label }}
+        X
       </div>
-      {{ entry.post }}
-    </div>
 
-    <span
-      class="text-[24px]"
-      @click="deleteAbility()"
-    >
-      X
-    </span>
-    <div class="">
+  </div>
+  <div class="">
       <AbilityModal
         v-if="isAbilityModalVisible"
         :dialog-prop="dialog"
@@ -76,7 +80,6 @@
         @update:ability="updateAbility($event)"
         @close="closeAbilityModal"
       />
-    </div>
   </div>
 </template>
 

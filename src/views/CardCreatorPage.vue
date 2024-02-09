@@ -423,15 +423,16 @@
             <div class="py-3 text-s font-bold">ABILITIES AND EFFECTS</div>
             <div class="py-3 text-s">Click to add abilities or effects to your card.</div>
 
-            <div class="">
+            <div id="abiliy container" class="">
               <div
+                id="ability"
                 v-for="(abilityEntry, index) in abilities"
                 :key="abilityEntry.ability"
                 class="flex flex-col"
               >
                 <AbilityComponent
                   id="AbilityComponent"
-                  class="px-3 bg-white bg-opacity-[15%] text-white text-opacity-50 font-bold  border-4 border-gray-100 border-opacity-50"
+                  class="px-2 flex bg-white bg-opacity-[15%] text-white text-opacity-50 font-bold  border-4 border-gray-100 border-opacity-50"
                   :abilities="abilities"
                   :ability-prop="abilityEntry"
                   :dialog-prop="abilityDialog"
@@ -442,7 +443,7 @@
             </div>
             <div v-if="model.type === 'Action'">
               <button
-                class="btn btn-abilitycreator"
+                class=""
                 type="button"
                 @click="showAbilityModal('root')"
               >
@@ -450,8 +451,9 @@
               </button>
             </div>
             <div
-              v-else
-              class="creator-text"
+              v-else-if="!isAbilityModalVisible"
+              id="addmore"
+              class=""
             >
               <button
                 class="px-60 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold  border-4 border-gray-100 border-opacity-50"
@@ -461,7 +463,7 @@
                 +
               </button>
             </div>
-            <div class="ability-modal-container">
+            <div id="AbilityModal" class="">
               <AbilityModal
                 v-if="isAbilityModalVisible"
                 :abilities-prop="abilities"
