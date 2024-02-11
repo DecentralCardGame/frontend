@@ -13,7 +13,16 @@
             {{ cardList.length }} Results
           </p>
           <p class="text-5xl text-center">Gallery</p>
-          <p class="text-xl my-auto max-md:hidden">Sort by</p>
+          <div class="flex space-x-4">
+            <p class="text-xl my-auto max-md:hidden">Sort by</p>
+            <Dropdown
+              v-model="galleryFilters.sortBy"
+              class="my-auto"
+              :type="ButtonType.RED"
+              :options="['Name', 'CastingCost', 'Id']"
+              :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
+            />
+          </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white"></div>
       </div>
@@ -60,6 +69,8 @@ import {
 import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
 import type { GalleryFilters } from "@/model/GalleryFilters";
 import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
+import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
+import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();

@@ -9,7 +9,7 @@ export class GalleryFilters {
   hq: boolean = true;
   entity: boolean = true;
   keywordsContains = "";
-  sortBy = "";
+  sortBy = "Name";
   nameContains = "";
   notesContains = "";
   cardsPerPage = 30;
