@@ -27,7 +27,7 @@
       <div class="mx-16">
         <div class="flex justify-center md:justify-between">
           <p class="text-xl my-auto max-md:hidden">
-            {{ state.cardList.length }} Results
+            {{ cardList.length }} Results
           </p>
           <p class="text-5xl text-center">Gallery</p>
           <p class="text-xl my-auto max-md:hidden">Sort by</p>
@@ -38,7 +38,7 @@
       <GalleryComponent
         class="p-16"
         :cards-per-page="galleryFilters.cardsPerPage"
-        :all-card-ids="state.cardList"
+        :all-card-ids="cardList"
       />
     </div>
   </div>
@@ -61,6 +61,11 @@ import natureActive from "@/assets/figma/ClassesButtons/nature.png";
 import natureInactive from "@/assets/figma/ClassesButtons/nature_unselected.png";
 import mystActive from "@/assets/figma/ClassesButtons/myst.png";
 import mystInactive from "@/assets/figma/ClassesButtons/myst_unselected.png";
+import {
+  normalizeQuery,
+  type PageQuery,
+  useGallery,
+} from "@/def-composables/useGallery";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
@@ -69,6 +74,8 @@ const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
   useGalleryFilters;
 const route = useRoute();
 const router = useRouter();
+const { cardList, loadQueryCardList, pageQueryFromGalleryFilters } =
+  useGallery();
 
 const classButtons: Array<{
   active: any;
@@ -102,68 +109,51 @@ const classButtons: Array<{
   },
 ];
 
-type PageQuery = {
-  status: string;
-  owner: string;
-  cardType: string;
-  classes: string;
-  sortBy: string;
-  rarity: string;
-  nameContains: string;
-  keywordsContains: string;
-  notesContains: string;
-};
-
-const initialState: {
-  cardList: Array<number>;
-} = {
-  cardList: [],
-};
-
-const state = reactive(initialState);
+const TypeButtons: Array<{
+  active: any;
+  inactive: any;
+  label: string;
+  name: string;
+}> = [
+  {
+    active: techActive,
+    inactive: techInactive,
+    label: "tec",
+    name: "technology",
+  },
+  {
+    active: cultureActive,
+    inactive: cultureInactive,
+    label: "cul",
+    name: "culture",
+  },
+  {
+    active: natureActive,
+    inactive: natureInactive,
+    label: "nat",
+    name: "nature",
+  },
+  {
+    active: mystActive,
+    inactive: mystInactive,
+    label: "mys",
+    name: "mysticism",
+  },
+];
 
 onMounted(() => {
   if (!R.isEmpty(route.query)) {
     if (route.query.cardList) {
-      state.cardList = (route.query.cardList as string[]).map((v) => Number(v));
+      cardList.value = (route.query.cardList as string[]).map((v) => Number(v));
     } else {
-      loadQueryCardList(normalizeQuery(route.query as PageQuery));
+      loadQueryCardList(normalizeQuery(route.query));
     }
   } else {
     loadCardList();
   }
 });
 
-const loadCardList = () => loadQueryCardList(getDefaultQuery());
-
-const normalizeQuery = (query: PageQuery): PageQuery => {
-  return {
-    status: query.status ? query.status.toLowerCase() : "playable", // default playable
-    owner: query.owner ? query.owner : "",
-    cardType: query.cardType ? query.cardType : "",
-    classes: query.classes ? query.classes : "",
-    sortBy: query.sortBy
-      ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "")
-      : "",
-    rarity: query.rarity,
-    nameContains: query.nameContains ? query.nameContains : "",
-    keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-    notesContains: query.notesContains
-      ? query.notesContains
-      : query.status ||
-        query.owner ||
-        query.cardType ||
-        query.classes ||
-        query.sortBy ||
-        query.nameContains ||
-        query.keywordsContains ||
-        query.notesContains
-      ? ""
-      : loggedIn.value
-      ? ""
-      : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set, this is a HACK to cheat in notesContains
-  };
-};
+const loadCardList = () => loadQueryCardList(pageQueryFromGalleryFilters());
 
 const loadMyCardList = () =>
   loadSpecialCardList(galleryFilters.notesContains, address.value);
@@ -186,34 +176,6 @@ const loadSpecialCardList = (notes: string, owner: string = "") => {
     q.owner = owner;
   }
   loadQueryCardList(q);
-};
-const loadQueryCardList = (query: PageQuery) => {
-  router.push({ path: "gallery", query: query });
-
-  let requestedCards = [
-    queryQCards(query.status, {
-      owner: query.owner,
-      cardType: query.cardType,
-      classes: query.classes,
-      sortBy: query.sortBy,
-      nameContains: query.nameContains,
-      keywordsContains: query.keywordsContains,
-      notesContains: query.notesContains,
-    }),
-  ];
-  Promise.all(requestedCards).then((res) => {
-    let cardList: number[] = R.reduce<unknown, number[]>(
-      R.concat,
-      [],
-      R.pluck("cardsList", res)
-    );
-
-    if (R.any((x) => R.includes(x, galleryFilters.sortBy), ["A-Z", "↑"])) {
-      state.cardList = R.reverse(cardList).map((v) => Number(v));
-    } else {
-      state.cardList = R.reverse(cardList);
-    }
-  });
 };
 
 const resetFilters = () => {
