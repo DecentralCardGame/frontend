@@ -21,7 +21,7 @@
     "process": "^0.11.10",
     "qrcode": "^1.5.1",
     "ramda": "^0.28.0",
-    "vue": "^3.3.4",
+    "vue": "^3.4.18",
     "vue-advanced-cropper": "^2.8.8",
     "vue-router": "^4.2.5"
   },
@@ -58,6 +58,7 @@
     "build": "run-p type-check build-only",
     "build-only": "vite build",
     "dev": "vite",
+    "local": "vite --mode localhost",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "postinstall": "node postinstall.js",
     "prepare": "node prepare.js",
