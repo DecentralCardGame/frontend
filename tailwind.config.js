@@ -14,6 +14,7 @@ module.exports = {
       colors: {
         "cc-red": "#D82027",
         "cc-yellow": "#FEC560",
+        "pussy-red": "#8F6173",
       },
       fontFamily: {
         sans: ["Roboto", "roboto"],

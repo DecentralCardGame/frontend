@@ -12,8 +12,8 @@
         'font-bold',
         'font-[roboto]',
         'uppercase',
-        getTextColor(),
-        getButtonColor(),
+        getTextColor(type),
+        getButtonColor(type),
         'active:bg-[#552026]',
         'active:text-white',
         'active:border-0',
@@ -29,42 +29,20 @@
 </template>
 
 <script setup lang="ts">
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import {
+  ButtonType,
+  getButtonColor,
+  getTextColor,
+} from "@/components/elements/CCButton/ButtonType";
 
 const emit = defineEmits(["click"]);
 
 const props = withDefaults(
   defineProps<{
-    type: ButtonType;
+    type?: ButtonType;
   }>(),
   {
     type: ButtonType.YELLOW,
   }
 );
-
-const getTextColor = () => {
-  switch (props.type) {
-    case ButtonType.BLACK:
-    case ButtonType.TEAL:
-    case ButtonType.RED:
-      return "text-white";
-    default:
-      return "text-black";
-  }
-};
-
-const getButtonColor = () => {
-  switch (props.type) {
-    case ButtonType.BLACK:
-      return "bg-black";
-    case ButtonType.YELLOW:
-      return "bg-cc-yellow";
-    case ButtonType.WHITE:
-      return "bg-white";
-    case ButtonType.TEAL:
-      return "bg-[#40C1C7]";
-    case ButtonType.RED:
-      return "bg-cc-red";
-  }
-};
 </script>

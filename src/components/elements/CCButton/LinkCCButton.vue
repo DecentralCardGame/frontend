@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a :href="props.to" class="mx-auto">
-      <BaseCCButton :type="props.type">
+    <a :href="to" class="mx-auto">
+      <BaseCCButton :type="type">
         <slot></slot>
       </BaseCCButton>
     </a>
@@ -14,7 +14,7 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 const props = withDefaults(
   defineProps<{
     to: string;
-    type: ButtonType;
+    type?: ButtonType;
   }>(),
   {
     to: "dummy",

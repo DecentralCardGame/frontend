@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link :to="props.to" class="mx-auto">
-      <BaseCCButton :type="props.type">
+    <router-link :to="to" class="mx-auto">
+      <BaseCCButton :type="type">
         <slot></slot>
       </BaseCCButton>
     </router-link>
@@ -15,7 +15,7 @@ import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 const props = withDefaults(
   defineProps<{
     to: any;
-    type: ButtonType;
+    type?: ButtonType;
   }>(),
   {
     to: {},
