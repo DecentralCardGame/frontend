@@ -1,3 +1,4 @@
 {
-    "backend.maxHeapSizeMb": 1568
+    "backend.maxHeapSizeMb": 1568,
+    "editor.formatOnSave": true
 }
