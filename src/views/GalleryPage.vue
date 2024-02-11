@@ -1,26 +1,9 @@
 <template>
   <div class="flex">
     <div class="flex justify-center p-16 w-[35rem] bg-[#552026] max-md:hidden">
-      <div>
-        <button
-          v-for="classButton in classButtons"
-          class="text-white font-bold uppercase px-2"
-          :key="classButton.label"
-          @click="
-            galleryFilters[classButton.name] = !galleryFilters[classButton.name]
-          "
-        >
-          <img
-            :src="
-              galleryFilters[classButton.name]
-                ? classButton.active
-                : classButton.inactive
-            "
-            class="w-12"
-            :alt="classButton.name + ' classbutton'"
-          />
-          {{ classButton.label }}
-        </button>
+      <div class="space-y-6">
+        <GalleryFilterImageChooser :options="classOptions" />
+        <GalleryFilterImageChooser :options="typeOptions" />
       </div>
     </div>
     <div class="bg-black py-8 md:p-8 lg:p-16 text-white grow">
@@ -61,11 +44,22 @@ import natureActive from "@/assets/figma/ClassesButtons/nature.png";
 import natureInactive from "@/assets/figma/ClassesButtons/nature_unselected.png";
 import mystActive from "@/assets/figma/ClassesButtons/myst.png";
 import mystInactive from "@/assets/figma/ClassesButtons/myst_unselected.png";
+import hqActive from "@/assets/figma/TypesButtons/hq.png";
+import hqInactive from "@/assets/figma/TypesButtons/hq_unselected.png";
+import entityActive from "@/assets/figma/TypesButtons/entity.png";
+import entityInactive from "@/assets/figma/TypesButtons/entity_unselected.png";
+import actionActive from "@/assets/figma/TypesButtons/action.png";
+import actionInactive from "@/assets/figma/TypesButtons/action_unselected.png";
+import placeActive from "@/assets/figma/TypesButtons/place.png";
+import placeInactive from "@/assets/figma/TypesButtons/place_unselected.png";
 import {
   normalizeQuery,
   type PageQuery,
   useGallery,
 } from "@/def-composables/useGallery";
+import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
+import type { GalleryFilters } from "@/model/GalleryFilters";
+import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
@@ -77,12 +71,7 @@ const router = useRouter();
 const { cardList, loadQueryCardList, pageQueryFromGalleryFilters } =
   useGallery();
 
-const classButtons: Array<{
-  active: any;
-  inactive: any;
-  label: string;
-  name: string;
-}> = [
+const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   {
     active: techActive,
     inactive: techInactive,
@@ -109,35 +98,30 @@ const classButtons: Array<{
   },
 ];
 
-const TypeButtons: Array<{
-  active: any;
-  inactive: any;
-  label: string;
-  name: string;
-}> = [
+const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   {
-    active: techActive,
-    inactive: techInactive,
-    label: "tec",
-    name: "technology",
+    active: hqActive,
+    inactive: hqInactive,
+    label: "hq",
+    name: "hq",
   },
   {
-    active: cultureActive,
-    inactive: cultureInactive,
-    label: "cul",
-    name: "culture",
+    active: entityActive,
+    inactive: entityInactive,
+    label: "ent",
+    name: "entity",
   },
   {
-    active: natureActive,
-    inactive: natureInactive,
-    label: "nat",
-    name: "nature",
+    active: actionActive,
+    inactive: actionInactive,
+    label: "act",
+    name: "action",
   },
   {
-    active: mystActive,
-    inactive: mystInactive,
-    label: "mys",
-    name: "mysticism",
+    active: placeActive,
+    inactive: placeInactive,
+    label: "pla",
+    name: "place",
   },
 ];
 
