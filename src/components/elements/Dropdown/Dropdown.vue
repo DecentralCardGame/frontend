@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative inline-block text-left rounded-sm hover:cursor-pointer"
+    class="relative inline-block text-left rounded hover:cursor-pointer"
     :class="[
       ...(isOpen ? ['ring', 'ring-white', 'ring-opacity-100'] : []),
       getButtonColor(type),
@@ -16,10 +16,9 @@
         alt="navigation triangle"
       />
     </div>
-
     <ul
       v-if="isOpen"
-      class="absolute z-30 ring ring-white rounded-sm ring-opacity-100 whitespace-nowrap"
+      class="absolute z-30 ring ring-white rounded ring-opacity-100 whitespace-nowrap"
       :class="[getButtonColor(type)]"
     >
       <li
