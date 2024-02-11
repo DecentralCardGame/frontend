@@ -13,6 +13,8 @@
       <br />
       <BaseCCButton :type="ButtonType.WHITE">CREATE CARDS</BaseCCButton>
       <br />
+      <BaseCCButton :type="ButtonType.PUSSYRED">hmm</BaseCCButton>
+      <br />
       <BaseCCButton :type="ButtonType.TEAL">
         <router-link to="/">Go to Home</router-link>
       </BaseCCButton>
@@ -28,6 +30,7 @@
         :options="['yes', 'nein', 'vllt', 'nur ficken']"
         :display-fn="(v) => 'hmm: ' + v"
         @update:model-value="console.log"
+        :type="ButtonType.RED"
       />
       <br />
       <br />

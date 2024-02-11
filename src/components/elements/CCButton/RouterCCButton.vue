@@ -15,7 +15,7 @@ import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 const props = withDefaults(
   defineProps<{
     to: any;
-    type: ButtonType;
+    type?: ButtonType;
   }>(),
   {
     to: {},

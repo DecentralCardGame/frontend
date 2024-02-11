@@ -1,7 +1,11 @@
 <template>
   <div
-    class="relative inline-block bg-[#8F6173] text-left rounded-sm hover:cursor-pointer"
-    :class="{ 'ring ring-white ring-opacity-100': isOpen }"
+    class="relative inline-block text-left rounded-sm hover:cursor-pointer"
+    :class="[
+      ...(isOpen ? ['ring', 'ring-white', 'ring-opacity-100'] : []),
+      getButtonColor(type),
+      getTextColor(type),
+    ]"
     @click="toggleDropdown"
   >
     <div class="p-2 flex">
@@ -15,7 +19,8 @@
 
     <ul
       v-if="isOpen"
-      class="absolute z-30 bg-[#8F6173] ring ring-white rounded-sm ring-opacity-100 whitespace-nowrap"
+      class="absolute z-30 ring ring-white rounded-sm ring-opacity-100 whitespace-nowrap"
+      :class="[getButtonColor(type)]"
     >
       <li
         v-for="(option, idx) in options"
@@ -31,6 +36,11 @@
 
 <script setup lang="ts" generic="T">
 import { ref, defineProps } from "vue";
+import {
+  ButtonType,
+  getButtonColor,
+  getTextColor,
+} from "@/components/elements/CCButton/ButtonType";
 
 const model = defineModel<T>();
 const isOpen = ref(false);
@@ -40,11 +50,13 @@ const props = withDefaults(
     options: Array<T>;
     initial?: string;
     displayFn?: (v: T) => string;
+    type?: ButtonType;
   }>(),
   {
     options: () => [],
     initial: "?",
     displayFn: (v: T): string => "" + v,
+    type: ButtonType.PUSSYRED,
   }
 );
 

@@ -14,7 +14,7 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 const props = withDefaults(
   defineProps<{
     to: string;
-    type: ButtonType;
+    type?: ButtonType;
   }>(),
   {
     to: "dummy",
