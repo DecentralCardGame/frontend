@@ -43,7 +43,7 @@ const props = withDefaults(
 
 const initialState: {
   clickedCard: Card;
-  cards: Array<Card>;
+  cards: { [x: number]: Card };
   cardsOnPage: number;
 } = {
   clickedCard: new Card(),
@@ -73,7 +73,7 @@ watch(cardIdsOnPage, (cardIds, oldCardIds) =>
 watch(
   () => props.allCardIds,
   () => {
-    state.cards = [];
+    state.cards = {};
     state.cardsOnPage = props.cardsPerPage;
   }
 );
@@ -94,7 +94,7 @@ const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
   props.cardCallback(card);
   if (card.Content) {
-    state.cards.push(card);
+    state.cards[cardId] = card;
   } else if (!card.owner) {
     console.error("card without content and owner: ", card);
   } else {
@@ -102,6 +102,4 @@ const loadCard = async (cardId: number) => {
   }
   return card;
 };
-
-const cardview = () => router.push("cardview/" + state.clickedCard.id);
 </script>
