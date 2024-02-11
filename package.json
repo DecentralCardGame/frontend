@@ -58,6 +58,7 @@
     "build": "run-p type-check build-only",
     "build-only": "vite build",
     "dev": "vite",
+    "local": "vite --mode localhost",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "postinstall": "node postinstall.js",
     "prepare": "node prepare.js",
