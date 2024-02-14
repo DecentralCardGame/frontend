@@ -4,7 +4,7 @@
       Card Creator
     </div>
     <div
-      class="p-8 text-white text-center text-lg font-normal font-['Roboto'] bg-white bg-opacity-20 shadow"
+      class="p-8 w-3/5 text-white text-center text-xl font-normal font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
     >
       <!-- Progress Bar -->
       <div class="w-11/12 h-12 mx-auto">
@@ -22,7 +22,7 @@
             >
               <img
                 v-if="item == 'active'"
-                src="@/assets/figma/CCLogoSmallInvert.png"
+                :src="CCLogoSmallInvert"
                 alt="check"
               />
             </div>
@@ -75,7 +75,7 @@
               console.log(item, model.Class);
             "
           >
-            <img class="h-32" :src="'src/assets/figma/' + item + 'Icon.svg'" />
+            <img class="h-32" :src="classIcons[item]" />
             <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
           </div>
         </div>
@@ -96,12 +96,12 @@
             <img
               v-show="item !== model.type"
               class="scale-[1]"
-              :src="'src/assets/figma/' + item + 'Off.png'"
+              :src="typeIcons[item].Off"
             />
             <img
               v-show="item == model.type"
               class="scale-[1]"
-              :src="'src/assets/figma/' + item + 'On.png'"
+              :src="typeIcons[item].On"
             />
             <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
           </div>
@@ -631,6 +631,38 @@
   -->
 </template>
 
+<script setup lang="ts">
+import CCLogoSmallInvert from "@/assets/figma/CCLogoSmallInvert.png";
+import HeadquarterOn from "@/assets/figma/HeadquarterOn.png";
+import HeadquarterOff from "@/assets/figma/HeadquarterOff.png";
+import ActionOn from "@/assets/figma/ActionOn.png";
+import ActionOff from "@/assets/figma/ActionOff.png";
+import EntityOn from "@/assets/figma/EntityOn.png";
+import EntityOff from "@/assets/figma/EntityOff.png";
+import PlaceOn from "@/assets/figma/PlaceOn.png";
+import PlaceOff from "@/assets/figma/PlaceOff.png";
+import MysticismIcon from "@/assets/figma/MysticismIcon.svg";
+import TechnologyIcon from "@/assets/figma/TechnologyIcon.svg";
+import CultureIcon from "@/assets/figma/CultureIcon.svg";
+import NatureIcon from "@/assets/figma/NatureIcon.svg";
+
+let typeIcons = {
+  Headquarter: { On: HeadquarterOn, Off: HeadquarterOff },
+  Action: { On: ActionOn, Off: ActionOff },
+  Entity: { On: EntityOn, Off: EntityOff },
+  Place: { On: PlaceOn, Off: PlaceOff },
+};
+
+let classIcons = {
+  Mysticism: MysticismIcon,
+  Technology: TechnologyIcon,
+  Culture: CultureIcon,
+  Nature: NatureIcon,
+};
+
+import "vue-advanced-cropper/dist/style.css";
+import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+</script>
 <script lang="ts">
 import * as R from "ramda";
 import { createReusableTemplate } from "@vueuse/core";
@@ -645,7 +677,6 @@ import { env } from "@/env";
 import { atPath, uploadImg } from "@/components/utils/utils.js";
 
 import { Cropper } from "vue-advanced-cropper";
-import "vue-advanced-cropper/dist/style.css";
 import { Card } from "@/model/Card";
 import { useCardCreatorCards } from "@/def-composables/useCardCreatorCards";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
@@ -658,7 +689,6 @@ import { useQuery } from "@/def-composables/useQuery";
 import { isASCII } from "@/utils/utils";
 
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 
