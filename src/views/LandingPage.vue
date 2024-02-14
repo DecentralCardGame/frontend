@@ -15,15 +15,15 @@
               class="w-[100%] drop-shadow-header"
             />
             <p class="text-4xl text-white font-bold py-6">
-              A trading card game made by players.
+              A collectible card game made by players.
             </p>
             <br />
             <RouterCCButton class="pb-4" to="/c" :type="ButtonType.YELLOW"
               >CREATE CARDS
             </RouterCCButton>
             <RouterCCButton :type="ButtonType.WHITE" to="/b"
-              >Play the game</RouterCCButton
-            >
+              >Play the game
+            </RouterCCButton>
           </div>
         </div>
       </div>
@@ -48,7 +48,9 @@
           <RouterCCButton class="pb-4" to="/b" :type="ButtonType.BLACK"
             >Buy Boosters
           </RouterCCButton>
-          <RouterCCButton to="/g" :type="ButtonType.BLACK">Visit Gallery</RouterCCButton>
+          <RouterCCButton to="/g" :type="ButtonType.BLACK"
+            >Visit Gallery</RouterCCButton
+          >
         </div>
         <div>
           <img
@@ -93,8 +95,8 @@
           </div>
           <br />
           <LinkCCButton :type="ButtonType.TEAL" to="https://discord.gg/ZKKbhUs"
-            >Join Us</LinkCCButton
-          >
+            >Join Us
+          </LinkCCButton>
           <img
             alt="gameboard"
             class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
