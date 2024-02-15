@@ -430,7 +430,7 @@
               >
                 <AbilityComponent
                   id="AbilityComponent"
-                  class="px-2 flex bg-white bg-opacity-[15%] text-white text-opacity-50 font-bold border-4 border-gray-100 border-opacity-50"
+                  class="px-2 flex bg-white bg-opacity-[15%] text-white text-opacity-80 font-bold border-4 border-gray-100 border-opacity-50"
                   :abilities="abilities"
                   :ability-prop="abilityEntry"
                   :dialog-prop="abilityDialog"
@@ -535,11 +535,15 @@
           <div class="py-5 justify-center">
             <div class="py-3 text-s font-bold">SUMMARY</div>
             <div class="py-3 text-s">"{{ model.FlavourText }}"</div>
+
+            <BaseCCButton @click="resetCard()"> Discard Changes </BaseCCButton>
+
+            <BaseCCButton @click="resetCard()"> Discard Draft </BaseCCButton>
           </div>
           <div class="pl-10 flex flex-row space-x-1">
             <NavigationButtons />
-            <BaseCCButton :type="ButtonType.RED" @click="saveSubmit()"
-              >Mint Card
+            <BaseCCButton :type="ButtonType.RED" @click="saveSubmit()">
+              Mint Card
             </BaseCCButton>
           </div>
         </div>
