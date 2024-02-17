@@ -3,6 +3,9 @@
     <div class="flex justify-center p-16 w-[35rem] bg-[#552026] max-md:hidden">
       <div class="space-y-6">
         <GalleryFilterImageChooser :options="classOptions" />
+        <Checkbox v-model="galleryFilters.multiClass"
+          >Show multi-class only
+        </Checkbox>
         <GalleryFilterImageChooser :options="typeOptions" />
       </div>
     </div>
@@ -71,6 +74,8 @@ import type { GalleryFilters } from "@/model/GalleryFilters";
 import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
+import Checkbox from "@/components/elements/Checkbox.vue";
 
 const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
@@ -147,31 +152,6 @@ onMounted(() => {
     loadCardList();
   }
 });
-
-const loadCardList = () => loadQueryCardList(pageQueryFromGalleryFilters());
-
-const loadMyCardList = () =>
-  loadSpecialCardList(galleryFilters.notesContains, address.value);
-const getDefaultQuery = (): PageQuery => {
-  let classes =
-    (galleryFilters.classORLogic ? "OR," : "") +
-    (galleryFilters.mysticism ? "Mysticism," : "") +
-    (galleryFilters.nature ? "Nature," : "") +
-    (galleryFilters.technology ? "Technology," : "") +
-    (galleryFilters.culture ? "Culture," : "");
-
-  let q = galleryFilters;
-  q.classes = q.classesVisible ? classes : "";
-  return normalizeQuery(q);
-};
-const loadSpecialCardList = (notes: string, owner: string = "") => {
-  let q = getDefaultQuery();
-  q.notesContains = notes;
-  if (owner) {
-    q.owner = owner;
-  }
-  loadQueryCardList(q);
-};
 
 const resetFilters = () => {
   console.log("reset filters");

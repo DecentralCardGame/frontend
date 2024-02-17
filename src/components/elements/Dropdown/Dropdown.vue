@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 import {
   ButtonType,
   getButtonColor,

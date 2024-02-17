@@ -45,10 +45,12 @@ const initialState: {
   clickedCard: Card;
   cards: { [x: number]: Card };
   cardsOnPage: number;
+  cardIdsChanged: boolean;
 } = {
   clickedCard: new Card(),
-  cards: [],
+  cards: {},
   cardsOnPage: 0,
+  cardIdsChanged: false,
 };
 
 const state = reactive(initialState);
@@ -66,17 +68,24 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
 });
 
-watch(cardIdsOnPage, (cardIds, oldCardIds) =>
-  cardIds.filter((cardId) => !oldCardIds.includes(cardId)).forEach(loadCard)
-);
+watch(cardIdsOnPage, loadCards);
 
 watch(
   () => props.allCardIds,
   () => {
+    state.cardIdsChanged = true;
     state.cards = {};
     state.cardsOnPage = props.cardsPerPage;
   }
 );
+
+function loadCards(cardIds, oldCardIds) {
+  const changed = state.cardIdsChanged;
+  state.cardIdsChanged = false;
+  cardIds
+    .filter((cardId) => !oldCardIds.includes(cardId) || changed)
+    .forEach(loadCard);
+}
 
 const onScroll = () => {
   const galleryWrapperElement = document.getElementById("galleryWrapper")!;

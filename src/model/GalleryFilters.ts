@@ -13,8 +13,6 @@ export class GalleryFilters {
   nameContains = "";
   notesContains = "";
   cardsPerPage = 30;
-  classesVisible = false;
-  classORLogic = false;
   mysticism = true;
   nature = true;
   technology = true;
@@ -24,4 +22,5 @@ export class GalleryFilters {
   rare = true;
   exceptional = true;
   unique = true;
+  multiClass = false;
 }
