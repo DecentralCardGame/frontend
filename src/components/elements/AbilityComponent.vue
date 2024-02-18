@@ -7,7 +7,7 @@
         :key="index"
         class="text-[24px] flex flex-row justify-start items-center"
       >
-        <div id="pre" class="whitespace-nowrap">
+        <div id="pre" class="whitespace-nowrap font-normal">
           {{ entry.pre }}
         </div>
 
@@ -51,7 +51,7 @@
         <div
           v-else
           id="btn.label"
-          class="m-2 py-2 px-4 text-[24px] uppercase bg-transparent hover:bg-white hover:bg-opacity-70 hover:text-[#D82027] border-2 border-gray-300 hover:cursor-pointer"
+          class="m-2 py-2 px-4 text-[24px] text-normal uppercase bg-transparent hover:bg-white hover:bg-opacity-70 hover:text-[#D82027] border-2 border-gray-300 hover:cursor-pointer"
           @click="showAbilityModal(ability, entry.btn)"
         >
           {{ entry.btn.label }}

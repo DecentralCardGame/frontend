@@ -31,7 +31,7 @@ export const getTextColor = (t: ButtonType) => {
     case ButtonType.RED:
       return "text-white";
     case ButtonType.PUSSYRED:
-      return "text-white text-opacity-50";
+      return "text-white text-opacity-100";
     default:
       return "text-black";
   }
