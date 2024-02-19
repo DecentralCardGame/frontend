@@ -103,7 +103,7 @@ const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
   props.cardCallback(card);
   if (card.Content) {
-    state.cards[cardId] = card;
+    state.cards[props.allCardIds.indexOf(cardId)] = card;
   } else if (!card.owner) {
     console.error("card without content and owner: ", card);
   } else {
