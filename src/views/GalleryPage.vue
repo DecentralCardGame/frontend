@@ -69,6 +69,7 @@ import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
+import { normalizeQuery } from "@/utils/utils";
 
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
@@ -80,7 +81,6 @@ const {
   galleryFilters,
   pageQueryFromGalleryFilters,
   galleryFiltersFromPageQuery,
-  normalizeQuery,
 } = useGallery();
 
 const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
@@ -139,10 +139,8 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 
 onMounted(() => {
   if (!R.isEmpty(route.query)) {
-    console.log("no");
     galleryFiltersFromPageQuery(normalizeQuery(route.query));
   } else if (cardList.value.length == 0) {
-    console.log("yes");
     loadQueryCardList(pageQueryFromGalleryFilters());
   } else {
     router.push({ path: "gallery", query: pageQueryFromGalleryFilters() });

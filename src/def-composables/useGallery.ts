@@ -15,22 +15,6 @@ import { GalleryFilters } from "@/model/GalleryFilters";
 
 export type PageQuery = QueryQCardsRequest;
 
-const normalizeNumberList = (l: Array<any>) => l.map((v) => Number(v));
-const normalizeBoolean = (b: any) => b == "true";
-
-const normalizeQuery = (query: any): PageQuery => {
-  let q = QueryQCardsRequest.fromPartial(query);
-  q.classes = normalizeNumberList(q.classes);
-  q.cardTypes = normalizeNumberList(q.cardTypes);
-  q.rarities = normalizeNumberList(q.rarities);
-  q.statuses = normalizeNumberList(q.statuses);
-  q.onlyBalanceAnchors = normalizeBoolean(q.onlyBalanceAnchors);
-  q.onlyStarterCard = normalizeBoolean(q.onlyStarterCard);
-  q.multiClassOnly = normalizeBoolean(q.multiClassOnly);
-
-  return q;
-};
-
 // Sadly this is needed, since the shitty querier displays arrays and `&Name[]=...` and not `&Name=...` this makes me mad
 const constructAssRetardetQueryParams = (query: any): string => {
   return Object.keys(query)
@@ -151,6 +135,5 @@ export const useGallery = () => {
     galleryFilters,
     cardList,
     loadQueryCardList,
-    normalizeQuery,
   };
 };
