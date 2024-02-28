@@ -43,9 +43,7 @@
 import * as R from "ramda";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
-import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
-import { useQuery } from "@/def-composables/useQuery";
-import { onMounted, reactive } from "vue";
+import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 import techActive from "@/assets/figma/ClassesButtons/tech.png";
@@ -64,28 +62,26 @@ import actionActive from "@/assets/figma/TypesButtons/action.png";
 import actionInactive from "@/assets/figma/TypesButtons/action_unselected.png";
 import placeActive from "@/assets/figma/TypesButtons/place.png";
 import placeInactive from "@/assets/figma/TypesButtons/place_unselected.png";
-import {
-  normalizeQuery,
-  type PageQuery,
-  useGallery,
-} from "@/def-composables/useGallery";
 import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
 import type { GalleryFilters } from "@/model/GalleryFilters";
 import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
-import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
+import { useGallery } from "@/def-composables/useGallery";
 
-const { queryQCards } = useQuery();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
-  useGalleryFilters;
 const route = useRoute();
 const router = useRouter();
-const { cardList, loadQueryCardList, pageQueryFromGalleryFilters } =
-  useGallery();
+const {
+  cardList,
+  loadQueryCardList,
+  galleryFilters,
+  pageQueryFromGalleryFilters,
+  galleryFiltersFromPageQuery,
+  normalizeQuery,
+} = useGallery();
 
 const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   {
@@ -143,19 +139,13 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 
 onMounted(() => {
   if (!R.isEmpty(route.query)) {
-    if (route.query.cardList) {
-      cardList.value = (route.query.cardList as string[]).map((v) => Number(v));
-    } else {
-      loadQueryCardList(normalizeQuery(route.query));
-    }
+    console.log("no");
+    galleryFiltersFromPageQuery(normalizeQuery(route.query));
+  } else if (cardList.value.length == 0) {
+    console.log("yes");
+    loadQueryCardList(pageQueryFromGalleryFilters());
   } else {
-    loadCardList();
+    router.push({ path: "gallery", query: pageQueryFromGalleryFilters() });
   }
 });
-
-const resetFilters = () => {
-  console.log("reset filters");
-  resetGalleryFilters();
-  loadCardList();
-};
 </script>

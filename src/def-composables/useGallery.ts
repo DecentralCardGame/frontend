@@ -1,5 +1,3 @@
-import useDecentralCardGameCardchainCardchain from "@/composables/useDecentralCardGameCardchainCardchain";
-import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
 import router from "@/router";
 import {
   QueryQCardsRequest,
@@ -13,12 +11,24 @@ import {
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import { useQuery } from "@/def-composables/useQuery";
 import { ref, watch, type Ref } from "vue";
+import { GalleryFilters } from "@/model/GalleryFilters";
 
 export type PageQuery = QueryQCardsRequest;
 
-export const normalizeQuery = (query: any): PageQuery => {
-  console.log(query);
-  return QueryQCardsRequest.fromPartial(query);
+const normalizeNumberList = (l: Array<any>) => l.map((v) => Number(v));
+const normalizeBoolean = (b: any) => b == "true";
+
+const normalizeQuery = (query: any): PageQuery => {
+  let q = QueryQCardsRequest.fromPartial(query);
+  q.classes = normalizeNumberList(q.classes);
+  q.cardTypes = normalizeNumberList(q.cardTypes);
+  q.rarities = normalizeNumberList(q.rarities);
+  q.statuses = normalizeNumberList(q.statuses);
+  q.onlyBalanceAnchors = normalizeBoolean(q.onlyBalanceAnchors);
+  q.onlyStarterCard = normalizeBoolean(q.onlyStarterCard);
+  q.multiClassOnly = normalizeBoolean(q.multiClassOnly);
+
+  return q;
 };
 
 // Sadly this is needed, since the shitty querier displays arrays and `&Name[]=...` and not `&Name=...` this makes me mad
@@ -27,114 +37,120 @@ const constructAssRetardetQueryParams = (query: any): string => {
     .map((key): string => {
       let k = key as keyof PageQuery;
       if (typeof query[k] == "object") {
-        return (query[k] as Array<any>)
-          .map((v) => `&${k}=${v}`)
-          .reduce((akku: string, curr: string) => akku + curr);
+        return query[k].length != 0
+          ? (query[k] as Array<any>)
+              .map((v) => `&${k}=${v}`)
+              .reduce((akku: string, curr: string) => akku + curr)
+          : "";
       }
       return query[k] ? `&${k}=${query[k]}` : "";
     })
     .reduce((akku: string, curr: string) => akku + curr);
 };
 
-const useGalleryInstance = () => {
-  const { galleryFilters } = useGalleryFilters;
-  const { queryQCards } = useQuery();
+const { queryQCards } = useQuery();
 
-  const cardList: Ref<Array<number>> = ref([]);
+const cardList: Ref<Array<number>> = ref([]);
+const galleryFilters: Ref<GalleryFilters> = ref(new GalleryFilters());
 
-  const galleryFiltersFromPageQuery = (query: PageQuery) => {
-    galleryFilters.owner = query.owner;
-    galleryFilters.nameContains = query.nameContains;
-    galleryFilters.notesContains = query.notesContains;
-    galleryFilters.sortBy = query.sortBy;
+const galleryFiltersFromPageQuery = (query: PageQuery) => {
+  console.log(query);
+  galleryFilters.value.owner = query.owner;
+  galleryFilters.value.nameContains = query.nameContains;
+  galleryFilters.value.notesContains = query.notesContains;
+  galleryFilters.value.sortBy = query.sortBy;
+  galleryFilters.value.multiClass = query.multiClassOnly;
 
-    if (query.classes.length == 0) {
-      galleryFilters.nature = true;
-      galleryFilters.culture = true;
-      galleryFilters.mysticism = true;
-      galleryFilters.technology = true;
-    } else {
-      galleryFilters.nature = query.classes.includes(CardClass.nature);
-      galleryFilters.technology = query.classes.includes(CardClass.technology);
-      galleryFilters.culture = query.classes.includes(CardClass.culture);
-      galleryFilters.mysticism = query.classes.includes(CardClass.mysticism);
-    }
+  if (query.classes.length == 0) {
+    galleryFilters.value.nature = true;
+    galleryFilters.value.culture = true;
+    galleryFilters.value.mysticism = true;
+    galleryFilters.value.technology = true;
+  } else {
+    galleryFilters.value.nature = query.classes.includes(CardClass.nature);
+    galleryFilters.value.technology = query.classes.includes(
+      CardClass.technology
+    );
+    galleryFilters.value.culture = query.classes.includes(CardClass.culture);
+    galleryFilters.value.mysticism = query.classes.includes(
+      CardClass.mysticism
+    );
+  }
 
-    if (query.cardTypes.length == 0) {
-      galleryFilters.action = true;
-      galleryFilters.place = true;
-      galleryFilters.hq = true;
-      galleryFilters.entity = true;
-    } else {
-      galleryFilters.action = query.cardTypes.includes(CardType.action);
-      galleryFilters.place = query.cardTypes.includes(CardType.place);
-      galleryFilters.hq = query.cardTypes.includes(CardType.headquarter);
-      galleryFilters.entity = query.cardTypes.includes(CardType.entity);
-    }
-  };
+  if (query.cardTypes.length == 0) {
+    galleryFilters.value.action = true;
+    galleryFilters.value.place = true;
+    galleryFilters.value.hq = true;
+    galleryFilters.value.entity = true;
+  } else {
+    galleryFilters.value.action = query.cardTypes.includes(CardType.action);
+    galleryFilters.value.place = query.cardTypes.includes(CardType.place);
+    galleryFilters.value.hq = query.cardTypes.includes(CardType.headquarter);
+    galleryFilters.value.entity = query.cardTypes.includes(CardType.entity);
+  }
+  console.log(galleryFilters);
+};
 
-  const pageQueryFromGalleryFilters = (): PageQuery => {
-    return QueryQCardsRequest.fromPartial({
-      owner: galleryFilters.owner,
-      statuses:
-        galleryFilters.statuses.length == 0
-          ? [
-              Status.bannedSoon,
-              Status.bannedVerySoon,
-              Status.permanent,
-              Status.trial,
-            ]
-          : galleryFilters.statuses,
-      classes: [
-        ...(galleryFilters.nature ? [CardClass.nature] : []),
-        ...(galleryFilters.mysticism ? [CardClass.mysticism] : []),
-        ...(galleryFilters.culture ? [CardClass.culture] : []),
-        ...(galleryFilters.technology ? [CardClass.technology] : []),
-      ],
-      cardTypes: [
-        ...(galleryFilters.place ? [CardType.place] : []),
-        ...(galleryFilters.action ? [CardType.action] : []),
-        ...(galleryFilters.entity ? [CardType.entity] : []),
-        ...(galleryFilters.hq ? [CardType.headquarter] : []),
-      ],
-      rarities: [
-        ...(galleryFilters.common ? [CardRarity.common] : []),
-        ...(galleryFilters.uncommon ? [CardRarity.uncommon] : []),
-        ...(galleryFilters.rare ? [CardRarity.rare] : []),
-        ...(galleryFilters.exceptional ? [CardRarity.exceptional] : []),
-        ...(galleryFilters.unique ? [CardRarity.unique] : []),
-      ],
-      keywordsContains: galleryFilters.keywordsContains,
-      nameContains: galleryFilters.nameContains,
-      notesContains: galleryFilters.notesContains,
-      sortBy: galleryFilters.sortBy ? galleryFilters.sortBy : "",
-    } as Partial<PageQuery>);
-  };
+const pageQueryFromGalleryFilters = (): PageQuery => {
+  return QueryQCardsRequest.fromPartial({
+    owner: galleryFilters.value.owner,
+    statuses:
+      galleryFilters.value.statuses.length == 0
+        ? [
+            Status.bannedSoon,
+            Status.bannedVerySoon,
+            Status.permanent,
+            Status.trial,
+          ]
+        : galleryFilters.value.statuses,
+    classes: [
+      ...(galleryFilters.value.nature ? [CardClass.nature] : []),
+      ...(galleryFilters.value.mysticism ? [CardClass.mysticism] : []),
+      ...(galleryFilters.value.culture ? [CardClass.culture] : []),
+      ...(galleryFilters.value.technology ? [CardClass.technology] : []),
+    ],
+    cardTypes: [
+      ...(galleryFilters.value.place ? [CardType.place] : []),
+      ...(galleryFilters.value.action ? [CardType.action] : []),
+      ...(galleryFilters.value.entity ? [CardType.entity] : []),
+      ...(galleryFilters.value.hq ? [CardType.headquarter] : []),
+    ],
+    rarities: [
+      ...(galleryFilters.value.common ? [CardRarity.common] : []),
+      ...(galleryFilters.value.uncommon ? [CardRarity.uncommon] : []),
+      ...(galleryFilters.value.rare ? [CardRarity.rare] : []),
+      ...(galleryFilters.value.exceptional ? [CardRarity.exceptional] : []),
+      ...(galleryFilters.value.unique ? [CardRarity.unique] : []),
+    ],
+    keywordsContains: galleryFilters.value.keywordsContains,
+    nameContains: galleryFilters.value.nameContains,
+    notesContains: galleryFilters.value.notesContains,
+    sortBy: galleryFilters.value.sortBy ? galleryFilters.value.sortBy : "",
+    multiClassOnly: galleryFilters.value.multiClass,
+  } as Partial<PageQuery>);
+};
 
-  const loadQueryCardList = (query: PageQuery) => {
-    router.push({ path: "gallery", query: query });
+const loadQueryCardList = (query: PageQuery): void => {
+  router.push({ path: "gallery", query: query });
 
-    queryQCards(query, {
-      paramsSerializer: constructAssRetardetQueryParams,
-    }).then((res: QueryQCardsResponse) => {
-      console.log(res);
-      cardList.value = res.cardsList;
-    });
-  };
+  queryQCards(query, {
+    paramsSerializer: constructAssRetardetQueryParams,
+  }).then((res: QueryQCardsResponse) => {
+    cardList.value = res.cardsList;
+  });
+};
 
-  watch(galleryFilters, () => loadQueryCardList(pageQueryFromGalleryFilters()));
+watch(galleryFilters.value, () =>
+  loadQueryCardList(pageQueryFromGalleryFilters())
+);
 
+export const useGallery = () => {
   return {
+    pageQueryFromGalleryFilters,
+    galleryFiltersFromPageQuery,
+    galleryFilters,
     cardList,
     loadQueryCardList,
-    pageQueryFromGalleryFilters,
+    normalizeQuery,
   };
-};
-let clientInstance: ReturnType<typeof useGalleryInstance>;
-
-export const useGallery: () => any = () => {
-  if (!clientInstance) {
-    clientInstance = useGalleryInstance();
-  }
-  return clientInstance;
 };

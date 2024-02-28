@@ -4,7 +4,7 @@
       v-for="option in options"
       class="text-white font-bold uppercase px-2"
       :key="option.label"
-      @click="galleryFilters[option.name] = !galleryFilters[option.name]"
+      @click="change(option.name)"
     >
       <img
         :src="galleryFilters[option.name] ? option.active : option.inactive"
@@ -17,10 +17,14 @@
 </template>
 <script setup lang="ts">
 import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
-import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
 import type { GalleryFilters } from "@/model/GalleryFilters";
+import { useGallery } from "@/def-composables/useGallery";
 
-const { galleryFilters } = useGalleryFilters;
+const { galleryFilters } = useGallery();
+
+const change = (name: keyof GalleryFilters) => {
+  galleryFilters.value[name] = !galleryFilters.value[name];
+};
 
 const props = withDefaults(
   defineProps<{ options: GalleryFilterImageChooserOptions<GalleryFilters> }>(),
