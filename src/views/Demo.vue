@@ -2,7 +2,7 @@
   <div class="LogoBox flex text-center justify-center p-80">
     <div>
       <img :src="logoBig" alt="big cc logo" class="box-shadow-2xl" />
-      <p class="text-xl font-lg">A trading card game made by players.</p>
+      <p class="text-xl font-lg">A collectible card game made by players.</p>
       <BaseCCButton :type="ButtonType.YELLOW" @click="() => console.log('abc')"
         >CREATE CARDS
       </BaseCCButton>
