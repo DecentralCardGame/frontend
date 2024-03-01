@@ -45,11 +45,16 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.sortBy = query.sortBy;
   galleryFilters.value.multiClass = query.multiClassOnly;
 
-  if (query.classes.length == 0) {
-    galleryFilters.value.nature = true;
-    galleryFilters.value.culture = true;
-    galleryFilters.value.mysticism = true;
-    galleryFilters.value.technology = true;
+  if (
+    query.classes.length == 0 ||
+    [0, 1, 2, 3]
+      .map((v) => query.classes.includes(v as CardClass))
+      .every((v) => v)
+  ) {
+    galleryFilters.value.nature = false;
+    galleryFilters.value.culture = false;
+    galleryFilters.value.mysticism = false;
+    galleryFilters.value.technology = false;
   } else {
     galleryFilters.value.nature = query.classes.includes(CardClass.nature);
     galleryFilters.value.technology = query.classes.includes(
@@ -61,11 +66,16 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     );
   }
 
-  if (query.cardTypes.length == 0) {
-    galleryFilters.value.action = true;
-    galleryFilters.value.place = true;
-    galleryFilters.value.hq = true;
-    galleryFilters.value.entity = true;
+  if (
+    query.cardTypes.length == 0 ||
+    [0, 1, 2, 3]
+      .map((v) => query.cardTypes.includes(v as CardType))
+      .every((v) => v)
+  ) {
+    galleryFilters.value.action = false;
+    galleryFilters.value.place = false;
+    galleryFilters.value.hq = false;
+    galleryFilters.value.entity = false;
   } else {
     galleryFilters.value.action = query.cardTypes.includes(CardType.action);
     galleryFilters.value.place = query.cardTypes.includes(CardType.place);
@@ -99,13 +109,10 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
       ...(galleryFilters.value.entity ? [CardType.entity] : []),
       ...(galleryFilters.value.hq ? [CardType.headquarter] : []),
     ],
-    rarities: [
-      ...(galleryFilters.value.common ? [CardRarity.common] : []),
-      ...(galleryFilters.value.uncommon ? [CardRarity.uncommon] : []),
-      ...(galleryFilters.value.rare ? [CardRarity.rare] : []),
-      ...(galleryFilters.value.exceptional ? [CardRarity.exceptional] : []),
-      ...(galleryFilters.value.unique ? [CardRarity.unique] : []),
-    ],
+    rarities:
+      typeof galleryFilters.value.rarity !== "undefined"
+        ? [galleryFilters.value.rarity]
+        : [],
     keywordsContains: galleryFilters.value.keywordsContains,
     nameContains: galleryFilters.value.nameContains,
     notesContains: galleryFilters.value.notesContains,

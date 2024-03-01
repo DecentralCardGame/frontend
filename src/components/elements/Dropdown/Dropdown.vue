@@ -60,7 +60,9 @@ const props = withDefaults(
 );
 
 const displayButton = () => {
-  return model.value ? props.displayFn(model.value) : props.initial;
+  return typeof model.value !== "undefined"
+    ? props.displayFn(model.value)
+    : props.initial;
 };
 
 const toggleDropdown = () => {

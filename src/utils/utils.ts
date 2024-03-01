@@ -10,20 +10,19 @@ export const normalizeCoins = (coins: Coin[]) => {
   return newCoins;
 };
 
-export const normalizeNumberList = (l: Array<any>) => l.map((v) => Number(v));
+export const normalizeNumberList = (l: Array<any> | any) =>
+  Array.isArray(l) ? l.map((v) => Number(v)) : [Number(l)];
 export const normalizeBoolean = (b: any) => b == "true";
 
 export const normalizeQuery = (query: any): PageQuery => {
-  let q = QueryQCardsRequest.fromPartial(query);
-  q.classes = normalizeNumberList(q.classes);
-  q.cardTypes = normalizeNumberList(q.cardTypes);
-  q.rarities = normalizeNumberList(q.rarities);
-  q.statuses = normalizeNumberList(q.statuses);
-  q.onlyBalanceAnchors = normalizeBoolean(q.onlyBalanceAnchors);
-  q.onlyStarterCard = normalizeBoolean(q.onlyStarterCard);
-  q.multiClassOnly = normalizeBoolean(q.multiClassOnly);
-
-  return q;
+  query.classes = normalizeNumberList(query.classes);
+  query.cardTypes = normalizeNumberList(query.cardTypes);
+  query.rarities = normalizeNumberList(query.rarities);
+  query.statuses = normalizeNumberList(query.statuses);
+  query.onlyBalanceAnchors = normalizeBoolean(query.onlyBalanceAnchors);
+  query.onlyStarterCard = normalizeBoolean(query.onlyStarterCard);
+  query.multiClassOnly = normalizeBoolean(query.multiClassOnly);
+  return QueryQCardsRequest.fromPartial(query);
 };
 
 export function isASCII(str: string) {
