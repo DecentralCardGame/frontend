@@ -1,26 +1,25 @@
-import type { Status } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+import type {
+  CardRarity,
+  Status,
+} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 
 export class GalleryFilters {
   visible = false;
   owner = "";
   statuses: Status[] = new Array<Status>();
-  place: boolean = true;
-  action: boolean = true;
-  hq: boolean = true;
-  entity: boolean = true;
+  place: boolean = false;
+  action: boolean = false;
+  hq: boolean = false;
+  entity: boolean = false;
   keywordsContains = "";
   sortBy = "Name";
   nameContains = "";
   notesContains = "";
   cardsPerPage = 30;
-  mysticism = true;
-  nature = true;
-  technology = true;
-  culture = true;
-  common = true;
-  uncommon = true;
-  rare = true;
-  exceptional = true;
-  unique = true;
+  mysticism = false;
+  nature = false;
+  technology = false;
+  culture = false;
   multiClass = false;
+  rarity?: CardRarity = undefined;
 }

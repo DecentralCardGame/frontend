@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex text-white">
     <div class="flex justify-center p-16 w-[35rem] bg-[#552026] max-md:hidden">
       <div class="space-y-6">
         <GalleryFilterImageChooser :options="classOptions" />
@@ -7,6 +7,38 @@
           >Show multi-class only
         </Checkbox>
         <GalleryFilterImageChooser :options="typeOptions" />
+        <div class="">
+          <p>Search for</p>
+          <div class="space-y-4">
+            <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
+            <CCInput
+              v-model="galleryFilters.notesContains"
+              placeholder="notes"
+            />
+            <CCInput
+              v-model="galleryFilters.keywordsContains"
+              placeholder="keywords"
+            />
+          </div>
+        </div>
+        <CCInput
+          v-model="galleryFilters.owner"
+          placeholder="owner"
+          max-length="41"
+        />
+        <br />
+        Rarity:
+        <Dropdown
+          v-model="galleryFilters.rarity"
+          :display-fn="(v) => CardRarity[v]"
+          :options="[
+            CardRarity.common,
+            CardRarity.uncommon,
+            CardRarity.rare,
+            CardRarity.exceptional,
+            CardRarity.unique,
+          ]"
+        />
       </div>
     </div>
     <div class="bg-black py-8 md:p-8 lg:p-16 text-white grow">
@@ -70,6 +102,8 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
 import { normalizeQuery } from "@/utils/utils";
+import CCInput from "@/components/elements/CCInput.vue";
+import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
