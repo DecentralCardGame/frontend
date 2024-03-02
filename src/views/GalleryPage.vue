@@ -57,6 +57,7 @@
               :options="['Name', 'CastingCost', 'Id']"
               :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
             />
+            <SortDirectionButton class="my-auto" v-model="revertSort" />
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white"></div>
@@ -65,7 +66,7 @@
       <GalleryComponent
         class="p-16"
         :cards-per-page="galleryFilters.cardsPerPage"
-        :all-card-ids="cardList"
+        :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="openCardviewModel"
       />
     </div>
@@ -109,6 +110,7 @@ import { normalizeQuery } from "@/utils/utils";
 import CCInput from "@/components/elements/CCInput.vue";
 import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
+import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -121,6 +123,8 @@ const {
   pageQueryFromGalleryFilters,
   galleryFiltersFromPageQuery,
 } = useGallery();
+
+const revertSort = ref(false);
 
 const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   {
