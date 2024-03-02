@@ -12,6 +12,7 @@
     "@stoplight/json-ref-resolver": "^3.1.6",
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/vue-query": "^5.24.2",
+    "@typescript-eslint/parser": "^6.21.0",
     "@vueuse/core": "^10.6.1",
     "axios": "^1.6.7",
     "bignumber.js": "^9.1.2",
