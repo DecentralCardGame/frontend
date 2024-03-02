@@ -7,7 +7,7 @@
       v-for="card in state.cards"
       :key="card.id"
       class="hover:scale-105 drop-shadow-glowCCYellow"
-      @click="router.push({ name: 'CardView', params: { id: card.id } })"
+      @click="emit('cardClicked', card.id)"
     >
       <div>
         <CardComponent :model="card" />
@@ -19,25 +19,20 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, reactive, watch } from "vue";
 import { useCards } from "@/def-composables/useCards";
-import { useRouter } from "vue-router";
 import { Card } from "@/model/Card";
 import CardComponent from "@/components/elements/CardComponent.vue";
-import { useCardsRules } from "@/def-composables/useCardRules";
 
 const { getCard } = useCards();
-const { rules } = useCardsRules();
-const router = useRouter();
+const emit = defineEmits(["cardClicked"]);
 
 const props = withDefaults(
   defineProps<{
     allCardIds: Array<number>;
-    cardsPerPage: number;
-    cardCallback: (card: Card) => void;
+    cardsPerPage?: number;
   }>(),
   {
     allCardIds: () => [],
     cardsPerPage: 100,
-    cardCallback: () => {},
   }
 );
 
@@ -79,7 +74,7 @@ watch(
   }
 );
 
-function loadCards(cardIds, oldCardIds) {
+function loadCards(cardIds: number[], oldCardIds: number[]) {
   const changed = state.cardIdsChanged;
   state.cardIdsChanged = false;
   cardIds
@@ -101,7 +96,6 @@ const onScroll = () => {
 
 const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
-  props.cardCallback(card);
   if (card.Content) {
     state.cards[props.allCardIds.indexOf(cardId)] = card;
   } else if (!card.owner) {

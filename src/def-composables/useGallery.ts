@@ -5,7 +5,6 @@ import {
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/query";
 import {
   CardClass,
-  CardRarity,
   CardType,
   Status,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
@@ -38,7 +37,6 @@ const cardList: Ref<Array<number>> = ref([]);
 const galleryFilters: Ref<GalleryFilters> = ref(new GalleryFilters());
 
 const galleryFiltersFromPageQuery = (query: PageQuery) => {
-  console.log(query);
   galleryFilters.value.owner = query.owner;
   galleryFilters.value.nameContains = query.nameContains;
   galleryFilters.value.notesContains = query.notesContains;
@@ -82,7 +80,6 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.hq = query.cardTypes.includes(CardType.headquarter);
     galleryFilters.value.entity = query.cardTypes.includes(CardType.entity);
   }
-  console.log(galleryFilters);
 };
 
 const pageQueryFromGalleryFilters = (): PageQuery => {
@@ -128,7 +125,7 @@ const loadQueryCardList = (query: PageQuery): void => {
     paramsSerializer: constructAssRetardetQueryParams,
   }).then((res: QueryQCardsResponse) => {
     cardList.value = res.cardsList;
-  });
+  })
 };
 
 watch(galleryFilters.value, () =>

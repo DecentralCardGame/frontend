@@ -24,7 +24,7 @@
         <CCInput
           v-model="galleryFilters.owner"
           placeholder="owner"
-          max-length="41"
+          :max-length="41"
         />
         <br />
         Rarity:
@@ -66,16 +66,20 @@
         class="p-16"
         :cards-per-page="galleryFilters.cardsPerPage"
         :all-card-ids="cardList"
+        @card-clicked="openCardviewModel"
       />
     </div>
   </div>
+  <CardviewModal
+    v-if="isCardViewModalVisible"
+    @close="isCardViewModalVisible = false"
+    :id="cardViewModalCardId"
+  />
 </template>
 
 <script setup lang="ts">
 import * as R from "ramda";
-import { useLoggedIn } from "@/def-composables/useLoggedIn";
-import { useAddress } from "@/def-composables/useAddress";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 import techActive from "@/assets/figma/ClassesButtons/tech.png";
@@ -104,11 +108,12 @@ import { useGallery } from "@/def-composables/useGallery";
 import { normalizeQuery } from "@/utils/utils";
 import CCInput from "@/components/elements/CCInput.vue";
 import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+import CardviewModal from "@/components/modals/CardviewModal.vue";
 
-const { loggedIn } = useLoggedIn();
-const { address } = useAddress();
 const route = useRoute();
 const router = useRouter();
+const isCardViewModalVisible = ref(false);
+const cardViewModalCardId = ref(-1);
 const {
   cardList,
   loadQueryCardList,
@@ -174,10 +179,17 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 onMounted(() => {
   if (!R.isEmpty(route.query)) {
     galleryFiltersFromPageQuery(normalizeQuery(route.query));
+    loadQueryCardList(pageQueryFromGalleryFilters());
   } else if (cardList.value.length == 0) {
     loadQueryCardList(pageQueryFromGalleryFilters());
   } else {
     router.push({ path: "gallery", query: pageQueryFromGalleryFilters() });
   }
 });
+
+const openCardviewModel = (cardId: number) => {
+  cardViewModalCardId.value = Number(cardId);
+  //router.replace({ name: "CardView", params: { id: cardId } });
+  isCardViewModalVisible.value = true;
+};
 </script>
