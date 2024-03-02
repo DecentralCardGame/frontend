@@ -1,12 +1,12 @@
 <template>
-  < class="bg-black text-white flex lg:h-[80vh] p-16 lg:p-8"></div>
+  <div class="bg-black text-white flex lg:h-[80vh] p-16 lg:p-8"></div>
   <CardviewModal :id="state.id" @close="$router.back()"></CardviewModal>
 </template>
 
 <script setup lang="ts">
 import CardviewModal from "@/components/modals/CardviewModal.vue";
-import {onMounted, reactive} from "vue";
-import {useRoute} from "vue-router";
+import { onMounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 
 const initialState: {
   id: number;
