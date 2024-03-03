@@ -30,8 +30,9 @@
         Rarity:
         <Dropdown
           v-model="galleryFilters.rarity"
-          :display-fn="(v) => CardRarity[v]"
+          :display-fn="(v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])"
           :options="[
+            undefined,
             CardRarity.common,
             CardRarity.uncommon,
             CardRarity.rare,
