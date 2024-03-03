@@ -1,7 +1,7 @@
 <template>
   <div class="flex text-white">
     <div
-      class="self-start sticky top-0 w-[25rem] flex justify-center p-16 h-[100vh] mt-0 bg-[#552026] max-md:hidden"
+      class="self-start sticky top-0 min-w-[25rem] flex justify-center p-16 h-[100vh] mt-0 bg-[#552026] max-lg:hidden"
     >
       <div class="space-y-6">
         <GalleryFilterImageChooser :options="classOptions" />
@@ -30,7 +30,14 @@
           placeholder="owner"
           :max-length="41"
         />
-        <br />
+        <Checkbox
+          v-if="loggedIn"
+          :model-value="galleryFilters.owner === address"
+          @update:model-value="
+            (v: boolean) => (galleryFilters.owner = v ? address : '')
+          "
+          >My Cards
+        </Checkbox>
         Rarity:
         <Dropdown
           v-model="galleryFilters.rarity"
@@ -117,9 +124,13 @@ import CCInput from "@/components/elements/CCInput.vue";
 import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useAddress } from "@/def-composables/useAddress";
 
 const route = useRoute();
 const router = useRouter();
+const { loggedIn } = useLoggedIn();
+const { address } = useAddress();
 const isCardViewModalVisible = ref(false);
 const cardViewModalCardId = ref(-1);
 const {
