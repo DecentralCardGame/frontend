@@ -1,6 +1,8 @@
 <template>
   <div class="flex text-white">
-    <div class="flex justify-center p-16 w-[35rem] bg-[#552026] max-md:hidden">
+    <div
+      class="self-start sticky top-0 min-w-[25rem] flex justify-center p-16 h-[100vh] mt-0 bg-[#552026] max-lg:hidden"
+    >
       <div class="space-y-6">
         <GalleryFilterImageChooser :options="classOptions" />
         <Checkbox v-model="galleryFilters.multiClass"
@@ -11,10 +13,12 @@
           <p>Search for</p>
           <div class="space-y-4">
             <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
+            <br />
             <CCInput
               v-model="galleryFilters.notesContains"
               placeholder="notes"
             />
+            <br />
             <CCInput
               v-model="galleryFilters.keywordsContains"
               placeholder="keywords"
@@ -26,22 +30,35 @@
           placeholder="owner"
           :max-length="41"
         />
-        <br />
-        Rarity:
-        <Dropdown
-          v-model="galleryFilters.rarity"
-          :display-fn="(v) => CardRarity[v]"
-          :options="[
-            CardRarity.common,
-            CardRarity.uncommon,
-            CardRarity.rare,
-            CardRarity.exceptional,
-            CardRarity.unique,
-          ]"
-        />
+        <Checkbox
+          v-if="loggedIn"
+          :model-value="galleryFilters.owner === address"
+          @update:model-value="
+            (v: boolean) => (galleryFilters.owner = v ? address : '')
+          "
+          >My Cards
+        </Checkbox>
+        <div>
+          Rarity:
+          <Dropdown
+            v-model="galleryFilters.rarity"
+            :display-fn="
+              (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
+            "
+            :options="[
+              undefined,
+              CardRarity.common,
+              CardRarity.uncommon,
+              CardRarity.rare,
+              CardRarity.exceptional,
+              CardRarity.unique,
+            ]"
+          />
+        </div>
       </div>
     </div>
-    <div class="bg-black py-8 md:p-8 lg:p-16 text-white grow">
+
+    <div class="bg-black w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
         <div class="flex justify-center md:justify-between">
           <p class="text-xl my-auto max-md:hidden">
@@ -57,6 +74,7 @@
               :options="['Name', 'CastingCost', 'Id']"
               :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
             />
+            <SortDirectionButton class="my-auto" v-model="revertSort" />
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white"></div>
@@ -65,7 +83,7 @@
       <GalleryComponent
         class="p-16"
         :cards-per-page="galleryFilters.cardsPerPage"
-        :all-card-ids="cardList"
+        :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="openCardviewModel"
       />
     </div>
@@ -109,9 +127,14 @@ import { normalizeQuery } from "@/utils/utils";
 import CCInput from "@/components/elements/CCInput.vue";
 import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
+import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useAddress } from "@/def-composables/useAddress";
 
 const route = useRoute();
 const router = useRouter();
+const { loggedIn } = useLoggedIn();
+const { address } = useAddress();
 const isCardViewModalVisible = ref(false);
 const cardViewModalCardId = ref(-1);
 const {
@@ -121,6 +144,8 @@ const {
   pageQueryFromGalleryFilters,
   galleryFiltersFromPageQuery,
 } = useGallery();
+
+const revertSort = ref(false);
 
 const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   {

@@ -40,7 +40,7 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.owner = query.owner;
   galleryFilters.value.nameContains = query.nameContains;
   galleryFilters.value.notesContains = query.notesContains;
-  galleryFilters.value.sortBy = query.sortBy;
+  galleryFilters.value.sortBy = query.sortBy ? query.sortBy : "Name";
   galleryFilters.value.multiClass = query.multiClassOnly;
 
   if (
