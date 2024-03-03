@@ -38,19 +38,23 @@
           "
           >My Cards
         </Checkbox>
-        Rarity:
-        <Dropdown
-          v-model="galleryFilters.rarity"
-          :display-fn="(v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])"
-          :options="[
-            undefined,
-            CardRarity.common,
-            CardRarity.uncommon,
-            CardRarity.rare,
-            CardRarity.exceptional,
-            CardRarity.unique,
-          ]"
-        />
+        <div>
+          Rarity:
+          <Dropdown
+            v-model="galleryFilters.rarity"
+            :display-fn="
+              (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
+            "
+            :options="[
+              undefined,
+              CardRarity.common,
+              CardRarity.uncommon,
+              CardRarity.rare,
+              CardRarity.exceptional,
+              CardRarity.unique,
+            ]"
+          />
+        </div>
       </div>
     </div>
 
