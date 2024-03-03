@@ -1,6 +1,8 @@
 <template>
   <div class="flex text-white">
-    <div class="flex justify-center p-16 w-[35rem] bg-[#552026] max-md:hidden">
+    <div
+      class="self-start sticky top-0 w-[25rem] flex justify-center p-16 h-[100vh] mt-0 bg-[#552026] max-md:hidden"
+    >
       <div class="space-y-6">
         <GalleryFilterImageChooser :options="classOptions" />
         <Checkbox v-model="galleryFilters.multiClass"
@@ -11,10 +13,12 @@
           <p>Search for</p>
           <div class="space-y-4">
             <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
+            <br />
             <CCInput
               v-model="galleryFilters.notesContains"
               placeholder="notes"
             />
+            <br />
             <CCInput
               v-model="galleryFilters.keywordsContains"
               placeholder="keywords"
@@ -42,7 +46,8 @@
         />
       </div>
     </div>
-    <div class="bg-black py-8 md:p-8 lg:p-16 text-white grow">
+
+    <div class="bg-black w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
         <div class="flex justify-center md:justify-between">
           <p class="text-xl my-auto max-md:hidden">
