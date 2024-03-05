@@ -2,11 +2,11 @@
   <div class="bg-pink-950 flex flex-col items-center">
     <div> 
       
-      <div class="p-8 w-full text-white text-lg">
+      <div class="p-4 w-full text-white text-lg">
         Card Creator
       </div>
       <div
-        class="p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
+        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
       >
         <!-- Progress Bar -->
         <div class="w-11/12 h-12 mx-auto">
@@ -540,6 +540,7 @@
 
               <BaseCCButton
                 :type="ButtonType.TEAL" 
+                class="m-2"
                 @click="resetCard()"
               >
                 Discard {{ this.mode == Mode.CREATE ? "Draft" : "Changes" }}
@@ -560,6 +561,7 @@
               <BaseCCButton
                 v-if="this.mode == Mode.CREATE"
                 :type="ButtonType.TEAL" 
+                class="m-2"
                 @click="showBuyFrameModal"
               >
                 Buy a Card Frame
