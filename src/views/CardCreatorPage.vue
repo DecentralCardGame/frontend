@@ -64,8 +64,8 @@
 
         <!-- Class Selection -->
         <div v-if="activeStep == 0" class="">
-          <div class="pt-8 p-3 text-xs font-bold">CLASSES</div>
-          <div class="text-xs">Select one or multiple classes for your card.</div>
+          <div class="pt-8 p-3 text-s font-bold">CLASSES</div>
+          <div class="text-s">Select one or multiple classes for your card.</div>
 
           <div class="flex justify-between">
             <div
@@ -78,7 +78,7 @@
               "
             >
               <img class="h-32" :src="classIcons[item]" />
-              <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
+              <div class="py-5 text-s font-bold uppercase">{{ item }}</div>
             </div>
           </div>
           <NavigationButtons />
@@ -86,26 +86,30 @@
 
         <!-- Type Selection -->
         <div v-if="activeStep == 1" class="">
-          <div class="pt-8 p-3 text-xs font-bold">TYPE</div>
-          <div class="text-xs">Select the type of card you want.</div>
+          <div class="pt-8 p-3 text-s font-bold">TYPE</div>
+          <div class="text-s">Select the type of card you want.</div>
 
           <div class="flex justify-between">
             <div
               v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
-              class="p-5"
+              class="py-10"
               @click="model.type = item"
             >
               <img
                 v-show="item !== model.type"
-                class="scale-[1]"
+                class="h-32"
                 :src="typeIcons[item].Off"
               />
               <img
                 v-show="item == model.type"
-                class="scale-[1]"
+                class="h-32"
                 :src="typeIcons[item].On"
               />
-              <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
+              <div 
+                :class="{ underline: item == model.type }"
+                class="py-5 text-s font-bold uppercase">
+                  {{ item }}
+                </div>
             </div>
           </div>
           <NavigationButtons />
