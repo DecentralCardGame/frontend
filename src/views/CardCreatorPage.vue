@@ -538,41 +538,66 @@
               <div class="py-3 text-s font-bold">SUMMARY</div>
               <div class="py-3 text-s">"{{ model.FlavourText }}"</div>
 
-              <BaseCCButton @click="resetCard()"> Discard Changes</BaseCCButton>
+              <BaseCCButton
+                :type="ButtonType.TEAL" 
+                @click="resetCard()"
+              >
+                Discard {{ this.mode == Mode.CREATE ? "Draft" : "Changes" }}
+              </BaseCCButton>
 
-              <BaseCCButton @click="resetCard()"> Discard Draft</BaseCCButton>
+              <!-- TODO CHECK IF THIS IS USED BY ANYONE -->
+              <div v-if="mode == Mode.EDIT && !abilities">
+                Clear Abilities
+                <div>
+                  <input
+                    v-model="clearAbilities"
+                    type="checkbox"
+                  >
+                </div>
+              </div>
+
+              <!-- Buy Frame Modal -->
+              <BaseCCButton
+                v-if="this.mode == Mode.CREATE"
+                :type="ButtonType.TEAL" 
+                @click="showBuyFrameModal"
+              >
+                Buy a Card Frame
+              </BaseCCButton>
+
+              <button
+              v-if="activeStep == 4 && this.mode == Mode.CREATE"
+              @click="showBuyFrameModal"
+            >
+              
+            </button>
+
+              <div class="ability-modal-container">
+                <BuyFrameModal
+                  v-if="isBuyFrameModalVisible"
+                  @close="closeBuyFrameModal"
+                />
+              </div>
+
             </div>
             <div class="pl-10 flex flex-row space-x-1">
               <NavigationButtons />
-              <BaseCCButton :type="ButtonType.RED" @click="saveSubmit()">
-                Mint Card
+
+              <BaseCCButton 
+                :type="ButtonType.RED" 
+                @click="saveSubmit()"
+              >
+                {{ this.mode == Mode.CREATE ? "Mint" : "Update your " }} Card
               </BaseCCButton>
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div> 
-  <!--
-
-
-
-          <div
-            v-if="activeStep == 4 && mode == Mode.EDIT && !abilities"
-            class="creator-input-container"
-          >
-            <span class="creator-text">
-              Clear Abilities
-            </span>
-            <div>
-              <input
-                v-model="clearAbilities"
-                type="checkbox"
-              >
-            </div>
-          </div>
-
-
+  <!-- TODO IMPLEMENT PROPER ARTIST MODE
 
           <div
             v-if="!artistMode"
@@ -592,50 +617,8 @@
             >
               Next Step >
             </button>
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="showBuyFrameModal"
-            >
-              Buy a Card Frame
-            </button>
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="saveSubmit()"
-            >
-              Publish Your Card
-            </button>
 
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.EDIT"
-              @click="saveSubmit()"
-            >
-              Update Your Card
-            </button>
-
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.EDIT"
-              @click="resetCard()"
-            >
-              Discard Changes
-            </button>
-
-            <button
-              v-show="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="resetCard()"
-            >
-              Discard Draft
-            </button>
           </div>
-        </div>
-      </div>
-      <div class="ability-modal-container">
-        <BuyFrameModal
-          v-if="isBuyFrameModalVisible"
-          @close="closeBuyFrameModal"
-        />
-      </div>
-    </div>
-  </div>
   -->
 </template>
 
@@ -710,9 +693,9 @@ export default {
   data() {
     return {
       progressBar: [
-        "done",
-        "done",
         "active",
+        "open",
+        "open",
         "open",
         "open",
         "open",
