@@ -546,7 +546,7 @@
               </BaseCCButton>
 
               <!-- TODO CHECK IF THIS IS USED BY ANYONE -->
-              <div v-if="mode == Mode.EDIT && !abilities">
+              <div v-if="mode == Mode.EDIT && isEmpty(abilities)">
                 Clear Abilities
                 <div>
                   <input
@@ -564,13 +564,6 @@
               >
                 Buy a Card Frame
               </BaseCCButton>
-
-              <button
-              v-if="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="showBuyFrameModal"
-            >
-              
-            </button>
 
               <div class="ability-modal-container">
                 <BuyFrameModal
@@ -830,6 +823,9 @@ export default {
     }
   },
   methods: {
+    isEmpty (a) {
+      return R.isEmpty(a)
+    },
     getHQDelayRange() {
       return R.range(
         this.cardRules.Card.children[this.getRulesType()].children.Delay.min ||
