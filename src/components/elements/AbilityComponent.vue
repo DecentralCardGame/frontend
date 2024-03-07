@@ -16,7 +16,7 @@
           <Dropdown
             v-model="entry.btn.label"
             :options="enumOptions(entry)"
-            @change="showAbilityModal(ability, entry.btn)"
+            @update:model-value="showAbilityModal(ability, entry.btn)"
           />
         </div>
 
@@ -25,7 +25,7 @@
           <Dropdown
             v-model="entry.btn.label"
             :options="intRange(entry)"
-            @change="showAbilityModal(ability, entry.btn)"
+            @update:model-value="showAbilityModal(ability, entry.btn)"
           />
         </div>
 
@@ -34,7 +34,7 @@
           <Dropdown
             v-model="entry.btn.label"
             :options="intXRange(entry)"
-            @change="showAbilityModal(ability, entry.btn)"
+            @update:model-value="showAbilityModal(ability, entry.btn)"
           />
         </div>
 
@@ -139,12 +139,24 @@ export default {
       );
     },
     intXRange(entry) {
-      return R.range(
+      console.log("intXRange called", R.path(entry.btn.rulesPath, this.cardRules.Card).children)
+      console.log(R.range(
         R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
           .min || 0,
         R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
           .max + 1
-      );
+      ))
+
+      return R.concat(
+        R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable.enum,
+        R.range(
+        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
+          .min || 0,
+        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
+          .max + 1
+        )
+      )
+      
     },
     enumRange(entry) {
       return R.path(entry.btn.rulesPath, this.cardRules.Card).children

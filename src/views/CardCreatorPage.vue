@@ -316,13 +316,14 @@
                   initial="Select Special Cost"
                   :options="getSpecialCostRange()"
                   :displayFn="specialCostLabels"
-                  @change="setAdditionalCost($event)"
+                  @update:model-value="setAdditionalCost($event)"
                   class="m-2"
                 />
                 <span v-if="model.AdditionalCost.DiscardCost">
                   <Dropdown
                     v-model="model.AdditionalCost.DiscardCost.Amount"
                     :options="getGenericCostRange('DiscardCost')"
+                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
                   />
                   cards from your hand.
@@ -331,6 +332,7 @@
                   <Dropdown
                     v-model="model.AdditionalCost.SacrificeCost.Amount"
                     :options="getGenericCostRange('SacrificeCost')"
+                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
                   />
                   Entitites.
@@ -339,6 +341,7 @@
                   <Dropdown
                     v-model="model.AdditionalCost.VoidCost.Amount"
                     :options="getGenericCostRange('VoidCost')"
+                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
                   />
                   cards from your graveyard.
@@ -389,7 +392,7 @@
                   initial="Select 1st"
                   v-model="model.Tags[0]"
                   :options="getTags(0)"
-                  @change="updateTags"
+                  @update:model-value="updateTags"
                   class="m-2"
                 />
                 <Dropdown
@@ -398,7 +401,7 @@
                   v-model="model.Tags[1]"
                   :options="getTags(1)"
                   :displayFn="(x) => (x == '' ? '<remove>' : x)"
-                  @change="updateTags"
+                  @update:model-value="updateTags"
                   class="m-2"
                 />
               </div>
@@ -705,7 +708,6 @@ export default {
       dragActive: false,
       isAbilityModalVisible: false,
       isBuyFrameModalVisible: false,
-      isAdditionalCostVisible: false,
       clearAbilities: false,
       activeStep: 0,
       ability: {},
@@ -853,11 +855,6 @@ export default {
           .AdditionalCost.children
       );
       return specialCosts;
-    },
-    toggleAdditionalCost() {
-      if (!this.isAdditionalCostVisible) {
-        this.model.AdditionalCost = {};
-      }
     },
     setAdditionalCost(costType) {
       this.model.AdditionalCost = {};
@@ -1304,34 +1301,29 @@ export default {
           return;
         }
       }
-
       // check if the old Keywords and RulesTexts should be restored
-      let checkZeroAmount = () => {
+      let checkAdditionalCost = () => {
         return (
           (this.model.AdditionalCost.SacrificeCost &&
-            this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
+            this.model.AdditionalCost.SacrificeCost.Amount > 0) ||
           (this.model.AdditionalCost.DiscardCost &&
-            this.model.AdditionalCost.DiscardCost.Amount == 0) ||
+            this.model.AdditionalCost.DiscardCost.Amount > 0) ||
           (this.model.AdditionalCost.VoidCost &&
-            this.model.AdditionalCost.VoidCost.Amount == 0)
-        );
-      };
+            this.model.AdditionalCost.VoidCost.Amount > 0)
+        )
+      }
       if (
-        this.mode == Mode.EDIT &&
-        !this.clearAbilities &&
-        R.isEmpty(this.abilities)
+        this.mode == Mode.EDIT
       ) {
         newModel.Keywords = this.cardCreatorEditCard.Keywords;
         newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
-
-        if (this.isAdditionalCostVisible) {
-          if (checkZeroAmount()) {
+          if (!checkAdditionalCost()) {
             this.model.AdditionalCost = {};
           }
           this.updateAdditionalCostText();
-        }
+        
       } else {
-        if (checkZeroAmount()) {
+        if (!checkAdditionalCost()) {
           this.model.AdditionalCost = {};
         }
         this.updateRulesTexts();
