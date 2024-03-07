@@ -18,10 +18,14 @@
               A collectible card game made by players.
             </p>
             <br />
-            <RouterCCButton class="pb-4" to="/c" :type="ButtonType.YELLOW">
+            <RouterCCButton
+              class="pb-4"
+              to="/cardCreator"
+              :type="ButtonType.YELLOW"
+            >
               CREATE CARDS
             </RouterCCButton>
-            <RouterCCButton :type="ButtonType.WHITE" to="/cardCreator">
+            <RouterCCButton :type="ButtonType.BLACK" to="/p">
               Play the game
             </RouterCCButton>
           </div>
