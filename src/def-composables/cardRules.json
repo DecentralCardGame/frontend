@@ -567,7 +567,7 @@
          "name":"Avatar",
          "description":"A X/X entity token.",
          "children":{
-
+            
          },
          "interactionText":"X/X avatar"
       },
@@ -604,7 +604,7 @@
          "name":"Beast",
          "description":"A 3/3 entity token.",
          "children":{
-
+            
          },
          "classes":[
             "NATURE"
@@ -616,7 +616,7 @@
          "name":"Bot",
          "description":"A 2/2 entity token.",
          "children":{
-
+            
          },
          "classes":[
             "TECHNOLOGY"
@@ -765,7 +765,7 @@
          "name":"Discard",
          "description":"You have to discard a card.",
          "children":{
-
+            
          },
          "classes":[
             "MYSTICISM"
@@ -1358,7 +1358,7 @@
          "description":"Chosen Entities swap their lane.",
          "children":{
             "Target":{
-               "$ref":"#/definitions/EntityMode"
+               "$ref":"#/definitions/EntityOppMode"
             }
          },
          "required":[
@@ -1541,7 +1541,7 @@
          "name":"Powerstone",
          "description":"A 1 health place token with Pay 2: Gain 4 Wisdom. Grind This 1. and Pay 1: Harm Target 1. Grind This 1.",
          "children":{
-
+            
          },
          "interactionText":"Powerstone"
       },
@@ -1585,7 +1585,7 @@
          "name":"Recover Action",
          "description":"Return target Action from your Dustpile to your Hand.",
          "children":{
-
+            
          },
          "classes":[
             "MYSTICISM"
@@ -1597,7 +1597,7 @@
          "name":"Recover Entity",
          "description":"Return target Entity from your Dustpile to your Hand.",
          "children":{
-
+            
          },
          "classes":[
             "NATURE"
@@ -1609,7 +1609,7 @@
          "name":"Recover Place",
          "description":"Return target Place from your Dustpile to your Hand.",
          "children":{
-
+            
          },
          "classes":[
             "TECHNOLOGY"
@@ -1621,7 +1621,7 @@
          "name":"Recruit",
          "description":"A 1/1 entity token.",
          "children":{
-
+            
          },
          "classes":[
             "CULTURE"
@@ -1732,7 +1732,7 @@
          "name":"Spirit",
          "description":"A 1/1 entity token with OnDeath: Insight 1.",
          "children":{
-
+            
          },
          "classes":[
             "MYSTICISM"
