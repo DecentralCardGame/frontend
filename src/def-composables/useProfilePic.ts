@@ -1,28 +1,31 @@
 import { ref, watch } from "vue";
-import { useAddress } from "./useAddress"
+import { useAddress } from "./useAddress";
 import { useUser } from "./useUser";
 import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 import { useCards } from "@/def-composables/useCards";
 
 const useProfilePicInstance = () => {
-  const { address } = useAddress()
-  const { user } = useUser()
-  const { getCard } = useCards()
-  const loggedInProfilePic = ref("spinner.svg")
+  const { address } = useAddress();
+  const { user } = useUser();
+  const { getCard } = useCards();
+  const loggedInProfilePic = ref("spinner.svg");
 
-  watch(user, (u) => {
-    getImg(u, address.value).then(img => {
-      loggedInProfilePic.value = img
-    })
-  }, {deep: true})
+  watch(
+    user,
+    (u) => {
+      getImg(u, address.value).then((img) => {
+        loggedInProfilePic.value = img;
+      });
+    },
+    { deep: true }
+  );
 
   const getDefaultImg = (addr: string) => {
-    let myRandom = addr.charCodeAt(addr.length - 1) % 4
-    return "Avatar" + myRandom + ".png"
-  }
+    let myRandom = addr.charCodeAt(addr.length - 1) % 4;
+    return "Avatar" + myRandom + ".png";
+  };
 
   const getImg = async (user: User, address: string) => {
-    console.log(user);
     if (user.profileCard != 0) {
       let card = await getCard(user.profileCard);
       if (card === null) {
@@ -35,8 +38,8 @@ const useProfilePicInstance = () => {
     }
   };
 
-  return { getImg, loggedInProfilePic };
-}
+  return { getImg, getDefaultImg, loggedInProfilePic };
+};
 
 let instance: ReturnType<typeof useProfilePicInstance>;
 

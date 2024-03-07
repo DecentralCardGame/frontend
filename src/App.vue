@@ -21,7 +21,6 @@
 </template>
 
 <script lang="ts">
-import './scss/main.scss'
 import { useLastInputEvent } from '@/def-composables/useLastInputEvent.ts'
 import AppLayout from '@/layouts/AppLayout.vue'
 
@@ -31,15 +30,15 @@ export default {
   components: {
     AppLayout
   },
-  data() {
-    return {
-      initialized: false,
-    }
-  },
   setup() {
     const { setLastInputEvent } = useLastInputEvent()
 
     return { setLastInputEvent }
+  },
+  data() {
+    return {
+      initialized: false,
+    }
   },
   computed: {
   },
@@ -62,34 +61,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import './scss/variables';
-
-#app {
-  background-image: url('./assets/background.svg');
-  background-size: 100% auto;
-}
-
-.notification--info {
-  border-left: $border-thickness-bold solid $black !important;
-  background: $notification-info !important;
-}
-.notifications {
-  width: 450px !important;
-}
-.notification {
-  padding: $font-size*0.5;
-  margin: 0 $font-size*0.5 $font-size*0.5;
-  font-size: $font-size;
-  color: $white;
-}
-.notification--success {
-  border-left: $border-thickness-bold solid darken($notification-success, 10%) !important;
-  background: $notification-success !important;
-}
-.notification--alert {
-  border-left: $border-thickness-bold solid darken($notification-fail, 10%) !important;
-  background: $notification-fail !important;
-}
 @font-face {
   font-family: 'Museo900-Regular';
   font-weight: normal;

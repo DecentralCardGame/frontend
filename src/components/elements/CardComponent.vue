@@ -2821,8 +2821,8 @@
 
       <!-- deactivated because of class symbols -->
       <path
-        
-        v-if="false" 
+
+        v-if="false"
         id="Gold_Right_Update"
         class="st12"
         d="M163.67,35.02c-0.91-0.95-2.22-1.51-3.55-1.53c-1.33,0-2.65,0.54-3.59,1.49
@@ -5194,7 +5194,7 @@
       <image
         id="cardimageFullEntity"
         align="xMidYMid"
-        :href="imageURL"
+        :href="model.image"
         :x="artwork.x"
         :y="artwork.y"
         :width="artwork.width"
@@ -5216,7 +5216,7 @@
       <image
         id="cardimageFullAction"
         align="xMidYMid"
-        :href="imageURL"
+        :href="model.image"
         :x="artwork.x"
         :y="artwork.y"
         :width="artwork.width"
@@ -5238,7 +5238,7 @@
       <image
         id="cardimageFullPlace"
         align="xMidYMid"
-        :href="imageURL"
+        :href="model.image"
         :x="artwork.x"
         :y="artwork.y"
         :width="artwork.width"
@@ -5262,7 +5262,7 @@
       <image
         id="cardimageFullHQ"
         align="xMidYMid"
-        :href="imageURL"
+        :href="model.image"
         :x="artwork.x"
         :y="artwork.y"
         :width="artwork.width"
@@ -5616,7 +5616,7 @@
         <image
           id="cardimageFramedEntity"
           align="xMidYMid"
-          :href="imageURL"
+          :href="model.image"
           :x="artwork.x"
           :y="artwork.y"
           :width="artwork.width"
@@ -5638,7 +5638,7 @@
         <image
           id="cardimageFramedAction"
           align="xMidYMid"
-          :href="imageURL"
+          :href="model.image"
           :x="artwork.x"
           :y="artwork.y"
           :width="artwork.width"
@@ -5659,7 +5659,7 @@
         <image
           id="cardimageFramedPlace"
           align="xMidYMid"
-          :href="imageURL"
+          :href="model.image"
           :x="artwork.x"
           :y="artwork.y"
           :width="artwork.width"
@@ -5682,7 +5682,7 @@
         <image
           id="cardimageFramedHQ"
           align="xMidYMid"
-          :href="imageURL"
+          :href="model.image"
           :x="artwork.x"
           :y="artwork.y"
           :width="artwork.width"
@@ -6874,7 +6874,6 @@
                     style="overflow:visible;"
                   />
                 </clipPath>
-
 
 
                 <g style="clip-path:url(#SVGID_00000121975943092167470890000000220299177361231265_);">
@@ -23082,7 +23081,7 @@
           v-for="(ability, ability_index) in getAbilityText()"
           :key="'ability#'+ability_index"
         >
-          <text 
+          <text
             v-for="(text, line_index) in textToSvg(ability)"
             :key="'abilityText'+line_index"
           >
@@ -23113,8 +23112,8 @@
 
 <script lang="ts">
 import * as R from 'ramda'
-import { Card } from '@/model/Card'
-import { useCardsRules } from "@/def-composables/useCardRules";
+import {Card} from '@/model/Card'
+import {useCardsRules} from "@/def-composables/useCardRules";
 
 export default {
   name: 'CardComponent',
@@ -23122,10 +23121,6 @@ export default {
     model: {
       type: Object,
       default: new Card()
-    },
-    imageURL: {
-      type: String,
-      default: null
     },
     altImageURL: {
       type: String,
@@ -23140,7 +23135,14 @@ export default {
       default: "none"
     },
   },
-  data () {
+  setup() {
+    const {rules} = useCardsRules();
+
+    return {
+      cardRules: rules,
+    };
+  },
+  data() {
     return {
       artwork: {
         x: 27,
@@ -23155,56 +23157,35 @@ export default {
 
       FullArt: this.model.fullArt,
       Classes: 0,
-      Class: {
-      },
-      Type: {
-      },
-      SecondaryColor: {
+      Class: {},
+      Type: {},
+      SecondaryColor: {},
 
-      },
-
-      OBG: {
-      },
+      OBG: {},
       GoldSquare: false,
-      Border: {
-      },
-      IBG: {
-      },
+      Border: {},
+      IBG: {},
       BGGoldLines: false,
-      BGShadow:  {
-      },
+      BGShadow: {},
       ClassShadow: false,
-      ManaBall: {
-      },
-      FullArtIllustrationMask: {
-      },
-      ShadowFullArt: {
-      },
-      FramedIllustrationMask: {
-      },
-      FullArtGradients: {
-      },
-      FramedTextBox: {
-      },
+      ManaBall: {},
+      FullArtIllustrationMask: {},
+      ShadowFullArt: {},
+      FramedIllustrationMask: {},
+      FullArtGradients: {},
+      FramedTextBox: {},
       HQFramedTextBox: false,
-      ShadowTextBox: {
-      },
-      Tagsbar: {
-      },
-      ShadowFramed: {
-      },
-      FullArtFrames: {
-      },
-      FramedAddition: {
-      },
-      framed: {
-      },
+      ShadowTextBox: {},
+      Tagsbar: {},
+      ShadowFramed: {},
+      FullArtFrames: {},
+      FramedAddition: {},
+      framed: {},
       attackFrame: false,
       healthFrame: false,
     }
   },
-  computed: {
-  },
+  computed: {},
   watch: {
     model: {
       handler() {
@@ -23213,14 +23194,7 @@ export default {
       deep: true
     }
   },
-  setup() {
-    const { rules } = useCardsRules();
-
-    return {
-      cardRules: rules,
-    };
-  },
-  created () {
+  created() {
     let firstLetterToLower = (string: String) => {
       return string[0].toLowerCase() + string.substring(1)
     }
@@ -23235,7 +23209,7 @@ export default {
     this.update()
     this.textVisible = false
   },
-  mounted () {
+  mounted() {
     this.textVisible = true
   },
   methods: {
@@ -23318,8 +23292,8 @@ export default {
       this.Classes = R.countBy(x => x === true)(R.values(this.model.Class)).true
       this.Type = cardType
       let classTrueKeys = R.invert(cardClass).true
-      this.SecondaryColor = R.last(classTrueKeys? classTrueKeys : [])
-      this.PrimaryColor = R.head(classTrueKeys? classTrueKeys : [])
+      this.SecondaryColor = R.last(classTrueKeys ? classTrueKeys : [])
+      this.PrimaryColor = R.head(classTrueKeys ? classTrueKeys : [])
 
       //console.log("primary color:", this.PrimaryColor)
       //console.log("secondary color:", this.SecondaryColor)
@@ -23358,10 +23332,9 @@ export default {
       if (this.hoverBehavior === 'none') return
 
       if (this.isMobileDevice()) {
-        this.opaque = this.clicked? 1 : 0
+        this.opaque = this.clicked ? 1 : 0
         this.clicked = !this.clicked
-      }
-      else {
+      } else {
         this.opaque = 1;
         if (this.clicked) {
           //this.saveSingleCard()
@@ -23374,7 +23347,7 @@ export default {
 
       this.opaque = 0;
     },
-    getType () {
+    getType() {
       if (R.toLower(this.model.type) === 'no type' || !this.model.type) {
         return ''
       } else {
@@ -23382,11 +23355,11 @@ export default {
         if (type) {
           return type.toUpperCase()
         } else {
-          console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) + '. Instead is: ' + type )
+          console.error('Invalid card type. Must be one of the following: ' + R.values(R.pluck('name', this.$cardRules.children)) + '. Instead is: ' + type)
         }
       }
     },
-    getNerfedCost () {
+    getNerfedCost() {
       if (this.model.isBanned) {
         return "-"
       }
@@ -23402,17 +23375,17 @@ export default {
     getManaCostColor() {
       return this.model.isNerfed ? "red" : this.model.isBuffed ? "mediumseagreen" : "#FFF5E1"
     },
-    tagLength () {
+    tagLength() {
       if (this.model.Tags) {
         return R.length(R.filter(x => x, this.model.Tags))
       } else {
         return 0
       }
     },
-    getTags () {
+    getTags() {
       return this.model.Tags.join(' - ').toUpperCase() || ''
     },
-    abilitiesLength () {
+    abilitiesLength() {
       if (this.model.abilities) {
         if (R.isEmpty(this.model.abilities)) {
           return 0
@@ -23439,14 +23412,14 @@ export default {
         summedLength += this.textToSvg(abilityText[i]).length
       }
 
-      return startpos + lineSpacing*summedLength + abilitySpacing*abilityIndex + lineSpacing*lineIndex
+      return startpos + lineSpacing * summedLength + abilitySpacing * abilityIndex + lineSpacing * lineIndex
     },
-    getAbilityText () {
+    getAbilityText() {
       let additionalCostText = []
 
       return R.concat(additionalCostText, this.model.RulesTexts)
     },
-    textToSvg (text) {
+    textToSvg(text) {
       if (!text) return text
 
       let maxLength = 57
@@ -23485,11 +23458,9 @@ export default {
       }
       if (this.Type && this.Type.HQ && this.Classes != 2) {
         return colors.HQ
-      }
-      else if (this.Classes > 2) {
+      } else if (this.Classes > 2) {
         return colors.MultiClass
-      }
-      else {
+      } else {
         return colors[this.SecondaryColor]
       }
     },
@@ -23499,11 +23470,9 @@ export default {
       if (this.model.AdditionalCost) {
         if (this.model.AdditionalCost.SacrificeCost) {
           additionalCostPseudoKeyword[0].push("Tribute")
-        }
-        else if (this.model.AdditionalCost.DiscardCost) {
+        } else if (this.model.AdditionalCost.DiscardCost) {
           additionalCostPseudoKeyword[0].push("DiscardPay")
-        }
-        else if (this.model.AdditionalCost.VoidCost) {
+        } else if (this.model.AdditionalCost.VoidCost) {
           additionalCostPseudoKeyword[0].push("Dissolve")
         }
       }
@@ -23512,7 +23481,7 @@ export default {
         R.concat(additionalCostPseudoKeyword, this.model.Keywords) :
         this.model.Keywords
     },
-    fontSize (rawText) {
+    fontSize(rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
       if (text.length < 100)
         return 7.5
@@ -23521,7 +23490,7 @@ export default {
       else
         return 5.5
     },
-    fontSpacing (rawText) {
+    fontSpacing(rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
       if (text.length < 100)
         return 12
@@ -23530,7 +23499,7 @@ export default {
       else
         return 8
     },
-    saveSingleCard () {
+    saveSingleCard() {
       let clickedCard = document.getElementById('theCardSvg')
       console.error("SAVE CARD AS PNG SHOULD BE DEACTIVATED")
       //svg1.saveSvgAsPng(clickedCard, this.model.CardName + '.png', {scale: 5})
@@ -23544,955 +23513,3966 @@ img {
   width: 100%;
   height: auto;
 }
-	.st0{clip-path:url(#SVGID_00000155844768690554972950000005933664229086213820_);}
-	.st1{clip-path:url(#SVGID_00000155141086319614893210000009139749630856177029_);}
-	.st2{clip-path:url(#SVGID_00000096024639585669911430000002125940443924850606_);}
-	.st3{clip-path:url(#SVGID_00000003787212671276610790000016580680365491168411_);}
-	.st4{clip-path:url(#SVGID_00000007407473165460864730000016006911621714008754_);}
-	.st5{clip-path:url(#SVGID_00000120544880485454809420000009858141959381292939_);}
-	.st6{clip-path:url(#SVGID_00000017489021682758079950000002614381420433096627_);}
-	.st7{clip-path:url(#SVGID_00000099660089975260156700000004971141563418811038_);}
-	.st8{clip-path:url(#SVGID_00000081621696766697742320000001968750051320948629_);}
-	.st9{clip-path:url(#SVGID_00000091734415679079430860000006744380568411887288_);}
-	.st10{clip-path:url(#SVGID_00000086692534042525981330000008294951559643832708_);}
-	.st11{clip-path:url(#SVGID_00000137829087369517540720000009684932027946048393_);}
-	.st12{fill:#FDDD9D;}
-	.st13{fill:url(#SVGID_00000045614506648763382830000005562501980820628614_);}
-	.st14{fill:url(#SVGID_00000098939589914547522430000009615240074443955893_);}
-	.st15{fill:url(#SVGID_00000129177481662152047900000011434438353717552823_);}
-	.st16{fill:url(#SVGID_00000025406126606184328310000014138356761498125228_);}
-	.st17{fill:url(#SVGID_00000016037867131508624080000015946975398872055737_);}
-	.st18{fill:url(#SVGID_00000161606066401355537030000001462509337549704122_);}
-	.st19{fill:url(#SVGID_00000072973543895850170950000008405920762437594759_);}
-	.st20{fill:url(#Frame_Outline_Left_00000170995795348560882000000009261296719077813907_);}
-	.st21{fill:url(#SVGID_00000016770972913058552580000005606318585152668349_);}
-	.st22{fill:url(#SVGID_00000079449974345372552390000005121455899860990601_);}
-	.st23{fill:url(#SVGID_00000116927959454754245250000004051132904153261740_);}
-	.st24{fill:url(#SVGID_00000143586543012153997950000002886598185893173892_);}
-	.st25{fill:url(#SVGID_00000127008708879696734260000012960220184322736307_);}
-	.st26{fill:url(#SVGID_00000173154610368691275160000004460140538672127367_);}
-	.st27{fill:url(#SVGID_00000021808518231633398520000010886326540160000409_);}
-	.st28{fill:url(#Frame_Outline_Left_00000076594281633462434110000004394783172867204497_);}
-	.st29{fill:url(#SVGID_00000012431344864594428260000006264390673575310464_);}
-	.st30{fill:url(#SVGID_00000166650054229740303820000009759280045140272054_);}
-	.st31{fill:url(#SVGID_00000010285747188078473040000002918370283492624315_);}
-	.st32{fill:url(#SVGID_00000034796028975009408500000005584476343357992590_);}
-	.st33{fill:url(#SVGID_00000128449676963443529800000003407716458508440248_);}
-	.st34{fill:url(#SVGID_00000115477202747433969080000017743540890986968220_);}
-	.st35{fill:url(#SVGID_00000155832284052938655110000014675377064281994396_);}
-	.st36{fill:url(#Frame_Outline_Left_00000134226507569890437140000001082022789158084235_);}
-	.st37{fill:url(#SVGID_00000048472932030526369970000000294892189043034286_);}
-	.st38{fill:url(#SVGID_00000101069919523992934060000013795880238939408570_);}
-	.st39{fill:url(#SVGID_00000146484119083498852090000014855148549861380275_);}
-	.st40{fill:url(#SVGID_00000178884757942346895460000008186095725283740334_);}
-	.st41{fill:url(#SVGID_00000029013515548474747980000005716227903289251470_);}
-	.st42{fill:url(#SVGID_00000029004390745637191930000001665228840497458569_);}
-	.st43{fill:url(#SVGID_00000050625220025045011480000009173832339345115535_);}
-	.st44{fill:url(#Frame_Outline_Left_00000129909227724549962430000006914543864011623816_);}
-	.st45{fill:url(#SVGID_00000161621652750339324460000003046224994596810425_);}
-	.st46{fill:url(#SVGID_00000111889697705005557490000011460411600002237072_);}
-	.st47{fill:url(#SVGID_00000180333455720447837220000012528108131291789734_);}
-	.st48{fill:url(#SVGID_00000141452044407259207520000002343390193330873518_);}
-	.st49{fill:url(#SVGID_00000154387230009312857060000003427592692874266803_);}
-	.st50{fill:url(#SVGID_00000008144284687359654300000000670444001678950826_);}
-	.st51{fill:url(#SVGID_00000094576379776568747350000009809122859104994177_);}
-	.st52{fill:url(#Frame_Outline_Left_00000148624170082436441430000017775293324580726960_);}
-	.st53{fill:url(#SVGID_00000106121148448703891310000003508614265547249854_);}
-	.st54{fill:url(#SVGID_00000024708274629329159690000009101103750045165479_);}
-	.st55{fill:url(#SVGID_00000064315192400276772360000010135028209483602820_);}
-	.st56{fill:url(#SVGID_00000014600235483836736700000001954352943209665436_);}
-	.st57{fill:url(#SVGID_00000025429908486495266770000003948025995487748013_);}
-	.st58{fill:url(#SVGID_00000041983801700438079870000016527000185470630534_);}
-	.st59{fill:url(#SVGID_00000158000321619444106420000015095010205597127082_);}
-	.st60{fill:url(#Frame_Outline_Left_00000064350066749899314530000001070950979586875553_);}
-	.st61{clip-path:url(#SVGID_00000011737663678383704970000006999376858143728063_);}
-	.st62{clip-path:url(#SVGID_00000170271705427171393630000000392244600065937584_);}
-	.st63{clip-path:url(#SVGID_00000117653775207737803060000017690190359607808420_);}
-	.st64{clip-path:url(#SVGID_00000054973159445345734030000017135173410794696362_);}
-	.st65{clip-path:url(#SVGID_00000118371780781368559500000001812883910878473146_);}
-	.st66{clip-path:url(#SVGID_00000029741781084254960040000004173962382413169333_);}
-	.st67{clip-path:url(#SVGID_00000183957240599650171650000010912911466696168111_);}
-	.st68{clip-path:url(#SVGID_00000126300755665680015550000014562170247095047587_);}
-	.st69{clip-path:url(#Tech_OBG_00000008142171400121621540000001721291005550814143_);}
-	.st70{fill:#087EFF;}
-	.st71{clip-path:url(#SVGID_00000147910068849443704090000006676284893794604986_);}
-	.st72{clip-path:url(#SVGID_00000143599160486332265110000001355298344537016451_);}
-	.st73{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st74{clip-path:url(#SVGID_00000119076018054015130770000000151818776696272532_);}
-	.st75{fill:none;stroke:#000000;stroke-width:1.5;stroke-miterlimit:10;}
-	.st76{fill:none;stroke:url(#SVGID_00000142876304494491530440000000062769366579595447_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st77{fill:none;stroke:url(#Tech_00000178894116405714037440000006491043389503636620_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st78{fill:none;stroke:url(#SVGID_00000052797515751868392970000012981831235080758676_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st79{fill:none;stroke:url(#Nature_00000066486276613592714050000004468843484900657831_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st80{fill:none;stroke:url(#SVGID_00000149349680841078551430000013997433768963073422_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st81{fill:none;stroke:url(#Nature_00000062170366268398009490000007563262108716711048_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st82{fill:none;stroke:url(#SVGID_00000005224989356696895790000015539306453870494091_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st83{fill:none;stroke:url(#Nature_00000066517752782124964140000009978748318034201735_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st84{fill:none;stroke:url(#SVGID_00000099649453338743326190000009660469126923464354_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st85{fill:none;stroke:url(#HQ_00000098207156730917945240000007364120627896073640_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st86{clip-path:url(#SVGID_00000009567784358489234530000015060084587709049491_);}
-	.st87{clip-path:url(#SVGID_00000108997131018773462530000008201446612026289324_);}
-	.st88{clip-path:url(#SVGID_00000044151444304572739810000001920391032540500158_);}
-	.st89{clip-path:url(#SVGID_00000013165654989647982970000015300582580352627891_);}
-	.st90{clip-path:url(#SVGID_00000054253974406750340750000015059144867063375529_);}
-	.st91{clip-path:url(#SVGID_00000112625621621003450640000015959227703953788863_);}
-	.st92{clip-path:url(#SVGID_00000099657663674965945960000005584255084106223551_);}
-	.st93{clip-path:url(#SVGID_00000102502936304563121860000008190630115595066498_);}
-	.st94{clip-path:url(#SVGID_00000111156087335144637610000012363726041874250136_);}
-	.st95{clip-path:url(#SVGID_00000030449727421325981560000009617317604485737641_);}
-	.st96{clip-path:url(#SVGID_00000142133752064821975690000017833754076833723582_);}
-	.st97{clip-path:url(#SVGID_00000145049632737489896800000010630689747212671636_);}
-	.st98{clip-path:url(#SVGID_00000181077120067916500970000017791937032712225435_);}
-	.st99{clip-path:url(#SVGID_00000106116527142587133550000010222242654909949860_);}
-	.st100{clip-path:url(#SVGID_00000085943093294118135280000017128773930066269860_);}
-	.st101{clip-path:url(#SVGID_00000097460524216234866740000007017522578926651542_);}
-	.st102{fill:none;stroke:url(#SVGID_00000021085228599628469830000016678352676642617499_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st103{fill:none;stroke:url(#SVGID_00000014595555158260981190000012393473821970215307_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st104{clip-path:url(#SVGID_00000144317076435803767220000016730680694370676915_);}
-	.st105{clip-path:url(#SVGID_00000122721649789712629200000015928696820523507585_);}
-	.st106{clip-path:url(#SVGID_00000121264788586157908490000000286858322389243574_);}
-	.st107{clip-path:url(#SVGID_00000167381571855396912850000002676848688181706112_);}
-	.st108{clip-path:url(#SVGID_00000032648755887702677080000006602637967835823752_);}
-	.st109{clip-path:url(#SVGID_00000139997910019501910000000011677269710257480127_);}
-	.st110{clip-path:url(#SVGID_00000020394061565305643570000017010232579178872767_);}
-	.st111{clip-path:url(#SVGID_00000011716124118995535930000004463744043225605307_);}
-	.st112{clip-path:url(#SVGID_00000170251509148604024610000014838269274423355304_);}
-	.st113{clip-path:url(#SVGID_00000139258258016882563720000017963733685153094786_);}
-	.st114{clip-path:url(#SVGID_00000157293438702975776450000018273414323879017911_);}
-	.st115{clip-path:url(#SVGID_00000114790238870645482690000016879696091451647126_);}
-	.st116{clip-path:url(#SVGID_00000090267878318335494400000013474752754054931845_);}
-	.st117{clip-path:url(#SVGID_00000067948423981807012140000010857740028556571570_);}
-	.st118{fill:none;stroke:url(#SVGID_00000178181284183706694410000007625963624378948742_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st119{fill:none;stroke:url(#SVGID_00000093173980308774923030000009369239786540918698_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st120{clip-path:url(#SVGID_00000079458265682627868250000005934361309697624734_);}
-	.st121{clip-path:url(#SVGID_00000111187314912619680470000014676486736868024765_);}
-	.st122{clip-path:url(#SVGID_00000057827968281748031140000013509031101263037624_);}
-	.st123{clip-path:url(#SVGID_00000039135923164549904140000000719256149418297791_);}
-	.st124{clip-path:url(#SVGID_00000064322069274971758270000006692363775860664206_);}
-	.st125{clip-path:url(#SVGID_00000076590683542132743720000001094810904658996647_);}
-	.st126{clip-path:url(#SVGID_00000144333314073643116020000016964964833554592646_);}
-	.st127{clip-path:url(#SVGID_00000047028707089655412880000007278242109870894251_);}
-	.st128{clip-path:url(#SVGID_00000157283806153086345010000009243268283240315306_);}
-	.st129{clip-path:url(#SVGID_00000039133985301887206190000009837908192520573346_);}
-	.st130{fill:none;stroke:url(#SVGID_00000175284576741620598820000002101811733284536252_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st131{fill:none;stroke:url(#SVGID_00000152972374423663685210000004780842579508802224_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st132{clip-path:url(#SVGID_00000170990426152873645010000016605042338898293135_);}
-	.st133{clip-path:url(#SVGID_00000001656086539739212720000005506454827315568026_);}
-	.st134{clip-path:url(#SVGID_00000163069050841363487080000017933009691699237782_);}
-	.st135{clip-path:url(#SVGID_00000124866369190862034790000013109996262955608975_);}
-	.st136{clip-path:url(#SVGID_00000003810425854275481390000016745902289109256326_);}
-	.st137{clip-path:url(#SVGID_00000045598892599125984170000001939481486010414491_);}
-	.st138{clip-path:url(#SVGID_00000160163293432311884990000004143045184019557566_);}
-	.st139{clip-path:url(#SVGID_00000134251692511255521290000015951186641829364384_);}
-	.st140{clip-path:url(#SVGID_00000068673873403752707780000011679609608270810524_);}
-	.st141{clip-path:url(#SVGID_00000173133034296845257150000004461653072006975386_);}
-	.st142{clip-path:url(#SVGID_00000060023444404883090190000014343509627840891320_);}
-	.st143{clip-path:url(#SVGID_00000017485033157227584250000016075728217368208801_);}
-	.st144{clip-path:url(#SVGID_00000111887441604140035060000012126709564773501595_);}
-	.st145{clip-path:url(#SVGID_00000043416172524599705650000013300104322698753153_);}
-	.st146{clip-path:url(#SVGID_00000010291370957497267620000001608363197963705227_);}
-	.st147{clip-path:url(#SVGID_00000147203766110828745080000006252733932533836708_);}
-	.st148{fill:none;stroke:url(#SVGID_00000115505236392644950130000006649832416780847292_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st149{fill:none;stroke:url(#HQ_00000072959333626390699540000011093863452986264236_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st150{clip-path:url(#SVGID_00000132072031075354372380000001909584287750891937_);}
-	.st151{clip-path:url(#SVGID_00000080195560960431153690000009439567331084649355_);}
-	.st152{clip-path:url(#SVGID_00000011724091351463574120000014598133451472640943_);}
-	.st153{clip-path:url(#SVGID_00000013913304526072360050000014935428736474219675_);}
-	.st154{clip-path:url(#SVGID_00000116940126447791119990000017466436533682883504_);}
-	.st155{clip-path:url(#SVGID_00000108302042910656281760000004236096870292900542_);}
-	.st156{clip-path:url(#SVGID_00000032608212883225629080000008018988169842560398_);}
-	.st157{clip-path:url(#SVGID_00000147219142491998850310000002582773477157651844_);}
-	.st158{clip-path:url(#SVGID_00000111189566390483117490000001926979640406881168_);}
-	.st159{clip-path:url(#SVGID_00000094597476968007060040000002329665778439201700_);}
-	.st160{clip-path:url(#SVGID_00000078730696813613895670000010781798021313490574_);}
-	.st161{clip-path:url(#SVGID_00000169525403026899836160000004312842559328979860_);}
-	.st162{clip-path:url(#SVGID_00000064327356995276622780000016776537815123078294_);}
-	.st163{clip-path:url(#SVGID_00000160162826128437425380000018231160077208824209_);}
-	.st164{fill:none;stroke:url(#SVGID_00000150792775990227364350000002278299315561765794_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st165{fill:none;stroke:url(#HQ_00000014603106598768564060000015538900418778050494_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st166{clip-path:url(#SVGID_00000008115951021428152310000003989103889660245415_);}
-	.st167{clip-path:url(#SVGID_00000111911587570612498760000011833522005696145598_);}
-	.st168{clip-path:url(#SVGID_00000061455388663060806760000012682352069015278222_);}
-	.st169{clip-path:url(#SVGID_00000064327695504856220050000008588917686361338802_);}
-	.st170{clip-path:url(#SVGID_00000169554978935551497880000001225735730064862098_);}
-	.st171{clip-path:url(#SVGID_00000067916144941522326840000016142349571452813730_);}
-	.st172{clip-path:url(#SVGID_00000084530085450752140310000012094732690812076479_);}
-	.st173{clip-path:url(#SVGID_00000062185264534044599670000003665674637012158644_);}
-	.st174{clip-path:url(#SVGID_00000167370329669416217480000006215207968910839439_);}
-	.st175{clip-path:url(#SVGID_00000023964077280139203710000002638940131850749860_);}
-	.st176{fill:none;stroke:url(#SVGID_00000125578840737257912660000015289919378165685177_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st177{fill:none;stroke:url(#HQ_00000085245562049387961300000008674477995842751372_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st178{clip-path:url(#SVGID_00000178912487260789115440000009248995433184797881_);}
-	.st179{clip-path:url(#SVGID_00000074431272942288507490000007677043330375386039_);}
-	.st180{fill:none;stroke:url(#SVGID_00000090974061930314450210000006584774595270249096_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st181{fill:none;stroke:url(#SVGID_00000080190764139308003500000009689585875870436770_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st182{fill:none;stroke:url(#SVGID_00000169518758649719645360000002883050787776491438_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st183{clip-path:url(#SVGID_00000162312814208507392090000002855183692136994472_);}
-	.st184{clip-path:url(#SVGID_00000058567543870209462480000004243167783069366460_);}
-	.st185{fill:none;stroke:url(#SVGID_00000169554991973663466020000000923488744215497902_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st186{fill:none;stroke:url(#SVGID_00000082340695566836759240000001594751706759391420_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st187{fill:none;stroke:url(#SVGID_00000093143562688667054960000017289517647254780553_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st188{clip-path:url(#SVGID_00000074399748279638255470000007130626665344657557_);}
-	.st189{clip-path:url(#SVGID_00000178183044662387285130000005177811051628797336_);}
-	.st190{fill:none;stroke:url(#SVGID_00000174603965478606313830000016386840293495630497_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st191{fill:none;stroke:url(#SVGID_00000075846567224045889080000013531589128332322463_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st192{fill:none;stroke:url(#SVGID_00000145038070962879788840000012329765336788919707_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st193{clip-path:url(#SVGID_00000048501558726471657530000007029325594982658991_);}
-	.st194{clip-path:url(#SVGID_00000060722841549000410890000007795790984360246408_);}
-	.st195{fill:none;stroke:url(#SVGID_00000038379065390794658270000001864829541666972605_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st196{fill:none;stroke:url(#SVGID_00000002357234190344267120000007258779968443238847_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st197{fill:none;stroke:url(#SVGID_00000177477676928389472410000001677311821795140279_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st198{clip-path:url(#SVGID_00000010294018157054623000000008275429711342788486_);}
-	.st199{clip-path:url(#SVGID_00000160157792851439505420000009583800593030246833_);}
-	.st200{fill:none;stroke:url(#SVGID_00000089533552194521321220000003199775294005879691_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st201{fill:none;stroke:url(#SVGID_00000166667710177665518230000014714515281096464822_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st202{fill:none;stroke:url(#SVGID_00000161633408115936050190000000803620919956066456_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st203{clip-path:url(#SVGID_00000127041457715032350170000012006606354775157434_);}
-	.st204{clip-path:url(#SVGID_00000060020370457572173280000015919464429799803818_);}
-	.st205{fill:none;stroke:url(#SVGID_00000132070552490093571120000002458997398781000115_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st206{fill:none;stroke:url(#SVGID_00000149365418455119192860000003690946231332868786_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st207{fill:none;stroke:url(#SVGID_00000035516912742355383500000009292332396963417015_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st208{fill:#FFCF03;}
-	.st209{clip-path:url(#SVGID_00000060709792168006291940000008923357642001231035_);}
-	.st210{clip-path:url(#Tech_OBG_00000081634597924607683650000008269391356898147000_);}
-	.st211{clip-path:url(#SVGID_00000135679935135003464640000007174846182375720882_);}
-	.st212{clip-path:url(#SVGID_00000172431799394906731090000008430639544900324249_);}
-	.st213{fill:url(#SVGID_00000111873077912108137100000000927219262369471374_);}
-	.st214{fill:url(#SVGID_00000148663144720759712780000014843791355473668528_);}
-	.st215{fill:url(#SVGID_00000026857258629416384230000006239762435326780035_);}
-	.st216{fill:url(#SVGID_00000076564533190844693580000003766279725848719795_);}
-	.st217{fill:url(#SVGID_00000181805789336778109530000001622401793358569123_);}
-	.st218{fill:#6B03FF;}
-	.st219{fill:#5AFF03;}
-	.st220{fill:url(#Tech_Gradient_00000163776961631405252540000016929783864531578808_);}
-	.st221{fill:url(#Myth_Gradient_00000174563141607978559820000015766431341706294411_);}
-	.st222{fill:url(#Culture_Gradient_00000132806993666308454710000001368935924617039527_);}
-	.st223{fill:url(#Nature_Gradient_00000044175219979230098310000006807931336889943946_);}
-	.st224{fill:url(#Multi_Class_Gradient_00000183948498578211358550000014014337606679906201_);}
-	.st225{fill:url(#HQ_Gradient_00000078021354937874696080000002917337618561690777_);}
-	.st226{clip-path:url(#SVGID_00000180359995151104780700000014587877301939773859_);}
-	.st227{clip-path:url(#SVGID_00000101808037596533013950000005756677261344904622_);}
-	.st228{clip-path:url(#SVGID_00000077318352560992279820000001116718162813972108_);}
-	.st229{clip-path:url(#SVGID_00000021112649779445898760000011619921326161990573_);}
-	.st230{clip-path:url(#SVGID_00000062910161937895501990000018427882066718572467_);}
-	.st231{clip-path:url(#SVGID_00000018939114362571078900000004196531697980404125_);}
-	.st232{clip-path:url(#SVGID_00000006697580228922842500000004776631413515520433_);}
-	.st233{clip-path:url(#SVGID_00000140692484058713363180000015481689203145368728_);}
-	.st234{clip-path:url(#SVGID_00000145052085975709797500000017872123846761923212_);}
-	.st235{clip-path:url(#SVGID_00000060739335734837718540000018445744402214409109_);}
-	.st236{clip-path:url(#SVGID_00000072261366448404662590000008818956817483241132_);}
-	.st237{clip-path:url(#SVGID_00000083069862176981560400000016326105775281644973_);}
-	.st238{clip-path:url(#SVGID_00000012433628742390345270000015847722031792188580_);}
-	.st239{clip-path:url(#SVGID_00000053545301966534657990000009215336791387645355_);}
-	.st240{clip-path:url(#SVGID_00000042703019669531765590000000413065870193910407_);}
-	.st241{clip-path:url(#SVGID_00000130608272159292783500000017550769238258296990_);}
-	.st242{clip-path:url(#SVGID_00000049914232163557317460000006685169315895738762_);}
-	.st243{clip-path:url(#SVGID_00000043444277545932931750000018197192163940840865_);}
-	.st244{clip-path:url(#SVGID_00000060753481431153665920000014617681446806205592_);}
-	.st245{clip-path:url(#SVGID_00000147927410622347333060000008854089094134219679_);}
-	.st246{clip-path:url(#SVGID_00000116221943864718592920000005422069010861163706_);}
-	.st247{clip-path:url(#SVGID_00000123414891117462476100000007650415539830104737_);}
-	.st248{clip-path:url(#SVGID_00000001652290361411047090000011717349688223117247_);}
-	.st249{clip-path:url(#SVGID_00000156578129506948499450000011472757914380683157_);}
-	.st250{clip-path:url(#SVGID_00000111887287993101217820000011035633299364951468_);}
-	.st251{clip-path:url(#SVGID_00000028302210585818622140000014281752626808227238_);}
-	.st252{clip-path:url(#SVGID_00000155118747590179197670000004184419166546313871_);}
-	.st253{clip-path:url(#SVGID_00000107571433314880981440000008930946014018808511_);}
-	.st254{clip-path:url(#SVGID_00000158718464380771602580000006166702954105441710_);}
-	.st255{clip-path:url(#SVGID_00000016046027495814955640000005789566756933407913_);}
-	.st256{clip-path:url(#SVGID_00000070803836804278028580000005540225884680205741_);}
-	.st257{clip-path:url(#SVGID_00000165208457288206617820000016271575871838059664_);}
-	.st258{clip-path:url(#SVGID_00000101063165919630634810000001878480441264429953_);}
-	.st259{clip-path:url(#SVGID_00000084497775096880775060000013545503383405295520_);}
-	.st260{clip-path:url(#SVGID_00000176009729911573806260000010045184205349899911_);}
-	.st261{clip-path:url(#SVGID_00000046341677695483268530000010184625088404910511_);}
-	.st262{clip-path:url(#SVGID_00000037662601921041143890000014620247136920955048_);}
-	.st263{clip-path:url(#SVGID_00000057867432333182813390000003027336727581630884_);}
-	.st264{clip-path:url(#SVGID_00000085960501415216323450000016134283502633658505_);}
-	.st265{clip-path:url(#SVGID_00000068668442048577541490000011315022337224147874_);}
-	.st266{clip-path:url(#SVGID_00000089572049345313112940000002182533933409217717_);}
-	.st267{clip-path:url(#SVGID_00000139264483068370811480000016088490401293199790_);}
-	.st268{clip-path:url(#SVGID_00000176746961099258499790000017114177236069462964_);}
-	.st269{clip-path:url(#SVGID_00000172429203137893497150000001986532242411568314_);}
-	.st270{clip-path:url(#SVGID_00000052070238920040528610000001143006011026334621_);}
-	.st271{fill:url(#SVGID_00000042006245993007871420000007667409343319115685_);}
-	.st272{fill:url(#SVGID_00000168114856473701676020000013667534569334487454_);}
-	.st273{fill:url(#SVGID_00000070838723185737967320000008712433149668865924_);}
-	.st274{fill:url(#SVGID_00000182505597265696083260000004734476242998359987_);}
-	.st275{fill:url(#SVGID_00000020391334903008450750000003340958381306273932_);}
-	.st276{fill:url(#SVGID_00000088109736305611942980000011479322261936484264_);}
-	.st277{fill:url(#SVGID_00000134968888399683708930000000842184035544997778_);}
-	.st278{fill:url(#SVGID_00000125587770041860130210000014697414643509027758_);}
-	.st279{fill:url(#SVGID_00000157288011846110402040000003129080749223453085_);}
-	.st280{clip-path:url(#SVGID_00000005262868663509963300000001290269425064837272_);}
-	.st281{fill:none;stroke:#6B03FF;stroke-width:1.5;stroke-miterlimit:10;}
-	.st282{clip-path:url(#SVGID_00000121237672896850019120000001509456277723665323_);}
-	.st283{clip-path:url(#SVGID_00000152970143694948756330000013732551198400795304_);}
-	.st284{clip-path:url(#SVGID_00000060725661392509547510000015503025753470349452_);}
-	.st285{clip-path:url(#SVGID_00000075133134757751513230000011170455631865176490_);}
-	.st286{clip-path:url(#SVGID_00000003819356893371580760000016793108903031519394_);}
-	.st287{clip-path:url(#SVGID_00000002375265950798776150000002032964816114412173_);}
-	.st288{fill:url(#Health_Frame_00000043438240706306607600000000629377359929241472_);}
-	.st289{fill:url(#Health_Frame_00000173134579862154586160000014576503467761412254_);}
-	.st290{fill:url(#FullArt_Inside_BG_00000007426317503482501450000007710910961479019182_);}
-	.st291{fill:url(#FullArt_Inside_BG_00000011744576963134112990000002871770344096958907_);}
-	.st292{fill:url(#FullArt_Inside_BG_00000170973406354682381690000007575213555297272981_);}
-	.st293{fill:url(#FullArt_Inside_BG_00000138545229116499201990000010490078009072000136_);}
-	.st294{fill:url(#FullArt_Inside_BG_00000141434292891783006650000017647194279747523736_);}
-	.st295{fill:url(#FullArt_Inside_BG_00000106830097759491890690000014483771022837850009_);}
-	.st296{fill:url(#FullArt_Inside_BG_00000088126893313100699280000000072697453069781410_);}
-	.st297{fill:url(#FullArt_Inside_BG_00000070082382677535668190000000428118331435906733_);}
-	.st298{fill:url(#FullArt_Inside_BG_00000181793447356806942000000011764119188432822967_);}
-	.st299{fill:url(#FullArt_Inside_BG_00000178207411480943670520000005813192006611710082_);}
-	.st300{fill:url(#Health_Frame_00000000914877354244362690000001198026391750162359_);}
-	.st301{fill:url(#Health_Frame_00000165925068428005530130000005789257500305961600_);}
-	.st302{fill:url(#FullArt_Inside_BG_00000170238570440824537110000004512849163255662507_);}
-	.st303{fill:url(#FullArt_Inside_BG_00000059995900520620593410000010957680129567237248_);}
-	.st304{fill:url(#FullArt_Outside_00000069391161698258899910000004842812426093139620_);}
-	.st305{fill:url(#FullArt_Outside_00000178188447369539300550000011221627345369577376_);}
-	.st306{fill:url(#FullArt_Outside_00000147934205334914536590000011860590808255406480_);}
-	.st307{fill:url(#FullArt_Outside_00000118392238707075374520000017457234601002904489_);}
-	.st308{fill:url(#FullArt_Outside_00000057125052216075067540000004124407833363217803_);}
-	.st309{fill:url(#FullArt_Outside_00000137123290699178031440000003443386812955986108_);}
-	.st310{fill:url(#FullArt_Outside_00000031895737002741360130000000394305996561704832_);}
-	.st311{fill:url(#Bottom_Frame_00000154405562467345105280000001477301810664253587_);}
-	.st312{fill:url(#Health_Frame_00000066515981031591552690000008720903019333348769_);}
-	.st313{fill:url(#SVGID_00000049217584153382028170000003548453696851897016_);}
-	.st314{fill:url(#SVGID_00000017511051349947073390000010554426856269428145_);}
-	.st315{clip-path:url(#SVGID_00000161629679262620357900000011113631902554331291_);}
-	.st316{clip-path:url(#SVGID_00000007423813887648494350000018028406652125046673_);}
-	.st317{clip-path:url(#SVGID_00000127754224122271645270000009433785649558543524_);}
-	.st318{clip-path:url(#SVGID_00000016033827264202054140000006783301682225819326_);}
-	.st319{fill:url(#Health_Frame_00000005225379511422978220000001898098608071486867_);}
-	.st320{fill:url(#Health_Frame_00000090276382383635833430000016451537637592045980_);}
-	.st321{fill:url(#FullArt_Inside_BG_00000124130169702981731170000014442267818222326663_);}
-	.st322{fill:url(#FullArt_Inside_BG_00000065761818075622996350000015866667871303889584_);}
-	.st323{fill:url(#FullArt_Inside_BG_00000123434447844972471620000015795001150389472158_);}
-	.st324{fill:url(#FullArt_Inside_BG_00000030466955717176167740000012457870975477680517_);}
-	.st325{fill:url(#FullArt_Inside_BG_00000161601427626812669040000016554464892840789141_);}
-	.st326{fill:url(#FullArt_Inside_BG_00000015355053204336517480000008165027185612154523_);}
-	.st327{fill:url(#FullArt_Inside_BG_00000149366993985161815290000000267099365361176472_);}
-	.st328{fill:url(#FullArt_Inside_BG_00000031897511491266730460000015596074077612457369_);}
-	.st329{fill:url(#FullArt_Inside_BG_00000124135827073581236210000000421308758460503209_);}
-	.st330{fill:url(#FullArt_Inside_BG_00000166642046229009826190000008861355726401492146_);}
-	.st331{fill:url(#Health_Frame_00000009566508736573760890000016505047235773274533_);}
-	.st332{fill:url(#Health_Frame_00000139262052458317856560000004870297099329163945_);}
-	.st333{fill:url(#FullArt_Inside_BG_00000024693009784882675110000013065735813237113277_);}
-	.st334{fill:url(#FullArt_Inside_BG_00000039125684097635342830000000719266251517451687_);}
-	.st335{fill:url(#FullArt_Outside_00000016762325550959841330000011025885103724127371_);}
-	.st336{fill:url(#FullArt_Outside_00000149372412164978596560000005327132035992512186_);}
-	.st337{fill:url(#FullArt_Outside_00000029031171641486924590000003249887670729008556_);}
-	.st338{fill:url(#FullArt_Outside_00000038371844869978299560000004729598789405706648_);}
-	.st339{fill:url(#FullArt_Outside_00000049202997541056820470000002618674886632084363_);}
-	.st340{fill:url(#FullArt_Outside_00000104668384284311890720000018069172468248423303_);}
-	.st341{fill:url(#FullArt_Outside_00000108306836345755946050000012494118494657083550_);}
-	.st342{fill:url(#Bottom_Frame_00000075157573564275611220000009997456338513646269_);}
-	.st343{fill:url(#Health_Frame_00000083797019403211617380000003628382665823245209_);}
-	.st344{fill:url(#SVGID_00000072259927093234450390000017163693914252779697_);}
-	.st345{fill:url(#SVGID_00000005254057059193328460000000498121713043349648_);}
-	.st346{clip-path:url(#SVGID_00000058585427086097807400000008925024860453362337_);}
-	.st347{clip-path:url(#SVGID_00000177460265158219197110000004763980193702914460_);}
-	.st348{clip-path:url(#SVGID_00000131361581414259061500000004151172147252795790_);}
-	.st349{clip-path:url(#SVGID_00000003093577324992332710000015781096973946919091_);}
-	.st350{fill:url(#Health_Frame_00000090263992234357660780000013884724268794923664_);}
-	.st351{fill:url(#Health_Frame_00000036961453416157184620000000478114287583442864_);}
-	.st352{fill:url(#FullArt_Inside_BG_00000096019619055819784850000018334161826437431725_);}
-	.st353{fill:url(#FullArt_Inside_BG_00000044892736439863773510000003714593210545059462_);}
-	.st354{fill:url(#FullArt_Inside_BG_00000164472928521144498580000012784078872547984048_);}
-	.st355{fill:url(#FullArt_Inside_BG_00000098220635005581366180000004234242144239611304_);}
-	.st356{fill:url(#FullArt_Inside_BG_00000119105360121371296010000015516710492654405819_);}
-	.st357{fill:url(#FullArt_Inside_BG_00000152987257006623408070000013355228453943189950_);}
-	.st358{fill:url(#FullArt_Inside_BG_00000062191552164358547440000018042969042202265990_);}
-	.st359{fill:url(#FullArt_Inside_BG_00000075144629596893742660000001977863211171321504_);}
-	.st360{fill:url(#FullArt_Inside_BG_00000101783224048192836460000005001481790062795710_);}
-	.st361{fill:url(#FullArt_Inside_BG_00000035533379523740523600000011062100149587547059_);}
-	.st362{fill:url(#Health_Frame_00000148663738978306029870000011193743854866858667_);}
-	.st363{fill:url(#Health_Frame_00000105402126115650021420000016040757487181064366_);}
-	.st364{fill:url(#FullArt_Inside_BG_00000089538136782666250870000017451708936980827541_);}
-	.st365{fill:url(#FullArt_Inside_BG_00000049196959521702065260000003571781641705612991_);}
-	.st366{fill:url(#FullArt_Outside_00000068638008994037015140000014925505968525407380_);}
-	.st367{fill:url(#FullArt_Outside_00000157993473691899638240000007847293950589141390_);}
-	.st368{fill:url(#FullArt_Outside_00000180335460314769149300000011312865545870254244_);}
-	.st369{fill:url(#FullArt_Outside_00000170270206439846300930000010735869372001240712_);}
-	.st370{fill:url(#FullArt_Outside_00000004531494343075023460000005962592377876836484_);}
-	.st371{fill:url(#FullArt_Outside_00000149344569542867114190000004831142121369569922_);}
-	.st372{fill:url(#FullArt_Outside_00000102522823707574908700000016298147741534632847_);}
-	.st373{fill:url(#Bottom_Frame_00000000911639554346132940000014454132581989190034_);}
-	.st374{fill:url(#Health_Frame_00000172436255215336791910000006709058499778742918_);}
-	.st375{fill:url(#SVGID_00000047781845990802916820000017645221639040325511_);}
-	.st376{clip-path:url(#SVGID_00000058552635860130972220000006720210875579489965_);}
-	.st377{clip-path:url(#SVGID_00000029728062221025754100000004189370261496003715_);}
-	.st378{clip-path:url(#SVGID_00000148662292890775823250000015969197970115901606_);}
-	.st379{clip-path:url(#SVGID_00000026853287862727825480000008798214709885239955_);}
-	.st380{fill:url(#Health_Frame_00000156571710651706752090000018297152884821873281_);}
-	.st381{fill:url(#Health_Frame_00000135670849462648628800000018123749284913632389_);}
-	.st382{fill:url(#FullArt_Inside_BG_00000028297952180745541510000015642852577565243793_);}
-	.st383{fill:url(#FullArt_Inside_BG_00000147909638795736990400000014953559427872273833_);}
-	.st384{fill:url(#FullArt_Inside_BG_00000055673805903645341380000016104351420306478761_);}
-	.st385{fill:url(#FullArt_Inside_BG_00000023255580651266498610000015438476610082052996_);}
-	.st386{fill:url(#FullArt_Inside_BG_00000033347028234592449850000011202839901814785182_);}
-	.st387{fill:url(#FullArt_Inside_BG_00000153690194665919154230000007076835836545970106_);}
-	.st388{fill:url(#FullArt_Inside_BG_00000074406370563988774950000000570127472432407217_);}
-	.st389{fill:url(#FullArt_Inside_BG_00000126310231959253120460000000121515349790953914_);}
-	.st390{fill:url(#FullArt_Inside_BG_00000088842109607278804860000009748127003335027851_);}
-	.st391{fill:url(#FullArt_Inside_BG_00000041277909408231918910000009854002011835705740_);}
-	.st392{fill:url(#Health_Frame_00000124845016820986483750000007404168714782363323_);}
-	.st393{fill:url(#Health_Frame_00000101085785004314652180000002838901439432130225_);}
-	.st394{fill:url(#FullArt_Inside_BG_00000005974337892459111630000011469416896358374529_);}
-	.st395{fill:url(#FullArt_Inside_BG_00000031179169895319320630000015794384922216770177_);}
-	.st396{fill:url(#FullArt_Outside_00000070823258650016211390000011972132201486589108_);}
-	.st397{fill:url(#FullArt_Outside_00000037675567825285811940000011971027865160882870_);}
-	.st398{fill:url(#FullArt_Outside_00000103240122002217535310000005481062685941019065_);}
-	.st399{fill:url(#FullArt_Outside_00000127009636486406697180000005884595852857556617_);}
-	.st400{fill:url(#FullArt_Outside_00000142138253416771384890000008604561936604094096_);}
-	.st401{fill:url(#FullArt_Outside_00000144301536853873138500000011070961168759078552_);}
-	.st402{fill:url(#FullArt_Outside_00000149347205748605276030000014294165788176090501_);}
-	.st403{fill:url(#Bottom_Frame_00000046303093348434733480000005582311589697753491_);}
-	.st404{fill:url(#Health_Frame_00000038384274500443278380000001050593255226427287_);}
-	.st405{fill:url(#SVGID_00000178194750992884499400000008973740309362038419_);}
-	.st406{clip-path:url(#SVGID_00000039115287641610653150000000029216013629244072_);}
-	.st407{clip-path:url(#SVGID_00000064335219631793879780000005269425399035014818_);}
-	.st408{clip-path:url(#SVGID_00000054968225442820334740000011586709907907755679_);}
-	.st409{clip-path:url(#SVGID_00000101797977514713730700000018102904654596098729_);}
-	.st410{fill:url(#Health_Frame_00000151524874358434018570000014717165277807794616_);}
-	.st411{fill:url(#Health_Frame_00000049197724857434599730000015155450530590921889_);}
-	.st412{fill:url(#FullArt_Inside_BG_00000103256836461130298750000000270666881644292799_);}
-	.st413{fill:url(#FullArt_Inside_BG_00000158721708073516876600000017512723468395172005_);}
-	.st414{fill:url(#FullArt_Inside_BG_00000064321338575059020680000015762791593128483755_);}
-	.st415{fill:url(#FullArt_Inside_BG_00000045616425503115533190000007688764340743877776_);}
-	.st416{fill:url(#FullArt_Inside_BG_00000108269970563696501810000012793381262337583535_);}
-	.st417{fill:url(#FullArt_Inside_BG_00000145058234720669758120000000096664122880267185_);}
-	.st418{fill:url(#FullArt_Inside_BG_00000147924400581572933820000009671473504687488679_);}
-	.st419{fill:url(#FullArt_Inside_BG_00000039098297794500424260000011205016395205233081_);}
-	.st420{fill:url(#FullArt_Inside_BG_00000178913474327762224710000008682725826551707835_);}
-	.st421{fill:url(#FullArt_Inside_BG_00000088115882704749174000000005207791433074076845_);}
-	.st422{fill:url(#Health_Frame_00000174574076057828542500000010670340084430634929_);}
-	.st423{fill:url(#Health_Frame_00000072249911980102117900000011307761496412792222_);}
-	.st424{fill:url(#FullArt_Inside_BG_00000080175185427930304140000007192451108541905591_);}
-	.st425{fill:url(#FullArt_Inside_BG_00000168837724285387402760000004231004108751961006_);}
-	.st426{fill:url(#FullArt_Outside_00000037661275477203722610000006149098964399342492_);}
-	.st427{fill:url(#FullArt_Outside_00000021831703293865868790000016610428633618232995_);}
-	.st428{fill:url(#FullArt_Outside_00000163770626192978119990000007981570642954139807_);}
-	.st429{fill:url(#FullArt_Outside_00000034774489602451768350000013066725566755077806_);}
-	.st430{fill:url(#FullArt_Outside_00000026141645892066369730000001623579649946454943_);}
-	.st431{fill:url(#FullArt_Outside_00000091011934554906232250000016597052236406693012_);}
-	.st432{fill:url(#FullArt_Outside_00000051344750844455317600000014230649660256698761_);}
-	.st433{fill:url(#Bottom_Frame_00000093859451303901625070000014746573028513693335_);}
-	.st434{fill:url(#Health_Frame_00000042716857074407344080000008461633164082117249_);}
-	.st435{fill:url(#SVGID_00000105385394019719699530000005342820991749754788_);}
-	.st436{fill:url(#SVGID_00000024721837819158692560000014908657639596587179_);}
-	.st437{fill:url(#FullArt_Inside_BG_00000103973059183715087540000017318467928073473441_);}
-	.st438{fill:url(#FullArt_Inside_BG_00000095334086788523801410000004888170882692535718_);}
-	.st439{fill:url(#FullArt_Inside_BG_00000074435991506326778670000016680628998212108705_);}
-	.st440{fill:url(#SVGID_00000147182718532990085840000002386713043593645448_);}
-	.st441{fill:url(#SVGID_00000111913139320132492980000012587965012576237961_);}
-	.st442{fill:url(#Bottom_Frame_00000176760806515401883980000017264594914909583532_);}
-	.st443{fill:url(#FullArt_Inside_BG_00000142854840461599172290000018135077494073134467_);}
-	.st444{fill:url(#FullArt_Inside_BG_00000152235082659662183470000007462566746430566319_);}
-	.st445{fill:url(#FullArt_Inside_BG_00000015352370273048711830000005430563091674630017_);}
-	.st446{fill:url(#FullArt_Inside_BG_00000068635171396591717140000000294997317724449934_);}
-	.st447{fill:url(#FullArt_Inside_BG_00000145028175155338262930000004927485925750909616_);}
-	.st448{fill:url(#SVGID_00000137101130667572340220000006157444448574241925_);}
-	.st449{fill:url(#SVGID_00000088098304217970673920000010349373099080722839_);}
-	.st450{fill:url(#Bottom_Frame_00000175297948671220265290000012230662962152237758_);}
-	.st451{fill:url(#FullArt_Inside_BG_00000179630812893473155400000010225497395734679724_);}
-	.st452{fill:url(#FullArt_Inside_BG_00000083781782904248686860000011367806274722796734_);}
-	.st453{fill:url(#FullArt_Inside_BG_00000036960757514921583750000007779001610891144352_);}
-	.st454{fill:url(#FullArt_Inside_BG_00000031174095875628208710000007388628581513613475_);}
-	.st455{fill:url(#FullArt_Inside_BG_00000162349977567264930160000001629404469999127181_);}
-	.st456{fill:url(#SVGID_00000132780988340216723880000008529543319511307435_);}
-	.st457{fill:url(#SVGID_00000057150381898241136170000017935963117006153098_);}
-	.st458{fill:url(#Bottom_Frame_00000036219045030570629350000004885970847204619450_);}
-	.st459{fill:url(#FullArt_Inside_BG_00000106831277560297757700000016000258344452734888_);}
-	.st460{fill:url(#FullArt_Inside_BG_00000138560175346578544670000003831491182007983277_);}
-	.st461{fill:url(#FullArt_Inside_BG_00000043435259030937585900000013389054009845200006_);}
-	.st462{fill:url(#FullArt_Inside_BG_00000034798555325930667290000011748508902250145689_);}
-	.st463{fill:url(#FullArt_Inside_BG_00000104708535168303801880000006983631483378811294_);}
-	.st464{fill:url(#SVGID_00000135657865747863558600000000467659851380146077_);}
-	.st465{fill:url(#SVGID_00000145767393788261629460000003835856667853012643_);}
-	.st466{fill:url(#SVGID_00000108276141143193364710000000525853308764661666_);}
-	.st467{fill:url(#FullArt_Inside_BG_00000124148461569967487930000006108657621725384069_);}
-	.st468{fill:url(#FullArt_Inside_BG_00000004530098590005800530000005145655520537509258_);}
-	.st469{fill:url(#FullArt_Inside_BG_00000064315331225922373710000010585258360942635183_);}
-	.st470{fill:url(#FullArt_Inside_BG_00000078039559165910255470000001586550157037034676_);}
-	.st471{fill:url(#FullArt_Inside_BG_00000063620050984632071370000004254470707299224192_);}
-	.st472{fill:url(#SVGID_00000113347598645840574340000018220772957935253148_);}
-	.st473{fill:url(#SVGID_00000127031288564609240190000002050710243331721148_);}
-	.st474{fill:url(#SVGID_00000039126910508076163730000002083834061522755254_);}
-	.st475{fill:url(#FullArt_Inside_BG_00000146471361745857949850000007463809176110553013_);}
-	.st476{fill:url(#FullArt_Inside_BG_00000107562456831427721280000011200332678488919969_);}
-	.st477{clip-path:url(#SVGID_00000029760472262457655100000014005954406633588626_);}
-	.st478{clip-path:url(#SVGID_00000121960050366109026090000008178289336141704867_);}
-	.st479{fill:url(#Health_Frame_00000181056743537958026070000005065608867584413344_);}
-	.st480{fill:url(#SVGID_00000104704136866845100270000001178478440862743973_);}
-	.st481{fill:url(#SVGID_00000101077847782787517560000015817731070767454085_);}
-	.st482{fill:url(#FullArt_Inside_BG_00000004503791227399073870000017276392605228990867_);}
-	.st483{fill:url(#FullArt_Inside_BG_00000024688065345150412940000011452548324589567135_);}
-	.st484{fill:url(#FullArt_Inside_BG_00000130623847556032746820000000745760506513402756_);}
-	.st485{fill:url(#Health_Frame_00000113342033870679785170000015868914732335465345_);}
-	.st486{fill:url(#SVGID_00000101082862782496297990000008928832835610325130_);}
-	.st487{fill:url(#SVGID_00000136411639026638473670000003422110872120544398_);}
-	.st488{fill:url(#SVGID_00000129189390953045393230000017370299511955240875_);}
-	.st489{fill:url(#SVGID_00000177457052497320245410000008946163382431821190_);}
-	.st490{fill:url(#SVGID_00000166641162877989905430000003453949530418612878_);}
-	.st491{fill:url(#SVGID_00000096034949353302116980000009639629904338767026_);}
-	.st492{fill:url(#SVGID_00000074403203884954187230000018085992868073516184_);}
-	.st493{fill:url(#SVGID_00000118357256811802806000000001510279525393451935_);}
-	.st494{fill:url(#SVGID_00000103977072472793447220000013417339061196972933_);}
-	.st495{fill:url(#SVGID_00000143579430582195947210000010808286694664546463_);}
-	.st496{fill:url(#SVGID_00000176001350498818942660000006846712181341610635_);}
-	.st497{fill:url(#SVGID_00000160905728835594644520000003007415181823707780_);}
-	.st498{fill:url(#FullArt_Inside_BG_00000050656536196264451100000014798139595705616014_);}
-	.st499{fill:url(#SVGID_00000160885402608583580700000006205168299581888436_);}
-	.st500{fill:url(#FullArt_Inside_BG_00000139986990492385518580000017943113375246774934_);}
-	.st501{clip-path:url(#SVGID_00000101092530684151643240000001046487210705679021_);}
-	.st502{clip-path:url(#SVGID_00000181775496949489052080000011975292648434841238_);}
-	.st503{fill:url(#Health_Frame_00000069355481311998163810000015039243949949570469_);}
-	.st504{fill:url(#SVGID_00000098912064887778273690000008169053325828084367_);}
-	.st505{fill:url(#SVGID_00000118390259270553821180000015532551548498840495_);}
-	.st506{fill:url(#FullArt_Inside_BG_00000049923996904954004270000002215666173900597695_);}
-	.st507{fill:url(#FullArt_Inside_BG_00000173879124698541695170000006642342114182701715_);}
-	.st508{fill:url(#FullArt_Inside_BG_00000130633488695399501370000003999783374950049181_);}
-	.st509{fill:url(#Health_Frame_00000098218906369961890080000013085054590083635883_);}
-	.st510{fill:url(#SVGID_00000129890556604034035580000001733499209766090672_);}
-	.st511{fill:url(#SVGID_00000134952725345363125150000007445945126213075845_);}
-	.st512{fill:url(#SVGID_00000104681668200636318980000007808261114997177479_);}
-	.st513{fill:url(#SVGID_00000046313114698136372430000001596344998359939740_);}
-	.st514{fill:url(#SVGID_00000111878429973039109940000009316207809381152161_);}
-	.st515{fill:url(#SVGID_00000005261805845617290800000012083853304704342697_);}
-	.st516{fill:url(#SVGID_00000075145010965044993740000015868849002210154370_);}
-	.st517{fill:url(#SVGID_00000134238530409033984250000004573524629224568192_);}
-	.st518{fill:url(#SVGID_00000170280206806529311200000008334248820569745322_);}
-	.st519{fill:url(#SVGID_00000073705562988478202200000000497712634129780906_);}
-	.st520{fill:url(#SVGID_00000018208852375819377500000000039059734526439567_);}
-	.st521{fill:url(#SVGID_00000029043677161000174270000011040897503925947785_);}
-	.st522{fill:url(#FullArt_Inside_BG_00000088100282459540900200000002800465738869754285_);}
-	.st523{fill:url(#SVGID_00000014592627846026316110000000567064180566206341_);}
-	.st524{fill:url(#FullArt_Inside_BG_00000026130658727373453880000004446464798209581453_);}
-	.st525{clip-path:url(#SVGID_00000110443581685069770310000018230686461989271957_);}
-	.st526{clip-path:url(#SVGID_00000160163569249266717510000008348412433464995509_);}
-	.st527{fill:url(#Health_Frame_00000035529373946917511510000009523812739189972867_);}
-	.st528{fill:url(#FullArt_Inside_BG_00000169530904078078595870000013447883219603674017_);}
-	.st529{fill:url(#FullArt_Inside_BG_00000051343970006432166800000002615984583007192720_);}
-	.st530{fill:url(#FullArt_Inside_BG_00000039829429731248771590000006384558257677492889_);}
-	.st531{fill:url(#SVGID_00000091006577194265154290000005362134842908423839_);}
-	.st532{fill:url(#Health_Frame_00000175301042365736967360000003701776623517168010_);}
-	.st533{fill:url(#SVGID_00000062172942414513867330000011677713968695303086_);}
-	.st534{fill:url(#SVGID_00000090983970755637642760000000860473265505929913_);}
-	.st535{fill:url(#SVGID_00000022518546583239578990000005047573388484921276_);}
-	.st536{fill:url(#SVGID_00000054241867855877846780000002005814462350223775_);}
-	.st537{fill:url(#SVGID_00000182521113266325528310000007117710508693854640_);}
-	.st538{fill:url(#SVGID_00000159457143315355270210000000796639302195724695_);}
-	.st539{fill:url(#SVGID_00000120542701239636204910000008366798865190270857_);}
-	.st540{fill:url(#SVGID_00000165236653382092934660000014756866813820074118_);}
-	.st541{fill:url(#SVGID_00000062174481663934248720000016523122907124023462_);}
-	.st542{fill:url(#SVGID_00000183235045253512977450000016278399965678759302_);}
-	.st543{fill:url(#SVGID_00000043441565909242499170000000216360891829974922_);}
-	.st544{fill:url(#SVGID_00000085227702187135139540000012279814766445276326_);}
-	.st545{fill:url(#FullArt_Inside_BG_00000041273661281932462790000011598656427117352098_);}
-	.st546{fill:url(#FullArt_Inside_BG_00000008118753611849270550000004055654709754293695_);}
-	.st547{fill:url(#SVGID_00000174578186405084531100000005317780550115176622_);}
-	.st548{clip-path:url(#SVGID_00000053537389140819798590000009717917414992555402_);}
-	.st549{clip-path:url(#SVGID_00000003800464124589994160000015836020339091810973_);}
-	.st550{fill:url(#Health_Frame_00000143616447849533040480000012818068730350692503_);}
-	.st551{fill:url(#FullArt_Inside_BG_00000116209617368837215660000004757044263225314446_);}
-	.st552{fill:url(#FullArt_Inside_BG_00000072996112721773171270000015048066460604449456_);}
-	.st553{fill:url(#FullArt_Inside_BG_00000110453894978148574890000009217993507021566640_);}
-	.st554{fill:url(#Health_Frame_00000011742554394263300500000005729683589249775766_);}
-	.st555{fill:url(#SVGID_00000003799463531011191750000013723936042857092281_);}
-	.st556{fill:url(#SVGID_00000150092599324778095740000016840016800307490494_);}
-	.st557{fill:url(#SVGID_00000134965893302980412730000007580465455212792467_);}
-	.st558{fill:url(#SVGID_00000176744149339664764070000000977906326285136512_);}
-	.st559{fill:url(#SVGID_00000003069611865672152060000004047466928218672314_);}
-	.st560{fill:url(#SVGID_00000033329872442369440270000018057159727828401812_);}
-	.st561{fill:url(#SVGID_00000019654598782645947240000010442639279354522802_);}
-	.st562{fill:url(#SVGID_00000060744376205640475340000011795982087372089760_);}
-	.st563{fill:url(#SVGID_00000140712998360042735770000002478208957356601513_);}
-	.st564{fill:url(#SVGID_00000031892940994967865220000014774669618985533613_);}
-	.st565{fill:url(#SVGID_00000131367688372330561750000003875877313120439988_);}
-	.st566{fill:url(#SVGID_00000132046473734219980660000013436951248305279422_);}
-	.st567{fill:url(#SVGID_00000176008526786125767940000015843136945958865069_);}
-	.st568{fill:url(#FullArt_Inside_BG_00000176012060605428028500000013774222871116750248_);}
-	.st569{fill:url(#SVGID_00000085959047269082179470000003356535943339166653_);}
-	.st570{fill:url(#FullArt_Inside_BG_00000157990322236174578840000009935735083774895542_);}
-	.st571{clip-path:url(#SVGID_00000070819942687035472610000006307334144770639791_);}
-	.st572{clip-path:url(#SVGID_00000101064705449371610010000004308950973188417471_);}
-	.st573{fill:url(#Health_Frame_00000114764256686620197680000011575471939530731431_);}
-	.st574{fill:url(#FullArt_Inside_BG_00000110439672875132452360000000589880037834392732_);}
-	.st575{fill:url(#FullArt_Inside_BG_00000036972939500031088370000014961165559190673026_);}
-	.st576{fill:url(#FullArt_Inside_BG_00000048492800861845770200000003715509958691434924_);}
-	.st577{fill:url(#Health_Frame_00000145047041011748585170000005599332348435039392_);}
-	.st578{fill:url(#SVGID_00000132789154173449160820000018122731478170869435_);}
-	.st579{fill:url(#SVGID_00000120552154662095672140000013488311146152544682_);}
-	.st580{fill:url(#SVGID_00000035495603290813606270000009735620805562529925_);}
-	.st581{fill:url(#SVGID_00000105388653542369876160000015352681927961400199_);}
-	.st582{fill:url(#SVGID_00000132780554333667646160000005451391503447927185_);}
-	.st583{fill:url(#SVGID_00000011742662179097184920000002238940483475915449_);}
-	.st584{fill:url(#SVGID_00000152251077523722499780000003727406896839015815_);}
-	.st585{fill:url(#SVGID_00000134946433973113730170000004190606359908662180_);}
-	.st586{fill:url(#SVGID_00000100363717676067096940000007846474939845825433_);}
-	.st587{fill:url(#SVGID_00000174580628618890018540000005603013852872572064_);}
-	.st588{fill:url(#SVGID_00000102523967595557256710000012269594625473563288_);}
-	.st589{fill:url(#SVGID_00000083777453757603976790000012145233517104790191_);}
-	.st590{fill:url(#SVGID_00000039105618222237417940000005267667012808380072_);}
-	.st591{fill:url(#SVGID_00000131348881487327541310000005327193473292803225_);}
-	.st592{fill:url(#FullArt_Inside_BG_00000168107942283871972060000014871661106386215072_);}
-	.st593{fill:url(#FullArt_Inside_BG_00000124160096775937186580000011572278003012453797_);}
-	.st594{fill:url(#SVGID_00000036225451150017851900000000829109147247625111_);}
-	.st595{fill:url(#SVGID_00000142877909967240149410000011934419644706955395_);}
-	.st596{fill:url(#SVGID_00000005970047718424505870000002153996566435937448_);}
-	.st597{fill:url(#SVGID_00000142864350220084031470000013717622549731378834_);}
-	.st598{fill:url(#SVGID_00000092441444156516647050000016147776346930096280_);}
-	.st599{fill:url(#SVGID_00000170273162023250756170000001931755779777292456_);}
-	.st600{fill:url(#SVGID_00000113338651264620601570000014973322984823110274_);}
-	.st601{fill:url(#SVGID_00000049210063492329535160000001695316953490805931_);}
-	.st602{fill:url(#SVGID_00000052821587134634337410000003282905897043047594_);}
-	.st603{clip-path:url(#SVGID_00000147183753285573156640000000819868154823528865_);}
-	.st604{clip-path:url(#SVGID_00000018228669025657635120000011783908042933150625_);}
-	.st605{fill:url(#Health_Frame_00000111876359276225091100000011698297873077768116_);}
-	.st606{fill:url(#FullArt_Inside_BG_00000030475811664513058820000016412152642910897556_);}
-	.st607{fill:url(#FullArt_Inside_BG_00000095308196234551970160000014158501986742449031_);}
-	.st608{fill:url(#FullArt_Inside_BG_00000179627694714200858500000007395147352060467602_);}
-	.st609{fill:url(#FullArt_Inside_BG_00000041981464593930589610000002905787402388393385_);}
-	.st610{fill:url(#FullArt_Inside_BG_00000134932540233770030150000007507989716885191307_);}
-	.st611{fill:url(#Health_Frame_00000166642131658924430130000013931845266435520393_);}
-	.st612{fill:url(#SVGID_00000145016314793423384460000009198057281553322652_);}
-	.st613{fill:url(#FullArt_Inside_BG_00000125566243316879640150000018356106963736593289_);}
-	.st614{fill:url(#FullArt_Inside_BG_00000130640767543482373290000016896519253699126925_);}
-	.st615{fill:url(#FullArt_Inside_BG_00000142167470723264809570000001217674908353505163_);}
-	.st616{fill:url(#FullArt_Outside_00000181060112137183204670000015576561654252958876_);}
-	.st617{fill:url(#FullArt_Outside_00000131346044566867905950000003050005844925298589_);}
-	.st618{fill:url(#FullArt_Outside_00000183957040136064348810000007060966237255929275_);}
-	.st619{fill:url(#Deco_00000047053169867177765780000003536736043875551117_);}
-	.st620{fill:url(#Deco_00000014612536415801819060000006372776703903149446_);}
-	.st621{fill:url(#Deco_00000104675949545977346380000005410744968118224011_);}
-	.st622{fill:url(#Deco_00000108992215589308307130000012295027302077341072_);}
-	.st623{fill:url(#Deco_00000129190075054948736130000007499363233230188982_);}
-	.st624{fill:url(#Deco_00000166672891556726875170000010220681203924093887_);}
-	.st625{fill:url(#Deco_00000180363708287954128420000013024878195585524135_);}
-	.st626{fill:url(#Deco_00000010270737986062604020000017914903699915755696_);}
-	.st627{fill:url(#FullArt_Inside_BG_00000092447687044536388640000013741991666962237349_);}
-	.st628{fill:url(#FullArt_Inside_BG_00000024690647135351590850000010526183112305139329_);}
-	.st629{fill:url(#FullArt_Inside_BG_00000180338467358117209320000003740727440135593397_);}
-	.st630{fill:url(#FullArt_Outside_00000073690589236088498470000013663691249832754867_);}
-	.st631{fill:url(#FullArt_Outside_00000173123640946086974810000012113377523778162310_);}
-	.st632{fill:url(#FullArt_Outside_00000046321906620949213660000008632123994420384650_);}
-	.st633{fill:url(#Deco_00000072993868157857297450000000075136592274077875_);}
-	.st634{fill:url(#Deco_00000062894673677344231270000016763739450489848200_);}
-	.st635{fill:url(#Deco_00000130633166444000338120000008887798804827837610_);}
-	.st636{fill:url(#Deco_00000111167218153346106130000014508736889504957325_);}
-	.st637{fill:url(#Deco_00000016777286553670946240000001596858002189100938_);}
-	.st638{fill:url(#Deco_00000074401368297899495330000002539017858018987440_);}
-	.st639{fill:url(#Deco_00000096058960026365427720000016322523362235878060_);}
-	.st640{fill:url(#Deco_00000043436099326288204030000015970552446194898561_);}
-	.st641{fill:url(#FullArt_Inside_BG_00000119826861679372661270000008649894726436647325_);}
-	.st642{fill:url(#FullArt_Inside_BG_00000006669014961887173780000001766997759515441068_);}
-	.st643{fill:url(#FullArt_Inside_BG_00000052065135383554897510000010557168287117676171_);}
-	.st644{fill:url(#FullArt_Outside_00000163031963410647674400000012414995300092861867_);}
-	.st645{fill:url(#FullArt_Outside_00000011001801457602437160000000749652806907883930_);}
-	.st646{fill:url(#FullArt_Outside_00000093142271664362414990000014350033857357483679_);}
-	.st647{fill:url(#Deco_00000088822929869626464650000014287850708119444109_);}
-	.st648{fill:url(#Deco_00000158747454416523190110000011908794775797917582_);}
-	.st649{fill:url(#Deco_00000145745018677048073680000002835583070416963731_);}
-	.st650{fill:url(#Deco_00000160177843633693609110000007903425657125201285_);}
-	.st651{fill:url(#Deco_00000059277152114725120710000010427365611242312881_);}
-	.st652{fill:url(#Deco_00000075123557756185688990000017069420446413849763_);}
-	.st653{fill:url(#Deco_00000150077256910655731750000007463377692820467126_);}
-	.st654{fill:url(#Deco_00000016050299541357422760000004790350537727554723_);}
-	.st655{fill:url(#FullArt_Inside_BG_00000183932165286725415480000003333798172834483357_);}
-	.st656{fill:url(#FullArt_Inside_BG_00000162347221863443530510000013061807640419156412_);}
-	.st657{fill:url(#FullArt_Inside_BG_00000176040318127330085920000012459865360847531428_);}
-	.st658{fill:url(#FullArt_Outside_00000175322364326665207050000017675087894895519165_);}
-	.st659{fill:url(#FullArt_Outside_00000125580563604107583310000015962987115829470629_);}
-	.st660{fill:url(#FullArt_Outside_00000033338815154151818180000012366315182826876832_);}
-	.st661{fill:url(#Deco_00000160880485010621009490000001733258624092657062_);}
-	.st662{fill:url(#Deco_00000176735583375479181240000009833188285486094756_);}
-	.st663{fill:url(#Deco_00000125562563507455860560000007864197987471464606_);}
-	.st664{fill:url(#Deco_00000078010484545473635350000010341251752060724129_);}
-	.st665{fill:url(#Deco_00000105392135559683032870000006837936790770131637_);}
-	.st666{fill:url(#Deco_00000013904329537564169170000002426780947943386756_);}
-	.st667{fill:url(#Deco_00000002365005075167859760000014606303841727782819_);}
-	.st668{fill:url(#Deco_00000154406873497532418270000012908192964057150849_);}
-	.st669{fill:url(#FullArt_Inside_BG_00000107557141185401032750000009352559036076618648_);}
-	.st670{fill:url(#FullArt_Inside_BG_00000056420003228726664880000007725717834916664719_);}
-	.st671{fill:url(#FullArt_Inside_BG_00000117678385067447410730000006673712364596912061_);}
-	.st672{fill:url(#FullArt_Outside_00000161599407412067899570000010730636732141873068_);}
-	.st673{fill:url(#FullArt_Outside_00000114073412161742062610000017717725087175444123_);}
-	.st674{fill:url(#FullArt_Outside_00000005989061714098185570000007725614284529929917_);}
-	.st675{fill:url(#Deco_00000145756506213431743580000009640454724207819669_);}
-	.st676{fill:url(#Deco_00000152260249091413852860000000161234215785596340_);}
-	.st677{fill:url(#Deco_00000029046327240964270940000008656643160700270234_);}
-	.st678{fill:url(#Deco_00000123415241960446119850000011440237646246990215_);}
-	.st679{fill:url(#Deco_00000001651302868975560180000006914395408389197726_);}
-	.st680{fill:url(#Deco_00000100359607081664930850000007407420751036321689_);}
-	.st681{fill:url(#Deco_00000011028831212012193540000014425116371398526881_);}
-	.st682{fill:url(#Deco_00000066487255094429565830000000921122895076087976_);}
-	.st683{fill:url(#FullArt_Inside_BG_00000106830501423373371990000004591676227211012529_);}
-	.st684{fill:url(#FullArt_Inside_BG_00000164480452688343031340000004296863135915059105_);}
-	.st685{fill:url(#FullArt_Inside_BG_00000140711787739475089100000004108874270281329087_);}
-	.st686{fill:url(#FullArt_Inside_BG_00000100341942452975382620000006620647268190107569_);}
-	.st687{fill:url(#FullArt_Inside_BG_00000167359957019814990580000011047679819778770590_);}
-	.st688{fill:url(#Bottom_Frame_00000094604894129707947750000003107774463210075824_);}
-	.st689{fill:none;stroke:url(#SVGID_00000007408783257648897500000011785679184062984340_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st690{fill:none;stroke:url(#SVGID_00000005267831318433460800000010752754503821323913_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st691{fill:url(#SVGID_00000034795850582531092330000017192140785594313663_);}
-	.st692{fill:url(#SVGID_00000140697712967545526560000000013472462120434602_);}
-	.st693{fill:url(#Deco_00000100382394105581005710000001883986693691304615_);}
-	.st694{fill:url(#Deco_00000177457201925089541610000011775184921588082574_);}
-	.st695{fill:url(#SVGID_00000131361351556320825600000004437372092029279398_);}
-	.st696{fill:url(#SVGID_00000157274021191953036080000015839938644246712219_);}
-	.st697{fill:url(#Deco_00000000182888964893942830000007141402484324584602_);}
-	.st698{fill:url(#Deco_00000138569670581687255370000008777696797354969225_);}
-	.st699{fill:url(#FullArt_Inside_BG_00000033353113748295772260000001344995407371371929_);}
-	.st700{fill:url(#FullArt_Inside_BG_00000004546662341766367340000012454647478874751924_);}
-	.st701{fill:url(#FullArt_Inside_BG_00000069363669433451196150000013224678045993010592_);}
-	.st702{fill:url(#FullArt_Inside_BG_00000049193507580811668980000012796718461065895345_);}
-	.st703{fill:url(#FullArt_Inside_BG_00000085248650901666598600000001444445351115724425_);}
-	.st704{fill:url(#Bottom_Frame_00000102503366110521834040000005373889828825991850_);}
-	.st705{fill:none;stroke:url(#SVGID_00000103250613426368894190000005259797322082946480_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st706{fill:none;stroke:url(#SVGID_00000057844345784860685580000003155384986687877288_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st707{fill:url(#SVGID_00000115497716406550440900000009886802401189706403_);}
-	.st708{fill:url(#SVGID_00000055679665128763574240000010403133935243723661_);}
-	.st709{fill:url(#Deco_00000140736247380037267300000003181710415079209605_);}
-	.st710{fill:url(#Deco_00000137818802297148775930000011060570825636458155_);}
-	.st711{fill:url(#SVGID_00000157305412831098352730000010139450362784310163_);}
-	.st712{fill:url(#SVGID_00000158730271020157169130000000458993155054632853_);}
-	.st713{fill:url(#Deco_00000163787619899111681520000003399519596602891694_);}
-	.st714{fill:url(#Deco_00000124159331363547947160000015195455813013446294_);}
-	.st715{fill:url(#FullArt_Inside_BG_00000142895764817662127960000001016265981766406075_);}
-	.st716{fill:url(#FullArt_Inside_BG_00000031903837540355890460000017723338776615698083_);}
-	.st717{fill:url(#FullArt_Inside_BG_00000107555420794041241670000003961454526604733344_);}
-	.st718{fill:url(#FullArt_Inside_BG_00000020399438235817542600000002652671877142836141_);}
-	.st719{fill:url(#FullArt_Inside_BG_00000058552737661472289340000014040415696978860732_);}
-	.st720{fill:url(#Bottom_Frame_00000136375945797334919880000013616942118791908741_);}
-	.st721{fill:none;stroke:url(#SVGID_00000067220439263369178770000005830701197280223419_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st722{fill:none;stroke:url(#SVGID_00000098190456732669337490000006126252216312152985_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st723{fill:url(#SVGID_00000059997886989552241110000006764561477667417528_);}
-	.st724{fill:url(#SVGID_00000131365565116640857390000000778572931069411475_);}
-	.st725{fill:url(#Deco_00000143599886849779649640000008238018411486478009_);}
-	.st726{fill:url(#Deco_00000182506233590488782720000016205214708869014408_);}
-	.st727{fill:url(#SVGID_00000085236278843787251650000014668381433832465339_);}
-	.st728{fill:url(#SVGID_00000002380886679277352080000003004567182565283252_);}
-	.st729{fill:url(#Deco_00000000190502342625672100000004890827872970290087_);}
-	.st730{fill:url(#Deco_00000009564307097103028290000016332285945330311811_);}
-	.st731{fill:url(#FullArt_Inside_BG_00000092428867357040537490000004234748676163855550_);}
-	.st732{fill:url(#FullArt_Inside_BG_00000088123847630810183590000003734564130341430447_);}
-	.st733{fill:url(#FullArt_Inside_BG_00000116945974728875210870000000601369878050896269_);}
-	.st734{fill:url(#FullArt_Inside_BG_00000096050500972331772720000013588587843312781742_);}
-	.st735{fill:url(#FullArt_Inside_BG_00000145035842989604524800000005059728620664851592_);}
-	.st736{fill:url(#Bottom_Frame_00000117651755372608688310000015034251620738633388_);}
-	.st737{fill:none;stroke:url(#SVGID_00000013873848907016778730000004439126719678821512_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st738{fill:none;stroke:url(#SVGID_00000172440283232770827040000005050107301948885152_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st739{fill:url(#SVGID_00000152968483576551713650000003937538942597431203_);}
-	.st740{fill:url(#SVGID_00000078755873597471861130000005590984171151553679_);}
-	.st741{fill:url(#Deco_00000010281500479225335610000001698731940762567052_);}
-	.st742{fill:url(#Deco_00000031896005671797270520000007191173965605739690_);}
-	.st743{fill:url(#SVGID_00000054953222598808436190000009520370797138498489_);}
-	.st744{fill:url(#SVGID_00000090985069427647098520000011335488093172067254_);}
-	.st745{fill:url(#Deco_00000068664686311613145090000017574790726985415346_);}
-	.st746{fill:url(#Deco_00000067230703788206073080000015566406227062200450_);}
-	.st747{fill:url(#FullArt_Inside_BG_00000154394119227553222920000007475657287308769719_);}
-	.st748{fill:url(#FullArt_Inside_BG_00000181074043933582274750000014758414971202346414_);}
-	.st749{fill:url(#FullArt_Inside_BG_00000158738962940901553020000009000374758387750812_);}
-	.st750{fill:url(#FullArt_Inside_BG_00000005243073335360600440000003952108494679300792_);}
-	.st751{fill:url(#FullArt_Inside_BG_00000103262538763784854270000001584456055904236433_);}
-	.st752{fill:url(#Bottom_Frame_00000111870211890051711270000002667453134549506975_);}
-	.st753{fill:none;stroke:url(#SVGID_00000181770888287863248790000009940760770455591055_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st754{fill:none;stroke:url(#SVGID_00000037657483568464533940000015463733691834962833_);stroke-width:1.5;stroke-miterlimit:10;}
-	.st755{fill:url(#SVGID_00000173129656180147961040000013613320880504212897_);}
-	.st756{fill:url(#SVGID_00000101804112196042683560000000684718508930317469_);}
-	.st757{fill:url(#SVGID_00000131351076579345808050000015655138273218806658_);}
-	.st758{fill:url(#SVGID_00000136373453347148499640000012953180108632960698_);}
-	.st759{fill:url(#Deco_00000004547450898506345490000011080884824021246874_);}
-	.st760{fill:url(#Deco_00000156576413051866570060000015503372016297452168_);}
-	.st761{fill:url(#Deco_00000101782501333315541320000003291386174252380052_);}
-	.st762{fill:url(#Deco_00000078027691860087597290000010445623514557246141_);}
-	.st763{clip-path:url(#SVGID_00000066479843700454785260000012750851027840311424_);}
-	.st764{clip-path:url(#SVGID_00000136400778926199269030000015087138433025708712_);}
-	.st765{fill:url(#Health_Frame_00000047773371694043474910000009556770012922142126_);}
-	.st766{fill:url(#SVGID_00000122000309829151847950000000580219247204988564_);}
-	.st767{fill:url(#SVGID_00000056387273940075255480000005115390050238162847_);}
-	.st768{fill:url(#FullArt_Inside_BG_00000040576279686149997190000009227004944815983012_);}
-	.st769{fill:url(#FullArt_Inside_BG_00000011005479387454548440000001731012402137010587_);}
-	.st770{fill:url(#FullArt_Inside_BG_00000067929396028215030010000007674892031550730684_);}
-	.st771{fill:url(#FullArt_Inside_BG_00000006671368635006196420000013795243360099911323_);}
-	.st772{fill:url(#FullArt_Inside_BG_00000094616093084264151820000011591262831847138738_);}
-	.st773{fill:url(#Health_Frame_00000179604809903780914170000004605450000348999563_);}
-	.st774{fill:url(#SVGID_00000183959630653439773280000015697917267231885201_);}
-	.st775{fill:url(#SVGID_00000119111526021043786330000004399227596243364027_);}
-	.st776{fill:url(#SVGID_00000166650156257714744220000006269623113310586556_);}
-	.st777{fill:url(#SVGID_00000116229540827503606320000000860910637863275191_);}
-	.st778{fill:url(#SVGID_00000034789922599404612640000011291596507942157488_);}
-	.st779{fill:url(#SVGID_00000144297897384924562000000015245587391865377664_);}
-	.st780{fill:url(#SVGID_00000042704344285081930430000007769795166145425030_);}
-	.st781{fill:url(#SVGID_00000089533880439764153300000016605003074172672441_);}
-	.st782{fill:url(#SVGID_00000125585306571002955020000002451445436657789604_);}
-	.st783{fill:url(#SVGID_00000168835368380189922310000003839786682178304677_);}
-	.st784{fill:url(#SVGID_00000111889675424181612370000017591407212473968286_);}
-	.st785{fill:url(#SVGID_00000038375780604677966300000005480103717568784783_);}
-	.st786{fill:url(#Place_00000139995905934149496190000002267503604121900197_);}
-	.st787{fill:url(#Deco_00000135690392317597129210000009943471207643901609_);}
-	.st788{fill:url(#Deco_00000035509893790878047850000007634116309858011783_);}
-	.st789{fill:url(#Deco_00000026879326874216898240000012288074738565558951_);}
-	.st790{fill:url(#Deco_00000080916461280600397850000017391243736957521548_);}
-	.st791{fill:url(#Deco_00000052808280178806492980000003747054618667778178_);}
-	.st792{fill:url(#Deco_00000171681243478080225140000009206819011973659302_);}
-	.st793{fill:url(#Deco_00000031206016559481804620000015270785439545734052_);}
-	.st794{fill:url(#Deco_1_00000163038439557012340610000002055418864739195780_);}
-	.st795{clip-path:url(#SVGID_00000128457879642202456440000011738953978188446605_);}
-	.st796{clip-path:url(#SVGID_00000025409297772614138310000001146451949706498207_);}
-	.st797{fill:url(#Health_Frame_00000015351633573064445690000010852227819584574389_);}
-	.st798{fill:url(#SVGID_00000169523305832194254750000009754762311362774189_);}
-	.st799{fill:url(#SVGID_00000122704830846194275960000005285938408100352661_);}
-	.st800{fill:url(#FullArt_Inside_BG_00000031177715637407821450000005870832013686522538_);}
-	.st801{fill:url(#FullArt_Inside_BG_00000154404354913162478540000009683121879503802769_);}
-	.st802{fill:url(#FullArt_Inside_BG_00000013902610853818981220000017129166173269973637_);}
-	.st803{fill:url(#FullArt_Inside_BG_00000044877608742374900110000015469057542341861280_);}
-	.st804{fill:url(#FullArt_Inside_BG_00000172413797656331106880000006350197411345785756_);}
-	.st805{fill:url(#Health_Frame_00000162351987205002810140000004844402789778982837_);}
-	.st806{fill:url(#SVGID_00000142863511797505339770000014381831333975828133_);}
-	.st807{fill:url(#SVGID_00000121989687328160994800000010471624799706439830_);}
-	.st808{fill:url(#SVGID_00000154423765206049853100000017109156796599232175_);}
-	.st809{fill:url(#SVGID_00000018195854290718553570000010837131766508152220_);}
-	.st810{fill:url(#SVGID_00000068640414269089808570000017769285161787585708_);}
-	.st811{fill:url(#SVGID_00000132781370865790058200000018436373719116307082_);}
-	.st812{fill:url(#SVGID_00000157990622455262697280000007423360132045450370_);}
-	.st813{fill:url(#SVGID_00000181766393439519662080000015374294402098336165_);}
-	.st814{fill:url(#SVGID_00000039116725122050230100000009212593509471242378_);}
-	.st815{fill:url(#SVGID_00000087381578511328126720000011395647313408273598_);}
-	.st816{fill:url(#SVGID_00000043453995674933967840000011921381481356736697_);}
-	.st817{fill:url(#SVGID_00000110445936587733200570000016751636747919827610_);}
-	.st818{fill:url(#Place_00000121994505496394316500000002284092372631335077_);}
-	.st819{fill:url(#Deco_00000001666248420660185750000003828281565344558239_);}
-	.st820{fill:url(#Deco_00000139282843986919359450000018275203343835222929_);}
-	.st821{fill:url(#Deco_00000114058524844191709320000016472782120049101737_);}
-	.st822{fill:url(#Deco_00000127723754834537121430000005294552378155508890_);}
-	.st823{fill:url(#Deco_00000131342582294681376030000015898724756899489686_);}
-	.st824{fill:url(#Deco_00000112622710377950588200000007600128122452845703_);}
-	.st825{fill:url(#Deco_00000141416476997924243100000014886939620281989261_);}
-	.st826{fill:url(#Deco_00000156565296832463031760000006011967877941861006_);}
-	.st827{clip-path:url(#SVGID_00000139259236774746459960000009153844909290060735_);}
-	.st828{clip-path:url(#SVGID_00000012433686956241268230000003296850420903354535_);}
-	.st829{fill:url(#Health_Frame_00000050656431479183060340000003947008164629000327_);}
-	.st830{fill:url(#FullArt_Inside_BG_00000089563260459158364040000001578641330099127430_);}
-	.st831{fill:url(#FullArt_Inside_BG_00000102506850977186070090000014871396783039936896_);}
-	.st832{fill:url(#FullArt_Inside_BG_00000183246754738661215620000010671503057943383942_);}
-	.st833{fill:url(#FullArt_Inside_BG_00000029759039127274697950000013507457180784710280_);}
-	.st834{fill:url(#FullArt_Inside_BG_00000002347136766606025100000008624841970516214160_);}
-	.st835{fill:url(#SVGID_00000121971337531124791050000005717792672820632237_);}
-	.st836{fill:url(#SVGID_00000149365238069188664860000008178119412207480199_);}
-	.st837{fill:url(#Health_Frame_00000119113854842827857490000002667777575747921590_);}
-	.st838{fill:url(#SVGID_00000038414982679935109910000007742859977347129480_);}
-	.st839{fill:url(#SVGID_00000167379792296778023420000004198868643215342217_);}
-	.st840{fill:url(#SVGID_00000054251922105657634570000006878201253205613697_);}
-	.st841{fill:url(#SVGID_00000124866057169403879710000006140282496340883633_);}
-	.st842{fill:url(#SVGID_00000011018594654747655900000005326837553628831152_);}
-	.st843{fill:url(#SVGID_00000116944176331911464100000000234359973386364079_);}
-	.st844{fill:url(#SVGID_00000070800272231033082890000009092707342402323872_);}
-	.st845{fill:url(#SVGID_00000040538572618708272610000009411257041044305305_);}
-	.st846{fill:url(#SVGID_00000160189638713404875850000009939136552647171498_);}
-	.st847{fill:url(#SVGID_00000096022675253230498020000010040288098581285551_);}
-	.st848{fill:url(#SVGID_00000069399180637500257690000002201610484295497877_);}
-	.st849{fill:url(#Place_00000173850011164897432300000001576781196601652116_);}
-	.st850{fill:url(#Deco_00000062899100995158942750000000232404982517319608_);}
-	.st851{fill:url(#Deco_00000033329325613862152210000015863024667915398560_);}
-	.st852{fill:url(#Deco_00000009563012816448796380000008284651264723240366_);}
-	.st853{fill:url(#Deco_00000129168594702797289240000009356000324731819697_);}
-	.st854{fill:url(#Deco_00000085966714589006091560000000120233897767147440_);}
-	.st855{fill:url(#Deco_00000042738609616969524790000006902177918800332948_);}
-	.st856{fill:url(#Deco_00000036222283534756039580000010566136748779985312_);}
-	.st857{fill:url(#Deco_00000162312596869169442770000012380967362949152918_);}
-	.st858{clip-path:url(#SVGID_00000124153575868069891660000006230926807358746811_);}
-	.st859{clip-path:url(#SVGID_00000033357089962655605720000007258141375204266147_);}
-	.st860{fill:url(#Health_Frame_00000170997623239719447600000001927448325830152840_);}
-	.st861{fill:url(#FullArt_Inside_BG_00000017504972490990105540000011284779501447316372_);}
-	.st862{fill:url(#FullArt_Inside_BG_00000085223395511704229210000009881709191696406449_);}
-	.st863{fill:url(#FullArt_Inside_BG_00000062906999853631404160000012728149032610266506_);}
-	.st864{fill:url(#FullArt_Inside_BG_00000040540373834085696330000011740512112564980918_);}
-	.st865{fill:url(#FullArt_Inside_BG_00000034797607865716403040000001365594537028972181_);}
-	.st866{fill:url(#Health_Frame_00000092423965887528730710000000658234755380663194_);}
-	.st867{fill:url(#SVGID_00000160899782421052858660000007235335026369003180_);}
-	.st868{fill:url(#SVGID_00000091721794768649968540000013571675152344726689_);}
-	.st869{fill:url(#SVGID_00000151513609051981787490000003917138032229486501_);}
-	.st870{fill:url(#SVGID_00000094596182713647585240000008722279357768531633_);}
-	.st871{fill:url(#SVGID_00000176007223101505893540000008963308305473342125_);}
-	.st872{fill:url(#SVGID_00000038386618261803351230000002820989409097181315_);}
-	.st873{fill:url(#SVGID_00000059268746495380211290000005694755354052232323_);}
-	.st874{fill:url(#SVGID_00000079452839366230963140000017896371785190089110_);}
-	.st875{fill:url(#SVGID_00000146461564699469953180000006699177035190381205_);}
-	.st876{fill:url(#SVGID_00000067230336479670342910000007865206819233438616_);}
-	.st877{fill:url(#SVGID_00000016775074538149135330000010555047466846657716_);}
-	.st878{fill:url(#SVGID_00000039131692116802140160000017946506807650915774_);}
-	.st879{fill:url(#SVGID_00000095311006959775999060000006830717837821973437_);}
-	.st880{fill:url(#Place_00000178175992382757606730000009558729625305075102_);}
-	.st881{fill:url(#Deco_00000044176009425344802450000018306618640325335691_);}
-	.st882{fill:url(#Deco_00000023977367259229579200000016865825530904233374_);}
-	.st883{fill:url(#Deco_00000101071212983342374830000013145066678639281319_);}
-	.st884{fill:url(#Deco_00000118370201023804830630000006831960809320561341_);}
-	.st885{fill:url(#Deco_00000114056156508294702070000015115685187717126067_);}
-	.st886{fill:url(#Deco_00000139990933537804764540000011375065448866521753_);}
-	.st887{fill:url(#Deco_00000119820017301401084340000014715616595698819491_);}
-	.st888{fill:url(#Deco_00000052100158069387489010000016676043233323664529_);}
-	.st889{clip-path:url(#SVGID_00000109731911762424290340000002552715165650875057_);}
-	.st890{clip-path:url(#SVGID_00000014605481320085789710000004198448803436717445_);}
-	.st891{fill:url(#Health_Frame_00000162320682818401287290000007919795646505667513_);}
-	.st892{fill:url(#FullArt_Inside_BG_00000123425211010818245980000007367508636612137862_);}
-	.st893{fill:url(#FullArt_Inside_BG_00000120558820474198657070000006777058405625167494_);}
-	.st894{fill:url(#FullArt_Inside_BG_00000098216577079264862860000009829833076476793778_);}
-	.st895{fill:url(#FullArt_Inside_BG_00000118356434492255690920000007386643064075185291_);}
-	.st896{fill:url(#FullArt_Inside_BG_00000141429889100143337400000014532189605091227284_);}
-	.st897{fill:url(#Health_Frame_00000094579271298571752400000010042875918910120095_);}
-	.st898{fill:url(#SVGID_00000130644607063671943940000016415645792390309297_);}
-	.st899{fill:url(#SVGID_00000179607683432471764870000016126458394458412726_);}
-	.st900{fill:url(#SVGID_00000178185636971620536700000002221623176128368525_);}
-	.st901{fill:url(#SVGID_00000113339113912277926470000010940369439776722054_);}
-	.st902{fill:url(#SVGID_00000036951119909047927380000011486916001815343545_);}
-	.st903{fill:url(#SVGID_00000178188667011025818630000007932367651836690061_);}
-	.st904{fill:url(#SVGID_00000113352675219405056750000006901452230018500244_);}
-	.st905{fill:url(#SVGID_00000000215771205929736060000016090971401460992138_);}
-	.st906{fill:url(#SVGID_00000106140941297033069070000013822363843956926391_);}
-	.st907{fill:url(#SVGID_00000139280295635548058350000004402493999159182776_);}
-	.st908{fill:url(#SVGID_00000070094382068013798900000007429934056829042356_);}
-	.st909{fill:url(#SVGID_00000145773049900974147240000002271485031864337289_);}
-	.st910{fill:url(#SVGID_00000096773620768995124900000014638836193159403663_);}
-	.st911{fill:url(#SVGID_00000054263157714949676130000017088031872653737917_);}
-	.st912{fill:url(#Place_00000044172695466363188330000004767752311210179729_);}
-	.st913{fill:url(#Deco_00000139981631464458408480000009979450261578467976_);}
-	.st914{fill:url(#Deco_00000036221905073585569930000009656221921786350742_);}
-	.st915{fill:url(#Deco_00000054252246939359246060000012951223757855583382_);}
-	.st916{fill:url(#Deco_00000132778236467488639950000016587398740550221993_);}
-	.st917{fill:url(#Deco_00000110447222692701517330000013631547852078362783_);}
-	.st918{fill:url(#Deco_00000117637843503019906300000006053470904728747928_);}
-	.st919{fill:url(#Deco_00000086652243598788343490000004929692032577004467_);}
-	.st920{fill:url(#Deco_1_00000177443572985491775810000006557329666905270437_);}
-	.st921{clip-path:url(#SVGID_00000164488653467142025920000002356409990298557065_);}
-	.st922{clip-path:url(#SVGID_00000021832035694141146910000015410748848948582558_);}
-	.st923{fill:url(#Health_Frame_00000098181652099522961080000007247185426743625353_);}
-	.st924{fill:url(#FullArt_Inside_BG_00000098187297494542596200000001238397192743122838_);}
-	.st925{fill:url(#FullArt_Inside_BG_00000023978242174377514140000000274558953167258513_);}
-	.st926{fill:url(#FullArt_Inside_BG_00000069390092720162127340000004614462717168430722_);}
-	.st927{fill:url(#FullArt_Inside_BG_00000163783896557208710570000007637249990456799916_);}
-	.st928{fill:url(#FullArt_Inside_BG_00000016758271698741238890000005437552498810679680_);}
-	.st929{fill:url(#Health_Frame_00000150064484290680753290000000386425703444525458_);}
-	.st930{fill:url(#SVGID_00000035520945975781409640000011639762277173643926_);}
-	.st931{fill:url(#SVGID_00000131327401554818828640000009528116417960877750_);}
-	.st932{fill:url(#SVGID_00000066485971608712288330000018169767541999314327_);}
-	.st933{fill:url(#Deco_00000075151757288060858190000010227793249976252079_);}
-	.st934{fill:url(#Deco_00000016792262123904824820000017950877104509305487_);}
-	.st935{fill:url(#SVGID_00000183222103845153966760000012146442221205114789_);}
-	.st936{fill:url(#SVGID_00000036952564150816688250000000761998133310385855_);}
-	.st937{fill:url(#Deco_00000082368964599529778440000010634548768664421515_);}
-	.st938{fill:url(#Deco_00000103978672014520306150000000208076472330224528_);}
-	.st939{fill:url(#SVGID_00000177444909073381435530000011240779768445613198_);}
-	.st940{fill:url(#SVGID_00000123439378202674168820000006824548321606494911_);}
-	.st941{fill:url(#SVGID_00000069398431552339766860000010740772133279955846_);}
-	.st942{fill:url(#SVGID_00000129890833246970913990000004146691622448366521_);}
-	.st943{fill:url(#SVGID_00000112628786564982443720000003516832385230381447_);}
-	.st944{fill:url(#SVGID_00000000188606336552725750000008878011505712200124_);}
-	.st945{fill:url(#SVGID_00000065073542045666357580000016031328653020022974_);}
-	.st946{fill:url(#SVGID_00000038412211978137840040000011257430120690879119_);}
-	.st947{fill:url(#SVGID_00000158719444734631355130000014644831106282645132_);}
-	.st948{fill:url(#SVGID_00000183242555731496783100000013814932098618189462_);}
-	.st949{fill:url(#SVGID_00000088117446818735465350000016238593852594606254_);}
-	.st950{fill:url(#SVGID_00000144323261716579998780000002098079002004347036_);}
+
+.st0 {
+  clip-path: url(#SVGID_00000155844768690554972950000005933664229086213820_);
+}
+
+.st1 {
+  clip-path: url(#SVGID_00000155141086319614893210000009139749630856177029_);
+}
+
+.st2 {
+  clip-path: url(#SVGID_00000096024639585669911430000002125940443924850606_);
+}
+
+.st3 {
+  clip-path: url(#SVGID_00000003787212671276610790000016580680365491168411_);
+}
+
+.st4 {
+  clip-path: url(#SVGID_00000007407473165460864730000016006911621714008754_);
+}
+
+.st5 {
+  clip-path: url(#SVGID_00000120544880485454809420000009858141959381292939_);
+}
+
+.st6 {
+  clip-path: url(#SVGID_00000017489021682758079950000002614381420433096627_);
+}
+
+.st7 {
+  clip-path: url(#SVGID_00000099660089975260156700000004971141563418811038_);
+}
+
+.st8 {
+  clip-path: url(#SVGID_00000081621696766697742320000001968750051320948629_);
+}
+
+.st9 {
+  clip-path: url(#SVGID_00000091734415679079430860000006744380568411887288_);
+}
+
+.st10 {
+  clip-path: url(#SVGID_00000086692534042525981330000008294951559643832708_);
+}
+
+.st11 {
+  clip-path: url(#SVGID_00000137829087369517540720000009684932027946048393_);
+}
+
+.st12 {
+  fill: #FDDD9D;
+}
+
+.st13 {
+  fill: url(#SVGID_00000045614506648763382830000005562501980820628614_);
+}
+
+.st14 {
+  fill: url(#SVGID_00000098939589914547522430000009615240074443955893_);
+}
+
+.st15 {
+  fill: url(#SVGID_00000129177481662152047900000011434438353717552823_);
+}
+
+.st16 {
+  fill: url(#SVGID_00000025406126606184328310000014138356761498125228_);
+}
+
+.st17 {
+  fill: url(#SVGID_00000016037867131508624080000015946975398872055737_);
+}
+
+.st18 {
+  fill: url(#SVGID_00000161606066401355537030000001462509337549704122_);
+}
+
+.st19 {
+  fill: url(#SVGID_00000072973543895850170950000008405920762437594759_);
+}
+
+.st20 {
+  fill: url(#Frame_Outline_Left_00000170995795348560882000000009261296719077813907_);
+}
+
+.st21 {
+  fill: url(#SVGID_00000016770972913058552580000005606318585152668349_);
+}
+
+.st22 {
+  fill: url(#SVGID_00000079449974345372552390000005121455899860990601_);
+}
+
+.st23 {
+  fill: url(#SVGID_00000116927959454754245250000004051132904153261740_);
+}
+
+.st24 {
+  fill: url(#SVGID_00000143586543012153997950000002886598185893173892_);
+}
+
+.st25 {
+  fill: url(#SVGID_00000127008708879696734260000012960220184322736307_);
+}
+
+.st26 {
+  fill: url(#SVGID_00000173154610368691275160000004460140538672127367_);
+}
+
+.st27 {
+  fill: url(#SVGID_00000021808518231633398520000010886326540160000409_);
+}
+
+.st28 {
+  fill: url(#Frame_Outline_Left_00000076594281633462434110000004394783172867204497_);
+}
+
+.st29 {
+  fill: url(#SVGID_00000012431344864594428260000006264390673575310464_);
+}
+
+.st30 {
+  fill: url(#SVGID_00000166650054229740303820000009759280045140272054_);
+}
+
+.st31 {
+  fill: url(#SVGID_00000010285747188078473040000002918370283492624315_);
+}
+
+.st32 {
+  fill: url(#SVGID_00000034796028975009408500000005584476343357992590_);
+}
+
+.st33 {
+  fill: url(#SVGID_00000128449676963443529800000003407716458508440248_);
+}
+
+.st34 {
+  fill: url(#SVGID_00000115477202747433969080000017743540890986968220_);
+}
+
+.st35 {
+  fill: url(#SVGID_00000155832284052938655110000014675377064281994396_);
+}
+
+.st36 {
+  fill: url(#Frame_Outline_Left_00000134226507569890437140000001082022789158084235_);
+}
+
+.st37 {
+  fill: url(#SVGID_00000048472932030526369970000000294892189043034286_);
+}
+
+.st38 {
+  fill: url(#SVGID_00000101069919523992934060000013795880238939408570_);
+}
+
+.st39 {
+  fill: url(#SVGID_00000146484119083498852090000014855148549861380275_);
+}
+
+.st40 {
+  fill: url(#SVGID_00000178884757942346895460000008186095725283740334_);
+}
+
+.st41 {
+  fill: url(#SVGID_00000029013515548474747980000005716227903289251470_);
+}
+
+.st42 {
+  fill: url(#SVGID_00000029004390745637191930000001665228840497458569_);
+}
+
+.st43 {
+  fill: url(#SVGID_00000050625220025045011480000009173832339345115535_);
+}
+
+.st44 {
+  fill: url(#Frame_Outline_Left_00000129909227724549962430000006914543864011623816_);
+}
+
+.st45 {
+  fill: url(#SVGID_00000161621652750339324460000003046224994596810425_);
+}
+
+.st46 {
+  fill: url(#SVGID_00000111889697705005557490000011460411600002237072_);
+}
+
+.st47 {
+  fill: url(#SVGID_00000180333455720447837220000012528108131291789734_);
+}
+
+.st48 {
+  fill: url(#SVGID_00000141452044407259207520000002343390193330873518_);
+}
+
+.st49 {
+  fill: url(#SVGID_00000154387230009312857060000003427592692874266803_);
+}
+
+.st50 {
+  fill: url(#SVGID_00000008144284687359654300000000670444001678950826_);
+}
+
+.st51 {
+  fill: url(#SVGID_00000094576379776568747350000009809122859104994177_);
+}
+
+.st52 {
+  fill: url(#Frame_Outline_Left_00000148624170082436441430000017775293324580726960_);
+}
+
+.st53 {
+  fill: url(#SVGID_00000106121148448703891310000003508614265547249854_);
+}
+
+.st54 {
+  fill: url(#SVGID_00000024708274629329159690000009101103750045165479_);
+}
+
+.st55 {
+  fill: url(#SVGID_00000064315192400276772360000010135028209483602820_);
+}
+
+.st56 {
+  fill: url(#SVGID_00000014600235483836736700000001954352943209665436_);
+}
+
+.st57 {
+  fill: url(#SVGID_00000025429908486495266770000003948025995487748013_);
+}
+
+.st58 {
+  fill: url(#SVGID_00000041983801700438079870000016527000185470630534_);
+}
+
+.st59 {
+  fill: url(#SVGID_00000158000321619444106420000015095010205597127082_);
+}
+
+.st60 {
+  fill: url(#Frame_Outline_Left_00000064350066749899314530000001070950979586875553_);
+}
+
+.st61 {
+  clip-path: url(#SVGID_00000011737663678383704970000006999376858143728063_);
+}
+
+.st62 {
+  clip-path: url(#SVGID_00000170271705427171393630000000392244600065937584_);
+}
+
+.st63 {
+  clip-path: url(#SVGID_00000117653775207737803060000017690190359607808420_);
+}
+
+.st64 {
+  clip-path: url(#SVGID_00000054973159445345734030000017135173410794696362_);
+}
+
+.st65 {
+  clip-path: url(#SVGID_00000118371780781368559500000001812883910878473146_);
+}
+
+.st66 {
+  clip-path: url(#SVGID_00000029741781084254960040000004173962382413169333_);
+}
+
+.st67 {
+  clip-path: url(#SVGID_00000183957240599650171650000010912911466696168111_);
+}
+
+.st68 {
+  clip-path: url(#SVGID_00000126300755665680015550000014562170247095047587_);
+}
+
+.st69 {
+  clip-path: url(#Tech_OBG_00000008142171400121621540000001721291005550814143_);
+}
+
+.st70 {
+  fill: #087EFF;
+}
+
+.st71 {
+  clip-path: url(#SVGID_00000147910068849443704090000006676284893794604986_);
+}
+
+.st72 {
+  clip-path: url(#SVGID_00000143599160486332265110000001355298344537016451_);
+}
+
+.st73 {
+  fill: none;
+  stroke: #000000;
+  stroke-miterlimit: 10;
+}
+
+.st74 {
+  clip-path: url(#SVGID_00000119076018054015130770000000151818776696272532_);
+}
+
+.st75 {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st76 {
+  fill: none;
+  stroke: url(#SVGID_00000142876304494491530440000000062769366579595447_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st77 {
+  fill: none;
+  stroke: url(#Tech_00000178894116405714037440000006491043389503636620_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st78 {
+  fill: none;
+  stroke: url(#SVGID_00000052797515751868392970000012981831235080758676_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st79 {
+  fill: none;
+  stroke: url(#Nature_00000066486276613592714050000004468843484900657831_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st80 {
+  fill: none;
+  stroke: url(#SVGID_00000149349680841078551430000013997433768963073422_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st81 {
+  fill: none;
+  stroke: url(#Nature_00000062170366268398009490000007563262108716711048_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st82 {
+  fill: none;
+  stroke: url(#SVGID_00000005224989356696895790000015539306453870494091_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st83 {
+  fill: none;
+  stroke: url(#Nature_00000066517752782124964140000009978748318034201735_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st84 {
+  fill: none;
+  stroke: url(#SVGID_00000099649453338743326190000009660469126923464354_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st85 {
+  fill: none;
+  stroke: url(#HQ_00000098207156730917945240000007364120627896073640_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st86 {
+  clip-path: url(#SVGID_00000009567784358489234530000015060084587709049491_);
+}
+
+.st87 {
+  clip-path: url(#SVGID_00000108997131018773462530000008201446612026289324_);
+}
+
+.st88 {
+  clip-path: url(#SVGID_00000044151444304572739810000001920391032540500158_);
+}
+
+.st89 {
+  clip-path: url(#SVGID_00000013165654989647982970000015300582580352627891_);
+}
+
+.st90 {
+  clip-path: url(#SVGID_00000054253974406750340750000015059144867063375529_);
+}
+
+.st91 {
+  clip-path: url(#SVGID_00000112625621621003450640000015959227703953788863_);
+}
+
+.st92 {
+  clip-path: url(#SVGID_00000099657663674965945960000005584255084106223551_);
+}
+
+.st93 {
+  clip-path: url(#SVGID_00000102502936304563121860000008190630115595066498_);
+}
+
+.st94 {
+  clip-path: url(#SVGID_00000111156087335144637610000012363726041874250136_);
+}
+
+.st95 {
+  clip-path: url(#SVGID_00000030449727421325981560000009617317604485737641_);
+}
+
+.st96 {
+  clip-path: url(#SVGID_00000142133752064821975690000017833754076833723582_);
+}
+
+.st97 {
+  clip-path: url(#SVGID_00000145049632737489896800000010630689747212671636_);
+}
+
+.st98 {
+  clip-path: url(#SVGID_00000181077120067916500970000017791937032712225435_);
+}
+
+.st99 {
+  clip-path: url(#SVGID_00000106116527142587133550000010222242654909949860_);
+}
+
+.st100 {
+  clip-path: url(#SVGID_00000085943093294118135280000017128773930066269860_);
+}
+
+.st101 {
+  clip-path: url(#SVGID_00000097460524216234866740000007017522578926651542_);
+}
+
+.st102 {
+  fill: none;
+  stroke: url(#SVGID_00000021085228599628469830000016678352676642617499_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st103 {
+  fill: none;
+  stroke: url(#SVGID_00000014595555158260981190000012393473821970215307_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st104 {
+  clip-path: url(#SVGID_00000144317076435803767220000016730680694370676915_);
+}
+
+.st105 {
+  clip-path: url(#SVGID_00000122721649789712629200000015928696820523507585_);
+}
+
+.st106 {
+  clip-path: url(#SVGID_00000121264788586157908490000000286858322389243574_);
+}
+
+.st107 {
+  clip-path: url(#SVGID_00000167381571855396912850000002676848688181706112_);
+}
+
+.st108 {
+  clip-path: url(#SVGID_00000032648755887702677080000006602637967835823752_);
+}
+
+.st109 {
+  clip-path: url(#SVGID_00000139997910019501910000000011677269710257480127_);
+}
+
+.st110 {
+  clip-path: url(#SVGID_00000020394061565305643570000017010232579178872767_);
+}
+
+.st111 {
+  clip-path: url(#SVGID_00000011716124118995535930000004463744043225605307_);
+}
+
+.st112 {
+  clip-path: url(#SVGID_00000170251509148604024610000014838269274423355304_);
+}
+
+.st113 {
+  clip-path: url(#SVGID_00000139258258016882563720000017963733685153094786_);
+}
+
+.st114 {
+  clip-path: url(#SVGID_00000157293438702975776450000018273414323879017911_);
+}
+
+.st115 {
+  clip-path: url(#SVGID_00000114790238870645482690000016879696091451647126_);
+}
+
+.st116 {
+  clip-path: url(#SVGID_00000090267878318335494400000013474752754054931845_);
+}
+
+.st117 {
+  clip-path: url(#SVGID_00000067948423981807012140000010857740028556571570_);
+}
+
+.st118 {
+  fill: none;
+  stroke: url(#SVGID_00000178181284183706694410000007625963624378948742_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st119 {
+  fill: none;
+  stroke: url(#SVGID_00000093173980308774923030000009369239786540918698_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st120 {
+  clip-path: url(#SVGID_00000079458265682627868250000005934361309697624734_);
+}
+
+.st121 {
+  clip-path: url(#SVGID_00000111187314912619680470000014676486736868024765_);
+}
+
+.st122 {
+  clip-path: url(#SVGID_00000057827968281748031140000013509031101263037624_);
+}
+
+.st123 {
+  clip-path: url(#SVGID_00000039135923164549904140000000719256149418297791_);
+}
+
+.st124 {
+  clip-path: url(#SVGID_00000064322069274971758270000006692363775860664206_);
+}
+
+.st125 {
+  clip-path: url(#SVGID_00000076590683542132743720000001094810904658996647_);
+}
+
+.st126 {
+  clip-path: url(#SVGID_00000144333314073643116020000016964964833554592646_);
+}
+
+.st127 {
+  clip-path: url(#SVGID_00000047028707089655412880000007278242109870894251_);
+}
+
+.st128 {
+  clip-path: url(#SVGID_00000157283806153086345010000009243268283240315306_);
+}
+
+.st129 {
+  clip-path: url(#SVGID_00000039133985301887206190000009837908192520573346_);
+}
+
+.st130 {
+  fill: none;
+  stroke: url(#SVGID_00000175284576741620598820000002101811733284536252_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st131 {
+  fill: none;
+  stroke: url(#SVGID_00000152972374423663685210000004780842579508802224_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st132 {
+  clip-path: url(#SVGID_00000170990426152873645010000016605042338898293135_);
+}
+
+.st133 {
+  clip-path: url(#SVGID_00000001656086539739212720000005506454827315568026_);
+}
+
+.st134 {
+  clip-path: url(#SVGID_00000163069050841363487080000017933009691699237782_);
+}
+
+.st135 {
+  clip-path: url(#SVGID_00000124866369190862034790000013109996262955608975_);
+}
+
+.st136 {
+  clip-path: url(#SVGID_00000003810425854275481390000016745902289109256326_);
+}
+
+.st137 {
+  clip-path: url(#SVGID_00000045598892599125984170000001939481486010414491_);
+}
+
+.st138 {
+  clip-path: url(#SVGID_00000160163293432311884990000004143045184019557566_);
+}
+
+.st139 {
+  clip-path: url(#SVGID_00000134251692511255521290000015951186641829364384_);
+}
+
+.st140 {
+  clip-path: url(#SVGID_00000068673873403752707780000011679609608270810524_);
+}
+
+.st141 {
+  clip-path: url(#SVGID_00000173133034296845257150000004461653072006975386_);
+}
+
+.st142 {
+  clip-path: url(#SVGID_00000060023444404883090190000014343509627840891320_);
+}
+
+.st143 {
+  clip-path: url(#SVGID_00000017485033157227584250000016075728217368208801_);
+}
+
+.st144 {
+  clip-path: url(#SVGID_00000111887441604140035060000012126709564773501595_);
+}
+
+.st145 {
+  clip-path: url(#SVGID_00000043416172524599705650000013300104322698753153_);
+}
+
+.st146 {
+  clip-path: url(#SVGID_00000010291370957497267620000001608363197963705227_);
+}
+
+.st147 {
+  clip-path: url(#SVGID_00000147203766110828745080000006252733932533836708_);
+}
+
+.st148 {
+  fill: none;
+  stroke: url(#SVGID_00000115505236392644950130000006649832416780847292_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st149 {
+  fill: none;
+  stroke: url(#HQ_00000072959333626390699540000011093863452986264236_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st150 {
+  clip-path: url(#SVGID_00000132072031075354372380000001909584287750891937_);
+}
+
+.st151 {
+  clip-path: url(#SVGID_00000080195560960431153690000009439567331084649355_);
+}
+
+.st152 {
+  clip-path: url(#SVGID_00000011724091351463574120000014598133451472640943_);
+}
+
+.st153 {
+  clip-path: url(#SVGID_00000013913304526072360050000014935428736474219675_);
+}
+
+.st154 {
+  clip-path: url(#SVGID_00000116940126447791119990000017466436533682883504_);
+}
+
+.st155 {
+  clip-path: url(#SVGID_00000108302042910656281760000004236096870292900542_);
+}
+
+.st156 {
+  clip-path: url(#SVGID_00000032608212883225629080000008018988169842560398_);
+}
+
+.st157 {
+  clip-path: url(#SVGID_00000147219142491998850310000002582773477157651844_);
+}
+
+.st158 {
+  clip-path: url(#SVGID_00000111189566390483117490000001926979640406881168_);
+}
+
+.st159 {
+  clip-path: url(#SVGID_00000094597476968007060040000002329665778439201700_);
+}
+
+.st160 {
+  clip-path: url(#SVGID_00000078730696813613895670000010781798021313490574_);
+}
+
+.st161 {
+  clip-path: url(#SVGID_00000169525403026899836160000004312842559328979860_);
+}
+
+.st162 {
+  clip-path: url(#SVGID_00000064327356995276622780000016776537815123078294_);
+}
+
+.st163 {
+  clip-path: url(#SVGID_00000160162826128437425380000018231160077208824209_);
+}
+
+.st164 {
+  fill: none;
+  stroke: url(#SVGID_00000150792775990227364350000002278299315561765794_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st165 {
+  fill: none;
+  stroke: url(#HQ_00000014603106598768564060000015538900418778050494_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st166 {
+  clip-path: url(#SVGID_00000008115951021428152310000003989103889660245415_);
+}
+
+.st167 {
+  clip-path: url(#SVGID_00000111911587570612498760000011833522005696145598_);
+}
+
+.st168 {
+  clip-path: url(#SVGID_00000061455388663060806760000012682352069015278222_);
+}
+
+.st169 {
+  clip-path: url(#SVGID_00000064327695504856220050000008588917686361338802_);
+}
+
+.st170 {
+  clip-path: url(#SVGID_00000169554978935551497880000001225735730064862098_);
+}
+
+.st171 {
+  clip-path: url(#SVGID_00000067916144941522326840000016142349571452813730_);
+}
+
+.st172 {
+  clip-path: url(#SVGID_00000084530085450752140310000012094732690812076479_);
+}
+
+.st173 {
+  clip-path: url(#SVGID_00000062185264534044599670000003665674637012158644_);
+}
+
+.st174 {
+  clip-path: url(#SVGID_00000167370329669416217480000006215207968910839439_);
+}
+
+.st175 {
+  clip-path: url(#SVGID_00000023964077280139203710000002638940131850749860_);
+}
+
+.st176 {
+  fill: none;
+  stroke: url(#SVGID_00000125578840737257912660000015289919378165685177_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st177 {
+  fill: none;
+  stroke: url(#HQ_00000085245562049387961300000008674477995842751372_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st178 {
+  clip-path: url(#SVGID_00000178912487260789115440000009248995433184797881_);
+}
+
+.st179 {
+  clip-path: url(#SVGID_00000074431272942288507490000007677043330375386039_);
+}
+
+.st180 {
+  fill: none;
+  stroke: url(#SVGID_00000090974061930314450210000006584774595270249096_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st181 {
+  fill: none;
+  stroke: url(#SVGID_00000080190764139308003500000009689585875870436770_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st182 {
+  fill: none;
+  stroke: url(#SVGID_00000169518758649719645360000002883050787776491438_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st183 {
+  clip-path: url(#SVGID_00000162312814208507392090000002855183692136994472_);
+}
+
+.st184 {
+  clip-path: url(#SVGID_00000058567543870209462480000004243167783069366460_);
+}
+
+.st185 {
+  fill: none;
+  stroke: url(#SVGID_00000169554991973663466020000000923488744215497902_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st186 {
+  fill: none;
+  stroke: url(#SVGID_00000082340695566836759240000001594751706759391420_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st187 {
+  fill: none;
+  stroke: url(#SVGID_00000093143562688667054960000017289517647254780553_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st188 {
+  clip-path: url(#SVGID_00000074399748279638255470000007130626665344657557_);
+}
+
+.st189 {
+  clip-path: url(#SVGID_00000178183044662387285130000005177811051628797336_);
+}
+
+.st190 {
+  fill: none;
+  stroke: url(#SVGID_00000174603965478606313830000016386840293495630497_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st191 {
+  fill: none;
+  stroke: url(#SVGID_00000075846567224045889080000013531589128332322463_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st192 {
+  fill: none;
+  stroke: url(#SVGID_00000145038070962879788840000012329765336788919707_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st193 {
+  clip-path: url(#SVGID_00000048501558726471657530000007029325594982658991_);
+}
+
+.st194 {
+  clip-path: url(#SVGID_00000060722841549000410890000007795790984360246408_);
+}
+
+.st195 {
+  fill: none;
+  stroke: url(#SVGID_00000038379065390794658270000001864829541666972605_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st196 {
+  fill: none;
+  stroke: url(#SVGID_00000002357234190344267120000007258779968443238847_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st197 {
+  fill: none;
+  stroke: url(#SVGID_00000177477676928389472410000001677311821795140279_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st198 {
+  clip-path: url(#SVGID_00000010294018157054623000000008275429711342788486_);
+}
+
+.st199 {
+  clip-path: url(#SVGID_00000160157792851439505420000009583800593030246833_);
+}
+
+.st200 {
+  fill: none;
+  stroke: url(#SVGID_00000089533552194521321220000003199775294005879691_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st201 {
+  fill: none;
+  stroke: url(#SVGID_00000166667710177665518230000014714515281096464822_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st202 {
+  fill: none;
+  stroke: url(#SVGID_00000161633408115936050190000000803620919956066456_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st203 {
+  clip-path: url(#SVGID_00000127041457715032350170000012006606354775157434_);
+}
+
+.st204 {
+  clip-path: url(#SVGID_00000060020370457572173280000015919464429799803818_);
+}
+
+.st205 {
+  fill: none;
+  stroke: url(#SVGID_00000132070552490093571120000002458997398781000115_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st206 {
+  fill: none;
+  stroke: url(#SVGID_00000149365418455119192860000003690946231332868786_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st207 {
+  fill: none;
+  stroke: url(#SVGID_00000035516912742355383500000009292332396963417015_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st208 {
+  fill: #FFCF03;
+}
+
+.st209 {
+  clip-path: url(#SVGID_00000060709792168006291940000008923357642001231035_);
+}
+
+.st210 {
+  clip-path: url(#Tech_OBG_00000081634597924607683650000008269391356898147000_);
+}
+
+.st211 {
+  clip-path: url(#SVGID_00000135679935135003464640000007174846182375720882_);
+}
+
+.st212 {
+  clip-path: url(#SVGID_00000172431799394906731090000008430639544900324249_);
+}
+
+.st213 {
+  fill: url(#SVGID_00000111873077912108137100000000927219262369471374_);
+}
+
+.st214 {
+  fill: url(#SVGID_00000148663144720759712780000014843791355473668528_);
+}
+
+.st215 {
+  fill: url(#SVGID_00000026857258629416384230000006239762435326780035_);
+}
+
+.st216 {
+  fill: url(#SVGID_00000076564533190844693580000003766279725848719795_);
+}
+
+.st217 {
+  fill: url(#SVGID_00000181805789336778109530000001622401793358569123_);
+}
+
+.st218 {
+  fill: #6B03FF;
+}
+
+.st219 {
+  fill: #5AFF03;
+}
+
+.st220 {
+  fill: url(#Tech_Gradient_00000163776961631405252540000016929783864531578808_);
+}
+
+.st221 {
+  fill: url(#Myth_Gradient_00000174563141607978559820000015766431341706294411_);
+}
+
+.st222 {
+  fill: url(#Culture_Gradient_00000132806993666308454710000001368935924617039527_);
+}
+
+.st223 {
+  fill: url(#Nature_Gradient_00000044175219979230098310000006807931336889943946_);
+}
+
+.st224 {
+  fill: url(#Multi_Class_Gradient_00000183948498578211358550000014014337606679906201_);
+}
+
+.st225 {
+  fill: url(#HQ_Gradient_00000078021354937874696080000002917337618561690777_);
+}
+
+.st226 {
+  clip-path: url(#SVGID_00000180359995151104780700000014587877301939773859_);
+}
+
+.st227 {
+  clip-path: url(#SVGID_00000101808037596533013950000005756677261344904622_);
+}
+
+.st228 {
+  clip-path: url(#SVGID_00000077318352560992279820000001116718162813972108_);
+}
+
+.st229 {
+  clip-path: url(#SVGID_00000021112649779445898760000011619921326161990573_);
+}
+
+.st230 {
+  clip-path: url(#SVGID_00000062910161937895501990000018427882066718572467_);
+}
+
+.st231 {
+  clip-path: url(#SVGID_00000018939114362571078900000004196531697980404125_);
+}
+
+.st232 {
+  clip-path: url(#SVGID_00000006697580228922842500000004776631413515520433_);
+}
+
+.st233 {
+  clip-path: url(#SVGID_00000140692484058713363180000015481689203145368728_);
+}
+
+.st234 {
+  clip-path: url(#SVGID_00000145052085975709797500000017872123846761923212_);
+}
+
+.st235 {
+  clip-path: url(#SVGID_00000060739335734837718540000018445744402214409109_);
+}
+
+.st236 {
+  clip-path: url(#SVGID_00000072261366448404662590000008818956817483241132_);
+}
+
+.st237 {
+  clip-path: url(#SVGID_00000083069862176981560400000016326105775281644973_);
+}
+
+.st238 {
+  clip-path: url(#SVGID_00000012433628742390345270000015847722031792188580_);
+}
+
+.st239 {
+  clip-path: url(#SVGID_00000053545301966534657990000009215336791387645355_);
+}
+
+.st240 {
+  clip-path: url(#SVGID_00000042703019669531765590000000413065870193910407_);
+}
+
+.st241 {
+  clip-path: url(#SVGID_00000130608272159292783500000017550769238258296990_);
+}
+
+.st242 {
+  clip-path: url(#SVGID_00000049914232163557317460000006685169315895738762_);
+}
+
+.st243 {
+  clip-path: url(#SVGID_00000043444277545932931750000018197192163940840865_);
+}
+
+.st244 {
+  clip-path: url(#SVGID_00000060753481431153665920000014617681446806205592_);
+}
+
+.st245 {
+  clip-path: url(#SVGID_00000147927410622347333060000008854089094134219679_);
+}
+
+.st246 {
+  clip-path: url(#SVGID_00000116221943864718592920000005422069010861163706_);
+}
+
+.st247 {
+  clip-path: url(#SVGID_00000123414891117462476100000007650415539830104737_);
+}
+
+.st248 {
+  clip-path: url(#SVGID_00000001652290361411047090000011717349688223117247_);
+}
+
+.st249 {
+  clip-path: url(#SVGID_00000156578129506948499450000011472757914380683157_);
+}
+
+.st250 {
+  clip-path: url(#SVGID_00000111887287993101217820000011035633299364951468_);
+}
+
+.st251 {
+  clip-path: url(#SVGID_00000028302210585818622140000014281752626808227238_);
+}
+
+.st252 {
+  clip-path: url(#SVGID_00000155118747590179197670000004184419166546313871_);
+}
+
+.st253 {
+  clip-path: url(#SVGID_00000107571433314880981440000008930946014018808511_);
+}
+
+.st254 {
+  clip-path: url(#SVGID_00000158718464380771602580000006166702954105441710_);
+}
+
+.st255 {
+  clip-path: url(#SVGID_00000016046027495814955640000005789566756933407913_);
+}
+
+.st256 {
+  clip-path: url(#SVGID_00000070803836804278028580000005540225884680205741_);
+}
+
+.st257 {
+  clip-path: url(#SVGID_00000165208457288206617820000016271575871838059664_);
+}
+
+.st258 {
+  clip-path: url(#SVGID_00000101063165919630634810000001878480441264429953_);
+}
+
+.st259 {
+  clip-path: url(#SVGID_00000084497775096880775060000013545503383405295520_);
+}
+
+.st260 {
+  clip-path: url(#SVGID_00000176009729911573806260000010045184205349899911_);
+}
+
+.st261 {
+  clip-path: url(#SVGID_00000046341677695483268530000010184625088404910511_);
+}
+
+.st262 {
+  clip-path: url(#SVGID_00000037662601921041143890000014620247136920955048_);
+}
+
+.st263 {
+  clip-path: url(#SVGID_00000057867432333182813390000003027336727581630884_);
+}
+
+.st264 {
+  clip-path: url(#SVGID_00000085960501415216323450000016134283502633658505_);
+}
+
+.st265 {
+  clip-path: url(#SVGID_00000068668442048577541490000011315022337224147874_);
+}
+
+.st266 {
+  clip-path: url(#SVGID_00000089572049345313112940000002182533933409217717_);
+}
+
+.st267 {
+  clip-path: url(#SVGID_00000139264483068370811480000016088490401293199790_);
+}
+
+.st268 {
+  clip-path: url(#SVGID_00000176746961099258499790000017114177236069462964_);
+}
+
+.st269 {
+  clip-path: url(#SVGID_00000172429203137893497150000001986532242411568314_);
+}
+
+.st270 {
+  clip-path: url(#SVGID_00000052070238920040528610000001143006011026334621_);
+}
+
+.st271 {
+  fill: url(#SVGID_00000042006245993007871420000007667409343319115685_);
+}
+
+.st272 {
+  fill: url(#SVGID_00000168114856473701676020000013667534569334487454_);
+}
+
+.st273 {
+  fill: url(#SVGID_00000070838723185737967320000008712433149668865924_);
+}
+
+.st274 {
+  fill: url(#SVGID_00000182505597265696083260000004734476242998359987_);
+}
+
+.st275 {
+  fill: url(#SVGID_00000020391334903008450750000003340958381306273932_);
+}
+
+.st276 {
+  fill: url(#SVGID_00000088109736305611942980000011479322261936484264_);
+}
+
+.st277 {
+  fill: url(#SVGID_00000134968888399683708930000000842184035544997778_);
+}
+
+.st278 {
+  fill: url(#SVGID_00000125587770041860130210000014697414643509027758_);
+}
+
+.st279 {
+  fill: url(#SVGID_00000157288011846110402040000003129080749223453085_);
+}
+
+.st280 {
+  clip-path: url(#SVGID_00000005262868663509963300000001290269425064837272_);
+}
+
+.st281 {
+  fill: none;
+  stroke: #6B03FF;
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st282 {
+  clip-path: url(#SVGID_00000121237672896850019120000001509456277723665323_);
+}
+
+.st283 {
+  clip-path: url(#SVGID_00000152970143694948756330000013732551198400795304_);
+}
+
+.st284 {
+  clip-path: url(#SVGID_00000060725661392509547510000015503025753470349452_);
+}
+
+.st285 {
+  clip-path: url(#SVGID_00000075133134757751513230000011170455631865176490_);
+}
+
+.st286 {
+  clip-path: url(#SVGID_00000003819356893371580760000016793108903031519394_);
+}
+
+.st287 {
+  clip-path: url(#SVGID_00000002375265950798776150000002032964816114412173_);
+}
+
+.st288 {
+  fill: url(#Health_Frame_00000043438240706306607600000000629377359929241472_);
+}
+
+.st289 {
+  fill: url(#Health_Frame_00000173134579862154586160000014576503467761412254_);
+}
+
+.st290 {
+  fill: url(#FullArt_Inside_BG_00000007426317503482501450000007710910961479019182_);
+}
+
+.st291 {
+  fill: url(#FullArt_Inside_BG_00000011744576963134112990000002871770344096958907_);
+}
+
+.st292 {
+  fill: url(#FullArt_Inside_BG_00000170973406354682381690000007575213555297272981_);
+}
+
+.st293 {
+  fill: url(#FullArt_Inside_BG_00000138545229116499201990000010490078009072000136_);
+}
+
+.st294 {
+  fill: url(#FullArt_Inside_BG_00000141434292891783006650000017647194279747523736_);
+}
+
+.st295 {
+  fill: url(#FullArt_Inside_BG_00000106830097759491890690000014483771022837850009_);
+}
+
+.st296 {
+  fill: url(#FullArt_Inside_BG_00000088126893313100699280000000072697453069781410_);
+}
+
+.st297 {
+  fill: url(#FullArt_Inside_BG_00000070082382677535668190000000428118331435906733_);
+}
+
+.st298 {
+  fill: url(#FullArt_Inside_BG_00000181793447356806942000000011764119188432822967_);
+}
+
+.st299 {
+  fill: url(#FullArt_Inside_BG_00000178207411480943670520000005813192006611710082_);
+}
+
+.st300 {
+  fill: url(#Health_Frame_00000000914877354244362690000001198026391750162359_);
+}
+
+.st301 {
+  fill: url(#Health_Frame_00000165925068428005530130000005789257500305961600_);
+}
+
+.st302 {
+  fill: url(#FullArt_Inside_BG_00000170238570440824537110000004512849163255662507_);
+}
+
+.st303 {
+  fill: url(#FullArt_Inside_BG_00000059995900520620593410000010957680129567237248_);
+}
+
+.st304 {
+  fill: url(#FullArt_Outside_00000069391161698258899910000004842812426093139620_);
+}
+
+.st305 {
+  fill: url(#FullArt_Outside_00000178188447369539300550000011221627345369577376_);
+}
+
+.st306 {
+  fill: url(#FullArt_Outside_00000147934205334914536590000011860590808255406480_);
+}
+
+.st307 {
+  fill: url(#FullArt_Outside_00000118392238707075374520000017457234601002904489_);
+}
+
+.st308 {
+  fill: url(#FullArt_Outside_00000057125052216075067540000004124407833363217803_);
+}
+
+.st309 {
+  fill: url(#FullArt_Outside_00000137123290699178031440000003443386812955986108_);
+}
+
+.st310 {
+  fill: url(#FullArt_Outside_00000031895737002741360130000000394305996561704832_);
+}
+
+.st311 {
+  fill: url(#Bottom_Frame_00000154405562467345105280000001477301810664253587_);
+}
+
+.st312 {
+  fill: url(#Health_Frame_00000066515981031591552690000008720903019333348769_);
+}
+
+.st313 {
+  fill: url(#SVGID_00000049217584153382028170000003548453696851897016_);
+}
+
+.st314 {
+  fill: url(#SVGID_00000017511051349947073390000010554426856269428145_);
+}
+
+.st315 {
+  clip-path: url(#SVGID_00000161629679262620357900000011113631902554331291_);
+}
+
+.st316 {
+  clip-path: url(#SVGID_00000007423813887648494350000018028406652125046673_);
+}
+
+.st317 {
+  clip-path: url(#SVGID_00000127754224122271645270000009433785649558543524_);
+}
+
+.st318 {
+  clip-path: url(#SVGID_00000016033827264202054140000006783301682225819326_);
+}
+
+.st319 {
+  fill: url(#Health_Frame_00000005225379511422978220000001898098608071486867_);
+}
+
+.st320 {
+  fill: url(#Health_Frame_00000090276382383635833430000016451537637592045980_);
+}
+
+.st321 {
+  fill: url(#FullArt_Inside_BG_00000124130169702981731170000014442267818222326663_);
+}
+
+.st322 {
+  fill: url(#FullArt_Inside_BG_00000065761818075622996350000015866667871303889584_);
+}
+
+.st323 {
+  fill: url(#FullArt_Inside_BG_00000123434447844972471620000015795001150389472158_);
+}
+
+.st324 {
+  fill: url(#FullArt_Inside_BG_00000030466955717176167740000012457870975477680517_);
+}
+
+.st325 {
+  fill: url(#FullArt_Inside_BG_00000161601427626812669040000016554464892840789141_);
+}
+
+.st326 {
+  fill: url(#FullArt_Inside_BG_00000015355053204336517480000008165027185612154523_);
+}
+
+.st327 {
+  fill: url(#FullArt_Inside_BG_00000149366993985161815290000000267099365361176472_);
+}
+
+.st328 {
+  fill: url(#FullArt_Inside_BG_00000031897511491266730460000015596074077612457369_);
+}
+
+.st329 {
+  fill: url(#FullArt_Inside_BG_00000124135827073581236210000000421308758460503209_);
+}
+
+.st330 {
+  fill: url(#FullArt_Inside_BG_00000166642046229009826190000008861355726401492146_);
+}
+
+.st331 {
+  fill: url(#Health_Frame_00000009566508736573760890000016505047235773274533_);
+}
+
+.st332 {
+  fill: url(#Health_Frame_00000139262052458317856560000004870297099329163945_);
+}
+
+.st333 {
+  fill: url(#FullArt_Inside_BG_00000024693009784882675110000013065735813237113277_);
+}
+
+.st334 {
+  fill: url(#FullArt_Inside_BG_00000039125684097635342830000000719266251517451687_);
+}
+
+.st335 {
+  fill: url(#FullArt_Outside_00000016762325550959841330000011025885103724127371_);
+}
+
+.st336 {
+  fill: url(#FullArt_Outside_00000149372412164978596560000005327132035992512186_);
+}
+
+.st337 {
+  fill: url(#FullArt_Outside_00000029031171641486924590000003249887670729008556_);
+}
+
+.st338 {
+  fill: url(#FullArt_Outside_00000038371844869978299560000004729598789405706648_);
+}
+
+.st339 {
+  fill: url(#FullArt_Outside_00000049202997541056820470000002618674886632084363_);
+}
+
+.st340 {
+  fill: url(#FullArt_Outside_00000104668384284311890720000018069172468248423303_);
+}
+
+.st341 {
+  fill: url(#FullArt_Outside_00000108306836345755946050000012494118494657083550_);
+}
+
+.st342 {
+  fill: url(#Bottom_Frame_00000075157573564275611220000009997456338513646269_);
+}
+
+.st343 {
+  fill: url(#Health_Frame_00000083797019403211617380000003628382665823245209_);
+}
+
+.st344 {
+  fill: url(#SVGID_00000072259927093234450390000017163693914252779697_);
+}
+
+.st345 {
+  fill: url(#SVGID_00000005254057059193328460000000498121713043349648_);
+}
+
+.st346 {
+  clip-path: url(#SVGID_00000058585427086097807400000008925024860453362337_);
+}
+
+.st347 {
+  clip-path: url(#SVGID_00000177460265158219197110000004763980193702914460_);
+}
+
+.st348 {
+  clip-path: url(#SVGID_00000131361581414259061500000004151172147252795790_);
+}
+
+.st349 {
+  clip-path: url(#SVGID_00000003093577324992332710000015781096973946919091_);
+}
+
+.st350 {
+  fill: url(#Health_Frame_00000090263992234357660780000013884724268794923664_);
+}
+
+.st351 {
+  fill: url(#Health_Frame_00000036961453416157184620000000478114287583442864_);
+}
+
+.st352 {
+  fill: url(#FullArt_Inside_BG_00000096019619055819784850000018334161826437431725_);
+}
+
+.st353 {
+  fill: url(#FullArt_Inside_BG_00000044892736439863773510000003714593210545059462_);
+}
+
+.st354 {
+  fill: url(#FullArt_Inside_BG_00000164472928521144498580000012784078872547984048_);
+}
+
+.st355 {
+  fill: url(#FullArt_Inside_BG_00000098220635005581366180000004234242144239611304_);
+}
+
+.st356 {
+  fill: url(#FullArt_Inside_BG_00000119105360121371296010000015516710492654405819_);
+}
+
+.st357 {
+  fill: url(#FullArt_Inside_BG_00000152987257006623408070000013355228453943189950_);
+}
+
+.st358 {
+  fill: url(#FullArt_Inside_BG_00000062191552164358547440000018042969042202265990_);
+}
+
+.st359 {
+  fill: url(#FullArt_Inside_BG_00000075144629596893742660000001977863211171321504_);
+}
+
+.st360 {
+  fill: url(#FullArt_Inside_BG_00000101783224048192836460000005001481790062795710_);
+}
+
+.st361 {
+  fill: url(#FullArt_Inside_BG_00000035533379523740523600000011062100149587547059_);
+}
+
+.st362 {
+  fill: url(#Health_Frame_00000148663738978306029870000011193743854866858667_);
+}
+
+.st363 {
+  fill: url(#Health_Frame_00000105402126115650021420000016040757487181064366_);
+}
+
+.st364 {
+  fill: url(#FullArt_Inside_BG_00000089538136782666250870000017451708936980827541_);
+}
+
+.st365 {
+  fill: url(#FullArt_Inside_BG_00000049196959521702065260000003571781641705612991_);
+}
+
+.st366 {
+  fill: url(#FullArt_Outside_00000068638008994037015140000014925505968525407380_);
+}
+
+.st367 {
+  fill: url(#FullArt_Outside_00000157993473691899638240000007847293950589141390_);
+}
+
+.st368 {
+  fill: url(#FullArt_Outside_00000180335460314769149300000011312865545870254244_);
+}
+
+.st369 {
+  fill: url(#FullArt_Outside_00000170270206439846300930000010735869372001240712_);
+}
+
+.st370 {
+  fill: url(#FullArt_Outside_00000004531494343075023460000005962592377876836484_);
+}
+
+.st371 {
+  fill: url(#FullArt_Outside_00000149344569542867114190000004831142121369569922_);
+}
+
+.st372 {
+  fill: url(#FullArt_Outside_00000102522823707574908700000016298147741534632847_);
+}
+
+.st373 {
+  fill: url(#Bottom_Frame_00000000911639554346132940000014454132581989190034_);
+}
+
+.st374 {
+  fill: url(#Health_Frame_00000172436255215336791910000006709058499778742918_);
+}
+
+.st375 {
+  fill: url(#SVGID_00000047781845990802916820000017645221639040325511_);
+}
+
+.st376 {
+  clip-path: url(#SVGID_00000058552635860130972220000006720210875579489965_);
+}
+
+.st377 {
+  clip-path: url(#SVGID_00000029728062221025754100000004189370261496003715_);
+}
+
+.st378 {
+  clip-path: url(#SVGID_00000148662292890775823250000015969197970115901606_);
+}
+
+.st379 {
+  clip-path: url(#SVGID_00000026853287862727825480000008798214709885239955_);
+}
+
+.st380 {
+  fill: url(#Health_Frame_00000156571710651706752090000018297152884821873281_);
+}
+
+.st381 {
+  fill: url(#Health_Frame_00000135670849462648628800000018123749284913632389_);
+}
+
+.st382 {
+  fill: url(#FullArt_Inside_BG_00000028297952180745541510000015642852577565243793_);
+}
+
+.st383 {
+  fill: url(#FullArt_Inside_BG_00000147909638795736990400000014953559427872273833_);
+}
+
+.st384 {
+  fill: url(#FullArt_Inside_BG_00000055673805903645341380000016104351420306478761_);
+}
+
+.st385 {
+  fill: url(#FullArt_Inside_BG_00000023255580651266498610000015438476610082052996_);
+}
+
+.st386 {
+  fill: url(#FullArt_Inside_BG_00000033347028234592449850000011202839901814785182_);
+}
+
+.st387 {
+  fill: url(#FullArt_Inside_BG_00000153690194665919154230000007076835836545970106_);
+}
+
+.st388 {
+  fill: url(#FullArt_Inside_BG_00000074406370563988774950000000570127472432407217_);
+}
+
+.st389 {
+  fill: url(#FullArt_Inside_BG_00000126310231959253120460000000121515349790953914_);
+}
+
+.st390 {
+  fill: url(#FullArt_Inside_BG_00000088842109607278804860000009748127003335027851_);
+}
+
+.st391 {
+  fill: url(#FullArt_Inside_BG_00000041277909408231918910000009854002011835705740_);
+}
+
+.st392 {
+  fill: url(#Health_Frame_00000124845016820986483750000007404168714782363323_);
+}
+
+.st393 {
+  fill: url(#Health_Frame_00000101085785004314652180000002838901439432130225_);
+}
+
+.st394 {
+  fill: url(#FullArt_Inside_BG_00000005974337892459111630000011469416896358374529_);
+}
+
+.st395 {
+  fill: url(#FullArt_Inside_BG_00000031179169895319320630000015794384922216770177_);
+}
+
+.st396 {
+  fill: url(#FullArt_Outside_00000070823258650016211390000011972132201486589108_);
+}
+
+.st397 {
+  fill: url(#FullArt_Outside_00000037675567825285811940000011971027865160882870_);
+}
+
+.st398 {
+  fill: url(#FullArt_Outside_00000103240122002217535310000005481062685941019065_);
+}
+
+.st399 {
+  fill: url(#FullArt_Outside_00000127009636486406697180000005884595852857556617_);
+}
+
+.st400 {
+  fill: url(#FullArt_Outside_00000142138253416771384890000008604561936604094096_);
+}
+
+.st401 {
+  fill: url(#FullArt_Outside_00000144301536853873138500000011070961168759078552_);
+}
+
+.st402 {
+  fill: url(#FullArt_Outside_00000149347205748605276030000014294165788176090501_);
+}
+
+.st403 {
+  fill: url(#Bottom_Frame_00000046303093348434733480000005582311589697753491_);
+}
+
+.st404 {
+  fill: url(#Health_Frame_00000038384274500443278380000001050593255226427287_);
+}
+
+.st405 {
+  fill: url(#SVGID_00000178194750992884499400000008973740309362038419_);
+}
+
+.st406 {
+  clip-path: url(#SVGID_00000039115287641610653150000000029216013629244072_);
+}
+
+.st407 {
+  clip-path: url(#SVGID_00000064335219631793879780000005269425399035014818_);
+}
+
+.st408 {
+  clip-path: url(#SVGID_00000054968225442820334740000011586709907907755679_);
+}
+
+.st409 {
+  clip-path: url(#SVGID_00000101797977514713730700000018102904654596098729_);
+}
+
+.st410 {
+  fill: url(#Health_Frame_00000151524874358434018570000014717165277807794616_);
+}
+
+.st411 {
+  fill: url(#Health_Frame_00000049197724857434599730000015155450530590921889_);
+}
+
+.st412 {
+  fill: url(#FullArt_Inside_BG_00000103256836461130298750000000270666881644292799_);
+}
+
+.st413 {
+  fill: url(#FullArt_Inside_BG_00000158721708073516876600000017512723468395172005_);
+}
+
+.st414 {
+  fill: url(#FullArt_Inside_BG_00000064321338575059020680000015762791593128483755_);
+}
+
+.st415 {
+  fill: url(#FullArt_Inside_BG_00000045616425503115533190000007688764340743877776_);
+}
+
+.st416 {
+  fill: url(#FullArt_Inside_BG_00000108269970563696501810000012793381262337583535_);
+}
+
+.st417 {
+  fill: url(#FullArt_Inside_BG_00000145058234720669758120000000096664122880267185_);
+}
+
+.st418 {
+  fill: url(#FullArt_Inside_BG_00000147924400581572933820000009671473504687488679_);
+}
+
+.st419 {
+  fill: url(#FullArt_Inside_BG_00000039098297794500424260000011205016395205233081_);
+}
+
+.st420 {
+  fill: url(#FullArt_Inside_BG_00000178913474327762224710000008682725826551707835_);
+}
+
+.st421 {
+  fill: url(#FullArt_Inside_BG_00000088115882704749174000000005207791433074076845_);
+}
+
+.st422 {
+  fill: url(#Health_Frame_00000174574076057828542500000010670340084430634929_);
+}
+
+.st423 {
+  fill: url(#Health_Frame_00000072249911980102117900000011307761496412792222_);
+}
+
+.st424 {
+  fill: url(#FullArt_Inside_BG_00000080175185427930304140000007192451108541905591_);
+}
+
+.st425 {
+  fill: url(#FullArt_Inside_BG_00000168837724285387402760000004231004108751961006_);
+}
+
+.st426 {
+  fill: url(#FullArt_Outside_00000037661275477203722610000006149098964399342492_);
+}
+
+.st427 {
+  fill: url(#FullArt_Outside_00000021831703293865868790000016610428633618232995_);
+}
+
+.st428 {
+  fill: url(#FullArt_Outside_00000163770626192978119990000007981570642954139807_);
+}
+
+.st429 {
+  fill: url(#FullArt_Outside_00000034774489602451768350000013066725566755077806_);
+}
+
+.st430 {
+  fill: url(#FullArt_Outside_00000026141645892066369730000001623579649946454943_);
+}
+
+.st431 {
+  fill: url(#FullArt_Outside_00000091011934554906232250000016597052236406693012_);
+}
+
+.st432 {
+  fill: url(#FullArt_Outside_00000051344750844455317600000014230649660256698761_);
+}
+
+.st433 {
+  fill: url(#Bottom_Frame_00000093859451303901625070000014746573028513693335_);
+}
+
+.st434 {
+  fill: url(#Health_Frame_00000042716857074407344080000008461633164082117249_);
+}
+
+.st435 {
+  fill: url(#SVGID_00000105385394019719699530000005342820991749754788_);
+}
+
+.st436 {
+  fill: url(#SVGID_00000024721837819158692560000014908657639596587179_);
+}
+
+.st437 {
+  fill: url(#FullArt_Inside_BG_00000103973059183715087540000017318467928073473441_);
+}
+
+.st438 {
+  fill: url(#FullArt_Inside_BG_00000095334086788523801410000004888170882692535718_);
+}
+
+.st439 {
+  fill: url(#FullArt_Inside_BG_00000074435991506326778670000016680628998212108705_);
+}
+
+.st440 {
+  fill: url(#SVGID_00000147182718532990085840000002386713043593645448_);
+}
+
+.st441 {
+  fill: url(#SVGID_00000111913139320132492980000012587965012576237961_);
+}
+
+.st442 {
+  fill: url(#Bottom_Frame_00000176760806515401883980000017264594914909583532_);
+}
+
+.st443 {
+  fill: url(#FullArt_Inside_BG_00000142854840461599172290000018135077494073134467_);
+}
+
+.st444 {
+  fill: url(#FullArt_Inside_BG_00000152235082659662183470000007462566746430566319_);
+}
+
+.st445 {
+  fill: url(#FullArt_Inside_BG_00000015352370273048711830000005430563091674630017_);
+}
+
+.st446 {
+  fill: url(#FullArt_Inside_BG_00000068635171396591717140000000294997317724449934_);
+}
+
+.st447 {
+  fill: url(#FullArt_Inside_BG_00000145028175155338262930000004927485925750909616_);
+}
+
+.st448 {
+  fill: url(#SVGID_00000137101130667572340220000006157444448574241925_);
+}
+
+.st449 {
+  fill: url(#SVGID_00000088098304217970673920000010349373099080722839_);
+}
+
+.st450 {
+  fill: url(#Bottom_Frame_00000175297948671220265290000012230662962152237758_);
+}
+
+.st451 {
+  fill: url(#FullArt_Inside_BG_00000179630812893473155400000010225497395734679724_);
+}
+
+.st452 {
+  fill: url(#FullArt_Inside_BG_00000083781782904248686860000011367806274722796734_);
+}
+
+.st453 {
+  fill: url(#FullArt_Inside_BG_00000036960757514921583750000007779001610891144352_);
+}
+
+.st454 {
+  fill: url(#FullArt_Inside_BG_00000031174095875628208710000007388628581513613475_);
+}
+
+.st455 {
+  fill: url(#FullArt_Inside_BG_00000162349977567264930160000001629404469999127181_);
+}
+
+.st456 {
+  fill: url(#SVGID_00000132780988340216723880000008529543319511307435_);
+}
+
+.st457 {
+  fill: url(#SVGID_00000057150381898241136170000017935963117006153098_);
+}
+
+.st458 {
+  fill: url(#Bottom_Frame_00000036219045030570629350000004885970847204619450_);
+}
+
+.st459 {
+  fill: url(#FullArt_Inside_BG_00000106831277560297757700000016000258344452734888_);
+}
+
+.st460 {
+  fill: url(#FullArt_Inside_BG_00000138560175346578544670000003831491182007983277_);
+}
+
+.st461 {
+  fill: url(#FullArt_Inside_BG_00000043435259030937585900000013389054009845200006_);
+}
+
+.st462 {
+  fill: url(#FullArt_Inside_BG_00000034798555325930667290000011748508902250145689_);
+}
+
+.st463 {
+  fill: url(#FullArt_Inside_BG_00000104708535168303801880000006983631483378811294_);
+}
+
+.st464 {
+  fill: url(#SVGID_00000135657865747863558600000000467659851380146077_);
+}
+
+.st465 {
+  fill: url(#SVGID_00000145767393788261629460000003835856667853012643_);
+}
+
+.st466 {
+  fill: url(#SVGID_00000108276141143193364710000000525853308764661666_);
+}
+
+.st467 {
+  fill: url(#FullArt_Inside_BG_00000124148461569967487930000006108657621725384069_);
+}
+
+.st468 {
+  fill: url(#FullArt_Inside_BG_00000004530098590005800530000005145655520537509258_);
+}
+
+.st469 {
+  fill: url(#FullArt_Inside_BG_00000064315331225922373710000010585258360942635183_);
+}
+
+.st470 {
+  fill: url(#FullArt_Inside_BG_00000078039559165910255470000001586550157037034676_);
+}
+
+.st471 {
+  fill: url(#FullArt_Inside_BG_00000063620050984632071370000004254470707299224192_);
+}
+
+.st472 {
+  fill: url(#SVGID_00000113347598645840574340000018220772957935253148_);
+}
+
+.st473 {
+  fill: url(#SVGID_00000127031288564609240190000002050710243331721148_);
+}
+
+.st474 {
+  fill: url(#SVGID_00000039126910508076163730000002083834061522755254_);
+}
+
+.st475 {
+  fill: url(#FullArt_Inside_BG_00000146471361745857949850000007463809176110553013_);
+}
+
+.st476 {
+  fill: url(#FullArt_Inside_BG_00000107562456831427721280000011200332678488919969_);
+}
+
+.st477 {
+  clip-path: url(#SVGID_00000029760472262457655100000014005954406633588626_);
+}
+
+.st478 {
+  clip-path: url(#SVGID_00000121960050366109026090000008178289336141704867_);
+}
+
+.st479 {
+  fill: url(#Health_Frame_00000181056743537958026070000005065608867584413344_);
+}
+
+.st480 {
+  fill: url(#SVGID_00000104704136866845100270000001178478440862743973_);
+}
+
+.st481 {
+  fill: url(#SVGID_00000101077847782787517560000015817731070767454085_);
+}
+
+.st482 {
+  fill: url(#FullArt_Inside_BG_00000004503791227399073870000017276392605228990867_);
+}
+
+.st483 {
+  fill: url(#FullArt_Inside_BG_00000024688065345150412940000011452548324589567135_);
+}
+
+.st484 {
+  fill: url(#FullArt_Inside_BG_00000130623847556032746820000000745760506513402756_);
+}
+
+.st485 {
+  fill: url(#Health_Frame_00000113342033870679785170000015868914732335465345_);
+}
+
+.st486 {
+  fill: url(#SVGID_00000101082862782496297990000008928832835610325130_);
+}
+
+.st487 {
+  fill: url(#SVGID_00000136411639026638473670000003422110872120544398_);
+}
+
+.st488 {
+  fill: url(#SVGID_00000129189390953045393230000017370299511955240875_);
+}
+
+.st489 {
+  fill: url(#SVGID_00000177457052497320245410000008946163382431821190_);
+}
+
+.st490 {
+  fill: url(#SVGID_00000166641162877989905430000003453949530418612878_);
+}
+
+.st491 {
+  fill: url(#SVGID_00000096034949353302116980000009639629904338767026_);
+}
+
+.st492 {
+  fill: url(#SVGID_00000074403203884954187230000018085992868073516184_);
+}
+
+.st493 {
+  fill: url(#SVGID_00000118357256811802806000000001510279525393451935_);
+}
+
+.st494 {
+  fill: url(#SVGID_00000103977072472793447220000013417339061196972933_);
+}
+
+.st495 {
+  fill: url(#SVGID_00000143579430582195947210000010808286694664546463_);
+}
+
+.st496 {
+  fill: url(#SVGID_00000176001350498818942660000006846712181341610635_);
+}
+
+.st497 {
+  fill: url(#SVGID_00000160905728835594644520000003007415181823707780_);
+}
+
+.st498 {
+  fill: url(#FullArt_Inside_BG_00000050656536196264451100000014798139595705616014_);
+}
+
+.st499 {
+  fill: url(#SVGID_00000160885402608583580700000006205168299581888436_);
+}
+
+.st500 {
+  fill: url(#FullArt_Inside_BG_00000139986990492385518580000017943113375246774934_);
+}
+
+.st501 {
+  clip-path: url(#SVGID_00000101092530684151643240000001046487210705679021_);
+}
+
+.st502 {
+  clip-path: url(#SVGID_00000181775496949489052080000011975292648434841238_);
+}
+
+.st503 {
+  fill: url(#Health_Frame_00000069355481311998163810000015039243949949570469_);
+}
+
+.st504 {
+  fill: url(#SVGID_00000098912064887778273690000008169053325828084367_);
+}
+
+.st505 {
+  fill: url(#SVGID_00000118390259270553821180000015532551548498840495_);
+}
+
+.st506 {
+  fill: url(#FullArt_Inside_BG_00000049923996904954004270000002215666173900597695_);
+}
+
+.st507 {
+  fill: url(#FullArt_Inside_BG_00000173879124698541695170000006642342114182701715_);
+}
+
+.st508 {
+  fill: url(#FullArt_Inside_BG_00000130633488695399501370000003999783374950049181_);
+}
+
+.st509 {
+  fill: url(#Health_Frame_00000098218906369961890080000013085054590083635883_);
+}
+
+.st510 {
+  fill: url(#SVGID_00000129890556604034035580000001733499209766090672_);
+}
+
+.st511 {
+  fill: url(#SVGID_00000134952725345363125150000007445945126213075845_);
+}
+
+.st512 {
+  fill: url(#SVGID_00000104681668200636318980000007808261114997177479_);
+}
+
+.st513 {
+  fill: url(#SVGID_00000046313114698136372430000001596344998359939740_);
+}
+
+.st514 {
+  fill: url(#SVGID_00000111878429973039109940000009316207809381152161_);
+}
+
+.st515 {
+  fill: url(#SVGID_00000005261805845617290800000012083853304704342697_);
+}
+
+.st516 {
+  fill: url(#SVGID_00000075145010965044993740000015868849002210154370_);
+}
+
+.st517 {
+  fill: url(#SVGID_00000134238530409033984250000004573524629224568192_);
+}
+
+.st518 {
+  fill: url(#SVGID_00000170280206806529311200000008334248820569745322_);
+}
+
+.st519 {
+  fill: url(#SVGID_00000073705562988478202200000000497712634129780906_);
+}
+
+.st520 {
+  fill: url(#SVGID_00000018208852375819377500000000039059734526439567_);
+}
+
+.st521 {
+  fill: url(#SVGID_00000029043677161000174270000011040897503925947785_);
+}
+
+.st522 {
+  fill: url(#FullArt_Inside_BG_00000088100282459540900200000002800465738869754285_);
+}
+
+.st523 {
+  fill: url(#SVGID_00000014592627846026316110000000567064180566206341_);
+}
+
+.st524 {
+  fill: url(#FullArt_Inside_BG_00000026130658727373453880000004446464798209581453_);
+}
+
+.st525 {
+  clip-path: url(#SVGID_00000110443581685069770310000018230686461989271957_);
+}
+
+.st526 {
+  clip-path: url(#SVGID_00000160163569249266717510000008348412433464995509_);
+}
+
+.st527 {
+  fill: url(#Health_Frame_00000035529373946917511510000009523812739189972867_);
+}
+
+.st528 {
+  fill: url(#FullArt_Inside_BG_00000169530904078078595870000013447883219603674017_);
+}
+
+.st529 {
+  fill: url(#FullArt_Inside_BG_00000051343970006432166800000002615984583007192720_);
+}
+
+.st530 {
+  fill: url(#FullArt_Inside_BG_00000039829429731248771590000006384558257677492889_);
+}
+
+.st531 {
+  fill: url(#SVGID_00000091006577194265154290000005362134842908423839_);
+}
+
+.st532 {
+  fill: url(#Health_Frame_00000175301042365736967360000003701776623517168010_);
+}
+
+.st533 {
+  fill: url(#SVGID_00000062172942414513867330000011677713968695303086_);
+}
+
+.st534 {
+  fill: url(#SVGID_00000090983970755637642760000000860473265505929913_);
+}
+
+.st535 {
+  fill: url(#SVGID_00000022518546583239578990000005047573388484921276_);
+}
+
+.st536 {
+  fill: url(#SVGID_00000054241867855877846780000002005814462350223775_);
+}
+
+.st537 {
+  fill: url(#SVGID_00000182521113266325528310000007117710508693854640_);
+}
+
+.st538 {
+  fill: url(#SVGID_00000159457143315355270210000000796639302195724695_);
+}
+
+.st539 {
+  fill: url(#SVGID_00000120542701239636204910000008366798865190270857_);
+}
+
+.st540 {
+  fill: url(#SVGID_00000165236653382092934660000014756866813820074118_);
+}
+
+.st541 {
+  fill: url(#SVGID_00000062174481663934248720000016523122907124023462_);
+}
+
+.st542 {
+  fill: url(#SVGID_00000183235045253512977450000016278399965678759302_);
+}
+
+.st543 {
+  fill: url(#SVGID_00000043441565909242499170000000216360891829974922_);
+}
+
+.st544 {
+  fill: url(#SVGID_00000085227702187135139540000012279814766445276326_);
+}
+
+.st545 {
+  fill: url(#FullArt_Inside_BG_00000041273661281932462790000011598656427117352098_);
+}
+
+.st546 {
+  fill: url(#FullArt_Inside_BG_00000008118753611849270550000004055654709754293695_);
+}
+
+.st547 {
+  fill: url(#SVGID_00000174578186405084531100000005317780550115176622_);
+}
+
+.st548 {
+  clip-path: url(#SVGID_00000053537389140819798590000009717917414992555402_);
+}
+
+.st549 {
+  clip-path: url(#SVGID_00000003800464124589994160000015836020339091810973_);
+}
+
+.st550 {
+  fill: url(#Health_Frame_00000143616447849533040480000012818068730350692503_);
+}
+
+.st551 {
+  fill: url(#FullArt_Inside_BG_00000116209617368837215660000004757044263225314446_);
+}
+
+.st552 {
+  fill: url(#FullArt_Inside_BG_00000072996112721773171270000015048066460604449456_);
+}
+
+.st553 {
+  fill: url(#FullArt_Inside_BG_00000110453894978148574890000009217993507021566640_);
+}
+
+.st554 {
+  fill: url(#Health_Frame_00000011742554394263300500000005729683589249775766_);
+}
+
+.st555 {
+  fill: url(#SVGID_00000003799463531011191750000013723936042857092281_);
+}
+
+.st556 {
+  fill: url(#SVGID_00000150092599324778095740000016840016800307490494_);
+}
+
+.st557 {
+  fill: url(#SVGID_00000134965893302980412730000007580465455212792467_);
+}
+
+.st558 {
+  fill: url(#SVGID_00000176744149339664764070000000977906326285136512_);
+}
+
+.st559 {
+  fill: url(#SVGID_00000003069611865672152060000004047466928218672314_);
+}
+
+.st560 {
+  fill: url(#SVGID_00000033329872442369440270000018057159727828401812_);
+}
+
+.st561 {
+  fill: url(#SVGID_00000019654598782645947240000010442639279354522802_);
+}
+
+.st562 {
+  fill: url(#SVGID_00000060744376205640475340000011795982087372089760_);
+}
+
+.st563 {
+  fill: url(#SVGID_00000140712998360042735770000002478208957356601513_);
+}
+
+.st564 {
+  fill: url(#SVGID_00000031892940994967865220000014774669618985533613_);
+}
+
+.st565 {
+  fill: url(#SVGID_00000131367688372330561750000003875877313120439988_);
+}
+
+.st566 {
+  fill: url(#SVGID_00000132046473734219980660000013436951248305279422_);
+}
+
+.st567 {
+  fill: url(#SVGID_00000176008526786125767940000015843136945958865069_);
+}
+
+.st568 {
+  fill: url(#FullArt_Inside_BG_00000176012060605428028500000013774222871116750248_);
+}
+
+.st569 {
+  fill: url(#SVGID_00000085959047269082179470000003356535943339166653_);
+}
+
+.st570 {
+  fill: url(#FullArt_Inside_BG_00000157990322236174578840000009935735083774895542_);
+}
+
+.st571 {
+  clip-path: url(#SVGID_00000070819942687035472610000006307334144770639791_);
+}
+
+.st572 {
+  clip-path: url(#SVGID_00000101064705449371610010000004308950973188417471_);
+}
+
+.st573 {
+  fill: url(#Health_Frame_00000114764256686620197680000011575471939530731431_);
+}
+
+.st574 {
+  fill: url(#FullArt_Inside_BG_00000110439672875132452360000000589880037834392732_);
+}
+
+.st575 {
+  fill: url(#FullArt_Inside_BG_00000036972939500031088370000014961165559190673026_);
+}
+
+.st576 {
+  fill: url(#FullArt_Inside_BG_00000048492800861845770200000003715509958691434924_);
+}
+
+.st577 {
+  fill: url(#Health_Frame_00000145047041011748585170000005599332348435039392_);
+}
+
+.st578 {
+  fill: url(#SVGID_00000132789154173449160820000018122731478170869435_);
+}
+
+.st579 {
+  fill: url(#SVGID_00000120552154662095672140000013488311146152544682_);
+}
+
+.st580 {
+  fill: url(#SVGID_00000035495603290813606270000009735620805562529925_);
+}
+
+.st581 {
+  fill: url(#SVGID_00000105388653542369876160000015352681927961400199_);
+}
+
+.st582 {
+  fill: url(#SVGID_00000132780554333667646160000005451391503447927185_);
+}
+
+.st583 {
+  fill: url(#SVGID_00000011742662179097184920000002238940483475915449_);
+}
+
+.st584 {
+  fill: url(#SVGID_00000152251077523722499780000003727406896839015815_);
+}
+
+.st585 {
+  fill: url(#SVGID_00000134946433973113730170000004190606359908662180_);
+}
+
+.st586 {
+  fill: url(#SVGID_00000100363717676067096940000007846474939845825433_);
+}
+
+.st587 {
+  fill: url(#SVGID_00000174580628618890018540000005603013852872572064_);
+}
+
+.st588 {
+  fill: url(#SVGID_00000102523967595557256710000012269594625473563288_);
+}
+
+.st589 {
+  fill: url(#SVGID_00000083777453757603976790000012145233517104790191_);
+}
+
+.st590 {
+  fill: url(#SVGID_00000039105618222237417940000005267667012808380072_);
+}
+
+.st591 {
+  fill: url(#SVGID_00000131348881487327541310000005327193473292803225_);
+}
+
+.st592 {
+  fill: url(#FullArt_Inside_BG_00000168107942283871972060000014871661106386215072_);
+}
+
+.st593 {
+  fill: url(#FullArt_Inside_BG_00000124160096775937186580000011572278003012453797_);
+}
+
+.st594 {
+  fill: url(#SVGID_00000036225451150017851900000000829109147247625111_);
+}
+
+.st595 {
+  fill: url(#SVGID_00000142877909967240149410000011934419644706955395_);
+}
+
+.st596 {
+  fill: url(#SVGID_00000005970047718424505870000002153996566435937448_);
+}
+
+.st597 {
+  fill: url(#SVGID_00000142864350220084031470000013717622549731378834_);
+}
+
+.st598 {
+  fill: url(#SVGID_00000092441444156516647050000016147776346930096280_);
+}
+
+.st599 {
+  fill: url(#SVGID_00000170273162023250756170000001931755779777292456_);
+}
+
+.st600 {
+  fill: url(#SVGID_00000113338651264620601570000014973322984823110274_);
+}
+
+.st601 {
+  fill: url(#SVGID_00000049210063492329535160000001695316953490805931_);
+}
+
+.st602 {
+  fill: url(#SVGID_00000052821587134634337410000003282905897043047594_);
+}
+
+.st603 {
+  clip-path: url(#SVGID_00000147183753285573156640000000819868154823528865_);
+}
+
+.st604 {
+  clip-path: url(#SVGID_00000018228669025657635120000011783908042933150625_);
+}
+
+.st605 {
+  fill: url(#Health_Frame_00000111876359276225091100000011698297873077768116_);
+}
+
+.st606 {
+  fill: url(#FullArt_Inside_BG_00000030475811664513058820000016412152642910897556_);
+}
+
+.st607 {
+  fill: url(#FullArt_Inside_BG_00000095308196234551970160000014158501986742449031_);
+}
+
+.st608 {
+  fill: url(#FullArt_Inside_BG_00000179627694714200858500000007395147352060467602_);
+}
+
+.st609 {
+  fill: url(#FullArt_Inside_BG_00000041981464593930589610000002905787402388393385_);
+}
+
+.st610 {
+  fill: url(#FullArt_Inside_BG_00000134932540233770030150000007507989716885191307_);
+}
+
+.st611 {
+  fill: url(#Health_Frame_00000166642131658924430130000013931845266435520393_);
+}
+
+.st612 {
+  fill: url(#SVGID_00000145016314793423384460000009198057281553322652_);
+}
+
+.st613 {
+  fill: url(#FullArt_Inside_BG_00000125566243316879640150000018356106963736593289_);
+}
+
+.st614 {
+  fill: url(#FullArt_Inside_BG_00000130640767543482373290000016896519253699126925_);
+}
+
+.st615 {
+  fill: url(#FullArt_Inside_BG_00000142167470723264809570000001217674908353505163_);
+}
+
+.st616 {
+  fill: url(#FullArt_Outside_00000181060112137183204670000015576561654252958876_);
+}
+
+.st617 {
+  fill: url(#FullArt_Outside_00000131346044566867905950000003050005844925298589_);
+}
+
+.st618 {
+  fill: url(#FullArt_Outside_00000183957040136064348810000007060966237255929275_);
+}
+
+.st619 {
+  fill: url(#Deco_00000047053169867177765780000003536736043875551117_);
+}
+
+.st620 {
+  fill: url(#Deco_00000014612536415801819060000006372776703903149446_);
+}
+
+.st621 {
+  fill: url(#Deco_00000104675949545977346380000005410744968118224011_);
+}
+
+.st622 {
+  fill: url(#Deco_00000108992215589308307130000012295027302077341072_);
+}
+
+.st623 {
+  fill: url(#Deco_00000129190075054948736130000007499363233230188982_);
+}
+
+.st624 {
+  fill: url(#Deco_00000166672891556726875170000010220681203924093887_);
+}
+
+.st625 {
+  fill: url(#Deco_00000180363708287954128420000013024878195585524135_);
+}
+
+.st626 {
+  fill: url(#Deco_00000010270737986062604020000017914903699915755696_);
+}
+
+.st627 {
+  fill: url(#FullArt_Inside_BG_00000092447687044536388640000013741991666962237349_);
+}
+
+.st628 {
+  fill: url(#FullArt_Inside_BG_00000024690647135351590850000010526183112305139329_);
+}
+
+.st629 {
+  fill: url(#FullArt_Inside_BG_00000180338467358117209320000003740727440135593397_);
+}
+
+.st630 {
+  fill: url(#FullArt_Outside_00000073690589236088498470000013663691249832754867_);
+}
+
+.st631 {
+  fill: url(#FullArt_Outside_00000173123640946086974810000012113377523778162310_);
+}
+
+.st632 {
+  fill: url(#FullArt_Outside_00000046321906620949213660000008632123994420384650_);
+}
+
+.st633 {
+  fill: url(#Deco_00000072993868157857297450000000075136592274077875_);
+}
+
+.st634 {
+  fill: url(#Deco_00000062894673677344231270000016763739450489848200_);
+}
+
+.st635 {
+  fill: url(#Deco_00000130633166444000338120000008887798804827837610_);
+}
+
+.st636 {
+  fill: url(#Deco_00000111167218153346106130000014508736889504957325_);
+}
+
+.st637 {
+  fill: url(#Deco_00000016777286553670946240000001596858002189100938_);
+}
+
+.st638 {
+  fill: url(#Deco_00000074401368297899495330000002539017858018987440_);
+}
+
+.st639 {
+  fill: url(#Deco_00000096058960026365427720000016322523362235878060_);
+}
+
+.st640 {
+  fill: url(#Deco_00000043436099326288204030000015970552446194898561_);
+}
+
+.st641 {
+  fill: url(#FullArt_Inside_BG_00000119826861679372661270000008649894726436647325_);
+}
+
+.st642 {
+  fill: url(#FullArt_Inside_BG_00000006669014961887173780000001766997759515441068_);
+}
+
+.st643 {
+  fill: url(#FullArt_Inside_BG_00000052065135383554897510000010557168287117676171_);
+}
+
+.st644 {
+  fill: url(#FullArt_Outside_00000163031963410647674400000012414995300092861867_);
+}
+
+.st645 {
+  fill: url(#FullArt_Outside_00000011001801457602437160000000749652806907883930_);
+}
+
+.st646 {
+  fill: url(#FullArt_Outside_00000093142271664362414990000014350033857357483679_);
+}
+
+.st647 {
+  fill: url(#Deco_00000088822929869626464650000014287850708119444109_);
+}
+
+.st648 {
+  fill: url(#Deco_00000158747454416523190110000011908794775797917582_);
+}
+
+.st649 {
+  fill: url(#Deco_00000145745018677048073680000002835583070416963731_);
+}
+
+.st650 {
+  fill: url(#Deco_00000160177843633693609110000007903425657125201285_);
+}
+
+.st651 {
+  fill: url(#Deco_00000059277152114725120710000010427365611242312881_);
+}
+
+.st652 {
+  fill: url(#Deco_00000075123557756185688990000017069420446413849763_);
+}
+
+.st653 {
+  fill: url(#Deco_00000150077256910655731750000007463377692820467126_);
+}
+
+.st654 {
+  fill: url(#Deco_00000016050299541357422760000004790350537727554723_);
+}
+
+.st655 {
+  fill: url(#FullArt_Inside_BG_00000183932165286725415480000003333798172834483357_);
+}
+
+.st656 {
+  fill: url(#FullArt_Inside_BG_00000162347221863443530510000013061807640419156412_);
+}
+
+.st657 {
+  fill: url(#FullArt_Inside_BG_00000176040318127330085920000012459865360847531428_);
+}
+
+.st658 {
+  fill: url(#FullArt_Outside_00000175322364326665207050000017675087894895519165_);
+}
+
+.st659 {
+  fill: url(#FullArt_Outside_00000125580563604107583310000015962987115829470629_);
+}
+
+.st660 {
+  fill: url(#FullArt_Outside_00000033338815154151818180000012366315182826876832_);
+}
+
+.st661 {
+  fill: url(#Deco_00000160880485010621009490000001733258624092657062_);
+}
+
+.st662 {
+  fill: url(#Deco_00000176735583375479181240000009833188285486094756_);
+}
+
+.st663 {
+  fill: url(#Deco_00000125562563507455860560000007864197987471464606_);
+}
+
+.st664 {
+  fill: url(#Deco_00000078010484545473635350000010341251752060724129_);
+}
+
+.st665 {
+  fill: url(#Deco_00000105392135559683032870000006837936790770131637_);
+}
+
+.st666 {
+  fill: url(#Deco_00000013904329537564169170000002426780947943386756_);
+}
+
+.st667 {
+  fill: url(#Deco_00000002365005075167859760000014606303841727782819_);
+}
+
+.st668 {
+  fill: url(#Deco_00000154406873497532418270000012908192964057150849_);
+}
+
+.st669 {
+  fill: url(#FullArt_Inside_BG_00000107557141185401032750000009352559036076618648_);
+}
+
+.st670 {
+  fill: url(#FullArt_Inside_BG_00000056420003228726664880000007725717834916664719_);
+}
+
+.st671 {
+  fill: url(#FullArt_Inside_BG_00000117678385067447410730000006673712364596912061_);
+}
+
+.st672 {
+  fill: url(#FullArt_Outside_00000161599407412067899570000010730636732141873068_);
+}
+
+.st673 {
+  fill: url(#FullArt_Outside_00000114073412161742062610000017717725087175444123_);
+}
+
+.st674 {
+  fill: url(#FullArt_Outside_00000005989061714098185570000007725614284529929917_);
+}
+
+.st675 {
+  fill: url(#Deco_00000145756506213431743580000009640454724207819669_);
+}
+
+.st676 {
+  fill: url(#Deco_00000152260249091413852860000000161234215785596340_);
+}
+
+.st677 {
+  fill: url(#Deco_00000029046327240964270940000008656643160700270234_);
+}
+
+.st678 {
+  fill: url(#Deco_00000123415241960446119850000011440237646246990215_);
+}
+
+.st679 {
+  fill: url(#Deco_00000001651302868975560180000006914395408389197726_);
+}
+
+.st680 {
+  fill: url(#Deco_00000100359607081664930850000007407420751036321689_);
+}
+
+.st681 {
+  fill: url(#Deco_00000011028831212012193540000014425116371398526881_);
+}
+
+.st682 {
+  fill: url(#Deco_00000066487255094429565830000000921122895076087976_);
+}
+
+.st683 {
+  fill: url(#FullArt_Inside_BG_00000106830501423373371990000004591676227211012529_);
+}
+
+.st684 {
+  fill: url(#FullArt_Inside_BG_00000164480452688343031340000004296863135915059105_);
+}
+
+.st685 {
+  fill: url(#FullArt_Inside_BG_00000140711787739475089100000004108874270281329087_);
+}
+
+.st686 {
+  fill: url(#FullArt_Inside_BG_00000100341942452975382620000006620647268190107569_);
+}
+
+.st687 {
+  fill: url(#FullArt_Inside_BG_00000167359957019814990580000011047679819778770590_);
+}
+
+.st688 {
+  fill: url(#Bottom_Frame_00000094604894129707947750000003107774463210075824_);
+}
+
+.st689 {
+  fill: none;
+  stroke: url(#SVGID_00000007408783257648897500000011785679184062984340_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st690 {
+  fill: none;
+  stroke: url(#SVGID_00000005267831318433460800000010752754503821323913_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st691 {
+  fill: url(#SVGID_00000034795850582531092330000017192140785594313663_);
+}
+
+.st692 {
+  fill: url(#SVGID_00000140697712967545526560000000013472462120434602_);
+}
+
+.st693 {
+  fill: url(#Deco_00000100382394105581005710000001883986693691304615_);
+}
+
+.st694 {
+  fill: url(#Deco_00000177457201925089541610000011775184921588082574_);
+}
+
+.st695 {
+  fill: url(#SVGID_00000131361351556320825600000004437372092029279398_);
+}
+
+.st696 {
+  fill: url(#SVGID_00000157274021191953036080000015839938644246712219_);
+}
+
+.st697 {
+  fill: url(#Deco_00000000182888964893942830000007141402484324584602_);
+}
+
+.st698 {
+  fill: url(#Deco_00000138569670581687255370000008777696797354969225_);
+}
+
+.st699 {
+  fill: url(#FullArt_Inside_BG_00000033353113748295772260000001344995407371371929_);
+}
+
+.st700 {
+  fill: url(#FullArt_Inside_BG_00000004546662341766367340000012454647478874751924_);
+}
+
+.st701 {
+  fill: url(#FullArt_Inside_BG_00000069363669433451196150000013224678045993010592_);
+}
+
+.st702 {
+  fill: url(#FullArt_Inside_BG_00000049193507580811668980000012796718461065895345_);
+}
+
+.st703 {
+  fill: url(#FullArt_Inside_BG_00000085248650901666598600000001444445351115724425_);
+}
+
+.st704 {
+  fill: url(#Bottom_Frame_00000102503366110521834040000005373889828825991850_);
+}
+
+.st705 {
+  fill: none;
+  stroke: url(#SVGID_00000103250613426368894190000005259797322082946480_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st706 {
+  fill: none;
+  stroke: url(#SVGID_00000057844345784860685580000003155384986687877288_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st707 {
+  fill: url(#SVGID_00000115497716406550440900000009886802401189706403_);
+}
+
+.st708 {
+  fill: url(#SVGID_00000055679665128763574240000010403133935243723661_);
+}
+
+.st709 {
+  fill: url(#Deco_00000140736247380037267300000003181710415079209605_);
+}
+
+.st710 {
+  fill: url(#Deco_00000137818802297148775930000011060570825636458155_);
+}
+
+.st711 {
+  fill: url(#SVGID_00000157305412831098352730000010139450362784310163_);
+}
+
+.st712 {
+  fill: url(#SVGID_00000158730271020157169130000000458993155054632853_);
+}
+
+.st713 {
+  fill: url(#Deco_00000163787619899111681520000003399519596602891694_);
+}
+
+.st714 {
+  fill: url(#Deco_00000124159331363547947160000015195455813013446294_);
+}
+
+.st715 {
+  fill: url(#FullArt_Inside_BG_00000142895764817662127960000001016265981766406075_);
+}
+
+.st716 {
+  fill: url(#FullArt_Inside_BG_00000031903837540355890460000017723338776615698083_);
+}
+
+.st717 {
+  fill: url(#FullArt_Inside_BG_00000107555420794041241670000003961454526604733344_);
+}
+
+.st718 {
+  fill: url(#FullArt_Inside_BG_00000020399438235817542600000002652671877142836141_);
+}
+
+.st719 {
+  fill: url(#FullArt_Inside_BG_00000058552737661472289340000014040415696978860732_);
+}
+
+.st720 {
+  fill: url(#Bottom_Frame_00000136375945797334919880000013616942118791908741_);
+}
+
+.st721 {
+  fill: none;
+  stroke: url(#SVGID_00000067220439263369178770000005830701197280223419_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st722 {
+  fill: none;
+  stroke: url(#SVGID_00000098190456732669337490000006126252216312152985_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st723 {
+  fill: url(#SVGID_00000059997886989552241110000006764561477667417528_);
+}
+
+.st724 {
+  fill: url(#SVGID_00000131365565116640857390000000778572931069411475_);
+}
+
+.st725 {
+  fill: url(#Deco_00000143599886849779649640000008238018411486478009_);
+}
+
+.st726 {
+  fill: url(#Deco_00000182506233590488782720000016205214708869014408_);
+}
+
+.st727 {
+  fill: url(#SVGID_00000085236278843787251650000014668381433832465339_);
+}
+
+.st728 {
+  fill: url(#SVGID_00000002380886679277352080000003004567182565283252_);
+}
+
+.st729 {
+  fill: url(#Deco_00000000190502342625672100000004890827872970290087_);
+}
+
+.st730 {
+  fill: url(#Deco_00000009564307097103028290000016332285945330311811_);
+}
+
+.st731 {
+  fill: url(#FullArt_Inside_BG_00000092428867357040537490000004234748676163855550_);
+}
+
+.st732 {
+  fill: url(#FullArt_Inside_BG_00000088123847630810183590000003734564130341430447_);
+}
+
+.st733 {
+  fill: url(#FullArt_Inside_BG_00000116945974728875210870000000601369878050896269_);
+}
+
+.st734 {
+  fill: url(#FullArt_Inside_BG_00000096050500972331772720000013588587843312781742_);
+}
+
+.st735 {
+  fill: url(#FullArt_Inside_BG_00000145035842989604524800000005059728620664851592_);
+}
+
+.st736 {
+  fill: url(#Bottom_Frame_00000117651755372608688310000015034251620738633388_);
+}
+
+.st737 {
+  fill: none;
+  stroke: url(#SVGID_00000013873848907016778730000004439126719678821512_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st738 {
+  fill: none;
+  stroke: url(#SVGID_00000172440283232770827040000005050107301948885152_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st739 {
+  fill: url(#SVGID_00000152968483576551713650000003937538942597431203_);
+}
+
+.st740 {
+  fill: url(#SVGID_00000078755873597471861130000005590984171151553679_);
+}
+
+.st741 {
+  fill: url(#Deco_00000010281500479225335610000001698731940762567052_);
+}
+
+.st742 {
+  fill: url(#Deco_00000031896005671797270520000007191173965605739690_);
+}
+
+.st743 {
+  fill: url(#SVGID_00000054953222598808436190000009520370797138498489_);
+}
+
+.st744 {
+  fill: url(#SVGID_00000090985069427647098520000011335488093172067254_);
+}
+
+.st745 {
+  fill: url(#Deco_00000068664686311613145090000017574790726985415346_);
+}
+
+.st746 {
+  fill: url(#Deco_00000067230703788206073080000015566406227062200450_);
+}
+
+.st747 {
+  fill: url(#FullArt_Inside_BG_00000154394119227553222920000007475657287308769719_);
+}
+
+.st748 {
+  fill: url(#FullArt_Inside_BG_00000181074043933582274750000014758414971202346414_);
+}
+
+.st749 {
+  fill: url(#FullArt_Inside_BG_00000158738962940901553020000009000374758387750812_);
+}
+
+.st750 {
+  fill: url(#FullArt_Inside_BG_00000005243073335360600440000003952108494679300792_);
+}
+
+.st751 {
+  fill: url(#FullArt_Inside_BG_00000103262538763784854270000001584456055904236433_);
+}
+
+.st752 {
+  fill: url(#Bottom_Frame_00000111870211890051711270000002667453134549506975_);
+}
+
+.st753 {
+  fill: none;
+  stroke: url(#SVGID_00000181770888287863248790000009940760770455591055_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st754 {
+  fill: none;
+  stroke: url(#SVGID_00000037657483568464533940000015463733691834962833_);
+  stroke-width: 1.5;
+  stroke-miterlimit: 10;
+}
+
+.st755 {
+  fill: url(#SVGID_00000173129656180147961040000013613320880504212897_);
+}
+
+.st756 {
+  fill: url(#SVGID_00000101804112196042683560000000684718508930317469_);
+}
+
+.st757 {
+  fill: url(#SVGID_00000131351076579345808050000015655138273218806658_);
+}
+
+.st758 {
+  fill: url(#SVGID_00000136373453347148499640000012953180108632960698_);
+}
+
+.st759 {
+  fill: url(#Deco_00000004547450898506345490000011080884824021246874_);
+}
+
+.st760 {
+  fill: url(#Deco_00000156576413051866570060000015503372016297452168_);
+}
+
+.st761 {
+  fill: url(#Deco_00000101782501333315541320000003291386174252380052_);
+}
+
+.st762 {
+  fill: url(#Deco_00000078027691860087597290000010445623514557246141_);
+}
+
+.st763 {
+  clip-path: url(#SVGID_00000066479843700454785260000012750851027840311424_);
+}
+
+.st764 {
+  clip-path: url(#SVGID_00000136400778926199269030000015087138433025708712_);
+}
+
+.st765 {
+  fill: url(#Health_Frame_00000047773371694043474910000009556770012922142126_);
+}
+
+.st766 {
+  fill: url(#SVGID_00000122000309829151847950000000580219247204988564_);
+}
+
+.st767 {
+  fill: url(#SVGID_00000056387273940075255480000005115390050238162847_);
+}
+
+.st768 {
+  fill: url(#FullArt_Inside_BG_00000040576279686149997190000009227004944815983012_);
+}
+
+.st769 {
+  fill: url(#FullArt_Inside_BG_00000011005479387454548440000001731012402137010587_);
+}
+
+.st770 {
+  fill: url(#FullArt_Inside_BG_00000067929396028215030010000007674892031550730684_);
+}
+
+.st771 {
+  fill: url(#FullArt_Inside_BG_00000006671368635006196420000013795243360099911323_);
+}
+
+.st772 {
+  fill: url(#FullArt_Inside_BG_00000094616093084264151820000011591262831847138738_);
+}
+
+.st773 {
+  fill: url(#Health_Frame_00000179604809903780914170000004605450000348999563_);
+}
+
+.st774 {
+  fill: url(#SVGID_00000183959630653439773280000015697917267231885201_);
+}
+
+.st775 {
+  fill: url(#SVGID_00000119111526021043786330000004399227596243364027_);
+}
+
+.st776 {
+  fill: url(#SVGID_00000166650156257714744220000006269623113310586556_);
+}
+
+.st777 {
+  fill: url(#SVGID_00000116229540827503606320000000860910637863275191_);
+}
+
+.st778 {
+  fill: url(#SVGID_00000034789922599404612640000011291596507942157488_);
+}
+
+.st779 {
+  fill: url(#SVGID_00000144297897384924562000000015245587391865377664_);
+}
+
+.st780 {
+  fill: url(#SVGID_00000042704344285081930430000007769795166145425030_);
+}
+
+.st781 {
+  fill: url(#SVGID_00000089533880439764153300000016605003074172672441_);
+}
+
+.st782 {
+  fill: url(#SVGID_00000125585306571002955020000002451445436657789604_);
+}
+
+.st783 {
+  fill: url(#SVGID_00000168835368380189922310000003839786682178304677_);
+}
+
+.st784 {
+  fill: url(#SVGID_00000111889675424181612370000017591407212473968286_);
+}
+
+.st785 {
+  fill: url(#SVGID_00000038375780604677966300000005480103717568784783_);
+}
+
+.st786 {
+  fill: url(#Place_00000139995905934149496190000002267503604121900197_);
+}
+
+.st787 {
+  fill: url(#Deco_00000135690392317597129210000009943471207643901609_);
+}
+
+.st788 {
+  fill: url(#Deco_00000035509893790878047850000007634116309858011783_);
+}
+
+.st789 {
+  fill: url(#Deco_00000026879326874216898240000012288074738565558951_);
+}
+
+.st790 {
+  fill: url(#Deco_00000080916461280600397850000017391243736957521548_);
+}
+
+.st791 {
+  fill: url(#Deco_00000052808280178806492980000003747054618667778178_);
+}
+
+.st792 {
+  fill: url(#Deco_00000171681243478080225140000009206819011973659302_);
+}
+
+.st793 {
+  fill: url(#Deco_00000031206016559481804620000015270785439545734052_);
+}
+
+.st794 {
+  fill: url(#Deco_1_00000163038439557012340610000002055418864739195780_);
+}
+
+.st795 {
+  clip-path: url(#SVGID_00000128457879642202456440000011738953978188446605_);
+}
+
+.st796 {
+  clip-path: url(#SVGID_00000025409297772614138310000001146451949706498207_);
+}
+
+.st797 {
+  fill: url(#Health_Frame_00000015351633573064445690000010852227819584574389_);
+}
+
+.st798 {
+  fill: url(#SVGID_00000169523305832194254750000009754762311362774189_);
+}
+
+.st799 {
+  fill: url(#SVGID_00000122704830846194275960000005285938408100352661_);
+}
+
+.st800 {
+  fill: url(#FullArt_Inside_BG_00000031177715637407821450000005870832013686522538_);
+}
+
+.st801 {
+  fill: url(#FullArt_Inside_BG_00000154404354913162478540000009683121879503802769_);
+}
+
+.st802 {
+  fill: url(#FullArt_Inside_BG_00000013902610853818981220000017129166173269973637_);
+}
+
+.st803 {
+  fill: url(#FullArt_Inside_BG_00000044877608742374900110000015469057542341861280_);
+}
+
+.st804 {
+  fill: url(#FullArt_Inside_BG_00000172413797656331106880000006350197411345785756_);
+}
+
+.st805 {
+  fill: url(#Health_Frame_00000162351987205002810140000004844402789778982837_);
+}
+
+.st806 {
+  fill: url(#SVGID_00000142863511797505339770000014381831333975828133_);
+}
+
+.st807 {
+  fill: url(#SVGID_00000121989687328160994800000010471624799706439830_);
+}
+
+.st808 {
+  fill: url(#SVGID_00000154423765206049853100000017109156796599232175_);
+}
+
+.st809 {
+  fill: url(#SVGID_00000018195854290718553570000010837131766508152220_);
+}
+
+.st810 {
+  fill: url(#SVGID_00000068640414269089808570000017769285161787585708_);
+}
+
+.st811 {
+  fill: url(#SVGID_00000132781370865790058200000018436373719116307082_);
+}
+
+.st812 {
+  fill: url(#SVGID_00000157990622455262697280000007423360132045450370_);
+}
+
+.st813 {
+  fill: url(#SVGID_00000181766393439519662080000015374294402098336165_);
+}
+
+.st814 {
+  fill: url(#SVGID_00000039116725122050230100000009212593509471242378_);
+}
+
+.st815 {
+  fill: url(#SVGID_00000087381578511328126720000011395647313408273598_);
+}
+
+.st816 {
+  fill: url(#SVGID_00000043453995674933967840000011921381481356736697_);
+}
+
+.st817 {
+  fill: url(#SVGID_00000110445936587733200570000016751636747919827610_);
+}
+
+.st818 {
+  fill: url(#Place_00000121994505496394316500000002284092372631335077_);
+}
+
+.st819 {
+  fill: url(#Deco_00000001666248420660185750000003828281565344558239_);
+}
+
+.st820 {
+  fill: url(#Deco_00000139282843986919359450000018275203343835222929_);
+}
+
+.st821 {
+  fill: url(#Deco_00000114058524844191709320000016472782120049101737_);
+}
+
+.st822 {
+  fill: url(#Deco_00000127723754834537121430000005294552378155508890_);
+}
+
+.st823 {
+  fill: url(#Deco_00000131342582294681376030000015898724756899489686_);
+}
+
+.st824 {
+  fill: url(#Deco_00000112622710377950588200000007600128122452845703_);
+}
+
+.st825 {
+  fill: url(#Deco_00000141416476997924243100000014886939620281989261_);
+}
+
+.st826 {
+  fill: url(#Deco_00000156565296832463031760000006011967877941861006_);
+}
+
+.st827 {
+  clip-path: url(#SVGID_00000139259236774746459960000009153844909290060735_);
+}
+
+.st828 {
+  clip-path: url(#SVGID_00000012433686956241268230000003296850420903354535_);
+}
+
+.st829 {
+  fill: url(#Health_Frame_00000050656431479183060340000003947008164629000327_);
+}
+
+.st830 {
+  fill: url(#FullArt_Inside_BG_00000089563260459158364040000001578641330099127430_);
+}
+
+.st831 {
+  fill: url(#FullArt_Inside_BG_00000102506850977186070090000014871396783039936896_);
+}
+
+.st832 {
+  fill: url(#FullArt_Inside_BG_00000183246754738661215620000010671503057943383942_);
+}
+
+.st833 {
+  fill: url(#FullArt_Inside_BG_00000029759039127274697950000013507457180784710280_);
+}
+
+.st834 {
+  fill: url(#FullArt_Inside_BG_00000002347136766606025100000008624841970516214160_);
+}
+
+.st835 {
+  fill: url(#SVGID_00000121971337531124791050000005717792672820632237_);
+}
+
+.st836 {
+  fill: url(#SVGID_00000149365238069188664860000008178119412207480199_);
+}
+
+.st837 {
+  fill: url(#Health_Frame_00000119113854842827857490000002667777575747921590_);
+}
+
+.st838 {
+  fill: url(#SVGID_00000038414982679935109910000007742859977347129480_);
+}
+
+.st839 {
+  fill: url(#SVGID_00000167379792296778023420000004198868643215342217_);
+}
+
+.st840 {
+  fill: url(#SVGID_00000054251922105657634570000006878201253205613697_);
+}
+
+.st841 {
+  fill: url(#SVGID_00000124866057169403879710000006140282496340883633_);
+}
+
+.st842 {
+  fill: url(#SVGID_00000011018594654747655900000005326837553628831152_);
+}
+
+.st843 {
+  fill: url(#SVGID_00000116944176331911464100000000234359973386364079_);
+}
+
+.st844 {
+  fill: url(#SVGID_00000070800272231033082890000009092707342402323872_);
+}
+
+.st845 {
+  fill: url(#SVGID_00000040538572618708272610000009411257041044305305_);
+}
+
+.st846 {
+  fill: url(#SVGID_00000160189638713404875850000009939136552647171498_);
+}
+
+.st847 {
+  fill: url(#SVGID_00000096022675253230498020000010040288098581285551_);
+}
+
+.st848 {
+  fill: url(#SVGID_00000069399180637500257690000002201610484295497877_);
+}
+
+.st849 {
+  fill: url(#Place_00000173850011164897432300000001576781196601652116_);
+}
+
+.st850 {
+  fill: url(#Deco_00000062899100995158942750000000232404982517319608_);
+}
+
+.st851 {
+  fill: url(#Deco_00000033329325613862152210000015863024667915398560_);
+}
+
+.st852 {
+  fill: url(#Deco_00000009563012816448796380000008284651264723240366_);
+}
+
+.st853 {
+  fill: url(#Deco_00000129168594702797289240000009356000324731819697_);
+}
+
+.st854 {
+  fill: url(#Deco_00000085966714589006091560000000120233897767147440_);
+}
+
+.st855 {
+  fill: url(#Deco_00000042738609616969524790000006902177918800332948_);
+}
+
+.st856 {
+  fill: url(#Deco_00000036222283534756039580000010566136748779985312_);
+}
+
+.st857 {
+  fill: url(#Deco_00000162312596869169442770000012380967362949152918_);
+}
+
+.st858 {
+  clip-path: url(#SVGID_00000124153575868069891660000006230926807358746811_);
+}
+
+.st859 {
+  clip-path: url(#SVGID_00000033357089962655605720000007258141375204266147_);
+}
+
+.st860 {
+  fill: url(#Health_Frame_00000170997623239719447600000001927448325830152840_);
+}
+
+.st861 {
+  fill: url(#FullArt_Inside_BG_00000017504972490990105540000011284779501447316372_);
+}
+
+.st862 {
+  fill: url(#FullArt_Inside_BG_00000085223395511704229210000009881709191696406449_);
+}
+
+.st863 {
+  fill: url(#FullArt_Inside_BG_00000062906999853631404160000012728149032610266506_);
+}
+
+.st864 {
+  fill: url(#FullArt_Inside_BG_00000040540373834085696330000011740512112564980918_);
+}
+
+.st865 {
+  fill: url(#FullArt_Inside_BG_00000034797607865716403040000001365594537028972181_);
+}
+
+.st866 {
+  fill: url(#Health_Frame_00000092423965887528730710000000658234755380663194_);
+}
+
+.st867 {
+  fill: url(#SVGID_00000160899782421052858660000007235335026369003180_);
+}
+
+.st868 {
+  fill: url(#SVGID_00000091721794768649968540000013571675152344726689_);
+}
+
+.st869 {
+  fill: url(#SVGID_00000151513609051981787490000003917138032229486501_);
+}
+
+.st870 {
+  fill: url(#SVGID_00000094596182713647585240000008722279357768531633_);
+}
+
+.st871 {
+  fill: url(#SVGID_00000176007223101505893540000008963308305473342125_);
+}
+
+.st872 {
+  fill: url(#SVGID_00000038386618261803351230000002820989409097181315_);
+}
+
+.st873 {
+  fill: url(#SVGID_00000059268746495380211290000005694755354052232323_);
+}
+
+.st874 {
+  fill: url(#SVGID_00000079452839366230963140000017896371785190089110_);
+}
+
+.st875 {
+  fill: url(#SVGID_00000146461564699469953180000006699177035190381205_);
+}
+
+.st876 {
+  fill: url(#SVGID_00000067230336479670342910000007865206819233438616_);
+}
+
+.st877 {
+  fill: url(#SVGID_00000016775074538149135330000010555047466846657716_);
+}
+
+.st878 {
+  fill: url(#SVGID_00000039131692116802140160000017946506807650915774_);
+}
+
+.st879 {
+  fill: url(#SVGID_00000095311006959775999060000006830717837821973437_);
+}
+
+.st880 {
+  fill: url(#Place_00000178175992382757606730000009558729625305075102_);
+}
+
+.st881 {
+  fill: url(#Deco_00000044176009425344802450000018306618640325335691_);
+}
+
+.st882 {
+  fill: url(#Deco_00000023977367259229579200000016865825530904233374_);
+}
+
+.st883 {
+  fill: url(#Deco_00000101071212983342374830000013145066678639281319_);
+}
+
+.st884 {
+  fill: url(#Deco_00000118370201023804830630000006831960809320561341_);
+}
+
+.st885 {
+  fill: url(#Deco_00000114056156508294702070000015115685187717126067_);
+}
+
+.st886 {
+  fill: url(#Deco_00000139990933537804764540000011375065448866521753_);
+}
+
+.st887 {
+  fill: url(#Deco_00000119820017301401084340000014715616595698819491_);
+}
+
+.st888 {
+  fill: url(#Deco_00000052100158069387489010000016676043233323664529_);
+}
+
+.st889 {
+  clip-path: url(#SVGID_00000109731911762424290340000002552715165650875057_);
+}
+
+.st890 {
+  clip-path: url(#SVGID_00000014605481320085789710000004198448803436717445_);
+}
+
+.st891 {
+  fill: url(#Health_Frame_00000162320682818401287290000007919795646505667513_);
+}
+
+.st892 {
+  fill: url(#FullArt_Inside_BG_00000123425211010818245980000007367508636612137862_);
+}
+
+.st893 {
+  fill: url(#FullArt_Inside_BG_00000120558820474198657070000006777058405625167494_);
+}
+
+.st894 {
+  fill: url(#FullArt_Inside_BG_00000098216577079264862860000009829833076476793778_);
+}
+
+.st895 {
+  fill: url(#FullArt_Inside_BG_00000118356434492255690920000007386643064075185291_);
+}
+
+.st896 {
+  fill: url(#FullArt_Inside_BG_00000141429889100143337400000014532189605091227284_);
+}
+
+.st897 {
+  fill: url(#Health_Frame_00000094579271298571752400000010042875918910120095_);
+}
+
+.st898 {
+  fill: url(#SVGID_00000130644607063671943940000016415645792390309297_);
+}
+
+.st899 {
+  fill: url(#SVGID_00000179607683432471764870000016126458394458412726_);
+}
+
+.st900 {
+  fill: url(#SVGID_00000178185636971620536700000002221623176128368525_);
+}
+
+.st901 {
+  fill: url(#SVGID_00000113339113912277926470000010940369439776722054_);
+}
+
+.st902 {
+  fill: url(#SVGID_00000036951119909047927380000011486916001815343545_);
+}
+
+.st903 {
+  fill: url(#SVGID_00000178188667011025818630000007932367651836690061_);
+}
+
+.st904 {
+  fill: url(#SVGID_00000113352675219405056750000006901452230018500244_);
+}
+
+.st905 {
+  fill: url(#SVGID_00000000215771205929736060000016090971401460992138_);
+}
+
+.st906 {
+  fill: url(#SVGID_00000106140941297033069070000013822363843956926391_);
+}
+
+.st907 {
+  fill: url(#SVGID_00000139280295635548058350000004402493999159182776_);
+}
+
+.st908 {
+  fill: url(#SVGID_00000070094382068013798900000007429934056829042356_);
+}
+
+.st909 {
+  fill: url(#SVGID_00000145773049900974147240000002271485031864337289_);
+}
+
+.st910 {
+  fill: url(#SVGID_00000096773620768995124900000014638836193159403663_);
+}
+
+.st911 {
+  fill: url(#SVGID_00000054263157714949676130000017088031872653737917_);
+}
+
+.st912 {
+  fill: url(#Place_00000044172695466363188330000004767752311210179729_);
+}
+
+.st913 {
+  fill: url(#Deco_00000139981631464458408480000009979450261578467976_);
+}
+
+.st914 {
+  fill: url(#Deco_00000036221905073585569930000009656221921786350742_);
+}
+
+.st915 {
+  fill: url(#Deco_00000054252246939359246060000012951223757855583382_);
+}
+
+.st916 {
+  fill: url(#Deco_00000132778236467488639950000016587398740550221993_);
+}
+
+.st917 {
+  fill: url(#Deco_00000110447222692701517330000013631547852078362783_);
+}
+
+.st918 {
+  fill: url(#Deco_00000117637843503019906300000006053470904728747928_);
+}
+
+.st919 {
+  fill: url(#Deco_00000086652243598788343490000004929692032577004467_);
+}
+
+.st920 {
+  fill: url(#Deco_1_00000177443572985491775810000006557329666905270437_);
+}
+
+.st921 {
+  clip-path: url(#SVGID_00000164488653467142025920000002356409990298557065_);
+}
+
+.st922 {
+  clip-path: url(#SVGID_00000021832035694141146910000015410748848948582558_);
+}
+
+.st923 {
+  fill: url(#Health_Frame_00000098181652099522961080000007247185426743625353_);
+}
+
+.st924 {
+  fill: url(#FullArt_Inside_BG_00000098187297494542596200000001238397192743122838_);
+}
+
+.st925 {
+  fill: url(#FullArt_Inside_BG_00000023978242174377514140000000274558953167258513_);
+}
+
+.st926 {
+  fill: url(#FullArt_Inside_BG_00000069390092720162127340000004614462717168430722_);
+}
+
+.st927 {
+  fill: url(#FullArt_Inside_BG_00000163783896557208710570000007637249990456799916_);
+}
+
+.st928 {
+  fill: url(#FullArt_Inside_BG_00000016758271698741238890000005437552498810679680_);
+}
+
+.st929 {
+  fill: url(#Health_Frame_00000150064484290680753290000000386425703444525458_);
+}
+
+.st930 {
+  fill: url(#SVGID_00000035520945975781409640000011639762277173643926_);
+}
+
+.st931 {
+  fill: url(#SVGID_00000131327401554818828640000009528116417960877750_);
+}
+
+.st932 {
+  fill: url(#SVGID_00000066485971608712288330000018169767541999314327_);
+}
+
+.st933 {
+  fill: url(#Deco_00000075151757288060858190000010227793249976252079_);
+}
+
+.st934 {
+  fill: url(#Deco_00000016792262123904824820000017950877104509305487_);
+}
+
+.st935 {
+  fill: url(#SVGID_00000183222103845153966760000012146442221205114789_);
+}
+
+.st936 {
+  fill: url(#SVGID_00000036952564150816688250000000761998133310385855_);
+}
+
+.st937 {
+  fill: url(#Deco_00000082368964599529778440000010634548768664421515_);
+}
+
+.st938 {
+  fill: url(#Deco_00000103978672014520306150000000208076472330224528_);
+}
+
+.st939 {
+  fill: url(#SVGID_00000177444909073381435530000011240779768445613198_);
+}
+
+.st940 {
+  fill: url(#SVGID_00000123439378202674168820000006824548321606494911_);
+}
+
+.st941 {
+  fill: url(#SVGID_00000069398431552339766860000010740772133279955846_);
+}
+
+.st942 {
+  fill: url(#SVGID_00000129890833246970913990000004146691622448366521_);
+}
+
+.st943 {
+  fill: url(#SVGID_00000112628786564982443720000003516832385230381447_);
+}
+
+.st944 {
+  fill: url(#SVGID_00000000188606336552725750000008878011505712200124_);
+}
+
+.st945 {
+  fill: url(#SVGID_00000065073542045666357580000016031328653020022974_);
+}
+
+.st946 {
+  fill: url(#SVGID_00000038412211978137840040000011257430120690879119_);
+}
+
+.st947 {
+  fill: url(#SVGID_00000158719444734631355130000014644831106282645132_);
+}
+
+.st948 {
+  fill: url(#SVGID_00000183242555731496783100000013814932098618189462_);
+}
+
+.st949 {
+  fill: url(#SVGID_00000088117446818735465350000016238593852594606254_);
+}
+
+.st950 {
+  fill: url(#SVGID_00000144323261716579998780000002098079002004347036_);
+}
 </style>

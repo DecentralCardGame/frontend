@@ -4,9 +4,7 @@
       v-if="showDefault"
       class="top-20 right-8 shadow-std bg-white-1000 rounded absolute max-w-xs p-7 z-50 w-full box-border acc-dd"
     >
-      <span class="text-sm leading-normal text-gray-660 mb-3 block text-[13px]"
-        >Connected wallet</span
-      >
+      <span class="text-sm leading-normal text-gray-660 mb-3 block text-[13px]">Connected wallet</span>
       <div class="mb-3 flex items-center">
         <CCProfileIcon />
         <div class="flex flex-col ml-3">
@@ -29,7 +27,7 @@
       >
         <span> Disconnect wallet </span>
       </div>
-      <hr class="divide-y my-3 -mx-7" />
+      <hr class="divide-y my-3 -mx-7">
       <div
         class="flex justify-between items-center cursor-pointer hover:text-gray-660"
         @click="switchToSettings"
@@ -37,7 +35,7 @@
         <span> Settings </span>
         <IgntChevronRightIcon class="text-sm" />
       </div>
-      <hr class="divide-y my-3 -mx-7" />
+      <hr class="divide-y my-3 -mx-7">
       <a
         href="#"
         class="flex justify-between items-center mb-3 cursor-pointer hover:text-gray-660"
@@ -63,18 +61,15 @@
         <a
           href="#"
           class="text-sm leading-normal text-gray-660 terms-link mr-2 cursor-pointer"
-          >Privacy</a
-        >•
+        >Privacy</a>•
         <a
           href="#"
           class="text-sm leading-normal text-gray-660 terms-link mr-2 ml-1 cursor-pointer"
-          >Terms of use</a
-        >•
+        >Terms of use</a>•
         <a
           href="#"
           class="text-sm leading-normal text-gray-660 terms-link ml-1 cursor-pointer"
-          >Cookies</a
-        >
+        >Cookies</a>
       </div>
     </div>
     <div
@@ -82,7 +77,10 @@
       class="top-20 right-8 shadow-std bg-white rounded absolute max-w-xs p-7 z-50 w-full box-border acc-dd"
     >
       <header class="flex items-center -mx-7 -mt-7 px-3 pt-3 pb-7">
-        <div class="cursor-pointer" @click="switchToDefault">
+        <div
+          class="cursor-pointer"
+          @click="switchToDefault"
+        >
           <svg
             width="22"
             height="20"
@@ -99,26 +97,28 @@
             />
           </svg>
         </div>
-        <div class="text-xl font-semibold text-center flex-1">Settings</div>
+        <div class="text-xl font-semibold text-center flex-1">
+          Settings
+        </div>
       </header>
 
       <div class="flex justify-between items-center mb-3">
         <span> Chain </span>
         <span> {{ chainId }} </span>
       </div>
-      <hr class="divide-y -mx-7 my-3" />
+      <hr class="divide-y -mx-7 my-3">
 
       <div class="flex justify-between items-center mb-3">
         <span> Cosmos SDK API </span>
         <span> {{ apiConnected ? "connected" : "disconnected" }} </span>
       </div>
-      <hr class="divide-y -mx-7 my-3" />
+      <hr class="divide-y -mx-7 my-3">
 
       <div class="flex justify-between items-center mb-3">
         <span> Tendermint RPC </span>
         <span> {{ rpcConnected ? "connected" : "disconnected" }} </span>
       </div>
-      <hr class="divide-y -mx-7 my-3" />
+      <hr class="divide-y -mx-7 my-3">
 
       <div class="flex justify-between items-center">
         <span> WebSocket </span>

@@ -109,6 +109,14 @@ export default {
   name: 'GrantModal',
   props: {
   },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    const { address } = useAddress()
+    const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
+    const { grantAuthz, revokeAuthz } = useTx()
+
+    return { loggedIn, address, queryGrants, queryGranterGrants, queryGranteeGrants, grantAuthz, revokeAuthz }
+  },
   data() {
     return {
       options: [
@@ -124,14 +132,6 @@ export default {
       show_extra: new Array<boolean>(),
       saved_grantee: "",
     }
-  },
-  setup() {
-    const { loggedIn } = useLoggedIn()
-    const { address } = useAddress()
-    const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
-    const { grantAuthz, revokeAuthz } = useTx()
-
-    return { loggedIn, address, queryGrants, queryGranterGrants, queryGranteeGrants, grantAuthz, revokeAuthz }
   },
   watch: {
     loggedIn() {
@@ -216,50 +216,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss">
-@import "modal";
-
-.input--transfer {
-  input {
-    padding: 0;
-    margin-right: 2px;
-    display: inline;
-    color: $black;
-    text-align: right;
-    background-color: lightgray;
-  }
-  select {
-    color: $black;
-    background-color: lightgray;
-    display: inline;
-  }
-}
-
-.grantBox {
-  margin: 5px;
-  padding: 7px;
-  position: relative;
-  box-shadow: 2px 2px 4px;
-  cursor: pointer;
-  a {
-    color: $black;
-    font-weight: bold;
-  }
-  button {
-    left: 80%;
-    top: 0%;
-    position: absolute;
-    margin-left: 2px;
-    color: red;
-  }
-}
-
-.grantBox:hover {
-  box-shadow: 4px 4px 8px;
-}
-
-.warning {
-  color: red;
-}
-</style>

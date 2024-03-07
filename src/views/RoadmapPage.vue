@@ -12,18 +12,19 @@
           <BulletList
             :text="[
               'Develop the game rules and mechanics',
-              'Community owned trading card game concepting',
-              'Technology: Cosmos Blockchain + Unity Gameclient'
+              'Community owned collectible card game concepting',
+              'Technology: Cosmos Blockchain + Unity Gameclient',
             ]"
             :type="['filled', 'filled', 'filled']"
           />
         </div>
         <p class="text--big">
-          Contribute: You can join our team by contacting us on Telegram or Discord.
+          Contribute: You can join our team by contacting us on Telegram or
+          Discord.
         </p>
       </div>
     </div>
-    
+
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <div class="qbox--container">
@@ -38,7 +39,7 @@
               'Create cards with the Card Creator',
               'Test the alpha game client',
               'Manage cards on the blockchain (testnet)',
-              'Test buff/nerf mechanics via blockchain'
+              'Test buff/nerf mechanics via blockchain',
             ]"
             :type="['filled', 'open', 'filled', 'filled']"
           />
@@ -57,13 +58,13 @@
           </p>
         </div>
         <h2>3. The Revolution starts</h2>
-        <div> 
+        <div>
           <BulletList
             :text="[
               'Blockchain-ready game client is playable',
               'Creation of Card Sets/Editions',
               'Startup tests for the Mainnet',
-              'The alpha set + starter decks are finalized'
+              'The alpha set + starter decks are finalized',
             ]"
             :type="[]"
           />
@@ -83,13 +84,13 @@
           </p>
         </div>
         <h2>4. The Revolution unfolds</h2>
-        <div> 
+        <div>
           <BulletList
             :text="[
               'Mainnet launch',
               'Airdrop to several groups',
               'Maybe ICO / IDO / LBP',
-              'The alpha set + starter decks'
+              'The alpha set + starter decks',
             ]"
             :type="[]"
           />
@@ -108,18 +109,19 @@
           </p>
         </div>
         <h2>5. The Crowd is in Control</h2>
-        <div> 
+        <div>
           <BulletList
             :text="[
               'Game client is taken to the next level',
               'User created tournament system',
-              'Continuous release of new sets via set election'
+              'Continuous release of new sets via set election',
             ]"
             :type="[]"
           />
         </div>
         <p class="text--big">
-          It's on you: Participate via card creation, governance votes and playing. Give us your feedback!
+          It's on you: Participate via card creation, governance votes and
+          playing. Give us your feedback!
         </p>
       </div>
     </div>
@@ -127,62 +129,14 @@
 </template>
 
 <script>
-import BulletList from '@/components/elements/BulletList.vue'
+import BulletList from "@/components/elements/BulletList.vue";
 
 export default {
   name: "RoadmapPage",
   components: { BulletList },
   data() {
-    return {
-    };
+    return {};
   },
   mounted() {},
 };
 </script>
-
-<style scoped lang="scss">
-@import "../scss/variables";
-
-h2 {
-  margin: 2.5rem;
-  font-size: 2.0rem;
-}
-
-.text--big {
-  color: $main-color-c;
-  margin: 2rem 2rem 5rem;
-}
-
-.qbox--container {
-  position: relative;
-  top: 1rem;
-  left: 8rem;
-  transform: scale(1.5);
-  margin: 0rem;
-  @media (max-width: 480px) {
-    min-width: 200px;
-  }
-}
-.qbox--text {
-  font-family: $font-family-header; 
-  font-weight: normal;
-  padding: 1rem 1rem;
-  font-size: $font-size-small;
-  color: $black;
-  text-align: left;
-  background-position: left;
-  background-size: 20%;
-  background-repeat: no-repeat;
-  background-image: url(../assets/misc/quartalbox.svg);
-  @media (max-width: 600px) {
-    background-size: 24%;
-  }
-  @media (max-width: 480px) {
-    background-size: 27%;
-  }
-  @media (max-width: 350px) {
-    background-size: 30%;
-  }
-}
-
-</style>

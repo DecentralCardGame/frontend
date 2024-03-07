@@ -3,9 +3,9 @@
     <div class="hero">
       <h1>Welcome to Crowd Control</h1>
       <p class="text--big">
-        Crowd Control is a trading card game that gives you full ownership of your cards AND gives
+        Crowd Control is a collectible card game that gives you full ownership of your cards AND gives
         the community full ownership of the game. That means we are creating this together. Every player can design their
-        own trading cards. Every player can participate in the process of balancing the game by voting on cards.
+        own collectible cards. Every player can participate in the process of balancing the game by voting on cards.
       </p>
       <b class="text--big">Scroll down to learn more about this awesome game!</b>
     </div>
@@ -119,7 +119,7 @@
           attack and which defend.
           Finally the Entities fight each other and any unblocked ones may damage the opponent's HQ or a Place.
           Then the next turn begins and the cycle starts again.
-          We have not mentioned abilities and effects yet, but these are the magic sauce of trading card games.
+          We have not mentioned abilities and effects yet, but these are the magic sauce of collectible card games.
           Abilities can be activated by the player or triggered by game events. When they do, they unleash an effect.
           All cards can have abilities, except for Action cards, which directly unleash their effects. Effects change
           something in the game, like destroying a Place or buffing your Entities.
@@ -188,37 +188,3 @@ import {
   communityCardData
 } from "@/components/utils/sampleCards";
 </script>
-
-<style scoped lang="scss">
-@import "../scss/variables";
-
-.hero {
-  margin: 10rem 0;
-  text-align: center;
-  @media (max-width: 480px) {
-    margin: 0;
-  }
-}
-
-.about {
-  align-items: flex-start;
-  align-self: center;
-  display: grid;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-  h2 {
-    margin-top: 0;
-  }
-  svg {
-    height: $font-size * 20;
-  }
-  margin-bottom: $font-size * 4;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-</style>

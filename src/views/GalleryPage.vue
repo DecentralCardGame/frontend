@@ -1,398 +1,231 @@
 <template>
-  <div class="gallery">
-    <h2 class="header__h2">Gallery</h2>
-    <p class="header__p">
-      In the gallery, you can view cards that were created by the community.
-    </p>
-    <br />
-    <div v-show="galleryFilters.visible" class="gallery__filter-box ccbutton">
-      <div class="gallery__filter__item">
-        <select v-model="galleryFilters.status">
-          <option value="">any card status</option>
-          <option>Prototype</option>
-          <option>Trial</option>
-          <option>Permanent</option>
-          <option>Playable</option>
-          <option>Unplayable</option>
-        </select>
-      </div>
-      <div class="gallery__filter__item">
-        <select v-model="galleryFilters.cardType">
-          <option value="">any card type</option>
-          <option>Headquarter</option>
-          <option>Entity</option>
-          <option>Action</option>
-          <option>Place</option>
-        </select>
-      </div>
-      <div class="gallery__filter__item">
-        <select v-model="galleryFilters.sortBy">
-          <option value="">default sort</option>
-          <option>Name (A-Z)</option>
-          <option>Name (Z-A)</option>
-          <option>Casting Cost (↑)</option>
-          <option>Casting Cost (↓)</option>
-          <option>Id (↑)</option>
-          <option>Id (↓)</option>
-        </select>
-      </div>
-      <div>
-        <div class="gallery__filter__item">
-          <input
-            v-model="galleryFilters.nameContains"
-            placeholder="Name contains"
-          />
-        </div>
-      </div>
-      <div>
-        <div class="gallery__filter__item">
-          <input
-            v-model="galleryFilters.keywordsContains"
-            placeholder="Ability/Effect contains"
-          />
-        </div>
-      </div>
-      <div class="gallery__filter__item">
-        <input
-          v-model="galleryFilters.notesContains"
-          placeholder="Notes contain"
-        />
-      </div>
-      <div class="gallery__filter__item">
-        <input
-          v-model="galleryFilters.owner"
-          placeholder="Owner is"
-          @click="galleryFilters.owner = address"
-        />
-      </div>
-
-      <div class="gallery__filter__item">
-        <div class="no--wrap">
-          <label class="gallery-checkbox__label">
-            <input
-              v-model="galleryFilters.classesVisible"
-              class="gallery-checkbox"
-              type="checkbox"
-              @input="
-                galleryFilters.classesVisible = !galleryFilters.classesVisible
-              "
+  <div class="flex text-white">
+    <div
+      class="self-start sticky top-0 min-w-[25rem] flex justify-center p-16 h-[100vh] mt-0 bg-[#552026] max-lg:hidden"
+    >
+      <div class="space-y-6">
+        <GalleryFilterImageChooser :options="classOptions" />
+        <Checkbox v-model="galleryFilters.multiClass">
+          Show multi-class only
+        </Checkbox>
+        <GalleryFilterImageChooser :options="typeOptions" />
+        <div class="">
+          <p>Search for</p>
+          <div class="space-y-4">
+            <CCInput
+              v-model="galleryFilters.nameContains"
+              placeholder="name"
             />
-            Filter classes
-            <br />
-          </label>
+            <br>
+            <CCInput
+              v-model="galleryFilters.notesContains"
+              placeholder="notes"
+            />
+            <br>
+            <CCInput
+              v-model="galleryFilters.keywordsContains"
+              placeholder="keywords"
+            />
+          </div>
         </div>
-
-        <span
-          v-if="galleryFilters.classesVisible"
-          class="clickable-option"
-          @click="galleryFilters.classORLogic = !galleryFilters.classORLogic"
-        >
-          <br /><br />
-          {{ galleryFilters.classORLogic ? "Any: " : "All: " }}
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{
-            'clickable-option': true,
-            negated: !galleryFilters.mysticism,
-          }"
-          @click="galleryFilters.mysticism = !galleryFilters.mysticism"
-        >
-          Mysticism
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{
-            'clickable-option': true,
-            negated: !galleryFilters.technology,
-          }"
-          @click="galleryFilters.technology = !galleryFilters.technology"
-        >
-          Technology
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{ 'clickable-option': true, negated: !galleryFilters.nature }"
-          @click="galleryFilters.nature = !galleryFilters.nature"
-        >
-          Nature
-        </span>
-        <span
-          v-if="galleryFilters.classesVisible"
-          :class="{
-            'clickable-option': true,
-            negated: !galleryFilters.culture,
-          }"
-          @click="galleryFilters.culture = !galleryFilters.culture"
-        >
-          Culture
-        </span>
-      </div>
-
-      <div class="gallery__filter__item">
-        <input
-          placeholder="cards per page"
-          @input="galleryFilters.cardsPerPage = $event.target.value"
+        <CCInput
+          v-model="galleryFilters.owner"
+          placeholder="owner"
+          :max-length="41"
         />
-      </div>
-      <div class="gallery__filter__item">
-        <button @click="resetFilters">Clear Filters</button>
-      </div>
-      <div class="gallery__filter__item">
-        <button @click="loadCardList">Apply</button>
+        <Checkbox
+          v-if="loggedIn"
+          :model-value="galleryFilters.owner === address"
+          @update:model-value="
+            (v: boolean) => (galleryFilters.owner = v ? address : '')
+          "
+        >
+          My Cards
+        </Checkbox>
+        <div>
+          Rarity:
+          <Dropdown
+            v-model="galleryFilters.rarity"
+            :display-fn="
+              (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
+            "
+            :options="[
+              undefined,
+              CardRarity.common,
+              CardRarity.uncommon,
+              CardRarity.rare,
+              CardRarity.exceptional,
+              CardRarity.unique,
+            ]"
+          />
+        </div>
       </div>
     </div>
-    <div class="button-container button-container--top ccbutton">
-      <button @click="toggleGalleryFilters">
-        {{ galleryFilters.visible ? "hide" : "show" }}
-        filters
-      </button>
-      <button v-show="loggedIn" @click="loadMyCardList()">My Cards</button>
-      <button
-        v-show="$route.query.notesContains != 'Finished'"
-        @click="loadSpecialCardList('Finished')"
-      >
-        Alpha Set
-      </button>
-      <button
-        v-show="$route.query.notesContains == 'Finished'"
-        @click="loadSpecialCardList('')"
-      >
-        All Cards
-      </button>
+
+    <div class="bg-black w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
+      <div class="mx-16">
+        <div class="flex justify-center md:justify-between">
+          <p class="text-xl my-auto max-md:hidden">
+            {{ cardList.length }} Results
+          </p>
+          <p class="text-5xl text-center">
+            Gallery
+          </p>
+          <div class="flex space-x-4">
+            <p class="text-xl my-auto max-md:hidden">
+              Sort by
+            </p>
+            <Dropdown
+              v-model="galleryFilters.sortBy"
+              class="my-auto"
+              :type="ButtonType.RED"
+              :options="['Name', 'CastingCost', 'Id']"
+              :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
+            />
+            <SortDirectionButton
+              v-model="revertSort"
+              class="my-auto"
+            />
+          </div>
+        </div>
+        <div class="mt-8 h-1 rounded w-full bg-white" />
+      </div>
+
+      <GalleryComponent
+        class="p-16"
+        :cards-per-page="galleryFilters.cardsPerPage"
+        :all-card-ids="revertSort ? cardList.toReversed() : cardList"
+        @card-clicked="openCardviewModel"
+      />
     </div>
-    <GalleryComponent
-      :cards-per-page="galleryFilters.cardsPerPage"
-      :all-card-ids="state.cardList"
-      :rarity-filter="state.rarity"
-    />
   </div>
+  <CardviewModal
+    v-if="isCardViewModalVisible"
+    :id="cardViewModalCardId"
+    @close="isCardViewModalVisible = false"
+  />
 </template>
 
 <script setup lang="ts">
 import * as R from "ramda";
-import { useLoggedIn } from "@/def-composables/useLoggedIn";
-import { useAddress } from "@/def-composables/useAddress";
-import { useGalleryFilters } from "@/def-composables/useGalleryFilters";
-import { useQuery } from "@/def-composables/useQuery";
-import { onMounted, reactive } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
+import techActive from "@/assets/figma/ClassesButtons/tech.png";
+import techInactive from "@/assets/figma/ClassesButtons/tech_unselected.png";
+import cultureActive from "@/assets/figma/ClassesButtons/culture.png";
+import cultureInactive from "@/assets/figma/ClassesButtons/culture_unselected.png";
+import natureActive from "@/assets/figma/ClassesButtons/nature.png";
+import natureInactive from "@/assets/figma/ClassesButtons/nature_unselected.png";
+import mystActive from "@/assets/figma/ClassesButtons/myst.png";
+import mystInactive from "@/assets/figma/ClassesButtons/myst_unselected.png";
+import hqActive from "@/assets/figma/TypesButtons/hq.png";
+import hqInactive from "@/assets/figma/TypesButtons/hq_unselected.png";
+import entityActive from "@/assets/figma/TypesButtons/entity.png";
+import entityInactive from "@/assets/figma/TypesButtons/entity_unselected.png";
+import actionActive from "@/assets/figma/TypesButtons/action.png";
+import actionInactive from "@/assets/figma/TypesButtons/action_unselected.png";
+import placeActive from "@/assets/figma/TypesButtons/place.png";
+import placeInactive from "@/assets/figma/TypesButtons/place_unselected.png";
+import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
+import type { GalleryFilters } from "@/model/GalleryFilters";
+import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
+import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
+import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import Checkbox from "@/components/elements/Checkbox.vue";
+import { useGallery } from "@/def-composables/useGallery";
+import { normalizeQuery } from "@/utils/utils";
+import CCInput from "@/components/elements/CCInput.vue";
+import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+import CardviewModal from "@/components/modals/CardviewModal.vue";
+import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { useAddress } from "@/def-composables/useAddress";
 
-const { queryQCards } = useQuery();
-const { loggedIn } = useLoggedIn();
-const { address } = useAddress();
-const { galleryFilters, toggleGalleryFilters, resetGalleryFilters } =
-  useGalleryFilters;
 const route = useRoute();
 const router = useRouter();
+const { loggedIn } = useLoggedIn();
+const { address } = useAddress();
+const isCardViewModalVisible = ref(false);
+const cardViewModalCardId = ref(-1);
+const {
+  cardList,
+  loadQueryCardList,
+  galleryFilters,
+  pageQueryFromGalleryFilters,
+  galleryFiltersFromPageQuery,
+} = useGallery();
 
-type PageQuery = {
-  status: string;
-  owner: string;
-  cardType: string;
-  classes: string;
-  sortBy: string;
-  rarity: string;
-  nameContains: string;
-  keywordsContains: string;
-  notesContains: string;
-};
+const revertSort = ref(false);
 
-const initialState: {
-  cardList: Array<number>;
-} = {
-  cardList: [],
-};
+const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
+  {
+    active: techActive,
+    inactive: techInactive,
+    label: "tec",
+    name: "technology",
+  },
+  {
+    active: cultureActive,
+    inactive: cultureInactive,
+    label: "cul",
+    name: "culture",
+  },
+  {
+    active: natureActive,
+    inactive: natureInactive,
+    label: "nat",
+    name: "nature",
+  },
+  {
+    active: mystActive,
+    inactive: mystInactive,
+    label: "mys",
+    name: "mysticism",
+  },
+];
 
-const state = reactive(initialState);
+const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
+  {
+    active: hqActive,
+    inactive: hqInactive,
+    label: "hq",
+    name: "hq",
+  },
+  {
+    active: entityActive,
+    inactive: entityInactive,
+    label: "ent",
+    name: "entity",
+  },
+  {
+    active: actionActive,
+    inactive: actionInactive,
+    label: "act",
+    name: "action",
+  },
+  {
+    active: placeActive,
+    inactive: placeInactive,
+    label: "pla",
+    name: "place",
+  },
+];
 
 onMounted(() => {
   if (!R.isEmpty(route.query)) {
-    if (route.query.cardList) {
-      state.cardList = (route.query.cardList as string[]).map((v) => Number(v));
-    } else {
-      loadQueryCardList(normalizeQuery(route.query as PageQuery));
-    }
+    galleryFiltersFromPageQuery(normalizeQuery(route.query));
+    loadQueryCardList(pageQueryFromGalleryFilters());
+  } else if (cardList.value.length == 0) {
+    loadQueryCardList(pageQueryFromGalleryFilters());
   } else {
-    loadCardList();
+    router.push({ path: "gallery", query: pageQueryFromGalleryFilters() });
   }
 });
 
-const loadCardList = () => loadQueryCardList(getDefaultQuery())
-
-const normalizeQuery = (query: PageQuery): PageQuery => {
-  state.rarity = query.rarity
-  return {
-    status: query.status ? query.status.toLowerCase() : "playable", // default playable
-    owner: query.owner ? query.owner : "",
-    cardType: query.cardType ? query.cardType : "",
-    classes: query.classes ? query.classes : "",
-    sortBy: query.sortBy
-      ? query.sortBy.replace(/\s+/g, "").replace(/\(.*?\)/g, "")
-      : "",
-    rarity: query.rarity,
-    nameContains: query.nameContains ? query.nameContains : "",
-    keywordsContains: query.keywordsContains ? query.keywordsContains : "",
-    notesContains: query.notesContains
-      ? query.notesContains
-      : query.status ||
-        query.owner ||
-        query.cardType ||
-        query.classes ||
-        query.sortBy ||
-        query.nameContains ||
-        query.keywordsContains ||
-        query.notesContains
-      ? ""
-      : loggedIn.value
-      ? ""
-      : "Finished", // non-logged in users (noobs), without any filters, will only see the alpha set, this is a HACK to cheat in notesContains
-  };
-};
-
-const loadMyCardList = () =>
-  loadSpecialCardList(galleryFilters.notesContains, address.value);
-const getDefaultQuery = (): PageQuery => {
-  let classes =
-    (galleryFilters.classORLogic ? "OR," : "") +
-    (galleryFilters.mysticism ? "Mysticism," : "") +
-    (galleryFilters.nature ? "Nature," : "") +
-    (galleryFilters.technology ? "Technology," : "") +
-    (galleryFilters.culture ? "Culture," : "");
-
-  let q = galleryFilters;
-  q.classes = q.classesVisible ? classes : "";
-  return normalizeQuery(q);
-};
-const loadSpecialCardList = (notes: string, owner: string = "") => {
-  let q = getDefaultQuery();
-  q.notesContains = notes;
-  if (owner) {
-    q.owner = owner;
-  }
-  loadQueryCardList(q);
-};
-const loadQueryCardList = (query: PageQuery) => {
-  router.push({ path: "gallery", query: query });
-
-  let requestedCards = [
-    queryQCards(query.status, {
-      owner: query.owner,
-      cardType: query.cardType,
-      classes: query.classes,
-      sortBy: query.sortBy,
-      nameContains: query.nameContains,
-      keywordsContains: query.keywordsContains,
-      notesContains: query.notesContains,
-    }),
-  ];
-  Promise.all(requestedCards)
-    .then((res) => {
-      let cardList: number[] = R.reduce<unknown, number[]>(
-        R.concat,
-        [],
-        R.pluck("cardsList", res)
-      );
-
-      if (R.any((x) => R.includes(x, galleryFilters.sortBy), ["A-Z", "↑"])) {
-        state.cardList = R.reverse(cardList).map((v) => Number(v));
-      } else {
-        state.cardList = R.reverse(cardList);
-      }
-    })
-};
-
-const resetFilters = () => {
-  console.log("reset filters");
-  resetGalleryFilters();
-  loadCardList();
+const openCardviewModel = (cardId: number) => {
+  cardViewModalCardId.value = Number(cardId);
+  //router.replace({ name: "CardView", params: { id: cardId } });
+  isCardViewModalVisible.value = true;
 };
 </script>
-
-<style scoped lang="scss">
-@import "../scss/variables";
-
-.gallery__view {
-  margin: 1rem 0;
-  text-shadow: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-}
-
-.gallery__view__card:hover {
-  cursor: pointer;
-}
-
-.gallery__filter-box {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  border: $border-thickness solid $white;
-  padding: 1rem;
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: auto;
-  grid-column-gap: 4rem;
-  grid-row-gap: 1rem;
-}
-
-.gallery__filter__item {
-  width: 20%;
-}
-
-.no--wrap {
-  display: inline;
-  float: left;
-  white-space: nowrap;
-}
-
-.clickable-option {
-  display: inline;
-  white-space: nowrap;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.negated {
-  text-decoration: line-through;
-  font-weight: normal;
-}
-
-.cardContainer {
-  position: relative;
-  display: flex;
-}
-
-.button-container--top {
-  margin-bottom: 2rem;
-}
-
-.container-modal {
-  position: fixed;
-  z-index: 4;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease;
-  @media (max-width: 480px) {
-    bottom: 0;
-    overflow-y: scroll;
-  }
-}
-
-.gallery-checkbox {
-  position: absolute;
-  display: inline-block;
-  margin-left: -25px;
-}
-
-.gallery-checkbox__label {
-  margin-left: 25px;
-}
-</style>

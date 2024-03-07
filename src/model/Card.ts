@@ -16,7 +16,7 @@ export class ChainCard {
   votePool: Coin = new Coin();
   voters: Array<string> = [];
   balanceAnchor: boolean = false;
-  rarity: string ="";
+  rarity: string = "";
   hash: string = "";
 
   static from(json: any) {
@@ -62,10 +62,10 @@ export class ChainCard {
       card.underpoweredVotes = parseInt(this.underpoweredVotes);
       card.votePool = Object.assign(new Coin(), this.votePool);
       card.voters = this.voters;
-      card.balanceAnchor = this.balanceAnchor
-      card.hash = this.hash
+      card.balanceAnchor = this.balanceAnchor;
+      card.hash = this.hash;
 
-      console.log("parsed card: ", card);
+      console.log("parsed card: ", card.CardName);
     }
     return card;
   }
@@ -107,29 +107,29 @@ export class Card {
   hash: string = "";
 
   // Values used for nerfstatus
-  isBanned = false
-  isNerfed = false
-  isBuffed = false
+  isBanned = false;
+  isNerfed = false;
+  isBuffed = false;
 
   static from(json: any): Card {
     return Object.assign(new Card(), json);
   }
 
   isEditCard() {
-    return this.id != -1
+    return this.id != -1;
   }
 
   setNerfStatus(status: NerfStatus) {
-    switch(status) {
+    switch (status) {
       case NerfStatus.BANNED:
-        this.isBanned = true
-        break
+        this.isBanned = true;
+        break;
       case NerfStatus.BUFFED:
-        this.isBuffed = true
-        break
+        this.isBuffed = true;
+        break;
       case NerfStatus.NERFED:
-        this.isNerfed = true
-        break
+        this.isNerfed = true;
+        break;
     }
   }
 
@@ -137,15 +137,15 @@ export class Card {
     console.log("trying to parse ", this);
     let cardContent = Object.assign(new CardContent(), {
       CardName: this.CardName,
-      Tags: this.Tags.filter(tag => {
+      Tags: this.Tags.filter((tag) => {
         return tag != null || tag != "";
       }),
       FlavourText: this.FlavourText,
       Class: this.Class,
       Keywords: [],
-      RulesTexts: this.RulesTexts
+      RulesTexts: this.RulesTexts,
     });
-    this.Keywords.forEach(keyword => {
+    this.Keywords.forEach((keyword) => {
       cardContent.Keywords.push(JSON.stringify(keyword));
     });
     // in the following part we check things that are only required for specific card types
@@ -169,9 +169,11 @@ export class Card {
 
     let cc = new ChainCard();
     cc.content = {
-      [this.type]: cardContent
+      [this.type]: cardContent,
     };
-    cc.image = this.image ? this.image : "if you read this, someone was able to upload a card without proper image...";
+    cc.image = this.image
+      ? this.image
+      : "if you read this, someone was able to upload a card without proper image...";
     cc.fullArt = this.fullArt;
     cc.notes = this.notes;
     cc.balanceAnchor = this.balanceAnchor;
@@ -241,6 +243,10 @@ export enum NerfStatus {
 
 export namespace NerfStatus {
   export function fromString(status: string): NerfStatus | undefined {
-    return {bann: NerfStatus.BANNED, buff: NerfStatus.BUFFED, nerf: NerfStatus.NERFED}[status]
+    return {
+      bann: NerfStatus.BANNED,
+      buff: NerfStatus.BUFFED,
+      nerf: NerfStatus.NERFED,
+    }[status];
   }
 }

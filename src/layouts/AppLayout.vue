@@ -1,30 +1,18 @@
 <template>
-  <component :is="layout">
-    <slot />
-  </component>
+  <div id="content">
+    <PageHeader />
+    <PageMenu />
+    <main>
+      <div>
+        <router-view />
+      </div>
+    </main>
+    <PageFooter />
+  </div>
 </template>
 
-<script>
-import AppLayoutDefault from '@/layouts/concrete/Default.vue'
-export default {
-  name: "AppLayout",
-  data: () => ({
-    layout: AppLayoutDefault
-  }),
-  watch: {
-    $route: {
-      immediate: true,
-      async handler(route) {
-        if (route.meta.layout) {
-          try {
-            const component = await import( /* @vite-ignore */ `@/layouts/concrete/${route.meta.layout}.vue`)
-            this.layout = component?.default || AppLayoutDefault
-          } catch (e) {
-            this.layout = AppLayoutDefault
-          }
-        }
-      }
-    }
-  }
-}
+<script setup lang="ts">
+import PageHeader from '@/components/partials/PageHeader.vue'
+import PageMenu from '@/components/partials/PageMenu.vue'
+import PageFooter from '@/components/partials/PageFooter.vue'
 </script>

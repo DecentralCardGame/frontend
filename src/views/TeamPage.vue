@@ -29,7 +29,7 @@
           But there is a clear separation between competitive play and community content creation. There is no game that truly offers both. In Warcraft the custom maps are
           not part of the competitive play, in Factorio there is no real competitive play and in the other games, the game developers create the content and try to keep balance.
           How do they keep the balance? By looking at game outcomes and community feedback. Working with Blockchain technology for a couple of years, Patrick realized this
-          might be an opportunity to bring competitive play and community content together. Of all possible genres of games, trading card games made the most sense to him,
+          might be an opportunity to bring competitive play and community content together. Of all possible genres of games, collectible card games made the most sense to him,
           since cards are atomic pieces of such a game that can be easily created, are fun to collect and trade with other players and most importantly it makes a lot of sense
           to combine many different cards into a single deck. So this genre might benefit the most. The best part when playing a game was understanding how it works but still
           seeing new content and experiencing new situations. All of this is the reason why you are reading this text now.
@@ -57,9 +57,9 @@
       <div>
         <h2> Marius Faust - Game Design and Development </h2>
         <p>
-          After playing over 9000 different trading card games, Marius has decided that the world needs another one. He was also quite bored by Magic, because he already knew 13.000
+          After playing over 9000 different collectible card games, Marius has decided that the world needs another one. He was also quite bored by Magic, because he already knew 13.000
           Magic cards by heart. Naturally there cannot be anything better than a game that will throw new cards at him for the rest of his life. Because of his great knowledge and vast
-          experience in all other trading card games, it was very easy for him to show the pitfalls of Patrick's game design to him. Together both figured out the biggest problems of creating
+          experience in all other collectible card games, it was very easy for him to show the pitfalls of Patrick's game design to him. Together both figured out the biggest problems of creating
           Crowd Control. One of that would be to prevent Players from creating cards, which can never be balanced. Imagine a card that does awesome things while being in the dust pile. You
           discard this card from your hand through another card, which is normally a negative effect, but in that case it might win you the game. Normally the card would be balanced by making
           it more expensive. We cannot do that, because its cost are never paid. This is considered an unbalanceable card. Marius has identified a couple of those cards and writes the grammar,
@@ -187,7 +187,7 @@
           He is actually the only one who does not want to work on the project. Unfortunately his older brother works here as well and he is stronger and trains Judo two times a week, so Noah cannot really choose
           to opt out. Noah and Marius have also agreed on a way of expressing this situation, which goes like this: "Well, I have thought about that and then I read what Marius/Noah wrote about that in the
           #game-mechanics channel and it is exactly what I thought". From a management point of view this can be a dangerous situation. But one needs to keep in mind, that we also need to keep Jannik's urge for
-          power creep in check. Thus it is great to have 2 "synced" minds. Noah is very good at game design, because in trading card games he likes to create underpowered decks with strange mechanics. This gives
+          power creep in check. Thus it is great to have 2 "synced" minds. Noah is very good at game design, because in collectible card games he likes to create underpowered decks with strange mechanics. This gives
           him an edge which he plays out as a game designer for Crowd Control.
         </p>
       </div>
@@ -360,33 +360,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  @import "../scss/variables";
-
-.image--round {
-  width: 200px;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.team-entry {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr;
-  gap: 2rem 4rem;
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-}
-
-img {
-  display: inline;
-  margin: 0 auto;
-  height: 100%;
-  width: auto;
-  float:left;
-}
-</style>

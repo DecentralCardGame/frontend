@@ -4,15 +4,18 @@
       <div
         aria-describedby="modalDescription"
         aria-labelledby="modalTitle"
-        class="modal"
+        class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
-        <header id="modalTitle" class="modal__header">
+        <header
+          id="modalTitle"
+          class="modal__header"
+        >
           <slot name="header">
             Card Frame Auction
             <button
               aria-label="Close modal"
-              class="btn--close"
+              class="px-1 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-1 border-opacity-80"
               type="button"
               @click="close"
             >
@@ -20,7 +23,10 @@
             </button>
           </slot>
         </header>
-        <section id="modalDescription" class="modal__body">
+        <section
+          id="modalDescription"
+          class="modal__body"
+        >
           <slot name="body">
             <table class="table--buy-scard-frame">
               <tr>
@@ -30,7 +36,7 @@
                 </td>
               </tr>
               <tr>
-                <br />
+                <br>
               </tr>
               <tr>
                 <td>Current price:</td>
@@ -53,20 +59,21 @@
                     v-model="state.currentBid"
                     :placeholder="[[state.currentBid]]"
                     size="3"
+                    class="text-black"
                     type="text"
                     @keypress="isNumber($event)"
-                  />
+                  >
                 </td>
                 <td>credits</td>
               </tr>
             </table>
           </slot>
         </section>
-        <footer class="modal__footer">
+        <footer class="">
           <slot name="footer" />
           <button
             aria-label="Close modal"
-            class="btn--default"
+            class="px-1 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-1 border-opacity-80"
             type="button"
             @click="buyCardFrame"
           >
@@ -144,24 +151,3 @@ const isNumber = (evt: any) => {
   }
 }
 </script>
-
-<style lang="scss">
-@import "modal";
-
-.table--buy-scard-frame {
-  td {
-    text-align: right;
-    padding: 0.25rem;
-  }
-
-  input {
-    padding: 0;
-    margin: 0;
-    display: inline;
-    color: $black;
-    text-align: right;
-    background-color: lightgray;
-    font-weight: bold;
-  }
-}
-</style>
