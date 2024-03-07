@@ -19,7 +19,7 @@
             >
               <div
                 v-if="item == 'done' || item == 'active'"
-                class="bg-white rounded-full h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2"
+                class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center -ml-3"
               >
                 <img
                   v-if="item == 'active'"
@@ -29,7 +29,7 @@
               </div>
               <div
                 v-if="item == 'open'"
-                class="bg-red-600 h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative"
+                class="bg-red-600 h-6 w-6 rounded-full shadow flex items-center justify-center -ml-3"
               >
                 <div class="h-3 w-3 bg-red-600 rounded-full rounded-full" />
               </div>
