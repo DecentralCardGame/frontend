@@ -43,7 +43,6 @@ import {
 
 const model = defineModel<T>();
 const isOpen = ref(false);
-const emit = defineEmits(['change']);
 
 const props = withDefaults(
   defineProps<{
@@ -72,7 +71,5 @@ const toggleDropdown = () => {
 
 const selectOption = (option: T) => {
   model.value = option;
-
-  emit('change', option);
 };
 </script>
