@@ -1,7 +1,6 @@
 <template>
   <div class="bg-pink-950 flex flex-col items-center">
-    <div> 
-      
+    <div>
       <div class="p-4 w-full text-white text-lg">
         Card Creator
       </div>
@@ -26,13 +25,13 @@
                   v-if="item == 'active'"
                   :src="CCLogoSmallInvert"
                   alt="check"
-                />
+                >
               </div>
               <div
                 v-if="item == 'open'"
                 class="bg-red-600 h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative"
               >
-                <div class="h-3 w-3 bg-red-600 rounded-full rounded-full"></div>
+                <div class="h-3 w-3 bg-red-600 rounded-full rounded-full" />
               </div>
             </div>
           </div>
@@ -42,14 +41,13 @@
           <div class="flex flex-row justify-end space-x-3">
             <NavigateCCButtons
               class="pr-4 scale-[2]"
+              :start="activeStep == 0"
+              :end="activeStep == progressBar.length - 1"
               @forward="
                 activeStep = Math.min(activeStep + 1, progressBar.length - 1)
               "
               @backward="activeStep = Math.max(activeStep - 1, 0)"
-              :start="activeStep == 0"
-              :end="activeStep == progressBar.length - 1"
-            >
-            </NavigateCCButtons>
+            />
 
             <BaseCCButton
               v-if="activeStep < progressBar.length - 1"
@@ -57,15 +55,23 @@
               @click="
                 activeStep = Math.min(activeStep + 1, progressBar.length - 1)
               "
-              >Next
+            >
+              Next
             </BaseCCButton>
           </div>
         </DefineNavigationButtons>
 
         <!-- Class Selection -->
-        <div v-if="activeStep == 0" class="">
-          <div class="pt-8 p-3 text-s font-bold">CLASSES</div>
-          <div class="text-s">Select one or multiple classes for your card.</div>
+        <div
+          v-if="activeStep == 0"
+          class=""
+        >
+          <div class="pt-8 p-3 text-s font-bold">
+            CLASSES
+          </div>
+          <div class="text-s">
+            Select one or multiple classes for your card.
+          </div>
 
           <div class="flex justify-between">
             <div
@@ -77,17 +83,29 @@
                 console.log(item, model.Class);
               "
             >
-              <img class="h-32" :src="classIcons[item]" />
-              <div class="py-5 text-s font-bold uppercase">{{ item }}</div>
+              <img
+                class="h-32"
+                :src="classIcons[item]"
+              >
+              <div class="py-5 text-s font-bold uppercase">
+                {{ item }}
+              </div>
             </div>
           </div>
           <NavigationButtons />
         </div>
 
         <!-- Type Selection -->
-        <div v-if="activeStep == 1" class="">
-          <div class="pt-8 p-3 text-s font-bold">TYPE</div>
-          <div class="text-s">Select the type of card you want.</div>
+        <div
+          v-if="activeStep == 1"
+          class=""
+        >
+          <div class="pt-8 p-3 text-s font-bold">
+            TYPE
+          </div>
+          <div class="text-s">
+            Select the type of card you want.
+          </div>
 
           <div class="flex justify-between">
             <div
@@ -99,24 +117,28 @@
                 v-show="item !== model.type"
                 class="h-32"
                 :src="typeIcons[item].Off"
-              />
+              >
               <img
                 v-show="item == model.type"
                 class="h-32"
                 :src="typeIcons[item].On"
-              />
+              >
               <div 
                 :class="{ underline: item == model.type }"
-                class="py-5 text-s font-bold uppercase">
-                  {{ item }}
-                </div>
+                class="py-5 text-s font-bold uppercase"
+              >
+                {{ item }}
+              </div>
             </div>
           </div>
           <NavigationButtons />
         </div>
 
         <!-- Card Name -->
-        <div v-if="activeStep == 2" class="flex flex-row justify-center">
+        <div
+          v-if="activeStep == 2"
+          class="flex flex-row justify-center"
+        >
           <div class="px-8">
             <CardComponent
               id="card"
@@ -128,15 +150,19 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">NAME</div>
-              <div class="py-3 text-s">Pick a name for your card.</div>
+              <div class="py-3 text-s font-bold">
+                NAME
+              </div>
+              <div class="py-3 text-s">
+                Pick a name for your card.
+              </div>
               <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
                 <input
+                  v-model="model.CardName"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Coolest Name around here"
-                  v-model="model.CardName"
                   maxLength="25"
-                />
+                >
               </div>
             </div>
             <div class="pl-10">
@@ -148,12 +174,12 @@
         <!-- Image Upload -->
         <div
           v-if="activeStep == 3"
+          :class="{ 'bg-white bg-opacity-50': dragActive }"
+          class="flex flex-row"
           @drop.prevent="onDrop"
           @dragover.prevent="dragActive = true"
           @dragleave.prevent="dragActive = false"
           @paste="onPaste"
-          :class="{ 'bg-white bg-opacity-50': dragActive }"
-          class="flex flex-row"
         >
           <div
             v-if="!designateArtist || artistMode"
@@ -180,39 +206,51 @@
             />
           </div>
           <div v-if="designateArtist && !artistMode">
-            <div class="text-bold">Address:</div>
+            <div class="text-bold">
+              Address:
+            </div>
             <input
-              class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
               v-model="artistAddress"
-            />
+              class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+            >
           </div>
 
-          <div v-if="true || artistMode" class="m-8 flex-row">
-            <div class="p-3 font-bold text-left">ARTWORK</div>
+          <div
+            v-if="true || artistMode"
+            class="m-8 flex-row"
+          >
+            <div class="p-3 font-bold text-left">
+              ARTWORK
+            </div>
             <div class="pl-3 pb-2 flex items-start">
               <input
-                class=""
                 id="file"
+                class=""
                 name="file"
                 type="file"
                 @change="inputFile"
-              />
+              >
             </div>
             <div class="pl-3 pb-8 text-left">
               Or drop / paste to upload an artwork.
             </div>
-            <div class="p-3 text-left font-bold">COPYRIGHT</div>
+            <div class="p-3 text-left font-bold">
+              COPYRIGHT
+            </div>
 
-            <div v-if="!artistMode" class="flex flex-col">
+            <div
+              v-if="!artistMode"
+              class="flex flex-col"
+            >
               <div class="p-3 flex flex-row items-start">
                 <input
                   id="false"
+                  v-model="designateArtist"
                   class="p-3 border-red-600 text-red-600"
                   type="radio"
                   checked
-                  v-model="designateArtist"
-                  v-bind:value="false"
-                />
+                  :value="false"
+                >
                 <div class="px-3 text-left">
                   I hereby confirm that I own the rights to commercially use this
                   artwork.
@@ -221,11 +259,11 @@
               <div class="p-3 flex flex-row">
                 <input
                   id="true"
+                  v-model="designateArtist"
                   class="p-3 border-red-600 text-red-600"
                   type="radio"
-                  v-model="designateArtist"
-                  v-bind:value="true"
-                />
+                  :value="true"
+                >
                 <div class="px-3 text-left">
                   I rather would like to designate an artist as a collaborator for
                   the artwork.
@@ -240,7 +278,10 @@
         </div>
 
         <!-- Flavor -->
-        <div v-if="activeStep == 4" class="flex flex-row justify-center">
+        <div
+          v-if="activeStep == 4"
+          class="flex flex-row justify-center"
+        >
           <div class="px-8">
             <CardComponent
               id="card"
@@ -252,17 +293,19 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">FLAVOR</div>
+              <div class="py-3 text-s font-bold">
+                FLAVOR
+              </div>
               <div class="py-3 text-s">
                 Now let's add some spice to your creation.
               </div>
               <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
                 <input
+                  v-model="model.FlavourText"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Quote that represents this card."
-                  v-model="model.FlavourText"
                   maxLength="25"
-                />
+                >
               </div>
             </div>
             <div class="pl-10">
@@ -272,7 +315,10 @@
         </div>
 
         <!-- Costs and Powers -->
-        <div v-if="activeStep == 5" class="flex flex-row justify-center">
+        <div
+          v-if="activeStep == 5"
+          class="flex flex-row justify-center"
+        >
           <div class="px-8">
             <CardComponent
               id="card"
@@ -285,12 +331,14 @@
 
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">COSTS AND POWERS</div>
+              <div class="py-3 text-s font-bold">
+                COSTS AND POWERS
+              </div>
 
               <div
                 v-if="
                   cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.CastingCost
+                    cardRules.Card.children[getRulesType()].children.CastingCost
                 "
                 class="h-14"
               >
@@ -307,7 +355,7 @@
               <div
                 v-if="
                   cardRules.Card.children[getRulesType()] &&
-                  cardRules.Card.children[getRulesType()].children.AdditionalCost
+                    cardRules.Card.children[getRulesType()].children.AdditionalCost
                 "
                 class="h-14"
               >
@@ -315,16 +363,16 @@
                 <Dropdown
                   initial="Select Special Cost"
                   :options="getSpecialCostRange()"
-                  :displayFn="specialCostLabels"
-                  @update:model-value="setAdditionalCost($event)"
+                  :display-fn="specialCostLabels"
                   class="m-2"
+                  @update:model-value="setAdditionalCost($event)"
                 />
                 <span v-if="model.AdditionalCost.DiscardCost">
                   <Dropdown
                     v-model="model.AdditionalCost.DiscardCost.Amount"
                     :options="getGenericCostRange('DiscardCost')"
-                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
+                    @update:model-value="updateAdditionalCostText"
                   />
                   cards from your hand.
                 </span>
@@ -332,8 +380,8 @@
                   <Dropdown
                     v-model="model.AdditionalCost.SacrificeCost.Amount"
                     :options="getGenericCostRange('SacrificeCost')"
-                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
+                    @update:model-value="updateAdditionalCostText"
                   />
                   Entitites.
                 </span>
@@ -341,17 +389,23 @@
                   <Dropdown
                     v-model="model.AdditionalCost.VoidCost.Amount"
                     :options="getGenericCostRange('VoidCost')"
-                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
+                    @update:model-value="updateAdditionalCostText"
                   />
                   cards from your graveyard.
                 </span>
               </div>
 
               <!-- Delay -->
-              <div v-if="model.type === 'Headquarter'" class="h-14">
+              <div
+                v-if="model.type === 'Headquarter'"
+                class="h-14"
+              >
                 <b>Delay</b> of Activation:
-                <Dropdown v-model="model.Delay" :options="getHQDelayRange()" />
+                <Dropdown
+                  v-model="model.Delay"
+                  :options="getHQDelayRange()"
+                />
                 turns.
               </div>
 
@@ -359,7 +413,7 @@
               <div
                 v-if="
                   model.type === 'Entity' &&
-                  cardRules.Card.children[getRulesType()]
+                    cardRules.Card.children[getRulesType()]
                 "
                 class="h-14"
               >
@@ -374,7 +428,7 @@
               <div
                 v-if="
                   model.type !== 'Action' &&
-                  cardRules.Card.children[getRulesType()]
+                    cardRules.Card.children[getRulesType()]
                 "
                 class="h-14"
               >
@@ -386,23 +440,26 @@
               </div>
 
               <!-- Tags -->
-              <div v-if="cardRules.Card" class="h-14">
+              <div
+                v-if="cardRules.Card"
+                class="h-14"
+              >
                 Tags:
                 <Dropdown
-                  initial="Select 1st"
                   v-model="model.Tags[0]"
+                  initial="Select 1st"
                   :options="getTags(0)"
-                  @update:model-value="updateTags"
                   class="m-2"
+                  @update:model-value="updateTags"
                 />
                 <Dropdown
-                  initial="Select 2nd"
                   v-if="model.Tags[0]"
                   v-model="model.Tags[1]"
+                  initial="Select 2nd"
                   :options="getTags(1)"
-                  :displayFn="(x) => (x == '' ? '<remove>' : x)"
-                  @update:model-value="updateTags"
+                  :display-fn="(x) => (x == '' ? '<remove>' : x)"
                   class="m-2"
+                  @update:model-value="updateTags"
                 />
               </div>
             </div>
@@ -413,7 +470,10 @@
         </div>
 
         <!-- Abilities and Effects -->
-        <div v-if="activeStep == 6" class="flex flex-row justify-center">
+        <div
+          v-if="activeStep == 6"
+          class="flex flex-row justify-center"
+        >
           <div class="px-8">
             <CardComponent
               id="card"
@@ -425,15 +485,20 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">ABILITIES AND EFFECTS</div>
+              <div class="py-3 text-s font-bold">
+                ABILITIES AND EFFECTS
+              </div>
               <div class="py-3 text-s">
                 Click to add abilities or effects to your card.
               </div>
 
-              <div id="abiliy container" class="">
+              <div
+                id="abiliy container"
+                class=""
+              >
                 <div
-                  id="ability"
                   v-for="(abilityEntry, index) in abilities"
+                  id="ability"
                   :key="abilityEntry.ability"
                   class="flex flex-col"
                 >
@@ -449,11 +514,19 @@
                 </div>
               </div>
               <div v-if="model.type === 'Action'">
-                <button class="" type="button" @click="showAbilityModal('root')">
+                <button
+                  class=""
+                  type="button"
+                  @click="showAbilityModal('root')"
+                >
                   Add Effect
                 </button>
               </div>
-              <div v-else-if="!isAbilityModalVisible" id="addmore" class="">
+              <div
+                v-else-if="!isAbilityModalVisible"
+                id="addmore"
+                class=""
+              >
                 <button
                   class="px-60 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
                   type="button"
@@ -462,7 +535,10 @@
                   +
                 </button>
               </div>
-              <div id="AbilityModal" class="">
+              <div
+                id="AbilityModal"
+                class=""
+              >
                 <AbilityModal
                   v-if="isAbilityModalVisible"
                   :abilities-prop="abilities"
@@ -481,7 +557,10 @@
         </div>
 
         <!-- Council Notes -->
-        <div v-if="activeStep == 7" class="flex flex-row justify-center">
+        <div
+          v-if="activeStep == 7"
+          class="flex flex-row justify-center"
+        >
           <div class="px-8">
             <CardComponent
               id="card"
@@ -493,17 +572,19 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">NOTES TO THE COUNCIL</div>
+              <div class="py-3 text-s font-bold">
+                NOTES TO THE COUNCIL
+              </div>
               <div class="py-3 text-s">
                 Anything that you believe needs explaining.
               </div>
               <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
                 <input
+                  v-model="model.notes"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Or some kind words."
-                  v-model="model.notes"
                   maxLength="25"
-                />
+                >
               </div>
 
               <!-- this only shows to Jannik and should not be available to ordinary users, design is irrelevant here -->
@@ -522,7 +603,7 @@
                 v-model="model.balanceAnchor"
                 type="checkbox"
                 class=""
-              />
+              >
             </div>
             <div class="pl-10">
               <NavigationButtons />
@@ -530,7 +611,10 @@
           </div>
         </div>
 
-        <div v-if="activeStep == 8" class="flex flex-row justify-center">
+        <div
+          v-if="activeStep == 8"
+          class="flex flex-row justify-center"
+        >
           <div class="px-8">
             <CardComponent
               id="card"
@@ -542,15 +626,19 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">SUMMARY</div>
-              <div class="py-3 text-s">"{{ model.FlavourText }}"</div>
+              <div class="py-3 text-s font-bold">
+                SUMMARY
+              </div>
+              <div class="py-3 text-s">
+                "{{ model.FlavourText }}"
+              </div>
 
               <BaseCCButton
                 :type="ButtonType.TEAL" 
                 class="m-2"
                 @click="resetCard()"
               >
-                Discard {{ this.mode == Mode.CREATE ? "Draft" : "Changes" }}
+                Discard {{ mode == Mode.CREATE ? "Draft" : "Changes" }}
               </BaseCCButton>
 
               <!-- TODO CHECK IF THIS IS USED BY ANYONE -->
@@ -566,7 +654,7 @@
 
               <!-- Buy Frame Modal -->
               <BaseCCButton
-                v-if="this.mode == Mode.CREATE"
+                v-if="mode == Mode.CREATE"
                 :type="ButtonType.TEAL" 
                 class="m-2"
                 @click="showBuyFrameModal"
@@ -580,7 +668,6 @@
                   @close="closeBuyFrameModal"
                 />
               </div>
-
             </div>
             <div class="pl-10 flex flex-row space-x-1">
               <NavigationButtons />
@@ -589,10 +676,8 @@
                 :type="ButtonType.RED" 
                 @click="saveSubmit()"
               >
-                {{ this.mode == Mode.CREATE ? "Mint" : "Update your " }} Card
+                {{ mode == Mode.CREATE ? "Mint" : "Update your " }} Card
               </BaseCCButton>
-
-
             </div>
           </div>
         </div>
@@ -692,38 +777,6 @@ export default {
     AbilityModal,
     Cropper,
   },
-  data() {
-    return {
-      progressBar: [
-        "active",
-        "open",
-        "open",
-        "open",
-        "open",
-        "open",
-        "open",
-        "open",
-        "open",
-      ],
-      dragActive: false,
-      isAbilityModalVisible: false,
-      isBuyFrameModalVisible: false,
-      clearAbilities: false,
-      activeStep: 0,
-      ability: {},
-      abilities: [],
-      abilityDialog: {},
-      model: new Card(),
-      artistMode: false,
-      designateArtist: false,
-      artistAddress: "cc1...",
-      cardBounds: { x: env.cardImgSizeX, y: env.cardImgSizeY },
-      cropImage: "",
-      cardID: 0,
-      mode: Mode.CREATE,
-      Mode: Mode,
-    };
-  },
   setup() {
     const typeIcons = {
       Headquarter: { On: HeadquarterOn, Off: HeadquarterOff },
@@ -756,6 +809,38 @@ export default {
       address,
       notifyInfo,
       notifyFail,
+    };
+  },
+  data() {
+    return {
+      progressBar: [
+        "active",
+        "open",
+        "open",
+        "open",
+        "open",
+        "open",
+        "open",
+        "open",
+        "open",
+      ],
+      dragActive: false,
+      isAbilityModalVisible: false,
+      isBuyFrameModalVisible: false,
+      clearAbilities: false,
+      activeStep: 0,
+      ability: {},
+      abilities: [],
+      abilityDialog: {},
+      model: new Card(),
+      artistMode: false,
+      designateArtist: false,
+      artistAddress: "cc1...",
+      cardBounds: { x: env.cardImgSizeX, y: env.cardImgSizeY },
+      cropImage: "",
+      cardID: 0,
+      mode: Mode.CREATE,
+      Mode: Mode,
     };
   },
   computed: {

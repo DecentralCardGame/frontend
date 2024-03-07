@@ -2,10 +2,10 @@
   <div class="fixed top-0 flex h-[100vh] w-[100%] bg-black/50">
     <ModalInner
       :class="['p-10', 'z-100', 'm-auto'].concat(props.class)"
-      @close="emit('close')"
       :heading="heading"
+      @close="emit('close')"
     >
-      <slot></slot>
+      <slot />
     </ModalInner>
   </div>
 </template>

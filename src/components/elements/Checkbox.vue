@@ -4,9 +4,9 @@
       v-model="model"
       type="checkbox"
       class="bg-white border-white text-cc-red focus:ring-white-sm"
-    />
+    >
     <p class="ml-2 inline-block text-white">
-      <slot></slot>
+      <slot />
     </p>
   </div>
 </template>

@@ -30,15 +30,15 @@ export default {
   components: {
     AppLayout
   },
-  data() {
-    return {
-      initialized: false,
-    }
-  },
   setup() {
     const { setLastInputEvent } = useLastInputEvent()
 
     return { setLastInputEvent }
+  },
+  data() {
+    return {
+      initialized: false,
+    }
   },
   computed: {
   },

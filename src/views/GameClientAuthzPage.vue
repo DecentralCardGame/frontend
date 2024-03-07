@@ -9,14 +9,22 @@
       <div v-if="loggedIn">
         <div v-if="state.currentState == CurrentState.NONE">
           <p>Authenticate gameclient?</p>
-          <br />
-          <button class="ccbutton" type="button" v-on:click="sendTransActions">
+          <br>
+          <button
+            class="ccbutton"
+            type="button"
+            @click="sendTransActions"
+          >
             Authenticate
           </button>
         </div>
         <div v-else-if="state.currentState == CurrentState.LOADING">
           <p>Authenticating...</p>
-          <img alt="loading spinner" src="/spinner.svg" class="w-40 p-5" />
+          <img
+            alt="loading spinner"
+            src="/spinner.svg"
+            class="w-40 p-5"
+          >
         </div>
         <div v-else-if="state.currentState == CurrentState.DONE">
           <p>Gameclient Authenticated!</p>

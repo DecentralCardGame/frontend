@@ -1,57 +1,91 @@
 <template>
   <div align="center">
     <div class="voter ccbutton">
-      <br />
+      <br>
       <h1>Vote Encounters</h1>
       <p>Vote on cards that you enountered in-game.</p>
       <p>To make your votes take effect, you have to send them to the chain.</p>
-      <br />
+      <br>
       <div>
         <div class="InfoContainer">
-          <div v-if="!loggedIn" class="ELement">
+          <div
+            v-if="!loggedIn"
+            class="ELement"
+          >
             <p>You cannot vote on cards. Please login with your wallet.</p>
           </div>
-          <div v-if="current" class="ELement Info">
+          <div
+            v-if="current"
+            class="ELement Info"
+          >
             <h3>{{ state.currentCard.CardName }}</h3>
-            <p v-if="state.currentCard.FlavourText" class="FlavourText">
+            <p
+              v-if="state.currentCard.FlavourText"
+              class="FlavourText"
+            >
               "{{ state.currentCard.FlavourText }}"
             </p>
-            <br />
+            <br>
             <h3>Advanced Card Information</h3>
             <p>
-              Votepool: {{ votePool }} <br />
-              Status: {{ state.currentCard.status }} <br />
+              Votepool: {{ votePool }} <br>
+              Status: {{ state.currentCard.status }} <br>
             </p>
-            <br /><br />
+            <br><br>
             <keyword-component :keywords="state.currentCard.Keywords" />
           </div>
-          <div v-if="typeof current !== 'undefined'" class="ELement">
+          <div
+            v-if="typeof current !== 'undefined'"
+            class="ELement"
+          >
             <CardComponent
               :model="state.currentCard"
               :image-u-r-l="state.currentCard.image"
             />
           </div>
-          <div v-if="loggedIn && !cardsLeft.length && isEmpty" class="ELement">
-            <img style="max-width: 25em" src="@/assets/icon/noCard.png" />
-            <br /><br />
+          <div
+            v-if="loggedIn && !cardsLeft.length && isEmpty"
+            class="ELement"
+          >
+            <img
+              style="max-width: 25em"
+              src="@/assets/icon/noCard.png"
+            >
+            <br><br>
             <p>
               It seams like you have voted on all cards you've encountered. Come
               back here, when you've played more matches.
             </p>
           </div>
-          <div v-if="loggedIn && !cardsLeft.length && !isEmpty" class="ELement">
+          <div
+            v-if="loggedIn && !cardsLeft.length && !isEmpty"
+            class="ELement"
+          >
             To make your votes take effect, you have to send them to the chain.
-            <button @click="sendToChain()">Send votes to chain</button>
+            <button @click="sendToChain()">
+              Send votes to chain
+            </button>
           </div>
         </div>
       </div>
 
-      <br />
-      <div v-if="cardsLeft.length" class="button-container">
-        <button @click="vote(VoteType.fairEnough)">Fair Enough</button>
-        <button @click="vote(VoteType.overpowered)">Overpowered</button>
-        <button @click="vote(VoteType.underpowered)">Underpowered</button>
-        <button @click="vote(VoteType.inappropriate)">Inappropriate</button>
+      <br>
+      <div
+        v-if="cardsLeft.length"
+        class="button-container"
+      >
+        <button @click="vote(VoteType.fairEnough)">
+          Fair Enough
+        </button>
+        <button @click="vote(VoteType.overpowered)">
+          Overpowered
+        </button>
+        <button @click="vote(VoteType.underpowered)">
+          Underpowered
+        </button>
+        <button @click="vote(VoteType.inappropriate)">
+          Inappropriate
+        </button>
         <button
           v-if="!isEmpty"
           style="margin-left: 50px"

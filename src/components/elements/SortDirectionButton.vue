@@ -5,13 +5,13 @@
       alt="arrow up"
       class="w-5 hover:scale-110"
       @click="model = true"
-    />
+    >
     <img
       :src="model ? triangle : triangleRed"
       alt="arrow down"
       class="rotate-180 w-5 hover:scale-110"
       @click="model = false"
-    />
+    >
   </div>
 </template>
 <script lang="ts" setup>

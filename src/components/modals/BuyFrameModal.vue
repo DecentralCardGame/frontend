@@ -7,7 +7,10 @@
         class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
-        <header id="modalTitle" class="modal__header">
+        <header
+          id="modalTitle"
+          class="modal__header"
+        >
           <slot name="header">
             Card Frame Auction
             <button
@@ -20,7 +23,10 @@
             </button>
           </slot>
         </header>
-        <section id="modalDescription" class="modal__body">
+        <section
+          id="modalDescription"
+          class="modal__body"
+        >
           <slot name="body">
             <table class="table--buy-scard-frame">
               <tr>
@@ -30,7 +36,7 @@
                 </td>
               </tr>
               <tr>
-                <br />
+                <br>
               </tr>
               <tr>
                 <td>Current price:</td>
@@ -56,7 +62,7 @@
                     class="text-black"
                     type="text"
                     @keypress="isNumber($event)"
-                  />
+                  >
                 </td>
                 <td>credits</td>
               </tr>

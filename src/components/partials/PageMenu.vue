@@ -1,17 +1,34 @@
 <template>
   <div class="h-32 bg-black flex space-x-10 px-10">
-    <router-link class="my-auto" to="/"
-      ><img class="h-16 object-contain" :src="CCLogo" alt="CC logo"
-    /></router-link>
+    <router-link
+      class="my-auto"
+      to="/"
+    >
+      <img
+        class="h-16 object-contain"
+        :src="CCLogo"
+        alt="CC logo"
+      >
+    </router-link>
     <a class="grow" />
     <div class="my-auto max-md:hidden">
-      <RouterCCButton :type="ButtonType.RED" to="/d"
-        >Download Gameclient
+      <RouterCCButton
+        :type="ButtonType.RED"
+        to="/d"
+      >
+        Download Gameclient
       </RouterCCButton>
     </div>
     <LoginComponent />
-    <button class="my-auto" @click="toggleBar">
-      <img class="h-14 md:hidden" :src="Menu" alt="Menu button" />
+    <button
+      class="my-auto"
+      @click="toggleBar"
+    >
+      <img
+        class="h-14 md:hidden"
+        :src="Menu"
+        alt="Menu button"
+      >
     </button>
   </div>
   <div
@@ -31,8 +48,9 @@
       v-for="elem in elems"
       :to="elem.routeName"
       class="px-10 py-5 hover:underline"
-      activeClass="text-yellow-500"
-      >{{ elem.display }}
+      active-class="text-yellow-500"
+    >
+      {{ elem.display }}
     </router-link>
   </div>
 </template>

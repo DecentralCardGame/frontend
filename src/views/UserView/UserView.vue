@@ -8,23 +8,33 @@
       </h1>
       <div class="py-24">
         <div class="mx-auto h-64 w-64 relative group">
-          <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
+          <ProfilePicComponent
+            :src="state.img"
+            size="64"
+            alt="Profile pic"
+          />
           <button
             v-if="state.userIsUser"
-            @click="showChooseModal"
             class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible group-hover:visible"
+            @click="showChooseModal"
           >
-            <img :src="editImg" alt="edit" class="hover:drop-shadow-md" />
+            <img
+              :src="editImg"
+              alt="edit"
+              class="hover:drop-shadow-md"
+            >
           </button>
         </div>
       </div>
       <UserViewHeadingContainer>
-        <template v-slot:heading>Council status</template>
-        <template v-slot:body>
+        <template #heading>
+          Council status
+        </template>
+        <template #body>
           <p>{{ user.CouncilStatus }}</p>
           <BaseCCButton
-            :type="ButtonType.YELLOW"
             v-if="state.userIsUser"
+            :type="ButtonType.YELLOW"
             @click="
               state.user.CouncilStatus == CouncilStatus.unavailable
                 ? register()
@@ -42,10 +52,12 @@
       </UserViewHeadingContainer>
       <div>
         <UserViewHeadingContainer v-for="coin in normalizeCoins(coins)">
-          <template v-slot:heading
-            ><a class="uppercase">{{ coin.denom }}</a> Balance
+          <template #heading>
+            <a class="uppercase">{{ coin.denom }}</a> Balance
           </template>
-          <template v-slot:body>{{ coin.amount }}</template>
+          <template #body>
+            {{ coin.amount }}
+          </template>
         </UserViewHeadingContainer>
       </div>
     </div>
@@ -55,21 +67,23 @@
       </h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <UserViewHeadingContainer>
-          <template v-slot:heading>Wallet</template>
-          <template v-slot:body>
-            <b>Address</b> <br />{{ state.addr }}<br />
-            <br />
-            <b>Alias</b> <br />{{ state.user.alias }}
+          <template #heading>
+            Wallet
+          </template>
+          <template #body>
+            <b>Address</b> <br>{{ state.addr }}<br>
+            <br>
+            <b>Alias</b> <br>{{ state.user.alias }}
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
-          <template v-slot:heading>My Cards</template>
-          <template v-slot:body>
-            <b
-              >{{ state.user.ownedCardSchemes.length }} Card Frame{{
-                state.user.ownedCardSchemes.length == 1 ? "" : "s"
-              }}</b
-            >
+          <template #heading>
+            My Cards
+          </template>
+          <template #body>
+            <b>{{ state.user.ownedCardSchemes.length }} Card Frame{{
+              state.user.ownedCardSchemes.length == 1 ? "" : "s"
+            }}</b>
             <div
               v-for="[arr, name] in [
                 [state.user.ownedCardSchemes, 'Master Card'],
@@ -78,10 +92,8 @@
               class="pb-6"
             >
               <p class="pb-3">
-                <b
-                  >{{ arr.length }} {{ name
-                  }}{{ arr.length == 1 ? "" : "s" }}</b
-                >
+                <b>{{ arr.length }} {{ name
+                }}{{ arr.length == 1 ? "" : "s" }}</b>
               </p>
               <RouterCCButton
                 :type="ButtonType.YELLOW"
@@ -89,34 +101,44 @@
                   name: 'Gallery',
                   query: { owner: address, sortBy: 'Name' },
                 }"
-                >View in gallery
+              >
+                View in gallery
               </RouterCCButton>
             </div>
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
-          <template v-slot:heading>Recent Activity</template>
-          <template v-slot:body>
-            <RouterCCButton :type="ButtonType.YELLOW" :to="{ name: 'Vote' }"
-              >Go to Voting
+          <template #heading>
+            Recent Activity
+          </template>
+          <template #body>
+            <RouterCCButton
+              :type="ButtonType.YELLOW"
+              :to="{ name: 'Vote' }"
+            >
+              Go to Voting
             </RouterCCButton>
           </template>
         </UserViewHeadingContainer>
       </div>
       <UserViewHeadingContainer class="pt-8">
-        <template v-slot:heading>Play History</template>
-        <template v-slot:body>
+        <template #heading>
+          Play History
+        </template>
+        <template #body>
           <div class="grid gap-8 md:grid-cols-4">
             <UserViewHeadingContainer
               v-for="(match, key) in state.matches"
               :key="key"
             >
-              <template v-slot:heading>Match {{ key }}</template>
-              <template v-slot:body>
+              <template #heading>
+                Match {{ key }}
+              </template>
+              <template #body>
                 {{
                   (match.playerA.addr == state.addr &&
                     match.outcome == "AWon") ||
-                  (match.playerB.addr == state.addr && match.outcome == "BWon")
+                    (match.playerB.addr == state.addr && match.outcome == "BWon")
                     ? "WIN"
                     : "LOSE"
                 }}
@@ -129,7 +151,7 @@
   </div>
   <ChoosePBModal
     v-if="state.isChooseModalVisible"
-    :cardIds="state.user.ownedPrototypes"
+    :card-ids="state.user.ownedPrototypes"
     :current="state.user.profileCard"
     @close="closeChooseModal"
   />

@@ -14,7 +14,7 @@
         class="w-4 pr-1 rotate-180 my-auto"
         src="@/assets/figma/Navigation_Triangle.svg"
         alt="navigation triangle"
-      />
+      >
     </div>
     <ul
       v-if="isOpen"
@@ -24,8 +24,8 @@
       <li
         v-for="(option, idx) in options"
         :key="idx"
-        @click="selectOption(option)"
         class="px-2 py-1 hover:bg-white hover:bg-opacity-70 hover:text-cc-red"
+        @click="selectOption(option)"
       >
         {{ displayFn(option) }}
       </li>

@@ -21,9 +21,10 @@
     </div>
     <BaseCCButton
       :type="ButtonType.RED"
-      @click="send"
       class="mx-auto text-center"
-      >Save
+      @click="send"
+    >
+      Save
     </BaseCCButton>
   </ModalFrame>
 </template>

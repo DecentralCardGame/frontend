@@ -7,7 +7,10 @@
         class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
-        <header id="modalTitle" class="">
+        <header
+          id="modalTitle"
+          class=""
+        >
           <slot name="header">
             {{ dialog.title }}
             <span
@@ -37,7 +40,7 @@
                 v-model="option.value"
                 :value="option.name"
                 type="checkbox"
-              />
+              >
               <button
                 v-if="dialog.type === 'enum'"
                 aria-label="Close modal"
@@ -48,7 +51,10 @@
                   addAbility();
                 "
               >
-                <img class="" :src="getIcon(option)" />
+                <img
+                  class=""
+                  :src="getIcon(option)"
+                >
                 {{ option.name }}
                 <span v-if="option.description">
                   {{ option.description }}
@@ -57,12 +63,12 @@
 
               <!-- check if this is in use or deprecated -->
               <input
-                aria-label="string select"
                 v-if="dialog.type === 'stringEnter'"
                 v-model="selectedString"
+                aria-label="string select"
                 placeholder="enter text"
                 style="display: inline; color: black; height: 50px"
-              />
+              >
 
               <!-- This is the standard case -->
               <button
@@ -79,7 +85,7 @@
                   class="flex flex-col items-center aspect-square justify-evenly"
                 >
                   <div class="w-9">
-                    <img :src="getIcon(option)" />
+                    <img :src="getIcon(option)">
                   </div>
                   <div class="font-bold h-9 text-[20px] place-content-center">
                     {{ option.name }}
@@ -93,8 +99,8 @@
               <label
                 v-if="
                   dialog.type !== 'interface' &&
-                  dialog.type !== 'root' &&
-                  dialog.type !== 'enum'
+                    dialog.type !== 'root' &&
+                    dialog.type !== 'enum'
                 "
                 for="index"
                 class="text-s"
@@ -173,6 +179,11 @@ export default {
       },
     },
   },
+  setup() {
+    const { rules } = useCardsRules();
+
+    return { cardRules: rules };
+  },
   data() {
     return {
       abilitiesData: {},
@@ -189,11 +200,6 @@ export default {
     this.abilitiesData = this.abilitiesProp;
   },
   mounted() {},
-  setup() {
-    const { rules } = useCardsRules();
-
-    return { cardRules: rules };
-  },
   methods: {
     close() {
       this.$emit("close");

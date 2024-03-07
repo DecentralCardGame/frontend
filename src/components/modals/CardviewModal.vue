@@ -9,8 +9,8 @@
     >
       <div>
         <p
-          class="text-center max-w-xs pb-8 mx-auto"
           v-if="state.card.FlavourText"
+          class="text-center max-w-xs pb-8 mx-auto"
         >
           <i>"{{ state.card.FlavourText }}"</i>
         </p>
@@ -23,46 +23,64 @@
         </div>
       </div>
       <div>
-        <p class="font-bold text-2xl">Advanced Card Information</p>
-        <br />
+        <p class="font-bold text-2xl">
+          Advanced Card Information
+        </p>
+        <br>
         <p>
-          Card id: {{ id }}<br />
-          Votepool: {{ state.card.votePool.normalize().pretty() }} <br />
-          Status: {{ state.card.status }} <br />
-          Notes: {{ state.card.notes }} <br />
+          Card id: {{ id }}<br>
+          Votepool: {{ state.card.votePool.normalize().pretty() }} <br>
+          Status: {{ state.card.status }} <br>
+          Notes: {{ state.card.notes }} <br>
           Owner:
           <CompactAddressComponent :addr="state.card.owner" />
-          <br />
+          <br>
           Artist:
           <CompactAddressComponent :addr="state.card.artist" />
         </p>
-        <br />
-        <p class="font-bold text-2xl">Latest Voting Results</p>
-        <p>
-          Inappropriate Votes: {{ state.card.inappropriateVotes }} <br />
-          Underpowered Votes: {{ state.card.underpoweredVotes }} <br />
-          Overpowered Votes: {{ state.card.overpoweredVotes }} <br />
-          Fair Enough Votes: {{ state.card.fairEnoughVotes }} <br />
-          Nerflevel: {{ state.card.nerflevel }} <br />
+        <br>
+        <p class="font-bold text-2xl">
+          Latest Voting Results
         </p>
-        <br />
+        <p>
+          Inappropriate Votes: {{ state.card.inappropriateVotes }} <br>
+          Underpowered Votes: {{ state.card.underpoweredVotes }} <br>
+          Overpowered Votes: {{ state.card.overpoweredVotes }} <br>
+          Fair Enough Votes: {{ state.card.fairEnoughVotes }} <br>
+          Nerflevel: {{ state.card.nerflevel }} <br>
+        </p>
+        <br>
       </div>
       <div>
-        <p class="font-bold text-2xl">Used Keywords</p>
-        <br />
+        <p class="font-bold text-2xl">
+          Used Keywords
+        </p>
+        <br>
         <KeywordComponent :keywords="state.card.Keywords" />
       </div>
     </div>
     <div
       class="flex flex-col lg:flex-row justify-center lg:justify-end space-y-6 lg:space-x-6 lg:space-y-0"
     >
-      <BaseCCButton :type="ButtonType.RED" v-if="isArtist" @click="edit()">
+      <BaseCCButton
+        v-if="isArtist"
+        :type="ButtonType.RED"
+        @click="edit()"
+      >
         Edit artwork
       </BaseCCButton>
-      <BaseCCButton :type="ButtonType.RED" v-if="isOwner" @click="edit()">
+      <BaseCCButton
+        v-if="isOwner"
+        :type="ButtonType.RED"
+        @click="edit()"
+      >
         Edit card
       </BaseCCButton>
-      <BaseCCButton v-if="isOwner" :type="ButtonType.RED" @click="showModal()">
+      <BaseCCButton
+        v-if="isOwner"
+        :type="ButtonType.RED"
+        @click="showModal()"
+      >
         Transfer card
       </BaseCCButton>
     </div>

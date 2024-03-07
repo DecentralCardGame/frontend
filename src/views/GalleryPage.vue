@@ -5,20 +5,23 @@
     >
       <div class="space-y-6">
         <GalleryFilterImageChooser :options="classOptions" />
-        <Checkbox v-model="galleryFilters.multiClass"
-          >Show multi-class only
+        <Checkbox v-model="galleryFilters.multiClass">
+          Show multi-class only
         </Checkbox>
         <GalleryFilterImageChooser :options="typeOptions" />
         <div class="">
           <p>Search for</p>
           <div class="space-y-4">
-            <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
-            <br />
+            <CCInput
+              v-model="galleryFilters.nameContains"
+              placeholder="name"
+            />
+            <br>
             <CCInput
               v-model="galleryFilters.notesContains"
               placeholder="notes"
             />
-            <br />
+            <br>
             <CCInput
               v-model="galleryFilters.keywordsContains"
               placeholder="keywords"
@@ -36,7 +39,8 @@
           @update:model-value="
             (v: boolean) => (galleryFilters.owner = v ? address : '')
           "
-          >My Cards
+        >
+          My Cards
         </Checkbox>
         <div>
           Rarity:
@@ -64,9 +68,13 @@
           <p class="text-xl my-auto max-md:hidden">
             {{ cardList.length }} Results
           </p>
-          <p class="text-5xl text-center">Gallery</p>
+          <p class="text-5xl text-center">
+            Gallery
+          </p>
           <div class="flex space-x-4">
-            <p class="text-xl my-auto max-md:hidden">Sort by</p>
+            <p class="text-xl my-auto max-md:hidden">
+              Sort by
+            </p>
             <Dropdown
               v-model="galleryFilters.sortBy"
               class="my-auto"
@@ -74,10 +82,13 @@
               :options="['Name', 'CastingCost', 'Id']"
               :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
             />
-            <SortDirectionButton class="my-auto" v-model="revertSort" />
+            <SortDirectionButton
+              v-model="revertSort"
+              class="my-auto"
+            />
           </div>
         </div>
-        <div class="mt-8 h-1 rounded w-full bg-white"></div>
+        <div class="mt-8 h-1 rounded w-full bg-white" />
       </div>
 
       <GalleryComponent
@@ -90,8 +101,8 @@
   </div>
   <CardviewModal
     v-if="isCardViewModalVisible"
-    @close="isCardViewModalVisible = false"
     :id="cardViewModalCardId"
+    @close="isCardViewModalVisible = false"
   />
 </template>
 

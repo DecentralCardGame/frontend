@@ -1,8 +1,11 @@
 <template>
   <div>
-    <a :href="to" class="mx-auto">
+    <a
+      :href="to"
+      class="mx-auto"
+    >
       <BaseCCButton :type="type">
-        <slot></slot>
+        <slot />
       </BaseCCButton>
     </a>
   </div>

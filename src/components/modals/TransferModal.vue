@@ -82,6 +82,12 @@ export default {
   name: 'TransferModal',
   props: {
   },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    const { address } = useAddress()
+
+    return { loggedIn, address }
+  },
   data() {
     return {
       amount: 0,
@@ -95,12 +101,6 @@ export default {
     loggedIn() {
       this.init()
     }
-  },
-  setup() {
-    const { loggedIn } = useLoggedIn()
-    const { address } = useAddress()
-
-    return { loggedIn, address }
   },
   created() {
   },

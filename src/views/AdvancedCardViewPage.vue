@@ -1,6 +1,9 @@
 <template>
-  <div class="bg-black text-white flex lg:h-[80vh] p-16 lg:p-8"></div>
-  <CardviewModal :id="state.id" @close="$router.back()"></CardviewModal>
+  <div class="bg-black text-white flex lg:h-[80vh] p-16 lg:p-8" />
+  <CardviewModal
+    :id="state.id"
+    @close="$router.back()"
+  />
 </template>
 
 <script setup lang="ts">

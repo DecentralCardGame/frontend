@@ -7,7 +7,11 @@
       'h-' + props.size,
     ]"
   >
-    <img :src="src" class="-pt-[10%] w-[100%] object-contain" :alt="alt" />
+    <img
+      :src="src"
+      class="-pt-[10%] w-[100%] object-contain"
+      :alt="alt"
+    >
   </div>
 </template>
 <script setup lang="ts">

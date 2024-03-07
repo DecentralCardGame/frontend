@@ -1,19 +1,21 @@
 <template>
   <div class="bg-black text-white font-normal font-['Roboto']">
-
     <div class="pt-10 text-center text-base font-bold underline uppercase space-y-2">
       <button @click="scrollup">
         <div class="flex justify-evenly">
-          <img :src="triangle" alt="navigation triangle" class="w-3"/>
+          <img
+            :src="triangle"
+            alt="navigation triangle"
+            class="w-3"
+          >
         </div>
         <div class="flex justify-evenly">
-           GO BACK TO TOP
+          GO BACK TO TOP
         </div>
-       </button>
+      </button>
     </div>
 
     <div class="p-12 flex flex-wrap flex-row text-white text-base justify-evenly">
-
       <div class="p-5 flex-row space-y-5">
         <div class="text-3xl font-bold">
           Pages
@@ -44,9 +46,9 @@
           </router-link>
         </div>
         <div>
-            <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
-              Whitepaper
-            </a>
+          <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
+            Whitepaper
+          </a>
         </div>
         <div>
           <router-link :to="{ name: 'Imprint' }">
@@ -56,7 +58,6 @@
       </div>
 
       <div class="p-5 flex flex-col space-y-5">
-
         <div class="text-3xl font-bold">
           Social
         </div>
@@ -86,7 +87,7 @@
           </div>
         </a>
 
-      <a href="https://twitter.com/CrowdControlNet">
+        <a href="https://twitter.com/CrowdControlNet">
           <div class="flex flex-row space-x-2 items-center">
             <div>
               <picture>
@@ -156,9 +157,7 @@
             </div>
           </div>
         </a>
-
       </div>
-
     </div>
   </div>
 </template>

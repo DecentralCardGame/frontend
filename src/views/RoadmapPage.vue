@@ -3,7 +3,9 @@
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class="qbox--text">Q1 2019</p>
+          <p class="qbox--text">
+            Q1 2019
+          </p>
         </div>
         <h2>1. The Beginning</h2>
         <div>
@@ -26,7 +28,9 @@
     <div class="dual--column--flex--wrap">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class="qbox--text">Q1 2021</p>
+          <p class="qbox--text">
+            Q1 2021
+          </p>
         </div>
         <h2>2. The Crowd gets angry</h2>
         <div>
@@ -49,7 +53,9 @@
     <div class="dual--column--flex--wrap reverse-column">
       <div class="dual--column--text">
         <div class="qbox--container">
-          <p class="qbox--text">Q1 2023</p>
+          <p class="qbox--text">
+            Q1 2023
+          </p>
         </div>
         <h2>3. The Revolution starts</h2>
         <div>
@@ -64,7 +70,7 @@
           />
         </div>
         <p class="text--big">
-          Contribute: Play the beta or join our team <br />
+          Contribute: Play the beta or join our team <br>
           Rewarded: Succesful attempts to break our Game Client or Tokenomics.
         </p>
       </div>

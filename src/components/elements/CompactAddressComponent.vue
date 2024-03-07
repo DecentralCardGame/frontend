@@ -2,7 +2,8 @@
   <router-link
     :to="{ name: 'UserView', params: { id: safeAddr } }"
     class="hover:underline relative group"
-    >{{ shortenedAddr }}
+  >
+    {{ shortenedAddr }}
     <div
       class="absolute z-10 invisible group-hover:visible bg-black rounded p-2"
     >

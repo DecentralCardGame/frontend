@@ -2,15 +2,15 @@
   <div>
     <button
       v-for="option in options"
-      class="text-white font-bold uppercase px-2"
       :key="option.label"
+      class="text-white font-bold uppercase px-2"
       @click="change(option.name)"
     >
       <img
         :src="galleryFilters[option.name] ? option.active : option.inactive"
         class="w-12"
         :alt="option.name + ' classbutton'"
-      />
+      >
       {{ option.label }}
     </button>
   </div>

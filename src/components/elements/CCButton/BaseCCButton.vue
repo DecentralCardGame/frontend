@@ -1,7 +1,6 @@
 <template>
   <div>
     <button
-      @click="emit('click')"
       :class="[
         'w-80',
         'h-14',
@@ -22,8 +21,9 @@
         'hover:border-black',
         'hover:border-4',
       ]"
+      @click="emit('click')"
     >
-      <slot></slot>
+      <slot />
     </button>
   </div>
 </template>

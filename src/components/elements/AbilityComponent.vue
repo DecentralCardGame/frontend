@@ -1,18 +1,27 @@
 <template>
   <div class="flex flex-col">
-    <div id="AbilityComponentInside" class="flex flex-row">
+    <div
+      id="AbilityComponentInside"
+      class="flex flex-row"
+    >
       <div
-        id="interaction"
         v-for="(entry, index) in ability.interaction"
+        id="interaction"
         :key="index"
         class="text-[24px] flex flex-row justify-start items-center"
       >
-        <div id="pre" class="whitespace-nowrap font-normal">
+        <div
+          id="pre"
+          class="whitespace-nowrap font-normal"
+        >
           {{ entry.pre }}
         </div>
 
         <!-- pick one entry of an enum via dropdown -->
-        <div id="enum dropdown" v-if="entry.btn.type === 'enum'">
+        <div
+          v-if="entry.btn.type === 'enum'"
+          id="enum dropdown"
+        >
           <Dropdown
             v-model="entry.btn.label"
             :options="enumOptions(entry)"
@@ -21,7 +30,10 @@
         </div>
 
         <!-- pick an int from a dropdown case -->
-        <div id="int" v-else-if="entry.btn.type === 'int'">
+        <div
+          v-else-if="entry.btn.type === 'int'"
+          id="int"
+        >
           <Dropdown
             v-model="entry.btn.label"
             :options="intRange(entry)"
@@ -30,7 +42,10 @@
         </div>
 
         <!-- pick an int or a variable (X) from dropdown case -->
-        <div id="intX" v-else-if="entry.btn.type === 'intX'">
+        <div
+          v-else-if="entry.btn.type === 'intX'"
+          id="intX"
+        >
           <Dropdown
             v-model="entry.btn.label"
             :options="intXRange(entry)"
@@ -65,7 +80,10 @@
         X
       </div>
     </div>
-    <div class="" v-if="isAbilityModalVisible">
+    <div
+      v-if="isAbilityModalVisible"
+      class=""
+    >
       <AbilityModal
         :dialog-prop="dialog"
         :ability-prop="ability"
@@ -114,6 +132,11 @@ export default {
       },
     },
   },
+  setup() {
+    const { rules } = useCardsRules();
+
+    return { cardRules: rules };
+  },
   data() {
     return {
       ability: {},
@@ -125,11 +148,6 @@ export default {
   created() {
     this.ability = this.abilityProp;
     this.dialog = this.dialogProp;
-  },
-  setup() {
-    const { rules } = useCardsRules();
-
-    return { cardRules: rules };
   },
   methods: {
     intRange(entry) {

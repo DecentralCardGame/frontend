@@ -1,8 +1,11 @@
 <template>
   <div>
-    <router-link :to="to" class="mx-auto">
+    <router-link
+      :to="to"
+      class="mx-auto"
+    >
       <BaseCCButton :type="type">
-        <slot></slot>
+        <slot />
       </BaseCCButton>
     </router-link>
   </div>

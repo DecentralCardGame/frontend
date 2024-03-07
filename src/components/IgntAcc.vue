@@ -44,13 +44,20 @@
           class="flex items-center flex-col my-3"
         >
           <IgntKeplrIcon class="text-[48px]" />
-          <h3 v-if="isKeplrAvailable" class="text-2xl font-bold">
+          <h3
+            v-if="isKeplrAvailable"
+            class="text-2xl font-bold"
+          >
             Connect your wallet
           </h3>
-          <h3 v-else>Install Keplr</h3>
+          <h3 v-else>
+            Install Keplr
+          </h3>
         </div>
         <div v-else-if="state.modalPage === 'connecting'">
-          <div class="description-grey">Opening Keplr</div>
+          <div class="description-grey">
+            Opening Keplr
+          </div>
           <h3>Connecting</h3>
         </div>
         <div v-else-if="state.modalPage === 'error'">
@@ -82,9 +89,14 @@
             >
               Cancel
             </IgntButton>
-            <div class="external-link mt-8">Having trouble opening Keplr?</div>
+            <div class="external-link mt-8">
+              Having trouble opening Keplr?
+            </div>
           </div>
-          <div v-else-if="state.modalPage === 'error'" style="padding: 20px 0">
+          <div
+            v-else-if="state.modalPage === 'error'"
+            style="padding: 20px 0"
+          >
             <div class="external-link">
               <span>Keplr troubleshooting</span>
               <IgntExternalArrowIcon style="margin-left: 0.5rem" />
@@ -92,8 +104,14 @@
           </div>
         </div>
       </template>
-      <template v-if="isKeplrAvailable" #footer>
-        <div v-if="state.modalPage === 'connect'" class="my-3">
+      <template
+        v-if="isKeplrAvailable"
+        #footer
+      >
+        <div
+          v-if="state.modalPage === 'connect'"
+          class="my-3"
+        >
           <IgntButton
             aria-label="Connect Keplr"
             type="primary"

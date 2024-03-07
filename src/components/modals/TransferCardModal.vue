@@ -64,16 +64,16 @@ export default {
       default: ""
     }
   },
+  setup() {
+    const { transferCard } = useTx()
+
+    return { transferCard }
+  },
   data() {
     return {
       recipient: "",
       warningText: "",
     }
-  },
-  setup() {
-    const { transferCard } = useTx()
-
-    return { transferCard }
   },
   methods: {
     close() {

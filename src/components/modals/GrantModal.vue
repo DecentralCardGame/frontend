@@ -109,6 +109,14 @@ export default {
   name: 'GrantModal',
   props: {
   },
+  setup() {
+    const { loggedIn } = useLoggedIn()
+    const { address } = useAddress()
+    const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
+    const { grantAuthz, revokeAuthz } = useTx()
+
+    return { loggedIn, address, queryGrants, queryGranterGrants, queryGranteeGrants, grantAuthz, revokeAuthz }
+  },
   data() {
     return {
       options: [
@@ -124,14 +132,6 @@ export default {
       show_extra: new Array<boolean>(),
       saved_grantee: "",
     }
-  },
-  setup() {
-    const { loggedIn } = useLoggedIn()
-    const { address } = useAddress()
-    const { queryGrants, queryGranterGrants, queryGranteeGrants } = useQuery()
-    const { grantAuthz, revokeAuthz } = useTx()
-
-    return { loggedIn, address, queryGrants, queryGranterGrants, queryGranteeGrants, grantAuthz, revokeAuthz }
   },
   watch: {
     loggedIn() {

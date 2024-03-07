@@ -1,17 +1,22 @@
 <template>
   <div>
     <header class="flex text-white text-4xl my-2 font-bold">
-      <p class="grow my-auto">{{ heading }}</p>
-      <button @click="emit('close')" class="group">
+      <p class="grow my-auto">
+        {{ heading }}
+      </p>
+      <button
+        class="group"
+        @click="emit('close')"
+      >
         <img
           :src="closeImg"
           alt="close"
           class="h-12 group-hover:drop-shadow-md"
-        />
+        >
       </button>
     </header>
     <div class="bg-neutral-800 p-8">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
