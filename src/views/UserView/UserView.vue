@@ -26,13 +26,13 @@
             :type="ButtonType.YELLOW"
             v-if="state.userIsUser"
             @click="
-              state.user.CouncilStatus == 'unavailable'
+              state.user.CouncilStatus == CouncilStatus.unavailable
                 ? register()
                 : deRegister()
             "
           >
             {{
-              state.user.CouncilStatus == "unavailable"
+              state.user.CouncilStatus == CouncilStatus.unavailable
                 ? "Register for"
                 : "Deregister from"
             }}
@@ -83,7 +83,12 @@
                   }}{{ arr.length == 1 ? "" : "s" }}</b
                 >
               </p>
-              <RouterCCButton :type="ButtonType.YELLOW"
+              <RouterCCButton
+                :type="ButtonType.YELLOW"
+                :to="{
+                  name: 'Gallery',
+                  query: { owner: address, sortBy: 'Name' },
+                }"
                 >View in gallery
               </RouterCCButton>
             </div>
@@ -151,6 +156,7 @@ import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
@@ -247,7 +253,7 @@ const getMatches = () => {
       res.matches.forEach((value: Match, idx: number) => {
         state.matches[res.matchesList[idx]] = value;
       });
-    }
+    },
   );
 };
 

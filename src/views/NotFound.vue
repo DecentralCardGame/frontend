@@ -26,8 +26,8 @@ export default {
   name: "NotFound",
   computed: {
     ButtonType() {
-      return ButtonType
-    }
+      return ButtonType;
+    },
   },
   components: { LinkCCButton },
   data() {

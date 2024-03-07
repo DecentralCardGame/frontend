@@ -50,19 +50,11 @@ export default function useDecentralCardGameCardchainCardchain() {
     }, options);
   }
   
-  const QueryQVotableCards = (address: string,  options: any) => {
-    const key = { type: 'QueryQVotableCards',  address };    
+  const QueryQCards = (query: any, options: any) => {
+    const key = { type: 'QueryQCards', query };    
     return useQuery([key], () => {
-      const { address } = key
-      return  client.DecentralCardGameCardchainCardchain.query.queryQVotableCards(address).then( res => res.data );
-    }, options);
-  }
-  
-  const QueryQCards = (status: string, query: any, options: any) => {
-    const key = { type: 'QueryQCards',  status, query };    
-    return useQuery([key], () => {
-      const { status,query } = key
-      return  client.DecentralCardGameCardchainCardchain.query.queryQCards(status, query ?? undefined).then( res => res.data );
+      const {query } = key
+      return  client.DecentralCardGameCardchainCardchain.query.queryQCards(query ?? undefined).then( res => res.data );
     }, options);
   }
   
@@ -74,11 +66,11 @@ export default function useDecentralCardGameCardchainCardchain() {
     }, options);
   }
   
-  const QueryQCollection = (collectionId: string,  options: any) => {
-    const key = { type: 'QueryQCollection',  collectionId };    
+  const QueryQSet = (setId: string,  options: any) => {
+    const key = { type: 'QueryQSet',  setId };    
     return useQuery([key], () => {
-      const { collectionId } = key
-      return  client.DecentralCardGameCardchainCardchain.query.queryQCollection(collectionId).then( res => res.data );
+      const { setId } = key
+      return  client.DecentralCardGameCardchainCardchain.query.queryQSet(setId).then( res => res.data );
     }, options);
   }
   
@@ -122,22 +114,30 @@ export default function useDecentralCardGameCardchainCardchain() {
     }, options);
   }
   
-  const QueryQCollections = (status: string, ignoreStatus: string, query: any, options: any) => {
-    const key = { type: 'QueryQCollections',  status,  ignoreStatus, query };    
+  const QueryQSets = (status: string, ignoreStatus: string, query: any, options: any) => {
+    const key = { type: 'QueryQSets',  status,  ignoreStatus, query };    
     return useQuery([key], () => {
       const { status,  ignoreStatus,query } = key
-      return  client.DecentralCardGameCardchainCardchain.query.queryQCollections(status, ignoreStatus, query ?? undefined).then( res => res.data );
+      return  client.DecentralCardGameCardchainCardchain.query.queryQSets(status, ignoreStatus, query ?? undefined).then( res => res.data );
     }, options);
   }
   
-  const QueryRarityDistribution = (collectionId: string,  options: any) => {
-    const key = { type: 'QueryRarityDistribution',  collectionId };    
+  const QueryRarityDistribution = (setId: string,  options: any) => {
+    const key = { type: 'QueryRarityDistribution',  setId };    
     return useQuery([key], () => {
-      const { collectionId } = key
-      return  client.DecentralCardGameCardchainCardchain.query.queryRarityDistribution(collectionId).then( res => res.data );
+      const { setId } = key
+      return  client.DecentralCardGameCardchainCardchain.query.queryRarityDistribution(setId).then( res => res.data );
     }, options);
   }
   
-  return {QueryParams,QueryQCard,QueryQCardContent,QueryQUser,QueryQCardchainInfo,QueryQVotingResults,QueryQVotableCards,QueryQCards,QueryQMatch,QueryQCollection,QueryQSellOffer,QueryQCouncil,QueryQMatches,QueryQSellOffers,QueryQServer,QueryQCollections,QueryRarityDistribution,
+  const QueryQCardContents = (cardIds: string,  options: any) => {
+    const key = { type: 'QueryQCardContents',  cardIds };    
+    return useQuery([key], () => {
+      const { cardIds } = key
+      return  client.DecentralCardGameCardchainCardchain.query.queryQCardContents(cardIds).then( res => res.data );
+    }, options);
+  }
+  
+  return {QueryParams,QueryQCard,QueryQCardContent,QueryQUser,QueryQCardchainInfo,QueryQVotingResults,QueryQCards,QueryQMatch,QueryQSet,QueryQSellOffer,QueryQCouncil,QueryQMatches,QueryQSellOffers,QueryQServer,QueryQSets,QueryRarityDistribution,QueryQCardContents,
   }
 }

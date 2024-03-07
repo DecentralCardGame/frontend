@@ -3,6 +3,7 @@
     <ModalInner
       :class="['p-10', 'z-100', 'm-auto'].concat(props.class)"
       @close="emit('close')"
+      :heading="heading"
     >
       <slot></slot>
     </ModalInner>
@@ -14,7 +15,7 @@ import ModalInner from "@/components/elements/ModalInner.vue";
 const props = withDefaults(
   defineProps<{
     heading: string;
-    class: string[];
+    class: string[] | string;
   }>(),
   {
     heading: "Lorem impsum dolor",

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a :href="props.to" class="mx-auto">
-      <BaseCCButton :type="props.type">
+    <a :href="to" class="mx-auto">
+      <BaseCCButton :type="type">
         <slot></slot>
       </BaseCCButton>
     </a>

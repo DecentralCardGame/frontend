@@ -53,6 +53,13 @@ export default function useIbcCoreConnectionV1() {
     }, options);
   }
   
-  return {QueryConnection,QueryConnections,QueryClientConnections,QueryConnectionClientState,QueryConnectionConsensusState,
+  const QueryConnectionParams = ( options: any) => {
+    const key = { type: 'QueryConnectionParams',  };    
+    return useQuery([key], () => {
+      return  client.IbcCoreConnectionV1.query.queryConnectionParams().then( res => res.data );
+    }, options);
+  }
+  
+  return {QueryConnection,QueryConnections,QueryClientConnections,QueryConnectionClientState,QueryConnectionConsensusState,QueryConnectionParams,
   }
 }

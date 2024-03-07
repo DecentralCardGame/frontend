@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link :to="props.to" class="mx-auto">
-      <BaseCCButton :type="props.type">
+    <router-link :to="to" class="mx-auto">
+      <BaseCCButton :type="type">
         <slot></slot>
       </BaseCCButton>
     </router-link>

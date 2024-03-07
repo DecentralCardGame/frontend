@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 import {
   ButtonType,
   getButtonColor,
@@ -43,6 +43,7 @@ import {
 
 const model = defineModel<T>();
 const isOpen = ref(false);
+const emit = defineEmits(['change']);
 
 const props = withDefaults(
   defineProps<{
@@ -60,7 +61,9 @@ const props = withDefaults(
 );
 
 const displayButton = () => {
-  return model.value ? props.displayFn(model.value) : props.initial;
+  return typeof model.value !== "undefined"
+    ? props.displayFn(model.value)
+    : props.initial;
 };
 
 const toggleDropdown = () => {
@@ -69,5 +72,7 @@ const toggleDropdown = () => {
 
 const selectOption = (option: T) => {
   model.value = option;
+
+  emit('change', option);
 };
 </script>
