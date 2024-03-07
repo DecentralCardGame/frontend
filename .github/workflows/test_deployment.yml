@@ -1,3 +1,5 @@
+name: Test CD
+
 on:
   pull_request:
     types: [opened, labeled, unlabeled, synchronize]
