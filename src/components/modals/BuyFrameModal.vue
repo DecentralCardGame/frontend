@@ -4,7 +4,7 @@
       <div
         aria-describedby="modalDescription"
         aria-labelledby="modalTitle"
-        class="modal"
+        class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
         <header id="modalTitle" class="modal__header">
@@ -12,7 +12,7 @@
             Card Frame Auction
             <button
               aria-label="Close modal"
-              class="btn--close"
+              class="px-1 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-1 border-opacity-80"
               type="button"
               @click="close"
             >
@@ -53,6 +53,7 @@
                     v-model="state.currentBid"
                     :placeholder="[[state.currentBid]]"
                     size="3"
+                    class="text-black"
                     type="text"
                     @keypress="isNumber($event)"
                   />
@@ -62,11 +63,11 @@
             </table>
           </slot>
         </section>
-        <footer class="modal__footer">
+        <footer class="">
           <slot name="footer" />
           <button
             aria-label="Close modal"
-            class="btn--default"
+            class="px-1 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-1 border-opacity-80"
             type="button"
             @click="buyCardFrame"
           >

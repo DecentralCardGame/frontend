@@ -2,11 +2,11 @@
   <div class="bg-pink-950 flex flex-col items-center">
     <div> 
       
-      <div class="p-8 w-full text-white text-lg">
+      <div class="p-4 w-full text-white text-lg">
         Card Creator
       </div>
       <div
-        class="p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
+        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
       >
         <!-- Progress Bar -->
         <div class="w-11/12 h-12 mx-auto">
@@ -64,8 +64,8 @@
 
         <!-- Class Selection -->
         <div v-if="activeStep == 0" class="">
-          <div class="pt-8 p-3 text-xs font-bold">CLASSES</div>
-          <div class="text-xs">Select one or multiple classes for your card.</div>
+          <div class="pt-8 p-3 text-s font-bold">CLASSES</div>
+          <div class="text-s">Select one or multiple classes for your card.</div>
 
           <div class="flex justify-between">
             <div
@@ -78,7 +78,7 @@
               "
             >
               <img class="h-32" :src="classIcons[item]" />
-              <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
+              <div class="py-5 text-s font-bold uppercase">{{ item }}</div>
             </div>
           </div>
           <NavigationButtons />
@@ -86,26 +86,30 @@
 
         <!-- Type Selection -->
         <div v-if="activeStep == 1" class="">
-          <div class="pt-8 p-3 text-xs font-bold">TYPE</div>
-          <div class="text-xs">Select the type of card you want.</div>
+          <div class="pt-8 p-3 text-s font-bold">TYPE</div>
+          <div class="text-s">Select the type of card you want.</div>
 
           <div class="flex justify-between">
             <div
               v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
-              class="p-5"
+              class="py-10"
               @click="model.type = item"
             >
               <img
                 v-show="item !== model.type"
-                class="scale-[1]"
+                class="h-32"
                 :src="typeIcons[item].Off"
               />
               <img
                 v-show="item == model.type"
-                class="scale-[1]"
+                class="h-32"
                 :src="typeIcons[item].On"
               />
-              <div class="p-5 text-xs font-bold uppercase">{{ item }}</div>
+              <div 
+                :class="{ underline: item == model.type }"
+                class="py-5 text-s font-bold uppercase">
+                  {{ item }}
+                </div>
             </div>
           </div>
           <NavigationButtons />
@@ -312,13 +316,14 @@
                   initial="Select Special Cost"
                   :options="getSpecialCostRange()"
                   :displayFn="specialCostLabels"
-                  @change="setAdditionalCost($event)"
+                  @update:model-value="setAdditionalCost($event)"
                   class="m-2"
                 />
                 <span v-if="model.AdditionalCost.DiscardCost">
                   <Dropdown
                     v-model="model.AdditionalCost.DiscardCost.Amount"
                     :options="getGenericCostRange('DiscardCost')"
+                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
                   />
                   cards from your hand.
@@ -327,6 +332,7 @@
                   <Dropdown
                     v-model="model.AdditionalCost.SacrificeCost.Amount"
                     :options="getGenericCostRange('SacrificeCost')"
+                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
                   />
                   Entitites.
@@ -335,6 +341,7 @@
                   <Dropdown
                     v-model="model.AdditionalCost.VoidCost.Amount"
                     :options="getGenericCostRange('VoidCost')"
+                    @update:model-value="updateAdditionalCostText"
                     class="m-2"
                   />
                   cards from your graveyard.
@@ -385,7 +392,7 @@
                   initial="Select 1st"
                   v-model="model.Tags[0]"
                   :options="getTags(0)"
-                  @change="updateTags"
+                  @update:model-value="updateTags"
                   class="m-2"
                 />
                 <Dropdown
@@ -394,7 +401,7 @@
                   v-model="model.Tags[1]"
                   :options="getTags(1)"
                   :displayFn="(x) => (x == '' ? '<remove>' : x)"
-                  @change="updateTags"
+                  @update:model-value="updateTags"
                   class="m-2"
                 />
               </div>
@@ -538,41 +545,61 @@
               <div class="py-3 text-s font-bold">SUMMARY</div>
               <div class="py-3 text-s">"{{ model.FlavourText }}"</div>
 
-              <BaseCCButton @click="resetCard()"> Discard Changes</BaseCCButton>
+              <BaseCCButton
+                :type="ButtonType.TEAL" 
+                class="m-2"
+                @click="resetCard()"
+              >
+                Discard {{ this.mode == Mode.CREATE ? "Draft" : "Changes" }}
+              </BaseCCButton>
 
-              <BaseCCButton @click="resetCard()"> Discard Draft</BaseCCButton>
+              <!-- TODO CHECK IF THIS IS USED BY ANYONE -->
+              <div v-if="mode == Mode.EDIT && isEmpty(abilities)">
+                Clear Abilities
+                <div>
+                  <input
+                    v-model="clearAbilities"
+                    type="checkbox"
+                  >
+                </div>
+              </div>
+
+              <!-- Buy Frame Modal -->
+              <BaseCCButton
+                v-if="this.mode == Mode.CREATE"
+                :type="ButtonType.TEAL" 
+                class="m-2"
+                @click="showBuyFrameModal"
+              >
+                Buy a Card Frame
+              </BaseCCButton>
+
+              <div class="ability-modal-container">
+                <BuyFrameModal
+                  v-if="isBuyFrameModalVisible"
+                  @close="closeBuyFrameModal"
+                />
+              </div>
+
             </div>
             <div class="pl-10 flex flex-row space-x-1">
               <NavigationButtons />
-              <BaseCCButton :type="ButtonType.RED" @click="saveSubmit()">
-                Mint Card
+
+              <BaseCCButton 
+                :type="ButtonType.RED" 
+                @click="saveSubmit()"
+              >
+                {{ this.mode == Mode.CREATE ? "Mint" : "Update your " }} Card
               </BaseCCButton>
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div> 
-  <!--
-
-
-
-          <div
-            v-if="activeStep == 4 && mode == Mode.EDIT && !abilities"
-            class="creator-input-container"
-          >
-            <span class="creator-text">
-              Clear Abilities
-            </span>
-            <div>
-              <input
-                v-model="clearAbilities"
-                type="checkbox"
-              >
-            </div>
-          </div>
-
-
+  <!-- TODO IMPLEMENT PROPER ARTIST MODE
 
           <div
             v-if="!artistMode"
@@ -592,50 +619,8 @@
             >
               Next Step >
             </button>
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="showBuyFrameModal"
-            >
-              Buy a Card Frame
-            </button>
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="saveSubmit()"
-            >
-              Publish Your Card
-            </button>
 
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.EDIT"
-              @click="saveSubmit()"
-            >
-              Update Your Card
-            </button>
-
-            <button
-              v-if="activeStep == 4 && this.mode == Mode.EDIT"
-              @click="resetCard()"
-            >
-              Discard Changes
-            </button>
-
-            <button
-              v-show="activeStep == 4 && this.mode == Mode.CREATE"
-              @click="resetCard()"
-            >
-              Discard Draft
-            </button>
           </div>
-        </div>
-      </div>
-      <div class="ability-modal-container">
-        <BuyFrameModal
-          v-if="isBuyFrameModalVisible"
-          @close="closeBuyFrameModal"
-        />
-      </div>
-    </div>
-  </div>
   -->
 </template>
 
@@ -710,9 +695,9 @@ export default {
   data() {
     return {
       progressBar: [
-        "done",
-        "done",
         "active",
+        "open",
+        "open",
         "open",
         "open",
         "open",
@@ -723,7 +708,6 @@ export default {
       dragActive: false,
       isAbilityModalVisible: false,
       isBuyFrameModalVisible: false,
-      isAdditionalCostVisible: false,
       clearAbilities: false,
       activeStep: 0,
       ability: {},
@@ -847,6 +831,9 @@ export default {
     }
   },
   methods: {
+    isEmpty (a) {
+      return R.isEmpty(a)
+    },
     getHQDelayRange() {
       return R.range(
         this.cardRules.Card.children[this.getRulesType()].children.Delay.min ||
@@ -868,11 +855,6 @@ export default {
           .AdditionalCost.children
       );
       return specialCosts;
-    },
-    toggleAdditionalCost() {
-      if (!this.isAdditionalCostVisible) {
-        this.model.AdditionalCost = {};
-      }
     },
     setAdditionalCost(costType) {
       this.model.AdditionalCost = {};
@@ -1319,34 +1301,29 @@ export default {
           return;
         }
       }
-
       // check if the old Keywords and RulesTexts should be restored
-      let checkZeroAmount = () => {
+      let checkAdditionalCost = () => {
         return (
           (this.model.AdditionalCost.SacrificeCost &&
-            this.model.AdditionalCost.SacrificeCost.Amount == 0) ||
+            this.model.AdditionalCost.SacrificeCost.Amount > 0) ||
           (this.model.AdditionalCost.DiscardCost &&
-            this.model.AdditionalCost.DiscardCost.Amount == 0) ||
+            this.model.AdditionalCost.DiscardCost.Amount > 0) ||
           (this.model.AdditionalCost.VoidCost &&
-            this.model.AdditionalCost.VoidCost.Amount == 0)
-        );
-      };
+            this.model.AdditionalCost.VoidCost.Amount > 0)
+        )
+      }
       if (
-        this.mode == Mode.EDIT &&
-        !this.clearAbilities &&
-        R.isEmpty(this.abilities)
+        this.mode == Mode.EDIT
       ) {
         newModel.Keywords = this.cardCreatorEditCard.Keywords;
         newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
-
-        if (this.isAdditionalCostVisible) {
-          if (checkZeroAmount()) {
+          if (!checkAdditionalCost()) {
             this.model.AdditionalCost = {};
           }
           this.updateAdditionalCostText();
-        }
+        
       } else {
-        if (checkZeroAmount()) {
+        if (!checkAdditionalCost()) {
           this.model.AdditionalCost = {};
         }
         this.updateRulesTexts();

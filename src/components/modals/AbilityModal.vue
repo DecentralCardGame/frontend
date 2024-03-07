@@ -12,7 +12,7 @@
             {{ dialog.title }}
             <span
               aria-label="Close modal"
-              class=""
+              class="px-1 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-1 border-opacity-80"
               type="button"
               @click="close"
             >
