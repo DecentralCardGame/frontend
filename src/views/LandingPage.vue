@@ -91,7 +91,7 @@
         </div>
       </div>
     </div>
-    <FadeTeaser>
+    <FadeTeaserBig>
       <HeadingContentComponent heading-class="text-teal-500">
         <template v-slot:heading>Be part of the game</template>
         <template v-slot:content>
@@ -108,7 +108,7 @@
           />
         </template>
       </HeadingContentComponent>
-    </FadeTeaser>
+    </FadeTeaserBig>
   </div>
 </template>
 
@@ -126,10 +126,10 @@ import coinliveLogo from "@/assets/figma/PresentationLogos/coinlive.png";
 import hackatomLogo from "@/assets/figma/PresentationLogos/hackatom.png";
 import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
-import FadeTeaser from "@/components/elements/Teaser/FadeTeaser.vue";
 import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
+import FadeTeaserBig from "@/components/elements/Teaser/FadeTeaserBig.vue";
 
 type CardBack = {
   cardBack: string;

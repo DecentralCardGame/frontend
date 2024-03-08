@@ -1,25 +1,24 @@
 <template>
-  <div class="relative h-[50rem] xl:h-[80rem] overflow-hidden">
+  <div class="relative overflow-hidden">
     <img
       alt="worm bg"
-      class="absolute left-[-15rem] md:left-[-10rem] h-[100%]"
+      class="absolute h-[100%]"
+      :class="picClassLeft"
       :src="voidWormBg"
     />
     <img
       alt="priest bg"
-      class="absolute right-[-15rem] md:right-[-10rem] h-[100%] overflow-hidden"
+      class="absolute h-[100%] overflow-hidden"
+      :class="picClassRight"
       :src="healingPriestBg"
     />
-    <div
-      class="h-[100%] w-[100%] absolute top-0 left-0 right-0 z-30 flex justify-center"
-    >
+    <div class="h-full w-full absolute z-30 flex justify-center">
       <div class="bg-gradient-to-l from-white w-[20%] h-[100%]" />
-      <div class="bg-white w-[40%] h-[100%]">
-        <div class="absolute top-20 xl:py-20 left-0 right-0">
-          <slot />
-        </div>
-      </div>
+      <div class="bg-white w-[40%] h-[100%]"></div>
       <div class="bg-gradient-to-r from-white w-[20%] h-[100%]" />
+    </div>
+    <div class="absolute h-full w-full z-30 flex justify-center">
+      <slot />
     </div>
   </div>
 </template>
@@ -27,4 +26,9 @@
 <script setup lang="ts">
 import voidWormBg from "@/assets/figma/VoidWormBG.jpeg";
 import healingPriestBg from "@/assets/figma/HealingPriestBG.png";
+
+const props = defineProps<{
+  picClassLeft: string | string[];
+  picClassRight: string | string[];
+}>();
 </script>

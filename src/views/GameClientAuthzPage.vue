@@ -1,5 +1,5 @@
 <template>
-  <FadeTeaser class="text-center">
+  <FadeTeaserSmall class="text-center">
     <HeadingContentComponent heading-class="text-cc-red">
       <template v-slot:heading>Authenticate Gameclient</template>
       <template v-slot:content>
@@ -32,7 +32,7 @@
         </div>
       </template>
     </HeadingContentComponent>
-  </FadeTeaser>
+  </FadeTeaserSmall>
 </template>
 <script setup lang="ts">
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
@@ -42,7 +42,7 @@ import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive } from "vue";
 import { validAddress } from "@/utils/validation";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import FadeTeaser from "@/components/elements/Teaser/FadeTeaser.vue";
+import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import spinner from "@/assets/spinner.svg";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";

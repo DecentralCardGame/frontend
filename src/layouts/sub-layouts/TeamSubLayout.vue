@@ -1,5 +1,5 @@
 <template>
-  <FadeTeaser>
+  <FadeTeaserSmall>
     <HeadingContentComponent heading-class="text-teal-500">
       <template v-slot:heading>Welcome to the team</template>
       <template v-slot:content>
@@ -9,10 +9,10 @@
         <p>to find out more.</p>
       </template>
     </HeadingContentComponent>
-  </FadeTeaser>
+  </FadeTeaserSmall>
   <slot></slot>
 </template>
 <script setup lang="ts">
-import FadeTeaser from "@/components/elements/Teaser/FadeTeaser.vue";
+import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
 </script>
