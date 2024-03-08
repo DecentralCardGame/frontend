@@ -4,12 +4,12 @@
       alt="worm bg"
       class="absolute left-[-15rem] md:left-[-10rem] h-[100%]"
       :src="voidWormBg"
-    >
+    />
     <img
       alt="priest bg"
       class="absolute right-[-15rem] md:right-[-10rem] h-[100%] overflow-hidden"
       :src="healingPriestBg"
-    >
+    />
     <div
       class="h-[100%] w-[100%] absolute top-0 left-0 right-0 z-30 flex justify-center"
     >

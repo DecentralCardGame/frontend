@@ -3,10 +3,11 @@ import type {
   Status,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 
+export type GalleryStatus = Status | "playable"
+
 export class GalleryFilters {
   visible = false;
   owner = "";
-  statuses: Status[] = new Array<Status>();
   place: boolean = false;
   action: boolean = false;
   hq: boolean = false;
@@ -22,4 +23,5 @@ export class GalleryFilters {
   culture = false;
   multiClass = false;
   rarity?: CardRarity = undefined;
+  status: GalleryStatus = "playable"
 }

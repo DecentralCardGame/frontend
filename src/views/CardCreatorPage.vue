@@ -77,7 +77,7 @@
             <div
               v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
               class="p-5"
-              :class="{ grayscale: model.Class[item] }"
+              :class="{ grayscale: !model.Class[item] }"
               @click="
                 model.Class[item] = !model.Class[item];
                 console.log(item, model.Class);
@@ -123,7 +123,7 @@
                 class="h-32"
                 :src="typeIcons[item].On"
               >
-              <div 
+              <div
                 :class="{ underline: item == model.type }"
                 class="py-5 text-s font-bold uppercase"
               >
@@ -252,8 +252,8 @@
                   :value="false"
                 >
                 <div class="px-3 text-left">
-                  I hereby confirm that I own the rights to commercially use this
-                  artwork.
+                  I hereby confirm that I own the rights to commercially use
+                  this artwork.
                 </div>
               </div>
               <div class="p-3 flex flex-row">
@@ -265,8 +265,8 @@
                   :value="true"
                 >
                 <div class="px-3 text-left">
-                  I rather would like to designate an artist as a collaborator for
-                  the artwork.
+                  I rather would like to designate an artist as a collaborator
+                  for the artwork.
                 </div>
               </div>
             </div>
@@ -355,7 +355,8 @@
               <div
                 v-if="
                   cardRules.Card.children[getRulesType()] &&
-                    cardRules.Card.children[getRulesType()].children.AdditionalCost
+                    cardRules.Card.children[getRulesType()].children
+                      .AdditionalCost
                 "
                 class="h-14"
               >
@@ -634,7 +635,7 @@
               </div>
 
               <BaseCCButton
-                :type="ButtonType.TEAL" 
+                :type="ButtonType.TEAL"
                 class="m-2"
                 @click="resetCard()"
               >
@@ -655,7 +656,7 @@
               <!-- Buy Frame Modal -->
               <BaseCCButton
                 v-if="mode == Mode.CREATE"
-                :type="ButtonType.TEAL" 
+                :type="ButtonType.TEAL"
                 class="m-2"
                 @click="showBuyFrameModal"
               >
@@ -672,8 +673,8 @@
             <div class="pl-10 flex flex-row space-x-1">
               <NavigationButtons />
 
-              <BaseCCButton 
-                :type="ButtonType.RED" 
+              <BaseCCButton
+                :type="ButtonType.RED"
                 @click="saveSubmit()"
               >
                 {{ mode == Mode.CREATE ? "Mint" : "Update your " }} Card
@@ -683,7 +684,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
   <!-- TODO IMPLEMENT PROPER ARTIST MODE
 
           <div
@@ -711,14 +712,14 @@
 
 <script lang="ts">
 import CCLogoSmallInvert from "@/assets/figma/CCLogoSmallInvert.png";
-import HeadquarterOn from "@/assets/figma/HeadquarterOn.png";
-import HeadquarterOff from "@/assets/figma/HeadquarterOff.png";
-import ActionOn from "@/assets/figma/ActionOn.png";
-import ActionOff from "@/assets/figma/ActionOff.png";
-import EntityOn from "@/assets/figma/EntityOn.png";
-import EntityOff from "@/assets/figma/EntityOff.png";
-import PlaceOn from "@/assets/figma/PlaceOn.png";
-import PlaceOff from "@/assets/figma/PlaceOff.png";
+import HeadquarterOn from "@/assets/figma/TypesButtons/hq.png";
+import HeadquarterOff from "@/assets/figma/TypesButtons/hq_unselected.png";
+import ActionOn from "@/assets/figma/TypesButtons/action.png";
+import ActionOff from "@/assets/figma/TypesButtons/action_unselected.png";
+import EntityOn from "@/assets/figma/TypesButtons/entity.png";
+import EntityOff from "@/assets/figma/TypesButtons/entity_unselected.png";
+import PlaceOn from "@/assets/figma/TypesButtons/place.png";
+import PlaceOff from "@/assets/figma/TypesButtons/place_unselected.png";
 import MysticismIcon from "@/assets/figma/MysticismIcon.svg";
 import TechnologyIcon from "@/assets/figma/TechnologyIcon.svg";
 import CultureIcon from "@/assets/figma/CultureIcon.svg";
@@ -855,8 +856,8 @@ export default {
           idx > this.activeStep
             ? "open"
             : idx < this.activeStep
-            ? "done"
-            : "active";
+              ? "done"
+              : "active";
       });
     },
     model() {
@@ -883,7 +884,7 @@ export default {
       if (!this.cardRules)
         this.notifyFail(
           "CardRules",
-          "CardRules were not properly loaded. This is really bad."
+          "CardRules were not properly loaded. This is really bad.",
         );
       this.$router.push("/");
     } else {
@@ -916,14 +917,15 @@ export default {
     }
   },
   methods: {
-    isEmpty (a) {
-      return R.isEmpty(a)
+    isEmpty(a) {
+      return R.isEmpty(a);
     },
     getHQDelayRange() {
       return R.range(
         this.cardRules.Card.children[this.getRulesType()].children.Delay.min ||
           0,
-        this.cardRules.Card.children[this.getRulesType()].children.Delay.max + 1
+        this.cardRules.Card.children[this.getRulesType()].children.Delay.max +
+          1,
       );
     },
     getGenericCostRange(key: string) {
@@ -931,13 +933,13 @@ export default {
         this.cardRules.Card.children[this.getRulesType()].children
           .AdditionalCost.children[key].children.Amount.min || 0,
         this.cardRules.Card.children[this.getRulesType()].children
-          .AdditionalCost.children[key].children.Amount.max + 1
+          .AdditionalCost.children[key].children.Amount.max + 1,
       );
     },
     getSpecialCostRange() {
       let specialCosts = R.keys(
         this.cardRules.Card.children[this.getRulesType()].children
-          .AdditionalCost.children
+          .AdditionalCost.children,
       );
       return specialCosts;
     },
@@ -995,7 +997,7 @@ export default {
               this.model.image = result;
             });
           });
-        }
+        },
       );
     },
     srcToFile(src, fileName, mimeType) {
@@ -1011,7 +1013,7 @@ export default {
       if (!this.address) {
         this.notifyFail(
           "Unable to buy Card Frame",
-          "You must be logged in with an activated account for this."
+          "You must be logged in with an activated account for this.",
         );
       } else this.isBuyFrameModalVisible = true;
     },
@@ -1027,7 +1029,7 @@ export default {
         if (this.abilities.length >= 3) {
           this.notifyFail(
             "Number of Abilities",
-            "A card can only have a maximum of 3 Abilities."
+            "A card can only have a maximum of 3 Abilities.",
           );
           this.isAbilityModalVisible = false;
           return;
@@ -1035,7 +1037,7 @@ export default {
         if (this.model.type === "no type" || this.model.type === undefined) {
           this.notifyFail(
             "No Type",
-            "Card has no type, please pick a type before setting abilities."
+            "Card has no type, please pick a type before setting abilities.",
           );
           this.isAbilityModalVisible = false;
           return;
@@ -1092,19 +1094,19 @@ export default {
       console.log("abilities after update", this.abilities);
 
       let keywordCount = R.length(
-        R.flatten(R.pluck("keywords", this.abilities))
+        R.flatten(R.pluck("keywords", this.abilities)),
       );
       if (keywordCount >= 6 && keywordCount <= 8) {
         this.notifyInfo(
           "Number of Keywords",
           "You have added " +
             keywordCount +
-            " Keywords to this card. 8 is the maximum."
+            " Keywords to this card. 8 is the maximum.",
         );
       } else if (keywordCount > 8) {
         this.notifyFail(
           "Number of Keywords",
-          "You have added more than 8 Keywords to this card. Please limit to 8."
+          "You have added more than 8 Keywords to this card. Please limit to 8.",
         );
       }
 
@@ -1114,7 +1116,7 @@ export default {
       this.model.Keywords = R.pluck("keywords", this.abilities);
       this.model.RulesTexts = R.map(
         this.interactionTextToString,
-        this.abilities
+        this.abilities,
       );
 
       this.updateAdditionalCostText();
@@ -1184,7 +1186,7 @@ export default {
         if (idx == 1) {
           console.log(
             "last tag, returning",
-            R.append("", R.without(usedTags, allTags))
+            R.append("", R.without(usedTags, allTags)),
           );
           return R.append("", R.without(usedTags, allTags));
         } else {
@@ -1219,7 +1221,7 @@ export default {
         if (!this.model.image) {
           this.notifyFail(
             "No Image",
-            "Card has no image, please upload an image."
+            "Card has no image, please upload an image.",
           );
           return;
         }
@@ -1231,7 +1233,7 @@ export default {
           (err) => {
             this.notifyFail("Update Artwork failed", err);
             console.error(err);
-          }
+          },
         );
         return;
       }
@@ -1248,42 +1250,42 @@ export default {
       if (!this.designateArtist && !this.model.image) {
         this.notifyFail(
           "No Image",
-          "Card has no image, please upload an image."
+          "Card has no image, please upload an image.",
         );
         return;
       }
       if (this.designateArtist && !validAddress(this.artistAddress)) {
         this.notifyFail(
           "Invalid Address",
-          "The address given for designated artist is invalid."
+          "The address given for designated artist is invalid.",
         );
         return;
       }
       if (this.designateArtist && !validAddress(this.artistAddress)) {
         this.notifyFail(
           "Invalid Address",
-          "The address given for designated artist is invalid."
+          "The address given for designated artist is invalid.",
         );
         return;
       }
       if (!this.model.Tags[0]) {
         this.notifyFail(
           "No Tags",
-          "Card has no Tag, please pick at least one tag."
+          "Card has no Tag, please pick at least one tag.",
         );
         return;
       }
       if (!this.model.FlavourText[0] && !this.abilities) {
         this.notifyFail(
           "No Flavor Text",
-          "Card has no flavor text and no abilities, please enter something."
+          "Card has no flavor text and no abilities, please enter something.",
         );
         return;
       }
       if (R.length(R.flatten(R.pluck("keywords", this.abilities))) > 8) {
         this.notifyFail(
           "Too many Keywords",
-          "Card has too many Keywords. You must reduce to 8 or less."
+          "Card has too many Keywords. You must reduce to 8 or less.",
         );
         return;
       }
@@ -1292,7 +1294,7 @@ export default {
         if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
           this.notifyFail(
             "No Cost",
-            "Card has no Casting Cost, please pick a number."
+            "Card has no Casting Cost, please pick a number.",
           );
           return;
         }
@@ -1301,7 +1303,7 @@ export default {
         if (R.isNil(this.model.Health)) {
           this.notifyFail(
             "No Health",
-            "Card has no Health, please pick a number."
+            "Card has no Health, please pick a number.",
           );
           return;
         }
@@ -1310,7 +1312,7 @@ export default {
         if (R.isNil(this.model.Attack)) {
           this.notifyFail(
             "No Attack",
-            "Card has no Attack, please pick a number."
+            "Card has no Attack, please pick a number.",
           );
           return;
         }
@@ -1335,22 +1337,22 @@ export default {
             R.pick(
               R.keys(
                 this.cardRules.Card.children.Entity.children.Abilities.children
-                  .Ability.children
-              )
+                  .Ability.children,
+              ),
             ),
-            this.abilities
+            this.abilities,
           );
         }
         // if an ability was created, but it has no effect, then this should be fixed
         if (newModel.Abilities.length > 0) {
           let effectsList = R.flatten(
-            R.map((x) => R.values(R.pluck("Effects", x)), newModel.Abilities)
+            R.map((x) => R.values(R.pluck("Effects", x)), newModel.Abilities),
           );
 
           if (R.any((y) => y === undefined, effectsList)) {
             this.notifyFail(
               "Useless Ability",
-              "Card has an Ability, which does not do anything. Please add an Effect to the Ability."
+              "Card has an Ability, which does not do anything. Please add an Effect to the Ability.",
             );
             return;
           }
@@ -1370,10 +1372,10 @@ export default {
             R.pick(
               R.keys(
                 this.cardRules.definitions.Card.children.Action.children.Effects
-                  .children.Effect.children
-              )
+                  .children.Effect.children,
+              ),
             ),
-            this.abilities
+            this.abilities,
           );
         }
         // if an ability was created, but it has no effect, then this should be fixed
@@ -1381,7 +1383,7 @@ export default {
           console.log("newmodel", newModel);
           this.notifyFail(
             "No Effects",
-            "Card has no effect. Maybe you forgot to add an effect?"
+            "Card has no effect. Maybe you forgot to add an effect?",
           );
           return;
         }
@@ -1395,18 +1397,15 @@ export default {
             this.model.AdditionalCost.DiscardCost.Amount > 0) ||
           (this.model.AdditionalCost.VoidCost &&
             this.model.AdditionalCost.VoidCost.Amount > 0)
-        )
-      }
-      if (
-        this.mode == Mode.EDIT
-      ) {
+        );
+      };
+      if (this.mode == Mode.EDIT) {
         newModel.Keywords = this.cardCreatorEditCard.Keywords;
         newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
-          if (!checkAdditionalCost()) {
-            this.model.AdditionalCost = {};
-          }
-          this.updateAdditionalCostText();
-        
+        if (!checkAdditionalCost()) {
+          this.model.AdditionalCost = {};
+        }
+        this.updateAdditionalCostText();
       } else {
         if (!checkAdditionalCost()) {
           this.model.AdditionalCost = {};
@@ -1428,7 +1427,7 @@ export default {
                 char +
                 " in " +
                 origin +
-                " and it is not supported."
+                " and it is not supported.",
             );
           }
         });
@@ -1455,12 +1454,12 @@ export default {
             newCard.image,
             newCard.fullArt,
             this.resetCard,
-            handleErr
+            handleErr,
           );
       } else if (!this.address) {
         this.notifyFail(
           "Unable publish Card",
-          "You must be logged in with an activated account!"
+          "You must be logged in with an activated account!",
         );
       } else {
         queryQUser(this.address)
@@ -1468,10 +1467,10 @@ export default {
             if (R.isEmpty(res.ownedCardSchemes)) {
               this.notifyFail(
                 "YOU MUST CONSTRUCT ADDITIONAL PYLONS",
-                "You don't own any Card Frames. Please buy one before publishing."
+                "You don't own any Card Frames. Please buy one before publishing.",
               );
               throw new Error(
-                "account " + this.address + " does not own Card Frames"
+                "account " + this.address + " does not own Card Frames",
               );
             } else {
               let id = +res.ownedCardSchemes[0];
@@ -1487,7 +1486,7 @@ export default {
                   newCard.image,
                   newCard.fullArt,
                   this.resetCard,
-                  handleErr
+                  handleErr,
                 );
             }
           })

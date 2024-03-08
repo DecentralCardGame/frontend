@@ -4,7 +4,7 @@
     @click="tryLogin"
   >
     <ProfilePicComponent
-      class="h-8 w-8 mr-4"
+      class="min-h-8 min-w-8 mr-4 my-auto"
       size="8"
       :src="loggedIn ? loggedInProfilePic : Profile"
       alt="PP"
