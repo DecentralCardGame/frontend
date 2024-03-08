@@ -1,7 +1,7 @@
 <template>
   <div
     id="galleryWrapper"
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-16"
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-16"
   >
     <div
       v-for="card in state.cards"
@@ -33,7 +33,7 @@ const props = withDefaults(
   {
     allCardIds: () => [],
     cardsPerPage: 100,
-  }
+  },
 );
 
 const initialState: {
@@ -71,7 +71,7 @@ watch(
     state.cardIdsChanged = true;
     state.cards = {};
     state.cardsOnPage = props.cardsPerPage;
-  }
+  },
 );
 
 function loadCards(cardIds: number[], oldCardIds: number[]) {

@@ -78,21 +78,23 @@
 
     <div class="bg-black w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
-        <div class="flex justify-center md:justify-between">
-          <p class="text-xl my-auto max-md:hidden">
-            {{ cardList.length }} Results
+        <div class="relative h-8">
+          <p class="absolute text-5xl mx-auto left-0 right-0 text-center">
+            Gallery
           </p>
-          <p class="text-5xl text-center">Gallery</p>
-          <div class="flex space-x-4">
-            <p class="text-xl my-auto max-md:hidden">Sort by</p>
-            <Dropdown
-              v-model="galleryFilters.sortBy"
-              class="my-auto"
-              :type="ButtonType.RED"
-              :options="['Name', 'CastingCost', 'Id']"
-              :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
-            />
-            <SortDirectionButton v-model="revertSort" class="my-auto" />
+          <div class="flex justify-center max-md:hidden md:justify-between">
+            <p class="text-xl my-auto">{{ cardList.length }} Results</p>
+            <div class="flex space-x-4">
+              <p class="text-xl my-auto max-md:hidden">Sort by</p>
+              <Dropdown
+                v-model="galleryFilters.sortBy"
+                class="my-auto"
+                :type="ButtonType.RED"
+                :options="['Name', 'CastingCost', 'Id']"
+                :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
+              />
+              <SortDirectionButton v-model="revertSort" class="my-auto" />
+            </div>
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />
