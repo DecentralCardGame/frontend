@@ -60,7 +60,7 @@ const routes = [
     component: LandingPage,
   },
   {
-    path: "/team",
+    path: "/team/team",
     name: "Team",
     component: TeamPage,
   },

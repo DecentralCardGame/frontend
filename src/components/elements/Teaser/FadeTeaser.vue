@@ -15,7 +15,9 @@
     >
       <div class="bg-gradient-to-l from-white w-[20%] h-[100%]" />
       <div class="bg-white w-[40%] h-[100%]">
-        <slot />
+        <div class="absolute top-20 xl:py-20 left-0 right-0">
+          <slot />
+        </div>
       </div>
       <div class="bg-gradient-to-r from-white w-[20%] h-[100%]" />
     </div>
