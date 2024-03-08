@@ -12,16 +12,13 @@
         <div class="">
           <p>Search for</p>
           <div class="space-y-4">
-            <CCInput
-              v-model="galleryFilters.nameContains"
-              placeholder="name"
-            />
-            <br>
+            <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
+            <br />
             <CCInput
               v-model="galleryFilters.notesContains"
               placeholder="notes"
             />
-            <br>
+            <br />
             <CCInput
               v-model="galleryFilters.keywordsContains"
               placeholder="keywords"
@@ -42,7 +39,7 @@
         >
           My Cards
         </Checkbox>
-        <div>
+        <div class="space-y-4">
           Rarity:
           <Dropdown
             v-model="galleryFilters.rarity"
@@ -58,6 +55,23 @@
               CardRarity.unique,
             ]"
           />
+          <br />
+          Status:
+          <Dropdown
+            v-model="galleryFilters.status"
+            :display-fn="(v) => (v == 'playable' ? 'playable' : Status[v])"
+            :options="
+              new Array<GalleryStatus>(
+                'playable',
+                Status.prototype,
+                Status.trial,
+                Status.permanent,
+                Status.bannedSoon,
+                Status.bannedVerySoon,
+                Status.banned,
+              )
+            "
+          />
         </div>
       </div>
     </div>
@@ -68,13 +82,9 @@
           <p class="text-xl my-auto max-md:hidden">
             {{ cardList.length }} Results
           </p>
-          <p class="text-5xl text-center">
-            Gallery
-          </p>
+          <p class="text-5xl text-center">Gallery</p>
           <div class="flex space-x-4">
-            <p class="text-xl my-auto max-md:hidden">
-              Sort by
-            </p>
+            <p class="text-xl my-auto max-md:hidden">Sort by</p>
             <Dropdown
               v-model="galleryFilters.sortBy"
               class="my-auto"
@@ -82,10 +92,7 @@
               :options="['Name', 'CastingCost', 'Id']"
               :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
             />
-            <SortDirectionButton
-              v-model="revertSort"
-              class="my-auto"
-            />
+            <SortDirectionButton v-model="revertSort" class="my-auto" />
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />
@@ -128,7 +135,7 @@ import actionInactive from "@/assets/figma/TypesButtons/action_unselected.png";
 import placeActive from "@/assets/figma/TypesButtons/place.png";
 import placeInactive from "@/assets/figma/TypesButtons/place_unselected.png";
 import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
-import type { GalleryFilters } from "@/model/GalleryFilters";
+import type { GalleryFilters, GalleryStatus } from "@/model/GalleryFilters";
 import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
@@ -136,7 +143,10 @@ import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
 import { normalizeQuery } from "@/utils/utils";
 import CCInput from "@/components/elements/CCInput.vue";
-import { CardRarity } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+import {
+  CardRarity,
+  Status,
+} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";

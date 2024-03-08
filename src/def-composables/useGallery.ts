@@ -42,6 +42,7 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.notesContains = query.notesContains;
   galleryFilters.value.sortBy = query.sortBy ? query.sortBy : "Name";
   galleryFilters.value.multiClass = query.multiClassOnly;
+  galleryFilters.value.status = query.statuses.length != 1 ? "playable" :  query.statuses[0]
 
   if (
     query.classes.length == 0 ||
@@ -86,14 +87,14 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
   return QueryQCardsRequest.fromPartial({
     owner: galleryFilters.value.owner,
     statuses:
-      galleryFilters.value.statuses.length == 0
+      galleryFilters.value.status == "playable"
         ? [
             Status.bannedSoon,
             Status.bannedVerySoon,
             Status.permanent,
             Status.trial,
           ]
-        : galleryFilters.value.statuses,
+        : [galleryFilters.value.status],
     classes: [
       ...(galleryFilters.value.nature ? [CardClass.nature] : []),
       ...(galleryFilters.value.mysticism ? [CardClass.mysticism] : []),
