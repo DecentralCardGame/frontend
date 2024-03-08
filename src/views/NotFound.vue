@@ -1,15 +1,20 @@
 <template>
   <div class="bg-black flex justify-center h-[80vh]">
-    <div class="my-auto"></div>
+    <div class="my-auto" />
     <HeadingContentComponent heading-class="text-[#FEC560]">
-      <template v-slot:heading>Stay Tuned</template>
-      <template v-slot:content>
+      <template #heading>
+        Stay Tuned
+      </template>
+      <template #content>
         <p class="text-white">
-          We are rebranding!<br />
+          We are rebranding!<br>
           In the meantime, join our community on Discord!
         </p>
-        <br />
-        <LinkCCButton :type="ButtonType.YELLOW" to="https://discord.gg/ZKKbhUs">
+        <br>
+        <LinkCCButton
+          :type="ButtonType.YELLOW"
+          to="https://discord.gg/ZKKbhUs"
+        >
           Join Discord
         </LinkCCButton>
       </template>

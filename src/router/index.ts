@@ -30,12 +30,6 @@ const routes = [
     component: Login,
   },
   {
-    path: "/roadmap",
-    name: "Roadmap",
-    meta: { layout: "Default" },
-    component: RoadmapPage,
-  },
-  {
     path: "/gallery",
     name: "Gallery",
     component: GalleryPage,
@@ -63,6 +57,12 @@ const routes = [
     path: "/team/team",
     name: "Team",
     component: TeamPage,
+  },
+  {
+    path: "/team/roadmap",
+    name: "Roadmap",
+    meta: { layout: "Default" },
+    component: RoadmapPage,
   },
   {
     path: "/imprint",

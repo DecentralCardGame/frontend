@@ -14,7 +14,7 @@
     />
     <div class="h-full w-full absolute z-30 flex justify-center">
       <div class="bg-gradient-to-l from-white w-[20%] h-[100%]" />
-      <div class="bg-white w-[40%] h-[100%]"></div>
+      <div class="bg-white w-[40%] h-[100%]" />
       <div class="bg-gradient-to-r from-white w-[20%] h-[100%]" />
     </div>
     <div class="absolute h-full w-full z-30 flex justify-center">

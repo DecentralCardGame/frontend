@@ -93,13 +93,13 @@
     </div>
     <FadeTeaserBig>
       <HeadingContentComponent heading-class="text-teal-500">
-        <template v-slot:heading>Be part of the game</template>
-        <template v-slot:content>
+        <template #heading> Be part of the game </template>
+        <template #content>
           <p>Crowd Control is a growing community based on open source and</p>
           <p>collaboration. Learn the game and give us your review.</p>
           <br />
           <LinkCCButton :type="ButtonType.TEAL" to="https://discord.gg/ZKKbhUs">
-            Join Us
+            Join Usmd:right-[0rem]
           </LinkCCButton>
           <img
             alt="gameboard"

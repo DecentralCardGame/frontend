@@ -4,7 +4,7 @@
     pic-class-left="left-[-15rem] md:left-[-10rem]"
     pic-class-right="right-[-15rem] md:right-[-10rem]"
   >
-    <slot></slot>
+    <slot />
   </FadeTeaser>
 </template>
 <script setup lang="ts">
