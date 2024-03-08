@@ -3,12 +3,13 @@ import { useAddress } from "./useAddress";
 import { useUser } from "./useUser";
 import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 import { useCards } from "@/def-composables/useCards";
+import spinner from "@/assets/spinner.svg"
 
 const useProfilePicInstance = () => {
   const { address } = useAddress();
   const { user } = useUser();
   const { getCard } = useCards();
-  const loggedInProfilePic = ref("spinner.svg");
+  const loggedInProfilePic = ref(spinner);
 
   watch(
     user,
