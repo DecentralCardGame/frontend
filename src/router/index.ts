@@ -15,6 +15,7 @@ const CardView = () => import("@/views/AdvancedCardViewPage.vue");
 const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue");
 const Demo = () => import("@/views/Demo.vue");
 const Login = () => import("@/views/LoginPage.vue");
+const Learn = () => import("@/views/Learn.vue");
 
 const routes = [
   {
@@ -58,6 +59,11 @@ const routes = [
     name: "Landing",
     meta: { layout: "Landing" },
     component: LandingPage,
+  },
+  {
+    path: "/learn",
+    name: "Learn",
+    component: Learn,
   },
   {
     path: "/team",
