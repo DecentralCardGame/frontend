@@ -5,16 +5,18 @@ const VotingResultsPage = () => import("@/views/VotingResultsPage.vue");
 const NewCardPage = () => import("@/views/CardCreatorPage.vue");
 const AboutPage = () => import("@/views/AboutPage.vue");
 const NotFound = () => import("@/views/NotFound.vue");
-const RoadmapPage = () => import("@/views/RoadmapPage.vue");
+const RoadmapPage = () => import("@/views/Team/RoadmapPage.vue");
 const LandingPage = () => import("@/views/LandingPage.vue");
 const ImprintPage = () => import("@/views/ImprintPage.vue");
-const TeamPage = () => import("@/views/TeamPage.vue");
+const TeamPage = () => import("@/views/Team/TeamPage.vue");
 const VotingPage = () => import("@/views/VotingPage.vue");
 const UserView = () => import("@/views/UserView/UserView.vue");
 const CardView = () => import("@/views/AdvancedCardViewPage.vue");
 const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue");
 const Demo = () => import("@/views/Demo.vue");
 const Login = () => import("@/views/LoginPage.vue");
+
+const Community = () => import("@/views/Team/Community.vue");
 
 const routes = [
   {
@@ -57,6 +59,11 @@ const routes = [
     path: "/team/team",
     name: "Team",
     component: TeamPage,
+  },
+  {
+    path: "/team/community",
+    name: "Community",
+    component: Community,
   },
   {
     path: "/team/roadmap",
