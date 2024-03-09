@@ -72,7 +72,7 @@ type NavigationElement = {
 const elems: NavigationElement[] = [
   { routeName: "/gallery", display: "Gallery", highlighted: false },
   { routeName: "/s", display: "Sets and Boosters", highlighted: true },
-  { routeName: "/l", display: "Learn", highlighted: false },
+  { routeName: "/learn", display: "Learn", highlighted: false },
   { routeName: "/cardCreator", display: "Card Creator", highlighted: false },
 ];
 
