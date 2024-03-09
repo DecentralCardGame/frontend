@@ -14,7 +14,7 @@
     "@tanstack/vue-query": "^5.24.2",
     "@typescript-eslint/parser": "^6.21.0",
     "@vueuse/core": "^10.6.1",
-    "axios": "0.21.4",
+    "axios": "0.28.0",
     "bignumber.js": "^9.1.2",
     "crypto-js": "^4.2.0",
     "decentralcardgame-cardchain-client-ts": "^0.0.27",
