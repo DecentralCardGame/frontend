@@ -3,12 +3,11 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const GalleryPage = () => import("@/views/GalleryPage.vue");
 const VotingResultsPage = () => import("@/views/VotingResultsPage.vue");
 const CardCreator = () => import("@/views/CardCreatorPage.vue");
-const AboutPage = () => import("@/views/AboutPage.vue");
 const NotFound = () => import("@/views/NotFound.vue");
-const RoadmapPage = () => import("@/views/Team/RoadmapPage.vue");
+const RoadmapPage = () => import("@/views/About/RoadmapPage.vue");
 const LandingPage = () => import("@/views/LandingPage.vue");
 const ImprintPage = () => import("@/views/ImprintPage.vue");
-const TeamPage = () => import("@/views/Team/TeamPage.vue");
+const TeamPage = () => import("@/views/About/TeamPage.vue");
 const VotingPage = () => import("@/views/VotingPage.vue");
 const UserView = () => import("@/views/UserView/UserView.vue");
 const CardView = () => import("@/views/AdvancedCardViewPage.vue");
@@ -18,15 +17,9 @@ const Login = () => import("@/views/LoginPage.vue");
 const LearnPage = () => import("@/views/LearnPage.vue");
 const Download = () => import("@/views/DownloadPage.vue");
 
-const Community = () => import("@/views/Team/Community.vue");
+const Community = () => import("@/views/About/CommunityPage.vue");
 
 const routes = [
-  {
-    path: "/about",
-    name: "About",
-    meta: { layout: "Default" },
-    component: AboutPage,
-  },
   {
     path: "/login",
     name: "Login",
@@ -68,17 +61,17 @@ const routes = [
     component: Download,
   },
   {
-    path: "/team/team",
+    path: "/about/team",
     name: "Team",
     component: TeamPage,
   },
   {
-    path: "/team/community",
+    path: "/about/community",
     name: "Community",
     component: Community,
   },
   {
-    path: "/team/roadmap",
+    path: "/about/roadmap",
     name: "Roadmap",
     meta: { layout: "Default" },
     component: RoadmapPage,

@@ -12,11 +12,11 @@
       </template>
     </HeadingContentComponent>
   </FadeTeaserSmall>
-  <TeamProgressbar />
+  <AboutProgressbar />
   <slot />
 </template>
 <script setup lang="ts">
 import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
-import TeamProgressbar from "@/components/elements/TeamProgressbar.vue";
+import AboutProgressbar from "@/components/elements/AboutProgressbar.vue";
 </script>

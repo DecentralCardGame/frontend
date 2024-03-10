@@ -7,12 +7,13 @@
     >
     <br>
     <p>
-      As a DAO, we are encouraging decentralized contributions to the project.
-      Join the Project by contacting us on Discord.
+      As a DAO, we are encouraging decentralized contributions to <br>
+      the project. Join the Project by contacting us on Discord.<br>
+      <b> Our Community Contributors </b>
     </p>
     <br>
-    <p class="font-bold">
-      Our Community Contributors
+    <p v-for="name in names">
+      {{ name }}
     </p>
   </div>
 </template>

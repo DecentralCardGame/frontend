@@ -17,13 +17,13 @@ import PageMenu from "@/components/partials/PageMenu.vue";
 import PageFooter from "@/components/partials/PageFooter.vue";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
-import TeamSubLayout from "@/layouts/sub-layouts/TeamSubLayout.vue";
+import AboutSubLayout from "@/layouts/sub-layouts/AboutSubLayout.vue";
 
 const route = useRoute();
 
 const subLayout = computed(() => {
-  if (new RegExp("/team/*").test(route.path)) {
-    return TeamSubLayout;
+  if (new RegExp("/about/*").test(route.path)) {
+    return AboutSubLayout;
   }
 
   return "div";

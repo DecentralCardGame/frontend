@@ -19,10 +19,10 @@ type NavigationElement = {
 };
 
 const elems: NavigationElement[] = [
-  { routeName: "/team/community", display: "Community" },
-  { routeName: "/team/roadmap", display: "Roadmap" },
-  { routeName: "/team/team", display: "Team" },
-  { routeName: "/team/tokens", display: "CC Tokens" },
-  { routeName: "/team/whitepaper", display: "Card Creator" },
+  { routeName: "/about/community", display: "Community" },
+  { routeName: "/about/roadmap", display: "Roadmap" },
+  { routeName: "/about/team", display: "Team" },
+  { routeName: "/about/tokens", display: "CC Tokens" },
+  { routeName: "/about/whitepaper", display: "Card Creator" },
 ];
 </script>
