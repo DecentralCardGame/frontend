@@ -248,7 +248,7 @@ export const useTxInstance: () => {
         return await signingClient.signAndBroadcast(address, msgs, FEE, "");
       } catch (e: any) {
         throw new Error(
-          "TMultiBroadCast: Could not broadcast Tx: " + e.message
+          "MultiBroadCast: Could not broadcast Tx: " + e.message
         );
       }
     };

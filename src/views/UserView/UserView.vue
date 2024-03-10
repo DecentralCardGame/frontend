@@ -36,13 +36,15 @@
             v-if="state.userIsUser"
             :type="ButtonType.YELLOW"
             @click="
-              state.user.CouncilStatus == CouncilStatus.unavailable
+              CouncilStatus[state.user.CouncilStatus] ==
+                CouncilStatus.unavailable
                 ? register()
                 : deRegister()
             "
           >
             {{
-              state.user.CouncilStatus == CouncilStatus.unavailable
+              CouncilStatus[state.user.CouncilStatus] ==
+                CouncilStatus.unavailable
                 ? "Register for"
                 : "Deregister from"
             }}

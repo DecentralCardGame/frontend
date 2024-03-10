@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const GalleryPage = () => import("@/views/GalleryPage.vue");
 const VotingResultsPage = () => import("@/views/VotingResultsPage.vue");
-const NewCardPage = () => import("@/views/CardCreatorPage.vue");
+const CardCreator = () => import("@/views/CardCreatorPage.vue");
 const AboutPage = () => import("@/views/AboutPage.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 const RoadmapPage = () => import("@/views/Team/RoadmapPage.vue");
@@ -15,6 +15,8 @@ const CardView = () => import("@/views/AdvancedCardViewPage.vue");
 const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue");
 const Demo = () => import("@/views/Demo.vue");
 const Login = () => import("@/views/LoginPage.vue");
+const LearnPage = () => import("@/views/LearnPage.vue");
+const Download = () => import("@/views/DownloadPage.vue");
 
 const Community = () => import("@/views/Team/Community.vue");
 
@@ -45,8 +47,8 @@ const routes = [
   },
   {
     path: "/cardCreator",
-    name: "New Card",
-    component: NewCardPage,
+    name: "CardCreator",
+    component: CardCreator,
     meta: { layout: "Default" },
   },
   {
@@ -54,6 +56,16 @@ const routes = [
     name: "Landing",
     meta: { layout: "Landing" },
     component: LandingPage,
+  },
+  {
+    path: "/learn",
+    name: "Learn",
+    component: LearnPage,
+  },
+  {
+    path: "/download",
+    name: "Download",
+    component: Download,
   },
   {
     path: "/team/team",

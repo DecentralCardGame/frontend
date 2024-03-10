@@ -96,7 +96,7 @@ export default {
         create: {
           text: "Create a ",
           linkText: "card draft.",
-          linkData: 'New Card'
+          linkData: 'CardCreator'
         },
         vote: {
           text: "Vote for a ",

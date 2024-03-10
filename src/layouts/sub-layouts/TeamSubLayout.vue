@@ -1,7 +1,9 @@
 <template>
   <FadeTeaserSmall>
     <HeadingContentComponent heading-class="text-teal-500">
-      <template #heading> Welcome to the team</template>
+      <template #heading>
+        Welcome to the team
+      </template>
       <template #content>
         <p>Crowd Control is not a company, but a Decentralized</p>
         <p>Autonomous Organization (DAO). This is realized with a</p>

@@ -59,7 +59,7 @@
           Crowd Control gives you full ownership. And we mean it.
           You own the cards which you acquire through play and participation.
           And furthermore you own the card prototypes which you design and create. Go to the
-          <router-link :to="{ name: 'New Card' }">
+          <router-link :to="{ name: 'CardCreator' }">
             Card Creator
           </router-link>
           to start creating.

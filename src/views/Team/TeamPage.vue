@@ -1,21 +1,36 @@
 <template>
   <div class="bg-black text-white flex justify-center">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 m-24">
-      <div v-for="item in items" class="uppercase text-center w-[15rem]">
-        <img :alt="item.name" :src="item.pic" class="rounded-full mb-2" />
-        <p class="font-bold">{{ item.name }}</p>
+      <div
+        v-for="item in items"
+        class="uppercase text-center w-[15rem]"
+      >
+        <img
+          :alt="item.name"
+          :src="item.pic"
+          class="rounded-full mb-2"
+        >
+        <p class="font-bold">
+          {{ item.name }}
+        </p>
         <p>{{ item.desc }}</p>
       </div>
-      <img alt="logo" class="w-[15rem]" :src="logo" />
+      <img
+        alt="logo"
+        class="w-[15rem]"
+        :src="logo"
+      >
       <div>
-        <p class="font-bold uppercase">Honourable Mentions</p>
-        <br />
+        <p class="font-bold uppercase">
+          Honourable Mentions
+        </p>
+        <br>
         <p>
-          Harold Zellner<br />
-          Thilo Billerbeck <br />
-          Andy Frankenberger <br />
-          Tom König <br />
-          Jette Czoschke <br />
+          Harold Zellner<br>
+          Thilo Billerbeck <br>
+          Andy Frankenberger <br>
+          Tom König <br>
+          Jette Czoschke <br>
           Danny Czoschke
         </p>
       </div>
