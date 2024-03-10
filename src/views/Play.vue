@@ -4,19 +4,19 @@
       <div class="px-0 py-40 flex text-center justify-center">
         <div>
           <p class="text-5xl font-black text-red-600 font-lg">
-            How To Play
+            Play the Game!
           </p>
           <p class="py-10 text-xl font-medium font-lg">
-            Here are the basics to get start playing. <br>
-            Visit our GitBook for advanced information!
+            Our alpha version is currently in development <br>
+            and not publicly released :( <br>
+            We only do closed playtests at the moment. <br>
+            The button below will do nothing.
           </p>
-          <a href="https://crowdcontrol-network.gitbook.io/">  
             <BaseCCButton
               :type="ButtonType.RED"
             >
-              Open GitBook
-            </BaseCCButton> 
-            </a>
+              Download Gameclient
+            </BaseCCButton>
         </div>
       </div>
     </FadeTeaser>

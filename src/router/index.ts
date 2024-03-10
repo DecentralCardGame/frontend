@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const GalleryPage = () => import("@/views/GalleryPage.vue");
 const VotingResultsPage = () => import("@/views/VotingResultsPage.vue");
-const NewCardPage = () => import("@/views/CardCreatorPage.vue");
+const CardCreator = () => import("@/views/CardCreatorPage.vue");
 const AboutPage = () => import("@/views/AboutPage.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 const RoadmapPage = () => import("@/views/RoadmapPage.vue");
@@ -16,6 +16,7 @@ const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue");
 const Demo = () => import("@/views/Demo.vue");
 const Login = () => import("@/views/LoginPage.vue");
 const Learn = () => import("@/views/Learn.vue");
+const Play = () => import("@/views/Play.vue");
 
 const routes = [
   {
@@ -50,8 +51,8 @@ const routes = [
   },
   {
     path: "/cardCreator",
-    name: "New Card",
-    component: NewCardPage,
+    name: "CardCreator",
+    component: CardCreator,
     meta: { layout: "Default" },
   },
   {
@@ -64,6 +65,11 @@ const routes = [
     path: "/learn",
     name: "Learn",
     component: Learn,
+  },
+  {
+    path: "/play",
+    name: "Play",
+    component: Play,
   },
   {
     path: "/team",

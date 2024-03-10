@@ -25,7 +25,7 @@
             >
               CREATE CARDS
             </RouterCCButton>
-            <RouterCCButton :type="ButtonType.BLACK" to="/p">
+            <RouterCCButton :type="ButtonType.BLACK" to="/play">
               Play the game
             </RouterCCButton>
           </div>
@@ -75,18 +75,29 @@
           </div>
         </div>
         <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
-          <div v-for="cardBack in cardBacks" class="relative hover:scale-105">
-            <img
-              alt="cardback"
-              :src="cardBack.cardBack"
-              class="h-[20rem] drop-shadow-glowRed"
-            />
+                   
+          <div 
+            v-for="cardBack in cardBacks" 
+            class="relative hover:scale-105"
+            @click="router.push('/cardCreator')"
+          >
+            <router-link
+              :to="{ name: cardBack.route}"
+            >
+              <img
+                alt="cardback"
+                :src="cardBack.cardBack"
+                class="h-[20rem] drop-shadow-glowRed"
+              />
+            </router-link>
             <div class="absolute top-52 left-0 right-0 text-center">
               <p class="text-3xl font-bold">
                 {{ cardBack.heading }}
               </p>
               <p>{{ cardBack.text }}</p>
             </div>
+
+            
           </div>
         </div>
       </div>
@@ -139,8 +150,8 @@ type CardBack = {
 };
 
 const cardBacks: CardBack[] = [
-  { cardBack: cardBack1, heading: "CREATE", text: "Assets, Games, Worlds" },
-  { cardBack: cardBack2, heading: "PLAY", text: "Games, Characters, Stories" },
+  { cardBack: cardBack1, heading: "CREATE", text: "Assets, Games, Worlds", route: "CardCreator" },
+  { cardBack: cardBack2, heading: "PLAY", text: "Games, Characters, Stories", route: "Play" },
   { cardBack: cardBack3, heading: "VOTE", text: "Balance, Decide, Govern" },
   { cardBack: cardBack4, heading: "OWN", text: "Earn, Collect, Trade" },
 ];
