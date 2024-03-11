@@ -1,14 +1,14 @@
 <template>
-  <div class="bg-pink-950 flex flex-col items-center">
+  <div class="h-screen bg-pink-950 flex flex-col items-center">
     <div>
-      <div class="p-4 w-full text-white text-lg">
+      <div class="pt-24 pb-4 w-full text-white text-4xl">
         Card Creator
       </div>
       <div
         class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
       >
         <!-- Progress Bar -->
-        <div class="w-11/12 h-12 mx-auto">
+        <div class="w-10/12 pt-10 pb-6 h-12 mx-auto">
           <div
             class="bg-red-600 rounded-full h-1 flex items-center justify-between"
           >
@@ -38,7 +38,7 @@
         </div>
 
         <DefineNavigationButtons>
-          <div class="flex flex-row justify-end space-x-3">
+          <div class="flex flex-row justify-end space-x-3 px-[4.5rem] pb-6">
             <NavigateCCButtons
               class="pr-4 scale-[2]"
               :start="activeStep == 0"
@@ -48,8 +48,8 @@
               "
               @backward="activeStep = Math.max(activeStep - 1, 0)"
             />
-
             <BaseCCButton
+              class=""
               v-if="activeStep < progressBar.length - 1"
               :type="ButtonType.RED"
               @click="
@@ -69,11 +69,11 @@
           <div class="pt-8 p-3 text-s font-bold">
             CLASSES
           </div>
-          <div class="text-s">
+          <div class="text-s pb-4">
             Select one or multiple classes for your card.
           </div>
 
-          <div class="flex justify-between">
+          <div class="flex justify-between px-12">
             <div
               v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
               class="p-5"
@@ -107,25 +107,24 @@
             Select the type of card you want.
           </div>
 
-          <div class="flex justify-between">
+          <div class="flex justify-between px-20">
             <div
               v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
               class="py-10"
               @click="model.type = item"
             >
               <img
-                v-show="item !== model.type"
+                v-show="item == model.type"
                 class="h-32"
                 :src="typeIcons[item].Off"
               >
               <img
-                v-show="item == model.type"
+                v-show="item !== model.type"
                 class="h-32"
                 :src="typeIcons[item].On"
               >
               <div
-                :class="{ underline: item == model.type }"
-                class="py-5 text-s font-bold uppercase"
+                class="pt-3 pb-1 text-s font-bold uppercase"
               >
                 {{ item }}
               </div>
@@ -139,7 +138,7 @@
           v-if="activeStep == 2"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -149,7 +148,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 NAME
               </div>
@@ -165,7 +164,7 @@
                 >
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -282,7 +281,7 @@
           v-if="activeStep == 4"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -292,7 +291,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 FLAVOR
               </div>
@@ -308,7 +307,7 @@
                 >
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -319,7 +318,7 @@
           v-if="activeStep == 5"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -328,9 +327,8 @@
               :model="model"
             />
           </div>
-
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 COSTS AND POWERS
               </div>
@@ -340,7 +338,7 @@
                   cardRules.Card.children[getRulesType()] &&
                     cardRules.Card.children[getRulesType()].children.CastingCost
                 "
-                class="h-14"
+                class="h-10"
               >
                 Casting Cost
                 <Dropdown
@@ -400,7 +398,7 @@
               <!-- Delay -->
               <div
                 v-if="model.type === 'Headquarter'"
-                class="h-14"
+                class="h-[3rem]"
               >
                 <b>Delay</b> of Activation:
                 <Dropdown
@@ -416,7 +414,7 @@
                   model.type === 'Entity' &&
                     cardRules.Card.children[getRulesType()]
                 "
-                class="h-14"
+                class="h-[3rem]"
               >
                 Attack
                 <Dropdown
@@ -431,7 +429,7 @@
                   model.type !== 'Action' &&
                     cardRules.Card.children[getRulesType()]
                 "
-                class="h-14"
+                class="h-[2.5rem]"
               >
                 Defense
                 <Dropdown
@@ -464,7 +462,7 @@
                 />
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -475,7 +473,7 @@
           v-if="activeStep == 6"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -485,7 +483,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 ABILITIES AND EFFECTS
               </div>
@@ -529,7 +527,7 @@
                 class=""
               >
                 <button
-                  class="px-60 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                  class="px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
                   type="button"
                   @click="showAbilityModal('root')"
                 >
@@ -551,7 +549,7 @@
                 />
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -562,7 +560,7 @@
           v-if="activeStep == 7"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -572,7 +570,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 NOTES TO THE COUNCIL
               </div>
@@ -591,7 +589,7 @@
               <!-- this only shows to Jannik and should not be available to ordinary users, design is irrelevant here -->
               <span
                 v-if="
-                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej' || true
+                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'
                 "
                 class=""
               >
@@ -599,14 +597,14 @@
               </span>
               <input
                 v-if="
-                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej' || true
+                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'
                 "
                 v-model="model.balanceAnchor"
                 type="checkbox"
                 class=""
               >
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -616,7 +614,7 @@
           v-if="activeStep == 8"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -626,7 +624,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 SUMMARY
               </div>

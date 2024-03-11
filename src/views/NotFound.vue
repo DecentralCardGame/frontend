@@ -1,6 +1,6 @@
 <template>
   <div class="bg-black flex text-center justify-center h-[80vh]">
-    <div class="my-auto">
+    <div class="mt-24 my-auto">
       <p class="text-5xl text-[#FEC560] font-bold">
         Stay Tuned
       </p>

@@ -1,11 +1,11 @@
 <template>
-  <div class="h-32 bg-black flex space-x-10 px-10">
+  <div class="h-24 bg-black flex space-x-10 px-10">
     <router-link
       class="my-auto"
       to="/"
     >
       <img
-        class="h-16 object-contain"
+        class="h-12 object-contain"
         :src="CCLogo"
         alt="CC logo"
       >
@@ -19,7 +19,9 @@
         Download Gameclient
       </RouterCCButton>
     </div>
-    <LoginComponent />
+    <LoginComponent 
+      class=""
+    />
     <button
       class="my-auto"
       @click="toggleBar"
@@ -38,7 +40,8 @@
       'flex-row',
       'uppercase',
       'text-white',
-      'text-xl',
+      'text-lg',
+      'h-13',
       'font-bold',
       'max-md:flex-col',
       'max-md:' + (state.barShown ? 'visible' : 'hidden'),
@@ -47,7 +50,7 @@
     <router-link
       v-for="elem in elems"
       :to="elem.routeName"
-      class="px-10 py-5 hover:underline"
+      class="px-8 py-4 hover:underline"
       active-class="text-yellow-500"
     >
       {{ elem.display }}

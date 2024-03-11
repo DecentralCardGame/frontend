@@ -1,12 +1,12 @@
 <template>
   <div >
     <FadeTeaser>
-      <div class="px-0 py-40 flex text-center justify-center">
+      <div class="px-0 py-24 flex text-center justify-center">
         <div>
           <p class="text-5xl font-black text-red-600 font-lg">
             How To Play
           </p>
-          <p class="py-10 text-xl font-medium font-lg">
+          <p class="py-10 text-2xl font-lg">
             Here are the basics to get start playing. <br>
             Visit our GitBook for advanced information!
           </p>

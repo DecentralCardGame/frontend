@@ -8,7 +8,7 @@
     ]"
     @click="toggleDropdown"
   >
-    <div class="p-2 flex">
+    <div class="p-1 px-3 flex">
       {{ displayButton() }}
       <img
         class="w-4 pr-1 rotate-180 my-auto"
