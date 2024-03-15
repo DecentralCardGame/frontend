@@ -77,7 +77,7 @@
             <div
               v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
               class="p-5"
-              :class="{ grayscale: !model.Class[item] }"
+              :class="{ 'grayscale': !model.Class[item] }"
               @click="
                 model.Class[item] = !model.Class[item];
                 console.log(item, model.Class);
@@ -85,6 +85,7 @@
             >
               <img
                 class="h-32"
+                :class="{ 'ring-8 ring-black rounded-full': model.Class[item] }" 
                 :src="classIcons[item]"
               >
               <div class="py-5 text-s font-bold uppercase">
@@ -181,10 +182,18 @@
           @paste="onPaste"
         >
           <div
-            v-if="!designateArtist || artistMode"
-            class="m-8 max-h-[50vh] max-w-[50vh] flex"
+            class="pl-[4rem] pt-5 pb-4 h-[26.5rem]"
           >
+            <div v-if="cropImage==''">
+              <label for="dropzone-file" class="">
+                  <div class="h-[30rem] flex px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                    <span class="flex items-center">+</span>
+                  </div>
+                <input id="dropzone-file" type="file" class="hidden" @change="inputFile"/>
+              </label>
+            </div> 
             <cropper
+              v-if="!designateArtist || artistMode"
               class="cropper"
               :src="cropImage"
               :auto-zoom="true"
@@ -204,16 +213,6 @@
               @change="changeCrop"
             />
           </div>
-          <div v-if="designateArtist && !artistMode">
-            <div class="text-bold">
-              Address:
-            </div>
-            <input
-              v-model="artistAddress"
-              class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
-            >
-          </div>
-
           <div
             v-if="true || artistMode"
             class="m-8 flex-row"
@@ -221,17 +220,8 @@
             <div class="p-3 font-bold text-left">
               ARTWORK
             </div>
-            <div class="pl-3 pb-2 flex items-start">
-              <input
-                id="file"
-                class=""
-                name="file"
-                type="file"
-                @change="inputFile"
-              >
-            </div>
             <div class="pl-3 pb-8 text-left">
-              Or drop / paste to upload an artwork.
+              Click, drag or paste to upload an artwork.
             </div>
             <div class="p-3 text-left font-bold">
               COPYRIGHT
@@ -245,7 +235,7 @@
                 <input
                   id="false"
                   v-model="designateArtist"
-                  class="p-3 border-red-600 text-red-600"
+                  class="p-3 border-red-600 text-red-600 text-[20px]"
                   type="radio"
                   checked
                   :value="false"
@@ -255,18 +245,31 @@
                   this artwork.
                 </div>
               </div>
-              <div class="p-3 flex flex-row">
-                <input
-                  id="true"
-                  v-model="designateArtist"
-                  class="p-3 border-red-600 text-red-600"
-                  type="radio"
-                  :value="true"
-                >
-                <div class="px-3 text-left">
-                  I rather would like to designate an artist as a collaborator
-                  for the artwork.
-                </div>
+              <div class="flex flex-col">
+                <div class="p-3 flex flex-row">
+                  <input
+                    id="true"
+                    v-model="designateArtist"
+                    class="p-3 border-red-600 text-red-600"
+                    type="radio"
+                    :value="true"
+                  >
+                  <div class="px-3 text-left">
+                    I rather would like to designate an artist as a collaborator
+                    for the artwork.
+                  </div>
+                  </div>
+                  <div v-if="designateArtist && !artistMode">
+                    <div class="w-[25rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+                      <input
+                        v-model="artistAddress"
+                        class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                        placeholder="Add the artist's wallet address"
+                        maxLength="41"
+                      >
+                    </div>
+                  </div>
+                
               </div>
             </div>
 
@@ -834,7 +837,7 @@ export default {
       model: new Card(),
       artistMode: false,
       designateArtist: false,
-      artistAddress: "cc1...",
+      artistAddress: "",
       cardBounds: { x: env.cardImgSizeX, y: env.cardImgSizeY },
       cropImage: "",
       cardID: 0,

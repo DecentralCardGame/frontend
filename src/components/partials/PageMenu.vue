@@ -19,9 +19,7 @@
         Download Gameclient
       </RouterCCButton>
     </div>
-    <LoginComponent 
-      class=""
-    />
+    <LoginComponent />
     <button
       class="my-auto"
       @click="toggleBar"
