@@ -182,7 +182,7 @@
           @paste="onPaste"
         >
           <div
-            class="pl-[4rem] pt-5 pb-4 h-[26.5rem]"
+            class="pl-[4rem] pt-5 pb-4 w-[26.5rem]"
           >
             <div v-if="cropImage==''">
               <label for="dropzone-file" class="">
@@ -191,27 +191,29 @@
                   </div>
                 <input id="dropzone-file" type="file" class="hidden" @change="inputFile"/>
               </label>
-            </div> 
-            <cropper
-              v-if="!designateArtist || artistMode"
-              class="cropper"
-              :src="cropImage"
-              :auto-zoom="true"
-              :stencil-size="{
-                width: cardBounds.x,
-                height: model.fullArt ? cardBounds.y : cardBounds.x,
-              }"
-              :canvas="{
-                height: model.fullArt ? cardBounds.y : cardBounds.x,
-                width: cardBounds.x,
-              }"
-              :default-size="{
-                width: cardBounds.x,
-                height: model.fullArt ? cardBounds.y : cardBounds.x,
-              }"
-              image-restriction="fit-area"
-              @change="changeCrop"
-            />
+            </div>
+            <div class="w-full">
+              <cropper
+                v-if="!designateArtist || artistMode"
+                class="cropper"
+                :src="cropImage"
+                :auto-zoom="true"
+                :stencil-size="{
+                  width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                }"
+                :canvas="{
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                  width: cardBounds.x,
+                }"
+                :default-size="{
+                  width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                }"
+                image-restriction="fit-area"
+                @change="changeCrop"
+              />
+            </div>
           </div>
           <div
             v-if="true || artistMode"
@@ -226,6 +228,15 @@
             <div class="p-3 text-left font-bold">
               COPYRIGHT
             </div>
+
+            <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+              <mask id="maskImage">
+              <!-- Embed image from variable -->
+                <image :xlink:href="OBActionMask"  width="400" height="300" />
+              </mask>
+              <image :xlink:href="model.image" width="400" height="290" mask="url(#maskImage)" />
+              <image :xlink:href="OBAction" width="400" height="300" />
+            </svg>
 
             <div
               v-if="!artistMode"
@@ -725,6 +736,14 @@ import MysticismIcon from "@/assets/figma/MysticismIcon.svg";
 import TechnologyIcon from "@/assets/figma/TechnologyIcon.svg";
 import CultureIcon from "@/assets/figma/CultureIcon.svg";
 import NatureIcon from "@/assets/figma/NatureIcon.svg";
+import OBAction from "@/assets/onboard/OBAction.png";
+import OBEntity from "@/assets/onboard/OBEntity.png";
+import OBPlace from "@/assets/onboard/OBPlace.png";
+import OBHQ from "@/assets/onboard/OBHQ.png";
+import OBActionMask from "@/assets/onboard/OBActionMask.png";
+import OBEntityMask from "@/assets/onboard/OBEntityMask.png";
+import OBPlaceMask from "@/assets/onboard/OBPlaceMask.png";
+import OBHQMask from "@/assets/onboard/OBHQMask.png";
 
 import "vue-advanced-cropper/dist/style.css";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
@@ -802,6 +821,14 @@ export default {
 
     return {
       CCLogoSmallInvert,
+      OBAction,
+      OBEntity,
+      OBPlace,
+      OBHQ,
+      OBActionMask,
+      OBEntityMask,
+      OBPlaceMask,
+      OBHQMask,
       typeIcons,
       classIcons,
       cardCreatorEditCard: editCard.card,
@@ -860,6 +887,10 @@ export default {
               ? "done"
               : "active";
       });
+    },
+    cropImage() {
+      console.log("cropperino")
+      //this.model.image = this.cropImage;
     },
     model() {
       if (this.mode === Mode.EDIT) {
@@ -987,7 +1018,7 @@ export default {
       }
     },
     changeCrop({ canvas }) {
-      mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)]).then(
+      mergeImages([canvas.toDataURL("image/jpeg", 0.9)]).then(
         (b64) => {
           this.srcToFile(b64, "image.jpg", "image/jpeg").then((file) => {
             uploadImg(file, env.cardImgMaxKB, (result) => {
