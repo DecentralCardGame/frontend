@@ -181,12 +181,10 @@
           @dragleave.prevent="dragActive = false"
           @paste="onPaste"
         >
-          <div
-            class="pl-[4rem] pt-5 pb-4 w-[26.5rem]"
-          >
-            <div v-if="cropImage==''">
+          <div class="pl-[4rem] pt-8 w-[24rem]">
+            <div v-if="cropImage=='' && !designateArtist">
               <label for="dropzone-file" class="">
-                  <div class="h-[30rem] flex px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                  <div class="h-[20rem] flex px-[6rem] bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
                     <span class="flex items-center">+</span>
                   </div>
                 <input id="dropzone-file" type="file" class="hidden" @change="inputFile"/>
@@ -217,8 +215,22 @@
           </div>
           <div
             v-if="true || artistMode"
-            class="m-8 flex-row"
+            class="flex-row pl-8 pr-[4.5rem] py-5 justify-center"
           >
+            <!-- Onboard Preview -->
+            <svg v-if="cropImage!=='' && !designateArtist"
+              class="pl-8"
+              width="260" 
+              height="168" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask id="maskImage">
+                <image :xlink:href="getOBMask()"  width="260" height="168" />
+              </mask>
+              <image :xlink:href="model.image" width="260" y="-15" height="160" mask="url(#maskImage)" />
+              <image :xlink:href="getOBFrame()" width="260" height="168" />
+            </svg>
+
             <div class="p-3 font-bold text-left">
               ARTWORK
             </div>
@@ -228,16 +240,6 @@
             <div class="p-3 text-left font-bold">
               COPYRIGHT
             </div>
-
-            <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-              <mask id="maskImage">
-              <!-- Embed image from variable -->
-                <image :xlink:href="OBActionMask"  width="400" height="300" />
-              </mask>
-              <image :xlink:href="model.image" width="400" height="290" mask="url(#maskImage)" />
-              <image :xlink:href="OBAction" width="400" height="300" />
-            </svg>
-
             <div
               v-if="!artistMode"
               class="flex flex-col"
@@ -280,7 +282,6 @@
                       >
                     </div>
                   </div>
-                
               </div>
             </div>
 
@@ -951,6 +952,32 @@ export default {
   methods: {
     isEmpty(a) {
       return R.isEmpty(a);
+    },
+    getOBMask() {
+      console.log("model", this.model.type)
+      switch(this.model.type) {
+        case "Place":
+          return OBPlaceMask
+        case "Entity":
+          return OBEntityMask
+        case "Headquarter":
+          return OBHQMask
+        case "Action":
+          return OBActionMask
+      }
+    },
+    getOBFrame() {
+      console.log("model", this.model.type)
+      switch(this.model.type) {
+        case "Place":
+          return OBPlace
+        case "Entity":
+          return OBEntity
+        case "Headquarter":
+          return OBHQ
+        case "Action":
+          return OBAction
+      }
     },
     getHQDelayRange() {
       return R.range(
