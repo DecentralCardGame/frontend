@@ -8,18 +8,28 @@
       </h1>
       <div class="py-24">
         <div class="mx-auto h-64 w-64 relative group">
-          <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
+          <ProfilePicComponent
+            :src="state.img"
+            size="64"
+            alt="Profile pic"
+          />
           <button
             v-if="state.userIsUser"
             class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible group-hover:visible"
             @click="showChooseModal"
           >
-            <img :src="editImg" alt="edit" class="hover:drop-shadow-md" />
+            <img
+              :src="editImg"
+              alt="edit"
+              class="hover:drop-shadow-md"
+            >
           </button>
         </div>
       </div>
       <UserViewHeadingContainer>
-        <template #heading> Council status</template>
+        <template #heading>
+          Council status
+        </template>
         <template #body>
           <p>{{ user.CouncilStatus }}</p>
           <BaseCCButton
@@ -27,14 +37,14 @@
             :type="ButtonType.YELLOW"
             @click="
               CouncilStatus[state.user.CouncilStatus] ==
-              CouncilStatus.unavailable
+                CouncilStatus.unavailable
                 ? register()
                 : deRegister()
             "
           >
             {{
               CouncilStatus[state.user.CouncilStatus] ==
-              CouncilStatus.unavailable
+                CouncilStatus.unavailable
                 ? "Register for"
                 : "Deregister from"
             }}
@@ -59,21 +69,23 @@
       </h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <UserViewHeadingContainer>
-          <template #heading> Wallet</template>
+          <template #heading>
+            Wallet
+          </template>
           <template #body>
-            <b>Address</b> <br />{{ state.addr }}<br />
-            <br />
-            <b>Alias</b> <br />{{ state.user.alias }}
+            <b>Address</b> <br>{{ state.addr }}<br>
+            <br>
+            <b>Alias</b> <br>{{ state.user.alias }}
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
-          <template #heading> My Cards</template>
+          <template #heading>
+            My Cards
+          </template>
           <template #body>
-            <b
-              >{{ state.user.ownedCardSchemes.length }} Card Frame{{
-                state.user.ownedCardSchemes.length == 1 ? "" : "s"
-              }}</b
-            >
+            <b>{{ state.user.ownedCardSchemes.length }} Card Frame{{
+              state.user.ownedCardSchemes.length == 1 ? "" : "s"
+            }}</b>
             <div
               v-for="[arr, name] in [
                 [state.user.ownedCardSchemes, 'Master Card'],
@@ -82,10 +94,8 @@
               class="pb-6"
             >
               <p class="pb-3">
-                <b
-                  >{{ arr.length }} {{ name
-                  }}{{ arr.length == 1 ? "" : "s" }}</b
-                >
+                <b>{{ arr.length }} {{ name
+                }}{{ arr.length == 1 ? "" : "s" }}</b>
               </p>
               <RouterCCButton
                 :type="ButtonType.YELLOW"
@@ -100,28 +110,37 @@
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
-          <template #heading> Recent Activity</template>
+          <template #heading>
+            Recent Activity
+          </template>
           <template #body>
-            <RouterCCButton :type="ButtonType.YELLOW" :to="{ name: 'Vote' }">
+            <RouterCCButton
+              :type="ButtonType.YELLOW"
+              :to="{ name: 'Vote' }"
+            >
               Go to Voting
             </RouterCCButton>
           </template>
         </UserViewHeadingContainer>
       </div>
       <UserViewHeadingContainer class="pt-8">
-        <template #heading> Play History</template>
+        <template #heading>
+          Play History
+        </template>
         <template #body>
           <div class="grid gap-8 md:grid-cols-4">
             <UserViewHeadingContainer
               v-for="(match, key) in state.matches"
               :key="key"
             >
-              <template #heading> Match {{ key }}</template>
+              <template #heading>
+                Match {{ key }}
+              </template>
               <template #body>
                 {{
                   (match.playerA.addr == state.addr &&
                     match.outcome == "AWon") ||
-                  (match.playerB.addr == state.addr && match.outcome == "BWon")
+                    (match.playerB.addr == state.addr && match.outcome == "BWon")
                     ? "WIN"
                     : "LOSE"
                 }}

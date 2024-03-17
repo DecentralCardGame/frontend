@@ -12,13 +12,16 @@
         <div class="">
           <p>Search for</p>
           <div class="space-y-4">
-            <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
-            <br />
+            <CCInput
+              v-model="galleryFilters.nameContains"
+              placeholder="name"
+            />
+            <br>
             <CCInput
               v-model="galleryFilters.notesContains"
               placeholder="notes"
             />
-            <br />
+            <br>
             <CCInput
               v-model="galleryFilters.keywordsContains"
               placeholder="keywords"
@@ -55,7 +58,7 @@
               CardRarity.unique,
             ]"
           />
-          <br />
+          <br>
           Status:
           <Dropdown
             v-model="galleryFilters.status"
@@ -83,9 +86,13 @@
             Gallery
           </p>
           <div class="flex justify-center max-md:hidden md:justify-between">
-            <p class="text-xl my-auto">{{ cardList.length }} Results</p>
+            <p class="text-xl my-auto">
+              {{ cardList.length }} Results
+            </p>
             <div class="flex space-x-4">
-              <p class="text-xl my-auto max-md:hidden">Sort by</p>
+              <p class="text-xl my-auto max-md:hidden">
+                Sort by
+              </p>
               <Dropdown
                 v-model="galleryFilters.sortBy"
                 class="my-auto"
@@ -93,7 +100,10 @@
                 :options="['Name', 'CastingCost', 'Id']"
                 :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
               />
-              <SortDirectionButton v-model="revertSort" class="my-auto" />
+              <SortDirectionButton
+                v-model="revertSort"
+                class="my-auto"
+              />
             </div>
           </div>
         </div>

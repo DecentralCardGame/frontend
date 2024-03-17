@@ -14,7 +14,7 @@
     <div class="my-auto max-md:hidden">
       <RouterCCButton
         :type="ButtonType.RED"
-        to="/d"
+        to="/download"
       >
         Download Gameclient
       </RouterCCButton>
@@ -66,14 +66,13 @@ import LoginComponent from "@/components/elements/LoginComponent.vue";
 type NavigationElement = {
   routeName: string;
   display: string;
-  highlighted: boolean;
 };
 
 const elems: NavigationElement[] = [
-  { routeName: "/gallery", display: "Gallery", highlighted: false },
-  { routeName: "/s", display: "Sets and Boosters", highlighted: true },
-  { routeName: "/learn", display: "Learn", highlighted: false },
-  { routeName: "/cardCreator", display: "Card Creator", highlighted: false },
+  { routeName: "/gallery", display: "Gallery" },
+  { routeName: "/s", display: "Sets and Boosters" },
+  { routeName: "/learn", display: "Learn" },
+  { routeName: "/cardCreator", display: "Card Creator" },
 ];
 
 const state = reactive({

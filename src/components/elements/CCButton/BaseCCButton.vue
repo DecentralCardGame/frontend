@@ -8,6 +8,7 @@
         'shadow-xl',
         'shadow-black/25',
         'text-center',
+        'text-lg',
         'font-bold',
         'font-[roboto]',
         'uppercase',
@@ -43,6 +44,6 @@ const props = withDefaults(
   }>(),
   {
     type: ButtonType.YELLOW,
-  }
+  },
 );
 </script>

@@ -1,6 +1,8 @@
 <template>
   <div class="bg-black text-white font-normal font-['Roboto']">
-    <div class="pt-10 text-center text-base font-bold underline uppercase space-y-2">
+    <div
+      class="pt-10 text-center text-base font-bold underline uppercase space-y-2"
+    >
       <button @click="scrollup">
         <div class="flex justify-evenly">
           <img
@@ -15,7 +17,9 @@
       </button>
     </div>
 
-    <div class="p-12 flex flex-wrap flex-row text-white text-base justify-evenly">
+    <div
+      class="p-12 flex flex-wrap flex-row text-white text-base justify-evenly"
+    >
       <div class="p-5 flex-row space-y-5">
         <div class="text-3xl font-bold">
           Pages
@@ -31,12 +35,10 @@
           </router-link>
         </div>
         <div>
-          <a href="https://crowdcontrol-network.gitbook.io/">
-            GitBook
-          </a>
+          <a href="https://crowdcontrol-network.gitbook.io/"> GitBook </a>
         </div>
         <div>
-          <router-link :to="{ name: 'About' }">
+          <router-link :to="{ name: 'Team' }">
             About
           </router-link>
         </div>
@@ -46,7 +48,9 @@
           </router-link>
         </div>
         <div>
-          <a href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf">
+          <a
+            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
+          >
             Whitepaper
           </a>
         </div>
@@ -81,9 +85,7 @@
                 >
               </picture>
             </div>
-            <div>
-              Discord
-            </div>
+            <div>Discord</div>
           </div>
         </a>
 
@@ -106,9 +108,7 @@
                 >
               </picture>
             </div>
-            <div>
-              Twitter
-            </div>
+            <div>Twitter</div>
           </div>
         </a>
 
@@ -131,9 +131,7 @@
                 >
               </picture>
             </div>
-            <div>
-              Github
-            </div>
+            <div>Github</div>
           </div>
         </a>
 
@@ -152,9 +150,7 @@
                 >
               </picture>
             </div>
-            <div>
-              Telegram
-            </div>
+            <div>Telegram</div>
           </div>
         </a>
       </div>
@@ -166,6 +162,6 @@
 import triangle from "@/assets/figma/Navigation_Triangle.svg";
 
 function scrollup() {
-  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 }
 </script>
