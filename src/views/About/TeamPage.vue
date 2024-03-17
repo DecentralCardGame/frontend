@@ -47,13 +47,13 @@ import jannik from "@/assets/team/jannik.webp";
 import kosta from "@/assets/team/kosta.webp";
 import benny from "@/assets/team/benny.webp";
 import stefi from "@/assets/team/stefi.webp";
-import noah from "@/assets/team/niko.webp";
+import noah from "@/assets/team/noah.webp";
 import logo from "@/assets/figma/CCLogo.png";
 
 const items: { pic: any; name: string; desc: string }[] = [
   { pic: patrick, name: "Technical lead", desc: "Patrick" },
   { pic: anna, name: "Anna", desc: "Creative lead" },
-  { pic: marius, name: "Marius", desc: "Game Design lead" },
+  { pic: marius, name: "Marius", desc: "Game Dev lead" },
   { pic: peer, name: "Peer", desc: "Blockchain Dev" },
   { pic: niko, name: "Niko", desc: "Unity Dev" },
   { pic: jannik, name: "Jannik", desc: "Game Design" },

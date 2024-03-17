@@ -15,9 +15,8 @@ const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue");
 const Demo = () => import("@/views/Demo.vue");
 const Login = () => import("@/views/LoginPage.vue");
 const LearnPage = () => import("@/views/LearnPage.vue");
-const Download = () => import("@/views/DownloadPage.vue");
-
-const Community = () => import("@/views/About/CommunityPage.vue");
+const DownloadPage = () => import("@/views/DownloadPage.vue");
+const CommunityPage = () => import("@/views/About/CommunityPage.vue");
 
 const routes = [
   {
@@ -58,7 +57,7 @@ const routes = [
   {
     path: "/download",
     name: "Download",
-    component: Download,
+    component: DownloadPage,
   },
   {
     path: "/about/team",
@@ -68,7 +67,7 @@ const routes = [
   {
     path: "/about/community",
     name: "Community",
-    component: Community,
+    component: CommunityPage,
   },
   {
     path: "/about/roadmap",
