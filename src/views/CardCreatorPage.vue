@@ -49,8 +49,8 @@
               @backward="activeStep = Math.max(activeStep - 1, 0)"
             />
             <BaseCCButton
-              class=""
               v-if="activeStep < progressBar.length - 1"
+              class=""
               :type="ButtonType.RED"
               @click="
                 activeStep = Math.min(activeStep + 1, progressBar.length - 1)
@@ -181,13 +181,23 @@
           @dragleave.prevent="dragActive = false"
           @paste="onPaste"
         >
-          <div class="pl-[4rem] pt-8 w-[24rem]">
-            <div v-if="cropImage=='' && !designateArtist">
-              <label for="dropzone-file" class="">
-                  <div class="h-[20rem] flex px-[6rem] bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
-                    <span class="flex items-center">+</span>
-                  </div>
-                <input id="dropzone-file" type="file" class="hidden" @change="inputFile"/>
+          <div
+            class="pl-[4rem] pt-5 pb-4 w-[26.5rem]"
+          >
+            <div v-if="cropImage==''">
+              <label
+                for="dropzone-file"
+                class=""
+              >
+                <div class="h-[30rem] flex px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                  <span class="flex items-center">+</span>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  class="hidden"
+                  @change="inputFile"
+                >
               </label>
             </div>
             <div class="w-full">
@@ -240,6 +250,7 @@
             <div class="p-3 text-left font-bold">
               COPYRIGHT
             </div>
+
             <div
               v-if="!artistMode"
               class="flex flex-col"
@@ -271,17 +282,17 @@
                     I rather would like to designate an artist as a collaborator
                     for the artwork.
                   </div>
+                </div>
+                <div v-if="designateArtist && !artistMode">
+                  <div class="w-[25rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+                    <input
+                      v-model="artistAddress"
+                      class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                      placeholder="Add the artist's wallet address"
+                      maxLength="41"
+                    >
                   </div>
-                  <div v-if="designateArtist && !artistMode">
-                    <div class="w-[25rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
-                      <input
-                        v-model="artistAddress"
-                        class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
-                        placeholder="Add the artist's wallet address"
-                        maxLength="41"
-                      >
-                    </div>
-                  </div>
+                </div>
               </div>
             </div>
 
