@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <FadeTeaser>
       <div class="px-0 py-24 flex text-center justify-center">
         <div>
@@ -10,13 +10,9 @@
             Here are the basics to get start playing. <br>
             Visit our GitBook for advanced information!
           </p>
-          <a href="https://crowdcontrol-network.gitbook.io/">  
-            <BaseCCButton
-              :type="ButtonType.RED"
-            >
-              Open GitBook
-            </BaseCCButton> 
-            </a>
+          <a href="https://crowdcontrol-network.gitbook.io/">
+            <BaseCCButton :type="ButtonType.RED"> Open GitBook</BaseCCButton>
+          </a>
         </div>
       </div>
     </FadeTeaser>
