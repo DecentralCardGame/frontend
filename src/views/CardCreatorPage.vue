@@ -230,17 +230,32 @@
             class="flex-row pl-8 pr-[4.5rem] py-5 justify-center"
           >
             <!-- Onboard Preview -->
-            <svg v-if="cropImage!=='' && !designateArtist"
+            <svg
+              v-if="cropImage!=='' && !designateArtist"
               class="pl-8"
               width="260" 
               height="168" 
               xmlns="http://www.w3.org/2000/svg"
             >
               <mask id="maskImage">
-                <image :xlink:href="getOBMask()"  width="260" height="168" />
+                <image
+                  :xlink:href="getOBMask()"
+                  width="260"
+                  height="168"
+                />
               </mask>
-              <image :xlink:href="model.image" width="260" y="-15" height="160" mask="url(#maskImage)" />
-              <image :xlink:href="getOBFrame()" width="260" height="168" />
+              <image
+                :xlink:href="model.image"
+                width="260"
+                y="-15"
+                height="160"
+                mask="url(#maskImage)"
+              />
+              <image
+                :xlink:href="getOBFrame()"
+                width="260"
+                height="168"
+              />
             </svg>
 
             <div class="p-3 font-bold text-left">
