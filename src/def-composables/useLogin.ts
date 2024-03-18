@@ -27,7 +27,8 @@ const useLoginInstance = () => {
       if (!required) {
         login()
       } else {
-        router.push("Login")}
+        router.push({name:"Login"})
+      }
     })
   }
   
