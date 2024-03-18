@@ -14,6 +14,7 @@
           >
             <div
               v-for="(item, idx) in progressBar"
+              :key="'activeStep'+idx"
               class="flex justify-between bg-red-600 rounded-full h-1 items-center relative"
               @click="activeStep = idx"
             >
@@ -76,6 +77,7 @@
           <div class="flex justify-between px-12">
             <div
               v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
+              :key="'class'+item"
               class="p-5"
               :class="{ 'grayscale': !model.Class[item] }"
               @click="
@@ -111,6 +113,7 @@
           <div class="flex justify-between px-20">
             <div
               v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
+              :key="'class'+item"
               class="py-10"
               @click="model.type = item"
             >
@@ -184,7 +187,7 @@
           <div
             class="pl-[4rem] pt-5 pb-4 w-[26.5rem]"
           >
-            <div v-if="cropImage==''">
+            <div v-if="cropImage=='' && !designateArtist">
               <label
                 for="dropzone-file"
                 class=""
@@ -295,7 +298,6 @@
                 </div>
               </div>
             </div>
-
             <div class="pt-20 justify-end">
               <NavigationButtons />
             </div>
