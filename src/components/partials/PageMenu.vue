@@ -61,7 +61,7 @@ import Menu from "@/assets/figma/Menu.svg";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import { reactive } from "vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
-import LoginComponent from "@/components/elements/LoginComponent.vue";
+import LoginComponent from "@/components/elements/Login/LoginComponent.vue";
 
 type NavigationElement = {
   routeName: string;
