@@ -1,19 +1,20 @@
 <template>
-  <div class="bg-pink-950 flex flex-col items-center">
+  <div class="h-screen bg-pink-950 flex flex-col items-center">
     <div>
-      <div class="p-4 w-full text-white text-lg">
+      <div class="pt-24 pb-4 w-full text-white text-4xl">
         Card Creator
       </div>
       <div
         class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
       >
         <!-- Progress Bar -->
-        <div class="w-11/12 h-12 mx-auto">
+        <div class="w-10/12 pt-10 pb-6 h-12 mx-auto">
           <div
             class="bg-red-600 rounded-full h-1 flex items-center justify-between"
           >
             <div
               v-for="(item, idx) in progressBar"
+              :key="'activeStep'+idx"
               class="flex justify-between bg-red-600 rounded-full h-1 items-center relative"
               @click="activeStep = idx"
             >
@@ -38,7 +39,7 @@
         </div>
 
         <DefineNavigationButtons>
-          <div class="flex flex-row justify-end space-x-3">
+          <div class="flex flex-row justify-end space-x-3 px-[4.5rem] pb-6">
             <NavigateCCButtons
               class="pr-4 scale-[2]"
               :start="activeStep == 0"
@@ -48,9 +49,9 @@
               "
               @backward="activeStep = Math.max(activeStep - 1, 0)"
             />
-
             <BaseCCButton
               v-if="activeStep < progressBar.length - 1"
+              class=""
               :type="ButtonType.RED"
               @click="
                 activeStep = Math.min(activeStep + 1, progressBar.length - 1)
@@ -69,22 +70,23 @@
           <div class="pt-8 p-3 text-s font-bold">
             CLASSES
           </div>
-          <div class="text-s">
+          <div class="text-s pb-4">
             Select one or multiple classes for your card.
           </div>
 
-          <div class="flex justify-between">
+          <div class="flex justify-between px-12">
             <div
               v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
+              :key="'class'+item"
               class="p-5"
-              :class="{ grayscale: !model.Class[item] }"
+              :class="{ 'grayscale': !model.Class[item] }"
               @click="
                 model.Class[item] = !model.Class[item];
-                console.log(item, model.Class);
               "
             >
               <img
                 class="h-32"
+                :class="{ 'ring-8 ring-black rounded-full': model.Class[item] }" 
                 :src="classIcons[item]"
               >
               <div class="py-5 text-s font-bold uppercase">
@@ -107,25 +109,25 @@
             Select the type of card you want.
           </div>
 
-          <div class="flex justify-between">
+          <div class="flex justify-between px-20">
             <div
               v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
+              :key="'class'+item"
               class="py-10"
               @click="model.type = item"
             >
               <img
-                v-show="item !== model.type"
+                v-show="item == model.type"
                 class="h-32"
                 :src="typeIcons[item].Off"
               >
               <img
-                v-show="item == model.type"
+                v-show="item !== model.type"
                 class="h-32"
                 :src="typeIcons[item].On"
               >
               <div
-                :class="{ underline: item == model.type }"
-                class="py-5 text-s font-bold uppercase"
+                class="pt-3 pb-1 text-s font-bold uppercase"
               >
                 {{ item }}
               </div>
@@ -139,7 +141,7 @@
           v-if="activeStep == 2"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -149,7 +151,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 NAME
               </div>
@@ -165,7 +167,7 @@
                 >
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -182,57 +184,70 @@
           @paste="onPaste"
         >
           <div
-            v-if="!designateArtist || artistMode"
-            class="m-8 max-h-[50vh] max-w-[50vh] flex"
+            class="pl-[4rem] pt-5 pb-4 w-[26.5rem]"
           >
-            <cropper
-              class="cropper"
-              :src="cropImage"
-              :auto-zoom="true"
-              :stencil-size="{
-                width: cardBounds.x,
-                height: model.fullArt ? cardBounds.y : cardBounds.x,
-              }"
-              :canvas="{
-                height: model.fullArt ? cardBounds.y : cardBounds.x,
-                width: cardBounds.x,
-              }"
-              :default-size="{
-                width: cardBounds.x,
-                height: model.fullArt ? cardBounds.y : cardBounds.x,
-              }"
-              image-restriction="fit-area"
-              @change="changeCrop"
-            />
-          </div>
-          <div v-if="designateArtist && !artistMode">
-            <div class="text-bold">
-              Address:
+            <div v-if="cropImage=='' && !designateArtist">
+              <label
+                for="dropzone-file"
+                class=""
+              >
+                <div class="h-[30rem] flex px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                  <span class="flex items-center">+</span>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  class="hidden"
+                  @change="inputFile"
+                >
+              </label>
             </div>
-            <input
-              v-model="artistAddress"
-              class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
-            >
+            <div class="w-full">
+              <cropper
+                v-if="!designateArtist || artistMode"
+                class="cropper"
+                :src="cropImage"
+                :auto-zoom="true"
+                :stencil-size="{
+                  width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                }"
+                :canvas="{
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                  width: cardBounds.x,
+                }"
+                :default-size="{
+                  width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                }"
+                image-restriction="fit-area"
+                @change="changeCrop"
+              />
+            </div>
           </div>
-
           <div
             v-if="true || artistMode"
-            class="m-8 flex-row"
+            class="flex-row pl-8 pr-[4.5rem] py-5 justify-center"
           >
+            <!-- Onboard Preview -->
+            <svg v-if="cropImage!=='' && !designateArtist"
+              class="pl-8"
+              width="260" 
+              height="168" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask id="maskImage">
+                <image :xlink:href="getOBMask()"  width="260" height="168" />
+              </mask>
+              <image :xlink:href="model.image" width="260" y="-15" height="160" mask="url(#maskImage)" />
+              <image :xlink:href="getOBFrame()" width="260" height="168" />
+            </svg>
+
             <div class="p-3 font-bold text-left">
               ARTWORK
             </div>
-            <div class="pl-3 pb-2 flex items-start">
-              <input
-                id="file"
-                class=""
-                name="file"
-                type="file"
-                @change="inputFile"
-              >
-            </div>
             <div class="pl-3 pb-8 text-left">
-              Or drop / paste to upload an artwork.
+              Click, drag or paste to upload an artwork.
             </div>
             <div class="p-3 text-left font-bold">
               COPYRIGHT
@@ -246,7 +261,7 @@
                 <input
                   id="false"
                   v-model="designateArtist"
-                  class="p-3 border-red-600 text-red-600"
+                  class="p-3 border-red-600 text-red-600 text-[20px]"
                   type="radio"
                   checked
                   :value="false"
@@ -256,21 +271,32 @@
                   this artwork.
                 </div>
               </div>
-              <div class="p-3 flex flex-row">
-                <input
-                  id="true"
-                  v-model="designateArtist"
-                  class="p-3 border-red-600 text-red-600"
-                  type="radio"
-                  :value="true"
-                >
-                <div class="px-3 text-left">
-                  I rather would like to designate an artist as a collaborator
-                  for the artwork.
+              <div class="flex flex-col">
+                <div class="p-3 flex flex-row">
+                  <input
+                    id="true"
+                    v-model="designateArtist"
+                    class="p-3 border-red-600 text-red-600"
+                    type="radio"
+                    :value="true"
+                  >
+                  <div class="px-3 text-left">
+                    I rather would like to designate an artist as a collaborator
+                    for the artwork.
+                  </div>
+                </div>
+                <div v-if="designateArtist && !artistMode">
+                  <div class="w-[25rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+                    <input
+                      v-model="artistAddress"
+                      class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                      placeholder="Add the artist's wallet address"
+                      maxLength="41"
+                    >
+                  </div>
                 </div>
               </div>
             </div>
-
             <div class="pt-20 justify-end">
               <NavigationButtons />
             </div>
@@ -282,7 +308,7 @@
           v-if="activeStep == 4"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -292,7 +318,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 FLAVOR
               </div>
@@ -308,7 +334,7 @@
                 >
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -319,7 +345,7 @@
           v-if="activeStep == 5"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -328,9 +354,8 @@
               :model="model"
             />
           </div>
-
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 COSTS AND POWERS
               </div>
@@ -340,7 +365,7 @@
                   cardRules.Card.children[getRulesType()] &&
                     cardRules.Card.children[getRulesType()].children.CastingCost
                 "
-                class="h-14"
+                class="h-10"
               >
                 Casting Cost
                 <Dropdown
@@ -400,7 +425,7 @@
               <!-- Delay -->
               <div
                 v-if="model.type === 'Headquarter'"
-                class="h-14"
+                class="h-[3rem]"
               >
                 <b>Delay</b> of Activation:
                 <Dropdown
@@ -416,7 +441,7 @@
                   model.type === 'Entity' &&
                     cardRules.Card.children[getRulesType()]
                 "
-                class="h-14"
+                class="h-[3rem]"
               >
                 Attack
                 <Dropdown
@@ -431,7 +456,7 @@
                   model.type !== 'Action' &&
                     cardRules.Card.children[getRulesType()]
                 "
-                class="h-14"
+                class="h-[2.5rem]"
               >
                 Defense
                 <Dropdown
@@ -464,7 +489,7 @@
                 />
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -475,7 +500,7 @@
           v-if="activeStep == 6"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -485,7 +510,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 ABILITIES AND EFFECTS
               </div>
@@ -529,7 +554,7 @@
                 class=""
               >
                 <button
-                  class="px-60 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                  class="px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
                   type="button"
                   @click="showAbilityModal('root')"
                 >
@@ -551,7 +576,7 @@
                 />
               </div>
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -562,7 +587,7 @@
           v-if="activeStep == 7"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -572,7 +597,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 NOTES TO THE COUNCIL
               </div>
@@ -591,7 +616,7 @@
               <!-- this only shows to Jannik and should not be available to ordinary users, design is irrelevant here -->
               <span
                 v-if="
-                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej' || true
+                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'
                 "
                 class=""
               >
@@ -599,14 +624,14 @@
               </span>
               <input
                 v-if="
-                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej' || true
+                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'
                 "
                 v-model="model.balanceAnchor"
                 type="checkbox"
                 class=""
               >
             </div>
-            <div class="pl-10">
+            <div class="pl-20">
               <NavigationButtons />
             </div>
           </div>
@@ -616,7 +641,7 @@
           v-if="activeStep == 8"
           class="flex flex-row justify-center"
         >
-          <div class="px-8">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -626,7 +651,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="py-5 justify-center">
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 SUMMARY
               </div>
@@ -724,6 +749,14 @@ import MysticismIcon from "@/assets/figma/MysticismIcon.svg";
 import TechnologyIcon from "@/assets/figma/TechnologyIcon.svg";
 import CultureIcon from "@/assets/figma/CultureIcon.svg";
 import NatureIcon from "@/assets/figma/NatureIcon.svg";
+import OBAction from "@/assets/onboard/OBAction.png";
+import OBEntity from "@/assets/onboard/OBEntity.png";
+import OBPlace from "@/assets/onboard/OBPlace.png";
+import OBHQ from "@/assets/onboard/OBHQ.png";
+import OBActionMask from "@/assets/onboard/OBActionMask.png";
+import OBEntityMask from "@/assets/onboard/OBEntityMask.png";
+import OBPlaceMask from "@/assets/onboard/OBPlaceMask.png";
+import OBHQMask from "@/assets/onboard/OBHQMask.png";
 
 import "vue-advanced-cropper/dist/style.css";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
@@ -801,6 +834,14 @@ export default {
 
     return {
       CCLogoSmallInvert,
+      OBAction,
+      OBEntity,
+      OBPlace,
+      OBHQ,
+      OBActionMask,
+      OBEntityMask,
+      OBPlaceMask,
+      OBHQMask,
       typeIcons,
       classIcons,
       cardCreatorEditCard: editCard.card,
@@ -836,7 +877,7 @@ export default {
       model: new Card(),
       artistMode: false,
       designateArtist: false,
-      artistAddress: "cc1...",
+      artistAddress: "",
       cardBounds: { x: env.cardImgSizeX, y: env.cardImgSizeY },
       cropImage: "",
       cardID: 0,
@@ -920,6 +961,30 @@ export default {
     isEmpty(a) {
       return R.isEmpty(a);
     },
+    getOBMask() {
+      switch(this.model.type) {
+        case "Place":
+          return OBPlaceMask
+        case "Entity":
+          return OBEntityMask
+        case "Headquarter":
+          return OBHQMask
+        case "Action":
+          return OBActionMask
+      }
+    },
+    getOBFrame() {
+      switch(this.model.type) {
+        case "Place":
+          return OBPlace
+        case "Entity":
+          return OBEntity
+        case "Headquarter":
+          return OBHQ
+        case "Action":
+          return OBAction
+      }
+    },
     getHQDelayRange() {
       return R.range(
         this.cardRules.Card.children[this.getRulesType()].children.Delay.min ||
@@ -986,7 +1051,7 @@ export default {
       }
     },
     changeCrop({ canvas }) {
-      mergeImages(["/BG.png", canvas.toDataURL("image/jpeg", 0.9)]).then(
+      mergeImages([canvas.toDataURL("image/jpeg", 0.9)]).then(
         (b64) => {
           this.srcToFile(b64, "image.jpg", "image/jpeg").then((file) => {
             uploadImg(file, env.cardImgMaxKB, (result) => {
@@ -1173,7 +1238,6 @@ export default {
       return R.keys(this.cardRules.Card.children);
     },
     getTags(idx) {
-      console.log("get tags called", idx);
       if (this.cardRules.Card) {
         let usedTags = [];
         let allTags =
@@ -1184,14 +1248,9 @@ export default {
         }
         // if this is the last dropdown, allow to select nothing
         if (idx == 1) {
-          console.log(
-            "last tag, returning",
-            R.append("", R.without(usedTags, allTags)),
-          );
           return R.append("", R.without(usedTags, allTags));
         } else {
           // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
-          console.log("returning", R.without(usedTags, allTags));
           return R.without(usedTags, allTags);
         }
       } else {
@@ -1200,14 +1259,12 @@ export default {
       }
     },
     updateTags() {
-      console.log("this model tags", this.model.Tags);
       if (this.model.Tags[1] == "") this.model.Tags = [this.model.Tags[0]];
       if (!this.model.Tags) {
         this.model.Tags = [];
       }
     },
     interactionTextToString(ability) {
-      console.log("converting ability:", ability);
       let string = "";
       ability.interaction.forEach((entry) => {
         if (entry.btn.type !== "expandArray")
@@ -1380,7 +1437,6 @@ export default {
         }
         // if an ability was created, but it has no effect, then this should be fixed
         if (newModel.Effects.length == 0) {
-          console.log("newmodel", newModel);
           this.notifyFail(
             "No Effects",
             "Card has no effect. Maybe you forgot to add an effect?",
