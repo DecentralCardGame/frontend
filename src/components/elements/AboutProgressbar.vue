@@ -23,6 +23,6 @@ const elems: NavigationElement[] = [
   { routeName: "/about/roadmap", display: "Roadmap" },
   { routeName: "/about/team", display: "Team" },
   { routeName: "/about/tokens", display: "CC Tokens" },
-  { routeName: "/about/whitepaper", display: "Card Creator" },
+  { routeName: "/about/whitepaper", display: "Whitepaper" },
 ];
 </script>

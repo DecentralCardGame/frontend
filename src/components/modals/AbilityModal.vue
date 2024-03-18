@@ -224,7 +224,6 @@ export default {
       };
       let valids = R.filter((ability) => abilityIsValid(ability), options);
 
-      console.log("valid keywords:", valids);
       return valids;
     },
     getIcon(option) {
@@ -371,10 +370,8 @@ export default {
       let atRules = R.curry(atPath)(this.cardRules.Card);
 
       let selection = filterSelection2(this.dialog.options, this.selected);
-      console.log(selection);
       let pathAtSelection = R.concat(this.dialog.rulesPath, [selection.index]);
       let objAtSelection = atRules(pathAtSelection);
-      console.log(this.cardRules.Card, selection.index, this.dialog.rulesPath);
       let interactionText = atPath(
         this.cardRules.Card,
         R.append(selection.index, this.dialog.rulesPath)
@@ -452,13 +449,11 @@ export default {
       let ability = R.assocPath(path, object, this.ability);
 
       if (updateKeywords) {
-        console.log("keywords before: ", this.ability.keywords);
 
         ability.keywords = ability.keywords
           ? R.concat(ability.keywords, R.keys(object))
           : R.keys(object);
 
-        console.log("keywords after: ", ability.keywords);
       }
 
       this.$emit("update:ability", ability);

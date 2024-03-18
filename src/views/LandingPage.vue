@@ -4,7 +4,7 @@
       <img
         alt="langing bg image"
         :src="landingBackground"
-        class="w-[100%] object-cover h-[40rem] 2xl:h-[50rem]"
+        class="w-[100%] object-cover h-[40rem] 2xl:h-[44rem]"
       >
       <div class="absolute top-20 m-auto left-0 right-0">
         <div class="flex text-center justify-center z-10">
@@ -47,13 +47,13 @@
       class="bg-center bg-cover bg-[url('@/assets/figma/Car.jpeg')] pt-10 sm:pt-32"
     >
       <div
-        class="flex gap-4 justify-between flex-wrap px-4 sm:px-16 lg:px-32 py-4 sm:py-10 lg:py-20 bg-cc-yellow/75 mx-2 sm:mx-20 lg:mx-40 b-10 sm:mb-32 xl:w-[70%] xl:mx-auto"
+        class="max-w-[70rem] flex flex-row flex-wrap justify-evenly px-8 py-10 bg-cc-yellow/75 b-10 mb-32 xl:mx-auto mx-10"
       >
-        <div class="justify-self-center">
-          <p class="text-6xl font-bold pb-6">
+        <div class="place-self-center pr-4">
+          <p class="text-5xl font-bold pb-6">
             New Sets and Boosters
           </p>
-          <p class="text-3xl pb-6">
+          <p class="text-2xl pb-6">
             Promoted Sets and Boosters
           </p>
           <RouterCCButton
@@ -72,23 +72,25 @@
         </div>
         <div>
           <img
+            class="h-[20rem] pl-4 py-8 object-scale-down"
             alt="multiple cards"
-            class="h-[20rem] object-scale-down"
             :src="multiCards"
           >
         </div>
       </div>
       <div class="bg-black/90 py-40">
         <div class="flex justify-center">
-          <div class="text-center">
-            <p class="text-6xl text-red-500 font-bold">
+          <TeaserHeader heading-class="text-cc-red">
+            <template #heading>
               Get started now
-            </p>
-            <div class="text-white text-3xl pt-4">
-              <p>CrowdControl is built on Cosmos Blockchain and</p>
-              <p>let’s <b>YOU</b> be part of every step of the game.</p>
-            </div>
-          </div>
+            </template>
+            <template #content>
+              <p class="text-white">
+                CrowdControl is built on Cosmos Blockchain and<br>
+                let’s <b>YOU</b> be part of every step of the game.
+              </p>
+            </template>
+          </TeaserHeader>
         </div>
         <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
           <div
@@ -106,35 +108,37 @@
               <p class="text-3xl font-bold">
                 {{ cardBack.heading }}
               </p>
-              <p>{{ cardBack.text }}</p>
+              <p class="text-sm">
+                {{ cardBack.text }}
+              </p>
             </div>
           </div>
         </div>
       </div>
+      <FadeTeaserBig>
+        <HeadingContentComponent heading-class="text-teal-500">
+          <template #heading>
+            Be part of the game
+          </template>
+          <template #content>
+            <p>Crowd Control is a growing community based on open source and</p>
+            <p>collaboration. Learn the game and give us your review.</p>
+            <br>
+            <LinkCCButton
+              :type="ButtonType.TEAL"
+              to="https://discord.gg/ZKKbhUs"
+            >
+              Join Us
+            </LinkCCButton>
+            <img
+              alt="gameboard"
+              class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
+              :src="gameBoard"
+            >
+          </template>
+        </HeadingContentComponent>
+      </FadeTeaserBig>
     </div>
-    <FadeTeaserBig>
-      <HeadingContentComponent heading-class="text-teal-500">
-        <template #heading>
-          Be part of the game
-        </template>
-        <template #content>
-          <p>Crowd Control is a growing community based on open source and</p>
-          <p>collaboration. Learn the game and give us your review.</p>
-          <br>
-          <LinkCCButton
-            :type="ButtonType.TEAL"
-            to="https://discord.gg/ZKKbhUs"
-          >
-            Join Usmd:right-[0rem]
-          </LinkCCButton>
-          <img
-            alt="gameboard"
-            class="object-contain w-[90%] md:w-[50%] drop-shadow-glowTeal mx-auto pt-20"
-            :src="gameBoard"
-          >
-        </template>
-      </HeadingContentComponent>
-    </FadeTeaserBig>
   </div>
 </template>
 
@@ -156,6 +160,7 @@ import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
 import FadeTeaserBig from "@/components/elements/Teaser/FadeTeaserBig.vue";
+import TeaserHeader from "@/components/elements/Teaser/TeaserHeader.vue";
 
 type CardBack = {
   cardBack: string;
