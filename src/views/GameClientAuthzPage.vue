@@ -38,6 +38,7 @@
         </div>
         <div v-else>
           <p>Please log in to authenticate</p>
+          <SignupComponent />
         </div>
       </template>
     </HeadingContentComponent>
@@ -46,7 +47,6 @@
 <script setup lang="ts">
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useTx } from "@/def-composables/useTx";
-import { useAddress } from "@/def-composables/useAddress";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive } from "vue";
 import { validAddress } from "@/utils/validation";
@@ -55,6 +55,7 @@ import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import spinner from "@/assets/spinner.svg";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
+import SignupComponent from "@/components/elements/Login/SignupComponent.vue";
 
 enum CurrentState {
   NONE,
@@ -63,7 +64,6 @@ enum CurrentState {
 }
 
 const { loggedIn } = useLoggedIn();
-const { address } = useAddress();
 const { authzGameclient } = useTx();
 const route = useRoute();
 const router = useRouter();
