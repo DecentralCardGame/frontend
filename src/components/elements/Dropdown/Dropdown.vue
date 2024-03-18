@@ -34,15 +34,18 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import {
   ButtonType,
   getButtonColor,
   getTextColor,
 } from "@/components/elements/CCButton/ButtonType";
+import { useDropdown } from "@/def-composables/useDropdown";
 
 const model = defineModel<T>();
 const isOpen = ref(false);
+const thisCounter = ref(0);
+const { openCounter, incCounter } = useDropdown();
 
 const props = withDefaults(
   defineProps<{
@@ -56,7 +59,7 @@ const props = withDefaults(
     initial: "?",
     displayFn: (v: T): string => "" + v,
     type: ButtonType.PUSSYRED,
-  }
+  },
 );
 
 const displayButton = () => {
@@ -67,7 +70,17 @@ const displayButton = () => {
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    incCounter();
+    thisCounter.value = openCounter.value;
+  }
 };
+
+watch(openCounter, (cur) => {
+  if (cur != thisCounter.value) {
+    isOpen.value = false;
+  }
+});
 
 const selectOption = (option: T) => {
   model.value = option;
