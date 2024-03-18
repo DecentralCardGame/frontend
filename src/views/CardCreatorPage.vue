@@ -82,7 +82,6 @@
               :class="{ 'grayscale': !model.Class[item] }"
               @click="
                 model.Class[item] = !model.Class[item];
-                console.log(item, model.Class);
               "
             >
               <img
@@ -902,10 +901,6 @@ export default {
               : "active";
       });
     },
-    cropImage() {
-      console.log("cropperino")
-      //this.model.image = this.cropImage;
-    },
     model() {
       if (this.mode === Mode.EDIT) {
         this.cardCreatorEditCard = this.model;
@@ -967,7 +962,6 @@ export default {
       return R.isEmpty(a);
     },
     getOBMask() {
-      console.log("model", this.model.type)
       switch(this.model.type) {
         case "Place":
           return OBPlaceMask
@@ -980,7 +974,6 @@ export default {
       }
     },
     getOBFrame() {
-      console.log("model", this.model.type)
       switch(this.model.type) {
         case "Place":
           return OBPlace
@@ -1245,7 +1238,6 @@ export default {
       return R.keys(this.cardRules.Card.children);
     },
     getTags(idx) {
-      console.log("get tags called", idx);
       if (this.cardRules.Card) {
         let usedTags = [];
         let allTags =
@@ -1256,14 +1248,9 @@ export default {
         }
         // if this is the last dropdown, allow to select nothing
         if (idx == 1) {
-          console.log(
-            "last tag, returning",
-            R.append("", R.without(usedTags, allTags)),
-          );
           return R.append("", R.without(usedTags, allTags));
         } else {
           // otherwise nothing is not an option (user must remove the last tag and not one in the middle)
-          console.log("returning", R.without(usedTags, allTags));
           return R.without(usedTags, allTags);
         }
       } else {
@@ -1272,14 +1259,12 @@ export default {
       }
     },
     updateTags() {
-      console.log("this model tags", this.model.Tags);
       if (this.model.Tags[1] == "") this.model.Tags = [this.model.Tags[0]];
       if (!this.model.Tags) {
         this.model.Tags = [];
       }
     },
     interactionTextToString(ability) {
-      console.log("converting ability:", ability);
       let string = "";
       ability.interaction.forEach((entry) => {
         if (entry.btn.type !== "expandArray")
@@ -1452,7 +1437,6 @@ export default {
         }
         // if an ability was created, but it has no effect, then this should be fixed
         if (newModel.Effects.length == 0) {
-          console.log("newmodel", newModel);
           this.notifyFail(
             "No Effects",
             "Card has no effect. Maybe you forgot to add an effect?",
