@@ -103,19 +103,15 @@ import CardComponent from "@/components/elements/CardComponent.vue";
 import KeywordComponent from "@/components/elements/KeywordComponent.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { Card } from "@/model/Card";
-import { useAddress } from "@/def-composables/useAddress";
 import { useNotifications } from "@/def-composables/useNotifications";
-import { useQuery } from "@/def-composables/useQuery";
 import { useVoting } from "@/def-composables/useVoting";
 import { computed, onMounted, reactive, watch } from "vue";
 import { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
 import { useCards } from "@/def-composables/useCards";
 
 const { loggedIn } = useLoggedIn();
-const { address } = useAddress();
-const { queryQCard } = useQuery();
 const { notifySuccess } = useNotifications();
-const { getCard } = useCards()
+const { getCard } = useCards();
 const { add, send, isEmpty, cardsLeft, current, next } = useVoting();
 
 const initialState: {
@@ -125,7 +121,9 @@ const initialState: {
 };
 
 const state = reactive(initialState);
-const votePool = computed(() => state.currentCard.votePool.normalize().pretty())
+const votePool = computed(() =>
+  state.currentCard.votePool.normalize().pretty(),
+);
 
 const vote = (type: VoteType) => add(current.value!, type);
 
@@ -140,7 +138,7 @@ const loadCard = () => {
     });
   }
   if (next.value) {
-    getCard(next.value!)
+    getCard(next.value!);
   }
 };
 
@@ -159,7 +157,7 @@ const sendToChain = () => {
     },
     (err) => {
       console.log(err);
-    }
+    },
   );
 };
 </script>

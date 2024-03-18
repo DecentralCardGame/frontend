@@ -31,29 +31,15 @@
       >
     </button>
   </div>
-  <div
+  <Navbar
     :class="[
-      'bg-cc-red',
-      'flex',
-      'flex-row',
-      'uppercase',
-      'text-white',
-      'text-lg',
-      'h-13',
-      'font-bold',
-      'max-md:flex-col',
       'max-md:' + (state.barShown ? 'visible' : 'hidden'),
+      'justify-start',
     ]"
-  >
-    <router-link
-      v-for="elem in elems"
-      :to="elem.routeName"
-      class="px-8 py-4 hover:underline"
-      active-class="text-yellow-500"
-    >
-      {{ elem.display }}
-    </router-link>
-  </div>
+    :elems="elems"
+    elem-class="px-8 py-4 font-bold"
+    elem-active-class="text-yellow-500"
+  />
 </template>
 
 <script setup lang="ts">
@@ -63,14 +49,12 @@ import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import { reactive } from "vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import LoginComponent from "@/components/elements/Login/LoginComponent.vue";
-
-type NavigationElement = {
-  routeName: string;
-  display: string;
-};
+import type { NavigationElement } from "@/components/elements/Navbar/types";
+import Navbar from "@/components/elements/Navbar/Navbar.vue";
 
 const elems: NavigationElement[] = [
   { routeName: "/gallery", display: "Gallery" },
+  { routeName: "/vote/encounter", display: "Voting", loggedInOnly: true },
   { routeName: "/s", display: "Sets and Boosters" },
   { routeName: "/learn", display: "Learn" },
   { routeName: "/cardCreator", display: "Card Creator" },

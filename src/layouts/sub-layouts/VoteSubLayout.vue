@@ -2,13 +2,10 @@
   <FadeTeaserSmall>
     <HeadingContentComponent heading-class="text-teal-500">
       <template #heading>
-        Welcome to the team
+        Voting
       </template>
       <template #content>
-        <p>Crowd Control is not a company, but a Decentralized</p>
-        <p>Autonomous Organization (DAO). This is realized with a</p>
-        <p>blockchain built on Cosmos technology. Read our Whitepaper</p>
-        <p>to find out more.</p>
+        <p>Vote to develop the game and earn Tokens with it!</p>
       </template>
     </HeadingContentComponent>
   </FadeTeaserSmall>
@@ -22,10 +19,7 @@ import Navbar from "@/components/elements/Navbar/Navbar.vue";
 import type { NavigationElement } from "@/components/elements/Navbar/types";
 
 const elems: NavigationElement[] = [
-  { routeName: "/about/community", display: "Community" },
-  { routeName: "/about/roadmap", display: "Roadmap" },
-  { routeName: "/about/team", display: "Team" },
-  { routeName: "/about/tokens", display: "CC Tokens" },
-  { routeName: "/about/whitepaper", display: "Whitepaper" },
+  { routeName: "/vote/encounter", display: "Encounter" },
+  { routeName: "/vote/council", display: "Council" },
 ];
 </script>

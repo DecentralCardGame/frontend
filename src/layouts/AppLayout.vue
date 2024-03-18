@@ -18,12 +18,17 @@ import PageFooter from "@/components/partials/PageFooter.vue";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 import AboutSubLayout from "@/layouts/sub-layouts/AboutSubLayout.vue";
+import VoteSubLayout from "@/layouts/sub-layouts/VoteSubLayout.vue";
 
 const route = useRoute();
 
 const subLayout = computed(() => {
   if (new RegExp("/about/*").test(route.path)) {
     return AboutSubLayout;
+  }
+
+  if (new RegExp("/vote/*").test(route.path)) {
+    return VoteSubLayout;
   }
 
   return "div";
