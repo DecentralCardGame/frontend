@@ -4,8 +4,29 @@
       <div class="pt-24 pb-4 w-full text-white text-4xl">
         Card Creator
       </div>
+
+      <div 
+        v-if="successScreenVisible"
+        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow-xl shadow-black/25"
+      >
+        <div class="uppercase font-bold pt-12"> 
+          Congratulations!
+        </div>
+        <div class="p-4">
+          You successfully minted your card!
+        </div>
+          <BaseCCButton
+            class="p-16 pb-60"
+            :type="ButtonType.RED"
+            @click="successScreenVisible=false"
+          >
+            Create another Card
+          </BaseCCButton>
+      </div>
+
       <div
-        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow"
+        v-else
+        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow-xl shadow-black/25"
       >
         <!-- Progress Bar -->
         <div class="w-10/12 pt-10 pb-6 h-12 mx-auto">
@@ -39,7 +60,7 @@
         </div>
 
         <DefineNavigationButtons>
-          <div class="flex flex-row justify-end space-x-3 px-[4.5rem] pb-6">
+          <div class="flex flex-row justify-end space-x-3 pb-6">
             <NavigateCCButtons
               class="pr-4 scale-[2]"
               :start="activeStep == 0"
@@ -80,13 +101,11 @@
               :key="'class'+item"
               class="p-5"
               :class="{ 'grayscale': !model.Class[item] }"
-              @click="
-                model.Class[item] = !model.Class[item];
-              "
+              @click="model.Class[item] = !model.Class[item];"
             >
               <img
                 class="h-32"
-                :class="{ 'ring-8 ring-black rounded-full': model.Class[item] }" 
+                :class="{ 'border-8 border-black rounded-full': model.Class[item] }" 
                 :src="classIcons[item]"
               >
               <div class="py-5 text-s font-bold uppercase">
@@ -94,7 +113,9 @@
               </div>
             </div>
           </div>
-          <NavigationButtons />
+          <div class="pr-[4.5rem]">
+            <NavigationButtons />
+          </div>
         </div>
 
         <!-- Type Selection -->
@@ -133,7 +154,9 @@
               </div>
             </div>
           </div>
-          <NavigationButtons />
+          <div class="pr-[4.5rem]">
+            <NavigationButtons />
+          </div>
         </div>
 
         <!-- Card Name -->
@@ -141,7 +164,7 @@
           v-if="activeStep == 2"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -151,7 +174,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
+            <div class="pl-12 py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 NAME
               </div>
@@ -167,7 +190,7 @@
                 >
               </div>
             </div>
-            <div class="pl-20">
+            <div class="pl-[9.4rem]">
               <NavigationButtons />
             </div>
           </div>
@@ -177,21 +200,21 @@
         <div
           v-if="activeStep == 3"
           :class="{ 'bg-white bg-opacity-50': dragActive }"
-          class="flex flex-row"
+          class="flex flex-row justify-center"
           @drop.prevent="onDrop"
           @dragover.prevent="dragActive = true"
           @dragleave.prevent="dragActive = false"
           @paste="onPaste"
         >
           <div
-            class="pl-[4rem] pt-5 pb-4 w-[26.5rem]"
+            class="pl-[4rem] pt-5 pb-4 h-[26.5rem]"
           >
-            <div v-if="cropImage=='' && !designateArtist">
+            <div v-if="cropImage==''">
               <label
                 for="dropzone-file"
                 class=""
               >
-                <div class="h-[30rem] flex px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                <div class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
                   <span class="flex items-center">+</span>
                 </div>
                 <input
@@ -202,9 +225,121 @@
                 >
               </label>
             </div>
-            <div class="w-full">
-              <cropper
-                v-if="!designateArtist || artistMode"
+            <img
+              v-if="cropImage!==''"
+              class="h-[24rem] object-none"
+              width="300"
+              height="400"
+              :src="cropImage"
+              alt="check"
+            >
+          </div>
+          <div
+            class="text-left flex flex-col justify-between"
+          >
+            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
+
+              <div class="p-3 font-bold text-left">
+                ARTWORK
+              </div>
+              <div class="pl-3 pb-8 text-left">
+                Click, drag or paste to upload an artwork.
+              </div>
+              <div class="p-3 text-left font-bold">
+                COPYRIGHT
+              </div>
+
+              <div
+                v-if="!artistMode"
+                class="flex flex-col"
+              >
+                <div class="px-3 flex flex-row items-start">
+                  <input
+                    id="false"
+                    v-model="designateArtist"
+                    class="p-3 border-red-600 text-red-600 text-[20px]"
+                    type="radio"
+                    checked
+                    :value="false"
+                  >
+                  <div class="px-3 text-left">
+                    I hereby confirm that I own the rights to commercially use
+                    this artwork.
+                  </div>
+                </div>
+                <div class="flex flex-col">
+                  <div class="px-3 flex flex-row">
+                    <input
+                      id="true"
+                      v-model="designateArtist"
+                      class="p-3 border-red-600 text-red-600"
+                      type="radio"
+                      :value="true"
+                      @change="cropImage=''; this.model.image=''"
+                    >
+                    <div class="px-3 text-left">
+                      Instead add another artist as a collaborator.
+                    </div>
+                  </div>
+                  <div v-if="designateArtist && !artistMode">
+                    <div class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+                      <input
+                        v-model="artistAddress"
+                        class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                        placeholder="Add the artist's wallet address"
+                        maxLength="41"
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="pr-[4.45rem] justify-end">
+              <NavigationButtons />
+            </div>
+          </div>
+        </div>
+
+        <!-- Crop Section -->
+        <div
+          v-if="activeStep == 4"
+          class="px-[4.2rem] grid grid-cols-8 grid-rows-5"
+        >
+          <!-- Card Preview -->
+          <div class="pr-[1.65rem] pt-[1.25rem] pb-[1.0rem] row-start-1 row-span-5 col-start-1 col-span-3 place-self-start">
+            <CardComponent
+              id="card"
+              :active-step="activeStep"
+              :display-notes="true"
+              :image-u-r-l="getCardImage()"
+              :model="model"
+            />
+          </div>
+        
+          <!-- Onboard Preview -->
+          <div class="h-12 row-start-1 row-span-4 col-start-4 col-span-2">
+            <svg
+              class=""
+              width="168" 
+              height="260" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask id="maskImage">
+                <image :xlink:href="getOBMask()"  width="168" height="260" />
+              </mask>
+              <image :xlink:href="model.image" width="160" y="-15" height="260" mask="url(#maskImage)" />
+              <image :xlink:href="getOBFrame()" width="168" height="260" />
+            </svg>
+          </div>
+
+          <!-- Cropper -->
+          <div class="row-start-1 row-span-4 col-start-6 col-span-3">
+            <div class="p-3">
+              Drag and zoom to shit the art.
+            </div>
+            <div class="">
+              <cropper     
                 class="cropper"
                 :src="cropImage"
                 :auto-zoom="true"
@@ -213,102 +348,31 @@
                   height: model.fullArt ? cardBounds.y : cardBounds.x,
                 }"
                 :canvas="{
-                  height: model.fullArt ? cardBounds.y : cardBounds.x,
                   width: cardBounds.x,
+                  height: model.fullArt ? cardBounds.y : cardBounds.x,
                 }"
                 :default-size="{
                   width: cardBounds.x,
                   height: model.fullArt ? cardBounds.y : cardBounds.x,
                 }"
-                image-restriction="fit-area"
+                imageRestriction="none"
                 @change="changeCrop"
               />
             </div>
           </div>
-          <div
-            v-if="true || artistMode"
-            class="flex-row pl-8 pr-[4.5rem] py-5 justify-center"
-          >
-            <!-- Onboard Preview -->
-            <svg v-if="cropImage!=='' && !designateArtist"
-              class="pl-8"
-              width="260" 
-              height="168" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <mask id="maskImage">
-                <image :xlink:href="getOBMask()"  width="260" height="168" />
-              </mask>
-              <image :xlink:href="model.image" width="260" y="-15" height="160" mask="url(#maskImage)" />
-              <image :xlink:href="getOBFrame()" width="260" height="168" />
-            </svg>
 
-            <div class="p-3 font-bold text-left">
-              ARTWORK
-            </div>
-            <div class="pl-3 pb-8 text-left">
-              Click, drag or paste to upload an artwork.
-            </div>
-            <div class="p-3 text-left font-bold">
-              COPYRIGHT
-            </div>
-
-            <div
-              v-if="!artistMode"
-              class="flex flex-col"
-            >
-              <div class="p-3 flex flex-row items-start">
-                <input
-                  id="false"
-                  v-model="designateArtist"
-                  class="p-3 border-red-600 text-red-600 text-[20px]"
-                  type="radio"
-                  checked
-                  :value="false"
-                >
-                <div class="px-3 text-left">
-                  I hereby confirm that I own the rights to commercially use
-                  this artwork.
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <div class="p-3 flex flex-row">
-                  <input
-                    id="true"
-                    v-model="designateArtist"
-                    class="p-3 border-red-600 text-red-600"
-                    type="radio"
-                    :value="true"
-                  >
-                  <div class="px-3 text-left">
-                    I rather would like to designate an artist as a collaborator
-                    for the artwork.
-                  </div>
-                </div>
-                <div v-if="designateArtist && !artistMode">
-                  <div class="w-[25rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
-                    <input
-                      v-model="artistAddress"
-                      class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
-                      placeholder="Add the artist's wallet address"
-                      maxLength="41"
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="pt-20 justify-end">
-              <NavigationButtons />
-            </div>
+          <div class="pr-[0.25rem] pt-[0.8rem] row-start-5 row-span-1 col-start-4 col-span-5">
+            <NavigationButtons />
           </div>
+
         </div>
 
         <!-- Flavor -->
         <div
-          v-if="activeStep == 4"
+          v-if="activeStep == 5"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -318,7 +382,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
+            <div class="pl-12 py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 FLAVOR
               </div>
@@ -330,11 +394,11 @@
                   v-model="model.FlavourText"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Quote that represents this card."
-                  maxLength="25"
+                  maxLength="250"
                 >
               </div>
             </div>
-            <div class="pl-20">
+            <div class="pl-[9.4rem]">
               <NavigationButtons />
             </div>
           </div>
@@ -342,10 +406,10 @@
 
         <!-- Costs and Powers -->
         <div
-          v-if="activeStep == 5"
+          v-if="activeStep == 6"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -489,7 +553,7 @@
                 />
               </div>
             </div>
-            <div class="pl-20">
+            <div class="pl-[9.4rem]">
               <NavigationButtons />
             </div>
           </div>
@@ -497,10 +561,10 @@
 
         <!-- Abilities and Effects -->
         <div
-          v-if="activeStep == 6"
+          v-if="activeStep == 7"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -510,7 +574,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="pr-[4.5rem] py-5 justify-center">
+            <div class="pl-10 pr-[4.0rem] py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 ABILITIES AND EFFECTS
               </div>
@@ -576,7 +640,7 @@
                 />
               </div>
             </div>
-            <div class="pl-20">
+            <div class="pl-[9.4rem]">
               <NavigationButtons />
             </div>
           </div>
@@ -584,10 +648,10 @@
 
         <!-- Council Notes -->
         <div
-          v-if="activeStep == 7"
+          v-if="activeStep == 8"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -597,7 +661,7 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
+            <div class="pl-12 py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 NOTES TO THE COUNCIL
               </div>
@@ -631,17 +695,18 @@
                 class=""
               >
             </div>
-            <div class="pl-20">
+            <div class="pl-[9.4rem]">
               <NavigationButtons />
             </div>
           </div>
         </div>
 
+        <!-- Submit Section -->
         <div
-          v-if="activeStep == 8"
+          v-if="activeStep == 9"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -650,60 +715,120 @@
               :model="model"
             />
           </div>
-          <div class="text-left flex flex-col justify-between">
-            <div class="pl-12 pr-[4.5rem] py-5 justify-center">
-              <div class="py-3 text-s font-bold">
+          <div class="text-left flex flex-col">
+            <div class="py-5 flex flex-col items-start">
+              <div class="pl-12 py-3 text-s font-bold">
                 SUMMARY
               </div>
-              <div class="py-3 text-s">
+              <div v-if="model.FlavourText!==''"
+                class="pl-12 py-3 text-s"
+              >
                 "{{ model.FlavourText }}"
               </div>
 
-              <BaseCCButton
-                :type="ButtonType.TEAL"
-                class="m-2"
-                @click="resetCard()"
-              >
-                Discard {{ mode == Mode.CREATE ? "Draft" : "Changes" }}
-              </BaseCCButton>
+              <div class="">
+                <!-- Edit existing card case -->
+                <div v-if="mode == Mode.EDIT">
+                  <div class="pt-[6.3rem] text-right">
+                    <div v-if="isEmpty(abilities)">
+                      Clear Abilities
+                      <input
+                        v-model="clearAbilities"
+                        type="checkbox"
+                      >
+                    </div>
+                    <div class="pb-[0.7rem]"> 
+                      Review and update your card.
+                    </div>
+                    
+                    <BaseCCButton
+                      class=""
+                      :type="ButtonType.RED"
+                      @click="resetCard()"
+                    >
+                      Discard Edit
+                    </BaseCCButton>
+                    <div class="flex flex-row pt-3 pl-[11.2rem]">
+                      <NavigateCCButtons
+                        class="pr-4 scale-[2]"
+                        :start="activeStep == 0"
+                        :end="activeStep == progressBar.length - 1"
+                        @forward="
+                          activeStep = Math.min(activeStep + 1, progressBar.length - 1)
+                        "
+                        @backward="activeStep = Math.max(activeStep - 1, 0)"
+                      />
+                      <BaseCCButton
+                        :type="ButtonType.RED"
+                        @click="saveSubmit()"
+                      >
+                        Update your Card
+                      </BaseCCButton>
+                    </div>
 
-              <!-- TODO CHECK IF THIS IS USED BY ANYONE -->
-              <div v-if="mode == Mode.EDIT && isEmpty(abilities)">
-                Clear Abilities
-                <div>
-                  <input
-                    v-model="clearAbilities"
-                    type="checkbox"
+                  </div>                    
+                </div>
+                <!-- New card case -->
+                <div v-else>
+                  <!-- Enough card frames --> 
+                  <div v-if="availableCardFrames != 0">
+                    <div class="pt-[8rem] pr-6 text-right">
+                      <div> Review and mint your card. </div>
+                      <div class="text-base font-bold"> 
+                        Your available Card Frames: {{ availableCardFrames }} 
+                      </div>
+                    </div>
+                    
+                    <div class="flex flex-row pt-[3.0rem] pl-[11.2rem]">
+                      <NavigateCCButtons
+                        class="pr-4 scale-[2]"
+                        :start="activeStep == 0"
+                        :end="activeStep == progressBar.length - 1"
+                        @forward="
+                          activeStep = Math.min(activeStep + 1, progressBar.length - 1)
+                        "
+                        @backward="activeStep = Math.max(activeStep - 1, 0)"
+                      />
+                      <BaseCCButton
+                        :type="ButtonType.RED"
+                        @click="saveSubmit()"
+                      >
+                        Mint Card
+                      </BaseCCButton>
+                    </div>
+                  </div>
+                  <!-- Not enough card frames --> 
+                  <div v-else
+                    class="flex flex-col items-end"
                   >
+                    <div class="pt-10 pr-6 text-right">
+                      Review and mint your card.<br>
+                      You have no Card Frames available. <br>
+                      To mint your card, buy a fresh Card Frame.<br>
+                      Market price: {{ cardFramePrice }} credits<br>
+                      You have: {{ availableCredits }} credits
+                    </div>
+                    <div class="flex flex-row pt-[3.0rem] pl-[11.2rem]">
+                      <NavigateCCButtons
+                        class="pr-4 scale-[2]"
+                        :start="activeStep == 0"
+                        :end="activeStep == progressBar.length - 1"
+                        @forward="
+                          activeStep = Math.min(activeStep + 1, progressBar.length - 1)
+                        "
+                        @backward="activeStep = Math.max(activeStep - 1, 0)"
+                      />
+                      <BaseCCButton
+                        :type="ButtonType.RED"
+                        @click="buyFrameAndSubmit()"
+                      >
+                        Buy and Mint Card Frame
+                      </BaseCCButton>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Buy Frame Modal -->
-              <BaseCCButton
-                v-if="mode == Mode.CREATE"
-                :type="ButtonType.TEAL"
-                class="m-2"
-                @click="showBuyFrameModal"
-              >
-                Buy a Card Frame
-              </BaseCCButton>
-
-              <div class="ability-modal-container">
-                <BuyFrameModal
-                  v-if="isBuyFrameModalVisible"
-                  @close="closeBuyFrameModal"
-                />
-              </div>
-            </div>
-            <div class="pl-10 flex flex-row space-x-1">
-              <NavigationButtons />
-
-              <BaseCCButton
-                :type="ButtonType.RED"
-                @click="saveSubmit()"
-              >
-                {{ mode == Mode.CREATE ? "Mint" : "Update your " }} Card
-              </BaseCCButton>
             </div>
           </div>
         </div>
@@ -782,15 +907,19 @@ import { useTx } from "@/def-composables/useTx";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { validAddress } from "@/utils/validation";
 import { useQuery } from "@/def-composables/useQuery";
+import { useUser } from "@/def-composables/useUser";
 import { isASCII } from "@/utils/utils";
+import { Coin } from "@/model/Coin";
+import { computed, type ComputedRef, onMounted, reactive } from "vue";
 
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate();
-const { saveCardContent, addArtwork } = useTx();
-const { queryQUser } = useQuery();
+const { saveCardContent, addArtwork, buyCardScheme } = useTx();
+const { queryQUser, queryQCardchainInfo } = useQuery();
+const { user, coins, queryUser, queryCoins } = useUser();
 
 enum Mode {
   EDIT = 0,
@@ -865,10 +994,12 @@ export default {
         "open",
         "open",
         "open",
+        "open",
       ],
       dragActive: false,
       isAbilityModalVisible: false,
       isBuyFrameModalVisible: false,
+      successScreenVisible: false,
       clearAbilities: false,
       activeStep: 0,
       ability: {},
@@ -881,6 +1012,15 @@ export default {
       cardBounds: { x: env.cardImgSizeX, y: env.cardImgSizeY },
       cropImage: "",
       cardID: 0,
+      availableCardFrames: computed(() => user.value.ownedCardSchemes.length),
+      availableCredits: computed(() => {
+        let usableCoins: Coin[] = coins.value.filter((coin: Coin) => coin.denom == "ucredits");
+        if (usableCoins.length == 0) {
+          throw new Error("No usable coins available");
+        }
+        return Coin.from(usableCoins[0]).normalize().amount;
+      }),
+      cardFramePrice: 0,
       mode: Mode.CREATE,
       Mode: Mode,
     };
@@ -900,6 +1040,10 @@ export default {
               ? "done"
               : "active";
       });
+      if(this.activeStep == 9) {
+        this.cardFramesMarketData();
+        queryUser();
+      }
     },
     model() {
       if (this.mode === Mode.EDIT) {
@@ -908,6 +1052,10 @@ export default {
         this.cardCreatorDraft = this.model;
       }
       this.setMode();
+    },
+    address() {
+      this.checkCardFrames()
+      console.log("ADDRESS CHANGED")
     },
   },
   mounted() {
@@ -1073,17 +1221,6 @@ export default {
         .then(function (buf) {
           return new File([buf], fileName, { type: mimeType });
         });
-    },
-    showBuyFrameModal() {
-      if (!this.address) {
-        this.notifyFail(
-          "Unable to buy Card Frame",
-          "You must be logged in with an activated account for this.",
-        );
-      } else this.isBuyFrameModalVisible = true;
-    },
-    closeBuyFrameModal() {
-      this.isBuyFrameModalVisible = false;
     },
     showAbilityModal(type) {
       let atRules = R.curry(atPath)(this.cardRules.Card);
@@ -1272,7 +1409,26 @@ export default {
       });
       return string;
     },
-    saveSubmit() {
+    async getCardFrames() {
+      return await queryQUser(this.address)
+        .then((res: User) => {
+          //this.availableCardFrames = res.ownedCardSchemes.length || 0
+          return 0//this.availableCardFrames
+        })
+    },
+    checkCardFrames() {
+      return !R.isEmpty(this.getCardFrames())
+    },
+    cardFramesMarketData() {
+      queryQCardchainInfo({})
+        .then(res => {
+          this.cardFramePrice = res.cardAuctionPrice.normalize().amount;
+        })
+        .catch(res => {
+          console.error(res);
+        });
+    },
+    validateCreatedCard() {
       // if the artist is just uploading a new image, this is easy:
       if (this.artistMode) {
         if (!this.model.image) {
@@ -1494,7 +1650,25 @@ export default {
 
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
-      console.log("newCard", newCard);
+
+      console.log("valid card:", newCard);
+      return newCard;
+    },
+    buyFrameAndSubmit() {
+      if (!this.validateCreatedCard()) return;
+
+      buyCardScheme(
+        new Coin("credits", this.cardFramePrice).denormalize().toCompatCoin(),
+        () => {
+          queryUser(); 
+          queryCoins();
+          this.saveSubmit();
+          },
+        console.error)
+    },
+    saveSubmit() {
+      let newCard = this.validateCreatedCard();
+      if (!newCard) return;
 
       // check if a card is edited with pre-existing ID
       if (this.mode == Mode.EDIT) {
@@ -1509,7 +1683,7 @@ export default {
             this.model.id,
             newCard.image,
             newCard.fullArt,
-            this.resetCard,
+            this.successScreen,
             handleErr,
           );
       } else if (!this.address) {
@@ -1535,13 +1709,13 @@ export default {
                 console.error(err);
               };
 
-              saveCardContent(id, newCard, this.resetCard, handleErr);
+              saveCardContent(id, newCard, this.successScreen, handleErr);
               if (!this.designateArtist)
                 addArtwork(
                   id,
                   newCard.image,
                   newCard.fullArt,
-                  this.resetCard,
+                  this.successScreen,
                   handleErr,
                 );
             }
@@ -1552,12 +1726,20 @@ export default {
           });
       }
     },
+    successScreen() {
+      this.activeStep = 1;
+      this.successScreenVisible = true;
+    },
     resetCard() {
       this.model = new Card();
       this.artistMode = false;
       this.cropImage = "";
     },
     onDrop(event) {
+      // in case the user has selected to designate an artist, we want to reset this
+      this.designateArtist = false
+
+      // dragging stops (whitening should vanish then)
       this.dragActive = false;
 
       let file = event.dataTransfer.files[0];
@@ -1571,6 +1753,9 @@ export default {
       });
     },
     onPaste(event) {
+      // in case the user has selected to designate an artist, we want to reset this
+      this.designateArtist = false
+      
       const clipboardData = event.clipboardData || window.clipboardData;
       const items = clipboardData.items;
       for (let i = 0; i < items.length; i++) {
@@ -1588,6 +1773,9 @@ export default {
       }
     },
     inputFile(event) {
+      // in case the user has selected to designate an artist, we want to reset this
+      this.designateArtist = false;
+
       let file = event.target.files[0];
 
       uploadImg(file, env.cardImgMaxKB, (result) => {

@@ -207,6 +207,7 @@ const isArtist = computed(() => props.model.artist == address.value)
 const state = reactive(initialState);
 
 watch(lastInputEvent, (event) => {
+  console.log("lastinputevent", event)
   if (event.which == 27) {
     emit("close");
   }
