@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-pink-950 flex flex-col items-center">
+  <div class="min-h-screen bg-pink-950 flex flex-col items-center">
     <div>
       <div class="pt-24 pb-4 w-full text-white text-4xl">
         Card Creator
@@ -582,10 +582,7 @@
                 Click to add abilities or effects to your card.
               </div>
 
-              <div
-                id="abiliy container"
-                class=""
-              >
+              <div id="abiliy container">
                 <div
                   v-for="(abilityEntry, index) in abilities"
                   id="ability"
@@ -625,10 +622,7 @@
                   +
                 </button>
               </div>
-              <div
-                id="AbilityModal"
-                class=""
-              >
+              <div id="AbilityModal">
                 <AbilityModal
                   v-if="isAbilityModalVisible"
                   :abilities-prop="abilities"
