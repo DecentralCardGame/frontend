@@ -34,11 +34,14 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Color, getBgColor, getTextColor } from "@/components/utils/color";
+import { useDropdown } from "@/def-composables/useDropdown";
 
 const model = defineModel<T>();
 const isOpen = ref(false);
+const thisCounter = ref(0);
+const { openCounter, incCounter } = useDropdown();
 
 const props = withDefaults(
   defineProps<{
@@ -63,7 +66,17 @@ const displayButton = () => {
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    incCounter();
+    thisCounter.value = openCounter.value;
+  }
 };
+
+watch(openCounter, (cur) => {
+  if (cur != thisCounter.value) {
+    isOpen.value = false;
+  }
+});
 
 const selectOption = (option: T) => {
   model.value = option;
