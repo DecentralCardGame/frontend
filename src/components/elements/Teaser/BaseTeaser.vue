@@ -5,7 +5,7 @@
       class="absolute w-full mt-[-35%]"
       :class="picClass"
       :src="boars"
-    />
+    >
     <div class="absolute h-full w-full z-30 flex justify-center">
       <slot />
     </div>
