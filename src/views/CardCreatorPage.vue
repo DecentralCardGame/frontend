@@ -164,7 +164,7 @@
           v-if="activeStep == 2"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -373,7 +373,7 @@
           v-if="activeStep == 5"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -410,7 +410,7 @@
           v-if="activeStep == 6"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -654,7 +654,7 @@
           v-if="activeStep == 8"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="t-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -709,7 +709,7 @@
           v-if="activeStep == 9"
           class="flex flex-row justify-center"
         >
-          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
               :active-step="activeStep"
