@@ -9,7 +9,7 @@
   >
     <img
       :src="src"
-      class="-pt-[10%] w-[100%] object-contain"
+      class="-pt-[10%] w-full object-contain"
       :alt="alt"
     >
   </div>

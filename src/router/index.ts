@@ -8,7 +8,6 @@ const RoadmapPage = () => import("@/views/About/RoadmapPage.vue");
 const LandingPage = () => import("@/views/LandingPage.vue");
 const ImprintPage = () => import("@/views/ImprintPage.vue");
 const TeamPage = () => import("@/views/About/TeamPage.vue");
-const VotingPage = () => import("@/views/VotingPage.vue");
 const UserView = () => import("@/views/UserView/UserView.vue");
 const CardView = () => import("@/views/AdvancedCardViewPage.vue");
 const GameclientAuthz = () => import("@/views/GameClientAuthzPage.vue");
@@ -17,6 +16,7 @@ const Login = () => import("@/views/LoginPage.vue");
 const LearnPage = () => import("@/views/LearnPage.vue");
 const DownloadPage = () => import("@/views/DownloadPage.vue");
 const CommunityPage = () => import("@/views/About/CommunityPage.vue");
+const EncounterVotingPage = () => import("@/views/Voting/EncounterVotingPage.vue")
 
 const routes = [
   {
@@ -81,9 +81,9 @@ const routes = [
     component: ImprintPage,
   },
   {
-    path: "/vote",
-    name: "Vote",
-    component: VotingPage,
+    path: "/vote/encounter",
+    name: "EncounterVoting",
+    component: EncounterVotingPage,
   },
   {
     path: "/cardview/:id",

@@ -12,7 +12,7 @@
         </p>
         <br>
         <LinkCCButton
-          :type="ButtonType.YELLOW"
+          :type="Color.YELLOW"
           to="https://discord.gg/ZKKbhUs"
         >
           Join Discord
@@ -24,10 +24,10 @@
 
 <script setup lang="ts">
 import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { Color } from "@/components/utils/color";
 
 const router = useRouter();
 

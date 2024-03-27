@@ -11,7 +11,7 @@
             Visit our GitBook for advanced information!
           </p>
           <a href="https://crowdcontrol-network.gitbook.io/">
-            <BaseCCButton :type="ButtonType.RED"> Open GitBook</BaseCCButton>
+            <BaseCCButton :type="Color.RED"> Open GitBook</BaseCCButton>
           </a>
         </div>
       </div>
@@ -22,5 +22,5 @@
 <script setup lang="ts">
 import FadeTeaser from "@/components/elements/FadeTeaser.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 </script>

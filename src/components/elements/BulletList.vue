@@ -1,10 +1,10 @@
 <template>
   <div>
     <ul>
-      <li       
+      <li
         v-for="(line, index) in text"
         :key="index"
-        :class="{ 'filled': type[index]==='filled' }"
+        :class="{ filled: type[index] === 'filled' }"
       >
         {{ line }}
       </li>
@@ -13,30 +13,26 @@
 </template>
 
 <script>
-
 export default {
-  name: 'BulletList',
+  name: "BulletList",
   props: {
     text: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     type: {
       type: Array,
       default() {
-        return []
-      }
-    }
+        return [];
+      },
+    },
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
-  mounted () {
-  },
-  methods: {
-  }
-}
+  mounted() {},
+  methods: {},
+};
 </script>

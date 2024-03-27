@@ -3,7 +3,7 @@
     class="relative inline-block text-left rounded hover:cursor-pointer"
     :class="[
       ...(isOpen ? ['ring', 'ring-white', 'ring-opacity-100'] : []),
-      getButtonColor(type),
+      getBgColor(type),
       getTextColor(type),
     ]"
     @click="toggleDropdown"
@@ -19,7 +19,7 @@
     <ul
       v-if="isOpen"
       class="absolute z-30 ring ring-white rounded ring-opacity-100 whitespace-nowrap"
-      :class="[getButtonColor(type)]"
+      :class="[getBgColor(type)]"
     >
       <li
         v-for="(option, idx) in options"
@@ -35,11 +35,7 @@
 
 <script setup lang="ts" generic="T">
 import { ref, watch } from "vue";
-import {
-  ButtonType,
-  getButtonColor,
-  getTextColor,
-} from "@/components/elements/CCButton/ButtonType";
+import { Color, getBgColor, getTextColor } from "@/components/utils/color";
 import { useDropdown } from "@/def-composables/useDropdown";
 
 const model = defineModel<T>();
@@ -52,13 +48,13 @@ const props = withDefaults(
     options: Array<T>;
     initial?: string;
     displayFn?: (v: T) => string;
-    type?: ButtonType;
+    type?: Color;
   }>(),
   {
     options: () => [],
     initial: "?",
     displayFn: (v: T): string => "" + v,
-    type: ButtonType.PUSSYRED,
+    type: Color.PUSSYRED,
   },
 );
 

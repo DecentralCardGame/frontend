@@ -64,21 +64,21 @@
     >
       <BaseCCButton
         v-if="isArtist"
-        :type="ButtonType.RED"
+        :type="Color.RED"
         @click="edit()"
       >
         Edit artwork
       </BaseCCButton>
       <BaseCCButton
         v-if="isOwner"
-        :type="ButtonType.RED"
+        :type="Color.RED"
         @click="edit()"
       >
         Edit card
       </BaseCCButton>
       <BaseCCButton
         v-if="isOwner"
-        :type="ButtonType.RED"
+        :type="Color.RED"
         @click="showModal()"
       >
         Transfer card
@@ -105,7 +105,7 @@ import { useRouter } from "vue-router";
 import { useCards } from "@/def-composables/useCards";
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import ModalFrame from "@/components/modals/ModalFrame.vue";
 
 const { editCard } = useCardCreatorCards();
@@ -127,10 +127,10 @@ const props = withDefaults(defineProps<{ id: number }>(), { id: -1 });
 
 const state = reactive(initialState);
 const isOwner = computed(
-  () => state.card.owner === address.value && loggedIn.value
+  () => state.card.owner === address.value && loggedIn.value,
 );
 const isArtist = computed(
-  () => state.card.artist === address.value && loggedIn.value
+  () => state.card.artist === address.value && loggedIn.value,
 );
 
 const checkAndLoadCard = () => {

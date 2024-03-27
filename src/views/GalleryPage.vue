@@ -96,7 +96,7 @@
               <Dropdown
                 v-model="galleryFilters.sortBy"
                 class="my-auto"
-                :type="ButtonType.RED"
+                :type="Color.RED"
                 :options="['Name', 'CastingCost', 'Id']"
                 :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
               />
@@ -150,7 +150,7 @@ import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gal
 import type { GalleryFilters, GalleryStatus } from "@/model/GalleryFilters";
 import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
 import { normalizeQuery } from "@/utils/utils";

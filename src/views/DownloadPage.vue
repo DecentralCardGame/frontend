@@ -12,7 +12,7 @@
           The button below will do nothing.
         </p>
         <br>
-        <BaseCCButton :type="ButtonType.RED">
+        <BaseCCButton :type="Color.RED">
           Download Gameclient
         </BaseCCButton>
       </template>
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import TeaserHeader from "@/components/elements/Teaser/TeaserHeader.vue";
+import { Color } from "@/components/utils/color";
 </script>

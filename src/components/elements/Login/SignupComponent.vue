@@ -33,7 +33,7 @@
           href="https://www.keplr.app/download"
           class="mx-auto"
         >
-          <BaseCCButton :type="ButtonType.TEAL"> Download Keplr</BaseCCButton>
+          <BaseCCButton :type="Color.TEAL"> Download Keplr</BaseCCButton>
         </a>
       </div>
     </div>
@@ -43,10 +43,10 @@
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import VueHcaptcha from "@hcaptcha/vue3-hcaptcha";
 import useKeplr from "@/def-composables/useKeplr";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import { useLogin } from "@/def-composables/useLogin";
 import { onMounted, reactive } from "vue";
 import { env } from "@/env";
+import { Color } from "@/components/utils/color";
 
 const { isKeplrAvailable } = useKeplr();
 const { checkSignUpRequired, login, isSignUpRequired, onVerify } = useLogin();

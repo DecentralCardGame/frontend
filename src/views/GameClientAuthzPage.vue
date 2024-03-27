@@ -17,7 +17,7 @@
             <br>
             <BaseCCButton
               class="text-lg"
-              :type="ButtonType.RED"
+              :type="Color.RED"
               @click="sendTransActions"
             >
               Authenticate
@@ -53,7 +53,7 @@ import { validAddress } from "@/utils/validation";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import spinner from "@/assets/spinner.svg";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
 import SignupComponent from "@/components/elements/Login/SignupComponent.vue";
 

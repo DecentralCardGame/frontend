@@ -11,7 +11,7 @@
         </p>
         <br>
         <a href="https://crowdcontrol-network.gitbook.io/">
-          <BaseCCButton :type="ButtonType.RED"> Open GitBook</BaseCCButton>
+          <BaseCCButton :type="Color.RED"> Open GitBook</BaseCCButton>
         </a>
       </template>
     </TeaserHeader>
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import TeaserHeader from "@/components/elements/Teaser/TeaserHeader.vue";
+import { Color } from "@/components/utils/color";
 </script>

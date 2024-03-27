@@ -10,29 +10,29 @@
         A collectible card game made by players.
       </p>
       <BaseCCButton
-        :type="ButtonType.YELLOW"
+        :type="Color.YELLOW"
         @click="() => console.log('abc')"
       >
         CREATE CARDS
       </BaseCCButton>
       <br>
-      <BaseCCButton :type="ButtonType.RED">
+      <BaseCCButton :type="Color.RED">
         CREATE CARDS
       </BaseCCButton>
       <br>
-      <BaseCCButton :type="ButtonType.BLACK">
+      <BaseCCButton :type="Color.BLACK">
         CREATE CARDS
       </BaseCCButton>
       <br>
-      <BaseCCButton :type="ButtonType.WHITE">
+      <BaseCCButton :type="Color.WHITE">
         CREATE CARDS
       </BaseCCButton>
       <br>
-      <BaseCCButton :type="ButtonType.PUSSYRED">
+      <BaseCCButton :type="Color.PUSSYRED">
         hmm
       </BaseCCButton>
       <br>
-      <BaseCCButton :type="ButtonType.TEAL">
+      <BaseCCButton :type="Color.TEAL">
         <router-link to="/">
           Go to Home
         </router-link>
@@ -48,7 +48,7 @@
         v-model="test"
         :options="['yes', 'nein', 'vllt', 'nur ficken']"
         :display-fn="(v) => 'hmm: ' + v"
-        :type="ButtonType.RED"
+        :type="Color.RED"
         @update:model-value="console.log"
       />
       <br>
@@ -65,8 +65,8 @@
 import { ref, type Ref } from "vue";
 import logoBig from "@/assets/figma/LogoBig.png";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
+import { Color } from "@/components/utils/color";
 
 const test: Ref<string> = ref("");
 </script>

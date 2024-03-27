@@ -52,7 +52,7 @@
             <BaseCCButton
               v-if="activeStep < progressBar.length - 1"
               class=""
-              :type="ButtonType.RED"
+              :type="Color.RED"
               @click="
                 activeStep = Math.min(activeStep + 1, progressBar.length - 1)
               "
@@ -385,7 +385,7 @@
                 Casting Cost
                 <Dropdown
                   v-model="model.CastingCost"
-                  :type="ButtonType.PUSSYRED"
+                  :type="Color.PUSSYRED"
                   :options="getGenericCardRange('CastingCost')"
                 />
                 Mana
@@ -675,7 +675,7 @@
               </div>
 
               <BaseCCButton
-                :type="ButtonType.TEAL"
+                :type="Color.TEAL"
                 class="m-2"
                 @click="resetCard()"
               >
@@ -696,7 +696,7 @@
               <!-- Buy Frame Modal -->
               <BaseCCButton
                 v-if="mode == Mode.CREATE"
-                :type="ButtonType.TEAL"
+                :type="Color.TEAL"
                 class="m-2"
                 @click="showBuyFrameModal"
               >
@@ -714,7 +714,7 @@
               <NavigationButtons />
 
               <BaseCCButton
-                :type="ButtonType.RED"
+                :type="Color.RED"
                 @click="saveSubmit()"
               >
                 {{ mode == Mode.CREATE ? "Mint" : "Update your " }} Card
@@ -774,7 +774,7 @@ import OBPlaceMask from "@/assets/onboard/OBPlaceMask.png";
 import OBHQMask from "@/assets/onboard/OBHQMask.png";
 
 import "vue-advanced-cropper/dist/style.css";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import * as R from "ramda";
 import { createReusableTemplate } from "@vueuse/core";
 
@@ -901,8 +901,8 @@ export default {
     };
   },
   computed: {
-    ButtonType() {
-      return ButtonType;
+    Color() {
+      return Color;
     },
   },
   watch: {
