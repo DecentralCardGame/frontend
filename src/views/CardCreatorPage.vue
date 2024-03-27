@@ -304,10 +304,10 @@
         <!-- Crop Section -->
         <div
           v-if="activeStep == 4"
-          class="px-[4.2rem] grid grid-cols-8 grid-rows-5"
+          class="pl-[4.2rem] pr-[5.2rem] grid grid-cols-8 grid-rows-7"
         >
           <!-- Card Preview -->
-          <div class="pr-[1.65rem] pt-[1.25rem] pb-[1.0rem] row-start-1 row-span-5 col-start-1 col-span-3 place-self-start">
+          <div class="pr-[1.65rem] pt-[1.25rem] pb-[1.0rem] row-start-1 row-span-6 col-start-1 col-span-3 place-self-start">
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -316,9 +316,13 @@
               :model="model"
             />
           </div>
-        
+
+          <div class="pl-4 pr-4 text-left row-start-6 col-start-1 col-span-5">
+            Drag and scroll in the cropper box on right <br> side to adjust image.
+          </div>
+
           <!-- Onboard Preview -->
-          <div class="h-12 row-start-1 row-span-4 col-start-4 col-span-2">
+          <div class="h-12 row-start-1 row-span-6 col-start-4 col-span-2">
             <svg
               class=""
               width="168" 
@@ -334,26 +338,23 @@
           </div>
 
           <!-- Cropper -->
-          <div class="row-start-1 row-span-4 col-start-6 col-span-3">
-            <div class="p-3">
-              Drag and zoom to shit the art.
-            </div>
+          <div class="pt-[1.75rem] pb-[1.75rem] row-start-1 row-span-6 col-start-6 col-span-3">
             <div class="">
               <cropper     
-                class="cropper"
+                class=" cropper"
                 :src="cropImage"
                 :auto-zoom="true"
                 :stencil-size="{
                   width: cardBounds.x,
-                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                  height: cardBounds.y,
                 }"
                 :canvas="{
-                  width: cardBounds.x,
-                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                  width: cardBounds.x * 1.2,
+                  height: cardBounds.y * 1.2,
                 }"
                 :default-size="{
-                  width: cardBounds.x,
-                  height: model.fullArt ? cardBounds.y : cardBounds.x,
+                  width: cardBounds.x  * 1.2,
+                  height: cardBounds.y  * 1.2,
                 }"
                 imageRestriction="none"
                 @change="changeCrop"
@@ -361,7 +362,7 @@
             </div>
           </div>
 
-          <div class="pr-[0.25rem] pt-[0.8rem] row-start-5 row-span-1 col-start-4 col-span-5">
+          <div class="pr-[0.0rem] pt-[0.8rem] row-start-7 row-span-1 col-start-4 col-span-5">
             <NavigationButtons />
           </div>
 
@@ -562,11 +563,12 @@
         <!-- Abilities and Effects -->
         <div
           v-if="activeStep == 7"
-          class="flex flex-row justify-center"
+          class="pl-1 pr-[5rem] flex flex-row justify-center"
         >
-          <div class="pl-[0rem] pt-5 pb-4 h-[26.5rem]">
+          <div class="p-[2rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
+              v-if="!isAbilityModalVisible"
               :active-step="activeStep"
               :display-notes="true"
               :image-u-r-l="getCardImage()"
@@ -574,64 +576,71 @@
             />
           </div>
           <div class="text-left flex flex-col justify-between">
-            <div class="pl-10 pr-[4.0rem] py-5 justify-center">
+            <div class="py-5 justify-center">
               <div class="py-3 text-s font-bold">
                 ABILITIES AND EFFECTS
               </div>
-              <div class="py-3 text-s">
-                Click to add abilities or effects to your card.
+              <div class="text-right" v-if="isEmpty(abilities)"> 
+                <Checkbox v-model="clearAbilities">
+                  Remove all abilities
+                </Checkbox>
               </div>
-
-              <div id="abiliy container">
+              
+              <div v-if="!clearAbilities">
+                <div  class="py-3 text-s">
+                  Click to add abilities or effects to your card.
+                </div>
+                <div id="abiliy container">
+                  <div
+                    v-for="(abilityEntry, index) in abilities"
+                    id="ability"
+                    :key="abilityEntry.ability"
+                    class="flex flex-col"
+                  >
+                    <AbilityComponent
+                      id="AbilityComponent"
+                      class="px-2 mb-3 flex bg-white bg-opacity-[15%] text-white text-opacity-100 font-bold border-4 border-gray-100 border-opacity-50"
+                      :abilities="abilities"
+                      :ability-prop="abilityEntry"
+                      :dialog-prop="abilityDialog"
+                      :model="model"
+                      @update:ability="updateAbility($event, index)"
+                    />
+                  </div>
+                </div>
+                <div v-if="model.type === 'Action'">
+                  <button
+                    class=""
+                    type="button"
+                    @click="showAbilityModal('root')"
+                  >
+                    Add Effect
+                  </button>
+                </div>
                 <div
-                  v-for="(abilityEntry, index) in abilities"
-                  id="ability"
-                  :key="abilityEntry.ability"
-                  class="flex flex-col"
+                  v-else-if="!isAbilityModalVisible"
+                  id="addmore"
+                  class=""
                 >
-                  <AbilityComponent
-                    id="AbilityComponent"
-                    class="px-2 flex bg-white bg-opacity-[15%] text-white text-opacity-100 font-bold border-4 border-gray-100 border-opacity-50"
-                    :abilities="abilities"
-                    :ability-prop="abilityEntry"
+                  <button
+                    class="px-[12.7rem] bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                    type="button"
+                    @click="showAbilityModal('root')"
+                  >
+                    +
+                  </button>
+                </div>
+                <div id="AbilityModal">
+                  <AbilityModal
+                    v-if="isAbilityModalVisible"
+                    :abilities-prop="abilities"
+                    :ability="ability"
                     :dialog-prop="abilityDialog"
-                    :model="model"
-                    @update:ability="updateAbility($event, index)"
+                    :cardmodel="model"
+                    @close="closeAbilityModal"
+                    @update:ability="ability = $event"
                   />
                 </div>
-              </div>
-              <div v-if="model.type === 'Action'">
-                <button
-                  class=""
-                  type="button"
-                  @click="showAbilityModal('root')"
-                >
-                  Add Effect
-                </button>
-              </div>
-              <div
-                v-else-if="!isAbilityModalVisible"
-                id="addmore"
-                class=""
-              >
-                <button
-                  class="px-40 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
-                  type="button"
-                  @click="showAbilityModal('root')"
-                >
-                  +
-                </button>
-              </div>
-              <div id="AbilityModal">
-                <AbilityModal
-                  v-if="isAbilityModalVisible"
-                  :abilities-prop="abilities"
-                  :ability="ability"
-                  :dialog-prop="abilityDialog"
-                  :cardmodel="model"
-                  @close="closeAbilityModal"
-                  @update:ability="ability = $event"
-                />
               </div>
             </div>
             <div class="pl-[9.4rem]">
@@ -715,23 +724,18 @@
                 SUMMARY
               </div>
               <div v-if="model.FlavourText!==''"
-                class="pl-12 py-3 text-s"
+                class="pl-12 min-h-[4rem] text-s italic"
               >
                 "{{ model.FlavourText }}"
               </div>
+              <div v-else class="h-[4rem]"/>
+              
 
               <div class="">
                 <!-- Edit existing card case -->
                 <div v-if="mode == Mode.EDIT">
-                  <div class="pt-[6.3rem] text-right">
-                    <div v-if="isEmpty(abilities)">
-                      Clear Abilities
-                      <input
-                        v-model="clearAbilities"
-                        type="checkbox"
-                      >
-                    </div>
-                    <div class="pb-[0.7rem]"> 
+                  <div class="pt-[4.55rem] text-right">
+                    <div class="pb-[1.7rem]"> 
                       Review and update your card.
                     </div>
                     
@@ -766,7 +770,7 @@
                 <div v-else>
                   <!-- Enough card frames --> 
                   <div v-if="availableCardFrames != 0">
-                    <div class="pt-[8rem] pr-6 text-right">
+                    <div class="pt-[8rem] pr-1 text-right">
                       <div> Review and mint your card. </div>
                       <div class="text-base font-bold"> 
                         Your available Card Frames: {{ availableCardFrames }} 
@@ -795,14 +799,23 @@
                   <div v-else
                     class="flex flex-col items-end"
                   >
-                    <div class="pt-10 pr-6 text-right">
-                      Review and mint your card.<br>
-                      You have no Card Frames available. <br>
-                      To mint your card, buy a fresh Card Frame.<br>
-                      Market price: {{ cardFramePrice }} credits<br>
-                      You have: {{ availableCredits }} credits
+                    <div class="pt-0 pr-1 text-right">
+                      <div class="py-3 text-s uppercase font-bold">
+                        Buy Card Frame
+                      </div>
+                      <div class="text-base">
+                        Market price: <b> {{ cardFramePrice }} credits </b> <br>
+                        Your credit balance: <b> {{ availableCredits }} credits </b>
+                      </div>
+                      
                     </div>
-                    <div class="flex flex-row pt-[3.0rem] pl-[11.2rem]">
+                    <div class="pt-[2rem] pr-1 text-right">
+                      <div> Review and mint your card. </div>
+                      <div class="text-base font-bold"> 
+                        Your available Card Frames: {{ availableCardFrames }} 
+                      </div>
+                    </div>
+                    <div class="flex flex-row pt-[2.0rem] pl-[11.2rem]">
                       <NavigateCCButtons
                         class="pr-4 scale-[2]"
                         :start="activeStep == 0"
@@ -876,6 +889,7 @@ import OBActionMask from "@/assets/onboard/OBActionMask.png";
 import OBEntityMask from "@/assets/onboard/OBEntityMask.png";
 import OBPlaceMask from "@/assets/onboard/OBPlaceMask.png";
 import OBHQMask from "@/assets/onboard/OBHQMask.png";
+import Checkbox from "@/components/elements/Checkbox.vue";
 
 import "vue-advanced-cropper/dist/style.css";
 import { ButtonType } from "@/components/elements/CCButton/ButtonType";
@@ -933,6 +947,7 @@ export default {
     BuyFrameModal,
     AbilityModal,
     Cropper,
+    Checkbox,
   },
   setup() {
     const typeIcons = {

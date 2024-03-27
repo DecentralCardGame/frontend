@@ -4,18 +4,18 @@
       <div
         aria-describedby="modalDescription"
         aria-labelledby="modalTitle"
-        class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
+        class="px-6 bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
         <header
           id="modalTitle"
-          class=""
+          class="p-4"
         >
           <slot name="header">
             {{ dialog.title }}
             <span
               aria-label="Close modal"
-              class="px-1 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-1 border-opacity-80"
+              class="ml-[32.8rem] px-2 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-2 border-opacity-80"
               type="button"
               @click="close"
             >
@@ -32,81 +32,85 @@
             <div
               v-for="(option, index) in filterClasses(dialog.options)"
               :key="index"
-              class="m-2 p-2 w-44 bg-white bg-opacity-80 rounded-sm text-black flex flex-col justify-center items-center"
+              class="w-1/3 flex flex-col justify-center items-center rounded-sm text-black"
             >
-              <input
-                v-if="dialog.type === 'boolean'"
-                id="index"
-                v-model="option.value"
-                :value="option.name"
-                type="checkbox"
-              >
-              <button
-                v-if="dialog.type === 'enum'"
-                aria-label="Close modal"
-                class=""
-                type="button"
-                @click="
-                  selected = option;
-                  addAbility();
-                "
-              >
-                <img
-                  class=""
-                  :src="getIcon(option)"
-                >
-                {{ option.name }}
-                <span v-if="option.description">
-                  {{ option.description }}
-                </span>
-              </button>
-
-              <!-- check if this is in use or deprecated -->
-              <input
-                v-if="dialog.type === 'stringEnter'"
-                v-model="selectedString"
-                aria-label="string select"
-                placeholder="enter text"
-                style="display: inline; color: black; height: 50px"
-              >
-
-              <!-- This is the standard case -->
-              <button
-                v-if="dialog.type === 'interface' || dialog.type === 'root'"
-                aria-label="Close modal"
-                class=""
-                type="button"
-                @click="
-                  selected = option;
-                  addAbility();
-                "
-              >
-                <div
-                  class="flex flex-col items-center aspect-square justify-evenly"
-                >
-                  <div class="w-9">
-                    <img :src="getIcon(option)">
-                  </div>
-                  <div class="font-bold h-9 text-[20px] place-content-center">
+              <div class="">
+                <div class="p-2 m-2 bg-white bg-opacity-80">
+                  <input
+                    v-if="dialog.type === 'boolean'"
+                    id="index"
+                    v-model="option.value"
+                    :value="option.name"
+                    type="checkbox"
+                  >
+                  <button
+                    v-if="dialog.type === 'enum'"
+                    aria-label="Close modal"
+                    class=""
+                    type="button"
+                    @click="
+                      selected = option;
+                      addAbility();
+                    "
+                  >
+                    <img
+                      class=""
+                      :src="getIcon(option)"
+                    >
                     {{ option.name }}
-                  </div>
-                  <div class="leading-5 text-[16px] place-content-start">
-                    {{ option.description }}
-                  </div>
-                </div>
-              </button>
+                    <span v-if="option.description">
+                      {{ option.description }}
+                    </span>
+                  </button>
 
-              <label
-                v-if="
-                  dialog.type !== 'interface' &&
-                    dialog.type !== 'root' &&
-                    dialog.type !== 'enum'
-                "
-                for="index"
-                class="text-s"
-              >
-                {{ option.name }}
-              </label>
+                  <!-- check if this is in use or deprecated -->
+                  <input
+                    v-if="dialog.type === 'stringEnter'"
+                    v-model="selectedString"
+                    aria-label="string select"
+                    placeholder="enter text"
+                    style="display: inline; color: black; height: 50px"
+                  >
+
+                  <!-- This is the standard case -->
+                  <button
+                    v-if="dialog.type === 'interface' || dialog.type === 'root'"
+                    aria-label="Close modal"
+                    class=""
+                    type="button"
+                    @click="
+                      selected = option;
+                      addAbility();
+                    "
+                  >
+                    <div
+                      class="flex flex-col items-center aspect-square justify-evenly"
+                    >
+                      <div class="w-9">
+                        <img :src="getIcon(option)">
+                      </div>
+                      <div class="font-bold h-9 text-[20px] place-content-center">
+                        {{ option.name }}
+                      </div>
+                      <div class="min-w-[11.5rem] leading-5 text-[16px] place-content-start">
+                        {{ option.description }}
+                      </div>
+                    </div>
+                  </button>
+
+                  <label
+                    v-if="
+                      dialog.type !== 'interface' &&
+                        dialog.type !== 'root' &&
+                        dialog.type !== 'enum'
+                    "
+                    for="index"
+                    class="text-s"
+                  >
+                    {{ option.name }}
+                  </label>
+                </div>
+              </div>
             </div>
             <div>
               <span v-if="dialog.type === 'int'"> {{ selectedCount }} </span>
