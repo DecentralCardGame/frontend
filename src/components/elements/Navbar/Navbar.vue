@@ -1,7 +1,7 @@
 <template>
   <div
-    class="bg-cc-red flex flex-row uppercase text-white text-lg max-md:flex-col"
-    :class="props.class"
+    class="flex flex-row uppercase text-lg max-md:flex-col"
+    :class="[getBgColor(type), getTextColor(type), ...props.class]"
   >
     <template
       v-for="elem in elems"
@@ -22,20 +22,23 @@
 <script lang="ts" setup>
 import type { NavigationElement } from "@/components/elements/Navbar/types";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
+import { Color, getBgColor, getTextColor } from "@/components/utils/color";
 
 const { loggedIn } = useLoggedIn();
 
 const props = withDefaults(
   defineProps<{
     elems: NavigationElement[];
-    class?: string | string[];
+    class?: string[];
     elemClass?: string | string[];
     elemActiveClass?: string;
+    type?: Color;
   }>(),
   {
-    class: "justify-center",
+    class: () => ["justify-center"],
     elemClass: "px-10 py-7",
     elemActiveClass: "font-bold",
+    type: Color.RED,
   },
 );
 </script>

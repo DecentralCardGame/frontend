@@ -1,99 +1,71 @@
 <template>
-  <div align="center">
-    <div class="voter ccbutton">
-      <br>
-      <h1>Vote Encounters</h1>
-      <p>Vote on cards that you enountered in-game.</p>
-      <p>To make your votes take effect, you have to send them to the chain.</p>
-      <br>
-      <div>
-        <div class="InfoContainer">
-          <div
-            v-if="!loggedIn"
-            class="ELement"
-          >
-            <p>You cannot vote on cards. Please login with your wallet.</p>
-          </div>
-          <div
-            v-if="current"
-            class="ELement Info"
-          >
-            <h3>{{ state.currentCard.CardName }}</h3>
-            <p
-              v-if="state.currentCard.FlavourText"
-              class="FlavourText"
-            >
+  <div class="flex flex-col text-lg bg-cc-yellow">
+    <div class="text-center pt-12 pb-6">
+      <p class="text-4xl pb-2">
+        Vote Encounters
+      </p>
+      <p>Vote on cards that you enountered in-game below.</p>
+    </div>
+    <div class="bg-black text-white flex justify-center">
+      <div class="p-8">
+        <div
+          v-if="current"
+          class="w-64 inline-block align-top mr-12"
+        >
+          <p>
+            <b>{{ state.currentCard.CardName }}</b><br>
+            <i v-if="state.currentCard.FlavourText">
               "{{ state.currentCard.FlavourText }}"
-            </p>
-            <br>
-            <h3>Advanced Card Information</h3>
-            <p>
-              Votepool: {{ votePool }} <br>
-              Status: {{ state.currentCard.status }} <br>
-            </p>
+            </i>
             <br><br>
-            <keyword-component :keywords="state.currentCard.Keywords" />
-          </div>
-          <div
-            v-if="typeof current !== 'undefined'"
-            class="ELement"
-          >
-            <CardComponent
-              :model="state.currentCard"
-              :image-u-r-l="state.currentCard.image"
-            />
-          </div>
-          <div
-            v-if="loggedIn && !cardsLeft.length && isEmpty"
-            class="ELement"
-          >
-            <img
-              style="max-width: 25em"
-              src="@/assets/icon/noCard.png"
-            >
-            <br><br>
-            <p>
-              It seams like you have voted on all cards you've encountered. Come
-              back here, when you've played more matches.
-            </p>
-          </div>
-          <div
-            v-if="loggedIn && !cardsLeft.length && !isEmpty"
-            class="ELement"
-          >
-            To make your votes take effect, you have to send them to the chain.
-            <button @click="sendToChain()">
-              Send votes to chain
-            </button>
-          </div>
+            <b>Advanced Card Information</b> <br>
+            Votepool: {{ votePool }} <br>
+            Status: {{ state.currentCard.status }} <br>
+          </p>
+          <br>
+          <keyword-component :keywords="state.currentCard.Keywords" />
+        </div>
+        <div
+          v-if="typeof current !== 'undefined'"
+          class="inline-block"
+        >
+          <CardComponent
+            :model="state.currentCard"
+            class="h-[35rem]"
+          />
+        </div>
+        <div v-if="loggedIn && !cardsLeft.length && !isEmpty">
+          To make your votes take effect, you have to send them to the chain.
+          <BaseCCButton @click="sendToChain()">
+            Send votes to chain
+          </BaseCCButton>
         </div>
       </div>
-
-      <br>
-      <div
-        v-if="cardsLeft.length"
-        class="button-container"
+    </div>
+    <div
+      v-if="cardsLeft.length"
+      class="flex justify-center flex-wrap gap-4 py-12"
+    >
+      <SmallCCButton
+        v-for="(elem, idx) in [
+          { text: 'Fair Enough', type: VoteType.fairEnough },
+          { text: 'Overpowered', type: VoteType.overpowered },
+          { text: 'Underpowered', type: VoteType.underpowered },
+          { text: 'Inappropriate', type: VoteType.inappropriate },
+        ]"
+        :key="idx"
+        :type="Color.RED"
+        @click="vote(elem.type)"
       >
-        <button @click="vote(VoteType.fairEnough)">
-          Fair Enough
-        </button>
-        <button @click="vote(VoteType.overpowered)">
-          Overpowered
-        </button>
-        <button @click="vote(VoteType.underpowered)">
-          Underpowered
-        </button>
-        <button @click="vote(VoteType.inappropriate)">
-          Inappropriate
-        </button>
-        <button
-          v-if="!isEmpty"
-          style="margin-left: 50px"
-          @click="sendToChain()"
-        >
-          Send votes to chain
-        </button>
-      </div>
+        {{ elem.text }}
+      </SmallCCButton>
+      <SmallCCButton
+        v-if="!isEmpty"
+        :type="Color.RED"
+        @click="sendToChain()"
+      >
+        Send votes to chain
+      </SmallCCButton>
     </div>
   </div>
 </template>
@@ -108,6 +80,9 @@ import { useVoting } from "@/def-composables/useVoting";
 import { computed, onMounted, reactive, watch } from "vue";
 import { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
 import { useCards } from "@/def-composables/useCards";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
+import SmallCCButton from "@/components/elements/CCButton/SmallCCButton.vue";
+import { Color } from "@/components/utils/color";
 
 const { loggedIn } = useLoggedIn();
 const { notifySuccess } = useNotifications();

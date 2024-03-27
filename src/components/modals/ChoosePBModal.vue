@@ -12,7 +12,7 @@
         size="40"
         :class="
           ['w-40', 'h-40'].concat(
-            obj.id == state.choosen ? ['border-cc-red', 'border-8'] : []
+            obj.id == state.choosen ? ['border-cc-red', 'border-8'] : [],
           )
         "
         :alt="'Pic' + obj.id"
@@ -20,7 +20,7 @@
       />
     </div>
     <BaseCCButton
-      :type="ButtonType.RED"
+      :type="Color.RED"
       class="mx-auto text-center"
       @click="send"
     >
@@ -40,7 +40,7 @@ import { useCards } from "@/def-composables/useCards";
 import ModalFrame from "@/components/modals/ModalFrame.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 
 const { address } = useAddress();
 const { getDefaultImg } = useProfilePic();
@@ -67,7 +67,7 @@ const props = withDefaults(
   {
     cardIds: () => [],
     current: 0,
-  }
+  },
 );
 
 const initialState: {
@@ -107,7 +107,7 @@ const send = () => {
       queryUser();
       close();
     },
-    console.log
+    console.log,
   );
 };
 </script>

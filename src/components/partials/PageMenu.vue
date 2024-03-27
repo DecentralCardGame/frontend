@@ -13,7 +13,7 @@
     <a class="grow" />
     <div class="my-auto max-md:hidden">
       <RouterCCButton
-        :type="ButtonType.RED"
+        :type="Color.RED"
         to="/download"
       >
         Download Gameclient
@@ -45,12 +45,12 @@
 <script setup lang="ts">
 import CCLogo from "@/assets/figma/CCLogo.png";
 import Menu from "@/assets/figma/Menu.svg";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import { reactive } from "vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import LoginComponent from "@/components/elements/Login/LoginComponent.vue";
 import type { NavigationElement } from "@/components/elements/Navbar/types";
 import Navbar from "@/components/elements/Navbar/Navbar.vue";
+import { Color } from "@/components/utils/color";
 
 const elems: NavigationElement[] = [
   { routeName: "/gallery", display: "Gallery" },
