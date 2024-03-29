@@ -1,8 +1,8 @@
 <template>
-  <div class="relative overflow-hidden">
+  <div class="relative overflow-hidden bg-black">
     <img
       alt="boars bg"
-      class="absolute w-full mt-[-35%]"
+      class="absolute w-full mt-[-35%] opacity-50"
       :class="picClass"
       :src="boars"
     >
