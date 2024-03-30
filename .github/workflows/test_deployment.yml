@@ -17,14 +17,11 @@ jobs:
         }}
 
     steps:
-      - name: exit
-        if: ${{ env.LABEL == 'none' }}
-        run: |
-          exit 0
       - name: install liefer
+        if: ${{ env.LABEL != 'none' }}
         run: |
           go install github.com/lxgr-linux/liefer@latest
       - name: deploy
+        if: ${{ env.LABEL != 'none' }}
         run: |
-              ~/go/bin/liefer deliver $LABEL ${{ github.event.pull_request.head.ref }} ${{ secrets.LIEFER_PRIVKEY }} --address ${{ secrets.LXGR_HOST }}:8080
-                                                                                                                                                      
+          ~/go/bin/liefer deliver $LABEL ${{ github.event.pull_request.head.ref }} ${{ secrets.LIEFER_PRIVKEY }} --address ${{ secrets.LXGR_HOST }}:8080
