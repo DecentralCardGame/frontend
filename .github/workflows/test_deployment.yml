@@ -26,5 +26,5 @@ jobs:
           go install github.com/lxgr-linux/liefer@latest
       - name: deploy
         run: |
-              liefer deliver $LABEL ${{ github.event.pull_request.head.ref }} ${{ secrets.LIEFER_PRIVKEY }} --address ${{ secrets.LXGR_HOST }}:8080
-                                                                                                                                                     
+              ~/go/bin/liefer deliver $LABEL ${{ github.event.pull_request.head.ref }} ${{ secrets.LIEFER_PRIVKEY }} --address ${{ secrets.LXGR_HOST }}:8080
+                                                                                                                                                      
