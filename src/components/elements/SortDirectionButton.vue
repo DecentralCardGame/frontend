@@ -3,7 +3,7 @@
     <img
       :src="model ? triangleRed : triangle"
       alt="arrow up"
-      class="w-5 hover:scale-110"
+      class="rotate-0 w-5 hover:scale-110"
       @click="model = true"
     >
     <img
