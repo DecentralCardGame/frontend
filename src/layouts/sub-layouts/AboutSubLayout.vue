@@ -12,11 +12,20 @@
       </template>
     </HeadingContentComponent>
   </FadeTeaserSmall>
-  <AboutProgressbar />
+  <Navbar :elems="elems" />
   <slot />
 </template>
 <script setup lang="ts">
 import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";
-import AboutProgressbar from "@/components/elements/AboutProgressbar.vue";
+import Navbar from "@/components/elements/Navbar/Navbar.vue";
+import type { NavigationElement } from "@/components/elements/Navbar/types";
+
+const elems: NavigationElement[] = [
+  { routeName: "/about/community", display: "Community" },
+  { routeName: "/about/roadmap", display: "Roadmap" },
+  { routeName: "/about/team", display: "Team" },
+  { routeName: "/about/tokens", display: "CC Tokens" },
+  { routeName: "/about/whitepaper", display: "Whitepaper" },
+];
 </script>

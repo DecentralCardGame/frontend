@@ -12,17 +12,17 @@
 </template>
 
 <script setup lang="ts">
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
+import { Color } from "@/components/utils/color";
 
 const props = withDefaults(
   defineProps<{
     to: any;
-    type?: ButtonType;
+    type?: Color;
   }>(),
   {
     to: {},
-    type: ButtonType.YELLOW,
-  }
+    type: Color.YELLOW,
+  },
 );
 </script>
