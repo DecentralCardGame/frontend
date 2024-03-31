@@ -23,7 +23,7 @@ const useLoginInstance = () => {
       router.push({name: "UserView", params: {id: address.value}})
     }
     signUpRequired().then((required) => {
-      console.log(required)
+      console.log("signUpRequired?", required)
       if (!required) {
         login()
       } else {
