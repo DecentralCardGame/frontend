@@ -4,7 +4,7 @@
       <img
         alt="langing bg image"
         :src="landingBackground"
-        class="w-[100%] object-cover h-[40rem] 2xl:h-[44rem]"
+        class="w-full object-cover h-[40rem] 2xl:h-[44rem]"
       >
       <div class="absolute top-20 m-auto left-0 right-0">
         <div class="flex text-center justify-center z-10">
@@ -12,7 +12,7 @@
             <img
               :src="logoBig"
               alt="big cc logo"
-              class="w-[100%] drop-shadow-header"
+              class="w-full drop-shadow-header"
             >
             <p class="text-4xl text-white font-bold py-6">
               A collectible card game made by players.
@@ -21,12 +21,12 @@
             <RouterCCButton
               class="pb-4"
               to="/cardCreator"
-              :type="ButtonType.YELLOW"
+              :type="Color.YELLOW"
             >
               CREATE CARDS
             </RouterCCButton>
             <RouterCCButton
-              :type="ButtonType.BLACK"
+              :type="Color.BLACK"
               to="/download"
             >
               Play the game
@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-black w-[100%] flex flex-wrap gap-x-4 justify-evenly">
+    <div class="bg-black w-full flex flex-wrap gap-x-4 justify-evenly">
       <img
         v-for="logo in [icfLogo, gonftLogo, hackatomLogo, coinliveLogo]"
         alt="company logo"
@@ -59,13 +59,13 @@
           <RouterCCButton
             class="pb-4"
             to="/b"
-            :type="ButtonType.BLACK"
+            :type="Color.BLACK"
           >
             Buy Boosters
           </RouterCCButton>
           <RouterCCButton
             to="/gallery"
-            :type="ButtonType.BLACK"
+            :type="Color.BLACK"
           >
             Visit Gallery
           </RouterCCButton>
@@ -125,7 +125,7 @@
             <p>collaboration. Learn the game and give us your review.</p>
             <br>
             <LinkCCButton
-              :type="ButtonType.TEAL"
+              :type="Color.TEAL"
               to="https://discord.gg/ZKKbhUs"
             >
               Join Us
@@ -155,7 +155,7 @@ import gonftLogo from "@/assets/figma/PresentationLogos/GoNFTs.png";
 import coinliveLogo from "@/assets/figma/PresentationLogos/coinlive.png";
 import hackatomLogo from "@/assets/figma/PresentationLogos/hackatom.png";
 import landingBackground from "@/assets/figma/LandingPageBackground/LandingBackground-thicc.jpeg";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import HeadingContentComponent from "@/components/elements/Teaser/TeaserHeader.vue";

@@ -34,7 +34,7 @@
           <p>{{ user.CouncilStatus }}</p>
           <BaseCCButton
             v-if="state.userIsUser"
-            :type="ButtonType.YELLOW"
+            :type="Color.YELLOW"
             @click="
               CouncilStatus[state.user.CouncilStatus] ==
                 CouncilStatus.unavailable
@@ -98,7 +98,7 @@
                 }}{{ arr.length == 1 ? "" : "s" }}</b>
               </p>
               <RouterCCButton
-                :type="ButtonType.YELLOW"
+                :type="Color.YELLOW"
                 :to="{
                   name: 'Gallery',
                   query: { owner: address, sortBy: 'Name' },
@@ -115,7 +115,7 @@
           </template>
           <template #body>
             <RouterCCButton
-              :type="ButtonType.YELLOW"
+              :type="Color.YELLOW"
               :to="{ name: 'Vote' }"
             >
               Go to Voting
@@ -179,7 +179,7 @@ import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 
 const { queryQUser, queryAllBalances, queryQMatches } = useQuery();

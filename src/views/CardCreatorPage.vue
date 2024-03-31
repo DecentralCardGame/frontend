@@ -73,7 +73,7 @@
             <BaseCCButton
               v-if="activeStep < progressBar.length - 1"
               class=""
-              :type="ButtonType.RED"
+              :type="Color.RED"
               @click="
                 activeStep = Math.min(activeStep + 1, progressBar.length - 1)
               "
@@ -435,7 +435,7 @@
                 Casting Cost
                 <Dropdown
                   v-model="model.CastingCost"
-                  :type="ButtonType.PUSSYRED"
+                  :type="Color.PUSSYRED"
                   :options="getGenericCardRange('CastingCost')"
                 />
                 Mana
@@ -729,7 +729,6 @@
                 "{{ model.FlavourText }}"
               </div>
               <div v-else class="h-[4rem]"/>
-              
 
               <div class="">
                 <!-- Edit existing card case -->
@@ -798,6 +797,7 @@
                   <!-- Not enough card frames --> 
                   <div v-else
                     class="flex flex-col items-end"
+
                   >
                     <div class="pt-0 pr-1 text-right">
                       <div class="py-3 text-s uppercase font-bold">
@@ -835,7 +835,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -892,7 +891,7 @@ import OBHQMask from "@/assets/onboard/OBHQMask.png";
 import Checkbox from "@/components/elements/Checkbox.vue";
 
 import "vue-advanced-cropper/dist/style.css";
-import { ButtonType } from "@/components/elements/CCButton/ButtonType";
+import { Color } from "@/components/utils/color";
 import * as R from "ramda";
 import { createReusableTemplate } from "@vueuse/core";
 
@@ -1035,8 +1034,8 @@ export default {
     };
   },
   computed: {
-    ButtonType() {
-      return ButtonType;
+    Color() {
+      return Color;
     },
   },
   watch: {
