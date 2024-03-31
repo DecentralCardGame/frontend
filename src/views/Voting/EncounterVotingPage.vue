@@ -9,33 +9,42 @@
     <div class="bg-black text-white flex justify-center">
       <div class="p-8">
         <div
-          v-if="current"
-          class="w-64 inline-block align-top mr-12"
+          v-if="!loggedIn"
+          class="text-center"
         >
-          <p>
-            <b>{{ state.currentCard.CardName }}</b><br>
-            <i v-if="state.currentCard.FlavourText">
-              "{{ state.currentCard.FlavourText }}"
-            </i>
-            <br><br>
-            <b>Advanced Card Information</b> <br>
-            Votepool: {{ votePool }} <br>
-            Status: {{ state.currentCard.status }} <br>
+          <p class="pb-4">
+            To vote on cards you have to <b>login</b> first!
           </p>
-          <br>
-          <keyword-component :keywords="state.currentCard.Keywords" />
+          <RouterCCButton :to="{ name: 'Login' }">
+            Login
+          </RouterCCButton>
         </div>
-        <div
-          v-if="typeof current !== 'undefined'"
-          class="inline-block"
-        >
-          <CardComponent
-            :model="state.currentCard"
-            class="h-[35rem]"
-          />
+        <div v-else-if="current">
+          <div class="w-64 inline-block align-top mr-12">
+            <p>
+              <b>{{ state.currentCard.CardName }}</b><br>
+              <i v-if="state.currentCard.FlavourText">
+                "{{ state.currentCard.FlavourText }}"
+              </i>
+              <br><br>
+              <b>Advanced Card Information</b> <br>
+              Votepool: {{ votePool }} <br>
+              Status: {{ state.currentCard.status }} <br>
+            </p>
+            <br>
+            <keyword-component :keywords="state.currentCard.Keywords" />
+          </div>
+          <div class="inline-block">
+            <CardComponent
+              :model="state.currentCard"
+              class="h-[35rem]"
+            />
+          </div>
         </div>
-        <div v-if="loggedIn && !cardsLeft.length && !isEmpty">
-          To make your votes take effect, you have to send them to the chain.
+        <div v-else-if="!cardsLeft.length && !isEmpty">
+          <p class="pb-4">
+            To make your votes take effect, you have to send them to the chain.
+          </p>
           <BaseCCButton @click="sendToChain()">
             Send votes to chain
           </BaseCCButton>
@@ -83,6 +92,7 @@ import { useCards } from "@/def-composables/useCards";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import SmallCCButton from "@/components/elements/CCButton/SmallCCButton.vue";
 import { Color } from "@/components/utils/color";
+import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 
 const { loggedIn } = useLoggedIn();
 const { notifySuccess } = useNotifications();
