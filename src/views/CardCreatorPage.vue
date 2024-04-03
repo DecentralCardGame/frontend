@@ -17,7 +17,7 @@
         </div>
           <BaseCCButton
             class="p-16 pb-60"
-            :type="ButtonType.RED"
+            :type="Color.RED"
             @click="successScreenVisible=false"
           >
             Create another Card
@@ -740,7 +740,7 @@
                     
                     <BaseCCButton
                       class=""
-                      :type="ButtonType.RED"
+                      :type="Color.RED"
                       @click="resetCard()"
                     >
                       Discard Edit
@@ -756,7 +756,7 @@
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
                       <BaseCCButton
-                        :type="ButtonType.RED"
+                        :type="Color.RED"
                         @click="saveSubmit()"
                       >
                         Update your Card
@@ -787,7 +787,7 @@
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
                       <BaseCCButton
-                        :type="ButtonType.RED"
+                        :type="Color.RED"
                         @click="saveSubmit()"
                       >
                         Mint Card
@@ -826,7 +826,7 @@
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
                       <BaseCCButton
-                        :type="ButtonType.RED"
+                        :type="Color.RED"
                         @click="buyFrameAndSubmit()"
                       >
                         Buy and Mint Card Frame
