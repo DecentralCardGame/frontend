@@ -1306,6 +1306,7 @@ export default {
       let keywordCount = R.length(
         R.flatten(R.pluck("keywords", this.abilities)),
       );
+      console.log("keywordCount", keywordCount)
       if (keywordCount >= 6 && keywordCount <= 8) {
         this.notifyInfo(
           "Number of Keywords",

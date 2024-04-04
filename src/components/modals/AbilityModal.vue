@@ -238,8 +238,6 @@ export default {
       );
     },
     addAbility() {
-      console.log("dialog type:", this.dialog.type);
-
       switch (this.dialog.type) {
         case "interface":
           this.handleInterface();
@@ -266,7 +264,6 @@ export default {
     },
     handleInterface() {
       let atRules = R.curry(atPath)(this.cardRules.Card);
-      console.log("dialog in handle interface: ", this.dialog);
 
       let selection = filterSelection2(this.dialog.options, this.selected);
       let pathAtSelection = R.concat(this.dialog.rulesPath, [
@@ -274,13 +271,11 @@ export default {
         selection.index,
       ]);
       let objAtSelection = atRules(pathAtSelection);
-      console.log("objAtSelection", objAtSelection);
 
       // check if the 'no condition' option was selected
       if (selection.index === "noSelect") {
         this.dialog.preventClose = false;
         this.dialog.btn.label = "no condition";
-        console.log("this.dialog", this.dialog);
 
         // check if a terminal option was selected
       } else if (objAtSelection.type === "terminal") {
@@ -303,7 +298,6 @@ export default {
           this.cardRules.Card
         );
 
-        console.log("this.ability", this.ability);
         updateInteraction(
           this.ability,
           this.ability.clickedBtn.id,
@@ -316,7 +310,8 @@ export default {
 
         if (objAtSelection.singleUse) newEntry.singleUse = selection.index;
 
-        this.attachToAbility(this.dialog.btn.abilityPath, newEntry, true);
+        // Token are an interface, but not a new keyword, this is why we need a ternary operator here
+        this.attachToAbility(this.dialog.btn.abilityPath, newEntry, this.dialog.title === "Token" ? false :  true);
       } else if (objAtSelection.type === "int") {
         // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false;
@@ -438,7 +433,6 @@ export default {
       };
 
       this.abilitiesData.push(newAbility);
-      console.log("pushed new ability:", newAbility);
     },
     attachToAbility(path, object, updateKeywords = false) {
       console.log(

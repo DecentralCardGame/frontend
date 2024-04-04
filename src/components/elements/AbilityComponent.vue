@@ -3,75 +3,79 @@
     <div
       id="AbilityComponentInside"
       class="flex flex-row"
-    >
-      <div
-        v-for="(entry, index) in ability.interaction"
-        id="interaction"
-        :key="index"
-        class="text-[16px] flex flex-row justify-start items-center"
-      >
+    > 
+      <div v-if="ability"
+        class="flex flex-row">
         <div
-          id="pre"
-          class="whitespace-nowrap font-normal"
+          v-for="(entry, index) in ability.interaction"
+          id="interaction"
+          :key="index"
+          class="text-[16px] flex flex-row justify-start items-center"
         >
-          {{ entry.pre }}
-        </div>
+          <div
+            
+            id="pre"
+            class="whitespace-nowrap font-normal"
+          >
+            {{ entry.pre }}
+          </div>
 
-        <!-- pick one entry of an enum via dropdown -->
-        <div
-          v-if="entry.btn.type === 'enum'"
-          id="enum dropdown"
-        >
-          <Dropdown
-            v-model="entry.btn.label"
-            :options="enumOptions(entry)"
-            @update:model-value="showAbilityModal(ability, entry.btn)"
-          />
-        </div>
+          <!-- pick one entry of an enum via dropdown -->
+          <div
+            v-if="entry.btn.type === 'enum'"
+            id="enum dropdown"
+          >
+            <Dropdown
+              v-model="entry.btn.label"
+              :options="enumOptions(entry)"
+              @update:model-value="showAbilityModal(ability, entry.btn)"
+            />
+          </div>
 
-        <!-- pick an int from a dropdown case -->
-        <div
-          v-else-if="entry.btn.type === 'int'"
-          id="int"
-        >
-          <Dropdown
-            v-model="entry.btn.label"
-            :options="intRange(entry)"
-            @update:model-value="showAbilityModal(ability, entry.btn)"
-          />
-        </div>
+          <!-- pick an int from a dropdown case -->
+          <div
+            v-else-if="entry.btn.type === 'int'"
+            id="int"
+          >
+            <Dropdown
+              v-model="entry.btn.label"
+              :options="intRange(entry)"
+              @update:model-value="showAbilityModal(ability, entry.btn)"
+            />
+          </div>
 
-        <!-- pick an int or a variable (X) from dropdown case -->
-        <div
-          v-else-if="entry.btn.type === 'intX'"
-          id="intX"
-        >
-          <Dropdown
-            v-model="entry.btn.label"
-            :options="intXRange(entry)"
-            @update:model-value="showAbilityModal(ability, entry.btn)"
-          />
-        </div>
+          <!-- pick an int or a variable (X) from dropdown case -->
+          <div
+            v-else-if="entry.btn.type === 'intX'"
+            id="intX"
+          >
+            <Dropdown
+              v-model="entry.btn.label"
+              :options="intXRange(entry)"
+              @update:model-value="showAbilityModal(ability, entry.btn)"
+            />
+          </div>
 
-        <!-- toggle a bool via click case -->
-        <div
-          v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
-          class=""
-          @click="showAbilityModal(ability, entry.btn)"
-        >
-          {{ entry.btn.label }}
-        </div>
+          <!-- toggle a bool via click case -->
+          <div
+            v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
+            class=""
+            @click="showAbilityModal(ability, entry.btn)"
+          >
+            {{ entry.btn.label }}
+          </div>
 
-        <!-- default case (interfaces and rest) -->
-        <div
-          v-else
-          id="btn.label"
-          class="m-2 py-2 px-4 text-[16px] text-normal uppercase bg-transparent hover:bg-white hover:bg-opacity-70 hover:text-[#D82027] border-2 border-gray-300 hover:cursor-pointer"
-          @click="showAbilityModal(ability, entry.btn)"
-        >
-          {{ entry.btn.label }}
+          <!-- default case (interfaces and rest) -->
+          <div
+            v-else-if="entry.btn.type"
+            id="btn.label"
+            class="m-2 py-2 px-4 text-[16px] text-normal uppercase bg-transparent hover:bg-white hover:bg-opacity-70 hover:text-[#D82027] border-2 border-gray-300 hover:cursor-pointer"
+            @click="showAbilityModal(ability, entry.btn)"
+          >
+            {{ entry.btn.label }}
+          </div>
+          {{ entry.post }}
         </div>
-        {{ entry.post }}
       </div>
       <div
         class="m-2 py-2 px-4 text-[16px] text-center border-2 border-gray-300 bg-transparent cursor-pointer hover:bg-black hover:text-white border-2 border-gray-300"
@@ -175,15 +179,13 @@ export default {
     showAbilityModal(ability, btn) {
       let atRules = R.curry(atPath)(this.cardRules.Card);
       let atAbility = R.curry(atPath)(ability);
-
+      
       this.ability.clickedBtn = btn;
-
       let node = atRules(btn.rulesPath);
       let thereWillBeModal = true;
 
       // depending on type, create dialog
       if (node.type) {
-        console.log("node type:", node.type, " btn:", btn);
         switch (node.type) {
           case "array": {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
@@ -360,8 +362,6 @@ export default {
         R.forEachObjIndexed(function (option) {
           if (option.selected) delete option.selected;
         }, this.dialog.options);
-
-        console.log("created dialog: ", this.dialog);
       } else {
         console.error("node.type not defined");
       }
