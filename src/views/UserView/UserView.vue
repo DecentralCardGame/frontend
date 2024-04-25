@@ -86,22 +86,31 @@
             <b>{{ state.user.ownedCardSchemes.length }} Card Frame{{
               state.user.ownedCardSchemes.length == 1 ? "" : "s"
             }}</b>
-            <div
-              v-for="[arr, name] in [
-                [state.user.ownedCardSchemes, 'Master Card'],
-                [state.user.cards, 'Card'],
-              ]"
-              class="pb-6"
-            >
+            <div class="pb-6">
               <p class="pb-3">
-                <b>{{ arr.length }} {{ name
-                }}{{ arr.length == 1 ? "" : "s" }}</b>
+                <b>{{ state.user.ownedPrototypes.length }} {{ "Master Card"
+                }}{{ state.user.ownedPrototypes.length == 1 ? "" : "s" }}</b>
               </p>
               <RouterCCButton
                 :type="Color.YELLOW"
                 :to="{
                   name: 'Gallery',
-                  query: { owner: address, sortBy: 'Name' },
+                  query: { owner: state.addr, sortBy: 'Name' },
+                }"
+              >
+                View in gallery
+              </RouterCCButton>
+            </div>
+            <div class="pb-6">
+              <p class="pb-3">
+                <b>{{ state.user.cards.length }} {{ "Card"
+                }}{{ state.user.cards.length == 1 ? "" : "s" }}</b>
+              </p>
+              <RouterCCButton
+                :type="Color.YELLOW"
+                :to="{
+                  name: 'Gallery',
+                  query: { cards: state.user.cards },
                 }"
               >
                 View in gallery
@@ -243,6 +252,7 @@ const init = () => {
   getUser();
   getCoins();
   getMatches();
+  console.log(state.user)
 };
 
 onMounted(init);

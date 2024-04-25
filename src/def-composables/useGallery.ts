@@ -42,7 +42,8 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.notesContains = query.notesContains;
   galleryFilters.value.sortBy = query.sortBy ? query.sortBy : "Name";
   galleryFilters.value.multiClass = query.multiClassOnly;
-  galleryFilters.value.status = query.statuses.length != 1 ? "playable" :  query.statuses[0]
+  galleryFilters.value.status =
+    query.statuses.length != 1 ? "playable" : query.statuses[0];
 
   if (
     query.classes.length == 0 ||
@@ -57,11 +58,11 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   } else {
     galleryFilters.value.nature = query.classes.includes(CardClass.nature);
     galleryFilters.value.technology = query.classes.includes(
-      CardClass.technology
+      CardClass.technology,
     );
     galleryFilters.value.culture = query.classes.includes(CardClass.culture);
     galleryFilters.value.mysticism = query.classes.includes(
-      CardClass.mysticism
+      CardClass.mysticism,
     );
   }
 
@@ -116,7 +117,7 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
     notesContains: galleryFilters.value.notesContains,
     sortBy: galleryFilters.value.sortBy ? galleryFilters.value.sortBy : "",
     multiClassOnly: galleryFilters.value.multiClass,
-  } as Partial<PageQuery>);
+  } as Partial<QueryQCardsRequest>);
 };
 
 const loadQueryCardList = (query: PageQuery): void => {
@@ -126,11 +127,11 @@ const loadQueryCardList = (query: PageQuery): void => {
     paramsSerializer: constructAssRetardetQueryParams,
   }).then((res: QueryQCardsResponse) => {
     cardList.value = res.cardsList;
-  })
+  });
 };
 
 watch(galleryFilters.value, () =>
-  loadQueryCardList(pageQueryFromGalleryFilters())
+  loadQueryCardList(pageQueryFromGalleryFilters()),
 );
 
 export const useGallery = () => {

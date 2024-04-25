@@ -235,9 +235,14 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 ];
 
 onMounted(() => {
-  if (!R.isEmpty(route.query)) {
-    galleryFiltersFromPageQuery(normalizeQuery(route.query));
-    loadQueryCardList(pageQueryFromGalleryFilters());
+  const query = route.query
+  if (!R.isEmpty(query)) {
+    if ((query as {cards?: number[]}).cards) {
+      cardList.value = (query as {cards?: number[]}).cards!
+    } else {
+      galleryFiltersFromPageQuery(normalizeQuery(route.query));
+      loadQueryCardList(pageQueryFromGalleryFilters());
+    }
   } else if (cardList.value.length == 0) {
     loadQueryCardList(pageQueryFromGalleryFilters());
   } else {
