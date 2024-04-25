@@ -88,8 +88,8 @@
             }}</b>
             <div class="pb-6">
               <p class="pb-3">
-                <b>{{ state.user.ownedCardSchemes.length }} {{ "Master Card"
-                }}{{ state.user.ownedCardSchemes.length == 1 ? "" : "s" }}</b>
+                <b>{{ state.user.ownedPrototypes.length }} {{ "Master Card"
+                }}{{ state.user.ownedPrototypes.length == 1 ? "" : "s" }}</b>
               </p>
               <RouterCCButton
                 :type="Color.YELLOW"
@@ -110,7 +110,7 @@
                 :type="Color.YELLOW"
                 :to="{
                   name: 'Gallery',
-                  query: { owner: state.addr, sortBy: 'Name' },
+                  query: { cards: state.user.cards },
                 }"
               >
                 View in gallery
@@ -252,6 +252,7 @@ const init = () => {
   getUser();
   getCoins();
   getMatches();
+  console.log(state.user)
 };
 
 onMounted(init);

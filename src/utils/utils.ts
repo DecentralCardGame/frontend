@@ -11,7 +11,9 @@ export const normalizeCoins = (coins: Coin[]) => {
 };
 
 export const normalizeNumberList = (l: Array<any> | any) =>
-  (Array.isArray(l) ? l.map((v) => Number(v)) : [Number(l)]).filter(w => !Number.isNaN(w));
+  (Array.isArray(l) ? l.map((v) => Number(v)) : [Number(l)]).filter(
+    (w) => !Number.isNaN(w),
+  );
 export const normalizeBoolean = (b: any) => b == "true";
 
 export const normalizeQuery = (query: any): PageQuery => {
