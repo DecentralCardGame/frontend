@@ -12,7 +12,10 @@
       <b> Our Community Contributors </b>
     </p>
     <br>
-    <p v-for="name in names">
+    <p
+      v-for="name in names"
+      :key="name"
+    >
       {{ name }}
     </p>
   </div>
