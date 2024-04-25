@@ -19,9 +19,6 @@
 </template>
 <script setup lang="ts">
 import logo from "@/assets/figma/CCLogo.png";
-import {useLoggedIn} from "@/def-composables/useLoggedIn2";
-
-const {loggedIn} = useLoggedIn()
 
 const names = [
   "RUSLAN",
