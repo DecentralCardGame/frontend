@@ -77,13 +77,23 @@
             <br>
             <b>Alias</b> <br>{{ state.user.alias }}<br>
             <br>
-            <b>{{ state.user.earlyAccess?.active ? "Early access" : "No early access" }}</b>
+            <b>{{
+              state.user.earlyAccess?.active
+                ? "Early access"
+                : "No early access"
+            }}</b>
             <template v-if="state.user.earlyAccess?.active">
               <p v-if="state.user.earlyAccess?.invitedByUser">
-                Inviter: <CompactAddressComponent :addr="state.user.earlyAccess?.invitedByUser" />
+                Inviter:
+                <CompactAddressComponent
+                  :addr="state.user.earlyAccess?.invitedByUser"
+                />
               </p>
               <p v-else-if="state.user.earlyAccess?.invitedUser">
-                Invited: <CompactAddressComponent :addr="state.user.earlyAccess?.invitedUser" />
+                Invited:
+                <CompactAddressComponent
+                  :addr="state.user.earlyAccess?.invitedUser"
+                />
               </p>
             </template>
           </template>
@@ -259,12 +269,13 @@ const init = () => {
     router.push({ name: "NotFound" });
   }
 
-  router.push({ name: "UserView", params: { id: state.addr } });
   getUser();
   getCoins();
   getMatches();
-  console.log(state.user)
+  console.log(state.user);
 };
+
+watch(() => route.params.id, init);
 
 onMounted(init);
 
