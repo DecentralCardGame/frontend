@@ -1,19 +1,15 @@
 <template>
   <FadeTeaserSmall>
     <TeaserHeader
-      v-if="!invite"
+      v-if="!inviteMode"
       heading-class="text-cc-red"
     >
       <template #heading>
         Play the Game!
       </template>
       <template #content>
-        <p>
-          Check out our alpha version and be part of the early development.
-        </p>
-        <div
-          class="flex gap-4 flex-col pt-8"
-        >
+        <p>Check out our alpha version and be part of the early development.</p>
+        <div class="flex gap-4 flex-col pt-8">
           <template v-if="user.earlyAccess?.active">
             <BaseCCButton
               :type="Color.RED"
@@ -24,7 +20,7 @@
             <BaseCCButton
               v-if="!user.earlyAccess?.invitedByUser"
               :type="Color.TEAL"
-              @click="invite = true"
+              @click="inviteMode = true"
             >
               Early Access for a Friend
             </BaseCCButton>
@@ -65,6 +61,7 @@
           <BaseCCButton
             :type="Color.TEAL"
             :diabled="!addressValid"
+            @click="inviteUser"
           >
             Invite
           </BaseCCButton>
@@ -79,18 +76,29 @@ import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import FadeTeaserSmall from "@/components/elements/Teaser/FadeTeaserSmall.vue";
 import TeaserHeader from "@/components/elements/Teaser/TeaserHeader.vue";
 import { Color } from "@/components/utils/color";
-import {useUser} from "@/def-composables/useUser";
+import { useUser } from "@/def-composables/useUser";
 import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
-import {ref} from "vue";
+import { ref } from "vue";
 import CCAddressInput from "@/components/elements/CCInput/CCAddressInput.vue";
+import { useTx } from "@/def-composables/useTx";
 
-const {user} = useUser()
-const addressValid = ref(false)
-const inviteAddress = ref("")
-const invite = ref(false)
+const { inviteEarlyAccess } = useTx();
+const { user } = useUser();
+const addressValid = ref(false);
+const inviteAddress = ref("");
+const inviteMode = ref(false);
 
 const downloadLatest = () => {
-  console.log("download ")
-}
+  console.log("download ");
+};
 
+const inviteUser = () => {
+  inviteEarlyAccess(
+    inviteAddress.value,
+    () => {
+      inviteMode.value = false;
+    },
+    console.log,
+  );
+};
 </script>
