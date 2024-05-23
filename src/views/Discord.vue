@@ -23,7 +23,7 @@
         or are logged in with another account.
       </div>
       <div v-else>
-        <div v-if="state.noCCAddress">
+        <div v-if="state.noCCAddress" class="py-8">
           You do not have a CrowdControl Address! <br>
           All rewards will be credited to a CC Address. <br>
           You might have an address, but you did not enter it on Zealy. <br>
