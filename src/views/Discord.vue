@@ -9,75 +9,96 @@
         Please identify with your Discord account with the button below:
       </div>
       <LinkCCButton
-        to="https://discord.com/oauth2/authorize?client_id=1242405621815316502&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2F%23%2Fdiscord&scope=identify"
+        to="https://discord.com/oauth2/authorize?client_id=1242405621815316502&response_type=code&redirect_uri=https%3A%2F%2Fcrowdcontrol.network%2F%23%2Fdiscord&scope=identify"
       >
         Discord Identification
       </LinkCCButton>
     </div>
-    <div v-else>
-      <div class="text-center">
-        <h1 class="md:hidden text-5xl font-bold pb-12">
-          ACCOUNT
-        </h1>
-        <div class="py-24">
-          <div class="mx-auto h-64 w-64 relative group">
-            <ProfilePicComponent
-              :src="state.img"
-              size="64"
-              alt="Profile pic"
-            />
-            <button
-              v-if="state.userIsUser"
-              class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible group-hover:visible"
-              @click="showChooseModal"
-            >
-              <img
-                :src="editImg"
-                alt="edit"
-                class="hover:drop-shadow-md"
-              >
-            </button>
+    <div v-else
+      class="text-center">
+      <div v-if="state.noUserFound">
+        We are very sorry. <br>
+        The user {{ state.discordUser }} does not have any Zealy rewards. <br>
+        Maybe you have not entered your Discord account into Zealy <br>
+        or are logged in with another account.
+      </div>
+      <div v-else>
+        <div v-if="state.noCCAddress">
+          You do not have a CrowdControl Address! <br>
+          All rewards will be credited to a CC Address. <br>
+          You might have an address, but you did not enter it on Zealy. <br>
+          If you want to receive rewards, you should enter your CC Address. <br>
+          If you don't own a CC Address click on Login on the top right. <br>
+        </div>
+
+        <div v-else 
+          class="text-center">
+          <h1 class="md:hidden text-5xl font-bold pb-12">
+            {{ state.user.alias }}
+          </h1>
+          <div class="py-24">
+            <div class="mx-auto h-64 w-64 relative group">
+              <ProfilePicComponent
+                :src="state.img"
+                size="64"
+                alt="Profile pic"
+              />
+
+                <img
+                  :src="editImg"
+                  alt="edit"
+                  class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible "
+                >
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div class="text-center md:text-left">
-        <h1 class="max-md:hidden text-5xl font-bold pb-12">
-          ACCOUNT
-        </h1>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
-          <UserViewHeadingContainer>
-            <template #heading>
-              Wallet
-            </template>
-            <template #body>
-              <b>Address</b> <br>{{ state.addr }}
-              <br>
-              <b>Alias</b> <br>{{ state.user.alias }}
-              <br><br>
-              <b>Zealy ID</b> <br>{{ state.rewards[0].ZealyID }}
-              <br>
-              <b>Airdrop</b> <br>{{ state.rewards[0].Airdrop }}
-              <br>
-              <b>InGameCredits</b> <br>{{ state.rewards[0].InGameCredits }}
-              <br>
-              <b>EarlyAccessToGame</b> <br>{{ state.rewards[0].EarlyAccessToGame }}
-              <br>
-              <b>BoosterPacks</b> <br>{{ state.rewards[0].BoosterPacks }}
-              <br>
-              <b>DiscordUsername</b> <br>{{ state.rewards[0].DiscordUsername }}
-              <br>
-              <b>AmbassadorProgramAdvisory</b> <br>{{ state.rewards[0].AmbassadorProgramAdvisory }}
-              <br>
-              <b>WLForTheTokenSale</b> <br>{{ state.rewards[0].WLForTheTokenSale }}
-              <br>
-              <b>WLForTheTokenSaleBetterPrice</b> <br>{{ state.rewards[0].WLForTheTokenSaleBetterPrice }}
-              <br>
-            </template>
-          </UserViewHeadingContainer>
         
+        <div class="text-center">
+          <h1 class="max-md:hidden text-5xl font-bold pb-12">
+            Rewards
+          </h1>
+          <div>
+            <UserViewHeadingContainer>
+              <template asdf>
+                Wallet
+              </template>
+              <template #body>
+                <DefineRewardItem v-slot="{ item, value, isBool=false }">
+                  <div class="p-1">
+                    <div v-if="value" 
+                      class="p-2 mx-20 font-bold bg-green-400 rounded-full whitespace-nowrap text-nowrap">
+                      {{ item }}
+                      <span v-if="isBool" class="px-2">
+                        ✓
+                      </span>
+                      <span v-if="!isBool" class="px-2">
+                        {{ value }}
+                      </span>
+                    </div>
+                    <div v-if="!value && isBool"
+                      class="p-2 mx-20 font-bold bg-red-400 rounded-full whitespace-nowrap text-nowrap line-through">
+                      {{ item }}
+                    </div>
+                  </div>
+                </DefineRewardItem>
+
+                <b>Address</b> <br>{{ state.addr }} <br>
+                <b>Alias</b> <br>{{ state.user.alias }} <br>
+                <b>Zealy ID</b> <br>{{ state.rewards.ZealyID }} <br>
+                <b>Discord Username</b> <br>{{ state.discordUser }}<br><br>
+                
+                <RewardItem :item="'Airdrop'" :value="state.rewards.Airdrop" />
+                <RewardItem :item="'Credits'" :value="state.rewards.InGameCredits" />
+                <RewardItem :item="'Early Access'" :value="state.rewards.EarlyAccessToGame" :isBool="true" />
+                <RewardItem :item="'Booster Packs'" :value="state.rewards.BoosterPacks" />
+                <RewardItem :item="'Ambassador Program Advisory'" :value="state.rewards.AmbassadorProgramAdvisory" :isBool="true" />
+                <RewardItem :item="'Whitelist for The Token Sale'" :value="state.rewards.WLForTheTokenSale" :isBool="true" />
+                <RewardItem :item="'Whitelist for The Token Sale (Better Price)'" :value="state.rewards.WLForTheTokenSaleBetterPrice" :isBool="true" />
+              </template>
+            </UserViewHeadingContainer>
+          
+          </div>
         </div>
-        
       </div>
     </div>
   </div>
@@ -106,11 +127,12 @@ import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { Color } from "@/components/utils/color";
 import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 import axios from "axios";
-
 import { useUrlSearchParams } from '@vueuse/core'
+import { createReusableTemplate } from '@vueuse/core'
 import queryString from 'query-string';
 
 
+const [DefineRewardItem, RewardItem] = createReusableTemplate();
 
 const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
@@ -126,10 +148,18 @@ const initialState: {
   addr: string;
   user: User;
   img: string;
+  discordUser: string;
+  invalidCode: boolean;
+  noUserFound: boolean;
+  noCCAddress: boolean;
 } = {
   addr: "",
   user: User.fromPartial({}),
   img: "jaja",
+  discordUser: "",
+  invalidCode: false,
+  noUserFound: false,
+  noCCAddress: false
 };
 
 const state = reactive(initialState);
@@ -142,64 +172,65 @@ const init = () => {
   }
   axios.get('https://cardchain.crowdcontrol.network/goat?code='+code)
     .then(discordUser => {
-        console.log("discordUser", discordUser)
-        // get the reward list from the server
-        axios.get('https://cardchain.crowdcontrol.network/files/rewards.csv')
-          .then((response) => {
-            console.log(response)
-            var lines=response.data.split("\n");
-            var result = [];
-            var headers=lines[0].split(",");
-            for(var i=1; i<lines.length; i++) {
-              var obj = {};
-              var currentline=lines[i].split(",");
-              for(var j=0; j<headers.length; j++){
-                  obj[headers[j]] = currentline[j];
-              }
-              console.log("compare:", obj.discordHandle, discordUser.data.username)
-              if (obj.discordHandle === discordUser.data.username) {
-                console.log("rewards.csv", obj)
-                result.push(obj);
-                state.rewards = result;
-              }
+      state.discordUser = discordUser.data.global_name
+      console.log("discordUser", discordUser)
+      // get the reward list from the server
+      axios.get('https://cardchain.crowdcontrol.network/files/rewards.csv')
+        .then((response) => {
+          console.log(response)
+          var lines=response.data.split("\n");
+          var result = null;
+          var headers=lines[0].split(",");
+          for(var i=1; i<lines.length; i++) {
+            var obj = {};
+            var currentline=lines[i].split(",");
+            for(var j=0; j<headers.length; j++){
+                obj[headers[j]] = currentline[j];
             }
-            console.log("matching entries:", result);
+            if (obj.discordHandle === discordUser.data.username) {
+              obj.Airdrop = obj.Airdrop ? obj.Airdrop : 0
+              obj.AmbassadorProgramAdvisory = obj.AmbassadorProgramAdvisory ? obj.AmbassadorProgramAdvisory : false
+              obj.BoosterPacks = obj.BoosterPacks ? obj.BoosterPacks : 0
+              obj.Credits = obj.Credits ? obj.Credits : 0
+              obj.EarlyAccessToGame = obj.EarlyAccessToGame ? obj.EarlyAccessToGame : false
+              obj.WLForTheTokenSale = obj.WLForTheTokenSale ? obj.WLForTheTokenSale : false
+              obj.WLForTheTokenSaleBetterPrice = obj.WLForTheTokenSaleBetterPrice ? obj.WLForTheTokenSaleBetterPrice : false
 
-            if (result.length === 0)
-              state.noUserFound = true
-          })
+              result = obj;
+              state.rewards = obj;
+              break;
+            }
+          }
+          console.log("matching entry:", result);
+
+          if (!result)
+            state.noUserFound = true
+          else if (!result.CCAddress)
+            state.noCCAddress = true
+          else {
+            state.addr = result.CCAddress
+            console.log("state.addr", state.addr)
+            getUser();
+          }
+        })
     })
 
-
-
-  if (state.userIsUser) {
-    state.user = user.value;
-    state.coins = normalizeCoins(coins.value);
-    state.img = loggedInProfilePic.value;
-  }
-
-  if (!true) { // change this to invalid discord login
-    router.push({ name: "NotFound" });
-  }
-
   router.push({ name: "Discord" });
-  getUser();
-  console.log(state.user)
+ 
 };
 
 onMounted(init);
 
 const getUser = () => {
-  if (state.userIsUser) {
-    queryUser();
-  } else {
-    queryQUser(state.addr).then((user) => {
-      state.user = user;
-      getImg(state.user, state.addr).then((img) => {
-        state.img = img;
-      });
+  console.log("getuser", state.addr)
+  queryQUser(state.addr).then((user) => {
+    console.log("user", user)
+    state.user = user;
+    getImg(state.user, state.addr).then((img) => {
+      state.img = img;
     });
-  }
+  });
+  
 };
 
 </script>
