@@ -60,8 +60,8 @@
   },
   "name": "@decentralcardgame/frontend",
   "scripts": {
-    "build": "run-p type-check build-only vite build",
-    "build:dev": "run-p type-check build-only vite --mode development build",
+    "build": "run-p type-check && vite build",
+    "build:dev": "run-p type-check && vite --mode development build",
     "dev": "vite",
     "local": "vite --mode localhost",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
