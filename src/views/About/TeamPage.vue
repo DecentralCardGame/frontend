@@ -51,7 +51,7 @@ import noah from "@/assets/team/noah.webp";
 import logo from "@/assets/figma/CCLogo.png";
 
 const items: { pic: any; name: string; desc: string }[] = [
-  { pic: patrick, name: "Technical lead", desc: "Patrick" },
+  { pic: patrick, name: "Patrick", desc: "Technical lead" },
   { pic: anna, name: "Anna", desc: "Creative lead" },
   { pic: marius, name: "Marius", desc: "Game Dev lead" },
   { pic: peer, name: "Peer", desc: "Blockchain Dev" },

@@ -17,6 +17,8 @@ const LearnPage = () => import("@/views/LearnPage.vue");
 const DownloadPage = () => import("@/views/DownloadPage.vue");
 const CommunityPage = () => import("@/views/About/CommunityPage.vue");
 const EncounterVotingPage = () => import("@/views/Voting/EncounterVotingPage.vue")
+const Rewards = () => import("@/views/Rewards.vue");
+const Discord = () => import("@/views/Discord.vue");
 
 const routes = [
   {
@@ -94,6 +96,16 @@ const routes = [
     path: "/user/:id",
     name: "UserView",
     component: UserView,
+  },
+  {
+    path: "/rewards/:id",
+    name: "Rewards",
+    component: Rewards,
+  },
+  {
+    path: "/discord",
+    name: "Discord",
+    component: Discord,
   },
   {
     path: "/demo",
