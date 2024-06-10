@@ -77,11 +77,18 @@
             <br>
             <b>Alias</b> <br>{{ state.user.alias }}<br>
             <br>
-            <b>{{
-              state.user.earlyAccess?.active
-                ? "Early access"
-                : "No early access"
-            }}</b>
+            <RouterCCButton
+              v-if="state.user.earlyAccess?.active"
+              :type="Color.YELLOW"
+              :to="{
+                name: 'Download',
+              }"
+            >
+              Early Access
+            </RouterCCButton>
+            <b v-if="!state.user.earlyAccess?.active">
+                No Early Access
+            </b>
             <template v-if="state.user.earlyAccess?.active">
               <p v-if="state.user.earlyAccess?.invitedByUser">
                 Inviter:
