@@ -15,13 +15,13 @@
         <div class="p-4">
           You successfully minted your card!
         </div>
-          <BaseCCButton
-            class="p-16 pb-60"
-            :type="Color.RED"
-            @click="successScreenVisible=false"
-          >
-            Create another Card
-          </BaseCCButton>
+        <BaseCCButton
+          class="p-16 pb-60"
+          :type="Color.RED"
+          @click="successScreenVisible=false"
+        >
+          Create another Card
+        </BaseCCButton>
       </div>
 
       <div
@@ -238,7 +238,6 @@
             class="text-left flex flex-col justify-between"
           >
             <div class="pl-12 pr-[4.5rem] py-5 justify-center">
-
               <div class="p-3 font-bold text-left">
                 ARTWORK
               </div>
@@ -275,7 +274,7 @@
                       class="p-3 border-red-600 text-red-600"
                       type="radio"
                       :value="true"
-                      @change="cropImage=''; this.model.image=''"
+                      @change="cropImage=''; model.image=''"
                     >
                     <div class="px-3 text-left">
                       Instead add another artist as a collaborator.
@@ -293,7 +292,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <div class="pr-[4.45rem] justify-end">
               <NavigationButtons />
@@ -330,10 +328,24 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <mask id="maskImage">
-                <image :xlink:href="getOBMask()"  width="168" height="260" />
+                <image
+                  :xlink:href="getOBMask()"
+                  width="168"
+                  height="260"
+                />
               </mask>
-              <image :xlink:href="model.image" width="160" y="-15" height="260" mask="url(#maskImage)" />
-              <image :xlink:href="getOBFrame()" width="168" height="260" />
+              <image
+                :xlink:href="model.image"
+                width="160"
+                y="-15"
+                height="260"
+                mask="url(#maskImage)"
+              />
+              <image
+                :xlink:href="getOBFrame()"
+                width="168"
+                height="260"
+              />
             </svg>
           </div>
 
@@ -353,10 +365,10 @@
                   height: cardBounds.y * 1.2,
                 }"
                 :default-size="{
-                  width: cardBounds.x  * 1.2,
-                  height: cardBounds.y  * 1.2,
+                  width: cardBounds.x * 1.2,
+                  height: cardBounds.y * 1.2,
                 }"
-                imageRestriction="none"
+                image-restriction="none"
                 @change="changeCrop"
               />
             </div>
@@ -365,7 +377,6 @@
           <div class="pr-[0.0rem] pt-[0.8rem] row-start-7 row-span-1 col-start-4 col-span-5">
             <NavigationButtons />
           </div>
-
         </div>
 
         <!-- Flavor -->
@@ -567,8 +578,8 @@
         >
           <div class="p-[2rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
-              id="card"
               v-if="!isAbilityModalVisible"
+              id="card"
               :active-step="activeStep"
               :display-notes="true"
               :image-u-r-l="getCardImage()"
@@ -580,14 +591,17 @@
               <div class="py-3 text-s font-bold">
                 ABILITIES AND EFFECTS
               </div>
-              <div class="text-right" v-if="isEmpty(abilities)"> 
+              <div
+                v-if="isEmpty(abilities)"
+                class="text-right"
+              > 
                 <Checkbox v-model="clearAbilities">
                   Remove all abilities
                 </Checkbox>
               </div>
               
               <div v-if="!clearAbilities">
-                <div  class="py-3 text-s">
+                <div class="py-3 text-s">
                   Click to add abilities or effects to your card.
                 </div>
                 <div id="abiliy container">
@@ -723,12 +737,16 @@
               <div class="pl-12 py-3 text-s font-bold">
                 SUMMARY
               </div>
-              <div v-if="model.FlavourText!==''"
+              <div
+                v-if="model.FlavourText!==''"
                 class="pl-12 min-h-[4rem] text-s italic"
               >
                 "{{ model.FlavourText }}"
               </div>
-              <div v-else class="h-[4rem]"/>
+              <div
+                v-else
+                class="h-[4rem]"
+              />
 
               <div class="">
                 <!-- Edit existing card case -->
@@ -762,7 +780,6 @@
                         Update your Card
                       </BaseCCButton>
                     </div>
-
                   </div>                    
                 </div>
                 <!-- New card case -->
@@ -795,9 +812,9 @@
                     </div>
                   </div>
                   <!-- Not enough card frames --> 
-                  <div v-else
+                  <div
+                    v-else
                     class="flex flex-col items-end"
-
                   >
                     <div class="pt-0 pr-1 text-right">
                       <div class="py-3 text-s uppercase font-bold">
@@ -807,7 +824,6 @@
                         Market price: <b> {{ cardFramePrice }} credits </b> <br>
                         Your credit balance: <b> {{ availableCredits }} credits </b>
                       </div>
-                      
                     </div>
                     <div class="pt-[2rem] pr-1 text-right">
                       <div> Review and mint your card. </div>
