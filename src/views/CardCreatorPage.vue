@@ -332,7 +332,7 @@
               <mask id="maskImage">
                 <image :xlink:href="getOBMask()"  width="168" height="260" />
               </mask>
-              <image :xlink:href="model.image" width="160" y="-15" height="260" mask="url(#maskImage)" />
+              <image :xlink:href="model.image" width="148" x="10" y="20" height="260" mask="url(#maskImage)" />
               <image :xlink:href="getOBFrame()" width="168" height="260" />
             </svg>
           </div>
