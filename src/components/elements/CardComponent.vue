@@ -23214,9 +23214,8 @@ export default {
   },
   methods: {
     update() {
-      //console.log("model", this.model.CardName, this.model)
+      console.log("cardcomponent model", this.model.CardName, this.model)
       this.FullArt = this.model.fullArt
-      //console.log("this.FullArt updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
@@ -23321,6 +23320,7 @@ export default {
       this.attackFrame = cardType.Entity
       this.healthFrame = NonActionFilter(frameType)
 
+      this.generateRulesText()
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return
@@ -23384,6 +23384,14 @@ export default {
     },
     getTags() {
       return this.model.Tags.join(' - ').toUpperCase() || ''
+    },
+    generateRulesText() {
+      console.log("this.model.abilities:", this.model.Abilities)
+      let rulesText = ""
+      this.model.Abilities.forEach(ability => {
+        rulesText = R.append(R.keys(ability), rulesText)
+      })
+      console.log("rulestext:", rulesText)
     },
     abilitiesLength() {
       if (this.model.abilities) {
