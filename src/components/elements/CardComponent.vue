@@ -23208,6 +23208,8 @@ export default {
 
     this.update()
     this.textVisible = false
+    this.model.RulesTexts = this.generateRulesText()
+    console.log("rulestext", this.model.RulesTexts)
   },
   mounted() {
     this.textVisible = true
@@ -23319,8 +23321,6 @@ export default {
       this.framed = colorType
       this.attackFrame = cardType.Entity
       this.healthFrame = NonActionFilter(frameType)
-
-      this.generateRulesText()
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return
@@ -23386,12 +23386,106 @@ export default {
       return this.model.Tags.join(' - ').toUpperCase() || ''
     },
     generateRulesText() {
-      console.log("this.model.abilities:", this.model.Abilities)
+      let deeper = element => {
+        if (typeof element === "object")
+          return element[R.keys(element)[0]]
+        else 
+          return false
+      }
+      let decapital = x => {
+        return R.join("", R.over(R.lensIndex(0), R.toLower, x))
+      }
+      let effectsToText = Effects => {
+        let effectText = []
+        Effects.forEach(effect => {
+          let effectKeyword = R.keys(effect)[0]
+          let interaction = getInteractionText(effectKeyword)
+          
+          let interactionBlock = []
+          interaction.forEach(element => {
+            if (R.includes("§", element)) {
+              let pure = R.join("", R.without(["§", "."], element))
+
+              let interactionNode = effect[effectKeyword][pure]
+
+              if (getRule(pure)) {
+                if (getRule(pure).type == "interface") {
+                  let picked = R.keys(interactionNode)[0]
+                  interactionBlock.push(getRule(picked).interactionText)
+                }
+                else
+                  console.log("pure interaction?", getInteractionText(pure))
+              }
+              else {
+                let nextNode = deeper(interactionNode) 
+
+                if (nextNode) {
+                  interactionBlock.push(nextNode)
+                }
+                else {
+                  interactionBlock.push(interactionNode)
+                }    
+              }
+            } 
+            else
+              interactionBlock.push(element)
+          })
+          effectText.push(R.join(" ", interactionBlock))
+        })
+        return effectText
+      }
+
+      let rules = this.cardRules.definitions
+      let getRule = key => this.cardRules.definitions[decapital(key)]
+      let getInteractionText = key => R.split(" ", rules[decapital(key)].interactionText)
+
       let rulesText = ""
-      this.model.Abilities.forEach(ability => {
-        rulesText = R.append(R.keys(ability), rulesText)
-      })
-      console.log("rulestext:", rulesText)
+      if (this.model.AdditionalCost) {
+        let costType = R.keys(this.model.AdditionalCost)[0]
+        let amount = this.model.AdditionalCost[costType].Amount
+        let costText = "Extra Cost - "
+        costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
+        if (costType === "SacrificeCost")
+          costText = R.replace("card", amount > 1 ? "Entities." : "Entity.", costText)
+        else
+          costText += amount > 1 ? "s." : "."
+
+        rulesText = R.append(costText, rulesText)
+      }
+      if (this.model.Abilities) {
+        this.model.Abilities.forEach(ability => {
+          let keyword = R.keys(ability)[0]
+          let abilityText = getInteractionText(keyword)
+          
+          abilityText.forEach((block, index) => {
+            // Effects can be nested a bit, so this needs more handling
+            if (R.includes("§Effects", block)) {
+              let effectText = effectsToText(ability[keyword].Effects)
+              abilityText[index] = R.replace("§Effects", R.join(". ", effectText), abilityText[index]) 
+            }
+            // Not effects, but something else that needs to be replaced with variable.
+            else if (R.includes("§", block)) {
+              let pure = R.join("", R.without(["§", ".", ":"], block))
+              let node = ability[keyword][pure]
+              if (deeper(node)) {
+                abilityText[index] = R.replace("§"+pure, deeper(node), abilityText[index])
+              }
+              else {
+                abilityText[index] = R.replace("§"+pure, node, abilityText[index])
+              }
+            }
+            else {
+              console.log("block else", block)
+            }
+          })
+          rulesText = R.append(R.join(" ", abilityText), rulesText)
+        })
+      }
+      else {
+        let effecttext = effectsToText(this.model.Effects)
+        rulesText = R.append(R.join(". ", effecttext), rulesText)
+      }
+      return rulesText
     },
     abilitiesLength() {
       if (this.model.abilities) {
