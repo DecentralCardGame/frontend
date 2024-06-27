@@ -2,12 +2,9 @@
   <div
     class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16"
   >
-    <div
-      v-if="state.invalidCode"
-      class="py-24 text-center"
-    >
+    <div v-if="state.invalidCode" class="py-24 text-center">
       <div class="py-4">
-        Unfortunately you have entered this page without Discord code.<br>
+        Unfortunately you have entered this page without Discord code.<br />
         Please identify with your Discord account with the button below:
       </div>
       <LinkCCButton
@@ -16,33 +13,24 @@
         Discord Identification
       </LinkCCButton>
     </div>
-    <div
-      v-else
-      class="text-center"
-    >
+    <div v-else class="text-center">
       <div v-if="state.noUserFound">
-        We are very sorry. <br>
-        The user {{ state.discordUser }} does not have any Zealy rewards. <br>
-        Maybe you have not entered your Discord account into Zealy <br>
+        We are very sorry. <br />
+        The user {{ state.discordUser }} does not have any Zealy rewards. <br />
+        Maybe you have not entered your Discord account into Zealy <br />
         or are logged in with another account.
       </div>
       <div v-else>
-        <div
-          v-if="state.noCCAddress"
-          class="py-8"
-        >
-          You do not have a CrowdControl Address! <br>
-          All rewards will be credited to a CC Address. <br>
-          You might have an address, but you did not enter it on Zealy. <br>
+        <div v-if="state.noCCAddress" class="py-8">
+          You do not have a CrowdControl Address! <br />
+          All rewards will be credited to a CC Address. <br />
+          You might have an address, but you did not enter it on Zealy. <br />
           If you want to receive rewards, you should enter your CC Address.
-          <br>
-          If you don't own a CC Address click on Login on the top right. <br>
+          <br />
+          If you don't own a CC Address click on Login on the top right. <br />
         </div>
 
-        <div
-          v-else
-          class="text-center"
-        >
+        <div v-else class="text-center">
           <h1 class="md:hidden text-5xl font-bold pb-12">
             {{ state.user.alias }}
           </h1>
@@ -58,20 +46,16 @@
                 :src="editImg"
                 alt="edit"
                 class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible"
-              >
+              />
             </div>
           </div>
         </div>
 
         <div class="text-center">
-          <h1 class="max-md:hidden text-5xl font-bold pb-12">
-            Rewards
-          </h1>
+          <h1 class="max-md:hidden text-5xl font-bold pb-12">Rewards</h1>
           <div>
             <UserViewHeadingContainer>
-              <template asdf>
-                Wallet
-              </template>
+              <template asdf> Wallet </template>
               <template #body>
                 <DefineRewardItem v-slot="{ item, value, isBool = false }">
                   <div class="p-1">
@@ -80,14 +64,8 @@
                       class="p-2 mx-20 font-bold bg-green-400 rounded-full whitespace-nowrap text-nowrap"
                     >
                       {{ item }}
-                      <span
-                        v-if="isBool"
-                        class="px-2"
-                      > ✓ </span>
-                      <span
-                        v-if="!isBool"
-                        class="px-2"
-                      >
+                      <span v-if="isBool" class="px-2"> ✓ </span>
+                      <span v-if="!isBool" class="px-2">
                         {{ value }}
                       </span>
                     </div>
@@ -100,16 +78,13 @@
                   </div>
                 </DefineRewardItem>
 
-                <b>Address</b> <br>{{ state.addr }} <br>
-                <b>Alias</b> <br>{{ state.user.alias }} <br>
-                <b>Zealy ID</b> <br>{{ state.rewards.ZealyID }} <br>
-                <b>Discord Username</b> <br>{{ state.discordUser
-                }}<br><br>
+                <b>Address</b> <br />{{ state.addr }} <br />
+                <b>Alias</b> <br />{{ state.user.alias }} <br />
+                <b>Zealy ID</b> <br />{{ state.rewards.ZealyID }} <br />
+                <b>Discord Username</b> <br />{{ state.discordUser
+                }}<br /><br />
 
-                <RewardItem
-                  :item="'Airdrop'"
-                  :value="state.rewards.Airdrop"
-                />
+                <RewardItem :item="'Airdrop'" :value="state.rewards.Airdrop" />
                 <RewardItem
                   :item="'Credits'"
                   :value="state.rewards.InGameCredits"

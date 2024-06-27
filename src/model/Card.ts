@@ -41,10 +41,6 @@ export class ChainCard {
       card.Delay = parseInt(content[cardType].Delay);
       card.RulesTexts = [];
       card.Effects = content[cardType].Effects;
-      card.Keywords = [];
-      content[cardType].Keywords.forEach((keyword: string) => {
-        card.Keywords.push(JSON.parse(keyword));
-      });
 
       card.type = cardType;
       card.owner = this.owner;
@@ -100,11 +96,11 @@ export class Card {
   Attack: number = 0;
   Delay: number = 0;
   RulesTexts: Array<string> = [];
-  Keywords: Array<Array<string>> = new Array<Array<string>>();
   Effects: Array<any> = [];
   id: number = -1;
   balanceAnchor: boolean = false;
   hash: string = "";
+  rarity: string = "";
 
   // Values used for nerfstatus
   isBanned = false;
@@ -142,10 +138,6 @@ export class Card {
       }),
       FlavourText: this.FlavourText,
       Class: this.Class,
-      Keywords: [],
-    });
-    this.Keywords.forEach((keyword) => {
-      cardContent.Keywords.push(JSON.stringify(keyword));
     });
     // in the following part we check things that are only required for specific card types
     if (this.type !== "Headquarter") {
@@ -230,7 +222,6 @@ class CardContent {
   Attack: number = 0;
   Delay: number = 0;
   RulesTexts: Array<string> = [];
-  Keywords: Array<string> = [];
   Effects: Array<any> = [];
 }
 
