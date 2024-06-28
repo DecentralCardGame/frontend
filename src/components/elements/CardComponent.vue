@@ -23195,28 +23195,15 @@ export default {
     }
   },
   created() {
-    let firstLetterToLower = (string: String) => {
-      return string[0].toLowerCase() + string.substring(1)
-    }
-    this.model.Keywords.forEach((ability: Array<String>) => {
-      ability.forEach((keyword: String) => {
-        this.keywordDescriptions = R.concat(this.keywordDescriptions,
-          keyword + " - " + this.cardRules.definitions[firstLetterToLower(keyword)].description + " \\n "
-        )
-      })
-    })
-
     this.update()
     this.textVisible = false
     this.model.RulesTexts = this.generateRulesText()
-    console.log("rulestext", this.model.RulesTexts)
   },
   mounted() {
     this.textVisible = true
   },
   methods: {
     update() {
-      console.log("cardcomponent model", this.model.CardName, this.model)
       this.FullArt = this.model.fullArt
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
@@ -23283,11 +23270,6 @@ export default {
         }
       }
 
-      //console.log("frameType", frameType)
-      //console.log("cardClass", cardClass)
-      //console.log("cardType", cardType)
-      //console.log("colorType", colorType)
-
       // here begins the part where the components are activated
       this.Class = cardClass
       this.Classes = R.countBy(x => x === true)(R.values(this.model.Class)).true
@@ -23295,9 +23277,6 @@ export default {
       let classTrueKeys = R.invert(cardClass).true
       this.SecondaryColor = R.last(classTrueKeys ? classTrueKeys : [])
       this.PrimaryColor = R.head(classTrueKeys ? classTrueKeys : [])
-
-      //console.log("primary color:", this.PrimaryColor)
-      //console.log("secondary color:", this.SecondaryColor)
 
       this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
       this.GoldSquare = true
@@ -23440,8 +23419,8 @@ export default {
       let getInteractionText = key => R.split(" ", rules[decapital(key)].interactionText)
 
       let rulesText = []
-      if (this.model.AdditionalCost) {
-        let costType = R.keys(this.model.AdditionalCost)[0]
+      if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
+        let costType = R.keys(this.model.AdditionalCost)
         let amount = this.model.AdditionalCost[costType].Amount
         let costText = "Extra Cost - "
         costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
@@ -23452,7 +23431,7 @@ export default {
 
         rulesText = R.append(costText, rulesText)
       }
-      if (this.model.Abilities) {
+      if (this.model.Abilities && !R.isEmpty(this.model.Abilities)) {
         this.model.Abilities.forEach(ability => {
           let keyword = R.keys(ability)[0]
           let abilityText = getInteractionText(keyword)
@@ -23475,15 +23454,15 @@ export default {
               }
             }
             else {
-              console.log("block else", block)
+              //console.log("block else", block)
             }
           })
           rulesText = R.append(R.join(" ", abilityText), rulesText)
         })
       }
       else {
-        let effecttext = effectsToText(this.model.Effects)
-        rulesText = R.append(R.join(". ", effecttext), rulesText)
+        let effectText = effectsToText(this.model.Effects)
+        rulesText = R.append(R.join(". ", effectText), rulesText)
       }
       return rulesText
     },
@@ -23565,23 +23544,6 @@ export default {
       } else {
         return colors[this.SecondaryColor]
       }
-    },
-    getKeywords() {
-      let additionalCostPseudoKeyword = [[]]
-
-      if (this.model.AdditionalCost) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostPseudoKeyword[0].push("Tribute")
-        } else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostPseudoKeyword[0].push("DiscardPay")
-        } else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostPseudoKeyword[0].push("Dissolve")
-        }
-      }
-
-      return additionalCostPseudoKeyword[0].length > 0 ?
-        R.concat(additionalCostPseudoKeyword, this.model.Keywords) :
-        this.model.Keywords
     },
     fontSize(rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
