@@ -129,8 +129,6 @@ import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCa
 import axios from "axios";
 import { useUrlSearchParams } from '@vueuse/core'
 import { createReusableTemplate } from '@vueuse/core'
-import queryString from 'query-string';
-
 
 const [DefineRewardItem, RewardItem] = createReusableTemplate();
 

@@ -39,7 +39,7 @@ export class ChainCard {
       card.Health = parseInt(content[cardType].Health);
       card.Attack = parseInt(content[cardType].Attack);
       card.Delay = parseInt(content[cardType].Delay);
-      card.RulesTexts = content[cardType].RulesTexts;
+      card.RulesTexts = [];
       card.Effects = content[cardType].Effects;
       card.Keywords = [];
       content[cardType].Keywords.forEach((keyword: string) => {
@@ -143,7 +143,6 @@ export class Card {
       FlavourText: this.FlavourText,
       Class: this.Class,
       Keywords: [],
-      RulesTexts: this.RulesTexts,
     });
     this.Keywords.forEach((keyword) => {
       cardContent.Keywords.push(JSON.stringify(keyword));

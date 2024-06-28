@@ -56,7 +56,7 @@
           Used Keywords
         </p>
         <br>
-        <KeywordComponent :keywords="state.card.Keywords" />
+        <KeywordComponent :card="state.card" />
       </div>
     </div>
     <div
@@ -144,7 +144,7 @@ onMounted(checkAndLoadCard);
 watch(() => props.id, checkAndLoadCard);
 
 const loadCard = async () => {
-  state.card = await getCard(props.id);
+  state.card = await getCard(props.id)
 };
 
 const edit = () => {

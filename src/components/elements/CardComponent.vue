@@ -23195,28 +23195,16 @@ export default {
     }
   },
   created() {
-    let firstLetterToLower = (string: String) => {
-      return string[0].toLowerCase() + string.substring(1)
-    }
-    this.model.Keywords.forEach((ability: Array<String>) => {
-      ability.forEach((keyword: String) => {
-        this.keywordDescriptions = R.concat(this.keywordDescriptions,
-          keyword + " - " + this.cardRules.definitions[firstLetterToLower(keyword)].description + " \\n "
-        )
-      })
-    })
-
     this.update()
     this.textVisible = false
+    this.model.RulesTexts = this.generateRulesText()
   },
   mounted() {
     this.textVisible = true
   },
   methods: {
     update() {
-      //console.log("model", this.model.CardName, this.model)
       this.FullArt = this.model.fullArt
-      //console.log("this.FullArt updated:", this.FullArt)
 
       let FullArtfilter = x => this.FullArt ? x : R.map(() => false, x)
       let EntityFullArtfilter = x => this.FullArt || cardType.Entity ? x : R.map(() => false, x)
@@ -23282,11 +23270,6 @@ export default {
         }
       }
 
-      //console.log("frameType", frameType)
-      //console.log("cardClass", cardClass)
-      //console.log("cardType", cardType)
-      //console.log("colorType", colorType)
-
       // here begins the part where the components are activated
       this.Class = cardClass
       this.Classes = R.countBy(x => x === true)(R.values(this.model.Class)).true
@@ -23294,9 +23277,6 @@ export default {
       let classTrueKeys = R.invert(cardClass).true
       this.SecondaryColor = R.last(classTrueKeys ? classTrueKeys : [])
       this.PrimaryColor = R.head(classTrueKeys ? classTrueKeys : [])
-
-      //console.log("primary color:", this.PrimaryColor)
-      //console.log("secondary color:", this.SecondaryColor)
 
       this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
       this.GoldSquare = true
@@ -23320,7 +23300,6 @@ export default {
       this.framed = colorType
       this.attackFrame = cardType.Entity
       this.healthFrame = NonActionFilter(frameType)
-
     },
     cardmouseleave() {
       if (this.hoverBehavior === 'none') return
@@ -23384,6 +23363,108 @@ export default {
     },
     getTags() {
       return this.model.Tags.join(' - ').toUpperCase() || ''
+    },
+    generateRulesText() {
+      let deeper = element => {
+        if (typeof element === "object")
+          return element[R.keys(element)[0]]
+        else 
+          return false
+      }
+      let decapital = x => {
+        return R.join("", R.over(R.lensIndex(0), R.toLower, x))
+      }
+      let effectsToText = Effects => {
+        let effectText = []
+        Effects.forEach(effect => {
+          let effectKeyword = R.keys(effect)[0]
+          let interaction = getInteractionText(effectKeyword)
+          
+          let interactionBlock = []
+          interaction.forEach(element => {
+            if (R.includes("§", element)) {
+              let pure = R.join("", R.without(["§", "."], element))
+
+              let interactionNode = effect[effectKeyword][pure]
+
+              if (getRule(pure)) {
+                if (getRule(pure).type == "interface") {
+                  let picked = R.keys(interactionNode)[0]
+                  interactionBlock.push(getRule(picked).interactionText)
+                }
+                else
+                  console.log("pure interaction?", getInteractionText(pure))
+              }
+              else {
+                let nextNode = deeper(interactionNode) 
+
+                if (nextNode) {
+                  interactionBlock.push(nextNode)
+                }
+                else {
+                  interactionBlock.push(interactionNode)
+                }    
+              }
+            } 
+            else
+              interactionBlock.push(element)
+          })
+          effectText.push(R.join(" ", interactionBlock))
+        })
+        return effectText
+      }
+
+      let rules = this.cardRules.definitions
+      let getRule = key => this.cardRules.definitions[decapital(key)]
+      let getInteractionText = key => R.split(" ", rules[decapital(key)].interactionText)
+
+      let rulesText = []
+      if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
+        let costType = R.keys(this.model.AdditionalCost)
+        let amount = this.model.AdditionalCost[costType].Amount
+        let costText = "Extra Cost - "
+        costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
+        if (costType === "SacrificeCost")
+          costText = R.replace("card", amount > 1 ? "Entities." : "Entity.", costText)
+        else
+          costText += amount > 1 ? "s." : "."
+
+        rulesText = R.append(costText, rulesText)
+      }
+      if (this.model.Abilities && !R.isEmpty(this.model.Abilities)) {
+        this.model.Abilities.forEach(ability => {
+          let keyword = R.keys(ability)[0]
+          let abilityText = getInteractionText(keyword)
+          
+          abilityText.forEach((block, index) => {
+            // Effects can be nested a bit, so this needs more handling
+            if (R.includes("§Effects", block)) {
+              let effectText = effectsToText(ability[keyword].Effects)
+              abilityText[index] = R.replace("§Effects", R.join(". ", effectText), abilityText[index]) 
+            }
+            // Not effects, but something else that needs to be replaced with variable.
+            else if (R.includes("§", block)) {
+              let pure = R.join("", R.without(["§", ".", ":"], block))
+              let node = ability[keyword][pure]
+              if (deeper(node)) {
+                abilityText[index] = R.replace("§"+pure, deeper(node), abilityText[index])
+              }
+              else {
+                abilityText[index] = R.replace("§"+pure, node, abilityText[index])
+              }
+            }
+            else {
+              //console.log("block else", block)
+            }
+          })
+          rulesText = R.append(R.join(" ", abilityText), rulesText)
+        })
+      }
+      else {
+        let effectText = effectsToText(this.model.Effects)
+        rulesText = R.append(R.join(". ", effectText), rulesText)
+      }
+      return rulesText
     },
     abilitiesLength() {
       if (this.model.abilities) {
@@ -23463,23 +23544,6 @@ export default {
       } else {
         return colors[this.SecondaryColor]
       }
-    },
-    getKeywords() {
-      let additionalCostPseudoKeyword = [[]]
-
-      if (this.model.AdditionalCost) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          additionalCostPseudoKeyword[0].push("Tribute")
-        } else if (this.model.AdditionalCost.DiscardCost) {
-          additionalCostPseudoKeyword[0].push("DiscardPay")
-        } else if (this.model.AdditionalCost.VoidCost) {
-          additionalCostPseudoKeyword[0].push("Dissolve")
-        }
-      }
-
-      return additionalCostPseudoKeyword[0].length > 0 ?
-        R.concat(additionalCostPseudoKeyword, this.model.Keywords) :
-        this.model.Keywords
     },
     fontSize(rawText) {
       let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText)
