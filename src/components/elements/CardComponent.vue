@@ -23439,7 +23439,7 @@ export default {
       let getRule = key => this.cardRules.definitions[decapital(key)]
       let getInteractionText = key => R.split(" ", rules[decapital(key)].interactionText)
 
-      let rulesText = ""
+      let rulesText = []
       if (this.model.AdditionalCost) {
         let costType = R.keys(this.model.AdditionalCost)[0]
         let amount = this.model.AdditionalCost[costType].Amount
