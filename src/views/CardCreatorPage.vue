@@ -53,7 +53,7 @@
                 v-if="item == 'open'"
                 class="bg-red-600 h-6 w-6 rounded-full shadow flex items-center justify-center -ml-3"
               >
-                <div class="h-3 w-3 bg-red-600 rounded-full rounded-full" />
+                <div class="h-3 w-3 bg-red-600 rounded-full" />
               </div>
             </div>
           </div>
@@ -342,8 +342,9 @@
               </mask>
               <image
                 :xlink:href="model.image"
-                width="160"
-                y="-15"
+                width="120"
+                x="24"
+                y="20"
                 height="260"
                 mask="url(#maskImage)"
               />
