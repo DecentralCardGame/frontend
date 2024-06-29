@@ -25654,8 +25654,8 @@
 
 <script lang="ts">
 import * as R from "ramda";
-import {Card} from "@/model/Card";
-import {useCardsRules} from "@/def-composables/useCardRules";
+import { Card } from "@/model/Card";
+import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
   name: "CardComponent",
@@ -25678,7 +25678,7 @@ export default {
     },
   },
   setup() {
-    const {rules} = useCardsRules();
+    const { rules } = useCardsRules();
 
     return {
       cardRules: rules,
@@ -25788,8 +25788,8 @@ export default {
       };
       cardType[tempType] = true;
 
-      let frameType = R.mergeAll(cardClass, {HQ: false, MultiClass: false});
-      let colorType = R.mergeAll(cardClass, {MultiClass: false});
+      let frameType = R.mergeAll(cardClass, { HQ: false, MultiClass: false });
+      let colorType = R.mergeAll(cardClass, { MultiClass: false });
 
       if (R.countBy((x) => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
@@ -25898,9 +25898,9 @@ export default {
         } else {
           console.error(
             "Invalid card type. Must be one of the following: " +
-            R.values(R.pluck("name", this.$cardRules.children)) +
-            ". Instead is: " +
-            type,
+              R.values(R.pluck("name", this.$cardRules.children)) +
+              ". Instead is: " +
+              type,
           );
         }
       }
@@ -26087,8 +26087,8 @@ export default {
       let additionalCostText = [];
 
       let abc = R.concat(additionalCostText, this.model.RulesTexts);
-      console.log(this.model.RulesTexts)
-      return abc
+      console.log(this.model.RulesTexts);
+      return abc;
     },
     textToSvg(text) {
       if (!text) return text;
