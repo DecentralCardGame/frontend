@@ -87,7 +87,7 @@
               Early Access
             </RouterCCButton>
             <b v-else>
-                No Early Access
+              No Early Access
             </b>
             <template v-if="state.user.earlyAccess?.active">
               <p v-if="state.user.earlyAccess?.invitedByUser">

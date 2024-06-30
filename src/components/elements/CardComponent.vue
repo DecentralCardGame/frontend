@@ -25654,8 +25654,8 @@
 
 <script lang="ts">
 import * as R from "ramda";
-import { Card } from "@/model/Card";
-import { useCardsRules } from "@/def-composables/useCardRules";
+import {Card} from "@/model/Card";
+import {useCardsRules} from "@/def-composables/useCardRules";
 
 export default {
   name: "CardComponent",
@@ -25678,7 +25678,7 @@ export default {
     },
   },
   setup() {
-    const { rules } = useCardsRules();
+    const {rules} = useCardsRules();
 
     return {
       cardRules: rules,
@@ -25737,22 +25737,16 @@ export default {
     },
   },
   created() {
-    let firstLetterToLower = (string: String) => {
-      return string[0].toLowerCase() + string.substring(1);
-    };
-
-    this.update();
-    this.textVisible = false;
-    this.model.RulesTexts = this.generateRulesText();
-    console.log("rulestext", this.model.RulesTexts);
+    this.update()
+    this.textVisible = false
+    this.model.RulesTexts = this.generateRulesText()
   },
   mounted() {
     this.textVisible = true;
   },
   methods: {
     update() {
-      console.log("cardcomponent model", this.model.CardName, this.model);
-      this.FullArt = this.model.fullArt;
+      this.FullArt = this.model.fullArt
 
       let FullArtfilter = (x) => (this.FullArt ? x : R.map(() => false, x));
       let EntityFullArtfilter = (x) =>
@@ -25788,8 +25782,8 @@ export default {
       };
       cardType[tempType] = true;
 
-      let frameType = R.mergeAll(cardClass, { HQ: false, MultiClass: false });
-      let colorType = R.mergeAll(cardClass, { MultiClass: false });
+      let frameType = R.mergeAll(cardClass, {HQ: false, MultiClass: false});
+      let colorType = R.mergeAll(cardClass, {MultiClass: false});
 
       if (R.countBy((x) => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
@@ -25819,11 +25813,6 @@ export default {
         };
       }
 
-      //console.log("frameType", frameType)
-      //console.log("cardClass", cardClass)
-      //console.log("cardType", cardType)
-      //console.log("colorType", colorType)
-
       // here begins the part where the components are activated
       this.Class = cardClass;
       this.Classes = R.countBy((x) => x === true)(
@@ -25834,34 +25823,28 @@ export default {
       this.SecondaryColor = R.last(classTrueKeys ? classTrueKeys : []);
       this.PrimaryColor = R.head(classTrueKeys ? classTrueKeys : []);
 
-      //console.log("primary color:", this.PrimaryColor)
-      //console.log("secondary color:", this.SecondaryColor)
-
-      this.OBG = this.Classes === 2 && !cardType.HQ ? cardClass : frameType;
-      this.GoldSquare = true;
-      this.Border = frameType;
-      this.IBG = this.Classes === 2 && !cardType.HQ ? cardClass : false;
-      this.BGGoldLines = true;
-      this.BGShadow = cardType;
-      this.ClassShadow = true;
-      this.ManaBall = frameType;
-      this.FullArtIllustrationMask = FullArtfilter(cardType);
-      this.ShadowFullArt = FullArtfilter(cardType);
-      this.FramedIllustrationMask = Framedfilter(cardType);
-      this.FullArtGradients = FullArtfilter(
-        this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType,
-      );
-      this.FramedTextBox = Framedfilter(colorType);
-      this.HQFramedTextBox = cardType.HQ && !this.FullArt;
-      this.ShadowTextBox = cardType;
-      this.Tagsbar =
-        this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType;
-      this.ShadowFramed = Framedfilter(cardType);
-      this.FullArtFrames = EntityFullArtfilter(cardType);
-      this.FramedAddition = Framedfilter(cardType);
-      this.framed = colorType;
-      this.attackFrame = cardType.Entity;
-      this.healthFrame = NonActionFilter(frameType);
+      this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
+      this.GoldSquare = true
+      this.Border = frameType
+      this.IBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : false
+      this.BGGoldLines = true
+      this.BGShadow = cardType
+      this.ClassShadow = true
+      this.ManaBall = frameType
+      this.FullArtIllustrationMask = FullArtfilter(cardType)
+      this.ShadowFullArt = FullArtfilter(cardType)
+      this.FramedIllustrationMask = Framedfilter(cardType)
+      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType)
+      this.FramedTextBox = Framedfilter(colorType)
+      this.HQFramedTextBox = cardType.HQ && !this.FullArt
+      this.ShadowTextBox = cardType
+      this.Tagsbar = this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType
+      this.ShadowFramed = Framedfilter(cardType)
+      this.FullArtFrames = EntityFullArtfilter(cardType)
+      this.FramedAddition = Framedfilter(cardType)
+      this.framed = colorType
+      this.attackFrame = cardType.Entity
+      this.healthFrame = NonActionFilter(frameType)
     },
     cardmouseleave() {
       if (this.hoverBehavior === "none") return;
@@ -25898,9 +25881,9 @@ export default {
         } else {
           console.error(
             "Invalid card type. Must be one of the following: " +
-              R.values(R.pluck("name", this.$cardRules.children)) +
-              ". Instead is: " +
-              type,
+            R.values(R.pluck("name", this.$cardRules.children)) +
+            ". Instead is: " +
+            type,
           );
         }
       }
@@ -25985,16 +25968,12 @@ export default {
       let getInteractionText = (key) =>
         R.split(" ", rules[decapital(key)].interactionText);
 
-      let rulesText = [];
-      if (this.model.AdditionalCost) {
-        let costType = R.keys(this.model.AdditionalCost)[0];
-        let amount = this.model.AdditionalCost[costType].Amount;
-        let costText = "Extra Cost - ";
-        costText += R.replace(
-          "§Amount",
-          amount,
-          rules.AdditionalCost.children[costType].interactionText,
-        );
+      let rulesText = []
+      if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
+        let costType = R.keys(this.model.AdditionalCost)
+        let amount = this.model.AdditionalCost[costType].Amount
+        let costText = "Extra Cost - "
+        costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
         if (costType === "SacrificeCost")
           costText = R.replace(
             "card",
@@ -26005,10 +25984,10 @@ export default {
 
         rulesText = R.append(costText, rulesText);
       }
-      if (this.model.Abilities) {
-        this.model.Abilities.forEach((ability) => {
-          let keyword = R.keys(ability)[0];
-          let abilityText = getInteractionText(keyword);
+      if (this.model.Abilities && !R.isEmpty(this.model.Abilities)) {
+        this.model.Abilities.forEach(ability => {
+          let keyword = R.keys(ability)[0]
+          let abilityText = getInteractionText(keyword)
 
           abilityText.forEach((block, index) => {
             // Effects can be nested a bit, so this needs more handling
@@ -26037,8 +26016,6 @@ export default {
                   abilityText[index],
                 );
               }
-            } else {
-              console.log("block else", block);
             }
           });
           rulesText = R.append(R.join(" ", abilityText), rulesText);

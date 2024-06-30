@@ -201,23 +201,6 @@
             "Z"
          ]
       },
-      "Keyword":{
-         "type":"string",
-         "name":"Keyword",
-         "max":10000
-      },
-      "Keywords":{
-         "type":"array",
-         "name":"Keywords",
-         "description":"Add some Keywords",
-         "children":{
-            "Keyword":{
-               "$ref":"#/definitions/Keyword"
-            }
-         },
-         "max":3,
-         "min":1
-      },
       "Mysticism":{
          "type":"bool",
          "name":"Mysticism"
@@ -263,22 +246,6 @@
             "UNCOMMON",
             "RARE"
          ]
-      },
-      "RulesText":{
-         "type":"string",
-         "name":"Rules Text",
-         "max":1000
-      },
-      "RulesTexts":{
-         "type":"array",
-         "name":"Rules Texts",
-         "description":"Add some Rules Texts",
-         "children":{
-            "RulesText":{
-               "$ref":"#/definitions/RulesText"
-            }
-         },
-         "max":4
       },
       "SacrificeCost":{
          "type":"struct",
@@ -458,12 +425,6 @@
             "Tags":{
                "$ref":"#/definitions/Tags"
             },
-            "Keywords":{
-               "$ref":"#/definitions/Keywords"
-            },
-            "RulesTexts":{
-               "$ref":"#/definitions/RulesTexts"
-            },
             "Rarity":{
                "$ref":"#/definitions/Rarity"
             }
@@ -474,9 +435,7 @@
             "Class",
             "Effects",
             "FlavourText",
-            "Tags",
-            "Keywords",
-            "RulesTexts"
+            "Tags"
          ],
          "interactionText":"§CardName §CastingCost §AdditionalCost §Class §Effects §FlavourText §Tags §Keywords §RulesTexts §Rarity"
       },
@@ -569,7 +528,7 @@
          "children":{
             
          },
-         "interactionText":"X/X avatar"
+         "interactionText":"X/X Avatar"
       },
       "avenge":{
          "type":"struct",
@@ -609,7 +568,7 @@
          "classes":[
             "NATURE"
          ],
-         "interactionText":"3/3 beast"
+         "interactionText":"3/3 Beast"
       },
       "bot":{
          "type":"struct",
@@ -708,23 +667,19 @@
          ],
          "interactionText":"Count §Tag."
       },
-      "countForces":{
+      "countDust":{
          "type":"struct",
-         "name":"Count Forces",
-         "description":"Count your Entities with Attack greater or equal to selected Attack and save this number to X.",
+         "name":"Count Dust",
+         "description":"Count all cards of a given type in your Dustpile.",
          "children":{
-            "Power":{
-               "$ref":"#/definitions/SimpleIntValue"
+            "CardType":{
+               "$ref":"#/definitions/CardType"
             }
          },
          "classes":[
-            "CULTURE",
-            "NATURE"
+            "MYSTICISM"
          ],
-         "required":[
-            "Power"
-         ],
-         "interactionText":"Count Forces §Power."
+         "interactionText":"Count §CardType."
       },
       "countPower":{
          "type":"struct",
@@ -745,20 +700,6 @@
             "Target"
          ],
          "interactionText":"CountPower of §Target."
-      },
-      "dice":{
-         "type":"struct",
-         "name":"Dice",
-         "description":"Set X to a random number.",
-         "children":{
-            "Amount":{
-               "$ref":"#/definitions/IntValue"
-            }
-         },
-         "required":[
-            "Amount"
-         ],
-         "interactionText":"Dice §Amount."
       },
       "discard":{
          "type":"struct",
@@ -953,14 +894,11 @@
             "Count":{
                "$ref":"#/definitions/count"
             },
-            "CountForces":{
-               "$ref":"#/definitions/countForces"
+            "CountDust":{
+               "$ref":"#/definitions/countDust"
             },
             "CountPower":{
                "$ref":"#/definitions/countPower"
-            },
-            "Dice":{
-               "$ref":"#/definitions/dice"
             },
             "Discard":{
                "$ref":"#/definitions/discard"
@@ -1072,7 +1010,7 @@
                "$ref":"#/definitions/effect"
             }
          },
-         "max":3
+         "max":8
       },
       "enrage":{
          "type":"struct",
@@ -1120,12 +1058,6 @@
             "Tags":{
                "$ref":"#/definitions/Tags"
             },
-            "Keywords":{
-               "$ref":"#/definitions/Keywords"
-            },
-            "RulesTexts":{
-               "$ref":"#/definitions/RulesTexts"
-            },
             "Rarity":{
                "$ref":"#/definitions/Rarity"
             }
@@ -1138,9 +1070,7 @@
             "Attack",
             "Health",
             "FlavourText",
-            "Tags",
-            "Keywords",
-            "RulesTexts"
+            "Tags"
          ],
          "interactionText":"§CardName §CastingCost §AdditionalCost §Class §Abilities §Attack §Health §FlavourText §Tags §Keywords §RulesTexts §Rarity"
       },
@@ -1277,12 +1207,6 @@
             "Tags":{
                "$ref":"#/definitions/Tags"
             },
-            "Keywords":{
-               "$ref":"#/definitions/Keywords"
-            },
-            "RulesTexts":{
-               "$ref":"#/definitions/RulesTexts"
-            },
             "Rarity":{
                "$ref":"#/definitions/Rarity"
             }
@@ -1294,9 +1218,7 @@
             "Abilities",
             "Health",
             "FlavourText",
-            "Tags",
-            "Keywords",
-            "RulesTexts"
+            "Tags"
          ],
          "interactionText":"§CardName §Class §Delay §Abilities §Health §Growth §StartingHandSize §Wisdom §FlavourText §Tags §Keywords §RulesTexts §Rarity"
       },
@@ -1513,12 +1435,6 @@
             "Tags":{
                "$ref":"#/definitions/Tags"
             },
-            "Keywords":{
-               "$ref":"#/definitions/Keywords"
-            },
-            "RulesTexts":{
-               "$ref":"#/definitions/RulesTexts"
-            },
             "Rarity":{
                "$ref":"#/definitions/Rarity"
             }
@@ -1530,9 +1446,7 @@
             "Abilities",
             "Health",
             "FlavourText",
-            "Tags",
-            "Keywords",
-            "RulesTexts"
+            "Tags"
          ],
          "interactionText":"§CardName §CastingCost §AdditionalCost §Class §Abilities §Health §FlavourText §Tags §Keywords §RulesTexts §Rarity"
       },
@@ -1737,7 +1651,7 @@
          "classes":[
             "MYSTICISM"
          ],
-         "interactionText":"1/1 spirit"
+         "interactionText":"1/1 Spirit"
       },
       "strengthen":{
          "type":"struct",
@@ -1752,7 +1666,7 @@
             }
          },
          "classes":[
-            "CULTURE",
+            "MYSTICISM",
             "NATURE"
          ],
          "types":[

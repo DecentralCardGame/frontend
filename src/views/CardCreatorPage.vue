@@ -1337,6 +1337,7 @@ export default {
       }
       console.log("abilities after update", this.abilities);
 
+      // keep in mind this works for action cards, because effects are temporarily stored in this.abilities
       let keywordCount = R.length(
         R.flatten(R.pluck("keywords", this.abilities)),
       );
