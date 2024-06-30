@@ -4,8 +4,10 @@
       id="AbilityComponentInside"
       class="flex flex-row"
     > 
-      <div v-if="ability"
-        class="flex flex-row">
+      <div
+        v-if="ability"
+        class="flex flex-row"
+      >
         <div
           v-for="(entry, index) in ability.interaction"
           id="interaction"

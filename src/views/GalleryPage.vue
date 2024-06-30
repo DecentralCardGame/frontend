@@ -154,7 +154,7 @@ import { Color } from "@/components/utils/color";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
 import { normalizeQuery } from "@/utils/utils";
-import CCInput from "@/components/elements/CCInput.vue";
+import CCInput from "@/components/elements/CCInput/CCInput.vue";
 import {
   CardRarity,
   Status,

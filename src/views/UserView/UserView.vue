@@ -75,7 +75,34 @@
           <template #body>
             <b>Address</b> <br>{{ state.addr }}<br>
             <br>
-            <b>Alias</b> <br>{{ state.user.alias }}
+            <b>Alias</b> <br>{{ state.user.alias }}<br>
+            <br>
+            <RouterCCButton
+              v-if="state.user.earlyAccess?.active"
+              :type="Color.YELLOW"
+              :to="{
+                name: 'Download',
+              }"
+            >
+              Early Access
+            </RouterCCButton>
+            <b v-else>
+              No Early Access
+            </b>
+            <template v-if="state.user.earlyAccess?.active">
+              <p v-if="state.user.earlyAccess?.invitedByUser">
+                Inviter:
+                <CompactAddressComponent
+                  :addr="state.user.earlyAccess?.invitedByUser"
+                />
+              </p>
+              <p v-else-if="state.user.earlyAccess?.invitedUser">
+                Invited:
+                <CompactAddressComponent
+                  :addr="state.user.earlyAccess?.invitedUser"
+                />
+              </p>
+            </template>
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
@@ -190,6 +217,7 @@ import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { Color } from "@/components/utils/color";
 import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
+import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
 
 const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
@@ -248,12 +276,13 @@ const init = () => {
     router.push({ name: "NotFound" });
   }
 
-  router.push({ name: "UserView", params: { id: state.addr } });
   getUser();
   getCoins();
   getMatches();
-  console.log(state.user)
+  console.log(state.user);
 };
+
+watch(() => route.params.id, init);
 
 onMounted(init);
 

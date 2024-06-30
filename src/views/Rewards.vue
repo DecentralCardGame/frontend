@@ -26,7 +26,6 @@
           </button>
         </div>
       </div>
-
     </div>
     <div class="text-center md:text-left">
       <h1 class="max-md:hidden text-5xl font-bold pb-12">
@@ -62,9 +61,7 @@
             <br>
           </template>
         </UserViewHeadingContainer>
-       
       </div>
-      
     </div>
   </div>
 </template>
