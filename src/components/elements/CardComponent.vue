@@ -25695,6 +25695,7 @@ export default {
       opaque: 1,
       clicked: false,
       keywordDescriptions: "",
+      rulesText: [],
       textVisible: true,
 
       FullArt: this.model.fullArt,
@@ -25731,15 +25732,16 @@ export default {
   watch: {
     model: {
       handler() {
-        this.update();
+        this.rulesText = this.generateRulesText()
+        this.update()
       },
       deep: true,
     },
   },
   created() {
+    this.rulesText = this.generateRulesText()
     this.update()
     this.textVisible = false
-    this.model.RulesTexts = this.generateRulesText()
   },
   mounted() {
     this.textVisible = true;
@@ -26062,10 +26064,7 @@ export default {
     },
     getAbilityText() {
       let additionalCostText = [];
-
-      let abc = R.concat(additionalCostText, this.model.RulesTexts);
-      console.log(this.model.RulesTexts);
-      return abc;
+      return this.rulesText ? R.concat(additionalCostText, this.rulesText) : []
     },
     textToSvg(text) {
       if (!text) return text;
