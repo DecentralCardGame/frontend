@@ -5,23 +5,23 @@
         Card Creator
       </div>
 
-      <div 
+      <div
         v-if="successScreenVisible"
         class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow-xl shadow-black/25"
       >
-        <div class="uppercase font-bold pt-12"> 
+        <div class="uppercase font-bold pt-12">
           Congratulations!
         </div>
         <div class="p-4">
           You successfully minted your card!
         </div>
-          <BaseCCButton
-            class="p-16 pb-60"
-            :type="Color.RED"
-            @click="successScreenVisible=false"
-          >
-            Create another Card
-          </BaseCCButton>
+        <BaseCCButton
+          class="p-16 pb-60"
+          :type="Color.RED"
+          @click="successScreenVisible = false"
+        >
+          Create another Card
+        </BaseCCButton>
       </div>
 
       <div
@@ -35,7 +35,7 @@
           >
             <div
               v-for="(item, idx) in progressBar"
-              :key="'activeStep'+idx"
+              :key="'activeStep' + idx"
               class="flex justify-between bg-red-600 rounded-full h-1 items-center relative"
               @click="activeStep = idx"
             >
@@ -53,7 +53,7 @@
                 v-if="item == 'open'"
                 class="bg-red-600 h-6 w-6 rounded-full shadow flex items-center justify-center -ml-3"
               >
-                <div class="h-3 w-3 bg-red-600 rounded-full rounded-full" />
+                <div class="h-3 w-3 bg-red-600 rounded-full" />
               </div>
             </div>
           </div>
@@ -98,14 +98,16 @@
           <div class="flex justify-between px-12">
             <div
               v-for="item in ['Technology', 'Culture', 'Nature', 'Mysticism']"
-              :key="'class'+item"
+              :key="'class' + item"
               class="p-5"
-              :class="{ 'grayscale': !model.Class[item] }"
-              @click="model.Class[item] = !model.Class[item];"
+              :class="{ grayscale: !model.Class[item] }"
+              @click="model.Class[item] = !model.Class[item]"
             >
               <img
                 class="h-32"
-                :class="{ 'border-8 border-black rounded-full': model.Class[item] }" 
+                :class="{
+                  'border-8 border-black rounded-full': model.Class[item],
+                }"
                 :src="classIcons[item]"
               >
               <div class="py-5 text-s font-bold uppercase">
@@ -133,7 +135,7 @@
           <div class="flex justify-between px-20">
             <div
               v-for="item in ['Headquarter', 'Entity', 'Action', 'Place']"
-              :key="'class'+item"
+              :key="'class' + item"
               class="py-10"
               @click="model.type = item"
             >
@@ -147,9 +149,7 @@
                 class="h-32"
                 :src="typeIcons[item].On"
               >
-              <div
-                class="pt-3 pb-1 text-s font-bold uppercase"
-              >
+              <div class="pt-3 pb-1 text-s font-bold uppercase">
                 {{ item }}
               </div>
             </div>
@@ -206,15 +206,15 @@
           @dragleave.prevent="dragActive = false"
           @paste="onPaste"
         >
-          <div
-            class="pl-[4rem] pt-5 pb-4 h-[26.5rem]"
-          >
-            <div v-if="cropImage==''">
+          <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
+            <div v-if="cropImage == ''">
               <label
                 for="dropzone-file"
                 class=""
               >
-                <div class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                <div
+                  class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                >
                   <span class="flex items-center">+</span>
                 </div>
                 <input
@@ -226,7 +226,7 @@
               </label>
             </div>
             <img
-              v-if="cropImage!==''"
+              v-if="cropImage !== ''"
               class="h-[24rem] object-none"
               width="300"
               height="400"
@@ -234,11 +234,8 @@
               alt="check"
             >
           </div>
-          <div
-            class="text-left flex flex-col justify-between"
-          >
+          <div class="text-left flex flex-col justify-between">
             <div class="pl-12 pr-[4.5rem] py-5 justify-center">
-
               <div class="p-3 font-bold text-left">
                 ARTWORK
               </div>
@@ -275,14 +272,19 @@
                       class="p-3 border-red-600 text-red-600"
                       type="radio"
                       :value="true"
-                      @change="cropImage=''; this.model.image=''"
+                      @change="
+                        cropImage = '';
+                        model.image = '';
+                      "
                     >
                     <div class="px-3 text-left">
                       Instead add another artist as a collaborator.
                     </div>
                   </div>
                   <div v-if="designateArtist && !artistMode">
-                    <div class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+                    <div
+                      class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner"
+                    >
                       <input
                         v-model="artistAddress"
                         class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
@@ -293,7 +295,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <div class="pr-[4.45rem] justify-end">
               <NavigationButtons />
@@ -307,7 +308,9 @@
           class="pl-[4.2rem] pr-[5.2rem] grid grid-cols-8 grid-rows-7"
         >
           <!-- Card Preview -->
-          <div class="pr-[1.65rem] pt-[1.25rem] pb-[1.0rem] row-start-1 row-span-6 col-start-1 col-span-3 place-self-start">
+          <div
+            class="pr-[1.65rem] pt-[1.25rem] pb-[1.0rem] row-start-1 row-span-6 col-start-1 col-span-3 place-self-start"
+          >
             <CardComponent
               id="card"
               :active-step="activeStep"
@@ -318,30 +321,48 @@
           </div>
 
           <div class="pl-4 pr-4 text-left row-start-6 col-start-1 col-span-5">
-            Drag and scroll in the cropper box on right <br> side to adjust image.
+            Drag and scroll in the cropper box on right <br>
+            side to adjust image.
           </div>
 
           <!-- Onboard Preview -->
           <div class="h-12 row-start-1 row-span-6 col-start-4 col-span-2">
             <svg
               class=""
-              width="168" 
-              height="260" 
+              width="168"
+              height="260"
               xmlns="http://www.w3.org/2000/svg"
             >
               <mask id="maskImage">
-                <image :xlink:href="getOBMask()"  width="168" height="260" />
+                <image
+                  :xlink:href="getOBMask()"
+                  width="168"
+                  height="260"
+                />
               </mask>
-              <image :xlink:href="model.image" width="120" x="24" y="20" height="260" mask="url(#maskImage)" />
-              <image :xlink:href="getOBFrame()" width="168" height="260" />
+              <image
+                :xlink:href="model.image"
+                width="120"
+                x="24"
+                y="20"
+                height="260"
+                mask="url(#maskImage)"
+              />
+              <image
+                :xlink:href="getOBFrame()"
+                width="168"
+                height="260"
+              />
             </svg>
           </div>
 
           <!-- Cropper -->
-          <div class="pt-[1.75rem] pb-[1.75rem] row-start-1 row-span-6 col-start-6 col-span-3">
+          <div
+            class="pt-[1.75rem] pb-[1.75rem] row-start-1 row-span-6 col-start-6 col-span-3"
+          >
             <div class="">
-              <cropper     
-                class=" cropper"
+              <cropper
+                class="cropper"
                 :src="cropImage"
                 :auto-zoom="true"
                 :stencil-size="{
@@ -353,19 +374,20 @@
                   height: cardBounds.y * 1.2,
                 }"
                 :default-size="{
-                  width: cardBounds.x  * 1.2,
-                  height: cardBounds.y  * 1.2,
+                  width: cardBounds.x * 1.2,
+                  height: cardBounds.y * 1.2,
                 }"
-                imageRestriction="none"
+                image-restriction="none"
                 @change="changeCrop"
               />
             </div>
           </div>
 
-          <div class="pr-[0.0rem] pt-[0.8rem] row-start-7 row-span-1 col-start-4 col-span-5">
+          <div
+            class="pr-[0.0rem] pt-[0.8rem] row-start-7 row-span-1 col-start-4 col-span-5"
+          >
             <NavigationButtons />
           </div>
-
         </div>
 
         <!-- Flavor -->
@@ -567,8 +589,8 @@
         >
           <div class="p-[2rem] pt-5 pb-4 h-[26.5rem]">
             <CardComponent
-              id="card"
               v-if="!isAbilityModalVisible"
+              id="card"
               :active-step="activeStep"
               :display-notes="true"
               :image-u-r-l="getCardImage()"
@@ -580,14 +602,17 @@
               <div class="py-3 text-s font-bold">
                 ABILITIES AND EFFECTS
               </div>
-              <div class="text-right" v-if="isEmpty(abilities)"> 
+              <div
+                v-if="isEmpty(abilities)"
+                class="text-right"
+              >
                 <Checkbox v-model="clearAbilities">
                   Remove all abilities
                 </Checkbox>
               </div>
-              
+
               <div v-if="!clearAbilities">
-                <div  class="py-3 text-s">
+                <div class="py-3 text-s">
                   Click to add abilities or effects to your card.
                 </div>
                 <div id="abiliy container">
@@ -682,17 +707,13 @@
 
               <!-- this only shows to Jannik and should not be available to ordinary users, design is irrelevant here -->
               <span
-                v-if="
-                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'
-                "
+                v-if="address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
                 class=""
               >
                 Balance Anchor
               </span>
               <input
-                v-if="
-                  address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'
-                "
+                v-if="address == 'cc14km80077s0hch3sh38wh2hfk7kxfau4456r3ej'"
                 v-model="model.balanceAnchor"
                 type="checkbox"
                 class=""
@@ -723,21 +744,25 @@
               <div class="pl-12 py-3 text-s font-bold">
                 SUMMARY
               </div>
-              <div v-if="model.FlavourText!==''"
+              <div
+                v-if="model.FlavourText !== ''"
                 class="pl-12 min-h-[4rem] text-s italic"
               >
                 "{{ model.FlavourText }}"
               </div>
-              <div v-else class="h-[4rem]"/>
+              <div
+                v-else
+                class="h-[4rem]"
+              />
 
               <div class="">
                 <!-- Edit existing card case -->
                 <div v-if="mode == Mode.EDIT">
                   <div class="pt-[4.55rem] text-right">
-                    <div class="pb-[1.7rem]"> 
+                    <div class="pb-[1.7rem]">
                       Review and update your card.
                     </div>
-                    
+
                     <BaseCCButton
                       class=""
                       :type="Color.RED"
@@ -751,7 +776,10 @@
                         :start="activeStep == 0"
                         :end="activeStep == progressBar.length - 1"
                         @forward="
-                          activeStep = Math.min(activeStep + 1, progressBar.length - 1)
+                          activeStep = Math.min(
+                            activeStep + 1,
+                            progressBar.length - 1,
+                          )
                         "
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
@@ -762,27 +790,29 @@
                         Update your Card
                       </BaseCCButton>
                     </div>
-
-                  </div>                    
+                  </div>
                 </div>
                 <!-- New card case -->
                 <div v-else>
-                  <!-- Enough card frames --> 
+                  <!-- Enough card frames -->
                   <div v-if="availableCardFrames != 0">
                     <div class="pt-[8rem] pr-1 text-right">
-                      <div> Review and mint your card. </div>
-                      <div class="text-base font-bold"> 
-                        Your available Card Frames: {{ availableCardFrames }} 
+                      <div>Review and mint your card.</div>
+                      <div class="text-base font-bold">
+                        Your available Card Frames: {{ availableCardFrames }}
                       </div>
                     </div>
-                    
+
                     <div class="flex flex-row pt-[3.0rem] pl-[11.2rem]">
                       <NavigateCCButtons
                         class="pr-4 scale-[2]"
                         :start="activeStep == 0"
                         :end="activeStep == progressBar.length - 1"
                         @forward="
-                          activeStep = Math.min(activeStep + 1, progressBar.length - 1)
+                          activeStep = Math.min(
+                            activeStep + 1,
+                            progressBar.length - 1,
+                          )
                         "
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
@@ -794,25 +824,26 @@
                       </BaseCCButton>
                     </div>
                   </div>
-                  <!-- Not enough card frames --> 
-                  <div v-else
+                  <!-- Not enough card frames -->
+                  <div
+                    v-else
                     class="flex flex-col items-end"
-
                   >
                     <div class="pt-0 pr-1 text-right">
                       <div class="py-3 text-s uppercase font-bold">
                         Buy Card Frame
                       </div>
                       <div class="text-base">
-                        Market price: <b> {{ cardFramePrice }} credits </b> <br>
-                        Your credit balance: <b> {{ availableCredits }} credits </b>
+                        Market price: <b> {{ cardFramePrice }} credits </b>
+                        <br>
+                        Your credit balance:
+                        <b> {{ availableCredits }} credits </b>
                       </div>
-                      
                     </div>
                     <div class="pt-[2rem] pr-1 text-right">
-                      <div> Review and mint your card. </div>
-                      <div class="text-base font-bold"> 
-                        Your available Card Frames: {{ availableCardFrames }} 
+                      <div>Review and mint your card.</div>
+                      <div class="text-base font-bold">
+                        Your available Card Frames: {{ availableCardFrames }}
                       </div>
                     </div>
                     <div class="flex flex-row pt-[2.0rem] pl-[11.2rem]">
@@ -821,7 +852,10 @@
                         :start="activeStep == 0"
                         :end="activeStep == progressBar.length - 1"
                         @forward="
-                          activeStep = Math.min(activeStep + 1, progressBar.length - 1)
+                          activeStep = Math.min(
+                            activeStep + 1,
+                            progressBar.length - 1,
+                          )
                         "
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
@@ -1022,7 +1056,9 @@ export default {
       cardID: 0,
       availableCardFrames: computed(() => user.value.ownedCardSchemes.length),
       availableCredits: computed(() => {
-        let usableCoins: Coin[] = coins.value.filter((coin: Coin) => coin.denom == "ucredits");
+        let usableCoins: Coin[] = coins.value.filter(
+          (coin: Coin) => coin.denom == "ucredits",
+        );
         if (usableCoins.length == 0) {
           throw new Error("No usable coins available");
         }
@@ -1048,7 +1084,7 @@ export default {
               ? "done"
               : "active";
       });
-      if(this.activeStep == 9) {
+      if (this.activeStep == 9) {
         this.cardFramesMarketData();
         queryUser();
       }
@@ -1062,8 +1098,8 @@ export default {
       this.setMode();
     },
     address() {
-      this.checkCardFrames()
-      console.log("ADDRESS CHANGED")
+      this.checkCardFrames();
+      console.log("ADDRESS CHANGED");
     },
   },
   mounted() {
@@ -1118,27 +1154,27 @@ export default {
       return R.isEmpty(a);
     },
     getOBMask() {
-      switch(this.model.type) {
+      switch (this.model.type) {
         case "Place":
-          return OBPlaceMask
+          return OBPlaceMask;
         case "Entity":
-          return OBEntityMask
+          return OBEntityMask;
         case "Headquarter":
-          return OBHQMask
+          return OBHQMask;
         case "Action":
-          return OBActionMask
+          return OBActionMask;
       }
     },
     getOBFrame() {
-      switch(this.model.type) {
+      switch (this.model.type) {
         case "Place":
-          return OBPlace
+          return OBPlace;
         case "Entity":
-          return OBEntity
+          return OBEntity;
         case "Headquarter":
-          return OBHQ
+          return OBHQ;
         case "Action":
-          return OBAction
+          return OBAction;
       }
     },
     getHQDelayRange() {
@@ -1207,19 +1243,17 @@ export default {
       }
     },
     changeCrop({ canvas }) {
-      mergeImages([canvas.toDataURL("image/jpeg", 0.9)]).then(
-        (b64) => {
-          this.srcToFile(b64, "image.jpg", "image/jpeg").then((file) => {
-            uploadImg(file, env.cardImgMaxKB, (result) => {
-              if (result.startsWith("Error")) {
-                this.notifyFail("Failed to Upload", result);
-                return;
-              }
-              this.model.image = result;
-            });
+      mergeImages([canvas.toDataURL("image/jpeg", 0.9)]).then((b64) => {
+        this.srcToFile(b64, "image.jpg", "image/jpeg").then((file) => {
+          uploadImg(file, env.cardImgMaxKB, (result) => {
+            if (result.startsWith("Error")) {
+              this.notifyFail("Failed to Upload", result);
+              return;
+            }
+            this.model.image = result;
           });
-        },
-      );
+        });
+      });
     },
     srcToFile(src, fileName, mimeType) {
       return fetch(src)
@@ -1303,10 +1337,11 @@ export default {
       }
       console.log("abilities after update", this.abilities);
 
+      // keep in mind this works for action cards, because effects are temporarily stored in this.abilities
       let keywordCount = R.length(
         R.flatten(R.pluck("keywords", this.abilities)),
       );
-      console.log("keywordCount", keywordCount)
+      console.log("keywordCount", keywordCount);
       if (keywordCount >= 6 && keywordCount <= 8) {
         this.notifyInfo(
           "Number of Keywords",
@@ -1324,7 +1359,6 @@ export default {
       this.updateRulesTexts();
     },
     updateRulesTexts() {
-      this.model.Keywords = R.pluck("keywords", this.abilities);
       this.model.RulesTexts = R.map(
         this.interactionTextToString,
         this.abilities,
@@ -1419,21 +1453,20 @@ export default {
       return string;
     },
     async getCardFrames() {
-      return await queryQUser(this.address)
-        .then((res: User) => {
-          //this.availableCardFrames = res.ownedCardSchemes.length || 0
-          return 0//this.availableCardFrames
-        })
+      return await queryQUser(this.address).then((res: User) => {
+        //this.availableCardFrames = res.ownedCardSchemes.length || 0
+        return 0; //this.availableCardFrames
+      });
     },
     checkCardFrames() {
-      return !R.isEmpty(this.getCardFrames())
+      return !R.isEmpty(this.getCardFrames());
     },
     cardFramesMarketData() {
       queryQCardchainInfo({})
-        .then(res => {
+        .then((res) => {
           this.cardFramePrice = res.cardAuctionPrice.normalize().amount;
         })
-        .catch(res => {
+        .catch((res) => {
           console.error(res);
         });
     },
@@ -1621,7 +1654,6 @@ export default {
         );
       };
       if (this.mode == Mode.EDIT) {
-        newModel.Keywords = this.cardCreatorEditCard.Keywords;
         newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
         if (!checkAdditionalCost()) {
           this.model.AdditionalCost = {};
@@ -1669,11 +1701,12 @@ export default {
       buyCardScheme(
         new Coin("credits", this.cardFramePrice).denormalize().toCompatCoin(),
         () => {
-          queryUser(); 
+          queryUser();
           queryCoins();
           this.saveSubmit();
-          },
-        console.error)
+        },
+        console.error,
+      );
     },
     saveSubmit() {
       let newCard = this.validateCreatedCard();
@@ -1746,7 +1779,7 @@ export default {
     },
     onDrop(event) {
       // in case the user has selected to designate an artist, we want to reset this
-      this.designateArtist = false
+      this.designateArtist = false;
 
       // dragging stops (whitening should vanish then)
       this.dragActive = false;
@@ -1763,8 +1796,8 @@ export default {
     },
     onPaste(event) {
       // in case the user has selected to designate an artist, we want to reset this
-      this.designateArtist = false
-      
+      this.designateArtist = false;
+
       const clipboardData = event.clipboardData || window.clipboardData;
       const items = clipboardData.items;
       for (let i = 0; i < items.length; i++) {
