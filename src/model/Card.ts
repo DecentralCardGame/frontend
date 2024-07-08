@@ -61,7 +61,7 @@ export class ChainCard {
       card.balanceAnchor = this.balanceAnchor;
       card.hash = this.hash;
 
-      console.log("parsed card: ", card.CardName);
+      console.log("parsed card: ", card.CardName, card);
     }
     return card;
   }

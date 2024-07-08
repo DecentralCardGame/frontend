@@ -25931,6 +25931,9 @@ export default {
         return R.join("", R.over(R.lensIndex(0), R.toLower, x));
       };
       let effectsToText = (Effects) => {
+        if (!Effects)
+          return []
+
         let effectText = [];
         Effects.forEach((effect) => {
           let effectKeyword = R.keys(effect)[0];
@@ -26022,10 +26025,10 @@ export default {
           });
           rulesText = R.append(R.join(" ", abilityText), rulesText);
         });
-      } else {
+      } else if (this.model.Effects && !R.isEmpty(this.model.Effects)) {
         let effecttext = effectsToText(this.model.Effects);
         rulesText = R.append(R.join(". ", effecttext), rulesText);
-      }
+      } 
       return rulesText;
     },
     abilitiesLength() {
