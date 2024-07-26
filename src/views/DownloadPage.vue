@@ -15,7 +15,9 @@
               :type="Color.RED"
               @click="downloadLatest"
             >
-              Download Gameclient
+              <a :href="downloadurl">
+                Download Gameclient
+              </a>
             </BaseCCButton>
             <BaseCCButton
               v-if="!user.earlyAccess?.invitedByUser"
@@ -56,7 +58,9 @@
             :type="Color.RED"
             @click="downloadLatest"
           >
-            Download Gameclient
+            <a :href="downloadurl">
+              Download Gameclient
+            </a>
           </BaseCCButton>
           <BaseCCButton
             :type="Color.TEAL"
@@ -88,8 +92,18 @@ const addressValid = ref(false);
 const inviteAddress = ref("");
 const inviteMode = ref(false);
 
+const downloadurl = navigator.appVersion.indexOf("Win") != -1 ? 
+                      "https://cardchain.crowdcontrol.network/files/WindowsLauncher.zip" :
+                      navigator.appVersion.indexOf("Mac") != -1 ?
+                      "https://cardchain.crowdcontrol.network/files/MacLauncher.tar.gz" :
+                      navigator.appVersion.indexOf("Linux") != -1 ?
+                      "https://cardchain.crowdcontrol.network/files/LinuxLauncher.tar.gz" :
+                      "THEHELL";
+                    
 const downloadLatest = () => {
-  console.log("download ");
+  // TODO remove this once download is fine for users 
+  //      but now keep it in, because we want to read this for users that have pain
+  console.log("download ", navigator.appVersion);
 };
 
 const inviteUser = () => {
