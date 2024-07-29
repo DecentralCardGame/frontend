@@ -1270,7 +1270,7 @@ export default {
       this.isAbilityModalVisible = true;
 
       if (type === "root") {
-        if (this.abilities.length >= 3) {
+        if (this.model.type != "Action" && this.abilities.length >= 3) {
           this.notifyFail(
             "Number of Abilities",
             "A card can only have a maximum of 3 Abilities.",
@@ -1278,7 +1278,15 @@ export default {
           this.isAbilityModalVisible = false;
           return;
         }
-        if (this.model.type === "no type" || this.model.type === undefined) {
+        else if (this.model.type == "Action" && this.abilities.length >= 8){
+          this.notifyFail(
+            "Number of Effects",
+            "An Action card can only have a maximum of 8 Effects.",
+          );
+          this.isAbilityModalVisible = false;
+          return;
+        }
+        else if (this.model.type === "no type" || this.model.type === undefined) {
           this.notifyFail(
             "No Type",
             "Card has no type, please pick a type before setting abilities.",
