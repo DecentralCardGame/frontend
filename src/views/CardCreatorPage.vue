@@ -13,7 +13,7 @@
           Congratulations!
         </div>
         <div class="p-4">
-          You successfully minted your card!
+          You successfully {{ mode == Mode.EDIT ? "edited" : "minted" }} your card!
         </div>
         <BaseCCButton
           class="p-16 pb-60"
@@ -701,7 +701,7 @@
                   v-model="model.notes"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Or some kind words."
-                  maxLength="25"
+                  maxLength="50"
                 >
               </div>
 
