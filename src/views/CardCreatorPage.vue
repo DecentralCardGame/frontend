@@ -739,7 +739,8 @@
               :model="model"
             />
           </div>
-          <div class="text-left flex flex-col">
+
+          <div class="text-left flex flex-col justify-between">
             <div class="py-5 flex flex-col items-start">
               <div class="pl-12 py-3 text-s font-bold">
                 SUMMARY
