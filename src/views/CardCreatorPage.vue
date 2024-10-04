@@ -1485,6 +1485,7 @@ export default {
           this.model.image,
           this.model.fullArt,
           this.resetCard,
+          () => {},
           (err) => {
             this.notifyFail("Update Artwork failed", err);
             console.error(err);
@@ -1732,6 +1733,7 @@ export default {
             newCard.image,
             newCard.fullArt,
             this.successScreen,
+            () => {},
             handleErr,
           );
       } else if (!this.address) {
