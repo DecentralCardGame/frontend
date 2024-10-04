@@ -1689,6 +1689,12 @@ export default {
       checkASCII(newModel.FlavourText, "Flavour Text");
       checkASCII(newModel.CardName, "Card Name");
 
+      // we want to reduce to 2 tags
+      if (newModel.Tags.length > 2) {
+        console.log("too many tags, dropping 3rd")
+        newModel.Tags.length = 2
+      }
+
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
 
@@ -1716,7 +1722,7 @@ export default {
       if (this.mode == Mode.EDIT) {
         let handleErr = (err) => {
           this.notifyFail("Update Card failed", err);
-          console.error(err);
+          console.log(err);
         };
 
         saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
