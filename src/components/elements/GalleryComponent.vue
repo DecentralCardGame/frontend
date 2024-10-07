@@ -1,12 +1,12 @@
 <template>
   <div
     id="galleryWrapper"
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-16"
+    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-[1800px]:grid-cols-5 gap-12"
   >
     <div
       v-for="card in state.cards"
       :key="card.id"
-      class="hover:scale-105 drop-shadow-glowCCYellow"
+      class="hover:scale-110 drop-shadow-glowCCYellow"
       @click="emit('cardClicked', card.id)"
     >
       <div>

@@ -61,6 +61,20 @@ export default {
 </script>
 
 <style lang="scss">
+.vue-notification {
+    // types (green, amber, red)
+  &.success {
+    color: #000000;
+    background: #4cbb17;
+    border-left-color: #006400;
+  }
+
+  &.error {
+    background: #d82027;
+    border-left-color: #800000;
+  }
+}
+
 @font-face {
   font-family: 'Museo900-Regular';
   font-weight: normal;

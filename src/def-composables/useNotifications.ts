@@ -24,7 +24,7 @@ const useNotificationsInstance = () => {
       group: "bottom-right-notification",
       title: title,
       text: text,
-      type: "notification--alert",
+      type: "error",
       duration: 5000
     });
   });
@@ -34,7 +34,7 @@ const useNotificationsInstance = () => {
       group: "bottom-right-notification",
       title: title,
       text: text,
-      type: "notification--success",
+      type: "success",
       duration: 5000
     });
   });
@@ -44,7 +44,7 @@ const useNotificationsInstance = () => {
       group: "bottom-right-notification",
       title: title,
       text: text,
-      type: "notification--info",
+      type: "info",
       duration: 5000
     });
   });

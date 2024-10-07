@@ -17,6 +17,7 @@ const LearnPage = () => import("@/views/LearnPage.vue");
 const DownloadPage = () => import("@/views/DownloadPage.vue");
 const CommunityPage = () => import("@/views/About/CommunityPage.vue");
 const EncounterVotingPage = () => import("@/views/Voting/EncounterVotingPage.vue")
+const EncounterCouncilPage = () => import("@/views/Voting/EncounterCouncilPage.vue")
 const Rewards = () => import("@/views/Rewards.vue");
 const Discord = () => import("@/views/Discord.vue");
 
@@ -86,6 +87,11 @@ const routes = [
     path: "/vote/encounter",
     name: "EncounterVoting",
     component: EncounterVotingPage,
+  },
+  {
+    path: "/vote/council",
+    name: "EncounterCouncil",
+    component: EncounterCouncilPage,
   },
   {
     path: "/cardview/:id",
