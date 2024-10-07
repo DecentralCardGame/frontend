@@ -13,7 +13,7 @@
           Congratulations!
         </div>
         <div class="p-4">
-          You successfully minted your card!
+          You successfully {{ mode == Mode.EDIT ? "edited" : "minted" }} your card!
         </div>
         <BaseCCButton
           class="p-16 pb-60"
@@ -701,7 +701,7 @@
                   v-model="model.notes"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Or some kind words."
-                  maxLength="25"
+                  maxLength="50"
                 >
               </div>
 
@@ -739,7 +739,8 @@
               :model="model"
             />
           </div>
-          <div class="text-left flex flex-col">
+
+          <div class="text-left flex flex-col justify-between">
             <div class="py-5 flex flex-col items-start">
               <div class="pl-12 py-3 text-s font-bold">
                 SUMMARY
@@ -1493,6 +1494,7 @@ export default {
           this.model.image,
           this.model.fullArt,
           this.resetCard,
+          () => {},
           (err) => {
             this.notifyFail("Update Artwork failed", err);
             console.error(err);
@@ -1697,6 +1699,12 @@ export default {
       checkASCII(newModel.FlavourText, "Flavour Text");
       checkASCII(newModel.CardName, "Card Name");
 
+      // we want to reduce to 2 tags
+      if (newModel.Tags.length > 2) {
+        console.log("too many tags, dropping 3rd")
+        newModel.Tags.length = 2
+      }
+
       let newCard = newModel.toChainCard();
       newCard.artist = this.designateArtist ? this.artistAddress : this.address;
 
@@ -1724,7 +1732,7 @@ export default {
       if (this.mode == Mode.EDIT) {
         let handleErr = (err) => {
           this.notifyFail("Update Card failed", err);
-          console.error(err);
+          console.log(err);
         };
 
         saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
@@ -1734,6 +1742,7 @@ export default {
             newCard.image,
             newCard.fullArt,
             this.successScreen,
+            () => {},
             handleErr,
           );
       } else if (!this.address) {
