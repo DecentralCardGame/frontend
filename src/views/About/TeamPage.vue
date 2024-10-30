@@ -26,6 +26,8 @@
         </p>
         <br>
         <p>
+          Stefi Rescheleit<br>
+          Benny Renz<br>
           Harold Zellner<br>
           Thilo Billerbeck <br>
           Andy Frankenberger <br>
@@ -48,6 +50,7 @@ import kosta from "@/assets/team/kosta.webp";
 import benny from "@/assets/team/benny.webp";
 import stefi from "@/assets/team/stefi.webp";
 import noah from "@/assets/team/noah.webp";
+import clarissa from "@/assets/team/clarissa.webp";
 import logo from "@/assets/figma/CCLogo.png";
 
 const items: { pic: any; name: string; desc: string }[] = [
@@ -57,9 +60,9 @@ const items: { pic: any; name: string; desc: string }[] = [
   { pic: peer, name: "Peer", desc: "Blockchain Dev" },
   { pic: niko, name: "Niko", desc: "Unity Dev" },
   { pic: jannik, name: "Jannik", desc: "Game Design" },
+  { pic: clarissa, name: "Clarissa", desc: "Music Composition" },
   { pic: kosta, name: "Kosta", desc: "2D Artist" },
-  { pic: benny, name: "Benny", desc: "2D / 3D Artist" },
-  { pic: stefi, name: "Stefi", desc: "2D Artist" },
   { pic: noah, name: "Noah", desc: "Game Design" },
+
 ];
 </script>
