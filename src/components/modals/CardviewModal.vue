@@ -52,10 +52,6 @@
         <br>
       </div>
       <div>
-        <p class="font-bold text-2xl">
-          Used Keywords
-        </p>
-        <br>
         <KeywordComponent :card="state.card" />
       </div>
     </div>
