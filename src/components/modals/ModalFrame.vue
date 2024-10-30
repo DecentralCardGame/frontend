@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 flex h-[100vh] w-full bg-black/50">
+  <div class="fixed top-0 flex h-[100vh] w-full bg-black/50 overflow-scroll">
     <ModalInner
       :class="['p-10', 'z-100', 'm-auto'].concat(props.class)"
       :heading="heading"

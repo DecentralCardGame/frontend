@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black text-white flex lg:h-[80vh] p-16 lg:p-8" />
+  <div class="h-screen bg-black text-white flex lg:h-[80vh] p-16 lg:p-8" />
   <CardviewModal
     :id="state.id"
     @close="$router.back()"
