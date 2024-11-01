@@ -52,16 +52,19 @@
         <br>
       </div>
       <div>
-        <p class="font-bold text-2xl">
-          Used Keywords
-        </p>
-        <br>
         <KeywordComponent :card="state.card" />
       </div>
     </div>
     <div
       class="flex flex-col lg:flex-row justify-center lg:justify-end space-y-6 lg:space-x-6 lg:space-y-0"
     >
+      <router-link :to="{ path: '/cardview/' + props.id }">
+        <BaseCCButton
+          :type="Color.RED"
+        >
+          Card URL
+        </BaseCCButton>
+      </router-link>
       <BaseCCButton
         v-if="isArtist"
         :type="Color.RED"

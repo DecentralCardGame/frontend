@@ -1,12 +1,16 @@
 <template>
-  <div>
+  <div v-if="state.keywordDescriptions.length > 1">
+    <p 
+      class="font-bold text-2xl">
+      Used Keywords
+    </p>
+    <br>
     <div
       v-for="(keyword, index) in state.keywordDescriptions"
       :key="index"
       class="Keywords"
     >
       <p class="font-bold">
-        {{ keyword[0] }}
       </p>
       <p>{{ keyword[1] }}</p>
     </div>
