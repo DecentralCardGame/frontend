@@ -81,30 +81,32 @@
 
     <div class="bg-black w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
-        <div class="relative h-8">
-          <p class="absolute text-5xl mx-auto left-0 right-0 text-center">
-            Gallery
-          </p>
+        <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-center max-md:hidden md:justify-between">
-            <p class="text-xl my-auto">
+            <p class="md:text-xl lg:text-lg xl:text-xl  my-auto">
               {{ cardList.length }} Results
             </p>
-            <div class="flex space-x-4">
-              <p class="text-xl my-auto max-md:hidden">
-                Sort by
-              </p>
-              <Dropdown
-                v-model="galleryFilters.sortBy"
-                class="my-auto"
-                :type="Color.RED"
-                :options="['Name', 'CastingCost', 'Id']"
-                :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
-              />
-              <SortDirectionButton
-                v-model="revertSort"
-                class="my-auto"
-              />
-            </div>
+          </div>
+          <div>
+            <p class="md:text-4xl lg:text-2xl xl:text-4xl  text-center">
+              Gallery
+            </p>
+          </div>
+          <div class="flex space-x-2">
+            <p class="md:text-xl xl:text-xl lg:text-lg my-auto max-md:hidden">
+              Sort by
+            </p>
+            <Dropdown
+              v-model="galleryFilters.sortBy"
+              class="my-auto"
+              :type="Color.RED"
+              :options="['Name', 'CastingCost', 'Id']"
+              :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
+            />
+            <SortDirectionButton
+              v-model="revertSort"
+              class="my-auto"
+            />
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />

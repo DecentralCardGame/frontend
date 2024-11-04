@@ -6,7 +6,8 @@
     <div
       v-for="card in state.cards"
       :key="card.id"
-      class="hover:scale-110 drop-shadow-glowCCYellow"
+      class="transition duration-500 hover:scale-110 hover:duration-300"
+      :class="shadowClass(card)"
       @click="emit('cardClicked', card.id)"
     >
       <div>
@@ -17,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import * as R from "ramda";
 import { computed, onBeforeUnmount, onMounted, reactive, watch } from "vue";
 import { useCards } from "@/def-composables/useCards";
 import { Card } from "@/model/Card";
@@ -53,6 +55,30 @@ const state = reactive(initialState);
 const cardIdsOnPage = computed(() => {
   return props.allCardIds.slice(0, state.cardsOnPage);
 });
+
+
+const shadowClass = (card) => {
+  let classes = 0
+  console.log("CARD" ,card)
+  R.forEachObjIndexed(entry => {
+    if (entry) classes++;
+  }, card.Class)
+  console.log(classes)
+  if (classes > 1) return {
+    'drop-shadow-glowCCYellow': true,
+  }
+  else {
+  return {
+    'drop-shadow-glowCCRed': card.Class.Culture,
+    'drop-shadow-glowCCBlue': card.Class.Technology,
+    'drop-shadow-glowCCGreen': card.Class.Nature,
+    'drop-shadow-glowCCPurple': card.Class.Mysticism,
+    'text-danger': false
+  }
+  }
+};
+
+
 
 onMounted(() => {
   state.cardsOnPage = props.cardsPerPage;
