@@ -35,7 +35,7 @@
           </router-link>
         </div>
         <div>
-          <a href="https://crowdcontrol-network.gitbook.io/"> GitBook </a>
+          <a href="https://crowdcontrol-network.gitbook.io/" target="_blank"> GitBook </a>
         </div>
         <div>
           <router-link :to="{ name: 'Team' }">
