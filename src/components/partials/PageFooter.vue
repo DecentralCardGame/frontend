@@ -49,7 +49,7 @@
         </div>
         <div>
           <a
-            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf"
+            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf" target="_blank"
           >
             Whitepaper
           </a>
@@ -66,7 +66,7 @@
           Social
         </div>
 
-        <a href="https://discord.gg/ZKKbhUs">
+        <a href="https://discord.gg/ZKKbhUs" target="_blank">
           <div class="flex flex-row space-x-2 items-center">
             <div>
               <picture>
@@ -89,7 +89,7 @@
           </div>
         </a>
 
-        <a href="https://twitter.com/CrowdControlNet">
+        <a href="https://twitter.com/CrowdControlNet" target="_blank">
           <div class="flex flex-row space-x-2 items-center">
             <div>
               <picture>
@@ -112,7 +112,7 @@
           </div>
         </a>
 
-        <a href="https://github.com/DecentralCardGame">
+        <a href="https://github.com/DecentralCardGame" target="_blank">
           <div class="flex flex-row space-x-2 items-center">
             <div>
               <picture>
@@ -135,7 +135,7 @@
           </div>
         </a>
 
-        <a href="https://t.me/DecentralCardNetwork">
+        <a href="https://t.me/DecentralCardNetwork" target="_blank">
           <div class="flex flex-row space-x-2 items-center">
             <div>
               <picture>

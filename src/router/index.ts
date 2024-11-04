@@ -5,6 +5,7 @@ const VotingResultsPage = () => import("@/views/VotingResultsPage.vue");
 const CardCreator = () => import("@/views/CardCreatorPage.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 const RoadmapPage = () => import("@/views/About/RoadmapPage.vue");
+const WhitepaperPage = () => import("@/views/About/WhitepaperPage.vue");
 const LandingPage = () => import("@/views/LandingPage.vue");
 const ImprintPage = () => import("@/views/ImprintPage.vue");
 const TeamPage = () => import("@/views/About/TeamPage.vue");
@@ -77,6 +78,12 @@ const routes = [
     name: "Roadmap",
     meta: { layout: "Default" },
     component: RoadmapPage,
+  },
+  {
+    path: "/about/whitepaper",
+    name: "Whitepaper",
+    meta: { layout: "Default" },
+    component: WhitepaperPage,
   },
   {
     path: "/imprint",

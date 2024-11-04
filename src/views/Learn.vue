@@ -10,7 +10,7 @@
             Here are the basics to get start playing. <br>
             Visit our GitBook for advanced information!
           </p>
-          <a href="https://crowdcontrol-network.gitbook.io/">
+          <a href="https://crowdcontrol-network.gitbook.io/" target="_blank">
             <BaseCCButton :type="Color.RED"> Open GitBook</BaseCCButton>
           </a>
         </div>
