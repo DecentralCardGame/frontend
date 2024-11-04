@@ -15,6 +15,16 @@
       </div>
     </div>
   </div>
+
+  <div class="mt-12 flex flex-row justify-center items-center">
+    <BaseCCButton
+      :type="Color.RED"
+      @click="loadyes()"
+      :class="{ invisible: !loadButtonVisible }"
+    >
+      Reckless Card Loading
+    </BaseCCButton>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -23,6 +33,8 @@ import { computed, onBeforeUnmount, onMounted, reactive, watch } from "vue";
 import { useCards } from "@/def-composables/useCards";
 import { Card } from "@/model/Card";
 import CardComponent from "@/components/elements/CardComponent.vue";
+import { Color } from "@/components/utils/color";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 
 const { getCard } = useCards();
 const emit = defineEmits(["cardClicked"]);
@@ -59,31 +71,31 @@ const cardIdsOnPage = computed(() => {
 
 const shadowClass = (card) => {
   let classes = 0
-  console.log("CARD" ,card)
   R.forEachObjIndexed(entry => {
     if (entry) classes++;
   }, card.Class)
-  console.log(classes)
   if (classes > 1) return {
     'drop-shadow-glowCCYellow': true,
   }
-  else {
-  return {
+  else return {
     'drop-shadow-glowCCRed': card.Class.Culture,
     'drop-shadow-glowCCBlue': card.Class.Technology,
     'drop-shadow-glowCCGreen': card.Class.Nature,
-    'drop-shadow-glowCCPurple': card.Class.Mysticism,
-    'text-danger': false
-  }
-  }
+    'drop-shadow-glowCCPurple': card.Class.Mysticism
+    }
 };
-
-
 
 onMounted(() => {
   state.cardsOnPage = props.cardsPerPage;
-  window.addEventListener("scroll", onScroll);
 });
+
+let loadButtonVisible = true;
+
+const loadyes = () => {
+  state.cardsOnPage += 10;
+  loadButtonVisible = false;
+  window.addEventListener("scroll", onScroll);
+};
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
