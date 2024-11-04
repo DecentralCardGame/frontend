@@ -1,85 +1,106 @@
 <template>
-  <div class="flex text-white">
+  <div class="flex text-white max-lg:flex-col justify-center">
+    
     <div
-      class="self-start sticky top-0 min-w-[25rem] flex justify-center p-16 h-[100vh] mt-0 bg-[#552026] max-lg:hidden"
+      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
+            max-lg:w-full max-lg:h-full max-lg:p-4 "
     >
-      <div class="space-y-6">
-        <GalleryFilterImageChooser :options="classOptions" />
-        <Checkbox v-model="galleryFilters.multiClass">
-          Show multi-class only
-        </Checkbox>
-        <GalleryFilterImageChooser :options="typeOptions" />
-        <div class="">
-          <p>Search for</p>
+
+      <div class="">
+
+        <div class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6">
+          <BaseCCButton
+            :type="Color.RED"
+            @click="filtersVisible = !filtersVisible"
+          >
+            Gallery Filters
+          </BaseCCButton>
+        </div>
+
+        <div
+          v-if="filtersVisible"
+          class="space-y-6 justify-self-center"
+        >
+
+          <GalleryFilterImageChooser :options="classOptions" />
+          <Checkbox v-model="galleryFilters.multiClass">
+            Show multi-class only
+          </Checkbox>
+          <GalleryFilterImageChooser :options="typeOptions" />
+          <div class="">
+            <p>Search for</p>
+            <div class="space-y-4">
+              <CCInput
+                v-model="galleryFilters.nameContains"
+                placeholder="name"
+              />
+              <br>
+              <CCInput
+                v-model="galleryFilters.notesContains"
+                placeholder="notes"
+              />
+              <br>
+              <CCInput
+                v-model="galleryFilters.keywordsContains"
+                placeholder="keywords"
+              />
+            </div>
+          </div>
+          <CCInput
+            v-model="galleryFilters.owner"
+            placeholder="owner"
+            :max-length="41"
+          />
+          <Checkbox
+            v-if="loggedIn"
+            :model-value="galleryFilters.owner === address"
+            @update:model-value="
+              (v: boolean) => (galleryFilters.owner = v ? address : '')
+            "
+          >
+            My Cards
+          </Checkbox>
           <div class="space-y-4">
-            <CCInput
-              v-model="galleryFilters.nameContains"
-              placeholder="name"
+            Rarity:
+            <Dropdown
+              v-model="galleryFilters.rarity"
+              :display-fn="
+                (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
+              "
+              :options="[
+                undefined,
+                CardRarity.common,
+                CardRarity.uncommon,
+                CardRarity.rare,
+                CardRarity.exceptional,
+                CardRarity.unique,
+              ]"
             />
             <br>
-            <CCInput
-              v-model="galleryFilters.notesContains"
-              placeholder="notes"
-            />
-            <br>
-            <CCInput
-              v-model="galleryFilters.keywordsContains"
-              placeholder="keywords"
+            Status:
+            <Dropdown
+              v-model="galleryFilters.status"
+              :display-fn="(v) => (v == 'playable' ? 'playable' : Status[v])"
+              :options="
+                new Array<GalleryStatus>(
+                  'playable',
+                  Status.prototype,
+                  Status.trial,
+                  Status.permanent,
+                  Status.bannedSoon,
+                  Status.bannedVerySoon,
+                  Status.banned,
+                )
+              "
             />
           </div>
+
         </div>
-        <CCInput
-          v-model="galleryFilters.owner"
-          placeholder="owner"
-          :max-length="41"
-        />
-        <Checkbox
-          v-if="loggedIn"
-          :model-value="galleryFilters.owner === address"
-          @update:model-value="
-            (v: boolean) => (galleryFilters.owner = v ? address : '')
-          "
-        >
-          My Cards
-        </Checkbox>
-        <div class="space-y-4">
-          Rarity:
-          <Dropdown
-            v-model="galleryFilters.rarity"
-            :display-fn="
-              (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
-            "
-            :options="[
-              undefined,
-              CardRarity.common,
-              CardRarity.uncommon,
-              CardRarity.rare,
-              CardRarity.exceptional,
-              CardRarity.unique,
-            ]"
-          />
-          <br>
-          Status:
-          <Dropdown
-            v-model="galleryFilters.status"
-            :display-fn="(v) => (v == 'playable' ? 'playable' : Status[v])"
-            :options="
-              new Array<GalleryStatus>(
-                'playable',
-                Status.prototype,
-                Status.trial,
-                Status.permanent,
-                Status.bannedSoon,
-                Status.bannedVerySoon,
-                Status.banned,
-              )
-            "
-          />
-        </div>
+        
       </div>
     </div>
 
-    <div class="bg-black w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
+    <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-center max-md:hidden md:justify-between">
@@ -114,7 +135,7 @@
 
       <GalleryComponent
         class="p-16"
-        :cards-per-page="galleryFilters.cardsPerPage"
+        :cards-2per-page="galleryFilters.cardsPerPage"
         :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="openCardviewModel"
       />
@@ -131,6 +152,7 @@
 import * as R from "ramda";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 import techActive from "@/assets/figma/ClassesButtons/tech.png";
 import techInactive from "@/assets/figma/ClassesButtons/tech_unselected.png";
@@ -179,6 +201,8 @@ const {
   pageQueryFromGalleryFilters,
   galleryFiltersFromPageQuery,
 } = useGallery();
+
+let filtersVisible = ref(true);
 
 const revertSort = ref(false);
 
