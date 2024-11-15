@@ -86,7 +86,7 @@
             </template>
             <template #content>
               <p class="text-white">
-                CrowdControl is built on Cosmos Blockchain and<br>
+                CrowdControl is built on our own blockchain and<br>
                 let’s <b>YOU</b> be part of every step of the game.
               </p>
             </template>
