@@ -19,7 +19,7 @@
   <div class="mt-12 flex flex-row justify-center items-center">
     <BaseCCButton
       :type="Color.RED"
-      @click="loadyes()"
+      @click="load()"
       :class="{ invisible: !loadButtonVisible }"
     >
       Reckless Card Loading
@@ -91,7 +91,7 @@ onMounted(() => {
 
 let loadButtonVisible = true;
 
-const loadyes = () => {
+const load = () => {
   state.cardsOnPage += 10;
   loadButtonVisible = false;
   window.addEventListener("scroll", onScroll);
