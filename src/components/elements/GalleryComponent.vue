@@ -6,7 +6,8 @@
     <div
       v-for="card in state.cards"
       :key="card.id"
-      class="hover:scale-110 drop-shadow-glowCCYellow"
+      class="transition duration-500 hover:scale-110 hover:duration-300"
+      :class="shadowClass(card)"
       @click="emit('cardClicked', card.id)"
     >
       <div>
@@ -14,13 +15,26 @@
       </div>
     </div>
   </div>
+
+  <div class="mt-12 flex flex-row justify-center items-center">
+    <BaseCCButton
+      :type="Color.RED"
+      @click="load()"
+      :class="{ invisible: !loadButtonVisible }"
+    >
+      Reckless Card Loading
+    </BaseCCButton>
+  </div>
 </template>
 
 <script setup lang="ts">
+import * as R from "ramda";
 import { computed, onBeforeUnmount, onMounted, reactive, watch } from "vue";
 import { useCards } from "@/def-composables/useCards";
 import { Card } from "@/model/Card";
 import CardComponent from "@/components/elements/CardComponent.vue";
+import { Color } from "@/components/utils/color";
+import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 
 const { getCard } = useCards();
 const emit = defineEmits(["cardClicked"]);
@@ -54,10 +68,34 @@ const cardIdsOnPage = computed(() => {
   return props.allCardIds.slice(0, state.cardsOnPage);
 });
 
+
+const shadowClass = (card) => {
+  let classes = 0
+  R.forEachObjIndexed(entry => {
+    if (entry) classes++;
+  }, card.Class)
+  if (classes > 1) return {
+    'drop-shadow-glowCCYellow': true,
+  }
+  else return {
+    'drop-shadow-glowCCRed': card.Class.Culture,
+    'drop-shadow-glowCCBlue': card.Class.Technology,
+    'drop-shadow-glowCCGreen': card.Class.Nature,
+    'drop-shadow-glowCCPurple': card.Class.Mysticism
+    }
+};
+
 onMounted(() => {
   state.cardsOnPage = props.cardsPerPage;
-  window.addEventListener("scroll", onScroll);
 });
+
+let loadButtonVisible = true;
+
+const load = () => {
+  state.cardsOnPage += 10;
+  loadButtonVisible = false;
+  window.addEventListener("scroll", onScroll);
+};
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
