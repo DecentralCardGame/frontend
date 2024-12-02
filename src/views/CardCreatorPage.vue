@@ -208,13 +208,8 @@
         >
           <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <div v-if="cropImage == ''">
-              <label
-                for="dropzone-file"
-                class=""
-              >
-                <div
-                  class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
-                >
+              <label for="dropzone-file">
+                <div class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
                   <span class="flex items-center">+</span>
                 </div>
                 <input
@@ -225,14 +220,30 @@
                 >
               </label>
             </div>
-            <img
-              v-if="cropImage !== ''"
-              class="h-[24rem] object-none"
-              width="300"
-              height="400"
-              :src="cropImage"
-              alt="check"
-            >
+
+            <div v-if="cropImage !== ''" 
+              class="pt-10 h-[24rem] group relative">
+              <img
+                class="object-fit"
+                width="300"
+                height="400"
+                :src="cropImage"
+                alt="check"
+              >
+              <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500">              
+                <label for="dropzone-file">
+                  <div class="h-[10rem] w-[10rem] flex px-[3.55rem] bg-white bg-opacity-[15%] hover:bg-opacity-[30%] text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                    <span class="flex items-center">+</span>
+                  </div>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    class="hidden"
+                    @change="inputFile"
+                  >
+                </label>
+              </div>
+            </div>
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="pl-12 pr-[4.5rem] py-5 justify-center">
@@ -240,7 +251,7 @@
                 ARTWORK
               </div>
               <div class="pl-3 pb-8 text-left">
-                Click, drag or paste to upload an artwork.
+                Click, drag or paste to upload an artwork. Crop on the next page.
               </div>
               <div class="p-3 text-left font-bold">
                 COPYRIGHT
