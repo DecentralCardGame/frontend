@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-    background-color:#7c465c;
+    background-color:black;
 }
 ::-webkit-scrollbar {
     width: 10px;
