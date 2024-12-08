@@ -1,28 +1,23 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
     <div
+      v-if="loggedIn"
       class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
             max-lg:w-full max-lg:h-full max-lg:p-4 "
     >
-      <div class="">
-        <div class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6">
-          <BaseCCButton
-            :type="Color.RED"
-            @click="filtersVisible = !filtersVisible"
-          >
-            Gallery Filters
-          </BaseCCButton>
+      <div class="max-w-[18rem]">
+          Build your Encounter by selecting Cards for a draw list.
+          The opponent of the encounter will draw cards exactly in this order.
+        <div class="my-5" v-if="true">
+          1. Step - Select HQ
         </div>
         <div
           v-if="filtersVisible"
           class="space-y-6 justify-self-center"
         >
+          <GalleryFilterImageChooser v-if="!hqSelected" :options="classOptions" />
 
-          <GalleryFilterImageChooser :options="classOptions" />
-          <Checkbox v-model="galleryFilters.multiClass">
-            Show multi-class only
-          </Checkbox>
-          <GalleryFilterImageChooser :options="typeOptions" />
+          <GalleryFilterImageChooser v-if="hqSelected" :options="typeOptions" />
           <div class="">
             <p>Search for</p>
             <div class="space-y-4">
@@ -42,53 +37,10 @@
               />
             </div>
           </div>
-          <CCInput
-            v-model="galleryFilters.owner"
-            placeholder="owner"
-            :max-length="41"
-          />
-          <Checkbox
-            v-if="loggedIn"
-            :model-value="galleryFilters.owner === address"
-            @update:model-value="
-              (v: boolean) => (galleryFilters.owner = v ? address : '')
-            "
-          >
-            My Cards
-          </Checkbox>
+
+
           <div class="space-y-4">
-            Rarity:
-            <Dropdown
-              v-model="galleryFilters.rarity"
-              :display-fn="
-                (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
-              "
-              :options="[
-                undefined,
-                CardRarity.common,
-                CardRarity.uncommon,
-                CardRarity.rare,
-                CardRarity.exceptional,
-                CardRarity.unique,
-              ]"
-            />
-            <br>
-            Status:
-            <Dropdown
-              v-model="galleryFilters.status"
-              :display-fn="(v) => (v == 'playable' ? 'playable' : Status[v])"
-              :options="
-                new Array<GalleryStatus>(
-                  'playable',
-                  Status.prototype,
-                  Status.trial,
-                  Status.permanent,
-                  Status.bannedSoon,
-                  Status.bannedVerySoon,
-                  Status.banned,
-                )
-              "
-            />
+
           </div>
 
         </div>
@@ -133,9 +85,25 @@
         class="p-16"
         :cards-2per-page="galleryFilters.cardsPerPage"
         :all-card-ids="revertSort ? cardList.toReversed() : cardList"
-        @card-clicked="openCardviewModel"
+        @card-clicked="addCardToEncounter"
       />
     </div>
+
+    <div
+      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
+            max-lg:w-full max-lg:h-full max-lg:p-4 "
+    >
+      aaaa
+      <div class="h-6 p-5 mb-10 bg-black"
+        v-for="item in drawList" :key="item.id" 
+        draggable
+      > 
+        {{ item.id }}
+      </div>
+
+    </div>
+
+
   </div>
   <CardviewModal
     v-if="isCardViewModalVisible"
@@ -146,7 +114,7 @@
 
 <script setup lang="ts">
 import * as R from "ramda";
-import { onMounted, ref } from "vue";
+import { onMounted, watch, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
@@ -198,7 +166,14 @@ const {
   galleryFiltersFromPageQuery,
 } = useGallery();
 
+const drawList = [];
+
 let filtersVisible = ref(true);
+let hqSelected = ref(false);
+
+watch(hqSelected, () => {
+  galleryFilters.value.hq = true;
+});
 
 const revertSort = ref(false);
 
@@ -231,12 +206,6 @@ const classOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 
 const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   {
-    active: hqActive,
-    inactive: hqInactive,
-    label: "hq",
-    name: "hq",
-  },
-  {
     active: entityActive,
     inactive: entityInactive,
     label: "ent",
@@ -257,23 +226,41 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 ];
 
 onMounted(() => {
-  const query = route.query
-  if (!R.isEmpty(query)) {
-    if ((query as {cards?: number[]}).cards) {
-      cardList.value = (query as {cards?: number[]}).cards!
-    } else {
-      galleryFiltersFromPageQuery(normalizeQuery(route.query));
-      router.push({ path: "gallery", query: query });
-      loadQueryCardList(pageQueryFromGalleryFilters());
-    }
-  } else if (cardList.value.length == 0) {
-    router.push({ path: "gallery", query: query });
-    loadQueryCardList(pageQueryFromGalleryFilters());
-  } else {
-    router.push({ path: "gallery", query: pageQueryFromGalleryFilters() });
-  }
+  //console.log("address", address)
+  galleryFilters.value.owner = '';address;
+  
+  galleryFilters.value.status = [Status.prototype];
+  galleryFilters.value.hq = true;
+
+  let filters = pageQueryFromGalleryFilters();
+  console.log("pagequeryfilters", filters);
+
+  loadQueryCardList(filters);
+  console.log("galleryFilters", galleryFilters)
+
 });
 
+const addCardToEncounter = (cardId: number) => {
+
+  drawList.push({
+    id: cardId
+  })
+  console.log("drawlist: " , drawList)
+}
+
+const startDrag = (evt, item) => {
+  evt.dataTransfer.dropEffect = 'move'
+  evt.dataTransfer.effectAllowed = 'move'
+  evt.dataTransfer.setData('itemID', item.id)
+}
+
+const onDrop = (evt, list) => {
+  const itemID = evt.dataTransfer.getData('itemID')
+  const item = this.items.find((item) => item.id == itemID)
+  item.list = list
+}
+
+// TODO REMOVE
 const openCardviewModel = (cardId: number) => {
   cardViewModalCardId.value = Number(cardId);
   //router.replace({ name: "CardView", params: { id: cardId } });

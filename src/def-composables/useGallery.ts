@@ -85,6 +85,7 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
 };
 
 const pageQueryFromGalleryFilters = (): PageQuery => {
+  console.log("cardtypes: hq", galleryFilters.value.hq)
   return QueryQCardsRequest.fromPartial({
     owner: galleryFilters.value.owner,
     statuses:
@@ -121,7 +122,6 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
 };
 
 const loadQueryCardList = (query: PageQuery): void => {
-  router.push({ path: "gallery", query: query });
 
   queryQCards(query, {
     paramsSerializer: constructAssRetardetQueryParams,

@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const GalleryPage = () => import("@/views/GalleryPage.vue");
 const VotingResultsPage = () => import("@/views/VotingResultsPage.vue");
 const CardCreator = () => import("@/views/CardCreatorPage.vue");
+const EncounterCreator = () => import("@/views/EncounterCreatorPage.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 const RoadmapPage = () => import("@/views/About/RoadmapPage.vue");
 const WhitepaperPage = () => import("@/views/About/WhitepaperPage.vue");
@@ -45,6 +46,12 @@ const routes = [
     path: "/cardCreator",
     name: "CardCreator",
     component: CardCreator,
+    meta: { layout: "Default" },
+  },
+  {
+    path: "/encounterCreator",
+    name: "EncounterCreator",
+    component: EncounterCreator,
     meta: { layout: "Default" },
   },
   {
