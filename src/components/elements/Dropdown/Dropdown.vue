@@ -18,7 +18,7 @@
     </div>
     <ul
       v-if="isOpen"
-      class="absolute z-30 ring ring-white rounded ring-opacity-100 whitespace-nowrap"
+      class="absolute z-30 ring ring-white rounded ring-opacity-100 whitespace-nowrap max-h-[50svh] overflow-auto"
       :class="[getBgColor(type)]"
     >
       <li
