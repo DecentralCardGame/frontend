@@ -93,10 +93,11 @@
       class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
             max-lg:w-full max-lg:h-full max-lg:p-4 "
     >
-      aaaa
+      Draw List:
       <div class="h-6 p-5 mb-10 bg-black"
-        v-for="item in drawList" :key="item.id" 
+        v-for="(item, index) in drawList" :key="item.id" 
         draggable
+        @click=removeCard(index)
       > 
         {{ item.id }}
       </div>
@@ -151,6 +152,7 @@ import CardviewModal from "@/components/modals/CardviewModal.vue";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
+import { useQuery } from "@/def-composables/useQuery";
 
 const route = useRoute();
 const router = useRouter();
@@ -166,7 +168,9 @@ const {
   galleryFiltersFromPageQuery,
 } = useGallery();
 
-const drawList = [];
+const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncountersWithImage } = useQuery();
+
+const drawList = ref([]);
 
 let filtersVisible = ref(true);
 let hqSelected = ref(false);
@@ -238,26 +242,32 @@ onMounted(() => {
   loadQueryCardList(filters);
   console.log("galleryFilters", galleryFilters)
 
+  queryQEncounters()
+    .then((res) => {
+      console.log("queryQEncounter res", res);
+    })
+
 });
 
 const addCardToEncounter = (cardId: number) => {
+  console.log("cardlist", cardList)
+  drawList.value.push({
+    id: cardId,
 
-  drawList.push({
-    id: cardId
   })
   console.log("drawlist: " , drawList)
 }
 
 const startDrag = (evt, item) => {
-  evt.dataTransfer.dropEffect = 'move'
-  evt.dataTransfer.effectAllowed = 'move'
-  evt.dataTransfer.setData('itemID', item.id)
+  console.log("startDrag", evt, item)
 }
 
 const onDrop = (evt, list) => {
-  const itemID = evt.dataTransfer.getData('itemID')
-  const item = this.items.find((item) => item.id == itemID)
-  item.list = list
+  console.log("onDrop", evt, list)
+}
+
+const removeCard = (index) => {
+  drawList.value.splice(index, 1)
 }
 
 // TODO REMOVE

@@ -37,7 +37,7 @@ import { type Card, NerfStatus } from "@/model/Card";
 const { add } = useVoting();
 
 const { address } = useAddress();
-const { queryQVotingResults } = useQuery();
+const { queryQEncounter } = useQuery();
 
 const initialState: {
   data: VotingResults
