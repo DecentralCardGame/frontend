@@ -180,6 +180,7 @@ import {
   Status,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
+import { Card } from "@/model/Card";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
@@ -274,8 +275,8 @@ onMounted(() => {
   }
 });
 
-const openCardviewModel = (cardId: number) => {
-  cardViewModalCardId.value = Number(cardId);
+const openCardviewModel = (card: Card) => {
+  cardViewModalCardId.value = Number(card.id);
   //router.replace({ name: "CardView", params: { id: cardId } });
   isCardViewModalVisible.value = true;
 };

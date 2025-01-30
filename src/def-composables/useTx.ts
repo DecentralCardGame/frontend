@@ -169,6 +169,9 @@ export const useTxInstance: () => {
   multiVoteCard: (votes: SingleVote[], then: (res: any) => void, err: (res: any) => void) => void;
   createCouncil: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
   setProfileCard: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
+  encounterDo: (encounterId: number, user: string, then: (res: any) => void, err: (res: any) => void) => void;
+  encounterCreate: (name: string, Drawlist: number[], parameters: { [key: string]: string }, image: string, then: (res: any) => void, err: (res: any) => void) => void;
+  encounterClose: (encounterId: number, user: string, won: boolean, then: (res: any) => void, err: (res: any) => void) => void;
   send: (coins: CompatCoin[], to: string, then: (res: any) => void, err: (res: any) => void) => void
 } = () => {
   const client = useClient();
@@ -588,7 +591,6 @@ export const useTxInstance: () => {
       err,
     );
   };
-
 
   const encounterClose = (
     encounterId: number,

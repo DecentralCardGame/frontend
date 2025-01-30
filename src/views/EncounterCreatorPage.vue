@@ -18,6 +18,7 @@
           <GalleryFilterImageChooser v-if="!hqSelected" :options="classOptions" />
 
           <GalleryFilterImageChooser v-if="hqSelected" :options="typeOptions" />
+
           <div class="">
             <p>Search for</p>
             <div class="space-y-4">
@@ -38,6 +39,14 @@
             </div>
           </div>
 
+          <div class="">
+            <BaseCCButton
+              :type="Color.RED"
+              @click="publish()"
+            >
+              Publish Encounter
+            </BaseCCButton>
+          </div>
 
           <div class="space-y-4">
 
@@ -81,13 +90,19 @@
         <div class="mt-8 h-1 rounded w-full bg-white" />
       </div>
 
+
+
+
       <GalleryComponent
         class="p-16"
         :cards-2per-page="galleryFilters.cardsPerPage"
         :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="addCardToEncounter"
       />
+
+      
     </div>
+
 
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
@@ -99,10 +114,13 @@
         draggable
         @click=removeCard(index)
       > 
-        {{ item.id }}
+        {{ item.name }} - {{ item.cost }}
       </div>
 
+
+
     </div>
+
 
 
   </div>
@@ -148,11 +166,13 @@ import {
   CardRarity,
   Status,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+import { Card } from "@/model/Card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
+import { useTx } from "@/def-composables/useTx";
 
 const route = useRoute();
 const router = useRouter();
@@ -167,17 +187,54 @@ const {
   pageQueryFromGalleryFilters,
   galleryFiltersFromPageQuery,
 } = useGallery();
+const { encounterDo, encounterCreate, encounterClose } = useTx();
 
 const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncountersWithImage } = useQuery();
 
 const drawList = ref([]);
 
 let filtersVisible = ref(true);
+
 let hqSelected = ref(false);
 
-watch(hqSelected, () => {
-  galleryFilters.value.hq = true;
-});
+
+watch(drawList.value, () => {
+  let hq = undefined;
+  drawList.value.forEach((item, index) => {
+    if (item.type == "Headquarter") {
+      if (hq) drawList.value.splice(index, 1)
+      else hq = item;
+    }
+  })
+  if (hq) {
+    galleryFilters.value.hq = false;
+    galleryFilters.value.nature = hq.class.Nature;
+    galleryFilters.value.mysticism = hq.class.Mysticism;
+    galleryFilters.value.technology = hq.class.Technology;
+    galleryFilters.value.culture = hq.class.Culture;
+    hqSelected.value = true;
+
+    // remove all cards that do not match hqs color identity
+    drawList.value.forEach( (item, index) => {
+      for (let [key, value] of Object.entries(hq.class)) {
+        if (value == false && item.class[key] == true) {
+          drawList.value.splice(index, 1)
+        } 
+      }
+    })
+  }
+  else {
+    galleryFilters.value.hq = true;
+    galleryFilters.value.place = false;
+    galleryFilters.value.action = false;
+    galleryFilters.value.entity = false;
+    galleryFilters.value.nature = true;
+    galleryFilters.value.mysticism = true;
+    galleryFilters.value.technology = true;
+    galleryFilters.value.culture = true;
+    hqSelected.value = false;
+  }
+})
 
 const revertSort = ref(false);
 
@@ -233,7 +290,7 @@ onMounted(() => {
   //console.log("address", address)
   galleryFilters.value.owner = '';address;
   
-  galleryFilters.value.status = [Status.prototype];
+  galleryFilters.value.status = "playable";[Status.prototype];
   galleryFilters.value.hq = true;
 
   let filters = pageQueryFromGalleryFilters();
@@ -249,11 +306,14 @@ onMounted(() => {
 
 });
 
-const addCardToEncounter = (cardId: number) => {
-  console.log("cardlist", cardList)
+const addCardToEncounter = (card: Card) => {
+  console.log("card", card)
   drawList.value.push({
-    id: cardId,
-
+    id: card.id,
+    name: card.CardName,
+    cost: card.Delay || card.CastingCost,
+    type: card.type,
+    class: card.Class
   })
   console.log("drawlist: " , drawList)
 }
@@ -270,10 +330,18 @@ const removeCard = (index) => {
   drawList.value.splice(index, 1)
 }
 
-// TODO REMOVE
-const openCardviewModel = (cardId: number) => {
-  cardViewModalCardId.value = Number(cardId);
-  //router.replace({ name: "CardView", params: { id: cardId } });
-  isCardViewModalVisible.value = true;
-};
+const publish = () => {
+  console.log("publish")
+  let name = "test"
+  let drawlist = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14]
+  let parameters = {}
+  let image = ""
+  encounterCreate(name, drawlist, parameters, image, (res) =>{
+    console.log("res", res)
+  },
+  (err) => {
+    console.log("err", err)
+  });
+}
+
 </script>
