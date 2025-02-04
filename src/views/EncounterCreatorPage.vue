@@ -91,36 +91,65 @@
       </div>
 
 
-
-
       <GalleryComponent
         class="p-16"
         :cards-2per-page="galleryFilters.cardsPerPage"
         :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="addCardToEncounter"
       />
-
       
     </div>
 
 
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4 "
+            max-lg:w-full max-lg:h-full max-lg:p-4"
     >
-      Draw List:
-      <div class="h-6 p-5 mb-10 bg-black"
+      Cards added - {{ cardsAdded }}/40
+      <div
         v-for="(item, index) in drawList" :key="item.id" 
         draggable
-        @click=removeCard(index)
-      > 
-        {{ item.name }} - {{ item.cost }}
+          @drop="onDrop($event, index)"
+          @dragover.prevent
+          @dragenter.prevent
+      >
+        <div class="flex flex-row h-6 mb-1 bg-white text-black select-none"
+          @dragstart="startDrag($event, index)"
+          @click="removeCard(index)"
+        >
+          <div>
+            {{item.count}}x  
+          </div>
+          <img
+            src="@/assets/minicardframe/ActionFrameNature.png"
+            class="w-6"
+            :alt="' classbutton'"
+          >
+            {{ item.name }} - {{ item.cost }}
+          <img
+            src="@/assets/minicardframe/ActionFrameNature.png"
+            class="w-6 scale-x-[-1]"
+            :alt="' classbutton'"
+          >
+          <div
+            class="w-full bg-black"
+            draggable
+              @drop="onDrop($event, index)"
+              @dragover.prevent
+              @dragenter.prevent
+          >
+          </div>
+        </div>
+
+      </div>
+      <div class="h-6 mb-1"
+        @drop="onDrop($event, drawList.length)"
+        @dragover.prevent
+        @dragenter.prevent>
       </div>
 
 
-
     </div>
-
 
 
   </div>
@@ -192,13 +221,13 @@ const { encounterDo, encounterCreate, encounterClose } = useTx();
 const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncountersWithImage } = useQuery();
 
 const drawList = ref([]);
-
 let filtersVisible = ref(true);
-
+let dragFrom = -1;
 let hqSelected = ref(false);
-
+let cardsAdded = 0;
 
 watch(drawList.value, () => {
+  console.log("Drawlist watch", drawList)
   let hq = undefined;
   drawList.value.forEach((item, index) => {
     if (item.type == "Headquarter") {
@@ -207,6 +236,7 @@ watch(drawList.value, () => {
     }
   })
   if (hq) {
+    // change filters to cards only matching HQ
     galleryFilters.value.hq = false;
     galleryFilters.value.nature = hq.class.Nature;
     galleryFilters.value.mysticism = hq.class.Mysticism;
@@ -222,6 +252,7 @@ watch(drawList.value, () => {
         } 
       }
     })
+
   }
   else {
     galleryFilters.value.hq = true;
@@ -234,6 +265,7 @@ watch(drawList.value, () => {
     galleryFilters.value.culture = true;
     hqSelected.value = false;
   }
+  cardsAdded = R.reduce(R.add, 0, R.pluck("count", drawList.value))
 })
 
 const revertSort = ref(false);
@@ -307,27 +339,41 @@ onMounted(() => {
 });
 
 const addCardToEncounter = (card: Card) => {
-  console.log("card", card)
-  drawList.value.push({
-    id: card.id,
-    name: card.CardName,
-    cost: card.Delay || card.CastingCost,
-    type: card.type,
-    class: card.Class
-  })
-  console.log("drawlist: " , drawList)
+  if (!R.isEmpty(drawList.value) && R.last(drawList.value).id == card.id && card.type != "Headquarter") {
+    R.last(drawList.value).count++;
+  }
+  else {
+    let newEntry = {
+      id: card.id,
+      name: card.CardName,
+      cost: card.Delay || card.CastingCost,
+      type: card.type,
+      class: card.Class,
+      count: 1,
+      };
+    if (card.type != "Headquarter")
+      drawList.value.push(newEntry);
+    else
+      drawList.value.splice(0,0, newEntry);
+  }
 }
 
-const startDrag = (evt, item) => {
-  console.log("startDrag", evt, item)
+const startDrag = (evt, index) => {
+  dragFrom = index;
 }
 
-const onDrop = (evt, list) => {
-  console.log("onDrop", evt, list)
+const onDrop = (evt, targetIndex) => {
+  if (targetIndex == 0) targetIndex = 1;
+  drawList.value = R.move(dragFrom, targetIndex, drawList.value);
 }
 
 const removeCard = (index) => {
-  drawList.value.splice(index, 1)
+  if(drawList.value[index].count == 1)
+    drawList.value.splice(index, 1);
+  else {
+    console.log(drawList.value[index])
+    drawList.value[index].count--;
+  }
 }
 
 const publish = () => {
