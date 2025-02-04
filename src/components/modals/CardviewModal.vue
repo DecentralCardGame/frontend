@@ -22,7 +22,8 @@
           />
         </div>
       </div>
-      <div>
+
+      <div v-show="!state.isTransferModalVisible">
         <p class="font-bold text-2xl">
           Advanced Card Information
         </p>
@@ -51,9 +52,18 @@
         </p>
         <br>
       </div>
-      <div>
+
+      <div v-show="!state.isTransferModalVisible">
         <KeywordComponent :card="state.card" />
       </div>
+
+      <TransferCardModal
+        v-show="state.isTransferModalVisible"
+        :card="String(props.id)"
+        @close="closeModal"
+      />
+
+
     </div>
     <div
       class="flex flex-col lg:flex-row justify-center lg:justify-end space-y-6 lg:space-x-6 lg:space-y-0"
@@ -66,14 +76,7 @@
         </BaseCCButton>
       </router-link>
       <BaseCCButton
-        v-if="isArtist"
-        :type="Color.RED"
-        @click="edit()"
-      >
-        Edit artwork
-      </BaseCCButton>
-      <BaseCCButton
-        v-if="isOwner"
+        v-if="isOwner || isArtist"
         :type="Color.RED"
         @click="edit()"
       >
@@ -82,17 +85,12 @@
       <BaseCCButton
         v-if="isOwner"
         :type="Color.RED"
-        @click="showModal()"
+        @click="showTransferModal()"
       >
         Transfer card
       </BaseCCButton>
     </div>
   </ModalFrame>
-  <TransferCardModal
-    v-show="state.isModalVisible"
-    :card="String(props.id)"
-    @close="closeModal"
-  />
 </template>
 
 <script setup lang="ts">
@@ -119,10 +117,10 @@ const router = useRouter();
 const emit = defineEmits(["close"]);
 
 const initialState: {
-  isModalVisible: boolean;
+  isTransferModalVisible: boolean;
   card: Card;
 } = {
-  isModalVisible: false,
+  isTransferModalVisible: false,
   card: new Card(),
 };
 
@@ -155,9 +153,12 @@ const edit = () => {
   editCard.card.value = state.card;
   router.push("/cardCreator");
 };
-const showModal = () => (state.isModalVisible = true);
+const showTransferModal = () => {
+  state.isTransferModalVisible = true;
+  console.log("modal?", state.isTransferModalVisible)
+}
 const closeModal = () => {
-  state.isModalVisible = false;
+  state.isTransferModalVisible = false;
   loadCard();
 };
 </script>
