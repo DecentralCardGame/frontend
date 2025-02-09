@@ -7,7 +7,7 @@
     >
       <div class="max-w-[18rem]">
           Build your Encounter by selecting Cards for a draw list.
-          The opponent of the encounter will draw cards exactly in this order.
+          The AI of the encounter will draw cards exactly in this order.
         <div class="my-5" v-if="true">
           1. Step - Select HQ
         </div>
@@ -102,43 +102,42 @@
 
 
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
+      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-14 h-[100vh] mt-0 bg-[#552026] 
             max-lg:w-full max-lg:h-full max-lg:p-4"
     >
       Cards added - {{ cardsAdded }}/40
       <div
         v-for="(item, index) in drawList" :key="item.id" 
-        draggable
+      >
+        <div class="flex flex-row w-full h-6 mb-1 bg-white text-black select-none"
+          draggable="true"
           @drop="onDrop($event, index)"
           @dragover.prevent
           @dragenter.prevent
-      >
-        <div class="flex flex-row h-6 mb-1 bg-white text-black select-none"
           @dragstart="startDrag($event, index)"
           @click="removeCard(index)"
         >
-          <div>
+          <div class="w-6 flex-none">
             {{item.count}}x  
           </div>
-          <img
-            src="@/assets/minicardframe/ActionFrameNature.png"
-            class="w-6"
-            :alt="' classbutton'"
-          >
-            {{ item.name }} - {{ item.cost }}
-          <img
-            src="@/assets/minicardframe/ActionFrameNature.png"
-            class="w-6 scale-x-[-1]"
-            :alt="' classbutton'"
-          >
-          <div
-            class="w-full bg-black"
-            draggable
-              @drop="onDrop($event, index)"
-              @dragover.prevent
-              @dragenter.prevent
-          >
+          <div class="flex-1 flex items-center justify-between">
+            <img
+              :src="getMiniFrame(item)"
+              class="w-[1.6rem] h-full"
+            >
+            {{ item.name }}
+            <div class="flex items-center">
+              <div class="w-5 h-5 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full text-sm">
+                {{ item.cost }}
+              </div>
+              <img
+                :src="getMiniFrame(item)"
+                class="w-[1.6rem] h-full scale-x-[-1]"
+              >
+            </div>
+
           </div>
+
         </div>
 
       </div>
@@ -237,11 +236,11 @@ watch(drawList.value, () => {
   })
   if (hq) {
     // change filters to cards only matching HQ
-    galleryFilters.value.hq = false;
     galleryFilters.value.nature = hq.class.Nature;
     galleryFilters.value.mysticism = hq.class.Mysticism;
     galleryFilters.value.technology = hq.class.Technology;
     galleryFilters.value.culture = hq.class.Culture;
+    galleryFilters.value.hq = false;
     hqSelected.value = true;
 
     // remove all cards that do not match hqs color identity
@@ -374,6 +373,29 @@ const removeCard = (index) => {
     console.log(drawList.value[index])
     drawList.value[index].count--;
   }
+}
+
+const getMiniFrame = (item) => {
+  console.log("miniframe", item)
+  var cardClass = ""
+  if (item.type == "Headquarter")
+    return "icon/minicardframe/HQFrame.png";
+  else {
+    if (R.countBy((x) => x === true)(R.values(item.class)).true > 1)
+      cardClass = "MultiClass";
+    else {
+      for (var property in item.class) {
+        if (item.class[property] === true) {
+          cardClass = property;
+          break;
+        }
+      }
+    }
+
+
+    console.log("icon/minicardframe/"+item.type+"Frame"+cardClass+".png", cardClass)
+  }
+    return "icon/minicardframe/"+item.type+"Frame"+cardClass+".png";
 }
 
 const publish = () => {
