@@ -109,7 +109,7 @@
       <div
         v-for="(item, index) in drawList" :key="item.id" 
       >
-        <div class="flex flex-row w-full h-6 mb-1 bg-white text-black select-none"
+        <div class="flex flex-row w-full h-6 mb-2 bg-white text-black select-none cursor-grab"
           draggable="true"
           @drop="onDrop($event, index)"
           @dragover.prevent
@@ -123,7 +123,7 @@
           <div class="flex-1 flex items-center justify-between">
             <img
               :src="getMiniFrame(item)"
-              class="w-[1.6rem] h-full"
+              class="w-[1.5rem] h-full overflow-visible"
             >
             {{ item.name }}
             <div class="flex items-center">
@@ -364,6 +364,18 @@ const startDrag = (evt, index) => {
 const onDrop = (evt, targetIndex) => {
   if (targetIndex == 0) targetIndex = 1;
   drawList.value = R.move(dragFrom, targetIndex, drawList.value);
+
+//  console.log(drawList)
+  let newList = []
+  for (let entry of drawList.value) {
+    console.log("entry", entry)
+    console.log("R.last", R.last(newList))
+    if (R.last(newList) && R.last(newList).id == entry.id) R.last(newList).count += entry.count;
+    else newList.push(entry);
+  }
+  drawList.value = newList;
+
+
 }
 
 const removeCard = (index) => {
@@ -376,7 +388,6 @@ const removeCard = (index) => {
 }
 
 const getMiniFrame = (item) => {
-  console.log("miniframe", item)
   var cardClass = ""
   if (item.type == "Headquarter")
     return "icon/minicardframe/HQFrame.png";
@@ -391,9 +402,6 @@ const getMiniFrame = (item) => {
         }
       }
     }
-
-
-    console.log("icon/minicardframe/"+item.type+"Frame"+cardClass+".png", cardClass)
   }
     return "icon/minicardframe/"+item.type+"Frame"+cardClass+".png";
 }
