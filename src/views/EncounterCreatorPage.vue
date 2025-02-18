@@ -1,24 +1,31 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
-    <div
-      v-if="loggedIn"
-      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4 "
+    <!-- left panel - filters -->
+    <div class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center 
+      lg:p-16 h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 "
     >
-      <div class="max-w-[18rem]">
+      <div v-if="!loggedIn">
+          You are not logged in. <br>
+          Please login to create an encounter.
+      </div>
+      <div v-if="loggedIn"
+        class="max-w-[18rem]">
           Build your Encounter by selecting Cards for a draw list.
           The AI of the encounter will draw cards exactly in this order.
-        <div class="my-5" v-if="true">
-          1. Step - Select HQ
+        <div class="my-5" v-if="!hqSelected">
+          1. Step - Select HQ <br>
+          Use the class filters below to show matching HQs only.
+        </div>
+        <div class="my-5" v-if="hqSelected">
+          2. Step - Add Cards <br>
+          Use the type filters below to show matching Card types only.
         </div>
         <div
           v-if="filtersVisible"
           class="space-y-6 justify-self-center"
         >
           <GalleryFilterImageChooser v-if="!hqSelected" :options="classOptions" />
-
           <GalleryFilterImageChooser v-if="hqSelected" :options="typeOptions" />
-
           <div class="">
             <p>Search for</p>
             <div class="space-y-4">
@@ -38,18 +45,11 @@
               />
             </div>
           </div>
-
-
-
-          <div class="space-y-4">
-
-          </div>
-
         </div>
-        
       </div>
     </div>
 
+    <!-- middle panel - card selection -->
     <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
@@ -82,33 +82,28 @@
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />
       </div>
-
       <GalleryComponent
         class="p-16"
         :cards-2per-page="galleryFilters.cardsPerPage"
         :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="addCardToEncounter"
       />
-      
     </div>
 
+    <!-- right panel - enter specs -->
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] 
             max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-scroll relative"
     >
-      
       <CCInput
         class="my-5"
         v-model="encounterName"
         placeholder="Encounter Title"
       />
-
+      <!-- image upload -->
       <div class="mb-5">
         <div v-if="cropImage == ''">
-          <label
-            for="dropzone-file"
-            class=""
-          >
+          <label for="dropzone-file">
             <div
               class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
             >
@@ -131,8 +126,7 @@
           alt="check"
         >
       </div>
-
-      <div >
+      <div>
         <BaseCCButton
           :type="Color.RED"
           @click="publish()"
@@ -140,9 +134,8 @@
           Publish Encounter
         </BaseCCButton>
       </div>
-
+      <!-- Added cards section -->
       <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
-      
       <div
         v-for="(item, index) in drawList" :key="item.id" 
       >
@@ -165,10 +158,8 @@
                 class="w-[1.6rem] h-full"
               >
             </div>
-
             <!-- Center Text -->
             <span class="flex-1 text-center">{{ item.name }}</span>
-
             <!-- Right Section (Blue Circle + Image) -->
             <div class="flex items-center">
               <div class="w-5 h-5 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full text-sm">
@@ -188,16 +179,8 @@
         @dragover.prevent
         @dragenter.prevent>
       </div>
-
     </div>
-
   </div>
-
-  <CardviewModal
-    v-if="isCardViewModalVisible"
-    :id="cardViewModalCardId"
-    @close="isCardViewModalVisible = false"
-  />
 </template>
 
 <script setup lang="ts">
