@@ -39,14 +39,7 @@
             </div>
           </div>
 
-          <div class="">
-            <BaseCCButton
-              :type="Color.RED"
-              @click="publish()"
-            >
-              Publish Encounter
-            </BaseCCButton>
-          </div>
+
 
           <div class="space-y-4">
 
@@ -60,14 +53,14 @@
     <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
-          <div class="flex justify-center max-md:hidden md:justify-between">
+          <div class="flex justify-start max-md:hidden md:justify-between">
             <p class="md:text-xl lg:text-lg xl:text-xl  my-auto">
               {{ cardList.length }} Results
             </p>
           </div>
           <div>
             <p class="md:text-4xl lg:text-2xl xl:text-4xl  text-center">
-              Gallery
+              Encounter
             </p>
           </div>
           <div class="flex space-x-2">
@@ -90,7 +83,6 @@
         <div class="mt-8 h-1 rounded w-full bg-white" />
       </div>
 
-
       <GalleryComponent
         class="p-16"
         :cards-2per-page="galleryFilters.cardsPerPage"
@@ -100,16 +92,61 @@
       
     </div>
 
-
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-center lg:p-14 h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4"
+      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] 
+            max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-scroll relative"
     >
-      Cards added - {{ cardsAdded }}/40
+      
+      <CCInput
+        class="my-5"
+        v-model="encounterName"
+        placeholder="Encounter Title"
+      />
+
+      <div class="mb-5">
+        <div v-if="cropImage == ''">
+          <label
+            for="dropzone-file"
+            class=""
+          >
+            <div
+              class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+            >
+              <span class="flex items-center">+</span>
+            </div>
+            <input
+              id="dropzone-file"
+              type="file"
+              class="hidden"
+              @change="inputFile"
+            >
+          </label>
+        </div>
+        <img
+          v-if="cropImage !== ''"
+          class="h-[24rem] object-none"
+          width="300"
+          height="400"
+          :src="cropImage"
+          alt="check"
+        >
+      </div>
+
+      <div >
+        <BaseCCButton
+          :type="Color.RED"
+          @click="publish()"
+        >
+          Publish Encounter
+        </BaseCCButton>
+      </div>
+
+      <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
+      
       <div
         v-for="(item, index) in drawList" :key="item.id" 
       >
-        <div class="flex flex-row w-full h-6 mb-2 bg-white text-black select-none cursor-grab"
+        <div class="flex flex-row w-full h-6 mb-2 select-none cursor-grab"
           draggable="true"
           @drop="onDrop($event, index)"
           @dragover.prevent
@@ -117,41 +154,45 @@
           @dragstart="startDrag($event, index)"
           @click="removeCard(index)"
         >
-          <div class="w-6 flex-none">
+          <div class="w-6 flex-none bg-transparent">
             {{item.count}}x  
           </div>
-          <div class="flex-1 flex items-center justify-between">
-            <img
-              :src="getMiniFrame(item)"
-              class="w-[1.5rem] h-full overflow-visible"
-            >
-            {{ item.name }}
+          <div class="flex-1 flex items-center justify-between text-black bg-white items-center w-full p-0 m-0">
+            <!-- Left Section -->
+            <div class="flex items-center">
+              <img
+                :src="getMiniFrame(item)"
+                class="w-[1.6rem] h-full"
+              >
+            </div>
+
+            <!-- Center Text -->
+            <span class="flex-1 text-center">{{ item.name }}</span>
+
+            <!-- Right Section (Blue Circle + Image) -->
             <div class="flex items-center">
               <div class="w-5 h-5 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full text-sm">
                 {{ item.cost }}
               </div>
               <img
                 :src="getMiniFrame(item)"
-                class="w-[1.6rem] h-full scale-x-[-1]"
+                class="w-[1.6rem] h-full scale-x-[-1] translate-x-[10%]"
               >
             </div>
-
           </div>
-
         </div>
-
       </div>
-      <div class="h-6 mb-1"
-        @drop="onDrop($event, drawList.length)"
+      <!-- this creates an empty drop area below the list -->
+      <div class="h-8"
+        @drop="onDrop($event, drawList.length-1)"
         @dragover.prevent
         @dragenter.prevent>
       </div>
 
-
     </div>
 
-
   </div>
+
   <CardviewModal
     v-if="isCardViewModalVisible"
     :id="cardViewModalCardId"
@@ -161,7 +202,8 @@
 
 <script setup lang="ts">
 import * as R from "ramda";
-import { onMounted, watch, ref } from "vue";
+import { env } from "@/env";
+import { onMounted, watch, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
@@ -189,6 +231,7 @@ import { Color } from "@/components/utils/color";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
 import { normalizeQuery } from "@/utils/utils";
+import { uploadImg } from "@/components/utils/utils.js";
 import CCInput from "@/components/elements/CCInput/CCInput.vue";
 import {
   CardRarity,
@@ -220,13 +263,14 @@ const { encounterDo, encounterCreate, encounterClose } = useTx();
 const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncountersWithImage } = useQuery();
 
 const drawList = ref([]);
+let cropImage = ref('');
+let encounterName;
 let filtersVisible = ref(true);
 let dragFrom = -1;
 let hqSelected = ref(false);
 let cardsAdded = 0;
 
 watch(drawList.value, () => {
-  console.log("Drawlist watch", drawList)
   let hq = undefined;
   drawList.value.forEach((item, index) => {
     if (item.type == "Headquarter") {
@@ -251,7 +295,6 @@ watch(drawList.value, () => {
         } 
       }
     })
-
   }
   else {
     galleryFilters.value.hq = true;
@@ -264,7 +307,7 @@ watch(drawList.value, () => {
     galleryFilters.value.culture = true;
     hqSelected.value = false;
   }
-  cardsAdded = R.reduce(R.add, 0, R.pluck("count", drawList.value))
+  updateCardsAdded();
 })
 
 const revertSort = ref(false);
@@ -318,8 +361,7 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 ];
 
 onMounted(() => {
-  //console.log("address", address)
-  galleryFilters.value.owner = '';address;
+  galleryFilters.value.owner = address;
   
   galleryFilters.value.status = "playable";[Status.prototype];
   galleryFilters.value.hq = true;
@@ -336,6 +378,19 @@ onMounted(() => {
     })
 
 });
+
+const inputFile = (event) => {
+
+  let file = event.target.files[0];
+
+  uploadImg(file, env.cardImgMaxKB, (result) => {
+    if (result.startsWith("Error")) {
+      this.notifyFail("Failed to Upload", result);
+      return;
+    }
+    cropImage.value = result;
+  });
+}
 
 const addCardToEncounter = (card: Card) => {
   if (!R.isEmpty(drawList.value) && R.last(drawList.value).id == card.id && card.type != "Headquarter") {
@@ -355,6 +410,7 @@ const addCardToEncounter = (card: Card) => {
     else
       drawList.value.splice(0,0, newEntry);
   }
+  updateCardsAdded();
 }
 
 const startDrag = (evt, index) => {
@@ -362,29 +418,25 @@ const startDrag = (evt, index) => {
 }
 
 const onDrop = (evt, targetIndex) => {
+  console.log(evt, targetIndex)
   if (targetIndex == 0) targetIndex = 1;
   drawList.value = R.move(dragFrom, targetIndex, drawList.value);
 
-//  console.log(drawList)
   let newList = []
   for (let entry of drawList.value) {
-    console.log("entry", entry)
-    console.log("R.last", R.last(newList))
     if (R.last(newList) && R.last(newList).id == entry.id) R.last(newList).count += entry.count;
     else newList.push(entry);
   }
-  drawList.value = newList;
-
-
+  drawList.value.splice(0, drawList.value.length, ...newList);
+  updateCardsAdded();
 }
 
 const removeCard = (index) => {
   if(drawList.value[index].count == 1)
     drawList.value.splice(index, 1);
-  else {
-    console.log(drawList.value[index])
+  else 
     drawList.value[index].count--;
-  }
+  updateCardsAdded();
 }
 
 const getMiniFrame = (item) => {
@@ -403,16 +455,21 @@ const getMiniFrame = (item) => {
       }
     }
   }
-    return "icon/minicardframe/"+item.type+"Frame"+cardClass+".png";
+  return "icon/minicardframe/"+item.type+"Frame"+cardClass+".png";
+}
+
+const updateCardsAdded = () => {
+  cardsAdded = R.reduce(R.add, 0, R.pluck("count", drawList.value));
 }
 
 const publish = () => {
-  console.log("publish")
-  let name = "test"
-  let drawlist = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11,12,12,12,13,13,13,14]
-  let parameters = {}
-  let image = ""
-  encounterCreate(name, drawlist, parameters, image, (res) =>{
+
+  // unfold drawlist
+  let cards = R.flatten( R.map(x => R.repeat(x.id, x.count), drawList.value) )
+
+  let parameters = {};
+  let image = cropImage;
+  encounterCreate(encounterName, cards, parameters, image, (res) =>{
     console.log("res", res)
   },
   (err) => {

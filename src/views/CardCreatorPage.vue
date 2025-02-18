@@ -952,7 +952,7 @@ import { useQuery } from "@/def-composables/useQuery";
 import { useUser } from "@/def-composables/useUser";
 import { isASCII } from "@/utils/utils";
 import { Coin } from "@/model/Coin";
-import { computed, type ComputedRef, onMounted, reactive } from "vue";
+import { computed, type ComputedRef, onMounted } from "vue";
 
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
