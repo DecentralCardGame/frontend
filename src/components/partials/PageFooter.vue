@@ -48,11 +48,9 @@
           </router-link>
         </div>
         <div>
-          <a
-            href="https://github.com/DecentralCardGame/whitepaper/blob/master/whitepaper.pdf" target="_blank"
-          >
+          <router-link :to="{ name: 'Whitepaper' }">
             Whitepaper
-          </a>
+          </router-link>
         </div>
         <div>
           <router-link :to="{ name: 'Imprint' }">

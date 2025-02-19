@@ -1,3 +1,4 @@
+import * as R from "ramda";
 import { Coin } from "./Coin";
 
 export class ChainCard {
@@ -142,7 +143,7 @@ export class Card {
     // in the following part we check things that are only required for specific card types
     if (this.type !== "Headquarter") {
       cardContent.CastingCost = this.CastingCost;
-      if (!this.AdditionalCost) {
+      if (this.AdditionalCost && R.keys(this.AdditionalCost).length > 0) {
         cardContent.AdditionalCost = this.AdditionalCost;
       }
     }

@@ -44,7 +44,7 @@
       >
     </div>
     <div
-      class="bg-center bg-cover bg-[url('@/assets/figma/Car.jpeg')] pt-10 sm:pt-32"
+      class="bg-center bg-cover bg-[url('@/assets/figma/pixelart.png')] pt-10 sm:pt-32"
     >
       <div
         class="max-w-[70rem] flex flex-row flex-wrap justify-evenly px-8 py-10 bg-cc-yellow/75 b-10 mb-32 xl:mx-auto mx-10"
