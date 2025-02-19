@@ -93,7 +93,7 @@
     <!-- right panel - enter specs -->
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-scroll relative"
+            max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-auto relative"
     >
       <CCInput
         class="my-5"
@@ -105,9 +105,9 @@
         <div v-if="cropImage == ''">
           <label for="dropzone-file">
             <div
-              class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+              class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-2xl font-bold border-4 border-gray-100 border-opacity-50"
             >
-              <span class="flex items-center">+</span>
+              <span class="flex items-center">upload image</span>
             </div>
             <input
               id="dropzone-file"
@@ -179,7 +179,10 @@
         @dragover.prevent
         @dragenter.prevent>
       </div>
+
+      <div class="h-[100vh] bg-[#552026]"></div>
     </div>
+
   </div>
 </template>
 
@@ -188,6 +191,7 @@ import * as R from "ramda";
 import { env } from "@/env";
 import { onMounted, watch, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import {useNotifications} from "@/def-composables/useNotifications";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 import techActive from "@/assets/figma/ClassesButtons/tech.png";
@@ -228,6 +232,7 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
 
+const {notifyFail} = useNotifications()
 const route = useRoute();
 const router = useRouter();
 const { loggedIn } = useLoggedIn();
@@ -345,15 +350,12 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 
 onMounted(() => {
   galleryFilters.value.owner = address;
-  
   galleryFilters.value.status = "playable";[Status.prototype];
   galleryFilters.value.hq = true;
 
   let filters = pageQueryFromGalleryFilters();
-  console.log("pagequeryfilters", filters);
 
   loadQueryCardList(filters);
-  console.log("galleryFilters", galleryFilters)
 
   queryQEncounters()
     .then((res) => {
@@ -363,12 +365,11 @@ onMounted(() => {
 });
 
 const inputFile = (event) => {
-
   let file = event.target.files[0];
 
   uploadImg(file, env.cardImgMaxKB, (result) => {
     if (result.startsWith("Error")) {
-      this.notifyFail("Failed to Upload", result);
+      notifyFail("Failed to Upload", result);
       return;
     }
     cropImage.value = result;
@@ -451,8 +452,9 @@ const publish = () => {
   let cards = R.flatten( R.map(x => R.repeat(x.id, x.count), drawList.value) )
 
   let parameters = {};
-  let image = cropImage;
-  encounterCreate(encounterName, cards, parameters, image, (res) =>{
+  console.log("cropimage", cropImage)
+
+  encounterCreate(encounterName, cards, parameters, cropImage.value, (res) =>{
     console.log("res", res)
   },
   (err) => {

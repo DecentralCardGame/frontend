@@ -1,7 +1,7 @@
 import cardRules from "@/def-composables/cardRules.json";
 import { ref, type Ref } from "vue";
 import { Resolver } from "@stoplight/json-ref-resolver";
-
+import * as R from "ramda";
 
 const useCardRulesInstance = () => {
   const resolver = new Resolver();
