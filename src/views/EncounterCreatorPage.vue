@@ -359,21 +359,17 @@ onMounted(() => {
 
   loadQueryCardList(filters);
 
-  console.log("route q", route.query)
-
   queryQEncounterWithImage(route.query.id)
     .then((res) => {
       cropImage.value = res.encounter.image;
       encounterName = res.encounter.encounter.name
 
-      console.log("queryQEncounter res", res);
       res.encounter.encounter.Drawlist.forEach(entry => {
         loadCard(entry).then(res => {
           addCardToEncounter(res);
         })
       });
-    })
-
+    });
 });
 
 const inputFile = (event) => {
@@ -426,7 +422,6 @@ const startDrag = (evt, index) => {
 }
 
 const onDrop = (evt, targetIndex) => {
-  console.log(evt, targetIndex)
   if (targetIndex == 0) targetIndex = 1;
   drawList.value = R.move(dragFrom, targetIndex, drawList.value);
 
