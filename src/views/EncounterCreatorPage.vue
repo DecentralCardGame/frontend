@@ -119,7 +119,7 @@
         </div>
         <img
           v-if="cropImage !== ''"
-          class="h-[24rem] object-none"
+          class="h-[24rem] object-scale-down"
           width="300"
           height="400"
           :src="cropImage"
@@ -252,7 +252,7 @@ const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncou
 
 const drawList = ref([]);
 let cropImage = ref('');
-let encounterName;
+let encounterName = "";
 let filtersVisible = ref(true);
 let dragFrom = -1;
 let hqSelected = ref(false);
@@ -365,7 +365,7 @@ onMounted(() => {
 });
 
 const inputFile = (event) => {
-  let file = event.target.files[0];
+  let file = event.target.files[0]; 
 
   uploadImg(file, env.cardImgMaxKB, (result) => {
     if (result.startsWith("Error")) {
@@ -373,7 +373,7 @@ const inputFile = (event) => {
       return;
     }
     cropImage.value = result;
-  });
+  }, 1920, 1080);
 }
 
 const addCardToEncounter = (card: Card) => {
@@ -447,18 +447,33 @@ const updateCardsAdded = () => {
 }
 
 const publish = () => {
+  // before publishing check stuff
+  if (!hqSelected.value) {
+    notifyFail(
+      "HQ",
+      "An Encounter needs a HQ. Add one please.",
+    );
+    return;
+  }
+  if (encounterName === "") {
+    notifyFail(
+      "Name",
+      "An Encounter needs a Name. Add one please.",
+    );
+    return;
+  }
 
   // unfold drawlist
   let cards = R.flatten( R.map(x => R.repeat(x.id, x.count), drawList.value) )
 
   let parameters = {};
-  console.log("cropimage", cropImage)
 
   encounterCreate(encounterName, cards, parameters, cropImage.value, (res) =>{
-    console.log("res", res)
+    console.log("success", res)
   },
   (err) => {
-    console.log("err", err)
+    console.error("err", err)
+    notifyFail("Failed to Upload", err.message);
   });
 }
 
