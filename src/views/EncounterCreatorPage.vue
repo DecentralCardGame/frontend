@@ -191,6 +191,7 @@ import * as R from "ramda";
 import { env } from "@/env";
 import { onMounted, watch, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useCards } from "@/def-composables/useCards";
 import {useNotifications} from "@/def-composables/useNotifications";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
@@ -222,6 +223,7 @@ import { uploadImg } from "@/components/utils/utils.js";
 import CCInput from "@/components/elements/CCInput/CCInput.vue";
 import {
   CardRarity,
+  cardTypeToJSON,
   Status,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import { Card } from "@/model/Card";
@@ -247,7 +249,7 @@ const {
   galleryFiltersFromPageQuery,
 } = useGallery();
 const { encounterDo, encounterCreate, encounterClose } = useTx();
-
+const { getCard } = useCards();
 const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncountersWithImage } = useQuery();
 
 const drawList = ref([]);
@@ -357,9 +359,19 @@ onMounted(() => {
 
   loadQueryCardList(filters);
 
-  queryQEncounters()
+  console.log("route q", route.query)
+
+  queryQEncounterWithImage(route.query.id)
     .then((res) => {
+      cropImage.value = res.encounter.image;
+      encounterName = res.encounter.encounter.name
+
       console.log("queryQEncounter res", res);
+      res.encounter.encounter.Drawlist.forEach(entry => {
+        loadCard(entry).then(res => {
+          addCardToEncounter(res);
+        })
+      });
     })
 
 });
@@ -375,6 +387,18 @@ const inputFile = (event) => {
     cropImage.value = result;
   }, 1920, 1080);
 }
+
+const loadCard = async (cardId: number) => {
+  let card: Card = await getCard(cardId);
+  if (card.Content) {
+    return card;
+  } else if (!card.owner) {
+    console.error("card without content and owner: ", card);
+  } else {
+    console.error("card without content: ", card);
+  }
+  return card;
+};
 
 const addCardToEncounter = (card: Card) => {
   if (!R.isEmpty(drawList.value) && R.last(drawList.value).id == card.id && card.type != "Headquarter") {

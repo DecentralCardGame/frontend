@@ -138,11 +138,11 @@ export default function useDecentralCardGameCardchainCardchain() {
     }, options);
   }
   
-  const QueryQEncounter = (cardIds: string,  options: any) => {
-    const key = { type: 'QueryQCardContents',  cardIds };    
+  const QueryQEncounter = (ids: string,  options: any) => {
+    const key = { type: 'QueryQCardContents',  ids };    
     return useQuery([key], () => {
-      const { cardIds } = key
-      return  client.DecentralCardGameCardchainCardchain.query.queryQCardContents(cardIds).then( res => res.data );
+      const { ids } = key
+      return  client.DecentralCardGameCardchainCardchain.query.queryQCardContents(ids).then( res => res.data );
     }, options);
   }
 
