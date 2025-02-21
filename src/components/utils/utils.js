@@ -186,7 +186,7 @@ export function shallowClone (obj) {
 
 // utility functions for uploading and downloading stuff
 
-export function uploadImg (file, maxKB, callback) {
+export function uploadImg (file, maxKB, callback, sizeX=0, sizeY=0) {
   // let resolution = {height: 1300, width: 838} // this is outdated because now the cropper does it
 
   const reader = new FileReader()
@@ -195,19 +195,36 @@ export function uploadImg (file, maxKB, callback) {
     var image = new Image()
     image.onload = function () {
       // Resize the image
-      let canvas = document.createElement('canvas')
-      //let maxSize = resolution.height
-      let width = image.width
-      let height = image.height
-      //if (height > maxSize) {
-      //    width *= maxSize / height
-      //    height = maxSize
-      //}
-      canvas.width = width
-      canvas.height = height
-      canvas.getContext('2d').drawImage(image, 0, 0, width, height)
+      let canvas = document.createElement('canvas');
 
-      let quality = 0.9
+      let targetWidth = sizeX == 0 ? image.width : sizeX;
+      let targetHeight = sizeY == 0 ? image.height : sizeY;
+
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+
+      if (sizeX !== 0 || sizeY !== 0) {
+        // Fill background with black (for padding)
+        canvas.getContext('2d').fillStyle = "black";
+        canvas.getContext('2d').fillRect(0, 0, targetWidth, targetHeight);
+
+        // Calculate scaling while maintaining aspect ratio
+        const scale = Math.min(targetWidth / image.width, targetHeight / image.height);
+        const drawWidth = image.width * scale;
+        const drawHeight = image.height * scale;
+
+        // Center the image
+        const offsetX = (targetWidth - drawWidth) / 2;
+        const offsetY = (targetHeight - drawHeight) / 2;
+
+        // Draw the scaled image on the canvas
+        canvas.getContext('2d').drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+      }
+      else {
+        canvas.getContext('2d').drawImage(image, 0, 0, targetWidth, targetHeight);  
+      }
+
+      let quality = 0.9;
       let newDataURL = canvas.toDataURL('image/jpeg', quality)
       console.log("quality", quality, "size", Math.round(newDataURL.length)/1000)
       while (Math.round(newDataURL.length)/1000 > maxKB) {

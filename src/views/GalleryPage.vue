@@ -1,13 +1,10 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
-    
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
             max-lg:w-full max-lg:h-full max-lg:p-4 "
     >
-
       <div class="">
-
         <div class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6">
           <BaseCCButton
             :type="Color.RED"
@@ -16,7 +13,6 @@
             Gallery Filters
           </BaseCCButton>
         </div>
-
         <div
           v-if="filtersVisible"
           class="space-y-6 justify-self-center"
@@ -184,6 +180,7 @@ import {
   Status,
 } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
+import { Card } from "@/model/Card";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
@@ -267,17 +264,19 @@ onMounted(() => {
       cardList.value = (query as {cards?: number[]}).cards!
     } else {
       galleryFiltersFromPageQuery(normalizeQuery(route.query));
+      router.push({ path: "gallery", query: query });
       loadQueryCardList(pageQueryFromGalleryFilters());
     }
   } else if (cardList.value.length == 0) {
+    router.push({ path: "gallery", query: query });
     loadQueryCardList(pageQueryFromGalleryFilters());
   } else {
     router.push({ path: "gallery", query: pageQueryFromGalleryFilters() });
   }
 });
 
-const openCardviewModel = (cardId: number) => {
-  cardViewModalCardId.value = Number(cardId);
+const openCardviewModel = (card: Card) => {
+  cardViewModalCardId.value = Number(card.id);
   //router.replace({ name: "CardView", params: { id: cardId } });
   isCardViewModalVisible.value = true;
 };
