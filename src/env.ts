@@ -10,6 +10,8 @@ export const env = {
   cardImgMaxKB: import.meta.env.VITE_APP_CARDIMG_MAXKB,
   cardImgSizeX: import.meta.env.VITE_APP_CARDIMG_SIZE_X,
   cardImgSizeY: import.meta.env.VITE_APP_CARDIMG_SIZE_Y,
+  gameclientResX: import.meta.env.VITE_APP_GAMECLIENT_RES_X,
+  gameclientResY: import.meta.env.VITE_APP_GAMECLIENT_RES_Y,
 };
 
 export const setFallback = (apiFallback: boolean) => {
