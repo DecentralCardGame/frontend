@@ -145,6 +145,42 @@
             </div>
           </template>
         </UserViewHeadingContainer>
+
+        <UserViewHeadingContainer>
+          <template #heading>
+            Encounters
+          </template>
+          <template #body>
+            <div class="py-6">
+              <div class="py-1"
+                v-for="(encounter, key) in state.ownEncounters"
+                :key="key">
+                  <RouterCCButton
+
+                  :type="Color.YELLOW"
+                  :to="{
+                    name: 'EncounterCreator',
+                    query: { id: encounter.id },
+                  }"
+                >
+                  Edit {{ encounter.name }}
+                </RouterCCButton>
+              </div>
+              <div class="py-1">
+                <RouterCCButton
+                  :type="Color.YELLOW"
+                  :to="{
+                    name: 'EncounterCreator',
+                    query: { id: -1 },
+                  }"
+                >
+                  Create new Encounter
+                </RouterCCButton>
+              </div>
+            </div>
+          </template>
+        </UserViewHeadingContainer>
+
         <UserViewHeadingContainer>
           <template #heading>
             Recent Activity
@@ -196,6 +232,7 @@
 </template>
 
 <script setup lang="ts">
+import * as R from "ramda";
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
@@ -220,6 +257,7 @@ import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCa
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
 
 const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
+const { queryQEncounters, queryQEncountersWithImage } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
@@ -237,6 +275,7 @@ const initialState: {
   userIsUser: ComputedRef<boolean>;
   img: string;
   matches: { [key: string]: Match };
+  ownEncounters: Array<{ id: number, name: string }>;
 } = {
   isChooseModalVisible: false,
   addr: "",
@@ -245,6 +284,7 @@ const initialState: {
   userIsUser: computed(() => loggedIn.value && state.addr == address.value),
   img: "jaja",
   matches: {},
+  ownEncounters: [],
 };
 
 const state = reactive(initialState);
@@ -279,7 +319,8 @@ const init = () => {
   getUser();
   getCoins();
   getMatches();
-  console.log(state.user);
+  getEncounters();
+  console.log("USER", state);
 };
 
 watch(() => route.params.id, init);
@@ -319,6 +360,14 @@ const getMatches = () => {
     },
   );
 };
+
+const getEncounters = () => {
+  queryQEncounters()
+  .then((res) => {
+    state.ownEncounters = R.map(y => ({id: y.Id, name: y.name}), R.filter(x => x.owner == state.addr, res.encounters))
+  })
+  console.log("ownEncounters", state.ownEncounters)
+}
 
 const register = () => registerForCouncil(getUser, console.log);
 const deRegister = () => rewokeCouncilRegistration(getUser, console.log);

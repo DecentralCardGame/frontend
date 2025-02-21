@@ -138,6 +138,14 @@ export default function useDecentralCardGameCardchainCardchain() {
     }, options);
   }
   
+  const QueryQEncounter = (ids: string,  options: any) => {
+    const key = { type: 'QueryQCardContents',  ids };    
+    return useQuery([key], () => {
+      const { ids } = key
+      return  client.DecentralCardGameCardchainCardchain.query.queryQCardContents(ids).then( res => res.data );
+    }, options);
+  }
+
   return {QueryParams,QueryQCard,QueryQCardContent,QueryQUser,QueryQCardchainInfo,QueryQVotingResults,QueryQCards,QueryQMatch,QueryQSet,QueryQSellOffer,QueryQCouncil,QueryQMatches,QueryQSellOffers,QueryQServer,QueryQSets,QueryRarityDistribution,QueryQCardContents,
   }
 }

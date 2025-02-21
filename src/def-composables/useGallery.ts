@@ -121,7 +121,6 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
 };
 
 const loadQueryCardList = (query: PageQuery): void => {
-  router.push({ path: "gallery", query: query });
 
   queryQCards(query, {
     paramsSerializer: constructAssRetardetQueryParams,

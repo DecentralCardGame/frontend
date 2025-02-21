@@ -39,6 +39,18 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   queryGranteeGrants: (res) => {
     return res.data;
   },
+  queryQEncounter: (res) => {
+    return res.data;
+  },
+  queryQEncounterWithImage: (res) => {
+    return res.data;
+  },
+  queryQEncounters: (res) => {
+    return res.data;
+  },
+  queryQEncountersWithImage: (res) => {
+    return res.data;
+  },
 };
 
 // Do not touch

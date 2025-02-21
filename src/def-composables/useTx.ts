@@ -169,6 +169,9 @@ export const useTxInstance: () => {
   multiVoteCard: (votes: SingleVote[], then: (res: any) => void, err: (res: any) => void) => void;
   createCouncil: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
   setProfileCard: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
+  encounterDo: (encounterId: number, user: string, then: (res: any) => void, err: (res: any) => void) => void;
+  encounterCreate: (name: string, Drawlist: number[], parameters: { [key: string]: string }, image: string, then: (res: any) => void, err: (res: any) => void) => void;
+  encounterClose: (encounterId: number, user: string, won: boolean, then: (res: any) => void, err: (res: any) => void) => void;
   send: (coins: CompatCoin[], to: string, then: (res: any) => void, err: (res: any) => void) => void
 } = () => {
   const client = useClient();
@@ -568,10 +571,65 @@ export const useTxInstance: () => {
     );
   };
 
+  const encounterCreate = (
+    name: string,
+    Drawlist: number[],
+    parameters: { [key: string]: string },
+    image: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      new Content({
+        name,
+        Drawlist,
+        parameters,
+        image: btoa(image)
+      }),
+      then,
+      err,
+    );
+  };
+
+  const encounterClose = (
+    encounterId: number,
+    user: string,
+    won: boolean,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      new Content({
+        encounterId,
+        user,
+        won
+      }),
+      then,
+      err,
+    );
+  };
+
+  const encounterDo = (
+    encounterId: number,
+    user: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => {
+    messageScheduler.schedule(
+      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      new Content({
+        encounterId,
+        user
+      }),
+      then,
+      err,
+    );
+  };
+
   return {
     send,
-    registerForCouncil,
-    rewokeCouncilRegistration,
     buyCardScheme,
     saveCardContent,
     addArtwork,
@@ -585,10 +643,42 @@ export const useTxInstance: () => {
     authzGameclient,
     inviteEarlyAccess,
     disinviteEarlyAccess,
+    registerForCouncil,
+    rewokeCouncilRegistration,
     createCouncil,
     commitCouncilResponse,
     revealCouncilResponse,
     restartCouncil,
+    /*
+    changeAlias,
+    setUserBiography,
+    setUserWebsite,
+
+    removeSellOffer,
+    createSellOffer,
+    buyBoosterPack,
+
+    changeArtist,
+
+    transferBoosterPack,
+    openBoosterPack,
+
+    addContributorToSet,
+    removeContributorFromSet,
+    addArtworkToSet,
+    setCardRarity,
+    setSetName,
+    addCardToSet,
+    setSetArtist,
+    createSet,
+    removeCardFromSet,
+    setSetStoryWriter,
+    addStoryToSet,
+    finalizeSet,
+    */
+    encounterDo,
+    encounterClose,
+    encounterCreate,
   };
 };
 
