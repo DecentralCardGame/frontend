@@ -1355,13 +1355,12 @@ export default {
       if ($event === null) {
         this.abilities.splice(index, 1);
       }
-      console.log("abilities after update", this.abilities);
+      console.log("abilities after updateAbility", this.abilities);
 
       // keep in mind this works for action cards, because effects are temporarily stored in this.abilities
       let keywordCount = R.length(
         R.flatten(R.pluck("keywords", this.abilities)),
       );
-      console.log("keywordCount", keywordCount);
       if (keywordCount >= 6 && keywordCount <= 8) {
         this.notifyInfo(
           "Number of Keywords",
@@ -1376,52 +1375,29 @@ export default {
         );
       }
 
-      this.updateRulesTexts();
-    },
-    updateRulesTexts() {
-      this.model.RulesTexts = R.map(
-        this.interactionTextToString,
-        this.abilities,
-      );
-
-      this.updateAdditionalCostText();
-    },
-    updateAdditionalCostText() {
-      let setOrPrepend = (text) => {
-        if (
-          this.model.RulesTexts[0] &&
-          R.equals("Extra", R.take(5, this.model.RulesTexts[0]))
-        )
-          this.model.RulesTexts[0] = text;
-        else this.model.RulesTexts = R.prepend(text, this.model.RulesTexts);
-      };
-
-      if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
-        if (this.model.AdditionalCost.SacrificeCost) {
-          let text =
-            "Extra Cost - Sacrifice " +
-            this.model.AdditionalCost.SacrificeCost.Amount +
-            " Entity.";
-          setOrPrepend(text);
-        } else if (this.model.AdditionalCost.DiscardCost) {
-          let text =
-            "Extra Cost - Discard " +
-            this.model.AdditionalCost.DiscardCost.Amount +
-            " Card.";
-          setOrPrepend(text);
-        } else if (this.model.AdditionalCost.VoidCost) {
-          let text =
-            "Extra Cost - Void " +
-            this.model.AdditionalCost.VoidCost.Amount +
-            " Card.";
-          setOrPrepend(text);
-        }
-      } else {
-        if (
-          this.model.RulesTexts[0] &&
-          R.equals("Extra", R.take(5, this.model.RulesTexts[0]))
-        )
-          this.model.RulesTexts = R.drop(1, this.model.RulesTexts);
+      // this writes the relevant part of the abilities in the new model
+      if (this.model.type !== "Action") {
+        this.model.Abilities = R.map(
+          R.pick(
+            R.keys(
+              this.cardRules.Card.children.Entity.children.Abilities.children
+                .Ability.children,
+            ),
+          ),
+          this.abilities,
+        );
+      }
+      // this writes the relevant part of the effects in the new model
+      else {
+        this.model.Effects = R.map(
+          R.pick(
+            R.keys(
+              this.cardRules.definitions.Card.children.Action.children.Effects
+                .children.Effect.children,
+            ),
+          ),
+          this.abilities,
+        );
       }
     },
     getCardImage() {
@@ -1595,7 +1571,6 @@ export default {
       }
 
       // finalize abilties or effects
-      // this should potentially moved to somewhere else? maybe where abilities are saved
       let newModel = this.model;
 
       if (this.model.type !== "Action") {
@@ -1607,18 +1582,7 @@ export default {
         ) {
           newModel.Abilities = R.clone(this.cardCreatorEditCard.Abilities);
         }
-        // this writes the relevant part of the abilities in the new model
-        else {
-          newModel.Abilities = R.map(
-            R.pick(
-              R.keys(
-                this.cardRules.Card.children.Entity.children.Abilities.children
-                  .Ability.children,
-              ),
-            ),
-            this.abilities,
-          );
-        }
+
         // if an ability was created, but it has no effect, then this should be fixed
         if (newModel.Abilities.length > 0) {
           let effectsList = R.flatten(
@@ -1642,18 +1606,6 @@ export default {
         ) {
           newModel.Effects = R.clone(this.cardCreatorEditCard.Effects);
         }
-        // this writes the relevant part of the effects in the new model
-        else {
-          newModel.Effects = R.map(
-            R.pick(
-              R.keys(
-                this.cardRules.definitions.Card.children.Action.children.Effects
-                  .children.Effect.children,
-              ),
-            ),
-            this.abilities,
-          );
-        }
         // if an ability was created, but it has no effect, then this should be fixed
         if (newModel.Effects.length == 0) {
           this.notifyFail(
@@ -1662,29 +1614,6 @@ export default {
           );
           return;
         }
-      }
-      // check if the old Keywords and RulesTexts should be restored
-      let checkAdditionalCost = () => {
-        return (
-          (this.model.AdditionalCost.SacrificeCost &&
-            this.model.AdditionalCost.SacrificeCost.Amount > 0) ||
-          (this.model.AdditionalCost.DiscardCost &&
-            this.model.AdditionalCost.DiscardCost.Amount > 0) ||
-          (this.model.AdditionalCost.VoidCost &&
-            this.model.AdditionalCost.VoidCost.Amount > 0)
-        );
-      };
-      if (this.mode == Mode.EDIT) {
-        newModel.RulesTexts = this.cardCreatorEditCard.RulesTexts;
-        if (!checkAdditionalCost()) {
-          this.model.AdditionalCost = {};
-        }
-        this.updateAdditionalCostText();
-      } else {
-        if (!checkAdditionalCost()) {
-          this.model.AdditionalCost = {};
-        }
-        this.updateRulesTexts();
       }
 
       newModel.image = this.model.image;
