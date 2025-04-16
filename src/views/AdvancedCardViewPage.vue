@@ -2,14 +2,14 @@
   <div class="h-screen bg-black text-white flex lg:h-[80vh] p-16 lg:p-8"/>
   <CardviewModal
     :id="state.id"
-    @close="$router.back()"
+    @close="onClose"
   />
 </template>
 
 <script setup lang="ts">
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import { onMounted, reactive } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const initialState: {
   id: number;
@@ -18,6 +18,7 @@ const initialState: {
 };
 
 const route = useRoute();
+const router = useRouter();
 const state = reactive(initialState);
 
 onMounted(() => {
@@ -26,4 +27,12 @@ onMounted(() => {
     state.id = id;
   }
 });
+
+const onClose = () => {
+  if (router.options.history.state.back) {
+    router.back();
+  } else {
+    router.push('/');
+  }
+}
 </script>
