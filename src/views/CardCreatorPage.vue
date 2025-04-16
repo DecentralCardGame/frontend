@@ -1597,6 +1597,10 @@ export default {
             return;
           }
         }
+
+        if (this.clearAbilities) {
+          newModel.Abilities = [];
+        }
       } else if (this.model.type === "Action") {
         // check if the old effects should be restored
         if (
@@ -1607,12 +1611,17 @@ export default {
           newModel.Effects = R.clone(this.cardCreatorEditCard.Effects);
         }
         // if an ability was created, but it has no effect, then this should be fixed
-        if (newModel.Effects.length == 0) {
+        if (newModel.Effects.length == 0 &&
+            !this.clearAbilities
+        ) {
           this.notifyFail(
             "No Effects",
             "Card has no effect. Maybe you forgot to add an effect?",
           );
           return;
+        }
+        if (this.clearAbilities) {
+          newModel.Effects = [];
         }
       }
 
