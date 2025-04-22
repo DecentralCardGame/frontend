@@ -496,7 +496,6 @@
                     v-model="model.AdditionalCost.DiscardCost.Amount"
                     :options="getGenericCostRange('DiscardCost')"
                     class="m-2"
-                    @update:model-value="updateAdditionalCostText"
                   />
                   cards from your hand.
                 </span>
@@ -505,7 +504,6 @@
                     v-model="model.AdditionalCost.SacrificeCost.Amount"
                     :options="getGenericCostRange('SacrificeCost')"
                     class="m-2"
-                    @update:model-value="updateAdditionalCostText"
                   />
                   Entitites.
                 </span>
@@ -514,7 +512,6 @@
                     v-model="model.AdditionalCost.VoidCost.Amount"
                     :options="getGenericCostRange('VoidCost')"
                     class="m-2"
-                    @update:model-value="updateAdditionalCostText"
                   />
                   cards from your graveyard.
                 </span>
@@ -1217,7 +1214,7 @@ export default {
       this.model.AdditionalCost[costType] = {
         Amount: 0,
       };
-      this.updateAdditionalCostText();
+      console.log("this.model.AdditionalCost", this.model.AdditionalCost);
     },
     specialCostLabels(wholeString) {
       let countUppers = (x) =>
@@ -1623,6 +1620,14 @@ export default {
         if (this.clearAbilities) {
           newModel.Effects = [];
         }
+      }
+
+      // check additional costs
+      if (!newModel.AdditionalCost ||
+           newModel.AdditionalCost.DiscardCost == 0 ||
+           newModel.AdditionalCost.VoidCost == 0 ||
+           newModel.AdditionalCost.SacrificeCost == 0) {
+        delete newModel.AdditionalCost;
       }
 
       newModel.image = this.model.image;

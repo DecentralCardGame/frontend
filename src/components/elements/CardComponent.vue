@@ -25977,17 +25977,19 @@ export default {
       if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
         let costType = R.keys(this.model.AdditionalCost)
         let amount = this.model.AdditionalCost[costType].Amount
-        let costText = "Extra Cost - "
-        costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
-        if (costType === "SacrificeCost")
-          costText = R.replace(
-            "card",
-            amount > 1 ? "Entities." : "Entity.",
-            costText,
-          );
-        else costText += amount > 1 ? "s." : ".";
+        if (amount > 0) {
+          let costText = "Extra Cost - "
+          costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
+          if (costType === "SacrificeCost")
+            costText = R.replace(
+              "card",
+              amount > 1 ? "Entities." : "Entity.",
+              costText,
+            );
+          else costText += amount > 1 ? "s." : ".";
 
-        rulesText = R.append(costText, rulesText);
+          rulesText = R.append(costText, rulesText);
+        }
       }
       if (this.model.Abilities && !R.isEmpty(this.model.Abilities)) {
         this.model.Abilities.forEach(ability => {

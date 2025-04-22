@@ -168,7 +168,7 @@
               </div>
               <div class="py-1">
                 <RouterCCButton
-                  :type="Color.YELLOW"
+                  :type="Color.RED"
                   :to="{
                     name: 'EncounterCreator',
                     query: { id: -1 },

@@ -143,7 +143,8 @@ export class Card {
     // in the following part we check things that are only required for specific card types
     if (this.type !== "Headquarter") {
       cardContent.CastingCost = this.CastingCost;
-      if (this.AdditionalCost && R.keys(this.AdditionalCost).length > 0) {
+      if (this.AdditionalCost && R.keys(this.AdditionalCost).length > 0 && R.values(this.AdditionalCost)[0].Amount > 0) {
+
         cardContent.AdditionalCost = this.AdditionalCost;
       }
     }
