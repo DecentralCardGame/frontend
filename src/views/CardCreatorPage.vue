@@ -960,8 +960,7 @@ import { useQuery } from "@/def-composables/useQuery";
 import { useUser } from "@/def-composables/useUser";
 import { isASCII } from "@/utils/utils";
 import { Coin } from "@/model/Coin";
-import { computed, type ComputedRef, onMounted } from "vue";
-
+import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
@@ -1056,7 +1055,7 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
-      model: new Card(),
+      model: reactive(new Card()),
       artistMode: false,
       designateArtist: false,
       artistAddress: "",
@@ -1098,13 +1097,23 @@ export default {
         queryUser();
       }
     },
-    model() {
-      if (this.mode === Mode.EDIT) {
-        this.cardCreatorEditCard = this.model;
-      } else {
-        this.cardCreatorDraft = this.model;
-      }
-      this.setMode();
+    model: {
+      handler: function (val, oldVal) {
+        if (this.mode === Mode.EDIT) {
+          this.cardCreatorEditCard = this.model;
+        } else {
+          this.cardCreatorDraft = this.model;
+        }
+        this.setMode();
+
+        if (this.model.type === "Action" ) {
+          delete this.model.Abilities;
+        }
+        else {
+          delete this.model.Effects;
+        }
+      },
+      deep: true,
     },
     address() {
       this.checkCardFrames();
