@@ -20,7 +20,7 @@
 
           <GalleryFilterImageChooser :options="classOptions" />
           <Checkbox v-model="galleryFilters.multiClass">
-            Show multi-class only
+            exclusive class matching
           </Checkbox>
           <GalleryFilterImageChooser :options="typeOptions" />
           <div class="">
