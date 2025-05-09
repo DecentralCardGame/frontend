@@ -2,7 +2,7 @@
   <div class="flex text-white max-lg:flex-col justify-center">
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4 "
+            max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] max-h-[80vh] overflow-y-auto overflow-x-hidden"
     >
       <div class="">
         <div class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6">
@@ -90,13 +90,11 @@
               "
             />
           </div>
-
         </div>
-        
       </div>
     </div>
 
-    <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
+    <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow max-h-[90vh] overflow-y-auto">
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-center max-md:hidden md:justify-between">
@@ -128,13 +126,11 @@
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />
       </div>
-
-      <GalleryComponent
-        class="p-16"
-        :cards-2per-page="galleryFilters.cardsPerPage"
-        :all-card-ids="revertSort ? cardList.toReversed() : cardList"
-        @card-clicked="openCardviewModel"
-      />
+        <GalleryComponent
+          :cards-2per-page="galleryFilters.cardsPerPage"
+          :all-card-ids="revertSort ? cardList.toReversed() : cardList"
+          @card-clicked="openCardviewModel"
+        />
     </div>
   </div>
   <CardviewModal
