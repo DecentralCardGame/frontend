@@ -1,7 +1,7 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] 
+      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center my-auto h-[100vh] mt-0 bg-[#552026] 
             max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] max-h-[80vh] overflow-y-auto overflow-x-hidden"
     >
       <div class="">
@@ -25,7 +25,7 @@
           <GalleryFilterImageChooser :options="typeOptions" />
           <div class="">
             <p>Search for</p>
-            <div class="space-y-4">
+            <div class="">
               <CCInput
                 v-model="galleryFilters.nameContains"
                 placeholder="name"

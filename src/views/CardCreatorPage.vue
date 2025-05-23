@@ -426,7 +426,7 @@
               <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
                 <input
                   v-model="model.FlavourText"
-                  class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                  class="w-[95%] py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Quote that represents this card."
                   maxLength="250"
                 >
