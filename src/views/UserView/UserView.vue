@@ -366,7 +366,6 @@ const getEncounters = () => {
   .then((res) => {
     state.ownEncounters = R.map(y => ({id: y.Id, name: y.name}), R.filter(x => x.owner == state.addr, res.encounters))
   })
-  console.log("ownEncounters", state.ownEncounters)
 }
 
 const register = () => registerForCouncil(getUser, console.log);
