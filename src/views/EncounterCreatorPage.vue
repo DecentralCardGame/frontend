@@ -100,6 +100,27 @@
         v-model="encounterName"
         placeholder="Encounter Title"
       />
+      <div class="flex flex-row items-center justify-between">
+        <div>
+        <Dropdown
+          v-model="encounterType"
+          class="my-auto"
+          :type="Color.RED"
+          :options="['Constructed', 'DraftRun', 'Campaign']"
+        />
+        </div>
+        <div v-if="encounterType == 'DraftRun' || encounterType == 'Campaign'"
+          class="flex flex-row items-center">
+          <p class="m-1">Level:</p>
+          <CCInput
+            
+            class="w-10"
+            v-model="encounterLevel"
+            placeholder="Level"
+          />
+        </div>
+      </div>
+      
       <!-- image upload -->
       <div class="mb-5">
         <div v-if="cropImage == ''">
@@ -182,7 +203,6 @@
 
       <div class="h-[100vh] bg-[#552026]"></div>
     </div>
-
   </div>
 </template>
 
@@ -254,7 +274,9 @@ const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncou
 
 const drawList = ref([]);
 let cropImage = ref('');
-let encounterName = "";
+let encounterName = ref('');
+let encounterType = ref('Constructed');
+let encounterLevel = ref(0);
 let filtersVisible = ref(true);
 let dragFrom = -1;
 let hqSelected = ref(false);
@@ -362,7 +384,11 @@ onMounted(() => {
   queryQEncounterWithImage(route.query.id)
     .then((res) => {
       cropImage.value = res.encounter.image;
-      encounterName = res.encounter.encounter.name
+      encounterName = res.encounter.encounter.name;
+      
+      let parameters = res.encounter.encounter.parameters;
+      encounterType = ref(R.find(x => x.key == "type")(parameters).value ?? "Constructed");
+      encounterLevel = ref(R.find(x => x.key == "level")(parameters).value ?? "0");
 
       res.encounter.encounter.Drawlist.forEach(entry => {
         loadCard(entry).then(res => {
@@ -485,12 +511,9 @@ const publish = () => {
   // unfold drawlist
   let cards = R.flatten( R.map(x => R.repeat(x.id, x.count), drawList.value) )
 
-  // this crashes:
-  //let parameters:Map<string,string> = new Map();
-  //parameters.set("yes", "like");
-  let parameters = {};
+  let parameters = {type: encounterType, level: encounterLevel}
 
-  encounterCreate(encounterName, cards, parameters, cropImage.value, (res) =>{
+  encounterCreate(encounterName, cards, parameters, cropImage.value, (res) => {
     console.log("success", res)
   },
   (err) => {

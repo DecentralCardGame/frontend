@@ -1,29 +1,30 @@
 <template>
-  <div
-    id="galleryWrapper"
-    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-[1800px]:grid-cols-5 gap-12 mt-6"
-  >
+  <div>
     <div
-      v-for="card in state.cards"
-      :key="card.id"
-      class="transition duration-500 hover:scale-110 hover:duration-300"
-      :class="shadowClass(card)"
-      @click="emit('cardClicked', card)"
+      id="galleryWrapper"
+      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-[1800px]:grid-cols-5 gap-12 mt-6"
     >
-      <div>
-        <CardComponent :model="card" />
+      <div
+        v-for="card in state.cards"
+        :key="card.id"
+        class="transition duration-500 hover:scale-110 hover:duration-300"
+        :class="shadowClass(card)"
+        @click="emit('cardClicked', card)"
+      >
+        <div>
+          <CardComponent :model="card" />
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="mt-12 flex flex-row justify-center items-center">
-    <BaseCCButton
-      :type="Color.RED"
-      @click="load()"
-      :class="{ invisible: !loadButtonVisible }"
-    >
-      Reckless Card Loading
-    </BaseCCButton>
+    <div class="mt-12 flex flex-row justify-center items-center">
+      <BaseCCButton
+        :type="Color.RED"
+        @click="load()"
+        :class="{ invisible: !loadButtonVisible }"
+      >
+        Reckless Card Loading
+      </BaseCCButton>
+    </div>
   </div>
 </template>
 
