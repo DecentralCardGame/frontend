@@ -1,8 +1,10 @@
 import { useTx } from "@/def-composables/useTx";
-import { ref, watch, type Ref, computed } from "vue";
+import { ref, watch, type Ref, computed, type ComputedRef } from "vue";
 import * as R from "ramda";
-import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
-import type { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import type {
+  VoteType,
+  SingleVote,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/voting";
 import { useUser } from "./useUser";
 
 const KEY = "votingList";
@@ -13,7 +15,7 @@ let stored = window.localStorage.getItem(KEY);
 const votes: Ref<SingleVote[]> = ref(
   stored ? Object.assign([], JSON.parse(stored)) : [],
 );
-const votableCards = computed(() =>
+const votableCards: ComputedRef<Number[]> = computed(() =>
   user.value.votableCards.map((v) => Number(v)),
 );
 const cardsLeft = computed(() => {
