@@ -15,7 +15,7 @@ let stored = window.localStorage.getItem(KEY);
 const votes: Ref<SingleVote[]> = ref(
   stored ? Object.assign([], JSON.parse(stored)) : [],
 );
-const votableCards: ComputedRef<Number[]> = computed(() =>
+const votableCards: ComputedRef<number[]> = computed(() =>
   user.value.votableCards.map((v) => Number(v)),
 );
 const cardsLeft = computed(() => {

@@ -80,7 +80,7 @@
       </div>
       <GalleryComponent
         class="p-16"
-        :cards-2per-page="galleryFilters.cardsPerPage"
+        :cards-per-page="galleryFilters.cardsPerPage"
         :all-card-ids="revertSort ? cardList.toReversed() : cardList"
         @card-clicked="addCardToEncounter"
       />
