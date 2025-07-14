@@ -69,19 +69,21 @@ const cardIdsOnPage = computed(() => {
 });
 
 const shadowClass = (card) => {
-  let classes = 0
-  R.forEachObjIndexed(entry => {
+  let classes = 0;
+  R.forEachObjIndexed((entry) => {
     if (entry) classes++;
-  }, card.Class)
-  if (classes > 1) return {
-    'drop-shadow-glowCCYellow': true,
-  }
-  else return {
-    'drop-shadow-glowCCRed': card.Class.Culture,
-    'drop-shadow-glowCCBlue': card.Class.Technology,
-    'drop-shadow-glowCCGreen': card.Class.Nature,
-    'drop-shadow-glowCCPurple': card.Class.Mysticism
-    }
+  }, card.Class);
+  if (classes > 1)
+    return {
+      "drop-shadow-glowCCYellow": true,
+    };
+  else
+    return {
+      "drop-shadow-glowCCRed": card.Class.Culture,
+      "drop-shadow-glowCCBlue": card.Class.Technology,
+      "drop-shadow-glowCCGreen": card.Class.Nature,
+      "drop-shadow-glowCCPurple": card.Class.Mysticism,
+    };
 };
 
 onMounted(() => {

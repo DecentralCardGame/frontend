@@ -1,15 +1,13 @@
 <template>
   <FadeTeaserSmall>
     <TeaserHeader heading-class="text-cc-red">
-      <template #heading>
-        How To Play
-      </template>
+      <template #heading> How To Play </template>
       <template #content>
         <p>
-          Here are the basics to get start playing. <br>
+          Here are the basics to get start playing. <br />
           Visit our GitBook for advanced information!
         </p>
-        <br>
+        <br />
         <a href="https://crowdcontrol-network.gitbook.io/" target="_blank">
           <BaseCCButton :type="Color.RED"> Open GitBook</BaseCCButton>
         </a>

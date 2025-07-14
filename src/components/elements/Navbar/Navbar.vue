@@ -3,10 +3,7 @@
     class="flex flex-row uppercase text-lg max-md:flex-col"
     :class="[getBgColor(type), getTextColor(type), ...props.class]"
   >
-    <template
-      v-for="elem in elems"
-      :key="elem.display"
-    >
+    <template v-for="elem in elems" :key="elem.display">
       <router-link
         v-if="!elem.loggedInOnly || (elem.loggedInOnly && loggedIn)"
         :active-class="elemActiveClass"

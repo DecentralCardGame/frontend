@@ -1,23 +1,13 @@
 <template>
   <FadeTeaserSmall>
-    <TeaserHeader
-      v-if="!inviteMode"
-      heading-class="text-cc-red"
-    >
-      <template #heading>
-        Play the Game!
-      </template>
+    <TeaserHeader v-if="!inviteMode" heading-class="text-cc-red">
+      <template #heading> Play the Game! </template>
       <template #content>
         <p>Check out our alpha version and be part of the early development.</p>
         <div class="flex gap-4 flex-col pt-8">
           <template v-if="user.earlyAccess?.active">
-            <BaseCCButton
-              :type="Color.RED"
-              @click="downloadLatest"
-            >
-              <a :href="downloadurl">
-                Download Gameclient
-              </a>
+            <BaseCCButton :type="Color.RED" @click="downloadLatest">
+              <a :href="downloadurl"> Download Gameclient </a>
             </BaseCCButton>
             <BaseCCButton
               v-if="!user.earlyAccess?.invitedByUser"
@@ -29,23 +19,15 @@
           </template>
           <template v-else>
             <p>For Early Access join our Discord</p>
-            <LinkCCButton
-              :type="Color.TEAL"
-              to="https://discord.gg/ZKKbhUs"
-            >
+            <LinkCCButton :type="Color.TEAL" to="https://discord.gg/ZKKbhUs">
               Join Discord
             </LinkCCButton>
           </template>
         </div>
       </template>
     </TeaserHeader>
-    <TeaserHeader
-      v-else
-      heading-class="text-[#40C1C7]"
-    >
-      <template #heading>
-        Early access for a friend
-      </template>
+    <TeaserHeader v-else heading-class="text-[#40C1C7]">
+      <template #heading> Early access for a friend </template>
       <template #content>
         Insert the wallet address of your friend that you want to play with.
         <div class="grid grid-cols-2 gap-4 pt-8">
@@ -54,13 +36,8 @@
             v-model:validated="addressValid"
             class="text-black col-span-2"
           />
-          <BaseCCButton
-            :type="Color.RED"
-            @click="downloadLatest"
-          >
-            <a :href="downloadurl">
-              Download Gameclient
-            </a>
+          <BaseCCButton :type="Color.RED" @click="downloadLatest">
+            <a :href="downloadurl"> Download Gameclient </a>
           </BaseCCButton>
           <BaseCCButton
             :type="Color.TEAL"
@@ -92,16 +69,17 @@ const addressValid = ref(false);
 const inviteAddress = ref("");
 const inviteMode = ref(false);
 
-const downloadurl = navigator.appVersion.indexOf("Win") != -1 ? 
-                      "https://cardchain.crowdcontrol.network/files/WindowsLauncher.zip" :
-                      navigator.appVersion.indexOf("Mac") != -1 ?
-                      "https://cardchain.crowdcontrol.network/files/MacLauncher.tar.gz" :
-                      navigator.appVersion.indexOf("Linux") != -1 ?
-                      "https://cardchain.crowdcontrol.network/files/LinuxLauncher.tar.gz" :
-                      "THEHELL";
-                    
+const downloadurl =
+  navigator.appVersion.indexOf("Win") != -1
+    ? "https://cardchain.crowdcontrol.network/files/WindowsLauncher.zip"
+    : navigator.appVersion.indexOf("Mac") != -1
+      ? "https://cardchain.crowdcontrol.network/files/MacLauncher.tar.gz"
+      : navigator.appVersion.indexOf("Linux") != -1
+        ? "https://cardchain.crowdcontrol.network/files/LinuxLauncher.tar.gz"
+        : "THEHELL";
+
 const downloadLatest = () => {
-  // TODO remove this once download is fine for users 
+  // TODO remove this once download is fine for users
   //      but now keep it in, because we want to read this for users that have pain
   console.log("download ", navigator.appVersion);
 };

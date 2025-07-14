@@ -1,16 +1,16 @@
 import { ref, watch } from "vue";
-import {useAddress} from "@/def-composables/useAddress";
+import { useAddress } from "@/def-composables/useAddress";
 
 const useLoggedInInstance = () => {
-  const { address } = useAddress()
-  const loggedIn = ref(false)
+  const { address } = useAddress();
+  const loggedIn = ref(false);
 
   watch(address, () => {
-    loggedIn.value = address.value != ""
-  })
+    loggedIn.value = address.value != "";
+  });
 
-  return { loggedIn }
-}
+  return { loggedIn };
+};
 
 let loggedInInstance: ReturnType<typeof useLoggedInInstance>;
 

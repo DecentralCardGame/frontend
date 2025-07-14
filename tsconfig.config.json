@@ -1,18 +1,9 @@
 {
   "extends": "@tsconfig/node20/tsconfig.json",
-  "include": [
-    "vite.config.*",
-    "vitest.config.*",
-    "cypress.config.*"
-  ],
+  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*"],
   "compilerOptions": {
     "composite": true,
     "moduleResolution": "Node",
-    "types": [
-      "node",
-      "crypto-js",
-      "qrcode",
-      "events"
-    ]
+    "types": ["node", "crypto-js", "qrcode", "events"]
   }
 }

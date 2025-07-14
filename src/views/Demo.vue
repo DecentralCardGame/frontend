@@ -1,49 +1,30 @@
 <template>
   <div class="LogoBox flex text-center justify-center p-80">
     <div>
-      <img
-        :src="logoBig"
-        alt="big cc logo"
-        class="box-shadow-2xl"
-      >
-      <p class="text-xl font-lg">
-        A collectible card game made by players.
-      </p>
-      <BaseCCButton
-        :type="Color.YELLOW"
-        @click="() => console.log('abc')"
-      >
+      <img :src="logoBig" alt="big cc logo" class="box-shadow-2xl" />
+      <p class="text-xl font-lg">A collectible card game made by players.</p>
+      <BaseCCButton :type="Color.YELLOW" @click="() => console.log('abc')">
         CREATE CARDS
       </BaseCCButton>
-      <br>
-      <BaseCCButton :type="Color.RED">
-        CREATE CARDS
-      </BaseCCButton>
-      <br>
-      <BaseCCButton :type="Color.BLACK">
-        CREATE CARDS
-      </BaseCCButton>
-      <br>
-      <BaseCCButton :type="Color.WHITE">
-        CREATE CARDS
-      </BaseCCButton>
-      <br>
-      <BaseCCButton :type="Color.PUSSYRED">
-        hmm
-      </BaseCCButton>
-      <br>
+      <br />
+      <BaseCCButton :type="Color.RED"> CREATE CARDS </BaseCCButton>
+      <br />
+      <BaseCCButton :type="Color.BLACK"> CREATE CARDS </BaseCCButton>
+      <br />
+      <BaseCCButton :type="Color.WHITE"> CREATE CARDS </BaseCCButton>
+      <br />
+      <BaseCCButton :type="Color.PUSSYRED"> hmm </BaseCCButton>
+      <br />
       <BaseCCButton :type="Color.TEAL">
-        <router-link to="/">
-          Go to Home
-        </router-link>
+        <router-link to="/"> Go to Home </router-link>
       </BaseCCButton>
-      <br>
+      <br />
       <Dropdown
         v-model="test"
         :options="['yes', 'nein', 'vllt', 'nur ficken']"
       />
-      <br>
-      <br>
+      <br />
+      <br />
       <Dropdown
         v-model="test"
         :options="['yes', 'nein', 'vllt', 'nur ficken']"
@@ -51,12 +32,12 @@
         :type="Color.RED"
         @update:model-value="console.log"
       />
-      <br>
-      <br>
+      <br />
+      <br />
       <p class="text-white">
         {{ test }}
       </p>
-      <br>
+      <br />
     </div>
   </div>
 </template>

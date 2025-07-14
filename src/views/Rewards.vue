@@ -75,16 +75,14 @@ import { normalizeCoins } from "@/utils/utils";
 import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUser } from "@/def-composables/useUser";
-import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
-import { Match } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/match";
+import { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
+import { Match } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
-import { Color } from "@/components/utils/color";
-import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 import axios from "axios";
 
 const { queryUser, queryAllBalances, queryMatches } = useQuery();
@@ -92,7 +90,7 @@ const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { getImg } = useProfilePic();
-const { user, coins, queryCoins, getUser } = useUser();
+const { user, coins, getUser } = useUser();
 const { loggedInProfilePic } = useProfilePic();
 const route = useRoute();
 const router = useRouter();
@@ -164,13 +162,13 @@ const init = () => {
   }
 
   router.push({ name: "Rewards", params: { id: state.addr } });
-  getUser();
+  qUser();
   console.log(state.user);
 };
 
 onMounted(init);
 
-const getUser = () => {
+const qUser = () => {
   if (state.userIsUser) {
     getUser();
   } else {

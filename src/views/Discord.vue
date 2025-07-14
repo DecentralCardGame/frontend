@@ -155,7 +155,6 @@ const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { getImg } = useProfilePic();
-const { user, coins, queryCoins, getUser } = useUser();
 const { loggedInProfilePic } = useProfilePic();
 const route = useRoute();
 const router = useRouter();

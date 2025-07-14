@@ -20,7 +20,7 @@ const props = withDefaults(
   }>(),
   {
     addr: "none",
-  }
+  },
 );
 
 const safeAddr = computed(() => {

@@ -2,19 +2,14 @@
   <div class="bg-black flex justify-center h-[80vh]">
     <div class="my-auto" />
     <HeadingContentComponent heading-class="text-[#FEC560]">
-      <template #heading>
-        Stay Tuned
-      </template>
+      <template #heading> Stay Tuned </template>
       <template #content>
         <p class="text-white">
-          We are rebranding!<br>
+          We are rebranding!<br />
           In the meantime, join our community on Discord!
         </p>
-        <br>
-        <LinkCCButton
-          :type="Color.YELLOW"
-          to="https://discord.gg/ZKKbhUs"
-        >
+        <br />
+        <LinkCCButton :type="Color.YELLOW" to="https://discord.gg/ZKKbhUs">
           Join Discord
         </LinkCCButton>
       </template>

@@ -1,13 +1,14 @@
-import {ref, type Ref} from "vue";
+import { ref, type Ref } from "vue";
 
-const openCounter: Ref<number> = ref(0)
+const openCounter: Ref<number> = ref(0);
 
 const incCounter = () => {
-  openCounter.value++
-}
+  openCounter.value++;
+};
 
 export const useDropdown = () => {
   return {
-    openCounter, incCounter
-  }
-}
+    openCounter,
+    incCounter,
+  };
+};

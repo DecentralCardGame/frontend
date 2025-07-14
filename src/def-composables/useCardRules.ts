@@ -5,12 +5,15 @@ import { Resolver } from "@stoplight/json-ref-resolver";
 const useCardRulesInstance = () => {
   const resolver = new Resolver();
   let rules: Ref = ref();
-  resolver.resolve(cardRules).then(schema => {
-    rules.value = schema.result;
-    console.log("loaded definitions", schema.result.definitions);
-  }).catch(err => {
-    console.error(err);
-  })
+  resolver
+    .resolve(cardRules)
+    .then((schema) => {
+      rules.value = schema.result;
+      console.log("loaded definitions", schema.result.definitions);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
   return { rules };
 };

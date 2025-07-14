@@ -1,32 +1,19 @@
 <template>
   <div class="flex flex-col">
-    <div
-      id="AbilityComponentInside"
-      class="flex flex-row"
-    > 
-      <div
-        v-if="ability"
-        class="flex flex-row"
-      >
+    <div id="AbilityComponentInside" class="flex flex-row">
+      <div v-if="ability" class="flex flex-row">
         <div
           v-for="(entry, index) in ability.interaction"
           id="interaction"
           :key="index"
           class="text-[16px] flex flex-row justify-start items-center"
         >
-          <div
-            
-            id="pre"
-            class="whitespace-nowrap font-normal"
-          >
+          <div id="pre" class="whitespace-nowrap font-normal">
             {{ entry.pre }}
           </div>
 
           <!-- pick one entry of an enum via dropdown -->
-          <div
-            v-if="entry.btn.type === 'enum'"
-            id="enum dropdown"
-          >
+          <div v-if="entry.btn.type === 'enum'" id="enum dropdown">
             <Dropdown
               v-model="entry.btn.label"
               :options="enumOptions(entry)"
@@ -35,10 +22,7 @@
           </div>
 
           <!-- pick an int from a dropdown case -->
-          <div
-            v-else-if="entry.btn.type === 'int'"
-            id="int"
-          >
+          <div v-else-if="entry.btn.type === 'int'" id="int">
             <Dropdown
               v-model="entry.btn.label"
               :options="intRange(entry)"
@@ -47,10 +31,7 @@
           </div>
 
           <!-- pick an int or a variable (X) from dropdown case -->
-          <div
-            v-else-if="entry.btn.type === 'intX'"
-            id="intX"
-          >
+          <div v-else-if="entry.btn.type === 'intX'" id="intX">
             <Dropdown
               v-model="entry.btn.label"
               :options="intXRange(entry)"
@@ -60,7 +41,9 @@
 
           <!-- toggle a bool via click case -->
           <div
-            v-else-if="entry.btn.label.slice && entry.btn.label.slice(-1) === '-'"
+            v-else-if="
+              entry.btn.label.slice && entry.btn.label.slice(-1) === '-'
+            "
             class=""
             @click="showAbilityModal(ability, entry.btn)"
           >
@@ -86,10 +69,7 @@
         X
       </div>
     </div>
-    <div
-      v-if="isAbilityModalVisible"
-      class=""
-    >
+    <div v-if="isAbilityModalVisible" class="">
       <AbilityModal
         :dialog-prop="dialog"
         :ability-prop="ability"
@@ -159,20 +139,20 @@ export default {
     intRange(entry) {
       return R.range(
         R.path(entry.btn.rulesPath, this.cardRules.Card).min || 0,
-        R.path(entry.btn.rulesPath, this.cardRules.Card).max + 1
+        R.path(entry.btn.rulesPath, this.cardRules.Card).max + 1,
       );
     },
     intXRange(entry) {
       return R.concat(
-        R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable.enum,
+        R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable
+          .enum,
         R.range(
-        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
-          .min || 0,
-        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
-          .max + 1
-        )
-      )
-      
+          R.path(entry.btn.rulesPath, this.cardRules.Card).children
+            .SimpleIntValue.min || 0,
+          R.path(entry.btn.rulesPath, this.cardRules.Card).children
+            .SimpleIntValue.max + 1,
+        ),
+      );
     },
     enumRange(entry) {
       return R.path(entry.btn.rulesPath, this.cardRules.Card).children
@@ -181,7 +161,7 @@ export default {
     showAbilityModal(ability, btn) {
       let atRules = R.curry(atPath)(this.cardRules.Card);
       let atAbility = R.curry(atPath)(ability);
-      
+
       this.ability.clickedBtn = btn;
       let node = atRules(btn.rulesPath);
       let thereWillBeModal = true;
@@ -199,13 +179,13 @@ export default {
             copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] =
               R.path(
                 R.dropLast(1, copyButton.btn.abilityPath),
-                this.ability
+                this.ability,
               ).length;
 
             this.ability.interaction = R.insert(
               btn.id,
               copyButton,
-              this.ability.interaction
+              this.ability.interaction,
             );
 
             // update all btn ids
@@ -229,7 +209,7 @@ export default {
                 "attaching:",
                 btn.label,
                 "to",
-                this.ability.clickedBtn.abilityPath
+                this.ability.clickedBtn.abilityPath,
               );
 
               let intX = {};
@@ -279,17 +259,17 @@ export default {
               interactionText,
               btn.abilityPath,
               R.append("children", btn.rulesPath),
-              this.$cardRules
+              this.$cardRules,
             );
 
             updateInteraction(
               this.ability,
               this.ability.clickedBtn.id,
-              newInteraction
+              newInteraction,
             );
             this.attachToAbility(
               btn.abilityPath,
-              shallowClone(atRules(btn.rulesPath).children)
+              shallowClone(atRules(btn.rulesPath).children),
             );
             break;
           }
@@ -300,7 +280,7 @@ export default {
 
             this.attachToAbility(
               this.ability.clickedBtn.abilityPath,
-              btn.label
+              btn.label,
             );
             break;
           // this is a terminal case, pick one string from enum
@@ -312,12 +292,12 @@ export default {
               btn.label = "";
               this.attachToAbility(
                 R.dropLast(1, this.ability.clickedBtn.abilityPath),
-                {}
+                {},
               );
             } else
               this.attachToAbility(
                 this.ability.clickedBtn.abilityPath,
-                btn.label
+                btn.label,
               );
 
             break;
@@ -390,7 +370,7 @@ export default {
     enumOptions(entry) {
       let required = R.path(
         R.dropLast(2, entry.btn.rulesPath),
-        this.cardRules.Card
+        this.cardRules.Card,
       ).required;
       let name = R.last(entry.btn.rulesPath);
       if (required && R.includes(name, required)) {
@@ -398,7 +378,7 @@ export default {
       } else {
         return R.prepend(
           unrequiredLabel,
-          R.path(entry.btn.rulesPath, this.cardRules.Card).enum
+          R.path(entry.btn.rulesPath, this.cardRules.Card).enum,
         );
       }
     },

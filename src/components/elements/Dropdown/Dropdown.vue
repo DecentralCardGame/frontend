@@ -14,7 +14,7 @@
         class="w-4 pr-1 rotate-180 my-auto"
         src="@/assets/figma/Navigation_Triangle.svg"
         alt="navigation triangle"
-      >
+      />
     </div>
     <ul
       v-if="isOpen"

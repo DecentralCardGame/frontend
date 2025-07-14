@@ -24,33 +24,29 @@
       </div>
 
       <div v-show="!state.isTransferModalVisible">
-        <p class="font-bold text-2xl">
-          Advanced Card Information
-        </p>
-        <br>
+        <p class="font-bold text-2xl">Advanced Card Information</p>
+        <br />
         <p>
-          Card id: {{ id }}<br>
-          Votepool: {{ state.card.votePool.normalize().pretty() }} <br>
-          Status: {{ state.card.status }} <br>
-          Notes: {{ state.card.notes }} <br>
+          Card id: {{ id }}<br />
+          Votepool: {{ state.card.votePool.normalize().pretty() }} <br />
+          Status: {{ state.card.status }} <br />
+          Notes: {{ state.card.notes }} <br />
           Owner:
           <CompactAddressComponent :addr="state.card.owner" />
-          <br>
+          <br />
           Artist:
           <CompactAddressComponent :addr="state.card.artist" />
         </p>
-        <br>
-        <p class="font-bold text-2xl">
-          Latest Voting Results
-        </p>
+        <br />
+        <p class="font-bold text-2xl">Latest Voting Results</p>
         <p>
-          Inappropriate Votes: {{ state.card.inappropriateVotes }} <br>
-          Underpowered Votes: {{ state.card.underpoweredVotes }} <br>
-          Overpowered Votes: {{ state.card.overpoweredVotes }} <br>
-          Fair Enough Votes: {{ state.card.fairEnoughVotes }} <br>
-          Nerflevel: {{ state.card.nerflevel }} <br>
+          Inappropriate Votes: {{ state.card.inappropriateVotes }} <br />
+          Underpowered Votes: {{ state.card.underpoweredVotes }} <br />
+          Overpowered Votes: {{ state.card.overpoweredVotes }} <br />
+          Fair Enough Votes: {{ state.card.fairEnoughVotes }} <br />
+          Nerflevel: {{ state.card.nerflevel }} <br />
         </p>
-        <br>
+        <br />
       </div>
 
       <div v-show="!state.isTransferModalVisible">
@@ -62,18 +58,12 @@
         :card="String(props.id)"
         @close="closeModal"
       />
-
-
     </div>
     <div
       class="flex flex-col lg:flex-row justify-center lg:justify-end space-y-6 lg:space-x-6 lg:space-y-0"
     >
       <router-link :to="{ path: '/cardview/' + props.id }">
-        <BaseCCButton
-          :type="Color.RED"
-        >
-          Card URL
-        </BaseCCButton>
+        <BaseCCButton :type="Color.RED"> Card URL </BaseCCButton>
       </router-link>
       <BaseCCButton
         v-if="isOwner || isArtist"
@@ -145,7 +135,7 @@ onMounted(checkAndLoadCard);
 watch(() => props.id, checkAndLoadCard);
 
 const loadCard = async () => {
-  state.card = await getCard(props.id)
+  state.card = await getCard(props.id);
 };
 
 const edit = () => {
@@ -155,8 +145,8 @@ const edit = () => {
 };
 const showTransferModal = () => {
   state.isTransferModalVisible = true;
-  console.log("modal?", state.isTransferModalVisible)
-}
+  console.log("modal?", state.isTransferModalVisible);
+};
 const closeModal = () => {
   state.isTransferModalVisible = false;
   loadCard();

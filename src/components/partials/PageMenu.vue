@@ -1,34 +1,17 @@
 <template>
   <div class="h-24 bg-black flex space-x-10 px-10">
-    <router-link
-      class="my-auto"
-      to="/"
-    >
-      <img
-        class="h-12 object-contain"
-        :src="CCLogo"
-        alt="CC logo"
-      >
+    <router-link class="my-auto" to="/">
+      <img class="h-12 object-contain" :src="CCLogo" alt="CC logo" />
     </router-link>
     <a class="grow" />
     <div class="my-auto max-md:hidden">
-      <RouterCCButton
-        :type="Color.RED"
-        to="/download"
-      >
+      <RouterCCButton :type="Color.RED" to="/download">
         Download Gameclient
       </RouterCCButton>
     </div>
     <LoginComponent />
-    <button
-      class="my-auto"
-      @click="toggleBar"
-    >
-      <img
-        class="h-14 md:hidden"
-        :src="Menu"
-        alt="Menu button"
-      >
+    <button class="my-auto" @click="toggleBar">
+      <img class="h-14 md:hidden" :src="Menu" alt="Menu button" />
     </button>
   </div>
   <Navbar

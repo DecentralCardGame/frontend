@@ -7,11 +7,7 @@
       'h-' + props.size,
     ]"
   >
-    <img
-      :src="src"
-      class="-pt-[10%] w-full object-contain"
-      :alt="alt"
-    >
+    <img :src="src" class="-pt-[10%] w-full object-contain" :alt="alt" />
   </div>
 </template>
 <script setup lang="ts">
@@ -25,6 +21,6 @@ const props = withDefaults(
     src: {},
     size: 64,
     alt: "Profile Pic",
-  }
+  },
 );
 </script>
