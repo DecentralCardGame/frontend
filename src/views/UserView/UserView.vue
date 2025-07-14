@@ -21,20 +21,20 @@
       <UserViewHeadingContainer>
         <template #heading> Council status </template>
         <template #body>
-          <p>{{ user.CouncilStatus }}</p>
+          <p>{{ user.councilStatus }}</p>
           <BaseCCButton
             v-if="state.userIsUser"
             :type="Color.YELLOW"
             @click="
-              CouncilStatus[state.user.CouncilStatus] ==
-              CouncilStatus.unavailable
+              CouncilStatus[state.user.councilStatus] ==
+              CouncilStatus.unavailable.toString()
                 ? register()
                 : deRegister()
             "
           >
             {{
-              CouncilStatus[state.user.CouncilStatus] ==
-              CouncilStatus.unavailable
+              CouncilStatus[state.user.councilStatus] ==
+              CouncilStatus.unavailable.toString()
                 ? "Register for"
                 : "Deregister from"
             }}
@@ -141,9 +141,9 @@
           <template #body>
             <div class="py-6">
               <div
-                class="py-1"
                 v-for="(encounter, key) in state.ownEncounters"
                 :key="key"
+                class="py-1"
               >
                 <RouterCCButton
                   :type="Color.YELLOW"
@@ -190,9 +190,10 @@
               <template #heading> Match {{ key }} </template>
               <template #body>
                 {{
-                  (match.playerA.addr == state.addr &&
-                    match.outcome == "AWon") ||
-                  (match.playerB.addr == state.addr && match.outcome == "BWon")
+                  (match.playerA?.addr == state.addr &&
+                    match.outcome.toString() == "AWon") ||
+                  (match.playerB?.addr == state.addr &&
+                    match.outcome.toString() == "BWon")
                     ? "WIN"
                     : "LOSE"
                 }}

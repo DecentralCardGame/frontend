@@ -19,8 +19,8 @@
   <div class="mt-12 flex flex-row justify-center items-center">
     <BaseCCButton
       :type="Color.RED"
-      @click="load()"
       :class="{ invisible: !loadButtonVisible }"
+      @click="load()"
     >
       Reckless Card Loading
     </BaseCCButton>

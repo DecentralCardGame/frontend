@@ -106,7 +106,7 @@ export const useWalletStore = defineStore("wallet", {
       } catch (e) {
         console.error(e);
       }
-      this.storeWallets();
+      this.storeWallets()
     },
     storeWallets() {
       window.localStorage.setItem("wallets", JSON.stringify(this.wallets));

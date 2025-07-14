@@ -73,7 +73,9 @@
             Status:
             <Dropdown
               v-model="galleryFilters.status"
-              :display-fn="(v) => (v == 'playable' ? 'playable' : Status[v])"
+              :display-fn="
+                (v) => (v == 'playable' ? 'playable' : CardStatus[v])
+              "
               :options="
                 new Array<GalleryStatus>(
                   'playable',
