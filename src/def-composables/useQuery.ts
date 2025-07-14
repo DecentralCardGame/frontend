@@ -12,8 +12,8 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   queryCard: (res): Card => {
     return Card.fromCardWithImage((res.data as QueryCardResponse).card!);
   },
-  queryQUser: (res): User => {
-    return res.data;
+  queryUser: (res): User => {
+    return res.data.user;
   },
   queryAllBalances: (res) => {
     let coins: Coin[] = [];
@@ -27,7 +27,7 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
     res.data.cardAuctionPrice = Coin.from(res.data.cardAuctionPrice);
     return res.data;
   },
-  queryQVotingResults: (res) => {
+  queryVotingResults: (res) => {
     return res.data;
   },
   queryGrants: (res) => {
@@ -39,16 +39,16 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   queryGranteeGrants: (res) => {
     return res.data;
   },
-  queryQEncounter: (res) => {
+  queryEncounter: (res) => {
     return res.data;
   },
-  queryQEncounterWithImage: (res) => {
+  queryEncounterWithImage: (res) => {
     return res.data;
   },
-  queryQEncounters: (res) => {
+  queryEncounters: (res) => {
     return res.data;
   },
-  queryQEncountersWithImage: (res) => {
+  queryEncountersWithImage: (res) => {
     return res.data;
   },
 };

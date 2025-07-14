@@ -235,14 +235,16 @@ import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { Color } from "@/components/utils/color";
 import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
+import type { AxiosResponse } from "axios";
+import type { QueryMatchesResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
 
-const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
-const { queryQEncounters, queryQEncountersWithImage } = useQuery();
+const { queryUser, queryAllBalances, queryMatches } = useQuery();
+const { queryEncounters, queryEncountersWithImage } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { getImg } = useProfilePic();
-const { user, coins, queryCoins, queryUser } = useUser();
+const { user, coins, queryCoins, getUser } = useUser();
 const { loggedInProfilePic } = useProfilePic();
 const route = useRoute();
 const router = useRouter();
@@ -296,7 +298,7 @@ const init = () => {
     router.push({ name: "NotFound" });
   }
 
-  getUser();
+  getShownUser();
   getCoins();
   getMatches();
   getEncounters();
@@ -307,11 +309,11 @@ watch(() => route.params.id, init);
 
 onMounted(init);
 
-const getUser = () => {
+const getShownUser = () => {
   if (state.userIsUser) {
-    queryUser();
+    getUser();
   } else {
-    queryQUser(state.addr).then((user) => {
+    queryUser(state.addr).then((user) => {
       state.user = user;
       getImg(state.user, state.addr).then((img) => {
         state.img = img;
@@ -331,18 +333,18 @@ const getCoins = () => {
 };
 
 const getMatches = () => {
-  queryQMatches({ containsUsers: state.addr, "ignore.outcome": true }).then(
-    (res) => {
+  queryMatches({ containsUsers: state.addr }).then(
+    (res: QueryMatchesResponse) => {
       state.matches = {};
       res.matches.forEach((value: Match, idx: number) => {
-        state.matches[res.matchesList[idx]] = value;
+        state.matches[res.matchIds[idx]] = value;
       });
     },
   );
 };
 
 const getEncounters = () => {
-  queryQEncounters().then((res) => {
+  queryEncounters().then((res) => {
     state.ownEncounters = R.map(
       (y) => ({ id: y.Id, name: y.name }),
       R.filter((x) => x.owner == state.addr, res.encounters),
@@ -351,14 +353,14 @@ const getEncounters = () => {
   console.log("ownEncounters", state.ownEncounters);
 };
 
-const register = () => registerForCouncil(getUser, console.log);
-const deRegister = () => rewokeCouncilRegistration(getUser, console.log);
+const register = () => registerForCouncil(getShownUser, console.log);
+const deRegister = () => rewokeCouncilRegistration(getShownUser, console.log);
 
 const showChooseModal = () => {
   state.isChooseModalVisible = true;
 };
 const closeChooseModal = () => {
   state.isChooseModalVisible = false;
-  getUser();
+  getShownUser();
 };
 </script>

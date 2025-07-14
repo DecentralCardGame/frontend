@@ -7,13 +7,15 @@ import { useUser } from "./useUser";
 
 const KEY = "votingList";
 const { multiVoteCard } = useTx();
-const { user, queryUser } = useUser();
+const { user, getUser } = useUser();
 
 let stored = window.localStorage.getItem(KEY);
 const votes: Ref<SingleVote[]> = ref(
-  stored ? Object.assign([], JSON.parse(stored)) : []
+  stored ? Object.assign([], JSON.parse(stored)) : [],
 );
-const votableCards = computed(() => user.value.votableCards.map(v => Number(v)));
+const votableCards = computed(() =>
+  user.value.votableCards.map((v) => Number(v)),
+);
 const cardsLeft = computed(() => {
   let taken = votes.value.map((v) => v.cardId);
   return votableCards.value.filter((v) => !taken.includes(v));
@@ -26,7 +28,7 @@ watch(
   (currentValue) => {
     console.log("Saving current votes: ", currentValue);
     window.localStorage.setItem(KEY, JSON.stringify(currentValue));
-  }
+  },
 );
 
 const send = (then: (res: any) => void, err: (res: any) => void) => {
@@ -34,12 +36,12 @@ const send = (then: (res: any) => void, err: (res: any) => void) => {
   multiVoteCard(
     votes.value,
     (res: any) => {
-      queryUser().then(() => {
+      getUser().then(() => {
         votes.value = [];
       });
       then(res);
     },
-    err
+    err,
   );
 };
 

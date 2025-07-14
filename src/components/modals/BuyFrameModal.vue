@@ -88,7 +88,7 @@ import { useUser } from "@/def-composables/useUser";
 
 const { queryCardchainInfo } = useQuery();
 const { buyCardScheme } = useTx();
-const { user, coins, queryUser, queryCoins } = useUser();
+const { user, coins, getUser, queryCoins } = useUser();
 
 const emit = defineEmits(["close"]);
 
@@ -134,7 +134,7 @@ const buyCardFrame = () => {
   buyCardScheme(
     new Coin("credits", state.currentBid).denormalize().toCompatCoin(),
     () => {
-      queryUser();
+      getUser();
       queryCoins();
     },
     console.log,

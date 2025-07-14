@@ -1,64 +1,63 @@
 import useKeplr from "@/def-composables/useKeplr";
-import {useRouter} from "vue-router";
-import {useAddress} from "@/def-composables/useAddress";
-import {env} from "@/env";
-import {useNotifications} from "@/def-composables/useNotifications";
-import type {Key} from "@keplr-wallet/types";
-import {useQuery} from "@/def-composables/useQuery";
+import { useRouter } from "vue-router";
+import { useAddress } from "@/def-composables/useAddress";
+import { env } from "@/env";
+import { useNotifications } from "@/def-composables/useNotifications";
+import type { Key } from "@keplr-wallet/types";
+import { useQuery } from "@/def-composables/useQuery";
 import { Client } from "decentralcardgame-cardchain-client-ts";
 import { ref } from "vue";
-import {useLoggedIn} from "@/def-composables/useLoggedIn";
+import { useLoggedIn } from "@/def-composables/useLoggedIn";
 
 const useLoginInstance = () => {
-  const {connectToKeplr, isKeplrAvailable, getKeplrAccParams} = useKeplr()
-  const router = useRouter()
-  const {notifyFail, notifyInfo, notifySuccess} = useNotifications()
-  const { queryQUser } = useQuery()
-  const isSignUpRequired = ref(true)
-  const {loggedIn} = useLoggedIn()
-  const {address} = useAddress()
-  
+  const { connectToKeplr, isKeplrAvailable, getKeplrAccParams } = useKeplr();
+  const router = useRouter();
+  const { notifyFail, notifyInfo, notifySuccess } = useNotifications();
+  const { queryUser } = useQuery();
+  const isSignUpRequired = ref(true);
+  const { loggedIn } = useLoggedIn();
+  const { address } = useAddress();
+
   const tryLogin = () => {
     if (loggedIn.value) {
-      router.push({name: "UserView", params: {id: address.value}})
+      router.push({ name: "UserView", params: { id: address.value } });
     }
     signUpRequired().then((required) => {
-      console.log("signUpRequired?", required)
+      console.log("signUpRequired?", required);
       if (!required) {
-        login()
+        login();
       } else {
-        router.push({name:"Login"})
+        router.push({ name: "Login" });
       }
-    })
-  }
-  
+    });
+  };
+
   const login = () => {
-      console.log("logging in")
-      connectToKeplr(console.log, console.log)
-  }
-  
+    console.log("logging in");
+    connectToKeplr(console.log, console.log);
+  };
+
   const signUpRequired = async () => {
     if (isKeplrAvailable.value) {
       const client = new Client(env);
       await client.useKeplr();
-      const [account] = await client.signer!.getAccounts()
+      const [account] = await client.signer!.getAccounts();
       try {
-        await queryQUser(account.address)
-        return false
-      }
-      catch(e) {
-        return true
+        await queryUser(account.address);
+        return false;
+      } catch (e) {
+        return true;
       }
     }
-    return true
-  }
-  
+    return true;
+  };
+
   const checkSignUpRequired = () => {
-    return signUpRequired().then(value => {
-      isSignUpRequired.value = value
-      return value
-    })
-  }
+    return signUpRequired().then((value) => {
+      isSignUpRequired.value = value;
+      return value;
+    });
+  };
 
   const onVerify = (res: any) => {
     return getKeplrAccParams(env.chainId).then((value: Key) => {
@@ -75,10 +74,10 @@ const useLoginInstance = () => {
         },
         body: JSON.stringify(data),
       });
-      
+
       return fetch(request).then((response) => {
         console.log("response", response);
-        checkSignUpRequired()
+        checkSignUpRequired();
 
         if (response.status === 401) {
           notifyFail("Error", "Error captcha. Please reload page.");
@@ -96,11 +95,11 @@ const useLoginInstance = () => {
       });
     });
   };
-  
-  checkSignUpRequired()
 
-  return {login, checkSignUpRequired, isSignUpRequired, tryLogin, onVerify}
-}
+  checkSignUpRequired();
+
+  return { login, checkSignUpRequired, isSignUpRequired, tryLogin, onVerify };
+};
 
 let loginInstance: ReturnType<typeof useLoginInstance>;
 

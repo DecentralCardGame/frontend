@@ -1,6 +1,5 @@
 import { useClient } from "@/composables/useClient";
 import { useAddress } from "@/def-composables/useAddress";
-import type { ChainCard } from "@/model/Card";
 import { Coin, type CompatCoin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
@@ -319,7 +318,7 @@ export const useTxInstance: () => {
     date.setMonth(date.getMonth() + 12);
 
     const msgs: EncodeObject[] = [
-      client.CosmosBankV1Beta1.tx.msgSend({
+      client.CosmosBankV_1Beta_1.tx.msgSend({
         value: MsgSend.fromPartial({
           fromAddress: address.value,
           toAddress: gameclientAddr,
@@ -333,7 +332,7 @@ export const useTxInstance: () => {
         "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
         "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch",
       ].map((msgPath: string) => {
-        return client.CosmosAuthzV1Beta1.tx.msgGrant({
+        return client.CosmosAuthzV_1Beta_1.tx.msgGrant({
           value: MsgGrant.fromPartial({
             granter: address.value,
             grantee: gameclientAddr,
@@ -362,7 +361,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.CosmosBankV1Beta1.tx.sendMsgSend,
+      client.CosmosBankV_1Beta_1.tx.sendMsgSend,
       new Content({
         amount: coins,
         toAddress: to,
@@ -380,7 +379,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.CosmosAuthzV1Beta1.tx.sendMsgRevoke,
+      client.CosmosAuthzV_1Beta_1.tx.sendMsgRevoke,
       new Content({
         granter: granter,
         grantee: grantee,
@@ -402,7 +401,7 @@ export const useTxInstance: () => {
     date.setMonth(date.getMonth() + 1);
 
     messageScheduler.schedule(
-      client.CosmosAuthzV1Beta1.tx.sendMsgGrant,
+      client.CosmosAuthzV_1Beta_1.tx.sendMsgGrant,
       new Content({
         granter: granter,
         grantee: grantee,
@@ -428,7 +427,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgRegisterForCouncil,
+      client.CardchainCardchain.tx.sendMsgCouncilRegister,
       new Content(),
       then,
       err,
@@ -440,8 +439,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx
-        .sendMsgRewokeCouncilRegistration,
+      client.CardchainCardchain.tx.sendMsgCouncilDeregister,
       new Content(),
       then,
       err,
@@ -454,7 +452,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgBuyCardScheme,
+      client.CardchainCardchain.tx.sendMsgCardSchemeBuy,
       new Content({
         bid: CosmosCoin.fromJSON(coin),
       }),
@@ -469,7 +467,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgCreateCouncil,
+      client.CardchainCardchain.tx.sendMsgCouncilCreate,
       new Content({
         cardId,
       }),
@@ -486,8 +484,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx
-        .sendMsgCommitCouncilResponse,
+      client.CardchainCardchain.tx.sendMsgCouncilResponseCommit,
       new Content({
         response,
         councilId,
@@ -506,8 +503,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx
-        .sendMsgRevealCouncilResponse,
+      client.CardchainCardchain.tx.sendMsgCouncilResponseReveal,
       new Content({
         response,
         secret,
@@ -524,7 +520,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgRestartCouncil,
+      client.CardchainCardchain.tx.sendMsgCouncilRestart,
       new Content({
         councilId,
       }),
@@ -540,7 +536,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgSaveCardContent,
+      client.CardchainCardchain.tx.sendMsgCardSaveContent,
       new Content({
         cardId,
         content: btoa(JSON.stringify(card.content)),
@@ -561,7 +557,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgAddArtwork,
+      client.CardchainCardchain.tx.sendMsgCardArtworkAdd,
       new Content({
         cardId,
         image: btoa(image),
@@ -579,7 +575,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgVoteCard,
+      client.CardchainCardchain.tx.sendMsgCardVote,
       new Content({
         cardId,
         voteType,
@@ -596,7 +592,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgTransferCard,
+      client.CardchainCardchain.tx.sendMsgCardTransfer,
       new Content({
         cardId,
         receiver,
@@ -612,7 +608,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard,
+      client.CardchainCardchain.tx.sendMsgProfileCardSet,
       new Content({
         cardId,
       }),
@@ -627,7 +623,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgMultiVoteCard,
+      client.CardchainCardchain.tx.sendMsgCardVoteMulti,
       new Content({
         votes,
       }),
@@ -643,7 +639,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgCreateuser,
+      client.CardchainCardchain.tx.sendMsgUserCreate,
       new Content({
         newUser,
         alias,
@@ -659,7 +655,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgInviteEarlyAccess,
+      client.CardchainCardchain.tx.sendMsgEarlyAccessInvite,
       new Content({
         user: invitee,
       }),
@@ -674,7 +670,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgDisinviteEarlyAccess,
+      client.CardchainCardchain.tx.sendMsgEarlyAccessDisinvite,
       new Content({
         user: invitee,
       }),
@@ -692,7 +688,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         name,
         Drawlist,
@@ -712,7 +708,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         encounterId,
         user,
@@ -730,7 +726,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         encounterId,
         user,

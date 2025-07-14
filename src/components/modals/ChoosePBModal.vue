@@ -19,11 +19,7 @@
         @click="choose(obj.id)"
       />
     </div>
-    <BaseCCButton
-      :type="Color.RED"
-      class="mx-auto text-center"
-      @click="send"
-    >
+    <BaseCCButton :type="Color.RED" class="mx-auto text-center" @click="send">
       Save
     </BaseCCButton>
   </ModalFrame>
@@ -45,7 +41,7 @@ import { Color } from "@/components/utils/color";
 const { address } = useAddress();
 const { getDefaultImg } = useProfilePic();
 const { setProfileCard } = useTx();
-const { queryUser } = useUser();
+const { getUser } = useUser();
 const { getCard } = useCards();
 const emit = defineEmits(["close"]);
 
@@ -104,7 +100,7 @@ const send = () => {
   setProfileCard(
     state.choosen,
     (res) => {
-      queryUser();
+      getUser();
       close();
     },
     console.log,

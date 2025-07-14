@@ -6,7 +6,7 @@ import type { Coin } from "@/model/Coin";
 import { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
 
 const useUserInstance = () => {
-  const { queryQUser, queryAllBalances } = useQuery();
+  const { queryUser, queryAllBalances } = useQuery();
   const { address } = useAddress();
   const { loggedIn } = useLoggedIn();
   const user: Ref<User> = ref(User.fromPartial({}));
@@ -19,13 +19,13 @@ const useUserInstance = () => {
   });
 
   const queryUntilResponse = () => {
-    return queryUser().catch((_) => {
+    return getUser().catch((_) => {
       setTimeout(queryUntilResponse, 100);
     });
   };
 
-  const queryUser = () => {
-    return queryQUser(address.value).then((u) => {
+  const getUser = () => {
+    return queryUser(address.value).then((u) => {
       user.value = u;
     });
   };
@@ -36,7 +36,7 @@ const useUserInstance = () => {
     });
   };
 
-  return { queryUser, queryCoins, user, coins };
+  return { getUser, queryCoins, user, coins };
 };
 
 let instance: ReturnType<typeof useUserInstance>;

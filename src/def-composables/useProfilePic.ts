@@ -1,9 +1,9 @@
 import { ref, watch } from "vue";
 import { useAddress } from "./useAddress";
 import { useUser } from "./useUser";
-import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
+import type { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
 import { useCards } from "@/def-composables/useCards";
-import spinner from "@/assets/spinner.svg"
+import spinner from "@/assets/spinner.svg";
 
 const useProfilePicInstance = () => {
   const { address } = useAddress();
@@ -18,7 +18,7 @@ const useProfilePicInstance = () => {
         loggedInProfilePic.value = img;
       });
     },
-    { deep: true }
+    { deep: true },
   );
 
   const getDefaultImg = (addr: string) => {
@@ -27,6 +27,7 @@ const useProfilePicInstance = () => {
   };
 
   const getImg = async (user: User, address: string) => {
+    console.log(user);
     if (user.profileCard != 0) {
       let card = await getCard(user.profileCard);
       if (card === null) {

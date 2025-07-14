@@ -885,8 +885,8 @@ import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate();
 const { saveCardContent, addArtwork, buyCardScheme } = useTx();
-const { queryQUser, queryCardchainInfo } = useQuery();
-const { user, coins, queryUser, queryCoins } = useUser();
+const { queryUser, queryCardchainInfo } = useQuery();
+const { user, coins, getUser, queryCoins } = useUser();
 
 enum Mode {
   EDIT = 0,
@@ -1012,7 +1012,7 @@ export default {
       });
       if (this.activeStep == 9) {
         this.cardFramesMarketData();
-        queryUser();
+        getUser();
       }
     },
     model() {
@@ -1364,7 +1364,7 @@ export default {
       return string;
     },
     async getCardFrames() {
-      return await queryQUser(this.address).then((res: User) => {
+      return await queryUser(this.address).then((res: User) => {
         //this.availableCardFrames = res.ownedCardSchemes.length || 0
         return 0; //this.availableCardFrames
       });
@@ -1589,7 +1589,7 @@ export default {
       buyCardScheme(
         new Coin("credits", this.cardFramePrice).denormalize().toCompatCoin(),
         () => {
-          queryUser();
+          getUser();
           queryCoins();
           this.saveSubmit();
         },
@@ -1623,7 +1623,7 @@ export default {
           "You must be logged in with an activated account!",
         );
       } else {
-        queryQUser(this.address)
+        queryUser(this.address)
           .then((res: User) => {
             if (R.isEmpty(res.ownedCardSchemes)) {
               this.notifyFail(

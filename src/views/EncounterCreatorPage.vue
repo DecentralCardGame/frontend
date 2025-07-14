@@ -241,10 +241,10 @@ const {
 const { encounterDo, encounterCreate, encounterClose } = useTx();
 const { getCard } = useCards();
 const {
-  queryQEncounter,
-  queryQEncounterWithImage,
-  queryQEncounters,
-  queryQEncountersWithImage,
+  queryEncounter,
+  queryEncounterWithImage,
+  queryEncounters,
+  queryEncountersWithImage,
 } = useQuery();
 
 const drawList = ref([]);
@@ -354,7 +354,7 @@ onMounted(() => {
 
   loadQueryCardList(filters);
 
-  queryQEncounterWithImage(route.query.id).then((res) => {
+  queryEncounterWithImage(route.query.id).then((res) => {
     cropImage.value = res.encounter.image;
     encounterName = res.encounter.encounter.name;
 
