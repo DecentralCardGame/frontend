@@ -8,7 +8,7 @@ export default function () {
 
   const connectToKeplr = async (
     onSuccessCb: () => void,
-    onErrorCb: () => void
+    onErrorCb: () => void,
   ) => {
     try {
       walletStore.connectWithKeplr();

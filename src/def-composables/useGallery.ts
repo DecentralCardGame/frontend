@@ -1,18 +1,19 @@
 import router from "@/router";
-import {
-  QueryQCardsRequest,
-  QueryQCardsResponse,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/query";
-import {
-  CardClass,
-  CardType,
-  Status,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+
 import { useQuery } from "@/def-composables/useQuery";
 import { ref, watch, type Ref } from "vue";
 import { GalleryFilters } from "@/model/GalleryFilters";
+import {
+  QueryCardsRequest,
+  QueryCardsResponse,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import {
+  CardClass,
+  CardStatus,
+  CardType,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
 
-export type PageQuery = QueryQCardsRequest;
+export type PageQuery = QueryCardsRequest;
 
 // Sadly this is needed, since the shitty querier displays arrays and `&Name[]=...` and not `&Name=...` this makes me mad
 const constructAssRetardetQueryParams = (query: any): string => {
@@ -31,7 +32,7 @@ const constructAssRetardetQueryParams = (query: any): string => {
     .reduce((akku: string, curr: string) => akku + curr);
 };
 
-const { queryQCards } = useQuery();
+const { queryCards } = useQuery();
 
 const cardList: Ref<Array<number>> = ref([]);
 const galleryFilters: Ref<GalleryFilters> = ref(new GalleryFilters());
@@ -85,15 +86,15 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
 };
 
 const pageQueryFromGalleryFilters = (): PageQuery => {
-  return QueryQCardsRequest.fromPartial({
+  return QueryCardsRequest.fromPartial({
     owner: galleryFilters.value.owner,
     statuses:
       galleryFilters.value.status == "playable"
         ? [
-            Status.bannedSoon,
-            Status.bannedVerySoon,
-            Status.permanent,
-            Status.trial,
+            CardStatus.bannedSoon,
+            CardStatus.bannedVerySoon,
+            CardStatus.permanent,
+            CardStatus.trial,
           ]
         : [galleryFilters.value.status],
     classes: [
@@ -117,15 +118,14 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
     notesContains: galleryFilters.value.notesContains,
     sortBy: galleryFilters.value.sortBy ? galleryFilters.value.sortBy : "",
     multiClassOnly: galleryFilters.value.multiClass,
-  } as Partial<QueryQCardsRequest>);
+  } as Partial<QueryCardsRequest>);
 };
 
 const loadQueryCardList = (query: PageQuery): void => {
-
-  queryQCards(query, {
+  queryCards(query, {
     paramsSerializer: constructAssRetardetQueryParams,
-  }).then((res: QueryQCardsResponse) => {
-    cardList.value = res.cardsList;
+  }).then((res: QueryCardsResponse) => {
+    cardList.value = res.cardIds;
   });
 };
 

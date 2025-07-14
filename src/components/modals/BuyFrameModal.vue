@@ -7,10 +7,7 @@
         class="bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
         role="dialog"
       >
-        <header
-          id="modalTitle"
-          class="modal__header"
-        >
+        <header id="modalTitle" class="modal__header">
           <slot name="header">
             Card Frame Auction
             <button
@@ -23,10 +20,7 @@
             </button>
           </slot>
         </header>
-        <section
-          id="modalDescription"
-          class="modal__body"
-        >
+        <section id="modalDescription" class="modal__body">
           <slot name="body">
             <table class="table--buy-scard-frame">
               <tr>
@@ -36,7 +30,7 @@
                 </td>
               </tr>
               <tr>
-                <br>
+                <br />
               </tr>
               <tr>
                 <td>Current price:</td>
@@ -62,7 +56,7 @@
                     class="text-black"
                     type="text"
                     @keypress="isNumber($event)"
-                  >
+                  />
                 </td>
                 <td>credits</td>
               </tr>
@@ -92,62 +86,67 @@ import { Coin } from "@/model/Coin";
 import { computed, type ComputedRef, onMounted, reactive } from "vue";
 import { useUser } from "@/def-composables/useUser";
 
-const { queryQCardchainInfo } = useQuery();
+const { queryCardchainInfo } = useQuery();
 const { buyCardScheme } = useTx();
 const { user, coins, queryUser, queryCoins } = useUser();
 
 const emit = defineEmits(["close"]);
 
 const initialState: {
-  ownedCardFrames: ComputedRef<number>,
-  currentPrice: number,
-  currentBid: number,
-  creditsAvailable: ComputedRef<number>
+  ownedCardFrames: ComputedRef<number>;
+  currentPrice: number;
+  currentBid: number;
+  creditsAvailable: ComputedRef<number>;
 } = {
   ownedCardFrames: computed(() => user.value.ownedCardSchemes.length),
   currentPrice: -1,
   currentBid: -1,
   creditsAvailable: computed(() => {
-    let usableCoins: Coin[] = coins.value.filter((coin: Coin) => coin.denom == "ucredits");
+    let usableCoins: Coin[] = coins.value.filter(
+      (coin: Coin) => coin.denom == "ucredits",
+    );
     if (usableCoins.length == 0) {
       throw new Error("No usable coins available");
     }
     return Coin.from(usableCoins[0]).normalize().amount;
-  })
+  }),
 };
 
 const state = reactive(initialState);
 
 onMounted(() => {
-  queryQCardchainInfo({})
-    .then(res => {
+  queryCardchainInfo({})
+    .then((res) => {
       console.log(res);
       let credits = res.cardAuctionPrice.normalize().amount;
       state.currentBid = credits;
       state.currentPrice = credits;
     })
-    .catch(res => {
+    .catch((res) => {
       console.error(res);
       close();
     });
-})
+});
 
 const close = () => emit("close");
 const buyCardFrame = () => {
   emit("close");
   buyCardScheme(
     new Coin("credits", state.currentBid).denormalize().toCompatCoin(),
-    () => {queryUser(); queryCoins()},
-    console.log
+    () => {
+      queryUser();
+      queryCoins();
+    },
+    console.log,
   );
 };
 const isNumber = (evt: any) => {
   evt = evt || window.event;
-  let charCode = (evt.which) ? evt.which : evt.keyCode;
-  if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+  let charCode = evt.which ? evt.which : evt.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
     evt.preventDefault();
   } else {
     return true;
   }
-}
+};
 </script>

@@ -1,30 +1,29 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
     <!-- left panel - filters -->
-    <div class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center 
-      lg:p-16 h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 "
+    <div
+      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4"
     >
       <div v-if="!loggedIn">
-          You are not logged in. <br>
-          Please login to create an encounter.
+        You are not logged in. <br />
+        Please login to create an encounter.
       </div>
-      <div v-if="loggedIn"
-        class="max-w-[18rem]">
-          Build your Encounter by selecting Cards for a draw list.
-          The AI of the encounter will draw cards exactly in this order.
+      <div v-if="loggedIn" class="max-w-[18rem]">
+        Build your Encounter by selecting Cards for a draw list. The AI of the
+        encounter will draw cards exactly in this order.
         <div class="my-5" v-if="!hqSelected">
-          1. Step - Select HQ <br>
+          1. Step - Select HQ <br />
           Use the class filters below to show matching HQs only.
         </div>
         <div class="my-5" v-if="hqSelected">
-          2. Step - Add Cards <br>
+          2. Step - Add Cards <br />
           Use the type filters below to show matching Card types only.
         </div>
-        <div
-          v-if="filtersVisible"
-          class="space-y-6 justify-self-center"
-        >
-          <GalleryFilterImageChooser v-if="!hqSelected" :options="classOptions" />
+        <div v-if="filtersVisible" class="space-y-6 justify-self-center">
+          <GalleryFilterImageChooser
+            v-if="!hqSelected"
+            :options="classOptions"
+          />
           <GalleryFilterImageChooser v-if="hqSelected" :options="typeOptions" />
           <div class="">
             <p>Search for</p>
@@ -33,12 +32,12 @@
                 v-model="galleryFilters.nameContains"
                 placeholder="name"
               />
-              <br>
+              <br />
               <CCInput
                 v-model="galleryFilters.notesContains"
                 placeholder="notes"
               />
-              <br>
+              <br />
               <CCInput
                 v-model="galleryFilters.keywordsContains"
                 placeholder="keywords"
@@ -54,12 +53,12 @@
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-start max-md:hidden md:justify-between">
-            <p class="md:text-xl lg:text-lg xl:text-xl  my-auto">
+            <p class="md:text-xl lg:text-lg xl:text-xl my-auto">
               {{ cardList.length }} Results
             </p>
           </div>
           <div>
-            <p class="md:text-4xl lg:text-2xl xl:text-4xl  text-center">
+            <p class="md:text-4xl lg:text-2xl xl:text-4xl text-center">
               Encounter
             </p>
           </div>
@@ -74,10 +73,7 @@
               :options="['Name', 'CastingCost', 'Id']"
               :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
             />
-            <SortDirectionButton
-              v-model="revertSort"
-              class="my-auto"
-            />
+            <SortDirectionButton v-model="revertSort" class="my-auto" />
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />
@@ -92,8 +88,7 @@
 
     <!-- right panel - enter specs -->
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-auto relative"
+      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-auto relative"
     >
       <CCInput
         class="my-5"
@@ -114,7 +109,7 @@
               type="file"
               class="hidden"
               @change="inputFile"
-            >
+            />
           </label>
         </div>
         <img
@@ -124,22 +119,18 @@
           height="400"
           :src="cropImage"
           alt="check"
-        >
+        />
       </div>
       <div>
-        <BaseCCButton
-          :type="Color.RED"
-          @click="publish()"
-        >
+        <BaseCCButton :type="Color.RED" @click="publish()">
           Publish Encounter
         </BaseCCButton>
       </div>
       <!-- Added cards section -->
       <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
-      <div
-        v-for="(item, index) in drawList" :key="item.id" 
-      >
-        <div class="flex flex-row w-full h-6 mb-2 select-none cursor-grab"
+      <div v-for="(item, index) in drawList" :key="item.id">
+        <div
+          class="flex flex-row w-full h-6 mb-2 select-none cursor-grab"
           draggable="true"
           @drop="onDrop($event, index)"
           @dragover.prevent
@@ -147,42 +138,41 @@
           @dragstart="startDrag($event, index)"
           @click="removeCard(index)"
         >
-          <div class="w-6 flex-none bg-transparent">
-            {{item.count}}x  
-          </div>
-          <div class="flex-1 flex items-center justify-between text-black bg-white items-center w-full p-0 m-0">
+          <div class="w-6 flex-none bg-transparent">{{ item.count }}x</div>
+          <div
+            class="flex-1 flex items-center justify-between text-black bg-white items-center w-full p-0 m-0"
+          >
             <!-- Left Section -->
             <div class="flex items-center">
-              <img
-                :src="getMiniFrame(item)"
-                class="w-[1.6rem] h-full"
-              >
+              <img :src="getMiniFrame(item)" class="w-[1.6rem] h-full" />
             </div>
             <!-- Center Text -->
             <span class="flex-1 text-center">{{ item.name }}</span>
             <!-- Right Section (Blue Circle + Image) -->
             <div class="flex items-center">
-              <div class="w-5 h-5 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full text-sm">
+              <div
+                class="w-5 h-5 flex items-center justify-center bg-blue-500 text-white font-bold rounded-full text-sm"
+              >
                 {{ item.cost }}
               </div>
               <img
                 :src="getMiniFrame(item)"
                 class="w-[1.6rem] h-full scale-x-[-1] translate-x-[10%]"
-              >
+              />
             </div>
           </div>
         </div>
       </div>
       <!-- this creates an empty drop area below the list -->
-      <div class="h-8"
-        @drop="onDrop($event, drawList.length-1)"
+      <div
+        class="h-8"
+        @drop="onDrop($event, drawList.length - 1)"
         @dragover.prevent
-        @dragenter.prevent>
-      </div>
+        @dragenter.prevent
+      ></div>
 
       <div class="h-[100vh] bg-[#552026]"></div>
     </div>
-
   </div>
 </template>
 
@@ -192,7 +182,7 @@ import { env } from "@/env";
 import { onMounted, watch, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCards } from "@/def-composables/useCards";
-import {useNotifications} from "@/def-composables/useNotifications";
+import { useNotifications } from "@/def-composables/useNotifications";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import GalleryComponent from "@/components/elements/GalleryComponent.vue";
 import techActive from "@/assets/figma/ClassesButtons/tech.png";
@@ -224,8 +214,8 @@ import CCInput from "@/components/elements/CCInput/CCInput.vue";
 import {
   CardRarity,
   cardTypeToJSON,
-  Status,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+  CardStatus,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
 import { Card } from "@/model/Card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
@@ -234,7 +224,7 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
 
-const {notifyFail} = useNotifications()
+const { notifyFail } = useNotifications();
 const route = useRoute();
 const router = useRouter();
 const { loggedIn } = useLoggedIn();
@@ -250,10 +240,15 @@ const {
 } = useGallery();
 const { encounterDo, encounterCreate, encounterClose } = useTx();
 const { getCard } = useCards();
-const { queryQEncounter, queryQEncounterWithImage, queryQEncounters, queryQEncountersWithImage } = useQuery();
+const {
+  queryQEncounter,
+  queryQEncounterWithImage,
+  queryQEncounters,
+  queryQEncountersWithImage,
+} = useQuery();
 
 const drawList = ref([]);
-let cropImage = ref('');
+let cropImage = ref("");
 let encounterName = "";
 let filtersVisible = ref(true);
 let dragFrom = -1;
@@ -264,10 +259,10 @@ watch(drawList.value, () => {
   let hq = undefined;
   drawList.value.forEach((item, index) => {
     if (item.type == "Headquarter") {
-      if (hq) drawList.value.splice(index, 1)
+      if (hq) drawList.value.splice(index, 1);
       else hq = item;
     }
-  })
+  });
   if (hq) {
     // change filters to cards only matching HQ
     galleryFilters.value.nature = hq.class.Nature;
@@ -278,15 +273,14 @@ watch(drawList.value, () => {
     hqSelected.value = true;
 
     // remove all cards that do not match hqs color identity
-    drawList.value.forEach( (item, index) => {
+    drawList.value.forEach((item, index) => {
       for (let [key, value] of Object.entries(hq.class)) {
         if (value == false && item.class[key] == true) {
-          drawList.value.splice(index, 1)
-        } 
+          drawList.value.splice(index, 1);
+        }
       }
-    })
-  }
-  else {
+    });
+  } else {
     galleryFilters.value.hq = true;
     galleryFilters.value.place = false;
     galleryFilters.value.action = false;
@@ -298,7 +292,7 @@ watch(drawList.value, () => {
     hqSelected.value = false;
   }
   updateCardsAdded();
-})
+});
 
 const revertSort = ref(false);
 
@@ -352,37 +346,43 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 
 onMounted(() => {
   galleryFilters.value.owner = address;
-  galleryFilters.value.status = "playable";[Status.prototype];
+  galleryFilters.value.status = "playable";
+  [Status.prototype];
   galleryFilters.value.hq = true;
 
   let filters = pageQueryFromGalleryFilters();
 
   loadQueryCardList(filters);
 
-  queryQEncounterWithImage(route.query.id)
-    .then((res) => {
-      cropImage.value = res.encounter.image;
-      encounterName = res.encounter.encounter.name
+  queryQEncounterWithImage(route.query.id).then((res) => {
+    cropImage.value = res.encounter.image;
+    encounterName = res.encounter.encounter.name;
 
-      res.encounter.encounter.Drawlist.forEach(entry => {
-        loadCard(entry).then(res => {
-          addCardToEncounter(res);
-        })
+    res.encounter.encounter.Drawlist.forEach((entry) => {
+      loadCard(entry).then((res) => {
+        addCardToEncounter(res);
       });
     });
+  });
 });
 
 const inputFile = (event) => {
-  let file = event.target.files[0]; 
+  let file = event.target.files[0];
 
-  uploadImg(file, env.cardImgMaxKB, (result) => {
-    if (result.startsWith("Error")) {
-      notifyFail("Failed to Upload", result);
-      return;
-    }
-    cropImage.value = result;
-  }, 1920, 1080);
-}
+  uploadImg(
+    file,
+    env.cardImgMaxKB,
+    (result) => {
+      if (result.startsWith("Error")) {
+        notifyFail("Failed to Upload", result);
+        return;
+      }
+      cropImage.value = result;
+    },
+    1920,
+    1080,
+  );
+};
 
 const loadCard = async (cardId: number) => {
   let card: Card = await getCard(cardId);
@@ -397,10 +397,13 @@ const loadCard = async (cardId: number) => {
 };
 
 const addCardToEncounter = (card: Card) => {
-  if (!R.isEmpty(drawList.value) && R.last(drawList.value).id == card.id && card.type != "Headquarter") {
+  if (
+    !R.isEmpty(drawList.value) &&
+    R.last(drawList.value).id == card.id &&
+    card.type != "Headquarter"
+  ) {
     R.last(drawList.value).count++;
-  }
-  else {
+  } else {
     let newEntry = {
       id: card.id,
       name: card.CardName,
@@ -408,44 +411,40 @@ const addCardToEncounter = (card: Card) => {
       type: card.type,
       class: card.Class,
       count: 1,
-      };
-    if (card.type != "Headquarter")
-      drawList.value.push(newEntry);
-    else
-      drawList.value.splice(0,0, newEntry);
+    };
+    if (card.type != "Headquarter") drawList.value.push(newEntry);
+    else drawList.value.splice(0, 0, newEntry);
   }
   updateCardsAdded();
-}
+};
 
 const startDrag = (evt, index) => {
   dragFrom = index;
-}
+};
 
 const onDrop = (evt, targetIndex) => {
   if (targetIndex == 0) targetIndex = 1;
   drawList.value = R.move(dragFrom, targetIndex, drawList.value);
 
-  let newList = []
+  let newList = [];
   for (let entry of drawList.value) {
-    if (R.last(newList) && R.last(newList).id == entry.id) R.last(newList).count += entry.count;
+    if (R.last(newList) && R.last(newList).id == entry.id)
+      R.last(newList).count += entry.count;
     else newList.push(entry);
   }
   drawList.value.splice(0, drawList.value.length, ...newList);
   updateCardsAdded();
-}
+};
 
 const removeCard = (index) => {
-  if(drawList.value[index].count == 1)
-    drawList.value.splice(index, 1);
-  else 
-    drawList.value[index].count--;
+  if (drawList.value[index].count == 1) drawList.value.splice(index, 1);
+  else drawList.value[index].count--;
   updateCardsAdded();
-}
+};
 
 const getMiniFrame = (item) => {
-  var cardClass = ""
-  if (item.type == "Headquarter")
-    return "icon/minicardframe/HQFrame.png";
+  var cardClass = "";
+  if (item.type == "Headquarter") return "icon/minicardframe/HQFrame.png";
   else {
     if (R.countBy((x) => x === true)(R.values(item.class)).true > 1)
       cardClass = "MultiClass";
@@ -458,42 +457,41 @@ const getMiniFrame = (item) => {
       }
     }
   }
-  return "icon/minicardframe/"+item.type+"Frame"+cardClass+".png";
-}
+  return "icon/minicardframe/" + item.type + "Frame" + cardClass + ".png";
+};
 
 const updateCardsAdded = () => {
   cardsAdded = R.reduce(R.add, 0, R.pluck("count", drawList.value));
-}
+};
 
 const publish = () => {
   // before publishing check stuff
   if (!hqSelected.value) {
-    notifyFail(
-      "HQ",
-      "An Encounter needs a HQ. Add one please.",
-    );
+    notifyFail("HQ", "An Encounter needs a HQ. Add one please.");
     return;
   }
   if (encounterName === "") {
-    notifyFail(
-      "Name",
-      "An Encounter needs a Name. Add one please.",
-    );
+    notifyFail("Name", "An Encounter needs a Name. Add one please.");
     return;
   }
 
   // unfold drawlist
-  let cards = R.flatten( R.map(x => R.repeat(x.id, x.count), drawList.value) )
+  let cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
 
   let parameters = {};
 
-  encounterCreate(encounterName, cards, parameters, cropImage.value, (res) =>{
-    console.log("success", res)
-  },
-  (err) => {
-    console.error("err", err)
-    notifyFail("Failed to Upload", err.message);
-  });
-}
-
+  encounterCreate(
+    encounterName,
+    cards,
+    parameters,
+    cropImage.value,
+    (res) => {
+      console.log("success", res);
+    },
+    (err) => {
+      console.error("err", err);
+      notifyFail("Failed to Upload", err.message);
+    },
+  );
+};
 </script>

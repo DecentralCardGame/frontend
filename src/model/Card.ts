@@ -1,72 +1,7 @@
 import * as R from "ramda";
 import { Coin } from "./Coin";
-
-export class ChainCard {
-  owner: string = "";
-  status: string = "";
-  artist: string = "";
-  content: any;
-  image: string = "";
-  fullArt: boolean = true;
-  nerflevel: string = "";
-  notes: string = "";
-  fairEnoughVotes: string = "";
-  inappropriateVotes: string = "";
-  overpoweredVotes: string = "";
-  underpoweredVotes: string = "";
-  votePool: Coin = new Coin();
-  voters: Array<string> = [];
-  balanceAnchor: boolean = false;
-  rarity: string = "";
-  hash: string = "";
-
-  static from(json: any) {
-    return Object.assign(new ChainCard(), json);
-  }
-
-  toCard(): Card {
-    let card = new Card();
-    if (this.content) {
-      let content = JSON.parse(this.content);
-      let cardType = Object.keys(content)[0];
-
-      card.CardName = content[cardType].CardName;
-      card.FlavourText = content[cardType].FlavourText;
-      card.Tags = content[cardType].Tags;
-      card.Class = Object.assign(new CardClass(), content[cardType].Class);
-      card.CastingCost = parseInt(content[cardType].CastingCost);
-      card.Abilities = content[cardType].Abilities;
-      card.AdditionalCost = content[cardType].AdditionalCost;
-      card.Health = parseInt(content[cardType].Health);
-      card.Attack = parseInt(content[cardType].Attack);
-      card.Delay = parseInt(content[cardType].Delay);
-      card.RulesTexts = [];
-      card.Effects = content[cardType].Effects;
-
-      card.type = cardType;
-      card.owner = this.owner;
-      card.rarity = this.rarity;
-      card.status = this.status;
-      card.artist = this.artist;
-      card.Content = content;
-      card.image = this.image;
-      card.fullArt = this.fullArt;
-      card.nerflevel = parseInt(this.nerflevel);
-      card.notes = this.notes;
-      card.fairEnoughVotes = parseInt(this.fairEnoughVotes);
-      card.inappropriateVotes = parseInt(this.inappropriateVotes);
-      card.overpoweredVotes = parseInt(this.overpoweredVotes);
-      card.underpoweredVotes = parseInt(this.underpoweredVotes);
-      card.votePool = Object.assign(new Coin(), this.votePool);
-      card.voters = this.voters;
-      card.balanceAnchor = this.balanceAnchor;
-      card.hash = this.hash;
-
-      console.log("parsed card: ", card.CardName, card);
-    }
-    return card;
-  }
-}
+import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import { CardWithImage } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card_with_image";
 
 export class Card {
   notes: string = "";
@@ -130,6 +65,49 @@ export class Card {
     }
   }
 
+  static fromCardWithImage(from: CardWithImage): Card {
+    let card = new Card();
+    if (from.card?.content) {
+      let content = JSON.parse(atob(from.card.content.toString()));
+      let cardType = Object.keys(content)[0];
+
+      card.CardName = content[cardType].CardName;
+      card.FlavourText = content[cardType].FlavourText;
+      card.Tags = content[cardType].Tags;
+      card.Class = Object.assign(new CardClass(), content[cardType].Class);
+      card.CastingCost = parseInt(content[cardType].CastingCost);
+      card.Abilities = content[cardType].Abilities;
+      card.AdditionalCost = content[cardType].AdditionalCost;
+      card.Health = parseInt(content[cardType].Health);
+      card.Attack = parseInt(content[cardType].Attack);
+      card.Delay = parseInt(content[cardType].Delay);
+      card.RulesTexts = [];
+      card.Effects = content[cardType].Effects;
+
+      card.type = cardType;
+      card.owner = from.card.owner;
+      card.rarity = from.card.rarity.toString();
+      card.status = from.card.status.toString();
+      card.artist = from.card.artist;
+      card.Content = content;
+      card.image = from.image;
+      card.fullArt = from.card.fullArt;
+      card.nerflevel = from.card.nerflevel;
+      card.notes = from.card.notes;
+      card.fairEnoughVotes = from.card.fairEnoughVotes;
+      card.inappropriateVotes = from.card.inappropriateVotes;
+      card.overpoweredVotes = from.card.overpoweredVotes;
+      card.underpoweredVotes = from.card.underpoweredVotes;
+      card.votePool = Object.assign(new Coin(), from.card.votePool);
+      card.voters = from.card.voters;
+      card.balanceAnchor = from.card.balanceAnchor;
+      card.hash = from.hash;
+
+      console.log("parsed card: ", card.CardName, card);
+    }
+    return card;
+  }
+
   toChainCard(): ChainCard {
     console.log("trying to parse ", this);
     let cardContent = Object.assign(new CardContent(), {
@@ -143,8 +121,11 @@ export class Card {
     // in the following part we check things that are only required for specific card types
     if (this.type !== "Headquarter") {
       cardContent.CastingCost = this.CastingCost;
-      if (this.AdditionalCost && R.keys(this.AdditionalCost).length > 0 && R.values(this.AdditionalCost)[0].Amount > 0) {
-
+      if (
+        this.AdditionalCost &&
+        R.keys(this.AdditionalCost).length > 0 &&
+        R.values(this.AdditionalCost)[0].Amount > 0
+      ) {
         cardContent.AdditionalCost = this.AdditionalCost;
       }
     }

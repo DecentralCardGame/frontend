@@ -1,46 +1,37 @@
 <template>
   <div class="flex flex-col text-lg bg-cc-yellow">
     <div class="text-center pt-12 pb-6">
-      <p class="text-4xl pb-2">
-        Council Encounter
+      <p class="text-4xl pb-2">Council Encounter</p>
+      <p>
+        Make a decision for the card draft below. <br />
+        Another player has designed this card. <br />
+        Your review is needed to make it a valid card for ranked play!
       </p>
-      <p>Make a decision for the card draft below. <br>
-      Another player has designed this card. <br>
-      Your review is needed to make it a valid card for ranked play!</p>
     </div>
     <div class="bg-black text-white flex justify-center">
       <div class="p-8">
-        <div
-          v-if="!loggedIn"
-          class="text-center"
-        >
-          <p class="pb-4">
-            To vote on cards you have to <b>login</b> first!
-          </p>
-          <RouterCCButton :to="{ name: 'Login' }">
-            Login
-          </RouterCCButton>
+        <div v-if="!loggedIn" class="text-center">
+          <p class="pb-4">To vote on cards you have to <b>login</b> first!</p>
+          <RouterCCButton :to="{ name: 'Login' }"> Login </RouterCCButton>
         </div>
         <div v-else-if="current">
           <div class="w-64 inline-block align-top mr-12">
             <p>
-              <b>{{ state.currentCard.CardName }}</b><br>
+              <b>{{ state.currentCard.CardName }}</b
+              ><br />
               <i v-if="state.currentCard.FlavourText">
                 "{{ state.currentCard.FlavourText }}"
               </i>
-              <br><br>
-              <b>Advanced Card Information</b> <br>
-              Votepool: {{ votePool }} <br>
-              Status: {{ state.currentCard.status }} <br>
+              <br /><br />
+              <b>Advanced Card Information</b> <br />
+              Votepool: {{ votePool }} <br />
+              Status: {{ state.currentCard.status }} <br />
             </p>
-            <br>
+            <br />
             <keyword-component :keywords="state.currentCard.Keywords" />
           </div>
           <div class="inline-block">
-            <CardComponent
-              :model="state.currentCard"
-              class="h-[35rem]"
-            />
+            <CardComponent :model="state.currentCard" class="h-[35rem]" />
           </div>
         </div>
         <div v-else-if="!cardsLeft.length && !isEmpty">
@@ -70,11 +61,7 @@
       >
         {{ elem.text }}
       </SmallCCButton>
-      <SmallCCButton
-        v-if="!isEmpty"
-        :type="Color.RED"
-        @click="sendToChain()"
-      >
+      <SmallCCButton v-if="!isEmpty" :type="Color.RED" @click="sendToChain()">
         Send votes to chain
       </SmallCCButton>
     </div>
@@ -89,7 +76,7 @@ import { Card } from "@/model/Card";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { useCouncil } from "@/def-composables/useCouncil";
 import { computed, onMounted, reactive, watch } from "vue";
-import { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import { VoteType } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/voting";
 import { useCards } from "@/def-composables/useCards";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import SmallCCButton from "@/components/elements/CCButton/SmallCCButton.vue";
@@ -99,7 +86,8 @@ import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 const { loggedIn } = useLoggedIn();
 const { notifySuccess } = useNotifications();
 const { getCard } = useCards();
-const { councilStatus, add, send, isEmpty, cardsLeft, current, next } = useCouncil();
+const { councilStatus, add, send, isEmpty, cardsLeft, current, next } =
+  useCouncil();
 
 const initialState: {
   currentCard: Card;
@@ -130,7 +118,7 @@ const loadCard = () => {
 };
 
 onMounted(() => {
-  console.log("Council Status:", councilStatus.value)
+  console.log("Council Status:", councilStatus.value);
   if (loggedIn.value) {
     loadCard();
   }

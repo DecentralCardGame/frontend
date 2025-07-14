@@ -1,19 +1,16 @@
 <template>
   <div class="min-h-screen bg-pink-950 flex flex-col items-center">
     <div>
-      <div class="pt-24 pb-4 w-full text-white text-4xl">
-        Card Creator
-      </div>
+      <div class="pt-24 pb-4 w-full text-white text-4xl">Card Creator</div>
 
       <div
         v-if="successScreenVisible"
         class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow-xl shadow-black/25"
       >
-        <div class="uppercase font-bold pt-12">
-          Congratulations!
-        </div>
+        <div class="uppercase font-bold pt-12">Congratulations!</div>
         <div class="p-4">
-          You successfully {{ mode == Mode.EDIT ? "edited" : "minted" }} your card!
+          You successfully {{ mode == Mode.EDIT ? "edited" : "minted" }} your
+          card!
         </div>
         <BaseCCButton
           class="p-16 pb-60"
@@ -47,7 +44,7 @@
                   v-if="item == 'active'"
                   :src="CCLogoSmallInvert"
                   alt="check"
-                >
+                />
               </div>
               <div
                 v-if="item == 'open'"
@@ -84,13 +81,8 @@
         </DefineNavigationButtons>
 
         <!-- Class Selection -->
-        <div
-          v-if="activeStep == 0"
-          class=""
-        >
-          <div class="pt-8 p-3 text-s font-bold">
-            CLASSES
-          </div>
+        <div v-if="activeStep == 0" class="">
+          <div class="pt-8 p-3 text-s font-bold">CLASSES</div>
           <div class="text-s pb-4">
             Select one or multiple classes for your card.
           </div>
@@ -109,7 +101,7 @@
                   'border-8 border-black rounded-full': model.Class[item],
                 }"
                 :src="classIcons[item]"
-              >
+              />
               <div class="py-5 text-s font-bold uppercase">
                 {{ item }}
               </div>
@@ -121,16 +113,9 @@
         </div>
 
         <!-- Type Selection -->
-        <div
-          v-if="activeStep == 1"
-          class=""
-        >
-          <div class="pt-8 p-3 text-s font-bold">
-            TYPE
-          </div>
-          <div class="text-s">
-            Select the type of card you want.
-          </div>
+        <div v-if="activeStep == 1" class="">
+          <div class="pt-8 p-3 text-s font-bold">TYPE</div>
+          <div class="text-s">Select the type of card you want.</div>
 
           <div class="flex justify-between px-20">
             <div
@@ -143,12 +128,12 @@
                 v-show="item == model.type"
                 class="h-32"
                 :src="typeIcons[item].Off"
-              >
+              />
               <img
                 v-show="item !== model.type"
                 class="h-32"
                 :src="typeIcons[item].On"
-              >
+              />
               <div class="pt-3 pb-1 text-s font-bold uppercase">
                 {{ item }}
               </div>
@@ -160,10 +145,7 @@
         </div>
 
         <!-- Card Name -->
-        <div
-          v-if="activeStep == 2"
-          class="flex flex-row justify-center"
-        >
+        <div v-if="activeStep == 2" class="flex flex-row justify-center">
           <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
@@ -175,19 +157,15 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="pl-12 py-5 justify-center">
-              <div class="py-3 text-s font-bold">
-                NAME
-              </div>
-              <div class="py-3 text-s">
-                Pick a name for your card.
-              </div>
+              <div class="py-3 text-s font-bold">NAME</div>
+              <div class="py-3 text-s">Pick a name for your card.</div>
               <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
                 <input
                   v-model="model.CardName"
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Coolest Name around here"
                   maxLength="25"
-                >
+                />
               </div>
             </div>
             <div class="pl-[9.4rem]">
@@ -209,7 +187,9 @@
           <div class="pl-[4rem] pt-5 pb-4 h-[26.5rem]">
             <div v-if="cropImage == ''">
               <label for="dropzone-file">
-                <div class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                <div
+                  class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                >
                   <span class="flex items-center">+</span>
                 </div>
                 <input
@@ -217,22 +197,25 @@
                   type="file"
                   class="hidden"
                   @change="inputFile"
-                >
+                />
               </label>
             </div>
 
-            <div v-if="cropImage !== ''" 
-              class="pt-10 h-[24rem] group relative">
+            <div v-if="cropImage !== ''" class="pt-10 h-[24rem] group relative">
               <img
                 class="object-fit"
                 width="300"
                 height="400"
                 :src="cropImage"
                 alt="check"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500"
               >
-              <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500">              
                 <label for="dropzone-file">
-                  <div class="h-[10rem] w-[10rem] flex px-[3.55rem] bg-white bg-opacity-[15%] hover:bg-opacity-[30%] text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50">
+                  <div
+                    class="h-[10rem] w-[10rem] flex px-[3.55rem] bg-white bg-opacity-[15%] hover:bg-opacity-[30%] text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                  >
                     <span class="flex items-center">+</span>
                   </div>
                   <input
@@ -240,27 +223,21 @@
                     type="file"
                     class="hidden"
                     @change="inputFile"
-                  >
+                  />
                 </label>
               </div>
             </div>
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="pl-12 pr-[4.5rem] py-5 justify-center">
-              <div class="p-3 font-bold text-left">
-                ARTWORK
-              </div>
+              <div class="p-3 font-bold text-left">ARTWORK</div>
               <div class="pl-3 pb-8 text-left">
-                Click, drag or paste to upload an artwork. Crop on the next page.
+                Click, drag or paste to upload an artwork. Crop on the next
+                page.
               </div>
-              <div class="p-3 text-left font-bold">
-                COPYRIGHT
-              </div>
+              <div class="p-3 text-left font-bold">COPYRIGHT</div>
 
-              <div
-                v-if="!artistMode"
-                class="flex flex-col"
-              >
+              <div v-if="!artistMode" class="flex flex-col">
                 <div class="px-3 flex flex-row items-start">
                   <input
                     id="false"
@@ -269,7 +246,7 @@
                     type="radio"
                     checked
                     :value="false"
-                  >
+                  />
                   <div class="px-3 text-left">
                     I hereby confirm that I own the rights to commercially use
                     this artwork.
@@ -287,7 +264,7 @@
                         cropImage = '';
                         model.image = '';
                       "
-                    >
+                    />
                     <div class="px-3 text-left">
                       Instead add another artist as a collaborator.
                     </div>
@@ -301,7 +278,7 @@
                         class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                         placeholder="Add the artist's wallet address"
                         maxLength="41"
-                      >
+                      />
                     </div>
                   </div>
                 </div>
@@ -332,7 +309,7 @@
           </div>
 
           <div class="pl-4 pr-4 text-left row-start-6 col-start-1 col-span-5">
-            Drag and scroll in the cropper box on right <br>
+            Drag and scroll in the cropper box on right <br />
             side to adjust image.
           </div>
 
@@ -345,11 +322,7 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <mask id="maskImage">
-                <image
-                  :xlink:href="getOBMask()"
-                  width="168"
-                  height="260"
-                />
+                <image :xlink:href="getOBMask()" width="168" height="260" />
               </mask>
               <image
                 :xlink:href="model.image"
@@ -359,11 +332,7 @@
                 height="260"
                 mask="url(#maskImage)"
               />
-              <image
-                :xlink:href="getOBFrame()"
-                width="168"
-                height="260"
-              />
+              <image :xlink:href="getOBFrame()" width="168" height="260" />
             </svg>
           </div>
 
@@ -402,10 +371,7 @@
         </div>
 
         <!-- Flavor -->
-        <div
-          v-if="activeStep == 5"
-          class="flex flex-row justify-center"
-        >
+        <div v-if="activeStep == 5" class="flex flex-row justify-center">
           <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
@@ -417,9 +383,7 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="pl-12 py-5 justify-center">
-              <div class="py-3 text-s font-bold">
-                FLAVOR
-              </div>
+              <div class="py-3 text-s font-bold">FLAVOR</div>
               <div class="py-3 text-s">
                 Now let's add some spice to your creation.
               </div>
@@ -429,7 +393,7 @@
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Quote that represents this card."
                   maxLength="250"
-                >
+                />
               </div>
             </div>
             <div class="pl-[9.4rem]">
@@ -439,10 +403,7 @@
         </div>
 
         <!-- Costs and Powers -->
-        <div
-          v-if="activeStep == 6"
-          class="flex flex-row justify-center"
-        >
+        <div v-if="activeStep == 6" class="flex flex-row justify-center">
           <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
@@ -454,14 +415,12 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="pl-12 pr-[4.5rem] py-5 justify-center">
-              <div class="py-3 text-s font-bold">
-                COSTS AND POWERS
-              </div>
+              <div class="py-3 text-s font-bold">COSTS AND POWERS</div>
 
               <div
                 v-if="
                   cardRules.Card.children[getRulesType()] &&
-                    cardRules.Card.children[getRulesType()].children.CastingCost
+                  cardRules.Card.children[getRulesType()].children.CastingCost
                 "
                 class="h-10"
               >
@@ -478,8 +437,8 @@
               <div
                 v-if="
                   cardRules.Card.children[getRulesType()] &&
-                    cardRules.Card.children[getRulesType()].children
-                      .AdditionalCost
+                  cardRules.Card.children[getRulesType()].children
+                    .AdditionalCost
                 "
                 class="h-14"
               >
@@ -518,15 +477,9 @@
               </div>
 
               <!-- Delay -->
-              <div
-                v-if="model.type === 'Headquarter'"
-                class="h-[3rem]"
-              >
+              <div v-if="model.type === 'Headquarter'" class="h-[3rem]">
                 <b>Delay</b> of Activation:
-                <Dropdown
-                  v-model="model.Delay"
-                  :options="getHQDelayRange()"
-                />
+                <Dropdown v-model="model.Delay" :options="getHQDelayRange()" />
                 turns.
               </div>
 
@@ -534,7 +487,7 @@
               <div
                 v-if="
                   model.type === 'Entity' &&
-                    cardRules.Card.children[getRulesType()]
+                  cardRules.Card.children[getRulesType()]
                 "
                 class="h-[3rem]"
               >
@@ -549,7 +502,7 @@
               <div
                 v-if="
                   model.type !== 'Action' &&
-                    cardRules.Card.children[getRulesType()]
+                  cardRules.Card.children[getRulesType()]
                 "
                 class="h-[2.5rem]"
               >
@@ -561,10 +514,7 @@
               </div>
 
               <!-- Tags -->
-              <div
-                v-if="cardRules.Card"
-                class="h-14"
-              >
+              <div v-if="cardRules.Card" class="h-14">
                 Tags:
                 <Dropdown
                   v-model="model.Tags[0]"
@@ -607,13 +557,8 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 justify-center">
-              <div class="py-3 text-s font-bold">
-                ABILITIES AND EFFECTS
-              </div>
-              <div
-                v-if="isEmpty(abilities)"
-                class="text-right"
-              >
+              <div class="py-3 text-s font-bold">ABILITIES AND EFFECTS</div>
+              <div v-if="isEmpty(abilities)" class="text-right">
                 <Checkbox v-model="clearAbilities">
                   Remove all abilities
                 </Checkbox>
@@ -650,11 +595,7 @@
                     Add Effect
                   </button>
                 </div>
-                <div
-                  v-else-if="!isAbilityModalVisible"
-                  id="addmore"
-                  class=""
-                >
+                <div v-else-if="!isAbilityModalVisible" id="addmore" class="">
                   <button
                     class="px-[12.7rem] bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
                     type="button"
@@ -683,10 +624,7 @@
         </div>
 
         <!-- Council Notes -->
-        <div
-          v-if="activeStep == 8"
-          class="flex flex-row justify-center"
-        >
+        <div v-if="activeStep == 8" class="flex flex-row justify-center">
           <div class="t-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
@@ -698,9 +636,7 @@
           </div>
           <div class="text-left flex flex-col justify-between">
             <div class="pl-12 py-5 justify-center">
-              <div class="py-3 text-s font-bold">
-                NOTES TO THE COUNCIL
-              </div>
+              <div class="py-3 text-s font-bold">NOTES TO THE COUNCIL</div>
               <div class="py-3 text-s">
                 Anything that you believe needs explaining.
               </div>
@@ -710,7 +646,7 @@
                   class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Or some kind words."
                   maxLength="50"
-                >
+                />
               </div>
 
               <!-- this only shows to Jannik and should not be available to ordinary users, design is irrelevant here -->
@@ -725,7 +661,7 @@
                 v-model="model.balanceAnchor"
                 type="checkbox"
                 class=""
-              >
+              />
             </div>
             <div class="pl-[9.4rem]">
               <NavigationButtons />
@@ -734,10 +670,7 @@
         </div>
 
         <!-- Submit Section -->
-        <div
-          v-if="activeStep == 9"
-          class="flex flex-row justify-center"
-        >
+        <div v-if="activeStep == 9" class="flex flex-row justify-center">
           <div class="pt-5 pb-4 h-[26.5rem]">
             <CardComponent
               id="card"
@@ -750,27 +683,20 @@
 
           <div class="text-left flex flex-col justify-between">
             <div class="py-5 flex flex-col items-start">
-              <div class="pl-12 py-3 text-s font-bold">
-                SUMMARY
-              </div>
+              <div class="pl-12 py-3 text-s font-bold">SUMMARY</div>
               <div
                 v-if="model.FlavourText !== ''"
                 class="pl-12 min-h-[4rem] text-s italic"
               >
                 "{{ model.FlavourText }}"
               </div>
-              <div
-                v-else
-                class="h-[4rem]"
-              />
+              <div v-else class="h-[4rem]" />
 
               <div class="">
                 <!-- Edit existing card case -->
                 <div v-if="mode == Mode.EDIT">
                   <div class="pt-[4.55rem] text-right">
-                    <div class="pb-[1.7rem]">
-                      Review and update your card.
-                    </div>
+                    <div class="pb-[1.7rem]">Review and update your card.</div>
 
                     <BaseCCButton
                       class=""
@@ -792,10 +718,7 @@
                         "
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
-                      <BaseCCButton
-                        :type="Color.RED"
-                        @click="saveSubmit()"
-                      >
+                      <BaseCCButton :type="Color.RED" @click="saveSubmit()">
                         Update your Card
                       </BaseCCButton>
                     </div>
@@ -825,26 +748,20 @@
                         "
                         @backward="activeStep = Math.max(activeStep - 1, 0)"
                       />
-                      <BaseCCButton
-                        :type="Color.RED"
-                        @click="saveSubmit()"
-                      >
+                      <BaseCCButton :type="Color.RED" @click="saveSubmit()">
                         Mint Card
                       </BaseCCButton>
                     </div>
                   </div>
                   <!-- Not enough card frames -->
-                  <div
-                    v-else
-                    class="flex flex-col items-end"
-                  >
+                  <div v-else class="flex flex-col items-end">
                     <div class="pt-0 pr-1 text-right">
                       <div class="py-3 text-s uppercase font-bold">
                         Buy Card Frame
                       </div>
                       <div class="text-base">
                         Market price: <b> {{ cardFramePrice }} credits </b>
-                        <br>
+                        <br />
                         Your credit balance:
                         <b> {{ availableCredits }} credits </b>
                       </div>
@@ -968,7 +885,7 @@ import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate();
 const { saveCardContent, addArtwork, buyCardScheme } = useTx();
-const { queryQUser, queryQCardchainInfo } = useQuery();
+const { queryQUser, queryCardchainInfo } = useQuery();
 const { user, coins, queryUser, queryCoins } = useUser();
 
 enum Mode {
@@ -1286,16 +1203,17 @@ export default {
           );
           this.isAbilityModalVisible = false;
           return;
-        }
-        else if (this.model.type == "Action" && this.abilities.length >= 8){
+        } else if (this.model.type == "Action" && this.abilities.length >= 8) {
           this.notifyFail(
             "Number of Effects",
             "An Action card can only have a maximum of 8 Effects.",
           );
           this.isAbilityModalVisible = false;
           return;
-        }
-        else if (this.model.type === "no type" || this.model.type === undefined) {
+        } else if (
+          this.model.type === "no type" ||
+          this.model.type === undefined
+        ) {
           this.notifyFail(
             "No Type",
             "Card has no type, please pick a type before setting abilities.",
@@ -1455,7 +1373,7 @@ export default {
       return !R.isEmpty(this.getCardFrames());
     },
     cardFramesMarketData() {
-      queryQCardchainInfo({})
+      queryCardchainInfo({})
         .then((res) => {
           this.cardFramePrice = res.cardAuctionPrice.normalize().amount;
         })
@@ -1608,9 +1526,7 @@ export default {
           newModel.Effects = R.clone(this.cardCreatorEditCard.Effects);
         }
         // if an ability was created, but it has no effect, then this should be fixed
-        if (newModel.Effects.length == 0 &&
-            !this.clearAbilities
-        ) {
+        if (newModel.Effects.length == 0 && !this.clearAbilities) {
           this.notifyFail(
             "No Effects",
             "Card has no effect. Maybe you forgot to add an effect?",
@@ -1623,10 +1539,12 @@ export default {
       }
 
       // check additional costs
-      if (!newModel.AdditionalCost ||
-           newModel.AdditionalCost.DiscardCost == 0 ||
-           newModel.AdditionalCost.VoidCost == 0 ||
-           newModel.AdditionalCost.SacrificeCost == 0) {
+      if (
+        !newModel.AdditionalCost ||
+        newModel.AdditionalCost.DiscardCost == 0 ||
+        newModel.AdditionalCost.VoidCost == 0 ||
+        newModel.AdditionalCost.SacrificeCost == 0
+      ) {
         delete newModel.AdditionalCost;
       }
 
@@ -1655,8 +1573,8 @@ export default {
 
       // we want to reduce to 2 tags
       if (newModel.Tags.length > 2) {
-        console.log("too many tags, dropping 3rd")
-        newModel.Tags.length = 2
+        console.log("too many tags, dropping 3rd");
+        newModel.Tags.length = 2;
       }
 
       let newCard = newModel.toChainCard();

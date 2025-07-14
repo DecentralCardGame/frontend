@@ -1,5 +1,5 @@
 import { Coin } from "@/model/Coin";
-import { QueryQCardsRequest } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/query";
+import { QueryCardsRequest } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
 import type { PageQuery } from "@/def-composables/useGallery";
 
 export const normalizeCoins = (coins: Coin[]) => {
@@ -24,7 +24,7 @@ export const normalizeQuery = (query: any): PageQuery => {
   query.onlyBalanceAnchors = normalizeBoolean(query.onlyBalanceAnchors);
   query.onlyStarterCard = normalizeBoolean(query.onlyStarterCard);
   query.multiClassOnly = normalizeBoolean(query.multiClassOnly);
-  return QueryQCardsRequest.fromPartial(query);
+  return QueryCardsRequest.fromPartial(query);
 };
 
 export function isASCII(str: string) {
