@@ -2,6 +2,7 @@ import * as R from "ramda";
 import { Coin } from "./Coin";
 import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
 import { CardWithImage } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card_with_image";
+import { stringToBytes } from "@/utils/utils";
 
 export class Card {
   notes: string = "";
@@ -143,11 +144,10 @@ export class Card {
 
     let cc: CardWithImage = {
       card: {
-        content: Uint8Array.from(
+        content: stringToBytes(
           JSON.stringify({
             [this.type]: cardContent,
           }),
-          (c) => c.charCodeAt(0),
         ),
         notes: this.notes,
         fullArt: this.fullArt,

@@ -22,6 +22,7 @@ import {
 } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1";
 import { MsgSend } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/module";
 import { MsgGrant } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/module";
+import { stringToBytes } from "@/utils/utils";
 
 export const registry: Registry = new Registry(
   CCMsgTypes.concat(BankMsgTypes).concat(AuthzMsgTypes),
@@ -561,7 +562,7 @@ export const useTxInstance: () => {
       client.CardchainCardchain.tx.sendMsgCardArtworkAdd,
       new Content({
         cardId,
-        image: Uint8Array.from(image, (c) => c.charCodeAt(0)),
+        image: stringToBytes(image),
         fullArt,
       }),
       then,

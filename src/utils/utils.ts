@@ -27,6 +27,10 @@ export const normalizeQuery = (query: any): PageQuery => {
   return QueryCardsRequest.fromPartial(query);
 };
 
+export const stringToBytes = (inp: string): Uint8Array => {
+  return Uint8Array.from(inp, (c) => c.charCodeAt(0));
+};
+
 export function isASCII(str: string) {
   return /^[\x00-\x7F]*$/.test(str);
 }
