@@ -880,6 +880,7 @@ import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
+import type { CardWithImage } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate();
 const { saveCardContent, addArtwork, buyCardScheme } = useTx();
@@ -1582,8 +1583,10 @@ export default {
         newModel.Tags.length = 2;
       }
 
-      let newCard = newModel.toChainCard();
-      newCard.artist = this.designateArtist ? this.artistAddress : this.address;
+      newModel.artist = this.designateArtist
+        ? this.artistAddress
+        : this.address;
+      let newCard: CardWithImage = newModel.toCardWithImage();
 
       console.log("valid card:", newCard);
       return newCard;
@@ -1616,8 +1619,8 @@ export default {
         if (!this.designateArtist)
           addArtwork(
             this.model.id,
-            newCard.image,
-            newCard.fullArt,
+            newCard!.image,
+            newCard!.card!.fullArt,
             this.successScreen,
             () => {},
             handleErr,
@@ -1649,8 +1652,8 @@ export default {
               if (!this.designateArtist)
                 addArtwork(
                   id,
-                  newCard.image,
-                  newCard.fullArt,
+                  newCard!.image,
+                  newCard!.card!.fullArt,
                   this.successScreen,
                   handleErr,
                 );

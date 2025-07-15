@@ -108,7 +108,7 @@ export class Card {
     return card;
   }
 
-  toChainCard(): ChainCard {
+  toCardWithImage(): CardWithImage {
     console.log("trying to parse ", this);
     let cardContent = Object.assign(new CardContent(), {
       CardName: this.CardName,
@@ -141,16 +141,23 @@ export class Card {
       cardContent.Delay = this.Delay;
     }
 
-    let cc = new ChainCard();
-    cc.content = {
-      [this.type]: cardContent,
+    let cc: CardWithImage = {
+      card: {
+        content: Uint8Array.from(
+          JSON.stringify({
+            [this.type]: cardContent,
+          }),
+          (c) => c.charCodeAt(0),
+        ),
+        notes: this.notes,
+        fullArt: this.fullArt,
+        balanceAnchor: this.balanceAnchor,
+        artist: this.artist,
+      },
+      image: this.image
+        ? this.image
+        : "if you read this, someone was able to upload a card without proper image...",
     };
-    cc.image = this.image
-      ? this.image
-      : "if you read this, someone was able to upload a card without proper image...";
-    cc.fullArt = this.fullArt;
-    cc.notes = this.notes;
-    cc.balanceAnchor = this.balanceAnchor;
     console.log("parsed into:", cc);
     return cc;
   }

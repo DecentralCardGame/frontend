@@ -8,6 +8,7 @@ import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
 import {
   msgTypes as CCMsgTypes,
+  CardWithImage,
   type SingleVote,
 } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
 import { Response as CouncilResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/council";
@@ -174,7 +175,7 @@ export const useTxInstance: () => {
   ) => void;
   saveCardContent: (
     cardId: number,
-    card: ChainCard,
+    card: CardWithImage,
     then: (res: any) => void,
     err: (res: any) => void,
   ) => void;
@@ -531,7 +532,7 @@ export const useTxInstance: () => {
 
   const saveCardContent = (
     cardId: number,
-    card: ChainCard,
+    card: CardWithImage,
     then: (res: any) => void,
     err: (res: any) => void,
   ) => {
@@ -539,10 +540,10 @@ export const useTxInstance: () => {
       client.CardchainCardchain.tx.sendMsgCardSaveContent,
       new Content({
         cardId,
-        content: btoa(JSON.stringify(card.content)),
-        notes: card.notes,
-        artist: card.artist,
-        balanceAnchor: card.balanceAnchor,
+        content: card.card?.content,
+        notes: card.card?.notes,
+        artist: card.card?.artist,
+        balanceAnchor: card.card?.balanceAnchor,
       }),
       then,
       err,
@@ -560,7 +561,7 @@ export const useTxInstance: () => {
       client.CardchainCardchain.tx.sendMsgCardArtworkAdd,
       new Content({
         cardId,
-        image: btoa(image),
+        image: Uint8Array.from(image, (c) => c.charCodeAt(0)),
         fullArt,
       }),
       then,
