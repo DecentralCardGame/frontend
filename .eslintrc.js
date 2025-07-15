@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   extends: ["plugin:vue/vue3-recommended", "eslint:recommended", "prettier"],
-  plugins: ["vue"],
+  plugins: ["unused-imports", "vue"],
   parserOptions: {
     parser: "@typescript-eslint/parser",
     ecmaVersion: 2020,
@@ -52,6 +52,7 @@ module.exports = {
     ],
   },
   rules: {
+    "unused-imports/no-unused-imports": "warn",
     "no-console": "off",
     "no-debugger": "off",
     "no-unused-vars": "off",

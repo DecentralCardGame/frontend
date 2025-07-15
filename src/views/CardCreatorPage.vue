@@ -857,7 +857,6 @@ import { createReusableTemplate } from "@vueuse/core";
 
 import mergeImages from "merge-images";
 import CardComponent from "../components/elements/CardComponent.vue";
-import BuyFrameModal from "../components/modals/BuyFrameModal.vue";
 import AbilityModal from "../components/modals/AbilityModal.vue";
 import AbilityComponent from "../components/elements/AbilityComponent.vue";
 import { env } from "@/env";
@@ -902,7 +901,6 @@ export default {
     BaseCCButton,
     CardComponent,
     AbilityComponent,
-    BuyFrameModal,
     AbilityModal,
     Cropper,
     Checkbox,
@@ -965,7 +963,6 @@ export default {
       ],
       dragActive: false,
       isAbilityModalVisible: false,
-      isBuyFrameModalVisible: false,
       successScreenVisible: false,
       clearAbilities: false,
       activeStep: 0,
@@ -1023,10 +1020,9 @@ export default {
         }
         this.setMode();
 
-        if (this.model.type === "Action" ) {
+        if (this.model.type === "Action") {
           delete this.model.Abilities;
-        }
-        else {
+        } else {
           delete this.model.Effects;
         }
       },
