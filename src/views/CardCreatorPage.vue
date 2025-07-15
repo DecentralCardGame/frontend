@@ -390,7 +390,7 @@
               <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
                 <input
                   v-model="model.FlavourText"
-                  class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                  class="w-[95%] py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Quote that represents this card."
                   maxLength="250"
                 />
@@ -877,8 +877,7 @@ import { useQuery } from "@/def-composables/useQuery";
 import { useUser } from "@/def-composables/useUser";
 import { isASCII } from "@/utils/utils";
 import { Coin } from "@/model/Coin";
-import { computed, type ComputedRef, onMounted } from "vue";
-
+import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
@@ -973,7 +972,7 @@ export default {
       ability: {},
       abilities: [],
       abilityDialog: {},
-      model: new Card(),
+      model: reactive(new Card()),
       artistMode: false,
       designateArtist: false,
       artistAddress: "",
@@ -1015,13 +1014,23 @@ export default {
         getUser();
       }
     },
-    model() {
-      if (this.mode === Mode.EDIT) {
-        this.cardCreatorEditCard = this.model;
-      } else {
-        this.cardCreatorDraft = this.model;
-      }
-      this.setMode();
+    model: {
+      handler: function (val, oldVal) {
+        if (this.mode === Mode.EDIT) {
+          this.cardCreatorEditCard = this.model;
+        } else {
+          this.cardCreatorDraft = this.model;
+        }
+        this.setMode();
+
+        if (this.model.type === "Action" ) {
+          delete this.model.Abilities;
+        }
+        else {
+          delete this.model.Effects;
+        }
+      },
+      deep: true,
     },
     address() {
       this.checkCardFrames();

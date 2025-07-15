@@ -2,7 +2,7 @@
   <div class="flex text-white max-lg:flex-col justify-center">
     <!-- left panel - filters -->
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4"
+      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center lg:p-16 h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] overflow-y-auto overflow-x-hidden"
     >
       <div v-if="!loggedIn">
         You are not logged in. <br />
@@ -49,7 +49,9 @@
     </div>
 
     <!-- middle panel - card selection -->
-    <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow">
+    <div
+      class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow max-h-[90vh] overflow-y-auto overflow-x-hidden"
+    >
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-start max-md:hidden md:justify-between">
@@ -88,7 +90,7 @@
 
     <!-- right panel - enter specs -->
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 overflow-y-auto relative"
+      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] overflow-y-auto relative"
     >
       <CCInput
         class="my-5"
@@ -478,6 +480,9 @@ const publish = () => {
   // unfold drawlist
   let cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
 
+  // this crashes:
+  //let parameters:Map<string,string> = new Map();
+  //parameters.set("yes", "like");
   let parameters = {};
 
   encounterCreate(
