@@ -179,6 +179,7 @@ import { Card } from "@/model/Card";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
+import { watch } from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -251,6 +252,10 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
     name: "place",
   },
 ];
+
+watch(galleryFilters.value, () =>
+  router.push({ path: "gallery", query: pageQueryFromGalleryFilters() }),
+);
 
 onMounted(() => {
   const query = route.query;

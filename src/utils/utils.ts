@@ -17,10 +17,10 @@ export const normalizeNumberList = (l: Array<any> | any) =>
 export const normalizeBoolean = (b: any) => b == "true";
 
 export const normalizeQuery = (query: any): PageQuery => {
-  query.classes = normalizeNumberList(query.classes);
-  query.cardTypes = normalizeNumberList(query.cardTypes);
+  query.class = normalizeNumberList(query.class);
+  query.cardType = normalizeNumberList(query.cardType);
   query.rarities = normalizeNumberList(query.rarities);
-  query.statuses = normalizeNumberList(query.statuses);
+  query.status = normalizeNumberList(query.status);
   query.onlyBalanceAnchors = normalizeBoolean(query.onlyBalanceAnchors);
   query.onlyStarterCard = normalizeBoolean(query.onlyStarterCard);
   query.multiClassOnly = normalizeBoolean(query.multiClassOnly);

@@ -65,6 +65,12 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.mysticism = query.class.includes(CardClass.mysticism);
   }
 
+  if (query.rarities.length != 0) {
+    galleryFilters.value.rarity = query.rarities[0];
+  } else {
+    galleryFilters.value.rarity = undefined;
+  }
+
   if (
     query.cardType.length == 0 ||
     [0, 1, 2, 3]
@@ -120,7 +126,6 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
 };
 
 const loadQueryCardList = (query: PageQuery): void => {
-  console.log(query);
   queryCards(query, {
     paramsSerializer: constructAssRetardetQueryParams,
   }).then((res: QueryCardsResponse) => {
