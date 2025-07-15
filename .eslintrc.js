@@ -55,7 +55,7 @@ module.exports = {
     "no-console": "off",
     "no-debugger": "off",
     "no-unused-vars": "off",
-    singleQuote: false,
+    quotes: [1, "double"],
     semi: [1, "always"],
   },
 };

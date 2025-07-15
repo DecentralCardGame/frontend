@@ -1,8 +1,10 @@
 import { useTx } from "@/def-composables/useTx";
 import { ref, watch, type Ref, computed } from "vue";
 import * as R from "ramda";
-import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
-import type { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import type {
+  SingleVote,
+  VoteType,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/voting";
 import { useUser } from "./useUser";
 import { useQuery } from "./useQuery";
 
@@ -25,7 +27,7 @@ const cardsLeft = computed(() => {
 const current = computed(() => cardsLeft.value.at(0));
 const next = computed(() => cardsLeft.value.at(1));
 
-const councilStatus = computed(() => user.value.CouncilStatus);
+const councilStatus = computed(() => user.value.councilStatus);
 
 watch(
   () => R.clone(votes.value),
