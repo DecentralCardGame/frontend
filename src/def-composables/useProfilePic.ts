@@ -27,7 +27,6 @@ const useProfilePicInstance = () => {
   };
 
   const getImg = async (user: User, address: string) => {
-    console.log(user);
     if (user.profileCard != 0) {
       let card = await getCard(user.profileCard);
       if (card === null) {

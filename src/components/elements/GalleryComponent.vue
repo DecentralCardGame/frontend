@@ -129,7 +129,6 @@ const onScroll = () => {
     state.cardsOnPage < props.allCardIds.length
   ) {
     state.cardsOnPage += 10;
-    console.log(state.cardsOnPage);
   }
 };
 

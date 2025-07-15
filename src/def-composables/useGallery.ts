@@ -44,12 +44,12 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.sortBy = query.sortBy ? query.sortBy : "Name";
   galleryFilters.value.multiClass = query.multiClassOnly;
   galleryFilters.value.status =
-    query.statuses.length != 1 ? "playable" : query.statuses[0];
+    query.status.length != 1 ? "playable" : query.status[0];
 
   if (
-    query.classes.length == 0 ||
+    query.class.length == 0 ||
     [0, 1, 2, 3]
-      .map((v) => query.classes.includes(v as CardClass))
+      .map((v) => query.class.includes(v as CardClass))
       .every((v) => v)
   ) {
     galleryFilters.value.nature = false;
@@ -57,20 +57,18 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.mysticism = false;
     galleryFilters.value.technology = false;
   } else {
-    galleryFilters.value.nature = query.classes.includes(CardClass.nature);
-    galleryFilters.value.technology = query.classes.includes(
+    galleryFilters.value.nature = query.class.includes(CardClass.nature);
+    galleryFilters.value.technology = query.class.includes(
       CardClass.technology,
     );
-    galleryFilters.value.culture = query.classes.includes(CardClass.culture);
-    galleryFilters.value.mysticism = query.classes.includes(
-      CardClass.mysticism,
-    );
+    galleryFilters.value.culture = query.class.includes(CardClass.culture);
+    galleryFilters.value.mysticism = query.class.includes(CardClass.mysticism);
   }
 
   if (
-    query.cardTypes.length == 0 ||
+    query.cardType.length == 0 ||
     [0, 1, 2, 3]
-      .map((v) => query.cardTypes.includes(v as CardType))
+      .map((v) => query.cardType.includes(v as CardType))
       .every((v) => v)
   ) {
     galleryFilters.value.action = false;
@@ -78,17 +76,17 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.hq = false;
     galleryFilters.value.entity = false;
   } else {
-    galleryFilters.value.action = query.cardTypes.includes(CardType.action);
-    galleryFilters.value.place = query.cardTypes.includes(CardType.place);
-    galleryFilters.value.hq = query.cardTypes.includes(CardType.headquarter);
-    galleryFilters.value.entity = query.cardTypes.includes(CardType.entity);
+    galleryFilters.value.action = query.cardType.includes(CardType.action);
+    galleryFilters.value.place = query.cardType.includes(CardType.place);
+    galleryFilters.value.hq = query.cardType.includes(CardType.headquarter);
+    galleryFilters.value.entity = query.cardType.includes(CardType.entity);
   }
 };
 
 const pageQueryFromGalleryFilters = (): PageQuery => {
   return QueryCardsRequest.fromPartial({
     owner: galleryFilters.value.owner,
-    statuses:
+    status:
       galleryFilters.value.status == "playable"
         ? [
             CardStatus.bannedSoon,
@@ -97,13 +95,13 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
             CardStatus.trial,
           ]
         : [galleryFilters.value.status],
-    classes: [
+    class: [
       ...(galleryFilters.value.nature ? [CardClass.nature] : []),
       ...(galleryFilters.value.mysticism ? [CardClass.mysticism] : []),
       ...(galleryFilters.value.culture ? [CardClass.culture] : []),
       ...(galleryFilters.value.technology ? [CardClass.technology] : []),
     ],
-    cardTypes: [
+    cardType: [
       ...(galleryFilters.value.place ? [CardType.place] : []),
       ...(galleryFilters.value.action ? [CardType.action] : []),
       ...(galleryFilters.value.entity ? [CardType.entity] : []),
@@ -118,10 +116,11 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
     notesContains: galleryFilters.value.notesContains,
     sortBy: galleryFilters.value.sortBy ? galleryFilters.value.sortBy : "",
     multiClassOnly: galleryFilters.value.multiClass,
-  } as Partial<QueryCardsRequest>);
+  });
 };
 
 const loadQueryCardList = (query: PageQuery): void => {
+  console.log(query);
   queryCards(query, {
     paramsSerializer: constructAssRetardetQueryParams,
   }).then((res: QueryCardsResponse) => {
@@ -129,9 +128,9 @@ const loadQueryCardList = (query: PageQuery): void => {
   });
 };
 
-watch(galleryFilters.value, () =>
-  loadQueryCardList(pageQueryFromGalleryFilters()),
-);
+watch(galleryFilters.value, () => {
+  loadQueryCardList(pageQueryFromGalleryFilters());
+});
 
 export const useGallery = () => {
   return {
