@@ -181,7 +181,7 @@
 <script setup lang="ts">
 import * as R from "ramda";
 import { env } from "@/env";
-import { onMounted, watch, ref, reactive } from "vue";
+import { onMounted, watch, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCards } from "@/def-composables/useCards";
 import { useNotifications } from "@/def-composables/useNotifications";
@@ -195,8 +195,6 @@ import natureActive from "@/assets/figma/ClassesButtons/nature.png";
 import natureInactive from "@/assets/figma/ClassesButtons/nature_unselected.png";
 import mystActive from "@/assets/figma/ClassesButtons/myst.png";
 import mystInactive from "@/assets/figma/ClassesButtons/myst_unselected.png";
-import hqActive from "@/assets/figma/TypesButtons/hq.png";
-import hqInactive from "@/assets/figma/TypesButtons/hq_unselected.png";
 import entityActive from "@/assets/figma/TypesButtons/entity.png";
 import entityInactive from "@/assets/figma/TypesButtons/entity_unselected.png";
 import actionActive from "@/assets/figma/TypesButtons/action.png";
@@ -204,27 +202,21 @@ import actionInactive from "@/assets/figma/TypesButtons/action_unselected.png";
 import placeActive from "@/assets/figma/TypesButtons/place.png";
 import placeInactive from "@/assets/figma/TypesButtons/place_unselected.png";
 import type { GalleryFilterImageChooserOptions } from "@/components/elements/Gallery/types";
-import type { GalleryFilters, GalleryStatus } from "@/model/GalleryFilters";
+import type { GalleryFilters } from "@/model/GalleryFilters";
 import GalleryFilterImageChooser from "@/components/elements/Gallery/GalleryFilterImageChooser.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 import { Color } from "@/components/utils/color";
-import Checkbox from "@/components/elements/Checkbox.vue";
 import { useGallery } from "@/def-composables/useGallery";
-import { normalizeQuery } from "@/utils/utils";
-import { uploadImg } from "@/components/utils/utils.js";
+import { uploadImg } from "@/components/utils/utils";
 import CCInput from "@/components/elements/CCInput/CCInput.vue";
-import {
-  CardRarity,
-  cardTypeToJSON,
-  CardStatus,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
+import { CardStatus } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
 import { Card } from "@/model/Card";
-import CardviewModal from "@/components/modals/CardviewModal.vue";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
+import type { QueryEncounterWithImageResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
 
 const { notifyFail } = useNotifications();
 const route = useRoute();
@@ -347,25 +339,27 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 ];
 
 onMounted(() => {
-  galleryFilters.value.owner = address;
+  galleryFilters.value.owner = address.value;
   galleryFilters.value.status = "playable";
-  [Status.prototype];
+  [CardStatus.prototype];
   galleryFilters.value.hq = true;
 
   let filters = pageQueryFromGalleryFilters();
 
   loadQueryCardList(filters);
 
-  queryEncounterWithImage(route.query.id).then((res) => {
-    cropImage.value = res.encounter.image;
-    encounterName = res.encounter.encounter.name;
+  queryEncounterWithImage(route.query.id).then(
+    (res: QueryEncounterWithImageResponse) => {
+      cropImage.value = res.encounter!.image;
+      encounterName = res.encounter!.encounter!.name;
 
-    res.encounter.encounter.Drawlist.forEach((entry) => {
-      loadCard(entry).then((res) => {
-        addCardToEncounter(res);
+      res.encounter!.encounter!.drawlist.forEach((entry) => {
+        loadCard(entry).then((res) => {
+          addCardToEncounter(res);
+        });
       });
-    });
-  });
+    },
+  );
 });
 
 const inputFile = (event) => {

@@ -683,7 +683,7 @@ export const useTxInstance: () => {
 
   const encounterCreate = (
     name: string,
-    Drawlist: number[],
+    drawlist: number[],
     parameters: { [key: string]: string },
     image: string,
     then: (res: any) => void,
@@ -693,9 +693,9 @@ export const useTxInstance: () => {
       client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         name,
-        Drawlist,
+        drawlist,
         parameters,
-        image: btoa(image),
+        image: stringToBytes(image),
       }),
       then,
       err,
