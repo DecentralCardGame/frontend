@@ -1,4 +1,4 @@
-import { Client } from "decentralcardgame-cardchain-client-ts/index";
+import { Client } from "decentralcardgame-cardchain-client-ts";
 
 import { env } from "@/env";
 import type { IgniteClient } from "decentralcardgame-cardchain-client-ts/client";
