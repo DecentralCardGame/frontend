@@ -24,7 +24,7 @@ export default function () {
   });
 
   const getOfflineSigner = (chainId: string) =>
-    window.keplr.getOfflineSigner(chainId);
+    window.keplr.getOfflineSignerAuto(chainId);
 
   const getKeplrAccParams = async (chainId: string) =>
     await window.keplr.getKey(chainId);
