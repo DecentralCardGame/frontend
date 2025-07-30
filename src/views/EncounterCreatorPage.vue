@@ -243,6 +243,7 @@ import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
 import type { QueryEncounterWithImageResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import type { Parameter } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
 
 const { notifyFail } = useNotifications();
 const route = useRoute();
@@ -380,7 +381,7 @@ onMounted(() => {
   queryEncounterWithImage(route.query.id).then(
     (res: QueryEncounterWithImageResponse) => {
       cropImage.value = res.encounter!.image;
-      encounterName = res.encounter!.encounter!.name;
+      encounterName.value = res.encounter!.encounter!.name;
 
       let parameters = res.encounter!.encounter!.parameters;
       encounterType = ref(
@@ -506,7 +507,7 @@ const publish = () => {
     notifyFail("HQ", "An Encounter needs a HQ. Add one please.");
     return;
   }
-  if (encounterName === "") {
+  if (encounterName.value === "") {
     notifyFail("Name", "An Encounter needs a Name. Add one please.");
     return;
   }
@@ -514,14 +515,17 @@ const publish = () => {
   // unfold drawlist
   let cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
 
-  let parameters = {
-    type: encounterType,
-    level: encounterLevel,
-    draw: encounterDraw,
-  };
+  let parameters: Parameter[] = [
+    { key: "type", value: encounterType.value },
+    {
+      key: "level",
+      value: "" + encounterLevel.value,
+    },
+    { key: "draw", value: encounterDraw.value },
+  ];
 
   encounterCreate(
-    encounterName,
+    encounterName.value,
     cards,
     parameters,
     cropImage.value,
