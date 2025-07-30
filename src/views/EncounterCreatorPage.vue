@@ -1,7 +1,7 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
     <!-- left panel - filters -->
-    <div class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center 
+    <div class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center
       lg:p-16 h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] overflow-y-auto overflow-x-hidden"
     >
       <div v-if="!loggedIn">
@@ -92,7 +92,7 @@
 
     <!-- right panel - enter specs -->
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] 
+      class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026]
             max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] overflow-y-auto relative"
     >
       <CCInput
@@ -113,14 +113,21 @@
           class="flex flex-row items-center">
           <p class="m-1">Level:</p>
           <CCInput
-            
             class="w-10"
             v-model="encounterLevel"
             placeholder="Level"
           />
         </div>
       </div>
-      
+      <div>
+        <Dropdown
+          v-model="encounterDraw"
+          class="w-34"
+          :type="Color.RED"
+          :options="['Drawlist', 'RandomDraw', 'PerfectDraw']"
+        />
+      </div>
+
       <!-- image upload -->
       <div class="mb-5">
         <div v-if="cropImage == ''">
@@ -158,7 +165,7 @@
       <!-- Added cards section -->
       <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
       <div
-        v-for="(item, index) in drawList" :key="item.id" 
+        v-for="(item, index) in drawList" :key="item.id"
       >
         <div class="flex flex-row w-full h-6 mb-2 select-none cursor-grab"
           draggable="true"
@@ -169,7 +176,7 @@
           @click="removeCard(index)"
         >
           <div class="w-6 flex-none bg-transparent">
-            {{item.count}}x  
+            {{item.count}}x
           </div>
           <div class="flex-1 flex items-center justify-between text-black bg-white items-center w-full p-0 m-0">
             <!-- Left Section -->
@@ -276,6 +283,7 @@ const drawList = ref([]);
 let cropImage = ref('');
 let encounterName = ref('');
 let encounterType = ref('Constructed');
+let encounterDraw = ref('Drawlist');
 let encounterLevel = ref(0);
 let filtersVisible = ref(true);
 let dragFrom = -1;
@@ -304,7 +312,7 @@ watch(drawList.value, () => {
       for (let [key, value] of Object.entries(hq.class)) {
         if (value == false && item.class[key] == true) {
           drawList.value.splice(index, 1)
-        } 
+        }
       }
     })
   }
@@ -385,10 +393,11 @@ onMounted(() => {
     .then((res) => {
       cropImage.value = res.encounter.image;
       encounterName = res.encounter.encounter.name;
-      
+
       let parameters = res.encounter.encounter.parameters;
       encounterType = ref(R.find(x => x.key == "type")(parameters).value ?? "Constructed");
       encounterLevel = ref(R.find(x => x.key == "level")(parameters).value ?? "0");
+      encounterDraw = ref(R.find(x => x.key == "draw")(parameters).value ?? "Drawlist");
 
       res.encounter.encounter.Drawlist.forEach(entry => {
         loadCard(entry).then(res => {
@@ -399,7 +408,7 @@ onMounted(() => {
 });
 
 const inputFile = (event) => {
-  let file = event.target.files[0]; 
+  let file = event.target.files[0];
 
   uploadImg(file, env.cardImgMaxKB, (result) => {
     if (result.startsWith("Error")) {
@@ -463,7 +472,7 @@ const onDrop = (evt, targetIndex) => {
 const removeCard = (index) => {
   if(drawList.value[index].count == 1)
     drawList.value.splice(index, 1);
-  else 
+  else
     drawList.value[index].count--;
   updateCardsAdded();
 }
@@ -511,7 +520,7 @@ const publish = () => {
   // unfold drawlist
   let cards = R.flatten( R.map(x => R.repeat(x.id, x.count), drawList.value) )
 
-  let parameters = {type: encounterType, level: encounterLevel}
+  let parameters = {type: encounterType, level: encounterLevel, draw: encounterDraw}
 
   encounterCreate(encounterName, cards, parameters, cropImage.value, (res) => {
     console.log("success", res)
