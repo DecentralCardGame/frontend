@@ -9,6 +9,7 @@ import { ref, watch, type Ref } from "vue";
 import {
   msgTypes as CCMsgTypes,
   CardWithImage,
+  Parameter,
   type SingleVote,
 } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
 import { Response as CouncilResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/council";
@@ -262,7 +263,7 @@ export const useTxInstance: () => {
   encounterCreate: (
     name: string,
     Drawlist: number[],
-    parameters: { [key: string]: string },
+    parameters: Parameter[],
     image: string,
     then: (res: any) => void,
     err: (res: any) => void,
@@ -684,7 +685,7 @@ export const useTxInstance: () => {
   const encounterCreate = (
     name: string,
     drawlist: number[],
-    parameters: { [key: string]: string },
+    parameters: Parameter[],
     image: string,
     then: (res: any) => void,
     err: (res: any) => void,

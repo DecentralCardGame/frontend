@@ -97,6 +97,32 @@
         v-model="encounterName"
         placeholder="Encounter Title"
       />
+      <div class="flex flex-row items-center justify-between">
+        <div>
+          <Dropdown
+            v-model="encounterType"
+            class="my-auto"
+            :type="Color.RED"
+            :options="['Constructed', 'DraftRun', 'Campaign']"
+          />
+        </div>
+        <div
+          v-if="encounterType == 'DraftRun' || encounterType == 'Campaign'"
+          class="flex flex-row items-center"
+        >
+          <p class="m-1">Level:</p>
+          <CCInput class="w-10" v-model="encounterLevel" placeholder="Level" />
+        </div>
+      </div>
+      <div>
+        <Dropdown
+          v-model="encounterDraw"
+          class="w-34"
+          :type="Color.RED"
+          :options="['Drawlist', 'RandomDraw', 'PerfectDraw']"
+        />
+      </div>
+
       <!-- image upload -->
       <div class="mb-5">
         <div v-if="cropImage == ''">
@@ -134,10 +160,10 @@
         <div
           class="flex flex-row w-full h-6 mb-2 select-none cursor-grab"
           draggable="true"
-          @drop="onDrop($event, index)"
+          @drop="onDrop(index)"
           @dragover.prevent
           @dragenter.prevent
-          @dragstart="startDrag($event, index)"
+          @dragstart="startDrag(index)"
           @click="removeCard(index)"
         >
           <div class="w-6 flex-none bg-transparent">{{ item.count }}x</div>
@@ -182,7 +208,7 @@
 import * as R from "ramda";
 import { env } from "@/env";
 import { onMounted, watch, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useCards } from "@/def-composables/useCards";
 import { useNotifications } from "@/def-composables/useNotifications";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
@@ -209,54 +235,59 @@ import { Color } from "@/components/utils/color";
 import { useGallery } from "@/def-composables/useGallery";
 import { uploadImg } from "@/components/utils/utils";
 import CCInput from "@/components/elements/CCInput/CCInput.vue";
-import { CardStatus } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
-import { Card } from "@/model/Card";
+import { Card, CardClass } from "@/model/Card";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
 import type { QueryEncounterWithImageResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import type { Parameter } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
+import type { Ref } from "vue";
 
 const { notifyFail } = useNotifications();
 const route = useRoute();
-const router = useRouter();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const isCardViewModalVisible = ref(false);
-const cardViewModalCardId = ref(-1);
 const {
   cardList,
   loadQueryCardList,
   galleryFilters,
   pageQueryFromGalleryFilters,
-  galleryFiltersFromPageQuery,
 } = useGallery();
-const { encounterDo, encounterCreate, encounterClose } = useTx();
+const { encounterCreate } = useTx();
 const { getCard } = useCards();
-const {
-  queryEncounter,
-  queryEncounterWithImage,
-  queryEncounters,
-  queryEncountersWithImage,
-} = useQuery();
+const { queryEncounterWithImage } = useQuery();
 
-const drawList = ref([]);
+type Entry = {
+  id: number;
+  name: string;
+  cost: number;
+  type: string;
+  class: CardClass;
+  count: number;
+};
+
+const drawList: Ref<Entry[]> = ref([]);
 let cropImage = ref("");
-let encounterName = "";
+let encounterName = ref("");
+let encounterType = ref("Constructed");
+let encounterDraw = ref("Drawlist");
+let encounterLevel = ref(0);
 let filtersVisible = ref(true);
 let dragFrom = -1;
 let hqSelected = ref(false);
 let cardsAdded = 0;
 
 watch(drawList.value, () => {
-  let hq = undefined;
+  let hq: Entry | undefined = undefined;
   drawList.value.forEach((item, index) => {
     if (item.type == "Headquarter") {
       if (hq) drawList.value.splice(index, 1);
       else hq = item;
     }
   });
+
   if (hq) {
     // change filters to cards only matching HQ
     galleryFilters.value.nature = hq.class.Nature;
@@ -341,7 +372,6 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 onMounted(() => {
   galleryFilters.value.owner = address.value;
   galleryFilters.value.status = "playable";
-  [CardStatus.prototype];
   galleryFilters.value.hq = true;
 
   let filters = pageQueryFromGalleryFilters();
@@ -351,7 +381,18 @@ onMounted(() => {
   queryEncounterWithImage(route.query.id).then(
     (res: QueryEncounterWithImageResponse) => {
       cropImage.value = res.encounter!.image;
-      encounterName = res.encounter!.encounter!.name;
+      encounterName.value = res.encounter!.encounter!.name;
+
+      let parameters = res.encounter!.encounter!.parameters;
+      encounterType = ref(
+        R.find((x) => x.key == "type")(parameters).value ?? "Constructed",
+      );
+      encounterLevel = ref(
+        R.find((x) => x.key == "level")(parameters).value ?? "0",
+      );
+      encounterDraw = ref(
+        R.find((x) => x.key == "draw")(parameters).value ?? "Drawlist",
+      );
 
       res.encounter!.encounter!.drawlist.forEach((entry) => {
         loadCard(entry).then((res) => {
@@ -395,12 +436,12 @@ const loadCard = async (cardId: number) => {
 const addCardToEncounter = (card: Card) => {
   if (
     !R.isEmpty(drawList.value) &&
-    R.last(drawList.value).id == card.id &&
+    R.last(drawList.value)!.id == card.id &&
     card.type != "Headquarter"
   ) {
-    R.last(drawList.value).count++;
+    R.last(drawList.value)!.count++;
   } else {
-    let newEntry = {
+    let newEntry: Entry = {
       id: card.id,
       name: card.CardName,
       cost: card.Delay || card.CastingCost,
@@ -414,31 +455,31 @@ const addCardToEncounter = (card: Card) => {
   updateCardsAdded();
 };
 
-const startDrag = (evt, index) => {
+const startDrag = (index: number) => {
   dragFrom = index;
 };
 
-const onDrop = (evt, targetIndex) => {
+const onDrop = (targetIndex: number) => {
   if (targetIndex == 0) targetIndex = 1;
   drawList.value = R.move(dragFrom, targetIndex, drawList.value);
 
-  let newList = [];
+  let newList: Entry[] = [];
   for (let entry of drawList.value) {
-    if (R.last(newList) && R.last(newList).id == entry.id)
-      R.last(newList).count += entry.count;
+    if (R.last(newList) && R.last(newList)!.id == entry.id)
+      R.last(newList)!.count += entry.count;
     else newList.push(entry);
   }
   drawList.value.splice(0, drawList.value.length, ...newList);
   updateCardsAdded();
 };
 
-const removeCard = (index) => {
+const removeCard = (index: number) => {
   if (drawList.value[index].count == 1) drawList.value.splice(index, 1);
   else drawList.value[index].count--;
   updateCardsAdded();
 };
 
-const getMiniFrame = (item) => {
+const getMiniFrame = (item: Entry) => {
   var cardClass = "";
   if (item.type == "Headquarter") return "icon/minicardframe/HQFrame.png";
   else {
@@ -466,7 +507,7 @@ const publish = () => {
     notifyFail("HQ", "An Encounter needs a HQ. Add one please.");
     return;
   }
-  if (encounterName === "") {
+  if (encounterName.value === "") {
     notifyFail("Name", "An Encounter needs a Name. Add one please.");
     return;
   }
@@ -474,13 +515,17 @@ const publish = () => {
   // unfold drawlist
   let cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
 
-  // this crashes:
-  //let parameters:Map<string,string> = new Map();
-  //parameters.set("yes", "like");
-  let parameters = {};
+  let parameters: Parameter[] = [
+    { key: "type", value: encounterType.value },
+    {
+      key: "level",
+      value: "" + encounterLevel.value,
+    },
+    { key: "draw", value: encounterDraw.value },
+  ];
 
   encounterCreate(
-    encounterName,
+    encounterName.value,
     cards,
     parameters,
     cropImage.value,
