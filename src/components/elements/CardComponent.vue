@@ -13,10 +13,7 @@
     xml:space="preserve"
   >
     <g id="_x31__Outer_Backgrounds">
-      <g
-        v-if="OBG.HQ"
-        id="HQ_OBG"
-      >
+      <g v-if="OBG.HQ" id="HQ_OBG">
         <g>
           <defs>
             <path
@@ -30,10 +27,7 @@
           <clipPath
             id="SVGID_00000125584824986722390060000007308648528947954107_"
           >
-            <use
-              xlink:href="#SVGID_1_"
-              style="overflow: visible"
-            />
+            <use xlink:href="#SVGID_1_" style="overflow: visible" />
           </clipPath>
           <g
             style="
@@ -99,10 +93,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.MultiClass"
-        id="Multi_Class_OBG"
-      >
+      <g v-if="OBG.MultiClass" id="Multi_Class_OBG">
         <g>
           <defs>
             <path
@@ -184,10 +175,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Myth"
-        id="Myth_OBG"
-      >
+      <g v-if="OBG.Myth" id="Myth_OBG">
         <g>
           <defs>
             <path
@@ -269,10 +257,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Culture"
-        id="Culture_OBG"
-      >
+      <g v-if="OBG.Culture" id="Culture_OBG">
         <g>
           <defs>
             <path
@@ -354,10 +339,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Nature"
-        id="Nature_OBG"
-      >
+      <g v-if="OBG.Nature" id="Nature_OBG">
         <g>
           <defs>
             <path
@@ -439,10 +421,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Tech"
-        id="Tech_OBG"
-      >
+      <g v-if="OBG.Tech" id="Tech_OBG">
         <g>
           <defs>
             <path
@@ -524,10 +503,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="GoldSquare"
-        id="Gold_Square"
-      >
+      <g v-if="GoldSquare" id="Gold_Square">
         <path
           class="st12"
           d="M168.45,45.87V35.31v-0.24l-0.25,0.09v0.24v2.56c-0.02-1.51-0.03-2.63-0.04-2.64l-0.25,0.09
@@ -561,10 +537,7 @@
       />
     </g>
     <g id="Card_Borders">
-      <g
-        v-if="Border.Tech"
-        id="Tech_Border"
-      >
+      <g v-if="Border.Tech" id="Tech_Border">
         <linearGradient
           id="SVGID_00000049192585150488630200000007017912878573753267_"
           gradientUnits="userSpaceOnUse"
@@ -573,18 +546,9 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #486d77"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #b4bcc9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #476c76"
-          />
+          <stop offset="0" style="stop-color: #486d77" />
+          <stop offset="0.4977" style="stop-color: #b4bcc9" />
+          <stop offset="1" style="stop-color: #476c76" />
         </linearGradient>
         <polyline
           style="
@@ -601,14 +565,8 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b1c0d9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7290a0"
-          />
+          <stop offset="0" style="stop-color: #b1c0d9" />
+          <stop offset="1" style="stop-color: #7290a0" />
         </linearGradient>
         <polyline
           style="
@@ -625,14 +583,8 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1c0d9"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #b1c0d9" />
         </linearGradient>
         <polyline
           style="
@@ -649,14 +601,8 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
           style="
@@ -673,14 +619,8 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
           style="
@@ -697,14 +637,8 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
           style="
@@ -721,14 +655,8 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
           style="
@@ -745,18 +673,9 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #b5c2db"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4c6f79"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="0.5195" style="stop-color: #b5c2db" />
+          <stop offset="1" style="stop-color: #4c6f79" />
         </linearGradient>
         <path
           id="Frame_Outline_Left"
@@ -768,10 +687,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Nature"
-        id="Nature_Border"
-      >
+      <g v-if="Border.Nature" id="Nature_Border">
         <linearGradient
           id="SVGID_00000122718459528952844560000013391795643695185816_"
           gradientUnits="userSpaceOnUse"
@@ -780,18 +696,9 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #779272"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #cfecca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769474"
-          />
+          <stop offset="0" style="stop-color: #779272" />
+          <stop offset="0.4977" style="stop-color: #cfecca" />
+          <stop offset="1" style="stop-color: #769474" />
         </linearGradient>
         <polyline
           style="
@@ -808,14 +715,8 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfeccc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #809b7a"
-          />
+          <stop offset="0" style="stop-color: #cfeccc" />
+          <stop offset="1" style="stop-color: #809b7a" />
         </linearGradient>
         <polyline
           style="
@@ -832,14 +733,8 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708b6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #95b08f"
-          />
+          <stop offset="0" style="stop-color: #708b6a" />
+          <stop offset="1" style="stop-color: #95b08f" />
         </linearGradient>
         <polyline
           style="
@@ -856,14 +751,8 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9cb998"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #627e5d"
-          />
+          <stop offset="0" style="stop-color: #9cb998" />
+          <stop offset="1" style="stop-color: #627e5d" />
         </linearGradient>
         <polyline
           style="
@@ -880,14 +769,8 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a7c2a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #637f5e"
-          />
+          <stop offset="0" style="stop-color: #a7c2a1" />
+          <stop offset="1" style="stop-color: #637f5e" />
         </linearGradient>
         <polyline
           style="
@@ -904,14 +787,8 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #587453"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #587453" />
         </linearGradient>
         <polyline
           style="
@@ -928,14 +805,8 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a2bd9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #597554"
-          />
+          <stop offset="0" style="stop-color: #a2bd9e" />
+          <stop offset="1" style="stop-color: #597554" />
         </linearGradient>
         <polyline
           style="
@@ -952,18 +823,9 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #789473"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #cfeccb"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8da887"
-          />
+          <stop offset="0" style="stop-color: #789473" />
+          <stop offset="0.5195" style="stop-color: #cfeccb" />
+          <stop offset="1" style="stop-color: #8da887" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000045585923554037931130000006941318727447953581_"
@@ -975,10 +837,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Myth"
-        id="Myth_Border"
-      >
+      <g v-if="Border.Myth" id="Myth_Border">
         <linearGradient
           id="SVGID_00000164504348783086957360000004727233938832236437_"
           gradientUnits="userSpaceOnUse"
@@ -987,18 +846,9 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #774472"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #d6aaca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #764074"
-          />
+          <stop offset="0" style="stop-color: #774472" />
+          <stop offset="0.4977" style="stop-color: #d6aaca" />
+          <stop offset="1" style="stop-color: #764074" />
         </linearGradient>
         <polyline
           style="
@@ -1015,14 +865,8 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfadcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #80447a"
-          />
+          <stop offset="0" style="stop-color: #cfadcc" />
+          <stop offset="1" style="stop-color: #80447a" />
         </linearGradient>
         <polyline
           style="
@@ -1039,14 +883,8 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #70466a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #95648f"
-          />
+          <stop offset="0" style="stop-color: #70466a" />
+          <stop offset="1" style="stop-color: #95648f" />
         </linearGradient>
         <polyline
           style="
@@ -1063,14 +901,8 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c8298"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #62445d"
-          />
+          <stop offset="0" style="stop-color: #9c8298" />
+          <stop offset="1" style="stop-color: #62445d" />
         </linearGradient>
         <polyline
           style="
@@ -1087,14 +919,8 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a77ca1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #63385e"
-          />
+          <stop offset="0" style="stop-color: #a77ca1" />
+          <stop offset="1" style="stop-color: #63385e" />
         </linearGradient>
         <polyline
           style="
@@ -1111,14 +937,8 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad88a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #582d53"
-          />
+          <stop offset="0" style="stop-color: #ad88a9" />
+          <stop offset="1" style="stop-color: #582d53" />
         </linearGradient>
         <polyline
           style="
@@ -1135,14 +955,8 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae799e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #593354"
-          />
+          <stop offset="0" style="stop-color: #ae799e" />
+          <stop offset="1" style="stop-color: #593354" />
         </linearGradient>
         <polyline
           style="
@@ -1159,18 +973,9 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #785373"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #cfafcb"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8d5587"
-          />
+          <stop offset="0" style="stop-color: #785373" />
+          <stop offset="0.5195" style="stop-color: #cfafcb" />
+          <stop offset="1" style="stop-color: #8d5587" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000083770617161826121140000002704447102376521136_"
@@ -1182,10 +987,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Culture"
-        id="Culture_Border"
-      >
+      <g v-if="Border.Culture" id="Culture_Border">
         <linearGradient
           id="SVGID_00000167398677699308415280000015346397309297139112_"
           gradientUnits="userSpaceOnUse"
@@ -1194,18 +996,9 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7a3835"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #ecb377"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7a3a44"
-          />
+          <stop offset="0" style="stop-color: #7a3835" />
+          <stop offset="0.4977" style="stop-color: #ecb377" />
+          <stop offset="1" style="stop-color: #7a3a44" />
         </linearGradient>
         <polyline
           style="
@@ -1222,14 +1015,8 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfada2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #813438"
-          />
+          <stop offset="0" style="stop-color: #cfada2" />
+          <stop offset="1" style="stop-color: #813438" />
         </linearGradient>
         <polyline
           style="
@@ -1246,14 +1033,8 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #80323e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #95644a"
-          />
+          <stop offset="0" style="stop-color: #80323e" />
+          <stop offset="1" style="stop-color: #95644a" />
         </linearGradient>
         <polyline
           style="
@@ -1270,14 +1051,8 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c8268"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83342e"
-          />
+          <stop offset="0" style="stop-color: #9c8268" />
+          <stop offset="1" style="stop-color: #83342e" />
         </linearGradient>
         <polyline
           style="
@@ -1294,14 +1069,8 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a77c5d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #75322a"
-          />
+          <stop offset="0" style="stop-color: #a77c5d" />
+          <stop offset="1" style="stop-color: #75322a" />
         </linearGradient>
         <polyline
           style="
@@ -1318,14 +1087,8 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b5885d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6a2034"
-          />
+          <stop offset="0" style="stop-color: #b5885d" />
+          <stop offset="1" style="stop-color: #6a2034" />
         </linearGradient>
         <polyline
           style="
@@ -1342,14 +1105,8 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c48866"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #81303f"
-          />
+          <stop offset="0" style="stop-color: #c48866" />
+          <stop offset="1" style="stop-color: #81303f" />
         </linearGradient>
         <polyline
           style="
@@ -1366,18 +1123,9 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9f5342"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #e6bba2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9b554b"
-          />
+          <stop offset="0" style="stop-color: #9f5342" />
+          <stop offset="0.5195" style="stop-color: #e6bba2" />
+          <stop offset="1" style="stop-color: #9b554b" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000046313011621789097650000008472037730593689760_"
@@ -1389,10 +1137,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.MultiClass"
-        id="Multi_Class_Border"
-      >
+      <g v-if="Border.MultiClass" id="Multi_Class_Border">
         <linearGradient
           id="SVGID_00000139280540259767253410000000398328082630822042_"
           gradientUnits="userSpaceOnUse"
@@ -1401,18 +1146,9 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8c786c"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #ecdbcb"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8c786c"
-          />
+          <stop offset="0" style="stop-color: #8c786c" />
+          <stop offset="0.4977" style="stop-color: #ecdbcb" />
+          <stop offset="1" style="stop-color: #8c786c" />
         </linearGradient>
         <polyline
           style="
@@ -1429,14 +1165,8 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #efdfcf"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8f7b6e"
-          />
+          <stop offset="0" style="stop-color: #efdfcf" />
+          <stop offset="1" style="stop-color: #8f7b6e" />
         </linearGradient>
         <polyline
           style="
@@ -1453,14 +1183,8 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e796f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e4d3c4"
-          />
+          <stop offset="0" style="stop-color: #8e796f" />
+          <stop offset="1" style="stop-color: #e4d3c4" />
         </linearGradient>
         <polyline
           style="
@@ -1477,14 +1201,8 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8f7a70"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #715448"
-          />
+          <stop offset="0" style="stop-color: #8f7a70" />
+          <stop offset="1" style="stop-color: #715448" />
         </linearGradient>
         <polyline
           style="
@@ -1501,14 +1219,8 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e796f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b6259"
-          />
+          <stop offset="0" style="stop-color: #8e796f" />
+          <stop offset="1" style="stop-color: #7b6259" />
         </linearGradient>
         <polyline
           style="
@@ -1525,14 +1237,8 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e796f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b6259"
-          />
+          <stop offset="0" style="stop-color: #8e796f" />
+          <stop offset="1" style="stop-color: #7b6259" />
         </linearGradient>
         <polyline
           style="
@@ -1549,14 +1255,8 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <polyline
           style="
@@ -1573,18 +1273,9 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8b7669"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8b7669"
-          />
+          <stop offset="0" style="stop-color: #8b7669" />
+          <stop offset="0.5195" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #8b7669" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000032617020480934422960000012739323591726932906_"
@@ -1596,10 +1287,7 @@
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.HQ"
-        id="HQ_Border"
-      >
+      <g v-if="Border.HQ" id="HQ_Border">
         <linearGradient
           id="SVGID_00000175322556594095470520000002423145536633433230_"
           gradientUnits="userSpaceOnUse"
@@ -1608,18 +1296,9 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e692c"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #d1ae75"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #916d32"
-          />
+          <stop offset="0" style="stop-color: #8e692c" />
+          <stop offset="0.4977" style="stop-color: #d1ae75" />
+          <stop offset="1" style="stop-color: #916d32" />
         </linearGradient>
         <polyline
           style="
@@ -1636,14 +1315,8 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f2cf95"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #957238"
-          />
+          <stop offset="0" style="stop-color: #f2cf95" />
+          <stop offset="1" style="stop-color: #957238" />
         </linearGradient>
         <polyline
           style="
@@ -1660,14 +1333,8 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a17e44"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4cf94"
-          />
+          <stop offset="0" style="stop-color: #a17e44" />
+          <stop offset="1" style="stop-color: #f4cf94" />
         </linearGradient>
         <polyline
           style="
@@ -1684,14 +1351,8 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ceab71"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9b7c4f"
-          />
+          <stop offset="0" style="stop-color: #ceab71" />
+          <stop offset="1" style="stop-color: #9b7c4f" />
         </linearGradient>
         <polyline
           style="
@@ -1708,14 +1369,8 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdab71"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dcb97f"
-          />
+          <stop offset="0" style="stop-color: #cdab71" />
+          <stop offset="1" style="stop-color: #dcb97f" />
         </linearGradient>
         <polyline
           style="
@@ -1732,14 +1387,8 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #dbb87e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9b7b49"
-          />
+          <stop offset="0" style="stop-color: #dbb87e" />
+          <stop offset="1" style="stop-color: #9b7b49" />
         </linearGradient>
         <polyline
           style="
@@ -1756,14 +1405,8 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f2cf95"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a48147"
-          />
+          <stop offset="0" style="stop-color: #f2cf95" />
+          <stop offset="1" style="stop-color: #a48147" />
         </linearGradient>
         <polyline
           style="
@@ -1780,18 +1423,9 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cbaa79"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #f3ce93"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9a7940"
-          />
+          <stop offset="0" style="stop-color: #cbaa79" />
+          <stop offset="0.5195" style="stop-color: #f3ce93" />
+          <stop offset="1" style="stop-color: #9a7940" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000133504834122176944490000005021959194713720997_"
@@ -1804,14 +1438,8 @@
         />
       </g>
     </g>
-    <g
-      v-if="IBG"
-      id="_x32__Inner_Background"
-    >
-      <g
-        v-if="IBG.Tech"
-        id="Tech_IBG"
-      >
+    <g v-if="IBG" id="_x32__Inner_Background">
+      <g v-if="IBG.Tech" id="Tech_IBG">
         <g>
           <defs>
             <path
@@ -1891,10 +1519,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="IBG.Nature"
-        id="Nature_IBG"
-      >
+      <g v-if="IBG.Nature" id="Nature_IBG">
         <g>
           <defs>
             <path
@@ -1974,10 +1599,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="IBG.Culture"
-        id="Culture_IBG"
-      >
+      <g v-if="IBG.Culture" id="Culture_IBG">
         <g>
           <defs>
             <path
@@ -2057,10 +1679,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="IBG.Myth"
-        id="Myth_IBG"
-      >
+      <g v-if="IBG.Myth" id="Myth_IBG">
         <g>
           <defs>
             <path
@@ -2141,10 +1760,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGGoldLines"
-      id="BG_Gold_Lines"
-    >
+    <g v-if="BGGoldLines" id="BG_Gold_Lines">
       <g id="Gold_Inner_Frame">
         <path
           class="st12"
@@ -2191,10 +1807,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="BGShadow.Action"
-      id="Action_BG_Shadow"
-    >
+    <g v-if="BGShadow.Action" id="Action_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2236,10 +1849,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.Entity"
-      id="Entity_BG_Shadow"
-    >
+    <g v-if="BGShadow.Entity" id="Entity_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2278,10 +1888,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.Place"
-      id="Place_BG_Shadow"
-    >
+    <g v-if="BGShadow.Place" id="Place_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2320,10 +1927,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.HQ"
-      id="HQ_BG_Shadow"
-    >
+    <g v-if="BGShadow.HQ" id="HQ_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2383,10 +1987,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ClassShadow"
-      id="Class_Shadow"
-    >
+    <g v-if="ClassShadow" id="Class_Shadow">
       <g id="Shadow_00000083786197643803441000000008484445605677345712_">
         <image
           style="overflow: visible; opacity: 0.75"
@@ -2396,23 +1997,12 @@
           transform="matrix(0.24 0 0 0.24 149.913 28.2652)"
         />
         <g>
-          <circle
-            class="st75"
-            cx="160.12"
-            cy="38.56"
-            r="8.5"
-          />
+          <circle class="st75" cx="160.12" cy="38.56" r="8.5" />
         </g>
       </g>
     </g>
-    <g
-      v-if="Classes == 1"
-      id="One_Class"
-    >
-      <g
-        v-if="false"
-        id="One_Class_BG_Update"
-      >
+    <g v-if="Classes == 1" id="One_Class">
+      <g v-if="false" id="One_Class_BG_Update">
         <g>
           <defs>
             <circle
@@ -2471,10 +2061,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Tech"
-        id="One_Class_Tech"
-      >
+      <g v-if="Class.Tech" id="One_Class_Tech">
         <g id="Tech_00000080922445234125155640000015717078093224142236_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2492,38 +2079,14 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #476c76"
-              />
-              <stop
-                offset="0.4497"
-                style="stop-color: #496e78"
-              />
-              <stop
-                offset="0.6117"
-                style="stop-color: #50737e"
-              />
-              <stop
-                offset="0.7272"
-                style="stop-color: #5b7d89"
-              />
-              <stop
-                offset="0.8205"
-                style="stop-color: #6c8b99"
-              />
-              <stop
-                offset="0.9005"
-                style="stop-color: #829dae"
-              />
-              <stop
-                offset="0.9701"
-                style="stop-color: #9db2c8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #abbed5"
-              />
+              <stop offset="0" style="stop-color: #476c76" />
+              <stop offset="0.4497" style="stop-color: #496e78" />
+              <stop offset="0.6117" style="stop-color: #50737e" />
+              <stop offset="0.7272" style="stop-color: #5b7d89" />
+              <stop offset="0.8205" style="stop-color: #6c8b99" />
+              <stop offset="0.9005" style="stop-color: #829dae" />
+              <stop offset="0.9701" style="stop-color: #9db2c8" />
+              <stop offset="1" style="stop-color: #abbed5" />
             </linearGradient>
             <circle
               style="
@@ -2546,34 +2109,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bbc7e1"
-          />
-          <stop
-            offset="0.0174"
-            style="stop-color: #b7c4dd"
-          />
-          <stop
-            offset="0.1553"
-            style="stop-color: #9dafc5"
-          />
-          <stop
-            offset="0.3066"
-            style="stop-color: #889eb1"
-          />
-          <stop
-            offset="0.4761"
-            style="stop-color: #7993a3"
-          />
-          <stop
-            offset="0.6785"
-            style="stop-color: #718c9b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a99"
-          />
+          <stop offset="0" style="stop-color: #bbc7e1" />
+          <stop offset="0.0174" style="stop-color: #b7c4dd" />
+          <stop offset="0.1553" style="stop-color: #9dafc5" />
+          <stop offset="0.3066" style="stop-color: #889eb1" />
+          <stop offset="0.4761" style="stop-color: #7993a3" />
+          <stop offset="0.6785" style="stop-color: #718c9b" />
+          <stop offset="1" style="stop-color: #6e8a99" />
         </linearGradient>
         <circle
           id="Tech"
@@ -2588,10 +2130,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Nature"
-        id="One_Class_Nature"
-      >
+      <g v-if="Class.Nature" id="One_Class_Nature">
         <g id="Nature_00000038380082024414601940000005536322595031582397_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2609,38 +2148,14 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #516e4d"
-              />
-              <stop
-                offset="0.4358"
-                style="stop-color: #53704f"
-              />
-              <stop
-                offset="0.5928"
-                style="stop-color: #5a7756"
-              />
-              <stop
-                offset="0.7046"
-                style="stop-color: #658261"
-              />
-              <stop
-                offset="0.7951"
-                style="stop-color: #769372"
-              />
-              <stop
-                offset="0.8726"
-                style="stop-color: #8ca988"
-              />
-              <stop
-                offset="0.94"
-                style="stop-color: #a6c3a3"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #c5e2c2"
-              />
+              <stop offset="0" style="stop-color: #516e4d" />
+              <stop offset="0.4358" style="stop-color: #53704f" />
+              <stop offset="0.5928" style="stop-color: #5a7756" />
+              <stop offset="0.7046" style="stop-color: #658261" />
+              <stop offset="0.7951" style="stop-color: #769372" />
+              <stop offset="0.8726" style="stop-color: #8ca988" />
+              <stop offset="0.94" style="stop-color: #a6c3a3" />
+              <stop offset="1" style="stop-color: #c5e2c2" />
             </linearGradient>
             <circle
               style="
@@ -2663,34 +2178,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c3e0c0"
-          />
-          <stop
-            offset="9.517074e-03"
-            style="stop-color: #c1debe"
-          />
-          <stop
-            offset="0.1488"
-            style="stop-color: #a6c4a4"
-          />
-          <stop
-            offset="0.3005"
-            style="stop-color: #92af8f"
-          />
-          <stop
-            offset="0.4714"
-            style="stop-color: #83a181"
-          />
-          <stop
-            offset="0.6756"
-            style="stop-color: #7b9979"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #789676"
-          />
+          <stop offset="0" style="stop-color: #c3e0c0" />
+          <stop offset="9.517074e-03" style="stop-color: #c1debe" />
+          <stop offset="0.1488" style="stop-color: #a6c4a4" />
+          <stop offset="0.3005" style="stop-color: #92af8f" />
+          <stop offset="0.4714" style="stop-color: #83a181" />
+          <stop offset="0.6756" style="stop-color: #7b9979" />
+          <stop offset="1" style="stop-color: #789676" />
         </linearGradient>
         <circle
           id="Nature"
@@ -2705,10 +2199,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Myth"
-        id="One_Class_Myth"
-      >
+      <g v-if="Class.Myth" id="One_Class_Myth">
         <g id="Nature_00000094617829098826953140000018122678802195250602_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2726,38 +2217,14 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #51294d"
-              />
-              <stop
-                offset="0.4358"
-                style="stop-color: #532b4f"
-              />
-              <stop
-                offset="0.5928"
-                style="stop-color: #5a3256"
-              />
-              <stop
-                offset="0.7046"
-                style="stop-color: #653d61"
-              />
-              <stop
-                offset="0.7951"
-                style="stop-color: #764e72"
-              />
-              <stop
-                offset="0.8726"
-                style="stop-color: #8c6388"
-              />
-              <stop
-                offset="0.94"
-                style="stop-color: #a67ea3"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #c59cc2"
-              />
+              <stop offset="0" style="stop-color: #51294d" />
+              <stop offset="0.4358" style="stop-color: #532b4f" />
+              <stop offset="0.5928" style="stop-color: #5a3256" />
+              <stop offset="0.7046" style="stop-color: #653d61" />
+              <stop offset="0.7951" style="stop-color: #764e72" />
+              <stop offset="0.8726" style="stop-color: #8c6388" />
+              <stop offset="0.94" style="stop-color: #a67ea3" />
+              <stop offset="1" style="stop-color: #c59cc2" />
             </linearGradient>
             <circle
               style="
@@ -2780,34 +2247,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cea3d4"
-          />
-          <stop
-            offset="0.081"
-            style="stop-color: #bb90bf"
-          />
-          <stop
-            offset="0.2099"
-            style="stop-color: #a378a5"
-          />
-          <stop
-            offset="0.3514"
-            style="stop-color: #906590"
-          />
-          <stop
-            offset="0.5099"
-            style="stop-color: #825781"
-          />
-          <stop
-            offset="0.6992"
-            style="stop-color: #7a4f79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #784d76"
-          />
+          <stop offset="0" style="stop-color: #cea3d4" />
+          <stop offset="0.081" style="stop-color: #bb90bf" />
+          <stop offset="0.2099" style="stop-color: #a378a5" />
+          <stop offset="0.3514" style="stop-color: #906590" />
+          <stop offset="0.5099" style="stop-color: #825781" />
+          <stop offset="0.6992" style="stop-color: #7a4f79" />
+          <stop offset="1" style="stop-color: #784d76" />
         </linearGradient>
         <circle
           id="Nature_00000053515703115668582340000006117205826484966582_"
@@ -2822,10 +2268,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Culture"
-        id="One_Class_Culture"
-      >
+      <g v-if="Class.Culture" id="One_Class_Culture">
         <g id="Nature_00000147192224752665045240000001255549089283610256_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2843,42 +2286,15 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #68292c"
-              />
-              <stop
-                offset="0.4321"
-                style="stop-color: #6a2b2d"
-              />
-              <stop
-                offset="0.5878"
-                style="stop-color: #713132"
-              />
-              <stop
-                offset="0.6988"
-                style="stop-color: #7c3c3b"
-              />
-              <stop
-                offset="0.7885"
-                style="stop-color: #8d4c48"
-              />
-              <stop
-                offset="0.8653"
-                style="stop-color: #a36158"
-              />
-              <stop
-                offset="0.9327"
-                style="stop-color: #be7a6c"
-              />
-              <stop
-                offset="0.9928"
-                style="stop-color: #de9884"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #e29c87"
-              />
+              <stop offset="0" style="stop-color: #68292c" />
+              <stop offset="0.4321" style="stop-color: #6a2b2d" />
+              <stop offset="0.5878" style="stop-color: #713132" />
+              <stop offset="0.6988" style="stop-color: #7c3c3b" />
+              <stop offset="0.7885" style="stop-color: #8d4c48" />
+              <stop offset="0.8653" style="stop-color: #a36158" />
+              <stop offset="0.9327" style="stop-color: #be7a6c" />
+              <stop offset="0.9928" style="stop-color: #de9884" />
+              <stop offset="1" style="stop-color: #e29c87" />
             </linearGradient>
             <circle
               style="
@@ -2901,42 +2317,15 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ecc2d4"
-          />
-          <stop
-            offset="0.0117"
-            style="stop-color: #e9becf"
-          />
-          <stop
-            offset="0.1087"
-            style="stop-color: #d3a0a8"
-          />
-          <stop
-            offset="0.213"
-            style="stop-color: #c08687"
-          />
-          <stop
-            offset="0.3244"
-            style="stop-color: #b0716d"
-          />
-          <stop
-            offset="0.4454"
-            style="stop-color: #a46158"
-          />
-          <stop
-            offset="0.581"
-            style="stop-color: #9b5649"
-          />
-          <stop
-            offset="0.7429"
-            style="stop-color: #974f41"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #954d3e"
-          />
+          <stop offset="0" style="stop-color: #ecc2d4" />
+          <stop offset="0.0117" style="stop-color: #e9becf" />
+          <stop offset="0.1087" style="stop-color: #d3a0a8" />
+          <stop offset="0.213" style="stop-color: #c08687" />
+          <stop offset="0.3244" style="stop-color: #b0716d" />
+          <stop offset="0.4454" style="stop-color: #a46158" />
+          <stop offset="0.581" style="stop-color: #9b5649" />
+          <stop offset="0.7429" style="stop-color: #974f41" />
+          <stop offset="1" style="stop-color: #954d3e" />
         </linearGradient>
         <circle
           id="Nature_00000113327989934125176870000010645179096947317141_"
@@ -2952,10 +2341,7 @@
         />
       </g>
 
-      <g
-        v-if="Class.Culture"
-        id="Culture_One_Class_HQ"
-      >
+      <g v-if="Class.Culture" id="Culture_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3014,10 +2400,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Myth"
-        id="Myth_One_Class_HQ"
-      >
+      <g v-if="Class.Myth" id="Myth_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3076,10 +2459,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Nature"
-        id="Nature_One_Class_HQ"
-      >
+      <g v-if="Class.Nature" id="Nature_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3138,10 +2518,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Tech"
-        id="Tech_One_Class_HQ"
-      >
+      <g v-if="Class.Tech" id="Tech_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3216,10 +2593,7 @@
           c0.14-0.14,0.26-0.31,0.38-0.47c-0.04,0.06-0.07,0.12-0.11,0.17C163.66,41.68,163.56,41.78,163.46,41.88z"
       />
 
-      <g
-        v-if="Type.HQ"
-        id="One_Class_HQ"
-      >
+      <g v-if="Type.HQ" id="One_Class_HQ">
         <g id="HQ_00000171000928725356791190000018238046686567527562_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -3237,42 +2611,15 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #74573a"
-              />
-              <stop
-                offset="0.4273"
-                style="stop-color: #76593b"
-              />
-              <stop
-                offset="0.5813"
-                style="stop-color: #7d5f40"
-              />
-              <stop
-                offset="0.691"
-                style="stop-color: #886a48"
-              />
-              <stop
-                offset="0.7797"
-                style="stop-color: #997a54"
-              />
-              <stop
-                offset="0.8557"
-                style="stop-color: #af8f64"
-              />
-              <stop
-                offset="0.9229"
-                style="stop-color: #cba877"
-              />
-              <stop
-                offset="0.9823"
-                style="stop-color: #eac68d"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #f5d095"
-              />
+              <stop offset="0" style="stop-color: #74573a" />
+              <stop offset="0.4273" style="stop-color: #76593b" />
+              <stop offset="0.5813" style="stop-color: #7d5f40" />
+              <stop offset="0.691" style="stop-color: #886a48" />
+              <stop offset="0.7797" style="stop-color: #997a54" />
+              <stop offset="0.8557" style="stop-color: #af8f64" />
+              <stop offset="0.9229" style="stop-color: #cba877" />
+              <stop offset="0.9823" style="stop-color: #eac68d" />
+              <stop offset="1" style="stop-color: #f5d095" />
             </linearGradient>
 
             <circle
@@ -3297,34 +2644,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f4cf94"
-          />
-          <stop
-            offset="0.1144"
-            style="stop-color: #d5b074"
-          />
-          <stop
-            offset="0.2386"
-            style="stop-color: #bb965a"
-          />
-          <stop
-            offset="0.3751"
-            style="stop-color: #a68145"
-          />
-          <stop
-            offset="0.5278"
-            style="stop-color: #987336"
-          />
-          <stop
-            offset="0.7102"
-            style="stop-color: #906b2e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8d682b"
-          />
+          <stop offset="0" style="stop-color: #f4cf94" />
+          <stop offset="0.1144" style="stop-color: #d5b074" />
+          <stop offset="0.2386" style="stop-color: #bb965a" />
+          <stop offset="0.3751" style="stop-color: #a68145" />
+          <stop offset="0.5278" style="stop-color: #987336" />
+          <stop offset="0.7102" style="stop-color: #906b2e" />
+          <stop offset="1" style="stop-color: #8d682b" />
         </linearGradient>
 
         <circle
@@ -4038,10 +3364,7 @@
           C165.25,35.92,165.38,35.78,165.5,35.62C165.49,35.62,165.5,35.62,165.5,35.62z"
       />
     </g>
-    <g
-      v-if="Classes == 3"
-      id="Three_Classes"
-    >
+    <g v-if="Classes == 3" id="Three_Classes">
       // RIGHT
       <g
         v-if="Class.Myth"
@@ -4595,10 +3918,7 @@
         M167.11,39.9"
       />
     </g>
-    <g
-      v-if="Classes == 4"
-      id="Four_Classes"
-    >
+    <g v-if="Classes == 4" id="Four_Classes">
       <g id="_x31_5_Tech">
         <g>
           <defs>
@@ -4980,10 +4300,7 @@
         C159.85,42.38,159.71,43.15,159.28,43.87z"
       />
     </g>
-    <g
-      v-if="Classes >= 2"
-      id="class ball outer ring and shadow"
-    >
+    <g v-if="Classes >= 2" id="class ball outer ring and shadow">
       <g v-if="Type.HQ">
         <g
           id="One_Class_HQ_00000039111800946281574250000017869723380567403444_"
@@ -5005,42 +4322,15 @@
                 x2="164.2681"
                 y2="45.7511"
               >
-                <stop
-                  offset="0"
-                  style="stop-color: #74573a"
-                />
-                <stop
-                  offset="0.4273"
-                  style="stop-color: #76593b"
-                />
-                <stop
-                  offset="0.5813"
-                  style="stop-color: #7d5f40"
-                />
-                <stop
-                  offset="0.691"
-                  style="stop-color: #886a48"
-                />
-                <stop
-                  offset="0.7797"
-                  style="stop-color: #997a54"
-                />
-                <stop
-                  offset="0.8557"
-                  style="stop-color: #af8f64"
-                />
-                <stop
-                  offset="0.9229"
-                  style="stop-color: #cba877"
-                />
-                <stop
-                  offset="0.9823"
-                  style="stop-color: #eac68d"
-                />
-                <stop
-                  offset="1"
-                  style="stop-color: #f5d095"
-                />
+                <stop offset="0" style="stop-color: #74573a" />
+                <stop offset="0.4273" style="stop-color: #76593b" />
+                <stop offset="0.5813" style="stop-color: #7d5f40" />
+                <stop offset="0.691" style="stop-color: #886a48" />
+                <stop offset="0.7797" style="stop-color: #997a54" />
+                <stop offset="0.8557" style="stop-color: #af8f64" />
+                <stop offset="0.9229" style="stop-color: #cba877" />
+                <stop offset="0.9823" style="stop-color: #eac68d" />
+                <stop offset="1" style="stop-color: #f5d095" />
               </linearGradient>
               <circle
                 style="
@@ -5063,34 +4353,13 @@
             x2="164.7452"
             y2="46.5775"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f4cf94"
-            />
-            <stop
-              offset="0.1144"
-              style="stop-color: #d5b074"
-            />
-            <stop
-              offset="0.2386"
-              style="stop-color: #bb965a"
-            />
-            <stop
-              offset="0.3751"
-              style="stop-color: #a68145"
-            />
-            <stop
-              offset="0.5278"
-              style="stop-color: #987336"
-            />
-            <stop
-              offset="0.7102"
-              style="stop-color: #906b2e"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8d682b"
-            />
+            <stop offset="0" style="stop-color: #f4cf94" />
+            <stop offset="0.1144" style="stop-color: #d5b074" />
+            <stop offset="0.2386" style="stop-color: #bb965a" />
+            <stop offset="0.3751" style="stop-color: #a68145" />
+            <stop offset="0.5278" style="stop-color: #987336" />
+            <stop offset="0.7102" style="stop-color: #906b2e" />
+            <stop offset="1" style="stop-color: #8d682b" />
           </linearGradient>
           <circle
             id="HQ_00000139294613037659657730000017434407936090220987_"
@@ -5124,26 +4393,11 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #806f65"
-              />
-              <stop
-                offset="0.16"
-                style="stop-color: #8a796f"
-              />
-              <stop
-                offset="0.434"
-                style="stop-color: #a59589"
-              />
-              <stop
-                offset="0.7866"
-                style="stop-color: #d1c1b2"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #efdfcf"
-              />
+              <stop offset="0" style="stop-color: #806f65" />
+              <stop offset="0.16" style="stop-color: #8a796f" />
+              <stop offset="0.434" style="stop-color: #a59589" />
+              <stop offset="0.7866" style="stop-color: #d1c1b2" />
+              <stop offset="1" style="stop-color: #efdfcf" />
             </linearGradient>
             <circle
               style="
@@ -5166,14 +4420,8 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ddcbbc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #928178"
-          />
+          <stop offset="0" style="stop-color: #ddcbbc" />
+          <stop offset="1" style="stop-color: #928178" />
         </linearGradient>
         <circle
           style="
@@ -5188,10 +4436,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="ManaBall"
-      id="Mana"
-    >
+    <g v-if="ManaBall" id="Mana">
       <g id="BlueBall">
         <g>
           <defs>
@@ -5297,10 +4542,7 @@
         transform="matrix(0.24 0 0 0.24 24.633 24.9052)"
       />
 
-      <g
-        v-if="ManaBall.Tech"
-        id="Mana_Tech"
-      >
+      <g v-if="ManaBall.Tech" id="Mana_Tech">
         <g>
           <g v-if="true">
             <linearGradient
@@ -5311,38 +4553,14 @@
               x2="40.009"
               y2="43.8409"
             >
-              <stop
-                offset="0"
-                style="stop-color: #476c76"
-              />
-              <stop
-                offset="0.4497"
-                style="stop-color: #496e78"
-              />
-              <stop
-                offset="0.6117"
-                style="stop-color: #50737e"
-              />
-              <stop
-                offset="0.7272"
-                style="stop-color: #5b7d89"
-              />
-              <stop
-                offset="0.8205"
-                style="stop-color: #6c8b99"
-              />
-              <stop
-                offset="0.9005"
-                style="stop-color: #829dae"
-              />
-              <stop
-                offset="0.9701"
-                style="stop-color: #9db2c8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #abbed5"
-              />
+              <stop offset="0" style="stop-color: #476c76" />
+              <stop offset="0.4497" style="stop-color: #496e78" />
+              <stop offset="0.6117" style="stop-color: #50737e" />
+              <stop offset="0.7272" style="stop-color: #5b7d89" />
+              <stop offset="0.8205" style="stop-color: #6c8b99" />
+              <stop offset="0.9005" style="stop-color: #829dae" />
+              <stop offset="0.9701" style="stop-color: #9db2c8" />
+              <stop offset="1" style="stop-color: #abbed5" />
             </linearGradient>
             <circle
               style="
@@ -5365,34 +4583,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bbc7e1"
-          />
-          <stop
-            offset="0.0174"
-            style="stop-color: #b7c4dd"
-          />
-          <stop
-            offset="0.1553"
-            style="stop-color: #9dafc5"
-          />
-          <stop
-            offset="0.3066"
-            style="stop-color: #889eb1"
-          />
-          <stop
-            offset="0.4761"
-            style="stop-color: #7993a3"
-          />
-          <stop
-            offset="0.6785"
-            style="stop-color: #718c9b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a99"
-          />
+          <stop offset="0" style="stop-color: #bbc7e1" />
+          <stop offset="0.0174" style="stop-color: #b7c4dd" />
+          <stop offset="0.1553" style="stop-color: #9dafc5" />
+          <stop offset="0.3066" style="stop-color: #889eb1" />
+          <stop offset="0.4761" style="stop-color: #7993a3" />
+          <stop offset="0.6785" style="stop-color: #718c9b" />
+          <stop offset="1" style="stop-color: #6e8a99" />
         </linearGradient>
         <circle
           style="
@@ -5406,10 +4603,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Nature"
-        id="Mana_Nature"
-      >
+      <g v-if="ManaBall.Nature" id="Mana_Nature">
         <g>
           <image
             style="overflow: visible; opacity: 0.75"
@@ -5427,42 +4621,15 @@
               x2="40.009"
               y2="43.8409"
             >
-              <stop
-                offset="0"
-                style="stop-color: #506d4c"
-              />
-              <stop
-                offset="0.4273"
-                style="stop-color: #526f4e"
-              />
-              <stop
-                offset="0.5813"
-                style="stop-color: #597655"
-              />
-              <stop
-                offset="0.691"
-                style="stop-color: #648160"
-              />
-              <stop
-                offset="0.7797"
-                style="stop-color: #759271"
-              />
-              <stop
-                offset="0.8557"
-                style="stop-color: #8ba887"
-              />
-              <stop
-                offset="0.9229"
-                style="stop-color: #a7c4a2"
-              />
-              <stop
-                offset="0.9823"
-                style="stop-color: #c6e3c1"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #d1eecc"
-              />
+              <stop offset="0" style="stop-color: #506d4c" />
+              <stop offset="0.4273" style="stop-color: #526f4e" />
+              <stop offset="0.5813" style="stop-color: #597655" />
+              <stop offset="0.691" style="stop-color: #648160" />
+              <stop offset="0.7797" style="stop-color: #759271" />
+              <stop offset="0.8557" style="stop-color: #8ba887" />
+              <stop offset="0.9229" style="stop-color: #a7c4a2" />
+              <stop offset="0.9823" style="stop-color: #c6e3c1" />
+              <stop offset="1" style="stop-color: #d1eecc" />
             </linearGradient>
             <circle
               style="
@@ -5485,34 +4652,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1eecc"
-          />
-          <stop
-            offset="0.0174"
-            style="stop-color: #cdeac8"
-          />
-          <stop
-            offset="0.1553"
-            style="stop-color: #b3d0ae"
-          />
-          <stop
-            offset="0.3066"
-            style="stop-color: #9fbb99"
-          />
-          <stop
-            offset="0.4761"
-            style="stop-color: #91ac8b"
-          />
-          <stop
-            offset="0.6785"
-            style="stop-color: #89a483"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #86a180"
-          />
+          <stop offset="0" style="stop-color: #d1eecc" />
+          <stop offset="0.0174" style="stop-color: #cdeac8" />
+          <stop offset="0.1553" style="stop-color: #b3d0ae" />
+          <stop offset="0.3066" style="stop-color: #9fbb99" />
+          <stop offset="0.4761" style="stop-color: #91ac8b" />
+          <stop offset="0.6785" style="stop-color: #89a483" />
+          <stop offset="1" style="stop-color: #86a180" />
         </linearGradient>
         <circle
           style="
@@ -5526,10 +4672,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Myth"
-        id="Mana_Myth"
-      >
+      <g v-if="ManaBall.Myth" id="Mana_Myth">
         <linearGradient
           id="SVGID_00000125593897542365989890000003514656109570173313_"
           gradientUnits="userSpaceOnUse"
@@ -5538,42 +4681,15 @@
           x2="40.009"
           y2="43.8409"
         >
-          <stop
-            offset="0"
-            style="stop-color: #502f4c"
-          />
-          <stop
-            offset="0.4273"
-            style="stop-color: #52314e"
-          />
-          <stop
-            offset="0.5813"
-            style="stop-color: #593755"
-          />
-          <stop
-            offset="0.691"
-            style="stop-color: #644160"
-          />
-          <stop
-            offset="0.7797"
-            style="stop-color: #754f71"
-          />
-          <stop
-            offset="0.8557"
-            style="stop-color: #8b6387"
-          />
-          <stop
-            offset="0.9229"
-            style="stop-color: #a77aa2"
-          />
-          <stop
-            offset="0.9823"
-            style="stop-color: #c695c1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d19fcc"
-          />
+          <stop offset="0" style="stop-color: #502f4c" />
+          <stop offset="0.4273" style="stop-color: #52314e" />
+          <stop offset="0.5813" style="stop-color: #593755" />
+          <stop offset="0.691" style="stop-color: #644160" />
+          <stop offset="0.7797" style="stop-color: #754f71" />
+          <stop offset="0.8557" style="stop-color: #8b6387" />
+          <stop offset="0.9229" style="stop-color: #a77aa2" />
+          <stop offset="0.9823" style="stop-color: #c695c1" />
+          <stop offset="1" style="stop-color: #d19fcc" />
         </linearGradient>
         <circle
           style="
@@ -5594,34 +4710,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d19edb"
-          />
-          <stop
-            offset="0.0709"
-            style="stop-color: #c291c9"
-          />
-          <stop
-            offset="0.2013"
-            style="stop-color: #ac7daf"
-          />
-          <stop
-            offset="0.3443"
-            style="stop-color: #9b6d9a"
-          />
-          <stop
-            offset="0.5046"
-            style="stop-color: #8f628b"
-          />
-          <stop
-            offset="0.696"
-            style="stop-color: #885c83"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #865a80"
-          />
+          <stop offset="0" style="stop-color: #d19edb" />
+          <stop offset="0.0709" style="stop-color: #c291c9" />
+          <stop offset="0.2013" style="stop-color: #ac7daf" />
+          <stop offset="0.3443" style="stop-color: #9b6d9a" />
+          <stop offset="0.5046" style="stop-color: #8f628b" />
+          <stop offset="0.696" style="stop-color: #885c83" />
+          <stop offset="1" style="stop-color: #865a80" />
         </linearGradient>
         <circle
           style="
@@ -5635,10 +4730,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Culture"
-        id="Mana_Culture"
-      >
+      <g v-if="ManaBall.Culture" id="Mana_Culture">
         <linearGradient
           id="SVGID_00000099653851417899690450000017056176057173100973_"
           gradientUnits="userSpaceOnUse"
@@ -5647,42 +4739,15 @@
           x2="40.009"
           y2="43.8409"
         >
-          <stop
-            offset="0"
-            style="stop-color: #924a3a"
-          />
-          <stop
-            offset="0.4129"
-            style="stop-color: #934c3c"
-          />
-          <stop
-            offset="0.5616"
-            style="stop-color: #985243"
-          />
-          <stop
-            offset="0.6676"
-            style="stop-color: #9f5d4e"
-          />
-          <stop
-            offset="0.7534"
-            style="stop-color: #aa6d5f"
-          />
-          <stop
-            offset="0.8268"
-            style="stop-color: #b88275"
-          />
-          <stop
-            offset="0.8918"
-            style="stop-color: #c99b91"
-          />
-          <stop
-            offset="0.9492"
-            style="stop-color: #deb9b0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4dad3"
-          />
+          <stop offset="0" style="stop-color: #924a3a" />
+          <stop offset="0.4129" style="stop-color: #934c3c" />
+          <stop offset="0.5616" style="stop-color: #985243" />
+          <stop offset="0.6676" style="stop-color: #9f5d4e" />
+          <stop offset="0.7534" style="stop-color: #aa6d5f" />
+          <stop offset="0.8268" style="stop-color: #b88275" />
+          <stop offset="0.8918" style="stop-color: #c99b91" />
+          <stop offset="0.9492" style="stop-color: #deb9b0" />
+          <stop offset="1" style="stop-color: #f4dad3" />
         </linearGradient>
         <circle
           style="
@@ -5703,34 +4768,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2b28e"
-          />
-          <stop
-            offset="0.1058"
-            style="stop-color: #c8957c"
-          />
-          <stop
-            offset="0.2312"
-            style="stop-color: #b07b6c"
-          />
-          <stop
-            offset="0.3689"
-            style="stop-color: #9d665f"
-          />
-          <stop
-            offset="0.5231"
-            style="stop-color: #905756"
-          />
-          <stop
-            offset="0.7074"
-            style="stop-color: #884f51"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #864c4f"
-          />
+          <stop offset="0" style="stop-color: #e2b28e" />
+          <stop offset="0.1058" style="stop-color: #c8957c" />
+          <stop offset="0.2312" style="stop-color: #b07b6c" />
+          <stop offset="0.3689" style="stop-color: #9d665f" />
+          <stop offset="0.5231" style="stop-color: #905756" />
+          <stop offset="0.7074" style="stop-color: #884f51" />
+          <stop offset="1" style="stop-color: #864c4f" />
         </linearGradient>
         <circle
           style="
@@ -5759,42 +4803,15 @@
                 x2="40.009"
                 y2="43.8409"
               >
-                <stop
-                  offset="0"
-                  style="stop-color: #6d574b"
-                />
-                <stop
-                  offset="0.4234"
-                  style="stop-color: #6f594d"
-                />
-                <stop
-                  offset="0.576"
-                  style="stop-color: #756053"
-                />
-                <stop
-                  offset="0.6847"
-                  style="stop-color: #816b5f"
-                />
-                <stop
-                  offset="0.7726"
-                  style="stop-color: #917c6f"
-                />
-                <stop
-                  offset="0.848"
-                  style="stop-color: #a69285"
-                />
-                <stop
-                  offset="0.9146"
-                  style="stop-color: #c0ae9f"
-                />
-                <stop
-                  offset="0.9735"
-                  style="stop-color: #decdbe"
-                />
-                <stop
-                  offset="1"
-                  style="stop-color: #eedece"
-                />
+                <stop offset="0" style="stop-color: #6d574b" />
+                <stop offset="0.4234" style="stop-color: #6f594d" />
+                <stop offset="0.576" style="stop-color: #756053" />
+                <stop offset="0.6847" style="stop-color: #816b5f" />
+                <stop offset="0.7726" style="stop-color: #917c6f" />
+                <stop offset="0.848" style="stop-color: #a69285" />
+                <stop offset="0.9146" style="stop-color: #c0ae9f" />
+                <stop offset="0.9735" style="stop-color: #decdbe" />
+                <stop offset="1" style="stop-color: #eedece" />
               </linearGradient>
               <circle
                 style="
@@ -5817,34 +4834,13 @@
             x2="40.5679"
             y2="44.809"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eedece"
-            />
-            <stop
-              offset="0.1058"
-              style="stop-color: #d2c1b2"
-            />
-            <stop
-              offset="0.2312"
-              style="stop-color: #b9a799"
-            />
-            <stop
-              offset="0.3689"
-              style="stop-color: #a59285"
-            />
-            <stop
-              offset="0.5231"
-              style="stop-color: #978377"
-            />
-            <stop
-              offset="0.7074"
-              style="stop-color: #8f7b6f"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8c786c"
-            />
+            <stop offset="0" style="stop-color: #eedece" />
+            <stop offset="0.1058" style="stop-color: #d2c1b2" />
+            <stop offset="0.2312" style="stop-color: #b9a799" />
+            <stop offset="0.3689" style="stop-color: #a59285" />
+            <stop offset="0.5231" style="stop-color: #978377" />
+            <stop offset="0.7074" style="stop-color: #8f7b6f" />
+            <stop offset="1" style="stop-color: #8c786c" />
           </linearGradient>
           <circle
             style="
@@ -5859,10 +4855,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="ManaBall.HQ"
-        id="Mana_HQ"
-      >
+      <g v-if="ManaBall.HQ" id="Mana_HQ">
         <g id="Circle_Left_00000038387448793549582000000006435880124292487831_">
           <g>
             <image
@@ -5881,42 +4874,15 @@
                 x2="40.009"
                 y2="43.8409"
               >
-                <stop
-                  offset="0"
-                  style="stop-color: #74573b"
-                />
-                <stop
-                  offset="0.4273"
-                  style="stop-color: #76593c"
-                />
-                <stop
-                  offset="0.5813"
-                  style="stop-color: #7d5f41"
-                />
-                <stop
-                  offset="0.691"
-                  style="stop-color: #886a49"
-                />
-                <stop
-                  offset="0.7797"
-                  style="stop-color: #997a55"
-                />
-                <stop
-                  offset="0.8557"
-                  style="stop-color: #af8f64"
-                />
-                <stop
-                  offset="0.9229"
-                  style="stop-color: #cba877"
-                />
-                <stop
-                  offset="0.9823"
-                  style="stop-color: #eac68d"
-                />
-                <stop
-                  offset="1"
-                  style="stop-color: #f5d095"
-                />
+                <stop offset="0" style="stop-color: #74573b" />
+                <stop offset="0.4273" style="stop-color: #76593c" />
+                <stop offset="0.5813" style="stop-color: #7d5f41" />
+                <stop offset="0.691" style="stop-color: #886a49" />
+                <stop offset="0.7797" style="stop-color: #997a55" />
+                <stop offset="0.8557" style="stop-color: #af8f64" />
+                <stop offset="0.9229" style="stop-color: #cba877" />
+                <stop offset="0.9823" style="stop-color: #eac68d" />
+                <stop offset="1" style="stop-color: #f5d095" />
               </linearGradient>
               <circle
                 style="
@@ -5939,34 +4905,13 @@
             x2="40.5679"
             y2="44.809"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f1ce94"
-            />
-            <stop
-              offset="0.1087"
-              style="stop-color: #d4b076"
-            />
-            <stop
-              offset="0.2337"
-              style="stop-color: #ba965c"
-            />
-            <stop
-              offset="0.371"
-              style="stop-color: #a68247"
-            />
-            <stop
-              offset="0.5248"
-              style="stop-color: #987338"
-            />
-            <stop
-              offset="0.7083"
-              style="stop-color: #906b30"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8d682d"
-            />
+            <stop offset="0" style="stop-color: #f1ce94" />
+            <stop offset="0.1087" style="stop-color: #d4b076" />
+            <stop offset="0.2337" style="stop-color: #ba965c" />
+            <stop offset="0.371" style="stop-color: #a68247" />
+            <stop offset="0.5248" style="stop-color: #987338" />
+            <stop offset="0.7083" style="stop-color: #906b30" />
+            <stop offset="1" style="stop-color: #8d682d" />
           </linearGradient>
           <circle
             style="
@@ -6048,10 +4993,7 @@
         clip-path="url(#full_place_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.HQ"
-      id="HQ_FullArt_Illustration_Mask"
-    >
+    <g v-if="FullArtIllustrationMask.HQ" id="HQ_FullArt_Illustration_Mask">
       <clipPath id="full_hq_artwork_clip">
         <path
           d="M172.37,73.57c-0.15-0.16-15.48-16.13-40.18-33.55C107.34,22.5,99.52,21.77,99.2,21.74l-0.07,0l-0.07,0
@@ -6072,10 +5014,7 @@
         clip-path="url(#full_hq_artwork_clip)"
       />
     </g>
-    <g
-      v-if="ShadowFullArt.Entity"
-      id="Entity_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.Entity" id="Entity_Shadow_FullArt">
       <g>
         <defs>
           <path
@@ -6117,10 +5056,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.Action"
-      id="Action_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.Action" id="Action_Shadow_FullArt">
       <g>
         <g>
           <image
@@ -6141,10 +5077,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.Place"
-      id="Place_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.Place" id="Place_Shadow_FullArt">
       <g>
         <defs>
           <path
@@ -6184,10 +5117,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.HQ"
-      id="HQ_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.HQ" id="HQ_Shadow_FullArt">
       <g>
         <defs>
           <path
@@ -6245,14 +5175,8 @@
               x2="30.3152"
               y2="74.6657"
             >
-              <stop
-                offset="0"
-                style="stop-color: #c6a267"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9c7c45"
-              />
+              <stop offset="0" style="stop-color: #c6a267" />
+              <stop offset="1" style="stop-color: #9c7c45" />
             </linearGradient>
             <path
               style="
@@ -6285,14 +5209,8 @@
               x2="101.4576"
               y2="27.8373"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7a5a23"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #74573c"
-              />
+              <stop offset="0" style="stop-color: #7a5a23" />
+              <stop offset="1" style="stop-color: #74573c" />
             </linearGradient>
             <path
               style="
@@ -6325,14 +5243,8 @@
               x2="167.9833"
               y2="74.6657"
             >
-              <stop
-                offset="0"
-                style="stop-color: #bda174"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9c7c45"
-              />
+              <stop offset="0" style="stop-color: #bda174" />
+              <stop offset="1" style="stop-color: #9c7c45" />
             </linearGradient>
             <path
               style="
@@ -6364,14 +5276,8 @@
               x2="170.6423"
               y2="50.8271"
             >
-              <stop
-                offset="0"
-                style="stop-color: #8c672a"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #ac905f"
-              />
+              <stop offset="0" style="stop-color: #8c672a" />
+              <stop offset="1" style="stop-color: #ac905f" />
             </linearGradient>
             <path
               style="
@@ -6404,14 +5310,8 @@
               x2="99.1671"
               y2="115.636"
             >
-              <stop
-                offset="0"
-                style="stop-color: #815c21"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #c9a56a"
-              />
+              <stop offset="0" style="stop-color: #815c21" />
+              <stop offset="1" style="stop-color: #c9a56a" />
             </linearGradient>
             <path
               style="
@@ -6446,10 +5346,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FramedIllustrationMask"
-      id="Framed_Illustration_Mask"
-    >
+    <g v-if="FramedIllustrationMask" id="Framed_Illustration_Mask">
       <g
         v-if="FramedIllustrationMask.Entity"
         id="Entity_Framed_Illustration_Mask"
@@ -6477,11 +5374,7 @@
         id="Action_Framed_Illustration_Mask"
       >
         <clipPath id="action_artwork_clip">
-          <circle
-            cx="99.12"
-            cy="96.21"
-            r="72.83"
-          />
+          <circle cx="99.12" cy="96.21" r="72.83" />
         </clipPath>
         <image
           id="cardimageFramedAction"
@@ -6515,10 +5408,7 @@
           clip-path="url(#place_artwork_clip)"
         />
       </g>
-      <g
-        v-if="FramedIllustrationMask.HQ"
-        id="HQ_Framed_Illustration_Mask"
-      >
+      <g v-if="FramedIllustrationMask.HQ" id="HQ_Framed_Illustration_Mask">
         <clipPath id="hq_artwork_clip">
           <path
             d="M99.13,169.04L35.67,144.8l-0.15-0.46c-0.03-0.1-3.2-10.29-6.39-27.51c-3.39-18.35-3.51-42.32-3.51-42.56
@@ -6539,10 +5429,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FullArtGradients"
-      id="_x36__Fullart_Gradients"
-    >
+    <g v-if="FullArtGradients" id="_x36__Fullart_Gradients">
       <g v-if="FullArtGradients.Tech">
         <linearGradient
           id="Tech_Gradient_00000059286544088592342360000005787839791206127801_"
@@ -6552,10 +5439,7 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #39697b; stop-opacity: 0"
-          />
+          <stop offset="0" style="stop-color: #39697b; stop-opacity: 0" />
           <stop
             offset="0.0851"
             style="stop-color: #39697b; stop-opacity: 0.0851"
@@ -6576,10 +5460,7 @@
             offset="0.8322"
             style="stop-color: #39697b; stop-opacity: 0.8322"
           />
-          <stop
-            offset="1"
-            style="stop-color: #013f55"
-          />
+          <stop offset="1" style="stop-color: #013f55" />
         </linearGradient>
         <polygon
           id="Tech_Gradient"
@@ -6599,10 +5480,7 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #47015a; stop-opacity: 0"
-          />
+          <stop offset="0" style="stop-color: #47015a; stop-opacity: 0" />
           <stop
             offset="0.0851"
             style="stop-color: #47015a; stop-opacity: 0.0851"
@@ -6623,10 +5501,7 @@
             offset="0.8322"
             style="stop-color: #47015a; stop-opacity: 0.8322"
           />
-          <stop
-            offset="1"
-            style="stop-color: #47015a"
-          />
+          <stop offset="1" style="stop-color: #47015a" />
         </linearGradient>
         <polygon
           id="Myth_Gradient"
@@ -6646,10 +5521,7 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #953a39; stop-opacity: 0"
-          />
+          <stop offset="0" style="stop-color: #953a39; stop-opacity: 0" />
           <stop
             offset="0.0849"
             style="stop-color: #953a39; stop-opacity: 0.0849"
@@ -6670,10 +5542,7 @@
             offset="0.8298"
             style="stop-color: #953a39; stop-opacity: 0.8298"
           />
-          <stop
-            offset="1"
-            style="stop-color: #760100"
-          />
+          <stop offset="1" style="stop-color: #760100" />
         </linearGradient>
         <polygon
           id="Culture_Gradient"
@@ -6693,10 +5562,7 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #596f39; stop-opacity: 0"
-          />
+          <stop offset="0" style="stop-color: #596f39; stop-opacity: 0" />
           <stop
             offset="0.0849"
             style="stop-color: #596f39; stop-opacity: 0.0849"
@@ -6717,10 +5583,7 @@
             offset="0.8298"
             style="stop-color: #596f39; stop-opacity: 0.8298"
           />
-          <stop
-            offset="1"
-            style="stop-color: #294600"
-          />
+          <stop offset="1" style="stop-color: #294600" />
         </linearGradient>
         <polygon
           id="Nature_Gradient"
@@ -6740,10 +5603,7 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7b625c; stop-opacity: 0"
-          />
+          <stop offset="0" style="stop-color: #7b625c; stop-opacity: 0" />
           <stop
             offset="0.1179"
             style="stop-color: #7b625c; stop-opacity: 0.1179"
@@ -6760,10 +5620,7 @@
             offset="0.8344"
             style="stop-color: #7b625c; stop-opacity: 0.8344"
           />
-          <stop
-            offset="1"
-            style="stop-color: #7b625c"
-          />
+          <stop offset="1" style="stop-color: #7b625c" />
         </linearGradient>
         <polygon
           id="Multi_Class_Gradient"
@@ -6783,10 +5640,7 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #dab479; stop-opacity: 0"
-          />
+          <stop offset="0" style="stop-color: #dab479; stop-opacity: 0" />
           <stop
             offset="0.1363"
             style="stop-color: #dab479; stop-opacity: 0.1363"
@@ -6803,10 +5657,7 @@
             offset="0.964"
             style="stop-color: #dab479; stop-opacity: 0.964"
           />
-          <stop
-            offset="1"
-            style="stop-color: #dab479"
-          />
+          <stop offset="1" style="stop-color: #dab479" />
         </linearGradient>
         <polygon
           id="HQ_Gradient"
@@ -6818,10 +5669,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="Type.Entity"
-      id="Entity_Framed_Text_Box"
-    >
+    <g v-if="Type.Entity" id="Entity_Framed_Text_Box">
       <defs>
         <polygon
           id="SVGID_00000039814142577016939950000012203532702894977196_"
@@ -6886,10 +5734,7 @@
                   clip-path: url(#SVGID_00000034072220726591210140000007854358954687593381_);
                 "
               >
-                <g
-                  v-if="FramedTextBox.Nature"
-                  id="Nature_Box"
-                >
+                <g v-if="FramedTextBox.Nature" id="Nature_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6898,10 +5743,7 @@
                     transform="matrix(0.48 0 0 0.48 25.9634 128.4756)"
                   />
                 </g>
-                <g
-                  v-if="FramedTextBox.Tech"
-                  id="Tech_Box"
-                >
+                <g v-if="FramedTextBox.Tech" id="Tech_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6911,10 +5753,7 @@
                   />
                 </g>
 
-                <g
-                  v-if="FramedTextBox.Myth"
-                  id="Myth_Box"
-                >
+                <g v-if="FramedTextBox.Myth" id="Myth_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6924,10 +5763,7 @@
                   />
                 </g>
 
-                <g
-                  v-if="FramedTextBox.Culture"
-                  id="Culture_Box"
-                >
+                <g v-if="FramedTextBox.Culture" id="Culture_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6937,10 +5773,7 @@
                   />
                 </g>
 
-                <g
-                  v-if="FramedTextBox.MultiClass"
-                  id="Multi_Class_Box"
-                >
+                <g v-if="FramedTextBox.MultiClass" id="Multi_Class_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6955,10 +5788,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Type.Action"
-      id="Action_Framed_Text_Box"
-    >
+    <g v-if="Type.Action" id="Action_Framed_Text_Box">
       <g>
         <defs>
           <path
@@ -7077,10 +5907,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Type.Place && false"
-      id="Place_Framed_Text_Box"
-    >
+    <g v-if="Type.Place && false" id="Place_Framed_Text_Box">
       <g>
         <defs>
           <polygon
@@ -7328,22 +6155,11 @@
         transform="matrix(0.24 0 0 0.24 28.1914 228.3836)"
       />
       <g>
-        <rect
-          x="32.58"
-          y="232.82"
-          width="133.17"
-          height="12.06"
-        />
+        <rect x="32.58" y="232.82" width="133.17" height="12.06" />
       </g>
     </g>
-    <g
-      v-if="Tagsbar"
-      id="_x37__Tagsbar"
-    >
-      <g
-        v-if="Type.HQ"
-        id="Tagsbar_HQ"
-      >
+    <g v-if="Tagsbar" id="_x37__Tagsbar">
+      <g v-if="Type.HQ" id="Tagsbar_HQ">
         <g>
           <defs>
             <rect
@@ -7430,10 +6246,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.MultiClass"
-                  id="Tagsbar_Multi_Class"
-                >
+                <g v-if="Tagsbar.MultiClass" id="Tagsbar_Multi_Class">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7442,10 +6255,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Culture"
-                  id="Tagsbar_Culture"
-                >
+                <g v-if="Tagsbar.Culture" id="Tagsbar_Culture">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7454,10 +6264,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Myth"
-                  id="Tagsbar_Myth"
-                >
+                <g v-if="Tagsbar.Myth" id="Tagsbar_Myth">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7466,10 +6273,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Nature"
-                  id="Tagsbar_Nature"
-                >
+                <g v-if="Tagsbar.Nature" id="Tagsbar_Nature">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7478,10 +6282,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Tech"
-                  id="Tagsbar_Tech"
-                >
+                <g v-if="Tagsbar.Tech" id="Tagsbar_Tech">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7495,10 +6296,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.MultiClass"
-        id="Tagsbar_Multi_Class"
-      >
+      <g v-if="Tagsbar.MultiClass" id="Tagsbar_Multi_Class">
         <g>
           <defs>
             <rect
@@ -7580,10 +6378,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.Culture"
-        id="Tagsbar_Culture"
-      >
+      <g v-if="Tagsbar.Culture" id="Tagsbar_Culture">
         <g>
           <defs>
             <rect
@@ -7665,10 +6460,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.Myth"
-        id="Tagsbar_Myth"
-      >
+      <g v-if="Tagsbar.Myth" id="Tagsbar_Myth">
         <g>
           <defs>
             <rect
@@ -7750,10 +6542,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.Nature"
-        id="Tagsbar_Nature"
-      >
+      <g v-if="Tagsbar.Nature" id="Tagsbar_Nature">
         <g>
           <defs>
             <rect
@@ -7836,10 +6625,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Tagsbar.Tech"
-        id="Tagsbar_Tech"
-      >
+      <g v-if="Tagsbar.Tech" id="Tagsbar_Tech">
         <g>
           <defs>
             <rect
@@ -7944,10 +6730,7 @@
           C165.58,241.72,165.57,240.23,165.57,238.74z"
       />
     </g>
-    <g
-      v-if="ShadowFramed.Entity"
-      id="Entity_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.Entity" id="Entity_Shadow_Framed">
       <g>
         <defs>
           <polygon
@@ -8006,14 +6789,8 @@
               x2="133.2279"
               y2="101.3773"
             >
-              <stop
-                offset="0"
-                style="stop-color: #5b7b86"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #768a94"
-              />
+              <stop offset="0" style="stop-color: #5b7b86" />
+              <stop offset="1" style="stop-color: #768a94" />
             </linearGradient>
             <polygon
               style="
@@ -8047,14 +6824,8 @@
               x2="46.2649"
               y2="161.0388"
             >
-              <stop
-                offset="0"
-                style="stop-color: #64788f"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9db7c4"
-              />
+              <stop offset="0" style="stop-color: #64788f" />
+              <stop offset="1" style="stop-color: #9db7c4" />
             </linearGradient>
             <polyline
               style="
@@ -8087,14 +6858,8 @@
               x2="46.2772"
               y2="159.9905"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7f91a6"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #a9c5d4"
-              />
+              <stop offset="0" style="stop-color: #7f91a6" />
+              <stop offset="1" style="stop-color: #a9c5d4" />
             </linearGradient>
             <polyline
               style="
@@ -8127,14 +6892,8 @@
               x2="44.2771"
               y2="159.9904"
             >
-              <stop
-                offset="0"
-                style="stop-color: #b7c6e1"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #768a94"
-              />
+              <stop offset="0" style="stop-color: #b7c6e1" />
+              <stop offset="1" style="stop-color: #768a94" />
             </linearGradient>
             <polyline
               style="
@@ -8167,14 +6926,8 @@
               x2="44.2771"
               y2="161.051"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7f99a8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #5b7b86"
-              />
+              <stop offset="0" style="stop-color: #7f99a8" />
+              <stop offset="1" style="stop-color: #5b7b86" />
             </linearGradient>
             <polyline
               style="
@@ -8208,14 +6961,8 @@
               y2="161.0509"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #64788f"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9db7c4"
-              />
+              <stop offset="0" style="stop-color: #64788f" />
+              <stop offset="1" style="stop-color: #9db7c4" />
             </linearGradient>
             <polyline
               style="
@@ -8249,14 +6996,8 @@
               y2="159.9904"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #8091a6"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #a9c5d4"
-              />
+              <stop offset="0" style="stop-color: #8091a6" />
+              <stop offset="1" style="stop-color: #a9c5d4" />
             </linearGradient>
             <polyline
               style="
@@ -8290,14 +7031,8 @@
               y2="159.9904"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #b7c6e1"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #768a94"
-              />
+              <stop offset="0" style="stop-color: #b7c6e1" />
+              <stop offset="1" style="stop-color: #768a94" />
             </linearGradient>
             <polyline
               style="
@@ -8331,14 +7066,8 @@
               y2="161.0823"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7f99a8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #5b7b86"
-              />
+              <stop offset="0" style="stop-color: #7f99a8" />
+              <stop offset="1" style="stop-color: #5b7b86" />
             </linearGradient>
             <polyline
               style="
@@ -8351,10 +7080,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.Action"
-      id="Action_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.Action" id="Action_Shadow_Framed">
       <g>
         <defs>
           <path
@@ -8496,12 +7222,7 @@
             transform="matrix(0.24 0 0 0.24 22.4314 19.5836)"
           />
           <g>
-            <circle
-              class="st281"
-              cx="99.12"
-              cy="96.21"
-              r="71.58"
-            />
+            <circle class="st281" cx="99.12" cy="96.21" r="71.58" />
           </g>
         </g>
         <g
@@ -8517,12 +7238,7 @@
             transform="matrix(0.24 0 0 0.24 21.2314 18.1436)"
           />
           <g>
-            <circle
-              class="st75"
-              cx="99.12"
-              cy="96.21"
-              r="72.83"
-            />
+            <circle class="st75" cx="99.12" cy="96.21" r="72.83" />
           </g>
         </g>
         <g
@@ -8587,10 +7303,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.Place"
-      id="Place_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.Place" id="Place_Shadow_Framed">
       <g>
         <defs>
           <path
@@ -8964,10 +7677,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.HQ"
-      id="HQ_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.HQ" id="HQ_Shadow_Framed">
       <g>
         <defs>
           <path
@@ -9382,14 +8092,8 @@
         </text>
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Entity"
-      id="Entity_FullArt_Frames"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Tech_Frame"
-      >
+    <g v-if="FullArtFrames.Entity" id="Entity_FullArt_Frames">
+      <g v-if="framed.Tech" id="Tech_Frame">
         <linearGradient
           id="Health_Frame_00000047743626570360097830000005063958183842734721_"
           gradientUnits="userSpaceOnUse"
@@ -9398,14 +8102,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96a7b7"
-          />
+          <stop offset="0" style="stop-color: #96a7b8" />
+          <stop offset="1" style="stop-color: #96a7b7" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000152984774770275845180000008648889492369684887_"
@@ -9423,14 +8121,8 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #97a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b3c3dd"
-          />
+          <stop offset="0" style="stop-color: #97a7b8" />
+          <stop offset="1" style="stop-color: #b3c3dd" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000074433458455077857000000009090284163200210321_"
@@ -9448,18 +8140,9 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #728e9e"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #476c76"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #728e9e" />
+          <stop offset="0.5051" style="stop-color: #476c76" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000067932913804017147830000012652583282268929421_"
@@ -9477,14 +8160,8 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708c9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #999d9c"
-          />
+          <stop offset="0" style="stop-color: #708c9d" />
+          <stop offset="1" style="stop-color: #999d9c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000021821220995267540180000007937491268901596560_"
@@ -9502,18 +8179,9 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #839dae"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #4a6d78"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819bac"
-          />
+          <stop offset="0" style="stop-color: #839dae" />
+          <stop offset="0.5095" style="stop-color: #4a6d78" />
+          <stop offset="1" style="stop-color: #819bac" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000085946834483415717100000000037524567051979428_"
@@ -9531,14 +8199,8 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96aabe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819baf"
-          />
+          <stop offset="0" style="stop-color: #96aabe" />
+          <stop offset="1" style="stop-color: #819baf" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000101076912972233759740000007172958803410677684_"
@@ -9556,14 +8218,8 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145059587482430492600000018226714002135994517_"
@@ -9581,14 +8237,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000079478951816018710370000007224468634007780256_"
@@ -9606,14 +8256,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000123403060739364566180000001728067503276814724_"
@@ -9631,14 +8275,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000091729595712241860680000000013932403999756447_"
@@ -9656,14 +8294,8 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000148619799189397420690000012586823402031228563_"
@@ -9681,14 +8313,8 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000062906904464911155820000001784101149957511835_"
@@ -9706,14 +8332,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99a9ba"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e79"
-          />
+          <stop offset="0" style="stop-color: #99a9ba" />
+          <stop offset="1" style="stop-color: #4b6e79" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000018204696695907125560000001436514492109975441_"
@@ -9731,14 +8351,8 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000138556337991423199870000010531794970097103750_"
@@ -9756,18 +8370,9 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5f7d89"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #b5c4dd"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #607e8a"
-          />
+          <stop offset="0" style="stop-color: #5f7d89" />
+          <stop offset="0.4979" style="stop-color: #b5c4dd" />
+          <stop offset="1" style="stop-color: #607e8a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000038394879580468522640000016041904199086855074_"
@@ -9785,18 +8390,9 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5f7d89"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #85959c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #607e8a"
-          />
+          <stop offset="0" style="stop-color: #5f7d89" />
+          <stop offset="0.4979" style="stop-color: #85959c" />
+          <stop offset="1" style="stop-color: #607e8a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000119107392142333943520000014603744351742391688_"
@@ -9814,14 +8410,8 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bcc9e2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bac7e1"
-          />
+          <stop offset="0" style="stop-color: #bcc9e2" />
+          <stop offset="1" style="stop-color: #bac7e1" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000162336462229250779280000014965607166261224377_"
@@ -9839,14 +8429,8 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708c9b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5f7f8a"
-          />
+          <stop offset="0" style="stop-color: #708c9b" />
+          <stop offset="1" style="stop-color: #5f7f8a" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000085964104140912569040000012859424325149505424_"
@@ -9864,14 +8448,8 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b2c1db"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b7c4de"
-          />
+          <stop offset="0" style="stop-color: #b2c1db" />
+          <stop offset="1" style="stop-color: #b7c4de" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000140704954068318974780000012485756455589208223_"
@@ -9889,14 +8467,8 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b6c5de"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b7c4de"
-          />
+          <stop offset="0" style="stop-color: #b6c5de" />
+          <stop offset="1" style="stop-color: #b7c4de" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000109014530007842381820000002065509567864653977_"
@@ -9914,14 +8486,8 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b0bfd8"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #b0bfd8" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000011716502296738154540000002291162780532186551_"
@@ -9939,14 +8505,8 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b2c1d9"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #b2c1d9" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000017508604750510086730000012222079156491098241_"
@@ -9964,14 +8524,8 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5b7b86"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #5b7b86" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000155130228801231783490000013142490083718158249_"
@@ -9989,14 +8543,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <path
           id="Bottom_Frame"
@@ -10016,14 +8564,8 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #50727f"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #50727f" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000145776546414272373820000013251877061798231437_"
@@ -10042,18 +8584,9 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <polygon
             style="
@@ -10070,18 +8603,9 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <path
             style="
@@ -10091,10 +8615,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Nature_Frame"
-      >
+      <g v-if="framed.Nature" id="Nature_Frame">
         <linearGradient
           id="Health_Frame_00000033344171528757148020000005042571596126231691_"
           gradientUnits="userSpaceOnUse"
@@ -10103,14 +8624,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9ebb9a"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #9ebb9a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000107567854081328706240000015761445527867473050_"
@@ -10128,14 +8643,8 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #aac7a6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1eecd"
-          />
+          <stop offset="0" style="stop-color: #aac7a6" />
+          <stop offset="1" style="stop-color: #d1eecd" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000150785785356458593260000008650075390382257282_"
@@ -10153,18 +8662,9 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #89a483"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #557150"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #87a483"
-          />
+          <stop offset="0" style="stop-color: #89a483" />
+          <stop offset="0.5051" style="stop-color: #557150" />
+          <stop offset="1" style="stop-color: #87a483" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000039856342321327568490000014750579576459664298_"
@@ -10182,14 +8682,8 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e9978"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5c7857"
-          />
+          <stop offset="0" style="stop-color: #7e9978" />
+          <stop offset="1" style="stop-color: #5c7857" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000095334573251033485770000006005965682320745096_"
@@ -10207,18 +8701,9 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #809b7a"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #536f4e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #87a483"
-          />
+          <stop offset="0" style="stop-color: #809b7a" />
+          <stop offset="0.5095" style="stop-color: #536f4e" />
+          <stop offset="1" style="stop-color: #87a483" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000109722520219211294980000005493745349107590585_"
@@ -10236,14 +8721,8 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99b493"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #637f5e"
-          />
+          <stop offset="0" style="stop-color: #99b493" />
+          <stop offset="1" style="stop-color: #637f5e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000183237682363387221880000000421133735790089901_"
@@ -10261,14 +8740,8 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000109002644526194460520000008773422182630041987_"
@@ -10286,14 +8759,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000163034087593119699620000013248658346535884476_"
@@ -10311,14 +8778,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000005965546723374765680000002308945072824724142_"
@@ -10336,14 +8797,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000130648136740624738270000008796561986605229228_"
@@ -10361,14 +8816,8 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000163047577482469980500000000330344637602306727_"
@@ -10386,14 +8835,8 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #4a6645"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9cb999"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #4a6645" />
+          <stop offset="1" style="stop-color: #9cb999" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000173849022773339975860000003441176891309366679_"
@@ -10411,14 +8854,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8ca785"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #466241"
-          />
+          <stop offset="0" style="stop-color: #8ca785" />
+          <stop offset="1" style="stop-color: #466241" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000170242321994480068050000015077043799848396213_"
@@ -10436,14 +8873,8 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6746"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5d2b1"
-          />
+          <stop offset="0" style="stop-color: #4b6746" />
+          <stop offset="1" style="stop-color: #b5d2b1" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000154391540636532152890000010141638030228646280_"
@@ -10461,18 +8892,9 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #749170"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #a6c1a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #718e6c"
-          />
+          <stop offset="0" style="stop-color: #749170" />
+          <stop offset="0.4979" style="stop-color: #a6c1a1" />
+          <stop offset="1" style="stop-color: #718e6c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000070835252384617612080000007904019896065720499_"
@@ -10490,18 +8912,9 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #799574"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #a4c1a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6a49"
-          />
+          <stop offset="0" style="stop-color: #799574" />
+          <stop offset="0.4979" style="stop-color: #a4c1a1" />
+          <stop offset="1" style="stop-color: #4d6a49" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000016053152834684698080000017212087735939720329_"
@@ -10519,14 +8932,8 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1eecc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbe6c5"
-          />
+          <stop offset="0" style="stop-color: #d1eecc" />
+          <stop offset="1" style="stop-color: #cbe6c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000117648915731945877650000008596803875330864286_"
@@ -10544,14 +8951,8 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #a2bf9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #809b7a"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #a2bf9e" />
+          <stop offset="1" style="stop-color: #809b7a" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000183240838811341844860000015973105784397176974_"
@@ -10569,14 +8970,8 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d0edcd"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cae7c5"
-          />
+          <stop offset="0" style="stop-color: #d0edcd" />
+          <stop offset="1" style="stop-color: #cae7c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000106122489756565594740000013286527396158103229_"
@@ -10594,14 +8989,8 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cce9c8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbe8c7"
-          />
+          <stop offset="0" style="stop-color: #cce9c8" />
+          <stop offset="1" style="stop-color: #cbe8c7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000085244384423922031050000010614369699855355049_"
@@ -10619,14 +9008,8 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdeac9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cae7c6"
-          />
+          <stop offset="0" style="stop-color: #cdeac9" />
+          <stop offset="1" style="stop-color: #cae7c6" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000114036791975829556010000007017771963363663772_"
@@ -10644,14 +9027,8 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdeac9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbe8c7"
-          />
+          <stop offset="0" style="stop-color: #cdeac9" />
+          <stop offset="1" style="stop-color: #cbe8c7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000177445602103497942280000009117691591174333618_"
@@ -10669,14 +9046,8 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #809c7a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #799574"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #809c7a" />
+          <stop offset="1" style="stop-color: #799574" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000168087472215575979720000008375191392146401203_"
@@ -10694,14 +9065,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000121978739742686728250000001848696960910442395_"
@@ -10721,14 +9086,8 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7d9a79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e6a49"
-          />
+          <stop offset="0" style="stop-color: #7d9a79" />
+          <stop offset="1" style="stop-color: #4e6a49" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000068672965480437925620000000451653373043581084_"
@@ -10749,18 +9108,9 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <polygon
             style="
@@ -10777,18 +9127,9 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <path
             style="
@@ -10798,10 +9139,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Myth_Frame"
-      >
+      <g v-if="framed.Myth" id="Myth_Frame">
         <linearGradient
           id="Health_Frame_00000155852531660001351230000010150227762775362437_"
           gradientUnits="userSpaceOnUse"
@@ -10810,14 +9148,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad81a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9e869a"
-          />
+          <stop offset="0" style="stop-color: #ad81a9" />
+          <stop offset="1" style="stop-color: #9e869a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000124842010716384016350000017784987513986968493_"
@@ -10835,18 +9167,9 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #aa8aa6"
-          />
-          <stop
-            offset="0.8263"
-            style="stop-color: #cab4c6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1bdcd"
-          />
+          <stop offset="0" style="stop-color: #aa8aa6" />
+          <stop offset="0.8263" style="stop-color: #cab4c6" />
+          <stop offset="1" style="stop-color: #d1bdcd" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000171705858898689896030000017686691324595229573_"
@@ -10864,18 +9187,9 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #895983"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #552b50"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #876983"
-          />
+          <stop offset="0" style="stop-color: #895983" />
+          <stop offset="0.5051" style="stop-color: #552b50" />
+          <stop offset="1" style="stop-color: #876983" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000076584872847293514570000014537515302557699478_"
@@ -10893,14 +9207,8 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e5478"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5c3457"
-          />
+          <stop offset="0" style="stop-color: #7e5478" />
+          <stop offset="1" style="stop-color: #5c3457" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000114779710238009705200000017765731772335353232_"
@@ -10918,18 +9226,9 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #805b7a"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #53304e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #876c83"
-          />
+          <stop offset="0" style="stop-color: #805b7a" />
+          <stop offset="0.5095" style="stop-color: #53304e" />
+          <stop offset="1" style="stop-color: #876c83" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000012474631588881360280000017394397443956161411_"
@@ -10947,14 +9246,8 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #997993"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #63335e"
-          />
+          <stop offset="0" style="stop-color: #997993" />
+          <stop offset="1" style="stop-color: #63335e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000098900461589568052580000002344016836920882564_"
@@ -10972,14 +9265,8 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000152245819994576919560000000970891924064115594_"
@@ -10997,14 +9284,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000093879205158309550230000003844244690261608320_"
@@ -11022,14 +9303,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000040556966937291053850000004463753374892650124_"
@@ -11047,14 +9322,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000054980120509761274150000013430459365323545737_"
@@ -11072,14 +9341,8 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000109735586315875664040000007132062883729916837_"
@@ -11097,14 +9360,8 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #4a3045"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9c7a99"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #4a3045" />
+          <stop offset="1" style="stop-color: #9c7a99" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000072996194095901165400000012589460656958182574_"
@@ -11122,14 +9379,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7185"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #463041"
-          />
+          <stop offset="0" style="stop-color: #9c7185" />
+          <stop offset="1" style="stop-color: #463041" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000155825331281139736710000008800487656406949299_"
@@ -11147,14 +9398,8 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b3846"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c59db1"
-          />
+          <stop offset="0" style="stop-color: #4b3846" />
+          <stop offset="1" style="stop-color: #c59db1" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000019659905816269925210000002872966573841936792_"
@@ -11172,18 +9417,9 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #743e70"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #a67ca1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #71466c"
-          />
+          <stop offset="0" style="stop-color: #743e70" />
+          <stop offset="0.4979" style="stop-color: #a67ca1" />
+          <stop offset="1" style="stop-color: #71466c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000134215328544309770490000003351107644012964018_"
@@ -11201,18 +9437,9 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #794674"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #b385a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d3a49"
-          />
+          <stop offset="0" style="stop-color: #794674" />
+          <stop offset="0.4979" style="stop-color: #b385a1" />
+          <stop offset="1" style="stop-color: #4d3a49" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000132767209744461059630000015565705762250875839_"
@@ -11230,14 +9457,8 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1becc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cba3c5"
-          />
+          <stop offset="0" style="stop-color: #d1becc" />
+          <stop offset="1" style="stop-color: #cba3c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000096052025735010213990000003575071782649474944_"
@@ -11255,14 +9476,8 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #a2879e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #804d7a"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #a2879e" />
+          <stop offset="1" style="stop-color: #804d7a" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000073682810997856627720000015747136981987074188_"
@@ -11280,14 +9495,8 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d0b3cd"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #caa1c5"
-          />
+          <stop offset="0" style="stop-color: #d0b3cd" />
+          <stop offset="1" style="stop-color: #caa1c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000130636931199656780560000015054449654819093948_"
@@ -11305,14 +9514,8 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cc93c8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cba6c7"
-          />
+          <stop offset="0" style="stop-color: #cc93c8" />
+          <stop offset="1" style="stop-color: #cba6c7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000016056496944920550860000011756869778620085893_"
@@ -11330,14 +9533,8 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cd8ec9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cab1c6"
-          />
+          <stop offset="0" style="stop-color: #cd8ec9" />
+          <stop offset="1" style="stop-color: #cab1c6" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000137842153763098191370000013538606909202842516_"
@@ -11355,14 +9552,8 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdacc9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbafc7"
-          />
+          <stop offset="0" style="stop-color: #cdacc9" />
+          <stop offset="1" style="stop-color: #cbafc7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000004521281789708554260000009271301715242884022_"
@@ -11380,14 +9571,8 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #80527a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #793d74"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #80527a" />
+          <stop offset="1" style="stop-color: #793d74" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000157268354852369297090000016953468918096874673_"
@@ -11405,14 +9590,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000143577017188063661830000004126294849640017822_"
@@ -11432,14 +9611,8 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7d5f79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e2e49"
-          />
+          <stop offset="0" style="stop-color: #7d5f79" />
+          <stop offset="1" style="stop-color: #4e2e49" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000074436738857050336430000010036697213545824136_"
@@ -11457,18 +9630,9 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4c2f47"
-          />
-          <stop
-            offset="0.7569"
-            style="stop-color: #755671"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83647f"
-          />
+          <stop offset="0" style="stop-color: #4c2f47" />
+          <stop offset="0.7569" style="stop-color: #755671" />
+          <stop offset="1" style="stop-color: #83647f" />
         </linearGradient>
         <polygon
           style="
@@ -11478,10 +9642,7 @@
             136.05,245.28 138.17,233.48 		"
         />
       </g>
-      <g
-        v-if="framed.Culture"
-        id="Culture_Frame"
-      >
+      <g v-if="framed.Culture" id="Culture_Frame">
         <linearGradient
           id="Health_Frame_00000136406794588487439390000016837285619480654492_"
           gradientUnits="userSpaceOnUse"
@@ -11490,14 +9651,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c0816b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1866b"
-          />
+          <stop offset="0" style="stop-color: #c0816b" />
+          <stop offset="1" style="stop-color: #b1866b" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000119832128316830532450000013705886513402746281_"
@@ -11515,18 +9670,9 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bc8a57"
-          />
-          <stop
-            offset="0.4636"
-            style="stop-color: #d3a081"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f0bdb6"
-          />
+          <stop offset="0" style="stop-color: #bc8a57" />
+          <stop offset="0.4636" style="stop-color: #d3a081" />
+          <stop offset="1" style="stop-color: #f0bdb6" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000076584065972268701600000013431163114243812017_"
@@ -11544,18 +9690,9 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b5950"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #6b2b29"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #966949"
-          />
+          <stop offset="0" style="stop-color: #9b5950" />
+          <stop offset="0.5051" style="stop-color: #6b2b29" />
+          <stop offset="1" style="stop-color: #966949" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000181084695411936302420000009709646788749416080_"
@@ -11573,14 +9710,8 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #865443"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #662425"
-          />
+          <stop offset="0" style="stop-color: #865443" />
+          <stop offset="1" style="stop-color: #662425" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000018197773448034103880000005554554537944450492_"
@@ -11598,18 +9729,9 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8f5b45"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #633028"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #916c4c"
-          />
+          <stop offset="0" style="stop-color: #8f5b45" />
+          <stop offset="0.5095" style="stop-color: #633028" />
+          <stop offset="1" style="stop-color: #916c4c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000008111176873527606110000006624021318916176259_"
@@ -11627,14 +9749,8 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a67962"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #703330"
-          />
+          <stop offset="0" style="stop-color: #a67962" />
+          <stop offset="1" style="stop-color: #703330" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000044882442401465419570000009194969167381782156_"
@@ -11652,14 +9768,8 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000170254114210986601850000008044639319321133217_"
@@ -11677,14 +9787,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000140699003869083327650000011186102444763173810_"
@@ -11702,14 +9806,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000108989942519863615940000007326341270484965297_"
@@ -11727,14 +9825,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000178922737498787620240000011323998949825086106_"
@@ -11752,14 +9844,8 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145759776888895711620000015175034623581117606_"
@@ -11777,14 +9863,8 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #533022"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b17a63"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #533022" />
+          <stop offset="1" style="stop-color: #b17a63" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000068651915247062088830000012230362473223272582_"
@@ -11802,14 +9882,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae714e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #54301b"
-          />
+          <stop offset="0" style="stop-color: #ae714e" />
+          <stop offset="1" style="stop-color: #54301b" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000034769254509734043030000005124450405533328804_"
@@ -11827,14 +9901,8 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #723325"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e1ae93"
-          />
+          <stop offset="0" style="stop-color: #723325" />
+          <stop offset="1" style="stop-color: #e1ae93" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000024710279622951467690000008038371106913407888_"
@@ -11852,18 +9920,9 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #853e42"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #bf7c67"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8c4649"
-          />
+          <stop offset="0" style="stop-color: #853e42" />
+          <stop offset="0.4979" style="stop-color: #bf7c67" />
+          <stop offset="1" style="stop-color: #8c4649" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000091698650570876272990000014280335734916160411_"
@@ -11881,18 +9940,9 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8b3337"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #be8f5d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76352d"
-          />
+          <stop offset="0" style="stop-color: #8b3337" />
+          <stop offset="0.4979" style="stop-color: #be8f5d" />
+          <stop offset="1" style="stop-color: #76352d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145036836301386274950000000542513753647846542_"
@@ -11910,14 +9960,8 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2bea6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dfa3a2"
-          />
+          <stop offset="0" style="stop-color: #e2bea6" />
+          <stop offset="1" style="stop-color: #dfa3a2" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000020376471565235732680000001849011125478002608_"
@@ -11935,14 +9979,8 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #bd8772"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #924d38"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #bd8772" />
+          <stop offset="1" style="stop-color: #924d38" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000032609284301908767450000001612598043736749700_"
@@ -11960,14 +9998,8 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e5b390"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #daa19e"
-          />
+          <stop offset="0" style="stop-color: #e5b390" />
+          <stop offset="1" style="stop-color: #daa19e" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000154425905949606374610000003700177746849648559_"
@@ -11985,14 +10017,8 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e1937e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dda695"
-          />
+          <stop offset="0" style="stop-color: #e1937e" />
+          <stop offset="1" style="stop-color: #dda695" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000148632348600556608250000011522657524086840717_"
@@ -12010,14 +10036,8 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e58e89"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e0b1a3"
-          />
+          <stop offset="0" style="stop-color: #e58e89" />
+          <stop offset="1" style="stop-color: #e0b1a3" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000048458912072304127860000010552128443256452772_"
@@ -12035,14 +10055,8 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0ac94"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ddafa1"
-          />
+          <stop offset="0" style="stop-color: #e0ac94" />
+          <stop offset="1" style="stop-color: #ddafa1" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000081614368104121097950000007406156013884851897_"
@@ -12060,14 +10074,8 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #91523e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #793d2b"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #91523e" />
+          <stop offset="1" style="stop-color: #793d2b" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000114060706316269451560000007335096334600747422_"
@@ -12085,14 +10093,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000098940995268602067050000017145524413788915607_"
@@ -12112,14 +10114,8 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #905f42"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #58302d"
-          />
+          <stop offset="0" style="stop-color: #905f42" />
+          <stop offset="1" style="stop-color: #58302d" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000094586127363683995540000003199302529710984350_"
@@ -12137,18 +10133,9 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #562f29"
-          />
-          <stop
-            offset="0.6487"
-            style="stop-color: #80503b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #986446"
-          />
+          <stop offset="0" style="stop-color: #562f29" />
+          <stop offset="0.6487" style="stop-color: #80503b" />
+          <stop offset="1" style="stop-color: #986446" />
         </linearGradient>
         <polygon
           style="
@@ -12158,10 +10145,7 @@
             136.05,245.28 138.17,233.48 		"
         />
       </g>
-      <g
-        v-if="framed.MultiClass"
-        id="Multi_Class_Frame"
-      >
+      <g v-if="framed.MultiClass" id="Multi_Class_Frame">
         <linearGradient
           id="Health_Frame_00000111164762821423201940000014376673405273825194_"
           gradientUnits="userSpaceOnUse"
@@ -12170,14 +10154,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b6a496"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b6a496" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000088836195138356462460000004783686602781276801_"
@@ -12195,14 +10173,8 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b7a397"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b7a397" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000147908277753400446030000002632938256765323674_"
@@ -12220,18 +10192,9 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e8779"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #695146"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #947f73"
-          />
+          <stop offset="0" style="stop-color: #9e8779" />
+          <stop offset="0.5051" style="stop-color: #695146" />
+          <stop offset="1" style="stop-color: #947f73" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000042002989802662385530000002668873314860466342_"
@@ -12249,14 +10212,8 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e8779"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ae9e90"
-          />
+          <stop offset="0" style="stop-color: #9e8779" />
+          <stop offset="1" style="stop-color: #ae9e90" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000067939884245482082500000003247445842576813735_"
@@ -12274,18 +10231,9 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ab978a"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #6d5548"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ad988a"
-          />
+          <stop offset="0" style="stop-color: #ab978a" />
+          <stop offset="0.5095" style="stop-color: #6d5548" />
+          <stop offset="1" style="stop-color: #ad988a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000058564495388151664030000012920112646349020544_"
@@ -12303,14 +10251,8 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #727069"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ac9b8e"
-          />
+          <stop offset="0" style="stop-color: #727069" />
+          <stop offset="1" style="stop-color: #ac9b8e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000149364420173126084350000007817864696295685006_"
@@ -12328,14 +10270,8 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000034789810090354488070000013740256775152935841_"
@@ -12353,14 +10289,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000176728119581143390930000009017604009026638780_"
@@ -12378,14 +10308,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000105393844563401087960000007740849356684892090_"
@@ -12403,14 +10327,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000153670861293983833830000007804219640916071567_"
@@ -12428,14 +10346,8 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000028323187436492978690000007965884089043716022_"
@@ -12453,14 +10365,8 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b8a496"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #baa99a"
-          />
+          <stop offset="0" style="stop-color: #b8a496" />
+          <stop offset="1" style="stop-color: #baa99a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000144339806771545749780000008422498188926620574_"
@@ -12478,14 +10384,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745c51"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #745c51" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000063634990210886679440000002621255720144680630_"
@@ -12503,14 +10403,8 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #765e53"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #947e74"
-          />
+          <stop offset="0" style="stop-color: #765e53" />
+          <stop offset="1" style="stop-color: #947e74" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000117649208917757577350000009097329243692146098_"
@@ -12528,18 +10422,9 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae9c8d"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #6a5247"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ae9c8e"
-          />
+          <stop offset="0" style="stop-color: #ae9c8d" />
+          <stop offset="0.4979" style="stop-color: #6a5247" />
+          <stop offset="1" style="stop-color: #ae9c8e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000096744061204448521270000015172939557750565806_"
@@ -12557,18 +10442,9 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a89286"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #ac988b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5a294"
-          />
+          <stop offset="0" style="stop-color: #a89286" />
+          <stop offset="0.4979" style="stop-color: #ac988b" />
+          <stop offset="1" style="stop-color: #b5a294" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000057868207433594500770000012880568240717218745_"
@@ -12586,14 +10462,8 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #efdfcf"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #efdfcf" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000127766365389618643200000004751862556788293567_"
@@ -12611,14 +10481,8 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #988376"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8a7569"
-          />
+          <stop offset="0" style="stop-color: #988376" />
+          <stop offset="1" style="stop-color: #8a7569" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000052788166255366320020000000296434769485148035_"
@@ -12636,14 +10500,8 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e7d6c6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e6d6c5"
-          />
+          <stop offset="0" style="stop-color: #e7d6c6" />
+          <stop offset="1" style="stop-color: #e6d6c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000109027108569880742690000008700132748299647886_"
@@ -12661,14 +10519,8 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #887266"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #826c61"
-          />
+          <stop offset="0" style="stop-color: #887266" />
+          <stop offset="1" style="stop-color: #826c61" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000114788052759363335750000005299765650746559631_"
@@ -12686,14 +10538,8 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7d675c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #826c61"
-          />
+          <stop offset="0" style="stop-color: #7d675c" />
+          <stop offset="1" style="stop-color: #826c61" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000092431465974314554560000008825729078934715574_"
@@ -12711,14 +10557,8 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e4d4c3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e6d6c6"
-          />
+          <stop offset="0" style="stop-color: #e4d4c3" />
+          <stop offset="1" style="stop-color: #e6d6c6" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000106107715777009152620000001931754067737193602_"
@@ -12736,14 +10576,8 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8b7669"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #917e75"
-          />
+          <stop offset="0" style="stop-color: #8b7669" />
+          <stop offset="1" style="stop-color: #917e75" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000040558589063779468990000004557780070142331310_"
@@ -12761,14 +10595,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000032608709247760498810000003790466123839419041_"
@@ -12788,14 +10616,8 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e695c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745b50"
-          />
+          <stop offset="0" style="stop-color: #7e695c" />
+          <stop offset="1" style="stop-color: #745b50" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000062178617851681257790000016567373781796261547_"
@@ -12816,14 +10638,8 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <polygon
             style="
@@ -12840,14 +10656,8 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <path
             style="
@@ -12858,10 +10668,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Action"
-      id="Action_FullArt_Frames"
-    >
+    <g v-if="FullArtFrames.Action" id="Action_FullArt_Frames">
       <g
         v-if="framed.Tech"
         id="Tech_Frame_00000037682893814140973730000018199814129031589801_"
@@ -12874,14 +10681,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090293074484877576680000005732960197973239682_"
@@ -12899,14 +10700,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000102543704275890019910000005195142572864891041_"
@@ -12924,14 +10719,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000032612361334131931200000002728232101252507021_"
@@ -12949,14 +10738,8 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #557480"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #91a3b4"
-          />
+          <stop offset="0" style="stop-color: #557480" />
+          <stop offset="1" style="stop-color: #91a3b4" />
         </linearGradient>
         <path
           style="
@@ -12975,14 +10758,8 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b3c3de"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8898"
-          />
+          <stop offset="0" style="stop-color: #b3c3de" />
+          <stop offset="1" style="stop-color: #6d8898" />
         </linearGradient>
         <path
           style="
@@ -13001,14 +10778,8 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000111911749134488599810000009972320131364204160_"
@@ -13027,14 +10798,8 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000125603072706212711130000016554197936754245279_"
@@ -13052,14 +10817,8 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000014597349289257416960000014423622039323260049_"
@@ -13082,14 +10841,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052104502115875950460000005559764057857603516_"
@@ -13107,14 +10860,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052093743012086619580000008223900477022909335_"
@@ -13132,14 +10879,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000167395752746836955750000007992117869939411882_"
@@ -13157,14 +10898,8 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #506c4b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9bb896"
-          />
+          <stop offset="0" style="stop-color: #506c4b" />
+          <stop offset="1" style="stop-color: #9bb896" />
         </linearGradient>
         <path
           style="
@@ -13183,14 +10918,8 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #90ab8b"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #90ab8b" />
         </linearGradient>
         <path
           style="
@@ -13209,14 +10938,8 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000116208480431742800990000002681111501521962677_"
@@ -13235,14 +10958,8 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000004519539063206426110000011009941115805300660_"
@@ -13260,14 +10977,8 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090268622419521597000000008350616601897305755_"
@@ -13290,14 +11001,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000010284619795903670180000010681324955108170624_"
@@ -13315,14 +11020,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000016787207829534741040000010325002369477352888_"
@@ -13340,14 +11039,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000072991593344908075460000005792029734040362644_"
@@ -13365,14 +11058,8 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #552950"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a47e9f"
-          />
+          <stop offset="0" style="stop-color: #552950" />
+          <stop offset="1" style="stop-color: #a47e9f" />
         </linearGradient>
         <path
           style="
@@ -13391,14 +11078,8 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #82627d"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #82627d" />
         </linearGradient>
         <path
           style="
@@ -13417,14 +11098,8 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000169524052368948556350000007217467093966343329_"
@@ -13443,14 +11118,8 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000061470253383637199500000008659239497571893417_"
@@ -13468,14 +11137,8 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000025403303968991758150000005475118167073946554_"
@@ -13498,14 +11161,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000000929775827724319280000009808055585610755245_"
@@ -13523,14 +11180,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000013169776298404619520000000967138561056385920_"
@@ -13548,14 +11199,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000155826734315681026280000010763831993655212722_"
@@ -13573,14 +11218,8 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #602431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f8bb80"
-          />
+          <stop offset="0" style="stop-color: #602431" />
+          <stop offset="1" style="stop-color: #f8bb80" />
         </linearGradient>
         <path
           style="
@@ -13599,14 +11238,8 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f6ae8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98413f"
-          />
+          <stop offset="0" style="stop-color: #f6ae8d" />
+          <stop offset="1" style="stop-color: #98413f" />
         </linearGradient>
         <path
           style="
@@ -13625,14 +11258,8 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <polygon
           style="
@@ -13651,14 +11278,8 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000077291625973279560310000012250441619890121090_"
@@ -13676,14 +11297,8 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000176015960435258793860000002644121315177662126_"
@@ -13706,14 +11321,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000146462407175008874820000003952419287891980164_"
@@ -13731,14 +11340,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000030447752004257680260000004618477989085812881_"
@@ -13756,14 +11359,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000150081060388154944630000009264355816264377495_"
@@ -13781,14 +11378,8 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7a5f54"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ebdbca"
-          />
+          <stop offset="0" style="stop-color: #7a5f54" />
+          <stop offset="1" style="stop-color: #ebdbca" />
         </linearGradient>
         <path
           style="
@@ -13807,14 +11398,8 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ebdbca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8c7a6f"
-          />
+          <stop offset="0" style="stop-color: #ebdbca" />
+          <stop offset="1" style="stop-color: #8c7a6f" />
         </linearGradient>
         <path
           style="
@@ -13833,14 +11418,8 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <polygon
           style="
@@ -13858,14 +11437,8 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000154410541812285026270000016931109232881281930_"
@@ -13883,14 +11456,8 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000154389227548925668940000016344598255637752748_"
@@ -13902,10 +11469,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Place"
-      id="Place_FullArt_Frames"
-    >
+    <g v-if="FullArtFrames.Place" id="Place_FullArt_Frames">
       <g
         v-if="framed.Tech"
         id="Tech_Frame_00000097498704088597918920000011012239595035558827_"
@@ -13918,14 +11482,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96a7b7"
-          />
+          <stop offset="0" style="stop-color: #96a7b8" />
+          <stop offset="1" style="stop-color: #96a7b7" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000173859322513395682850000010134339139236465034_"
@@ -13946,18 +11504,9 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <polygon
             style="
@@ -13974,18 +11523,9 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <path
             style="
@@ -14002,14 +11542,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000167388715213953495960000002743047452378782597_"
@@ -14027,14 +11561,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000030466930978073305580000007541011651276200357_"
@@ -14052,14 +11580,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090987798139336338180000000472185859880340914_"
@@ -14077,14 +11599,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99a9ba"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e79"
-          />
+          <stop offset="0" style="stop-color: #99a9ba" />
+          <stop offset="1" style="stop-color: #4b6e79" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000011716660092827883690000012214834886801759671_"
@@ -14102,14 +11618,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bccfec"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #bccfec" />
         </linearGradient>
         <polygon
           style="
@@ -14126,14 +11636,8 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e8a99"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #6e8a99" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polygon
           style="
@@ -14150,14 +11654,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #98acc3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bbceeb"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #98acc3" />
+          <stop offset="1" style="stop-color: #bbceeb" />
         </linearGradient>
         <polygon
           style="
@@ -14174,14 +11672,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b3c3dd"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #b3c3dd" />
         </linearGradient>
         <polygon
           style="
@@ -14198,14 +11690,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #547986"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7694a4"
-          />
+          <stop offset="0" style="stop-color: #547986" />
+          <stop offset="1" style="stop-color: #7694a4" />
         </linearGradient>
         <polygon
           style="
@@ -14222,14 +11708,8 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bacdea"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f8a9a"
-          />
+          <stop offset="0" style="stop-color: #bacdea" />
+          <stop offset="1" style="stop-color: #6f8a9a" />
         </linearGradient>
         <polygon
           style="
@@ -14246,14 +11726,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #637f8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e7c88"
-          />
+          <stop offset="0" style="stop-color: #637f8d" />
+          <stop offset="1" style="stop-color: #5e7c88" />
         </linearGradient>
         <polygon
           style="
@@ -14270,14 +11744,8 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #93a9be"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="0.9987" style="stop-color: #93a9be" />
         </linearGradient>
         <polygon
           style="
@@ -14294,18 +11762,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #577884"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a5bad3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #597985"
-          />
+          <stop offset="0" style="stop-color: #577884" />
+          <stop offset="0.484" style="stop-color: #a5bad3" />
+          <stop offset="1" style="stop-color: #597985" />
         </linearGradient>
         <polygon
           style="
@@ -14322,14 +11781,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8997"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #6d8997" />
         </linearGradient>
         <polygon
           style="
@@ -14346,18 +11799,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #496973"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #7691a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #426069"
-          />
+          <stop offset="0" style="stop-color: #496973" />
+          <stop offset="0.4796" style="stop-color: #7691a2" />
+          <stop offset="1" style="stop-color: #426069" />
         </linearGradient>
         <polygon
           style="
@@ -14374,14 +11818,8 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f717c"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #9eb4cd"
-          />
+          <stop offset="0" style="stop-color: #4f717c" />
+          <stop offset="0.9987" style="stop-color: #9eb4cd" />
         </linearGradient>
         <polygon
           style="
@@ -14398,14 +11836,8 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000119114616506769329910000012282278467913929114_"
@@ -14423,14 +11855,8 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <path
           style="
@@ -14448,14 +11874,8 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000164485525363831187170000010613030164322757516_"
@@ -14478,14 +11898,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9ebb9a"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #9ebb9a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000001663284364997996720000005298194369847799426_"
@@ -14506,18 +11920,9 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <polygon
             style="
@@ -14534,18 +11939,9 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <path
             style="
@@ -14562,14 +11958,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000083059586520997544880000004156274653611428511_"
@@ -14587,14 +11977,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000110457283495736213690000007182523178273863086_"
@@ -14612,14 +11996,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000008866621778547662820000000300218947601147060_"
@@ -14637,14 +12015,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8ca785"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #466241"
-          />
+          <stop offset="0" style="stop-color: #8ca785" />
+          <stop offset="1" style="stop-color: #466241" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000017502119977909242160000015695736550789882259_"
@@ -14662,14 +12034,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9dba98"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1efcc"
-          />
+          <stop offset="0" style="stop-color: #9dba98" />
+          <stop offset="1" style="stop-color: #d1efcc" />
         </linearGradient>
         <polygon
           style="
@@ -14686,14 +12052,8 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708b6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #526f4d"
-          />
+          <stop offset="0" style="stop-color: #708b6a" />
+          <stop offset="1" style="stop-color: #526f4d" />
         </linearGradient>
         <polygon
           style="
@@ -14710,14 +12070,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a2bf9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #adcba8"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a2bf9d" />
+          <stop offset="1" style="stop-color: #adcba8" />
         </linearGradient>
         <polygon
           style="
@@ -14734,14 +12088,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c8e5c3"
-          />
+          <stop offset="0" style="stop-color: #adcaa8" />
+          <stop offset="1" style="stop-color: #c8e5c3" />
         </linearGradient>
         <polygon
           style="
@@ -14758,14 +12106,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #597554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6b8766"
-          />
+          <stop offset="0" style="stop-color: #597554" />
+          <stop offset="1" style="stop-color: #6b8766" />
         </linearGradient>
         <polygon
           style="
@@ -14782,14 +12124,8 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6e4c1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #516d4c"
-          />
+          <stop offset="0" style="stop-color: #c6e4c1" />
+          <stop offset="1" style="stop-color: #516d4c" />
         </linearGradient>
         <polygon
           style="
@@ -14806,14 +12142,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #88a381"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4c6847"
-          />
+          <stop offset="0" style="stop-color: #88a381" />
+          <stop offset="1" style="stop-color: #4c6847" />
         </linearGradient>
         <polygon
           style="
@@ -14830,14 +12160,8 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a2bf9d"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="0.9987" style="stop-color: #a2bf9d" />
         </linearGradient>
         <polygon
           style="
@@ -14854,18 +12178,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #728f6d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.484" style="stop-color: #728f6d" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
           style="
@@ -14882,14 +12197,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4b6746"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88a382"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4b6746" />
+          <stop offset="1" style="stop-color: #88a382" />
         </linearGradient>
         <polygon
           style="
@@ -14906,18 +12215,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #73926e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.4796" style="stop-color: #73926e" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
           style="
@@ -14934,14 +12234,8 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #445c3f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a4c19f"
-          />
+          <stop offset="0" style="stop-color: #445c3f" />
+          <stop offset="0.9987" style="stop-color: #a4c19f" />
         </linearGradient>
         <polygon
           style="
@@ -14958,14 +12252,8 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000127004752046206125610000011440717730408152228_"
@@ -14983,14 +12271,8 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <path
           style="
@@ -15008,14 +12290,8 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000036953521895814145060000015891160361885975448_"
@@ -15038,14 +12314,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad81a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9e869a"
-          />
+          <stop offset="0" style="stop-color: #ad81a9" />
+          <stop offset="1" style="stop-color: #9e869a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000032634101770075334730000004852109146864798097_"
@@ -15063,14 +12333,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000080177089200277953580000013176189286485820079_"
@@ -15088,14 +12352,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000136370570882601054780000004935499827618830244_"
@@ -15113,14 +12371,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000147923011251428835450000004217497431830335165_"
@@ -15138,18 +12390,9 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4c2f47"
-          />
-          <stop
-            offset="0.7569"
-            style="stop-color: #755671"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83647f"
-          />
+          <stop offset="0" style="stop-color: #4c2f47" />
+          <stop offset="0.7569" style="stop-color: #755671" />
+          <stop offset="1" style="stop-color: #83647f" />
         </linearGradient>
         <polygon
           style="
@@ -15166,14 +12409,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7185"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #463041"
-          />
+          <stop offset="0" style="stop-color: #9c7185" />
+          <stop offset="1" style="stop-color: #463041" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000083090465484297241500000012271328811294984637_"
@@ -15191,14 +12428,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7697"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cda5c8"
-          />
+          <stop offset="0" style="stop-color: #9c7697" />
+          <stop offset="1" style="stop-color: #cda5c8" />
         </linearGradient>
         <polygon
           style="
@@ -15215,14 +12446,8 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #966c80"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #966c80" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
           style="
@@ -15239,14 +12464,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a27c9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bb93b6"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a27c9d" />
+          <stop offset="1" style="stop-color: #bb93b6" />
         </linearGradient>
         <polygon
           style="
@@ -15263,14 +12482,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #987293"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1a9cc"
-          />
+          <stop offset="0" style="stop-color: #987293" />
+          <stop offset="1" style="stop-color: #d1a9cc" />
         </linearGradient>
         <polygon
           style="
@@ -15287,14 +12500,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37d9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bd96b8"
-          />
+          <stop offset="0" style="stop-color: #a37d9e" />
+          <stop offset="1" style="stop-color: #bd96b8" />
         </linearGradient>
         <polygon
           style="
@@ -15311,14 +12518,8 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #644659"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #644659" />
         </linearGradient>
         <polygon
           style="
@@ -15335,14 +12536,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bb93b6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5a3155"
-          />
+          <stop offset="0" style="stop-color: #bb93b6" />
+          <stop offset="1" style="stop-color: #5a3155" />
         </linearGradient>
         <polygon
           style="
@@ -15359,14 +12554,8 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c59dc0"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #c59dc0" />
         </linearGradient>
         <polygon
           style="
@@ -15383,18 +12572,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #553c4c"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #aa83a5"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #553c4d"
-          />
+          <stop offset="0" style="stop-color: #553c4c" />
+          <stop offset="0.484" style="stop-color: #aa83a5" />
+          <stop offset="1" style="stop-color: #553c4d" />
         </linearGradient>
         <polygon
           style="
@@ -15411,14 +12591,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #5c3257"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #5c3257" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
           style="
@@ -15435,18 +12609,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a780a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.484" style="stop-color: #a780a2" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
           style="
@@ -15463,14 +12628,8 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a781a2"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #a781a2" />
         </linearGradient>
         <polygon
           style="
@@ -15487,14 +12646,8 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000146484921799641335060000005398376549446084015_"
@@ -15512,14 +12665,8 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000054968464831642664610000011566893712161725058_"
@@ -15537,14 +12684,8 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <path
           style="
@@ -15567,14 +12708,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c0816b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1866b"
-          />
+          <stop offset="0" style="stop-color: #c0816b" />
+          <stop offset="1" style="stop-color: #b1866b" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000110458280247351675600000012748572072555033517_"
@@ -15592,14 +12727,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000183956083916286838320000008260462411583069078_"
@@ -15617,14 +12746,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090281866758196055430000001858906563581942662_"
@@ -15642,14 +12765,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000074435931715999819010000002473230037416761248_"
@@ -15667,14 +12784,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae714e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #54301b"
-          />
+          <stop offset="0" style="stop-color: #ae714e" />
+          <stop offset="1" style="stop-color: #54301b" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000021081901199826109480000004292549165054200723_"
@@ -15692,18 +12803,9 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #562f29"
-          />
-          <stop
-            offset="0.6487"
-            style="stop-color: #80503b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #986446"
-          />
+          <stop offset="0" style="stop-color: #562f29" />
+          <stop offset="0.6487" style="stop-color: #80503b" />
+          <stop offset="1" style="stop-color: #986446" />
         </linearGradient>
         <polygon
           style="
@@ -15720,14 +12822,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ce8c73"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ce8e74"
-          />
+          <stop offset="0" style="stop-color: #ce8c73" />
+          <stop offset="1" style="stop-color: #ce8e74" />
         </linearGradient>
         <polygon
           style="
@@ -15744,14 +12840,8 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d08f74"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9a4650"
-          />
+          <stop offset="0" style="stop-color: #d08f74" />
+          <stop offset="1" style="stop-color: #9a4650" />
         </linearGradient>
         <polygon
           style="
@@ -15768,14 +12858,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ca8871"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dda480"
-          />
+          <stop offset="0" style="stop-color: #ca8871" />
+          <stop offset="1" style="stop-color: #dda480" />
         </linearGradient>
         <polygon
           style="
@@ -15792,14 +12876,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6836f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e2a983"
-          />
+          <stop offset="0" style="stop-color: #c6836f" />
+          <stop offset="1" style="stop-color: #e2a983" />
         </linearGradient>
         <polygon
           style="
@@ -15816,14 +12894,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c78470"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d19175"
-          />
+          <stop offset="0" style="stop-color: #c78470" />
+          <stop offset="1" style="stop-color: #d19175" />
         </linearGradient>
         <polygon
           style="
@@ -15840,14 +12912,8 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98434f"
-          />
+          <stop offset="0" style="stop-color: #e2a983" />
+          <stop offset="1" style="stop-color: #98434f" />
         </linearGradient>
         <polygon
           style="
@@ -15864,14 +12930,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad605d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #ad605d" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
           style="
@@ -15888,14 +12948,8 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f2a30"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #6f2a30" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
           style="
@@ -15912,18 +12966,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #76363e"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #9f5554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #77373f"
-          />
+          <stop offset="0" style="stop-color: #76363e" />
+          <stop offset="0.484" style="stop-color: #9f5554" />
+          <stop offset="1" style="stop-color: #77373f" />
         </linearGradient>
         <polygon
           style="
@@ -15940,14 +12985,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bf796a"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #99444f" />
+          <stop offset="1" style="stop-color: #bf796a" />
         </linearGradient>
         <polygon
           style="
@@ -15964,18 +13003,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #793a40"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a15756"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #71333b"
-          />
+          <stop offset="0" style="stop-color: #793a40" />
+          <stop offset="0.484" style="stop-color: #a15756" />
+          <stop offset="1" style="stop-color: #71333b" />
         </linearGradient>
         <polygon
           style="
@@ -15992,14 +13022,8 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
           style="
@@ -16016,14 +13040,8 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000048489114516837458860000004342527789059121086_"
@@ -16041,14 +13059,8 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <path
           style="
@@ -16066,14 +13078,8 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000178886792692205089870000001712942178610230184_"
@@ -16096,14 +13102,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b6a496"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b6a496" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000174598406863952450290000001847771054159536295_"
@@ -16121,14 +13121,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000069363472378919164250000012965784107572406684_"
@@ -16146,14 +13140,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000013911862497889133500000017847160464943212469_"
@@ -16171,14 +13159,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000031928943293744353470000006819468789746246073_"
@@ -16196,14 +13178,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745c51"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #745c51" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000101789703103134283870000005995020737595697556_"
@@ -16224,14 +13200,8 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <polygon
             style="
@@ -16248,14 +13218,8 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <path
             style="
@@ -16272,14 +13236,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cebcae"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #cebcae" />
         </linearGradient>
         <polygon
           style="
@@ -16296,14 +13254,8 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2b5a7"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765d52"
-          />
+          <stop offset="0" style="stop-color: #c2b5a7" />
+          <stop offset="1" style="stop-color: #765d52" />
         </linearGradient>
         <polygon
           style="
@@ -16320,14 +13272,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e0cfbe"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #e0cfbe" />
         </linearGradient>
         <polygon
           style="
@@ -16344,14 +13290,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #efdfcf"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #efdfcf" />
         </linearGradient>
         <polygon
           style="
@@ -16368,14 +13308,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bfb1a4"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6baae"
-          />
+          <stop offset="0" style="stop-color: #bfb1a4" />
+          <stop offset="1" style="stop-color: #c6baae" />
         </linearGradient>
         <polygon
           style="
@@ -16392,14 +13326,8 @@
           x2="31.6505"
           y2="136.2008"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
           style="
@@ -16416,14 +13344,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c1aea8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #746058"
-          />
+          <stop offset="0" style="stop-color: #c1aea8" />
+          <stop offset="1" style="stop-color: #746058" />
         </linearGradient>
         <polygon
           style="
@@ -16440,14 +13362,8 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #d6c9c3"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #d6c9c3" />
         </linearGradient>
         <polygon
           style="
@@ -16464,18 +13380,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
           style="
@@ -16492,14 +13399,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #746058"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5a49e"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #746058" />
+          <stop offset="1" style="stop-color: #b5a49e" />
         </linearGradient>
         <polygon
           style="
@@ -16516,18 +13417,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
           style="
@@ -16544,14 +13436,8 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           style="
@@ -16568,14 +13454,8 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000089563073920154566310000007583173591399219627_"
@@ -16593,14 +13473,8 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000032647581165359238410000008851763379349589934_"
@@ -16618,14 +13492,8 @@
           x2="99.1671"
           y2="135.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <path
           style="
@@ -16637,10 +13505,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.HQ"
-      id="HQ_FullArt_Frames"
-    >
+    <g v-if="FullArtFrames.HQ" id="HQ_FullArt_Frames">
       <linearGradient
         id="SVGID_00000080915945242363263740000010937230989943364266_"
         gradientUnits="userSpaceOnUse"
@@ -16649,14 +13514,8 @@
         x2="30.3152"
         y2="74.6657"
       >
-        <stop
-          offset="0"
-          style="stop-color: #c6a267"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #c6a267" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
         style="
@@ -16674,14 +13533,8 @@
         x2="101.4576"
         y2="27.8373"
       >
-        <stop
-          offset="0"
-          style="stop-color: #7a5a23"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #74573c"
-        />
+        <stop offset="0" style="stop-color: #7a5a23" />
+        <stop offset="1" style="stop-color: #74573c" />
       </linearGradient>
       <path
         style="
@@ -16699,14 +13552,8 @@
         x2="167.9833"
         y2="74.6657"
       >
-        <stop
-          offset="0"
-          style="stop-color: #bda174"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #bda174" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
         style="
@@ -16723,14 +13570,8 @@
         x2="170.6423"
         y2="50.8271"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #ac905f"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="1" style="stop-color: #ac905f" />
       </linearGradient>
       <path
         style="
@@ -16748,14 +13589,8 @@
         x2="29.3341"
         y2="135.1478"
       >
-        <stop
-          offset="0"
-          style="stop-color: #f6d195"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c8a877"
-        />
+        <stop offset="0" style="stop-color: #f6d195" />
+        <stop offset="1" style="stop-color: #c8a877" />
       </linearGradient>
       <path
         style="
@@ -16773,14 +13608,8 @@
         x2="101.3314"
         y2="25.5472"
       >
-        <stop
-          offset="0"
-          style="stop-color: #c5a575"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #d5b176"
-        />
+        <stop offset="0" style="stop-color: #c5a575" />
+        <stop offset="1" style="stop-color: #d5b176" />
       </linearGradient>
       <path
         style="
@@ -16798,14 +13627,8 @@
         x2="168.9671"
         y2="134.8732"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
         style="
@@ -16822,14 +13645,8 @@
         x2="174.6409"
         y2="70.41"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
         style="
@@ -16850,14 +13667,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d5b076"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d0ac72"
-          />
+          <stop offset="0" style="stop-color: #d5b076" />
+          <stop offset="1" style="stop-color: #d0ac72" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000150806125827278930440000012573475367981184424_"
@@ -16875,14 +13686,8 @@
           x2="165.752"
           y2="115.636"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f5a1f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c0a578"
-          />
+          <stop offset="0" style="stop-color: #7f5a1f" />
+          <stop offset="1" style="stop-color: #c0a578" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000077316679270779990280000017062682301095925639_"
@@ -16900,14 +13705,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #70552c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #75502c"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #70552c" />
+          <stop offset="1" style="stop-color: #75502c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000150101944444405677320000014315524286711539077_"
@@ -16925,14 +13724,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #765c35"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7f6441"
-          />
+          <stop offset="0" style="stop-color: #765c35" />
+          <stop offset="1" style="stop-color: #7f6441" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000140697008749072429130000005583979534767650439_"
@@ -16950,14 +13743,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e532c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e542f"
-          />
+          <stop offset="0" style="stop-color: #6e532c" />
+          <stop offset="1" style="stop-color: #6e542f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000079480243415038694220000016386062106062034089_"
@@ -16975,14 +13762,8 @@
           x2="32.5823"
           y2="116.037"
         >
-          <stop
-            offset="0"
-            style="stop-color: #815c21"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c9a56a"
-          />
+          <stop offset="0" style="stop-color: #815c21" />
+          <stop offset="1" style="stop-color: #c9a56a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000070117629216306653770000002784644312864281776_"
@@ -17000,14 +13781,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c7a56e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7d5e2a"
-          />
+          <stop offset="0" style="stop-color: #c7a56e" />
+          <stop offset="1" style="stop-color: #7d5e2a" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000072269901594266757890000002955021387055154570_"
@@ -17025,14 +13800,8 @@
           x2="99.1671"
           y2="121.4002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f5d095"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #d2b17d"
-          />
+          <stop offset="0" style="stop-color: #f5d095" />
+          <stop offset="0.9987" style="stop-color: #d2b17d" />
         </linearGradient>
         <path
           style="
@@ -17044,10 +13813,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Entity"
-      id="Entity_Framed_Addition"
-    >
+    <g v-if="FramedAddition.Entity" id="Entity_Framed_Addition">
       <g
         v-if="framed.Tech"
         id="Framed_Tech_00000031167252648264106370000018010308886634233003_"
@@ -17062,18 +13828,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #728e9e"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #476c76"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #768a94"
-            />
+            <stop offset="0" style="stop-color: #728e9e" />
+            <stop offset="0.5051" style="stop-color: #476c76" />
+            <stop offset="1" style="stop-color: #768a94" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000169525562794952337260000008462502698289758881_"
@@ -17092,14 +13849,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #708c9d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #999d9c"
-            />
+            <stop offset="0" style="stop-color: #708c9d" />
+            <stop offset="1" style="stop-color: #999d9c" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000003094511616036818350000010547576773607688614_"
@@ -17118,14 +13869,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #859dae"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #607e8a"
-            />
+            <stop offset="0" style="stop-color: #859dae" />
+            <stop offset="1" style="stop-color: #607e8a" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000127738252203617130530000012079341891628312766_"
@@ -17144,14 +13889,8 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #bcc9e2"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #bac7e1"
-            />
+            <stop offset="0" style="stop-color: #bcc9e2" />
+            <stop offset="1" style="stop-color: #bac7e1" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000013899859748931917080000014362242455107226503_"
@@ -17170,14 +13909,8 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #708c9b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5f7f8a"
-            />
+            <stop offset="0" style="stop-color: #708c9b" />
+            <stop offset="1" style="stop-color: #5f7f8a" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000011750411414349996960000009494163863159013550_"
@@ -17196,14 +13929,8 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5b7b86"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #768a94"
-            />
+            <stop offset="0" style="stop-color: #5b7b86" />
+            <stop offset="1" style="stop-color: #768a94" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000017476272711081313720000015830935085085912506_"
@@ -17222,14 +13949,8 @@
           x2="46.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #64788f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9db7c4"
-          />
+          <stop offset="0" style="stop-color: #64788f" />
+          <stop offset="1" style="stop-color: #9db7c4" />
         </linearGradient>
         <polyline
           id="Deco_00000021094296964521399870000008259003276999777182_"
@@ -17247,14 +13968,8 @@
           x2="46.2772"
           y2="159.9905"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f91a6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a9c5d4"
-          />
+          <stop offset="0" style="stop-color: #7f91a6" />
+          <stop offset="1" style="stop-color: #a9c5d4" />
         </linearGradient>
         <polyline
           id="Deco_00000056412790336533713460000010668974432979212452_"
@@ -17272,14 +13987,8 @@
           x2="44.2771"
           y2="159.9904"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <polyline
           id="Deco_00000033369369807952481940000013209069637309790373_"
@@ -17297,14 +14006,8 @@
           x2="44.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f99a8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b7b86"
-          />
+          <stop offset="0" style="stop-color: #7f99a8" />
+          <stop offset="1" style="stop-color: #5b7b86" />
         </linearGradient>
         <polyline
           id="Deco_00000116196191626181334550000006432785140753127563_"
@@ -17323,14 +14026,8 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #64788f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9db7c4"
-          />
+          <stop offset="0" style="stop-color: #64788f" />
+          <stop offset="1" style="stop-color: #9db7c4" />
         </linearGradient>
         <polyline
           id="Deco_00000010996440595804115010000017962449888969999024_"
@@ -17349,14 +14046,8 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8091a6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a9c5d4"
-          />
+          <stop offset="0" style="stop-color: #8091a6" />
+          <stop offset="1" style="stop-color: #a9c5d4" />
         </linearGradient>
         <polyline
           id="Deco_00000077311834313843217630000015194695484208190654_"
@@ -17375,14 +14066,8 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <polyline
           id="Deco_00000119823239930423373100000002662117563873677237_"
@@ -17401,14 +14086,8 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f99a8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b7b86"
-          />
+          <stop offset="0" style="stop-color: #7f99a8" />
+          <stop offset="1" style="stop-color: #5b7b86" />
         </linearGradient>
         <polyline
           id="Deco"
@@ -17419,10 +14098,7 @@
             165.1,149.02 165.1,151.15 155.73,160.52 		"
         />
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Framed_Nature"
-      >
+      <g v-if="framed.Nature" id="Framed_Nature">
         <g id="Framed_00000075866472900094871340000006266058141490682250_">
           <linearGradient
             id="FullArt_Inside_BG_00000056391545285428254490000016020564238162810004_"
@@ -17433,18 +14109,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #87a281"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #567251"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #85a281"
-            />
+            <stop offset="0" style="stop-color: #87a281" />
+            <stop offset="0.5051" style="stop-color: #567251" />
+            <stop offset="1" style="stop-color: #85a281" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000005261645859461191220000016546067119001394849_"
@@ -17463,14 +14130,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c9877"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5d7958"
-            />
+            <stop offset="0" style="stop-color: #7c9877" />
+            <stop offset="1" style="stop-color: #5d7958" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000157995047078783238480000017361022315241589413_"
@@ -17489,14 +14150,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #526f4e"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a9675"
-            />
+            <stop offset="0" style="stop-color: #526f4e" />
+            <stop offset="1" style="stop-color: #7a9675" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000132770174938226968060000004291220167758697405_"
@@ -17515,14 +14170,8 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #d1eecc"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #cbe6c5"
-            />
+            <stop offset="0" style="stop-color: #d1eecc" />
+            <stop offset="1" style="stop-color: #cbe6c5" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000049902055911269561650000012740234335014369159_"
@@ -17541,14 +14190,8 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a1be9d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #809c7b"
-            />
+            <stop offset="0" style="stop-color: #a1be9d" />
+            <stop offset="1" style="stop-color: #809c7b" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000109742399038547026750000005831711475442498701_"
@@ -17567,14 +14210,8 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #809c7a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #799574"
-            />
+            <stop offset="0" style="stop-color: #809c7a" />
+            <stop offset="1" style="stop-color: #799574" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000134220138562787448360000015838039194333562759_"
@@ -17594,14 +14231,8 @@
             x2="46.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #577453"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0edcb"
-            />
+            <stop offset="0" style="stop-color: #577453" />
+            <stop offset="0.9987" style="stop-color: #d0edcb" />
           </linearGradient>
           <polyline
             id="Deco_00000037652474422700483250000008998522382200885428_"
@@ -17619,14 +14250,8 @@
             x2="46.2772"
             y2="159.9905"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c9877"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a5c0a0"
-            />
+            <stop offset="0" style="stop-color: #7c9877" />
+            <stop offset="1" style="stop-color: #a5c0a0" />
           </linearGradient>
           <polyline
             id="Deco_00000121249892717658317390000011822785622448020378_"
@@ -17644,14 +14269,8 @@
             x2="44.2771"
             y2="159.9904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #bcd9b7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #86a180"
-            />
+            <stop offset="0" style="stop-color: #bcd9b7" />
+            <stop offset="1" style="stop-color: #86a180" />
           </linearGradient>
           <polyline
             id="Deco_00000028313195446007429630000014085753299545742999_"
@@ -17669,14 +14288,8 @@
             x2="44.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #86a180"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #607c5b"
-            />
+            <stop offset="0" style="stop-color: #86a180" />
+            <stop offset="1" style="stop-color: #607c5b" />
           </linearGradient>
           <polyline
             id="Deco_00000125562644933597414810000006239377826701054854_"
@@ -17697,14 +14310,8 @@
             y2="161.0509"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #577453"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0edcb"
-            />
+            <stop offset="0" style="stop-color: #577453" />
+            <stop offset="0.9987" style="stop-color: #d0edcb" />
           </linearGradient>
           <polyline
             id="Deco_00000028323446142219713470000012295583406936130222_"
@@ -17723,14 +14330,8 @@
             y2="159.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c9877"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a5c0a0"
-            />
+            <stop offset="0" style="stop-color: #7c9877" />
+            <stop offset="1" style="stop-color: #a5c0a0" />
           </linearGradient>
           <polyline
             id="Deco_00000131338398363247284850000007149089591264330885_"
@@ -17749,14 +14350,8 @@
             y2="159.9903"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #bcd9b7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #86a180"
-            />
+            <stop offset="0" style="stop-color: #bcd9b7" />
+            <stop offset="1" style="stop-color: #86a180" />
           </linearGradient>
           <polyline
             id="Deco_00000131361854572442403810000004114218650663702178_"
@@ -17775,14 +14370,8 @@
             y2="161.0509"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #86a180"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #607c5b"
-            />
+            <stop offset="0" style="stop-color: #86a180" />
+            <stop offset="1" style="stop-color: #607c5b" />
           </linearGradient>
           <polyline
             id="Deco_00000152951881552463591490000000731095645706011577_"
@@ -17794,10 +14383,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Framed_Myth"
-      >
+      <g v-if="framed.Myth" id="Framed_Myth">
         <g id="Framed_00000116236433486506473750000000589168606566114459_">
           <linearGradient
             id="FullArt_Inside_BG_00000041268210647637411540000004803921035491487644_"
@@ -17808,18 +14394,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #875681"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #563551"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #855e81"
-            />
+            <stop offset="0" style="stop-color: #875681" />
+            <stop offset="0.5051" style="stop-color: #563551" />
+            <stop offset="1" style="stop-color: #855e81" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000085216508000937274260000004730878032150076601_"
@@ -17838,14 +14415,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c4f77"
-            />
-            <stop
-              offset="0.9978"
-              style="stop-color: #5d3358"
-            />
+            <stop offset="0" style="stop-color: #7c4f77" />
+            <stop offset="0.9978" style="stop-color: #5d3358" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000122002004067654676760000016940131989241829819_"
@@ -17864,14 +14435,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="2.149471e-03"
-              style="stop-color: #52324e"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a5b75"
-            />
+            <stop offset="2.149471e-03" style="stop-color: #52324e" />
+            <stop offset="1" style="stop-color: #7a5b75" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000024686314080662108410000001741262647242714808_"
@@ -17890,14 +14455,8 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #d1a6cc"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #cbafc5"
-            />
+            <stop offset="0" style="stop-color: #d1a6cc" />
+            <stop offset="1" style="stop-color: #cbafc5" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000005958214578617177520000015908290751622109068_"
@@ -17916,14 +14475,8 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a1549d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80377b"
-            />
+            <stop offset="0" style="stop-color: #a1549d" />
+            <stop offset="1" style="stop-color: #80377b" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000137106034161033882580000006682072800318979732_"
@@ -17942,14 +14495,8 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #804e7a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #794374"
-            />
+            <stop offset="0" style="stop-color: #804e7a" />
+            <stop offset="1" style="stop-color: #794374" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000001638292155755965170000002824869109160146833_"
@@ -17969,14 +14516,8 @@
             x2="46.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #573253"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0aacb"
-            />
+            <stop offset="0" style="stop-color: #573253" />
+            <stop offset="0.9987" style="stop-color: #d0aacb" />
           </linearGradient>
           <polyline
             id="Deco_00000114774183121281569780000000971402991703503538_"
@@ -17994,14 +14535,8 @@
             x2="46.2772"
             y2="159.9905"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c4477"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a56da0"
-            />
+            <stop offset="0" style="stop-color: #7c4477" />
+            <stop offset="1" style="stop-color: #a56da0" />
           </linearGradient>
           <polyline
             id="Deco_00000096026726118862542800000005115157217322837930_"
@@ -18019,14 +14554,8 @@
             x2="44.3334"
             y2="159.9342"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #bc9cb7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #866780"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #bc9cb7" />
+            <stop offset="1" style="stop-color: #866780" />
           </linearGradient>
           <polyline
             id="Deco_00000025402097756392226730000000567554763941222287_"
@@ -18044,14 +14573,8 @@
             x2="44.3052"
             y2="161.0229"
           >
-            <stop
-              offset="0"
-              style="stop-color: #864b80"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #60395b"
-            />
+            <stop offset="0" style="stop-color: #864b80" />
+            <stop offset="1" style="stop-color: #60395b" />
           </linearGradient>
           <polyline
             id="Deco_00000143601365705947700000000003162274484184896420_"
@@ -18072,14 +14595,8 @@
             y2="161.051"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #573253"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0aacb"
-            />
+            <stop offset="0" style="stop-color: #573253" />
+            <stop offset="0.9987" style="stop-color: #d0aacb" />
           </linearGradient>
           <polyline
             id="Deco_00000137820060755049123650000006828871268428065972_"
@@ -18098,14 +14615,8 @@
             y2="159.9905"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c4477"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a56da0"
-            />
+            <stop offset="0" style="stop-color: #7c4477" />
+            <stop offset="1" style="stop-color: #a56da0" />
           </linearGradient>
           <polyline
             id="Deco_00000150097176334504274590000017377310347201333413_"
@@ -18124,14 +14635,8 @@
             y2="159.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #bc9cb7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #866780"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #bc9cb7" />
+            <stop offset="1" style="stop-color: #866780" />
           </linearGradient>
           <polyline
             id="Deco_00000056407182009907820160000008327856162265377956_"
@@ -18150,14 +14655,8 @@
             y2="160.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #864b80"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #60395b"
-            />
+            <stop offset="0" style="stop-color: #864b80" />
+            <stop offset="1" style="stop-color: #60395b" />
           </linearGradient>
           <polyline
             id="Deco_00000122702784845879071280000010248605335412871568_"
@@ -18169,10 +14668,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="framed.Culture"
-        id="Framed_Culture"
-      >
+      <g v-if="framed.Culture" id="Framed_Culture">
         <g id="Framed_00000057113505976316548600000016625615134210339255_">
           <linearGradient
             id="FullArt_Inside_BG_00000075876205817200853600000016375541859635329459_"
@@ -18183,18 +14679,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #97564d"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #702f33"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9f5e47"
-            />
+            <stop offset="0" style="stop-color: #97564d" />
+            <stop offset="0.5051" style="stop-color: #702f33" />
+            <stop offset="1" style="stop-color: #9f5e47" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000003072438024937632420000015414542904822103173_"
@@ -18213,14 +14700,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8b4f41"
-            />
-            <stop
-              offset="0.9978"
-              style="stop-color: #6a2b31"
-            />
+            <stop offset="0" style="stop-color: #8b4f41" />
+            <stop offset="0.9978" style="stop-color: #6a2b31" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000167377308099554616680000012552714563476101555_"
@@ -18239,14 +14720,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="2.149471e-03"
-              style="stop-color: #652e22"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #995b43"
-            />
+            <stop offset="2.149471e-03" style="stop-color: #652e22" />
+            <stop offset="1" style="stop-color: #995b43" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000181784998265723236940000007950207540023327664_"
@@ -18265,14 +14740,8 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #e6a6a8"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e5af9d"
-            />
+            <stop offset="0" style="stop-color: #e6a6a8" />
+            <stop offset="1" style="stop-color: #e5af9d" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000115511605231421399330000007482830906304754101_"
@@ -18291,14 +14760,8 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #ae5438"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #802a2f"
-            />
+            <stop offset="0" style="stop-color: #ae5438" />
+            <stop offset="1" style="stop-color: #802a2f" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000029763013924475252240000017852034889912909492_"
@@ -18317,14 +14780,8 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #984e31"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #79361d"
-            />
+            <stop offset="0" style="stop-color: #984e31" />
+            <stop offset="1" style="stop-color: #79361d" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000073719947371612709310000000536798337114685370_"
@@ -18344,14 +14801,8 @@
             x2="46.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #672b2f"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #e5b2a8"
-            />
+            <stop offset="0" style="stop-color: #672b2f" />
+            <stop offset="0.9987" style="stop-color: #e5b2a8" />
           </linearGradient>
           <polyline
             id="Deco_00000089566271626115133700000000808464857619659676_"
@@ -18369,14 +14820,8 @@
             x2="46.2772"
             y2="159.9905"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8c373d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b56d50"
-            />
+            <stop offset="0" style="stop-color: #8c373d" />
+            <stop offset="1" style="stop-color: #b56d50" />
           </linearGradient>
           <polyline
             id="Deco_00000108285507406876944020000014639099891633021112_"
@@ -18394,14 +14839,8 @@
             x2="44.2771"
             y2="159.9904"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #e4bb9f"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a26759"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #e4bb9f" />
+            <stop offset="1" style="stop-color: #a26759" />
           </linearGradient>
           <polyline
             id="Deco_00000175287782083215523420000014621937860295047570_"
@@ -18419,14 +14858,8 @@
             x2="44.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #984b4b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603937"
-            />
+            <stop offset="0" style="stop-color: #984b4b" />
+            <stop offset="1" style="stop-color: #603937" />
           </linearGradient>
           <polyline
             id="Deco_00000009582787573448283600000006439768325181765566_"
@@ -18447,14 +14880,8 @@
             y2="161.0473"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #672b2f"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #e5b2a8"
-            />
+            <stop offset="0" style="stop-color: #672b2f" />
+            <stop offset="0.9987" style="stop-color: #e5b2a8" />
           </linearGradient>
           <polyline
             id="Deco_00000149350786221908569200000001724590401787472513_"
@@ -18473,14 +14900,8 @@
             y2="159.983"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8c373d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b56d50"
-            />
+            <stop offset="0" style="stop-color: #8c373d" />
+            <stop offset="1" style="stop-color: #b56d50" />
           </linearGradient>
           <polyline
             id="Deco_00000042738276504002759330000014055620965957830284_"
@@ -18499,14 +14920,8 @@
             y2="159.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #e4bb9f"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a26759"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #e4bb9f" />
+            <stop offset="1" style="stop-color: #a26759" />
           </linearGradient>
           <polyline
             id="Deco_00000142155920418833576110000003173056125622599087_"
@@ -18525,14 +14940,8 @@
             y2="160.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #984b4b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603937"
-            />
+            <stop offset="0" style="stop-color: #984b4b" />
+            <stop offset="1" style="stop-color: #603937" />
           </linearGradient>
           <polyline
             id="Deco_00000087375229969618439870000002281930085678031532_"
@@ -18544,10 +14953,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="framed.MultiClass"
-        id="Framed_Multi_Class"
-      >
+      <g v-if="framed.MultiClass" id="Framed_Multi_Class">
         <g id="Framed_00000062162050087782160700000004047623722043919773_">
           <linearGradient
             id="FullArt_Inside_BG_00000170968088598638484940000011191608814045576888_"
@@ -18558,18 +14964,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #9d8678"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #6b5348"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #937e72"
-            />
+            <stop offset="0" style="stop-color: #9d8678" />
+            <stop offset="0.5051" style="stop-color: #6b5348" />
+            <stop offset="1" style="stop-color: #937e72" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000067925832300954459660000015217278940501507766_"
@@ -18588,14 +14985,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #9f887a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #ac9b8d"
-            />
+            <stop offset="0" style="stop-color: #9f887a" />
+            <stop offset="1" style="stop-color: #ac9b8d" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000152247760623198950520000016780682326055240349_"
@@ -18614,14 +15005,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #b4a193"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a89286"
-            />
+            <stop offset="0" style="stop-color: #b4a193" />
+            <stop offset="1" style="stop-color: #a89286" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000132796017019841343350000003831931649299009929_"
@@ -18640,14 +15025,8 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eedece"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #efdfcf"
-            />
+            <stop offset="0" style="stop-color: #eedece" />
+            <stop offset="1" style="stop-color: #efdfcf" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000101801910567001719060000006009559205162609548_"
@@ -18666,14 +15045,8 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #988376"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8a7568"
-            />
+            <stop offset="0" style="stop-color: #988376" />
+            <stop offset="1" style="stop-color: #8a7568" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000003805777268289669090000001780845249575904901_"
@@ -18692,14 +15065,8 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8b7669"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #917e75"
-            />
+            <stop offset="0" style="stop-color: #8b7669" />
+            <stop offset="1" style="stop-color: #917e75" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000110442206129779710550000011993170448198774938_"
@@ -18718,14 +15085,8 @@
           x2="46.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f574b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a89387"
-          />
+          <stop offset="0" style="stop-color: #6f574b" />
+          <stop offset="1" style="stop-color: #a89387" />
         </linearGradient>
         <polyline
           id="Deco_00000038395132048574123610000016031769786690359426_"
@@ -18743,14 +15104,8 @@
           x2="46.2772"
           y2="159.9905"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b8477"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #eedece"
-          />
+          <stop offset="0" style="stop-color: #9b8477" />
+          <stop offset="1" style="stop-color: #eedece" />
         </linearGradient>
         <polyline
           id="Deco_00000043419431326312388000000002335663424990600857_"
@@ -18768,14 +15123,8 @@
           x2="44.2166"
           y2="160.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4e"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #725a4e" />
         </linearGradient>
         <polyline
           id="Deco_00000152981135904028772100000017680430541817186216_"
@@ -18793,14 +15142,8 @@
           x2="44.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae9b8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6b5348"
-          />
+          <stop offset="0" style="stop-color: #ae9b8d" />
+          <stop offset="1" style="stop-color: #6b5348" />
         </linearGradient>
         <polyline
           id="Deco_00000178923145258404350750000000648381782995761333_"
@@ -18819,14 +15162,8 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #715b4f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a48f83"
-          />
+          <stop offset="0" style="stop-color: #715b4f" />
+          <stop offset="1" style="stop-color: #a48f83" />
         </linearGradient>
         <polyline
           id="Deco_00000072960231015002862880000012756461731722562458_"
@@ -18845,14 +15182,8 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a08a7c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e9d8c9"
-          />
+          <stop offset="0" style="stop-color: #a08a7c" />
+          <stop offset="1" style="stop-color: #e9d8c9" />
         </linearGradient>
         <polyline
           id="Deco_00000106125877383582400110000001208352947561823123_"
@@ -18871,14 +15202,8 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3d3c3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7c665a"
-          />
+          <stop offset="0" style="stop-color: #e3d3c3" />
+          <stop offset="1" style="stop-color: #7c665a" />
         </linearGradient>
         <polyline
           id="Deco_00000013150834047646849650000000971903889004899001_"
@@ -18897,14 +15222,8 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #aa9688"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4f"
-          />
+          <stop offset="0" style="stop-color: #aa9688" />
+          <stop offset="1" style="stop-color: #725a4f" />
         </linearGradient>
         <polyline
           id="Deco_00000142165590433972798670000008696840121165629843_"
@@ -18916,10 +15235,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Action"
-      id="Action_Framed_Addition"
-    >
+    <g v-if="FramedAddition.Action" id="Action_Framed_Addition">
       <g
         v-if="framed.Tech"
         id="Tech_Frame_00000013878522187819972640000001436796868786575804_"
@@ -18932,14 +15248,8 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000049217550062655113900000013777448047950317463_"
@@ -18957,14 +15267,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000161603077528176862000000006144514946252661911_"
@@ -18982,14 +15286,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052072391388085247130000006679720819153776777_"
@@ -19007,14 +15305,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000128465535592147361700000003672764023482706323_"
@@ -19032,14 +15324,8 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145781204013977003060000016680291912165445054_"
@@ -19057,14 +15343,8 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000129165278413765424100000000426282852084953014_"
@@ -19083,14 +15363,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #557480"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #91a3b4"
-          />
+          <stop offset="0" style="stop-color: #557480" />
+          <stop offset="1" style="stop-color: #91a3b4" />
         </linearGradient>
         <circle
           style="
@@ -19111,14 +15385,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b3c3de"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #3e5b64"
-          />
+          <stop offset="0" style="stop-color: #b3c3de" />
+          <stop offset="1" style="stop-color: #3e5b64" />
         </linearGradient>
         <circle
           style="
@@ -19140,14 +15408,8 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #3f5c65"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #3f5c65" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <path
             style="
@@ -19166,14 +15428,8 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ea2b3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #47626d"
-            />
+            <stop offset="0" style="stop-color: #8ea2b3" />
+            <stop offset="1" style="stop-color: #47626d" />
           </linearGradient>
           <path
             style="
@@ -19192,14 +15448,8 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #425f68"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #425f68" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <polyline
             id="Deco_00000009558961326721405530000008488987130038822071_"
@@ -19217,14 +15467,8 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a9eae"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #415e67"
-            />
+            <stop offset="0" style="stop-color: #8a9eae" />
+            <stop offset="1" style="stop-color: #415e67" />
           </linearGradient>
           <polyline
             id="Deco_00000101087050448488085590000012281484445007399064_"
@@ -19245,14 +15489,8 @@
             y2="158.355"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #3f5c65"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #3f5c65" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <path
             style="
@@ -19272,14 +15510,8 @@
             y2="158.0207"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ea2b3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #47626d"
-            />
+            <stop offset="0" style="stop-color: #8ea2b3" />
+            <stop offset="1" style="stop-color: #47626d" />
           </linearGradient>
           <path
             style="
@@ -19299,14 +15531,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #425f68"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #425f68" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <polyline
             id="Deco_00000093173386553559235160000006563809674840982684_"
@@ -19325,14 +15551,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a9eae"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #415e67"
-            />
+            <stop offset="0" style="stop-color: #8a9eae" />
+            <stop offset="1" style="stop-color: #415e67" />
           </linearGradient>
           <polyline
             id="Deco_00000111190683275854925570000014947302933941437340_"
@@ -19356,14 +15576,8 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000149372923213215412930000011286939702106737042_"
@@ -19381,14 +15595,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000036936167098055503810000011969117402629341829_"
@@ -19406,14 +15614,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000179616471022468128050000007381386795355045551_"
@@ -19431,14 +15633,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000047051155100162142980000001781276902542202797_"
@@ -19456,14 +15652,8 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000158713932976097415040000009117156988567404942_"
@@ -19481,14 +15671,8 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000109717076408701598470000005844085063704101035_"
@@ -19507,14 +15691,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #506c4b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9bb896"
-          />
+          <stop offset="0" style="stop-color: #506c4b" />
+          <stop offset="1" style="stop-color: #9bb896" />
         </linearGradient>
         <circle
           style="
@@ -19535,14 +15713,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #435b3f"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #435b3f" />
         </linearGradient>
         <circle
           style="
@@ -19564,14 +15736,8 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4f674a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90ad8b"
-            />
+            <stop offset="0" style="stop-color: #4f674a" />
+            <stop offset="1" style="stop-color: #90ad8b" />
           </linearGradient>
           <path
             style="
@@ -19590,14 +15756,8 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ba685"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #4e664b"
-            />
+            <stop offset="0" style="stop-color: #8ba685" />
+            <stop offset="1" style="stop-color: #4e664b" />
           </linearGradient>
           <path
             style="
@@ -19616,14 +15776,8 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #496145"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7f9c7a"
-            />
+            <stop offset="0" style="stop-color: #496145" />
+            <stop offset="1" style="stop-color: #7f9c7a" />
           </linearGradient>
           <polyline
             id="Deco_00000099628391548371809620000002068780351072267917_"
@@ -19641,14 +15795,8 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7e9b79"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #445c3f"
-            />
+            <stop offset="0" style="stop-color: #7e9b79" />
+            <stop offset="1" style="stop-color: #445c3f" />
           </linearGradient>
           <polyline
             id="Deco_00000013895167675315434170000018411540368192288918_"
@@ -19669,14 +15817,8 @@
             y2="158.355"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4f674a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90ad8b"
-            />
+            <stop offset="0" style="stop-color: #4f674a" />
+            <stop offset="1" style="stop-color: #90ad8b" />
           </linearGradient>
           <path
             style="
@@ -19696,14 +15838,8 @@
             y2="158.0207"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ba685"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #4e664b"
-            />
+            <stop offset="0" style="stop-color: #8ba685" />
+            <stop offset="1" style="stop-color: #4e664b" />
           </linearGradient>
           <path
             style="
@@ -19723,14 +15859,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #496145"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7f9c7a"
-            />
+            <stop offset="0" style="stop-color: #496145" />
+            <stop offset="1" style="stop-color: #7f9c7a" />
           </linearGradient>
           <polyline
             id="Deco_00000157297189205886613440000002842205430810861992_"
@@ -19749,14 +15879,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7e9b79"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #445c3f"
-            />
+            <stop offset="0" style="stop-color: #7e9b79" />
+            <stop offset="1" style="stop-color: #445c3f" />
           </linearGradient>
           <polyline
             id="Deco_00000119809406802815204270000004837293956162123142_"
@@ -19780,14 +15904,8 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000132060919053036075820000001641950467764681630_"
@@ -19805,14 +15923,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000084525484742127958630000014669623558512030648_"
@@ -19830,14 +15942,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000106833922000172797240000000697108638708785073_"
@@ -19855,14 +15961,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000164509557359690518950000012757402424127463335_"
@@ -19880,14 +15980,8 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000127754299210893974360000016377012125301411987_"
@@ -19905,14 +15999,8 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000109714588884463576810000012376082120744726152_"
@@ -19931,14 +16019,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #552950"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a47e9f"
-          />
+          <stop offset="0" style="stop-color: #552950" />
+          <stop offset="1" style="stop-color: #a47e9f" />
         </linearGradient>
         <circle
           style="
@@ -19959,14 +16041,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5a3755"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #5a3755" />
         </linearGradient>
         <circle
           style="
@@ -19988,14 +16064,8 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #6d4968"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9e7899"
-            />
+            <stop offset="0" style="stop-color: #6d4968" />
+            <stop offset="1" style="stop-color: #9e7899" />
           </linearGradient>
           <path
             style="
@@ -20014,14 +16084,8 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a881a3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5f3b5a"
-            />
+            <stop offset="0" style="stop-color: #a881a3" />
+            <stop offset="1" style="stop-color: #5f3b5a" />
           </linearGradient>
           <path
             style="
@@ -20040,14 +16104,8 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #673962"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b28bad"
-            />
+            <stop offset="0" style="stop-color: #673962" />
+            <stop offset="1" style="stop-color: #b28bad" />
           </linearGradient>
           <polyline
             id="Deco_00000096049332034405949900000013157250458845896335_"
@@ -20065,14 +16123,8 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #b089ab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603d5b"
-            />
+            <stop offset="0" style="stop-color: #b089ab" />
+            <stop offset="1" style="stop-color: #603d5b" />
           </linearGradient>
           <polyline
             id="Deco_00000183929216946230851150000010346407538728543127_"
@@ -20093,14 +16145,8 @@
             y2="158.355"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #6d4968"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9e7899"
-            />
+            <stop offset="0" style="stop-color: #6d4968" />
+            <stop offset="1" style="stop-color: #9e7899" />
           </linearGradient>
           <path
             style="
@@ -20120,14 +16166,8 @@
             y2="158.0207"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a881a3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5f3b5a"
-            />
+            <stop offset="0" style="stop-color: #a881a3" />
+            <stop offset="1" style="stop-color: #5f3b5a" />
           </linearGradient>
           <path
             style="
@@ -20147,14 +16187,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #673962"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b28bad"
-            />
+            <stop offset="0" style="stop-color: #673962" />
+            <stop offset="1" style="stop-color: #b28bad" />
           </linearGradient>
           <polyline
             id="Deco_00000100374172885601552180000015346110116162227128_"
@@ -20173,14 +16207,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #b089ab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603d5b"
-            />
+            <stop offset="0" style="stop-color: #b089ab" />
+            <stop offset="1" style="stop-color: #603d5b" />
           </linearGradient>
           <polyline
             id="Deco_00000170961525261890885420000018071455266177168314_"
@@ -20204,14 +16232,8 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000147907731016337791730000013156759585794714303_"
@@ -20229,14 +16251,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000038388889312209900730000016141622599236617870_"
@@ -20254,14 +16270,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000055673338338685695920000014340416757101289663_"
@@ -20279,14 +16289,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000093167435042708203990000004700184802326127019_"
@@ -20304,14 +16308,8 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000129192264664166800450000014291487116690781326_"
@@ -20329,14 +16327,8 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000142890420266416846190000013129310097102828933_"
@@ -20356,14 +16348,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #602431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f8bb80"
-          />
+          <stop offset="0" style="stop-color: #602431" />
+          <stop offset="1" style="stop-color: #f8bb80" />
         </linearGradient>
         <circle
           style="
@@ -20384,14 +16370,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f6ae8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #883023"
-          />
+          <stop offset="0" style="stop-color: #f6ae8d" />
+          <stop offset="1" style="stop-color: #883023" />
         </linearGradient>
         <circle
           style="
@@ -20413,14 +16393,8 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a44a5c"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #f4b77e"
-            />
+            <stop offset="0" style="stop-color: #a44a5c" />
+            <stop offset="1" style="stop-color: #f4b77e" />
           </linearGradient>
           <path
             style="
@@ -20439,14 +16413,8 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f2b57d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9c4852"
-            />
+            <stop offset="0" style="stop-color: #f2b57d" />
+            <stop offset="1" style="stop-color: #9c4852" />
           </linearGradient>
           <path
             style="
@@ -20465,14 +16433,8 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a4e47"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e3a675"
-            />
+            <stop offset="0" style="stop-color: #8a4e47" />
+            <stop offset="1" style="stop-color: #e3a675" />
           </linearGradient>
           <polyline
             id="Deco_00000100379108879003047720000012354449392800539009_"
@@ -20490,14 +16452,8 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eeb17b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8e3729"
-            />
+            <stop offset="0" style="stop-color: #eeb17b" />
+            <stop offset="1" style="stop-color: #8e3729" />
           </linearGradient>
           <polyline
             id="Deco_00000065756752055248398350000006119138296394268289_"
@@ -20518,14 +16474,8 @@
             y2="158.3318"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a44a5c"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #f4b77e"
-            />
+            <stop offset="0" style="stop-color: #a44a5c" />
+            <stop offset="1" style="stop-color: #f4b77e" />
           </linearGradient>
           <path
             style="
@@ -20545,14 +16495,8 @@
             y2="157.9975"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f2b57d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9c4852"
-            />
+            <stop offset="0" style="stop-color: #f2b57d" />
+            <stop offset="1" style="stop-color: #9c4852" />
           </linearGradient>
           <path
             style="
@@ -20572,14 +16516,8 @@
             y2="157.4673"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a4e47"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e3a675"
-            />
+            <stop offset="0" style="stop-color: #8a4e47" />
+            <stop offset="1" style="stop-color: #e3a675" />
           </linearGradient>
           <polyline
             id="Deco_00000137818458940893375080000010351333749457994900_"
@@ -20598,14 +16536,8 @@
             y2="157.4673"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eeb17b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8e3729"
-            />
+            <stop offset="0" style="stop-color: #eeb17b" />
+            <stop offset="1" style="stop-color: #8e3729" />
           </linearGradient>
           <polyline
             id="Deco_00000103262750840173498440000017035574074294362012_"
@@ -20629,14 +16561,8 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000039825391452304918340000004370981429401025170_"
@@ -20654,14 +16580,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000044887985947613708380000013755989931984046745_"
@@ -20679,14 +16599,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000026868879993797884910000008503002516366742154_"
@@ -20704,14 +16618,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000179641745059100464010000008138499456372852915_"
@@ -20729,14 +16637,8 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000026885737847409423600000008634843907075552408_"
@@ -20754,14 +16656,8 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000007424821634006917760000006896887872927468971_"
@@ -20780,14 +16676,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7a5f54"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ebdbca"
-          />
+          <stop offset="0" style="stop-color: #7a5f54" />
+          <stop offset="1" style="stop-color: #ebdbca" />
         </linearGradient>
         <circle
           style="
@@ -20808,14 +16698,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ebdbca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7a5f54"
-          />
+          <stop offset="0" style="stop-color: #ebdbca" />
+          <stop offset="1" style="stop-color: #7a5f54" />
         </linearGradient>
         <circle
           style="
@@ -20837,14 +16721,8 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7a5f54"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #ebdbca"
-            />
+            <stop offset="0" style="stop-color: #7a5f54" />
+            <stop offset="1" style="stop-color: #ebdbca" />
           </linearGradient>
           <path
             style="
@@ -20863,14 +16741,8 @@
             x2="158.7197"
             y2="150.8783"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7a5f54"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #ebdbca"
-            />
+            <stop offset="0" style="stop-color: #7a5f54" />
+            <stop offset="1" style="stop-color: #ebdbca" />
           </linearGradient>
           <path
             style="
@@ -20889,14 +16761,8 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #ebdbca"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a5f54"
-            />
+            <stop offset="0" style="stop-color: #ebdbca" />
+            <stop offset="1" style="stop-color: #7a5f54" />
           </linearGradient>
           <path
             style="
@@ -20915,14 +16781,8 @@
             x2="158.0557"
             y2="158.0206"
           >
-            <stop
-              offset="0"
-              style="stop-color: #ebdbca"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a5f54"
-            />
+            <stop offset="0" style="stop-color: #ebdbca" />
+            <stop offset="1" style="stop-color: #7a5f54" />
           </linearGradient>
           <path
             style="
@@ -20941,14 +16801,8 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #9b8477"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #eedece"
-            />
+            <stop offset="0" style="stop-color: #9b8477" />
+            <stop offset="1" style="stop-color: #eedece" />
           </linearGradient>
           <polyline
             id="Deco_00000052811699407087777350000011353169125195502465_"
@@ -20966,14 +16820,8 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eedece"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #725a4e"
-            />
+            <stop offset="0" style="stop-color: #eedece" />
+            <stop offset="1" style="stop-color: #725a4e" />
           </linearGradient>
           <polyline
             id="Deco_00000024682382155566889760000010924782057491104158_"
@@ -20992,14 +16840,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a08a7c"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e9d8c9"
-            />
+            <stop offset="0" style="stop-color: #a08a7c" />
+            <stop offset="1" style="stop-color: #e9d8c9" />
           </linearGradient>
           <polyline
             id="Deco_00000178178328806885066140000014328140953065277579_"
@@ -21018,14 +16860,8 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #e3d3c3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7c665a"
-            />
+            <stop offset="0" style="stop-color: #e3d3c3" />
+            <stop offset="1" style="stop-color: #7c665a" />
           </linearGradient>
           <polyline
             id="Deco_00000097477373303945630590000001802841257758112655_"
@@ -21038,10 +16874,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Place"
-      id="Place_Framed_Addition"
-    >
+    <g v-if="FramedAddition.Place" id="Place_Framed_Addition">
       <g
         v-if="framed.Tech"
         id="Tech_Frame_00000009577231048767494630000005217583024620543138_"
@@ -21054,14 +16887,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96a7b7"
-          />
+          <stop offset="0" style="stop-color: #96a7b8" />
+          <stop offset="1" style="stop-color: #96a7b7" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000073719458524730933430000009855855422117384583_"
@@ -21082,18 +16909,9 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <polygon
             style="
@@ -21110,18 +16928,9 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <path
             style="
@@ -21138,14 +16947,8 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000144306034850163359320000000053465262983557269_"
@@ -21163,14 +16966,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000006677925481830850920000012736726516395985081_"
@@ -21188,14 +16985,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000170257995089993374570000018128018847122240414_"
@@ -21213,14 +17004,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000129903702022030157470000012104971671717443200_"
@@ -21238,14 +17023,8 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000142854263507191165450000010854113409101689530_"
@@ -21263,14 +17042,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99a9ba"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e79"
-          />
+          <stop offset="0" style="stop-color: #99a9ba" />
+          <stop offset="1" style="stop-color: #4b6e79" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000000212358679661935830000012904257525025670549_"
@@ -21288,14 +17061,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <path
           style="
@@ -21313,14 +17080,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bccfec"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #bccfec" />
         </linearGradient>
         <polygon
           style="
@@ -21337,14 +17098,8 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e8a99"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #6e8a99" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polygon
           style="
@@ -21361,14 +17116,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #98acc3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bbceeb"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #98acc3" />
+          <stop offset="1" style="stop-color: #bbceeb" />
         </linearGradient>
         <polygon
           style="
@@ -21385,14 +17134,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b3c3dd"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #b3c3dd" />
         </linearGradient>
         <polygon
           style="
@@ -21409,14 +17152,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #547986"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7694a4"
-          />
+          <stop offset="0" style="stop-color: #547986" />
+          <stop offset="1" style="stop-color: #7694a4" />
         </linearGradient>
         <polygon
           style="
@@ -21433,14 +17170,8 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bacdea"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f8a9a"
-          />
+          <stop offset="0" style="stop-color: #bacdea" />
+          <stop offset="1" style="stop-color: #6f8a9a" />
         </linearGradient>
         <polygon
           style="
@@ -21457,14 +17188,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #637f8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e7c88"
-          />
+          <stop offset="0" style="stop-color: #637f8d" />
+          <stop offset="1" style="stop-color: #5e7c88" />
         </linearGradient>
         <polygon
           style="
@@ -21481,14 +17206,8 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #93a9be"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="0.9987" style="stop-color: #93a9be" />
         </linearGradient>
         <polygon
           style="
@@ -21505,18 +17224,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #577884"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a5bad3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #597985"
-          />
+          <stop offset="0" style="stop-color: #577884" />
+          <stop offset="0.484" style="stop-color: #a5bad3" />
+          <stop offset="1" style="stop-color: #597985" />
         </linearGradient>
         <polygon
           style="
@@ -21533,14 +17243,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8997"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #6d8997" />
         </linearGradient>
         <polygon
           style="
@@ -21557,18 +17261,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #496973"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #7691a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #426069"
-          />
+          <stop offset="0" style="stop-color: #496973" />
+          <stop offset="0.4796" style="stop-color: #7691a2" />
+          <stop offset="1" style="stop-color: #426069" />
         </linearGradient>
         <polygon
           style="
@@ -21585,14 +17280,8 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f717c"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #9eb4cd"
-          />
+          <stop offset="0" style="stop-color: #4f717c" />
+          <stop offset="0.9987" style="stop-color: #9eb4cd" />
         </linearGradient>
         <polygon
           id="Place_00000010994320649568768270000015531950012291223206_"
@@ -21611,14 +17300,8 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #839daf"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e717c"
-          />
+          <stop offset="0" style="stop-color: #839daf" />
+          <stop offset="1" style="stop-color: #4e717c" />
         </linearGradient>
         <polygon
           id="Deco_00000000188720029277810710000007807612710641764282_"
@@ -21637,14 +17320,8 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5b7b87"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #9db3cc"
-          />
+          <stop offset="0" style="stop-color: #5b7b87" />
+          <stop offset="0.9965" style="stop-color: #9db3cc" />
         </linearGradient>
         <polygon
           id="Deco_00000047750289375126390090000016823649208183515831_"
@@ -21663,14 +17340,8 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #859db0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #859db0" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polyline
           id="Deco_00000017485203835945652050000000338780919748007069_"
@@ -21689,14 +17360,8 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819bad"
-          />
+          <stop offset="0" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #819bad" />
         </linearGradient>
         <polyline
           id="Deco_00000137134045197107804470000016511776426129048751_"
@@ -21715,14 +17380,8 @@
           y2="155.8836"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #839daf"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e717c"
-          />
+          <stop offset="0" style="stop-color: #839daf" />
+          <stop offset="1" style="stop-color: #4e717c" />
         </linearGradient>
         <polygon
           id="Deco_00000016779215143978676580000010940363538006153115_"
@@ -21741,14 +17400,8 @@
           y2="154.9115"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5b7b87"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #9db3cc"
-          />
+          <stop offset="0" style="stop-color: #5b7b87" />
+          <stop offset="0.9965" style="stop-color: #9db3cc" />
         </linearGradient>
         <polygon
           id="Deco_00000029043672485740034350000014883194864198769794_"
@@ -21767,14 +17420,8 @@
           y2="153.5465"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #859db0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #859db0" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polyline
           id="Deco_00000092453678009983913300000013605273009258520728_"
@@ -21793,14 +17440,8 @@
           y2="153.3598"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819bad"
-          />
+          <stop offset="0" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #819bad" />
         </linearGradient>
         <polyline
           id="Deco_1"
@@ -21823,14 +17464,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9ebb9a"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #9ebb9a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000178906997360510472500000000181308257033855165_"
@@ -21851,18 +17486,9 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <polygon
             style="
@@ -21879,18 +17505,9 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <path
             style="
@@ -21907,14 +17524,8 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000132774273429547039950000004298199019798249864_"
@@ -21932,14 +17543,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000080193506667940439210000007627277774109584014_"
@@ -21957,14 +17562,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000040536808757169663940000012798360847748974771_"
@@ -21982,14 +17581,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000136377646536877469620000011330526570239404710_"
@@ -22007,14 +17600,8 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000034786924543039244280000016278775802605277601_"
@@ -22032,14 +17619,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8ca785"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #466241"
-          />
+          <stop offset="0" style="stop-color: #8ca785" />
+          <stop offset="1" style="stop-color: #466241" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000008869006962177311210000017608576465885262978_"
@@ -22057,14 +17638,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <path
           style="
@@ -22082,14 +17657,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9dba98"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1efcc"
-          />
+          <stop offset="0" style="stop-color: #9dba98" />
+          <stop offset="1" style="stop-color: #d1efcc" />
         </linearGradient>
         <polygon
           style="
@@ -22106,14 +17675,8 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708b6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #526f4d"
-          />
+          <stop offset="0" style="stop-color: #708b6a" />
+          <stop offset="1" style="stop-color: #526f4d" />
         </linearGradient>
         <polygon
           style="
@@ -22130,14 +17693,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a2bf9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #adcba8"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a2bf9d" />
+          <stop offset="1" style="stop-color: #adcba8" />
         </linearGradient>
         <polygon
           style="
@@ -22154,14 +17711,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c8e5c3"
-          />
+          <stop offset="0" style="stop-color: #adcaa8" />
+          <stop offset="1" style="stop-color: #c8e5c3" />
         </linearGradient>
         <polygon
           style="
@@ -22178,14 +17729,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #597554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6b8766"
-          />
+          <stop offset="0" style="stop-color: #597554" />
+          <stop offset="1" style="stop-color: #6b8766" />
         </linearGradient>
         <polygon
           style="
@@ -22202,14 +17747,8 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6e4c1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #516d4c"
-          />
+          <stop offset="0" style="stop-color: #c6e4c1" />
+          <stop offset="1" style="stop-color: #516d4c" />
         </linearGradient>
         <polygon
           style="
@@ -22226,14 +17765,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #88a381"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4c6847"
-          />
+          <stop offset="0" style="stop-color: #88a381" />
+          <stop offset="1" style="stop-color: #4c6847" />
         </linearGradient>
         <polygon
           style="
@@ -22250,14 +17783,8 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a2bf9d"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="0.9987" style="stop-color: #a2bf9d" />
         </linearGradient>
         <polygon
           style="
@@ -22274,18 +17801,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #728f6d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.484" style="stop-color: #728f6d" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
           style="
@@ -22302,14 +17820,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4b6746"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88a382"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4b6746" />
+          <stop offset="1" style="stop-color: #88a382" />
         </linearGradient>
         <polygon
           style="
@@ -22326,18 +17838,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #73926e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.4796" style="stop-color: #73926e" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
           style="
@@ -22354,14 +17857,8 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #445c3f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a4c19f"
-          />
+          <stop offset="0" style="stop-color: #445c3f" />
+          <stop offset="0.9987" style="stop-color: #a4c19f" />
         </linearGradient>
         <polygon
           id="Place_00000175302877419546214460000011926300175919344557_"
@@ -22380,14 +17877,8 @@
           y2="155.8836"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f8c6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #587153"
-          />
+          <stop offset="0" style="stop-color: #6f8c6a" />
+          <stop offset="1" style="stop-color: #587153" />
         </linearGradient>
         <polygon
           id="Deco_00000013872354552217250510000018348589191528282545_"
@@ -22406,14 +17897,8 @@
           y2="154.9115"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #546d4f"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #bddbb8"
-          />
+          <stop offset="0" style="stop-color: #546d4f" />
+          <stop offset="0.9965" style="stop-color: #bddbb8" />
         </linearGradient>
         <polygon
           id="Deco_00000040545652176924929300000003866784855127749031_"
@@ -22432,14 +17917,8 @@
           y2="153.5465"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a6c3a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #465e41"
-          />
+          <stop offset="0" style="stop-color: #a6c3a1" />
+          <stop offset="1" style="stop-color: #465e41" />
         </linearGradient>
         <polyline
           id="Deco_00000054983252928532636220000002945076752391891086_"
@@ -22458,14 +17937,8 @@
           y2="153.3598"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8daa88"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="1" style="stop-color: #8daa88" />
         </linearGradient>
         <polyline
           id="Deco_00000021085426817186397610000013801468854857139874_"
@@ -22484,14 +17957,8 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f8c6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #587153"
-          />
+          <stop offset="0" style="stop-color: #6f8c6a" />
+          <stop offset="1" style="stop-color: #587153" />
         </linearGradient>
         <polygon
           id="Deco_00000042014470493220804470000012184543432313035180_"
@@ -22510,14 +17977,8 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #546d4f"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #bddbb8"
-          />
+          <stop offset="0" style="stop-color: #546d4f" />
+          <stop offset="0.9965" style="stop-color: #bddbb8" />
         </linearGradient>
         <polygon
           id="Deco_00000152943013131880936140000011875251971192012166_"
@@ -22536,14 +17997,8 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a6c3a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #465e41"
-          />
+          <stop offset="0" style="stop-color: #a6c3a1" />
+          <stop offset="1" style="stop-color: #465e41" />
         </linearGradient>
         <polyline
           id="Deco_00000121259480530772648660000006180281321483360165_"
@@ -22562,14 +18017,8 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8daa88"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="1" style="stop-color: #8daa88" />
         </linearGradient>
         <polyline
           id="Deco_00000129888433554442816680000007440442748737543575_"
@@ -22592,14 +18041,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad81a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9e869a"
-          />
+          <stop offset="0" style="stop-color: #ad81a9" />
+          <stop offset="1" style="stop-color: #9e869a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000098927875737694761890000001372449181691745697_"
@@ -22617,14 +18060,8 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000032615839140377081420000018187298848139353521_"
@@ -22642,14 +18079,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000135692635553007181650000004780611766492425658_"
@@ -22667,14 +18098,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000023259141174593482870000006884531959218288525_"
@@ -22692,14 +18117,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000042724267342669450450000007939184474319245711_"
@@ -22717,14 +18136,8 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000125586208455551242740000014738286136834973327_"
@@ -22742,14 +18155,8 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <path
           style="
@@ -22767,18 +18174,9 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4c2f47"
-          />
-          <stop
-            offset="0.7569"
-            style="stop-color: #755671"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83647f"
-          />
+          <stop offset="0" style="stop-color: #4c2f47" />
+          <stop offset="0.7569" style="stop-color: #755671" />
+          <stop offset="1" style="stop-color: #83647f" />
         </linearGradient>
         <polygon
           style="
@@ -22795,14 +18193,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7185"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #463041"
-          />
+          <stop offset="0" style="stop-color: #9c7185" />
+          <stop offset="1" style="stop-color: #463041" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000085229748090011180890000012596661874235237294_"
@@ -22820,14 +18212,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7697"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cda5c8"
-          />
+          <stop offset="0" style="stop-color: #9c7697" />
+          <stop offset="1" style="stop-color: #cda5c8" />
         </linearGradient>
         <polygon
           style="
@@ -22844,14 +18230,8 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #966c80"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #966c80" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
           style="
@@ -22868,14 +18248,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a27c9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bb93b6"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a27c9d" />
+          <stop offset="1" style="stop-color: #bb93b6" />
         </linearGradient>
         <polygon
           style="
@@ -22892,14 +18266,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #987293"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1a9cc"
-          />
+          <stop offset="0" style="stop-color: #987293" />
+          <stop offset="1" style="stop-color: #d1a9cc" />
         </linearGradient>
         <polygon
           style="
@@ -22916,14 +18284,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37d9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bd96b8"
-          />
+          <stop offset="0" style="stop-color: #a37d9e" />
+          <stop offset="1" style="stop-color: #bd96b8" />
         </linearGradient>
         <polygon
           style="
@@ -22940,14 +18302,8 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #644659"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #644659" />
         </linearGradient>
         <polygon
           style="
@@ -22964,14 +18320,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bb93b6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5a3155"
-          />
+          <stop offset="0" style="stop-color: #bb93b6" />
+          <stop offset="1" style="stop-color: #5a3155" />
         </linearGradient>
         <polygon
           style="
@@ -22988,14 +18338,8 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c59dc0"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #c59dc0" />
         </linearGradient>
         <polygon
           style="
@@ -23012,18 +18356,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #553c4c"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #aa83a5"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #553c4d"
-          />
+          <stop offset="0" style="stop-color: #553c4c" />
+          <stop offset="0.484" style="stop-color: #aa83a5" />
+          <stop offset="1" style="stop-color: #553c4d" />
         </linearGradient>
         <polygon
           style="
@@ -23040,14 +18375,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #5c3257"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #5c3257" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
           style="
@@ -23064,18 +18393,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a780a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.484" style="stop-color: #a780a2" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
           style="
@@ -23092,14 +18412,8 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a781a2"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #a781a2" />
         </linearGradient>
         <polygon
           id="Place_00000129913965676235019880000004080765305362936213_"
@@ -23118,14 +18432,8 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37a9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64385c"
-          />
+          <stop offset="0" style="stop-color: #a37a9e" />
+          <stop offset="1" style="stop-color: #64385c" />
         </linearGradient>
         <polygon
           id="Deco_00000026857526364751004150000014790635410335456924_"
@@ -23144,14 +18452,8 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5d3258"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #c29abd"
-          />
+          <stop offset="0" style="stop-color: #5d3258" />
+          <stop offset="0.9965" style="stop-color: #c29abd" />
         </linearGradient>
         <polygon
           id="Deco_00000103976567609835653910000012661189523402689437_"
@@ -23170,14 +18472,8 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a0789b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b3055"
-          />
+          <stop offset="0" style="stop-color: #a0789b" />
+          <stop offset="1" style="stop-color: #5b3055" />
         </linearGradient>
         <polyline
           id="Deco_00000163765729169088758900000004432662085440912777_"
@@ -23196,14 +18492,8 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5a3155"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a2819e"
-          />
+          <stop offset="0" style="stop-color: #5a3155" />
+          <stop offset="1" style="stop-color: #a2819e" />
         </linearGradient>
         <polyline
           id="Deco_00000084530756261151249780000001527447416315813055_"
@@ -23222,14 +18512,8 @@
           y2="155.8836"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37a9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64385c"
-          />
+          <stop offset="0" style="stop-color: #a37a9e" />
+          <stop offset="1" style="stop-color: #64385c" />
         </linearGradient>
         <polygon
           id="Deco_00000111893537566829964680000007092046202048292523_"
@@ -23248,14 +18532,8 @@
           y2="154.9115"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5d3258"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #c29abd"
-          />
+          <stop offset="0" style="stop-color: #5d3258" />
+          <stop offset="0.9965" style="stop-color: #c29abd" />
         </linearGradient>
         <polygon
           id="Deco_00000070088925918147467990000016953218104449193358_"
@@ -23274,14 +18552,8 @@
           y2="153.5465"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a0789b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b3055"
-          />
+          <stop offset="0" style="stop-color: #a0789b" />
+          <stop offset="1" style="stop-color: #5b3055" />
         </linearGradient>
         <polyline
           id="Deco_00000028322276981960371260000018262117645213490342_"
@@ -23300,14 +18572,8 @@
           y2="153.3598"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5a3155"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a2819e"
-          />
+          <stop offset="0" style="stop-color: #5a3155" />
+          <stop offset="1" style="stop-color: #a2819e" />
         </linearGradient>
         <polyline
           id="Deco_00000181054988152524552170000002457073721324613528_"
@@ -23330,14 +18596,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c0816b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1866b"
-          />
+          <stop offset="0" style="stop-color: #c0816b" />
+          <stop offset="1" style="stop-color: #b1866b" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000036943608956515729130000005247780678349352618_"
@@ -23355,14 +18615,8 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000044858931947853571870000014597175107910336146_"
@@ -23380,14 +18634,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052086084029063930550000017497171910011210124_"
@@ -23405,14 +18653,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000060031221694209974770000007924330165325902523_"
@@ -23430,14 +18672,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000120549074271258082320000004600097796314291377_"
@@ -23455,14 +18691,8 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052089561305240852630000007341509027555066011_"
@@ -23480,14 +18710,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae714e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #54301b"
-          />
+          <stop offset="0" style="stop-color: #ae714e" />
+          <stop offset="1" style="stop-color: #54301b" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000087382610325207647910000002644976751360811393_"
@@ -23505,14 +18729,8 @@
           x2="99.1671"
           y2="135.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <path
           style="
@@ -23530,18 +18748,9 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #562f29"
-          />
-          <stop
-            offset="0.6487"
-            style="stop-color: #80503b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #986446"
-          />
+          <stop offset="0" style="stop-color: #562f29" />
+          <stop offset="0.6487" style="stop-color: #80503b" />
+          <stop offset="1" style="stop-color: #986446" />
         </linearGradient>
         <polygon
           style="
@@ -23558,14 +18767,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ce8c73"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ce8e74"
-          />
+          <stop offset="0" style="stop-color: #ce8c73" />
+          <stop offset="1" style="stop-color: #ce8e74" />
         </linearGradient>
         <polygon
           style="
@@ -23582,14 +18785,8 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d08f74"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9a4650"
-          />
+          <stop offset="0" style="stop-color: #d08f74" />
+          <stop offset="1" style="stop-color: #9a4650" />
         </linearGradient>
         <polygon
           style="
@@ -23606,14 +18803,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ca8871"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dda480"
-          />
+          <stop offset="0" style="stop-color: #ca8871" />
+          <stop offset="1" style="stop-color: #dda480" />
         </linearGradient>
         <polygon
           style="
@@ -23630,14 +18821,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6836f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e2a983"
-          />
+          <stop offset="0" style="stop-color: #c6836f" />
+          <stop offset="1" style="stop-color: #e2a983" />
         </linearGradient>
         <polygon
           style="
@@ -23654,14 +18839,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c78470"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d19175"
-          />
+          <stop offset="0" style="stop-color: #c78470" />
+          <stop offset="1" style="stop-color: #d19175" />
         </linearGradient>
         <polygon
           style="
@@ -23678,14 +18857,8 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98434f"
-          />
+          <stop offset="0" style="stop-color: #e2a983" />
+          <stop offset="1" style="stop-color: #98434f" />
         </linearGradient>
         <polygon
           style="
@@ -23702,14 +18875,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad605d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #ad605d" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
           style="
@@ -23726,14 +18893,8 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f2a30"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #6f2a30" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
           style="
@@ -23750,18 +18911,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #76363e"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #9f5554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #77373f"
-          />
+          <stop offset="0" style="stop-color: #76363e" />
+          <stop offset="0.484" style="stop-color: #9f5554" />
+          <stop offset="1" style="stop-color: #77373f" />
         </linearGradient>
         <polygon
           style="
@@ -23778,14 +18930,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bf796a"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #99444f" />
+          <stop offset="1" style="stop-color: #bf796a" />
         </linearGradient>
         <polygon
           style="
@@ -23802,18 +18948,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #793a40"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a15756"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #71333b"
-          />
+          <stop offset="0" style="stop-color: #793a40" />
+          <stop offset="0.484" style="stop-color: #a15756" />
+          <stop offset="1" style="stop-color: #71333b" />
         </linearGradient>
         <polygon
           style="
@@ -23830,14 +18967,8 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
           id="Place_00000143580526987184229300000007392414084636638372_"
@@ -23855,14 +18986,8 @@
           x2="51.9331"
           y2="155.8836"
         >
-          <stop
-            offset="0"
-            style="stop-color: #be776a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #be776a" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
           id="Deco_00000063598539987002213500000011875977388809403309_"
@@ -23880,14 +19005,8 @@
           x2="52.8483"
           y2="154.9115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #dfa481"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #dfa481" />
         </linearGradient>
         <polygon
           id="Deco_00000102504505355790921230000015022891448936271537_"
@@ -23905,14 +19024,8 @@
           x2="50.7211"
           y2="153.5465"
         >
-          <stop
-            offset="0"
-            style="stop-color: #da9d7d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98424e"
-          />
+          <stop offset="0" style="stop-color: #da9d7d" />
+          <stop offset="1" style="stop-color: #98424e" />
         </linearGradient>
         <polyline
           id="Deco_00000115510287241790448460000001989863108429593476_"
@@ -23930,14 +19043,8 @@
           x2="52.9078"
           y2="153.3598"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e3038"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c17d6d"
-          />
+          <stop offset="0" style="stop-color: #6e3038" />
+          <stop offset="1" style="stop-color: #c17d6d" />
         </linearGradient>
         <polyline
           id="Deco_00000029761303790698074110000012920281467349066655_"
@@ -23956,14 +19063,8 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #be776a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #be776a" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
           id="Deco_00000020358959888224658730000010412685415601635718_"
@@ -23982,14 +19083,8 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #dfa481"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #dfa481" />
         </linearGradient>
         <polygon
           id="Deco_00000008840575291834732430000000729052320287104679_"
@@ -24008,14 +19103,8 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #da9d7d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98424e"
-          />
+          <stop offset="0" style="stop-color: #da9d7d" />
+          <stop offset="1" style="stop-color: #98424e" />
         </linearGradient>
         <polyline
           id="Deco_00000033337437830604465660000014221064325929054899_"
@@ -24034,14 +19123,8 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e3038"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c17d6d"
-          />
+          <stop offset="0" style="stop-color: #6e3038" />
+          <stop offset="1" style="stop-color: #c17d6d" />
         </linearGradient>
         <polyline
           id="Deco_00000062193085232817135700000014950175404673918091_"
@@ -24064,14 +19147,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b6a496"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b6a496" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000117640624930303037280000010088833211525905795_"
@@ -24089,14 +19166,8 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000150067111159303190390000000679545145018589873_"
@@ -24114,14 +19185,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000058586797863120395960000003573378584560854961_"
@@ -24139,14 +19204,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000084508363985064822620000016965840122271844507_"
@@ -24164,14 +19223,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000008120801731563323600000016282492628965116307_"
@@ -24189,14 +19242,8 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000064331874895770712780000014811130377773181328_"
@@ -24214,14 +19261,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745c51"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #745c51" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000181080274017655132310000014482073173125777830_"
@@ -24239,14 +19280,8 @@
           x2="99.1671"
           y2="135.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <path
           style="
@@ -24267,14 +19302,8 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <polygon
             style="
@@ -24291,14 +19320,8 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <path
             style="
@@ -24315,14 +19338,8 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cebcae"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #cebcae" />
         </linearGradient>
         <polygon
           style="
@@ -24339,14 +19356,8 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2b5a7"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765d52"
-          />
+          <stop offset="0" style="stop-color: #c2b5a7" />
+          <stop offset="1" style="stop-color: #765d52" />
         </linearGradient>
         <polygon
           style="
@@ -24363,14 +19374,8 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e0cfbe"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #e0cfbe" />
         </linearGradient>
         <polygon
           style="
@@ -24387,14 +19392,8 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #efdfcf"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #efdfcf" />
         </linearGradient>
         <polygon
           style="
@@ -24411,14 +19410,8 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bfb1a4"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6baae"
-          />
+          <stop offset="0" style="stop-color: #bfb1a4" />
+          <stop offset="1" style="stop-color: #c6baae" />
         </linearGradient>
         <polygon
           style="
@@ -24435,14 +19428,8 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
           style="
@@ -24459,14 +19446,8 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c1aea8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #746058"
-          />
+          <stop offset="0" style="stop-color: #c1aea8" />
+          <stop offset="1" style="stop-color: #746058" />
         </linearGradient>
         <polygon
           style="
@@ -24483,14 +19464,8 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #d6c9c3"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #d6c9c3" />
         </linearGradient>
         <polygon
           style="
@@ -24507,18 +19482,9 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
           style="
@@ -24535,14 +19501,8 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #746058"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5a49e"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #746058" />
+          <stop offset="1" style="stop-color: #b5a49e" />
         </linearGradient>
         <polygon
           style="
@@ -24559,18 +19519,9 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
           style="
@@ -24587,14 +19538,8 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           id="Place_00000181062841924679048170000009221002507746949517_"
@@ -24612,14 +19557,8 @@
           x2="51.9331"
           y2="155.8836"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
           id="Deco_00000122685743275630300170000006960116675883505843_"
@@ -24637,14 +19576,8 @@
           x2="52.8483"
           y2="154.9115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           id="Deco_00000174576358021356166930000013158887975670318725_"
@@ -24662,14 +19595,8 @@
           x2="50.7211"
           y2="153.5465"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4e"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #725a4e" />
         </linearGradient>
         <polyline
           id="Deco_00000079459725084747787650000006730647020378264767_"
@@ -24687,14 +19614,8 @@
           x2="52.9078"
           y2="153.3598"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b8477"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #eedece"
-          />
+          <stop offset="0" style="stop-color: #9b8477" />
+          <stop offset="1" style="stop-color: #eedece" />
         </linearGradient>
         <polyline
           id="Deco_00000114070110305941153430000006722346482967094404_"
@@ -24713,14 +19634,8 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
           id="Deco_00000045592858775121208460000014893325250918551708_"
@@ -24739,14 +19654,8 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           id="Deco_00000110437103161388700850000008177304382129644680_"
@@ -24765,14 +19674,8 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4e"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #725a4e" />
         </linearGradient>
         <polyline
           id="Deco_00000100379871047068480210000007680539227041888424_"
@@ -24791,14 +19694,8 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b8477"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #eedece"
-          />
+          <stop offset="0" style="stop-color: #9b8477" />
+          <stop offset="1" style="stop-color: #eedece" />
         </linearGradient>
         <polyline
           id="Deco_1_00000078738899116670892650000005228829813409601414_"
@@ -24810,10 +19707,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.HQ"
-      id="HQ_Framed_Addition"
-    >
+    <g v-if="FramedAddition.HQ" id="HQ_Framed_Addition">
       <g
         id="Multi_Class_Frame_00000013893546042885296050000001931460204239677355_"
       >
@@ -24825,14 +19719,8 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d5b076"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d0ac72"
-          />
+          <stop offset="0" style="stop-color: #d5b076" />
+          <stop offset="1" style="stop-color: #d0ac72" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000178169520596023096840000005484027244850778047_"
@@ -24850,14 +19738,8 @@
           x2="165.752"
           y2="121.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f5a1f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c0a578"
-          />
+          <stop offset="0" style="stop-color: #7f5a1f" />
+          <stop offset="1" style="stop-color: #c0a578" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000074420955878871479730000014373430093897481902_"
@@ -24875,14 +19757,8 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #70552c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #75502c"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #70552c" />
+          <stop offset="1" style="stop-color: #75502c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000066505126100032638340000009846052409498300056_"
@@ -24900,14 +19776,8 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #765c35"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7f6441"
-          />
+          <stop offset="0" style="stop-color: #765c35" />
+          <stop offset="1" style="stop-color: #7f6441" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000105423989015296387630000010282599795379494540_"
@@ -24925,14 +19795,8 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e532c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e542f"
-          />
+          <stop offset="0" style="stop-color: #6e532c" />
+          <stop offset="1" style="stop-color: #6e542f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000114755131157181684920000005690074729921036681_"
@@ -24950,14 +19814,8 @@
           x2="32.5823"
           y2="121.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #815c21"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c9a56a"
-          />
+          <stop offset="0" style="stop-color: #815c21" />
+          <stop offset="1" style="stop-color: #c9a56a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000025404930196023058330000014835754114974799524_"
@@ -24975,14 +19833,8 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c7a56e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7d5e2a"
-          />
+          <stop offset="0" style="stop-color: #c7a56e" />
+          <stop offset="1" style="stop-color: #7d5e2a" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000079470475486596229310000011056813820892018325_"
@@ -25000,14 +19852,8 @@
           x2="99.1671"
           y2="121.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f5d095"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #96743b"
-          />
+          <stop offset="0" style="stop-color: #f5d095" />
+          <stop offset="0.9987" style="stop-color: #96743b" />
         </linearGradient>
         <path
           style="
@@ -25025,14 +19871,8 @@
           x2="50.2802"
           y2="154.5438"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b712e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d2af77"
-          />
+          <stop offset="0" style="stop-color: #9b712e" />
+          <stop offset="1" style="stop-color: #d2af77" />
         </linearGradient>
         <polygon
           style="
@@ -25049,14 +19889,8 @@
           x2="47.705"
           y2="160.4429"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfab70"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8f6a2f"
-          />
+          <stop offset="0" style="stop-color: #cfab70" />
+          <stop offset="1" style="stop-color: #8f6a2f" />
         </linearGradient>
         <polygon
           style="
@@ -25073,14 +19907,8 @@
           x2="46.8202"
           y2="157.4474"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cea96e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b5b27"
-          />
+          <stop offset="0" style="stop-color: #cea96e" />
+          <stop offset="1" style="stop-color: #7b5b27" />
         </linearGradient>
         <polyline
           id="Deco_00000093163261877010449090000013009687061483964861_"
@@ -25098,14 +19926,8 @@
           x2="49.75"
           y2="156.5176"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e7431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4cf93"
-          />
+          <stop offset="0" style="stop-color: #9e7431" />
+          <stop offset="1" style="stop-color: #f4cf93" />
         </linearGradient>
         <polyline
           id="Deco_00000023276579840489676990000001450105564802185919_"
@@ -25124,14 +19946,8 @@
           y2="154.5438"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b712e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d2af77"
-          />
+          <stop offset="0" style="stop-color: #9b712e" />
+          <stop offset="1" style="stop-color: #d2af77" />
         </linearGradient>
         <polygon
           style="
@@ -25149,14 +19965,8 @@
           y2="160.4429"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfab70"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8f6a2f"
-          />
+          <stop offset="0" style="stop-color: #cfab70" />
+          <stop offset="1" style="stop-color: #8f6a2f" />
         </linearGradient>
         <polygon
           style="
@@ -25174,14 +19984,8 @@
           y2="157.4474"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cea96e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b5b27"
-          />
+          <stop offset="0" style="stop-color: #cea96e" />
+          <stop offset="1" style="stop-color: #7b5b27" />
         </linearGradient>
         <polyline
           id="Deco_00000013882440371261698300000006528337510720245420_"
@@ -25200,14 +20004,8 @@
           y2="156.5176"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e7431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4cf93"
-          />
+          <stop offset="0" style="stop-color: #9e7431" />
+          <stop offset="1" style="stop-color: #f4cf93" />
         </linearGradient>
         <polyline
           id="Deco_00000115478231656471819120000000529684408426804632_"
@@ -25226,18 +20024,9 @@
         x2="39.0296"
         y2="108.9721"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="0.5273"
-          style="stop-color: #ac905f"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="0.5273" style="stop-color: #ac905f" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
         style="
@@ -25255,14 +20044,8 @@
         x2="101.4576"
         y2="27.8373"
       >
-        <stop
-          offset="0"
-          style="stop-color: #7a5a23"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #74573c"
-        />
+        <stop offset="0" style="stop-color: #7a5a23" />
+        <stop offset="1" style="stop-color: #74573c" />
       </linearGradient>
       <path
         style="
@@ -25280,18 +20063,9 @@
         x2="170.6789"
         y2="108.9721"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="0.5273"
-          style="stop-color: #ac905f"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="0.5273" style="stop-color: #ac905f" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
         style="
@@ -25309,14 +20083,8 @@
         x2="160.9723"
         y2="154.4496"
       >
-        <stop
-          offset="0"
-          style="stop-color: #cdab76"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9b712e"
-        />
+        <stop offset="0" style="stop-color: #cdab76" />
+        <stop offset="1" style="stop-color: #9b712e" />
       </linearGradient>
       <polygon
         style="
@@ -25333,14 +20101,8 @@
         x2="170.6423"
         y2="50.8271"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #ac905f"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="1" style="stop-color: #ac905f" />
       </linearGradient>
       <path
         style="
@@ -25358,14 +20120,8 @@
         x2="99.1332"
         y2="154.4496"
       >
-        <stop
-          offset="0"
-          style="stop-color: #9b712e"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #d2af77"
-        />
+        <stop offset="0" style="stop-color: #9b712e" />
+        <stop offset="1" style="stop-color: #d2af77" />
       </linearGradient>
       <polygon
         style="
@@ -25382,14 +20138,8 @@
         x2="96.9116"
         y2="172.8874"
       >
-        <stop
-          offset="0"
-          style="stop-color: #cfab70"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #8f6a2f"
-        />
+        <stop offset="0" style="stop-color: #cfab70" />
+        <stop offset="1" style="stop-color: #8f6a2f" />
       </linearGradient>
       <polygon
         style="
@@ -25406,14 +20156,8 @@
         x2="31.4556"
         y2="144.799"
       >
-        <stop
-          offset="0"
-          style="stop-color: #f6d195"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c8a877"
-        />
+        <stop offset="0" style="stop-color: #f6d195" />
+        <stop offset="1" style="stop-color: #c8a877" />
       </linearGradient>
       <path
         style="
@@ -25431,14 +20175,8 @@
         x2="101.3314"
         y2="25.5472"
       >
-        <stop
-          offset="0"
-          style="stop-color: #c5a575"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #d5b176"
-        />
+        <stop offset="0" style="stop-color: #c5a575" />
+        <stop offset="1" style="stop-color: #d5b176" />
       </linearGradient>
       <path
         style="
@@ -25456,14 +20194,8 @@
         x2="162.6011"
         y2="156.1589"
       >
-        <stop
-          offset="0"
-          style="stop-color: #7b5b27"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #ac905f"
-        />
+        <stop offset="0" style="stop-color: #7b5b27" />
+        <stop offset="1" style="stop-color: #ac905f" />
       </linearGradient>
       <polygon
         style="
@@ -25480,14 +20212,8 @@
         x2="166.812"
         y2="144.799"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
         style="
@@ -25505,14 +20231,8 @@
         x2="174.6409"
         y2="70.41"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
         style="
@@ -25526,19 +20246,8 @@
 
     <g>
       <defs>
-        <filter
-          id="dropshadow"
-          x="-1.8em"
-          y="-1em"
-          height="4em"
-          width="4.8em"
-        >
-          <feDropShadow
-            dx="2"
-            dy="2"
-            stdDeviation="1.5"
-            flood-opacity="0.60"
-          />
+        <filter id="dropshadow" x="-1.8em" y="-1em" height="4em" width="4.8em">
+          <feDropShadow dx="2" dy="2" stdDeviation="1.5" flood-opacity="0.60" />
         </filter>
         <filter
           id="dropshadow_straight"
@@ -25547,12 +20256,7 @@
           height="2em"
           width="4.2em"
         >
-          <feDropShadow
-            dx="1"
-            dy="1"
-            stdDeviation="1"
-            flood-opacity="1.0"
-          />
+          <feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="1.0" />
         </filter>
       </defs>
 
@@ -25654,8 +20358,8 @@
 
 <script lang="ts">
 import * as R from "ramda";
-import {Card} from "@/model/Card";
-import {useCardsRules} from "@/def-composables/useCardRules";
+import { Card } from "@/model/Card";
+import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
   name: "CardComponent",
@@ -25678,7 +20382,7 @@ export default {
     },
   },
   setup() {
-    const {rules} = useCardsRules();
+    const { rules } = useCardsRules();
 
     return {
       cardRules: rules,
@@ -25732,23 +20436,23 @@ export default {
   watch: {
     model: {
       handler() {
-        this.rulesText = this.generateRulesText()
-        this.update()
+        this.rulesText = this.generateRulesText();
+        this.update();
       },
       deep: true,
     },
   },
   created() {
-    this.rulesText = this.generateRulesText()
-    this.update()
-    this.textVisible = false
+    this.rulesText = this.generateRulesText();
+    this.update();
+    this.textVisible = false;
   },
   mounted() {
     this.textVisible = true;
   },
   methods: {
     update() {
-      this.FullArt = this.model.fullArt
+      this.FullArt = this.model.fullArt;
 
       let FullArtfilter = (x) => (this.FullArt ? x : R.map(() => false, x));
       let EntityFullArtfilter = (x) =>
@@ -25784,8 +20488,8 @@ export default {
       };
       cardType[tempType] = true;
 
-      let frameType = R.mergeAll(cardClass, {HQ: false, MultiClass: false});
-      let colorType = R.mergeAll(cardClass, {MultiClass: false});
+      let frameType = R.mergeAll(cardClass, { HQ: false, MultiClass: false });
+      let colorType = R.mergeAll(cardClass, { MultiClass: false });
 
       if (R.countBy((x) => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
@@ -25825,28 +20529,31 @@ export default {
       this.SecondaryColor = R.last(classTrueKeys ? classTrueKeys : []);
       this.PrimaryColor = R.head(classTrueKeys ? classTrueKeys : []);
 
-      this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
-      this.GoldSquare = true
-      this.Border = frameType
-      this.IBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : false
-      this.BGGoldLines = true
-      this.BGShadow = cardType
-      this.ClassShadow = true
-      this.ManaBall = frameType
-      this.FullArtIllustrationMask = FullArtfilter(cardType)
-      this.ShadowFullArt = FullArtfilter(cardType)
-      this.FramedIllustrationMask = Framedfilter(cardType)
-      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType)
-      this.FramedTextBox = Framedfilter(colorType)
-      this.HQFramedTextBox = cardType.HQ && !this.FullArt
-      this.ShadowTextBox = cardType
-      this.Tagsbar = this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType
-      this.ShadowFramed = Framedfilter(cardType)
-      this.FullArtFrames = EntityFullArtfilter(cardType)
-      this.FramedAddition = Framedfilter(cardType)
-      this.framed = colorType
-      this.attackFrame = cardType.Entity
-      this.healthFrame = NonActionFilter(frameType)
+      this.OBG = this.Classes === 2 && !cardType.HQ ? cardClass : frameType;
+      this.GoldSquare = true;
+      this.Border = frameType;
+      this.IBG = this.Classes === 2 && !cardType.HQ ? cardClass : false;
+      this.BGGoldLines = true;
+      this.BGShadow = cardType;
+      this.ClassShadow = true;
+      this.ManaBall = frameType;
+      this.FullArtIllustrationMask = FullArtfilter(cardType);
+      this.ShadowFullArt = FullArtfilter(cardType);
+      this.FramedIllustrationMask = Framedfilter(cardType);
+      this.FullArtGradients = FullArtfilter(
+        this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType,
+      );
+      this.FramedTextBox = Framedfilter(colorType);
+      this.HQFramedTextBox = cardType.HQ && !this.FullArt;
+      this.ShadowTextBox = cardType;
+      this.Tagsbar =
+        this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType;
+      this.ShadowFramed = Framedfilter(cardType);
+      this.FullArtFrames = EntityFullArtfilter(cardType);
+      this.FramedAddition = Framedfilter(cardType);
+      this.framed = colorType;
+      this.attackFrame = cardType.Entity;
+      this.healthFrame = NonActionFilter(frameType);
     },
     cardmouseleave() {
       if (this.hoverBehavior === "none") return;
@@ -25883,9 +20590,9 @@ export default {
         } else {
           console.error(
             "Invalid card type. Must be one of the following: " +
-            R.values(R.pluck("name", this.$cardRules.children)) +
-            ". Instead is: " +
-            type,
+              R.values(R.pluck("name", this.$cardRules.children)) +
+              ". Instead is: " +
+              type,
           );
         }
       }
@@ -25931,8 +20638,7 @@ export default {
         return R.join("", R.over(R.lensIndex(0), R.toLower, x));
       };
       let effectsToText = (Effects) => {
-        if (!Effects)
-          return []
+        if (!Effects) return [];
 
         let effectText = [];
         Effects.forEach((effect) => {
@@ -25973,13 +20679,17 @@ export default {
       let getInteractionText = (key) =>
         R.split(" ", rules[decapital(key)].interactionText);
 
-      let rulesText = []
+      let rulesText = [];
       if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
-        let costType = R.keys(this.model.AdditionalCost)
-        let amount = this.model.AdditionalCost[costType].Amount
+        let costType = R.keys(this.model.AdditionalCost);
+        let amount = this.model.AdditionalCost[costType].Amount;
         if (amount > 0) {
-          let costText = "Extra Cost - "
-          costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
+          let costText = "Extra Cost - ";
+          costText += R.replace(
+            "§Amount",
+            amount,
+            rules.AdditionalCost.children[costType].interactionText,
+          );
           if (costType === "SacrificeCost")
             costText = R.replace(
               "card",
@@ -25992,9 +20702,9 @@ export default {
         }
       }
       if (this.model.Abilities && !R.isEmpty(this.model.Abilities)) {
-        this.model.Abilities.forEach(ability => {
-          let keyword = R.keys(ability)[0]
-          let abilityText = getInteractionText(keyword)
+        this.model.Abilities.forEach((ability) => {
+          let keyword = R.keys(ability)[0];
+          let abilityText = getInteractionText(keyword);
 
           abilityText.forEach((block, index) => {
             // Effects can be nested a bit, so this needs more handling
@@ -26030,7 +20740,7 @@ export default {
       } else if (this.model.Effects && !R.isEmpty(this.model.Effects)) {
         let effecttext = effectsToText(this.model.Effects);
         rulesText = R.append(R.join(". ", effecttext), rulesText);
-      } 
+      }
       return rulesText;
     },
     abilitiesLength() {
@@ -26069,7 +20779,7 @@ export default {
     },
     getAbilityText() {
       let additionalCostText = [];
-      return this.rulesText ? R.concat(additionalCostText, this.rulesText) : []
+      return this.rulesText ? R.concat(additionalCostText, this.rulesText) : [];
     },
     textToSvg(text) {
       if (!text) return text;

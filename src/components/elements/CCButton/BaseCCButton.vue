@@ -18,7 +18,7 @@ const emit = defineEmits(["click"]);
 
 const props = withDefaults(
   defineProps<{
-    diabled?: boolean
+    diabled?: boolean;
     sizeClass?: string[];
     type?: Color;
   }>(),

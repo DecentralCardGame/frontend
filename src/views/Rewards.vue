@@ -8,21 +8,13 @@
       </h1>
       <div class="py-24">
         <div class="mx-auto h-64 w-64 relative group">
-          <ProfilePicComponent
-            :src="state.img"
-            size="64"
-            alt="Profile pic"
-          />
+          <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
           <button
             v-if="state.userIsUser"
             class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible group-hover:visible"
             @click="showChooseModal"
           >
-            <img
-              :src="editImg"
-              alt="edit"
-              class="hover:drop-shadow-md"
-            >
+            <img :src="editImg" alt="edit" class="hover:drop-shadow-md" />
           </button>
         </div>
       </div>
@@ -33,32 +25,37 @@
       </h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <UserViewHeadingContainer>
-          <template #heading>
-            Wallet
-          </template>
+          <template #heading> Wallet </template>
           <template #body>
-            <b>Address</b> <br>{{ state.addr }}
-            <br>
-            <b>Alias</b> <br>{{ state.user.alias }}
-            <br><br>
-            <b>Zealy ID</b> <br>{{ state.rewards[0].ZealyID }}
-            <br>
-            <b>Airdrop</b> <br>{{ state.rewards[0].Airdrop }}
-            <br>
-            <b>InGameCredits</b> <br>{{ state.rewards[0].InGameCredits }}
-            <br>
-            <b>EarlyAccessToGame</b> <br>{{ state.rewards[0].EarlyAccessToGame }}
-            <br>
-            <b>BoosterPacks</b> <br>{{ state.rewards[0].BoosterPacks }}
-            <br>
-            <b>DiscordUsername</b> <br>{{ state.rewards[0].DiscordUsername }}
-            <br>
-            <b>AmbassadorProgramAdvisory</b> <br>{{ state.rewards[0].AmbassadorProgramAdvisory }}
-            <br>
-            <b>WLForTheTokenSale</b> <br>{{ state.rewards[0].WLForTheTokenSale }}
-            <br>
-            <b>WLForTheTokenSaleBetterPrice</b> <br>{{ state.rewards[0].WLForTheTokenSaleBetterPrice }}
-            <br>
+            <b>Address</b> <br />{{ state.addr }}
+            <br />
+            <b>Alias</b> <br />{{ state.user.alias }} <br /><br />
+            <b>Zealy ID</b> <br />{{ state.rewards[0].ZealyID }}
+            <br />
+            <b>Airdrop</b> <br />{{ state.rewards[0].Airdrop }}
+            <br />
+            <b>InGameCredits</b> <br />{{ state.rewards[0].InGameCredits }}
+            <br />
+            <b>EarlyAccessToGame</b> <br />{{
+              state.rewards[0].EarlyAccessToGame
+            }}
+            <br />
+            <b>BoosterPacks</b> <br />{{ state.rewards[0].BoosterPacks }}
+            <br />
+            <b>DiscordUsername</b> <br />{{ state.rewards[0].DiscordUsername }}
+            <br />
+            <b>AmbassadorProgramAdvisory</b> <br />{{
+              state.rewards[0].AmbassadorProgramAdvisory
+            }}
+            <br />
+            <b>WLForTheTokenSale</b> <br />{{
+              state.rewards[0].WLForTheTokenSale
+            }}
+            <br />
+            <b>WLForTheTokenSaleBetterPrice</b> <br />{{
+              state.rewards[0].WLForTheTokenSaleBetterPrice
+            }}
+            <br />
           </template>
         </UserViewHeadingContainer>
       </div>
@@ -78,24 +75,22 @@ import { normalizeCoins } from "@/utils/utils";
 import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUser } from "@/def-composables/useUser";
-import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
-import { Match } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/match";
+import { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
+import { Match } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
-import { Color } from "@/components/utils/color";
-import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
 import axios from "axios";
 
-const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
+const { queryUser, queryAllBalances, queryMatches } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { getImg } = useProfilePic();
-const { user, coins, queryCoins, queryUser } = useUser();
+const { user, coins, getUser } = useUser();
 const { loggedInProfilePic } = useProfilePic();
 const route = useRoute();
 const router = useRouter();
@@ -138,24 +133,23 @@ const init = () => {
   state.addr = route.params.id.toString();
 
   // get the reward list from the server
-  axios.get('https://cardchain.crowdcontrol.network/files/rewards.csv')
+  axios
+    .get("https://cardchain.crowdcontrol.network/files/rewards.csv")
     .then((response) => {
-      var lines=response.data.split("\n");
+      var lines = response.data.split("\n");
       var result = [];
-      var headers=lines[0].split(",");
-      for(var i=1; i<lines.length; i++) {
+      var headers = lines[0].split(",");
+      for (var i = 1; i < lines.length; i++) {
         var obj = {};
-        var currentline=lines[i].split(",");
-        for(var j=0; j<headers.length; j++){
-            obj[headers[j]] = currentline[j];
+        var currentline = lines[i].split(",");
+        for (var j = 0; j < headers.length; j++) {
+          obj[headers[j]] = currentline[j];
         }
-        if (obj.CCAddress == state.addr)
-          result.push(obj);
-          state.rewards = result;
+        if (obj.CCAddress == state.addr) result.push(obj);
+        state.rewards = result;
       }
       console.log("matching entries:", result);
-    })
-
+    });
 
   if (state.userIsUser) {
     state.user = user.value;
@@ -168,17 +162,17 @@ const init = () => {
   }
 
   router.push({ name: "Rewards", params: { id: state.addr } });
-  getUser();
-  console.log(state.user)
+  qUser();
+  console.log(state.user);
 };
 
 onMounted(init);
 
-const getUser = () => {
+const qUser = () => {
   if (state.userIsUser) {
-    queryUser();
+    getUser();
   } else {
-    queryQUser(state.addr).then((user) => {
+    queryUser(state.addr).then((user) => {
       state.user = user;
       getImg(state.user, state.addr).then((img) => {
         state.img = img;
@@ -186,5 +180,4 @@ const getUser = () => {
     });
   }
 };
-
 </script>

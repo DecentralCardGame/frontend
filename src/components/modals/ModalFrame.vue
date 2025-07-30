@@ -20,7 +20,7 @@ const props = withDefaults(
   {
     heading: "Lorem impsum dolor",
     class: () => [],
-  }
+  },
 );
 
 const emit = defineEmits(["close"]);

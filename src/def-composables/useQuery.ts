@@ -1,19 +1,19 @@
 import { useClient } from "@/composables/useClient";
 import type { AxiosResponse } from "axios";
-import { ChainCard, Card } from "@/model/Card";
+import { Card } from "@/model/Card";
 import { Coin } from "@/model/Coin";
-import type { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
-
+import type { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
+import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
 
 const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   defaultHandler: (res) => {
     return res.data;
   },
-  queryQCard: (res): Card => {
-    return ChainCard.from(res.data).toCard();
+  queryCard: (res): Card => {
+    return Card.fromCardWithImage((res.data as QueryCardResponse).card!);
   },
-  queryQUser: (res): User => {
-    return res.data;
+  queryUser: (res): User => {
+    return res.data.user;
   },
   queryAllBalances: (res) => {
     let coins: Coin[] = [];
@@ -23,11 +23,11 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
     res.data.balances = coins;
     return res.data;
   },
-  queryQCardchainInfo: (res) => {
+  queryCardchainInfo: (res) => {
     res.data.cardAuctionPrice = Coin.from(res.data.cardAuctionPrice);
     return res.data;
   },
-  queryQVotingResults: (res) => {
+  queryVotingResults: (res) => {
     return res.data;
   },
   queryGrants: (res) => {
@@ -39,16 +39,16 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   queryGranteeGrants: (res) => {
     return res.data;
   },
-  queryQEncounter: (res) => {
+  queryEncounter: (res) => {
     return res.data;
   },
-  queryQEncounterWithImage: (res) => {
+  queryEncounterWithImage: (res) => {
     return res.data;
   },
-  queryQEncounters: (res) => {
+  queryEncounters: (res) => {
     return res.data;
   },
-  queryQEncountersWithImage: (res) => {
+  queryEncountersWithImage: (res) => {
     return res.data;
   },
 };
@@ -56,15 +56,29 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
 // Do not touch
 const useQueryInstance = () => {
   const client = useClient();
-  const unified = Object.assign(client.CosmosBankV1Beta1.query, client.DecentralCardGameCardchainCardchain.query, client.CosmosAuthzV1Beta1.query);
+  const unified = Object.assign(
+    client.CosmosBankV_1Beta_1.query,
+    client.CardchainCardchain.query,
+    client.CosmosAuthzV_1Beta_1.query,
+  );
   const keys = Object.keys(unified);
+
+  client.CardchainCardchain.query.queryCardchainInfo;
 
   let queries: { [id: string]: (...args: any[]) => Promise<any> } = {};
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     queries[key] = (...args: any[]) => {
       return new Promise((myResolve, _) => {
-        myResolve((unified as any)[key](...args).then(handlers.hasOwnProperty(key) ? handlers[key] : handlers.defaultHandler));
+        myResolve(
+          (unified as any)
+            [key](...args)
+            .then(
+              handlers.hasOwnProperty(key)
+                ? handlers[key]
+                : handlers.defaultHandler,
+            ),
+        );
       });
     };
   });

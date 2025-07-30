@@ -1,8 +1,5 @@
 <template>
-  <BaseTeaser
-    class="h-[30rem]"
-    pic-class=""
-  >
+  <BaseTeaser class="h-[30rem]" pic-class="">
     <slot />
   </BaseTeaser>
 </template>

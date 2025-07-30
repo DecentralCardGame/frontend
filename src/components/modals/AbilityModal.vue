@@ -1,136 +1,130 @@
 <template>
-  <transition name="modal-fade">
-    <div class="">
-      <div
-        aria-describedby="modalDescription"
-        aria-labelledby="modalTitle"
-        class="px-6 bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
-        role="dialog"
+  <div>
+    <div
+      aria-describedby="modalDescription"
+      aria-labelledby="modalTitle"
+      class="px-6 bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
+      role="dialog"
+    >
+      <header id="modalTitle" class="p-4">
+        <slot name="header">
+          {{ dialog.title }}
+          <span
+            aria-label="Close modal"
+            class="ml-[32.8rem] px-2 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-2 border-opacity-80"
+            type="button"
+            @click="close"
+          >
+            x
+          </span>
+        </slot>
+      </header>
+      <section
+        id="modalDescription"
+        class="flex flex-wrap flex-row justify-start"
       >
-        <header
-          id="modalTitle"
-          class="p-4"
-        >
-          <slot name="header">
-            {{ dialog.title }}
-            <span
-              aria-label="Close modal"
-              class="ml-[32.8rem] px-2 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-2 border-opacity-80"
-              type="button"
-              @click="close"
-            >
-              x
-            </span>
-          </slot>
-        </header>
-        <section
-          id="modalDescription"
-          class="flex flex-wrap flex-row justify-start"
-        >
-          <slot name="body">
-            <!-- {{ dialog.description }} -->
-            <div
-              v-for="(option, index) in filterClasses(dialog.options)"
-              :key="index"
-              class="w-1/3 flex flex-col justify-center items-center rounded-sm text-black"
-            >
-              <div class="">
-                <div class="p-2 m-2 bg-white bg-opacity-80">
-                  <input
-                    v-if="dialog.type === 'boolean'"
-                    id="index"
-                    v-model="option.value"
-                    :value="option.name"
-                    type="checkbox"
-                  >
-                  <button
-                    v-if="dialog.type === 'enum'"
-                    aria-label="Close modal"
-                    class=""
-                    type="button"
-                    @click="
-                      selected = option;
-                      addAbility();
-                    "
-                  >
-                    <img
-                      class=""
-                      :src="getIcon(option)"
-                    >
-                    {{ option.name }}
-                    <span v-if="option.description">
-                      {{ option.description }}
-                    </span>
-                  </button>
+        <slot name="body">
+          <!-- {{ dialog.description }} -->
+          <div
+            v-for="(option, index) in filterClasses(dialog.options)"
+            :key="index"
+            class="w-1/3 flex flex-col justify-center items-center rounded-sm text-black"
+          >
+            <div class="">
+              <div class="p-2 m-2 bg-white bg-opacity-80">
+                <input
+                  v-if="dialog.type === 'boolean'"
+                  id="index"
+                  v-model="option.value"
+                  :value="option.name"
+                  type="checkbox"
+                />
+                <button
+                  v-if="dialog.type === 'enum'"
+                  aria-label="Close modal"
+                  class=""
+                  type="button"
+                  @click="
+                    selected = option;
+                    addAbility();
+                  "
+                >
+                  <img class="" :src="getIcon(option)" />
+                  {{ option.name }}
+                  <span v-if="option.description">
+                    {{ option.description }}
+                  </span>
+                </button>
 
-                  <!-- check if this is in use or deprecated -->
-                  <input
-                    v-if="dialog.type === 'stringEnter'"
-                    v-model="selectedString"
-                    aria-label="string select"
-                    placeholder="enter text"
-                    style="display: inline; color: black; height: 50px"
-                  >
+                <!-- check if this is in use or deprecated -->
+                <input
+                  v-if="dialog.type === 'stringEnter'"
+                  v-model="selectedString"
+                  aria-label="string select"
+                  placeholder="enter text"
+                  style="display: inline; color: black; height: 50px"
+                />
 
-                  <!-- This is the standard case -->
-                  <button
-                    v-if="dialog.type === 'interface' || dialog.type === 'root'"
-                    aria-label="Close modal"
-                    class=""
-                    type="button"
-                    @click="
-                      selected = option;
-                      addAbility();
-                    "
+                <!-- This is the standard case -->
+                <button
+                  v-if="dialog.type === 'interface' || dialog.type === 'root'"
+                  aria-label="Close modal"
+                  class=""
+                  type="button"
+                  @click="
+                    selected = option;
+                    addAbility();
+                  "
+                >
+                  <div
+                    class="flex flex-col items-center aspect-square justify-evenly"
                   >
-                    <div
-                      class="flex flex-col items-center aspect-square justify-evenly"
-                    >
-                      <div class="w-9">
-                        <img :src="getIcon(option)">
-                      </div>
-                      <div class="font-bold h-9 text-[20px] place-content-center">
-                        {{ option.name }}
-                      </div>
-                      <div class="min-w-[11.5rem] leading-5 text-[16px] place-content-start">
-                        {{ option.description }}
-                      </div>
+                    <div class="w-9">
+                      <img :src="getIcon(option)" />
                     </div>
-                  </button>
+                    <div class="font-bold h-9 text-[20px] place-content-center">
+                      {{ option.name }}
+                    </div>
+                    <div
+                      class="min-w-[11.5rem] leading-5 text-[16px] place-content-start"
+                    >
+                      {{ option.description }}
+                    </div>
+                  </div>
+                </button>
 
-                  <label
-                    v-if="
-                      dialog.type !== 'interface' &&
-                        dialog.type !== 'root' &&
-                        dialog.type !== 'enum'
-                    "
-                    for="index"
-                    class="text-s"
-                  >
-                    {{ option.name }}
-                  </label>
-                </div>
+                <label
+                  v-if="
+                    dialog.type !== 'interface' &&
+                    dialog.type !== 'root' &&
+                    dialog.type !== 'enum'
+                  "
+                  for="index"
+                  class="text-s"
+                >
+                  {{ option.name }}
+                </label>
               </div>
             </div>
-            <div>
-              <span v-if="dialog.type === 'int'"> {{ selectedCount }} </span>
-            </div>
-          </slot>
-        </section>
-        <footer class="">
-          <button
-            v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
-            aria-label="Close modal"
-            class="text-s"
-            type="button"
-            @click="addAbility"
-          >
-            Add
-          </button>
-        </footer>
-      </div>
+          </div>
+          <div>
+            <span v-if="dialog.type === 'int'"> {{ selectedCount }} </span>
+          </div>
+        </slot>
+      </section>
+      <footer class="">
+        <button
+          v-if="dialog.type !== 'interface' && dialog.type !== 'root'"
+          aria-label="Close modal"
+          class="text-s"
+          type="button"
+          @click="addAbility"
+        >
+          Add
+        </button>
+      </footer>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -295,13 +289,13 @@ export default {
           interactionText,
           abilityPath,
           R.append("children", rulesPath),
-          this.cardRules.Card
+          this.cardRules.Card,
         );
 
         updateInteraction(
           this.ability,
           this.ability.clickedBtn.id,
-          newInteraction
+          newInteraction,
         );
         this.attachToAbility(["interaction"], this.ability.interaction);
 
@@ -311,7 +305,11 @@ export default {
         if (objAtSelection.singleUse) newEntry.singleUse = selection.index;
 
         // Token are an interface, but not a new keyword, this is why we need a ternary operator here
-        this.attachToAbility(this.dialog.btn.abilityPath, newEntry, this.dialog.title === "Token" ? false :  true);
+        this.attachToAbility(
+          this.dialog.btn.abilityPath,
+          newEntry,
+          this.dialog.title === "Token" ? false : true,
+        );
       } else if (objAtSelection.type === "int") {
         // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false;
@@ -319,7 +317,7 @@ export default {
         this.dialog.btn.rulesPath = pathAtSelection;
         this.dialog.btn.abilityPath = R.append(
           selection.index,
-          this.dialog.abilityPath
+          this.dialog.abilityPath,
         );
       } else if (objAtSelection.type === "enum") {
         this.dialog.preventClose = true;
@@ -329,7 +327,7 @@ export default {
         this.dialog.btn.rulesPath = pathAtSelection;
         this.dialog.btn.abilityPath = R.append(
           selection.index,
-          this.dialog.abilityPath
+          this.dialog.abilityPath,
         );
       } else {
         // if there is no interaction text, don't close modal and present new options
@@ -342,7 +340,7 @@ export default {
         this.dialog.rulesPath = pathAtSelection;
         this.dialog.abilityPath = R.append(
           selection.index,
-          this.dialog.abilityPath
+          this.dialog.abilityPath,
         );
       }
       console.log("ability after handleInterface: ", this.ability);
@@ -360,7 +358,7 @@ export default {
         : "-";
       this.attachToAbility(
         this.dialog.btn.abilityPath,
-        this.dialog.options[0].value ? this.dialog.options[0].value : false
+        this.dialog.options[0].value ? this.dialog.options[0].value : false,
       );
 
       console.log("ability after handleBool: ", this.ability);
@@ -373,7 +371,7 @@ export default {
       let objAtSelection = atRules(pathAtSelection);
       let interactionText = atPath(
         this.cardRules.Card,
-        R.append(selection.index, this.dialog.rulesPath)
+        R.append(selection.index, this.dialog.rulesPath),
       ).interactionText;
 
       let abilityPath = [selection.index];
@@ -388,7 +386,7 @@ export default {
             "§" + selection.index,
             [],
             this.dialog.rulesPath,
-            this.cardRules.Card
+            this.cardRules.Card,
           ),
         };
         newAbility.clickedBtn = newAbility.interaction[0].btn;
@@ -413,7 +411,7 @@ export default {
         this.dialog.rulesPath = pathAtSelection;
         this.dialog.abilityPath = R.append(
           selection.index,
-          this.dialog.abilityPath
+          this.dialog.abilityPath,
         );
 
         return;
@@ -424,7 +422,7 @@ export default {
           interactionText,
           abilityPath,
           rulesPath,
-          this.cardRules.Card
+          this.cardRules.Card,
         ),
         keywords: [selection.index],
       };
@@ -441,17 +439,15 @@ export default {
         " to ",
         path,
         "with keywords: ",
-        R.keys(object)
+        R.keys(object),
       );
 
       let ability = R.assocPath(path, object, this.ability);
 
       if (updateKeywords) {
-
         ability.keywords = ability.keywords
           ? R.concat(ability.keywords, R.keys(object))
           : R.keys(object);
-
       }
 
       this.$emit("update:ability", ability);

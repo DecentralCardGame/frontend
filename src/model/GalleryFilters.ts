@@ -1,9 +1,9 @@
 import type {
   CardRarity,
-  Status,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+  CardStatus,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
 
-export type GalleryStatus = Status | "playable"
+export type GalleryStatus = CardStatus | "playable";
 
 export class GalleryFilters {
   visible = false;
@@ -23,5 +23,5 @@ export class GalleryFilters {
   culture = false;
   multiClass = false;
   rarity?: CardRarity = undefined;
-  status: GalleryStatus = "playable"
+  status: GalleryStatus = "playable";
 }

@@ -1,20 +1,15 @@
 <template>
   <FadeTeaserSmall class="text-center">
     <HeadingContentComponent heading-class="text-cc-red">
-      <template #heading>
-        Authenticate Gameclient
-      </template>
+      <template #heading> Authenticate Gameclient </template>
       <template #content>
         <p><b>Important:</b> Only if you've been prompted by the gameclient</p>
         <p>to open this page, ELSE close this page!</p>
-        <br>
-        <div
-          v-if="loggedIn"
-          class="flex justify-center"
-        >
+        <br />
+        <div v-if="loggedIn" class="flex justify-center">
           <div v-if="state.currentState == CurrentState.NONE">
             <p>Authenticate gameclient?</p>
-            <br>
+            <br />
             <BaseCCButton
               class="text-lg"
               :type="Color.RED"
@@ -25,11 +20,7 @@
           </div>
           <div v-else-if="state.currentState == CurrentState.LOADING">
             <p>Authenticating...</p>
-            <img
-              alt="loading spinner"
-              :src="spinner"
-              class="w-40 p-5"
-            >
+            <img alt="loading spinner" :src="spinner" class="w-40 p-5" />
           </div>
           <div v-else-if="state.currentState == CurrentState.DONE">
             <p>Gameclient Authenticated!</p>

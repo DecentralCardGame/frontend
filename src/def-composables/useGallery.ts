@@ -1,18 +1,19 @@
 import router from "@/router";
-import {
-  QueryQCardsRequest,
-  QueryQCardsResponse,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/query";
-import {
-  CardClass,
-  CardType,
-  Status,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+
 import { useQuery } from "@/def-composables/useQuery";
 import { ref, watch, type Ref } from "vue";
 import { GalleryFilters } from "@/model/GalleryFilters";
+import {
+  QueryCardsRequest,
+  QueryCardsResponse,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import {
+  CardClass,
+  CardStatus,
+  CardType,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
 
-export type PageQuery = QueryQCardsRequest;
+export type PageQuery = QueryCardsRequest;
 
 // Sadly this is needed, since the shitty querier displays arrays and `&Name[]=...` and not `&Name=...` this makes me mad
 const constructAssRetardetQueryParams = (query: any): string => {
@@ -31,7 +32,7 @@ const constructAssRetardetQueryParams = (query: any): string => {
     .reduce((akku: string, curr: string) => akku + curr);
 };
 
-const { queryQCards } = useQuery();
+const { queryCards } = useQuery();
 
 const cardList: Ref<Array<number>> = ref([]);
 const galleryFilters: Ref<GalleryFilters> = ref(new GalleryFilters());
@@ -43,12 +44,12 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.sortBy = query.sortBy ? query.sortBy : "Name";
   galleryFilters.value.multiClass = query.multiClassOnly;
   galleryFilters.value.status =
-    query.statuses.length != 1 ? "playable" : query.statuses[0];
+    query.status.length != 1 ? "playable" : query.status[0];
 
   if (
-    query.classes.length == 0 ||
+    query.class.length == 0 ||
     [0, 1, 2, 3]
-      .map((v) => query.classes.includes(v as CardClass))
+      .map((v) => query.class.includes(v as CardClass))
       .every((v) => v)
   ) {
     galleryFilters.value.nature = false;
@@ -56,20 +57,24 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.mysticism = false;
     galleryFilters.value.technology = false;
   } else {
-    galleryFilters.value.nature = query.classes.includes(CardClass.nature);
-    galleryFilters.value.technology = query.classes.includes(
+    galleryFilters.value.nature = query.class.includes(CardClass.nature);
+    galleryFilters.value.technology = query.class.includes(
       CardClass.technology,
     );
-    galleryFilters.value.culture = query.classes.includes(CardClass.culture);
-    galleryFilters.value.mysticism = query.classes.includes(
-      CardClass.mysticism,
-    );
+    galleryFilters.value.culture = query.class.includes(CardClass.culture);
+    galleryFilters.value.mysticism = query.class.includes(CardClass.mysticism);
+  }
+
+  if (query.rarities.length != 0) {
+    galleryFilters.value.rarity = query.rarities[0];
+  } else {
+    galleryFilters.value.rarity = undefined;
   }
 
   if (
-    query.cardTypes.length == 0 ||
+    query.cardType.length == 0 ||
     [0, 1, 2, 3]
-      .map((v) => query.cardTypes.includes(v as CardType))
+      .map((v) => query.cardType.includes(v as CardType))
       .every((v) => v)
   ) {
     galleryFilters.value.action = false;
@@ -77,32 +82,32 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.hq = false;
     galleryFilters.value.entity = false;
   } else {
-    galleryFilters.value.action = query.cardTypes.includes(CardType.action);
-    galleryFilters.value.place = query.cardTypes.includes(CardType.place);
-    galleryFilters.value.hq = query.cardTypes.includes(CardType.headquarter);
-    galleryFilters.value.entity = query.cardTypes.includes(CardType.entity);
+    galleryFilters.value.action = query.cardType.includes(CardType.action);
+    galleryFilters.value.place = query.cardType.includes(CardType.place);
+    galleryFilters.value.hq = query.cardType.includes(CardType.headquarter);
+    galleryFilters.value.entity = query.cardType.includes(CardType.entity);
   }
 };
 
 const pageQueryFromGalleryFilters = (): PageQuery => {
-  return QueryQCardsRequest.fromPartial({
+  return QueryCardsRequest.fromPartial({
     owner: galleryFilters.value.owner,
-    statuses:
+    status:
       galleryFilters.value.status == "playable"
         ? [
-            Status.bannedSoon,
-            Status.bannedVerySoon,
-            Status.permanent,
-            Status.trial,
+            CardStatus.bannedSoon,
+            CardStatus.bannedVerySoon,
+            CardStatus.permanent,
+            CardStatus.trial,
           ]
         : [galleryFilters.value.status],
-    classes: [
+    class: [
       ...(galleryFilters.value.nature ? [CardClass.nature] : []),
       ...(galleryFilters.value.mysticism ? [CardClass.mysticism] : []),
       ...(galleryFilters.value.culture ? [CardClass.culture] : []),
       ...(galleryFilters.value.technology ? [CardClass.technology] : []),
     ],
-    cardTypes: [
+    cardType: [
       ...(galleryFilters.value.place ? [CardType.place] : []),
       ...(galleryFilters.value.action ? [CardType.action] : []),
       ...(galleryFilters.value.entity ? [CardType.entity] : []),
@@ -117,21 +122,20 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
     notesContains: galleryFilters.value.notesContains,
     sortBy: galleryFilters.value.sortBy ? galleryFilters.value.sortBy : "",
     multiClassOnly: galleryFilters.value.multiClass,
-  } as Partial<QueryQCardsRequest>);
-};
-
-const loadQueryCardList = (query: PageQuery): void => {
-
-  queryQCards(query, {
-    paramsSerializer: constructAssRetardetQueryParams,
-  }).then((res: QueryQCardsResponse) => {
-    cardList.value = res.cardsList;
   });
 };
 
-watch(galleryFilters.value, () =>
-  loadQueryCardList(pageQueryFromGalleryFilters()),
-);
+const loadQueryCardList = (query: PageQuery): void => {
+  queryCards(query, {
+    paramsSerializer: constructAssRetardetQueryParams,
+  }).then((res: QueryCardsResponse) => {
+    cardList.value = res.cardIds;
+  });
+};
+
+watch(galleryFilters.value, () => {
+  loadQueryCardList(pageQueryFromGalleryFilters());
+});
 
 export const useGallery = () => {
   return {

@@ -1,11 +1,12 @@
 <template>
   <div class="flex text-white max-lg:flex-col justify-center">
     <div
-      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center my-auto h-[100vh] mt-0 bg-[#552026] 
-            max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] max-h-[80vh] overflow-y-auto overflow-x-hidden"
+      class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center my-auto h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] max-h-[80vh] overflow-y-auto overflow-x-hidden"
     >
       <div class="">
-        <div class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6">
+        <div
+          class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6"
+        >
           <BaseCCButton
             :type="Color.RED"
             @click="filtersVisible = !filtersVisible"
@@ -13,11 +14,7 @@
             Gallery Filters
           </BaseCCButton>
         </div>
-        <div
-          v-if="filtersVisible"
-          class="space-y-6 justify-self-center"
-        >
-
+        <div v-if="filtersVisible" class="space-y-6 justify-self-center">
           <GalleryFilterImageChooser :options="classOptions" />
           <Checkbox v-model="galleryFilters.multiClass">
             exclusive class matching
@@ -30,12 +27,12 @@
                 v-model="galleryFilters.nameContains"
                 placeholder="name"
               />
-              <br>
+              <br />
               <CCInput
                 v-model="galleryFilters.notesContains"
                 placeholder="notes"
               />
-              <br>
+              <br />
               <CCInput
                 v-model="galleryFilters.keywordsContains"
                 placeholder="keywords"
@@ -72,20 +69,22 @@
                 CardRarity.unique,
               ]"
             />
-            <br>
+            <br />
             Status:
             <Dropdown
               v-model="galleryFilters.status"
-              :display-fn="(v) => (v == 'playable' ? 'playable' : Status[v])"
+              :display-fn="
+                (v) => (v == 'playable' ? 'playable' : CardStatus[v])
+              "
               :options="
                 new Array<GalleryStatus>(
                   'playable',
-                  Status.prototype,
-                  Status.trial,
-                  Status.permanent,
-                  Status.bannedSoon,
-                  Status.bannedVerySoon,
-                  Status.banned,
+                  CardStatus.prototype,
+                  CardStatus.trial,
+                  CardStatus.permanent,
+                  CardStatus.bannedSoon,
+                  CardStatus.bannedVerySoon,
+                  CardStatus.banned,
                 )
               "
             />
@@ -94,16 +93,18 @@
       </div>
     </div>
 
-    <div class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow max-h-[90vh] overflow-y-auto">
+    <div
+      class="bg-black lg:w-[75%] py-8 md:p-8 lg:p-16 text-white grow max-h-[90vh] overflow-y-auto"
+    >
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-center max-md:hidden md:justify-between">
-            <p class="md:text-xl lg:text-lg xl:text-xl  my-auto">
+            <p class="md:text-xl lg:text-lg xl:text-xl my-auto">
               {{ cardList.length }} Results
             </p>
           </div>
           <div>
-            <p class="md:text-4xl lg:text-2xl xl:text-4xl  text-center">
+            <p class="md:text-4xl lg:text-2xl xl:text-4xl text-center">
               Gallery
             </p>
           </div>
@@ -118,19 +119,17 @@
               :options="['Name', 'CastingCost', 'Id']"
               :display-fn="(v) => (v == 'CastingCost' ? 'Casting cost' : v)"
             />
-            <SortDirectionButton
-              v-model="revertSort"
-              class="my-auto"
-            />
+            <SortDirectionButton v-model="revertSort" class="my-auto" />
           </div>
         </div>
         <div class="mt-8 h-1 rounded w-full bg-white" />
       </div>
-        <GalleryComponent
-          :cards-2per-page="galleryFilters.cardsPerPage"
-          :all-card-ids="revertSort ? cardList.toReversed() : cardList"
-          @card-clicked="openCardviewModel"
-        />
+
+      <GalleryComponent
+        :cards-per-page="galleryFilters.cardsPerPage"
+        :all-card-ids="revertSort ? cardList.toReversed() : cardList"
+        @card-clicked="openCardviewModel"
+      />
     </div>
   </div>
   <CardviewModal
@@ -173,13 +172,14 @@ import { normalizeQuery } from "@/utils/utils";
 import CCInput from "@/components/elements/CCInput/CCInput.vue";
 import {
   CardRarity,
-  Status,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/card";
+  CardStatus,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import { Card } from "@/model/Card";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
+import { watch } from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -253,11 +253,15 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   },
 ];
 
+watch(galleryFilters.value, () =>
+  router.push({ path: "gallery", query: pageQueryFromGalleryFilters() }),
+);
+
 onMounted(() => {
-  const query = route.query
+  const query = route.query;
   if (!R.isEmpty(query)) {
-    if ((query as {cards?: number[]}).cards) {
-      cardList.value = (query as {cards?: number[]}).cards!
+    if ((query as { cards?: number[] }).cards) {
+      cardList.value = (query as { cards?: number[] }).cards!;
     } else {
       galleryFiltersFromPageQuery(normalizeQuery(route.query));
       router.push({ path: "gallery", query: query });

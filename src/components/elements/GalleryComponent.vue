@@ -16,15 +16,16 @@
         </div>
       </div>
     </div>
-    <div class="mt-12 flex flex-row justify-center items-center">
-      <BaseCCButton
-        :type="Color.RED"
-        @click="load()"
-        :class="{ invisible: !loadButtonVisible }"
-      >
-        Reckless Card Loading
-      </BaseCCButton>
-    </div>
+  </div>
+
+  <div class="mt-12 flex flex-row justify-center items-center">
+    <BaseCCButton
+      :type="Color.RED"
+      :class="{ invisible: !loadButtonVisible }"
+      @click="load()"
+    >
+      Reckless Card Loading
+    </BaseCCButton>
   </div>
 </template>
 
@@ -70,19 +71,21 @@ const cardIdsOnPage = computed(() => {
 });
 
 const shadowClass = (card) => {
-  let classes = 0
-  R.forEachObjIndexed(entry => {
+  let classes = 0;
+  R.forEachObjIndexed((entry) => {
     if (entry) classes++;
-  }, card.Class)
-  if (classes > 1) return {
-    'drop-shadow-glowCCYellow': true,
-  }
-  else return {
-    'drop-shadow-glowCCRed': card.Class.Culture,
-    'drop-shadow-glowCCBlue': card.Class.Technology,
-    'drop-shadow-glowCCGreen': card.Class.Nature,
-    'drop-shadow-glowCCPurple': card.Class.Mysticism
-    }
+  }, card.Class);
+  if (classes > 1)
+    return {
+      "drop-shadow-glowCCYellow": true,
+    };
+  else
+    return {
+      "drop-shadow-glowCCRed": card.Class.Culture,
+      "drop-shadow-glowCCBlue": card.Class.Technology,
+      "drop-shadow-glowCCGreen": card.Class.Nature,
+      "drop-shadow-glowCCPurple": card.Class.Mysticism,
+    };
 };
 
 onMounted(() => {
@@ -128,7 +131,6 @@ const onScroll = () => {
     state.cardsOnPage < props.allCardIds.length
   ) {
     state.cardsOnPage += 10;
-    console.log(state.cardsOnPage);
   }
 };
 

@@ -10,7 +10,7 @@
         :src="galleryFilters[option.name] ? option.active : option.inactive"
         class="w-12"
         :alt="option.name + ' classbutton'"
-      >
+      />
       {{ option.label }}
     </button>
   </div>
@@ -28,6 +28,6 @@ const change = (name: keyof GalleryFilters) => {
 
 const props = withDefaults(
   defineProps<{ options: GalleryFilterImageChooserOptions<GalleryFilters> }>(),
-  {}
+  {},
 );
 </script>

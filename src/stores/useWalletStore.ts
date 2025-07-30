@@ -7,7 +7,7 @@ export const useWalletStore = defineStore("wallet", {
   state: () => ({
     wallets:
       (JSON.parse(
-        window.localStorage.getItem("wallets") ?? "null"
+        window.localStorage.getItem("wallets") ?? "null",
       ) as Array<EncodedWallet>) || ([] as Array<EncodedWallet>),
     activeWallet: null as Nullable<Wallet>,
     activeClient: null as Nullable<ReturnType<typeof useClient>>,
@@ -26,7 +26,7 @@ export const useWalletStore = defineStore("wallet", {
         return (
           state.activeWallet.HDpath +
           state.activeWallet.accounts.find(
-            (x) => x.address == state.selectedAddress
+            (x) => x.address == state.selectedAddress,
           ).pathIncrement
         );
       } else {
@@ -88,7 +88,7 @@ export const useWalletStore = defineStore("wallet", {
             name: this.activeWallet.name,
             wallet: CryptoJS.AES.encrypt(
               JSON.stringify(this.activeWallet),
-              this.activeWallet.password
+              this.activeWallet.password,
             ).toString(),
           });
         }

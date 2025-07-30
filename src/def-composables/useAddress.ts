@@ -11,7 +11,7 @@ const useAddressInstance = (callback: (address: string) => void) => {
     } else {
       address.value = "";
     }
-    callback(address.value)
+    callback(address.value);
   };
   client.on("signer-changed", () => {
     setAddress();
@@ -23,7 +23,7 @@ const useAddressInstance = (callback: (address: string) => void) => {
   setAddress();
 
   const shortAddress = computed<string>(
-    () => address.value.substring(0, 10) + "..." + address.value.slice(-4)
+    () => address.value.substring(0, 10) + "..." + address.value.slice(-4),
   );
 
   return {
