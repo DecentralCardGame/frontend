@@ -236,8 +236,12 @@ import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { Color } from "@/components/utils/color";
 import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
-import type { AxiosResponse } from "axios";
-import type { QueryMatchesResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import type {
+  QueryEncounterResponse,
+  QueryEncountersResponse,
+  QueryMatchesResponse,
+} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import type { Encounter } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
 
 const { queryUser, queryAllBalances, queryMatches } = useQuery();
 const { queryEncounters, queryEncountersWithImage } = useQuery();
@@ -345,9 +349,9 @@ const getMatches = () => {
 };
 
 const getEncounters = () => {
-  queryEncounters().then((res) => {
+  queryEncounters().then((res: QueryEncountersResponse) => {
     state.ownEncounters = R.map(
-      (y) => ({ id: y.Id, name: y.name }),
+      (y: Encounter) => ({ id: y.id, name: y.name }),
       R.filter((x) => x.owner == state.addr, res.encounters),
     );
   });
