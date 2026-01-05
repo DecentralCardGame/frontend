@@ -140,14 +140,24 @@
             />
           </label>
         </div>
-        <img
-          v-if="cropImage !== ''"
-          class="h-[24rem] object-scale-down"
-          width="300"
-          height="400"
-          :src="cropImage"
-          alt="check"
-        />
+        <div>
+          <label for="dropzone-file">
+            <img
+              v-if="cropImage !== ''"
+              class="h-[24rem] object-scale-down"
+              width="300"
+              height="400"
+              :src="cropImage"
+              alt="check"
+            />
+            <input
+              id="dropzone-file"
+              type="file"
+              class="hidden"
+              @change="inputFile"
+            />
+          </label>
+        </div>
       </div>
       <div>
         <BaseCCButton :type="Color.RED" @click="publish()">
