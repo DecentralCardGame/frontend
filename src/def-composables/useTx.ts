@@ -330,10 +330,11 @@ export const useTxInstance: () => {
       }),
     ].concat(
       [
-        "/DecentralCardGame.cardchain.cardchain.MsgBuyBoosterPack",
-        "/DecentralCardGame.cardchain.cardchain.MsgOpenBoosterPack",
-        "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
-        "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch",
+        "/cardchain.cardchain.MsgBoosterPackBuy",
+        "/cardchain.cardchain.MsgBoosterPackOpen",
+        "/cardchain.cardchain.MsgCardVote",
+        "/cardchain.cardchain.MsgCardVoteMulti",
+        "/cardchain.cardchain.MsgMatchConfirm",
       ].map((msgPath: string) => {
         return client.CosmosAuthzV_1Beta_1.tx.msgGrant({
           value: MsgGrant.fromPartial({
