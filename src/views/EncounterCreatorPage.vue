@@ -251,8 +251,8 @@ import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useAddress } from "@/def-composables/useAddress";
 import { useQuery } from "@/def-composables/useQuery";
 import { useTx } from "@/def-composables/useTx";
-import type { QueryEncounterWithImageResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
-import type { Parameter } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
+import type { QueryEncounterWithImageResponse } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
+import type { Parameter } from "decentralcardgame-cardchain-client-ts/lib/cardchain.cardchain";
 import type { Ref } from "vue";
 
 const { notifyFail } = useNotifications();

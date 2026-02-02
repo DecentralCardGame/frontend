@@ -1,5 +1,5 @@
 import { Coin } from "@/model/Coin";
-import { QueryCardsRequest } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import { QueryCardsRequest } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
 import type { PageQuery } from "@/def-composables/useGallery";
 
 export const normalizeCoins = (coins: Coin[]) => {

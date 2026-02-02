@@ -6,12 +6,12 @@ import { GalleryFilters } from "@/model/GalleryFilters";
 import {
   QueryCardsRequest,
   QueryCardsResponse,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
 import {
   CardClass,
   CardStatus,
   CardType,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/card";
 
 export type PageQuery = QueryCardsRequest;
 

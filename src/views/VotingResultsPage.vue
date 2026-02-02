@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { VotingResults } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/voting_results";
+import { VotingResults } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/voting_results";
 import { useQuery } from "@/def-composables/useQuery";
 import { useAddress } from "@/def-composables/useAddress";
 import { useVoting } from "@/def-composables/useVoting";

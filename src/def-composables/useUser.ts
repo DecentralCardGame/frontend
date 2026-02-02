@@ -3,7 +3,7 @@ import { useQuery } from "./useQuery";
 import { useAddress } from "./useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import type { Coin } from "@/model/Coin";
-import { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
+import { User } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
 
 const useUserInstance = () => {
   const { queryUser, queryAllBalances } = useQuery();

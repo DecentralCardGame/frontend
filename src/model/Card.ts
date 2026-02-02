@@ -1,7 +1,7 @@
 import * as R from "ramda";
 import { Coin } from "./Coin";
-import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
-import { CardWithImage } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card_with_image";
+import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
+import { CardWithImage } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/card_with_image";
 import { stringToBytes } from "@/utils/utils";
 
 export class Card {

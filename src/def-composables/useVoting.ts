@@ -4,7 +4,7 @@ import * as R from "ramda";
 import type {
   VoteType,
   SingleVote,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/voting";
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/voting";
 import { useUser } from "./useUser";
 
 const KEY = "votingList";

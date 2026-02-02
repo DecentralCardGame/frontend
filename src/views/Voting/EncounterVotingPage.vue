@@ -72,7 +72,7 @@ import { Card } from "@/model/Card";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { useVoting } from "@/def-composables/useVoting";
 import { computed, onMounted, reactive, watch } from "vue";
-import { VoteType } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/voting";
+import { VoteType } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/voting";
 import { useCards } from "@/def-composables/useCards";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import SmallCCButton from "@/components/elements/CCButton/SmallCCButton.vue";

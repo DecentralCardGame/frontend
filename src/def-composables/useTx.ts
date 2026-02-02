@@ -3,7 +3,7 @@ import { useAddress } from "@/def-composables/useAddress";
 import { Coin, type CompatCoin } from "@/model/Coin";
 import type { StdFee } from "@cosmjs/launchpad";
 import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
-import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/types/cosmos/base/v1beta1/coin";
+import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/lib/types/cosmos/base/v1beta1/coin";
 import { useNotifications } from "@/def-composables/useNotifications";
 import { ref, watch, type Ref } from "vue";
 import {
@@ -11,18 +11,18 @@ import {
   CardWithImage,
   Parameter,
   type SingleVote,
-} from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
-import { Response as CouncilResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/council";
+} from "decentralcardgame-cardchain-client-ts/lib/cardchain.cardchain";
+import { Response as CouncilResponse } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/council";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { env } from "@/env";
 import { type EncodeObject, Registry } from "@cosmjs/proto-signing";
-import { msgTypes as BankMsgTypes } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1";
+import { msgTypes as BankMsgTypes } from "decentralcardgame-cardchain-client-ts/lib/cosmos.bank.v1beta1";
 import {
   msgTypes as AuthzMsgTypes,
   GenericAuthorization,
-} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1";
-import { MsgSend } from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/module";
-import { MsgGrant } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/module";
+} from "decentralcardgame-cardchain-client-ts/lib/cosmos.authz.v1beta1";
+import { MsgSend } from "decentralcardgame-cardchain-client-ts/lib/cosmos.bank.v1beta1/module";
+import { MsgGrant } from "decentralcardgame-cardchain-client-ts/lib/cosmos.authz.v1beta1/module";
 import { stringToBytes } from "@/utils/utils";
 
 export const registry: Registry = new Registry(

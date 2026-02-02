@@ -880,7 +880,7 @@ import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCButtons.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
-import type { CardWithImage } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
+import type { CardWithImage } from "decentralcardgame-cardchain-client-ts/lib/cardchain.cardchain";
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate();
 const { saveCardContent, addArtwork, buyCardScheme } = useTx();

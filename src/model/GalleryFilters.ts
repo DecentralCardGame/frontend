@@ -1,7 +1,7 @@
 import type {
   CardRarity,
   CardStatus,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/card";
 
 export type GalleryStatus = CardStatus | "playable";
 

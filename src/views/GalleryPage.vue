@@ -173,7 +173,7 @@ import CCInput from "@/components/elements/CCInput/CCInput.vue";
 import {
   CardRarity,
   CardStatus,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/card";
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/card";
 import CardviewModal from "@/components/modals/CardviewModal.vue";
 import { Card } from "@/model/Card";
 import SortDirectionButton from "@/components/elements/SortDirectionButton.vue";

@@ -225,8 +225,8 @@ import { normalizeCoins } from "@/utils/utils";
 import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUser } from "@/def-composables/useUser";
-import { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
-import { Match } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/match";
+import { User } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
+import { Match } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
@@ -234,14 +234,14 @@ import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { Color } from "@/components/utils/color";
-import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
+import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
 import type {
   QueryEncounterResponse,
   QueryEncountersResponse,
   QueryMatchesResponse,
-} from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
-import type { Encounter } from "decentralcardgame-cardchain-client-ts/cardchain.cardchain";
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
+import type { Encounter } from "decentralcardgame-cardchain-client-ts/lib/cardchain.cardchain";
 
 const { queryUser, queryAllBalances, queryMatches } = useQuery();
 const { queryEncounters, queryEncountersWithImage } = useQuery();

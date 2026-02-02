@@ -2,8 +2,8 @@ import { useClient } from "@/composables/useClient";
 import type { AxiosResponse } from "axios";
 import { Card } from "@/model/Card";
 import { Coin } from "@/model/Coin";
-import type { User } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/user";
-import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/types/cardchain/cardchain/query";
+import type { User } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
+import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
 
 const handlers: { [key: string]: (res: AxiosResponse) => any } = {
   defaultHandler: (res) => {
