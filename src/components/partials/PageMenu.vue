@@ -15,10 +15,7 @@
     </button>
   </div>
   <Navbar
-    :class="[
-      'max-md:' + (state.barShown ? 'visible' : 'hidden'),
-      'justify-start',
-    ]"
+    :extra-classes=navbarClasses
     :elems="elems"
     elem-class="px-8 py-4 font-bold"
     elem-active-class="text-yellow-500"
@@ -28,7 +25,7 @@
 <script setup lang="ts">
 import CCLogo from "@/assets/figma/CCLogo.png";
 import Menu from "@/assets/figma/Menu.svg";
-import { reactive } from "vue";
+import {computed, type ComputedRef, reactive} from "vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import LoginComponent from "@/components/elements/Login/LoginComponent.vue";
 import type { NavigationElement } from "@/components/elements/Navbar/types";
@@ -45,6 +42,13 @@ const elems: NavigationElement[] = [
 
 const state = reactive({
   barShown: false,
+});
+
+const navbarClasses: ComputedRef<string[]> = computed(() => {
+  return [
+    "max-md:" + (state.barShown ? "visible" : "hidden"),
+    "justify-start",
+  ];
 });
 
 const toggleBar = () => {
