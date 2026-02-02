@@ -1,7 +1,29 @@
+@layer theme, base, components, utilities;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+    /* Colors */
+    --color-cc-red: #D82027;
+    --color-cc-yellow: #FEC560;
+    --color-pussy-red: #8F6173;
+
+    /* Fonts */
+    --font-sans: "Roboto", "roboto";
+
+    /* Drop Shadows */
+    --drop-shadow-glow-red: 0px 0px 24px rgba(216, 32, 39, 0.90);
+    --drop-shadow-header: 8px 8px 3px rgba(0, 0, 0, 0.25);
+    --drop-shadow-glow-teal: 0px 0px 24px #40C1C7;
+    --drop-shadow-glow-cc-yellow: 0px 0px 24px #FEC560;
+    --drop-shadow-glow-cc-red: 0px 0px 24px rgba(216, 32, 39, 0.90);
+    --drop-shadow-glow-cc-blue: 0px 0px 24px rgba(39, 32, 216, 0.90);
+    --drop-shadow-glow-cc-green: 0px 0px 24px rgba(32, 216, 39, 0.90);
+    --drop-shadow-glow-cc-purple: 0px 0px 24px rgba(216, 32, 216, 0.90);
+}
 
 :root {
   background-color: black;

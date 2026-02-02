@@ -5,7 +5,6 @@ import App from "./App.vue";
 import router from "./router";
 import { env, setFallback } from "./env";
 import "./assets/index.css";
-import "@ignt/vue-library/dist/style.css";
 import Notifications from "@kyvg/vue3-notification";
 import { useCardsRules } from "@/def-composables/useCardRules";
 import AppLayout from "@/layouts/AppLayout.vue";
