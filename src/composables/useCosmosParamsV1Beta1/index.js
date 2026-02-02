@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
 export default function useCosmosParamsV1Beta1() {
@@ -13,7 +12,7 @@ export default function useCosmosParamsV1Beta1() {
           .queryParams(query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QuerySubspaces = (options) => {
@@ -21,11 +20,9 @@ export default function useCosmosParamsV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosParamsV1Beta1.query
-          .querySubspaces()
-          .then((res) => res.data);
+        return client.CosmosParamsV1Beta1.query.querySubspaces().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return { QueryParams, QuerySubspaces };

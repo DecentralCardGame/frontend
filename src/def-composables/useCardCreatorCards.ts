@@ -8,18 +8,14 @@ class UseCardCreatorCard {
 
   constructor(key: string) {
     this.key = key;
-    let stored = window.localStorage.getItem(key);
-    this.card = ref(
-      stored !== null
-        ? Object.assign(new Card(), JSON.parse(stored))
-        : new Card(),
-    );
+    const stored = window.localStorage.getItem(key);
+    this.card = ref(stored !== null ? Object.assign(new Card(), JSON.parse(stored)) : new Card());
 
     watch(
       () => R.clone(this.card.value),
       (currentValue, oldValue) => {
         this.set(currentValue);
-      },
+      }
     );
   }
 

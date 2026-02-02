@@ -3,9 +3,7 @@
     <p class="font-bold text-2xl">Transfer Card</p>
     <br />
     This will transfer the Card Prototype to someone else permanently
-    <div
-      class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner"
-    >
+    <div class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
       <input
         v-model="state.recipient"
         class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
@@ -18,9 +16,7 @@
       ADDRESS IS INVALID
     </div>
     <div class="mt-3 ml-[2.1rem]">
-      <BaseCCButton :type="Color.RED" @click="transfer()">
-        Transfer Card
-      </BaseCCButton>
+      <BaseCCButton :type="Color.RED" @click="transfer()"> Transfer Card </BaseCCButton>
     </div>
   </div>
 </template>
@@ -52,7 +48,7 @@ const props = withDefaults(
   }>(),
   {
     card: () => -1,
-  },
+  }
 );
 
 const transfer = () => {
@@ -66,7 +62,7 @@ const transfer = () => {
       },
       (err) => {
         console.error("Transfer failed: ", err);
-      },
+      }
     );
   } else {
     state.validAddress = false;

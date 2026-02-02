@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useIbcCoreChannelV1() {
   const client = useClient();
@@ -20,7 +14,7 @@ export default function useIbcCoreChannelV1() {
           .queryChannel(channel_id, port_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -41,10 +35,7 @@ export default function useIbcCoreChannelV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -57,7 +48,7 @@ export default function useIbcCoreChannelV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -65,7 +56,7 @@ export default function useIbcCoreChannelV1() {
     connection: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryConnectionChannels", connection, query };
     return useInfiniteQuery(
@@ -83,10 +74,7 @@ export default function useIbcCoreChannelV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -99,15 +87,11 @@ export default function useIbcCoreChannelV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryChannelClientState = (
-    channel_id: string,
-    port_id: string,
-    options: any,
-  ) => {
+  const QueryChannelClientState = (channel_id: string, port_id: string, options: any) => {
     const key = { type: "QueryChannelClientState", channel_id, port_id };
     return useQuery(
       [key],
@@ -117,7 +101,7 @@ export default function useIbcCoreChannelV1() {
           .queryChannelClientState(channel_id, port_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -126,7 +110,7 @@ export default function useIbcCoreChannelV1() {
     port_id: string,
     revision_number: string,
     revision_height: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryChannelConsensusState",
@@ -140,15 +124,10 @@ export default function useIbcCoreChannelV1() {
       () => {
         const { channel_id, port_id, revision_number, revision_height } = key;
         return client.IbcCoreChannelV1.query
-          .queryChannelConsensusState(
-            channel_id,
-            port_id,
-            revision_number,
-            revision_height,
-          )
+          .queryChannelConsensusState(channel_id, port_id, revision_number, revision_height)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -156,7 +135,7 @@ export default function useIbcCoreChannelV1() {
     channel_id: string,
     port_id: string,
     sequence: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryPacketCommitment",
@@ -172,7 +151,7 @@ export default function useIbcCoreChannelV1() {
           .queryPacketCommitment(channel_id, port_id, sequence)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -181,7 +160,7 @@ export default function useIbcCoreChannelV1() {
     port_id: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryPacketCommitments", channel_id, port_id, query };
     return useInfiniteQuery(
@@ -199,10 +178,7 @@ export default function useIbcCoreChannelV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -215,7 +191,7 @@ export default function useIbcCoreChannelV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -223,7 +199,7 @@ export default function useIbcCoreChannelV1() {
     channel_id: string,
     port_id: string,
     sequence: string,
-    options: any,
+    options: any
   ) => {
     const key = { type: "QueryPacketReceipt", channel_id, port_id, sequence };
     return useQuery(
@@ -234,7 +210,7 @@ export default function useIbcCoreChannelV1() {
           .queryPacketReceipt(channel_id, port_id, sequence)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -242,7 +218,7 @@ export default function useIbcCoreChannelV1() {
     channel_id: string,
     port_id: string,
     sequence: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryPacketAcknowledgement",
@@ -258,7 +234,7 @@ export default function useIbcCoreChannelV1() {
           .queryPacketAcknowledgement(channel_id, port_id, sequence)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -267,7 +243,7 @@ export default function useIbcCoreChannelV1() {
     port_id: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = {
       type: "QueryPacketAcknowledgements",
@@ -290,10 +266,7 @@ export default function useIbcCoreChannelV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -306,7 +279,7 @@ export default function useIbcCoreChannelV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -314,7 +287,7 @@ export default function useIbcCoreChannelV1() {
     channel_id: string,
     port_id: string,
     packet_commitment_sequences: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryUnreceivedPackets",
@@ -327,14 +300,10 @@ export default function useIbcCoreChannelV1() {
       () => {
         const { channel_id, port_id, packet_commitment_sequences } = key;
         return client.IbcCoreChannelV1.query
-          .queryUnreceivedPackets(
-            channel_id,
-            port_id,
-            packet_commitment_sequences,
-          )
+          .queryUnreceivedPackets(channel_id, port_id, packet_commitment_sequences)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -342,7 +311,7 @@ export default function useIbcCoreChannelV1() {
     channel_id: string,
     port_id: string,
     packet_ack_sequences: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryUnreceivedAcks",
@@ -358,15 +327,11 @@ export default function useIbcCoreChannelV1() {
           .queryUnreceivedAcks(channel_id, port_id, packet_ack_sequences)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryNextSequenceReceive = (
-    channel_id: string,
-    port_id: string,
-    options: any,
-  ) => {
+  const QueryNextSequenceReceive = (channel_id: string, port_id: string, options: any) => {
     const key = { type: "QueryNextSequenceReceive", channel_id, port_id };
     return useQuery(
       [key],
@@ -376,7 +341,7 @@ export default function useIbcCoreChannelV1() {
           .queryNextSequenceReceive(channel_id, port_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

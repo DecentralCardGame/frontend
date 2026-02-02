@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16"
-  >
+  <div class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16">
     <div class="text-center">
       <h1 class="md:hidden text-5xl font-bold pb-12">
         {{ heading }}
@@ -36,21 +34,15 @@
             <br />
             <b>InGameCredits</b> <br />{{ state.rewards[0].InGameCredits }}
             <br />
-            <b>EarlyAccessToGame</b> <br />{{
-              state.rewards[0].EarlyAccessToGame
-            }}
+            <b>EarlyAccessToGame</b> <br />{{ state.rewards[0].EarlyAccessToGame }}
             <br />
             <b>BoosterPacks</b> <br />{{ state.rewards[0].BoosterPacks }}
             <br />
             <b>DiscordUsername</b> <br />{{ state.rewards[0].DiscordUsername }}
             <br />
-            <b>AmbassadorProgramAdvisory</b> <br />{{
-              state.rewards[0].AmbassadorProgramAdvisory
-            }}
+            <b>AmbassadorProgramAdvisory</b> <br />{{ state.rewards[0].AmbassadorProgramAdvisory }}
             <br />
-            <b>WLForTheTokenSale</b> <br />{{
-              state.rewards[0].WLForTheTokenSale
-            }}
+            <b>WLForTheTokenSale</b> <br />{{ state.rewards[0].WLForTheTokenSale }}
             <br />
             <b>WLForTheTokenSaleBetterPrice</b> <br />{{
               state.rewards[0].WLForTheTokenSaleBetterPrice
@@ -78,11 +70,8 @@ import { useUser } from "@/def-composables/useUser";
 import { User } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
 import { Match } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
-import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
-import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
-import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import axios from "axios";
 
 const { queryUser, queryAllBalances, queryMatches } = useQuery();
@@ -133,23 +122,21 @@ const init = () => {
   state.addr = route.params.id.toString();
 
   // get the reward list from the server
-  axios
-    .get("https://cardchain.crowdcontrol.network/files/rewards.csv")
-    .then((response) => {
-      var lines = response.data.split("\n");
-      var result = [];
-      var headers = lines[0].split(",");
-      for (var i = 1; i < lines.length; i++) {
-        var obj = {};
-        var currentline = lines[i].split(",");
-        for (var j = 0; j < headers.length; j++) {
-          obj[headers[j]] = currentline[j];
-        }
-        if (obj.CCAddress == state.addr) result.push(obj);
-        state.rewards = result;
+  axios.get("https://cardchain.crowdcontrol.network/files/rewards.csv").then((response) => {
+    const lines = response.data.split("\n");
+    const result = [];
+    const headers = lines[0].split(",");
+    for (let i = 1; i < lines.length; i++) {
+      const obj = {};
+      const currentline = lines[i].split(",");
+      for (let j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
       }
-      console.log("matching entries:", result);
-    });
+      if (obj.CCAddress == state.addr) result.push(obj);
+      state.rewards = result;
+    }
+    console.log("matching entries:", result);
+  });
 
   if (state.userIsUser) {
     state.user = user.value;

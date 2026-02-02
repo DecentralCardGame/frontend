@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosSlashingV1Beta1() {
   const client = useClient();
@@ -15,11 +9,9 @@ export default function useCosmosSlashingV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosSlashingV1Beta1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.CosmosSlashingV1Beta1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -33,7 +25,7 @@ export default function useCosmosSlashingV1Beta1() {
           .querySigningInfo(cons_address)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -54,10 +46,7 @@ export default function useCosmosSlashingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -70,7 +59,7 @@ export default function useCosmosSlashingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 

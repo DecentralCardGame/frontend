@@ -19,10 +19,7 @@
           </span>
         </slot>
       </header>
-      <section
-        id="modalDescription"
-        class="flex flex-wrap flex-row justify-start"
-      >
+      <section id="modalDescription" class="flex flex-wrap flex-row justify-start">
         <slot name="body">
           <!-- {{ dialog.description }} -->
           <div
@@ -76,18 +73,14 @@
                     addAbility();
                   "
                 >
-                  <div
-                    class="flex flex-col items-center aspect-square justify-evenly"
-                  >
+                  <div class="flex flex-col items-center aspect-square justify-evenly">
                     <div class="w-9">
                       <img :src="getIcon(option)" />
                     </div>
                     <div class="font-bold h-9 text-[20px] place-content-center">
                       {{ option.name }}
                     </div>
-                    <div
-                      class="min-w-[11.5rem] leading-5 text-[16px] place-content-start"
-                    >
+                    <div class="min-w-[11.5rem] leading-5 text-[16px] place-content-start">
                       {{ option.description }}
                     </div>
                   </div>
@@ -95,9 +88,7 @@
 
                 <label
                   v-if="
-                    dialog.type !== 'interface' &&
-                    dialog.type !== 'root' &&
-                    dialog.type !== 'enum'
+                    dialog.type !== 'interface' && dialog.type !== 'root' && dialog.type !== 'enum'
                   "
                   for="index"
                   class="text-s"
@@ -129,12 +120,7 @@
 
 <script>
 import * as R from "ramda";
-import {
-  atPath,
-  createInteraction,
-  filterSelection2,
-  updateInteraction,
-} from "../utils/utils.js";
+import { atPath, createInteraction, filterSelection2, updateInteraction } from "../utils/utils.js";
 import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
@@ -206,29 +192,27 @@ export default {
       if (!this.cardmodel.Class || !options) {
         return [];
       }
-      let firstLetterToUpper = (string) => {
+      const firstLetterToUpper = (string) => {
         return string[0].toUpperCase() + string.substring(1);
       };
-      let cardHasClass = (x) => {
+      const cardHasClass = (x) => {
         return this.cardmodel.Class[firstLetterToUpper(R.toLower(x))];
       };
-      let abilityIsValid = (x) => {
+      const abilityIsValid = (x) => {
         if (!x.classes) {
           return true;
         } else {
-          let ok = R.any((y) => cardHasClass(y), x.classes);
+          const ok = R.any((y) => cardHasClass(y), x.classes);
           return ok;
         }
       };
-      let valids = R.filter((ability) => abilityIsValid(ability), options);
+      const valids = R.filter((ability) => abilityIsValid(ability), options);
 
       return valids;
     },
     getIcon(option) {
       return (
-        "/icon/abilities/" +
-        R.toLower(R.split("-", option.name.replace(/ /g, ""))[0]) +
-        ".svg"
+        "/icon/abilities/" + R.toLower(R.split("-", option.name.replace(/ /g, ""))[0]) + ".svg"
       );
     },
     addAbility() {
@@ -257,14 +241,11 @@ export default {
       }
     },
     handleInterface() {
-      let atRules = R.curry(atPath)(this.cardRules.Card);
+      const atRules = R.curry(atPath)(this.cardRules.Card);
 
-      let selection = filterSelection2(this.dialog.options, this.selected);
-      let pathAtSelection = R.concat(this.dialog.rulesPath, [
-        "children",
-        selection.index,
-      ]);
-      let objAtSelection = atRules(pathAtSelection);
+      const selection = filterSelection2(this.dialog.options, this.selected);
+      const pathAtSelection = R.concat(this.dialog.rulesPath, ["children", selection.index]);
+      const objAtSelection = atRules(pathAtSelection);
 
       // check if the 'no condition' option was selected
       if (selection.index === "noSelect") {
@@ -282,24 +263,20 @@ export default {
       } else if (objAtSelection.interactionText) {
         // TODO here check if this is an interface (only interfaces have interaction text? yes?)
         this.dialog.preventClose = false;
-        let interactionText = objAtSelection.interactionText;
-        let abilityPath = R.append(selection.index, this.dialog.abilityPath);
-        let rulesPath = pathAtSelection;
-        let newInteraction = createInteraction(
+        const interactionText = objAtSelection.interactionText;
+        const abilityPath = R.append(selection.index, this.dialog.abilityPath);
+        const rulesPath = pathAtSelection;
+        const newInteraction = createInteraction(
           interactionText,
           abilityPath,
           R.append("children", rulesPath),
-          this.cardRules.Card,
+          this.cardRules.Card
         );
 
-        updateInteraction(
-          this.ability,
-          this.ability.clickedBtn.id,
-          newInteraction,
-        );
+        updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction);
         this.attachToAbility(["interaction"], this.ability.interaction);
 
-        let newEntry = {};
+        const newEntry = {};
         newEntry[selection.index] = {};
 
         if (objAtSelection.singleUse) newEntry.singleUse = selection.index;
@@ -308,27 +285,21 @@ export default {
         this.attachToAbility(
           this.dialog.btn.abilityPath,
           newEntry,
-          this.dialog.title === "Token" ? false : true,
+          this.dialog.title === "Token" ? false : true
         );
       } else if (objAtSelection.type === "int") {
         // TODO This is deprecated (since modal does not open)
         this.dialog.preventClose = false;
         this.dialog.btn.type = "int";
         this.dialog.btn.rulesPath = pathAtSelection;
-        this.dialog.btn.abilityPath = R.append(
-          selection.index,
-          this.dialog.abilityPath,
-        );
+        this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath);
       } else if (objAtSelection.type === "enum") {
         this.dialog.preventClose = true;
         this.dialog.title = objAtSelection.name;
         this.dialog.type = objAtSelection.type;
         this.dialog.options = R.map((x) => ({ name: x }), objAtSelection.enum);
         this.dialog.btn.rulesPath = pathAtSelection;
-        this.dialog.btn.abilityPath = R.append(
-          selection.index,
-          this.dialog.abilityPath,
-        );
+        this.dialog.btn.abilityPath = R.append(selection.index, this.dialog.abilityPath);
       } else {
         // if there is no interaction text, don't close modal and present new options
         this.dialog.preventClose = true;
@@ -338,10 +309,7 @@ export default {
         this.dialog.type = objAtSelection.type;
         this.dialog.options = objAtSelection.children;
         this.dialog.rulesPath = pathAtSelection;
-        this.dialog.abilityPath = R.append(
-          selection.index,
-          this.dialog.abilityPath,
-        );
+        this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath);
       }
       console.log("ability after handleInterface: ", this.ability);
     },
@@ -358,35 +326,32 @@ export default {
         : "-";
       this.attachToAbility(
         this.dialog.btn.abilityPath,
-        this.dialog.options[0].value ? this.dialog.options[0].value : false,
+        this.dialog.options[0].value ? this.dialog.options[0].value : false
       );
 
       console.log("ability after handleBool: ", this.ability);
     },
     handleCreateAbility() {
-      let atRules = R.curry(atPath)(this.cardRules.Card);
+      const atRules = R.curry(atPath)(this.cardRules.Card);
 
-      let selection = filterSelection2(this.dialog.options, this.selected);
-      let pathAtSelection = R.concat(this.dialog.rulesPath, [selection.index]);
-      let objAtSelection = atRules(pathAtSelection);
-      let interactionText = atPath(
+      const selection = filterSelection2(this.dialog.options, this.selected);
+      const pathAtSelection = R.concat(this.dialog.rulesPath, [selection.index]);
+      const objAtSelection = atRules(pathAtSelection);
+      const interactionText = atPath(
         this.cardRules.Card,
-        R.append(selection.index, this.dialog.rulesPath),
+        R.append(selection.index, this.dialog.rulesPath)
       ).interactionText;
 
-      let abilityPath = [selection.index];
-      let rulesPath = R.concat(this.dialog.rulesPath, [
-        selection.index,
-        "children",
-      ]);
+      const abilityPath = [selection.index];
+      const rulesPath = R.concat(this.dialog.rulesPath, [selection.index, "children"]);
 
       if (!objAtSelection.interactionText) {
-        let newAbility = {
+        const newAbility = {
           interaction: createInteraction(
             "§" + selection.index,
             [],
             this.dialog.rulesPath,
-            this.cardRules.Card,
+            this.cardRules.Card
           ),
         };
         newAbility.clickedBtn = newAbility.interaction[0].btn;
@@ -409,20 +374,17 @@ export default {
         this.dialog.type = objAtSelection.type;
         this.dialog.options = objAtSelection.children;
         this.dialog.rulesPath = pathAtSelection;
-        this.dialog.abilityPath = R.append(
-          selection.index,
-          this.dialog.abilityPath,
-        );
+        this.dialog.abilityPath = R.append(selection.index, this.dialog.abilityPath);
 
         return;
       }
 
-      let newAbility = {
+      const newAbility = {
         interaction: createInteraction(
           interactionText,
           abilityPath,
           rulesPath,
-          this.cardRules.Card,
+          this.cardRules.Card
         ),
         keywords: [selection.index],
       };
@@ -433,16 +395,9 @@ export default {
       this.abilitiesData.push(newAbility);
     },
     attachToAbility(path, object, updateKeywords = false) {
-      console.log(
-        "attaching ",
-        object,
-        " to ",
-        path,
-        "with keywords: ",
-        R.keys(object),
-      );
+      console.log("attaching ", object, " to ", path, "with keywords: ", R.keys(object));
 
-      let ability = R.assocPath(path, object, this.ability);
+      const ability = R.assocPath(path, object, this.ability);
 
       if (updateKeywords) {
         ability.keywords = ability.keywords

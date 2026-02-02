@@ -1,5 +1,3 @@
-import router from "@/router";
-
 import { useQuery } from "@/def-composables/useQuery";
 import { ref, watch, type Ref } from "vue";
 import { GalleryFilters } from "@/model/GalleryFilters";
@@ -19,7 +17,7 @@ export type PageQuery = QueryCardsRequest;
 const constructAssRetardetQueryParams = (query: any): string => {
   return Object.keys(query)
     .map((key): string => {
-      let k = key as keyof PageQuery;
+      const k = key as keyof PageQuery;
       if (typeof query[k] == "object") {
         return query[k].length != 0
           ? (query[k] as Array<any>)
@@ -43,14 +41,11 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
   galleryFilters.value.notesContains = query.notesContains;
   galleryFilters.value.sortBy = query.sortBy ? query.sortBy : "Name";
   galleryFilters.value.multiClass = query.multiClassOnly;
-  galleryFilters.value.status =
-    query.status.length != 1 ? "playable" : query.status[0];
+  galleryFilters.value.status = query.status.length != 1 ? "playable" : query.status[0];
 
   if (
     query.class.length == 0 ||
-    [0, 1, 2, 3]
-      .map((v) => query.class.includes(v as CardClass))
-      .every((v) => v)
+    [0, 1, 2, 3].map((v) => query.class.includes(v as CardClass)).every((v) => v)
   ) {
     galleryFilters.value.nature = false;
     galleryFilters.value.culture = false;
@@ -58,9 +53,7 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
     galleryFilters.value.technology = false;
   } else {
     galleryFilters.value.nature = query.class.includes(CardClass.nature);
-    galleryFilters.value.technology = query.class.includes(
-      CardClass.technology,
-    );
+    galleryFilters.value.technology = query.class.includes(CardClass.technology);
     galleryFilters.value.culture = query.class.includes(CardClass.culture);
     galleryFilters.value.mysticism = query.class.includes(CardClass.mysticism);
   }
@@ -73,9 +66,7 @@ const galleryFiltersFromPageQuery = (query: PageQuery) => {
 
   if (
     query.cardType.length == 0 ||
-    [0, 1, 2, 3]
-      .map((v) => query.cardType.includes(v as CardType))
-      .every((v) => v)
+    [0, 1, 2, 3].map((v) => query.cardType.includes(v as CardType)).every((v) => v)
   ) {
     galleryFilters.value.action = false;
     galleryFilters.value.place = false;
@@ -94,12 +85,7 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
     owner: galleryFilters.value.owner,
     status:
       galleryFilters.value.status == "playable"
-        ? [
-            CardStatus.bannedSoon,
-            CardStatus.bannedVerySoon,
-            CardStatus.permanent,
-            CardStatus.trial,
-          ]
+        ? [CardStatus.bannedSoon, CardStatus.bannedVerySoon, CardStatus.permanent, CardStatus.trial]
         : [galleryFilters.value.status],
     class: [
       ...(galleryFilters.value.nature ? [CardClass.nature] : []),
@@ -114,9 +100,7 @@ const pageQueryFromGalleryFilters = (): PageQuery => {
       ...(galleryFilters.value.hq ? [CardType.headquarter] : []),
     ],
     rarities:
-      typeof galleryFilters.value.rarity !== "undefined"
-        ? [galleryFilters.value.rarity]
-        : [],
+      typeof galleryFilters.value.rarity !== "undefined" ? [galleryFilters.value.rarity] : [],
     keywordsContains: galleryFilters.value.keywordsContains,
     nameContains: galleryFilters.value.nameContains,
     notesContains: galleryFilters.value.notesContains,

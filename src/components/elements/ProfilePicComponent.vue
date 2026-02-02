@@ -1,12 +1,5 @@
 <template>
-  <div
-    :class="[
-      'overflow-hidden',
-      'rounded-full',
-      'w-' + props.size,
-      'h-' + props.size,
-    ]"
-  >
+  <div :class="['overflow-hidden', 'rounded-full', 'w-' + props.size, 'h-' + props.size]">
     <img :src="src" class="-pt-[10%] w-full object-contain" :alt="alt" />
   </div>
 </template>
@@ -21,6 +14,6 @@ const props = withDefaults(
     src: {},
     size: 64,
     alt: "Profile Pic",
-  },
+  }
 );
 </script>

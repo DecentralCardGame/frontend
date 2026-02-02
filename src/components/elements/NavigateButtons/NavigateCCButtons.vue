@@ -28,6 +28,6 @@ const props = withDefaults(
   {
     start: false,
     end: false,
-  },
+  }
 );
 </script>

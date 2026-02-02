@@ -20,6 +20,6 @@ const props = withDefaults(
   {
     to: {},
     type: Color.YELLOW,
-  },
+  }
 );
 </script>

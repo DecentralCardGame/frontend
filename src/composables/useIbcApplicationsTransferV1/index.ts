@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useIbcApplicationsTransferV1() {
   const client = useClient();
@@ -16,11 +10,9 @@ export default function useIbcApplicationsTransferV1() {
       [key],
       () => {
         const { hash } = key;
-        return client.IbcApplicationsTransferV1.query
-          .queryDenomTrace(hash)
-          .then((res) => res.data);
+        return client.IbcApplicationsTransferV1.query.queryDenomTrace(hash).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -41,10 +33,7 @@ export default function useIbcApplicationsTransferV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -57,7 +46,7 @@ export default function useIbcApplicationsTransferV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -66,11 +55,9 @@ export default function useIbcApplicationsTransferV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcApplicationsTransferV1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.IbcApplicationsTransferV1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -80,19 +67,13 @@ export default function useIbcApplicationsTransferV1() {
       [key],
       () => {
         const { trace } = key;
-        return client.IbcApplicationsTransferV1.query
-          .queryDenomHash(trace)
-          .then((res) => res.data);
+        return client.IbcApplicationsTransferV1.query.queryDenomHash(trace).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryEscrowAddress = (
-    channel_id: string,
-    port_id: string,
-    options: any,
-  ) => {
+  const QueryEscrowAddress = (channel_id: string, port_id: string, options: any) => {
     const key = { type: "QueryEscrowAddress", channel_id, port_id };
     return useQuery(
       [key],
@@ -102,7 +83,7 @@ export default function useIbcApplicationsTransferV1() {
           .queryEscrowAddress(channel_id, port_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

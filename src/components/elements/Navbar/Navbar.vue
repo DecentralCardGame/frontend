@@ -36,6 +36,6 @@ const props = withDefaults(
     elemClass: "px-10 py-7",
     elemActiveClass: "font-bold",
     type: Color.RED,
-  },
+  }
 );
 </script>

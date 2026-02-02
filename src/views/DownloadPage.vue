@@ -39,11 +39,7 @@
           <BaseCCButton :type="Color.RED" @click="downloadLatest">
             <a :href="downloadurl"> Download Gameclient </a>
           </BaseCCButton>
-          <BaseCCButton
-            :type="Color.TEAL"
-            :diabled="!addressValid"
-            @click="inviteUser"
-          >
+          <BaseCCButton :type="Color.TEAL" :diabled="!addressValid" @click="inviteUser">
             Invite
           </BaseCCButton>
         </div>
@@ -90,7 +86,7 @@ const inviteUser = () => {
     () => {
       inviteMode.value = false;
     },
-    console.log,
+    console.log
   );
 };
 </script>

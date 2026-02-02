@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
 export default function useCosmosMintV1Beta1() {
@@ -8,11 +7,9 @@ export default function useCosmosMintV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosMintV1Beta1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.CosmosMintV1Beta1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryInflation = (options) => {
@@ -20,11 +17,9 @@ export default function useCosmosMintV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosMintV1Beta1.query
-          .queryInflation()
-          .then((res) => res.data);
+        return client.CosmosMintV1Beta1.query.queryInflation().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryAnnualProvisions = (options) => {
@@ -32,11 +27,9 @@ export default function useCosmosMintV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosMintV1Beta1.query
-          .queryAnnualProvisions()
-          .then((res) => res.data);
+        return client.CosmosMintV1Beta1.query.queryAnnualProvisions().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return { QueryParams, QueryInflation, QueryAnnualProvisions };

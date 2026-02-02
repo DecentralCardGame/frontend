@@ -13,7 +13,7 @@ export default function useCosmosFeegrantV1Beta1() {
           .queryAllowance(granter, grantee)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryAllowances = (grantee, query, options, perPage) => {
@@ -32,10 +32,7 @@ export default function useCosmosFeegrantV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -48,7 +45,7 @@ export default function useCosmosFeegrantV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const QueryAllowancesByGranter = (granter, query, options, perPage) => {
@@ -67,10 +64,7 @@ export default function useCosmosFeegrantV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -83,7 +77,7 @@ export default function useCosmosFeegrantV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   return { QueryAllowance, QueryAllowances, QueryAllowancesByGranter };

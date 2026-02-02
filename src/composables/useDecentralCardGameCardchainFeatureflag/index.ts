@@ -1,12 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useDecentralCardGameCardchainFeatureflag() {
   const client = useClient();
@@ -19,7 +12,7 @@ export default function useDecentralCardGameCardchainFeatureflag() {
           .queryParams()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -33,7 +26,7 @@ export default function useDecentralCardGameCardchainFeatureflag() {
           .queryQFlag(module, name)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -46,7 +39,7 @@ export default function useDecentralCardGameCardchainFeatureflag() {
           .queryQFlags()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

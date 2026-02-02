@@ -34,8 +34,6 @@ import peer from "@/assets/team/peer.webp";
 import niko from "@/assets/team/niko.webp";
 import jannik from "@/assets/team/jannik.webp";
 import kosta from "@/assets/team/kosta.webp";
-import benny from "@/assets/team/benny.webp";
-import stefi from "@/assets/team/stefi.webp";
 import noah from "@/assets/team/noah.webp";
 import clarissa from "@/assets/team/clarissa.webp";
 import logo from "@/assets/figma/CCLogo.png";

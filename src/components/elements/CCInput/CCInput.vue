@@ -33,6 +33,6 @@ const props = withDefaults(
     maxLength: 25,
     infoText: undefined,
     errorText: undefined,
-  },
+  }
 );
 </script>

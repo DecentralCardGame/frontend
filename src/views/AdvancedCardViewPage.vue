@@ -19,7 +19,7 @@ const router = useRouter();
 const state = reactive(initialState);
 
 onMounted(() => {
-  let id = parseInt(route.params.id as string);
+  const id = parseInt(route.params.id as string);
   if (!isNaN(id)) {
     state.id = id;
   }

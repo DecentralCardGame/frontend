@@ -9,23 +9,13 @@
       >
         <header id="modalTitle" class="modal__header">
           <slot name="header"> Transfer coins </slot>
-          <button
-            aria-label="Close modal"
-            type="button"
-            class="btn--close"
-            @click="close"
-          >
+          <button aria-label="Close modal" type="button" class="btn--close" @click="close">
             x
           </button>
         </header>
         <div class="modal__body input--transfer">
           Transfer
-          <input
-            v-model="amount"
-            type="text"
-            placeholder="amount"
-            @keypress="isNumber($event)"
-          />
+          <input v-model="amount" type="text" placeholder="amount" @keypress="isNumber($event)" />
           <select v-model="denom">
             <option v-for="(coin, i) in coins" :key="i">
               {{ coin.denom }}
@@ -96,12 +86,8 @@ export default {
     },
     isNumber: function (evt: any) {
       evt = evt || window.event;
-      let charCode = evt.which ? evt.which : evt.keyCode;
-      if (
-        charCode > 31 &&
-        (charCode < 48 || charCode > 57) &&
-        charCode !== 46
-      ) {
+      const charCode = evt.which ? evt.which : evt.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
         evt.preventDefault();
       } else {
         return true;
@@ -117,10 +103,7 @@ export default {
         return;
       }
       for (let i = 0; i < this.coins.length; i++) {
-        if (
-          this.coins[i].denom == this.denom &&
-          Number(this.amount) > this.coins[i].amount
-        ) {
+        if (this.coins[i].denom == this.denom && Number(this.amount) > this.coins[i].amount) {
           this.warningText = "You don't have that many coins!";
           return;
         }
@@ -139,7 +122,7 @@ export default {
         },
         (err) => {
           console.error(errorMonitor);
-        },
+        }
       );
     },
   },

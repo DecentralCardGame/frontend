@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosStakingV1Beta1() {
   const client = useClient();
@@ -27,10 +21,7 @@ export default function useCosmosStakingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -43,7 +34,7 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -57,7 +48,7 @@ export default function useCosmosStakingV1Beta1() {
           .queryValidator(validator_addr)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -65,7 +56,7 @@ export default function useCosmosStakingV1Beta1() {
     validator_addr: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryValidatorDelegations", validator_addr, query };
     return useInfiniteQuery(
@@ -83,10 +74,7 @@ export default function useCosmosStakingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -99,7 +87,7 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -107,7 +95,7 @@ export default function useCosmosStakingV1Beta1() {
     validator_addr: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = {
       type: "QueryValidatorUnbondingDelegations",
@@ -123,19 +111,13 @@ export default function useCosmosStakingV1Beta1() {
         query["pagination.offset"] = (pageParam - 1) * perPage;
         query["pagination.count_total"] = true;
         return client.CosmosStakingV1Beta1.query
-          .queryValidatorUnbondingDelegations(
-            validator_addr,
-            query ?? undefined,
-          )
+          .queryValidatorUnbondingDelegations(validator_addr, query ?? undefined)
           .then((res) => ({ ...res.data, pageParam }));
       },
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -148,15 +130,11 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryDelegation = (
-    validator_addr: string,
-    delegator_addr: string,
-    options: any,
-  ) => {
+  const QueryDelegation = (validator_addr: string, delegator_addr: string, options: any) => {
     const key = { type: "QueryDelegation", validator_addr, delegator_addr };
     return useQuery(
       [key],
@@ -166,14 +144,14 @@ export default function useCosmosStakingV1Beta1() {
           .queryDelegation(validator_addr, delegator_addr)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
   const QueryUnbondingDelegation = (
     validator_addr: string,
     delegator_addr: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryUnbondingDelegation",
@@ -188,7 +166,7 @@ export default function useCosmosStakingV1Beta1() {
           .queryUnbondingDelegation(validator_addr, delegator_addr)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -196,7 +174,7 @@ export default function useCosmosStakingV1Beta1() {
     delegator_addr: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryDelegatorDelegations", delegator_addr, query };
     return useInfiniteQuery(
@@ -214,10 +192,7 @@ export default function useCosmosStakingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -230,7 +205,7 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -238,7 +213,7 @@ export default function useCosmosStakingV1Beta1() {
     delegator_addr: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = {
       type: "QueryDelegatorUnbondingDelegations",
@@ -254,19 +229,13 @@ export default function useCosmosStakingV1Beta1() {
         query["pagination.offset"] = (pageParam - 1) * perPage;
         query["pagination.count_total"] = true;
         return client.CosmosStakingV1Beta1.query
-          .queryDelegatorUnbondingDelegations(
-            delegator_addr,
-            query ?? undefined,
-          )
+          .queryDelegatorUnbondingDelegations(delegator_addr, query ?? undefined)
           .then((res) => ({ ...res.data, pageParam }));
       },
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -279,7 +248,7 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -287,7 +256,7 @@ export default function useCosmosStakingV1Beta1() {
     delegator_addr: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryRedelegations", delegator_addr, query };
     return useInfiniteQuery(
@@ -305,10 +274,7 @@ export default function useCosmosStakingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -321,7 +287,7 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -329,7 +295,7 @@ export default function useCosmosStakingV1Beta1() {
     delegator_addr: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryDelegatorValidators", delegator_addr, query };
     return useInfiniteQuery(
@@ -347,10 +313,7 @@ export default function useCosmosStakingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -363,14 +326,14 @@ export default function useCosmosStakingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
   const QueryDelegatorValidator = (
     delegator_addr: string,
     validator_addr: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryDelegatorValidator",
@@ -385,7 +348,7 @@ export default function useCosmosStakingV1Beta1() {
           .queryDelegatorValidator(delegator_addr, validator_addr)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -399,7 +362,7 @@ export default function useCosmosStakingV1Beta1() {
           .queryHistoricalInfo(height)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -408,11 +371,9 @@ export default function useCosmosStakingV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosStakingV1Beta1.query
-          .queryPool()
-          .then((res) => res.data);
+        return client.CosmosStakingV1Beta1.query.queryPool().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -421,11 +382,9 @@ export default function useCosmosStakingV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosStakingV1Beta1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.CosmosStakingV1Beta1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

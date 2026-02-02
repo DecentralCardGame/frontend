@@ -18,17 +18,17 @@ const useProfilePicInstance = () => {
         loggedInProfilePic.value = img;
       });
     },
-    { deep: true },
+    { deep: true }
   );
 
   const getDefaultImg = (addr: string) => {
-    let myRandom = addr.charCodeAt(addr.length - 1) % 4;
+    const myRandom = addr.charCodeAt(addr.length - 1) % 4;
     return "Avatar" + myRandom + ".png";
   };
 
   const getImg = async (user: User, address: string) => {
     if (user.profileCard != 0) {
-      let card = await getCard(user.profileCard);
+      const card = await getCard(user.profileCard);
       if (card === null) {
         return getDefaultImg(address);
       } else {

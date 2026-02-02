@@ -55,13 +55,11 @@ const props = withDefaults(
     initial: "?",
     displayFn: (v: T): string => "" + v,
     type: Color.PUSSYRED,
-  },
+  }
 );
 
 const displayButton = () => {
-  return typeof model.value !== "undefined"
-    ? props.displayFn(model.value)
-    : props.initial;
+  return typeof model.value !== "undefined" ? props.displayFn(model.value) : props.initial;
 };
 
 const toggleDropdown = () => {

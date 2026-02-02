@@ -1,9 +1,5 @@
 <template>
-  <ModalFrame
-    heading="Choose Profile Card"
-    class="max-w-[100rem]"
-    @close="emit('close')"
-  >
+  <ModalFrame heading="Choose Profile Card" class="max-w-[100rem]" @close="emit('close')">
     <div class="overflow-y-auto flex flex-wrap gap-8 max-h-[50rem] m-16">
       <ProfilePicComponent
         v-for="obj in state.images"
@@ -11,17 +7,13 @@
         :src="obj.img"
         size="40"
         :class="
-          ['w-40', 'h-40'].concat(
-            obj.id == state.choosen ? ['border-cc-red', 'border-8'] : [],
-          )
+          ['w-40', 'h-40'].concat(obj.id == state.choosen ? ['border-cc-red', 'border-8'] : [])
         "
         :alt="'Pic' + obj.id"
         @click="choose(obj.id)"
       />
     </div>
-    <BaseCCButton :type="Color.RED" class="mx-auto text-center" @click="send">
-      Save
-    </BaseCCButton>
+    <BaseCCButton :type="Color.RED" class="mx-auto text-center" @click="send"> Save </BaseCCButton>
   </ModalFrame>
 </template>
 
@@ -63,7 +55,7 @@ const props = withDefaults(
   {
     cardIds: () => [],
     current: 0,
-  },
+  }
 );
 
 const initialState: {
@@ -103,7 +95,7 @@ const send = () => {
       getUser();
       close();
     },
-    console.log,
+    console.log
   );
 };
 </script>

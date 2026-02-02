@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosBankV1Beta1() {
   const client = useClient();
@@ -20,16 +14,11 @@ export default function useCosmosBankV1Beta1() {
           .queryBalance(address, query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryAllBalances = (
-    address: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryAllBalances = (address: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryAllBalances", address, query };
     return useInfiniteQuery(
       [key],
@@ -46,10 +35,7 @@ export default function useCosmosBankV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -62,16 +48,11 @@ export default function useCosmosBankV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QuerySpendableBalances = (
-    address: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QuerySpendableBalances = (address: string, query: any, options: any, perPage: number) => {
     const key = { type: "QuerySpendableBalances", address, query };
     return useInfiniteQuery(
       [key],
@@ -88,10 +69,7 @@ export default function useCosmosBankV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -104,7 +82,7 @@ export default function useCosmosBankV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -125,10 +103,7 @@ export default function useCosmosBankV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -141,7 +116,7 @@ export default function useCosmosBankV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -155,7 +130,7 @@ export default function useCosmosBankV1Beta1() {
           .querySupplyOf(query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -164,11 +139,9 @@ export default function useCosmosBankV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosBankV1Beta1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.CosmosBankV1Beta1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -178,11 +151,9 @@ export default function useCosmosBankV1Beta1() {
       [key],
       () => {
         const { denom } = key;
-        return client.CosmosBankV1Beta1.query
-          .queryDenomMetadata(denom)
-          .then((res) => res.data);
+        return client.CosmosBankV1Beta1.query.queryDenomMetadata(denom).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -203,10 +174,7 @@ export default function useCosmosBankV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -219,16 +187,11 @@ export default function useCosmosBankV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryDenomOwners = (
-    denom: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryDenomOwners = (denom: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryDenomOwners", denom, query };
     return useInfiniteQuery(
       [key],
@@ -245,10 +208,7 @@ export default function useCosmosBankV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -261,7 +221,7 @@ export default function useCosmosBankV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 

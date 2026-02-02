@@ -9,11 +9,9 @@ export default function useCosmosNftV1Beta1() {
       [key],
       () => {
         const { owner, class_id } = key;
-        return client.CosmosNftV1Beta1.query
-          .queryBalance(owner, class_id)
-          .then((res) => res.data);
+        return client.CosmosNftV1Beta1.query.queryBalance(owner, class_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryOwner = (class_id, id, options) => {
@@ -22,11 +20,9 @@ export default function useCosmosNftV1Beta1() {
       [key],
       () => {
         const { class_id, id } = key;
-        return client.CosmosNftV1Beta1.query
-          .queryOwner(class_id, id)
-          .then((res) => res.data);
+        return client.CosmosNftV1Beta1.query.queryOwner(class_id, id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QuerySupply = (class_id, options) => {
@@ -35,11 +31,9 @@ export default function useCosmosNftV1Beta1() {
       [key],
       () => {
         const { class_id } = key;
-        return client.CosmosNftV1Beta1.query
-          .querySupply(class_id)
-          .then((res) => res.data);
+        return client.CosmosNftV1Beta1.query.querySupply(class_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryNFTs = (query, options, perPage) => {
@@ -58,10 +52,7 @@ export default function useCosmosNftV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -74,7 +65,7 @@ export default function useCosmosNftV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const QueryNFT = (class_id, id, options) => {
@@ -83,11 +74,9 @@ export default function useCosmosNftV1Beta1() {
       [key],
       () => {
         const { class_id, id } = key;
-        return client.CosmosNftV1Beta1.query
-          .queryNFT(class_id, id)
-          .then((res) => res.data);
+        return client.CosmosNftV1Beta1.query.queryNFT(class_id, id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryClass = (class_id, options) => {
@@ -96,11 +85,9 @@ export default function useCosmosNftV1Beta1() {
       [key],
       () => {
         const { class_id } = key;
-        return client.CosmosNftV1Beta1.query
-          .queryClass(class_id)
-          .then((res) => res.data);
+        return client.CosmosNftV1Beta1.query.queryClass(class_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryClasses = (query, options, perPage) => {
@@ -119,10 +106,7 @@ export default function useCosmosNftV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -135,7 +119,7 @@ export default function useCosmosNftV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   return {

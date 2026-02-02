@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosGovV1() {
   const client = useClient();
@@ -16,11 +10,9 @@ export default function useCosmosGovV1() {
       [key],
       () => {
         const { proposal_id } = key;
-        return client.CosmosGovV1.query
-          .queryProposal(proposal_id)
-          .then((res) => res.data);
+        return client.CosmosGovV1.query.queryProposal(proposal_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -41,10 +33,7 @@ export default function useCosmosGovV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -57,7 +46,7 @@ export default function useCosmosGovV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -67,20 +56,13 @@ export default function useCosmosGovV1() {
       [key],
       () => {
         const { proposal_id, voter } = key;
-        return client.CosmosGovV1.query
-          .queryVote(proposal_id, voter)
-          .then((res) => res.data);
+        return client.CosmosGovV1.query.queryVote(proposal_id, voter).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryVotes = (
-    proposal_id: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryVotes = (proposal_id: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryVotes", proposal_id, query };
     return useInfiniteQuery(
       [key],
@@ -97,10 +79,7 @@ export default function useCosmosGovV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -113,7 +92,7 @@ export default function useCosmosGovV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -123,19 +102,13 @@ export default function useCosmosGovV1() {
       [key],
       () => {
         const { params_type } = key;
-        return client.CosmosGovV1.query
-          .queryParams(params_type)
-          .then((res) => res.data);
+        return client.CosmosGovV1.query.queryParams(params_type).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryDeposit = (
-    proposal_id: string,
-    depositor: string,
-    options: any,
-  ) => {
+  const QueryDeposit = (proposal_id: string, depositor: string, options: any) => {
     const key = { type: "QueryDeposit", proposal_id, depositor };
     return useQuery(
       [key],
@@ -145,16 +118,11 @@ export default function useCosmosGovV1() {
           .queryDeposit(proposal_id, depositor)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryDeposits = (
-    proposal_id: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryDeposits = (proposal_id: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryDeposits", proposal_id, query };
     return useInfiniteQuery(
       [key],
@@ -171,10 +139,7 @@ export default function useCosmosGovV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -187,7 +152,7 @@ export default function useCosmosGovV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -197,11 +162,9 @@ export default function useCosmosGovV1() {
       [key],
       () => {
         const { proposal_id } = key;
-        return client.CosmosGovV1.query
-          .queryTallyResult(proposal_id)
-          .then((res) => res.data);
+        return client.CosmosGovV1.query.queryTallyResult(proposal_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

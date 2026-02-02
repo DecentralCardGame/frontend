@@ -12,7 +12,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceGetNodeInfo()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const ServiceGetSyncing = (options) => {
@@ -20,11 +20,9 @@ export default function useCosmosBaseTendermintV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosBaseTendermintV1Beta1.query
-          .serviceGetSyncing()
-          .then((res) => res.data);
+        return client.CosmosBaseTendermintV1Beta1.query.serviceGetSyncing().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const ServiceGetLatestBlock = (options) => {
@@ -36,7 +34,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceGetLatestBlock()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const ServiceGetBlockByHeight = (height, options) => {
@@ -49,7 +47,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceGetBlockByHeight(height)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const ServiceGetLatestValidatorSet = (query, options, perPage) => {
@@ -68,10 +66,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -84,7 +79,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const ServiceGetValidatorSetByHeight = (height, query, options, perPage) => {
@@ -103,10 +98,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -119,7 +111,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const ServiceABCIQuery = (query, options) => {
@@ -132,7 +124,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceABCIQuery(query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return {

@@ -9,11 +9,7 @@
       <div class="absolute top-20 m-auto left-0 right-0">
         <div class="flex text-center justify-center z-10">
           <div class="w-5/6 md:w-3/6">
-            <img
-              :src="logoBig"
-              alt="big cc logo"
-              class="w-full drop-shadow-header"
-            />
+            <img :src="logoBig" alt="big cc logo" class="w-full drop-shadow-header" />
             <p class="text-4xl text-white font-bold py-6">
               A collectible card game made by players.
             </p>
@@ -21,9 +17,7 @@
             <RouterCCButton class="pb-4" to="/cardCreator" :type="Color.YELLOW">
               CREATE CARDS
             </RouterCCButton>
-            <RouterCCButton :type="Color.BLACK" to="/download">
-              Play the game
-            </RouterCCButton>
+            <RouterCCButton :type="Color.BLACK" to="/download"> Play the game </RouterCCButton>
           </div>
         </div>
       </div>
@@ -36,21 +30,15 @@
         :src="logo"
       />
     </div>
-    <div
-      class="bg-center bg-cover bg-[url('@/assets/figma/pixelart.png')] pt-10 sm:pt-32"
-    >
+    <div class="bg-center bg-cover bg-[url('@/assets/figma/pixelart.png')] pt-10 sm:pt-32">
       <div
         class="max-w-[70rem] flex flex-row flex-wrap justify-evenly px-8 py-10 bg-cc-yellow/75 b-10 mb-32 xl:mx-auto mx-10"
       >
         <div class="place-self-center pr-4">
           <p class="text-5xl font-bold pb-6">New Sets and Boosters</p>
           <p class="text-2xl pb-6">Promoted Sets and Boosters</p>
-          <RouterCCButton class="pb-4" to="/b" :type="Color.BLACK">
-            Buy Boosters
-          </RouterCCButton>
-          <RouterCCButton to="/gallery" :type="Color.BLACK">
-            Visit Gallery
-          </RouterCCButton>
+          <RouterCCButton class="pb-4" to="/b" :type="Color.BLACK"> Buy Boosters </RouterCCButton>
+          <RouterCCButton to="/gallery" :type="Color.BLACK"> Visit Gallery </RouterCCButton>
         </div>
         <div>
           <img
@@ -75,11 +63,7 @@
         <div class="flex pt-20 justify-evenly sm:px-32 flex-wrap gap-4">
           <div v-for="cardBack in cardBacks" class="relative hover:scale-105">
             <router-link :to="{ name: cardBack.route }">
-              <img
-                alt="cardback"
-                :src="cardBack.cardBack"
-                class="h-[20rem] drop-shadow-glowRed"
-              />
+              <img alt="cardback" :src="cardBack.cardBack" class="h-[20rem] drop-shadow-glowRed" />
             </router-link>
             <div class="absolute top-52 left-0 right-0 text-center">
               <p class="text-3xl font-bold">

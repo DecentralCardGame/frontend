@@ -15,52 +15,44 @@ export function creditsFromCoins(coins) {
 // Utility functions for card creator
 
 export function createInteraction(text, abilityPath, rulesPath, cardRules) {
-  let makeBtn = R.curry(makeButton)(cardRules);
+  const makeBtn = R.curry(makeButton)(cardRules);
 
   // split text into pieces, separated by button markers §
-  let regex = /([§]+)([a-z,A-Z]+)/g;
+  const regex = /([§]+)([a-z,A-Z]+)/g;
   text = text.replace(regex, "$1%$2§");
   text = text.split("§");
 
-  let interaction = [];
+  const interaction = [];
   // iterate over text pieces, creating interaction for each piece
   text.forEach((entry) => {
     if (entry[0] === "%") {
       // % is the marker for a button
-      let buttonEntry = entry.slice(1);
+      const buttonEntry = entry.slice(1);
 
-      let type = R.path(R.append(buttonEntry, rulesPath), cardRules).type;
+      const type = R.path(R.append(buttonEntry, rulesPath), cardRules).type;
       //console.log('interaction type', type)
       // array is different to other interactions, therefore we need special treatment
       if (type === "array") {
-        let nextPath = climbRulesTree(
-          cardRules,
-          R.append(buttonEntry, rulesPath),
-        );
+        const nextPath = climbRulesTree(cardRules, R.append(buttonEntry, rulesPath));
 
         // Create the button for adding the effect
         interaction[interaction.length - 1].btn = makeBtn(
           R.dropLast(1, nextPath),
           R.concat(abilityPath, [buttonEntry, 0]),
-          interaction.length - 1,
+          interaction.length - 1
         );
         // and also create the button for adding more effects
         interaction.push({
           pre: "+",
           btn: {
             id: interaction.length,
-            label:
-              "[add " +
-              R.path(R.append(buttonEntry, rulesPath), cardRules).name +
-              "]",
+            label: "[add " + R.path(R.append(buttonEntry, rulesPath), cardRules).name + "]",
             type: "expandArray",
             abilityPath: R.append(buttonEntry, abilityPath),
             rulesPath: R.append(buttonEntry, rulesPath),
             template: interaction[interaction.length - 1],
           },
-          post: interaction[interaction.length - 2]
-            ? interaction[interaction.length - 2].post
-            : "",
+          post: interaction[interaction.length - 2] ? interaction[interaction.length - 2].post : "",
         });
         // the post button text has been moved behind the last button, so remove it from the previous one
         interaction[interaction.length - 2].post = "";
@@ -72,7 +64,7 @@ export function createInteraction(text, abilityPath, rulesPath, cardRules) {
         R.last(interaction).btn = makeBtn(
           R.append(buttonEntry, rulesPath),
           R.append(buttonEntry, abilityPath),
-          interaction.length - 1,
+          interaction.length - 1
         );
         if (type === "boolean") {
           R.last(interaction).btn.label += "?";
@@ -93,8 +85,7 @@ export function createInteraction(text, abilityPath, rulesPath, cardRules) {
     interaction[interaction.length - 1].btn.type === null &&
     interaction[interaction.length - 2]
   ) {
-    interaction[interaction.length - 2].post =
-      interaction[interaction.length - 1].pre;
+    interaction[interaction.length - 2].post = interaction[interaction.length - 1].pre;
     interaction.splice(-1, 1);
   }
 
@@ -118,8 +109,7 @@ export function updateInteraction(ability, id, newInteraction) {
       ability.interaction[id + 1].pre += ability.interaction[id].post;
     } else if (ability.interaction[id].pre != ": ") {
       // sometimes there is no post-text, but there is pre-text we want to preserve, but don't do this if it is only a ":"
-      newInteraction[0].pre =
-        ability.interaction[id].pre + newInteraction[0].pre;
+      newInteraction[0].pre = ability.interaction[id].pre + newInteraction[0].pre;
     }
   }
 
@@ -139,9 +129,9 @@ export function atPath(cardRules, path) {
 }
 
 export function makeButton(cardRules, rulesPath, abilityPath, id) {
-  let atRules = R.curry(atPath)(cardRules);
+  const atRules = R.curry(atPath)(cardRules);
 
-  let button = {
+  const button = {
     id: id,
     label: atRules(rulesPath).name,
     type: atRules(rulesPath).type,
@@ -163,7 +153,7 @@ export function makeButton(cardRules, rulesPath, abilityPath, id) {
 }
 
 export function climbRulesTree(cardRules, path) {
-  let atRules = R.curry(atPath)(cardRules);
+  const atRules = R.curry(atPath)(cardRules);
   let ascending = true;
   while (ascending) {
     if (R.keys(atRules(path)).length === 1) {
@@ -204,8 +194,8 @@ export function filterSelection2(options, option) {
 }
 
 export function shallowClone(obj) {
-  let clone = {};
-  for (var prop in obj) {
+  const clone = {};
+  for (const prop in obj) {
     clone[prop] = {};
   }
   return clone;
@@ -219,13 +209,13 @@ export function uploadImg(file, maxKB, callback, sizeX = 0, sizeY = 0) {
   const reader = new FileReader();
 
   reader.onload = function (readerEvent) {
-    var image = new Image();
+    const image = new Image();
     image.onload = function () {
       // Resize the image
-      let canvas = document.createElement("canvas");
+      const canvas = document.createElement("canvas");
 
-      let targetWidth = sizeX == 0 ? image.width : sizeX;
-      let targetHeight = sizeY == 0 ? image.height : sizeY;
+      const targetWidth = sizeX == 0 ? image.width : sizeX;
+      const targetHeight = sizeY == 0 ? image.height : sizeY;
 
       canvas.width = targetWidth;
       canvas.height = targetHeight;
@@ -236,10 +226,7 @@ export function uploadImg(file, maxKB, callback, sizeX = 0, sizeY = 0) {
         canvas.getContext("2d").fillRect(0, 0, targetWidth, targetHeight);
 
         // Calculate scaling while maintaining aspect ratio
-        const scale = Math.min(
-          targetWidth / image.width,
-          targetHeight / image.height,
-        );
+        const scale = Math.min(targetWidth / image.width, targetHeight / image.height);
         const drawWidth = image.width * scale;
         const drawHeight = image.height * scale;
 
@@ -248,32 +235,18 @@ export function uploadImg(file, maxKB, callback, sizeX = 0, sizeY = 0) {
         const offsetY = (targetHeight - drawHeight) / 2;
 
         // Draw the scaled image on the canvas
-        canvas
-          .getContext("2d")
-          .drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+        canvas.getContext("2d").drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
       } else {
-        canvas
-          .getContext("2d")
-          .drawImage(image, 0, 0, targetWidth, targetHeight);
+        canvas.getContext("2d").drawImage(image, 0, 0, targetWidth, targetHeight);
       }
 
       let quality = 0.9;
       let newDataURL = canvas.toDataURL("image/jpeg", quality);
-      console.log(
-        "quality",
-        quality,
-        "size",
-        Math.round(newDataURL.length) / 1000,
-      );
+      console.log("quality", quality, "size", Math.round(newDataURL.length) / 1000);
       while (Math.round(newDataURL.length) / 1000 > maxKB) {
         quality *= 0.9;
         newDataURL = canvas.toDataURL("image/jpeg", quality);
-        console.log(
-          "quality",
-          quality,
-          "size",
-          Math.round(newDataURL.length) / 1000,
-        );
+        console.log("quality", quality, "size", Math.round(newDataURL.length) / 1000);
 
         if (quality < 0.01) {
           callback("Error: compression did not work, try smaller file.");
@@ -289,12 +262,12 @@ export function uploadImg(file, maxKB, callback, sizeX = 0, sizeY = 0) {
 }
 
 export function compressImg(dataURL, width, height) {
-  var image = new Image();
+  const image = new Image();
   image.src = dataURL;
   console.log("dataURL", dataURL);
   console.log("image bounds:", width, height);
 
-  let canvas = document.createElement("canvas");
+  const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
   canvas.getContext("2d").drawImage(image, 0, 0, width, height);
@@ -304,18 +277,10 @@ export function compressImg(dataURL, width, height) {
   console.log("newDataURL", newDataURL);
   console.log("quality", quality, "size", Math.round(newDataURL.length) / 1000);
 
-  while (
-    Math.round(newDataURL.length) / 1000 >
-    process.env.VUE_APP_CARDIMG_MAXKB
-  ) {
+  while (Math.round(newDataURL.length) / 1000 > process.env.VUE_APP_CARDIMG_MAXKB) {
     quality -= 0.1;
     newDataURL = canvas.toDataURL("image/jpeg", quality);
-    console.log(
-      "quality",
-      quality,
-      "size",
-      Math.round(newDataURL.length) / 1000,
-    );
+    console.log("quality", quality, "size", Math.round(newDataURL.length) / 1000);
 
     if (quality <= 0) return "";
   }

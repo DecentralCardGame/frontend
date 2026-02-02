@@ -6,22 +6,19 @@ import type {
   VoteType,
 } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/voting";
 import { useUser } from "./useUser";
-import { useQuery } from "./useQuery";
 
 const KEY = "votingList";
 const { multiVoteCard } = useTx();
 const { user, getUser } = useUser();
 
-let stored = window.localStorage.getItem(KEY);
-const votes: Ref<SingleVote[]> = ref(
-  stored ? Object.assign([], JSON.parse(stored)) : [],
-);
+const stored = window.localStorage.getItem(KEY);
+const votes: Ref<SingleVote[]> = ref(stored ? Object.assign([], JSON.parse(stored)) : []);
 const votableCards = computed(() => {
   console.log("USER:", user);
   return user.value.votableCards.map((v) => Number(v));
 });
 const cardsLeft = computed(() => {
-  let taken = votes.value.map((v) => v.cardId);
+  const taken = votes.value.map((v) => v.cardId);
   return votableCards.value.filter((v) => !taken.includes(v));
 });
 const current = computed(() => cardsLeft.value.at(0));
@@ -34,7 +31,7 @@ watch(
   (currentValue) => {
     console.log("Saving current votes: ", currentValue);
     window.localStorage.setItem(KEY, JSON.stringify(currentValue));
-  },
+  }
 );
 
 const send = (then: (res: any) => void, err: (res: any) => void) => {
@@ -47,7 +44,7 @@ const send = (then: (res: any) => void, err: (res: any) => void) => {
       });
       then(res);
     },
-    err,
+    err
   );
 };
 

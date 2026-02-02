@@ -19,11 +19,7 @@
   </div>
 
   <div class="mt-12 flex flex-row justify-center items-center">
-    <BaseCCButton
-      :type="Color.RED"
-      :class="{ invisible: !loadButtonVisible }"
-      @click="load()"
-    >
+    <BaseCCButton :type="Color.RED" :class="{ invisible: !loadButtonVisible }" @click="load()">
       Reckless Card Loading
     </BaseCCButton>
   </div>
@@ -49,7 +45,7 @@ const props = withDefaults(
   {
     allCardIds: () => [],
     cardsPerPage: 100,
-  },
+  }
 );
 
 const initialState: {
@@ -112,15 +108,13 @@ watch(
     state.cardIdsChanged = true;
     state.cards = {};
     state.cardsOnPage = props.cardsPerPage;
-  },
+  }
 );
 
 function loadCards(cardIds: number[], oldCardIds: number[]) {
   const changed = state.cardIdsChanged;
   state.cardIdsChanged = false;
-  cardIds
-    .filter((cardId) => !oldCardIds.includes(cardId) || changed)
-    .forEach(loadCard);
+  cardIds.filter((cardId) => !oldCardIds.includes(cardId) || changed).forEach(loadCard);
 }
 
 const onScroll = () => {
@@ -135,7 +129,7 @@ const onScroll = () => {
 };
 
 const loadCard = async (cardId: number) => {
-  let card: Card = await getCard(cardId);
+  const card: Card = await getCard(cardId);
   if (card.Content) {
     state.cards[props.allCardIds.indexOf(cardId)] = card;
   } else if (!card.owner) {

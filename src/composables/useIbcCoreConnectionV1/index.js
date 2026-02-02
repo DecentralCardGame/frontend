@@ -13,7 +13,7 @@ export default function useIbcCoreConnectionV1() {
           .queryConnection(connection_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryConnections = (query, options, perPage) => {
@@ -32,10 +32,7 @@ export default function useIbcCoreConnectionV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -48,7 +45,7 @@ export default function useIbcCoreConnectionV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const QueryClientConnections = (client_id, options) => {
@@ -61,7 +58,7 @@ export default function useIbcCoreConnectionV1() {
           .queryClientConnections(client_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryConnectionClientState = (connection_id, options) => {
@@ -74,14 +71,14 @@ export default function useIbcCoreConnectionV1() {
           .queryConnectionClientState(connection_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryConnectionConsensusState = (
     connection_id,
     revision_number,
     revision_height,
-    options,
+    options
   ) => {
     const key = {
       type: "QueryConnectionConsensusState",
@@ -94,14 +91,10 @@ export default function useIbcCoreConnectionV1() {
       () => {
         const { connection_id, revision_number, revision_height } = key;
         return client.IbcCoreConnectionV1.query
-          .queryConnectionConsensusState(
-            connection_id,
-            revision_number,
-            revision_height,
-          )
+          .queryConnectionConsensusState(connection_id, revision_number, revision_height)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return {

@@ -9,12 +9,7 @@
       >
         <header id="modalTitle" class="modal__header">
           <slot name="header"> Airdrops </slot>
-          <button
-            aria-label="Close modal"
-            type="button"
-            class="btn--close"
-            @click="close"
-          >
+          <button aria-label="Close modal" type="button" class="btn--close" @click="close">
             x
           </button>
         </header>
@@ -122,8 +117,7 @@ export default {
         .then((data) => {
           queryParams().then((res) => {
             this.isValid =
-              +data.result.sync_info.latest_block_height <
-              +res.params.airDropMaxBlockHeight;
+              +data.result.sync_info.latest_block_height < +res.params.airDropMaxBlockHeight;
           });
         })
         .catch((error) => console.log(error));

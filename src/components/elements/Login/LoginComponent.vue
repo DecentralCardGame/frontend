@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="text-white font-bold uppercase flex hover:underline my-auto"
-    @click="tryLogin"
-  >
+  <button class="text-white font-bold uppercase flex hover:underline my-auto" @click="tryLogin">
     <ProfilePicComponent
       class="min-h-8 min-w-8 h-8 w-8 mr-4 my-auto"
       size="8"

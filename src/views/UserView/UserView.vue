@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16"
-  >
+  <div class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16">
     <div class="text-center">
       <h1 class="md:hidden text-5xl font-bold pb-12">
         {{ heading }}
@@ -26,15 +24,13 @@
             v-if="state.userIsUser"
             :type="Color.YELLOW"
             @click="
-              CouncilStatus[state.user.councilStatus] ==
-              CouncilStatus.unavailable.toString()
+              CouncilStatus[state.user.councilStatus] == CouncilStatus.unavailable.toString()
                 ? register()
                 : deRegister()
             "
           >
             {{
-              CouncilStatus[state.user.councilStatus] ==
-              CouncilStatus.unavailable.toString()
+              CouncilStatus[state.user.councilStatus] == CouncilStatus.unavailable.toString()
                 ? "Register for"
                 : "Deregister from"
             }}
@@ -78,15 +74,11 @@
             <template v-if="state.user.earlyAccess?.active">
               <p v-if="state.user.earlyAccess?.invitedByUser">
                 Inviter:
-                <CompactAddressComponent
-                  :addr="state.user.earlyAccess?.invitedByUser"
-                />
+                <CompactAddressComponent :addr="state.user.earlyAccess?.invitedByUser" />
               </p>
               <p v-else-if="state.user.earlyAccess?.invitedUser">
                 Invited:
-                <CompactAddressComponent
-                  :addr="state.user.earlyAccess?.invitedUser"
-                />
+                <CompactAddressComponent :addr="state.user.earlyAccess?.invitedUser" />
               </p>
             </template>
           </template>
@@ -140,11 +132,7 @@
           <template #heading> Encounters </template>
           <template #body>
             <div class="py-6">
-              <div
-                v-for="(encounter, key) in state.ownEncounters"
-                :key="key"
-                class="py-1"
-              >
+              <div v-for="(encounter, key) in state.ownEncounters" :key="key" class="py-1">
                 <RouterCCButton
                   :type="Color.YELLOW"
                   :to="{
@@ -183,17 +171,12 @@
         <template #heading> Play History </template>
         <template #body>
           <div class="grid gap-8 md:grid-cols-4">
-            <UserViewHeadingContainer
-              v-for="(match, key) in state.matches"
-              :key="key"
-            >
+            <UserViewHeadingContainer v-for="(match, key) in state.matches" :key="key">
               <template #heading> Match {{ key }} </template>
               <template #body>
                 {{
-                  (match.playerA?.addr == state.addr &&
-                    match.outcome.toString() == "AWon") ||
-                  (match.playerB?.addr == state.addr &&
-                    match.outcome.toString() == "BWon")
+                  (match.playerA?.addr == state.addr && match.outcome.toString() == "AWon") ||
+                  (match.playerB?.addr == state.addr && match.outcome.toString() == "BWon")
                     ? "WIN"
                     : "LOSE"
                 }}
@@ -337,21 +320,19 @@ const getCoins = () => {
 };
 
 const getMatches = () => {
-  queryMatches({ containsUsers: state.addr }).then(
-    (res: QueryMatchesResponse) => {
-      state.matches = {};
-      res.matches.forEach((value: Match, idx: number) => {
-        state.matches[res.matchIds[idx]] = value;
-      });
-    },
-  );
+  queryMatches({ containsUsers: state.addr }).then((res: QueryMatchesResponse) => {
+    state.matches = {};
+    res.matches.forEach((value: Match, idx: number) => {
+      state.matches[res.matchIds[idx]] = value;
+    });
+  });
 };
 
 const getEncounters = () => {
   queryEncounters().then((res: QueryEncountersResponse) => {
     state.ownEncounters = R.map(
       (y: Encounter) => ({ id: y.id, name: y.name }),
-      R.filter((x) => x.owner == state.addr, res.encounters),
+      R.filter((x) => x.owner == state.addr, res.encounters)
     );
   });
 };

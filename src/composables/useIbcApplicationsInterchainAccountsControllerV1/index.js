@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
 export default function useIbcApplicationsInterchainAccountsControllerV1() {
@@ -13,7 +12,7 @@ export default function useIbcApplicationsInterchainAccountsControllerV1() {
           .queryInterchainAccount(owner, connection_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryParams = (options) => {
@@ -25,7 +24,7 @@ export default function useIbcApplicationsInterchainAccountsControllerV1() {
           .queryParams()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return { QueryInterchainAccount, QueryParams };

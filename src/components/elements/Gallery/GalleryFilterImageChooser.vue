@@ -28,6 +28,6 @@ const change = (name: keyof GalleryFilters) => {
 
 const props = withDefaults(
   defineProps<{ options: GalleryFilterImageChooserOptions<GalleryFilters> }>(),
-  {},
+  {}
 );
 </script>

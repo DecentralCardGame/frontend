@@ -26,6 +26,6 @@ const props = withDefaults(
     diabled: false,
     sizeClass: () => ["w-72", "h-12"],
     type: Color.YELLOW,
-  },
+  }
 );
 </script>

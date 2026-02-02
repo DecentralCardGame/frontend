@@ -9,39 +9,27 @@
         Please login to create an encounter.
       </div>
       <div v-if="loggedIn" class="max-w-[18rem]">
-        Build your Encounter by selecting Cards for a draw list. The AI of the
-        encounter will draw cards exactly in this order.
-        <div class="my-5" v-if="!hqSelected">
+        Build your Encounter by selecting Cards for a draw list. The AI of the encounter will draw
+        cards exactly in this order.
+        <div v-if="!hqSelected" class="my-5">
           1. Step - Select HQ <br />
           Use the class filters below to show matching HQs only.
         </div>
-        <div class="my-5" v-if="hqSelected">
+        <div v-if="hqSelected" class="my-5">
           2. Step - Add Cards <br />
           Use the type filters below to show matching Card types only.
         </div>
         <div v-if="filtersVisible" class="space-y-6 justify-self-center">
-          <GalleryFilterImageChooser
-            v-if="!hqSelected"
-            :options="classOptions"
-          />
+          <GalleryFilterImageChooser v-if="!hqSelected" :options="classOptions" />
           <GalleryFilterImageChooser v-if="hqSelected" :options="typeOptions" />
           <div class="">
             <p>Search for</p>
             <div class="space-y-4">
-              <CCInput
-                v-model="galleryFilters.nameContains"
-                placeholder="name"
-              />
+              <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
               <br />
-              <CCInput
-                v-model="galleryFilters.notesContains"
-                placeholder="notes"
-              />
+              <CCInput v-model="galleryFilters.notesContains" placeholder="notes" />
               <br />
-              <CCInput
-                v-model="galleryFilters.keywordsContains"
-                placeholder="keywords"
-              />
+              <CCInput v-model="galleryFilters.keywordsContains" placeholder="keywords" />
             </div>
           </div>
         </div>
@@ -55,19 +43,13 @@
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-start max-md:hidden md:justify-between">
-            <p class="md:text-xl lg:text-lg xl:text-xl my-auto">
-              {{ cardList.length }} Results
-            </p>
+            <p class="md:text-xl lg:text-lg xl:text-xl my-auto">{{ cardList.length }} Results</p>
           </div>
           <div>
-            <p class="md:text-4xl lg:text-2xl xl:text-4xl text-center">
-              Encounter
-            </p>
+            <p class="md:text-4xl lg:text-2xl xl:text-4xl text-center">Encounter</p>
           </div>
           <div class="flex space-x-2">
-            <p class="md:text-xl xl:text-xl lg:text-lg my-auto max-md:hidden">
-              Sort by
-            </p>
+            <p class="md:text-xl xl:text-xl lg:text-lg my-auto max-md:hidden">Sort by</p>
             <Dropdown
               v-model="galleryFilters.sortBy"
               class="my-auto"
@@ -92,11 +74,7 @@
     <div
       class="self-start lg:sticky top-0 min-w-[25rem] flex flex-col justify-start lg:p-14 max-h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] overflow-y-auto relative"
     >
-      <CCInput
-        class="my-5"
-        v-model="encounterName"
-        placeholder="Encounter Title"
-      />
+      <CCInput v-model="encounterName" class="my-5" placeholder="Encounter Title" />
       <div class="flex flex-row items-center justify-between">
         <div>
           <Dropdown
@@ -111,7 +89,7 @@
           class="flex flex-row items-center"
         >
           <p class="m-1">Level:</p>
-          <CCInput class="w-10" v-model="encounterLevel" placeholder="Level" />
+          <CCInput v-model="encounterLevel" class="w-10" placeholder="Level" />
         </div>
       </div>
       <div>
@@ -132,12 +110,7 @@
             >
               <span class="flex items-center">upload image</span>
             </div>
-            <input
-              id="dropzone-file"
-              type="file"
-              class="hidden"
-              @change="inputFile"
-            />
+            <input id="dropzone-file" type="file" class="hidden" @change="inputFile" />
           </label>
         </div>
         <div>
@@ -150,19 +123,12 @@
               :src="cropImage"
               alt="check"
             />
-            <input
-              id="dropzone-file"
-              type="file"
-              class="hidden"
-              @change="inputFile"
-            />
+            <input id="dropzone-file" type="file" class="hidden" @change="inputFile" />
           </label>
         </div>
       </div>
       <div>
-        <BaseCCButton :type="Color.RED" @click="publish()">
-          Publish Encounter
-        </BaseCCButton>
+        <BaseCCButton :type="Color.RED" @click="publish()"> Publish Encounter </BaseCCButton>
       </div>
       <!-- Added cards section -->
       <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
@@ -259,12 +225,7 @@ const { notifyFail } = useNotifications();
 const route = useRoute();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
-const {
-  cardList,
-  loadQueryCardList,
-  galleryFilters,
-  pageQueryFromGalleryFilters,
-} = useGallery();
+const { cardList, loadQueryCardList, galleryFilters, pageQueryFromGalleryFilters } = useGallery();
 const { encounterCreate } = useTx();
 const { getCard } = useCards();
 const { queryEncounterWithImage } = useQuery();
@@ -279,14 +240,14 @@ type Entry = {
 };
 
 const drawList: Ref<Entry[]> = ref([]);
-let cropImage = ref("");
-let encounterName = ref("");
+const cropImage = ref("");
+const encounterName = ref("");
 let encounterType = ref("Constructed");
 let encounterDraw = ref("Drawlist");
 let encounterLevel = ref(0);
-let filtersVisible = ref(true);
+const filtersVisible = ref(true);
 let dragFrom = -1;
-let hqSelected = ref(false);
+const hqSelected = ref(false);
 let cardsAdded = 0;
 
 watch(drawList.value, () => {
@@ -309,7 +270,7 @@ watch(drawList.value, () => {
 
     // remove all cards that do not match hqs color identity
     drawList.value.forEach((item, index) => {
-      for (let [key, value] of Object.entries(hq.class)) {
+      for (const [key, value] of Object.entries(hq.class)) {
         if (value == false && item.class[key] == true) {
           drawList.value.splice(index, 1);
         }
@@ -384,37 +345,29 @@ onMounted(() => {
   galleryFilters.value.status = "playable";
   galleryFilters.value.hq = true;
 
-  let filters = pageQueryFromGalleryFilters();
+  const filters = pageQueryFromGalleryFilters();
 
   loadQueryCardList(filters);
 
-  queryEncounterWithImage(route.query.id).then(
-    (res: QueryEncounterWithImageResponse) => {
-      cropImage.value = res.encounter!.image;
-      encounterName.value = res.encounter!.encounter!.name;
+  queryEncounterWithImage(route.query.id).then((res: QueryEncounterWithImageResponse) => {
+    cropImage.value = res.encounter!.image;
+    encounterName.value = res.encounter!.encounter!.name;
 
-      let parameters = res.encounter!.encounter!.parameters;
-      encounterType = ref(
-        R.find((x) => x.key == "type")(parameters).value ?? "Constructed",
-      );
-      encounterLevel = ref(
-        R.find((x) => x.key == "level")(parameters).value ?? "0",
-      );
-      encounterDraw = ref(
-        R.find((x) => x.key == "draw")(parameters).value ?? "Drawlist",
-      );
+    const parameters = res.encounter!.encounter!.parameters;
+    encounterType = ref(R.find((x) => x.key == "type")(parameters).value ?? "Constructed");
+    encounterLevel = ref(R.find((x) => x.key == "level")(parameters).value ?? "0");
+    encounterDraw = ref(R.find((x) => x.key == "draw")(parameters).value ?? "Drawlist");
 
-      res.encounter!.encounter!.drawlist.forEach((entry) => {
-        loadCard(entry).then((res) => {
-          addCardToEncounter(res);
-        });
+    res.encounter!.encounter!.drawlist.forEach((entry) => {
+      loadCard(entry).then((res) => {
+        addCardToEncounter(res);
       });
-    },
-  );
+    });
+  });
 });
 
 const inputFile = (event) => {
-  let file = event.target.files[0];
+  const file = event.target.files[0];
 
   uploadImg(
     file,
@@ -427,12 +380,12 @@ const inputFile = (event) => {
       cropImage.value = result;
     },
     1920,
-    1080,
+    1080
   );
 };
 
 const loadCard = async (cardId: number) => {
-  let card: Card = await getCard(cardId);
+  const card: Card = await getCard(cardId);
   if (card.Content) {
     return card;
   } else if (!card.owner) {
@@ -451,7 +404,7 @@ const addCardToEncounter = (card: Card) => {
   ) {
     R.last(drawList.value)!.count++;
   } else {
-    let newEntry: Entry = {
+    const newEntry: Entry = {
       id: card.id,
       name: card.CardName,
       cost: card.Delay || card.CastingCost,
@@ -473,10 +426,9 @@ const onDrop = (targetIndex: number) => {
   if (targetIndex == 0) targetIndex = 1;
   drawList.value = R.move(dragFrom, targetIndex, drawList.value);
 
-  let newList: Entry[] = [];
-  for (let entry of drawList.value) {
-    if (R.last(newList) && R.last(newList)!.id == entry.id)
-      R.last(newList)!.count += entry.count;
+  const newList: Entry[] = [];
+  for (const entry of drawList.value) {
+    if (R.last(newList) && R.last(newList)!.id == entry.id) R.last(newList)!.count += entry.count;
     else newList.push(entry);
   }
   drawList.value.splice(0, drawList.value.length, ...newList);
@@ -490,13 +442,12 @@ const removeCard = (index: number) => {
 };
 
 const getMiniFrame = (item: Entry) => {
-  var cardClass = "";
+  let cardClass = "";
   if (item.type == "Headquarter") return "icon/minicardframe/HQFrame.png";
   else {
-    if (R.countBy((x) => x === true)(R.values(item.class)).true > 1)
-      cardClass = "MultiClass";
+    if (R.countBy((x) => x === true)(R.values(item.class)).true > 1) cardClass = "MultiClass";
     else {
-      for (var property in item.class) {
+      for (const property in item.class) {
         if (item.class[property] === true) {
           cardClass = property;
           break;
@@ -523,9 +474,9 @@ const publish = () => {
   }
 
   // unfold drawlist
-  let cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
+  const cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
 
-  let parameters: Parameter[] = [
+  const parameters: Parameter[] = [
     { key: "type", value: encounterType.value },
     {
       key: "level",
@@ -545,7 +496,7 @@ const publish = () => {
     (err) => {
       console.error("err", err);
       notifyFail("Failed to Upload", err.message);
-    },
+    }
   );
 };
 </script>

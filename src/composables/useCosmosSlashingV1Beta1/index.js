@@ -8,11 +8,9 @@ export default function useCosmosSlashingV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosSlashingV1Beta1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.CosmosSlashingV1Beta1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QuerySigningInfo = (cons_address, options) => {
@@ -25,7 +23,7 @@ export default function useCosmosSlashingV1Beta1() {
           .querySigningInfo(cons_address)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QuerySigningInfos = (query, options, perPage) => {
@@ -44,10 +42,7 @@ export default function useCosmosSlashingV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -60,7 +55,7 @@ export default function useCosmosSlashingV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   return { QueryParams, QuerySigningInfo, QuerySigningInfos };

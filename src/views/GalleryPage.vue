@@ -4,52 +4,30 @@
       class="self-start lg:sticky top-0 min-w-[25rem] flex justify-center my-auto h-[100vh] mt-0 bg-[#552026] max-lg:w-full max-lg:h-full max-lg:p-4 max-h-[90vh] max-h-[80vh] overflow-y-auto overflow-x-hidden"
     >
       <div class="">
-        <div
-          class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6"
-        >
-          <BaseCCButton
-            :type="Color.RED"
-            @click="filtersVisible = !filtersVisible"
-          >
+        <div class="flex flex-row justify-center items-center lg:invisible max-lg:pt-2 max-lg:pb-6">
+          <BaseCCButton :type="Color.RED" @click="filtersVisible = !filtersVisible">
             Gallery Filters
           </BaseCCButton>
         </div>
         <div v-if="filtersVisible" class="space-y-6 justify-self-center">
           <GalleryFilterImageChooser :options="classOptions" />
-          <Checkbox v-model="galleryFilters.multiClass">
-            exclusive class matching
-          </Checkbox>
+          <Checkbox v-model="galleryFilters.multiClass"> exclusive class matching </Checkbox>
           <GalleryFilterImageChooser :options="typeOptions" />
           <div class="">
             <p>Search for</p>
             <div class="">
-              <CCInput
-                v-model="galleryFilters.nameContains"
-                placeholder="name"
-              />
+              <CCInput v-model="galleryFilters.nameContains" placeholder="name" />
               <br />
-              <CCInput
-                v-model="galleryFilters.notesContains"
-                placeholder="notes"
-              />
+              <CCInput v-model="galleryFilters.notesContains" placeholder="notes" />
               <br />
-              <CCInput
-                v-model="galleryFilters.keywordsContains"
-                placeholder="keywords"
-              />
+              <CCInput v-model="galleryFilters.keywordsContains" placeholder="keywords" />
             </div>
           </div>
-          <CCInput
-            v-model="galleryFilters.owner"
-            placeholder="owner"
-            :max-length="41"
-          />
+          <CCInput v-model="galleryFilters.owner" placeholder="owner" :max-length="41" />
           <Checkbox
             v-if="loggedIn"
             :model-value="galleryFilters.owner === address"
-            @update:model-value="
-              (v: boolean) => (galleryFilters.owner = v ? address : '')
-            "
+            @update:model-value="(v: boolean) => (galleryFilters.owner = v ? address : '')"
           >
             My Cards
           </Checkbox>
@@ -57,9 +35,7 @@
             Rarity:
             <Dropdown
               v-model="galleryFilters.rarity"
-              :display-fn="
-                (v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])
-              "
+              :display-fn="(v?) => (typeof v === 'undefined' ? '?' : CardRarity[v])"
               :options="[
                 undefined,
                 CardRarity.common,
@@ -73,9 +49,7 @@
             Status:
             <Dropdown
               v-model="galleryFilters.status"
-              :display-fn="
-                (v) => (v == 'playable' ? 'playable' : CardStatus[v])
-              "
+              :display-fn="(v) => (v == 'playable' ? 'playable' : CardStatus[v])"
               :options="
                 new Array<GalleryStatus>(
                   'playable',
@@ -84,7 +58,7 @@
                   CardStatus.permanent,
                   CardStatus.bannedSoon,
                   CardStatus.bannedVerySoon,
-                  CardStatus.banned,
+                  CardStatus.banned
                 )
               "
             />
@@ -99,19 +73,13 @@
       <div class="mx-16">
         <div class="relative h-8 flex flex-row justify-between">
           <div class="flex justify-center max-md:hidden md:justify-between">
-            <p class="md:text-xl lg:text-lg xl:text-xl my-auto">
-              {{ cardList.length }} Results
-            </p>
+            <p class="md:text-xl lg:text-lg xl:text-xl my-auto">{{ cardList.length }} Results</p>
           </div>
           <div>
-            <p class="md:text-4xl lg:text-2xl xl:text-4xl text-center">
-              Gallery
-            </p>
+            <p class="md:text-4xl lg:text-2xl xl:text-4xl text-center">Gallery</p>
           </div>
           <div class="flex space-x-2">
-            <p class="md:text-xl xl:text-xl lg:text-lg my-auto max-md:hidden">
-              Sort by
-            </p>
+            <p class="md:text-xl xl:text-xl lg:text-lg my-auto max-md:hidden">Sort by</p>
             <Dropdown
               v-model="galleryFilters.sortBy"
               class="my-auto"
@@ -195,7 +163,7 @@ const {
   galleryFiltersFromPageQuery,
 } = useGallery();
 
-let filtersVisible = ref(true);
+const filtersVisible = ref(true);
 
 const revertSort = ref(false);
 
@@ -254,7 +222,7 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
 ];
 
 watch(galleryFilters.value, () =>
-  router.push({ path: "gallery", query: pageQueryFromGalleryFilters() }),
+  router.push({ path: "gallery", query: pageQueryFromGalleryFilters() })
 );
 
 onMounted(() => {

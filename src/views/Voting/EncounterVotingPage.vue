@@ -15,9 +15,7 @@
             <p>
               <b>{{ state.currentCard.CardName }}</b
               ><br />
-              <i v-if="state.currentCard.FlavourText">
-                "{{ state.currentCard.FlavourText }}"
-              </i>
+              <i v-if="state.currentCard.FlavourText"> "{{ state.currentCard.FlavourText }}" </i>
               <br /><br />
               <b>Advanced Card Information</b> <br />
               Votepool: {{ votePool }} <br />
@@ -31,19 +29,12 @@
           </div>
         </div>
         <div v-else-if="!cardsLeft.length && !isEmpty">
-          <p class="pb-4">
-            To make your votes take effect, you have to send them to the chain.
-          </p>
-          <BaseCCButton @click="sendToChain()">
-            Send votes to chain
-          </BaseCCButton>
+          <p class="pb-4">To make your votes take effect, you have to send them to the chain.</p>
+          <BaseCCButton @click="sendToChain()"> Send votes to chain </BaseCCButton>
         </div>
       </div>
     </div>
-    <div
-      v-if="cardsLeft.length"
-      class="flex justify-center flex-wrap gap-4 py-12"
-    >
+    <div v-if="cardsLeft.length" class="flex justify-center flex-wrap gap-4 py-12">
       <SmallCCButton
         v-for="(elem, idx) in [
           { text: 'Fair Enough', type: VoteType.fairEnough },
@@ -91,9 +82,7 @@ const initialState: {
 };
 
 const state = reactive(initialState);
-const votePool = computed(() =>
-  state.currentCard.votePool.normalize().pretty(),
-);
+const votePool = computed(() => state.currentCard.votePool.normalize().pretty());
 
 const vote = (type: VoteType) => add(current.value!, type);
 
@@ -127,7 +116,7 @@ const sendToChain = () => {
     },
     (err) => {
       console.log(err);
-    },
+    }
   );
 };
 </script>

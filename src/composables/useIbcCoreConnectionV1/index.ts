@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useIbcCoreConnectionV1() {
   const client = useClient();
@@ -20,7 +14,7 @@ export default function useIbcCoreConnectionV1() {
           .queryConnection(connection_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -41,10 +35,7 @@ export default function useIbcCoreConnectionV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -57,7 +48,7 @@ export default function useIbcCoreConnectionV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -71,7 +62,7 @@ export default function useIbcCoreConnectionV1() {
           .queryClientConnections(client_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -85,7 +76,7 @@ export default function useIbcCoreConnectionV1() {
           .queryConnectionClientState(connection_id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -93,7 +84,7 @@ export default function useIbcCoreConnectionV1() {
     connection_id: string,
     revision_number: string,
     revision_height: string,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryConnectionConsensusState",
@@ -106,14 +97,10 @@ export default function useIbcCoreConnectionV1() {
       () => {
         const { connection_id, revision_number, revision_height } = key;
         return client.IbcCoreConnectionV1.query
-          .queryConnectionConsensusState(
-            connection_id,
-            revision_number,
-            revision_height,
-          )
+          .queryConnectionConsensusState(connection_id, revision_number, revision_height)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -122,11 +109,9 @@ export default function useIbcCoreConnectionV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreConnectionV1.query
-          .queryConnectionParams()
-          .then((res) => res.data);
+        return client.IbcCoreConnectionV1.query.queryConnectionParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

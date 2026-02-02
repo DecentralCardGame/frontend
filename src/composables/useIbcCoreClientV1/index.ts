@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useIbcCoreClientV1() {
   const client = useClient();
@@ -16,11 +10,9 @@ export default function useIbcCoreClientV1() {
       [key],
       () => {
         const { client_id } = key;
-        return client.IbcCoreClientV1.query
-          .queryClientState(client_id)
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryClientState(client_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -41,10 +33,7 @@ export default function useIbcCoreClientV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -57,7 +46,7 @@ export default function useIbcCoreClientV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -66,7 +55,7 @@ export default function useIbcCoreClientV1() {
     revision_number: string,
     revision_height: string,
     query: any,
-    options: any,
+    options: any
   ) => {
     const key = {
       type: "QueryConsensusState",
@@ -80,24 +69,14 @@ export default function useIbcCoreClientV1() {
       () => {
         const { client_id, revision_number, revision_height, query } = key;
         return client.IbcCoreClientV1.query
-          .queryConsensusState(
-            client_id,
-            revision_number,
-            revision_height,
-            query ?? undefined,
-          )
+          .queryConsensusState(client_id, revision_number, revision_height, query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryConsensusStates = (
-    client_id: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryConsensusStates = (client_id: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryConsensusStates", client_id, query };
     return useInfiniteQuery(
       [key],
@@ -114,10 +93,7 @@ export default function useIbcCoreClientV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -130,7 +106,7 @@ export default function useIbcCoreClientV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -138,7 +114,7 @@ export default function useIbcCoreClientV1() {
     client_id: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryConsensusStateHeights", client_id, query };
     return useInfiniteQuery(
@@ -156,10 +132,7 @@ export default function useIbcCoreClientV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -172,7 +145,7 @@ export default function useIbcCoreClientV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -182,11 +155,9 @@ export default function useIbcCoreClientV1() {
       [key],
       () => {
         const { client_id } = key;
-        return client.IbcCoreClientV1.query
-          .queryClientStatus(client_id)
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryClientStatus(client_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -195,11 +166,9 @@ export default function useIbcCoreClientV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreClientV1.query
-          .queryClientParams()
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryClientParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -208,11 +177,9 @@ export default function useIbcCoreClientV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreClientV1.query
-          .queryUpgradedClientState()
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryUpgradedClientState().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -221,11 +188,9 @@ export default function useIbcCoreClientV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreClientV1.query
-          .queryUpgradedConsensusState()
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryUpgradedConsensusState().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

@@ -10,11 +10,7 @@
           <div v-if="state.currentState == CurrentState.NONE">
             <p>Authenticate gameclient?</p>
             <br />
-            <BaseCCButton
-              class="text-lg"
-              :type="Color.RED"
-              @click="sendTransActions"
-            >
+            <BaseCCButton class="text-lg" :type="Color.RED" @click="sendTransActions">
               Authenticate
             </BaseCCButton>
           </div>
@@ -68,10 +64,7 @@ const initialState: {
 const state = reactive(initialState);
 
 onMounted(() => {
-  if (
-    !route.params.authzAddress ||
-    !validAddress(route.params.authzAddress.toString())
-  ) {
+  if (!route.params.authzAddress || !validAddress(route.params.authzAddress.toString())) {
     redirect();
   }
 });
@@ -83,7 +76,7 @@ const sendTransActions = () => {
     () => {
       state.currentState = CurrentState.DONE;
     },
-    console.log,
+    console.log
   );
 };
 

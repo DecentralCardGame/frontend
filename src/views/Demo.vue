@@ -19,10 +19,7 @@
         <router-link to="/"> Go to Home </router-link>
       </BaseCCButton>
       <br />
-      <Dropdown
-        v-model="test"
-        :options="['yes', 'nein', 'vllt', 'nur ficken']"
-      />
+      <Dropdown v-model="test" :options="['yes', 'nein', 'vllt', 'nur ficken']" />
       <br />
       <br />
       <Dropdown

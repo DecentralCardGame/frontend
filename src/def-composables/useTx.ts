@@ -26,7 +26,7 @@ import { MsgGrant } from "decentralcardgame-cardchain-client-ts/lib/cosmos.authz
 import { stringToBytes } from "@/utils/utils";
 
 export const registry: Registry = new Registry(
-  CCMsgTypes.concat(BankMsgTypes).concat(AuthzMsgTypes),
+  CCMsgTypes.concat(BankMsgTypes).concat(AuthzMsgTypes)
 );
 
 const FEE: StdFee = {
@@ -47,7 +47,7 @@ class UnEvaledMessage {
     message: (content: Content) => Promise<DeliverTxResponse>,
     content: Content,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) {
     this.message = message;
     this.content = content;
@@ -62,7 +62,7 @@ class UnEvaledMessage {
 
 class MessageScheduler {
   messageList: Ref<Array<UnEvaledMessage>>;
-  blocked: Ref<Boolean>;
+  blocked: Ref<boolean>;
 
   constructor() {
     this.messageList = ref([]);
@@ -101,11 +101,9 @@ class MessageScheduler {
     message: (content: Content) => Promise<DeliverTxResponse>,
     content: Content,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) {
-    this.messageList.value.push(
-      new UnEvaledMessage(message, content, then, err),
-    );
+    this.messageList.value.push(new UnEvaledMessage(message, content, then, err));
   }
 }
 
@@ -120,7 +118,7 @@ class Content {
         fromAddress: address.value,
         creator: address.value,
       },
-      value,
+      value
     );
     this.fee = FEE;
     this.memo = "";
@@ -130,17 +128,11 @@ class Content {
 const stdHandler = (res: DeliverTxResponse) => {
   console.log(res);
   if (res.code) {
-    notifyFail(
-      "Failed to broadcast message",
-      res.rawLog ? res.rawLog : "General Error",
-    );
+    notifyFail("Failed to broadcast message", res.rawLog ? res.rawLog : "General Error");
     throw new Error("Message Failed: " + res.rawLog);
   }
-  let messageName = res.rawLog
-    ? JSON.parse(res.rawLog)[0]
-        .events[0].attributes[0].value.split(".")
-        .at(-1)
-        .replace("Msg", "")
+  const messageName = res.rawLog
+    ? JSON.parse(res.rawLog)[0].events[0].attributes[0].value.split(".").at(-1).replace("Msg", "")
     : "";
   notifySuccess("EPIC WIN", messageName + " was successfull");
   return res;
@@ -152,113 +144,83 @@ export const useTxInstance: () => {
     councilId: number,
     suggestion: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   voteCard: (
     cardId: number,
     voteType: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
-  inviteEarlyAccess: (
-    invitee: string,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
-  buyCardScheme: (
-    coin: CompatCoin,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
+  inviteEarlyAccess: (invitee: string, then: (res: any) => void, err: (res: any) => void) => void;
+  buyCardScheme: (coin: CompatCoin, then: (res: any) => void, err: (res: any) => void) => void;
   disinviteEarlyAccess: (
     invitee: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   saveCardContent: (
     cardId: number,
     card: CardWithImage,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   addArtwork: (
     cardId: number,
     image: string,
     fullArt: boolean,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   transferCard: (
     cardId: number,
     receiver: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   revokeAuthz: (
     granter: string,
     grantee: string,
     msgTypeUrl: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   authzGameclient: (
     gameclientAddr: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
-  registerForCouncil: (
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
+  registerForCouncil: (then: (res: any) => void, err: (res: any) => void) => void;
   grantAuthz: (
     granter: string,
     grantee: string,
     grant: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   revealCouncilResponse: (
     response: CouncilResponse,
     secret: string,
     councilId: number,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
-  rewokeCouncilRegistration: (
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
+  rewokeCouncilRegistration: (then: (res: any) => void, err: (res: any) => void) => void;
   createUser: (
     newUser: string,
     alias: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
-  restartCouncil: (
-    councilId: number,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
-  multiVoteCard: (
-    votes: SingleVote[],
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
-  createCouncil: (
-    cardId: number,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
-  setProfileCard: (
-    cardId: number,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => void;
+  restartCouncil: (councilId: number, then: (res: any) => void, err: (res: any) => void) => void;
+  multiVoteCard: (votes: SingleVote[], then: (res: any) => void, err: (res: any) => void) => void;
+  createCouncil: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
+  setProfileCard: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
   encounterDo: (
     encounterId: number,
     user: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   encounterCreate: (
     name: string,
@@ -266,20 +228,20 @@ export const useTxInstance: () => {
     parameters: Parameter[],
     image: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   encounterClose: (
     encounterId: number,
     user: string,
     won: boolean,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
   send: (
     coins: CompatCoin[],
     to: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => void;
 } = () => {
   const client = useClient();
@@ -288,20 +250,18 @@ export const useTxInstance: () => {
   const multiBroadCast = async (
     msgs: EncodeObject[],
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     const b = async (): Promise<DeliverTxResponse> => {
       if (!client.signer) {
-        throw new Error(
-          "MultiBroadCast: Unable to sign Tx. Signer is not present.",
-        );
+        throw new Error("MultiBroadCast: Unable to sign Tx. Signer is not present.");
       }
       try {
         const { address } = (await client.signer.getAccounts())[0];
         const signingClient = await SigningStargateClient.connectWithSigner(
           env.rpcURL,
           client.signer,
-          { registry },
+          { registry }
         );
         return await signingClient.signAndBroadcast(address, msgs, FEE, "");
       } catch (e: any) {
@@ -315,9 +275,9 @@ export const useTxInstance: () => {
   const authzGameclient = (
     gameclientAddr: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
-    let date = new Date();
+    const date = new Date();
     date.setMonth(date.getMonth() + 12);
 
     const msgs: EncodeObject[] = [
@@ -346,14 +306,14 @@ export const useTxInstance: () => {
                 value: GenericAuthorization.encode(
                   GenericAuthorization.fromPartial({
                     msg: msgPath,
-                  }),
+                  })
                 ).finish(),
               },
               expiration: date,
             },
           }),
         });
-      }),
+      })
     );
     multiBroadCast(msgs, then, err);
   };
@@ -362,7 +322,7 @@ export const useTxInstance: () => {
     coins: CompatCoin[],
     to: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CosmosBankV_1Beta_1.tx.sendMsgSend,
@@ -371,7 +331,7 @@ export const useTxInstance: () => {
         toAddress: to,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -380,7 +340,7 @@ export const useTxInstance: () => {
     grantee: string,
     msgTypeUrl: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CosmosAuthzV_1Beta_1.tx.sendMsgRevoke,
@@ -390,7 +350,7 @@ export const useTxInstance: () => {
         msgTypeUrl: msgTypeUrl,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -399,9 +359,9 @@ export const useTxInstance: () => {
     grantee: string,
     grant: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
-    let date = new Date();
+    const date = new Date();
     date.setMonth(date.getMonth() + 1);
 
     messageScheduler.schedule(
@@ -415,68 +375,54 @@ export const useTxInstance: () => {
             value: GenericAuthorization.encode(
               GenericAuthorization.fromPartial({
                 msg: grant,
-              }),
+              })
             ).finish(),
           },
           expiration: date,
         },
       }),
       then,
-      err,
+      err
     );
   };
 
-  const registerForCouncil = (
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => {
+  const registerForCouncil = (then: (res: any) => void, err: (res: any) => void) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCouncilRegister,
       new Content(),
       then,
-      err,
+      err
     );
   };
 
-  const rewokeCouncilRegistration = (
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => {
+  const rewokeCouncilRegistration = (then: (res: any) => void, err: (res: any) => void) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCouncilDeregister,
       new Content(),
       then,
-      err,
+      err
     );
   };
 
-  const buyCardScheme = (
-    coin: CompatCoin,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => {
+  const buyCardScheme = (coin: CompatCoin, then: (res: any) => void, err: (res: any) => void) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCardSchemeBuy,
       new Content({
         bid: CosmosCoin.fromJSON(coin),
       }),
       then,
-      err,
+      err
     );
   };
 
-  const createCouncil = (
-    cardId: number,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => {
+  const createCouncil = (cardId: number, then: (res: any) => void, err: (res: any) => void) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCouncilCreate,
       new Content({
         cardId,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -485,7 +431,7 @@ export const useTxInstance: () => {
     councilId: number,
     suggestion: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCouncilResponseCommit,
@@ -495,7 +441,7 @@ export const useTxInstance: () => {
         suggestion,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -504,7 +450,7 @@ export const useTxInstance: () => {
     secret: string,
     councilId: number,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCouncilResponseReveal,
@@ -514,22 +460,18 @@ export const useTxInstance: () => {
         councilId,
       }),
       then,
-      err,
+      err
     );
   };
 
-  const restartCouncil = (
-    councilId: number,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => {
+  const restartCouncil = (councilId: number, then: (res: any) => void, err: (res: any) => void) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCouncilRestart,
       new Content({
         councilId,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -537,7 +479,7 @@ export const useTxInstance: () => {
     cardId: number,
     card: CardWithImage,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCardSaveContent,
@@ -549,7 +491,7 @@ export const useTxInstance: () => {
         balanceAnchor: card.card?.balanceAnchor,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -558,7 +500,7 @@ export const useTxInstance: () => {
     image: string,
     fullArt: boolean,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCardArtworkAdd,
@@ -568,7 +510,7 @@ export const useTxInstance: () => {
         fullArt,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -576,7 +518,7 @@ export const useTxInstance: () => {
     cardId: number,
     voteType: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCardVote,
@@ -585,7 +527,7 @@ export const useTxInstance: () => {
         voteType,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -593,7 +535,7 @@ export const useTxInstance: () => {
     cardId: number,
     receiver: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCardTransfer,
@@ -602,29 +544,25 @@ export const useTxInstance: () => {
         receiver,
       }),
       then,
-      err,
+      err
     );
   };
 
-  const setProfileCard = (
-    cardId: number,
-    then: (res: any) => void,
-    err: (res: any) => void,
-  ) => {
+  const setProfileCard = (cardId: number, then: (res: any) => void, err: (res: any) => void) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgProfileCardSet,
       new Content({
         cardId,
       }),
       then,
-      err,
+      err
     );
   };
 
   const multiVoteCard = (
     votes: SingleVote[],
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgCardVoteMulti,
@@ -632,7 +570,7 @@ export const useTxInstance: () => {
         votes,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -640,7 +578,7 @@ export const useTxInstance: () => {
     newUser: string,
     alias: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgUserCreate,
@@ -649,14 +587,14 @@ export const useTxInstance: () => {
         alias,
       }),
       then,
-      err,
+      err
     );
   };
 
   const inviteEarlyAccess = (
     invitee: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgEarlyAccessInvite,
@@ -664,14 +602,14 @@ export const useTxInstance: () => {
         user: invitee,
       }),
       then,
-      err,
+      err
     );
   };
 
   const disinviteEarlyAccess = (
     invitee: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgEarlyAccessDisinvite,
@@ -679,7 +617,7 @@ export const useTxInstance: () => {
         user: invitee,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -689,7 +627,7 @@ export const useTxInstance: () => {
     parameters: Parameter[],
     image: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgEncounterCreate,
@@ -700,7 +638,7 @@ export const useTxInstance: () => {
         image: stringToBytes(image),
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -709,7 +647,7 @@ export const useTxInstance: () => {
     user: string,
     won: boolean,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgEncounterCreate,
@@ -719,7 +657,7 @@ export const useTxInstance: () => {
         won,
       }),
       then,
-      err,
+      err
     );
   };
 
@@ -727,7 +665,7 @@ export const useTxInstance: () => {
     encounterId: number,
     user: string,
     then: (res: any) => void,
-    err: (res: any) => void,
+    err: (res: any) => void
   ) => {
     messageScheduler.schedule(
       client.CardchainCardchain.tx.sendMsgEncounterCreate,
@@ -736,7 +674,7 @@ export const useTxInstance: () => {
         user,
       }),
       then,
-      err,
+      err
     );
   };
 

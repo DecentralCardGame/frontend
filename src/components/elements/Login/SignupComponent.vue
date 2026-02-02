@@ -1,16 +1,10 @@
 <template>
   <div>
-    <BaseCCButton v-if="!isSignUpRequired" @click="login">
-      Login with keplr
-    </BaseCCButton>
+    <BaseCCButton v-if="!isSignUpRequired" @click="login"> Login with keplr </BaseCCButton>
     <div v-else>
       <div v-if="isKeplrAvailable" class="flex flex-col justify-center">
         <p class="p-7">You have to sign up first</p>
-        <vue-hcaptcha
-          :sitekey="state.siteKey"
-          class="mx-auto"
-          @verify="onVerify"
-        />
+        <vue-hcaptcha :sitekey="state.siteKey" class="mx-auto" @verify="onVerify" />
       </div>
       <div v-else>
         <p class="p-7">

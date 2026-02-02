@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useDecentralCardGameCardchainCardchain() {
   const client = useClient();
@@ -19,7 +13,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryParams()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -33,7 +27,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCard(cardId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -47,7 +41,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCardContent(cardId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -61,7 +55,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQUser(address)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -74,7 +68,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCardchainInfo()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -87,7 +81,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQVotingResults()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -101,7 +95,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCards(query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -115,7 +109,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQMatch(matchId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -129,7 +123,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQSet(setId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -143,7 +137,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQSellOffer(sellOfferId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -157,7 +151,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCouncil(councilId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -171,7 +165,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQMatches(query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -185,7 +179,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQSellOffers(status, query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -199,16 +193,11 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQServer(id)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryQSets = (
-    status: string,
-    ignoreStatus: string,
-    query: any,
-    options: any,
-  ) => {
+  const QueryQSets = (status: string, ignoreStatus: string, query: any, options: any) => {
     const key = { type: "QueryQSets", status, ignoreStatus, query };
     return useQuery(
       [key],
@@ -218,7 +207,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQSets(status, ignoreStatus, query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -232,7 +221,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryRarityDistribution(setId)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -246,7 +235,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCardContents(cardIds)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -260,7 +249,7 @@ export default function useDecentralCardGameCardchainCardchain() {
           .queryQCardContents(ids)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

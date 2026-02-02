@@ -9,11 +9,9 @@ export default function useIbcCoreClientV1() {
       [key],
       () => {
         const { client_id } = key;
-        return client.IbcCoreClientV1.query
-          .queryClientState(client_id)
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryClientState(client_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryClientStates = (query, options, perPage) => {
@@ -32,10 +30,7 @@ export default function useIbcCoreClientV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -48,16 +43,10 @@ export default function useIbcCoreClientV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
-  const QueryConsensusState = (
-    client_id,
-    revision_number,
-    revision_height,
-    query,
-    options,
-  ) => {
+  const QueryConsensusState = (client_id, revision_number, revision_height, query, options) => {
     const key = {
       type: "QueryConsensusState",
       client_id,
@@ -70,15 +59,10 @@ export default function useIbcCoreClientV1() {
       () => {
         const { client_id, revision_number, revision_height, query } = key;
         return client.IbcCoreClientV1.query
-          .queryConsensusState(
-            client_id,
-            revision_number,
-            revision_height,
-            query ?? undefined,
-          )
+          .queryConsensusState(client_id, revision_number, revision_height, query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryConsensusStates = (client_id, query, options, perPage) => {
@@ -97,10 +81,7 @@ export default function useIbcCoreClientV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -113,7 +94,7 @@ export default function useIbcCoreClientV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const QueryConsensusStateHeights = (client_id, query, options, perPage) => {
@@ -132,10 +113,7 @@ export default function useIbcCoreClientV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -148,7 +126,7 @@ export default function useIbcCoreClientV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const QueryClientStatus = (client_id, options) => {
@@ -157,11 +135,9 @@ export default function useIbcCoreClientV1() {
       [key],
       () => {
         const { client_id } = key;
-        return client.IbcCoreClientV1.query
-          .queryClientStatus(client_id)
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryClientStatus(client_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryClientParams = (options) => {
@@ -169,11 +145,9 @@ export default function useIbcCoreClientV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreClientV1.query
-          .queryClientParams()
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryClientParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryUpgradedClientState = (options) => {
@@ -181,11 +155,9 @@ export default function useIbcCoreClientV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreClientV1.query
-          .queryUpgradedClientState()
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryUpgradedClientState().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryUpgradedConsensusState = (options) => {
@@ -193,11 +165,9 @@ export default function useIbcCoreClientV1() {
     return useQuery(
       [key],
       () => {
-        return client.IbcCoreClientV1.query
-          .queryUpgradedConsensusState()
-          .then((res) => res.data);
+        return client.IbcCoreClientV1.query.queryUpgradedConsensusState().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return {

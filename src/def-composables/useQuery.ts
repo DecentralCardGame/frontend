@@ -16,7 +16,7 @@ const handlers: { [key: string]: (res: AxiosResponse) => any } = {
     return res.data.user;
   },
   queryAllBalances: (res) => {
-    let coins: Coin[] = [];
+    const coins: Coin[] = [];
     res.data.balances.forEach((coin: any) => {
       coins.push(Coin.from(coin));
     });
@@ -59,13 +59,13 @@ const useQueryInstance = () => {
   const unified = Object.assign(
     client.CosmosBankV_1Beta_1.query,
     client.CardchainCardchain.query,
-    client.CosmosAuthzV_1Beta_1.query,
+    client.CosmosAuthzV_1Beta_1.query
   );
   const keys = Object.keys(unified);
 
   client.CardchainCardchain.query.queryCardchainInfo;
 
-  let queries: { [id: string]: (...args: any[]) => Promise<any> } = {};
+  const queries: { [id: string]: (...args: any[]) => Promise<any> } = {};
 
   keys.forEach((key) => {
     queries[key] = (...args: any[]) => {
@@ -73,11 +73,7 @@ const useQueryInstance = () => {
         myResolve(
           (unified as any)
             [key](...args)
-            .then(
-              handlers.hasOwnProperty(key)
-                ? handlers[key]
-                : handlers.defaultHandler,
-            ),
+            .then(handlers.hasOwnProperty(key) ? handlers[key] : handlers.defaultHandler)
         );
       });
     };

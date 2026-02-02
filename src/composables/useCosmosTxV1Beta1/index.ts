@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosTxV1Beta1() {
   const client = useClient();
@@ -15,11 +9,9 @@ export default function useCosmosTxV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosTxV1Beta1.query
-          .serviceSimulate({ ...key })
-          .then((res) => res.data);
+        return client.CosmosTxV1Beta1.query.serviceSimulate({ ...key }).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -29,11 +21,9 @@ export default function useCosmosTxV1Beta1() {
       [key],
       () => {
         const { hash } = key;
-        return client.CosmosTxV1Beta1.query
-          .serviceGetTx(hash)
-          .then((res) => res.data);
+        return client.CosmosTxV1Beta1.query.serviceGetTx(hash).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -42,11 +32,9 @@ export default function useCosmosTxV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosTxV1Beta1.query
-          .serviceBroadcastTx({ ...key })
-          .then((res) => res.data);
+        return client.CosmosTxV1Beta1.query.serviceBroadcastTx({ ...key }).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -67,10 +55,7 @@ export default function useCosmosTxV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -83,16 +68,11 @@ export default function useCosmosTxV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const ServiceGetBlockWithTxs = (
-    height: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const ServiceGetBlockWithTxs = (height: string, query: any, options: any, perPage: number) => {
     const key = { type: "ServiceGetBlockWithTxs", height, query };
     return useInfiniteQuery(
       [key],
@@ -109,10 +89,7 @@ export default function useCosmosTxV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -125,7 +102,7 @@ export default function useCosmosTxV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 

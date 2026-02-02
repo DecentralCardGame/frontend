@@ -1,6 +1,5 @@
 import * as R from "ramda";
 import { Coin } from "./Coin";
-import type { QueryCardResponse } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
 import { CardWithImage } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/card_with_image";
 import { stringToBytes } from "@/utils/utils";
 
@@ -67,10 +66,10 @@ export class Card {
   }
 
   static fromCardWithImage(from: CardWithImage): Card {
-    let card = new Card();
+    const card = new Card();
     if (from.card?.content) {
-      let content = JSON.parse(atob(from.card.content.toString()));
-      let cardType = Object.keys(content)[0];
+      const content = JSON.parse(atob(from.card.content.toString()));
+      const cardType = Object.keys(content)[0];
 
       card.CardName = content[cardType].CardName;
       card.FlavourText = content[cardType].FlavourText;
@@ -111,7 +110,7 @@ export class Card {
 
   toCardWithImage(): CardWithImage {
     console.log("trying to parse ", this);
-    let cardContent = Object.assign(new CardContent(), {
+    const cardContent = Object.assign(new CardContent(), {
       CardName: this.CardName,
       Tags: this.Tags.filter((tag) => {
         return tag != null || tag != "";
@@ -142,12 +141,12 @@ export class Card {
       cardContent.Delay = this.Delay;
     }
 
-    let cc: CardWithImage = {
+    const cc: CardWithImage = {
       card: {
         content: stringToBytes(
           JSON.stringify({
             [this.type]: cardContent,
-          }),
+          })
         ),
         notes: this.notes,
         fullArt: this.fullArt,
@@ -176,25 +175,25 @@ export class CardClass {
   }
 
   static culture() {
-    let obj = new CardClass();
+    const obj = new CardClass();
     obj.Culture = true;
     return obj;
   }
 
   static mysticism() {
-    let obj = new CardClass();
+    const obj = new CardClass();
     obj.Mysticism = true;
     return obj;
   }
 
   static technology() {
-    let obj = new CardClass();
+    const obj = new CardClass();
     obj.Technology = true;
     return obj;
   }
 
   static nature() {
-    let obj = new CardClass();
+    const obj = new CardClass();
     obj.Nature = true;
     return obj;
   }

@@ -5,9 +5,7 @@
     </router-link>
     <a class="grow" />
     <div class="my-auto max-md:hidden">
-      <RouterCCButton :type="Color.RED" to="/download">
-        Download Gameclient
-      </RouterCCButton>
+      <RouterCCButton :type="Color.RED" to="/download"> Download Gameclient </RouterCCButton>
     </div>
     <LoginComponent />
     <button class="my-auto" @click="toggleBar">
@@ -15,7 +13,7 @@
     </button>
   </div>
   <Navbar
-    :extra-classes=navbarClasses
+    :extra-classes="navbarClasses"
     :elems="elems"
     elem-class="px-8 py-4 font-bold"
     elem-active-class="text-yellow-500"
@@ -25,7 +23,7 @@
 <script setup lang="ts">
 import CCLogo from "@/assets/figma/CCLogo.png";
 import Menu from "@/assets/figma/Menu.svg";
-import {computed, type ComputedRef, reactive} from "vue";
+import { computed, type ComputedRef, reactive } from "vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import LoginComponent from "@/components/elements/Login/LoginComponent.vue";
 import type { NavigationElement } from "@/components/elements/Navbar/types";
@@ -45,10 +43,7 @@ const state = reactive({
 });
 
 const navbarClasses: ComputedRef<string[]> = computed(() => {
-  return [
-    "max-md:" + (state.barShown ? "visible" : "hidden"),
-    "justify-start",
-  ];
+  return ["max-md:" + (state.barShown ? "visible" : "hidden"), "justify-start"];
 });
 
 const toggleBar = () => {

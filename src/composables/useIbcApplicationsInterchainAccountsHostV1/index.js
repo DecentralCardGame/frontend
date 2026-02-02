@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
 export default function useIbcApplicationsInterchainAccountsHostV1() {
@@ -12,7 +11,7 @@ export default function useIbcApplicationsInterchainAccountsHostV1() {
           .queryParams()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return { QueryParams };

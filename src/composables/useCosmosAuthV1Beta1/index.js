@@ -19,10 +19,7 @@ export default function useCosmosAuthV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -35,7 +32,7 @@ export default function useCosmosAuthV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
   const QueryAccount = (address, options) => {
@@ -44,11 +41,9 @@ export default function useCosmosAuthV1Beta1() {
       [key],
       () => {
         const { address } = key;
-        return client.CosmosAuthV1Beta1.query
-          .queryAccount(address)
-          .then((res) => res.data);
+        return client.CosmosAuthV1Beta1.query.queryAccount(address).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryAccountAddressByID = (id, options) => {
@@ -57,11 +52,9 @@ export default function useCosmosAuthV1Beta1() {
       [key],
       () => {
         const { id } = key;
-        return client.CosmosAuthV1Beta1.query
-          .queryAccountAddressByID(id)
-          .then((res) => res.data);
+        return client.CosmosAuthV1Beta1.query.queryAccountAddressByID(id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryParams = (options) => {
@@ -69,11 +62,9 @@ export default function useCosmosAuthV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosAuthV1Beta1.query
-          .queryParams()
-          .then((res) => res.data);
+        return client.CosmosAuthV1Beta1.query.queryParams().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryModuleAccounts = (options) => {
@@ -81,11 +72,9 @@ export default function useCosmosAuthV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosAuthV1Beta1.query
-          .queryModuleAccounts()
-          .then((res) => res.data);
+        return client.CosmosAuthV1Beta1.query.queryModuleAccounts().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryModuleAccountByName = (name, options) => {
@@ -98,7 +87,7 @@ export default function useCosmosAuthV1Beta1() {
           .queryModuleAccountByName(name)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryBech32Prefix = (options) => {
@@ -106,11 +95,9 @@ export default function useCosmosAuthV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosAuthV1Beta1.query
-          .queryBech32Prefix()
-          .then((res) => res.data);
+        return client.CosmosAuthV1Beta1.query.queryBech32Prefix().then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryAddressBytesToString = (address_bytes, options) => {
@@ -123,7 +110,7 @@ export default function useCosmosAuthV1Beta1() {
           .queryAddressBytesToString(address_bytes)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   const QueryAddressStringToBytes = (address_string, options) => {
@@ -136,7 +123,7 @@ export default function useCosmosAuthV1Beta1() {
           .queryAddressStringToBytes(address_string)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
   return {

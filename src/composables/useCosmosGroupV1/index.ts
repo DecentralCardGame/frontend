@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosGroupV1() {
   const client = useClient();
@@ -16,11 +10,9 @@ export default function useCosmosGroupV1() {
       [key],
       () => {
         const { group_id } = key;
-        return client.CosmosGroupV1.query
-          .queryGroupInfo(group_id)
-          .then((res) => res.data);
+        return client.CosmosGroupV1.query.queryGroupInfo(group_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -30,20 +22,13 @@ export default function useCosmosGroupV1() {
       [key],
       () => {
         const { address } = key;
-        return client.CosmosGroupV1.query
-          .queryGroupPolicyInfo(address)
-          .then((res) => res.data);
+        return client.CosmosGroupV1.query.queryGroupPolicyInfo(address).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryGroupMembers = (
-    group_id: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryGroupMembers = (group_id: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryGroupMembers", group_id, query };
     return useInfiniteQuery(
       [key],
@@ -60,10 +45,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -76,16 +58,11 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryGroupsByAdmin = (
-    admin: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryGroupsByAdmin = (admin: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryGroupsByAdmin", admin, query };
     return useInfiniteQuery(
       [key],
@@ -102,10 +79,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -118,7 +92,7 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -126,7 +100,7 @@ export default function useCosmosGroupV1() {
     group_id: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryGroupPoliciesByGroup", group_id, query };
     return useInfiniteQuery(
@@ -144,10 +118,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -160,16 +131,11 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryGroupPoliciesByAdmin = (
-    admin: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryGroupPoliciesByAdmin = (admin: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryGroupPoliciesByAdmin", admin, query };
     return useInfiniteQuery(
       [key],
@@ -186,10 +152,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -202,7 +165,7 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -212,11 +175,9 @@ export default function useCosmosGroupV1() {
       [key],
       () => {
         const { proposal_id } = key;
-        return client.CosmosGroupV1.query
-          .queryProposal(proposal_id)
-          .then((res) => res.data);
+        return client.CosmosGroupV1.query.queryProposal(proposal_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -224,7 +185,7 @@ export default function useCosmosGroupV1() {
     address: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "QueryProposalsByGroupPolicy", address, query };
     return useInfiniteQuery(
@@ -242,10 +203,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -258,15 +216,11 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryVoteByProposalVoter = (
-    proposal_id: string,
-    voter: string,
-    options: any,
-  ) => {
+  const QueryVoteByProposalVoter = (proposal_id: string, voter: string, options: any) => {
     const key = { type: "QueryVoteByProposalVoter", proposal_id, voter };
     return useQuery(
       [key],
@@ -276,16 +230,11 @@ export default function useCosmosGroupV1() {
           .queryVoteByProposalVoter(proposal_id, voter)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const QueryVotesByProposal = (
-    proposal_id: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryVotesByProposal = (proposal_id: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryVotesByProposal", proposal_id, query };
     return useInfiniteQuery(
       [key],
@@ -302,10 +251,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -318,16 +264,11 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryVotesByVoter = (
-    voter: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryVotesByVoter = (voter: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryVotesByVoter", voter, query };
     return useInfiniteQuery(
       [key],
@@ -344,10 +285,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -360,16 +298,11 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
-  const QueryGroupsByMember = (
-    address: string,
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const QueryGroupsByMember = (address: string, query: any, options: any, perPage: number) => {
     const key = { type: "QueryGroupsByMember", address, query };
     return useInfiniteQuery(
       [key],
@@ -386,10 +319,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -402,7 +332,7 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -412,11 +342,9 @@ export default function useCosmosGroupV1() {
       [key],
       () => {
         const { proposal_id } = key;
-        return client.CosmosGroupV1.query
-          .queryTallyResult(proposal_id)
-          .then((res) => res.data);
+        return client.CosmosGroupV1.query.queryTallyResult(proposal_id).then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -437,10 +365,7 @@ export default function useCosmosGroupV1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -453,7 +378,7 @@ export default function useCosmosGroupV1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 

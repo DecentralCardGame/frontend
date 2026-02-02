@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  useQuery,
-  type UseQueryOptions,
-  useInfiniteQuery,
-  type UseInfiniteQueryOptions,
-} from "@tanstack/vue-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/vue-query";
 import { useClient } from "../useClient";
-import type { Ref } from "vue";
 
 export default function useCosmosBaseTendermintV1Beta1() {
   const client = useClient();
@@ -19,7 +13,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceGetNodeInfo()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -28,11 +22,9 @@ export default function useCosmosBaseTendermintV1Beta1() {
     return useQuery(
       [key],
       () => {
-        return client.CosmosBaseTendermintV1Beta1.query
-          .serviceGetSyncing()
-          .then((res) => res.data);
+        return client.CosmosBaseTendermintV1Beta1.query.serviceGetSyncing().then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -45,7 +37,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceGetLatestBlock()
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
@@ -59,15 +51,11 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceGetBlockByHeight(height)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 
-  const ServiceGetLatestValidatorSet = (
-    query: any,
-    options: any,
-    perPage: number,
-  ) => {
+  const ServiceGetLatestValidatorSet = (query: any, options: any, perPage: number) => {
     const key = { type: "ServiceGetLatestValidatorSet", query };
     return useInfiniteQuery(
       [key],
@@ -84,10 +72,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -100,7 +85,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -108,7 +93,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
     height: string,
     query: any,
     options: any,
-    perPage: number,
+    perPage: number
   ) => {
     const key = { type: "ServiceGetValidatorSetByHeight", height, query };
     return useInfiniteQuery(
@@ -126,10 +111,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
       {
         ...options,
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            (lastPage.pagination?.total ?? 0) >
-            (lastPage.pageParam ?? 0) * perPage
-          ) {
+          if ((lastPage.pagination?.total ?? 0) > (lastPage.pageParam ?? 0) * perPage) {
             return lastPage.pageParam + 1;
           } else {
             return undefined;
@@ -142,7 +124,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
             return firstPage.pageParam - 1;
           }
         },
-      },
+      }
     );
   };
 
@@ -156,7 +138,7 @@ export default function useCosmosBaseTendermintV1Beta1() {
           .serviceABCIQuery(query ?? undefined)
           .then((res) => res.data);
       },
-      options,
+      options
     );
   };
 

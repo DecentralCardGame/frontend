@@ -1,12 +1,7 @@
 <template>
   <div id="main" class="main">
     <div class="logo-container">
-      <img
-        src="../../assets/logo.svg"
-        class="image1"
-        alt="Loading..."
-        width="500"
-      />
+      <img src="../../assets/logo.svg" class="image1" alt="Loading..." width="500" />
       <img
         v-if="!isSafari"
         src="@/assets/animations/sparkling_water.gif"
@@ -18,11 +13,7 @@
     <div class="button--container extra--margin">
       <div class="link--button" @click="scrollPastMenu">
         <div class="img--container">
-          <img
-            src="../../assets/arrows/arrow_down.svg"
-            class="image3"
-            alt="yes..."
-          />
+          <img src="../../assets/arrows/arrow_down.svg" class="image3" alt="yes..." />
         </div>
       </div>
     </div>
@@ -43,9 +34,7 @@ export default {
   },
   methods: {
     scrollPastMenu() {
-      const mainElement = document
-        .getElementById("main")
-        .getBoundingClientRect();
+      const mainElement = document.getElementById("main").getBoundingClientRect();
       window.scrollTo({
         left: 0,
         top: mainElement.bottom + document.documentElement.scrollTop,

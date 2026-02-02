@@ -13,8 +13,8 @@
       Total <b>Underpowered</b> Votes: {{ state.data.totalUnderpoweredVotes }}
       <br />
       <br />
-      Nerfed Mana Costs are <span style="color: #ff0000">red</span> and buffed
-      Mana Costs are <span style="color: #3cb38f">green</span>. <br />
+      Nerfed Mana Costs are <span style="color: #ff0000">red</span> and buffed Mana Costs are
+      <span style="color: #3cb38f">green</span>. <br />
       Banned Cards have their Mana Cost removed.
     </p>
     <br />
@@ -58,10 +58,7 @@ onMounted(() => {
     state.data = res.lastVotingResults;
     state.cardList = state.data.cardResults.map((v) => v.cardId);
     state.idsWithStatus = Object.fromEntries(
-      state.data.cardResults.map((v) => [
-        v.cardId,
-        NerfStatus.fromString(v.result)!,
-      ]),
+      state.data.cardResults.map((v) => [v.cardId, NerfStatus.fromString(v.result)!])
     );
   });
 });

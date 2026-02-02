@@ -1,7 +1,6 @@
 import { Client } from "decentralcardgame-cardchain-client-ts";
 
 import { env } from "@/env";
-import type { IgniteClient } from "decentralcardgame-cardchain-client-ts/client";
 
 const useClientInstance: () => InstanceType<typeof Client> = () => {
   const client = new Client(env);

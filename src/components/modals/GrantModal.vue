@@ -9,12 +9,7 @@
       >
         <header id="modalTitle" class="modal__header">
           <slot name="header"> Grant Authz Rights </slot>
-          <button
-            aria-label="Close modal"
-            type="button"
-            class="btn--close"
-            @click="close"
-          >
+          <button aria-label="Close modal" type="button" class="btn--close" @click="close">
             x
           </button>
         </header>
@@ -28,12 +23,7 @@
                 Grant
                 <a>{{ getShowName(gt.authorization.msg) }}</a>
               </div>
-              <button
-                class="btn--default"
-                @click="revoke(gt.authorization.msg)"
-              >
-                Rewoke
-              </button>
+              <button class="btn--default" @click="revoke(gt.authorization.msg)">Rewoke</button>
               <div v-show="show_extra[i]">
                 Expires at: <a>{{ gt.expiration }}</a>
               </div>
@@ -87,10 +77,7 @@ export default {
       options: [
         ["vote", "/DecentralCardGame.cardchain.cardchain.MsgVoteCard"],
         ["add artwork", "/DecentralCardGame.cardchain.cardchain.MsgAddArtwork"],
-        [
-          "save card content",
-          "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent",
-        ],
+        ["save card content", "/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent"],
         ["play game", "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch"],
       ],
       grant: "",
@@ -120,7 +107,7 @@ export default {
       }
     },
     getShowName(name: string) {
-      for (var i = 0; i < this.options.length; i++) {
+      for (let i = 0; i < this.options.length; i++) {
         if (this.options[i][1] == name) {
           return this.options[i][0];
         }
@@ -136,7 +123,7 @@ export default {
           console.log("revoke res", res);
           this.getGrants();
         },
-        (_) => {},
+        (_) => {}
       );
     },
     getGrants() {
@@ -149,7 +136,7 @@ export default {
         this.grants = grants.grants;
         this.saved_grantee = this.qgrantee;
         this.show_extra = [];
-        for (var i = 0; i < this.grants.length; i++) {
+        for (let i = 0; i < this.grants.length; i++) {
           this.show_extra.push(false);
         }
       });
@@ -182,7 +169,7 @@ export default {
         },
         (err) => {
           console.error(err);
-        },
+        }
       );
     },
     getGrantee() {

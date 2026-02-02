@@ -5,11 +5,7 @@
         {{ heading }}
       </p>
       <button class="group" @click="emit('close')">
-        <img
-          :src="closeImg"
-          alt="close"
-          class="h-12 group-hover:drop-shadow-md"
-        />
+        <img :src="closeImg" alt="close" class="h-12 group-hover:drop-shadow-md" />
       </button>
     </header>
     <div class="bg-neutral-800 p-8">
@@ -27,7 +23,7 @@ const props = withDefaults(
   }>(),
   {
     heading: "Lorem impsum dolor",
-  },
+  }
 );
 
 const emit = defineEmits(["close"]);

@@ -1,11 +1,6 @@
 <template>
   <div class="relative overflow-hidden">
-    <img
-      alt="worm bg"
-      class="absolute h-[100%]"
-      :class="picClassLeft"
-      :src="voidWormBg"
-    />
+    <img alt="worm bg" class="absolute h-[100%]" :class="picClassLeft" :src="voidWormBg" />
     <img
       alt="priest bg"
       class="absolute h-[100%] overflow-hidden"

@@ -4,7 +4,7 @@ import { Resolver } from "@stoplight/json-ref-resolver";
 
 const useCardRulesInstance = () => {
   const resolver = new Resolver();
-  let rules: Ref = ref();
+  const rules: Ref = ref();
   resolver
     .resolve(cardRules)
     .then((schema) => {

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16"
-  >
+  <div class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16">
     <div v-if="state.invalidCode" class="py-24 text-center">
       <div class="py-4">
         Unfortunately you have entered this page without Discord code.<br />
@@ -36,11 +34,7 @@
           </h1>
           <div class="py-24">
             <div class="mx-auto h-64 w-64 relative group">
-              <ProfilePicComponent
-                :src="state.img"
-                size="64"
-                alt="Profile pic"
-              />
+              <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
 
               <img
                 :src="editImg"
@@ -81,23 +75,16 @@
                 <b>Address</b> <br />{{ state.addr }} <br />
                 <b>Alias</b> <br />{{ state.user.alias }} <br />
                 <b>Zealy ID</b> <br />{{ state.rewards.ZealyID }} <br />
-                <b>Discord Username</b> <br />{{ state.discordUser
-                }}<br /><br />
+                <b>Discord Username</b> <br />{{ state.discordUser }}<br /><br />
 
                 <RewardItem :item="'Airdrop'" :value="state.rewards.Airdrop" />
-                <RewardItem
-                  :item="'Credits'"
-                  :value="state.rewards.InGameCredits"
-                />
+                <RewardItem :item="'Credits'" :value="state.rewards.InGameCredits" />
                 <RewardItem
                   :item="'Early Access'"
                   :value="state.rewards.EarlyAccessToGame"
                   :is-bool="true"
                 />
-                <RewardItem
-                  :item="'Booster Packs'"
-                  :value="state.rewards.BoosterPacks"
-                />
+                <RewardItem :item="'Booster Packs'" :value="state.rewards.BoosterPacks" />
                 <RewardItem
                   :item="'Ambassador Program Advisory'"
                   :value="state.rewards.AmbassadorProgramAdvisory"
@@ -126,24 +113,15 @@
 import { useAddress } from "@/def-composables/useAddress";
 import { useLoggedIn } from "@/def-composables/useLoggedIn";
 import { useQuery } from "@/def-composables/useQuery";
-import { validAddress } from "@/utils/validation";
 import { useTx } from "@/def-composables/useTx";
 import { useProfilePic } from "@/def-composables/useProfilePic";
-import type { Coin } from "@/model/Coin";
-import { normalizeCoins } from "@/utils/utils";
-import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
+import { onMounted, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useUser } from "@/def-composables/useUser";
 import { User } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
-import { Match } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
-import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import LinkCCButton from "@/components/elements/CCButton/LinkCCButton.vue";
 import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
-import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
-import { Color } from "@/components/utils/color";
-import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
 import axios from "axios";
 import { useUrlSearchParams } from "@vueuse/core";
 import { createReusableTemplate } from "@vueuse/core";
@@ -185,59 +163,50 @@ const init = () => {
     state.invalidCode = true;
     return;
   }
-  axios
-    .get("https://cardchain.crowdcontrol.network/goat?code=" + code)
-    .then((discordUser) => {
-      state.discordUser = discordUser.data.global_name;
-      console.log("discordUser", discordUser);
-      // get the reward list from the server
-      axios
-        .get("https://cardchain.crowdcontrol.network/files/rewards.csv")
-        .then((response) => {
-          console.log(response);
-          var lines = response.data.split("\n");
-          var result = null;
-          var headers = lines[0].split(",");
-          for (var i = 1; i < lines.length; i++) {
-            var obj = {};
-            var currentline = lines[i].split(",");
-            for (var j = 0; j < headers.length; j++) {
-              obj[headers[j]] = currentline[j];
-            }
-            if (obj.discordHandle === discordUser.data.username) {
-              obj.Airdrop = obj.Airdrop ? obj.Airdrop : 0;
-              obj.AmbassadorProgramAdvisory = obj.AmbassadorProgramAdvisory
-                ? obj.AmbassadorProgramAdvisory
-                : false;
-              obj.BoosterPacks = obj.BoosterPacks ? obj.BoosterPacks : 0;
-              obj.Credits = obj.Credits ? obj.Credits : 0;
-              obj.EarlyAccessToGame = obj.EarlyAccessToGame
-                ? obj.EarlyAccessToGame
-                : false;
-              obj.WLForTheTokenSale = obj.WLForTheTokenSale
-                ? obj.WLForTheTokenSale
-                : false;
-              obj.WLForTheTokenSaleBetterPrice =
-                obj.WLForTheTokenSaleBetterPrice
-                  ? obj.WLForTheTokenSaleBetterPrice
-                  : false;
+  axios.get("https://cardchain.crowdcontrol.network/goat?code=" + code).then((discordUser) => {
+    state.discordUser = discordUser.data.global_name;
+    console.log("discordUser", discordUser);
+    // get the reward list from the server
+    axios.get("https://cardchain.crowdcontrol.network/files/rewards.csv").then((response) => {
+      console.log(response);
+      const lines = response.data.split("\n");
+      let result = null;
+      const headers = lines[0].split(",");
+      for (let i = 1; i < lines.length; i++) {
+        const obj = {};
+        const currentline = lines[i].split(",");
+        for (let j = 0; j < headers.length; j++) {
+          obj[headers[j]] = currentline[j];
+        }
+        if (obj.discordHandle === discordUser.data.username) {
+          obj.Airdrop = obj.Airdrop ? obj.Airdrop : 0;
+          obj.AmbassadorProgramAdvisory = obj.AmbassadorProgramAdvisory
+            ? obj.AmbassadorProgramAdvisory
+            : false;
+          obj.BoosterPacks = obj.BoosterPacks ? obj.BoosterPacks : 0;
+          obj.Credits = obj.Credits ? obj.Credits : 0;
+          obj.EarlyAccessToGame = obj.EarlyAccessToGame ? obj.EarlyAccessToGame : false;
+          obj.WLForTheTokenSale = obj.WLForTheTokenSale ? obj.WLForTheTokenSale : false;
+          obj.WLForTheTokenSaleBetterPrice = obj.WLForTheTokenSaleBetterPrice
+            ? obj.WLForTheTokenSaleBetterPrice
+            : false;
 
-              result = obj;
-              state.rewards = obj;
-              break;
-            }
-          }
-          console.log("matching entry:", result);
+          result = obj;
+          state.rewards = obj;
+          break;
+        }
+      }
+      console.log("matching entry:", result);
 
-          if (!result) state.noUserFound = true;
-          else if (!result.CCAddress) state.noCCAddress = true;
-          else {
-            state.addr = result.CCAddress;
-            console.log("state.addr", state.addr);
-            getUser();
-          }
-        });
+      if (!result) state.noUserFound = true;
+      else if (!result.CCAddress) state.noCCAddress = true;
+      else {
+        state.addr = result.CCAddress;
+        console.log("state.addr", state.addr);
+        getUser();
+      }
     });
+  });
 
   router.push({ name: "Discord" });
 };

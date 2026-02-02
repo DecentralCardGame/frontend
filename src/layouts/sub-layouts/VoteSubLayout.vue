@@ -3,9 +3,7 @@
     <HeadingContentComponent heading-class="text-cc-yellow">
       <template #heading> Voting </template>
       <template #content>
-        <p class="text-white">
-          Vote to develop the game and earn Tokens with it!
-        </p>
+        <p class="text-white">Vote to develop the game and earn Tokens with it!</p>
       </template>
     </HeadingContentComponent>
   </BaseTeaserSmall>

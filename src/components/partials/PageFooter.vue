@@ -1,8 +1,6 @@
 <template>
   <div class="bg-black text-white font-normal font-['Roboto']">
-    <div
-      class="pt-10 text-center text-base font-bold underline uppercase space-y-2"
-    >
+    <div class="pt-10 text-center text-base font-bold underline uppercase space-y-2">
       <button @click="scrollup">
         <div class="flex justify-evenly">
           <img :src="triangle" alt="navigation triangle" class="w-3" />
@@ -11,9 +9,7 @@
       </button>
     </div>
 
-    <div
-      class="p-12 flex flex-wrap flex-row text-white text-base justify-evenly"
-    >
+    <div class="p-12 flex flex-wrap flex-row text-white text-base justify-evenly">
       <div class="p-5 flex-row space-y-5">
         <div class="text-3xl font-bold">Pages</div>
         <div>
@@ -23,9 +19,7 @@
           <router-link :to="{ name: 'Sets' }"> Sets and Boosters </router-link>
         </div>
         <div>
-          <a href="https://crowdcontrol-network.gitbook.io/" target="_blank">
-            GitBook
-          </a>
+          <a href="https://crowdcontrol-network.gitbook.io/" target="_blank"> GitBook </a>
         </div>
         <div>
           <router-link :to="{ name: 'Team' }"> About </router-link>
@@ -50,11 +44,7 @@
               <picture>
                 <source type="image/webp" srcset="@/assets/icon/discord.webp" />
                 <source type="image/png" srcset="@/assets/icon/discord.png" />
-                <img
-                  src="@/assets/icon/discord.png"
-                  class="inline max-h-4"
-                  alt="Discord logo"
-                />
+                <img src="@/assets/icon/discord.png" class="inline max-h-4" alt="Discord logo" />
               </picture>
             </div>
             <div>Discord</div>
@@ -84,11 +74,7 @@
               <picture>
                 <source type="image/webp" srcset="@/assets/icon/github.webp" />
                 <source type="image/png" srcset="@/assets/icon/github.png" />
-                <img
-                  src="@/assets/icon/github.png"
-                  class="inline max-h-4"
-                  alt="Github logo"
-                />
+                <img src="@/assets/icon/github.png" class="inline max-h-4" alt="Github logo" />
               </picture>
             </div>
             <div>Github</div>
@@ -100,11 +86,7 @@
             <div>
               <picture>
                 <source type="image/svg" srcset="@/assets/icon/telegram.png" />
-                <img
-                  src="@/assets/icon/telegram.png"
-                  class="inline max-h-4"
-                  alt="Github logo"
-                />
+                <img src="@/assets/icon/telegram.png" class="inline max-h-4" alt="Github logo" />
               </picture>
             </div>
             <div>Telegram</div>
