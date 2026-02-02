@@ -135,6 +135,11 @@ const routes = [
     component: Demo,
   },
   {
+    path: "/sets",
+    name: "Sets",
+    component: NotFound
+  },
+  {
     path: "/gameclientAuthz/:authzAddress",
     name: "GameclientAuthz",
     component: GameclientAuthz,

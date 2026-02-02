@@ -173,7 +173,7 @@
         <UserViewHeadingContainer>
           <template #heading> Recent Activity </template>
           <template #body>
-            <RouterCCButton :type="Color.YELLOW" :to="{ name: 'Vote' }">
+            <RouterCCButton :type="Color.YELLOW" :to="{ name: 'EncounterVoting' }">
               Go to Voting
             </RouterCCButton>
           </template>
@@ -237,7 +237,6 @@ import { Color } from "@/components/utils/color";
 import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
 import type {
-  QueryEncounterResponse,
   QueryEncountersResponse,
   QueryMatchesResponse,
 } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";

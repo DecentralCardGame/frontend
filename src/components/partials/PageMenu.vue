@@ -35,7 +35,7 @@ import { Color } from "@/components/utils/color";
 const elems: NavigationElement[] = [
   { routeName: "/gallery", display: "Gallery" },
   { routeName: "/vote/encounter", display: "Voting", loggedInOnly: true },
-  { routeName: "/s", display: "Sets and Boosters" },
+  { routeName: "/sets", display: "Sets and Boosters" },
   { routeName: "/learn", display: "Learn" },
   { routeName: "/cardCreator", display: "Card Creator" },
 ];
