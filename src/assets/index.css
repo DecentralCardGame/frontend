@@ -23,6 +23,9 @@
     --drop-shadow-glow-cc-blue: 0px 0px 24px rgba(39, 32, 216, 0.90);
     --drop-shadow-glow-cc-green: 0px 0px 24px rgba(32, 216, 39, 0.90);
     --drop-shadow-glow-cc-purple: 0px 0px 24px rgba(216, 32, 216, 0.90);
+
+    --breakpoint-3xl: 120rem;
+    --breakpoint-4xl: 160rem;
 }
 
 :root {

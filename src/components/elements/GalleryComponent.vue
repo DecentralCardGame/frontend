@@ -2,7 +2,7 @@
   <div>
     <div
       id="galleryWrapper"
-      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-[1800px]:grid-cols-5 gap-12 mt-6"
+      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 gap-12 mt-6"
     >
       <div
         v-for="card in state.cards"
@@ -73,14 +73,14 @@ const shadowClass = (card) => {
   }, card.Class);
   if (classes > 1)
     return {
-      "drop-shadow-glowCCYellow": true,
+      "drop-shadow-glow-cc-yellow": true,
     };
   else
     return {
-      "drop-shadow-glowCCRed": card.Class.Culture,
-      "drop-shadow-glowCCBlue": card.Class.Technology,
-      "drop-shadow-glowCCGreen": card.Class.Nature,
-      "drop-shadow-glowCCPurple": card.Class.Mysticism,
+      "drop-shadow-glow-cc-red": card.Class.Culture,
+      "drop-shadow-glow-cc-blue": card.Class.Technology,
+      "drop-shadow-glow-cc-green": card.Class.Nature,
+      "drop-shadow-glow-cc-purple": card.Class.Mysticism,
     };
 };
 
