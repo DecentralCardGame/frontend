@@ -128,7 +128,10 @@
         </div>
       </div>
       <div>
-        <BaseCCButton :type="Color.RED" @click="publish()"> Publish Encounter </BaseCCButton>
+        <BaseCCButton v-if="edit" :type="Color.RED" @click="update()">
+          Update Encounter
+        </BaseCCButton>
+        <BaseCCButton v-else :type="Color.RED" @click="publish()"> Publish Encounter </BaseCCButton>
       </div>
       <!-- Added cards section -->
       <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
@@ -183,7 +186,7 @@
 <script setup lang="ts">
 import * as R from "ramda";
 import { env } from "@/env";
-import { onMounted, watch, ref } from "vue";
+import { onMounted, watch, ref, computed, type ComputedRef } from "vue";
 import { useRoute } from "vue-router";
 import { useCards } from "@/def-composables/useCards";
 import { useNotifications } from "@/def-composables/useNotifications";
@@ -226,7 +229,7 @@ const route = useRoute();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
 const { cardList, loadQueryCardList, galleryFilters, pageQueryFromGalleryFilters } = useGallery();
-const { encounterCreate } = useTx();
+const { encounterCreate, encounterEdit } = useTx();
 const { getCard } = useCards();
 const { queryEncounterWithImage } = useQuery();
 
@@ -340,30 +343,35 @@ const typeOptions: GalleryFilterImageChooserOptions<GalleryFilters> = [
   },
 ];
 
+const edit: ComputedRef<boolean> = computed(() => {
+  return parseInt(route.query.id) >= 0;
+});
+
 onMounted(() => {
   galleryFilters.value.owner = address.value;
   galleryFilters.value.status = "playable";
   galleryFilters.value.hq = true;
 
   const filters = pageQueryFromGalleryFilters();
-
   loadQueryCardList(filters);
 
-  queryEncounterWithImage(route.query.id).then((res: QueryEncounterWithImageResponse) => {
-    cropImage.value = res.encounter!.image;
-    encounterName.value = res.encounter!.encounter!.name;
+  if (edit.value) {
+    queryEncounterWithImage(route.query.id).then((res: QueryEncounterWithImageResponse) => {
+      cropImage.value = res.encounter!.image;
+      encounterName.value = res.encounter!.encounter!.name;
 
-    const parameters = res.encounter!.encounter!.parameters;
-    encounterType = ref(R.find((x) => x.key == "type")(parameters).value ?? "Constructed");
-    encounterLevel = ref(R.find((x) => x.key == "level")(parameters).value ?? "0");
-    encounterDraw = ref(R.find((x) => x.key == "draw")(parameters).value ?? "Drawlist");
+      const parameters = res.encounter!.encounter!.parameters;
+      encounterType = ref(R.find((x) => x.key == "type")(parameters).value ?? "Constructed");
+      encounterLevel = ref(R.find((x) => x.key == "level")(parameters).value ?? "0");
+      encounterDraw = ref(R.find((x) => x.key == "draw")(parameters).value ?? "Drawlist");
 
-    res.encounter!.encounter!.drawlist.forEach((entry) => {
-      loadCard(entry).then((res) => {
-        addCardToEncounter(res);
+      res.encounter!.encounter!.drawlist.forEach((entry) => {
+        loadCard(entry).then((res) => {
+          addCardToEncounter(res);
+        });
       });
     });
-  });
+  }
 });
 
 const inputFile = (event) => {
@@ -462,41 +470,62 @@ const updateCardsAdded = () => {
   cardsAdded = R.reduce(R.add, 0, R.pluck("count", drawList.value));
 };
 
-const publish = () => {
-  // before publishing check stuff
+const getCards = (): number[] => R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
+
+const getParameters = (): Parameter[] => [
+  { key: "type", value: encounterType.value },
+  {
+    key: "level",
+    value: "" + encounterLevel.value,
+  },
+  { key: "draw", value: encounterDraw.value },
+];
+
+const uploadReady = () => {
   if (!hqSelected.value) {
     notifyFail("HQ", "An Encounter needs a HQ. Add one please.");
-    return;
+    return false;
   }
   if (encounterName.value === "") {
     notifyFail("Name", "An Encounter needs a Name. Add one please.");
-    return;
+    return false;
   }
+  return true;
+};
 
-  // unfold drawlist
-  const cards = R.flatten(R.map((x) => R.repeat(x.id, x.count), drawList.value));
-
-  const parameters: Parameter[] = [
-    { key: "type", value: encounterType.value },
-    {
-      key: "level",
-      value: "" + encounterLevel.value,
-    },
-    { key: "draw", value: encounterDraw.value },
-  ];
-
-  encounterCreate(
-    encounterName.value,
-    cards,
-    parameters,
-    cropImage.value,
-    (res) => {
-      console.log("success", res);
-    },
-    (err) => {
-      console.error("err", err);
-      notifyFail("Failed to Upload", err.message);
-    }
-  );
+const update = () => {
+  if (uploadReady()) {
+    encounterEdit(
+      parseInt(route.query.id),
+      encounterName.value,
+      getCards(),
+      getParameters(),
+      cropImage.value,
+      (res) => {
+        console.log("success", res);
+      },
+      (err) => {
+        console.error("err", err);
+        notifyFail("Failed to Upload", err.message);
+      }
+    );
+  }
+};
+const publish = () => {
+  if (uploadReady()) {
+    encounterCreate(
+      encounterName.value,
+      getCards(),
+      getParameters(),
+      cropImage.value,
+      (res) => {
+        console.log("success", res);
+      },
+      (err) => {
+        console.error("err", err);
+        notifyFail("Failed to Upload", err.message);
+      }
+    );
+  }
 };
 </script>

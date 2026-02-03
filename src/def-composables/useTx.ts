@@ -230,6 +230,15 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
+  encounterEdit: (
+    id: number,
+    name: string,
+    Drawlist: number[],
+    parameters: Parameter[],
+    image: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => void;
   encounterClose: (
     encounterId: number,
     user: string,
@@ -642,6 +651,29 @@ export const useTxInstance: () => {
     );
   };
 
+  const encounterEdit = (
+    id: number,
+    name: string,
+    drawlist: number[],
+    parameters: Parameter[],
+    image: string,
+    then: (res: any) => void,
+    err: (res: any) => void
+  ) => {
+    messageScheduler.schedule(
+      client.CardchainCardchain.tx.sendMsgEncounterEdit,
+      new Content({
+        id,
+        name,
+        drawlist,
+        parameters,
+        image: stringToBytes(image),
+      }),
+      then,
+      err
+    );
+  };
+
   const encounterClose = (
     encounterId: number,
     user: string,
@@ -728,6 +760,7 @@ export const useTxInstance: () => {
     */
     encounterDo,
     encounterClose,
+    encounterEdit,
     encounterCreate,
   };
 };
