@@ -136,7 +136,7 @@
         </BaseCCButton>
         <br />
         <BaseCCButton v-if="edit" :type="Color.RED" @click="deleteEncounter()">
-          Dlete Encounter
+          Delete Encounter
         </BaseCCButton>
       </div>
       <!-- Added cards section -->
