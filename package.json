@@ -15,7 +15,7 @@
     "bignumber.js": "^9.1.2",
     "buffer": "^6.0.3",
     "crypto-js": "^4.2.0",
-    "decentralcardgame-cardchain-client-ts": "^0.0.42",
+    "decentralcardgame-cardchain-client-ts": "^0.0.43",
     "discord-oauth2": "^2.12.1",
     "long": "^5.2.3",
     "merge-images": "^2.0.0",

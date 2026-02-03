@@ -127,11 +127,17 @@
           </label>
         </div>
       </div>
-      <div>
-        <BaseCCButton v-if="edit" :type="Color.RED" @click="update()">
+      <div v-if="isOwner">
+        <BaseCCButton v-if="edit" :type="Color.YELLOW" @click="update()">
           Update Encounter
         </BaseCCButton>
-        <BaseCCButton v-else :type="Color.RED" @click="publish()"> Publish Encounter </BaseCCButton>
+        <BaseCCButton v-else :type="Color.YELLOW" @click="publish()">
+          Publish Encounter
+        </BaseCCButton>
+        <br />
+        <BaseCCButton v-if="edit" :type="Color.RED" @click="deleteEncounter()">
+          Dlete Encounter
+        </BaseCCButton>
       </div>
       <!-- Added cards section -->
       <span class="my-4"> Cards added - {{ cardsAdded }}/40 </span>
@@ -229,7 +235,7 @@ const route = useRoute();
 const { loggedIn } = useLoggedIn();
 const { address } = useAddress();
 const { cardList, loadQueryCardList, galleryFilters, pageQueryFromGalleryFilters } = useGallery();
-const { encounterCreate, encounterEdit } = useTx();
+const { encounterCreate, encounterEdit, encounterDelete } = useTx();
 const { getCard } = useCards();
 const { queryEncounterWithImage } = useQuery();
 
@@ -244,6 +250,7 @@ type Entry = {
 
 const drawList: Ref<Entry[]> = ref([]);
 const cropImage = ref("");
+const encounterOwner = ref("");
 const encounterName = ref("");
 let encounterType = ref("Constructed");
 let encounterDraw = ref("Drawlist");
@@ -252,6 +259,8 @@ const filtersVisible = ref(true);
 let dragFrom = -1;
 const hqSelected = ref(false);
 let cardsAdded = 0;
+
+const isOwner = computed(() => address.value == encounterOwner.value);
 
 watch(drawList.value, () => {
   let hq: Entry | undefined = undefined;
@@ -359,6 +368,7 @@ onMounted(() => {
     queryEncounterWithImage(route.query.id).then((res: QueryEncounterWithImageResponse) => {
       cropImage.value = res.encounter!.image;
       encounterName.value = res.encounter!.encounter!.name;
+      encounterOwner.value = res.encounter!.encounter!.owner;
 
       const parameters = res.encounter!.encounter!.parameters;
       encounterType = ref(R.find((x) => x.key == "type")(parameters).value ?? "Constructed");
@@ -527,5 +537,18 @@ const publish = () => {
       }
     );
   }
+};
+
+const deleteEncounter = () => {
+  encounterDelete(
+    parseInt(route.query.id),
+    (res) => {
+      console.log("success", res);
+    },
+    (err) => {
+      console.error("err", err);
+      notifyFail("Failed to Upload", err.message);
+    }
+  );
 };
 </script>

@@ -246,6 +246,7 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void
   ) => void;
+  encounterDelete: (id: number, then: (res: any) => void, err: (res: any) => void) => void;
   send: (
     coins: CompatCoin[],
     to: string,
@@ -674,6 +675,17 @@ export const useTxInstance: () => {
     );
   };
 
+  const encounterDelete = (id: number, then: (res: any) => void, err: (res: any) => void) => {
+    messageScheduler.schedule(
+      client.CardchainCardchain.tx.sendMsgEncounterDelete,
+      new Content({
+        id,
+      }),
+      then,
+      err
+    );
+  };
+
   const encounterClose = (
     encounterId: number,
     user: string,
@@ -711,26 +723,26 @@ export const useTxInstance: () => {
   };
 
   return {
-    send,
-    buyCardScheme,
-    saveCardContent,
     addArtwork,
-    voteCard,
-    transferCard,
-    setProfileCard,
-    multiVoteCard,
-    grantAuthz,
-    revokeAuthz,
-    createUser,
     authzGameclient,
-    inviteEarlyAccess,
-    disinviteEarlyAccess,
-    registerForCouncil,
-    rewokeCouncilRegistration,
-    createCouncil,
+    buyCardScheme,
     commitCouncilResponse,
-    revealCouncilResponse,
+    createCouncil,
+    createUser,
+    disinviteEarlyAccess,
+    encounterClose,
+    encounterCreate,
+    encounterDelete,
+    encounterDo,
+    encounterEdit,
+    grantAuthz,
+    inviteEarlyAccess,
+    multiVoteCard,
+    registerForCouncil,
     restartCouncil,
+    revealCouncilResponse,
+    revokeAuthz,
+    rewokeCouncilRegistration,
     /*
     changeAlias,
     setUserBiography,
@@ -758,10 +770,11 @@ export const useTxInstance: () => {
     addStoryToSet,
     finalizeSet,
     */
-    encounterDo,
-    encounterClose,
-    encounterEdit,
-    encounterCreate,
+    saveCardContent,
+    send,
+    setProfileCard,
+    transferCard,
+    voteCard,
   };
 };
 
