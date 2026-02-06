@@ -3,7 +3,7 @@
     <div
       aria-describedby="modalDescription"
       aria-labelledby="modalTitle"
-      class="px-6 bg-zinc-300 bg-opacity-20 shadow-inner border border-white border-4 border-opacity-50"
+      class="px-6 bg-zinc-300/20 shadow-inner border-white/50 border-4"
       role="dialog"
     >
       <header id="modalTitle" class="p-4">
@@ -11,7 +11,7 @@
           {{ dialog.title }}
           <span
             aria-label="Close modal"
-            class="ml-[32.8rem] px-2 hover:cursor-pointer bg-opacity-20 shadow-inner border border-white border-2 border-opacity-80"
+            class="ml-[32.8rem] px-2 hover:cursor-pointer bg-opacity-20 shadow-inner border-white/80 border-2"
             type="button"
             @click="close"
           >
@@ -28,7 +28,7 @@
             class="w-1/3 flex flex-col justify-center items-center rounded-sm text-black"
           >
             <div class="">
-              <div class="p-2 m-2 bg-white bg-opacity-80">
+              <div class="p-2 m-2 bg-white/80">
                 <input
                   v-if="dialog.type === 'boolean'"
                   id="index"

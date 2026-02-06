@@ -106,7 +106,7 @@
         <div v-if="cropImage == ''">
           <label for="dropzone-file">
             <div
-              class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-2xl font-bold border-4 border-gray-100 border-opacity-50"
+              class="h-[24rem] flex px-24 bg-white/15% hover:bg-pink-950/15 text-white/50 text-2xl font-bold border-4 border-gray-100/50"
             >
               <span class="flex items-center">upload image</span>
             </div>

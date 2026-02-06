@@ -5,7 +5,7 @@
 
       <div
         v-if="successScreenVisible"
-        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow-xl shadow-black/25"
+        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red/70 shadow-xl shadow-black/25"
       >
         <div class="uppercase font-bold pt-12">Congratulations!</div>
         <div class="p-4">
@@ -18,7 +18,7 @@
 
       <div
         v-else
-        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red bg-opacity-70 shadow-xl shadow-black/25"
+        class="w-[60rem] p-8 mb-20 text-white text-center text-xl font-['Roboto'] bg-pussy-red/70 shadow-xl shadow-black/25"
       >
         <!-- Progress Bar -->
         <div class="w-10/12 pt-10 pb-6 h-12 mx-auto">
@@ -134,10 +134,10 @@
             <div class="pl-12 py-5 justify-center">
               <div class="py-3 text-s font-bold">NAME</div>
               <div class="py-3 text-s">Pick a name for your card.</div>
-              <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+              <div class="mt-3 bg-zinc-300/20 shadow-inner">
                 <input
                   v-model="model.CardName"
-                  class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                  class="py-3 px-2 mx-3 bg-transparent text-white text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Coolest Name around here"
                   maxLength="25"
                 />
@@ -152,7 +152,7 @@
         <!-- Image Upload -->
         <div
           v-if="activeStep == 3"
-          :class="{ 'bg-white bg-opacity-50': dragActive }"
+          :class="{ 'bg-white/50': dragActive }"
           class="flex flex-row justify-center"
           @drop.prevent="onDrop"
           @dragover.prevent="dragActive = true"
@@ -163,7 +163,7 @@
             <div v-if="cropImage == ''">
               <label for="dropzone-file">
                 <div
-                  class="h-[24rem] flex px-24 bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                  class="h-96 flex px-24 bg-white/15 hover:bg-pink-950/15 text-white/50 text-7xl font-bold border-4 border-gray-100/50"
                 >
                   <span class="flex items-center">+</span>
                 </div>
@@ -178,7 +178,7 @@
               >
                 <label for="dropzone-file">
                   <div
-                    class="h-[10rem] w-[10rem] flex px-[3.55rem] bg-white bg-opacity-[15%] hover:bg-opacity-[30%] text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                    class="h-40 w-40 flex px-[3.55rem] bg-white/15 hover:bg-white/30 text-white/50 text-7xl font-bold border-4 border-gray-100/50"
                   >
                     <span class="flex items-center">+</span>
                   </div>
@@ -225,12 +225,10 @@
                     <div class="px-3 text-left">Instead add another artist as a collaborator.</div>
                   </div>
                   <div v-if="designateArtist && !artistMode">
-                    <div
-                      class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300 bg-opacity-20 shadow-inner"
-                    >
+                    <div class="w-[27.3rem] ml-[2.1rem] mt-3 bg-zinc-300/20 shadow-inner">
                       <input
                         v-model="artistAddress"
-                        class="w-full py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                        class="w-full py-3 px-2 mx-3 bg-transparent text-white text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                         placeholder="Add the artist's wallet address"
                         maxLength="41"
                       />
@@ -328,10 +326,10 @@
             <div class="pl-12 py-5 justify-center">
               <div class="py-3 text-s font-bold">FLAVOR</div>
               <div class="py-3 text-s">Now let's add some spice to your creation.</div>
-              <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+              <div class="mt-3 bg-zinc-300/20 shadow-inner">
                 <input
                   v-model="model.FlavourText"
-                  class="w-[95%] py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                  class="w-[95%] py-3 px-2 mx-3 bg-transparent text-white text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Quote that represents this card."
                   maxLength="250"
                 />
@@ -498,7 +496,7 @@
                   >
                     <AbilityComponent
                       id="AbilityComponent"
-                      class="px-2 mb-3 flex bg-white bg-opacity-[15%] text-white text-opacity-100 font-bold border-4 border-gray-100 border-opacity-50"
+                      class="px-2 mb-3 flex bg-white/15 text-white font-bold border-4 border-gray-100/50"
                       :abilities="abilities"
                       :ability-prop="abilityEntry"
                       :dialog-prop="abilityDialog"
@@ -514,7 +512,7 @@
                 </div>
                 <div v-else-if="!isAbilityModalVisible" id="addmore" class="">
                   <button
-                    class="px-[12.7rem] bg-white bg-opacity-[15%] hover:bg-pink-950 text-white text-opacity-50 text-7xl font-bold border-4 border-gray-100 border-opacity-50"
+                    class="px-[12.7rem] bg-white/15 hover:bg-pink-950/15 text-white/50 text-7xl font-bold border-4 border-gray-100/50"
                     type="button"
                     @click="showAbilityModal('root')"
                   >
@@ -555,10 +553,10 @@
             <div class="pl-12 py-5 justify-center">
               <div class="py-3 text-s font-bold">NOTES TO THE COUNCIL</div>
               <div class="py-3 text-s">Anything that you believe needs explaining.</div>
-              <div class="mt-3 bg-zinc-300 bg-opacity-20 shadow-inner">
+              <div class="mt-3 bg-zinc-300/20 shadow-inner">
                 <input
                   v-model="model.notes"
-                  class="py-3 px-2 mx-3 bg-transparent text-white text-opacity-100 text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
+                  class="py-3 px-2 mx-3 bg-transparent text-white text-s focus:border-black border-0 border-solid focus:outline-none focus:ring-0 placeholder-white placeholder-opacity-50"
                   placeholder="Or some kind words."
                   maxLength="50"
                 />

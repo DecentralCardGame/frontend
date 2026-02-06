@@ -31,7 +31,7 @@ export const getTextColor = (t: Color) => {
     case Color.RED:
       return "text-white";
     case Color.PUSSYRED:
-      return "text-white text-opacity-100";
+      return "text-white";
     default:
       return "text-black";
   }
