@@ -127,15 +127,15 @@
           </label>
         </div>
       </div>
-      <div v-if="isOwner">
-        <BaseCCButton v-if="edit" :type="Color.YELLOW" @click="update()">
+      <div>
+        <BaseCCButton v-if="edit && isOwner" :type="Color.YELLOW" @click="update()">
           Update Encounter
         </BaseCCButton>
-        <BaseCCButton v-else :type="Color.YELLOW" @click="publish()">
+        <BaseCCButton v-else-if="!edit" :type="Color.YELLOW" @click="publish()">
           Publish Encounter
         </BaseCCButton>
         <br />
-        <BaseCCButton v-if="edit" :type="Color.RED" @click="deleteEncounter()">
+        <BaseCCButton v-if="edit && isOwner" :type="Color.RED" @click="deleteEncounter()">
           Delete Encounter
         </BaseCCButton>
       </div>
