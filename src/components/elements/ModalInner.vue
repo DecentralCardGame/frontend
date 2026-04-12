@@ -4,15 +4,8 @@
       <p class="grow my-auto">
         {{ heading }}
       </p>
-      <button
-        class="group"
-        @click="emit('close')"
-      >
-        <img
-          :src="closeImg"
-          alt="close"
-          class="h-12 group-hover:drop-shadow-md"
-        >
+      <button class="group" @click="emit('close')">
+        <img :src="closeImg" alt="close" class="h-12 group-hover:drop-shadow-md" />
       </button>
     </header>
     <div class="bg-neutral-800 p-8">

@@ -1,21 +1,14 @@
 <template>
   <div class="flex justify-center text-center flex-col m-16 uppercase text-xl">
-    <img
-      :src="logo"
-      alt="logo"
-      class="mx-auto w-72"
-    >
-    <br>
+    <img :src="logo" alt="logo" class="mx-auto w-72" />
+    <br />
     <p>
-      As a DAO, we are encouraging decentralized contributions to <br>
-      the project. Join the Project by contacting us on Discord.<br>
+      As a DAO, we are encouraging decentralized contributions to <br />
+      the project. Join the Project by contacting us on Discord.<br />
       <b> Our Community Contributors </b>
     </p>
-    <br>
-    <p
-      v-for="name in names"
-      :key="name"
-    >
+    <br />
+    <p v-for="name in names" :key="name">
       {{ name }}
     </p>
   </div>

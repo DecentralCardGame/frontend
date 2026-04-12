@@ -1,9 +1,9 @@
 import { Coin } from "@/model/Coin";
-import { QueryQCardsRequest } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/query";
+import { QueryCardsRequest } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
 import type { PageQuery } from "@/def-composables/useGallery";
 
 export const normalizeCoins = (coins: Coin[]) => {
-  let newCoins: Coin[] = [];
+  const newCoins: Coin[] = [];
   coins.forEach((coin) => {
     newCoins.push(Coin.from(coin).normalize());
   });
@@ -11,20 +11,22 @@ export const normalizeCoins = (coins: Coin[]) => {
 };
 
 export const normalizeNumberList = (l: Array<any> | any) =>
-  (Array.isArray(l) ? l.map((v) => Number(v)) : [Number(l)]).filter(
-    (w) => !Number.isNaN(w),
-  );
+  (Array.isArray(l) ? l.map((v) => Number(v)) : [Number(l)]).filter((w) => !Number.isNaN(w));
 export const normalizeBoolean = (b: any) => b == "true";
 
 export const normalizeQuery = (query: any): PageQuery => {
-  query.classes = normalizeNumberList(query.classes);
-  query.cardTypes = normalizeNumberList(query.cardTypes);
+  query.class = normalizeNumberList(query.class);
+  query.cardType = normalizeNumberList(query.cardType);
   query.rarities = normalizeNumberList(query.rarities);
-  query.statuses = normalizeNumberList(query.statuses);
+  query.status = normalizeNumberList(query.status);
   query.onlyBalanceAnchors = normalizeBoolean(query.onlyBalanceAnchors);
   query.onlyStarterCard = normalizeBoolean(query.onlyStarterCard);
   query.multiClassOnly = normalizeBoolean(query.multiClassOnly);
-  return QueryQCardsRequest.fromPartial(query);
+  return QueryCardsRequest.fromPartial(query);
+};
+
+export const stringToBytes = (inp: string): Uint8Array => {
+  return Uint8Array.from(inp, (c) => c.charCodeAt(0));
 };
 
 export function isASCII(str: string) {

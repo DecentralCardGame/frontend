@@ -1,17 +1,6 @@
 <template>
-  <div
-    :class="[
-      'overflow-hidden',
-      'rounded-full',
-      'w-' + props.size,
-      'h-' + props.size,
-    ]"
-  >
-    <img
-      :src="src"
-      class="-pt-[10%] w-full object-contain"
-      :alt="alt"
-    >
+  <div :class="['overflow-hidden', 'rounded-full', 'w-' + props.size, 'h-' + props.size]">
+    <img :src="src" class="-pt-[10%] w-full object-contain" :alt="alt" />
   </div>
 </template>
 <script setup lang="ts">

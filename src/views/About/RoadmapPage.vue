@@ -1,11 +1,13 @@
 <template>
   <div class="article-temp width-temp bg-black">
     <div class="flex flex-col md:grid grid-cols-9 mx-auto text-white">
-      <div v-for="(section, index) in sections" :key="index"
+      <div
+v-for="(section, index) in sections" :key="index"
         class="flex md:contents"
         :class="{ 'flex-row-reverse': index%2==0 }">
         <!-- left -->
-        <div v-if="index%2==0"
+        <div
+v-if="index%2==0"
           class="bg-red-600 col-start-1 col-end-5 p-4 rounded-xl my-4 ml-auto shadow-md">
           <h3 class="font-semibold text-lg mb-1"> {{ section.title }} </h3>
           <p class="leading-tight text-justify">
@@ -16,32 +18,37 @@
             </ul>
           </p>
         </div>
-        <div v-if="index%2==0"
+        <div
+v-if="index%2==0"
           class="col-start-5 col-end-6 md:mx-auto relative mr-10">
           <div class="h-full w-6 flex items-center justify-center">
             <div class="h-full w-1 bg-red-600 pointer-events-none"></div>
           </div>
           <div class="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-red-600 shadow">
-            <div v-if="index==CCmarkerPos"
+            <div
+v-if="index==CCmarkerPos"
               class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center ">
               <img src="/src/assets/figma/CCLogoSmallInvert.png" alt="check">
             </div>
           </div>
         </div>
         <!-- right -->
-        <div v-if="index%2==1"
+        <div
+v-if="index%2==1"
           class="col-start-5 col-end-6 mr-10 md:mx-auto relative">
           <div class="h-full w-6 flex items-center justify-center">
             <div class="h-full w-1 bg-red-600 pointer-events-none"></div>
           </div>
           <div class="w-6 h-6 absolute top-1/2 -mt-3 rounded-full bg-red-600 shadow">
-            <div v-if="index==CCmarkerPos"
+            <div
+v-if="index==CCmarkerPos"
               class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center ">
               <img src="/src/assets/figma/CCLogoSmallInvert.png" alt="check">
             </div>
           </div>
         </div>
-        <div v-if="index%2==1"
+        <div
+v-if="index%2==1"
           class="bg-red-600 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md">
           <h3 class="font-semibold text-lg mb-1">{{ section.title }}</h3>
           <p class="leading-tight text-justify">

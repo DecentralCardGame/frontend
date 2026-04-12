@@ -1,7 +1,7 @@
 /* eslint-env node */
 const pkgjson = require("./package.json");
 
-for (let pkg in pkgjson.dependencies) {
+for (const pkg in pkgjson.dependencies) {
   if (pkgjson.dependencies[pkg].startsWith("file:")) {
     console.error(
       "\x1b[31m%s\x1b[0m",

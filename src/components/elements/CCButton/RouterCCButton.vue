@@ -1,9 +1,6 @@
 <template>
   <div>
-    <router-link
-      :to="to"
-      class="mx-auto"
-    >
+    <router-link :to="to" class="mx-auto">
       <BaseCCButton :type="type">
         <slot />
       </BaseCCButton>
@@ -23,6 +20,6 @@ const props = withDefaults(
   {
     to: {},
     type: Color.YELLOW,
-  },
+  }
 );
 </script>

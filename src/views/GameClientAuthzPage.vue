@@ -1,35 +1,22 @@
 <template>
   <FadeTeaserSmall class="text-center">
     <HeadingContentComponent heading-class="text-cc-red">
-      <template #heading>
-        Authenticate Gameclient
-      </template>
+      <template #heading> Authenticate Gameclient </template>
       <template #content>
         <p><b>Important:</b> Only if you've been prompted by the gameclient</p>
         <p>to open this page, ELSE close this page!</p>
-        <br>
-        <div
-          v-if="loggedIn"
-          class="flex justify-center"
-        >
+        <br />
+        <div v-if="loggedIn" class="flex justify-center">
           <div v-if="state.currentState == CurrentState.NONE">
             <p>Authenticate gameclient?</p>
-            <br>
-            <BaseCCButton
-              class="text-lg"
-              :type="Color.RED"
-              @click="sendTransActions"
-            >
+            <br />
+            <BaseCCButton class="text-lg" :type="Color.RED" @click="sendTransActions">
               Authenticate
             </BaseCCButton>
           </div>
           <div v-else-if="state.currentState == CurrentState.LOADING">
             <p>Authenticating...</p>
-            <img
-              alt="loading spinner"
-              :src="spinner"
-              class="w-40 p-5"
-            >
+            <img alt="loading spinner" :src="spinner" class="w-40 p-5" />
           </div>
           <div v-else-if="state.currentState == CurrentState.DONE">
             <p>Gameclient Authenticated!</p>
@@ -77,10 +64,7 @@ const initialState: {
 const state = reactive(initialState);
 
 onMounted(() => {
-  if (
-    !route.params.authzAddress ||
-    !validAddress(route.params.authzAddress.toString())
-  ) {
+  if (!route.params.authzAddress || !validAddress(route.params.authzAddress.toString())) {
     redirect();
   }
 });
@@ -92,7 +76,7 @@ const sendTransActions = () => {
     () => {
       state.currentState = CurrentState.DONE;
     },
-    console.log,
+    console.log
   );
 };
 

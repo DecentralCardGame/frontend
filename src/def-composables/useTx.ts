@@ -1,43 +1,45 @@
-import {useClient} from "@/composables/useClient";
-import {useAddress} from "@/def-composables/useAddress";
-import type {ChainCard} from "@/model/Card";
-import {Coin, type CompatCoin} from "@/model/Coin";
-import type {StdFee} from "@cosmjs/launchpad";
-import type {DeliverTxResponse} from "@cosmjs/stargate/build/stargateclient";
-import {
-  GenericAuthorization
-} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
-import {
-  Coin as CosmosCoin
-} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/types/cosmos/base/v1beta1/coin";
-import {useNotifications} from "@/def-composables/useNotifications";
-import {ref, watch, type Ref} from "vue";
+import { useClient } from "@/composables/useClient";
+import { useAddress } from "@/def-composables/useAddress";
+import { Coin, type CompatCoin } from "@/model/Coin";
+import type { DeliverTxResponse } from "@cosmjs/stargate/build/stargateclient";
+import { Coin as CosmosCoin } from "decentralcardgame-cardchain-client-ts/lib/types/cosmos/base/v1beta1/coin";
+import { useNotifications } from "@/def-composables/useNotifications";
+import { ref, watch, type Ref } from "vue";
 import {
   msgTypes as CCMsgTypes,
+  CardWithImage,
+  Parameter,
   type SingleVote,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
+} from "decentralcardgame-cardchain-client-ts/lib/cardchain.cardchain";
+import { Response as CouncilResponse } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/council";
+import { SigningStargateClient } from "@cosmjs/stargate";
+import { env } from "@/env";
+import { type EncodeObject, Registry } from "@cosmjs/proto-signing";
+import { msgTypes as BankMsgTypes } from "decentralcardgame-cardchain-client-ts/lib/cosmos.bank.v1beta1";
 import {
-  Response as CouncilResponse,
-} from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/council";
-import {SigningStargateClient} from "@cosmjs/stargate";
-import {env} from "@/env";
-import {type EncodeObject, Registry} from "@cosmjs/proto-signing";
-import {msgTypes as BankMsgTypes} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1";
-import {msgTypes as AuthzMsgTypes} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1";
-import {MsgSend} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/module";
-import {MsgGrant} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/module";
+  msgTypes as AuthzMsgTypes,
+  GenericAuthorization,
+} from "decentralcardgame-cardchain-client-ts/lib/cosmos.authz.v1beta1";
+import { MsgSend } from "decentralcardgame-cardchain-client-ts/lib/cosmos.bank.v1beta1/module";
+import { MsgGrant } from "decentralcardgame-cardchain-client-ts/lib/cosmos.authz.v1beta1/module";
+import { stringToBytes } from "@/utils/utils";
+
+export interface StdFee {
+  readonly amount: readonly Coin[];
+  readonly gas: string;
+}
 
 export const registry: Registry = new Registry(
   CCMsgTypes.concat(BankMsgTypes).concat(AuthzMsgTypes),
 );
 
 const FEE: StdFee = {
-  amount: [{amount: "0", denom: "stake"}],
+  amount: [{ amount: "0", denom: "stake" }],
   gas: "2000000000",
 };
 
-const {address} = useAddress();
-const {notifyFail, notifyInfo, notifySuccess} = useNotifications();
+const { address } = useAddress();
+const { notifyFail, notifyInfo, notifySuccess } = useNotifications();
 
 class UnEvaledMessage {
   message: (content: Content) => Promise<DeliverTxResponse>;
@@ -64,7 +66,7 @@ class UnEvaledMessage {
 
 class MessageScheduler {
   messageList: Ref<Array<UnEvaledMessage>>;
-  blocked: Ref<Boolean>;
+  blocked: Ref<boolean>;
 
   constructor() {
     this.messageList = ref([]);
@@ -138,41 +140,165 @@ const stdHandler = (res: DeliverTxResponse) => {
     );
     throw new Error("Message Failed: " + res.rawLog);
   }
-  let messageName = res.rawLog
+  const messageName = res.rawLog
     ? JSON.parse(res.rawLog)[0]
-      .events[0].attributes[0].value.split(".")
-      .at(-1)
-      .replace("Msg", "")
+        .events[0].attributes[0].value.split(".")
+        .at(-1)
+        .replace("Msg", "")
     : "";
   notifySuccess("EPIC WIN", messageName + " was successfull");
   return res;
 };
 
 export const useTxInstance: () => {
-  commitCouncilResponse: (response: string, councilId: number, suggestion: string, then: (res: any) => void, err: (res: any) => void
+  commitCouncilResponse: (
+    response: string,
+    councilId: number,
+    suggestion: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
   ) => void;
-  voteCard: (cardId: number, voteType: string, then: (res: any) => void, err: (res: any) => void) => void;
-  inviteEarlyAccess: (invitee: string, then: (res: any) => void, err: (res: any) => void) => void;
-  buyCardScheme: (coin: CompatCoin, then: (res: any) => void, err: (res: any) => void) => void;
-  disinviteEarlyAccess: (invitee: string, then: (res: any) => void, err: (res: any) => void) => void;
-  saveCardContent: (cardId: number, card: ChainCard, then: (res: any) => void, err: (res: any) => void) => void;
-  addArtwork: (cardId: number, image: string, fullArt: boolean, then: (res: any) => void, err: (res: any) => void) => void;
-  transferCard: (cardId: number, receiver: string, then: (res: any) => void, err: (res: any) => void) => void;
-  revokeAuthz: (granter: string, grantee: string, msgTypeUrl: string, then: (res: any) => void, err: (res: any) => void) => void;
-  authzGameclient: (gameclientAddr: string, then: (res: any) => void, err: (res: any) => void) => void;
-  registerForCouncil: (then: (res: any) => void, err: (res: any) => void) => void;
-  grantAuthz: (granter: string, grantee: string, grant: string, then: (res: any) => void, err: (res: any) => void) => void;
-  revealCouncilResponse: (response: CouncilResponse, secret: string, councilId: number, then: (res: any) => void, err: (res: any) => void) => void;
-  rewokeCouncilRegistration: (then: (res: any) => void, err: (res: any) => void) => void;
-  createUser: (newUser: string, alias: string, then: (res: any) => void, err: (res: any) => void) => void;
-  restartCouncil: (councilId: number, then: (res: any) => void, err: (res: any) => void) => void;
-  multiVoteCard: (votes: SingleVote[], then: (res: any) => void, err: (res: any) => void) => void;
-  createCouncil: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
-  setProfileCard: (cardId: number, then: (res: any) => void, err: (res: any) => void) => void;
-  encounterDo: (encounterId: number, user: string, then: (res: any) => void, err: (res: any) => void) => void;
-  encounterCreate: (name: string, Drawlist: number[], parameters: { [key: string]: string }, image: string, then: (res: any) => void, err: (res: any) => void) => void;
-  encounterClose: (encounterId: number, user: string, won: boolean, then: (res: any) => void, err: (res: any) => void) => void;
-  send: (coins: CompatCoin[], to: string, then: (res: any) => void, err: (res: any) => void) => void
+  voteCard: (
+    cardId: number,
+    voteType: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  inviteEarlyAccess: (
+    invitee: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  buyCardScheme: (
+    coin: CompatCoin,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  disinviteEarlyAccess: (
+    invitee: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  saveCardContent: (
+    cardId: number,
+    card: CardWithImage,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  addArtwork: (
+    cardId: number,
+    image: string,
+    fullArt: boolean,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  transferCard: (
+    cardId: number,
+    receiver: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  revokeAuthz: (
+    granter: string,
+    grantee: string,
+    msgTypeUrl: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  authzGameclient: (
+    gameclientAddr: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  registerForCouncil: (
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  grantAuthz: (
+    granter: string,
+    grantee: string,
+    grant: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  revealCouncilResponse: (
+    response: CouncilResponse,
+    secret: string,
+    councilId: number,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  rewokeCouncilRegistration: (
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  createUser: (
+    newUser: string,
+    alias: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  restartCouncil: (
+    councilId: number,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  multiVoteCard: (
+    votes: SingleVote[],
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  createCouncil: (
+    cardId: number,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  setProfileCard: (
+    cardId: number,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  encounterDo: (
+    encounterId: number,
+    user: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  encounterCreate: (
+    name: string,
+    Drawlist: number[],
+    parameters: Parameter[],
+    image: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  encounterEdit: (
+    id: number,
+    name: string,
+    Drawlist: number[],
+    parameters: Parameter[],
+    image: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  encounterClose: (
+    encounterId: number,
+    user: string,
+    won: boolean,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  encounterDelete: (
+    id: number,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
+  send: (
+    coins: CompatCoin[],
+    to: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => void;
 } = () => {
   const client = useClient();
   const messageScheduler = new MessageScheduler();
@@ -189,11 +315,11 @@ export const useTxInstance: () => {
         );
       }
       try {
-        const {address} = (await client.signer.getAccounts())[0];
+        const { address } = (await client.signer.getAccounts())[0];
         const signingClient = await SigningStargateClient.connectWithSigner(
           env.rpcURL,
           client.signer,
-          {registry, prefix: env.prefix},
+          { registry },
         );
         return await signingClient.signAndBroadcast(address, msgs, FEE, "");
       } catch (e: any) {
@@ -209,11 +335,11 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void,
   ) => {
-    let date = new Date();
+    const date = new Date();
     date.setMonth(date.getMonth() + 12);
 
     const msgs: EncodeObject[] = [
-      client.CosmosBankV1Beta1.tx.msgSend({
+      client.CosmosBankV_1Beta_1.tx.msgSend({
         value: MsgSend.fromPartial({
           fromAddress: address.value,
           toAddress: gameclientAddr,
@@ -222,12 +348,13 @@ export const useTxInstance: () => {
       }),
     ].concat(
       [
-        "/DecentralCardGame.cardchain.cardchain.MsgBuyBoosterPack",
-        "/DecentralCardGame.cardchain.cardchain.MsgOpenBoosterPack",
-        "/DecentralCardGame.cardchain.cardchain.MsgVoteCard",
-        "/DecentralCardGame.cardchain.cardchain.MsgConfirmMatch",
+        "/cardchain.cardchain.MsgBoosterPackBuy",
+        "/cardchain.cardchain.MsgBoosterPackOpen",
+        "/cardchain.cardchain.MsgCardVote",
+        "/cardchain.cardchain.MsgCardVoteMulti",
+        "/cardchain.cardchain.MsgMatchConfirm",
       ].map((msgPath: string) => {
-        return client.CosmosAuthzV1Beta1.tx.msgGrant({
+        return client.CosmosAuthzV_1Beta_1.tx.msgGrant({
           value: MsgGrant.fromPartial({
             granter: address.value,
             grantee: gameclientAddr,
@@ -256,7 +383,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.CosmosBankV1Beta1.tx.sendMsgSend,
+      client.CosmosBankV_1Beta_1.tx.sendMsgSend,
       new Content({
         amount: coins,
         toAddress: to,
@@ -274,7 +401,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.CosmosAuthzV1Beta1.tx.sendMsgRevoke,
+      client.CosmosAuthzV_1Beta_1.tx.sendMsgRevoke,
       new Content({
         granter: granter,
         grantee: grantee,
@@ -292,11 +419,11 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void,
   ) => {
-    let date = new Date();
+    const date = new Date();
     date.setMonth(date.getMonth() + 1);
 
     messageScheduler.schedule(
-      client.CosmosAuthzV1Beta1.tx.sendMsgGrant,
+      client.CosmosAuthzV_1Beta_1.tx.sendMsgGrant,
       new Content({
         granter: granter,
         grantee: grantee,
@@ -322,7 +449,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgRegisterForCouncil,
+      client.CardchainCardchain.tx.sendMsgCouncilRegister,
       new Content(),
       then,
       err,
@@ -334,8 +461,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx
-        .sendMsgRewokeCouncilRegistration,
+      client.CardchainCardchain.tx.sendMsgCouncilDeregister,
       new Content(),
       then,
       err,
@@ -348,7 +474,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgBuyCardScheme,
+      client.CardchainCardchain.tx.sendMsgCardSchemeBuy,
       new Content({
         bid: CosmosCoin.fromJSON(coin),
       }),
@@ -363,7 +489,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgCreateCouncil,
+      client.CardchainCardchain.tx.sendMsgCouncilCreate,
       new Content({
         cardId,
       }),
@@ -380,9 +506,11 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgCommitCouncilResponse,
+      client.CardchainCardchain.tx.sendMsgCouncilResponseCommit,
       new Content({
-        response, councilId, suggestion
+        response,
+        councilId,
+        suggestion,
       }),
       then,
       err,
@@ -397,9 +525,11 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgRevealCouncilResponse,
+      client.CardchainCardchain.tx.sendMsgCouncilResponseReveal,
       new Content({
-        response, secret, councilId,
+        response,
+        secret,
+        councilId,
       }),
       then,
       err,
@@ -412,7 +542,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgRestartCouncil,
+      client.CardchainCardchain.tx.sendMsgCouncilRestart,
       new Content({
         councilId,
       }),
@@ -423,18 +553,18 @@ export const useTxInstance: () => {
 
   const saveCardContent = (
     cardId: number,
-    card: ChainCard,
+    card: CardWithImage,
     then: (res: any) => void,
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgSaveCardContent,
+      client.CardchainCardchain.tx.sendMsgCardSaveContent,
       new Content({
         cardId,
-        content: btoa(JSON.stringify(card.content)),
-        notes: card.notes,
-        artist: card.artist,
-        balanceAnchor: card.balanceAnchor,
+        content: card.card?.content,
+        notes: card.card?.notes,
+        artist: card.card?.artist,
+        balanceAnchor: card.card?.balanceAnchor,
       }),
       then,
       err,
@@ -449,10 +579,10 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgAddArtwork,
+      client.CardchainCardchain.tx.sendMsgCardArtworkAdd,
       new Content({
         cardId,
-        image: btoa(image),
+        image: stringToBytes(image),
         fullArt,
       }),
       then,
@@ -467,7 +597,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgVoteCard,
+      client.CardchainCardchain.tx.sendMsgCardVote,
       new Content({
         cardId,
         voteType,
@@ -484,7 +614,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgTransferCard,
+      client.CardchainCardchain.tx.sendMsgCardTransfer,
       new Content({
         cardId,
         receiver,
@@ -500,7 +630,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard,
+      client.CardchainCardchain.tx.sendMsgProfileCardSet,
       new Content({
         cardId,
       }),
@@ -515,7 +645,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgMultiVoteCard,
+      client.CardchainCardchain.tx.sendMsgCardVoteMulti,
       new Content({
         votes,
       }),
@@ -531,7 +661,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgCreateuser,
+      client.CardchainCardchain.tx.sendMsgUserCreate,
       new Content({
         newUser,
         alias,
@@ -547,7 +677,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgInviteEarlyAccess,
+      client.CardchainCardchain.tx.sendMsgEarlyAccessInvite,
       new Content({
         user: invitee,
       }),
@@ -562,7 +692,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgDisinviteEarlyAccess,
+      client.CardchainCardchain.tx.sendMsgEarlyAccessDisinvite,
       new Content({
         user: invitee,
       }),
@@ -573,19 +703,57 @@ export const useTxInstance: () => {
 
   const encounterCreate = (
     name: string,
-    Drawlist: number[],
-    parameters: { [key: string]: string },
+    drawlist: number[],
+    parameters: Parameter[],
     image: string,
     then: (res: any) => void,
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         name,
-        Drawlist,
+        drawlist,
         parameters,
-        image: btoa(image)
+        image: stringToBytes(image),
+      }),
+      then,
+      err,
+    );
+  };
+
+  const encounterEdit = (
+    id: number,
+    name: string,
+    drawlist: number[],
+    parameters: Parameter[],
+    image: string,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => {
+    messageScheduler.schedule(
+      client.CardchainCardchain.tx.sendMsgEncounterEdit,
+      new Content({
+        id,
+        name,
+        drawlist,
+        parameters,
+        image: stringToBytes(image),
+      }),
+      then,
+      err,
+    );
+  };
+
+  const encounterDelete = (
+    id: number,
+    then: (res: any) => void,
+    err: (res: any) => void,
+  ) => {
+    messageScheduler.schedule(
+      client.CardchainCardchain.tx.sendMsgEncounterDelete,
+      new Content({
+        id,
       }),
       then,
       err,
@@ -600,11 +768,11 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         encounterId,
         user,
-        won
+        won,
       }),
       then,
       err,
@@ -618,10 +786,10 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      client.CardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         encounterId,
-        user
+        user,
       }),
       then,
       err,
@@ -629,26 +797,26 @@ export const useTxInstance: () => {
   };
 
   return {
-    send,
-    buyCardScheme,
-    saveCardContent,
     addArtwork,
-    voteCard,
-    transferCard,
-    setProfileCard,
-    multiVoteCard,
-    grantAuthz,
-    revokeAuthz,
-    createUser,
     authzGameclient,
-    inviteEarlyAccess,
-    disinviteEarlyAccess,
-    registerForCouncil,
-    rewokeCouncilRegistration,
-    createCouncil,
+    buyCardScheme,
     commitCouncilResponse,
-    revealCouncilResponse,
+    createCouncil,
+    createUser,
+    disinviteEarlyAccess,
+    encounterClose,
+    encounterCreate,
+    encounterDelete,
+    encounterDo,
+    encounterEdit,
+    grantAuthz,
+    inviteEarlyAccess,
+    multiVoteCard,
+    registerForCouncil,
     restartCouncil,
+    revealCouncilResponse,
+    revokeAuthz,
+    rewokeCouncilRegistration,
     /*
     changeAlias,
     setUserBiography,
@@ -676,9 +844,11 @@ export const useTxInstance: () => {
     addStoryToSet,
     finalizeSet,
     */
-    encounterDo,
-    encounterClose,
-    encounterCreate,
+    saveCardContent,
+    send,
+    setProfileCard,
+    transferCard,
+    voteCard,
   };
 };
 

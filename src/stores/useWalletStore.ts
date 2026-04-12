@@ -6,9 +6,8 @@ import type { Wallet, Nullable, EncodedWallet } from "@/utils/interfaces";
 export const useWalletStore = defineStore("wallet", {
   state: () => ({
     wallets:
-      (JSON.parse(
-        window.localStorage.getItem("wallets") ?? "null"
-      ) as Array<EncodedWallet>) || ([] as Array<EncodedWallet>),
+      (JSON.parse(window.localStorage.getItem("wallets") ?? "null") as Array<EncodedWallet>) ||
+      ([] as Array<EncodedWallet>),
     activeWallet: null as Nullable<Wallet>,
     activeClient: null as Nullable<ReturnType<typeof useClient>>,
     selectedAddress: "",
@@ -25,9 +24,7 @@ export const useWalletStore = defineStore("wallet", {
       if (state.activeWallet && state.activeWallet.HDpath) {
         return (
           state.activeWallet.HDpath +
-          state.activeWallet.accounts.find(
-            (x) => x.address == state.selectedAddress
-          ).pathIncrement
+          state.activeWallet.accounts.find((x) => x.address == state.selectedAddress).pathIncrement
         );
       } else {
         return null;
@@ -79,11 +76,7 @@ export const useWalletStore = defineStore("wallet", {
 
         this.activeWallet = wallet;
         window.localStorage.setItem("lastWallet", wallet.name);
-        if (
-          this.activeWallet &&
-          this.activeWallet.name &&
-          this.activeWallet.password
-        ) {
+        if (this.activeWallet && this.activeWallet.name && this.activeWallet.password) {
           this.wallets.push({
             name: this.activeWallet.name,
             wallet: CryptoJS.AES.encrypt(
@@ -92,10 +85,7 @@ export const useWalletStore = defineStore("wallet", {
             ).toString(),
           });
         }
-        if (
-          this.activeWallet.name == "Keplr Integration" &&
-          !this.activeWallet.password
-        ) {
+        if (this.activeWallet.name == "Keplr Integration" && !this.activeWallet.password) {
           this.wallets.push({
             name: this.activeWallet.name,
             wallet: JSON.stringify(this.activeWallet),

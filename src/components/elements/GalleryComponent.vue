@@ -1,27 +1,25 @@
 <template>
-  <div
-    id="galleryWrapper"
-    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-[1800px]:grid-cols-5 gap-12 mt-6"
-  >
+  <div>
     <div
-      v-for="card in state.cards"
-      :key="card.id"
-      class="transition duration-500 hover:scale-110 hover:duration-300"
-      :class="shadowClass(card)"
-      @click="emit('cardClicked', card)"
+      id="galleryWrapper"
+      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 gap-12 mt-6"
     >
-      <div>
-        <CardComponent :model="card" />
+      <div
+        v-for="card in state.cards"
+        :key="card.id"
+        class="transition duration-500 hover:scale-110 hover:duration-300"
+        :class="shadowClass(card)"
+        @click="emit('cardClicked', card)"
+      >
+        <div>
+          <CardComponent :model="card" />
+        </div>
       </div>
     </div>
   </div>
 
   <div class="mt-12 flex flex-row justify-center items-center">
-    <BaseCCButton
-      :type="Color.RED"
-      @click="load()"
-      :class="{ invisible: !loadButtonVisible }"
-    >
+    <BaseCCButton :type="Color.RED" :class="{ invisible: !loadButtonVisible }" @click="load()">
       Reckless Card Loading
     </BaseCCButton>
   </div>
@@ -47,7 +45,7 @@ const props = withDefaults(
   {
     allCardIds: () => [],
     cardsPerPage: 100,
-  },
+  }
 );
 
 const initialState: {
@@ -69,19 +67,21 @@ const cardIdsOnPage = computed(() => {
 });
 
 const shadowClass = (card) => {
-  let classes = 0
-  R.forEachObjIndexed(entry => {
+  let classes = 0;
+  R.forEachObjIndexed((entry) => {
     if (entry) classes++;
-  }, card.Class)
-  if (classes > 1) return {
-    'drop-shadow-glowCCYellow': true,
-  }
-  else return {
-    'drop-shadow-glowCCRed': card.Class.Culture,
-    'drop-shadow-glowCCBlue': card.Class.Technology,
-    'drop-shadow-glowCCGreen': card.Class.Nature,
-    'drop-shadow-glowCCPurple': card.Class.Mysticism
-    }
+  }, card.Class);
+  if (classes > 1)
+    return {
+      "drop-shadow-glow-cc-yellow": true,
+    };
+  else
+    return {
+      "drop-shadow-glow-cc-red": card.Class.Culture,
+      "drop-shadow-glow-cc-blue": card.Class.Technology,
+      "drop-shadow-glow-cc-green": card.Class.Nature,
+      "drop-shadow-glow-cc-purple": card.Class.Mysticism,
+    };
 };
 
 onMounted(() => {
@@ -108,15 +108,13 @@ watch(
     state.cardIdsChanged = true;
     state.cards = {};
     state.cardsOnPage = props.cardsPerPage;
-  },
+  }
 );
 
 function loadCards(cardIds: number[], oldCardIds: number[]) {
   const changed = state.cardIdsChanged;
   state.cardIdsChanged = false;
-  cardIds
-    .filter((cardId) => !oldCardIds.includes(cardId) || changed)
-    .forEach(loadCard);
+  cardIds.filter((cardId) => !oldCardIds.includes(cardId) || changed).forEach(loadCard);
 }
 
 const onScroll = () => {
@@ -127,12 +125,11 @@ const onScroll = () => {
     state.cardsOnPage < props.allCardIds.length
   ) {
     state.cardsOnPage += 10;
-    console.log(state.cardsOnPage);
   }
 };
 
 const loadCard = async (cardId: number) => {
-  let card: Card = await getCard(cardId);
+  const card: Card = await getCard(cardId);
   if (card.Content) {
     state.cards[props.allCardIds.indexOf(cardId)] = card;
   } else if (!card.owner) {

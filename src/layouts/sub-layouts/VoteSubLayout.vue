@@ -1,20 +1,13 @@
 <template>
   <BaseTeaserSmall>
     <HeadingContentComponent heading-class="text-cc-yellow">
-      <template #heading>
-        Voting
-      </template>
+      <template #heading> Voting </template>
       <template #content>
-        <p class="text-white">
-          Vote to develop the game and earn Tokens with it!
-        </p>
+        <p class="text-white">Vote to develop the game and earn Tokens with it!</p>
       </template>
     </HeadingContentComponent>
   </BaseTeaserSmall>
-  <Navbar
-    :elems="elems"
-    :type="Color.BLACK"
-  />
+  <Navbar :elems="elems" :type="Color.BLACK" />
   <slot />
 </template>
 <script setup lang="ts">

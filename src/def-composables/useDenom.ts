@@ -1,10 +1,7 @@
 import useIbcApplicationsTransferV1 from "@/composables/useIbcApplicationsTransferV1";
 import { computed, ref } from "vue";
 
-const useDenomInstances = {} as Record<
-  string,
-  ReturnType<typeof useDenomInstance>
->;
+const useDenomInstances = {} as Record<string, ReturnType<typeof useDenomInstance>>;
 const useDenomInstance = (denom: string) => {
   const isIBC = denom.indexOf("ibc/") == 0;
   const hash = denom.split("/")[1];
@@ -27,9 +24,7 @@ const useDenomInstance = (denom: string) => {
 
   const pathExtracted = computed(() => {
     if (isIBC) {
-      return (
-        denomTrace.value?.denom_trace?.path?.match(/\d+/g)?.reverse() ?? ""
-      );
+      return denomTrace.value?.denom_trace?.path?.match(/\d+/g)?.reverse() ?? "";
     } else {
       return "";
     }

@@ -1,38 +1,18 @@
 <template>
   <div>
-    <BaseCCButton
-      v-if="!isSignUpRequired"
-      @click="login"
-    >
-      Login with keplr
-    </BaseCCButton>
+    <BaseCCButton v-if="!isSignUpRequired" @click="login"> Login with keplr </BaseCCButton>
     <div v-else>
-      <div
-        v-if="isKeplrAvailable"
-        class="flex flex-col justify-center"
-      >
-        <p class="p-7">
-          You have to sign up first
-        </p>
-        <vue-hcaptcha
-          :sitekey="state.siteKey"
-          class="mx-auto"
-          @verify="onVerify"
-        />
+      <div v-if="isKeplrAvailable" class="flex flex-col justify-center">
+        <p class="p-7">You have to sign up first</p>
+        <vue-hcaptcha :sitekey="state.siteKey" class="mx-auto" @verify="onVerify" />
       </div>
       <div v-else>
         <p class="p-7">
           To log in you first need download and install the
-          <a
-            href="https://www.keplr.app"
-            class="underline"
-          >keplr wallet</a>
+          <a href="https://www.keplr.app" class="underline">keplr wallet</a>
           browser extension
         </p>
-        <a
-          href="https://www.keplr.app/download"
-          class="mx-auto"
-        >
+        <a href="https://www.keplr.app/download" class="mx-auto">
           <BaseCCButton :type="Color.TEAL"> Download Keplr</BaseCCButton>
         </a>
       </div>

@@ -1,11 +1,7 @@
 <template>
   <div
     class="relative inline-block text-left rounded hover:cursor-pointer"
-    :class="[
-      ...(isOpen ? ['ring', 'ring-white', 'ring-opacity-100'] : []),
-      getBgColor(type),
-      getTextColor(type),
-    ]"
+    :class="[...(isOpen ? ['ring-3', 'ring-white'] : []), getBgColor(type), getTextColor(type)]"
     @click="toggleDropdown"
   >
     <div class="p-1 px-3 flex">
@@ -14,17 +10,17 @@
         class="w-4 pr-1 rotate-180 my-auto"
         src="@/assets/figma/Navigation_Triangle.svg"
         alt="navigation triangle"
-      >
+      />
     </div>
     <ul
       v-if="isOpen"
-      class="absolute z-30 ring ring-white rounded ring-opacity-100 whitespace-nowrap max-h-[50svh] overflow-auto"
+      class="absolute z-30 ring-3 ring-white rounded whitespace-nowrap max-h-[50svh] overflow-auto"
       :class="[getBgColor(type)]"
     >
       <li
         v-for="(option, idx) in options"
         :key="idx"
-        class="px-2 py-1 hover:bg-white hover:bg-opacity-70 hover:text-cc-red"
+        class="px-2 py-1 hover:bg-white/70 hover:text-cc-red"
         @click="selectOption(option)"
       >
         {{ displayFn(option) }}
@@ -55,13 +51,11 @@ const props = withDefaults(
     initial: "?",
     displayFn: (v: T): string => "" + v,
     type: Color.PUSSYRED,
-  },
+  }
 );
 
 const displayButton = () => {
-  return typeof model.value !== "undefined"
-    ? props.displayFn(model.value)
-    : props.initial;
+  return typeof model.value !== "undefined" ? props.displayFn(model.value) : props.initial;
 };
 
 const toggleDropdown = () => {

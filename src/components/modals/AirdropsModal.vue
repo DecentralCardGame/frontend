@@ -1,93 +1,71 @@
 <template>
   <transition name="modal-fade">
-    <div
-      class="modal__backdrop"
-      style="z-index: 1000;"
-    >
+    <div class="modal__backdrop" style="z-index: 1000">
       <div
         aria-describedby="modalDescription"
         aria-labelledby="modalTitle"
         class="modal"
         role="dialog"
       >
-        <header
-          id="modalTitle"
-          class="modal__header"
-        >
-          <slot name="header">
-            Airdrops
-          </slot>
-          <button
-            aria-label="Close modal"
-            type="button"
-            class="btn--close"
-            @click="close"
-          >
+        <header id="modalTitle" class="modal__header">
+          <slot name="header"> Airdrops </slot>
+          <button aria-label="Close modal" type="button" class="btn--close" @click="close">
             x
           </button>
         </header>
         <div class="modal__body">
-          <b>Important:</b> <br>
-          We are running a testnet. <br>
-          This is not the mainnet. <br>
-          Whatever you claim here can be gone <br>
-          and will be gone, once the testnet resets. <br>
-          But we will have an airdrop to all engaged <br>
-          participants of our testnets. <br>
-          <br>
+          <b>Important:</b> <br />
+          We are running a testnet. <br />
+          This is not the mainnet. <br />
+          Whatever you claim here can be gone <br />
+          and will be gone, once the testnet resets. <br />
+          But we will have an airdrop to all engaged <br />
+          participants of our testnets. <br />
+          <br />
           Claimable airdrops:
           <div>
             <div
               v-for="(drop, name) in airdrops"
               :key="name"
               class="airdropBox"
-              :class="{ 'blurOut': !isValid }"
+              :class="{ blurOut: !isValid }"
             >
               {{ data[name].text }}
-              <router-link
-                :to="{name: data[name].linkData}"
-              >
+              <router-link :to="{ name: data[name].linkData }">
                 {{ data[name].linkText }}
               </router-link>
               <div
                 v-if="data[name].linkData"
                 class="claimBox"
-                :style="{color: (!drop) ? 'red' : 'green',}"
+                :style="{ color: !drop ? 'red' : 'green' }"
               >
                 {{ !drop ? "not" : "" }} claimed
               </div>
-              <div 
-                v-else
-                class="claimBox"
-              >
-                not implemented
-              </div>
+              <div v-else class="claimBox">not implemented</div>
             </div>
           </div>
-          <div v-if="!isValid">
-            There are no claimable airdrops anymore!
-          </div>
+          <div v-if="!isValid">There are no claimable airdrops anymore!</div>
         </div>
       </div>
     </div>
   </transition>
 </template>
 
-<script lang=ts>
+<script lang="ts">
 import { useQuery } from "@/def-composables/useQuery";
 import { env } from "@/env";
 
-const { queryParams } = useQuery()
+const { queryParams } = useQuery();
 
 export default {
-  name: 'AirdropsModal',
+  name: "AirdropsModal",
   props: {
     airdrops: {
       type: Object,
       default() {
-        return {}
-      }
-    }
+        return {};
+      },
+    },
   },
   data() {
     return {
@@ -96,53 +74,54 @@ export default {
         create: {
           text: "Create a ",
           linkText: "card draft.",
-          linkData: 'CardCreator'
+          linkData: "CardCreator",
         },
         vote: {
           text: "Vote for a ",
           linkText: "card.",
-          linkData: 'Vote'
+          linkData: "Vote",
         },
         play: {
           text: "Play the game.",
           linkText: "",
-          linkData: ''
+          linkData: "",
         },
         user: {
           text: "Create a user.",
           linkText: "",
-          linkData: 'UserView'
+          linkData: "UserView",
         },
         buy: {
           text: "Buy a ",
           linkText: "boosterpack.",
-          linkData: '' // TODO: Needs
+          linkData: "", // TODO: Needs
         },
-      }
-    }
+      },
+    };
   },
   mounted() {
-    this.getHeight()
+    this.getHeight();
   },
   methods: {
     close() {
-      this.$emit('close')
+      this.$emit("close");
     },
     getHeight() {
-      fetch(env.rpcURL + "/status").then(response => {
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}`)
-        }
-        return response.json()
-      })
-      .then(data => {
-        queryParams().then(res => {
-          this.isValid = (+data.result.sync_info.latest_block_height < +res.params.airDropMaxBlockHeight)
+      fetch(env.rpcURL + "/status")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
+          }
+          return response.json();
         })
-      })
-      .catch(error => console.log(error))
-    }
-  }
-}
-
+        .then((data) => {
+          queryParams().then((res) => {
+            this.isValid =
+              +data.result.sync_info.latest_block_height < +res.params.airDropMaxBlockHeight;
+          });
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+};
 </script>

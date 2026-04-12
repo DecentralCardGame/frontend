@@ -13,10 +13,7 @@
     xml:space="preserve"
   >
     <g id="_x31__Outer_Backgrounds">
-      <g
-        v-if="OBG.HQ"
-        id="HQ_OBG"
-      >
+      <g v-if="OBG.HQ" id="HQ_OBG">
         <g>
           <defs>
             <path
@@ -27,19 +24,10 @@
             />
             />
           </defs>
-          <clipPath
-            id="SVGID_00000125584824986722390060000007308648528947954107_"
-          >
-            <use
-              xlink:href="#SVGID_1_"
-              style="overflow: visible"
-            />
+          <clipPath id="SVGID_00000125584824986722390060000007308648528947954107_">
+            <use xlink:href="#SVGID_1_" style="overflow: visible" />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000125584824986722390060000007308648528947954107_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000125584824986722390060000007308648528947954107_)">
             <g>
               <defs>
                 <rect
@@ -50,19 +38,13 @@
                   height="239.23"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000034795994747066091130000014543864166590300296_"
-              >
+              <clipPath id="SVGID_00000034795994747066091130000014543864166590300296_">
                 <use
                   xlink:href="#SVGID_00000142166679435945215540000005574420158148868541_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000034795994747066091130000014543864166590300296_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000034795994747066091130000014543864166590300296_)">
                 <defs>
                   <rect
                     id="SVGID_00000053523177815122103880000001989175230615080072_"
@@ -72,9 +54,7 @@
                     height="239.23"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000077288349381994787420000004431912207848059546_"
-                >
+                <clipPath id="SVGID_00000077288349381994787420000004431912207848059546_">
                   <use
                     xlink:href="#SVGID_00000053523177815122103880000001989175230615080072_"
                     style="overflow: visible"
@@ -82,9 +62,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="
-                    clip-path: url(#SVGID_00000077288349381994787420000004431912207848059546_);
-                  "
+                  style="clip-path: url(#SVGID_00000077288349381994787420000004431912207848059546_)"
                 >
                   <image
                     style="overflow: visible"
@@ -99,10 +77,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.MultiClass"
-        id="Multi_Class_OBG"
-      >
+      <g v-if="OBG.MultiClass" id="Multi_Class_OBG">
         <g>
           <defs>
             <path
@@ -112,19 +87,13 @@
                 c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000180333509218736470070000012193608463805546149_"
-          >
+          <clipPath id="SVGID_00000180333509218736470070000012193608463805546149_">
             <use
               xlink:href="#SVGID_00000115502966429288587610000016950355233729986695_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000180333509218736470070000012193608463805546149_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000180333509218736470070000012193608463805546149_)">
             <g>
               <defs>
                 <rect
@@ -135,19 +104,13 @@
                   height="239.23"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000148652828221761953250000003258681462248607917_"
-              >
+              <clipPath id="SVGID_00000148652828221761953250000003258681462248607917_">
                 <use
                   xlink:href="#SVGID_00000104694231480788692550000015360792410392972673_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000148652828221761953250000003258681462248607917_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000148652828221761953250000003258681462248607917_)">
                 <defs>
                   <rect
                     id="SVGID_00000181076723228944303260000006406517080156974220_"
@@ -157,9 +120,7 @@
                     height="239.23"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000000908517732137170580000016308273647838413502_"
-                >
+                <clipPath id="SVGID_00000000908517732137170580000016308273647838413502_">
                   <use
                     xlink:href="#SVGID_00000181076723228944303260000006406517080156974220_"
                     style="overflow: visible"
@@ -167,9 +128,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="
-                    clip-path: url(#SVGID_00000000908517732137170580000016308273647838413502_);
-                  "
+                  style="clip-path: url(#SVGID_00000000908517732137170580000016308273647838413502_)"
                 >
                   <image
                     style="overflow: visible"
@@ -184,10 +143,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Myth"
-        id="Myth_OBG"
-      >
+      <g v-if="OBG.Myth" id="Myth_OBG">
         <g>
           <defs>
             <path
@@ -197,19 +153,13 @@
                 c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000011736545168323307750000003025379130473643170_"
-          >
+          <clipPath id="SVGID_00000011736545168323307750000003025379130473643170_">
             <use
               xlink:href="#SVGID_00000048490187768436147780000010654934527806841775_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000011736545168323307750000003025379130473643170_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000011736545168323307750000003025379130473643170_)">
             <g>
               <defs>
                 <rect
@@ -220,19 +170,13 @@
                   height="239.23"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000132084035316350399410000005964961924229517758_"
-              >
+              <clipPath id="SVGID_00000132084035316350399410000005964961924229517758_">
                 <use
                   xlink:href="#SVGID_00000019660080305582207220000010590169544313316024_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000132084035316350399410000005964961924229517758_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000132084035316350399410000005964961924229517758_)">
                 <defs>
                   <rect
                     id="SVGID_00000045590652468001761380000005959909195249091005_"
@@ -242,9 +186,7 @@
                     height="239.23"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000147924697036261790150000009726233793823546802_"
-                >
+                <clipPath id="SVGID_00000147924697036261790150000009726233793823546802_">
                   <use
                     xlink:href="#SVGID_00000045590652468001761380000005959909195249091005_"
                     style="overflow: visible"
@@ -252,9 +194,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="
-                    clip-path: url(#SVGID_00000147924697036261790150000009726233793823546802_);
-                  "
+                  style="clip-path: url(#SVGID_00000147924697036261790150000009726233793823546802_)"
                 >
                   <image
                     style="overflow: visible"
@@ -269,10 +209,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Culture"
-        id="Culture_OBG"
-      >
+      <g v-if="OBG.Culture" id="Culture_OBG">
         <g>
           <defs>
             <path
@@ -282,19 +219,13 @@
                 c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000036214947869371402040000015316434939132618389_"
-          >
+          <clipPath id="SVGID_00000036214947869371402040000015316434939132618389_">
             <use
               xlink:href="#SVGID_00000119812463234635084210000013573717043890764417_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000036214947869371402040000015316434939132618389_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000036214947869371402040000015316434939132618389_)">
             <g>
               <defs>
                 <rect
@@ -305,19 +236,13 @@
                   height="239.23"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000111191599016012108220000018263252373964313004_"
-              >
+              <clipPath id="SVGID_00000111191599016012108220000018263252373964313004_">
                 <use
                   xlink:href="#SVGID_00000100355658060259172620000016036009990970849183_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000111191599016012108220000018263252373964313004_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000111191599016012108220000018263252373964313004_)">
                 <defs>
                   <rect
                     id="SVGID_00000068638698377506979550000011737210559308050348_"
@@ -327,9 +252,7 @@
                     height="239.23"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000054977170368597439490000006287272654128581254_"
-                >
+                <clipPath id="SVGID_00000054977170368597439490000006287272654128581254_">
                   <use
                     xlink:href="#SVGID_00000068638698377506979550000011737210559308050348_"
                     style="overflow: visible"
@@ -337,9 +260,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="
-                    clip-path: url(#SVGID_00000054977170368597439490000006287272654128581254_);
-                  "
+                  style="clip-path: url(#SVGID_00000054977170368597439490000006287272654128581254_)"
                 >
                   <image
                     style="overflow: visible"
@@ -354,10 +275,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Nature"
-        id="Nature_OBG"
-      >
+      <g v-if="OBG.Nature" id="Nature_OBG">
         <g>
           <defs>
             <path
@@ -367,19 +285,13 @@
                 c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000160148148009037533520000006207495439132916376_"
-          >
+          <clipPath id="SVGID_00000160148148009037533520000006207495439132916376_">
             <use
               xlink:href="#SVGID_00000057120517889497278420000010449319014997774992_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000160148148009037533520000006207495439132916376_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000160148148009037533520000006207495439132916376_)">
             <g>
               <defs>
                 <rect
@@ -390,19 +302,13 @@
                   height="239.23"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000151512495050174366020000003079827872470676384_"
-              >
+              <clipPath id="SVGID_00000151512495050174366020000003079827872470676384_">
                 <use
                   xlink:href="#SVGID_00000044136274470419668790000004329858279699838354_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000151512495050174366020000003079827872470676384_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000151512495050174366020000003079827872470676384_)">
                 <defs>
                   <rect
                     id="SVGID_00000087393282003214375790000008333830078223141821_"
@@ -412,9 +318,7 @@
                     height="239.23"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000132788423381474764900000015315605754888738442_"
-                >
+                <clipPath id="SVGID_00000132788423381474764900000015315605754888738442_">
                   <use
                     xlink:href="#SVGID_00000087393282003214375790000008333830078223141821_"
                     style="overflow: visible"
@@ -422,9 +326,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="
-                    clip-path: url(#SVGID_00000132788423381474764900000015315605754888738442_);
-                  "
+                  style="clip-path: url(#SVGID_00000132788423381474764900000015315605754888738442_)"
                 >
                   <image
                     style="overflow: visible"
@@ -439,10 +341,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="OBG.Tech"
-        id="Tech_OBG"
-      >
+      <g v-if="OBG.Tech" id="Tech_OBG">
         <g>
           <defs>
             <path
@@ -452,19 +351,13 @@
                 c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000062879921138119376380000011007889560540634776_"
-          >
+          <clipPath id="SVGID_00000062879921138119376380000011007889560540634776_">
             <use
               xlink:href="#SVGID_00000161602082800466471110000000268539532248428439_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000062879921138119376380000011007889560540634776_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000062879921138119376380000011007889560540634776_)">
             <g>
               <defs>
                 <rect
@@ -475,19 +368,13 @@
                   height="239.23"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000003081808650921698310000013770569449809751731_"
-              >
+              <clipPath id="SVGID_00000003081808650921698310000013770569449809751731_">
                 <use
                   xlink:href="#SVGID_00000140696881793396263790000017646010614585907843_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000003081808650921698310000013770569449809751731_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000003081808650921698310000013770569449809751731_)">
                 <defs>
                   <rect
                     id="SVGID_00000077308819308311727720000015519733068434790576_"
@@ -497,9 +384,7 @@
                     height="239.23"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000158004012764019651370000011328136048646883239_"
-                >
+                <clipPath id="SVGID_00000158004012764019651370000011328136048646883239_">
                   <use
                     xlink:href="#SVGID_00000077308819308311727720000015519733068434790576_"
                     style="overflow: visible"
@@ -507,9 +392,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 9.536743e-07)"
-                  style="
-                    clip-path: url(#SVGID_00000158004012764019651370000011328136048646883239_);
-                  "
+                  style="clip-path: url(#SVGID_00000158004012764019651370000011328136048646883239_)"
                 >
                   <image
                     style="overflow: visible"
@@ -524,10 +407,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="GoldSquare"
-        id="Gold_Square"
-      >
+      <g v-if="GoldSquare" id="Gold_Square">
         <path
           class="st12"
           d="M168.45,45.87V35.31v-0.24l-0.25,0.09v0.24v2.56c-0.02-1.51-0.03-2.63-0.04-2.64l-0.25,0.09
@@ -561,10 +441,7 @@
       />
     </g>
     <g id="Card_Borders">
-      <g
-        v-if="Border.Tech"
-        id="Tech_Border"
-      >
+      <g v-if="Border.Tech" id="Tech_Border">
         <linearGradient
           id="SVGID_00000049192585150488630200000007017912878573753267_"
           gradientUnits="userSpaceOnUse"
@@ -573,23 +450,12 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #486d77"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #b4bcc9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #476c76"
-          />
+          <stop offset="0" style="stop-color: #486d77" />
+          <stop offset="0.4977" style="stop-color: #b4bcc9" />
+          <stop offset="1" style="stop-color: #476c76" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000049192585150488630200000007017912878573753267_);
-          "
+          style="fill: url(#SVGID_00000049192585150488630200000007017912878573753267_)"
           points="164.87,28.65 46.84,28.65
             47.79,26.9 165.6,26.9 		"
         />
@@ -601,19 +467,11 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b1c0d9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7290a0"
-          />
+          <stop offset="0" style="stop-color: #b1c0d9" />
+          <stop offset="1" style="stop-color: #7290a0" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000010996012582764011590000005429924332951587983_);
-          "
+          style="fill: url(#SVGID_00000010996012582764011590000005429924332951587983_)"
           points="170.03,33.81 164.87,28.65
             165.6,26.9 171.78,33.08 		"
         />
@@ -625,19 +483,11 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1c0d9"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #b1c0d9" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000116927394944401066910000012355949429391726777_);
-          "
+          style="fill: url(#SVGID_00000116927394944401066910000012355949429391726777_)"
           points="170.03,244.24 170.03,33.81
             171.78,33.08 171.78,244.97 		"
         />
@@ -649,19 +499,11 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000067940505775433996170000004102384129750213774_);
-          "
+          style="fill: url(#SVGID_00000067940505775433996170000004102384129750213774_)"
           points="164.87,249.4 170.03,244.24
             171.78,244.97 165.6,251.15 		"
         />
@@ -673,19 +515,11 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000129908042307215836850000002844547216664146597_);
-          "
+          style="fill: url(#SVGID_00000129908042307215836850000002844547216664146597_)"
           points="33.44,249.4 164.87,249.4
             165.6,251.15 32.71,251.15 		"
         />
@@ -697,19 +531,11 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000179647509622835101940000004780809931751136927_);
-          "
+          style="fill: url(#SVGID_00000179647509622835101940000004780809931751136927_)"
           points="28.28,244.24 33.44,249.4
             32.71,251.15 26.53,244.97 		"
         />
@@ -721,19 +547,11 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7290a0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e78"
-          />
+          <stop offset="0" style="stop-color: #7290a0" />
+          <stop offset="1" style="stop-color: #4b6e78" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000155146506428121082010000011918438379195974027_);
-          "
+          style="fill: url(#SVGID_00000155146506428121082010000011918438379195974027_)"
           points="26.53,244.97 26.53,48.3
             28.28,47.34 28.28,244.24 		"
         />
@@ -745,33 +563,19 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #b5c2db"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4c6f79"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="0.5195" style="stop-color: #b5c2db" />
+          <stop offset="1" style="stop-color: #4c6f79" />
         </linearGradient>
         <path
           id="Frame_Outline_Left"
-          style="
-            fill: url(#Frame_Outline_Left_00000125600432284617321960000010905534294691032715_);
-          "
+          style="fill: url(#Frame_Outline_Left_00000125600432284617321960000010905534294691032715_)"
           d="
             M26.53,48.3c-4.27-2.87-6.81-7.6-6.81-12.75c0-8.48,6.9-15.38,15.38-15.38c5.11,0,9.82,2.5,12.7,6.73l-0.95,1.75l-0.26-0.4
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Nature"
-        id="Nature_Border"
-      >
+      <g v-if="Border.Nature" id="Nature_Border">
         <linearGradient
           id="SVGID_00000122718459528952844560000013391795643695185816_"
           gradientUnits="userSpaceOnUse"
@@ -780,23 +584,12 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #779272"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #cfecca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769474"
-          />
+          <stop offset="0" style="stop-color: #779272" />
+          <stop offset="0.4977" style="stop-color: #cfecca" />
+          <stop offset="1" style="stop-color: #769474" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000122718459528952844560000013391795643695185816_);
-          "
+          style="fill: url(#SVGID_00000122718459528952844560000013391795643695185816_)"
           points="164.87,28.65 46.84,28.65
             47.79,26.9 165.6,26.9 		"
         />
@@ -808,19 +601,11 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfeccc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #809b7a"
-          />
+          <stop offset="0" style="stop-color: #cfeccc" />
+          <stop offset="1" style="stop-color: #809b7a" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000039819269549727578980000002095553197351633826_);
-          "
+          style="fill: url(#SVGID_00000039819269549727578980000002095553197351633826_)"
           points="170.03,33.81 164.87,28.65
             165.6,26.9 171.78,33.08 		"
         />
@@ -832,19 +617,11 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708b6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #95b08f"
-          />
+          <stop offset="0" style="stop-color: #708b6a" />
+          <stop offset="1" style="stop-color: #95b08f" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000087390502379157366370000011155179842916812947_);
-          "
+          style="fill: url(#SVGID_00000087390502379157366370000011155179842916812947_)"
           points="170.03,244.24 170.03,33.81
             171.78,33.08 171.78,244.97 		"
         />
@@ -856,19 +633,11 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9cb998"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #627e5d"
-          />
+          <stop offset="0" style="stop-color: #9cb998" />
+          <stop offset="1" style="stop-color: #627e5d" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000103965210208922135290000000481751626858011030_);
-          "
+          style="fill: url(#SVGID_00000103965210208922135290000000481751626858011030_)"
           points="164.87,249.4 170.03,244.24
             171.78,244.97 165.6,251.15 		"
         />
@@ -880,19 +649,11 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a7c2a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #637f5e"
-          />
+          <stop offset="0" style="stop-color: #a7c2a1" />
+          <stop offset="1" style="stop-color: #637f5e" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000163758815713648015980000005812466104863917702_);
-          "
+          style="fill: url(#SVGID_00000163758815713648015980000005812466104863917702_)"
           points="33.44,249.4 164.87,249.4
             165.6,251.15 32.71,251.15 		"
         />
@@ -904,19 +665,11 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #587453"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #587453" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000075164140816379613640000009587571838290034586_);
-          "
+          style="fill: url(#SVGID_00000075164140816379613640000009587571838290034586_)"
           points="28.28,244.24 33.44,249.4
             32.71,251.15 26.53,244.97 		"
         />
@@ -928,19 +681,11 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a2bd9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #597554"
-          />
+          <stop offset="0" style="stop-color: #a2bd9e" />
+          <stop offset="1" style="stop-color: #597554" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000064327152485819118780000002489909067088086668_);
-          "
+          style="fill: url(#SVGID_00000064327152485819118780000002489909067088086668_)"
           points="26.53,244.97 26.53,48.3
             28.28,47.34 28.28,244.24 		"
         />
@@ -952,33 +697,19 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #789473"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #cfeccb"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8da887"
-          />
+          <stop offset="0" style="stop-color: #789473" />
+          <stop offset="0.5195" style="stop-color: #cfeccb" />
+          <stop offset="1" style="stop-color: #8da887" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000045585923554037931130000006941318727447953581_"
-          style="
-            fill: url(#Frame_Outline_Left_00000156570253255297535450000014999269004383342751_);
-          "
+          style="fill: url(#Frame_Outline_Left_00000156570253255297535450000014999269004383342751_)"
           d="
             M26.53,48.3c-4.27-2.87-6.81-7.6-6.81-12.75c0-8.48,6.9-15.38,15.38-15.38c5.11,0,9.82,2.5,12.7,6.73l-0.95,1.75l-0.26-0.4
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Myth"
-        id="Myth_Border"
-      >
+      <g v-if="Border.Myth" id="Myth_Border">
         <linearGradient
           id="SVGID_00000164504348783086957360000004727233938832236437_"
           gradientUnits="userSpaceOnUse"
@@ -987,23 +718,12 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #774472"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #d6aaca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #764074"
-          />
+          <stop offset="0" style="stop-color: #774472" />
+          <stop offset="0.4977" style="stop-color: #d6aaca" />
+          <stop offset="1" style="stop-color: #764074" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000164504348783086957360000004727233938832236437_);
-          "
+          style="fill: url(#SVGID_00000164504348783086957360000004727233938832236437_)"
           points="164.87,28.65 46.84,28.65
             47.79,26.9 165.6,26.9 		"
         />
@@ -1015,19 +735,11 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfadcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #80447a"
-          />
+          <stop offset="0" style="stop-color: #cfadcc" />
+          <stop offset="1" style="stop-color: #80447a" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000029021815250708767520000005294604607068023696_);
-          "
+          style="fill: url(#SVGID_00000029021815250708767520000005294604607068023696_)"
           points="170.03,33.81 164.87,28.65
             165.6,26.9 171.78,33.08 		"
         />
@@ -1039,19 +751,11 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #70466a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #95648f"
-          />
+          <stop offset="0" style="stop-color: #70466a" />
+          <stop offset="1" style="stop-color: #95648f" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000072254435560895052180000004227613312464662419_);
-          "
+          style="fill: url(#SVGID_00000072254435560895052180000004227613312464662419_)"
           points="170.03,244.24 170.03,33.81
             171.78,33.08 171.78,244.97 		"
         />
@@ -1063,19 +767,11 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c8298"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #62445d"
-          />
+          <stop offset="0" style="stop-color: #9c8298" />
+          <stop offset="1" style="stop-color: #62445d" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000088830068722692202900000003038774111115949742_);
-          "
+          style="fill: url(#SVGID_00000088830068722692202900000003038774111115949742_)"
           points="164.87,249.4 170.03,244.24
             171.78,244.97 165.6,251.15 		"
         />
@@ -1087,19 +783,11 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a77ca1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #63385e"
-          />
+          <stop offset="0" style="stop-color: #a77ca1" />
+          <stop offset="1" style="stop-color: #63385e" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000153700347735486204680000005475356547424724623_);
-          "
+          style="fill: url(#SVGID_00000153700347735486204680000005475356547424724623_)"
           points="33.44,249.4 164.87,249.4
             165.6,251.15 32.71,251.15 		"
         />
@@ -1111,19 +799,11 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad88a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #582d53"
-          />
+          <stop offset="0" style="stop-color: #ad88a9" />
+          <stop offset="1" style="stop-color: #582d53" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000085945117284608719500000015089190095032372616_);
-          "
+          style="fill: url(#SVGID_00000085945117284608719500000015089190095032372616_)"
           points="28.28,244.24 33.44,249.4
             32.71,251.15 26.53,244.97 		"
         />
@@ -1135,19 +815,11 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae799e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #593354"
-          />
+          <stop offset="0" style="stop-color: #ae799e" />
+          <stop offset="1" style="stop-color: #593354" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000096759167361942860570000002156647441592674186_);
-          "
+          style="fill: url(#SVGID_00000096759167361942860570000002156647441592674186_)"
           points="26.53,244.97 26.53,48.3
             28.28,47.34 28.28,244.24 		"
         />
@@ -1159,33 +831,19 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #785373"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #cfafcb"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8d5587"
-          />
+          <stop offset="0" style="stop-color: #785373" />
+          <stop offset="0.5195" style="stop-color: #cfafcb" />
+          <stop offset="1" style="stop-color: #8d5587" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000083770617161826121140000002704447102376521136_"
-          style="
-            fill: url(#Frame_Outline_Left_00000182502522165038452640000014157419056040171398_);
-          "
+          style="fill: url(#Frame_Outline_Left_00000182502522165038452640000014157419056040171398_)"
           d="
             M26.53,48.3c-4.27-2.87-6.81-7.6-6.81-12.75c0-8.48,6.9-15.38,15.38-15.38c5.11,0,9.82,2.5,12.7,6.73l-0.95,1.75l-0.26-0.4
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.Culture"
-        id="Culture_Border"
-      >
+      <g v-if="Border.Culture" id="Culture_Border">
         <linearGradient
           id="SVGID_00000167398677699308415280000015346397309297139112_"
           gradientUnits="userSpaceOnUse"
@@ -1194,23 +852,12 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7a3835"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #ecb377"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7a3a44"
-          />
+          <stop offset="0" style="stop-color: #7a3835" />
+          <stop offset="0.4977" style="stop-color: #ecb377" />
+          <stop offset="1" style="stop-color: #7a3a44" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000167398677699308415280000015346397309297139112_);
-          "
+          style="fill: url(#SVGID_00000167398677699308415280000015346397309297139112_)"
           points="164.87,28.65 46.84,28.65
             47.79,26.9 165.6,26.9 		"
         />
@@ -1222,19 +869,11 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfada2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #813438"
-          />
+          <stop offset="0" style="stop-color: #cfada2" />
+          <stop offset="1" style="stop-color: #813438" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000001659666535746123610000001782360246148767104_);
-          "
+          style="fill: url(#SVGID_00000001659666535746123610000001782360246148767104_)"
           points="170.03,33.81 164.87,28.65
             165.6,26.9 171.78,33.08 		"
         />
@@ -1246,19 +885,11 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #80323e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #95644a"
-          />
+          <stop offset="0" style="stop-color: #80323e" />
+          <stop offset="1" style="stop-color: #95644a" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000021812435458549882010000010617639495131743622_);
-          "
+          style="fill: url(#SVGID_00000021812435458549882010000010617639495131743622_)"
           points="170.03,244.24 170.03,33.81
             171.78,33.08 171.78,244.97 		"
         />
@@ -1270,19 +901,11 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c8268"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83342e"
-          />
+          <stop offset="0" style="stop-color: #9c8268" />
+          <stop offset="1" style="stop-color: #83342e" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000111912678120611600600000008675118277536756891_);
-          "
+          style="fill: url(#SVGID_00000111912678120611600600000008675118277536756891_)"
           points="164.87,249.4 170.03,244.24
             171.78,244.97 165.6,251.15 		"
         />
@@ -1294,19 +917,11 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a77c5d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #75322a"
-          />
+          <stop offset="0" style="stop-color: #a77c5d" />
+          <stop offset="1" style="stop-color: #75322a" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000126312019335500593850000000368737341864716931_);
-          "
+          style="fill: url(#SVGID_00000126312019335500593850000000368737341864716931_)"
           points="33.44,249.4 164.87,249.4
             165.6,251.15 32.71,251.15 		"
         />
@@ -1318,19 +933,11 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b5885d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6a2034"
-          />
+          <stop offset="0" style="stop-color: #b5885d" />
+          <stop offset="1" style="stop-color: #6a2034" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000148624366306424200530000005412686535943064720_);
-          "
+          style="fill: url(#SVGID_00000148624366306424200530000005412686535943064720_)"
           points="28.28,244.24 33.44,249.4
             32.71,251.15 26.53,244.97 		"
         />
@@ -1342,19 +949,11 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c48866"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #81303f"
-          />
+          <stop offset="0" style="stop-color: #c48866" />
+          <stop offset="1" style="stop-color: #81303f" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000154420935730100221390000006823610371913551292_);
-          "
+          style="fill: url(#SVGID_00000154420935730100221390000006823610371913551292_)"
           points="26.53,244.97 26.53,48.3
             28.28,47.34 28.28,244.24 		"
         />
@@ -1366,33 +965,19 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9f5342"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #e6bba2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9b554b"
-          />
+          <stop offset="0" style="stop-color: #9f5342" />
+          <stop offset="0.5195" style="stop-color: #e6bba2" />
+          <stop offset="1" style="stop-color: #9b554b" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000046313011621789097650000008472037730593689760_"
-          style="
-            fill: url(#Frame_Outline_Left_00000165210828519133412750000014024074004926161550_);
-          "
+          style="fill: url(#Frame_Outline_Left_00000165210828519133412750000014024074004926161550_)"
           d="
             M26.53,48.3c-4.27-2.87-6.81-7.6-6.81-12.75c0-8.48,6.9-15.38,15.38-15.38c5.11,0,9.82,2.5,12.7,6.73l-0.95,1.75l-0.26-0.4
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.MultiClass"
-        id="Multi_Class_Border"
-      >
+      <g v-if="Border.MultiClass" id="Multi_Class_Border">
         <linearGradient
           id="SVGID_00000139280540259767253410000000398328082630822042_"
           gradientUnits="userSpaceOnUse"
@@ -1401,23 +986,12 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8c786c"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #ecdbcb"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8c786c"
-          />
+          <stop offset="0" style="stop-color: #8c786c" />
+          <stop offset="0.4977" style="stop-color: #ecdbcb" />
+          <stop offset="1" style="stop-color: #8c786c" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000139280540259767253410000000398328082630822042_);
-          "
+          style="fill: url(#SVGID_00000139280540259767253410000000398328082630822042_)"
           points="164.87,28.65 46.84,28.65
             47.79,26.9 165.6,26.9 		"
         />
@@ -1429,19 +1003,11 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #efdfcf"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8f7b6e"
-          />
+          <stop offset="0" style="stop-color: #efdfcf" />
+          <stop offset="1" style="stop-color: #8f7b6e" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000103950109108534052990000018075926248598815905_);
-          "
+          style="fill: url(#SVGID_00000103950109108534052990000018075926248598815905_)"
           points="170.03,33.81 164.87,28.65
             165.6,26.9 171.78,33.08 		"
         />
@@ -1453,19 +1019,11 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e796f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e4d3c4"
-          />
+          <stop offset="0" style="stop-color: #8e796f" />
+          <stop offset="1" style="stop-color: #e4d3c4" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000080185739091531844270000003953770074616169902_);
-          "
+          style="fill: url(#SVGID_00000080185739091531844270000003953770074616169902_)"
           points="170.03,244.24 170.03,33.81
             171.78,33.08 171.78,244.97 		"
         />
@@ -1477,19 +1035,11 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8f7a70"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #715448"
-          />
+          <stop offset="0" style="stop-color: #8f7a70" />
+          <stop offset="1" style="stop-color: #715448" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000013879522864320659290000014409723235200038814_);
-          "
+          style="fill: url(#SVGID_00000013879522864320659290000014409723235200038814_)"
           points="164.87,249.4 170.03,244.24
             171.78,244.97 165.6,251.15 		"
         />
@@ -1501,19 +1051,11 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e796f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b6259"
-          />
+          <stop offset="0" style="stop-color: #8e796f" />
+          <stop offset="1" style="stop-color: #7b6259" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000111171802864574754450000002039201167735788424_);
-          "
+          style="fill: url(#SVGID_00000111171802864574754450000002039201167735788424_)"
           points="33.44,249.4 164.87,249.4
             165.6,251.15 32.71,251.15 		"
         />
@@ -1525,19 +1067,11 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e796f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b6259"
-          />
+          <stop offset="0" style="stop-color: #8e796f" />
+          <stop offset="1" style="stop-color: #7b6259" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000104698277653478637950000004224891826323139974_);
-          "
+          style="fill: url(#SVGID_00000104698277653478637950000004224891826323139974_)"
           points="28.28,244.24 33.44,249.4
             32.71,251.15 26.53,244.97 		"
         />
@@ -1549,19 +1083,11 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000142148422490287845340000012825829792059586947_);
-          "
+          style="fill: url(#SVGID_00000142148422490287845340000012825829792059586947_)"
           points="26.53,244.97 26.53,48.3
             28.28,47.34 28.28,244.24 		"
         />
@@ -1573,33 +1099,19 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8b7669"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8b7669"
-          />
+          <stop offset="0" style="stop-color: #8b7669" />
+          <stop offset="0.5195" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #8b7669" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000032617020480934422960000012739323591726932906_"
-          style="
-            fill: url(#Frame_Outline_Left_00000114791212851299758040000013099492001761544634_);
-          "
+          style="fill: url(#Frame_Outline_Left_00000114791212851299758040000013099492001761544634_)"
           d="
             M26.53,48.3c-4.27-2.87-6.81-7.6-6.81-12.75c0-8.48,6.9-15.38,15.38-15.38c5.11,0,9.82,2.5,12.7,6.73l-0.95,1.75l-0.26-0.4
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
-      <g
-        v-if="Border.HQ"
-        id="HQ_Border"
-      >
+      <g v-if="Border.HQ" id="HQ_Border">
         <linearGradient
           id="SVGID_00000175322556594095470520000002423145536633433230_"
           gradientUnits="userSpaceOnUse"
@@ -1608,23 +1120,12 @@
           x2="165.5963"
           y2="27.7756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8e692c"
-          />
-          <stop
-            offset="0.4977"
-            style="stop-color: #d1ae75"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #916d32"
-          />
+          <stop offset="0" style="stop-color: #8e692c" />
+          <stop offset="0.4977" style="stop-color: #d1ae75" />
+          <stop offset="1" style="stop-color: #916d32" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000175322556594095470520000002423145536633433230_);
-          "
+          style="fill: url(#SVGID_00000175322556594095470520000002423145536633433230_)"
           points="164.87,28.65 46.84,28.65
             47.79,26.9 165.6,26.9 		"
         />
@@ -1636,19 +1137,11 @@
           x2="171.7784"
           y2="30.3539"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f2cf95"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #957238"
-          />
+          <stop offset="0" style="stop-color: #f2cf95" />
+          <stop offset="1" style="stop-color: #957238" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000124866180601965214200000017367806091977074869_);
-          "
+          style="fill: url(#SVGID_00000124866180601965214200000017367806091977074869_)"
           points="170.03,33.81 164.87,28.65
             165.6,26.9 171.78,33.08 		"
         />
@@ -1660,19 +1153,11 @@
           x2="170.9034"
           y2="33.0827"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a17e44"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4cf94"
-          />
+          <stop offset="0" style="stop-color: #a17e44" />
+          <stop offset="1" style="stop-color: #f4cf94" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000181046584338750465250000000198633946866732983_);
-          "
+          style="fill: url(#SVGID_00000181046584338750465250000000198633946866732983_)"
           points="170.03,244.24 170.03,33.81
             171.78,33.08 171.78,244.97 		"
         />
@@ -1684,19 +1169,11 @@
           x2="171.7784"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ceab71"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9b7c4f"
-          />
+          <stop offset="0" style="stop-color: #ceab71" />
+          <stop offset="1" style="stop-color: #9b7c4f" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000018211300267848845860000006088963513207190713_);
-          "
+          style="fill: url(#SVGID_00000018211300267848845860000006088963513207190713_)"
           points="164.87,249.4 170.03,244.24
             171.78,244.97 165.6,251.15 		"
         />
@@ -1708,19 +1185,11 @@
           x2="165.5963"
           y2="250.2756"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdab71"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dcb97f"
-          />
+          <stop offset="0" style="stop-color: #cdab71" />
+          <stop offset="1" style="stop-color: #dcb97f" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000039131139319181298890000001840078214295717546_);
-          "
+          style="fill: url(#SVGID_00000039131139319181298890000001840078214295717546_)"
           points="33.44,249.4 164.87,249.4
             165.6,251.15 32.71,251.15 		"
         />
@@ -1732,19 +1201,11 @@
           x2="33.4351"
           y2="247.6974"
         >
-          <stop
-            offset="0"
-            style="stop-color: #dbb87e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9b7b49"
-          />
+          <stop offset="0" style="stop-color: #dbb87e" />
+          <stop offset="1" style="stop-color: #9b7b49" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000110453053879680735520000003205339909256178309_);
-          "
+          style="fill: url(#SVGID_00000110453053879680735520000003205339909256178309_)"
           points="28.28,244.24 33.44,249.4
             32.71,251.15 26.53,244.97 		"
         />
@@ -1756,19 +1217,11 @@
           x2="27.4034"
           y2="244.9689"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f2cf95"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a48147"
-          />
+          <stop offset="0" style="stop-color: #f2cf95" />
+          <stop offset="1" style="stop-color: #a48147" />
         </linearGradient>
         <polyline
-          style="
-            fill: url(#SVGID_00000118372687719870383540000004340724323299354790_);
-          "
+          style="fill: url(#SVGID_00000118372687719870383540000004340724323299354790_)"
           points="26.53,244.97 26.53,48.3
             28.28,47.34 28.28,244.24 		"
         />
@@ -1780,38 +1233,21 @@
           x2="41.7732"
           y2="20.4921"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cbaa79"
-          />
-          <stop
-            offset="0.5195"
-            style="stop-color: #f3ce93"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9a7940"
-          />
+          <stop offset="0" style="stop-color: #cbaa79" />
+          <stop offset="0.5195" style="stop-color: #f3ce93" />
+          <stop offset="1" style="stop-color: #9a7940" />
         </linearGradient>
         <path
           id="Frame_Outline_Left_00000133504834122176944490000005021959194713720997_"
-          style="
-            fill: url(#Frame_Outline_Left_00000145779612084203610120000017242235931168841354_);
-          "
+          style="fill: url(#Frame_Outline_Left_00000145779612084203610120000017242235931168841354_)"
           d="
             M26.53,48.3c-4.27-2.87-6.81-7.6-6.81-12.75c0-8.48,6.9-15.38,15.38-15.38c5.11,0,9.82,2.5,12.7,6.73l-0.95,1.75l-0.26-0.4
             c-2.52-3.96-6.82-6.32-11.49-6.32c-7.51,0-13.62,6.11-13.62,13.62c0,4.71,2.39,9.02,6.4,11.53l0.41,0.26L26.53,48.3z"
         />
       </g>
     </g>
-    <g
-      v-if="IBG"
-      id="_x32__Inner_Background"
-    >
-      <g
-        v-if="IBG.Tech"
-        id="Tech_IBG"
-      >
+    <g v-if="IBG" id="_x32__Inner_Background">
+      <g v-if="IBG.Tech" id="Tech_IBG">
         <g>
           <defs>
             <path
@@ -1820,19 +1256,13 @@
                 c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000147941521112142384430000002016634878580962695_"
-          >
+          <clipPath id="SVGID_00000147941521112142384430000002016634878580962695_">
             <use
               xlink:href="#SVGID_00000042731498187347269850000009226876414447001732_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000147941521112142384430000002016634878580962695_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000147941521112142384430000002016634878580962695_)">
             <g>
               <defs>
                 <rect
@@ -1843,19 +1273,13 @@
                   height="220.95"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000173150790169166122350000008146524872610185864_"
-              >
+              <clipPath id="SVGID_00000173150790169166122350000008146524872610185864_">
                 <use
                   xlink:href="#SVGID_00000006699442772277863280000005915265206881964947_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000173150790169166122350000008146524872610185864_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000173150790169166122350000008146524872610185864_)">
                 <defs>
                   <rect
                     id="SVGID_00000132070002524849569420000004606105658733304714_"
@@ -1865,18 +1289,14 @@
                     height="220.95"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000022534441197330169380000011913235440962118047_"
-                >
+                <clipPath id="SVGID_00000022534441197330169380000011913235440962118047_">
                   <use
                     xlink:href="#SVGID_00000132070002524849569420000004606105658733304714_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000022534441197330169380000011913235440962118047_);
-                  "
+                  style="clip-path: url(#SVGID_00000022534441197330169380000011913235440962118047_)"
                 >
                   <image
                     style="overflow: visible"
@@ -1891,10 +1311,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="IBG.Nature"
-        id="Nature_IBG"
-      >
+      <g v-if="IBG.Nature" id="Nature_IBG">
         <g>
           <defs>
             <path
@@ -1903,19 +1320,13 @@
                 c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000145051194791347550580000008980101860734870148_"
-          >
+          <clipPath id="SVGID_00000145051194791347550580000008980101860734870148_">
             <use
               xlink:href="#SVGID_00000094588595587971105160000011355663130670155436_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000145051194791347550580000008980101860734870148_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000145051194791347550580000008980101860734870148_)">
             <g>
               <defs>
                 <rect
@@ -1926,19 +1337,13 @@
                   height="220.95"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000001664056108247386270000006922689230456408223_"
-              >
+              <clipPath id="SVGID_00000001664056108247386270000006922689230456408223_">
                 <use
                   xlink:href="#SVGID_00000147924659999806827590000013741391907952835456_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000001664056108247386270000006922689230456408223_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000001664056108247386270000006922689230456408223_)">
                 <defs>
                   <rect
                     id="SVGID_00000010291046240539824640000016501886118019047341_"
@@ -1948,18 +1353,14 @@
                     height="220.95"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000142135954675889225370000010383477552377309847_"
-                >
+                <clipPath id="SVGID_00000142135954675889225370000010383477552377309847_">
                   <use
                     xlink:href="#SVGID_00000010291046240539824640000016501886118019047341_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000142135954675889225370000010383477552377309847_);
-                  "
+                  style="clip-path: url(#SVGID_00000142135954675889225370000010383477552377309847_)"
                 >
                   <image
                     style="overflow: visible"
@@ -1974,10 +1375,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="IBG.Culture"
-        id="Culture_IBG"
-      >
+      <g v-if="IBG.Culture" id="Culture_IBG">
         <g>
           <defs>
             <path
@@ -1986,19 +1384,13 @@
                 c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000044169460403616222520000003669845880260927414_"
-          >
+          <clipPath id="SVGID_00000044169460403616222520000003669845880260927414_">
             <use
               xlink:href="#SVGID_00000042710165106101580370000008878286882281806482_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000044169460403616222520000003669845880260927414_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000044169460403616222520000003669845880260927414_)">
             <g>
               <defs>
                 <rect
@@ -2009,19 +1401,13 @@
                   height="220.95"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000075845965515093132050000018317063392619523757_"
-              >
+              <clipPath id="SVGID_00000075845965515093132050000018317063392619523757_">
                 <use
                   xlink:href="#SVGID_00000148622156169963897930000011883151364280108979_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000075845965515093132050000018317063392619523757_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000075845965515093132050000018317063392619523757_)">
                 <defs>
                   <rect
                     id="SVGID_00000092442497088537611450000015925968356868128700_"
@@ -2031,18 +1417,14 @@
                     height="220.95"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000062188277129599383770000018378547790866351534_"
-                >
+                <clipPath id="SVGID_00000062188277129599383770000018378547790866351534_">
                   <use
                     xlink:href="#SVGID_00000092442497088537611450000015925968356868128700_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000062188277129599383770000018378547790866351534_);
-                  "
+                  style="clip-path: url(#SVGID_00000062188277129599383770000018378547790866351534_)"
                 >
                   <image
                     style="overflow: visible"
@@ -2057,10 +1439,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="IBG.Myth"
-        id="Myth_IBG"
-      >
+      <g v-if="IBG.Myth" id="Myth_IBG">
         <g>
           <defs>
             <path
@@ -2069,19 +1448,13 @@
                 c-1.66,1.66-2.59,2.59-4.25,4.25v202.44c1.66,1.66,2.59,2.59,4.25,4.25h123.8c1.66-1.66,2.59-2.59,4.25-4.25V37.49z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000176015696093878606030000011326883433775667360_"
-          >
+          <clipPath id="SVGID_00000176015696093878606030000011326883433775667360_">
             <use
               xlink:href="#SVGID_00000169535016381955657600000007694404226893358747_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000176015696093878606030000011326883433775667360_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000176015696093878606030000011326883433775667360_)">
             <g>
               <defs>
                 <rect
@@ -2092,19 +1465,13 @@
                   height="220.95"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000160181948636491110370000007299203307992006575_"
-              >
+              <clipPath id="SVGID_00000160181948636491110370000007299203307992006575_">
                 <use
                   xlink:href="#SVGID_00000137101434716200562970000000559068387446810783_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000160181948636491110370000007299203307992006575_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000160181948636491110370000007299203307992006575_)">
                 <defs>
                   <rect
                     id="SVGID_00000101092783785814214970000016087348733540548485_"
@@ -2114,18 +1481,14 @@
                     height="220.95"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000160891091435967670910000016303121718585873051_"
-                >
+                <clipPath id="SVGID_00000160891091435967670910000016303121718585873051_">
                   <use
                     xlink:href="#SVGID_00000101092783785814214970000016087348733540548485_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000160891091435967670910000016303121718585873051_);
-                  "
+                  style="clip-path: url(#SVGID_00000160891091435967670910000016303121718585873051_)"
                 >
                   <image
                     style="overflow: visible"
@@ -2141,10 +1504,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGGoldLines"
-      id="BG_Gold_Lines"
-    >
+    <g v-if="BGGoldLines" id="BG_Gold_Lines">
       <g id="Gold_Inner_Frame">
         <path
           class="st12"
@@ -2191,10 +1551,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="BGShadow.Action"
-      id="Action_BG_Shadow"
-    >
+    <g v-if="BGShadow.Action" id="Action_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2204,19 +1561,13 @@
               c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V33.44C168.69,31.23,167.45,29.99,165.23,27.78z"
           />
         </defs>
-        <clipPath
-          id="Tech_OBG_00000036240289266222462700000009784073623032711562_"
-        >
+        <clipPath id="Tech_OBG_00000036240289266222462700000009784073623032711562_">
           <use
             xlink:href="#Tech_OBG_00000052806998601144027130000005836965589072439461_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#Tech_OBG_00000036240289266222462700000009784073623032711562_);
-          "
-        >
+        <g style="clip-path: url(#Tech_OBG_00000036240289266222462700000009784073623032711562_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="650"
@@ -2236,10 +1587,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.Entity"
-      id="Entity_BG_Shadow"
-    >
+    <g v-if="BGShadow.Entity" id="Entity_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2248,9 +1596,7 @@
               c-8.48,0-15.38,6.9-15.38,15.38c0,5.15,2.53,9.88,6.81,12.75v196.67l6.18,6.18H165.6l6.18-6.18V33.08L165.6,26.9z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000029732012386309957040000013214939860106051483_"
-        >
+        <clipPath id="SVGID_00000029732012386309957040000013214939860106051483_">
           <use
             xlink:href="#SVGID_00000056417594102097366240000001835458739413908375_"
             style="overflow: visible"
@@ -2258,9 +1604,7 @@
         </clipPath>
         <g
           id="FullArt_Outside_00000165206173005514601190000009153153264873258902_"
-          style="
-            clip-path: url(#SVGID_00000029732012386309957040000013214939860106051483_);
-          "
+          style="clip-path: url(#SVGID_00000029732012386309957040000013214939860106051483_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2278,10 +1622,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.Place"
-      id="Place_BG_Shadow"
-    >
+    <g v-if="BGShadow.Place" id="Place_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2290,19 +1631,13 @@
               c-8.48,0-15.38,6.9-15.38,15.38c0,5.15,2.53,9.88,6.81,12.75v196.67l6.18,6.18H165.6l6.18-6.18V33.08L165.6,26.9z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000098195634402930666320000006924245579119453602_"
-        >
+        <clipPath id="SVGID_00000098195634402930666320000006924245579119453602_">
           <use
             xlink:href="#SVGID_00000174601150417875464640000016957701551827730060_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000098195634402930666320000006924245579119453602_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000098195634402930666320000006924245579119453602_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="644"
@@ -2320,10 +1655,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="BGShadow.HQ"
-      id="HQ_BG_Shadow"
-    >
+    <g v-if="BGShadow.HQ" id="HQ_BG_Shadow">
       <g>
         <defs>
           <path
@@ -2352,19 +1684,13 @@
               C171.02,103.35,171.05,103.08,171.08,102.81z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000053545699393654962740000009141471331128782504_"
-        >
+        <clipPath id="SVGID_00000053545699393654962740000009141471331128782504_">
           <use
             xlink:href="#SVGID_00000094582964241492937730000014708158842713952400_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000053545699393654962740000009141471331128782504_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000053545699393654962740000009141471331128782504_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="650"
@@ -2383,10 +1709,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ClassShadow"
-      id="Class_Shadow"
-    >
+    <g v-if="ClassShadow" id="Class_Shadow">
       <g id="Shadow_00000083786197643803441000000008484445605677345712_">
         <image
           style="overflow: visible; opacity: 0.75"
@@ -2396,23 +1719,12 @@
           transform="matrix(0.24 0 0 0.24 149.913 28.2652)"
         />
         <g>
-          <circle
-            class="st75"
-            cx="160.12"
-            cy="38.56"
-            r="8.5"
-          />
+          <circle class="st75" cx="160.12" cy="38.56" r="8.5" />
         </g>
       </g>
     </g>
-    <g
-      v-if="Classes == 1"
-      id="One_Class"
-    >
-      <g
-        v-if="false"
-        id="One_Class_BG_Update"
-      >
+    <g v-if="Classes == 1" id="One_Class">
+      <g v-if="false" id="One_Class_BG_Update">
         <g>
           <defs>
             <circle
@@ -2422,19 +1734,13 @@
               r="8.5"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000136389626047791742840000001612508929156213664_"
-          >
+          <clipPath id="SVGID_00000136389626047791742840000001612508929156213664_">
             <use
               xlink:href="#SVGID_00000114055721558523578900000003547677913663069611_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000136389626047791742840000001612508929156213664_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000136389626047791742840000001612508929156213664_)">
             <g>
               <defs>
                 <rect
@@ -2445,19 +1751,13 @@
                   height="27.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000136376521741500326770000013244051886385495960_"
-              >
+              <clipPath id="SVGID_00000136376521741500326770000013244051886385495960_">
                 <use
                   xlink:href="#SVGID_00000049940750598078911660000008714319580845300121_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000136376521741500326770000013244051886385495960_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000136376521741500326770000013244051886385495960_)">
                 <image
                   style="overflow: visible"
                   width="57"
@@ -2471,10 +1771,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Tech"
-        id="One_Class_Tech"
-      >
+      <g v-if="Class.Tech" id="One_Class_Tech">
         <g id="Tech_00000080922445234125155640000015717078093224142236_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2492,38 +1789,14 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #476c76"
-              />
-              <stop
-                offset="0.4497"
-                style="stop-color: #496e78"
-              />
-              <stop
-                offset="0.6117"
-                style="stop-color: #50737e"
-              />
-              <stop
-                offset="0.7272"
-                style="stop-color: #5b7d89"
-              />
-              <stop
-                offset="0.8205"
-                style="stop-color: #6c8b99"
-              />
-              <stop
-                offset="0.9005"
-                style="stop-color: #829dae"
-              />
-              <stop
-                offset="0.9701"
-                style="stop-color: #9db2c8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #abbed5"
-              />
+              <stop offset="0" style="stop-color: #476c76" />
+              <stop offset="0.4497" style="stop-color: #496e78" />
+              <stop offset="0.6117" style="stop-color: #50737e" />
+              <stop offset="0.7272" style="stop-color: #5b7d89" />
+              <stop offset="0.8205" style="stop-color: #6c8b99" />
+              <stop offset="0.9005" style="stop-color: #829dae" />
+              <stop offset="0.9701" style="stop-color: #9db2c8" />
+              <stop offset="1" style="stop-color: #abbed5" />
             </linearGradient>
             <circle
               style="
@@ -2546,34 +1819,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bbc7e1"
-          />
-          <stop
-            offset="0.0174"
-            style="stop-color: #b7c4dd"
-          />
-          <stop
-            offset="0.1553"
-            style="stop-color: #9dafc5"
-          />
-          <stop
-            offset="0.3066"
-            style="stop-color: #889eb1"
-          />
-          <stop
-            offset="0.4761"
-            style="stop-color: #7993a3"
-          />
-          <stop
-            offset="0.6785"
-            style="stop-color: #718c9b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a99"
-          />
+          <stop offset="0" style="stop-color: #bbc7e1" />
+          <stop offset="0.0174" style="stop-color: #b7c4dd" />
+          <stop offset="0.1553" style="stop-color: #9dafc5" />
+          <stop offset="0.3066" style="stop-color: #889eb1" />
+          <stop offset="0.4761" style="stop-color: #7993a3" />
+          <stop offset="0.6785" style="stop-color: #718c9b" />
+          <stop offset="1" style="stop-color: #6e8a99" />
         </linearGradient>
         <circle
           id="Tech"
@@ -2588,10 +1840,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Nature"
-        id="One_Class_Nature"
-      >
+      <g v-if="Class.Nature" id="One_Class_Nature">
         <g id="Nature_00000038380082024414601940000005536322595031582397_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2609,38 +1858,14 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #516e4d"
-              />
-              <stop
-                offset="0.4358"
-                style="stop-color: #53704f"
-              />
-              <stop
-                offset="0.5928"
-                style="stop-color: #5a7756"
-              />
-              <stop
-                offset="0.7046"
-                style="stop-color: #658261"
-              />
-              <stop
-                offset="0.7951"
-                style="stop-color: #769372"
-              />
-              <stop
-                offset="0.8726"
-                style="stop-color: #8ca988"
-              />
-              <stop
-                offset="0.94"
-                style="stop-color: #a6c3a3"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #c5e2c2"
-              />
+              <stop offset="0" style="stop-color: #516e4d" />
+              <stop offset="0.4358" style="stop-color: #53704f" />
+              <stop offset="0.5928" style="stop-color: #5a7756" />
+              <stop offset="0.7046" style="stop-color: #658261" />
+              <stop offset="0.7951" style="stop-color: #769372" />
+              <stop offset="0.8726" style="stop-color: #8ca988" />
+              <stop offset="0.94" style="stop-color: #a6c3a3" />
+              <stop offset="1" style="stop-color: #c5e2c2" />
             </linearGradient>
             <circle
               style="
@@ -2663,34 +1888,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c3e0c0"
-          />
-          <stop
-            offset="9.517074e-03"
-            style="stop-color: #c1debe"
-          />
-          <stop
-            offset="0.1488"
-            style="stop-color: #a6c4a4"
-          />
-          <stop
-            offset="0.3005"
-            style="stop-color: #92af8f"
-          />
-          <stop
-            offset="0.4714"
-            style="stop-color: #83a181"
-          />
-          <stop
-            offset="0.6756"
-            style="stop-color: #7b9979"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #789676"
-          />
+          <stop offset="0" style="stop-color: #c3e0c0" />
+          <stop offset="9.517074e-03" style="stop-color: #c1debe" />
+          <stop offset="0.1488" style="stop-color: #a6c4a4" />
+          <stop offset="0.3005" style="stop-color: #92af8f" />
+          <stop offset="0.4714" style="stop-color: #83a181" />
+          <stop offset="0.6756" style="stop-color: #7b9979" />
+          <stop offset="1" style="stop-color: #789676" />
         </linearGradient>
         <circle
           id="Nature"
@@ -2705,10 +1909,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Myth"
-        id="One_Class_Myth"
-      >
+      <g v-if="Class.Myth" id="One_Class_Myth">
         <g id="Nature_00000094617829098826953140000018122678802195250602_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2726,38 +1927,14 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #51294d"
-              />
-              <stop
-                offset="0.4358"
-                style="stop-color: #532b4f"
-              />
-              <stop
-                offset="0.5928"
-                style="stop-color: #5a3256"
-              />
-              <stop
-                offset="0.7046"
-                style="stop-color: #653d61"
-              />
-              <stop
-                offset="0.7951"
-                style="stop-color: #764e72"
-              />
-              <stop
-                offset="0.8726"
-                style="stop-color: #8c6388"
-              />
-              <stop
-                offset="0.94"
-                style="stop-color: #a67ea3"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #c59cc2"
-              />
+              <stop offset="0" style="stop-color: #51294d" />
+              <stop offset="0.4358" style="stop-color: #532b4f" />
+              <stop offset="0.5928" style="stop-color: #5a3256" />
+              <stop offset="0.7046" style="stop-color: #653d61" />
+              <stop offset="0.7951" style="stop-color: #764e72" />
+              <stop offset="0.8726" style="stop-color: #8c6388" />
+              <stop offset="0.94" style="stop-color: #a67ea3" />
+              <stop offset="1" style="stop-color: #c59cc2" />
             </linearGradient>
             <circle
               style="
@@ -2780,34 +1957,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cea3d4"
-          />
-          <stop
-            offset="0.081"
-            style="stop-color: #bb90bf"
-          />
-          <stop
-            offset="0.2099"
-            style="stop-color: #a378a5"
-          />
-          <stop
-            offset="0.3514"
-            style="stop-color: #906590"
-          />
-          <stop
-            offset="0.5099"
-            style="stop-color: #825781"
-          />
-          <stop
-            offset="0.6992"
-            style="stop-color: #7a4f79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #784d76"
-          />
+          <stop offset="0" style="stop-color: #cea3d4" />
+          <stop offset="0.081" style="stop-color: #bb90bf" />
+          <stop offset="0.2099" style="stop-color: #a378a5" />
+          <stop offset="0.3514" style="stop-color: #906590" />
+          <stop offset="0.5099" style="stop-color: #825781" />
+          <stop offset="0.6992" style="stop-color: #7a4f79" />
+          <stop offset="1" style="stop-color: #784d76" />
         </linearGradient>
         <circle
           id="Nature_00000053515703115668582340000006117205826484966582_"
@@ -2822,10 +1978,7 @@
           r="8.5"
         />
       </g>
-      <g
-        v-if="Class.Culture"
-        id="One_Class_Culture"
-      >
+      <g v-if="Class.Culture" id="One_Class_Culture">
         <g id="Nature_00000147192224752665045240000001255549089283610256_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -2843,42 +1996,15 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #68292c"
-              />
-              <stop
-                offset="0.4321"
-                style="stop-color: #6a2b2d"
-              />
-              <stop
-                offset="0.5878"
-                style="stop-color: #713132"
-              />
-              <stop
-                offset="0.6988"
-                style="stop-color: #7c3c3b"
-              />
-              <stop
-                offset="0.7885"
-                style="stop-color: #8d4c48"
-              />
-              <stop
-                offset="0.8653"
-                style="stop-color: #a36158"
-              />
-              <stop
-                offset="0.9327"
-                style="stop-color: #be7a6c"
-              />
-              <stop
-                offset="0.9928"
-                style="stop-color: #de9884"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #e29c87"
-              />
+              <stop offset="0" style="stop-color: #68292c" />
+              <stop offset="0.4321" style="stop-color: #6a2b2d" />
+              <stop offset="0.5878" style="stop-color: #713132" />
+              <stop offset="0.6988" style="stop-color: #7c3c3b" />
+              <stop offset="0.7885" style="stop-color: #8d4c48" />
+              <stop offset="0.8653" style="stop-color: #a36158" />
+              <stop offset="0.9327" style="stop-color: #be7a6c" />
+              <stop offset="0.9928" style="stop-color: #de9884" />
+              <stop offset="1" style="stop-color: #e29c87" />
             </linearGradient>
             <circle
               style="
@@ -2901,42 +2027,15 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ecc2d4"
-          />
-          <stop
-            offset="0.0117"
-            style="stop-color: #e9becf"
-          />
-          <stop
-            offset="0.1087"
-            style="stop-color: #d3a0a8"
-          />
-          <stop
-            offset="0.213"
-            style="stop-color: #c08687"
-          />
-          <stop
-            offset="0.3244"
-            style="stop-color: #b0716d"
-          />
-          <stop
-            offset="0.4454"
-            style="stop-color: #a46158"
-          />
-          <stop
-            offset="0.581"
-            style="stop-color: #9b5649"
-          />
-          <stop
-            offset="0.7429"
-            style="stop-color: #974f41"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #954d3e"
-          />
+          <stop offset="0" style="stop-color: #ecc2d4" />
+          <stop offset="0.0117" style="stop-color: #e9becf" />
+          <stop offset="0.1087" style="stop-color: #d3a0a8" />
+          <stop offset="0.213" style="stop-color: #c08687" />
+          <stop offset="0.3244" style="stop-color: #b0716d" />
+          <stop offset="0.4454" style="stop-color: #a46158" />
+          <stop offset="0.581" style="stop-color: #9b5649" />
+          <stop offset="0.7429" style="stop-color: #974f41" />
+          <stop offset="1" style="stop-color: #954d3e" />
         </linearGradient>
         <circle
           id="Nature_00000113327989934125176870000010645179096947317141_"
@@ -2952,10 +2051,7 @@
         />
       </g>
 
-      <g
-        v-if="Class.Culture"
-        id="Culture_One_Class_HQ"
-      >
+      <g v-if="Class.Culture" id="Culture_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -2965,19 +2061,13 @@
               r="6.75"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000072254103079198760010000014783955248518345144_"
-          >
+          <clipPath id="SVGID_00000072254103079198760010000014783955248518345144_">
             <use
               xlink:href="#SVGID_00000147195682572854366750000007259757851676331441_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000072254103079198760010000014783955248518345144_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000072254103079198760010000014783955248518345144_)">
             <g>
               <defs>
                 <rect
@@ -2988,19 +2078,13 @@
                   height="19.51"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000066503901938592213840000014916689440896727962_"
-              >
+              <clipPath id="SVGID_00000066503901938592213840000014916689440896727962_">
                 <use
                   xlink:href="#SVGID_00000020373710358892581940000005346223569520984462_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000066503901938592213840000014916689440896727962_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000066503901938592213840000014916689440896727962_)">
                 <image
                   style="overflow: visible"
                   width="14"
@@ -3014,10 +2098,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Myth"
-        id="Myth_One_Class_HQ"
-      >
+      <g v-if="Class.Myth" id="Myth_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3027,19 +2108,13 @@
               r="6.75"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000114752215421267990370000005882056638645857159_"
-          >
+          <clipPath id="SVGID_00000114752215421267990370000005882056638645857159_">
             <use
               xlink:href="#SVGID_00000156559406394118111540000013925437124346651535_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000114752215421267990370000005882056638645857159_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000114752215421267990370000005882056638645857159_)">
             <g>
               <defs>
                 <rect
@@ -3050,19 +2125,13 @@
                   height="19.51"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000170259637842536269580000013365797299156984200_"
-              >
+              <clipPath id="SVGID_00000170259637842536269580000013365797299156984200_">
                 <use
                   xlink:href="#SVGID_00000160887983693541340580000011532521982676840861_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000170259637842536269580000013365797299156984200_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000170259637842536269580000013365797299156984200_)">
                 <image
                   style="overflow: visible"
                   width="14"
@@ -3076,10 +2145,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Nature"
-        id="Nature_One_Class_HQ"
-      >
+      <g v-if="Class.Nature" id="Nature_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3089,19 +2155,13 @@
               r="6.75"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000003095285404708387020000009338513492393715090_"
-          >
+          <clipPath id="SVGID_00000003095285404708387020000009338513492393715090_">
             <use
               xlink:href="#SVGID_00000026862957781861731480000005679935451104365990_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000003095285404708387020000009338513492393715090_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000003095285404708387020000009338513492393715090_)">
             <g>
               <defs>
                 <rect
@@ -3112,19 +2172,13 @@
                   height="19.51"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000042013313294491888640000007143208695816831119_"
-              >
+              <clipPath id="SVGID_00000042013313294491888640000007143208695816831119_">
                 <use
                   xlink:href="#SVGID_00000045600826881913921310000008467858458275764098_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000042013313294491888640000007143208695816831119_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000042013313294491888640000007143208695816831119_)">
                 <image
                   style="overflow: visible"
                   width="14.0"
@@ -3138,10 +2192,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Class.Tech"
-        id="Tech_One_Class_HQ"
-      >
+      <g v-if="Class.Tech" id="Tech_One_Class_HQ">
         <g>
           <defs>
             <circle
@@ -3151,19 +2202,13 @@
               r="6.75"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000082348601697565598730000015316112118774549635_"
-          >
+          <clipPath id="SVGID_00000082348601697565598730000015316112118774549635_">
             <use
               xlink:href="#SVGID_00000107588503972137515170000016701659475360646797_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000082348601697565598730000015316112118774549635_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000082348601697565598730000015316112118774549635_)">
             <g>
               <defs>
                 <rect
@@ -3174,19 +2219,13 @@
                   height="19.51"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000134246579929546598240000007053135909416575113_"
-              >
+              <clipPath id="SVGID_00000134246579929546598240000007053135909416575113_">
                 <use
                   xlink:href="#SVGID_00000158002442327887499510000009179602747557008037_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000134246579929546598240000007053135909416575113_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000134246579929546598240000007053135909416575113_)">
                 <image
                   style="overflow: visible"
                   width="14"
@@ -3216,10 +2255,7 @@
           c0.14-0.14,0.26-0.31,0.38-0.47c-0.04,0.06-0.07,0.12-0.11,0.17C163.66,41.68,163.56,41.78,163.46,41.88z"
       />
 
-      <g
-        v-if="Type.HQ"
-        id="One_Class_HQ"
-      >
+      <g v-if="Type.HQ" id="One_Class_HQ">
         <g id="HQ_00000171000928725356791190000018238046686567527562_">
           <image
             style="overflow: visible; opacity: 0.75"
@@ -3237,42 +2273,15 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #74573a"
-              />
-              <stop
-                offset="0.4273"
-                style="stop-color: #76593b"
-              />
-              <stop
-                offset="0.5813"
-                style="stop-color: #7d5f40"
-              />
-              <stop
-                offset="0.691"
-                style="stop-color: #886a48"
-              />
-              <stop
-                offset="0.7797"
-                style="stop-color: #997a54"
-              />
-              <stop
-                offset="0.8557"
-                style="stop-color: #af8f64"
-              />
-              <stop
-                offset="0.9229"
-                style="stop-color: #cba877"
-              />
-              <stop
-                offset="0.9823"
-                style="stop-color: #eac68d"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #f5d095"
-              />
+              <stop offset="0" style="stop-color: #74573a" />
+              <stop offset="0.4273" style="stop-color: #76593b" />
+              <stop offset="0.5813" style="stop-color: #7d5f40" />
+              <stop offset="0.691" style="stop-color: #886a48" />
+              <stop offset="0.7797" style="stop-color: #997a54" />
+              <stop offset="0.8557" style="stop-color: #af8f64" />
+              <stop offset="0.9229" style="stop-color: #cba877" />
+              <stop offset="0.9823" style="stop-color: #eac68d" />
+              <stop offset="1" style="stop-color: #f5d095" />
             </linearGradient>
 
             <circle
@@ -3297,34 +2306,13 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f4cf94"
-          />
-          <stop
-            offset="0.1144"
-            style="stop-color: #d5b074"
-          />
-          <stop
-            offset="0.2386"
-            style="stop-color: #bb965a"
-          />
-          <stop
-            offset="0.3751"
-            style="stop-color: #a68145"
-          />
-          <stop
-            offset="0.5278"
-            style="stop-color: #987336"
-          />
-          <stop
-            offset="0.7102"
-            style="stop-color: #906b2e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8d682b"
-          />
+          <stop offset="0" style="stop-color: #f4cf94" />
+          <stop offset="0.1144" style="stop-color: #d5b074" />
+          <stop offset="0.2386" style="stop-color: #bb965a" />
+          <stop offset="0.3751" style="stop-color: #a68145" />
+          <stop offset="0.5278" style="stop-color: #987336" />
+          <stop offset="0.7102" style="stop-color: #906b2e" />
+          <stop offset="1" style="stop-color: #8d682b" />
         </linearGradient>
 
         <circle
@@ -3342,10 +2330,7 @@
       </g>
     </g>
 
-    <g
-      v-if="Classes >= 2"
-      id="_x33__Class_BG_00000106828953381195913150000008910534209060889004_"
-    >
+    <g v-if="Classes >= 2" id="_x33__Class_BG_00000106828953381195913150000008910534209060889004_">
       <g>
         <defs>
           <circle
@@ -3355,19 +2340,13 @@
             r="8.5"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000172416866694971889600000007628771914967763858_"
-        >
+        <clipPath id="SVGID_00000172416866694971889600000007628771914967763858_">
           <use
             xlink:href="#SVGID_00000142141811136947717320000003041652183765931436_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000172416866694971889600000007628771914967763858_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000172416866694971889600000007628771914967763858_)">
           <g>
             <defs>
               <rect
@@ -3378,19 +2357,13 @@
                 height="27.01"
               />
             </defs>
-            <clipPath
-              id="SVGID_00000018198472309103262640000006802596604962331826_"
-            >
+            <clipPath id="SVGID_00000018198472309103262640000006802596604962331826_">
               <use
                 xlink:href="#SVGID_00000087401712616456704890000010687103638151556237_"
                 style="overflow: visible"
               />
             </clipPath>
-            <g
-              style="
-                clip-path: url(#SVGID_00000018198472309103262640000006802596604962331826_);
-              "
-            >
+            <g style="clip-path: url(#SVGID_00000018198472309103262640000006802596604962331826_)">
               <defs>
                 <rect
                   id="SVGID_00000114757600585924018870000005293684427206036669_"
@@ -3400,19 +2373,13 @@
                   height="27.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000075158972497012931830000009969150160484270265_"
-              >
+              <clipPath id="SVGID_00000075158972497012931830000009969150160484270265_">
                 <use
                   xlink:href="#SVGID_00000114757600585924018870000005293684427206036669_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000075158972497012931830000009969150160484270265_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000075158972497012931830000009969150160484270265_)">
                 <image
                   style="overflow: visible"
                   width="57"
@@ -3426,15 +2393,9 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Classes == 2"
-      id="HQ_Classes_copy_00000123407028572346819720000015199051159379258786_"
-    >
+    <g v-if="Classes == 2" id="HQ_Classes_copy_00000123407028572346819720000015199051159379258786_">
       // BOTTOM
-      <g
-        v-if="Class.Tech"
-        id="_x35__Tech_00000105393578533262114780000001513111495754690206_"
-      >
+      <g v-if="Class.Tech" id="_x35__Tech_00000105393578533262114780000001513111495754690206_">
         <g>
           <defs>
             <path
@@ -3443,19 +2404,13 @@
                 c1.36,1.96,3.63,3.24,6.19,3.24s4.83-1.28,6.19-3.24C165.25,40.45,162.86,38.76,160.07,38.76z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000015333521562976529590000000667179446871561604_"
-          >
+          <clipPath id="SVGID_00000015333521562976529590000000667179446871561604_">
             <use
               xlink:href="#SVGID_00000025415949802178308920000013164138426978902696_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000015333521562976529590000000667179446871561604_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000015333521562976529590000000667179446871561604_)">
             <g>
               <defs>
                 <rect
@@ -3466,19 +2421,13 @@
                   height="17.35"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000079464070877223386520000004248560532790666407_"
-              >
+              <clipPath id="SVGID_00000079464070877223386520000004248560532790666407_">
                 <use
                   xlink:href="#SVGID_00000176009620945368111720000008739689986211628197_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000079464070877223386520000004248560532790666407_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000079464070877223386520000004248560532790666407_)">
                 <defs>
                   <rect
                     id="SVGID_00000126321037583060232470000013522895672894696597_"
@@ -3488,18 +2437,14 @@
                     height="17.35"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000046297137884804262100000002505856827629486479_"
-                >
+                <clipPath id="SVGID_00000046297137884804262100000002505856827629486479_">
                   <use
                     xlink:href="#SVGID_00000126321037583060232470000013522895672894696597_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000046297137884804262100000002505856827629486479_);
-                  "
+                  style="clip-path: url(#SVGID_00000046297137884804262100000002505856827629486479_)"
                 >
                   <image
                     style="overflow: visible"
@@ -3515,10 +2460,7 @@
         </g>
       </g>
       // BOTTOM
-      <g
-        v-if="Class.Nature"
-        id="_x35__Nature_00000011725085793288903870000004132891873278979751_"
-      >
+      <g v-if="Class.Nature" id="_x35__Nature_00000011725085793288903870000004132891873278979751_">
         <g>
           <defs>
             <path
@@ -3527,19 +2469,13 @@
                 c1.36,1.96,3.63,3.24,6.19,3.24s4.83-1.28,6.19-3.24C165.25,40.45,162.86,38.76,160.07,38.76z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000061458756126278493070000000223472997982120587_"
-          >
+          <clipPath id="SVGID_00000061458756126278493070000000223472997982120587_">
             <use
               xlink:href="#SVGID_00000168835321700706779280000004941528518225781640_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000061458756126278493070000000223472997982120587_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000061458756126278493070000000223472997982120587_)">
             <g>
               <defs>
                 <rect
@@ -3550,19 +2486,13 @@
                   height="17.35"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000132806262085450336680000008640615747944574374_"
-              >
+              <clipPath id="SVGID_00000132806262085450336680000008640615747944574374_">
                 <use
                   xlink:href="#SVGID_00000055702273533299706460000015397598573940991126_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000132806262085450336680000008640615747944574374_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000132806262085450336680000008640615747944574374_)">
                 <defs>
                   <rect
                     id="SVGID_00000116229915293485547250000003839021031567080119_"
@@ -3572,18 +2502,14 @@
                     height="17.35"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000153686480821160924760000008413828467500270475_"
-                >
+                <clipPath id="SVGID_00000153686480821160924760000008413828467500270475_">
                   <use
                     xlink:href="#SVGID_00000116229915293485547250000003839021031567080119_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000153686480821160924760000008413828467500270475_);
-                  "
+                  style="clip-path: url(#SVGID_00000153686480821160924760000008413828467500270475_)"
                 >
                   <image
                     style="overflow: visible"
@@ -3611,19 +2537,13 @@
                 c1.36,1.96,3.63,3.24,6.19,3.24s4.83-1.28,6.19-3.24C165.25,40.45,162.86,38.76,160.07,38.76z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000144304249476579196840000005946454345640349878_"
-          >
+          <clipPath id="SVGID_00000144304249476579196840000005946454345640349878_">
             <use
               xlink:href="#SVGID_00000018956245981561413520000004055621511885204657_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000144304249476579196840000005946454345640349878_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000144304249476579196840000005946454345640349878_)">
             <g>
               <defs>
                 <rect
@@ -3634,19 +2554,13 @@
                   height="17.35"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000097485604681357784710000003674378491310144430_"
-              >
+              <clipPath id="SVGID_00000097485604681357784710000003674378491310144430_">
                 <use
                   xlink:href="#SVGID_00000103962683617881403510000015492064861826644120_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000097485604681357784710000003674378491310144430_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000097485604681357784710000003674378491310144430_)">
                 <defs>
                   <rect
                     id="SVGID_00000181047524147705454760000015375188631916131503_"
@@ -3656,18 +2570,14 @@
                     height="17.35"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000039841680747769188180000005561795918068593340_"
-                >
+                <clipPath id="SVGID_00000039841680747769188180000005561795918068593340_">
                   <use
                     xlink:href="#SVGID_00000181047524147705454760000015375188631916131503_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000039841680747769188180000005561795918068593340_);
-                  "
+                  style="clip-path: url(#SVGID_00000039841680747769188180000005561795918068593340_)"
                 >
                   <image
                     style="overflow: visible"
@@ -3683,10 +2593,7 @@
         </g>
       </g>
       // BOTTOM
-      <g
-        v-if="Class.Myth"
-        id="_x35__Myth_00000023981592066913379740000015781955592218530204_"
-      >
+      <g v-if="Class.Myth" id="_x35__Myth_00000023981592066913379740000015781955592218530204_">
         <g>
           <defs>
             <path
@@ -3695,19 +2602,13 @@
                 c1.36,1.96,3.63,3.24,6.19,3.24s4.83-1.28,6.19-3.24C165.25,40.45,162.86,38.76,160.07,38.76z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000061471279847990513780000010948220129142728356_"
-          >
+          <clipPath id="SVGID_00000061471279847990513780000010948220129142728356_">
             <use
               xlink:href="#SVGID_00000016049429939903409850000017179737546371478460_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000061471279847990513780000010948220129142728356_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000061471279847990513780000010948220129142728356_)">
             <g>
               <defs>
                 <rect
@@ -3718,19 +2619,13 @@
                   height="17.35"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000072275659193002220030000003210237541351505039_"
-              >
+              <clipPath id="SVGID_00000072275659193002220030000003210237541351505039_">
                 <use
                   xlink:href="#SVGID_00000098213097035069070970000016193205740861953710_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000072275659193002220030000003210237541351505039_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000072275659193002220030000003210237541351505039_)">
                 <defs>
                   <rect
                     id="SVGID_00000140009493851730863080000009227891945936751012_"
@@ -3740,18 +2635,14 @@
                     height="17.35"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000142139342061366107120000009722534539912016528_"
-                >
+                <clipPath id="SVGID_00000142139342061366107120000009722534539912016528_">
                   <use
                     xlink:href="#SVGID_00000140009493851730863080000009227891945936751012_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000142139342061366107120000009722534539912016528_);
-                  "
+                  style="clip-path: url(#SVGID_00000142139342061366107120000009722534539912016528_)"
                 >
                   <image
                     style="overflow: visible"
@@ -3779,19 +2670,13 @@
                 c1.03,2.39,3.4,4.06,6.17,4.06s5.13-1.67,6.17-4.06C164.87,32.28,162.62,31.01,160.07,31.01z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000024715279675317621000000008660971813997111487_"
-          >
+          <clipPath id="SVGID_00000024715279675317621000000008660971813997111487_">
             <use
               xlink:href="#SVGID_00000015314212443260397890000008554107100769352335_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000024715279675317621000000008660971813997111487_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000024715279675317621000000008660971813997111487_)">
             <g>
               <defs>
                 <rect
@@ -3802,19 +2687,13 @@
                   height="17.26"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000018194930412721348880000008683754451468328856_"
-              >
+              <clipPath id="SVGID_00000018194930412721348880000008683754451468328856_">
                 <use
                   xlink:href="#SVGID_00000111872007764814973710000010519538115528047237_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000018194930412721348880000008683754451468328856_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000018194930412721348880000008683754451468328856_)">
                 <defs>
                   <rect
                     id="SVGID_00000080205472535803203650000002267391347171772590_"
@@ -3824,18 +2703,14 @@
                     height="17.26"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000180339494066936832960000006892536087062292865_"
-                >
+                <clipPath id="SVGID_00000180339494066936832960000006892536087062292865_">
                   <use
                     xlink:href="#SVGID_00000080205472535803203650000002267391347171772590_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000180339494066936832960000006892536087062292865_);
-                  "
+                  style="clip-path: url(#SVGID_00000180339494066936832960000006892536087062292865_)"
                 >
                   <image
                     style="overflow: visible"
@@ -3851,10 +2726,7 @@
         </g>
       </g>
       // TOP
-      <g
-        v-if="Class.Nature"
-        id="_x34__Nature_00000127739038924936826890000006168223653451514804_"
-      >
+      <g v-if="Class.Nature" id="_x34__Nature_00000127739038924936826890000006168223653451514804_">
         <g>
           <defs>
             <path
@@ -3863,19 +2735,13 @@
                 c1.03,2.39,3.4,4.06,6.17,4.06s5.13-1.67,6.17-4.06C164.87,32.28,162.62,31.01,160.07,31.01z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000037661111381303985590000009499359773479593096_"
-          >
+          <clipPath id="SVGID_00000037661111381303985590000009499359773479593096_">
             <use
               xlink:href="#SVGID_00000106119661726973354020000006057406857550231989_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000037661111381303985590000009499359773479593096_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000037661111381303985590000009499359773479593096_)">
             <g>
               <defs>
                 <rect
@@ -3886,19 +2752,13 @@
                   height="17.26"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000000194751472296865210000001708033842045581449_"
-              >
+              <clipPath id="SVGID_00000000194751472296865210000001708033842045581449_">
                 <use
                   xlink:href="#SVGID_00000065060880362361352190000006971943772203200955_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000000194751472296865210000001708033842045581449_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000000194751472296865210000001708033842045581449_)">
                 <defs>
                   <rect
                     id="SVGID_00000121242394373375223270000013584584017357435269_"
@@ -3908,18 +2768,14 @@
                     height="17.26"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000084512561637997815200000010663570562601168011_"
-                >
+                <clipPath id="SVGID_00000084512561637997815200000010663570562601168011_">
                   <use
                     xlink:href="#SVGID_00000121242394373375223270000013584584017357435269_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000084512561637997815200000010663570562601168011_);
-                  "
+                  style="clip-path: url(#SVGID_00000084512561637997815200000010663570562601168011_)"
                 >
                   <image
                     style="overflow: visible"
@@ -3935,10 +2791,7 @@
         </g>
       </g>
       // TOP
-      <g
-        v-if="Class.Tech"
-        id="_x34__Tech_00000096048797798902483570000009767725496856427393_"
-      >
+      <g v-if="Class.Tech" id="_x34__Tech_00000096048797798902483570000009767725496856427393_">
         <g>
           <defs>
             <path
@@ -3947,19 +2800,13 @@
                 c1.03,2.39,3.4,4.06,6.17,4.06s5.13-1.67,6.17-4.06C164.87,32.28,162.62,31.01,160.07,31.01z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000150085302887012097060000010321109933439959718_"
-          >
+          <clipPath id="SVGID_00000150085302887012097060000010321109933439959718_">
             <use
               xlink:href="#SVGID_00000097462736675154900720000010508398549301530774_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000150085302887012097060000010321109933439959718_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000150085302887012097060000010321109933439959718_)">
             <g>
               <defs>
                 <rect
@@ -3970,19 +2817,13 @@
                   height="17.26"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000117666202454417603070000003780968072244353973_"
-              >
+              <clipPath id="SVGID_00000117666202454417603070000003780968072244353973_">
                 <use
                   xlink:href="#SVGID_00000075885268414106836320000008719174628298134158_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000117666202454417603070000003780968072244353973_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000117666202454417603070000003780968072244353973_)">
                 <defs>
                   <rect
                     id="SVGID_00000000914491157605601690000011708919181193802883_"
@@ -3992,18 +2833,14 @@
                     height="17.26"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000032640864442316761660000009515723534343386814_"
-                >
+                <clipPath id="SVGID_00000032640864442316761660000009515723534343386814_">
                   <use
                     xlink:href="#SVGID_00000000914491157605601690000011708919181193802883_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000032640864442316761660000009515723534343386814_);
-                  "
+                  style="clip-path: url(#SVGID_00000032640864442316761660000009515723534343386814_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4038,15 +2875,9 @@
           C165.25,35.92,165.38,35.78,165.5,35.62C165.49,35.62,165.5,35.62,165.5,35.62z"
       />
     </g>
-    <g
-      v-if="Classes == 3"
-      id="Three_Classes"
-    >
+    <g v-if="Classes == 3" id="Three_Classes">
       // RIGHT
-      <g
-        v-if="Class.Myth"
-        id="_x31_1_Myth_00000080909038949935645790000011940198766423694006_"
-      >
+      <g v-if="Class.Myth" id="_x31_1_Myth_00000080909038949935645790000011940198766423694006_">
         <g>
           <defs>
             <path
@@ -4055,19 +2886,13 @@
                 s-3.51,1.57-3.51,3.51c0,1.94,1.57,3.51,3.51,3.51S167.34,42.71,167.34,40.77z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000013177005111012997330000017603442515609490848_"
-          >
+          <clipPath id="SVGID_00000013177005111012997330000017603442515609490848_">
             <use
               xlink:href="#SVGID_00000176027027219034878540000007782378538324329132_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000013177005111012997330000017603442515609490848_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000013177005111012997330000017603442515609490848_)">
             <g>
               <defs>
                 <rect
@@ -4078,19 +2903,13 @@
                   height="17.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000137127921580123476620000007039323157221078707_"
-              >
+              <clipPath id="SVGID_00000137127921580123476620000007039323157221078707_">
                 <use
                   xlink:href="#SVGID_00000145777690835623906410000013971824319315859901_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000137127921580123476620000007039323157221078707_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000137127921580123476620000007039323157221078707_)">
                 <defs>
                   <rect
                     id="SVGID_00000008827234528449853470000011018802683735541914_"
@@ -4100,9 +2919,7 @@
                     height="17.01"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000090981118406027413550000012627179927626187956_"
-                >
+                <clipPath id="SVGID_00000090981118406027413550000012627179927626187956_">
                   <use
                     xlink:href="#SVGID_00000008827234528449853470000011018802683735541914_"
                     style="overflow: visible"
@@ -4110,9 +2927,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 -1.907349e-06)"
-                  style="
-                    clip-path: url(#SVGID_00000090981118406027413550000012627179927626187956_);
-                  "
+                  style="clip-path: url(#SVGID_00000090981118406027413550000012627179927626187956_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4128,10 +2943,7 @@
         </g>
       </g>
       // RIGHT
-      <g
-        v-if="Class.Tech"
-        id="_x31_1_Tech_00000094584958586423160310000013945027226273506179_"
-      >
+      <g v-if="Class.Tech" id="_x31_1_Tech_00000094584958586423160310000013945027226273506179_">
         <g>
           <defs>
             <path
@@ -4140,19 +2952,13 @@
                 s-3.51,1.57-3.51,3.51c0,1.94,1.57,3.51,3.51,3.51S167.34,42.71,167.34,40.77z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000045605288976012306580000007595680891118549912_"
-          >
+          <clipPath id="SVGID_00000045605288976012306580000007595680891118549912_">
             <use
               xlink:href="#SVGID_00000038376047599663482540000010879495080842073506_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000045605288976012306580000007595680891118549912_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000045605288976012306580000007595680891118549912_)">
             <g>
               <defs>
                 <rect
@@ -4163,19 +2969,13 @@
                   height="17.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000004540117187766054370000009500417813876358282_"
-              >
+              <clipPath id="SVGID_00000004540117187766054370000009500417813876358282_">
                 <use
                   xlink:href="#SVGID_00000142138665686116777340000000093125645411551104_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000004540117187766054370000009500417813876358282_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000004540117187766054370000009500417813876358282_)">
                 <defs>
                   <rect
                     id="SVGID_00000036235349068800744830000008211875802082791553_"
@@ -4185,9 +2985,7 @@
                     height="17.01"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000168104114366742694770000015820722629253724077_"
-                >
+                <clipPath id="SVGID_00000168104114366742694770000015820722629253724077_">
                   <use
                     xlink:href="#SVGID_00000036235349068800744830000008211875802082791553_"
                     style="overflow: visible"
@@ -4195,9 +2993,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 -1.907349e-06)"
-                  style="
-                    clip-path: url(#SVGID_00000168104114366742694770000015820722629253724077_);
-                  "
+                  style="clip-path: url(#SVGID_00000168104114366742694770000015820722629253724077_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4213,10 +3009,7 @@
         </g>
       </g>
       // LEFT
-      <g
-        v-if="Class.Myth"
-        id="_x31_0_Myth_00000017475090403506264130000018256608661766496424_"
-      >
+      <g v-if="Class.Myth" id="_x31_0_Myth_00000017475090403506264130000018256608661766496424_">
         <g>
           <defs>
             <path
@@ -4225,19 +3018,13 @@
                 c0,1.94,1.57,3.51,3.51,3.51c1.94,0,3.51-1.57,3.51-3.51C159.98,38.84,158.41,37.27,156.47,37.27z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000110432290203864254800000016521998116070120360_"
-          >
+          <clipPath id="SVGID_00000110432290203864254800000016521998116070120360_">
             <use
               xlink:href="#SVGID_00000161618740526501372840000004944399097041992874_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000110432290203864254800000016521998116070120360_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000110432290203864254800000016521998116070120360_)">
             <g>
               <defs>
                 <rect
@@ -4248,19 +3035,13 @@
                   height="17.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000145032908428483456810000002130829049190017717_"
-              >
+              <clipPath id="SVGID_00000145032908428483456810000002130829049190017717_">
                 <use
                   xlink:href="#SVGID_00000168109856575232559900000006188179126326292634_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000145032908428483456810000002130829049190017717_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000145032908428483456810000002130829049190017717_)">
                 <defs>
                   <rect
                     id="SVGID_00000183234482666347441760000011065385128854730652_"
@@ -4270,9 +3051,7 @@
                     height="17.01"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000056426958336259331820000018375903253349138830_"
-                >
+                <clipPath id="SVGID_00000056426958336259331820000018375903253349138830_">
                   <use
                     xlink:href="#SVGID_00000183234482666347441760000011065385128854730652_"
                     style="overflow: visible"
@@ -4280,9 +3059,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 -1.907349e-06)"
-                  style="
-                    clip-path: url(#SVGID_00000056426958336259331820000018375903253349138830_);
-                  "
+                  style="clip-path: url(#SVGID_00000056426958336259331820000018375903253349138830_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4310,19 +3087,13 @@
                 c0,1.94,1.57,3.51,3.51,3.51c1.94,0,3.51-1.57,3.51-3.51C159.98,38.84,158.41,37.27,156.47,37.27z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000065072519396303993020000003797834534315509182_"
-          >
+          <clipPath id="SVGID_00000065072519396303993020000003797834534315509182_">
             <use
               xlink:href="#SVGID_00000036938190528554436860000011553346601323982748_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000065072519396303993020000003797834534315509182_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000065072519396303993020000003797834534315509182_)">
             <g>
               <defs>
                 <rect
@@ -4333,19 +3104,13 @@
                   height="17.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000047041208221801929430000007926009069544149153_"
-              >
+              <clipPath id="SVGID_00000047041208221801929430000007926009069544149153_">
                 <use
                   xlink:href="#SVGID_00000019655607357470595940000004353948139863932313_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000047041208221801929430000007926009069544149153_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000047041208221801929430000007926009069544149153_)">
                 <defs>
                   <rect
                     id="SVGID_00000012462537158765679210000013738427840278584223_"
@@ -4355,9 +3120,7 @@
                     height="17.01"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000122713324977327685680000008088139922238497705_"
-                >
+                <clipPath id="SVGID_00000122713324977327685680000008088139922238497705_">
                   <use
                     xlink:href="#SVGID_00000012462537158765679210000013738427840278584223_"
                     style="overflow: visible"
@@ -4365,9 +3128,7 @@
                 </clipPath>
                 <g
                   transform="matrix(1 0 0 1 0 -1.907349e-06)"
-                  style="
-                    clip-path: url(#SVGID_00000122713324977327685680000008088139922238497705_);
-                  "
+                  style="clip-path: url(#SVGID_00000122713324977327685680000008088139922238497705_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4395,19 +3156,13 @@
                 c0,1.94,1.57,3.51,3.51,3.51c1.94,0,3.51-1.57,3.51-3.51C163.66,32.48,162.09,30.91,160.16,30.91z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000062872850020847219190000004637692362389882548_"
-          >
+          <clipPath id="SVGID_00000062872850020847219190000004637692362389882548_">
             <use
               xlink:href="#SVGID_00000159431208116954091680000002146396429972011966_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000062872850020847219190000004637692362389882548_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000062872850020847219190000004637692362389882548_)">
             <g>
               <defs>
                 <rect
@@ -4418,19 +3173,13 @@
                   height="17.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000095328896803928514030000011242915413318244777_"
-              >
+              <clipPath id="SVGID_00000095328896803928514030000011242915413318244777_">
                 <use
                   xlink:href="#SVGID_00000039093494028830673410000010223718408043777934_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000095328896803928514030000011242915413318244777_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000095328896803928514030000011242915413318244777_)">
                 <defs>
                   <rect
                     id="SVGID_00000140697693593886597230000017045139758217932446_"
@@ -4440,18 +3189,14 @@
                     height="17.01"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000082339023481340973070000000828789216165509052_"
-                >
+                <clipPath id="SVGID_00000082339023481340973070000000828789216165509052_">
                   <use
                     xlink:href="#SVGID_00000140697693593886597230000017045139758217932446_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000082339023481340973070000000828789216165509052_);
-                  "
+                  style="clip-path: url(#SVGID_00000082339023481340973070000000828789216165509052_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4467,10 +3212,7 @@
         </g>
       </g>
       // TOP
-      <g
-        v-if="Class.Nature"
-        id="_x39__Nature_00000100379132996877746900000015198813090447383176_"
-      >
+      <g v-if="Class.Nature" id="_x39__Nature_00000100379132996877746900000015198813090447383176_">
         <g>
           <defs>
             <path
@@ -4479,19 +3221,13 @@
                 c0,1.94,1.57,3.51,3.51,3.51c1.94,0,3.51-1.57,3.51-3.51C163.66,32.48,162.09,30.91,160.16,30.91z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000104698765514032237340000007641945649281001902_"
-          >
+          <clipPath id="SVGID_00000104698765514032237340000007641945649281001902_">
             <use
               xlink:href="#SVGID_00000162313898127598981980000007373131925636074173_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000104698765514032237340000007641945649281001902_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000104698765514032237340000007641945649281001902_)">
             <g>
               <defs>
                 <rect
@@ -4502,19 +3238,13 @@
                   height="17.01"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000175285552988527633920000011834526479966638265_"
-              >
+              <clipPath id="SVGID_00000175285552988527633920000011834526479966638265_">
                 <use
                   xlink:href="#SVGID_00000116936149402260999830000013183127125914408091_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000175285552988527633920000011834526479966638265_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000175285552988527633920000011834526479966638265_)">
                 <defs>
                   <rect
                     id="SVGID_00000017496483568722397410000007619922248823974289_"
@@ -4524,18 +3254,14 @@
                     height="17.01"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000073702261615864447050000013750138161998078648_"
-                >
+                <clipPath id="SVGID_00000073702261615864447050000013750138161998078648_">
                   <use
                     xlink:href="#SVGID_00000017496483568722397410000007619922248823974289_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000073702261615864447050000013750138161998078648_);
-                  "
+                  style="clip-path: url(#SVGID_00000073702261615864447050000013750138161998078648_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4595,10 +3321,7 @@
         M167.11,39.9"
       />
     </g>
-    <g
-      v-if="Classes == 4"
-      id="Four_Classes"
-    >
+    <g v-if="Classes == 4" id="Four_Classes">
       <g id="_x31_5_Tech">
         <g>
           <defs>
@@ -4608,19 +3331,13 @@
                 s1.57,3.52,3.52,3.52c1.94,0,3.52-1.57,3.52-3.52S158.51,38.76,156.57,38.76z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000121265906591511379270000005076257470240460954_"
-          >
+          <clipPath id="SVGID_00000121265906591511379270000005076257470240460954_">
             <use
               xlink:href="#SVGID_00000018949209932065709950000016714700113112068535_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000121265906591511379270000005076257470240460954_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000121265906591511379270000005076257470240460954_)">
             <g>
               <defs>
                 <rect
@@ -4631,19 +3348,13 @@
                   height="17.03"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000076578598658550866800000015772127459380088998_"
-              >
+              <clipPath id="SVGID_00000076578598658550866800000015772127459380088998_">
                 <use
                   xlink:href="#SVGID_00000052826696620987121510000000886360016438246289_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000076578598658550866800000015772127459380088998_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000076578598658550866800000015772127459380088998_)">
                 <defs>
                   <rect
                     id="SVGID_00000146486371269070924190000005495047607140269473_"
@@ -4653,18 +3364,14 @@
                     height="17.03"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000070097638331900391370000014331947922697103492_"
-                >
+                <clipPath id="SVGID_00000070097638331900391370000014331947922697103492_">
                   <use
                     xlink:href="#SVGID_00000146486371269070924190000005495047607140269473_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000070097638331900391370000014331947922697103492_);
-                  "
+                  style="clip-path: url(#SVGID_00000070097638331900391370000014331947922697103492_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4689,19 +3396,13 @@
               r="3.52"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000054970629379744260950000017591043163458797204_"
-          >
+          <clipPath id="SVGID_00000054970629379744260950000017591043163458797204_">
             <use
               xlink:href="#SVGID_00000031901806526832954680000010701185866734915714_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000054970629379744260950000017591043163458797204_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000054970629379744260950000017591043163458797204_)">
             <g>
               <defs>
                 <rect
@@ -4712,19 +3413,13 @@
                   height="17.04"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000142150007457752480230000017612684142010784898_"
-              >
+              <clipPath id="SVGID_00000142150007457752480230000017612684142010784898_">
                 <use
                   xlink:href="#SVGID_00000101070037427019381380000011955957785783562903_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000142150007457752480230000017612684142010784898_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000142150007457752480230000017612684142010784898_)">
                 <defs>
                   <rect
                     id="SVGID_00000104694014338579708850000013650493124876694679_"
@@ -4734,18 +3429,14 @@
                     height="17.04"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000053528406778175494170000006314641782964369797_"
-                >
+                <clipPath id="SVGID_00000053528406778175494170000006314641782964369797_">
                   <use
                     xlink:href="#SVGID_00000104694014338579708850000013650493124876694679_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000053528406778175494170000006314641782964369797_);
-                  "
+                  style="clip-path: url(#SVGID_00000053528406778175494170000006314641782964369797_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4770,19 +3461,13 @@
               r="3.52"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000152953456100952319150000016127330281686227889_"
-          >
+          <clipPath id="SVGID_00000152953456100952319150000016127330281686227889_">
             <use
               xlink:href="#SVGID_00000021088392096124912770000003848989614893634693_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000152953456100952319150000016127330281686227889_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000152953456100952319150000016127330281686227889_)">
             <g>
               <defs>
                 <rect
@@ -4793,19 +3478,13 @@
                   height="17.04"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000083083374551509293350000009847759655808484027_"
-              >
+              <clipPath id="SVGID_00000083083374551509293350000009847759655808484027_">
                 <use
                   xlink:href="#SVGID_00000021108329878073977010000004059317844119352234_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000083083374551509293350000009847759655808484027_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000083083374551509293350000009847759655808484027_)">
                 <defs>
                   <rect
                     id="SVGID_00000170970687394150761390000008144797777429592733_"
@@ -4815,18 +3494,14 @@
                     height="17.04"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000160896832598085006870000015163452174068303745_"
-                >
+                <clipPath id="SVGID_00000160896832598085006870000015163452174068303745_">
                   <use
                     xlink:href="#SVGID_00000170970687394150761390000008144797777429592733_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000160896832598085006870000015163452174068303745_);
-                  "
+                  style="clip-path: url(#SVGID_00000160896832598085006870000015163452174068303745_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4850,19 +3525,13 @@
                 c0,1.94,1.57,3.52,3.52,3.52c1.94,0,3.52-1.57,3.52-3.52C160.08,33.1,158.51,31.53,156.57,31.53z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000134938610192806633470000005998879798859890079_"
-          >
+          <clipPath id="SVGID_00000134938610192806633470000005998879798859890079_">
             <use
               xlink:href="#SVGID_00000011024300855892347260000009254223593700670129_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000134938610192806633470000005998879798859890079_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000134938610192806633470000005998879798859890079_)">
             <g>
               <defs>
                 <rect
@@ -4873,19 +3542,13 @@
                   height="17.04"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000107565575415733850290000015173756857866584720_"
-              >
+              <clipPath id="SVGID_00000107565575415733850290000015173756857866584720_">
                 <use
                   xlink:href="#SVGID_00000143609460431660653100000012379539075547761593_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000107565575415733850290000015173756857866584720_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000107565575415733850290000015173756857866584720_)">
                 <defs>
                   <rect
                     id="SVGID_00000056428640149791409790000006519356736045498815_"
@@ -4895,18 +3558,14 @@
                     height="17.04"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000173152485038366220820000011988087705857248656_"
-                >
+                <clipPath id="SVGID_00000173152485038366220820000011988087705857248656_">
                   <use
                     xlink:href="#SVGID_00000056428640149791409790000006519356736045498815_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000173152485038366220820000011988087705857248656_);
-                  "
+                  style="clip-path: url(#SVGID_00000173152485038366220820000011988087705857248656_)"
                 >
                   <image
                     style="overflow: visible"
@@ -4980,14 +3639,9 @@
         C159.85,42.38,159.71,43.15,159.28,43.87z"
       />
     </g>
-    <g
-      v-if="Classes >= 2"
-      id="class ball outer ring and shadow"
-    >
+    <g v-if="Classes >= 2" id="class ball outer ring and shadow">
       <g v-if="Type.HQ">
-        <g
-          id="One_Class_HQ_00000039111800946281574250000017869723380567403444_"
-        >
+        <g id="One_Class_HQ_00000039111800946281574250000017869723380567403444_">
           <g id="HQ_00000124119719129060204310000013328797746910294924_">
             <image
               style="overflow: visible; opacity: 0.75"
@@ -5005,42 +3659,15 @@
                 x2="164.2681"
                 y2="45.7511"
               >
-                <stop
-                  offset="0"
-                  style="stop-color: #74573a"
-                />
-                <stop
-                  offset="0.4273"
-                  style="stop-color: #76593b"
-                />
-                <stop
-                  offset="0.5813"
-                  style="stop-color: #7d5f40"
-                />
-                <stop
-                  offset="0.691"
-                  style="stop-color: #886a48"
-                />
-                <stop
-                  offset="0.7797"
-                  style="stop-color: #997a54"
-                />
-                <stop
-                  offset="0.8557"
-                  style="stop-color: #af8f64"
-                />
-                <stop
-                  offset="0.9229"
-                  style="stop-color: #cba877"
-                />
-                <stop
-                  offset="0.9823"
-                  style="stop-color: #eac68d"
-                />
-                <stop
-                  offset="1"
-                  style="stop-color: #f5d095"
-                />
+                <stop offset="0" style="stop-color: #74573a" />
+                <stop offset="0.4273" style="stop-color: #76593b" />
+                <stop offset="0.5813" style="stop-color: #7d5f40" />
+                <stop offset="0.691" style="stop-color: #886a48" />
+                <stop offset="0.7797" style="stop-color: #997a54" />
+                <stop offset="0.8557" style="stop-color: #af8f64" />
+                <stop offset="0.9229" style="stop-color: #cba877" />
+                <stop offset="0.9823" style="stop-color: #eac68d" />
+                <stop offset="1" style="stop-color: #f5d095" />
               </linearGradient>
               <circle
                 style="
@@ -5063,34 +3690,13 @@
             x2="164.7452"
             y2="46.5775"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f4cf94"
-            />
-            <stop
-              offset="0.1144"
-              style="stop-color: #d5b074"
-            />
-            <stop
-              offset="0.2386"
-              style="stop-color: #bb965a"
-            />
-            <stop
-              offset="0.3751"
-              style="stop-color: #a68145"
-            />
-            <stop
-              offset="0.5278"
-              style="stop-color: #987336"
-            />
-            <stop
-              offset="0.7102"
-              style="stop-color: #906b2e"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8d682b"
-            />
+            <stop offset="0" style="stop-color: #f4cf94" />
+            <stop offset="0.1144" style="stop-color: #d5b074" />
+            <stop offset="0.2386" style="stop-color: #bb965a" />
+            <stop offset="0.3751" style="stop-color: #a68145" />
+            <stop offset="0.5278" style="stop-color: #987336" />
+            <stop offset="0.7102" style="stop-color: #906b2e" />
+            <stop offset="1" style="stop-color: #8d682b" />
           </linearGradient>
           <circle
             id="HQ_00000139294613037659657730000017434407936090220987_"
@@ -5124,26 +3730,11 @@
               x2="164.2681"
               y2="45.7511"
             >
-              <stop
-                offset="0"
-                style="stop-color: #806f65"
-              />
-              <stop
-                offset="0.16"
-                style="stop-color: #8a796f"
-              />
-              <stop
-                offset="0.434"
-                style="stop-color: #a59589"
-              />
-              <stop
-                offset="0.7866"
-                style="stop-color: #d1c1b2"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #efdfcf"
-              />
+              <stop offset="0" style="stop-color: #806f65" />
+              <stop offset="0.16" style="stop-color: #8a796f" />
+              <stop offset="0.434" style="stop-color: #a59589" />
+              <stop offset="0.7866" style="stop-color: #d1c1b2" />
+              <stop offset="1" style="stop-color: #efdfcf" />
             </linearGradient>
             <circle
               style="
@@ -5166,14 +3757,8 @@
           x2="164.7452"
           y2="46.5775"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ddcbbc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #928178"
-          />
+          <stop offset="0" style="stop-color: #ddcbbc" />
+          <stop offset="1" style="stop-color: #928178" />
         </linearGradient>
         <circle
           style="
@@ -5188,10 +3773,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="ManaBall"
-      id="Mana"
-    >
+    <g v-if="ManaBall" id="Mana">
       <g id="BlueBall">
         <g>
           <defs>
@@ -5202,19 +3784,13 @@
               r="8.85"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000018227082184518428020000011233403088019728271_"
-          >
+          <clipPath id="SVGID_00000018227082184518428020000011233403088019728271_">
             <use
               xlink:href="#SVGID_00000088117727569195126770000010410800885290200251_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000018227082184518428020000011233403088019728271_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000018227082184518428020000011233403088019728271_)">
             <g>
               <defs>
                 <rect
@@ -5225,19 +3801,13 @@
                   height="27.69"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000023982356224636998730000015563371596380801946_"
-              >
+              <clipPath id="SVGID_00000023982356224636998730000015563371596380801946_">
                 <use
                   xlink:href="#SVGID_00000108995461915138697970000006142701230034724743_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000023982356224636998730000015563371596380801946_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000023982356224636998730000015563371596380801946_)">
                 <defs>
                   <rect
                     id="SVGID_00000067212610039392686580000009585171479120002188_"
@@ -5247,9 +3817,7 @@
                     height="27.69"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000098913711616471907980000006059033363696891059_"
-                >
+                <clipPath id="SVGID_00000098913711616471907980000006059033363696891059_">
                   <use
                     xlink:href="#SVGID_00000067212610039392686580000009585171479120002188_"
                     style="overflow: visible"
@@ -5257,9 +3825,7 @@
                 </clipPath>
                 <g
                   v-if="!Type.HQ"
-                  style="
-                    clip-path: url(#SVGID_00000098913711616471907980000006059033363696891059_);
-                  "
+                  style="clip-path: url(#SVGID_00000098913711616471907980000006059033363696891059_)"
                 >
                   <image
                     style="overflow: visible"
@@ -5271,9 +3837,7 @@
                 </g>
                 <g
                   v-if="Type.HQ"
-                  style="
-                    clip-path: url(#SVGID_00000098913711616471907980000006059033363696891059_);
-                  "
+                  style="clip-path: url(#SVGID_00000098913711616471907980000006059033363696891059_)"
                 >
                   <image
                     style="overflow: visible"
@@ -5297,10 +3861,7 @@
         transform="matrix(0.24 0 0 0.24 24.633 24.9052)"
       />
 
-      <g
-        v-if="ManaBall.Tech"
-        id="Mana_Tech"
-      >
+      <g v-if="ManaBall.Tech" id="Mana_Tech">
         <g>
           <g v-if="true">
             <linearGradient
@@ -5311,38 +3872,14 @@
               x2="40.009"
               y2="43.8409"
             >
-              <stop
-                offset="0"
-                style="stop-color: #476c76"
-              />
-              <stop
-                offset="0.4497"
-                style="stop-color: #496e78"
-              />
-              <stop
-                offset="0.6117"
-                style="stop-color: #50737e"
-              />
-              <stop
-                offset="0.7272"
-                style="stop-color: #5b7d89"
-              />
-              <stop
-                offset="0.8205"
-                style="stop-color: #6c8b99"
-              />
-              <stop
-                offset="0.9005"
-                style="stop-color: #829dae"
-              />
-              <stop
-                offset="0.9701"
-                style="stop-color: #9db2c8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #abbed5"
-              />
+              <stop offset="0" style="stop-color: #476c76" />
+              <stop offset="0.4497" style="stop-color: #496e78" />
+              <stop offset="0.6117" style="stop-color: #50737e" />
+              <stop offset="0.7272" style="stop-color: #5b7d89" />
+              <stop offset="0.8205" style="stop-color: #6c8b99" />
+              <stop offset="0.9005" style="stop-color: #829dae" />
+              <stop offset="0.9701" style="stop-color: #9db2c8" />
+              <stop offset="1" style="stop-color: #abbed5" />
             </linearGradient>
             <circle
               style="
@@ -5365,34 +3902,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bbc7e1"
-          />
-          <stop
-            offset="0.0174"
-            style="stop-color: #b7c4dd"
-          />
-          <stop
-            offset="0.1553"
-            style="stop-color: #9dafc5"
-          />
-          <stop
-            offset="0.3066"
-            style="stop-color: #889eb1"
-          />
-          <stop
-            offset="0.4761"
-            style="stop-color: #7993a3"
-          />
-          <stop
-            offset="0.6785"
-            style="stop-color: #718c9b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a99"
-          />
+          <stop offset="0" style="stop-color: #bbc7e1" />
+          <stop offset="0.0174" style="stop-color: #b7c4dd" />
+          <stop offset="0.1553" style="stop-color: #9dafc5" />
+          <stop offset="0.3066" style="stop-color: #889eb1" />
+          <stop offset="0.4761" style="stop-color: #7993a3" />
+          <stop offset="0.6785" style="stop-color: #718c9b" />
+          <stop offset="1" style="stop-color: #6e8a99" />
         </linearGradient>
         <circle
           style="
@@ -5406,10 +3922,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Nature"
-        id="Mana_Nature"
-      >
+      <g v-if="ManaBall.Nature" id="Mana_Nature">
         <g>
           <image
             style="overflow: visible; opacity: 0.75"
@@ -5427,42 +3940,15 @@
               x2="40.009"
               y2="43.8409"
             >
-              <stop
-                offset="0"
-                style="stop-color: #506d4c"
-              />
-              <stop
-                offset="0.4273"
-                style="stop-color: #526f4e"
-              />
-              <stop
-                offset="0.5813"
-                style="stop-color: #597655"
-              />
-              <stop
-                offset="0.691"
-                style="stop-color: #648160"
-              />
-              <stop
-                offset="0.7797"
-                style="stop-color: #759271"
-              />
-              <stop
-                offset="0.8557"
-                style="stop-color: #8ba887"
-              />
-              <stop
-                offset="0.9229"
-                style="stop-color: #a7c4a2"
-              />
-              <stop
-                offset="0.9823"
-                style="stop-color: #c6e3c1"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #d1eecc"
-              />
+              <stop offset="0" style="stop-color: #506d4c" />
+              <stop offset="0.4273" style="stop-color: #526f4e" />
+              <stop offset="0.5813" style="stop-color: #597655" />
+              <stop offset="0.691" style="stop-color: #648160" />
+              <stop offset="0.7797" style="stop-color: #759271" />
+              <stop offset="0.8557" style="stop-color: #8ba887" />
+              <stop offset="0.9229" style="stop-color: #a7c4a2" />
+              <stop offset="0.9823" style="stop-color: #c6e3c1" />
+              <stop offset="1" style="stop-color: #d1eecc" />
             </linearGradient>
             <circle
               style="
@@ -5485,34 +3971,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1eecc"
-          />
-          <stop
-            offset="0.0174"
-            style="stop-color: #cdeac8"
-          />
-          <stop
-            offset="0.1553"
-            style="stop-color: #b3d0ae"
-          />
-          <stop
-            offset="0.3066"
-            style="stop-color: #9fbb99"
-          />
-          <stop
-            offset="0.4761"
-            style="stop-color: #91ac8b"
-          />
-          <stop
-            offset="0.6785"
-            style="stop-color: #89a483"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #86a180"
-          />
+          <stop offset="0" style="stop-color: #d1eecc" />
+          <stop offset="0.0174" style="stop-color: #cdeac8" />
+          <stop offset="0.1553" style="stop-color: #b3d0ae" />
+          <stop offset="0.3066" style="stop-color: #9fbb99" />
+          <stop offset="0.4761" style="stop-color: #91ac8b" />
+          <stop offset="0.6785" style="stop-color: #89a483" />
+          <stop offset="1" style="stop-color: #86a180" />
         </linearGradient>
         <circle
           style="
@@ -5526,10 +3991,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Myth"
-        id="Mana_Myth"
-      >
+      <g v-if="ManaBall.Myth" id="Mana_Myth">
         <linearGradient
           id="SVGID_00000125593897542365989890000003514656109570173313_"
           gradientUnits="userSpaceOnUse"
@@ -5538,42 +4000,15 @@
           x2="40.009"
           y2="43.8409"
         >
-          <stop
-            offset="0"
-            style="stop-color: #502f4c"
-          />
-          <stop
-            offset="0.4273"
-            style="stop-color: #52314e"
-          />
-          <stop
-            offset="0.5813"
-            style="stop-color: #593755"
-          />
-          <stop
-            offset="0.691"
-            style="stop-color: #644160"
-          />
-          <stop
-            offset="0.7797"
-            style="stop-color: #754f71"
-          />
-          <stop
-            offset="0.8557"
-            style="stop-color: #8b6387"
-          />
-          <stop
-            offset="0.9229"
-            style="stop-color: #a77aa2"
-          />
-          <stop
-            offset="0.9823"
-            style="stop-color: #c695c1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d19fcc"
-          />
+          <stop offset="0" style="stop-color: #502f4c" />
+          <stop offset="0.4273" style="stop-color: #52314e" />
+          <stop offset="0.5813" style="stop-color: #593755" />
+          <stop offset="0.691" style="stop-color: #644160" />
+          <stop offset="0.7797" style="stop-color: #754f71" />
+          <stop offset="0.8557" style="stop-color: #8b6387" />
+          <stop offset="0.9229" style="stop-color: #a77aa2" />
+          <stop offset="0.9823" style="stop-color: #c695c1" />
+          <stop offset="1" style="stop-color: #d19fcc" />
         </linearGradient>
         <circle
           style="
@@ -5594,34 +4029,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d19edb"
-          />
-          <stop
-            offset="0.0709"
-            style="stop-color: #c291c9"
-          />
-          <stop
-            offset="0.2013"
-            style="stop-color: #ac7daf"
-          />
-          <stop
-            offset="0.3443"
-            style="stop-color: #9b6d9a"
-          />
-          <stop
-            offset="0.5046"
-            style="stop-color: #8f628b"
-          />
-          <stop
-            offset="0.696"
-            style="stop-color: #885c83"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #865a80"
-          />
+          <stop offset="0" style="stop-color: #d19edb" />
+          <stop offset="0.0709" style="stop-color: #c291c9" />
+          <stop offset="0.2013" style="stop-color: #ac7daf" />
+          <stop offset="0.3443" style="stop-color: #9b6d9a" />
+          <stop offset="0.5046" style="stop-color: #8f628b" />
+          <stop offset="0.696" style="stop-color: #885c83" />
+          <stop offset="1" style="stop-color: #865a80" />
         </linearGradient>
         <circle
           style="
@@ -5635,10 +4049,7 @@
           r="9.96"
         />
       </g>
-      <g
-        v-if="ManaBall.Culture"
-        id="Mana_Culture"
-      >
+      <g v-if="ManaBall.Culture" id="Mana_Culture">
         <linearGradient
           id="SVGID_00000099653851417899690450000017056176057173100973_"
           gradientUnits="userSpaceOnUse"
@@ -5647,42 +4058,15 @@
           x2="40.009"
           y2="43.8409"
         >
-          <stop
-            offset="0"
-            style="stop-color: #924a3a"
-          />
-          <stop
-            offset="0.4129"
-            style="stop-color: #934c3c"
-          />
-          <stop
-            offset="0.5616"
-            style="stop-color: #985243"
-          />
-          <stop
-            offset="0.6676"
-            style="stop-color: #9f5d4e"
-          />
-          <stop
-            offset="0.7534"
-            style="stop-color: #aa6d5f"
-          />
-          <stop
-            offset="0.8268"
-            style="stop-color: #b88275"
-          />
-          <stop
-            offset="0.8918"
-            style="stop-color: #c99b91"
-          />
-          <stop
-            offset="0.9492"
-            style="stop-color: #deb9b0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4dad3"
-          />
+          <stop offset="0" style="stop-color: #924a3a" />
+          <stop offset="0.4129" style="stop-color: #934c3c" />
+          <stop offset="0.5616" style="stop-color: #985243" />
+          <stop offset="0.6676" style="stop-color: #9f5d4e" />
+          <stop offset="0.7534" style="stop-color: #aa6d5f" />
+          <stop offset="0.8268" style="stop-color: #b88275" />
+          <stop offset="0.8918" style="stop-color: #c99b91" />
+          <stop offset="0.9492" style="stop-color: #deb9b0" />
+          <stop offset="1" style="stop-color: #f4dad3" />
         </linearGradient>
         <circle
           style="
@@ -5703,34 +4087,13 @@
           x2="40.5679"
           y2="44.809"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2b28e"
-          />
-          <stop
-            offset="0.1058"
-            style="stop-color: #c8957c"
-          />
-          <stop
-            offset="0.2312"
-            style="stop-color: #b07b6c"
-          />
-          <stop
-            offset="0.3689"
-            style="stop-color: #9d665f"
-          />
-          <stop
-            offset="0.5231"
-            style="stop-color: #905756"
-          />
-          <stop
-            offset="0.7074"
-            style="stop-color: #884f51"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #864c4f"
-          />
+          <stop offset="0" style="stop-color: #e2b28e" />
+          <stop offset="0.1058" style="stop-color: #c8957c" />
+          <stop offset="0.2312" style="stop-color: #b07b6c" />
+          <stop offset="0.3689" style="stop-color: #9d665f" />
+          <stop offset="0.5231" style="stop-color: #905756" />
+          <stop offset="0.7074" style="stop-color: #884f51" />
+          <stop offset="1" style="stop-color: #864c4f" />
         </linearGradient>
         <circle
           style="
@@ -5759,42 +4122,15 @@
                 x2="40.009"
                 y2="43.8409"
               >
-                <stop
-                  offset="0"
-                  style="stop-color: #6d574b"
-                />
-                <stop
-                  offset="0.4234"
-                  style="stop-color: #6f594d"
-                />
-                <stop
-                  offset="0.576"
-                  style="stop-color: #756053"
-                />
-                <stop
-                  offset="0.6847"
-                  style="stop-color: #816b5f"
-                />
-                <stop
-                  offset="0.7726"
-                  style="stop-color: #917c6f"
-                />
-                <stop
-                  offset="0.848"
-                  style="stop-color: #a69285"
-                />
-                <stop
-                  offset="0.9146"
-                  style="stop-color: #c0ae9f"
-                />
-                <stop
-                  offset="0.9735"
-                  style="stop-color: #decdbe"
-                />
-                <stop
-                  offset="1"
-                  style="stop-color: #eedece"
-                />
+                <stop offset="0" style="stop-color: #6d574b" />
+                <stop offset="0.4234" style="stop-color: #6f594d" />
+                <stop offset="0.576" style="stop-color: #756053" />
+                <stop offset="0.6847" style="stop-color: #816b5f" />
+                <stop offset="0.7726" style="stop-color: #917c6f" />
+                <stop offset="0.848" style="stop-color: #a69285" />
+                <stop offset="0.9146" style="stop-color: #c0ae9f" />
+                <stop offset="0.9735" style="stop-color: #decdbe" />
+                <stop offset="1" style="stop-color: #eedece" />
               </linearGradient>
               <circle
                 style="
@@ -5817,34 +4153,13 @@
             x2="40.5679"
             y2="44.809"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eedece"
-            />
-            <stop
-              offset="0.1058"
-              style="stop-color: #d2c1b2"
-            />
-            <stop
-              offset="0.2312"
-              style="stop-color: #b9a799"
-            />
-            <stop
-              offset="0.3689"
-              style="stop-color: #a59285"
-            />
-            <stop
-              offset="0.5231"
-              style="stop-color: #978377"
-            />
-            <stop
-              offset="0.7074"
-              style="stop-color: #8f7b6f"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8c786c"
-            />
+            <stop offset="0" style="stop-color: #eedece" />
+            <stop offset="0.1058" style="stop-color: #d2c1b2" />
+            <stop offset="0.2312" style="stop-color: #b9a799" />
+            <stop offset="0.3689" style="stop-color: #a59285" />
+            <stop offset="0.5231" style="stop-color: #978377" />
+            <stop offset="0.7074" style="stop-color: #8f7b6f" />
+            <stop offset="1" style="stop-color: #8c786c" />
           </linearGradient>
           <circle
             style="
@@ -5859,10 +4174,7 @@
           />
         </g>
       </g>
-      <g
-        v-if="ManaBall.HQ"
-        id="Mana_HQ"
-      >
+      <g v-if="ManaBall.HQ" id="Mana_HQ">
         <g id="Circle_Left_00000038387448793549582000000006435880124292487831_">
           <g>
             <image
@@ -5881,42 +4193,15 @@
                 x2="40.009"
                 y2="43.8409"
               >
-                <stop
-                  offset="0"
-                  style="stop-color: #74573b"
-                />
-                <stop
-                  offset="0.4273"
-                  style="stop-color: #76593c"
-                />
-                <stop
-                  offset="0.5813"
-                  style="stop-color: #7d5f41"
-                />
-                <stop
-                  offset="0.691"
-                  style="stop-color: #886a49"
-                />
-                <stop
-                  offset="0.7797"
-                  style="stop-color: #997a55"
-                />
-                <stop
-                  offset="0.8557"
-                  style="stop-color: #af8f64"
-                />
-                <stop
-                  offset="0.9229"
-                  style="stop-color: #cba877"
-                />
-                <stop
-                  offset="0.9823"
-                  style="stop-color: #eac68d"
-                />
-                <stop
-                  offset="1"
-                  style="stop-color: #f5d095"
-                />
+                <stop offset="0" style="stop-color: #74573b" />
+                <stop offset="0.4273" style="stop-color: #76593c" />
+                <stop offset="0.5813" style="stop-color: #7d5f41" />
+                <stop offset="0.691" style="stop-color: #886a49" />
+                <stop offset="0.7797" style="stop-color: #997a55" />
+                <stop offset="0.8557" style="stop-color: #af8f64" />
+                <stop offset="0.9229" style="stop-color: #cba877" />
+                <stop offset="0.9823" style="stop-color: #eac68d" />
+                <stop offset="1" style="stop-color: #f5d095" />
               </linearGradient>
               <circle
                 style="
@@ -5939,34 +4224,13 @@
             x2="40.5679"
             y2="44.809"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f1ce94"
-            />
-            <stop
-              offset="0.1087"
-              style="stop-color: #d4b076"
-            />
-            <stop
-              offset="0.2337"
-              style="stop-color: #ba965c"
-            />
-            <stop
-              offset="0.371"
-              style="stop-color: #a68247"
-            />
-            <stop
-              offset="0.5248"
-              style="stop-color: #987338"
-            />
-            <stop
-              offset="0.7083"
-              style="stop-color: #906b30"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8d682d"
-            />
+            <stop offset="0" style="stop-color: #f1ce94" />
+            <stop offset="0.1087" style="stop-color: #d4b076" />
+            <stop offset="0.2337" style="stop-color: #ba965c" />
+            <stop offset="0.371" style="stop-color: #a68247" />
+            <stop offset="0.5248" style="stop-color: #987338" />
+            <stop offset="0.7083" style="stop-color: #906b30" />
+            <stop offset="1" style="stop-color: #8d682d" />
           </linearGradient>
           <circle
             style="
@@ -5982,10 +4246,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FullArtIllustrationMask.Entity"
-      id="Entity_FullArt_Illustration_Mask"
-    >
+    <g v-if="FullArtIllustrationMask.Entity" id="Entity_FullArt_Illustration_Mask">
       <clipPath id="full_entity_artwork_clip">
         <polygon
           points="66.26,25.56 132.07,25.56 171.2,64.69 171.2,128.51 166.22,133.49 166.22,242.02 163.83,244.41
@@ -6004,10 +4265,7 @@
         clip-path="url(#full_entity_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.Action"
-      id="Action_FullArt_Illustration_Mask"
-    >
+    <g v-if="FullArtIllustrationMask.Action" id="Action_FullArt_Illustration_Mask">
       <clipPath id="full_action_artwork_clip">
         <path
           d="M172.7,96.21c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,9.46,1.81,18.49,5.08,26.81v96.23
@@ -6026,10 +4284,7 @@
         clip-path="url(#full_action_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.Place"
-      id="Place_FullArt_Illustration_Mask"
-    >
+    <g v-if="FullArtIllustrationMask.Place" id="Place_FullArt_Illustration_Mask">
       <clipPath id="full_place_artwork_clip">
         <polygon
           points="171.45,59.96 99.12,23.46 26.79,59.96 26.79,133.12 30.62,135.05 30.62,219.24 30.62,243.51
@@ -6048,10 +4303,7 @@
         clip-path="url(#full_place_artwork_clip)"
       />
     </g>
-    <g
-      v-if="FullArtIllustrationMask.HQ"
-      id="HQ_FullArt_Illustration_Mask"
-    >
+    <g v-if="FullArtIllustrationMask.HQ" id="HQ_FullArt_Illustration_Mask">
       <clipPath id="full_hq_artwork_clip">
         <path
           d="M172.37,73.57c-0.15-0.16-15.48-16.13-40.18-33.55C107.34,22.5,99.52,21.77,99.2,21.74l-0.07,0l-0.07,0
@@ -6072,10 +4324,7 @@
         clip-path="url(#full_hq_artwork_clip)"
       />
     </g>
-    <g
-      v-if="ShadowFullArt.Entity"
-      id="Entity_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.Entity" id="Entity_Shadow_FullArt">
       <g>
         <defs>
           <path
@@ -6084,9 +4333,7 @@
               c-8.48,0-15.38,6.9-15.38,15.38c0,5.15,2.53,9.88,6.81,12.75v196.67l6.18,6.18H165.6l6.18-6.18V33.08L165.6,26.9z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000014615193314970422500000004928575989543379366_"
-        >
+        <clipPath id="SVGID_00000014615193314970422500000004928575989543379366_">
           <use
             xlink:href="#SVGID_00000139256071073790061030000001152887250273279633_"
             style="overflow: visible"
@@ -6094,9 +4341,7 @@
         </clipPath>
         <g
           id="FullArt_Inside_BG_00000171684717222020400180000003557100830879334023_"
-          style="
-            clip-path: url(#SVGID_00000014615193314970422500000004928575989543379366_);
-          "
+          style="clip-path: url(#SVGID_00000014615193314970422500000004928575989543379366_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -6117,10 +4362,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.Action"
-      id="Action_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.Action" id="Action_Shadow_FullArt">
       <g>
         <g>
           <image
@@ -6141,10 +4383,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.Place"
-      id="Place_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.Place" id="Place_Shadow_FullArt">
       <g>
         <defs>
           <path
@@ -6154,19 +4393,13 @@
               V33.08L165.6,26.9z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000065057175472437928040000017776728513424996242_"
-        >
+        <clipPath id="SVGID_00000065057175472437928040000017776728513424996242_">
           <use
             xlink:href="#SVGID_00000156568364416049100820000005492736521479817149_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000065057175472437928040000017776728513424996242_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000065057175472437928040000017776728513424996242_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="644"
@@ -6184,10 +4417,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFullArt.HQ"
-      id="HQ_Shadow_FullArt"
-    >
+    <g v-if="ShadowFullArt.HQ" id="HQ_Shadow_FullArt">
       <g>
         <defs>
           <path
@@ -6216,19 +4446,13 @@
               C171.02,103.35,171.05,103.08,171.08,102.81z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000081637577668181952400000002610201444567965624_"
-        >
+        <clipPath id="SVGID_00000081637577668181952400000002610201444567965624_">
           <use
             xlink:href="#SVGID_00000077307106729786474230000004095733504350663076_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="60"
@@ -6245,30 +4469,18 @@
               x2="30.3152"
               y2="74.6657"
             >
-              <stop
-                offset="0"
-                style="stop-color: #c6a267"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9c7c45"
-              />
+              <stop offset="0" style="stop-color: #c6a267" />
+              <stop offset="1" style="stop-color: #9c7c45" />
             </linearGradient>
             <path
-              style="
-                fill: url(#SVGID_00000060003550369226272290000017498157946001905301_);
-              "
+              style="fill: url(#SVGID_00000060003550369226272290000017498157946001905301_)"
               d="M33.05,116.04
                 c-0.01-0.06-0.02-0.11-0.03-0.17c-3.03-16.39-1.41-40.62-1.41-40.62l-2.98-0.58l-1.01,3.18c-0.12,6.87-0.11,24.32,2.48,38.38
                 c0.94,5.07,1.96,9.54,2.94,13.33V116.04z"
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="335"
@@ -6285,30 +4497,18 @@
               x2="101.4576"
               y2="27.8373"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7a5a23"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #74573c"
-              />
+              <stop offset="0" style="stop-color: #7a5a23" />
+              <stop offset="1" style="stop-color: #74573c" />
             </linearGradient>
             <path
-              style="
-                fill: url(#SVGID_00000131325548582180124610000004172323377678930360_);
-              "
+              style="fill: url(#SVGID_00000131325548582180124610000004172323377678930360_)"
               d="M99.06,23.82
                 c-0.31,0.02-7.91,0.74-32.05,17.77c-24,16.93-38.9,32.45-39.05,32.6l-0.27,0.28l0,0.39c0,0.05-0.04,1.14-0.07,2.98l1.01-3.18
                 l2.98,0.58c0,0,14.45-13.57,36.52-29.13c22.24-15.68,30.18-16.31,31-16.43c0,0,0,0,0,0v-5.87L99.06,23.82z"
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="59"
@@ -6325,29 +4525,17 @@
               x2="167.9833"
               y2="74.6657"
             >
-              <stop
-                offset="0"
-                style="stop-color: #bda174"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9c7c45"
-              />
+              <stop offset="0" style="stop-color: #bda174" />
+              <stop offset="1" style="stop-color: #9c7c45" />
             </linearGradient>
             <path
-              style="
-                fill: url(#SVGID_00000149380605632389733590000010061883417613964181_);
-              "
+              style="fill: url(#SVGID_00000149380605632389733590000010061883417613964181_)"
               d="M170.64,77.84l-1.01-3.18l-2.98,0.58
                 c0,0,1.61,24-1.37,40.39v13.63c0.96-3.72,1.96-8.1,2.87-13.05C170.76,102.16,170.76,84.71,170.64,77.84z"
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="335"
@@ -6364,30 +4552,18 @@
               x2="170.6423"
               y2="50.8271"
             >
-              <stop
-                offset="0"
-                style="stop-color: #8c672a"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #ac905f"
-              />
+              <stop offset="0" style="stop-color: #8c672a" />
+              <stop offset="1" style="stop-color: #ac905f" />
             </linearGradient>
             <path
-              style="
-                fill: url(#SVGID_00000141431960997537648140000008842068849843295636_);
-              "
+              style="fill: url(#SVGID_00000141431960997537648140000008842068849843295636_)"
               d="M99.2,23.82
                 c0.31,0.02,7.91,0.74,32.05,17.77c24,16.93,38.9,32.45,39.05,32.6l0.27,0.28l0,0.39c0,0.05,0.04,1.14,0.07,2.98l-1.01-3.18
                 l-2.98,0.58c0,0-14.45-13.57-36.52-29.13c-22.24-15.68-30.18-16.31-31-16.43c0,0,0,0,0,0v-5.87L99.2,23.82z"
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="596"
@@ -6404,30 +4580,18 @@
               x2="99.1671"
               y2="115.636"
             >
-              <stop
-                offset="0"
-                style="stop-color: #815c21"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #c9a56a"
-              />
+              <stop offset="0" style="stop-color: #815c21" />
+              <stop offset="1" style="stop-color: #c9a56a" />
             </linearGradient>
             <path
-              style="
-                fill: url(#SVGID_00000134962013718548891210000010093271002649881014_);
-              "
+              style="fill: url(#SVGID_00000134962013718548891210000010093271002649881014_)"
               d="M165.29,115.64l0,126.32l0.01,0.01
                 c-0.9,0.9-1.49,1.48-2.61,2.51H35.66c-1.12-1.03-1.71-1.61-2.61-2.51V116.04l-0.93,5.7v121.16l2.39,2.39h129.32l2.39-2.39V121.4
                 L165.29,115.64z"
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000081637577668181952400000002610201444567965624_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="608"
@@ -6446,14 +4610,8 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="FramedIllustrationMask"
-      id="Framed_Illustration_Mask"
-    >
-      <g
-        v-if="FramedIllustrationMask.Entity"
-        id="Entity_Framed_Illustration_Mask"
-      >
+    <g v-if="FramedIllustrationMask" id="Framed_Illustration_Mask">
+      <g v-if="FramedIllustrationMask.Entity" id="Entity_Framed_Illustration_Mask">
         <clipPath id="entity_artwork_clip">
           <polygon
             points="66.26,26.43 132.07,26.43 171.2,65.56 171.2,129.38 132.07,168.52 66.26,168.52 27.13,129.39
@@ -6472,16 +4630,9 @@
           clip-path="url(#entity_artwork_clip)"
         />
       </g>
-      <g
-        v-if="FramedIllustrationMask.Action"
-        id="Action_Framed_Illustration_Mask"
-      >
+      <g v-if="FramedIllustrationMask.Action" id="Action_Framed_Illustration_Mask">
         <clipPath id="action_artwork_clip">
-          <circle
-            cx="99.12"
-            cy="96.21"
-            r="72.83"
-          />
+          <circle cx="99.12" cy="96.21" r="72.83" />
         </clipPath>
         <image
           id="cardimageFramedAction"
@@ -6494,10 +4645,7 @@
           clip-path="url(#action_artwork_clip)"
         />
       </g>
-      <g
-        v-if="FramedIllustrationMask.Place"
-        id="Place_Framed_Illustration_Mask"
-      >
+      <g v-if="FramedIllustrationMask.Place" id="Place_Framed_Illustration_Mask">
         <clipPath id="place_artwork_clip">
           <path
             d="M99.12,169.62l-72.33-36.5V59.96l72.33-36.5l72.33,36.5v73.17L99.12,169.62z M170.7,132.66L170.7,132.66
@@ -6515,10 +4663,7 @@
           clip-path="url(#place_artwork_clip)"
         />
       </g>
-      <g
-        v-if="FramedIllustrationMask.HQ"
-        id="HQ_Framed_Illustration_Mask"
-      >
+      <g v-if="FramedIllustrationMask.HQ" id="HQ_Framed_Illustration_Mask">
         <clipPath id="hq_artwork_clip">
           <path
             d="M99.13,169.04L35.67,144.8l-0.15-0.46c-0.03-0.1-3.2-10.29-6.39-27.51c-3.39-18.35-3.51-42.32-3.51-42.56
@@ -6539,10 +4684,7 @@
         />
       </g>
     </g>
-    <g
-      v-if="FullArtGradients"
-      id="_x36__Fullart_Gradients"
-    >
+    <g v-if="FullArtGradients" id="_x36__Fullart_Gradients">
       <g v-if="FullArtGradients.Tech">
         <linearGradient
           id="Tech_Gradient_00000059286544088592342360000005787839791206127801_"
@@ -6552,40 +4694,17 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #39697b; stop-opacity: 0"
-          />
-          <stop
-            offset="0.0851"
-            style="stop-color: #39697b; stop-opacity: 0.0851"
-          />
-          <stop
-            offset="0.2241"
-            style="stop-color: #39697b; stop-opacity: 0.2241"
-          />
-          <stop
-            offset="0.3996"
-            style="stop-color: #39697b; stop-opacity: 0.3996"
-          />
-          <stop
-            offset="0.6048"
-            style="stop-color: #39697b; stop-opacity: 0.6048"
-          />
-          <stop
-            offset="0.8322"
-            style="stop-color: #39697b; stop-opacity: 0.8322"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #013f55"
-          />
+          <stop offset="0" style="stop-color: #39697b; stop-opacity: 0" />
+          <stop offset="0.0851" style="stop-color: #39697b; stop-opacity: 0.0851" />
+          <stop offset="0.2241" style="stop-color: #39697b; stop-opacity: 0.2241" />
+          <stop offset="0.3996" style="stop-color: #39697b; stop-opacity: 0.3996" />
+          <stop offset="0.6048" style="stop-color: #39697b; stop-opacity: 0.6048" />
+          <stop offset="0.8322" style="stop-color: #39697b; stop-opacity: 0.8322" />
+          <stop offset="1" style="stop-color: #013f55" />
         </linearGradient>
         <polygon
           id="Tech_Gradient"
-          style="
-            fill: url(#Tech_Gradient_00000059286544088592342360000005787839791206127801_);
-          "
+          style="fill: url(#Tech_Gradient_00000059286544088592342360000005787839791206127801_)"
           points="
             32.12,142.74 32.12,242.02 34.5,244.41 163.83,244.41 166.22,242.02 166.22,142.74 	"
         />
@@ -6599,40 +4718,17 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #47015a; stop-opacity: 0"
-          />
-          <stop
-            offset="0.0851"
-            style="stop-color: #47015a; stop-opacity: 0.0851"
-          />
-          <stop
-            offset="0.2241"
-            style="stop-color: #47015a; stop-opacity: 0.2241"
-          />
-          <stop
-            offset="0.3996"
-            style="stop-color: #47015a; stop-opacity: 0.3996"
-          />
-          <stop
-            offset="0.6048"
-            style="stop-color: #47015a; stop-opacity: 0.6048"
-          />
-          <stop
-            offset="0.8322"
-            style="stop-color: #47015a; stop-opacity: 0.8322"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #47015a"
-          />
+          <stop offset="0" style="stop-color: #47015a; stop-opacity: 0" />
+          <stop offset="0.0851" style="stop-color: #47015a; stop-opacity: 0.0851" />
+          <stop offset="0.2241" style="stop-color: #47015a; stop-opacity: 0.2241" />
+          <stop offset="0.3996" style="stop-color: #47015a; stop-opacity: 0.3996" />
+          <stop offset="0.6048" style="stop-color: #47015a; stop-opacity: 0.6048" />
+          <stop offset="0.8322" style="stop-color: #47015a; stop-opacity: 0.8322" />
+          <stop offset="1" style="stop-color: #47015a" />
         </linearGradient>
         <polygon
           id="Myth_Gradient"
-          style="
-            fill: url(#Myth_Gradient_00000064333844708564660110000018334678870073596339_);
-          "
+          style="fill: url(#Myth_Gradient_00000064333844708564660110000018334678870073596339_)"
           points="
           32.12,142.74 32.12,242.02 34.5,244.41 163.83,244.41 166.22,242.02 166.22,142.74 	"
         />
@@ -6646,40 +4742,17 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #953a39; stop-opacity: 0"
-          />
-          <stop
-            offset="0.0849"
-            style="stop-color: #953a39; stop-opacity: 0.0849"
-          />
-          <stop
-            offset="0.2235"
-            style="stop-color: #953a39; stop-opacity: 0.2235"
-          />
-          <stop
-            offset="0.3985"
-            style="stop-color: #953a39; stop-opacity: 0.3985"
-          />
-          <stop
-            offset="0.6031"
-            style="stop-color: #953a39; stop-opacity: 0.6031"
-          />
-          <stop
-            offset="0.8298"
-            style="stop-color: #953a39; stop-opacity: 0.8298"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #760100"
-          />
+          <stop offset="0" style="stop-color: #953a39; stop-opacity: 0" />
+          <stop offset="0.0849" style="stop-color: #953a39; stop-opacity: 0.0849" />
+          <stop offset="0.2235" style="stop-color: #953a39; stop-opacity: 0.2235" />
+          <stop offset="0.3985" style="stop-color: #953a39; stop-opacity: 0.3985" />
+          <stop offset="0.6031" style="stop-color: #953a39; stop-opacity: 0.6031" />
+          <stop offset="0.8298" style="stop-color: #953a39; stop-opacity: 0.8298" />
+          <stop offset="1" style="stop-color: #760100" />
         </linearGradient>
         <polygon
           id="Culture_Gradient"
-          style="
-            fill: url(#Culture_Gradient_00000165228650776210862700000009039822865042792847_);
-          "
+          style="fill: url(#Culture_Gradient_00000165228650776210862700000009039822865042792847_)"
           points="
           32.12,142.74 32.12,242.02 34.5,244.41 163.83,244.41 166.22,242.02 166.22,142.74 	"
         />
@@ -6693,40 +4766,17 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #596f39; stop-opacity: 0"
-          />
-          <stop
-            offset="0.0849"
-            style="stop-color: #596f39; stop-opacity: 0.0849"
-          />
-          <stop
-            offset="0.2235"
-            style="stop-color: #596f39; stop-opacity: 0.2235"
-          />
-          <stop
-            offset="0.3985"
-            style="stop-color: #596f39; stop-opacity: 0.3985"
-          />
-          <stop
-            offset="0.6031"
-            style="stop-color: #596f39; stop-opacity: 0.6031"
-          />
-          <stop
-            offset="0.8298"
-            style="stop-color: #596f39; stop-opacity: 0.8298"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #294600"
-          />
+          <stop offset="0" style="stop-color: #596f39; stop-opacity: 0" />
+          <stop offset="0.0849" style="stop-color: #596f39; stop-opacity: 0.0849" />
+          <stop offset="0.2235" style="stop-color: #596f39; stop-opacity: 0.2235" />
+          <stop offset="0.3985" style="stop-color: #596f39; stop-opacity: 0.3985" />
+          <stop offset="0.6031" style="stop-color: #596f39; stop-opacity: 0.6031" />
+          <stop offset="0.8298" style="stop-color: #596f39; stop-opacity: 0.8298" />
+          <stop offset="1" style="stop-color: #294600" />
         </linearGradient>
         <polygon
           id="Nature_Gradient"
-          style="
-            fill: url(#Nature_Gradient_00000031191050836143750220000014421833233967736767_);
-          "
+          style="fill: url(#Nature_Gradient_00000031191050836143750220000014421833233967736767_)"
           points="
           32.12,142.74 32.12,242.02 34.5,244.41 163.83,244.41 166.22,242.02 166.22,142.74 	"
         />
@@ -6740,30 +4790,12 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7b625c; stop-opacity: 0"
-          />
-          <stop
-            offset="0.1179"
-            style="stop-color: #7b625c; stop-opacity: 0.1179"
-          />
-          <stop
-            offset="0.3103"
-            style="stop-color: #7b625c; stop-opacity: 0.3103"
-          />
-          <stop
-            offset="0.5532"
-            style="stop-color: #7b625c; stop-opacity: 0.5532"
-          />
-          <stop
-            offset="0.8344"
-            style="stop-color: #7b625c; stop-opacity: 0.8344"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b625c"
-          />
+          <stop offset="0" style="stop-color: #7b625c; stop-opacity: 0" />
+          <stop offset="0.1179" style="stop-color: #7b625c; stop-opacity: 0.1179" />
+          <stop offset="0.3103" style="stop-color: #7b625c; stop-opacity: 0.3103" />
+          <stop offset="0.5532" style="stop-color: #7b625c; stop-opacity: 0.5532" />
+          <stop offset="0.8344" style="stop-color: #7b625c; stop-opacity: 0.8344" />
+          <stop offset="1" style="stop-color: #7b625c" />
         </linearGradient>
         <polygon
           id="Multi_Class_Gradient"
@@ -6783,45 +4815,22 @@
           x2="99.1671"
           y2="244.4084"
         >
-          <stop
-            offset="0"
-            style="stop-color: #dab479; stop-opacity: 0"
-          />
-          <stop
-            offset="0.1363"
-            style="stop-color: #dab479; stop-opacity: 0.1363"
-          />
-          <stop
-            offset="0.3584"
-            style="stop-color: #dab479; stop-opacity: 0.3584"
-          />
-          <stop
-            offset="0.639"
-            style="stop-color: #dab479; stop-opacity: 0.639"
-          />
-          <stop
-            offset="0.964"
-            style="stop-color: #dab479; stop-opacity: 0.964"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dab479"
-          />
+          <stop offset="0" style="stop-color: #dab479; stop-opacity: 0" />
+          <stop offset="0.1363" style="stop-color: #dab479; stop-opacity: 0.1363" />
+          <stop offset="0.3584" style="stop-color: #dab479; stop-opacity: 0.3584" />
+          <stop offset="0.639" style="stop-color: #dab479; stop-opacity: 0.639" />
+          <stop offset="0.964" style="stop-color: #dab479; stop-opacity: 0.964" />
+          <stop offset="1" style="stop-color: #dab479" />
         </linearGradient>
         <polygon
           id="HQ_Gradient"
-          style="
-            fill: url(#HQ_Gradient_00000082334860875157277820000012766281039454458790_);
-          "
+          style="fill: url(#HQ_Gradient_00000082334860875157277820000012766281039454458790_)"
           points="
           32.12,142.74 32.12,242.02 34.5,244.41 163.83,244.41 166.22,242.02 166.22,142.74 	"
         />
       </g>
     </g>
-    <g
-      v-if="Type.Entity"
-      id="Entity_Framed_Text_Box"
-    >
+    <g v-if="Type.Entity" id="Entity_Framed_Text_Box">
       <defs>
         <polygon
           id="SVGID_00000039814142577016939950000012203532702894977196_"
@@ -6836,11 +4845,7 @@
         />
       </clipPath>
       <g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000036944537727909750640000013449383951389038501_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000036944537727909750640000013449383951389038501_)">
           <g>
             <defs>
               <rect
@@ -6851,19 +4856,13 @@
                 height="120.56"
               />
             </defs>
-            <clipPath
-              id="SVGID_00000023981244007458460140000004759264648995854726_"
-            >
+            <clipPath id="SVGID_00000023981244007458460140000004759264648995854726_">
               <use
                 xlink:href="#SVGID_00000114758034051484422950000015066254557112229254_"
                 style="overflow: visible"
               />
             </clipPath>
-            <g
-              style="
-                clip-path: url(#SVGID_00000023981244007458460140000004759264648995854726_);
-              "
-            >
+            <g style="clip-path: url(#SVGID_00000023981244007458460140000004759264648995854726_)">
               <defs>
                 <rect
                   id="SVGID_00000056400321594017886020000009695875123601892776_"
@@ -6873,23 +4872,14 @@
                   height="120.56"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000034072220726591210140000007854358954687593381_"
-              >
+              <clipPath id="SVGID_00000034072220726591210140000007854358954687593381_">
                 <use
                   xlink:href="#SVGID_00000056400321594017886020000009695875123601892776_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000034072220726591210140000007854358954687593381_);
-                "
-              >
-                <g
-                  v-if="FramedTextBox.Nature"
-                  id="Nature_Box"
-                >
+              <g style="clip-path: url(#SVGID_00000034072220726591210140000007854358954687593381_)">
+                <g v-if="FramedTextBox.Nature" id="Nature_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6898,10 +4888,7 @@
                     transform="matrix(0.48 0 0 0.48 25.9634 128.4756)"
                   />
                 </g>
-                <g
-                  v-if="FramedTextBox.Tech"
-                  id="Tech_Box"
-                >
+                <g v-if="FramedTextBox.Tech" id="Tech_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6911,10 +4898,7 @@
                   />
                 </g>
 
-                <g
-                  v-if="FramedTextBox.Myth"
-                  id="Myth_Box"
-                >
+                <g v-if="FramedTextBox.Myth" id="Myth_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6924,10 +4908,7 @@
                   />
                 </g>
 
-                <g
-                  v-if="FramedTextBox.Culture"
-                  id="Culture_Box"
-                >
+                <g v-if="FramedTextBox.Culture" id="Culture_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6937,10 +4918,7 @@
                   />
                 </g>
 
-                <g
-                  v-if="FramedTextBox.MultiClass"
-                  id="Multi_Class_Box"
-                >
+                <g v-if="FramedTextBox.MultiClass" id="Multi_Class_Box">
                   <image
                     style="overflow: visible"
                     width="304"
@@ -6955,10 +4933,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Type.Action"
-      id="Action_Framed_Text_Box"
-    >
+    <g v-if="Type.Action" id="Action_Framed_Text_Box">
       <g>
         <defs>
           <path
@@ -6968,19 +4943,13 @@
               l0,0c1.87-4.8,3.23-9.85,4.06-15.07V100.99z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000010292730227667257230000015731974714017638323_"
-        >
+        <clipPath id="SVGID_00000010292730227667257230000015731974714017638323_">
           <use
             xlink:href="#SVGID_00000054241569948848655740000009770489984641279135_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000010292730227667257230000015731974714017638323_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000010292730227667257230000015731974714017638323_)">
           <g>
             <defs>
               <rect
@@ -6991,19 +4960,13 @@
                 height="155.04"
               />
             </defs>
-            <clipPath
-              id="SVGID_00000059299120658770732050000004951982579712126388_"
-            >
+            <clipPath id="SVGID_00000059299120658770732050000004951982579712126388_">
               <use
                 xlink:href="#SVGID_00000088855369641102855040000010945259101758175623_"
                 style="overflow: visible"
               />
             </clipPath>
-            <g
-              style="
-                clip-path: url(#SVGID_00000059299120658770732050000004951982579712126388_);
-              "
-            >
+            <g style="clip-path: url(#SVGID_00000059299120658770732050000004951982579712126388_)">
               <defs>
                 <rect
                   id="SVGID_00000164486415277039246980000007131609330797660564_"
@@ -7013,19 +4976,13 @@
                   height="155.04"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000180360061549977179030000008749169396965454755_"
-              >
+              <clipPath id="SVGID_00000180360061549977179030000008749169396965454755_">
                 <use
                   xlink:href="#SVGID_00000164486415277039246980000007131609330797660564_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000180360061549977179030000008749169396965454755_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000180360061549977179030000008749169396965454755_)">
                 <g v-if="FramedTextBox.Tech">
                   <image
                     style="overflow: visible"
@@ -7077,10 +5034,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="Type.Place && false"
-      id="Place_Framed_Text_Box"
-    >
+    <g v-if="Type.Place && false" id="Place_Framed_Text_Box">
       <g>
         <defs>
           <polygon
@@ -7089,19 +5043,13 @@
               30.62,243.51 33.13,246.03 165.2,246.03 167.72,243.51 167.72,219.24 167.72,135.01 171.45,133.12 99.12,169.62 				"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000029013215688317214430000003274972533866197650_"
-        >
+        <clipPath id="SVGID_00000029013215688317214430000003274972533866197650_">
           <use
             xlink:href="#SVGID_00000121274356360295006160000006005569300133360051_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000029013215688317214430000003274972533866197650_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000029013215688317214430000003274972533866197650_)">
           <g>
             <defs>
               <rect
@@ -7112,19 +5060,13 @@
                 height="122.91"
               />
             </defs>
-            <clipPath
-              id="SVGID_00000142149250445676321930000012049504369246697629_"
-            >
+            <clipPath id="SVGID_00000142149250445676321930000012049504369246697629_">
               <use
                 xlink:href="#SVGID_00000140714817259135871850000004200919572281954972_"
                 style="overflow: visible"
               />
             </clipPath>
-            <g
-              style="
-                clip-path: url(#SVGID_00000142149250445676321930000012049504369246697629_);
-              "
-            >
+            <g style="clip-path: url(#SVGID_00000142149250445676321930000012049504369246697629_)">
               <defs>
                 <rect
                   id="SVGID_00000097487936901961561580000008314143510735616385_"
@@ -7134,9 +5076,7 @@
                   height="122.91"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000067223774503395340500000002592633949263276221_"
-              >
+              <clipPath id="SVGID_00000067223774503395340500000002592633949263276221_">
                 <use
                   xlink:href="#SVGID_00000097487936901961561580000008314143510735616385_"
                   style="overflow: visible"
@@ -7144,9 +5084,7 @@
               </clipPath>
               <g
                 transform="matrix(1 0 0 1 0 7.629395e-06)"
-                style="
-                  clip-path: url(#SVGID_00000067223774503395340500000002592633949263276221_);
-                "
+                style="clip-path: url(#SVGID_00000067223774503395340500000002592633949263276221_)"
               >
                 <g v-if="FramedTextBox.Tech">
                   <image
@@ -7210,19 +5148,13 @@
                 c-0.02-0.06-1.04-3.34-2.5-9.29c0,0,0,0,0,0l-2.41,0v84.19v24.27l2.52,2.52H165.2L167.72,243.51z"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000149358462509527586780000013527142603550884521_"
-          >
+          <clipPath id="SVGID_00000149358462509527586780000013527142603550884521_">
             <use
               xlink:href="#SVGID_00000090258077198260728790000007961638330883546764_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000149358462509527586780000013527142603550884521_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000149358462509527586780000013527142603550884521_)">
             <g>
               <defs>
                 <rect
@@ -7233,19 +5165,13 @@
                   height="121.04"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000145057828406997172360000017949072084641309341_"
-              >
+              <clipPath id="SVGID_00000145057828406997172360000017949072084641309341_">
                 <use
                   xlink:href="#SVGID_00000157280109199405201990000015401516258127481246_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000145057828406997172360000017949072084641309341_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000145057828406997172360000017949072084641309341_)">
                 <defs>
                   <rect
                     id="SVGID_00000166657498338708894770000002469001625801860270_"
@@ -7255,18 +5181,14 @@
                     height="121.04"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000050634232764673795470000015236284374520092085_"
-                >
+                <clipPath id="SVGID_00000050634232764673795470000015236284374520092085_">
                   <use
                     xlink:href="#SVGID_00000166657498338708894770000002469001625801860270_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000050634232764673795470000015236284374520092085_);
-                  "
+                  style="clip-path: url(#SVGID_00000050634232764673795470000015236284374520092085_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7328,22 +5250,11 @@
         transform="matrix(0.24 0 0 0.24 28.1914 228.3836)"
       />
       <g>
-        <rect
-          x="32.58"
-          y="232.82"
-          width="133.17"
-          height="12.06"
-        />
+        <rect x="32.58" y="232.82" width="133.17" height="12.06" />
       </g>
     </g>
-    <g
-      v-if="Tagsbar"
-      id="_x37__Tagsbar"
-    >
-      <g
-        v-if="Type.HQ"
-        id="Tagsbar_HQ"
-      >
+    <g v-if="Tagsbar" id="_x37__Tagsbar">
+      <g v-if="Type.HQ" id="Tagsbar_HQ">
         <g>
           <defs>
             <rect
@@ -7354,19 +5265,13 @@
               height="12.06"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000127766664164148447980000003352234868398043541_"
-          >
+          <clipPath id="SVGID_00000127766664164148447980000003352234868398043541_">
             <use
               xlink:href="#SVGID_00000138541017452412186170000002087292084591241606_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000127766664164148447980000003352234868398043541_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000127766664164148447980000003352234868398043541_)">
             <g>
               <defs>
                 <rect
@@ -7377,19 +5282,13 @@
                   height="22.06"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000137108564405018876140000002875594858396532609_"
-              >
+              <clipPath id="SVGID_00000137108564405018876140000002875594858396532609_">
                 <use
                   xlink:href="#SVGID_00000126286202212753626360000002244620664026327431_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000137108564405018876140000002875594858396532609_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000137108564405018876140000002875594858396532609_)">
                 <defs>
                   <rect
                     id="SVGID_00000027607060469628882340000015973169608835898553_"
@@ -7399,18 +5298,14 @@
                     height="22.06"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000057107061166444815360000002572804085448202404_"
-                >
+                <clipPath id="SVGID_00000057107061166444815360000002572804085448202404_">
                   <use
                     xlink:href="#SVGID_00000027607060469628882340000015973169608835898553_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000057107061166444815360000002572804085448202404_);
-                  "
+                  style="clip-path: url(#SVGID_00000057107061166444815360000002572804085448202404_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7430,10 +5325,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.MultiClass"
-                  id="Tagsbar_Multi_Class"
-                >
+                <g v-if="Tagsbar.MultiClass" id="Tagsbar_Multi_Class">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7442,10 +5334,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Culture"
-                  id="Tagsbar_Culture"
-                >
+                <g v-if="Tagsbar.Culture" id="Tagsbar_Culture">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7454,10 +5343,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Myth"
-                  id="Tagsbar_Myth"
-                >
+                <g v-if="Tagsbar.Myth" id="Tagsbar_Myth">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7466,10 +5352,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Nature"
-                  id="Tagsbar_Nature"
-                >
+                <g v-if="Tagsbar.Nature" id="Tagsbar_Nature">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7478,10 +5361,7 @@
                     transform="matrix(0.48 0 0 0.48 27.4034 227.3556)"
                   />
                 </g>
-                <g
-                  v-if="Tagsbar.Tech"
-                  id="Tagsbar_Tech"
-                >
+                <g v-if="Tagsbar.Tech" id="Tagsbar_Tech">
                   <image
                     style="overflow: visible"
                     width="299"
@@ -7495,10 +5375,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.MultiClass"
-        id="Tagsbar_Multi_Class"
-      >
+      <g v-if="Tagsbar.MultiClass" id="Tagsbar_Multi_Class">
         <g>
           <defs>
             <rect
@@ -7509,19 +5386,13 @@
               height="12.06"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000132779911913493746460000013999267458777085081_"
-          >
+          <clipPath id="SVGID_00000132779911913493746460000013999267458777085081_">
             <use
               xlink:href="#SVGID_00000127748066128063933900000002912260189670101664_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000132779911913493746460000013999267458777085081_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000132779911913493746460000013999267458777085081_)">
             <g>
               <defs>
                 <rect
@@ -7532,19 +5403,13 @@
                   height="22.06"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000061429310962460098890000000499548695134421918_"
-              >
+              <clipPath id="SVGID_00000061429310962460098890000000499548695134421918_">
                 <use
                   xlink:href="#SVGID_00000005244920841396668010000014255619988976345489_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000061429310962460098890000000499548695134421918_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000061429310962460098890000000499548695134421918_)">
                 <defs>
                   <rect
                     id="SVGID_00000119096231502013746550000014915625828776830876_"
@@ -7554,18 +5419,14 @@
                     height="22.06"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000065054804660403910170000003772158617488917433_"
-                >
+                <clipPath id="SVGID_00000065054804660403910170000003772158617488917433_">
                   <use
                     xlink:href="#SVGID_00000119096231502013746550000014915625828776830876_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000065054804660403910170000003772158617488917433_);
-                  "
+                  style="clip-path: url(#SVGID_00000065054804660403910170000003772158617488917433_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7580,10 +5441,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.Culture"
-        id="Tagsbar_Culture"
-      >
+      <g v-if="Tagsbar.Culture" id="Tagsbar_Culture">
         <g>
           <defs>
             <rect
@@ -7594,19 +5452,13 @@
               height="12.06"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000117650864189247943760000009802813396343106482_"
-          >
+          <clipPath id="SVGID_00000117650864189247943760000009802813396343106482_">
             <use
               xlink:href="#SVGID_00000069392629893573898920000006826354290675215272_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000117650864189247943760000009802813396343106482_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000117650864189247943760000009802813396343106482_)">
             <g>
               <defs>
                 <rect
@@ -7617,19 +5469,13 @@
                   height="22.06"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000146492589726586378250000013514840813031655352_"
-              >
+              <clipPath id="SVGID_00000146492589726586378250000013514840813031655352_">
                 <use
                   xlink:href="#SVGID_00000173854734679734764350000011510484821778405027_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000146492589726586378250000013514840813031655352_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000146492589726586378250000013514840813031655352_)">
                 <defs>
                   <rect
                     id="SVGID_00000062169638631571161750000000796152103216558469_"
@@ -7639,18 +5485,14 @@
                     height="22.06"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000084505605526369921860000001314954653119750825_"
-                >
+                <clipPath id="SVGID_00000084505605526369921860000001314954653119750825_">
                   <use
                     xlink:href="#SVGID_00000062169638631571161750000000796152103216558469_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000084505605526369921860000001314954653119750825_);
-                  "
+                  style="clip-path: url(#SVGID_00000084505605526369921860000001314954653119750825_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7665,10 +5507,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.Myth"
-        id="Tagsbar_Myth"
-      >
+      <g v-if="Tagsbar.Myth" id="Tagsbar_Myth">
         <g>
           <defs>
             <rect
@@ -7679,19 +5518,13 @@
               height="12.06"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000154398640414233319460000012548525365295539377_"
-          >
+          <clipPath id="SVGID_00000154398640414233319460000012548525365295539377_">
             <use
               xlink:href="#SVGID_00000029018668837690821340000007296149859617882529_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000154398640414233319460000012548525365295539377_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000154398640414233319460000012548525365295539377_)">
             <g>
               <defs>
                 <rect
@@ -7702,19 +5535,13 @@
                   height="22.06"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000170971768611749081300000005787433976714180781_"
-              >
+              <clipPath id="SVGID_00000170971768611749081300000005787433976714180781_">
                 <use
                   xlink:href="#SVGID_00000171691826508943173170000018149339123817157250_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000170971768611749081300000005787433976714180781_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000170971768611749081300000005787433976714180781_)">
                 <defs>
                   <rect
                     id="SVGID_00000087401574279005958830000000968613922572427164_"
@@ -7724,18 +5551,14 @@
                     height="22.06"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000088092844351249836220000006848939296891046297_"
-                >
+                <clipPath id="SVGID_00000088092844351249836220000006848939296891046297_">
                   <use
                     xlink:href="#SVGID_00000087401574279005958830000000968613922572427164_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000088092844351249836220000006848939296891046297_);
-                  "
+                  style="clip-path: url(#SVGID_00000088092844351249836220000006848939296891046297_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7750,10 +5573,7 @@
           </g>
         </g>
       </g>
-      <g
-        v-if="Tagsbar.Nature"
-        id="Tagsbar_Nature"
-      >
+      <g v-if="Tagsbar.Nature" id="Tagsbar_Nature">
         <g>
           <defs>
             <rect
@@ -7764,19 +5584,13 @@
               height="12.06"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000072980187061191500640000005567222433003537045_"
-          >
+          <clipPath id="SVGID_00000072980187061191500640000005567222433003537045_">
             <use
               xlink:href="#SVGID_00000139254507076380287010000008278346598401660828_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000072980187061191500640000005567222433003537045_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000072980187061191500640000005567222433003537045_)">
             <g>
               <defs>
                 <rect
@@ -7787,19 +5601,13 @@
                   height="22.06"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000029034771886320812920000017526188383952942271_"
-              >
+              <clipPath id="SVGID_00000029034771886320812920000017526188383952942271_">
                 <use
                   xlink:href="#SVGID_00000183970306596405195510000008393010701553005488_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000029034771886320812920000017526188383952942271_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000029034771886320812920000017526188383952942271_)">
                 <defs>
                   <rect
                     id="SVGID_00000176033144500420294780000017103118889594979489_"
@@ -7809,18 +5617,14 @@
                     height="22.06"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000121975943092167470890000000220299177361231265_"
-                >
+                <clipPath id="SVGID_00000121975943092167470890000000220299177361231265_">
                   <use
                     xlink:href="#SVGID_00000176033144500420294780000017103118889594979489_"
                     style="overflow: visible"
                   />
                 </clipPath>
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000121975943092167470890000000220299177361231265_);
-                  "
+                  style="clip-path: url(#SVGID_00000121975943092167470890000000220299177361231265_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7836,10 +5640,7 @@
         </g>
       </g>
 
-      <g
-        v-if="Tagsbar.Tech"
-        id="Tagsbar_Tech"
-      >
+      <g v-if="Tagsbar.Tech" id="Tagsbar_Tech">
         <g>
           <defs>
             <rect
@@ -7850,19 +5651,13 @@
               height="12.06"
             />
           </defs>
-          <clipPath
-            id="SVGID_00000072980187061191500640000005567222433003537045_"
-          >
+          <clipPath id="SVGID_00000072980187061191500640000005567222433003537045_">
             <use
               xlink:href="#SVGID_00000139254507076380287010000008278346598401660828_"
               style="overflow: visible"
             />
           </clipPath>
-          <g
-            style="
-              clip-path: url(#SVGID_00000072980187061191500640000005567222433003537045_);
-            "
-          >
+          <g style="clip-path: url(#SVGID_00000072980187061191500640000005567222433003537045_)">
             <g>
               <defs>
                 <rect
@@ -7873,19 +5668,13 @@
                   height="22.06"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000029034771886320812920000017526188383952942271_"
-              >
+              <clipPath id="SVGID_00000029034771886320812920000017526188383952942271_">
                 <use
                   xlink:href="#SVGID_00000183970306596405195510000008393010701553005488_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000029034771886320812920000017526188383952942271_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000029034771886320812920000017526188383952942271_)">
                 <defs>
                   <rect
                     id="SVGID_00000176033144500420294780000017103118889594979489_"
@@ -7895,9 +5684,7 @@
                     height="22.06"
                   />
                 </defs>
-                <clipPath
-                  id="SVGID_00000121975943092167470890000000220299177361231265_"
-                >
+                <clipPath id="SVGID_00000121975943092167470890000000220299177361231265_">
                   <use
                     xlink:href="#SVGID_00000176033144500420294780000017103118889594979489_"
                     style="overflow: visible"
@@ -7905,9 +5692,7 @@
                 </clipPath>
 
                 <g
-                  style="
-                    clip-path: url(#SVGID_00000121975943092167470890000000220299177361231265_);
-                  "
+                  style="clip-path: url(#SVGID_00000121975943092167470890000000220299177361231265_)"
                 >
                   <image
                     style="overflow: visible"
@@ -7944,10 +5729,7 @@
           C165.58,241.72,165.57,240.23,165.57,238.74z"
       />
     </g>
-    <g
-      v-if="ShadowFramed.Entity"
-      id="Entity_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.Entity" id="Entity_Shadow_Framed">
       <g>
         <defs>
           <polygon
@@ -7956,19 +5738,13 @@
               171.2,128.51 166.22,133.49 166.22,242.02 163.83,244.41 34.5,244.41 32.12,242.02 32.12,133.49 27.13,128.51 27.13,64.69 			"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000155109278761243084720000005630212011728371077_"
-        >
+        <clipPath id="SVGID_00000155109278761243084720000005630212011728371077_">
           <use
             xlink:href="#SVGID_00000013185385865062133650000011763308069410173345_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="638"
@@ -7985,11 +5761,7 @@
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="596"
@@ -8006,19 +5778,11 @@
               x2="133.2279"
               y2="101.3773"
             >
-              <stop
-                offset="0"
-                style="stop-color: #5b7b86"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #768a94"
-              />
+              <stop offset="0" style="stop-color: #5b7b86" />
+              <stop offset="1" style="stop-color: #768a94" />
             </linearGradient>
             <polygon
-              style="
-                fill: url(#SVGID_00000080200247149813831360000004891277676881824157_);
-              "
+              style="fill: url(#SVGID_00000080200247149813831360000004891277676881824157_)"
               points="166.22,134.37 132.07,168.52
                 66.26,168.52 32.12,134.38 32.12,136.5 65.64,170.02 132.69,170.02 166.22,136.5 166.22,135.81 165.2,135.39 166.22,134.38
                 "
@@ -8027,9 +5791,7 @@
         </g>
         <g
           id="Deco_00000104675295249770196370000016615657637729647011_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8047,19 +5809,11 @@
               x2="46.2649"
               y2="161.0388"
             >
-              <stop
-                offset="0"
-                style="stop-color: #64788f"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9db7c4"
-              />
+              <stop offset="0" style="stop-color: #64788f" />
+              <stop offset="1" style="stop-color: #9db7c4" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000091701531426849354270000014268370369134735798_);
-              "
+              style="fill: url(#SVGID_00000091701531426849354270000014268370369134735798_)"
               points="46.8,160.51 33.31,147.02
                 33.31,149.15 44.81,160.52 				"
             />
@@ -8067,9 +5821,7 @@
         </g>
         <g
           id="Deco_00000148618813908905406840000000092074188853147784_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8087,19 +5839,11 @@
               x2="46.2772"
               y2="159.9905"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7f91a6"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #a9c5d4"
-              />
+              <stop offset="0" style="stop-color: #7f91a6" />
+              <stop offset="1" style="stop-color: #a9c5d4" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000117648369016331220280000011757645411394730675_);
-              "
+              style="fill: url(#SVGID_00000117648369016331220280000011757645411394730675_)"
               points="44.81,160.52 33.31,171.9
                 33.31,174.02 46.8,160.51 				"
             />
@@ -8107,9 +5851,7 @@
         </g>
         <g
           id="Deco_00000137125441923751993910000000064648053419572621_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8127,19 +5869,11 @@
               x2="44.2771"
               y2="159.9904"
             >
-              <stop
-                offset="0"
-                style="stop-color: #b7c6e1"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #768a94"
-              />
+              <stop offset="0" style="stop-color: #b7c6e1" />
+              <stop offset="1" style="stop-color: #768a94" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000036961213094533198700000014441802454463727761_);
-              "
+              style="fill: url(#SVGID_00000036961213094533198700000014441802454463727761_)"
               points="42.69,160.52 33.31,169.9
                 33.31,172.02 44.81,160.52 				"
             />
@@ -8147,9 +5881,7 @@
         </g>
         <g
           id="Deco_00000000223656945842564970000016519962428572153496_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8167,19 +5899,11 @@
               x2="44.2771"
               y2="161.051"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7f99a8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #5b7b86"
-              />
+              <stop offset="0" style="stop-color: #7f99a8" />
+              <stop offset="1" style="stop-color: #5b7b86" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000183237323779083343580000016887226683750151858_);
-              "
+              style="fill: url(#SVGID_00000183237323779083343580000016887226683750151858_)"
               points="44.81,160.52 33.31,149.02
                 33.31,151.15 42.69,160.52 				"
             />
@@ -8187,9 +5911,7 @@
         </g>
         <g
           id="Deco_00000134223726671461688360000017047563774973588635_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8208,19 +5930,11 @@
               y2="161.0509"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #64788f"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #9db7c4"
-              />
+              <stop offset="0" style="stop-color: #64788f" />
+              <stop offset="1" style="stop-color: #9db7c4" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000129892274868564344990000001635884787423280771_);
-              "
+              style="fill: url(#SVGID_00000129892274868564344990000001635884787423280771_)"
               points="151.61,160.52 165.1,147.02
                 165.1,149.15 153.61,160.52 				"
             />
@@ -8228,9 +5942,7 @@
         </g>
         <g
           id="Deco_00000144325677309844694600000006146868545792610233_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8249,19 +5961,11 @@
               y2="159.9904"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #8091a6"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #a9c5d4"
-              />
+              <stop offset="0" style="stop-color: #8091a6" />
+              <stop offset="1" style="stop-color: #a9c5d4" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000088844625028606908960000004724488192554802617_);
-              "
+              style="fill: url(#SVGID_00000088844625028606908960000004724488192554802617_)"
               points="153.61,160.52 165.1,171.9
                 165.1,174.02 151.61,160.52 				"
             />
@@ -8269,9 +5973,7 @@
         </g>
         <g
           id="Deco_00000002346911789900005320000011251633087902033556_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8290,19 +5992,11 @@
               y2="159.9904"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #b7c6e1"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #768a94"
-              />
+              <stop offset="0" style="stop-color: #b7c6e1" />
+              <stop offset="1" style="stop-color: #768a94" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000153704433363182027620000017960647111787274402_);
-              "
+              style="fill: url(#SVGID_00000153704433363182027620000017960647111787274402_)"
               points="155.78,160.59 165.1,169.9
                 165.1,172.02 153.61,160.52 				"
             />
@@ -8310,9 +6004,7 @@
         </g>
         <g
           id="Deco_00000095331472894056908510000002795869148693631639_"
-          style="
-            clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_);
-          "
+          style="clip-path: url(#SVGID_00000155109278761243084720000005630212011728371077_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8331,19 +6023,11 @@
               y2="161.0823"
               gradientTransform="matrix(-1 0 0 1 82.6187 0)"
             >
-              <stop
-                offset="0"
-                style="stop-color: #7f99a8"
-              />
-              <stop
-                offset="1"
-                style="stop-color: #5b7b86"
-              />
+              <stop offset="0" style="stop-color: #7f99a8" />
+              <stop offset="1" style="stop-color: #5b7b86" />
             </linearGradient>
             <polyline
-              style="
-                fill: url(#SVGID_00000132051376086855215850000001585815640684749472_);
-              "
+              style="fill: url(#SVGID_00000132051376086855215850000001585815640684749472_)"
               points="153.61,160.52 165.1,149.02
                 165.1,151.15 155.78,160.59 				"
             />
@@ -8351,10 +6035,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.Action"
-      id="Action_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.Action" id="Action_Shadow_Framed">
       <g>
         <defs>
           <path
@@ -8366,9 +6047,7 @@
               c2.21-2.21,3.46-3.46,5.67-5.67V108.47C171.58,104.49,171.95,100.39,171.95,96.21z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000053533046089320259090000002024754381411078297_"
-        >
+        <clipPath id="SVGID_00000053533046089320259090000002024754381411078297_">
           <use
             xlink:href="#SVGID_00000112596311853819790350000012564428839156443823_"
             style="overflow: visible"
@@ -8376,9 +6055,7 @@
         </clipPath>
         <g
           id="FullArt_Inside_BG_00000152963525113755077200000005796767826448035204_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8393,9 +6070,7 @@
         </g>
         <g
           id="FullArt_Inside_BG_00000145016470191413445630000016137502211012051617_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8405,16 +6080,12 @@
             transform="matrix(0.24 0 0 0.24 158.2714 237.5036)"
           />
           <g>
-            <path
-              d="M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
-            />
+            <path d="M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39" />
           </g>
         </g>
         <g
           id="FullArt_Inside_BG_00000037690252815125140880000001030771549830092184_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8429,9 +6100,7 @@
         </g>
         <g
           id="FullArt_Inside_BG_00000040546413586438141010000008117862718108423590_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8441,16 +6110,12 @@
             transform="matrix(0.24 0 0 0.24 27.7114 237.5036)"
           />
           <g>
-            <path
-              d="M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
-            />
+            <path d="M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51" />
           </g>
         </g>
         <g
           id="FullArt_Inside_BG_00000038410676090125629570000000478610095955248261_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8465,9 +6130,7 @@
         </g>
         <g
           id="Bottom_Frame_00000048486408929751912140000006994525126766067644_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8483,11 +6146,7 @@
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="640"
@@ -8496,19 +6155,10 @@
             transform="matrix(0.24 0 0 0.24 22.4314 19.5836)"
           />
           <g>
-            <circle
-              class="st281"
-              cx="99.12"
-              cy="96.21"
-              r="71.58"
-            />
+            <circle class="st281" cx="99.12" cy="96.21" r="71.58" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="650"
@@ -8517,19 +6167,12 @@
             transform="matrix(0.24 0 0 0.24 21.2314 18.1436)"
           />
           <g>
-            <circle
-              class="st75"
-              cx="99.12"
-              cy="96.21"
-              r="72.83"
-            />
+            <circle class="st75" cx="99.12" cy="96.21" r="72.83" />
           </g>
         </g>
         <g
           id="Deco_00000031919655129049369820000005787839999844450437_"
-          style="
-            clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_);
-          "
+          style="clip-path: url(#SVGID_00000053533046089320259090000002024754381411078297_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8587,10 +6230,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.Place"
-      id="Place_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.Place" id="Place_Shadow_Framed">
       <g>
         <defs>
           <path
@@ -8600,9 +6240,7 @@
               V33.08L165.6,26.9z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000121254740783626358890000012168389080599310499_"
-        >
+        <clipPath id="SVGID_00000121254740783626358890000012168389080599310499_">
           <use
             xlink:href="#SVGID_00000005983704240480395200000002769055277978388664_"
             style="overflow: visible"
@@ -8610,9 +6248,7 @@
         </clipPath>
         <g
           id="FullArt_Inside_BG_00000028318066141173032180000016725803548716090016_"
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
+          style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8627,9 +6263,7 @@
         </g>
         <g
           id="FullArt_Inside_BG_00000140722068486576448060000005409844831217078925_"
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
+          style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8639,16 +6273,12 @@
             transform="matrix(0.24 0 0 0.24 158.2714 237.5036)"
           />
           <g>
-            <path
-              d="M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
-            />
+            <path d="M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39" />
           </g>
         </g>
         <g
           id="FullArt_Inside_BG_00000138541204043362306430000000278670771826539925_"
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
+          style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8663,9 +6293,7 @@
         </g>
         <g
           id="FullArt_Inside_BG_00000008835561346808436390000016417473517996519870_"
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
+          style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8675,16 +6303,12 @@
             transform="matrix(0.24 0 0 0.24 27.7114 237.5036)"
           />
           <g>
-            <path
-              d="M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
-            />
+            <path d="M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51" />
           </g>
         </g>
         <g
           id="FullArt_Inside_BG_00000182495589226751943720000010576574132706479761_"
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
+          style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8697,11 +6321,7 @@
             <path d="M32.12,242.89V135.36l0.93-0.22v106.82" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="608"
@@ -8717,11 +6337,7 @@
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="344"
@@ -8733,11 +6349,7 @@
             <polygon points="99.12,22.2 172.7,59.33 171.2,60.25 99.12,23.88 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="344"
@@ -8746,16 +6358,10 @@
             transform="matrix(0.24 0 0 0.24 94.6714 128.5436)"
           />
           <g>
-            <polygon
-              points="171.2,132.83 172.7,133.75 99.12,170.88 99.12,169.2 				"
-            />
+            <polygon points="171.2,132.83 172.7,133.75 99.12,170.88 99.12,169.2 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="43"
@@ -8764,16 +6370,10 @@
             transform="matrix(0.24 0 0 0.24 21.2314 54.8636)"
           />
           <g>
-            <polygon
-              points="27.04,132.83 25.54,133.75 25.54,59.33 27.04,60.25 				"
-            />
+            <polygon points="27.04,132.83 25.54,133.75 25.54,59.33 27.04,60.25 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="343"
@@ -8785,11 +6385,7 @@
             <polygon points="25.54,59.33 99.12,22.2 99.12,23.88 27.04,60.25 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="43"
@@ -8798,16 +6394,10 @@
             transform="matrix(0.24 0 0 0.24 166.9114 54.8636)"
           />
           <g>
-            <polygon
-              points="171.2,60.25 172.7,59.33 172.7,133.75 171.2,132.83 				"
-            />
+            <polygon points="171.2,60.25 172.7,59.33 172.7,133.75 171.2,132.83 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="343"
@@ -8816,16 +6406,10 @@
             transform="matrix(0.24 0 0 0.24 21.2314 128.5436)"
           />
           <g>
-            <polygon
-              points="25.54,133.75 27.04,132.83 99.12,169.2 99.12,170.88 				"
-            />
+            <polygon points="25.54,133.75 27.04,132.83 99.12,169.2 99.12,170.88 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="338"
@@ -8834,16 +6418,10 @@
             transform="matrix(0.24 0 0 0.24 94.6714 19.5836)"
           />
           <g>
-            <polygon
-              points="99.12,23.88 99.12,25.14 169.95,60.88 171.2,60.25 				"
-            />
+            <polygon points="99.12,23.88 99.12,25.14 169.95,60.88 171.2,60.25 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="338"
@@ -8852,16 +6430,10 @@
             transform="matrix(0.24 0 0 0.24 94.6714 127.8236)"
           />
           <g>
-            <polygon
-              points="171.2,132.83 169.95,132.2 99.12,167.94 99.12,169.2 				"
-            />
+            <polygon points="171.2,132.83 169.95,132.2 99.12,167.94 99.12,169.2 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="42"
@@ -8870,16 +6442,10 @@
             transform="matrix(0.24 0 0 0.24 22.6714 55.8236)"
           />
           <g>
-            <polygon
-              points="27.04,132.83 28.29,132.2 28.29,60.88 27.04,60.25 				"
-            />
+            <polygon points="27.04,132.83 28.29,132.2 28.29,60.88 27.04,60.25 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="337"
@@ -8888,16 +6454,10 @@
             transform="matrix(0.24 0 0 0.24 22.6714 19.5836)"
           />
           <g>
-            <polygon
-              points="27.04,60.25 28.29,60.88 99.12,25.14 99.12,23.88 				"
-            />
+            <polygon points="27.04,60.25 28.29,60.88 99.12,25.14 99.12,23.88 				" />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="43"
@@ -8906,16 +6466,12 @@
             transform="matrix(0.24 0 0 0.24 165.4714 55.8236)"
           />
           <g>
-            <polygon
-              points="169.95,60.88 171.2,60.25 171.2,132.83 169.95,132.2 				"
-            />
+            <polygon points="169.95,60.88 171.2,60.25 171.2,132.83 169.95,132.2 				" />
           </g>
         </g>
         <g
           id="Place_00000115511914979780328180000006694036407208050837_"
-          style="
-            clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_);
-          "
+          style="clip-path: url(#SVGID_00000121254740783626358890000012168389080599310499_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -8925,9 +6481,7 @@
             transform="matrix(0.24 0 0 0.24 22.6714 127.8236)"
           />
           <g>
-            <polygon
-              points="99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 				"
-            />
+            <polygon points="99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 				" />
           </g>
         </g>
       </g>
@@ -8964,10 +6518,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="ShadowFramed.HQ"
-      id="HQ_Shadow_Framed"
-    >
+    <g v-if="ShadowFramed.HQ" id="HQ_Shadow_Framed">
       <g>
         <defs>
           <path
@@ -8979,19 +6530,13 @@
               c2.21,2.21,3.46,3.46,5.67,5.67h132.16c2.21-2.21,3.46-3.46,5.67-5.67V104.43c1.66-15.21,1.74-29.98,1.74-30.17L172.65,73.86z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000078007686722581439750000006393571060997531030_"
-        >
+        <clipPath id="SVGID_00000078007686722581439750000006393571060997531030_">
           <use
             xlink:href="#SVGID_00000009574650748349216550000010472095811847331222_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="633"
@@ -9010,11 +6555,7 @@
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_)">
           <image
             style="overflow: visible; opacity: 0.75"
             width="650"
@@ -9034,11 +6575,7 @@
             />
           </g>
         </g>
-        <g
-          style="
-            clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_)">
           <g>
             <image
               style="overflow: visible; opacity: 0.75"
@@ -9072,9 +6609,7 @@
         </g>
         <g
           id="Bottom_Frame_00000156550835121229005010000017179940731865424304_"
-          style="
-            clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_);
-          "
+          style="clip-path: url(#SVGID_00000078007686722581439750000006393571060997531030_)"
         >
           <image
             style="overflow: visible; opacity: 0.75"
@@ -9092,10 +6627,7 @@
         </g>
       </g>
     </g>
-    <g
-      v-if="healthFrame"
-      id="Health_Frame_00000135671152285543049820000015813525320815153562_"
-    >
+    <g v-if="healthFrame" id="Health_Frame_00000135671152285543049820000015813525320815153562_">
       <g>
         <defs>
           <path
@@ -9104,19 +6636,13 @@
               c-1.1,1.1-1.72,1.72-2.83,2.83h-27.46l2.21-12.26L145.9,223.32z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000033364929806731651260000013362039156568320904_"
-        >
+        <clipPath id="SVGID_00000033364929806731651260000013362039156568320904_">
           <use
             xlink:href="#SVGID_00000121978709689543977170000018318104617427326082_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000033364929806731651260000013362039156568320904_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000033364929806731651260000013362039156568320904_)">
           <g>
             <defs>
               <rect
@@ -9127,19 +6653,13 @@
                 height="35.92"
               />
             </defs>
-            <clipPath
-              id="SVGID_00000168106672944412040660000001524061856011064748_"
-            >
+            <clipPath id="SVGID_00000168106672944412040660000001524061856011064748_">
               <use
                 xlink:href="#SVGID_00000155142333536142118290000001793681395543457954_"
                 style="overflow: visible"
               />
             </clipPath>
-            <g
-              style="
-                clip-path: url(#SVGID_00000168106672944412040660000001524061856011064748_);
-              "
-            >
+            <g style="clip-path: url(#SVGID_00000168106672944412040660000001524061856011064748_)">
               <defs>
                 <rect
                   id="SVGID_00000080896998515047051580000010655313161610448517_"
@@ -9149,19 +6669,13 @@
                   height="35.92"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000008833963887054328980000014402233052742959039_"
-              >
+              <clipPath id="SVGID_00000008833963887054328980000014402233052742959039_">
                 <use
                   xlink:href="#SVGID_00000080896998515047051580000010655313161610448517_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000008833963887054328980000014402233052742959039_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000008833963887054328980000014402233052742959039_)">
                 <image
                   v-if="healthFrame.Nature"
                   style="overflow: visible"
@@ -9244,10 +6758,7 @@
         </text>
       </g>
     </g>
-    <g
-      v-if="attackFrame"
-      id="Attack_Frame_00000099635997935204855430000018413654597194621370_"
-    >
+    <g v-if="attackFrame" id="Attack_Frame_00000099635997935204855430000018413654597194621370_">
       <g>
         <defs>
           <path
@@ -9256,19 +6767,13 @@
               c1.1,1.1,1.72,1.72,2.83,2.83h27.46L59.45,234L52.52,223.32z"
           />
         </defs>
-        <clipPath
-          id="SVGID_00000036937248855732060310000013686497683083132600_"
-        >
+        <clipPath id="SVGID_00000036937248855732060310000013686497683083132600_">
           <use
             xlink:href="#SVGID_00000018235548533168669020000003715504661345898171_"
             style="overflow: visible"
           />
         </clipPath>
-        <g
-          style="
-            clip-path: url(#SVGID_00000036937248855732060310000013686497683083132600_);
-          "
-        >
+        <g style="clip-path: url(#SVGID_00000036937248855732060310000013686497683083132600_)">
           <g>
             <defs>
               <rect
@@ -9279,19 +6784,13 @@
                 height="35.92"
               />
             </defs>
-            <clipPath
-              id="SVGID_00000054234376737627402260000009589332395040012193_"
-            >
+            <clipPath id="SVGID_00000054234376737627402260000009589332395040012193_">
               <use
                 xlink:href="#SVGID_00000084507406924337828200000008854471066799423391_"
                 style="overflow: visible"
               />
             </clipPath>
-            <g
-              style="
-                clip-path: url(#SVGID_00000054234376737627402260000009589332395040012193_);
-              "
-            >
+            <g style="clip-path: url(#SVGID_00000054234376737627402260000009589332395040012193_)">
               <defs>
                 <rect
                   id="SVGID_00000108293674806684209300000016316045597389226159_"
@@ -9301,19 +6800,13 @@
                   height="35.92"
                 />
               </defs>
-              <clipPath
-                id="SVGID_00000083802695276657971030000017073812216581182111_"
-              >
+              <clipPath id="SVGID_00000083802695276657971030000017073812216581182111_">
                 <use
                   xlink:href="#SVGID_00000108293674806684209300000016316045597389226159_"
                   style="overflow: visible"
                 />
               </clipPath>
-              <g
-                style="
-                  clip-path: url(#SVGID_00000083802695276657971030000017073812216581182111_);
-                "
-              >
+              <g style="clip-path: url(#SVGID_00000083802695276657971030000017073812216581182111_)">
                 <image
                   v-if="framed.Tech"
                   style="overflow: visible"
@@ -9382,14 +6875,8 @@
         </text>
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Entity"
-      id="Entity_FullArt_Frames"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Tech_Frame"
-      >
+    <g v-if="FullArtFrames.Entity" id="Entity_FullArt_Frames">
+      <g v-if="framed.Tech" id="Tech_Frame">
         <linearGradient
           id="Health_Frame_00000047743626570360097830000005063958183842734721_"
           gradientUnits="userSpaceOnUse"
@@ -9398,20 +6885,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96a7b7"
-          />
+          <stop offset="0" style="stop-color: #96a7b8" />
+          <stop offset="1" style="stop-color: #96a7b7" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000152984774770275845180000008648889492369684887_"
-          style="
-            fill: url(#Health_Frame_00000047743626570360097830000005063958183842734721_);
-          "
+          style="fill: url(#Health_Frame_00000047743626570360097830000005063958183842734721_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -9423,20 +6902,12 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #97a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b3c3dd"
-          />
+          <stop offset="0" style="stop-color: #97a7b8" />
+          <stop offset="1" style="stop-color: #b3c3dd" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000074433458455077857000000009090284163200210321_"
-          style="
-            fill: url(#Health_Frame_00000102534490355788276980000009021393561259539387_);
-          "
+          style="fill: url(#Health_Frame_00000102534490355788276980000009021393561259539387_)"
           points="
             61.01,232.62 53.81,221.53 52.96,222.39 60.16,233.48 		"
         />
@@ -9448,24 +6919,13 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #728e9e"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #476c76"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #728e9e" />
+          <stop offset="0.5051" style="stop-color: #476c76" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000067932913804017147830000012652583282268929421_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000047039100959606993390000006895253416963691442_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000047039100959606993390000006895253416963691442_)"
           d="
             M131.62,27.94h-64.9l-0.45-1.51h65.81"
         />
@@ -9477,20 +6937,12 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708c9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #999d9c"
-          />
+          <stop offset="0" style="stop-color: #708c9d" />
+          <stop offset="1" style="stop-color: #999d9c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000021821220995267540180000007937491268901596560_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000088817644459745970620000016767473289142005145_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000088817644459745970620000016767473289142005145_)"
           d="
             M170.2,66.44l-38.59-38.5l0.45-1.51l39.13,39.13"
         />
@@ -9502,24 +6954,13 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #839dae"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #4a6d78"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819bac"
-          />
+          <stop offset="0" style="stop-color: #839dae" />
+          <stop offset="0.5095" style="stop-color: #4a6d78" />
+          <stop offset="1" style="stop-color: #819bac" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000085946834483415717100000000037524567051979428_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000144332736363822120700000014970360876411129513_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000144332736363822120700000014970360876411129513_)"
           d="
             M170.2,129.23V66.44l1-0.88v63.82"
         />
@@ -9531,20 +6972,12 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96aabe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819baf"
-          />
+          <stop offset="0" style="stop-color: #96aabe" />
+          <stop offset="1" style="stop-color: #819baf" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000101076912972233759740000007172958803410677684_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000014635527861784936310000018063411857981952934_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000014635527861784936310000018063411857981952934_)"
           d="
             M165.29,134.14l4.92-4.91l1,0.15l-4.99,4.98"
         />
@@ -9556,20 +6989,12 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145059587482430492600000018226714002135994517_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000020385739199655827590000016146781942442853523_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000020385739199655827590000016146781942442853523_)"
           d="
             M165.29,241.96V134.14l0.93,0.22v108.53"
         />
@@ -9581,20 +7006,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000079478951816018710370000007224468634007780256_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000078040563284780811180000010475145110984026021_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000078040563284780811180000010475145110984026021_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -9606,20 +7023,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000123403060739364566180000001728067503276814724_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000133509684319366926350000007282370210706969768_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000133509684319366926350000007282370210706969768_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -9631,20 +7040,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000091729595712241860680000000013932403999756447_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000058561623598782734960000002925538996136486290_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000058561623598782734960000002925538996136486290_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -9656,20 +7057,12 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000148619799189397420690000012586823402031228563_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000105389031807786918210000002950462788559283622_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000105389031807786918210000002950462788559283622_)"
           d="
             M32.12,242.89V134.36l0.93-0.22v107.82"
         />
@@ -9681,20 +7074,12 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000062906904464911155820000001784101149957511835_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000144338408709801983350000001155211635150570419_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000144338408709801983350000001155211635150570419_)"
           d="
             M32.12,134.36l-4.98-4.98l1-0.15l4.92,4.91"
         />
@@ -9706,20 +7091,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99a9ba"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e79"
-          />
+          <stop offset="0" style="stop-color: #99a9ba" />
+          <stop offset="1" style="stop-color: #4b6e79" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000018204696695907125560000001436514492109975441_"
-          style="
-            fill: url(#Health_Frame_00000116229014495078879660000003526134138008576423_);
-          "
+          style="fill: url(#Health_Frame_00000116229014495078879660000003526134138008576423_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -9731,20 +7108,12 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000138556337991423199870000010531794970097103750_"
-          style="
-            fill: url(#Health_Frame_00000080908596555047591310000000390020768781227161_);
-          "
+          style="fill: url(#Health_Frame_00000080908596555047591310000000390020768781227161_)"
           points="
             33.05,218.6 32.12,219.45 52.96,222.39 53.81,221.53 		"
         />
@@ -9756,24 +7125,13 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5f7d89"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #b5c4dd"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #607e8a"
-          />
+          <stop offset="0" style="stop-color: #5f7d89" />
+          <stop offset="0.4979" style="stop-color: #b5c4dd" />
+          <stop offset="1" style="stop-color: #607e8a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000038394879580468522640000016041904199086855074_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000106835248022569520960000003937772557251748482_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000106835248022569520960000003937772557251748482_)"
           d="
             M27.13,129.38V65.56l1,0.88v62.79"
         />
@@ -9785,24 +7143,13 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5f7d89"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #85959c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #607e8a"
-          />
+          <stop offset="0" style="stop-color: #5f7d89" />
+          <stop offset="0.4979" style="stop-color: #85959c" />
+          <stop offset="1" style="stop-color: #607e8a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000119107392142333943520000014603744351742391688_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000103252180755417439560000003853500661264851641_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000103252180755417439560000003853500661264851641_)"
           d="
             M27.13,65.56l39.13-39.13l0.45,1.51l-38.59,38.5"
         />
@@ -9814,20 +7161,12 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bcc9e2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bac7e1"
-          />
+          <stop offset="0" style="stop-color: #bcc9e2" />
+          <stop offset="1" style="stop-color: #bac7e1" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000162336462229250779280000014965607166261224377_"
-          style="
-            fill: url(#FullArt_Outside_00000032622566610339736110000016942105972131872173_);
-          "
+          style="fill: url(#FullArt_Outside_00000032622566610339736110000016942105972131872173_)"
           d="
             M65.64,24.93 M132.07,26.43H66.26l-0.62-1.5h67.05"
         />
@@ -9839,20 +7178,12 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708c9b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5f7f8a"
-          />
+          <stop offset="0" style="stop-color: #708c9b" />
+          <stop offset="1" style="stop-color: #5f7f8a" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000085964104140912569040000012859424325149505424_"
-          style="
-            fill: url(#FullArt_Outside_00000111904182751731624230000016348792795218952077_);
-          "
+          style="fill: url(#FullArt_Outside_00000111904182751731624230000016348792795218952077_)"
           d="
             M171.2,65.56l-39.13-39.13l0.62-1.5l40.01,40.01"
         />
@@ -9864,20 +7195,12 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b2c1db"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b7c4de"
-          />
+          <stop offset="0" style="stop-color: #b2c1db" />
+          <stop offset="1" style="stop-color: #b7c4de" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000140704954068318974780000012485756455589208223_"
-          style="
-            fill: url(#FullArt_Outside_00000104691862454924924780000000371027790352405156_);
-          "
+          style="fill: url(#FullArt_Outside_00000104691862454924924780000000371027790352405156_)"
           d="
             M171.2,129.38V65.56l1.5-0.62V130"
         />
@@ -9889,20 +7212,12 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b6c5de"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b7c4de"
-          />
+          <stop offset="0" style="stop-color: #b6c5de" />
+          <stop offset="1" style="stop-color: #b7c4de" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000109014530007842381820000002065509567864653977_"
-          style="
-            fill: url(#FullArt_Outside_00000078025036814631986490000002634359304355580558_);
-          "
+          style="fill: url(#FullArt_Outside_00000078025036814631986490000002634359304355580558_)"
           d="
             M166.22,134.36l4.99-4.98l1.5,0.62l-4.99,4.98"
         />
@@ -9914,20 +7229,12 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b0bfd8"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #b0bfd8" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000011716502296738154540000002291162780532186551_"
-          style="
-            fill: url(#FullArt_Outside_00000132782533953459235540000005133705660602212262_);
-          "
+          style="fill: url(#FullArt_Outside_00000132782533953459235540000005133705660602212262_)"
           d="
             M30.62,134.98L25.63,130l1.5-0.62l4.98,4.98"
         />
@@ -9939,20 +7246,12 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b2c1d9"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #b2c1d9" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000017508604750510086730000012222079156491098241_"
-          style="
-            fill: url(#FullArt_Outside_00000088094048136152387720000003671777953302533796_);
-          "
+          style="fill: url(#FullArt_Outside_00000088094048136152387720000003671777953302533796_)"
           d="
             M25.63,130V64.94l1.5,0.62v63.82"
         />
@@ -9964,20 +7263,12 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5b7b86"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #5b7b86" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000155130228801231783490000013142490083718158249_"
-          style="
-            fill: url(#FullArt_Outside_00000116235796018999336880000000142303542817036977_);
-          "
+          style="fill: url(#FullArt_Outside_00000116235796018999336880000000142303542817036977_)"
           d="
             M66.26,26.43L27.13,65.56l-1.5-0.62l40.01-40.01 M65.64,24.93 M65.64,24.93"
         />
@@ -9989,20 +7280,12 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <path
           id="Bottom_Frame"
-          style="
-            fill: url(#Bottom_Frame_00000020363394086559703690000006048298237231237774_);
-          "
+          style="fill: url(#Bottom_Frame_00000020363394086559703690000006048298237231237774_)"
           d="M166.22,134.36
             v85.09l-20.85,2.93l-7.19,11.1l-2.12,11.79H62.28l-2.12-11.79l-7.19-11.1l-20.85-2.93v-85.09l-1.5,0.62v84.26v24.27l3.27,3.27
             h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27l2.02,11.23
@@ -10016,20 +7299,12 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #50727f"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #50727f" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000145776546414272373820000013251877061798231437_"
-          style="
-            fill: url(#Health_Frame_00000122693340668544249920000017030593011705083811_);
-          "
+          style="fill: url(#Health_Frame_00000122693340668544249920000017030593011705083811_)"
           points="
             62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"
         />
@@ -10042,23 +7317,12 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000070084860788676476270000000153915184545478016_);
-            "
+            style="fill: url(#SVGID_00000070084860788676476270000000153915184545478016_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -10070,31 +7334,17 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000098940915931914762820000002623955353034219172_);
-            "
+            style="fill: url(#SVGID_00000098940915931914762820000002623955353034219172_)"
             d="M135.19,244.47"
           />
         </g>
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Nature_Frame"
-      >
+      <g v-if="framed.Nature" id="Nature_Frame">
         <linearGradient
           id="Health_Frame_00000033344171528757148020000005042571596126231691_"
           gradientUnits="userSpaceOnUse"
@@ -10103,20 +7353,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9ebb9a"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #9ebb9a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000107567854081328706240000015761445527867473050_"
-          style="
-            fill: url(#Health_Frame_00000033344171528757148020000005042571596126231691_);
-          "
+          style="fill: url(#Health_Frame_00000033344171528757148020000005042571596126231691_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -10128,20 +7370,12 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #aac7a6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1eecd"
-          />
+          <stop offset="0" style="stop-color: #aac7a6" />
+          <stop offset="1" style="stop-color: #d1eecd" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000150785785356458593260000008650075390382257282_"
-          style="
-            fill: url(#Health_Frame_00000148658272078609199890000011798736975263368084_);
-          "
+          style="fill: url(#Health_Frame_00000148658272078609199890000011798736975263368084_)"
           points="
             61.01,232.62 53.81,221.53 52.96,222.39 60.16,233.48 		"
         />
@@ -10153,24 +7387,13 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #89a483"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #557150"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #87a483"
-          />
+          <stop offset="0" style="stop-color: #89a483" />
+          <stop offset="0.5051" style="stop-color: #557150" />
+          <stop offset="1" style="stop-color: #87a483" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000039856342321327568490000014750579576459664298_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000106104980474294338990000014741836676689733790_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000106104980474294338990000014741836676689733790_)"
           d="
             M131.62,27.94h-64.9l-0.45-1.51h65.81"
         />
@@ -10182,20 +7405,12 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e9978"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5c7857"
-          />
+          <stop offset="0" style="stop-color: #7e9978" />
+          <stop offset="1" style="stop-color: #5c7857" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000095334573251033485770000006005965682320745096_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000131345261192837419270000004553925173421033908_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000131345261192837419270000004553925173421033908_)"
           d="
             M170.2,66.44l-38.59-38.5l0.45-1.51l39.13,39.13"
         />
@@ -10207,24 +7422,13 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #809b7a"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #536f4e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #87a483"
-          />
+          <stop offset="0" style="stop-color: #809b7a" />
+          <stop offset="0.5095" style="stop-color: #536f4e" />
+          <stop offset="1" style="stop-color: #87a483" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000109722520219211294980000005493745349107590585_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000093178474245201911090000000977938077089137812_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000093178474245201911090000000977938077089137812_)"
           d="
             M170.2,129.23V66.44l1-0.88v63.82"
         />
@@ -10236,20 +7440,12 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99b493"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #637f5e"
-          />
+          <stop offset="0" style="stop-color: #99b493" />
+          <stop offset="1" style="stop-color: #637f5e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000183237682363387221880000000421133735790089901_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000176026473422793372400000002759832498340830131_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000176026473422793372400000002759832498340830131_)"
           d="
             M165.29,134.14l4.92-4.91l1,0.15l-4.99,4.98"
         />
@@ -10261,20 +7457,12 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000109002644526194460520000008773422182630041987_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000000904805761769370450000006136312550753356189_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000000904805761769370450000006136312550753356189_)"
           d="
             M165.29,241.96V134.14l0.93,0.22v108.53"
         />
@@ -10286,20 +7474,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000163034087593119699620000013248658346535884476_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000137097190037409612270000007997148710219196303_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000137097190037409612270000007997148710219196303_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -10311,20 +7491,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000005965546723374765680000002308945072824724142_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000107566889663217218030000008395583364422362540_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000107566889663217218030000008395583364422362540_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -10336,20 +7508,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000130648136740624738270000008796561986605229228_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000148658342613160463700000016073316524662256278_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000148658342613160463700000016073316524662256278_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -10361,20 +7525,12 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000163047577482469980500000000330344637602306727_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000147216861408707966130000005797151019501874337_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000147216861408707966130000005797151019501874337_)"
           d="
             M32.12,242.89V134.36l0.93-0.22v107.82"
         />
@@ -10386,20 +7542,12 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #4a6645"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9cb999"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #4a6645" />
+          <stop offset="1" style="stop-color: #9cb999" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000173849022773339975860000003441176891309366679_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000049943105288856299880000000432941606373617323_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000049943105288856299880000000432941606373617323_)"
           d="
             M32.12,134.36l-4.98-4.98l1-0.15l4.92,4.91"
         />
@@ -10411,20 +7559,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8ca785"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #466241"
-          />
+          <stop offset="0" style="stop-color: #8ca785" />
+          <stop offset="1" style="stop-color: #466241" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000170242321994480068050000015077043799848396213_"
-          style="
-            fill: url(#Health_Frame_00000095334396154156223060000003781683359639249574_);
-          "
+          style="fill: url(#Health_Frame_00000095334396154156223060000003781683359639249574_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -10436,20 +7576,12 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6746"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5d2b1"
-          />
+          <stop offset="0" style="stop-color: #4b6746" />
+          <stop offset="1" style="stop-color: #b5d2b1" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000154391540636532152890000010141638030228646280_"
-          style="
-            fill: url(#Health_Frame_00000175319201741703790980000012349731470762252186_);
-          "
+          style="fill: url(#Health_Frame_00000175319201741703790980000012349731470762252186_)"
           points="
             33.05,218.6 32.12,219.45 52.96,222.39 53.81,221.53 		"
         />
@@ -10461,24 +7593,13 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #749170"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #a6c1a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #718e6c"
-          />
+          <stop offset="0" style="stop-color: #749170" />
+          <stop offset="0.4979" style="stop-color: #a6c1a1" />
+          <stop offset="1" style="stop-color: #718e6c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000070835252384617612080000007904019896065720499_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000092434389687399559600000008242074316475862169_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000092434389687399559600000008242074316475862169_)"
           d="
             M27.13,129.38V65.56l1,0.88v62.79"
         />
@@ -10490,24 +7611,13 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #799574"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #a4c1a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6a49"
-          />
+          <stop offset="0" style="stop-color: #799574" />
+          <stop offset="0.4979" style="stop-color: #a4c1a1" />
+          <stop offset="1" style="stop-color: #4d6a49" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000016053152834684698080000017212087735939720329_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000003819952872965508450000010842058347974631059_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000003819952872965508450000010842058347974631059_)"
           d="
             M27.13,65.56l39.13-39.13l0.45,1.51l-38.59,38.5"
         />
@@ -10519,20 +7629,12 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1eecc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbe6c5"
-          />
+          <stop offset="0" style="stop-color: #d1eecc" />
+          <stop offset="1" style="stop-color: #cbe6c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000117648915731945877650000008596803875330864286_"
-          style="
-            fill: url(#FullArt_Outside_00000088854654328860497880000017314949667511813809_);
-          "
+          style="fill: url(#FullArt_Outside_00000088854654328860497880000017314949667511813809_)"
           d="
             M65.64,24.93 M132.07,26.43H66.26l-0.62-1.5h67.05"
         />
@@ -10544,20 +7646,12 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #a2bf9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #809b7a"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #a2bf9e" />
+          <stop offset="1" style="stop-color: #809b7a" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000183240838811341844860000015973105784397176974_"
-          style="
-            fill: url(#FullArt_Outside_00000122705557495336371080000005217471309320405149_);
-          "
+          style="fill: url(#FullArt_Outside_00000122705557495336371080000005217471309320405149_)"
           d="
             M171.2,65.56l-39.13-39.13l0.62-1.5l40.01,40.01"
         />
@@ -10569,20 +7663,12 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d0edcd"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cae7c5"
-          />
+          <stop offset="0" style="stop-color: #d0edcd" />
+          <stop offset="1" style="stop-color: #cae7c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000106122489756565594740000013286527396158103229_"
-          style="
-            fill: url(#FullArt_Outside_00000157308196462986106540000000997111136280182942_);
-          "
+          style="fill: url(#FullArt_Outside_00000157308196462986106540000000997111136280182942_)"
           d="
             M171.2,129.38V65.56l1.5-0.62V130"
         />
@@ -10594,20 +7680,12 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cce9c8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbe8c7"
-          />
+          <stop offset="0" style="stop-color: #cce9c8" />
+          <stop offset="1" style="stop-color: #cbe8c7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000085244384423922031050000010614369699855355049_"
-          style="
-            fill: url(#FullArt_Outside_00000089534534241157203300000014151768881625876370_);
-          "
+          style="fill: url(#FullArt_Outside_00000089534534241157203300000014151768881625876370_)"
           d="
             M166.22,134.36l4.99-4.98l1.5,0.62l-4.99,4.98"
         />
@@ -10619,20 +7697,12 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdeac9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cae7c6"
-          />
+          <stop offset="0" style="stop-color: #cdeac9" />
+          <stop offset="1" style="stop-color: #cae7c6" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000114036791975829556010000007017771963363663772_"
-          style="
-            fill: url(#FullArt_Outside_00000119095627185906189350000013763850801411822484_);
-          "
+          style="fill: url(#FullArt_Outside_00000119095627185906189350000013763850801411822484_)"
           d="
             M30.62,134.98L25.63,130l1.5-0.62l4.98,4.98"
         />
@@ -10644,20 +7714,12 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdeac9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbe8c7"
-          />
+          <stop offset="0" style="stop-color: #cdeac9" />
+          <stop offset="1" style="stop-color: #cbe8c7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000177445602103497942280000009117691591174333618_"
-          style="
-            fill: url(#FullArt_Outside_00000151505997209062120370000013937334771775668645_);
-          "
+          style="fill: url(#FullArt_Outside_00000151505997209062120370000013937334771775668645_)"
           d="
             M25.63,130V64.94l1.5,0.62v63.82"
         />
@@ -10669,20 +7731,12 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #809c7a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #799574"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #809c7a" />
+          <stop offset="1" style="stop-color: #799574" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000168087472215575979720000008375191392146401203_"
-          style="
-            fill: url(#FullArt_Outside_00000156583614272414017100000010249442367786864529_);
-          "
+          style="fill: url(#FullArt_Outside_00000156583614272414017100000010249442367786864529_)"
           d="
             M66.26,26.43L27.13,65.56l-1.5-0.62l40.01-40.01 M65.64,24.93 M65.64,24.93"
         />
@@ -10694,20 +7748,12 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000121978739742686728250000001848696960910442395_"
-          style="
-            fill: url(#Bottom_Frame_00000016773986282480687930000002048453108333242005_);
-          "
+          style="fill: url(#Bottom_Frame_00000016773986282480687930000002048453108333242005_)"
           d="
             M166.22,134.36v85.09l-20.85,2.93l-7.19,11.1l-2.12,11.79H62.28l-2.12-11.79l-7.19-11.1l-20.85-2.93v-85.09l-1.5,0.62v84.26v24.27
             l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
@@ -10721,26 +7767,16 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7d9a79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e6a49"
-          />
+          <stop offset="0" style="stop-color: #7d9a79" />
+          <stop offset="1" style="stop-color: #4e6a49" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000068672965480437925620000000451653373043581084_"
-          style="
-            fill: url(#Health_Frame_00000065771098000883841000000008729323488680362151_);
-          "
+          style="fill: url(#Health_Frame_00000065771098000883841000000008729323488680362151_)"
           points="
             62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"
         />
-        <g
-          id="Health_Frame_00000111884566421854863540000013342101112691306675_"
-        >
+        <g id="Health_Frame_00000111884566421854863540000013342101112691306675_">
           <linearGradient
             id="SVGID_00000061465525469936660040000018113491359729193390_"
             gradientUnits="userSpaceOnUse"
@@ -10749,23 +7785,12 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000061465525469936660040000018113491359729193390_);
-            "
+            style="fill: url(#SVGID_00000061465525469936660040000018113491359729193390_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -10777,31 +7802,17 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000159447478846745403550000016107703173799287687_);
-            "
+            style="fill: url(#SVGID_00000159447478846745403550000016107703173799287687_)"
             d="M135.19,244.47"
           />
         </g>
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Myth_Frame"
-      >
+      <g v-if="framed.Myth" id="Myth_Frame">
         <linearGradient
           id="Health_Frame_00000155852531660001351230000010150227762775362437_"
           gradientUnits="userSpaceOnUse"
@@ -10810,20 +7821,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad81a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9e869a"
-          />
+          <stop offset="0" style="stop-color: #ad81a9" />
+          <stop offset="1" style="stop-color: #9e869a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000124842010716384016350000017784987513986968493_"
-          style="
-            fill: url(#Health_Frame_00000155852531660001351230000010150227762775362437_);
-          "
+          style="fill: url(#Health_Frame_00000155852531660001351230000010150227762775362437_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -10835,24 +7838,13 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #aa8aa6"
-          />
-          <stop
-            offset="0.8263"
-            style="stop-color: #cab4c6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1bdcd"
-          />
+          <stop offset="0" style="stop-color: #aa8aa6" />
+          <stop offset="0.8263" style="stop-color: #cab4c6" />
+          <stop offset="1" style="stop-color: #d1bdcd" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000171705858898689896030000017686691324595229573_"
-          style="
-            fill: url(#Health_Frame_00000063632768019937094540000005452104496488146311_);
-          "
+          style="fill: url(#Health_Frame_00000063632768019937094540000005452104496488146311_)"
           points="
             61.01,232.62 53.81,221.53 52.96,222.39 60.16,233.48 		"
         />
@@ -10864,24 +7856,13 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #895983"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #552b50"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #876983"
-          />
+          <stop offset="0" style="stop-color: #895983" />
+          <stop offset="0.5051" style="stop-color: #552b50" />
+          <stop offset="1" style="stop-color: #876983" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000076584872847293514570000014537515302557699478_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000090261008869060117340000000886478852995957423_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000090261008869060117340000000886478852995957423_)"
           d="
             M131.62,27.94h-64.9l-0.45-1.51h65.81"
         />
@@ -10893,20 +7874,12 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e5478"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5c3457"
-          />
+          <stop offset="0" style="stop-color: #7e5478" />
+          <stop offset="1" style="stop-color: #5c3457" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000114779710238009705200000017765731772335353232_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000084506722989226952420000017498932732050436227_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000084506722989226952420000017498932732050436227_)"
           d="
             M170.2,66.44l-38.59-38.5l0.45-1.51l39.13,39.13"
         />
@@ -10918,24 +7891,13 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #805b7a"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #53304e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #876c83"
-          />
+          <stop offset="0" style="stop-color: #805b7a" />
+          <stop offset="0.5095" style="stop-color: #53304e" />
+          <stop offset="1" style="stop-color: #876c83" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000012474631588881360280000017394397443956161411_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000137116076993007621180000006383836586960839829_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000137116076993007621180000006383836586960839829_)"
           d="
             M170.2,129.23V66.44l1-0.88v63.82"
         />
@@ -10947,20 +7909,12 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #997993"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #63335e"
-          />
+          <stop offset="0" style="stop-color: #997993" />
+          <stop offset="1" style="stop-color: #63335e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000098900461589568052580000002344016836920882564_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000034812732402689533610000011724589431016991415_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000034812732402689533610000011724589431016991415_)"
           d="
             M165.29,134.14l4.92-4.91l1,0.15l-4.99,4.98"
         />
@@ -10972,20 +7926,12 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000152245819994576919560000000970891924064115594_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000065047641648787520290000009204185851920613793_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000065047641648787520290000009204185851920613793_)"
           d="
             M165.29,241.96V134.14l0.93,0.22v108.53"
         />
@@ -10997,20 +7943,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000093879205158309550230000003844244690261608320_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000059303772467715967910000009879879642970538394_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000059303772467715967910000009879879642970538394_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -11022,20 +7960,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000040556966937291053850000004463753374892650124_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000036227550402989234430000003617523782082677666_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000036227550402989234430000003617523782082677666_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -11047,20 +7977,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000054980120509761274150000013430459365323545737_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000052813540387538281910000015813391235946957977_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000052813540387538281910000015813391235946957977_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -11072,20 +7994,12 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000109735586315875664040000007132062883729916837_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000049936468689787447300000013917693457707694781_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000049936468689787447300000013917693457707694781_)"
           d="
             M32.12,242.89V134.36l0.93-0.22v107.82"
         />
@@ -11097,20 +8011,12 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #4a3045"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9c7a99"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #4a3045" />
+          <stop offset="1" style="stop-color: #9c7a99" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000072996194095901165400000012589460656958182574_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000026876957110451884830000012222548004598773394_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000026876957110451884830000012222548004598773394_)"
           d="
             M32.12,134.36l-4.98-4.98l1-0.15l4.92,4.91"
         />
@@ -11122,20 +8028,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7185"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #463041"
-          />
+          <stop offset="0" style="stop-color: #9c7185" />
+          <stop offset="1" style="stop-color: #463041" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000155825331281139736710000008800487656406949299_"
-          style="
-            fill: url(#Health_Frame_00000117672065616814862910000002584671925189741747_);
-          "
+          style="fill: url(#Health_Frame_00000117672065616814862910000002584671925189741747_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -11147,20 +8045,12 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b3846"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c59db1"
-          />
+          <stop offset="0" style="stop-color: #4b3846" />
+          <stop offset="1" style="stop-color: #c59db1" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000019659905816269925210000002872966573841936792_"
-          style="
-            fill: url(#Health_Frame_00000080914865425755414760000010390066138143542920_);
-          "
+          style="fill: url(#Health_Frame_00000080914865425755414760000010390066138143542920_)"
           points="
             33.05,218.6 32.12,219.45 52.96,222.39 53.81,221.53 		"
         />
@@ -11172,24 +8062,13 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #743e70"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #a67ca1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #71466c"
-          />
+          <stop offset="0" style="stop-color: #743e70" />
+          <stop offset="0.4979" style="stop-color: #a67ca1" />
+          <stop offset="1" style="stop-color: #71466c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000134215328544309770490000003351107644012964018_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000021838345675341594670000000818397698120625049_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000021838345675341594670000000818397698120625049_)"
           d="
             M27.13,129.38V65.56l1,0.88v62.79"
         />
@@ -11201,24 +8080,13 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #794674"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #b385a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d3a49"
-          />
+          <stop offset="0" style="stop-color: #794674" />
+          <stop offset="0.4979" style="stop-color: #b385a1" />
+          <stop offset="1" style="stop-color: #4d3a49" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000132767209744461059630000015565705762250875839_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000155839689023977193720000013737000330389032851_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000155839689023977193720000013737000330389032851_)"
           d="
             M27.13,65.56l39.13-39.13l0.45,1.51l-38.59,38.5"
         />
@@ -11230,20 +8098,12 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1becc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cba3c5"
-          />
+          <stop offset="0" style="stop-color: #d1becc" />
+          <stop offset="1" style="stop-color: #cba3c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000096052025735010213990000003575071782649474944_"
-          style="
-            fill: url(#FullArt_Outside_00000086660556694279917640000013724317501991287725_);
-          "
+          style="fill: url(#FullArt_Outside_00000086660556694279917640000013724317501991287725_)"
           d="
             M65.64,24.93 M132.07,26.43H66.26l-0.62-1.5h67.05"
         />
@@ -11255,20 +8115,12 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #a2879e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #804d7a"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #a2879e" />
+          <stop offset="1" style="stop-color: #804d7a" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000073682810997856627720000015747136981987074188_"
-          style="
-            fill: url(#FullArt_Outside_00000107567068334427719900000014376318239659995555_);
-          "
+          style="fill: url(#FullArt_Outside_00000107567068334427719900000014376318239659995555_)"
           d="
             M171.2,65.56l-39.13-39.13l0.62-1.5l40.01,40.01"
         />
@@ -11280,20 +8132,12 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d0b3cd"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #caa1c5"
-          />
+          <stop offset="0" style="stop-color: #d0b3cd" />
+          <stop offset="1" style="stop-color: #caa1c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000130636931199656780560000015054449654819093948_"
-          style="
-            fill: url(#FullArt_Outside_00000044869909868377338400000004289418598996993183_);
-          "
+          style="fill: url(#FullArt_Outside_00000044869909868377338400000004289418598996993183_)"
           d="
             M171.2,129.38V65.56l1.5-0.62V130"
         />
@@ -11305,20 +8149,12 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cc93c8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cba6c7"
-          />
+          <stop offset="0" style="stop-color: #cc93c8" />
+          <stop offset="1" style="stop-color: #cba6c7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000016056496944920550860000011756869778620085893_"
-          style="
-            fill: url(#FullArt_Outside_00000129924780960167415370000018289081619330564240_);
-          "
+          style="fill: url(#FullArt_Outside_00000129924780960167415370000018289081619330564240_)"
           d="
             M166.22,134.36l4.99-4.98l1.5,0.62l-4.99,4.98"
         />
@@ -11330,20 +8166,12 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cd8ec9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cab1c6"
-          />
+          <stop offset="0" style="stop-color: #cd8ec9" />
+          <stop offset="1" style="stop-color: #cab1c6" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000137842153763098191370000013538606909202842516_"
-          style="
-            fill: url(#FullArt_Outside_00000114067889562411313900000003156069545017414292_);
-          "
+          style="fill: url(#FullArt_Outside_00000114067889562411313900000003156069545017414292_)"
           d="
             M30.62,134.98L25.63,130l1.5-0.62l4.98,4.98"
         />
@@ -11355,20 +8183,12 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cdacc9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cbafc7"
-          />
+          <stop offset="0" style="stop-color: #cdacc9" />
+          <stop offset="1" style="stop-color: #cbafc7" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000004521281789708554260000009271301715242884022_"
-          style="
-            fill: url(#FullArt_Outside_00000038386621394174705650000007299980977152682896_);
-          "
+          style="fill: url(#FullArt_Outside_00000038386621394174705650000007299980977152682896_)"
           d="
             M25.63,130V64.94l1.5,0.62v63.82"
         />
@@ -11380,20 +8200,12 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #80527a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #793d74"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #80527a" />
+          <stop offset="1" style="stop-color: #793d74" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000157268354852369297090000016953468918096874673_"
-          style="
-            fill: url(#FullArt_Outside_00000115505367920752413990000003454005253937161351_);
-          "
+          style="fill: url(#FullArt_Outside_00000115505367920752413990000003454005253937161351_)"
           d="
             M66.26,26.43L27.13,65.56l-1.5-0.62l40.01-40.01 M65.64,24.93 M65.64,24.93"
         />
@@ -11405,20 +8217,12 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000143577017188063661830000004126294849640017822_"
-          style="
-            fill: url(#Bottom_Frame_00000150791690046915172030000011718145511494209963_);
-          "
+          style="fill: url(#Bottom_Frame_00000150791690046915172030000011718145511494209963_)"
           d="
             M166.22,134.36v85.09l-20.85,2.93l-7.19,11.1l-2.12,11.79H62.28l-2.12-11.79l-7.19-11.1l-20.85-2.93v-85.09l-1.5,0.62v84.26v24.27
             l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
@@ -11432,20 +8236,12 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7d5f79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e2e49"
-          />
+          <stop offset="0" style="stop-color: #7d5f79" />
+          <stop offset="1" style="stop-color: #4e2e49" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000074436738857050336430000010036697213545824136_"
-          style="
-            fill: url(#Health_Frame_00000107563925100240812320000001860205395930954149_);
-          "
+          style="fill: url(#Health_Frame_00000107563925100240812320000001860205395930954149_)"
           points="
             62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"
         />
@@ -11457,31 +8253,17 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4c2f47"
-          />
-          <stop
-            offset="0.7569"
-            style="stop-color: #755671"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83647f"
-          />
+          <stop offset="0" style="stop-color: #4c2f47" />
+          <stop offset="0.7569" style="stop-color: #755671" />
+          <stop offset="1" style="stop-color: #83647f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000000208110051635098830000003324006559344716711_);
-          "
+          style="fill: url(#SVGID_00000000208110051635098830000003324006559344716711_)"
           points="137.33,232.62 135.19,244.47
             136.05,245.28 138.17,233.48 		"
         />
       </g>
-      <g
-        v-if="framed.Culture"
-        id="Culture_Frame"
-      >
+      <g v-if="framed.Culture" id="Culture_Frame">
         <linearGradient
           id="Health_Frame_00000136406794588487439390000016837285619480654492_"
           gradientUnits="userSpaceOnUse"
@@ -11490,20 +8272,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c0816b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1866b"
-          />
+          <stop offset="0" style="stop-color: #c0816b" />
+          <stop offset="1" style="stop-color: #b1866b" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000119832128316830532450000013705886513402746281_"
-          style="
-            fill: url(#Health_Frame_00000136406794588487439390000016837285619480654492_);
-          "
+          style="fill: url(#Health_Frame_00000136406794588487439390000016837285619480654492_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -11515,24 +8289,13 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bc8a57"
-          />
-          <stop
-            offset="0.4636"
-            style="stop-color: #d3a081"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f0bdb6"
-          />
+          <stop offset="0" style="stop-color: #bc8a57" />
+          <stop offset="0.4636" style="stop-color: #d3a081" />
+          <stop offset="1" style="stop-color: #f0bdb6" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000076584065972268701600000013431163114243812017_"
-          style="
-            fill: url(#Health_Frame_00000166645794649666454430000003873541724880299684_);
-          "
+          style="fill: url(#Health_Frame_00000166645794649666454430000003873541724880299684_)"
           points="
             61.01,232.62 53.81,221.53 52.96,222.39 60.16,233.48 		"
         />
@@ -11544,24 +8307,13 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b5950"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #6b2b29"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #966949"
-          />
+          <stop offset="0" style="stop-color: #9b5950" />
+          <stop offset="0.5051" style="stop-color: #6b2b29" />
+          <stop offset="1" style="stop-color: #966949" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000181084695411936302420000009709646788749416080_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000125601696129763162390000016722645536969624967_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000125601696129763162390000016722645536969624967_)"
           d="
             M131.62,27.94h-64.9l-0.45-1.51h65.81"
         />
@@ -11573,20 +8325,12 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #865443"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #662425"
-          />
+          <stop offset="0" style="stop-color: #865443" />
+          <stop offset="1" style="stop-color: #662425" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000018197773448034103880000005554554537944450492_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000045584522645902975380000003252779888457326737_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000045584522645902975380000003252779888457326737_)"
           d="
             M170.2,66.44l-38.59-38.5l0.45-1.51l39.13,39.13"
         />
@@ -11598,24 +8342,13 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8f5b45"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #633028"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #916c4c"
-          />
+          <stop offset="0" style="stop-color: #8f5b45" />
+          <stop offset="0.5095" style="stop-color: #633028" />
+          <stop offset="1" style="stop-color: #916c4c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000008111176873527606110000006624021318916176259_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000152248076094095350920000003068735291829053061_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000152248076094095350920000003068735291829053061_)"
           d="
             M170.2,129.23V66.44l1-0.88v63.82"
         />
@@ -11627,20 +8360,12 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a67962"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #703330"
-          />
+          <stop offset="0" style="stop-color: #a67962" />
+          <stop offset="1" style="stop-color: #703330" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000044882442401465419570000009194969167381782156_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000147927171332966093100000003545063616262045831_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000147927171332966093100000003545063616262045831_)"
           d="
             M165.29,134.14l4.92-4.91l1,0.15l-4.99,4.98"
         />
@@ -11652,20 +8377,12 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000170254114210986601850000008044639319321133217_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000145757307957211541230000009377110301231825848_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000145757307957211541230000009377110301231825848_)"
           d="
             M165.29,241.96V134.14l0.93,0.22v108.53"
         />
@@ -11677,20 +8394,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000140699003869083327650000011186102444763173810_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000029738449806288299270000017735758895323762080_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000029738449806288299270000017735758895323762080_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -11702,20 +8411,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000108989942519863615940000007326341270484965297_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000137109624553053815800000014213734701528027054_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000137109624553053815800000014213734701528027054_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -11727,20 +8428,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000178922737498787620240000011323998949825086106_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000123415403725410978520000015726026045168257424_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000123415403725410978520000015726026045168257424_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -11752,20 +8445,12 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145759776888895711620000015175034623581117606_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000029022145835869718340000012125566165474253199_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000029022145835869718340000012125566165474253199_)"
           d="
             M32.12,242.89V134.36l0.93-0.22v107.82"
         />
@@ -11777,20 +8462,12 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #533022"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b17a63"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #533022" />
+          <stop offset="1" style="stop-color: #b17a63" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000068651915247062088830000012230362473223272582_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000088097904363068908480000001424782840072383934_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000088097904363068908480000001424782840072383934_)"
           d="
             M32.12,134.36l-4.98-4.98l1-0.15l4.92,4.91"
         />
@@ -11802,20 +8479,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae714e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #54301b"
-          />
+          <stop offset="0" style="stop-color: #ae714e" />
+          <stop offset="1" style="stop-color: #54301b" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000034769254509734043030000005124450405533328804_"
-          style="
-            fill: url(#Health_Frame_00000182514771682078187780000004333076767802226049_);
-          "
+          style="fill: url(#Health_Frame_00000182514771682078187780000004333076767802226049_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -11827,20 +8496,12 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #723325"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e1ae93"
-          />
+          <stop offset="0" style="stop-color: #723325" />
+          <stop offset="1" style="stop-color: #e1ae93" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000024710279622951467690000008038371106913407888_"
-          style="
-            fill: url(#Health_Frame_00000139279282148973194070000015603824818123759805_);
-          "
+          style="fill: url(#Health_Frame_00000139279282148973194070000015603824818123759805_)"
           points="
             33.05,218.6 32.12,219.45 52.96,222.39 53.81,221.53 		"
         />
@@ -11852,24 +8513,13 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #853e42"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #bf7c67"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8c4649"
-          />
+          <stop offset="0" style="stop-color: #853e42" />
+          <stop offset="0.4979" style="stop-color: #bf7c67" />
+          <stop offset="1" style="stop-color: #8c4649" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000091698650570876272990000014280335734916160411_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000075847297038528645580000005030344867868212413_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000075847297038528645580000005030344867868212413_)"
           d="
             M27.13,129.38V65.56l1,0.88v62.79"
         />
@@ -11881,24 +8531,13 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8b3337"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #be8f5d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76352d"
-          />
+          <stop offset="0" style="stop-color: #8b3337" />
+          <stop offset="0.4979" style="stop-color: #be8f5d" />
+          <stop offset="1" style="stop-color: #76352d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145036836301386274950000000542513753647846542_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000152971864139148918530000017054520813137428911_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000152971864139148918530000017054520813137428911_)"
           d="
             M27.13,65.56l39.13-39.13l0.45,1.51l-38.59,38.5"
         />
@@ -11910,20 +8549,12 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2bea6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dfa3a2"
-          />
+          <stop offset="0" style="stop-color: #e2bea6" />
+          <stop offset="1" style="stop-color: #dfa3a2" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000020376471565235732680000001849011125478002608_"
-          style="
-            fill: url(#FullArt_Outside_00000035492752486163714980000008237169924361019305_);
-          "
+          style="fill: url(#FullArt_Outside_00000035492752486163714980000008237169924361019305_)"
           d="
             M65.64,24.93 M132.07,26.43H66.26l-0.62-1.5h67.05"
         />
@@ -11935,20 +8566,12 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #bd8772"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #924d38"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #bd8772" />
+          <stop offset="1" style="stop-color: #924d38" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000032609284301908767450000001612598043736749700_"
-          style="
-            fill: url(#FullArt_Outside_00000055686695275531397450000001049420327297898894_);
-          "
+          style="fill: url(#FullArt_Outside_00000055686695275531397450000001049420327297898894_)"
           d="
             M171.2,65.56l-39.13-39.13l0.62-1.5l40.01,40.01"
         />
@@ -11960,20 +8583,12 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e5b390"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #daa19e"
-          />
+          <stop offset="0" style="stop-color: #e5b390" />
+          <stop offset="1" style="stop-color: #daa19e" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000154425905949606374610000003700177746849648559_"
-          style="
-            fill: url(#FullArt_Outside_00000031202389964396138370000001051335726908526783_);
-          "
+          style="fill: url(#FullArt_Outside_00000031202389964396138370000001051335726908526783_)"
           d="
             M171.2,129.38V65.56l1.5-0.62V130"
         />
@@ -11985,20 +8600,12 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e1937e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dda695"
-          />
+          <stop offset="0" style="stop-color: #e1937e" />
+          <stop offset="1" style="stop-color: #dda695" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000148632348600556608250000011522657524086840717_"
-          style="
-            fill: url(#FullArt_Outside_00000095303544185021926940000000378139473865654948_);
-          "
+          style="fill: url(#FullArt_Outside_00000095303544185021926940000000378139473865654948_)"
           d="
             M166.22,134.36l4.99-4.98l1.5,0.62l-4.99,4.98"
         />
@@ -12010,20 +8617,12 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e58e89"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e0b1a3"
-          />
+          <stop offset="0" style="stop-color: #e58e89" />
+          <stop offset="1" style="stop-color: #e0b1a3" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000048458912072304127860000010552128443256452772_"
-          style="
-            fill: url(#FullArt_Outside_00000148648283056268465970000003196336058713085103_);
-          "
+          style="fill: url(#FullArt_Outside_00000148648283056268465970000003196336058713085103_)"
           d="
             M30.62,134.98L25.63,130l1.5-0.62l4.98,4.98"
         />
@@ -12035,20 +8634,12 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0ac94"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ddafa1"
-          />
+          <stop offset="0" style="stop-color: #e0ac94" />
+          <stop offset="1" style="stop-color: #ddafa1" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000081614368104121097950000007406156013884851897_"
-          style="
-            fill: url(#FullArt_Outside_00000131356437356008006290000016701163687792890786_);
-          "
+          style="fill: url(#FullArt_Outside_00000131356437356008006290000016701163687792890786_)"
           d="
             M25.63,130V64.94l1.5,0.62v63.82"
         />
@@ -12060,20 +8651,12 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #91523e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #793d2b"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #91523e" />
+          <stop offset="1" style="stop-color: #793d2b" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000114060706316269451560000007335096334600747422_"
-          style="
-            fill: url(#FullArt_Outside_00000146492063335983462000000015709480233689301905_);
-          "
+          style="fill: url(#FullArt_Outside_00000146492063335983462000000015709480233689301905_)"
           d="
             M66.26,26.43L27.13,65.56l-1.5-0.62l40.01-40.01 M65.64,24.93 M65.64,24.93"
         />
@@ -12085,20 +8668,12 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000098940995268602067050000017145524413788915607_"
-          style="
-            fill: url(#Bottom_Frame_00000061449356939582950920000001768277746505285554_);
-          "
+          style="fill: url(#Bottom_Frame_00000061449356939582950920000001768277746505285554_)"
           d="
             M166.22,134.36v85.09l-20.85,2.93l-7.19,11.1l-2.12,11.79H62.28l-2.12-11.79l-7.19-11.1l-20.85-2.93v-85.09l-1.5,0.62v84.26v24.27
             l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
@@ -12112,20 +8687,12 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #905f42"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #58302d"
-          />
+          <stop offset="0" style="stop-color: #905f42" />
+          <stop offset="1" style="stop-color: #58302d" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000094586127363683995540000003199302529710984350_"
-          style="
-            fill: url(#Health_Frame_00000000218778962603478140000003854954594304091808_);
-          "
+          style="fill: url(#Health_Frame_00000000218778962603478140000003854954594304091808_)"
           points="
             62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"
         />
@@ -12137,31 +8704,17 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #562f29"
-          />
-          <stop
-            offset="0.6487"
-            style="stop-color: #80503b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #986446"
-          />
+          <stop offset="0" style="stop-color: #562f29" />
+          <stop offset="0.6487" style="stop-color: #80503b" />
+          <stop offset="1" style="stop-color: #986446" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000071527356340970345280000013836110517449672353_);
-          "
+          style="fill: url(#SVGID_00000071527356340970345280000013836110517449672353_)"
           points="137.33,232.62 135.19,244.47
             136.05,245.28 138.17,233.48 		"
         />
       </g>
-      <g
-        v-if="framed.MultiClass"
-        id="Multi_Class_Frame"
-      >
+      <g v-if="framed.MultiClass" id="Multi_Class_Frame">
         <linearGradient
           id="Health_Frame_00000111164762821423201940000014376673405273825194_"
           gradientUnits="userSpaceOnUse"
@@ -12170,20 +8723,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b6a496"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b6a496" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000088836195138356462460000004783686602781276801_"
-          style="
-            fill: url(#Health_Frame_00000111164762821423201940000014376673405273825194_);
-          "
+          style="fill: url(#Health_Frame_00000111164762821423201940000014376673405273825194_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -12195,20 +8740,12 @@
           x2="60.3687"
           y2="233.3639"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b7a397"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b7a397" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000147908277753400446030000002632938256765323674_"
-          style="
-            fill: url(#Health_Frame_00000136384052664689195350000017531247644126520714_);
-          "
+          style="fill: url(#Health_Frame_00000136384052664689195350000017531247644126520714_)"
           points="
             61.01,232.62 53.81,221.53 52.96,222.39 60.16,233.48 		"
         />
@@ -12220,24 +8757,13 @@
           x2="132.0733"
           y2="27.1865"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e8779"
-          />
-          <stop
-            offset="0.5051"
-            style="stop-color: #695146"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #947f73"
-          />
+          <stop offset="0" style="stop-color: #9e8779" />
+          <stop offset="0.5051" style="stop-color: #695146" />
+          <stop offset="1" style="stop-color: #947f73" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000042002989802662385530000002668873314860466342_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000169534710784534304760000015072824655992261780_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000169534710784534304760000015072824655992261780_)"
           d="
             M131.62,27.94h-64.9l-0.45-1.51h65.81"
         />
@@ -12249,20 +8775,12 @@
           x2="170.7108"
           y2="66.0512"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e8779"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ae9e90"
-          />
+          <stop offset="0" style="stop-color: #9e8779" />
+          <stop offset="1" style="stop-color: #ae9e90" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000067939884245482082500000003247445842576813735_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000070813328819123032220000010426956935612933267_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000070813328819123032220000010426956935612933267_)"
           d="
             M170.2,66.44l-38.59-38.5l0.45-1.51l39.13,39.13"
         />
@@ -12274,24 +8792,13 @@
           x2="170.7032"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ab978a"
-          />
-          <stop
-            offset="0.5095"
-            style="stop-color: #6d5548"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ad988a"
-          />
+          <stop offset="0" style="stop-color: #ab978a" />
+          <stop offset="0.5095" style="stop-color: #6d5548" />
+          <stop offset="1" style="stop-color: #ad988a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000058564495388151664030000012920112646349020544_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000034081180158403872720000015298587661844857222_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000034081180158403872720000015298587661844857222_)"
           d="
             M170.2,129.23V66.44l1-0.88v63.82"
         />
@@ -12303,20 +8810,12 @@
           x2="170.9134"
           y2="129.0903"
         >
-          <stop
-            offset="0"
-            style="stop-color: #727069"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ac9b8e"
-          />
+          <stop offset="0" style="stop-color: #727069" />
+          <stop offset="1" style="stop-color: #ac9b8e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000149364420173126084350000007817864696295685006_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000154412696193437628050000014550123171955294878_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000154412696193437628050000014550123171955294878_)"
           d="
             M165.29,134.14l4.92-4.91l1,0.15l-4.99,4.98"
         />
@@ -12328,20 +8827,12 @@
           x2="165.752"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000034789810090354488070000013740256775152935841_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000036966227629347297630000010421300684769398963_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000036966227629347297630000010421300684769398963_)"
           d="
             M165.29,241.96V134.14l0.93,0.22v108.53"
         />
@@ -12353,20 +8844,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000176728119581143390930000009017604009026638780_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000151523695860753532690000015145619092477152924_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000151523695860753532690000015145619092477152924_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -12378,20 +8861,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000105393844563401087960000007740849356684892090_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000093886482755649906650000011988613970934392511_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000093886482755649906650000011988613970934392511_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -12403,20 +8878,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000153670861293983833830000007804219640916071567_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000046330229973225214280000017594132753012265646_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000046330229973225214280000017594132753012265646_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -12428,20 +8895,12 @@
           x2="32.5823"
           y2="134.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000028323187436492978690000007965884089043716022_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000101800036508765055240000016851951548953087125_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000101800036508765055240000016851951548953087125_)"
           d="
             M32.12,242.89V134.36l0.93-0.22v107.82"
         />
@@ -12453,20 +8912,12 @@
           x2="32.7586"
           y2="134.4277"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b8a496"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #baa99a"
-          />
+          <stop offset="0" style="stop-color: #b8a496" />
+          <stop offset="1" style="stop-color: #baa99a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000144339806771545749780000008422498188926620574_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000141419336753527720990000017392443862401828792_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000141419336753527720990000017392443862401828792_)"
           d="
             M32.12,134.36l-4.98-4.98l1-0.15l4.92,4.91"
         />
@@ -12478,20 +8929,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745c51"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #745c51" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000063634990210886679440000002621255720144680630_"
-          style="
-            fill: url(#Health_Frame_00000010996646070429017630000000655712026083515835_);
-          "
+          style="fill: url(#Health_Frame_00000010996646070429017630000000655712026083515835_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -12503,20 +8946,12 @@
           x2="53.8126"
           y2="220.4953"
         >
-          <stop
-            offset="0"
-            style="stop-color: #765e53"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #947e74"
-          />
+          <stop offset="0" style="stop-color: #765e53" />
+          <stop offset="1" style="stop-color: #947e74" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000117649208917757577350000009097329243692146098_"
-          style="
-            fill: url(#Health_Frame_00000098203314874094136860000016562524284491364515_);
-          "
+          style="fill: url(#Health_Frame_00000098203314874094136860000016562524284491364515_)"
           points="
             33.05,218.6 32.12,219.45 52.96,222.39 53.81,221.53 		"
         />
@@ -12528,24 +8963,13 @@
           x2="27.6314"
           y2="65.5602"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae9c8d"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #6a5247"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ae9c8e"
-          />
+          <stop offset="0" style="stop-color: #ae9c8d" />
+          <stop offset="0.4979" style="stop-color: #6a5247" />
+          <stop offset="1" style="stop-color: #ae9c8e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000096744061204448521270000015172939557750565806_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000018920584230891314840000004184822975079550856_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000018920584230891314840000004184822975079550856_)"
           d="
             M27.13,129.38V65.56l1,0.88v62.79"
         />
@@ -12557,24 +8981,13 @@
           x2="66.7523"
           y2="26.9228"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a89286"
-          />
-          <stop
-            offset="0.4979"
-            style="stop-color: #ac988b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5a294"
-          />
+          <stop offset="0" style="stop-color: #a89286" />
+          <stop offset="0.4979" style="stop-color: #ac988b" />
+          <stop offset="1" style="stop-color: #b5a294" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000057868207433594500770000012880568240717218745_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000115496696210897634370000018204980298610773376_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000115496696210897634370000018204980298610773376_)"
           d="
             M27.13,65.56l39.13-39.13l0.45,1.51l-38.59,38.5"
         />
@@ -12586,20 +8999,12 @@
           x2="132.6944"
           y2="25.6818"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #efdfcf"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #efdfcf" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000127766365389618643200000004751862556788293567_"
-          style="
-            fill: url(#FullArt_Outside_00000055669706396445514190000015097597352070183561_);
-          "
+          style="fill: url(#FullArt_Outside_00000055669706396445514190000015097597352070183561_)"
           d="
             M65.64,24.93 M132.07,26.43H66.26l-0.62-1.5h67.05"
         />
@@ -12611,20 +9016,12 @@
           x2="172.1715"
           y2="65.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #988376"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8a7569"
-          />
+          <stop offset="0" style="stop-color: #988376" />
+          <stop offset="1" style="stop-color: #8a7569" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000052788166255366320020000000296434769485148035_"
-          style="
-            fill: url(#FullArt_Outside_00000117662395910602496290000001989219757724068247_);
-          "
+          style="fill: url(#FullArt_Outside_00000117662395910602496290000001989219757724068247_)"
           d="
             M171.2,65.56l-39.13-39.13l0.62-1.5l40.01,40.01"
         />
@@ -12636,20 +9033,12 @@
           x2="172.7017"
           y2="97.4694"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e7d6c6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e6d6c5"
-          />
+          <stop offset="0" style="stop-color: #e7d6c6" />
+          <stop offset="1" style="stop-color: #e6d6c5" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000109027108569880742690000008700132748299647886_"
-          style="
-            fill: url(#FullArt_Outside_00000128477789493692095820000002497429388358908832_);
-          "
+          style="fill: url(#FullArt_Outside_00000128477789493692095820000002497429388358908832_)"
           d="
             M171.2,129.38V65.56l1.5-0.62V130"
         />
@@ -12661,20 +9050,12 @@
           x2="172.1713"
           y2="129.4693"
         >
-          <stop
-            offset="0"
-            style="stop-color: #887266"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #826c61"
-          />
+          <stop offset="0" style="stop-color: #887266" />
+          <stop offset="1" style="stop-color: #826c61" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000114788052759363335750000005299765650746559631_"
-          style="
-            fill: url(#FullArt_Outside_00000065051955002123109820000017178921556000961727_);
-          "
+          style="fill: url(#FullArt_Outside_00000065051955002123109820000017178921556000961727_)"
           d="
             M166.22,134.36l4.99-4.98l1.5,0.62l-4.99,4.98"
         />
@@ -12686,20 +9067,12 @@
           x2="31.5875"
           y2="134.8937"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7d675c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #826c61"
-          />
+          <stop offset="0" style="stop-color: #7d675c" />
+          <stop offset="1" style="stop-color: #826c61" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000092431465974314554560000008825729078934715574_"
-          style="
-            fill: url(#FullArt_Outside_00000079453720476450379010000016771089304464052101_);
-          "
+          style="fill: url(#FullArt_Outside_00000079453720476450379010000016771089304464052101_)"
           d="
             M30.62,134.98L25.63,130l1.5-0.62l4.98,4.98"
         />
@@ -12711,20 +9084,12 @@
           x2="26.3829"
           y2="64.9391"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e4d4c3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e6d6c6"
-          />
+          <stop offset="0" style="stop-color: #e4d4c3" />
+          <stop offset="1" style="stop-color: #e6d6c6" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000106107715777009152620000001931754067737193602_"
-          style="
-            fill: url(#FullArt_Outside_00000170976830331888839570000003284847462284087180_);
-          "
+          style="fill: url(#FullArt_Outside_00000170976830331888839570000003284847462284087180_)"
           d="
             M25.63,130V64.94l1.5,0.62v63.82"
         />
@@ -12736,20 +9101,12 @@
           x2="66.1705"
           y2="25.4621"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8b7669"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #917e75"
-          />
+          <stop offset="0" style="stop-color: #8b7669" />
+          <stop offset="1" style="stop-color: #917e75" />
         </linearGradient>
         <path
           id="FullArt_Outside_00000040558589063779468990000004557780070142331310_"
-          style="
-            fill: url(#FullArt_Outside_00000085953020364298465490000004982626459652938642_);
-          "
+          style="fill: url(#FullArt_Outside_00000085953020364298465490000004982626459652938642_)"
           d="
             M66.26,26.43L27.13,65.56l-1.5-0.62l40.01-40.01 M65.64,24.93 M65.64,24.93"
         />
@@ -12761,20 +9118,12 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <path
           id="Bottom_Frame_00000032608709247760498810000003790466123839419041_"
-          style="
-            fill: url(#Bottom_Frame_00000080893813421496913690000011213647433772947351_);
-          "
+          style="fill: url(#Bottom_Frame_00000080893813421496913690000011213647433772947351_)"
           d="
             M166.22,134.36v85.09l-20.85,2.93l-7.19,11.1l-2.12,11.79H62.28l-2.12-11.79l-7.19-11.1l-20.85-2.93v-85.09l-1.5,0.62v84.26v24.27
             l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27v-84.26L166.22,134.36z M34.5,245.28l-2.39-2.39v-21.92l19.96,2.81l6.66,10.27
@@ -12788,26 +9137,16 @@
           x2="61.6508"
           y2="245.2795"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e695c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745b50"
-          />
+          <stop offset="0" style="stop-color: #7e695c" />
+          <stop offset="1" style="stop-color: #745b50" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000062178617851681257790000016567373781796261547_"
-          style="
-            fill: url(#Health_Frame_00000036974244554875708020000010835937662971340978_);
-          "
+          style="fill: url(#Health_Frame_00000036974244554875708020000010835937662971340978_)"
           points="
             62.28,245.28 63.14,244.47 61.01,232.62 60.16,233.48 		"
         />
-        <g
-          id="Health_Frame_00000059270714850280727540000009499101397916845722_"
-        >
+        <g id="Health_Frame_00000059270714850280727540000009499101397916845722_">
           <linearGradient
             id="SVGID_00000096050945981850170960000000345249776299577996_"
             gradientUnits="userSpaceOnUse"
@@ -12816,19 +9155,11 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000096050945981850170960000000345249776299577996_);
-            "
+            style="fill: url(#SVGID_00000096050945981850170960000000345249776299577996_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -12840,32 +9171,18 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000055673946561081677320000005475519701357784489_);
-            "
+            style="fill: url(#SVGID_00000055673946561081677320000005475519701357784489_)"
             d="M135.19,244.47"
           />
         </g>
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Action"
-      id="Action_FullArt_Frames"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Tech_Frame_00000037682893814140973730000018199814129031589801_"
-      >
+    <g v-if="FullArtFrames.Action" id="Action_FullArt_Frames">
+      <g v-if="framed.Tech" id="Tech_Frame_00000037682893814140973730000018199814129031589801_">
         <linearGradient
           id="FullArt_Inside_BG_00000006692310321008630010000011020000577372770988_"
           gradientUnits="userSpaceOnUse"
@@ -12874,20 +9191,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090293074484877576680000005732960197973239682_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000006692310321008630010000011020000577372770988_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000006692310321008630010000011020000577372770988_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -12899,20 +9208,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000102543704275890019910000005195142572864891041_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000131364446274480139800000016901110019609746854_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000131364446274480139800000016901110019609746854_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -12924,20 +9225,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000032612361334131931200000002728232101252507021_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000129910411763263405710000007246843090557590941_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000129910411763263405710000007246843090557590941_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -12949,19 +9242,11 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #557480"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #91a3b4"
-          />
+          <stop offset="0" style="stop-color: #557480" />
+          <stop offset="1" style="stop-color: #91a3b4" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000183242958375712311810000002821460258351627396_);
-          "
+          style="fill: url(#SVGID_00000183242958375712311810000002821460258351627396_)"
           d="M33.05,121.69
             c-3.06-7.91-4.76-16.5-4.76-25.47c0-39.06,31.77-70.83,70.83-70.83c39.06,0,70.83,31.77,70.83,70.83c0,8.89-1.66,17.4-4.67,25.24
             v3.93c3.95-8.93,6.17-18.79,6.17-29.17c0-39.88-32.45-72.33-72.33-72.33S26.79,56.33,26.79,96.21c0,10.46,2.25,20.39,6.26,29.37
@@ -12975,19 +9260,11 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b3c3de"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8898"
-          />
+          <stop offset="0" style="stop-color: #b3c3de" />
+          <stop offset="1" style="stop-color: #6d8898" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000029020753327662084700000002613256961617085328_);
-          "
+          style="fill: url(#SVGID_00000029020753327662084700000002613256961617085328_)"
           d="M32.12,122.73
             c-3.26-8.21-5.08-17.16-5.08-26.52c0-39.75,32.33-72.08,72.08-72.08s72.08,32.34,72.08,72.08c0,9.28-1.78,18.14-4.99,26.29v3.86
             c4.15-9.21,6.49-19.41,6.49-30.15c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,10.82,2.37,21.09,6.58,30.35V122.73
@@ -13001,20 +9278,12 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000111911749134488599810000009972320131364204160_"
-          style="
-            fill: url(#Bottom_Frame_00000180328239141308160840000002240003622909993627_);
-          "
+          style="fill: url(#Bottom_Frame_00000180328239141308160840000002240003622909993627_)"
           points="
             166.22,122.5 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.73 30.62,123.02 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,122.79 		"
@@ -13027,20 +9296,12 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000125603072706212711130000016554197936754245279_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000087408092438714950900000004726284957060138397_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000087408092438714950900000004726284957060138397_)"
           d="
             M165.29,241.96l0-120.51l0.93,1.05v120.39"
         />
@@ -13052,28 +9313,17 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000014597349289257416960000014423622039323260049_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000155850835107061540530000004379531717440075449_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000155850835107061540530000004379531717440075449_)"
           d="
             M32.12,242.89V122.73l0.93-1.04v120.27"
         />
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Nature_Frame_00000113344297685477951800000016303638813800495753_"
-      >
+      <g v-if="framed.Nature" id="Nature_Frame_00000113344297685477951800000016303638813800495753_">
         <linearGradient
           id="FullArt_Inside_BG_00000121997615574973213380000004605113289339454381_"
           gradientUnits="userSpaceOnUse"
@@ -13082,20 +9332,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052104502115875950460000005559764057857603516_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000121997615574973213380000004605113289339454381_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000121997615574973213380000004605113289339454381_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -13107,20 +9349,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052093743012086619580000008223900477022909335_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000158021434798469663760000000439199655098062233_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000158021434798469663760000000439199655098062233_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -13132,20 +9366,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000167395752746836955750000007992117869939411882_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000056389529807626230260000003518512955676973710_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000056389529807626230260000003518512955676973710_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -13157,19 +9383,11 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #506c4b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9bb896"
-          />
+          <stop offset="0" style="stop-color: #506c4b" />
+          <stop offset="1" style="stop-color: #9bb896" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000015330068957175398510000009370096388072568995_);
-          "
+          style="fill: url(#SVGID_00000015330068957175398510000009370096388072568995_)"
           d="M33.05,121.69
             c-3.06-7.91-4.76-16.5-4.76-25.47c0-39.06,31.77-70.83,70.83-70.83c39.06,0,70.83,31.77,70.83,70.83c0,8.89-1.66,17.4-4.67,25.24
             v3.93c3.95-8.93,6.17-18.79,6.17-29.17c0-39.88-32.45-72.33-72.33-72.33S26.79,56.33,26.79,96.21c0,10.46,2.25,20.39,6.26,29.37
@@ -13183,19 +9401,11 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #90ab8b"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #90ab8b" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000050621841017597001160000004886507403136916107_);
-          "
+          style="fill: url(#SVGID_00000050621841017597001160000004886507403136916107_)"
           d="M32.12,122.73
             c-3.26-8.21-5.08-17.16-5.08-26.52c0-39.75,32.33-72.08,72.08-72.08s72.08,32.34,72.08,72.08c0,9.28-1.78,18.14-4.99,26.29v3.86
             c4.15-9.21,6.49-19.41,6.49-30.15c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,10.82,2.37,21.09,6.58,30.35V122.73
@@ -13209,20 +9419,12 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000116208480431742800990000002681111501521962677_"
-          style="
-            fill: url(#Bottom_Frame_00000010282437502900494030000011085648640315229611_);
-          "
+          style="fill: url(#Bottom_Frame_00000010282437502900494030000011085648640315229611_)"
           points="
             166.22,122.5 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.73 30.62,123.02 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,122.79 		"
@@ -13235,20 +9437,12 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000004519539063206426110000011009941115805300660_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000039822210600091934690000012667042891249734813_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000039822210600091934690000012667042891249734813_)"
           d="
             M32.12,242.89V122.73l0.93-1.04v120.27"
         />
@@ -13260,28 +9454,17 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090268622419521597000000008350616601897305755_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000183946850136647214860000003049385907193472423_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000183946850136647214860000003049385907193472423_)"
           d="
             M165.29,241.96l0-120.51l0.93,1.05v120.39"
         />
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Myth_Frame_00000129175968148753263320000017463248519750026127_"
-      >
+      <g v-if="framed.Myth" id="Myth_Frame_00000129175968148753263320000017463248519750026127_">
         <linearGradient
           id="FullArt_Inside_BG_00000166645356669347211020000010677624769754921643_"
           gradientUnits="userSpaceOnUse"
@@ -13290,20 +9473,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000010284619795903670180000010681324955108170624_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000166645356669347211020000010677624769754921643_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000166645356669347211020000010677624769754921643_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -13315,20 +9490,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000016787207829534741040000010325002369477352888_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000069398277765795140380000017839795849697157536_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000069398277765795140380000017839795849697157536_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -13340,20 +9507,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000072991593344908075460000005792029734040362644_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000127738321412017336040000016751491645103403145_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000127738321412017336040000016751491645103403145_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -13365,19 +9524,11 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #552950"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a47e9f"
-          />
+          <stop offset="0" style="stop-color: #552950" />
+          <stop offset="1" style="stop-color: #a47e9f" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000115476924281070426980000002287826685882193824_);
-          "
+          style="fill: url(#SVGID_00000115476924281070426980000002287826685882193824_)"
           d="M33.05,121.69
             c-3.06-7.91-4.76-16.5-4.76-25.47c0-39.06,31.77-70.83,70.83-70.83c39.06,0,70.83,31.77,70.83,70.83c0,8.89-1.66,17.4-4.67,25.24
             v3.93c3.95-8.93,6.17-18.79,6.17-29.17c0-39.88-32.45-72.33-72.33-72.33S26.79,56.33,26.79,96.21c0,10.46,2.25,20.39,6.26,29.37
@@ -13391,19 +9542,11 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #82627d"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #82627d" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000030447970204185837830000004645226816872961182_);
-          "
+          style="fill: url(#SVGID_00000030447970204185837830000004645226816872961182_)"
           d="M32.12,122.73
             c-3.26-8.21-5.08-17.16-5.08-26.52c0-39.75,32.33-72.08,72.08-72.08s72.08,32.34,72.08,72.08c0,9.28-1.78,18.14-4.99,26.29v3.86
             c4.15-9.21,6.49-19.41,6.49-30.15c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,10.82,2.37,21.09,6.58,30.35V122.73
@@ -13417,20 +9560,12 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000169524052368948556350000007217467093966343329_"
-          style="
-            fill: url(#Bottom_Frame_00000029747881304402370610000012605902708856265609_);
-          "
+          style="fill: url(#Bottom_Frame_00000029747881304402370610000012605902708856265609_)"
           points="
             166.22,122.5 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.73 30.62,123.02 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,122.79 		"
@@ -13443,20 +9578,12 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000061470253383637199500000008659239497571893417_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000098925950613438703300000016323476344897154972_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000098925950613438703300000016323476344897154972_)"
           d="
             M32.12,242.89V122.73l0.93-1.04v120.27"
         />
@@ -13468,20 +9595,12 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000025403303968991758150000005475118167073946554_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000018221932976996913110000002749958780429665954_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000018221932976996913110000002749958780429665954_)"
           d="
             M165.29,241.96V121.45l0.93,1.05v120.39"
         />
@@ -13498,20 +9617,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000000929775827724319280000009808055585610755245_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000116924678036371628170000009633393334709322390_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000116924678036371628170000009633393334709322390_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -13523,20 +9634,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000013169776298404619520000000967138561056385920_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000039100257289195105610000002146949054189401234_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000039100257289195105610000002146949054189401234_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -13548,20 +9651,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000155826734315681026280000010763831993655212722_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000071526285230440549570000005814774409780894363_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000071526285230440549570000005814774409780894363_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -13573,19 +9668,11 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #602431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f8bb80"
-          />
+          <stop offset="0" style="stop-color: #602431" />
+          <stop offset="1" style="stop-color: #f8bb80" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000172428096078382227730000016941505091437810838_);
-          "
+          style="fill: url(#SVGID_00000172428096078382227730000016941505091437810838_)"
           d="M33.05,121.69
             c-3.06-7.91-4.76-16.5-4.76-25.47c0-39.06,31.77-70.83,70.83-70.83c39.06,0,70.83,31.77,70.83,70.83c0,8.89-1.66,17.4-4.67,25.24
             v3.93c3.95-8.93,6.17-18.79,6.17-29.17c0-39.88-32.45-72.33-72.33-72.33S26.79,56.33,26.79,96.21c0,10.46,2.25,20.39,6.26,29.37
@@ -13599,19 +9686,11 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f6ae8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98413f"
-          />
+          <stop offset="0" style="stop-color: #f6ae8d" />
+          <stop offset="1" style="stop-color: #98413f" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000081645841817470096370000005422930421143427746_);
-          "
+          style="fill: url(#SVGID_00000081645841817470096370000005422930421143427746_)"
           d="M32.12,122.73
             c-3.26-8.21-5.08-17.16-5.08-26.52c0-39.75,32.33-72.08,72.08-72.08s72.08,32.34,72.08,72.08c0,9.28-1.78,18.14-4.99,26.29v3.86
             c4.15-9.21,6.49-19.41,6.49-30.15c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,10.82,2.37,21.09,6.58,30.35V122.73
@@ -13625,19 +9704,11 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000121279739666845515880000014704128727240383380_);
-          "
+          style="fill: url(#SVGID_00000121279739666845515880000014704128727240383380_)"
           points="166.22,122.5 166.22,219.45
             166.22,220.97 166.22,242.89 163.83,245.28 137.57,245.28 136.05,245.28 62.28,245.28 60.76,245.28 34.5,245.28 32.12,242.89
             32.12,220.97 32.12,219.45 32.12,122.73 30.62,123.02 30.62,219.24 30.62,243.51 33.88,246.78 62.55,246.78 135.78,246.78
@@ -13651,20 +9722,12 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000077291625973279560310000012250441619890121090_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000011008891280903196390000007294160804083134638_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000011008891280903196390000007294160804083134638_)"
           d="
             M165.29,241.96l0-120.51l0.93,1.05v120.39"
         />
@@ -13676,20 +9739,12 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000176015960435258793860000002644121315177662126_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000129179589792558852590000000432889578005020040_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000129179589792558852590000000432889578005020040_)"
           d="
             M32.12,242.89V122.73l0.93-1.04v120.27"
         />
@@ -13706,20 +9761,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000146462407175008874820000003952419287891980164_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000158737098580227761730000017432143904768403111_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000158737098580227761730000017432143904768403111_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -13731,20 +9778,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000030447752004257680260000004618477989085812881_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000023274030554843016970000005118818920531824525_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000023274030554843016970000005118818920531824525_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -13756,20 +9795,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000150081060388154944630000009264355816264377495_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000117637534920296138720000008074276726054567850_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000117637534920296138720000008074276726054567850_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -13781,19 +9812,11 @@
           x2="148.4891"
           y2="142.1816"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7a5f54"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ebdbca"
-          />
+          <stop offset="0" style="stop-color: #7a5f54" />
+          <stop offset="1" style="stop-color: #ebdbca" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000152947486891623376170000007419618888018411436_);
-          "
+          style="fill: url(#SVGID_00000152947486891623376170000007419618888018411436_)"
           d="M33.05,121.69
             c-3.06-7.91-4.76-16.5-4.76-25.47c0-39.06,31.77-70.83,70.83-70.83c39.06,0,70.83,31.77,70.83,70.83c0,8.89-1.66,17.4-4.67,25.24
             v3.93c3.95-8.93,6.17-18.79,6.17-29.17c0-39.88-32.45-72.33-72.33-72.33S26.79,56.33,26.79,96.21c0,10.46,2.25,20.39,6.26,29.37
@@ -13807,19 +9830,11 @@
           x2="99.1214"
           y2="126.5596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ebdbca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8c7a6f"
-          />
+          <stop offset="0" style="stop-color: #ebdbca" />
+          <stop offset="1" style="stop-color: #8c7a6f" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000135683880190042048330000006715189144569038222_);
-          "
+          style="fill: url(#SVGID_00000135683880190042048330000006715189144569038222_)"
           d="M32.12,122.73
             c-3.26-8.21-5.08-17.16-5.08-26.52c0-39.75,32.33-72.08,72.08-72.08s72.08,32.34,72.08,72.08c0,9.28-1.78,18.14-4.99,26.29v3.86
             c4.15-9.21,6.49-19.41,6.49-30.15c0-40.57-33.01-73.58-73.58-73.58S25.54,55.64,25.54,96.21c0,10.82,2.37,21.09,6.58,30.35V122.73
@@ -13833,19 +9848,11 @@
           x2="99.1671"
           y2="122.5002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000091693671753292449830000000179339041742397590_);
-          "
+          style="fill: url(#SVGID_00000091693671753292449830000000179339041742397590_)"
           points="166.22,122.5 166.22,242.89
             163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.73 30.62,123.01 30.62,219.24 30.62,243.51 33.88,246.78 62.55,246.78
             135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,122.79 		"
@@ -13858,20 +9865,12 @@
           x2="32.5823"
           y2="121.6866"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000154410541812285026270000016931109232881281930_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000047764982232045410440000005656082698955047593_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000047764982232045410440000005656082698955047593_)"
           d="
             M32.12,242.89V122.73l0.93-1.04v120.27"
         />
@@ -13883,33 +9882,19 @@
           x2="165.752"
           y2="121.4543"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000154389227548925668940000016344598255637752748_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000034081671853700220220000016218339641330433186_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000034081671853700220220000016218339641330433186_)"
           d="
             M165.29,241.96V121.45l0.93,1.05v120.39"
         />
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.Place"
-      id="Place_FullArt_Frames"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Tech_Frame_00000097498704088597918920000011012239595035558827_"
-      >
+    <g v-if="FullArtFrames.Place" id="Place_FullArt_Frames">
+      <g v-if="framed.Tech" id="Tech_Frame_00000097498704088597918920000011012239595035558827_">
         <linearGradient
           id="Health_Frame_00000145762503534291557710000015463570124189679800_"
           gradientUnits="userSpaceOnUse"
@@ -13918,26 +9903,16 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96a7b7"
-          />
+          <stop offset="0" style="stop-color: #96a7b8" />
+          <stop offset="1" style="stop-color: #96a7b7" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000173859322513395682850000010134339139236465034_"
-          style="
-            fill: url(#Health_Frame_00000145762503534291557710000015463570124189679800_);
-          "
+          style="fill: url(#Health_Frame_00000145762503534291557710000015463570124189679800_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
-        <g
-          id="Health_Frame_00000142138164122540245230000008888660496510786702_"
-        >
+        <g id="Health_Frame_00000142138164122540245230000008888660496510786702_">
           <linearGradient
             id="SVGID_00000110435047176471885320000014774692794863931016_"
             gradientUnits="userSpaceOnUse"
@@ -13946,23 +9921,12 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000110435047176471885320000014774692794863931016_);
-            "
+            style="fill: url(#SVGID_00000110435047176471885320000014774692794863931016_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -13974,23 +9938,12 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000044872021379134664430000012170049443877001106_);
-            "
+            style="fill: url(#SVGID_00000044872021379134664430000012170049443877001106_)"
             d="M135.19,244.47"
           />
         </g>
@@ -14002,20 +9955,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000167388715213953495960000002743047452378782597_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000035512876472601429080000011106968629976662454_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000035512876472601429080000011106968629976662454_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -14027,20 +9972,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000030466930978073305580000007541011651276200357_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000130609562256019740240000010509759105934585995_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000130609562256019740240000010509759105934585995_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -14052,20 +9989,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090987798139336338180000000472185859880340914_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000180361350856290176370000016657471386508563623_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000180361350856290176370000016657471386508563623_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -14077,20 +10006,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99a9ba"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e79"
-          />
+          <stop offset="0" style="stop-color: #99a9ba" />
+          <stop offset="1" style="stop-color: #4b6e79" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000011716660092827883690000012214834886801759671_"
-          style="
-            fill: url(#Health_Frame_00000148626179018990171780000007593959847896225690_);
-          "
+          style="fill: url(#Health_Frame_00000148626179018990171780000007593959847896225690_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -14102,19 +10023,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bccfec"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #bccfec" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000092435357939028219350000002135240402205503931_);
-          "
+          style="fill: url(#SVGID_00000092435357939028219350000002135240402205503931_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -14126,19 +10039,11 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e8a99"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #6e8a99" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000111884172574585936540000001726734231012672173_);
-          "
+          style="fill: url(#SVGID_00000111884172574585936540000001726734231012672173_)"
           points="165.29,137.49 172.7,133.75
             171.2,132.83 165.29,135.81 		"
         />
@@ -14150,19 +10055,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #98acc3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bbceeb"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #98acc3" />
+          <stop offset="1" style="stop-color: #bbceeb" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000165199193106904927830000000967952795027044232_);
-          "
+          style="fill: url(#SVGID_00000165199193106904927830000000967952795027044232_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -14174,19 +10071,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b3c3dd"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #b3c3dd" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000018921693168453451310000015910225409784853655_);
-          "
+          style="fill: url(#SVGID_00000018921693168453451310000015910225409784853655_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -14198,19 +10087,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #547986"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7694a4"
-          />
+          <stop offset="0" style="stop-color: #547986" />
+          <stop offset="1" style="stop-color: #7694a4" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000026158061822177223740000004756739818099375279_);
-          "
+          style="fill: url(#SVGID_00000026158061822177223740000004756739818099375279_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -14222,19 +10103,11 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bacdea"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f8a9a"
-          />
+          <stop offset="0" style="stop-color: #bacdea" />
+          <stop offset="1" style="stop-color: #6f8a9a" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000005263972123976998310000014988391556183665282_);
-          "
+          style="fill: url(#SVGID_00000005263972123976998310000014988391556183665282_)"
           points="33.05,135.86 27.04,132.83
             25.54,133.75 33.05,137.54 		"
         />
@@ -14246,19 +10119,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #637f8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e7c88"
-          />
+          <stop offset="0" style="stop-color: #637f8d" />
+          <stop offset="1" style="stop-color: #5e7c88" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000052809529564426148820000002282799232301736583_);
-          "
+          style="fill: url(#SVGID_00000052809529564426148820000002282799232301736583_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -14270,19 +10135,11 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #93a9be"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="0.9987" style="stop-color: #93a9be" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000116208248857332611010000003375254864849801132_);
-          "
+          style="fill: url(#SVGID_00000116208248857332611010000003375254864849801132_)"
           points="165.29,135.81 171.2,132.83
             169.95,132.2 165.29,134.55 		"
         />
@@ -14294,23 +10151,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #577884"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a5bad3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #597985"
-          />
+          <stop offset="0" style="stop-color: #577884" />
+          <stop offset="0.484" style="stop-color: #a5bad3" />
+          <stop offset="1" style="stop-color: #597985" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000145740563204930364770000015033441245391776440_);
-          "
+          style="fill: url(#SVGID_00000145740563204930364770000015033441245391776440_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -14322,19 +10168,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8997"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #6d8997" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000133506597823752665850000017975840423004475276_);
-          "
+          style="fill: url(#SVGID_00000133506597823752665850000017975840423004475276_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -14346,23 +10184,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #496973"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #7691a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #426069"
-          />
+          <stop offset="0" style="stop-color: #496973" />
+          <stop offset="0.4796" style="stop-color: #7691a2" />
+          <stop offset="1" style="stop-color: #426069" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000178173091512447432160000002248103604043783352_);
-          "
+          style="fill: url(#SVGID_00000178173091512447432160000002248103604043783352_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -14374,19 +10201,11 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f717c"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #9eb4cd"
-          />
+          <stop offset="0" style="stop-color: #4f717c" />
+          <stop offset="0.9987" style="stop-color: #9eb4cd" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000075123497436491336910000016142476764700365981_);
-          "
+          style="fill: url(#SVGID_00000075123497436491336910000016142476764700365981_)"
           points="33.05,134.6 28.29,132.2
             27.04,132.83 33.05,135.86 		"
         />
@@ -14398,20 +10217,12 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000119114616506769329910000012282278467913929114_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000072240951371687099860000001202868511156064693_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000072240951371687099860000001202868511156064693_)"
           d="
             M165.29,241.96l0-107.41l0.93,0.79v107.55"
         />
@@ -14423,19 +10234,11 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000103252723231256708160000010796539710204914619_);
-          "
+          style="fill: url(#SVGID_00000103252723231256708160000010796539710204914619_)"
           d="M166.22,135.35v84.11l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39v-107.5l-1.5,0.92v82.93v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-82.98L166.22,135.35z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -14448,28 +10251,17 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000164485525363831187170000010613030164322757516_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000152950996058413177660000007431412372822400919_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000152950996058413177660000007431412372822400919_)"
           d="
             M32.12,242.89v-107.5l0.93-0.79v107.36"
         />
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Nature_Frame_00000075124915308992199930000010574946984004319879_"
-      >
+      <g v-if="framed.Nature" id="Nature_Frame_00000075124915308992199930000010574946984004319879_">
         <linearGradient
           id="Health_Frame_00000099657196674155024670000008850869216858776722_"
           gradientUnits="userSpaceOnUse"
@@ -14478,26 +10270,16 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9ebb9a"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #9ebb9a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000001663284364997996720000005298194369847799426_"
-          style="
-            fill: url(#Health_Frame_00000099657196674155024670000008850869216858776722_);
-          "
+          style="fill: url(#Health_Frame_00000099657196674155024670000008850869216858776722_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
-        <g
-          id="Health_Frame_00000089569454090993014570000000863019094159568572_"
-        >
+        <g id="Health_Frame_00000089569454090993014570000000863019094159568572_">
           <linearGradient
             id="SVGID_00000029760412759863323010000016448979606274756263_"
             gradientUnits="userSpaceOnUse"
@@ -14506,23 +10288,12 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000029760412759863323010000016448979606274756263_);
-            "
+            style="fill: url(#SVGID_00000029760412759863323010000016448979606274756263_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -14534,23 +10305,12 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000031929705344072362900000009738524167230345115_);
-            "
+            style="fill: url(#SVGID_00000031929705344072362900000009738524167230345115_)"
             d="M135.19,244.47"
           />
         </g>
@@ -14562,20 +10322,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000083059586520997544880000004156274653611428511_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000021839923358060048100000003720156315559827379_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000021839923358060048100000003720156315559827379_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -14587,20 +10339,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000110457283495736213690000007182523178273863086_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000084512188319493827060000014864653252521261229_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000084512188319493827060000014864653252521261229_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -14612,20 +10356,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000008866621778547662820000000300218947601147060_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000046326174728456050490000014767213570951720609_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000046326174728456050490000014767213570951720609_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -14637,20 +10373,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8ca785"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #466241"
-          />
+          <stop offset="0" style="stop-color: #8ca785" />
+          <stop offset="1" style="stop-color: #466241" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000017502119977909242160000015695736550789882259_"
-          style="
-            fill: url(#Health_Frame_00000067204694226350150600000010463360293126769578_);
-          "
+          style="fill: url(#Health_Frame_00000067204694226350150600000010463360293126769578_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -14662,19 +10390,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9dba98"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1efcc"
-          />
+          <stop offset="0" style="stop-color: #9dba98" />
+          <stop offset="1" style="stop-color: #d1efcc" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000096751214941613025230000014019752734327352991_);
-          "
+          style="fill: url(#SVGID_00000096751214941613025230000014019752734327352991_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -14686,19 +10406,11 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708b6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #526f4d"
-          />
+          <stop offset="0" style="stop-color: #708b6a" />
+          <stop offset="1" style="stop-color: #526f4d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000023253562256647282370000004612023166127399327_);
-          "
+          style="fill: url(#SVGID_00000023253562256647282370000004612023166127399327_)"
           points="165.29,137.49 172.7,133.75
             171.2,132.83 165.29,135.81 		"
         />
@@ -14710,19 +10422,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a2bf9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #adcba8"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a2bf9d" />
+          <stop offset="1" style="stop-color: #adcba8" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000107581206819519821930000003318843809251409821_);
-          "
+          style="fill: url(#SVGID_00000107581206819519821930000003318843809251409821_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -14734,19 +10438,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c8e5c3"
-          />
+          <stop offset="0" style="stop-color: #adcaa8" />
+          <stop offset="1" style="stop-color: #c8e5c3" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000147919755168277584880000010783815228920030108_);
-          "
+          style="fill: url(#SVGID_00000147919755168277584880000010783815228920030108_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -14758,19 +10454,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #597554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6b8766"
-          />
+          <stop offset="0" style="stop-color: #597554" />
+          <stop offset="1" style="stop-color: #6b8766" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000085212228274603498160000008997904288221184423_);
-          "
+          style="fill: url(#SVGID_00000085212228274603498160000008997904288221184423_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -14782,19 +10470,11 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6e4c1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #516d4c"
-          />
+          <stop offset="0" style="stop-color: #c6e4c1" />
+          <stop offset="1" style="stop-color: #516d4c" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000054948204184996982790000015161631834411248018_);
-          "
+          style="fill: url(#SVGID_00000054948204184996982790000015161631834411248018_)"
           points="33.05,135.86 27.04,132.83
             25.54,133.75 33.05,137.54 		"
         />
@@ -14806,19 +10486,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #88a381"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4c6847"
-          />
+          <stop offset="0" style="stop-color: #88a381" />
+          <stop offset="1" style="stop-color: #4c6847" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000123427029054198194180000003414831746409608108_);
-          "
+          style="fill: url(#SVGID_00000123427029054198194180000003414831746409608108_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -14830,19 +10502,11 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a2bf9d"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="0.9987" style="stop-color: #a2bf9d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000108294872780826566350000012315861761389555884_);
-          "
+          style="fill: url(#SVGID_00000108294872780826566350000012315861761389555884_)"
           points="165.29,135.81 171.2,132.83
             169.95,132.2 165.29,134.55 		"
         />
@@ -14854,23 +10518,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #728f6d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.484" style="stop-color: #728f6d" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000096032848040026757590000009613438557805866144_);
-          "
+          style="fill: url(#SVGID_00000096032848040026757590000009613438557805866144_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -14882,19 +10535,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4b6746"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88a382"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4b6746" />
+          <stop offset="1" style="stop-color: #88a382" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000167383911611445270240000009962753569594579599_);
-          "
+          style="fill: url(#SVGID_00000167383911611445270240000009962753569594579599_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -14906,23 +10551,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #73926e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.4796" style="stop-color: #73926e" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000165198217453634703680000004876678741606088591_);
-          "
+          style="fill: url(#SVGID_00000165198217453634703680000004876678741606088591_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -14934,19 +10568,11 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #445c3f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a4c19f"
-          />
+          <stop offset="0" style="stop-color: #445c3f" />
+          <stop offset="0.9987" style="stop-color: #a4c19f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000104700512560836586840000010241874892205585570_);
-          "
+          style="fill: url(#SVGID_00000104700512560836586840000010241874892205585570_)"
           points="33.05,134.6 28.29,132.2
             27.04,132.83 33.05,135.86 		"
         />
@@ -14958,20 +10584,12 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000127004752046206125610000011440717730408152228_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000051383657520203208350000004400905920595177607_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000051383657520203208350000004400905920595177607_)"
           d="
             M165.29,241.96l0-107.41l0.93,0.79v107.55"
         />
@@ -14983,19 +10601,11 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000124139981797059228720000001060667755606106045_);
-          "
+          style="fill: url(#SVGID_00000124139981797059228720000001060667755606106045_)"
           d="M166.22,135.35v84.11l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39v-107.5l-1.5,0.92v82.93v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-82.98L166.22,135.35z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -15008,28 +10618,17 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000036953521895814145060000015891160361885975448_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000013160099156422333140000008767285110581973905_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000013160099156422333140000008767285110581973905_)"
           d="
             M32.12,242.89v-107.5l0.93-0.79v107.36"
         />
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Myth_Frame_00000011719691967534765160000012084011818352489857_"
-      >
+      <g v-if="framed.Myth" id="Myth_Frame_00000011719691967534765160000012084011818352489857_">
         <linearGradient
           id="Health_Frame_00000127765467601017007290000013800835329223693205_"
           gradientUnits="userSpaceOnUse"
@@ -15038,20 +10637,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad81a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9e869a"
-          />
+          <stop offset="0" style="stop-color: #ad81a9" />
+          <stop offset="1" style="stop-color: #9e869a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000032634101770075334730000004852109146864798097_"
-          style="
-            fill: url(#Health_Frame_00000127765467601017007290000013800835329223693205_);
-          "
+          style="fill: url(#Health_Frame_00000127765467601017007290000013800835329223693205_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -15063,20 +10654,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000080177089200277953580000013176189286485820079_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000152226352989100869140000003794061804146141881_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000152226352989100869140000003794061804146141881_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -15088,20 +10671,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000136370570882601054780000004935499827618830244_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000123405352282802457950000001119753125714967956_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000123405352282802457950000001119753125714967956_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -15113,20 +10688,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000147923011251428835450000004217497431830335165_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000067934667532724996060000003533556554305277825_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000067934667532724996060000003533556554305277825_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -15138,23 +10705,12 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4c2f47"
-          />
-          <stop
-            offset="0.7569"
-            style="stop-color: #755671"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83647f"
-          />
+          <stop offset="0" style="stop-color: #4c2f47" />
+          <stop offset="0.7569" style="stop-color: #755671" />
+          <stop offset="1" style="stop-color: #83647f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000149350366819861685860000013872142340223640483_);
-          "
+          style="fill: url(#SVGID_00000149350366819861685860000013872142340223640483_)"
           points="137.33,232.62 135.19,244.47
             136.05,245.28 138.17,233.48 		"
         />
@@ -15166,20 +10722,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7185"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #463041"
-          />
+          <stop offset="0" style="stop-color: #9c7185" />
+          <stop offset="1" style="stop-color: #463041" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000083090465484297241500000012271328811294984637_"
-          style="
-            fill: url(#Health_Frame_00000049942308111638935930000013540587518217938869_);
-          "
+          style="fill: url(#Health_Frame_00000049942308111638935930000013540587518217938869_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -15191,19 +10739,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7697"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cda5c8"
-          />
+          <stop offset="0" style="stop-color: #9c7697" />
+          <stop offset="1" style="stop-color: #cda5c8" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000138555273164260413250000009279121289934827692_);
-          "
+          style="fill: url(#SVGID_00000138555273164260413250000009279121289934827692_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -15215,19 +10755,11 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #966c80"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #966c80" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000004508696476534356550000014895512085544630665_);
-          "
+          style="fill: url(#SVGID_00000004508696476534356550000014895512085544630665_)"
           points="165.29,137.49 172.7,133.75
             171.2,132.83 165.29,135.81 		"
         />
@@ -15239,19 +10771,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a27c9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bb93b6"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a27c9d" />
+          <stop offset="1" style="stop-color: #bb93b6" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000134244651333809619010000012810660477296852380_);
-          "
+          style="fill: url(#SVGID_00000134244651333809619010000012810660477296852380_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -15263,19 +10787,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #987293"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1a9cc"
-          />
+          <stop offset="0" style="stop-color: #987293" />
+          <stop offset="1" style="stop-color: #d1a9cc" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000015334799482452608910000007287969798748914844_);
-          "
+          style="fill: url(#SVGID_00000015334799482452608910000007287969798748914844_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -15287,19 +10803,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37d9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bd96b8"
-          />
+          <stop offset="0" style="stop-color: #a37d9e" />
+          <stop offset="1" style="stop-color: #bd96b8" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000057145418719746364520000008057351796838830782_);
-          "
+          style="fill: url(#SVGID_00000057145418719746364520000008057351796838830782_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -15311,19 +10819,11 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #644659"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #644659" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000091720889196076320770000006313246301261150382_);
-          "
+          style="fill: url(#SVGID_00000091720889196076320770000006313246301261150382_)"
           points="33.05,135.86 27.04,132.83
             25.54,133.75 33.05,137.54 		"
         />
@@ -15335,19 +10835,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bb93b6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5a3155"
-          />
+          <stop offset="0" style="stop-color: #bb93b6" />
+          <stop offset="1" style="stop-color: #5a3155" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000177458040727275156560000003522130567561210546_);
-          "
+          style="fill: url(#SVGID_00000177458040727275156560000003522130567561210546_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -15359,19 +10851,11 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c59dc0"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #c59dc0" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000088848067296601396570000014502090278824520638_);
-          "
+          style="fill: url(#SVGID_00000088848067296601396570000014502090278824520638_)"
           points="165.29,135.81 171.2,132.83
             169.95,132.2 165.29,134.55 		"
         />
@@ -15383,23 +10867,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #553c4c"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #aa83a5"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #553c4d"
-          />
+          <stop offset="0" style="stop-color: #553c4c" />
+          <stop offset="0.484" style="stop-color: #aa83a5" />
+          <stop offset="1" style="stop-color: #553c4d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000051358549433200521820000016156634487723404448_);
-          "
+          style="fill: url(#SVGID_00000051358549433200521820000016156634487723404448_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -15411,19 +10884,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #5c3257"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #5c3257" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000167377140363243595220000004876753567006754986_);
-          "
+          style="fill: url(#SVGID_00000167377140363243595220000004876753567006754986_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -15435,23 +10900,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a780a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.484" style="stop-color: #a780a2" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000026865805738632416070000004832381365914953129_);
-          "
+          style="fill: url(#SVGID_00000026865805738632416070000004832381365914953129_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -15463,19 +10917,11 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a781a2"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #a781a2" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000035495629833799466630000004742062630599809688_);
-          "
+          style="fill: url(#SVGID_00000035495629833799466630000004742062630599809688_)"
           points="33.05,134.6 28.29,132.2
             27.04,132.83 33.05,135.86 		"
         />
@@ -15487,20 +10933,12 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000146484921799641335060000005398376549446084015_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000107587247310904206750000000964149016374229124_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000107587247310904206750000000964149016374229124_)"
           d="
             M32.12,242.89v-107.5l0.93-0.79v107.36"
         />
@@ -15512,20 +10950,12 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000054968464831642664610000011566893712161725058_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000139258161522361517840000014104995182316701857_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000139258161522361517840000014104995182316701857_)"
           d="
             M165.29,241.96l0-107.41l0.93,0.79v107.55"
         />
@@ -15537,19 +10967,11 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000046298725368734564810000017631131309884554122_);
-          "
+          style="fill: url(#SVGID_00000046298725368734564810000017631131309884554122_)"
           d="M166.22,135.35v84.11l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39v-107.5l-1.5,0.92v82.93v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-82.98L166.22,135.35z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -15567,20 +10989,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c0816b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1866b"
-          />
+          <stop offset="0" style="stop-color: #c0816b" />
+          <stop offset="1" style="stop-color: #b1866b" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000110458280247351675600000012748572072555033517_"
-          style="
-            fill: url(#Health_Frame_00000178913622701611192180000003923110504664238506_);
-          "
+          style="fill: url(#Health_Frame_00000178913622701611192180000003923110504664238506_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -15592,20 +11006,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000183956083916286838320000008260462411583069078_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000067943988588500178580000002634746091975886724_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000067943988588500178580000002634746091975886724_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -15617,20 +11023,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000090281866758196055430000001858906563581942662_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000072262806283043775530000016786286423612375474_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000072262806283043775530000016786286423612375474_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -15642,20 +11040,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000074435931715999819010000002473230037416761248_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000128485497997583957920000005873812341455273403_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000128485497997583957920000005873812341455273403_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -15667,20 +11057,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae714e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #54301b"
-          />
+          <stop offset="0" style="stop-color: #ae714e" />
+          <stop offset="1" style="stop-color: #54301b" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000021081901199826109480000004292549165054200723_"
-          style="
-            fill: url(#Health_Frame_00000003076441125544071870000001635422145290584254_);
-          "
+          style="fill: url(#Health_Frame_00000003076441125544071870000001635422145290584254_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -15692,23 +11074,12 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #562f29"
-          />
-          <stop
-            offset="0.6487"
-            style="stop-color: #80503b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #986446"
-          />
+          <stop offset="0" style="stop-color: #562f29" />
+          <stop offset="0.6487" style="stop-color: #80503b" />
+          <stop offset="1" style="stop-color: #986446" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000144323847767971119460000005649706956371843489_);
-          "
+          style="fill: url(#SVGID_00000144323847767971119460000005649706956371843489_)"
           points="137.33,232.62 135.19,244.47
             136.05,245.28 138.17,233.48 		"
         />
@@ -15720,19 +11091,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ce8c73"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ce8e74"
-          />
+          <stop offset="0" style="stop-color: #ce8c73" />
+          <stop offset="1" style="stop-color: #ce8e74" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000177472914078568369900000001862557401884349598_);
-          "
+          style="fill: url(#SVGID_00000177472914078568369900000001862557401884349598_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -15744,19 +11107,11 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d08f74"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9a4650"
-          />
+          <stop offset="0" style="stop-color: #d08f74" />
+          <stop offset="1" style="stop-color: #9a4650" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000176028663843464796680000016981901256547851431_);
-          "
+          style="fill: url(#SVGID_00000176028663843464796680000016981901256547851431_)"
           points="165.29,137.49 172.7,133.75
             171.2,132.83 165.29,135.81 		"
         />
@@ -15768,19 +11123,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ca8871"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dda480"
-          />
+          <stop offset="0" style="stop-color: #ca8871" />
+          <stop offset="1" style="stop-color: #dda480" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000064349526404366110920000010909792102808183708_);
-          "
+          style="fill: url(#SVGID_00000064349526404366110920000010909792102808183708_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -15792,19 +11139,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6836f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e2a983"
-          />
+          <stop offset="0" style="stop-color: #c6836f" />
+          <stop offset="1" style="stop-color: #e2a983" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000029756212656983034980000016168654353215293588_);
-          "
+          style="fill: url(#SVGID_00000029756212656983034980000016168654353215293588_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -15816,19 +11155,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c78470"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d19175"
-          />
+          <stop offset="0" style="stop-color: #c78470" />
+          <stop offset="1" style="stop-color: #d19175" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000085950278856652392790000008323242922686078615_);
-          "
+          style="fill: url(#SVGID_00000085950278856652392790000008323242922686078615_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -15840,19 +11171,11 @@
           x2="33.2924"
           y2="137.115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98434f"
-          />
+          <stop offset="0" style="stop-color: #e2a983" />
+          <stop offset="1" style="stop-color: #98434f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000145759012122876254830000009895289000665189792_);
-          "
+          style="fill: url(#SVGID_00000145759012122876254830000009895289000665189792_)"
           points="33.05,135.86 27.04,132.83
             25.54,133.75 33.05,137.54 		"
         />
@@ -15864,19 +11187,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad605d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #ad605d" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000018215198696916852370000011639921789276328861_);
-          "
+          style="fill: url(#SVGID_00000018215198696916852370000011639921789276328861_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -15888,19 +11203,11 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f2a30"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #6f2a30" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000016762585271735940930000014840803792228444558_);
-          "
+          style="fill: url(#SVGID_00000016762585271735940930000014840803792228444558_)"
           points="165.29,135.81 171.2,132.83
             169.95,132.2 165.29,134.55 		"
         />
@@ -15912,23 +11219,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #76363e"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #9f5554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #77373f"
-          />
+          <stop offset="0" style="stop-color: #76363e" />
+          <stop offset="0.484" style="stop-color: #9f5554" />
+          <stop offset="1" style="stop-color: #77373f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000145025551082375073600000012070201588055005374_);
-          "
+          style="fill: url(#SVGID_00000145025551082375073600000012070201588055005374_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -15940,19 +11236,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bf796a"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #99444f" />
+          <stop offset="1" style="stop-color: #bf796a" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000010994048519651114560000012261898914937241748_);
-          "
+          style="fill: url(#SVGID_00000010994048519651114560000012261898914937241748_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -15964,23 +11252,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #793a40"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a15756"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #71333b"
-          />
+          <stop offset="0" style="stop-color: #793a40" />
+          <stop offset="0.484" style="stop-color: #a15756" />
+          <stop offset="1" style="stop-color: #71333b" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000087406843006475330740000000393529991547113654_);
-          "
+          style="fill: url(#SVGID_00000087406843006475330740000000393529991547113654_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -15992,19 +11269,11 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000096050060746587965380000002124840292783738509_);
-          "
+          style="fill: url(#SVGID_00000096050060746587965380000002124840292783738509_)"
           points="33.05,134.6 28.29,132.2
             27.04,132.83 33.05,135.86 		"
         />
@@ -16016,20 +11285,12 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000048489114516837458860000004342527789059121086_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000070099520223907888050000015158698307153572539_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000070099520223907888050000015158698307153572539_)"
           d="
             M165.29,241.96V134.55l0.93,0.79v107.55"
         />
@@ -16041,19 +11302,11 @@
           x2="99.1671"
           y2="135.3455"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000017512049903956242720000003177652336389978555_);
-          "
+          style="fill: url(#SVGID_00000017512049903956242720000003177652336389978555_)"
           d="M166.22,135.35v84.11l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39v-107.5l-1.5,0.92v82.93v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-82.98L166.22,135.35z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -16066,20 +11319,12 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000178886792692205089870000001712942178610230184_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000034083234524604189330000008038415170901076110_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000034083234524604189330000008038415170901076110_)"
           d="
             M32.12,242.89v-107.5l0.93-0.79v107.36"
         />
@@ -16096,20 +11341,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b6a496"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b6a496" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000174598406863952450290000001847771054159536295_"
-          style="
-            fill: url(#Health_Frame_00000165212443062999211490000001150692805153686662_);
-          "
+          style="fill: url(#Health_Frame_00000165212443062999211490000001150692805153686662_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -16121,20 +11358,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000069363472378919164250000012965784107572406684_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000070102540439495531720000018349566669154631089_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000070102540439495531720000018349566669154631089_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -16146,20 +11375,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000013911862497889133500000017847160464943212469_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000077302396467807161780000017001512726287626380_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000077302396467807161780000017001512726287626380_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -16171,20 +11392,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000031928943293744353470000006819468789746246073_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000093156200346515674070000011858742060258152375_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000093156200346515674070000011858742060258152375_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -16196,26 +11409,16 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745c51"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #745c51" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000101789703103134283870000005995020737595697556_"
-          style="
-            fill: url(#Health_Frame_00000065069964762567213860000016644330120230751113_);
-          "
+          style="fill: url(#Health_Frame_00000065069964762567213860000016644330120230751113_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
-        <g
-          id="Health_Frame_00000016791942165484070800000006393410485093595522_"
-        >
+        <g id="Health_Frame_00000016791942165484070800000006393410485093595522_">
           <linearGradient
             id="SVGID_00000134212766706949313720000010685142784830302899_"
             gradientUnits="userSpaceOnUse"
@@ -16224,19 +11427,11 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000134212766706949313720000010685142784830302899_);
-            "
+            style="fill: url(#SVGID_00000134212766706949313720000010685142784830302899_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -16248,19 +11443,11 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000165232697643685599450000006253524299299025855_);
-            "
+            style="fill: url(#SVGID_00000165232697643685599450000006253524299299025855_)"
             d="M135.19,244.47"
           />
         </g>
@@ -16272,19 +11459,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cebcae"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #cebcae" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000116225226479200922540000009314764720137268124_);
-          "
+          style="fill: url(#SVGID_00000116225226479200922540000009314764720137268124_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -16296,19 +11475,11 @@
           x2="165.0407"
           y2="137.0662"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2b5a7"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765d52"
-          />
+          <stop offset="0" style="stop-color: #c2b5a7" />
+          <stop offset="1" style="stop-color: #765d52" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000011731472841692090620000001585711554533130143_);
-          "
+          style="fill: url(#SVGID_00000011731472841692090620000001585711554533130143_)"
           points="165.29,137.49 172.7,133.75
             171.2,132.83 165.29,135.81 		"
         />
@@ -16320,19 +11491,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e0cfbe"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #e0cfbe" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000135650296928781143720000007986356136602912133_);
-          "
+          style="fill: url(#SVGID_00000135650296928781143720000007986356136602912133_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -16344,19 +11507,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #efdfcf"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #efdfcf" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000120530588725739889110000012438200328290411413_);
-          "
+          style="fill: url(#SVGID_00000120530588725739889110000012438200328290411413_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -16368,19 +11523,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bfb1a4"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6baae"
-          />
+          <stop offset="0" style="stop-color: #bfb1a4" />
+          <stop offset="1" style="stop-color: #c6baae" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000093861524741471167430000006223013536448896145_);
-          "
+          style="fill: url(#SVGID_00000093861524741471167430000006223013536448896145_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -16392,19 +11539,11 @@
           x2="31.6505"
           y2="136.2008"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000090986168209839079600000002015333963668565429_);
-          "
+          style="fill: url(#SVGID_00000090986168209839079600000002015333963668565429_)"
           points="32.12,135.39 27.04,132.83
             25.54,133.75 30.62,136.31 		"
         />
@@ -16416,19 +11555,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c1aea8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #746058"
-          />
+          <stop offset="0" style="stop-color: #c1aea8" />
+          <stop offset="1" style="stop-color: #746058" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000156567759974535334830000017977187778919818139_);
-          "
+          style="fill: url(#SVGID_00000156567759974535334830000017977187778919818139_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -16440,19 +11571,11 @@
           x2="168.2447"
           y2="135.8141"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #d6c9c3"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #d6c9c3" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000118368881422398412430000002264113988680875170_);
-          "
+          style="fill: url(#SVGID_00000118368881422398412430000002264113988680875170_)"
           points="165.29,135.81 171.2,132.83
             169.95,132.2 165.29,134.55 		"
         />
@@ -16464,23 +11587,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000114037984271999848270000006734768371751071916_);
-          "
+          style="fill: url(#SVGID_00000114037984271999848270000006734768371751071916_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -16492,19 +11604,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #746058"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5a49e"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #746058" />
+          <stop offset="1" style="stop-color: #b5a49e" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000051346103830824170810000003312873820407983267_);
-          "
+          style="fill: url(#SVGID_00000051346103830824170810000003312873820407983267_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -16516,23 +11620,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000033344823193972729190000008349534730810638258_);
-          "
+          style="fill: url(#SVGID_00000033344823193972729190000008349534730810638258_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -16544,19 +11637,11 @@
           x2="33.2252"
           y2="135.5517"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000003786643509636668390000008863564806181581207_);
-          "
+          style="fill: url(#SVGID_00000003786643509636668390000008863564806181581207_)"
           points="33.05,134.6 28.29,132.2
             27.04,132.83 33.05,135.86 		"
         />
@@ -16568,20 +11653,12 @@
           x2="165.752"
           y2="134.5538"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000089563073920154566310000007583173591399219627_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000158718274078101167230000000919141399385186703_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000158718274078101167230000000919141399385186703_)"
           d="
             M165.29,241.96l0-107.41l0.93,0.81v107.53"
         />
@@ -16593,20 +11670,12 @@
           x2="32.5823"
           y2="134.6003"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000032647581165359238410000008851763379349589934_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000176757436709350986300000006865321169587912093_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000176757436709350986300000006865321169587912093_)"
           d="
             M32.12,242.89v-107.5l0.93-0.79v107.36"
         />
@@ -16618,29 +11687,18 @@
           x2="99.1671"
           y2="135.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000013909718474482463900000008248604948299640511_);
-          "
+          style="fill: url(#SVGID_00000013909718474482463900000008248604948299640511_)"
           d="M166.22,135.36v84.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39v-107.5l-1.5,0.92v82.93v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-82.98L166.22,135.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
         />
       </g>
     </g>
-    <g
-      v-if="FullArtFrames.HQ"
-      id="HQ_FullArt_Frames"
-    >
+    <g v-if="FullArtFrames.HQ" id="HQ_FullArt_Frames">
       <linearGradient
         id="SVGID_00000080915945242363263740000010937230989943364266_"
         gradientUnits="userSpaceOnUse"
@@ -16649,19 +11707,11 @@
         x2="30.3152"
         y2="74.6657"
       >
-        <stop
-          offset="0"
-          style="stop-color: #c6a267"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #c6a267" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000080915945242363263740000010937230989943364266_);
-        "
+        style="fill: url(#SVGID_00000080915945242363263740000010937230989943364266_)"
         d="M33.05,116.04
           c-0.01-0.06-0.02-0.11-0.03-0.17c-3.03-16.39-1.41-40.62-1.41-40.62l-2.98-0.58l-1.01,3.18c-0.12,6.87-0.11,24.32,2.48,38.38
           c0.94,5.07,1.96,9.54,2.94,13.33V116.04z"
@@ -16674,19 +11724,11 @@
         x2="101.4576"
         y2="27.8373"
       >
-        <stop
-          offset="0"
-          style="stop-color: #7a5a23"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #74573c"
-        />
+        <stop offset="0" style="stop-color: #7a5a23" />
+        <stop offset="1" style="stop-color: #74573c" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000119801004598219208780000012555981897126569383_);
-        "
+        style="fill: url(#SVGID_00000119801004598219208780000012555981897126569383_)"
         d="M99.06,23.82
           c-0.31,0.02-7.91,0.74-32.05,17.77c-24,16.93-38.9,32.45-39.05,32.6l-0.27,0.28l0,0.39c0,0.05-0.04,1.14-0.07,2.98l1.01-3.18
           l2.98,0.58c0,0,14.45-13.57,36.52-29.13c22.24-15.68,30.18-16.31,31-16.43c0,0,0,0,0,0v-5.87L99.06,23.82z"
@@ -16699,19 +11741,11 @@
         x2="167.9833"
         y2="74.6657"
       >
-        <stop
-          offset="0"
-          style="stop-color: #bda174"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #bda174" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000013166618564437447210000002305857903556026806_);
-        "
+        style="fill: url(#SVGID_00000013166618564437447210000002305857903556026806_)"
         d="M170.64,77.84l-1.01-3.18l-2.98,0.58
           c0,0,1.61,24-1.37,40.39v13.63c0.96-3.72,1.96-8.1,2.87-13.05C170.76,102.16,170.76,84.71,170.64,77.84z"
       />
@@ -16723,19 +11757,11 @@
         x2="170.6423"
         y2="50.8271"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #ac905f"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="1" style="stop-color: #ac905f" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000062878353543869091120000003308251463792627868_);
-        "
+        style="fill: url(#SVGID_00000062878353543869091120000003308251463792627868_)"
         d="M99.2,23.82
           c0.31,0.02,7.91,0.74,32.05,17.77c24,16.93,38.9,32.45,39.05,32.6l0.27,0.28l0,0.39c0,0.05,0.04,1.14,0.07,2.98l-1.01-3.18
           l-2.98,0.58c0,0-14.45-13.57-36.52-29.13c-22.24-15.68-30.18-16.31-31-16.43c0,0,0,0,0,0v-5.87L99.2,23.82z"
@@ -16748,19 +11774,11 @@
         x2="29.3341"
         y2="135.1478"
       >
-        <stop
-          offset="0"
-          style="stop-color: #f6d195"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c8a877"
-        />
+        <stop offset="0" style="stop-color: #f6d195" />
+        <stop offset="1" style="stop-color: #c8a877" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000157293142556798056720000013013112421097333170_);
-        "
+        style="fill: url(#SVGID_00000157293142556798056720000013013112421097333170_)"
         d="M33.05,126.21
           c-0.63-2.93-1.29-6.18-1.94-9.74c-3.12-16.87-2.48-41.8-2.48-41.8l-3-0.8l0,0.4c0,0.24,0.12,24.21,3.51,42.56
           c1.39,7.54,2.78,13.73,3.91,18.32V126.21z"
@@ -16773,19 +11791,11 @@
         x2="101.3314"
         y2="25.5472"
       >
-        <stop
-          offset="0"
-          style="stop-color: #c5a575"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #d5b176"
-        />
+        <stop offset="0" style="stop-color: #c5a575" />
+        <stop offset="1" style="stop-color: #d5b176" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000013907818568386359140000015695508578289042355_);
-        "
+        style="fill: url(#SVGID_00000013907818568386359140000015695508578289042355_)"
         d="M99.13,21.74l-0.07,0
           c-0.32,0.02-8.14,0.76-32.98,18.28C41.38,57.44,26.05,73.41,25.9,73.57l-0.28,0.29l3,0.8c0,0,15.9-14.99,38.61-31.01
           c22.88-16.14,31.06-17.78,31.9-17.91c0,0,0,0,0,0V21.74z"
@@ -16798,19 +11808,11 @@
         x2="168.9671"
         y2="134.8732"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000063632964996839857840000018122689887151892373_);
-        "
+        style="fill: url(#SVGID_00000063632964996839857840000018122689887151892373_)"
         d="M169.64,74.67c0,0,0.64,24.93-2.48,41.8
           c-0.64,3.44-1.27,6.58-1.88,9.43v8.98c1.11-4.56,2.48-10.65,3.84-18.05c3.39-18.35,3.51-42.32,3.51-42.56l0-0.4L169.64,74.67z"
       />
@@ -16822,26 +11824,16 @@
         x2="174.6409"
         y2="70.41"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000140014619942719104670000001162068467359910288_);
-        "
+        style="fill: url(#SVGID_00000140014619942719104670000001162068467359910288_)"
         d="M99.13,21.74l0.07,0
           c0.32,0.02,8.14,0.76,32.98,18.28c24.7,17.42,40.03,33.39,40.18,33.55l0.28,0.29l-3,0.8c0,0-15.9-14.99-38.61-31.01
           c-22.88-16.14-31.06-17.78-31.9-17.91c0,0,0,0,0,0V21.74z"
       />
-      <g
-        id="Multi_Class_Frame_00000003814102301286051150000007473301035166039967_"
-      >
+      <g id="Multi_Class_Frame_00000003814102301286051150000007473301035166039967_">
         <linearGradient
           id="Health_Frame_00000171686741330545875900000016044026883822430118_"
           gradientUnits="userSpaceOnUse"
@@ -16850,20 +11842,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d5b076"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d0ac72"
-          />
+          <stop offset="0" style="stop-color: #d5b076" />
+          <stop offset="1" style="stop-color: #d0ac72" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000150806125827278930440000012573475367981184424_"
-          style="
-            fill: url(#Health_Frame_00000171686741330545875900000016044026883822430118_);
-          "
+          style="fill: url(#Health_Frame_00000171686741330545875900000016044026883822430118_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -16875,20 +11859,12 @@
           x2="165.752"
           y2="115.636"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f5a1f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c0a578"
-          />
+          <stop offset="0" style="stop-color: #7f5a1f" />
+          <stop offset="1" style="stop-color: #c0a578" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000077316679270779990280000017062682301095925639_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000145755634068248237890000014021782544780819380_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000145755634068248237890000014021782544780819380_)"
           d="
             M165.29,241.96l0-126.32l0.93,5.76v121.49"
         />
@@ -16900,20 +11876,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #70552c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #75502c"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #70552c" />
+          <stop offset="1" style="stop-color: #75502c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000150101944444405677320000014315524286711539077_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000093880949461443071540000017885538955683425152_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000093880949461443071540000017885538955683425152_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -16925,20 +11893,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #765c35"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7f6441"
-          />
+          <stop offset="0" style="stop-color: #765c35" />
+          <stop offset="1" style="stop-color: #7f6441" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000140697008749072429130000005583979534767650439_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000103261547701438768620000007977443732207639211_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000103261547701438768620000007977443732207639211_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -16950,20 +11910,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e532c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e542f"
-          />
+          <stop offset="0" style="stop-color: #6e532c" />
+          <stop offset="1" style="stop-color: #6e542f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000079480243415038694220000016386062106062034089_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000170982315154136085530000008429049160423728046_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000170982315154136085530000008429049160423728046_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -16975,20 +11927,12 @@
           x2="32.5823"
           y2="116.037"
         >
-          <stop
-            offset="0"
-            style="stop-color: #815c21"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c9a56a"
-          />
+          <stop offset="0" style="stop-color: #815c21" />
+          <stop offset="1" style="stop-color: #c9a56a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000070117629216306653770000002784644312864281776_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000134933512845187986220000008475713309867430033_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000134933512845187986220000008475713309867430033_)"
           d="
             M32.12,242.89V121.73l0.93-5.7v125.92"
         />
@@ -17000,20 +11944,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c7a56e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7d5e2a"
-          />
+          <stop offset="0" style="stop-color: #c7a56e" />
+          <stop offset="1" style="stop-color: #7d5e2a" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000072269901594266757890000002955021387055154570_"
-          style="
-            fill: url(#Health_Frame_00000163788112267952495630000000435642411375624594_);
-          "
+          style="fill: url(#Health_Frame_00000163788112267952495630000000435642411375624594_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -17025,33 +11961,19 @@
           x2="99.1671"
           y2="121.4002"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f5d095"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #d2b17d"
-          />
+          <stop offset="0" style="stop-color: #f5d095" />
+          <stop offset="0.9987" style="stop-color: #d2b17d" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000098203428673431460430000007817597757485574075_);
-          "
+          style="fill: url(#SVGID_00000098203428673431460430000007817597757485574075_)"
           d="M166.22,121.4v98.05l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V121.73l-1.5,2.66v94.85v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-95.18L166.22,121.4z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Entity"
-      id="Entity_Framed_Addition"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Framed_Tech_00000031167252648264106370000018010308886634233003_"
-      >
+    <g v-if="FramedAddition.Entity" id="Entity_Framed_Addition">
+      <g v-if="framed.Tech" id="Framed_Tech_00000031167252648264106370000018010308886634233003_">
         <g id="Framed">
           <linearGradient
             id="FullArt_Inside_BG_00000121958389836695421360000010524611559403258283_"
@@ -17062,18 +11984,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #728e9e"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #476c76"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #768a94"
-            />
+            <stop offset="0" style="stop-color: #728e9e" />
+            <stop offset="0.5051" style="stop-color: #476c76" />
+            <stop offset="1" style="stop-color: #768a94" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000169525562794952337260000008462502698289758881_"
@@ -17092,14 +12005,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #708c9d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #999d9c"
-            />
+            <stop offset="0" style="stop-color: #708c9d" />
+            <stop offset="1" style="stop-color: #999d9c" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000003094511616036818350000010547576773607688614_"
@@ -17118,14 +12025,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #859dae"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #607e8a"
-            />
+            <stop offset="0" style="stop-color: #859dae" />
+            <stop offset="1" style="stop-color: #607e8a" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000127738252203617130530000012079341891628312766_"
@@ -17144,20 +12045,12 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #bcc9e2"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #bac7e1"
-            />
+            <stop offset="0" style="stop-color: #bcc9e2" />
+            <stop offset="1" style="stop-color: #bac7e1" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000013899859748931917080000014362242455107226503_"
-            style="
-              fill: url(#FullArt_Outside_00000127761164787288969570000002662324891131924108_);
-            "
+            style="fill: url(#FullArt_Outside_00000127761164787288969570000002662324891131924108_)"
             d="
               M65.64,170.02 M132.69,170.02H65.64l0.62-1.5h65.81"
           />
@@ -17170,20 +12063,12 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #708c9b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5f7f8a"
-            />
+            <stop offset="0" style="stop-color: #708c9b" />
+            <stop offset="1" style="stop-color: #5f7f8a" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000011750411414349996960000009494163863159013550_"
-            style="
-              fill: url(#FullArt_Outside_00000026138132051111287980000012311599824106789780_);
-            "
+            style="fill: url(#FullArt_Outside_00000026138132051111287980000012311599824106789780_)"
             d="
               M172.7,130.01l-40.01,40.01l-0.62-1.5l39.13-39.13"
           />
@@ -17196,20 +12081,12 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5b7b86"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #768a94"
-            />
+            <stop offset="0" style="stop-color: #5b7b86" />
+            <stop offset="1" style="stop-color: #768a94" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000017476272711081313720000015830935085085912506_"
-            style="
-              fill: url(#FullArt_Outside_00000139295695268574814860000015320052118545321142_);
-            "
+            style="fill: url(#FullArt_Outside_00000139295695268574814860000015320052118545321142_)"
             d="
               M65.64,170.02l-40.01-40.01l1.5-0.62l39.13,39.13 M65.64,170.02 M65.64,170.02"
           />
@@ -17222,20 +12099,12 @@
           x2="46.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #64788f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9db7c4"
-          />
+          <stop offset="0" style="stop-color: #64788f" />
+          <stop offset="1" style="stop-color: #9db7c4" />
         </linearGradient>
         <polyline
           id="Deco_00000021094296964521399870000008259003276999777182_"
-          style="
-            fill: url(#Deco_00000037652979663866876720000003602003285846565032_);
-          "
+          style="fill: url(#Deco_00000037652979663866876720000003602003285846565032_)"
           points="
             46.81,160.52 33.31,147.02 33.31,149.15 44.81,160.52 		"
         />
@@ -17247,20 +12116,12 @@
           x2="46.2772"
           y2="159.9905"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f91a6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a9c5d4"
-          />
+          <stop offset="0" style="stop-color: #7f91a6" />
+          <stop offset="1" style="stop-color: #a9c5d4" />
         </linearGradient>
         <polyline
           id="Deco_00000056412790336533713460000010668974432979212452_"
-          style="
-            fill: url(#Deco_00000008829366450387814800000014356739495721190828_);
-          "
+          style="fill: url(#Deco_00000008829366450387814800000014356739495721190828_)"
           points="
             44.81,160.52 33.31,171.9 33.31,174.02 46.81,160.52 		"
         />
@@ -17272,20 +12133,12 @@
           x2="44.2771"
           y2="159.9904"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <polyline
           id="Deco_00000033369369807952481940000013209069637309790373_"
-          style="
-            fill: url(#Deco_00000049941505085414012450000017278134564995393967_);
-          "
+          style="fill: url(#Deco_00000049941505085414012450000017278134564995393967_)"
           points="
             42.69,160.52 33.31,169.9 33.31,172.02 44.81,160.52 		"
         />
@@ -17297,20 +12150,12 @@
           x2="44.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f99a8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b7b86"
-          />
+          <stop offset="0" style="stop-color: #7f99a8" />
+          <stop offset="1" style="stop-color: #5b7b86" />
         </linearGradient>
         <polyline
           id="Deco_00000116196191626181334550000006432785140753127563_"
-          style="
-            fill: url(#Deco_00000029034086711373883780000007834811727463558302_);
-          "
+          style="fill: url(#Deco_00000029034086711373883780000007834811727463558302_)"
           points="
             44.81,160.52 33.31,149.02 33.31,151.15 42.69,160.52 		"
         />
@@ -17323,20 +12168,12 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #64788f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9db7c4"
-          />
+          <stop offset="0" style="stop-color: #64788f" />
+          <stop offset="1" style="stop-color: #9db7c4" />
         </linearGradient>
         <polyline
           id="Deco_00000010996440595804115010000017962449888969999024_"
-          style="
-            fill: url(#Deco_00000155105528146547599430000014294070178525012159_);
-          "
+          style="fill: url(#Deco_00000155105528146547599430000014294070178525012159_)"
           points="
             151.61,160.52 165.1,147.02 165.1,149.15 153.61,160.52 		"
         />
@@ -17349,20 +12186,12 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8091a6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a9c5d4"
-          />
+          <stop offset="0" style="stop-color: #8091a6" />
+          <stop offset="1" style="stop-color: #a9c5d4" />
         </linearGradient>
         <polyline
           id="Deco_00000077311834313843217630000015194695484208190654_"
-          style="
-            fill: url(#Deco_00000047029980274627131860000000850891595157488296_);
-          "
+          style="fill: url(#Deco_00000047029980274627131860000000850891595157488296_)"
           points="
             153.61,160.52 165.1,171.9 165.1,174.02 151.61,160.52 		"
         />
@@ -17375,20 +12204,12 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #768a94"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #768a94" />
         </linearGradient>
         <polyline
           id="Deco_00000119823239930423373100000002662117563873677237_"
-          style="
-            fill: url(#Deco_00000183208244093137827190000000012433199724179121_);
-          "
+          style="fill: url(#Deco_00000183208244093137827190000000012433199724179121_)"
           points="
             155.73,160.52 165.1,169.9 165.1,172.02 153.61,160.52 		"
         />
@@ -17401,28 +12222,17 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f99a8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b7b86"
-          />
+          <stop offset="0" style="stop-color: #7f99a8" />
+          <stop offset="1" style="stop-color: #5b7b86" />
         </linearGradient>
         <polyline
           id="Deco"
-          style="
-            fill: url(#Deco_00000164515611275313223460000010591772176644447898_);
-          "
+          style="fill: url(#Deco_00000164515611275313223460000010591772176644447898_)"
           points="153.61,160.52
             165.1,149.02 165.1,151.15 155.73,160.52 		"
         />
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Framed_Nature"
-      >
+      <g v-if="framed.Nature" id="Framed_Nature">
         <g id="Framed_00000075866472900094871340000006266058141490682250_">
           <linearGradient
             id="FullArt_Inside_BG_00000056391545285428254490000016020564238162810004_"
@@ -17433,18 +12243,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #87a281"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #567251"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #85a281"
-            />
+            <stop offset="0" style="stop-color: #87a281" />
+            <stop offset="0.5051" style="stop-color: #567251" />
+            <stop offset="1" style="stop-color: #85a281" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000005261645859461191220000016546067119001394849_"
@@ -17463,14 +12264,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c9877"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5d7958"
-            />
+            <stop offset="0" style="stop-color: #7c9877" />
+            <stop offset="1" style="stop-color: #5d7958" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000157995047078783238480000017361022315241589413_"
@@ -17489,14 +12284,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #526f4e"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a9675"
-            />
+            <stop offset="0" style="stop-color: #526f4e" />
+            <stop offset="1" style="stop-color: #7a9675" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000132770174938226968060000004291220167758697405_"
@@ -17515,20 +12304,12 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #d1eecc"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #cbe6c5"
-            />
+            <stop offset="0" style="stop-color: #d1eecc" />
+            <stop offset="1" style="stop-color: #cbe6c5" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000049902055911269561650000012740234335014369159_"
-            style="
-              fill: url(#FullArt_Outside_00000168100392496876388720000010289003461487625125_);
-            "
+            style="fill: url(#FullArt_Outside_00000168100392496876388720000010289003461487625125_)"
             d="
               M65.64,170.02 M132.69,170.02H65.64l0.62-1.5h65.81"
           />
@@ -17541,20 +12322,12 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a1be9d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #809c7b"
-            />
+            <stop offset="0" style="stop-color: #a1be9d" />
+            <stop offset="1" style="stop-color: #809c7b" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000109742399038547026750000005831711475442498701_"
-            style="
-              fill: url(#FullArt_Outside_00000124871023750556754370000002584096939604157071_);
-            "
+            style="fill: url(#FullArt_Outside_00000124871023750556754370000002584096939604157071_)"
             d="
               M172.7,130.01l-40.01,40.01l-0.62-1.5l39.13-39.13"
           />
@@ -17567,20 +12340,12 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #809c7a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #799574"
-            />
+            <stop offset="0" style="stop-color: #809c7a" />
+            <stop offset="1" style="stop-color: #799574" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000134220138562787448360000015838039194333562759_"
-            style="
-              fill: url(#FullArt_Outside_00000133528000448722357880000012592882707163712693_);
-            "
+            style="fill: url(#FullArt_Outside_00000133528000448722357880000012592882707163712693_)"
             d="
               M65.64,170.02l-40.01-40.01l1.5-0.62l39.13,39.13 M65.64,170.02 M65.64,170.02"
           />
@@ -17594,20 +12359,12 @@
             x2="46.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #577453"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0edcb"
-            />
+            <stop offset="0" style="stop-color: #577453" />
+            <stop offset="0.9987" style="stop-color: #d0edcb" />
           </linearGradient>
           <polyline
             id="Deco_00000037652474422700483250000008998522382200885428_"
-            style="
-              fill: url(#Deco_00000155867730348250768790000001381856546712031909_);
-            "
+            style="fill: url(#Deco_00000155867730348250768790000001381856546712031909_)"
             points="
               46.81,160.52 33.31,147.02 33.31,149.15 44.81,160.52 			"
           />
@@ -17619,20 +12376,12 @@
             x2="46.2772"
             y2="159.9905"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c9877"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a5c0a0"
-            />
+            <stop offset="0" style="stop-color: #7c9877" />
+            <stop offset="1" style="stop-color: #a5c0a0" />
           </linearGradient>
           <polyline
             id="Deco_00000121249892717658317390000011822785622448020378_"
-            style="
-              fill: url(#Deco_00000041273879048533825460000009407188953418948252_);
-            "
+            style="fill: url(#Deco_00000041273879048533825460000009407188953418948252_)"
             points="
               44.81,160.52 33.31,171.9 33.31,174.02 46.81,160.52 			"
           />
@@ -17644,20 +12393,12 @@
             x2="44.2771"
             y2="159.9904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #bcd9b7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #86a180"
-            />
+            <stop offset="0" style="stop-color: #bcd9b7" />
+            <stop offset="1" style="stop-color: #86a180" />
           </linearGradient>
           <polyline
             id="Deco_00000028313195446007429630000014085753299545742999_"
-            style="
-              fill: url(#Deco_00000142150537076538448120000006401717641068405632_);
-            "
+            style="fill: url(#Deco_00000142150537076538448120000006401717641068405632_)"
             points="
               42.69,160.52 33.31,169.9 33.31,172.02 44.81,160.52 			"
           />
@@ -17669,20 +12410,12 @@
             x2="44.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #86a180"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #607c5b"
-            />
+            <stop offset="0" style="stop-color: #86a180" />
+            <stop offset="1" style="stop-color: #607c5b" />
           </linearGradient>
           <polyline
             id="Deco_00000125562644933597414810000006239377826701054854_"
-            style="
-              fill: url(#Deco_00000039096910021124676870000014796396219890933650_);
-            "
+            style="fill: url(#Deco_00000039096910021124676870000014796396219890933650_)"
             points="
               44.81,160.52 33.31,149.02 33.31,151.15 42.69,160.52 			"
           />
@@ -17697,20 +12430,12 @@
             y2="161.0509"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #577453"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0edcb"
-            />
+            <stop offset="0" style="stop-color: #577453" />
+            <stop offset="0.9987" style="stop-color: #d0edcb" />
           </linearGradient>
           <polyline
             id="Deco_00000028323446142219713470000012295583406936130222_"
-            style="
-              fill: url(#Deco_00000070118740665245377030000004797594369832200621_);
-            "
+            style="fill: url(#Deco_00000070118740665245377030000004797594369832200621_)"
             points="
               151.61,160.52 165.1,147.02 165.1,149.15 153.61,160.52 			"
           />
@@ -17723,20 +12448,12 @@
             y2="159.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c9877"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a5c0a0"
-            />
+            <stop offset="0" style="stop-color: #7c9877" />
+            <stop offset="1" style="stop-color: #a5c0a0" />
           </linearGradient>
           <polyline
             id="Deco_00000131338398363247284850000007149089591264330885_"
-            style="
-              fill: url(#Deco_00000059305204643144406070000007890214945455078543_);
-            "
+            style="fill: url(#Deco_00000059305204643144406070000007890214945455078543_)"
             points="
               153.61,160.52 165.1,171.9 165.1,174.02 151.61,160.52 			"
           />
@@ -17749,20 +12466,12 @@
             y2="159.9903"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #bcd9b7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #86a180"
-            />
+            <stop offset="0" style="stop-color: #bcd9b7" />
+            <stop offset="1" style="stop-color: #86a180" />
           </linearGradient>
           <polyline
             id="Deco_00000131361854572442403810000004114218650663702178_"
-            style="
-              fill: url(#Deco_00000106146656145878498540000002682818097293230005_);
-            "
+            style="fill: url(#Deco_00000106146656145878498540000002682818097293230005_)"
             points="
               155.73,160.52 165.1,169.9 165.1,172.02 153.61,160.52 			"
           />
@@ -17775,29 +12484,18 @@
             y2="161.0509"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #86a180"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #607c5b"
-            />
+            <stop offset="0" style="stop-color: #86a180" />
+            <stop offset="1" style="stop-color: #607c5b" />
           </linearGradient>
           <polyline
             id="Deco_00000152951881552463591490000000731095645706011577_"
-            style="
-              fill: url(#Deco_00000016042182388517435250000000267875815367404934_);
-            "
+            style="fill: url(#Deco_00000016042182388517435250000000267875815367404934_)"
             points="
               153.61,160.52 165.1,149.02 165.1,151.15 155.73,160.52 			"
           />
         </g>
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Framed_Myth"
-      >
+      <g v-if="framed.Myth" id="Framed_Myth">
         <g id="Framed_00000116236433486506473750000000589168606566114459_">
           <linearGradient
             id="FullArt_Inside_BG_00000041268210647637411540000004803921035491487644_"
@@ -17808,18 +12506,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #875681"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #563551"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #855e81"
-            />
+            <stop offset="0" style="stop-color: #875681" />
+            <stop offset="0.5051" style="stop-color: #563551" />
+            <stop offset="1" style="stop-color: #855e81" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000085216508000937274260000004730878032150076601_"
@@ -17838,14 +12527,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c4f77"
-            />
-            <stop
-              offset="0.9978"
-              style="stop-color: #5d3358"
-            />
+            <stop offset="0" style="stop-color: #7c4f77" />
+            <stop offset="0.9978" style="stop-color: #5d3358" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000122002004067654676760000016940131989241829819_"
@@ -17864,14 +12547,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="2.149471e-03"
-              style="stop-color: #52324e"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a5b75"
-            />
+            <stop offset="2.149471e-03" style="stop-color: #52324e" />
+            <stop offset="1" style="stop-color: #7a5b75" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000024686314080662108410000001741262647242714808_"
@@ -17890,20 +12567,12 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #d1a6cc"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #cbafc5"
-            />
+            <stop offset="0" style="stop-color: #d1a6cc" />
+            <stop offset="1" style="stop-color: #cbafc5" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000005958214578617177520000015908290751622109068_"
-            style="
-              fill: url(#FullArt_Outside_00000017497689983499727580000014034108350529386406_);
-            "
+            style="fill: url(#FullArt_Outside_00000017497689983499727580000014034108350529386406_)"
             d="
               M65.64,170.02 M132.69,170.02H65.64l0.62-1.5h65.81"
           />
@@ -17916,20 +12585,12 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a1549d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80377b"
-            />
+            <stop offset="0" style="stop-color: #a1549d" />
+            <stop offset="1" style="stop-color: #80377b" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000137106034161033882580000006682072800318979732_"
-            style="
-              fill: url(#FullArt_Outside_00000065790428910101966430000008616457962900546432_);
-            "
+            style="fill: url(#FullArt_Outside_00000065790428910101966430000008616457962900546432_)"
             d="
               M172.7,130.01l-40.01,40.01l-0.62-1.5l39.13-39.13"
           />
@@ -17942,20 +12603,12 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #804e7a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #794374"
-            />
+            <stop offset="0" style="stop-color: #804e7a" />
+            <stop offset="1" style="stop-color: #794374" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000001638292155755965170000002824869109160146833_"
-            style="
-              fill: url(#FullArt_Outside_00000023259704933621520830000016670369389011341966_);
-            "
+            style="fill: url(#FullArt_Outside_00000023259704933621520830000016670369389011341966_)"
             d="
               M65.64,170.02l-40.01-40.01l1.5-0.62l39.13,39.13 M65.64,170.02 M65.64,170.02"
           />
@@ -17969,20 +12622,12 @@
             x2="46.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #573253"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0aacb"
-            />
+            <stop offset="0" style="stop-color: #573253" />
+            <stop offset="0.9987" style="stop-color: #d0aacb" />
           </linearGradient>
           <polyline
             id="Deco_00000114774183121281569780000000971402991703503538_"
-            style="
-              fill: url(#Deco_00000127727917048902093850000017322118746201231776_);
-            "
+            style="fill: url(#Deco_00000127727917048902093850000017322118746201231776_)"
             points="
               46.81,160.52 33.31,147.02 33.31,149.15 44.86,160.46 			"
           />
@@ -17994,20 +12639,12 @@
             x2="46.2772"
             y2="159.9905"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c4477"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a56da0"
-            />
+            <stop offset="0" style="stop-color: #7c4477" />
+            <stop offset="1" style="stop-color: #a56da0" />
           </linearGradient>
           <polyline
             id="Deco_00000096026726118862542800000005115157217322837930_"
-            style="
-              fill: url(#Deco_00000163061631886055020400000014801784269581209744_);
-            "
+            style="fill: url(#Deco_00000163061631886055020400000014801784269581209744_)"
             points="
               44.86,160.46 33.31,171.9 33.31,174.02 46.81,160.52 			"
           />
@@ -18019,20 +12656,12 @@
             x2="44.3334"
             y2="159.9342"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #bc9cb7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #866780"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #bc9cb7" />
+            <stop offset="1" style="stop-color: #866780" />
           </linearGradient>
           <polyline
             id="Deco_00000025402097756392226730000000567554763941222287_"
-            style="
-              fill: url(#Deco_00000016043356526583977120000008097879649358056614_);
-            "
+            style="fill: url(#Deco_00000016043356526583977120000008097879649358056614_)"
             points="
               42.69,160.52 33.31,169.9 33.31,172.02 44.86,160.46 			"
           />
@@ -18044,20 +12673,12 @@
             x2="44.3052"
             y2="161.0229"
           >
-            <stop
-              offset="0"
-              style="stop-color: #864b80"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #60395b"
-            />
+            <stop offset="0" style="stop-color: #864b80" />
+            <stop offset="1" style="stop-color: #60395b" />
           </linearGradient>
           <polyline
             id="Deco_00000143601365705947700000000003162274484184896420_"
-            style="
-              fill: url(#Deco_00000101825640060110238240000015413377881866921107_);
-            "
+            style="fill: url(#Deco_00000101825640060110238240000015413377881866921107_)"
             points="
               44.86,160.46 33.31,149.02 33.31,151.15 42.69,160.52 			"
           />
@@ -18072,20 +12693,12 @@
             y2="161.051"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #573253"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #d0aacb"
-            />
+            <stop offset="0" style="stop-color: #573253" />
+            <stop offset="0.9987" style="stop-color: #d0aacb" />
           </linearGradient>
           <polyline
             id="Deco_00000137820060755049123650000006828871268428065972_"
-            style="
-              fill: url(#Deco_00000022525730766606213420000011271225338932989615_);
-            "
+            style="fill: url(#Deco_00000022525730766606213420000011271225338932989615_)"
             points="
               151.61,160.52 165.1,147.02 165.1,149.15 153.67,160.46 			"
           />
@@ -18098,20 +12711,12 @@
             y2="159.9905"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7c4477"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a56da0"
-            />
+            <stop offset="0" style="stop-color: #7c4477" />
+            <stop offset="1" style="stop-color: #a56da0" />
           </linearGradient>
           <polyline
             id="Deco_00000150097176334504274590000017377310347201333413_"
-            style="
-              fill: url(#Deco_00000006701306872232942020000002868550026681642895_);
-            "
+            style="fill: url(#Deco_00000006701306872232942020000002868550026681642895_)"
             points="
               153.67,160.46 165.1,171.9 165.1,174.02 151.61,160.52 			"
           />
@@ -18124,20 +12729,12 @@
             y2="159.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #bc9cb7"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #866780"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #bc9cb7" />
+            <stop offset="1" style="stop-color: #866780" />
           </linearGradient>
           <polyline
             id="Deco_00000056407182009907820160000008327856162265377956_"
-            style="
-              fill: url(#Deco_00000152227188618995036110000012777572675451035292_);
-            "
+            style="fill: url(#Deco_00000152227188618995036110000012777572675451035292_)"
             points="
               155.73,160.52 165.1,169.9 165.1,172.02 153.67,160.46 			"
           />
@@ -18150,29 +12747,18 @@
             y2="160.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #864b80"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #60395b"
-            />
+            <stop offset="0" style="stop-color: #864b80" />
+            <stop offset="1" style="stop-color: #60395b" />
           </linearGradient>
           <polyline
             id="Deco_00000122702784845879071280000010248605335412871568_"
-            style="
-              fill: url(#Deco_00000088813789511674745160000000415117673957694597_);
-            "
+            style="fill: url(#Deco_00000088813789511674745160000000415117673957694597_)"
             points="
               153.67,160.46 165.1,149.02 165.1,151.15 155.73,160.52 			"
           />
         </g>
       </g>
-      <g
-        v-if="framed.Culture"
-        id="Framed_Culture"
-      >
+      <g v-if="framed.Culture" id="Framed_Culture">
         <g id="Framed_00000057113505976316548600000016625615134210339255_">
           <linearGradient
             id="FullArt_Inside_BG_00000075876205817200853600000016375541859635329459_"
@@ -18183,18 +12769,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #97564d"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #702f33"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9f5e47"
-            />
+            <stop offset="0" style="stop-color: #97564d" />
+            <stop offset="0.5051" style="stop-color: #702f33" />
+            <stop offset="1" style="stop-color: #9f5e47" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000003072438024937632420000015414542904822103173_"
@@ -18213,14 +12790,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8b4f41"
-            />
-            <stop
-              offset="0.9978"
-              style="stop-color: #6a2b31"
-            />
+            <stop offset="0" style="stop-color: #8b4f41" />
+            <stop offset="0.9978" style="stop-color: #6a2b31" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000167377308099554616680000012552714563476101555_"
@@ -18239,14 +12810,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="2.149471e-03"
-              style="stop-color: #652e22"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #995b43"
-            />
+            <stop offset="2.149471e-03" style="stop-color: #652e22" />
+            <stop offset="1" style="stop-color: #995b43" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000181784998265723236940000007950207540023327664_"
@@ -18265,20 +12830,12 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #e6a6a8"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e5af9d"
-            />
+            <stop offset="0" style="stop-color: #e6a6a8" />
+            <stop offset="1" style="stop-color: #e5af9d" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000115511605231421399330000007482830906304754101_"
-            style="
-              fill: url(#FullArt_Outside_00000005257314224376692690000003618810556028092067_);
-            "
+            style="fill: url(#FullArt_Outside_00000005257314224376692690000003618810556028092067_)"
             d="
               M65.64,170.02 M132.69,170.02H65.64l0.62-1.5h65.81"
           />
@@ -18291,20 +12848,12 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #ae5438"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #802a2f"
-            />
+            <stop offset="0" style="stop-color: #ae5438" />
+            <stop offset="1" style="stop-color: #802a2f" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000029763013924475252240000017852034889912909492_"
-            style="
-              fill: url(#FullArt_Outside_00000091705314779857478130000012554956461834161304_);
-            "
+            style="fill: url(#FullArt_Outside_00000091705314779857478130000012554956461834161304_)"
             d="
               M172.7,130.01l-40.01,40.01l-0.62-1.5l39.13-39.13"
           />
@@ -18317,20 +12866,12 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #984e31"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #79361d"
-            />
+            <stop offset="0" style="stop-color: #984e31" />
+            <stop offset="1" style="stop-color: #79361d" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000073719947371612709310000000536798337114685370_"
-            style="
-              fill: url(#FullArt_Outside_00000030474939205654889160000011515084951007885758_);
-            "
+            style="fill: url(#FullArt_Outside_00000030474939205654889160000011515084951007885758_)"
             d="
               M65.64,170.02l-40.01-40.01l1.5-0.62l39.13,39.13 M65.64,170.02 M65.64,170.02"
           />
@@ -18344,20 +12885,12 @@
             x2="46.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #672b2f"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #e5b2a8"
-            />
+            <stop offset="0" style="stop-color: #672b2f" />
+            <stop offset="0.9987" style="stop-color: #e5b2a8" />
           </linearGradient>
           <polyline
             id="Deco_00000089566271626115133700000000808464857619659676_"
-            style="
-              fill: url(#Deco_00000060724938812017216340000013364266952833237136_);
-            "
+            style="fill: url(#Deco_00000060724938812017216340000013364266952833237136_)"
             points="
               46.81,160.52 33.31,147.02 33.31,149.15 44.81,160.52 			"
           />
@@ -18369,20 +12902,12 @@
             x2="46.2772"
             y2="159.9905"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8c373d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b56d50"
-            />
+            <stop offset="0" style="stop-color: #8c373d" />
+            <stop offset="1" style="stop-color: #b56d50" />
           </linearGradient>
           <polyline
             id="Deco_00000108285507406876944020000014639099891633021112_"
-            style="
-              fill: url(#Deco_00000131336941430259758240000013248964493696206502_);
-            "
+            style="fill: url(#Deco_00000131336941430259758240000013248964493696206502_)"
             points="
               44.81,160.52 33.31,171.9 33.31,174.02 46.81,160.52 			"
           />
@@ -18394,20 +12919,12 @@
             x2="44.2771"
             y2="159.9904"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #e4bb9f"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a26759"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #e4bb9f" />
+            <stop offset="1" style="stop-color: #a26759" />
           </linearGradient>
           <polyline
             id="Deco_00000175287782083215523420000014621937860295047570_"
-            style="
-              fill: url(#Deco_00000068669784978502022500000010222975524107142792_);
-            "
+            style="fill: url(#Deco_00000068669784978502022500000010222975524107142792_)"
             points="
               42.69,160.52 33.31,169.9 33.31,172.02 44.81,160.52 			"
           />
@@ -18419,20 +12936,12 @@
             x2="44.2771"
             y2="161.051"
           >
-            <stop
-              offset="0"
-              style="stop-color: #984b4b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603937"
-            />
+            <stop offset="0" style="stop-color: #984b4b" />
+            <stop offset="1" style="stop-color: #603937" />
           </linearGradient>
           <polyline
             id="Deco_00000009582787573448283600000006439768325181765566_"
-            style="
-              fill: url(#Deco_00000119098938209108779900000014795855394221596034_);
-            "
+            style="fill: url(#Deco_00000119098938209108779900000014795855394221596034_)"
             points="
               44.81,160.52 33.31,149.02 33.31,151.15 42.69,160.52 			"
           />
@@ -18447,20 +12956,12 @@
             y2="161.0473"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #672b2f"
-            />
-            <stop
-              offset="0.9987"
-              style="stop-color: #e5b2a8"
-            />
+            <stop offset="0" style="stop-color: #672b2f" />
+            <stop offset="0.9987" style="stop-color: #e5b2a8" />
           </linearGradient>
           <polyline
             id="Deco_00000149350786221908569200000001724590401787472513_"
-            style="
-              fill: url(#Deco_00000126308779133490896030000002981527114464904358_);
-            "
+            style="fill: url(#Deco_00000126308779133490896030000002981527114464904358_)"
             points="
               151.6,160.51 165.1,147.02 165.1,149.15 153.67,160.46 			"
           />
@@ -18473,20 +12974,12 @@
             y2="159.983"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8c373d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b56d50"
-            />
+            <stop offset="0" style="stop-color: #8c373d" />
+            <stop offset="1" style="stop-color: #b56d50" />
           </linearGradient>
           <polyline
             id="Deco_00000042738276504002759330000014055620965957830284_"
-            style="
-              fill: url(#Deco_00000029768586771960078790000018313307771354292646_);
-            "
+            style="fill: url(#Deco_00000029768586771960078790000018313307771354292646_)"
             points="
               153.67,160.46 165.1,171.9 165.1,174.02 151.6,160.51 			"
           />
@@ -18499,20 +12992,12 @@
             y2="159.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="1.260747e-03"
-              style="stop-color: #e4bb9f"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a26759"
-            />
+            <stop offset="1.260747e-03" style="stop-color: #e4bb9f" />
+            <stop offset="1" style="stop-color: #a26759" />
           </linearGradient>
           <polyline
             id="Deco_00000142155920418833576110000003173056125622599087_"
-            style="
-              fill: url(#Deco_00000070833863016280229150000004505649225205313706_);
-            "
+            style="fill: url(#Deco_00000070833863016280229150000004505649225205313706_)"
             points="
               155.73,160.52 165.1,169.9 165.1,172.02 153.67,160.46 			"
           />
@@ -18525,29 +13010,18 @@
             y2="160.9904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #984b4b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603937"
-            />
+            <stop offset="0" style="stop-color: #984b4b" />
+            <stop offset="1" style="stop-color: #603937" />
           </linearGradient>
           <polyline
             id="Deco_00000087375229969618439870000002281930085678031532_"
-            style="
-              fill: url(#Deco_00000066484857779939726960000007566115838273806486_);
-            "
+            style="fill: url(#Deco_00000066484857779939726960000007566115838273806486_)"
             points="
               153.67,160.46 165.1,149.02 165.1,151.15 155.73,160.52 			"
           />
         </g>
       </g>
-      <g
-        v-if="framed.MultiClass"
-        id="Framed_Multi_Class"
-      >
+      <g v-if="framed.MultiClass" id="Framed_Multi_Class">
         <g id="Framed_00000062162050087782160700000004047623722043919773_">
           <linearGradient
             id="FullArt_Inside_BG_00000170968088598638484940000011191608814045576888_"
@@ -18558,18 +13032,9 @@
             y2="-76.3933"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #9d8678"
-            />
-            <stop
-              offset="0.5051"
-              style="stop-color: #6b5348"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #937e72"
-            />
+            <stop offset="0" style="stop-color: #9d8678" />
+            <stop offset="0.5051" style="stop-color: #6b5348" />
+            <stop offset="1" style="stop-color: #937e72" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000067925832300954459660000015217278940501507766_"
@@ -18588,14 +13053,8 @@
             y2="-37.5285"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #9f887a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #ac9b8d"
-            />
+            <stop offset="0" style="stop-color: #9f887a" />
+            <stop offset="1" style="stop-color: #ac9b8d" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000152247760623198950520000016780682326055240349_"
@@ -18614,14 +13073,8 @@
             y2="-76.657"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #b4a193"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #a89286"
-            />
+            <stop offset="0" style="stop-color: #b4a193" />
+            <stop offset="1" style="stop-color: #a89286" />
           </linearGradient>
           <path
             id="FullArt_Inside_BG_00000132796017019841343350000003831931649299009929_"
@@ -18640,20 +13093,12 @@
             y2="-77.8979"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eedece"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #efdfcf"
-            />
+            <stop offset="0" style="stop-color: #eedece" />
+            <stop offset="1" style="stop-color: #efdfcf" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000101801910567001719060000006009559205162609548_"
-            style="
-              fill: url(#FullArt_Outside_00000088854868110609730300000015705055224286625430_);
-            "
+            style="fill: url(#FullArt_Outside_00000088854868110609730300000015705055224286625430_)"
             d="
               M65.64,170.02 M132.69,170.02H65.64l0.62-1.5h65.81"
           />
@@ -18666,20 +13111,12 @@
             y2="-38.1103"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #988376"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8a7568"
-            />
+            <stop offset="0" style="stop-color: #988376" />
+            <stop offset="1" style="stop-color: #8a7568" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000003805777268289669090000001780845249575904901_"
-            style="
-              fill: url(#FullArt_Outside_00000124861665850517294690000014037027848120257928_);
-            "
+            style="fill: url(#FullArt_Outside_00000124861665850517294690000014037027848120257928_)"
             d="
               M172.7,130.01l-40.01,40.01l-0.62-1.5l39.13-39.13"
           />
@@ -18692,20 +13129,12 @@
             y2="-78.1177"
             gradientTransform="matrix(1 0 0 -1 0 91.3729)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8b7669"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #917e75"
-            />
+            <stop offset="0" style="stop-color: #8b7669" />
+            <stop offset="1" style="stop-color: #917e75" />
           </linearGradient>
           <path
             id="FullArt_Outside_00000110442206129779710550000011993170448198774938_"
-            style="
-              fill: url(#FullArt_Outside_00000140706158941079858130000010751623777114692271_);
-            "
+            style="fill: url(#FullArt_Outside_00000140706158941079858130000010751623777114692271_)"
             d="
               M65.64,170.02l-40.01-40.01l1.5-0.62l39.13,39.13 M65.64,170.02 M65.64,170.02"
           />
@@ -18718,20 +13147,12 @@
           x2="46.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f574b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a89387"
-          />
+          <stop offset="0" style="stop-color: #6f574b" />
+          <stop offset="1" style="stop-color: #a89387" />
         </linearGradient>
         <polyline
           id="Deco_00000038395132048574123610000016031769786690359426_"
-          style="
-            fill: url(#Deco_00000134238966040818826280000001606783853177339027_);
-          "
+          style="fill: url(#Deco_00000134238966040818826280000001606783853177339027_)"
           points="
             46.81,160.52 33.31,147.02 33.31,149.15 44.75,160.58 		"
         />
@@ -18743,20 +13164,12 @@
           x2="46.2772"
           y2="159.9905"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b8477"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #eedece"
-          />
+          <stop offset="0" style="stop-color: #9b8477" />
+          <stop offset="1" style="stop-color: #eedece" />
         </linearGradient>
         <polyline
           id="Deco_00000043419431326312388000000002335663424990600857_"
-          style="
-            fill: url(#Deco_00000143578280633461936870000005725378967946742671_);
-          "
+          style="fill: url(#Deco_00000143578280633461936870000005725378967946742671_)"
           points="
             44.75,160.58 33.31,171.9 33.31,174.02 46.81,160.52 		"
         />
@@ -18768,20 +13181,12 @@
           x2="44.2166"
           y2="160.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4e"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #725a4e" />
         </linearGradient>
         <polyline
           id="Deco_00000152981135904028772100000017680430541817186216_"
-          style="
-            fill: url(#Deco_00000022548319360627156560000001589787541783961224_);
-          "
+          style="fill: url(#Deco_00000022548319360627156560000001589787541783961224_)"
           points="
             42.69,160.52 33.31,169.9 33.31,172.02 44.75,160.58 		"
         />
@@ -18793,20 +13198,12 @@
           x2="44.2771"
           y2="161.051"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae9b8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6b5348"
-          />
+          <stop offset="0" style="stop-color: #ae9b8d" />
+          <stop offset="1" style="stop-color: #6b5348" />
         </linearGradient>
         <polyline
           id="Deco_00000178923145258404350750000000648381782995761333_"
-          style="
-            fill: url(#Deco_00000155136284221453820360000011899673829895128233_);
-          "
+          style="fill: url(#Deco_00000155136284221453820360000011899673829895128233_)"
           points="
             44.75,160.58 33.31,149.02 33.31,151.15 42.69,160.52 		"
         />
@@ -18819,20 +13216,12 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #715b4f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a48f83"
-          />
+          <stop offset="0" style="stop-color: #715b4f" />
+          <stop offset="1" style="stop-color: #a48f83" />
         </linearGradient>
         <polyline
           id="Deco_00000072960231015002862880000012756461731722562458_"
-          style="
-            fill: url(#Deco_00000080173050093033145220000004247682989666050945_);
-          "
+          style="fill: url(#Deco_00000080173050093033145220000004247682989666050945_)"
           points="
             151.61,160.52 165.1,147.02 165.1,149.15 153.61,160.52 		"
         />
@@ -18845,20 +13234,12 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a08a7c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e9d8c9"
-          />
+          <stop offset="0" style="stop-color: #a08a7c" />
+          <stop offset="1" style="stop-color: #e9d8c9" />
         </linearGradient>
         <polyline
           id="Deco_00000106125877383582400110000001208352947561823123_"
-          style="
-            fill: url(#Deco_00000066477169040835767090000014033140516760387764_);
-          "
+          style="fill: url(#Deco_00000066477169040835767090000014033140516760387764_)"
           points="
             153.61,160.52 165.1,171.9 165.1,174.02 151.61,160.52 		"
         />
@@ -18871,20 +13252,12 @@
           y2="159.9904"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3d3c3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7c665a"
-          />
+          <stop offset="0" style="stop-color: #e3d3c3" />
+          <stop offset="1" style="stop-color: #7c665a" />
         </linearGradient>
         <polyline
           id="Deco_00000013150834047646849650000000971903889004899001_"
-          style="
-            fill: url(#Deco_00000053524987233509075420000013858370370493670076_);
-          "
+          style="fill: url(#Deco_00000053524987233509075420000013858370370493670076_)"
           points="
             155.73,160.52 165.1,169.9 165.1,172.02 153.61,160.52 		"
         />
@@ -18897,33 +13270,19 @@
           y2="161.0509"
           gradientTransform="matrix(-1 0 0 1 82.6187 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #aa9688"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4f"
-          />
+          <stop offset="0" style="stop-color: #aa9688" />
+          <stop offset="1" style="stop-color: #725a4f" />
         </linearGradient>
         <polyline
           id="Deco_00000142165590433972798670000008696840121165629843_"
-          style="
-            fill: url(#Deco_00000088109671498894167550000006070947452790940292_);
-          "
+          style="fill: url(#Deco_00000088109671498894167550000006070947452790940292_)"
           points="
             153.61,160.52 165.1,149.02 165.1,151.15 155.73,160.52 		"
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Action"
-      id="Action_Framed_Addition"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Tech_Frame_00000013878522187819972640000001436796868786575804_"
-      >
+    <g v-if="FramedAddition.Action" id="Action_Framed_Addition">
+      <g v-if="framed.Tech" id="Tech_Frame_00000013878522187819972640000001436796868786575804_">
         <linearGradient
           id="FullArt_Inside_BG_00000174566300573177492240000015626555210106770849_"
           gradientUnits="userSpaceOnUse"
@@ -18932,20 +13291,12 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000049217550062655113900000013777448047950317463_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000174566300573177492240000015626555210106770849_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000174566300573177492240000015626555210106770849_)"
           d="
             M165.29,241.96V124.14l0.93-1.78v120.53"
         />
@@ -18957,20 +13308,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000161603077528176862000000006144514946252661911_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000031900333637696342720000003736505464186453642_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000031900333637696342720000003736505464186453642_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -18982,20 +13325,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052072391388085247130000006679720819153776777_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000173851492990957805280000011170245393868668862_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000173851492990957805280000011170245393868668862_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -19007,20 +13342,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000128465535592147361700000003672764023482706323_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000096748208186391664530000000240040829961595267_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000096748208186391664530000000240040829961595267_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -19032,20 +13359,12 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000145781204013977003060000016680291912165445054_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000168080540683504819430000004380264745640895130_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000168080540683504819430000004380264745640895130_)"
           d="
             M32.12,242.89V122.36l0.93,1.78v117.82"
         />
@@ -19057,20 +13376,12 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000129165278413765424100000000426282852084953014_"
-          style="
-            fill: url(#Bottom_Frame_00000029759209333567816710000010347405817578552978_);
-          "
+          style="fill: url(#Bottom_Frame_00000029759209333567816710000010347405817578552978_)"
           points="
             166.22,122.36 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.36 30.62,117.98 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,117.98 		"
@@ -19083,14 +13394,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #557480"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #91a3b4"
-          />
+          <stop offset="0" style="stop-color: #557480" />
+          <stop offset="1" style="stop-color: #91a3b4" />
         </linearGradient>
         <circle
           style="
@@ -19111,14 +13416,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b3c3de"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #3e5b64"
-          />
+          <stop offset="0" style="stop-color: #b3c3de" />
+          <stop offset="1" style="stop-color: #3e5b64" />
         </linearGradient>
         <circle
           style="
@@ -19140,19 +13439,11 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #3f5c65"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #3f5c65" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000116225335085450876850000000781165060559817895_);
-            "
+            style="fill: url(#SVGID_00000116225335085450876850000000781165060559817895_)"
             d="M45.14,154.3
               c-1.39-1.29-2.73-2.63-4.02-4.01c-1.15-1.23-2.25-2.49-3.32-3.79c-0.98-1.19-1.92-2.41-2.83-3.66c-0.57-0.78-1.12-1.57-1.66-2.37
               v2.63c0.56,0.79,1.13,1.56,1.72,2.33c0.88,1.15,1.79,2.27,2.73,3.36c1.14,1.33,2.32,2.62,3.54,3.87
@@ -19166,19 +13457,11 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ea2b3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #47626d"
-            />
+            <stop offset="0" style="stop-color: #8ea2b3" />
+            <stop offset="1" style="stop-color: #47626d" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000168838467757533998280000009642729176601064104_);
-            "
+            style="fill: url(#SVGID_00000168838467757533998280000009642729176601064104_)"
             d="M44.04,155.19
               c-1.04-0.97-2.05-1.97-3.04-2.99c-1.25-1.3-2.46-2.64-3.62-4.02c-0.94-1.12-1.85-2.26-2.73-3.42c-0.46-0.6-0.9-1.22-1.34-1.84
               v2.53c0.43,0.58,0.87,1.16,1.32,1.72c0.91,1.15,1.85,2.27,2.81,3.36c1.17,1.33,2.38,2.61,3.63,3.86
@@ -19192,20 +13475,12 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #425f68"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #425f68" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <polyline
             id="Deco_00000009558961326721405530000008488987130038822071_"
-            style="
-              fill: url(#Deco_00000034068923490220792700000004715370714012351889_);
-            "
+            style="fill: url(#Deco_00000034068923490220792700000004715370714012351889_)"
             points="
               47.19,158.02 33.31,171.9 33.31,174.02 49.31,158.02 			"
           />
@@ -19217,20 +13492,12 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a9eae"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #415e67"
-            />
+            <stop offset="0" style="stop-color: #8a9eae" />
+            <stop offset="1" style="stop-color: #415e67" />
           </linearGradient>
           <polyline
             id="Deco_00000101087050448488085590000012281484445007399064_"
-            style="
-              fill: url(#Deco_00000005265539713639602130000013185082892444359856_);
-            "
+            style="fill: url(#Deco_00000005265539713639602130000013185082892444359856_)"
             points="
               45.19,158.02 33.31,169.9 33.31,172.02 47.31,158.02 			"
           />
@@ -19245,19 +13512,11 @@
             y2="158.355"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #3f5c65"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #3f5c65" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000091712530607336067350000003909816240621735335_);
-            "
+            style="fill: url(#SVGID_00000091712530607336067350000003909816240621735335_)"
             d="M153.19,154.3
               c1.39-1.29,2.73-2.63,4.02-4.01c1.15-1.23,2.25-2.49,3.32-3.79c0.98-1.19,1.92-2.41,2.83-3.66c0.57-0.78,1.12-1.57,1.66-2.37
               v2.63c-0.56,0.79-1.13,1.56-1.72,2.33c-0.88,1.15-1.79,2.27-2.73,3.36c-1.14,1.33-2.32,2.62-3.54,3.87
@@ -19272,19 +13531,11 @@
             y2="158.0207"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ea2b3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #47626d"
-            />
+            <stop offset="0" style="stop-color: #8ea2b3" />
+            <stop offset="1" style="stop-color: #47626d" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000133493706303438394430000015292456924569043094_);
-            "
+            style="fill: url(#SVGID_00000133493706303438394430000015292456924569043094_)"
             d="M154.29,155.19
               c1.04-0.97,2.05-1.97,3.04-2.99c1.25-1.3,2.46-2.64,3.62-4.02c0.94-1.12,1.85-2.26,2.73-3.42c0.46-0.6,0.9-1.22,1.34-1.84v2.53
               c-0.43,0.58-0.87,1.16-1.32,1.72c-0.91,1.15-1.85,2.27-2.81,3.36c-1.17,1.33-2.38,2.61-3.63,3.86c-1.25,1.25-2.54,2.46-3.87,3.62
@@ -19299,20 +13550,12 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #425f68"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90a2b3"
-            />
+            <stop offset="0" style="stop-color: #425f68" />
+            <stop offset="1" style="stop-color: #90a2b3" />
           </linearGradient>
           <polyline
             id="Deco_00000093173386553559235160000006563809674840982684_"
-            style="
-              fill: url(#Deco_00000106856491019350427790000015916263088170944138_);
-            "
+            style="fill: url(#Deco_00000106856491019350427790000015916263088170944138_)"
             points="
               151.14,158.02 165.02,171.9 165.02,174.02 149.02,158.02 			"
           />
@@ -19325,29 +13568,18 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a9eae"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #415e67"
-            />
+            <stop offset="0" style="stop-color: #8a9eae" />
+            <stop offset="1" style="stop-color: #415e67" />
           </linearGradient>
           <polyline
             id="Deco_00000111190683275854925570000014947302933941437340_"
-            style="
-              fill: url(#Deco_00000003825806145919113270000004192006161839747735_);
-            "
+            style="fill: url(#Deco_00000003825806145919113270000004192006161839747735_)"
             points="
               153.14,158.02 165.02,169.9 165.02,172.02 151.02,158.02 			"
           />
         </g>
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Nature_Frame_00000053528196993403514120000008514439348076336574_"
-      >
+      <g v-if="framed.Nature" id="Nature_Frame_00000053528196993403514120000008514439348076336574_">
         <linearGradient
           id="FullArt_Inside_BG_00000088118791700933014700000000277955844882826384_"
           gradientUnits="userSpaceOnUse"
@@ -19356,20 +13588,12 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000149372923213215412930000011286939702106737042_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000088118791700933014700000000277955844882826384_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000088118791700933014700000000277955844882826384_)"
           d="
             M165.29,241.96V124.14l0.93-1.78v120.53"
         />
@@ -19381,20 +13605,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000036936167098055503810000011969117402629341829_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000096038135975435664750000000464730567474280325_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000096038135975435664750000000464730567474280325_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -19406,20 +13622,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000179616471022468128050000007381386795355045551_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000083075794869999037670000000465026847499887760_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000083075794869999037670000000465026847499887760_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -19431,20 +13639,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000047051155100162142980000001781276902542202797_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000102505469063229455420000017984100868225396886_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000102505469063229455420000017984100868225396886_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -19456,20 +13656,12 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000158713932976097415040000009117156988567404942_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000095315611911519308800000010811476834397260704_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000095315611911519308800000010811476834397260704_)"
           d="
             M32.12,242.89V122.36l0.93,1.78v117.82"
         />
@@ -19481,20 +13673,12 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000109717076408701598470000005844085063704101035_"
-          style="
-            fill: url(#Bottom_Frame_00000013166211543088955450000012300356218339561134_);
-          "
+          style="fill: url(#Bottom_Frame_00000013166211543088955450000012300356218339561134_)"
           points="
             166.22,122.36 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.36 30.62,117.98 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,117.98 		"
@@ -19507,14 +13691,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #506c4b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9bb896"
-          />
+          <stop offset="0" style="stop-color: #506c4b" />
+          <stop offset="1" style="stop-color: #9bb896" />
         </linearGradient>
         <circle
           style="
@@ -19535,14 +13713,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #435b3f"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #435b3f" />
         </linearGradient>
         <circle
           style="
@@ -19564,19 +13736,11 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4f674a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90ad8b"
-            />
+            <stop offset="0" style="stop-color: #4f674a" />
+            <stop offset="1" style="stop-color: #90ad8b" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000111870735651226124560000000273558210828708736_);
-            "
+            style="fill: url(#SVGID_00000111870735651226124560000000273558210828708736_)"
             d="M45.14,154.3
               c-1.39-1.29-2.73-2.63-4.02-4.01c-1.15-1.23-2.25-2.49-3.32-3.79c-0.98-1.19-1.92-2.41-2.83-3.66c-0.57-0.78-1.12-1.57-1.66-2.37
               v2.63c0.56,0.79,1.13,1.56,1.72,2.33c0.88,1.15,1.79,2.27,2.73,3.36c1.14,1.33,2.32,2.62,3.54,3.87
@@ -19590,19 +13754,11 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ba685"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #4e664b"
-            />
+            <stop offset="0" style="stop-color: #8ba685" />
+            <stop offset="1" style="stop-color: #4e664b" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000172425109748820735060000003509956087520750490_);
-            "
+            style="fill: url(#SVGID_00000172425109748820735060000003509956087520750490_)"
             d="M44.04,155.19
               c-1.04-0.97-2.05-1.97-3.04-2.99c-1.25-1.3-2.46-2.64-3.62-4.02c-0.94-1.12-1.85-2.26-2.73-3.42c-0.46-0.6-0.9-1.22-1.34-1.84
               v2.53c0.43,0.58,0.87,1.16,1.32,1.72c0.91,1.15,1.85,2.27,2.81,3.36c1.17,1.33,2.38,2.61,3.63,3.86
@@ -19616,20 +13772,12 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #496145"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7f9c7a"
-            />
+            <stop offset="0" style="stop-color: #496145" />
+            <stop offset="1" style="stop-color: #7f9c7a" />
           </linearGradient>
           <polyline
             id="Deco_00000099628391548371809620000002068780351072267917_"
-            style="
-              fill: url(#Deco_00000137822843425365473590000012429951179348589445_);
-            "
+            style="fill: url(#Deco_00000137822843425365473590000012429951179348589445_)"
             points="
               47.19,158.02 33.31,171.9 33.31,174.02 49.31,158.02 			"
           />
@@ -19641,20 +13789,12 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7e9b79"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #445c3f"
-            />
+            <stop offset="0" style="stop-color: #7e9b79" />
+            <stop offset="1" style="stop-color: #445c3f" />
           </linearGradient>
           <polyline
             id="Deco_00000013895167675315434170000018411540368192288918_"
-            style="
-              fill: url(#Deco_00000178891523184736364320000017436129422899510934_);
-            "
+            style="fill: url(#Deco_00000178891523184736364320000017436129422899510934_)"
             points="
               45.19,158.02 33.31,169.9 33.31,172.02 47.31,158.02 			"
           />
@@ -19669,19 +13809,11 @@
             y2="158.355"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4f674a"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #90ad8b"
-            />
+            <stop offset="0" style="stop-color: #4f674a" />
+            <stop offset="1" style="stop-color: #90ad8b" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000016788844521349214740000011619130863105933213_);
-            "
+            style="fill: url(#SVGID_00000016788844521349214740000011619130863105933213_)"
             d="M153.19,154.3
               c1.39-1.29,2.73-2.63,4.02-4.01c1.15-1.23,2.25-2.49,3.32-3.79c0.98-1.19,1.92-2.41,2.83-3.66c0.57-0.78,1.12-1.57,1.66-2.37
               v2.63c-0.56,0.79-1.13,1.56-1.72,2.33c-0.88,1.15-1.79,2.27-2.73,3.36c-1.14,1.33-2.32,2.62-3.54,3.87
@@ -19696,19 +13828,11 @@
             y2="158.0207"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8ba685"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #4e664b"
-            />
+            <stop offset="0" style="stop-color: #8ba685" />
+            <stop offset="1" style="stop-color: #4e664b" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000003790480790766525640000011506668192595516578_);
-            "
+            style="fill: url(#SVGID_00000003790480790766525640000011506668192595516578_)"
             d="M154.29,155.19
               c1.04-0.97,2.05-1.97,3.04-2.99c1.25-1.3,2.46-2.64,3.62-4.02c0.94-1.12,1.85-2.26,2.73-3.42c0.46-0.6,0.9-1.22,1.34-1.84v2.53
               c-0.43,0.58-0.87,1.16-1.32,1.72c-0.91,1.15-1.85,2.27-2.81,3.36c-1.17,1.33-2.38,2.61-3.63,3.86c-1.25,1.25-2.54,2.46-3.87,3.62
@@ -19723,20 +13847,12 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #496145"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7f9c7a"
-            />
+            <stop offset="0" style="stop-color: #496145" />
+            <stop offset="1" style="stop-color: #7f9c7a" />
           </linearGradient>
           <polyline
             id="Deco_00000157297189205886613440000002842205430810861992_"
-            style="
-              fill: url(#Deco_00000176723476723410035740000000487502825121776040_);
-            "
+            style="fill: url(#Deco_00000176723476723410035740000000487502825121776040_)"
             points="
               151.14,158.02 165.02,171.9 165.02,174.02 149.02,158.02 			"
           />
@@ -19749,29 +13865,18 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7e9b79"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #445c3f"
-            />
+            <stop offset="0" style="stop-color: #7e9b79" />
+            <stop offset="1" style="stop-color: #445c3f" />
           </linearGradient>
           <polyline
             id="Deco_00000119809406802815204270000004837293956162123142_"
-            style="
-              fill: url(#Deco_00000154419442997961331030000011212668866508475042_);
-            "
+            style="fill: url(#Deco_00000154419442997961331030000011212668866508475042_)"
             points="
               153.14,158.02 165.02,169.9 165.02,172.02 151.02,158.02 			"
           />
         </g>
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Myth_Frame_00000148650167912327526500000017801592943709456516_"
-      >
+      <g v-if="framed.Myth" id="Myth_Frame_00000148650167912327526500000017801592943709456516_">
         <linearGradient
           id="FullArt_Inside_BG_00000091008340452755871130000003019013568248907960_"
           gradientUnits="userSpaceOnUse"
@@ -19780,20 +13885,12 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000132060919053036075820000001641950467764681630_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000091008340452755871130000003019013568248907960_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000091008340452755871130000003019013568248907960_)"
           d="
             M165.29,241.96V124.14l0.93-1.78v120.53"
         />
@@ -19805,20 +13902,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000084525484742127958630000014669623558512030648_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000101819063522745819890000002641297807782865555_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000101819063522745819890000002641297807782865555_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -19830,20 +13919,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000106833922000172797240000000697108638708785073_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000176749856431052948320000002153245208771025292_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000176749856431052948320000002153245208771025292_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -19855,20 +13936,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000164509557359690518950000012757402424127463335_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000127020768182061433630000008950156535195722371_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000127020768182061433630000008950156535195722371_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -19880,20 +13953,12 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000127754299210893974360000016377012125301411987_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000018236580025615294840000010142671297333380284_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000018236580025615294840000010142671297333380284_)"
           d="
             M32.12,242.89V122.36l0.93,1.78v117.82"
         />
@@ -19905,20 +13970,12 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000109714588884463576810000012376082120744726152_"
-          style="
-            fill: url(#Bottom_Frame_00000072271890625126779040000000972744915610135183_);
-          "
+          style="fill: url(#Bottom_Frame_00000072271890625126779040000000972744915610135183_)"
           points="
             166.22,122.36 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.36 30.62,117.98 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,117.98 		"
@@ -19931,14 +13988,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #552950"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a47e9f"
-          />
+          <stop offset="0" style="stop-color: #552950" />
+          <stop offset="1" style="stop-color: #a47e9f" />
         </linearGradient>
         <circle
           style="
@@ -19959,14 +14010,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5a3755"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #5a3755" />
         </linearGradient>
         <circle
           style="
@@ -19988,19 +14033,11 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #6d4968"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9e7899"
-            />
+            <stop offset="0" style="stop-color: #6d4968" />
+            <stop offset="1" style="stop-color: #9e7899" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000178202661720637676430000000287595982428928655_);
-            "
+            style="fill: url(#SVGID_00000178202661720637676430000000287595982428928655_)"
             d="M45.14,154.3
               c-1.39-1.29-2.73-2.63-4.02-4.01c-1.15-1.23-2.25-2.49-3.32-3.79c-0.98-1.19-1.92-2.41-2.83-3.66c-0.57-0.78-1.12-1.57-1.66-2.37
               v2.63c0.56,0.79,1.13,1.56,1.72,2.33c0.88,1.15,1.79,2.27,2.73,3.36c1.14,1.33,2.32,2.62,3.54,3.87
@@ -20014,19 +14051,11 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a881a3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5f3b5a"
-            />
+            <stop offset="0" style="stop-color: #a881a3" />
+            <stop offset="1" style="stop-color: #5f3b5a" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000088091379653011362580000008408396352948565916_);
-            "
+            style="fill: url(#SVGID_00000088091379653011362580000008408396352948565916_)"
             d="M44.04,155.19
               c-1.04-0.97-2.05-1.97-3.04-2.99c-1.25-1.3-2.46-2.64-3.62-4.02c-0.94-1.12-1.85-2.26-2.73-3.42c-0.46-0.6-0.9-1.22-1.34-1.84
               v2.53c0.43,0.58,0.87,1.16,1.32,1.72c0.91,1.15,1.85,2.27,2.81,3.36c1.17,1.33,2.38,2.61,3.63,3.86
@@ -20040,20 +14069,12 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #673962"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b28bad"
-            />
+            <stop offset="0" style="stop-color: #673962" />
+            <stop offset="1" style="stop-color: #b28bad" />
           </linearGradient>
           <polyline
             id="Deco_00000096049332034405949900000013157250458845896335_"
-            style="
-              fill: url(#Deco_00000054959619494249000590000016066392360569292690_);
-            "
+            style="fill: url(#Deco_00000054959619494249000590000016066392360569292690_)"
             points="
               47.19,158.02 33.31,171.9 33.31,174.02 49.31,158.02 			"
           />
@@ -20065,20 +14086,12 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #b089ab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603d5b"
-            />
+            <stop offset="0" style="stop-color: #b089ab" />
+            <stop offset="1" style="stop-color: #603d5b" />
           </linearGradient>
           <polyline
             id="Deco_00000183929216946230851150000010346407538728543127_"
-            style="
-              fill: url(#Deco_00000047059413248509174090000005918762632485398422_);
-            "
+            style="fill: url(#Deco_00000047059413248509174090000005918762632485398422_)"
             points="
               45.19,158.02 33.31,169.9 33.31,172.02 47.31,158.02 			"
           />
@@ -20093,19 +14106,11 @@
             y2="158.355"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #6d4968"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9e7899"
-            />
+            <stop offset="0" style="stop-color: #6d4968" />
+            <stop offset="1" style="stop-color: #9e7899" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000047779171083673589060000004996578680808419766_);
-            "
+            style="fill: url(#SVGID_00000047779171083673589060000004996578680808419766_)"
             d="M153.19,154.3
               c1.39-1.29,2.73-2.63,4.02-4.01c1.15-1.23,2.25-2.49,3.32-3.79c0.98-1.19,1.92-2.41,2.83-3.66c0.57-0.78,1.12-1.57,1.66-2.37
               v2.63c-0.56,0.79-1.13,1.56-1.72,2.33c-0.88,1.15-1.79,2.27-2.73,3.36c-1.14,1.33-2.32,2.62-3.54,3.87
@@ -20120,19 +14125,11 @@
             y2="158.0207"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a881a3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #5f3b5a"
-            />
+            <stop offset="0" style="stop-color: #a881a3" />
+            <stop offset="1" style="stop-color: #5f3b5a" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000083773441929491264300000015870083862982566845_);
-            "
+            style="fill: url(#SVGID_00000083773441929491264300000015870083862982566845_)"
             d="M154.29,155.19
               c1.04-0.97,2.05-1.97,3.04-2.99c1.25-1.3,2.46-2.64,3.62-4.02c0.94-1.12,1.85-2.26,2.73-3.42c0.46-0.6,0.9-1.22,1.34-1.84v2.53
               c-0.43,0.58-0.87,1.16-1.32,1.72c-0.91,1.15-1.85,2.27-2.81,3.36c-1.17,1.33-2.38,2.61-3.63,3.86c-1.25,1.25-2.54,2.46-3.87,3.62
@@ -20147,20 +14144,12 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #673962"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #b28bad"
-            />
+            <stop offset="0" style="stop-color: #673962" />
+            <stop offset="1" style="stop-color: #b28bad" />
           </linearGradient>
           <polyline
             id="Deco_00000100374172885601552180000015346110116162227128_"
-            style="
-              fill: url(#Deco_00000138563599738054478310000003894686457296137610_);
-            "
+            style="fill: url(#Deco_00000138563599738054478310000003894686457296137610_)"
             points="
               151.14,158.02 165.02,171.9 165.02,174.02 149.02,158.02 			"
           />
@@ -20173,20 +14162,12 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #b089ab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #603d5b"
-            />
+            <stop offset="0" style="stop-color: #b089ab" />
+            <stop offset="1" style="stop-color: #603d5b" />
           </linearGradient>
           <polyline
             id="Deco_00000170961525261890885420000018071455266177168314_"
-            style="
-              fill: url(#Deco_00000076600784893755542850000014261105058996452274_);
-            "
+            style="fill: url(#Deco_00000076600784893755542850000014261105058996452274_)"
             points="
               153.14,158.02 165.02,169.9 165.02,172.02 151.02,158.02 			"
           />
@@ -20204,20 +14185,12 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000147907731016337791730000013156759585794714303_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000035516387346977822600000006091067948422858683_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000035516387346977822600000006091067948422858683_)"
           d="
             M165.29,241.96V124.14l0.93-1.78v120.53"
         />
@@ -20229,20 +14202,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000038388889312209900730000016141622599236617870_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000014609847317577828130000014221783201075960206_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000014609847317577828130000014221783201075960206_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -20254,20 +14219,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000055673338338685695920000014340416757101289663_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000133507551681859428550000016801849220264856711_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000133507551681859428550000016801849220264856711_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -20279,20 +14236,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000093167435042708203990000004700184802326127019_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000171722152420588513810000007284967535121427346_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000171722152420588513810000007284967535121427346_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -20304,20 +14253,12 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000129192264664166800450000014291487116690781326_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000167378587747315909840000011518858800765224116_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000167378587747315909840000011518858800765224116_)"
           d="
             M32.12,242.89V122.36l0.93,1.78v117.82"
         />
@@ -20329,20 +14270,12 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000142890420266416846190000013129310097102828933_"
-          style="
-            fill: url(#Bottom_Frame_00000136376324137501398760000001878303747463564201_);
-          "
+          style="fill: url(#Bottom_Frame_00000136376324137501398760000001878303747463564201_)"
           points="
             166.22,122.36 166.22,219.45 166.22,220.97 166.22,242.89 163.83,245.28 137.57,245.28 136.05,245.28 62.28,245.28 60.76,245.28
             34.5,245.28 32.12,242.89 32.12,220.97 32.12,219.45 32.12,122.36 30.62,117.98 30.62,219.24 30.62,243.51 33.88,246.78
@@ -20356,14 +14289,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #602431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f8bb80"
-          />
+          <stop offset="0" style="stop-color: #602431" />
+          <stop offset="1" style="stop-color: #f8bb80" />
         </linearGradient>
         <circle
           style="
@@ -20384,14 +14311,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f6ae8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #883023"
-          />
+          <stop offset="0" style="stop-color: #f6ae8d" />
+          <stop offset="1" style="stop-color: #883023" />
         </linearGradient>
         <circle
           style="
@@ -20413,19 +14334,11 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a44a5c"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #f4b77e"
-            />
+            <stop offset="0" style="stop-color: #a44a5c" />
+            <stop offset="1" style="stop-color: #f4b77e" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000016782048879719219490000001637034533210836412_);
-            "
+            style="fill: url(#SVGID_00000016782048879719219490000001637034533210836412_)"
             d="M45.14,154.3
               c-1.39-1.29-2.73-2.63-4.02-4.01c-1.15-1.23-2.25-2.49-3.32-3.79c-0.98-1.19-1.92-2.41-2.83-3.66c-0.57-0.78-1.12-1.57-1.66-2.37
               v2.63c0.56,0.79,1.13,1.56,1.72,2.33c0.88,1.15,1.79,2.27,2.73,3.36c1.14,1.33,2.32,2.62,3.54,3.87
@@ -20439,19 +14352,11 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f2b57d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9c4852"
-            />
+            <stop offset="0" style="stop-color: #f2b57d" />
+            <stop offset="1" style="stop-color: #9c4852" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000141450955432302237250000001035489819624541315_);
-            "
+            style="fill: url(#SVGID_00000141450955432302237250000001035489819624541315_)"
             d="M44.04,155.19
               c-1.04-0.97-2.05-1.97-3.04-2.99c-1.25-1.3-2.46-2.64-3.62-4.02c-0.94-1.12-1.85-2.26-2.73-3.42c-0.46-0.6-0.9-1.22-1.34-1.84
               v2.53c0.43,0.58,0.87,1.16,1.32,1.72c0.91,1.15,1.85,2.27,2.81,3.36c1.17,1.33,2.38,2.61,3.63,3.86
@@ -20465,20 +14370,12 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a4e47"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e3a675"
-            />
+            <stop offset="0" style="stop-color: #8a4e47" />
+            <stop offset="1" style="stop-color: #e3a675" />
           </linearGradient>
           <polyline
             id="Deco_00000100379108879003047720000012354449392800539009_"
-            style="
-              fill: url(#Deco_00000074425243438266708480000001718336942639456416_);
-            "
+            style="fill: url(#Deco_00000074425243438266708480000001718336942639456416_)"
             points="
               47.19,158.02 33.31,171.9 33.31,174.02 49.31,158.02 			"
           />
@@ -20490,20 +14387,12 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eeb17b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8e3729"
-            />
+            <stop offset="0" style="stop-color: #eeb17b" />
+            <stop offset="1" style="stop-color: #8e3729" />
           </linearGradient>
           <polyline
             id="Deco_00000065756752055248398350000006119138296394268289_"
-            style="
-              fill: url(#Deco_00000122715733891107302660000011607841385713876897_);
-            "
+            style="fill: url(#Deco_00000122715733891107302660000011607841385713876897_)"
             points="
               45.19,158.02 33.31,169.9 33.31,172.02 47.31,158.02 			"
           />
@@ -20518,19 +14407,11 @@
             y2="158.3318"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a44a5c"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #f4b77e"
-            />
+            <stop offset="0" style="stop-color: #a44a5c" />
+            <stop offset="1" style="stop-color: #f4b77e" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000132082720271791180720000010332082238772423845_);
-            "
+            style="fill: url(#SVGID_00000132082720271791180720000010332082238772423845_)"
             d="M153.19,154.28
               c1.39-1.29,2.73-2.63,4.02-4.01c1.15-1.23,2.25-2.49,3.32-3.79c0.98-1.19,1.92-2.41,2.83-3.66c0.57-0.78,1.12-1.57,1.66-2.37
               v2.63c-0.56,0.79-1.13,1.56-1.72,2.33c-0.88,1.15-1.79,2.27-2.73,3.36c-1.14,1.33-2.32,2.62-3.54,3.87
@@ -20545,19 +14426,11 @@
             y2="157.9975"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #f2b57d"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #9c4852"
-            />
+            <stop offset="0" style="stop-color: #f2b57d" />
+            <stop offset="1" style="stop-color: #9c4852" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000003071072826396885480000008327735950190972832_);
-            "
+            style="fill: url(#SVGID_00000003071072826396885480000008327735950190972832_)"
             d="M154.29,155.17
               c1.04-0.97,2.05-1.97,3.04-2.99c1.25-1.3,2.46-2.64,3.62-4.02c0.94-1.12,1.85-2.26,2.73-3.42c0.46-0.6,0.9-1.22,1.34-1.84v2.53
               c-0.43,0.58-0.87,1.16-1.32,1.72c-0.91,1.15-1.85,2.27-2.81,3.36c-1.17,1.33-2.38,2.61-3.63,3.86c-1.25,1.25-2.54,2.46-3.87,3.62
@@ -20572,20 +14445,12 @@
             y2="157.4673"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #8a4e47"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e3a675"
-            />
+            <stop offset="0" style="stop-color: #8a4e47" />
+            <stop offset="1" style="stop-color: #e3a675" />
           </linearGradient>
           <polyline
             id="Deco_00000137818458940893375080000010351333749457994900_"
-            style="
-              fill: url(#Deco_00000096737344909157636350000009561449964187279796_);
-            "
+            style="fill: url(#Deco_00000096737344909157636350000009561449964187279796_)"
             points="
               151.14,158 165.02,171.87 165.02,173.99 149.02,158 			"
           />
@@ -20598,20 +14463,12 @@
             y2="157.4673"
             gradientTransform="matrix(-1 0 0 1 82.7489 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eeb17b"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #8e3729"
-            />
+            <stop offset="0" style="stop-color: #eeb17b" />
+            <stop offset="1" style="stop-color: #8e3729" />
           </linearGradient>
           <polyline
             id="Deco_00000103262750840173498440000017035574074294362012_"
-            style="
-              fill: url(#Deco_00000170964239492625144280000016087213621728891069_);
-            "
+            style="fill: url(#Deco_00000170964239492625144280000016087213621728891069_)"
             points="
               153.14,158 165.02,169.87 165.02,171.99 151.02,158 			"
           />
@@ -20629,20 +14486,12 @@
           x2="165.752"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000039825391452304918340000004370981429401025170_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000139286900505387982330000001908661623757642892_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000139286900505387982330000001908661623757642892_)"
           d="
             M165.29,241.96V124.14l0.93-1.78v120.53"
         />
@@ -20654,20 +14503,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000044887985947613708380000013755989931984046745_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000176018869992637129850000008033513066164250559_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000176018869992637129850000008033513066164250559_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -20679,20 +14520,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000026868879993797884910000008503002516366742154_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000017491336176796244020000001178986193138187138_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000017491336176796244020000001178986193138187138_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -20704,20 +14537,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000179641745059100464010000008138499456372852915_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000133496990922007909280000016106791916181562779_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000133496990922007909280000016106791916181562779_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -20729,20 +14554,12 @@
           x2="32.5823"
           y2="122.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000026885737847409423600000008634843907075552408_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000070797123816723352700000009248835106920463793_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000070797123816723352700000009248835106920463793_)"
           d="
             M32.12,242.89V122.36l0.93,1.78v117.82"
         />
@@ -20754,20 +14571,12 @@
           x2="99.1671"
           y2="117.9846"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <polygon
           id="Bottom_Frame_00000007424821634006917760000006896887872927468971_"
-          style="
-            fill: url(#Bottom_Frame_00000110459385369378919250000011388813410090300092_);
-          "
+          style="fill: url(#Bottom_Frame_00000110459385369378919250000011388813410090300092_)"
           points="
             166.22,122.36 166.22,242.89 163.83,245.28 34.5,245.28 32.12,242.89 32.12,122.36 30.62,117.98 30.62,219.24 30.62,243.51
             33.88,246.78 62.55,246.78 135.78,246.78 164.45,246.78 167.72,243.51 167.72,219.24 167.72,117.98 		"
@@ -20780,14 +14589,8 @@
           x2="150.2677"
           y2="147.3585"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7a5f54"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ebdbca"
-          />
+          <stop offset="0" style="stop-color: #7a5f54" />
+          <stop offset="1" style="stop-color: #ebdbca" />
         </linearGradient>
         <circle
           style="
@@ -20808,14 +14611,8 @@
           x2="99.1213"
           y2="169.7926"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ebdbca"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7a5f54"
-          />
+          <stop offset="0" style="stop-color: #ebdbca" />
+          <stop offset="1" style="stop-color: #7a5f54" />
         </linearGradient>
         <circle
           style="
@@ -20837,19 +14634,11 @@
             x2="49.1033"
             y2="158.355"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7a5f54"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #ebdbca"
-            />
+            <stop offset="0" style="stop-color: #7a5f54" />
+            <stop offset="1" style="stop-color: #ebdbca" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000145033504167006563800000011487139376737997225_);
-            "
+            style="fill: url(#SVGID_00000145033504167006563800000011487139376737997225_)"
             d="M45.14,154.3
               c-1.39-1.29-2.73-2.63-4.02-4.01c-1.15-1.23-2.25-2.49-3.32-3.79c-0.98-1.19-1.92-2.41-2.83-3.66c-0.57-0.78-1.12-1.57-1.66-2.37
               v2.63c0.56,0.79,1.13,1.56,1.72,2.33c0.88,1.15,1.79,2.27,2.73,3.36c1.14,1.33,2.32,2.62,3.54,3.87
@@ -20863,19 +14652,11 @@
             x2="158.7197"
             y2="150.8783"
           >
-            <stop
-              offset="0"
-              style="stop-color: #7a5f54"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #ebdbca"
-            />
+            <stop offset="0" style="stop-color: #7a5f54" />
+            <stop offset="1" style="stop-color: #ebdbca" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000074440150862285161160000011324405100056163740_);
-            "
+            style="fill: url(#SVGID_00000074440150862285161160000011324405100056163740_)"
             d="M165.1,140.21
               c-0.57,0.85-1.15,1.69-1.74,2.51c-0.52,0.72-1.05,1.42-1.59,2.12c-1.11,1.42-2.26,2.8-3.46,4.15c-0.65,0.73-1.31,1.44-1.99,2.15
               c-1.07,1.11-2.17,2.2-3.31,3.25c-1.36,1.26-2.77,2.48-4.21,3.64h2.3h0.06c0.96-0.81,1.9-1.64,2.82-2.49
@@ -20889,19 +14670,11 @@
             x2="40.273"
             y2="158.0207"
           >
-            <stop
-              offset="0"
-              style="stop-color: #ebdbca"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a5f54"
-            />
+            <stop offset="0" style="stop-color: #ebdbca" />
+            <stop offset="1" style="stop-color: #7a5f54" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000127033266172812260530000004397738978042873475_);
-            "
+            style="fill: url(#SVGID_00000127033266172812260530000004397738978042873475_)"
             d="M44.04,155.19
               c-1.04-0.97-2.05-1.97-3.04-2.99c-1.25-1.3-2.46-2.64-3.62-4.02c-0.94-1.12-1.85-2.26-2.73-3.42c-0.46-0.6-0.9-1.22-1.34-1.84
               v2.53c0.43,0.58,0.87,1.16,1.32,1.72c0.91,1.15,1.85,2.27,2.81,3.36c1.17,1.33,2.38,2.61,3.63,3.86
@@ -20915,19 +14688,11 @@
             x2="158.0557"
             y2="158.0206"
           >
-            <stop
-              offset="0"
-              style="stop-color: #ebdbca"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7a5f54"
-            />
+            <stop offset="0" style="stop-color: #ebdbca" />
+            <stop offset="1" style="stop-color: #7a5f54" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000092419856253616064860000018242418472155441078_);
-            "
+            style="fill: url(#SVGID_00000092419856253616064860000018242418472155441078_)"
             d="M165.1,142.67
               c-0.75,1.06-1.52,2.12-2.33,3.14c-0.54,0.69-1.09,1.37-1.65,2.04c-1.25,1.5-2.56,2.96-3.91,4.36c-0.96,1-1.95,1.97-2.96,2.92
               c-1.06,0.99-2.14,1.95-3.24,2.88h0.1h0.12h2.07c0.6-0.52,1.18-1.05,1.76-1.59c1.53-1.42,3-2.9,4.42-4.43
@@ -20941,20 +14706,12 @@
             x2="48.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #9b8477"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #eedece"
-            />
+            <stop offset="0" style="stop-color: #9b8477" />
+            <stop offset="1" style="stop-color: #eedece" />
           </linearGradient>
           <polyline
             id="Deco_00000052811699407087777350000011353169125195502465_"
-            style="
-              fill: url(#Deco_00000052821440406442201510000009523813762470453888_);
-            "
+            style="fill: url(#Deco_00000052821440406442201510000009523813762470453888_)"
             points="
               47.19,158.02 33.31,171.9 33.31,174.02 49.31,158.02 			"
           />
@@ -20966,20 +14723,12 @@
             x2="46.7771"
             y2="157.4904"
           >
-            <stop
-              offset="0"
-              style="stop-color: #eedece"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #725a4e"
-            />
+            <stop offset="0" style="stop-color: #eedece" />
+            <stop offset="1" style="stop-color: #725a4e" />
           </linearGradient>
           <polyline
             id="Deco_00000024682382155566889760000010924782057491104158_"
-            style="
-              fill: url(#Deco_00000155836335303501148440000010056300192773909639_);
-            "
+            style="fill: url(#Deco_00000155836335303501148440000010056300192773909639_)"
             points="
               45.19,158.02 33.31,169.9 33.31,172.02 47.31,158.02 			"
           />
@@ -20992,20 +14741,12 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #a08a7c"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #e9d8c9"
-            />
+            <stop offset="0" style="stop-color: #a08a7c" />
+            <stop offset="1" style="stop-color: #e9d8c9" />
           </linearGradient>
           <polyline
             id="Deco_00000178178328806885066140000014328140953065277579_"
-            style="
-              fill: url(#Deco_00000016756937359495566410000013271310188161506194_);
-            "
+            style="fill: url(#Deco_00000016756937359495566410000013271310188161506194_)"
             points="
               151.23,158.02 165.1,171.9 165.1,174.02 149.11,158.02 			"
           />
@@ -21018,34 +14759,20 @@
             y2="157.4904"
             gradientTransform="matrix(-1 0 0 1 82.6187 0)"
           >
-            <stop
-              offset="0"
-              style="stop-color: #e3d3c3"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #7c665a"
-            />
+            <stop offset="0" style="stop-color: #e3d3c3" />
+            <stop offset="1" style="stop-color: #7c665a" />
           </linearGradient>
           <polyline
             id="Deco_00000097477373303945630590000001802841257758112655_"
-            style="
-              fill: url(#Deco_00000085960603091980846010000011486064043080438670_);
-            "
+            style="fill: url(#Deco_00000085960603091980846010000011486064043080438670_)"
             points="
               153.23,158.02 165.1,169.9 165.1,172.02 151.11,158.02 			"
           />
         </g>
       </g>
     </g>
-    <g
-      v-if="FramedAddition.Place"
-      id="Place_Framed_Addition"
-    >
-      <g
-        v-if="framed.Tech"
-        id="Tech_Frame_00000009577231048767494630000005217583024620543138_"
-      >
+    <g v-if="FramedAddition.Place" id="Place_Framed_Addition">
+      <g v-if="framed.Tech" id="Tech_Frame_00000009577231048767494630000005217583024620543138_">
         <linearGradient
           id="Health_Frame_00000047764344603784186070000018074620599313685164_"
           gradientUnits="userSpaceOnUse"
@@ -21054,26 +14781,16 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #96a7b8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96a7b7"
-          />
+          <stop offset="0" style="stop-color: #96a7b8" />
+          <stop offset="1" style="stop-color: #96a7b7" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000073719458524730933430000009855855422117384583_"
-          style="
-            fill: url(#Health_Frame_00000047764344603784186070000018074620599313685164_);
-          "
+          style="fill: url(#Health_Frame_00000047764344603784186070000018074620599313685164_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
-        <g
-          id="Health_Frame_00000052084671954396665250000002047364379407602355_"
-        >
+        <g id="Health_Frame_00000052084671954396665250000002047364379407602355_">
           <linearGradient
             id="SVGID_00000131343109484771255620000001849189732728935320_"
             gradientUnits="userSpaceOnUse"
@@ -21082,23 +14799,12 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000131343109484771255620000001849189732728935320_);
-            "
+            style="fill: url(#SVGID_00000131343109484771255620000001849189732728935320_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -21110,23 +14816,12 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #5e7c88"
-            />
-            <stop
-              offset="0.7207"
-              style="stop-color: #889cab"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #99a9ba"
-            />
+            <stop offset="0" style="stop-color: #5e7c88" />
+            <stop offset="0.7207" style="stop-color: #889cab" />
+            <stop offset="1" style="stop-color: #99a9ba" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000013179846333482639730000009992535100065979564_);
-            "
+            style="fill: url(#SVGID_00000013179846333482639730000009992535100065979564_)"
             d="M135.19,244.47"
           />
         </g>
@@ -21138,20 +14833,12 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9aaabb"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #9aaabb" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000144306034850163359320000000053465262983557269_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000039816845374156137050000003147585075994170021_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000039816845374156137050000003147585075994170021_)"
           d="
             M165.29,241.96V135.14l0.93,0.22v107.53"
         />
@@ -21163,20 +14850,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000006677925481830850920000012736726516395985081_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000061454374936409917750000006414740499213021360_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000061454374936409917750000006414740499213021360_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -21188,20 +14867,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000170257995089993374570000018128018847122240414_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000171697853623220785500000003226482274402211485_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000171697853623220785500000003226482274402211485_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -21213,20 +14884,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64808e"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #64808e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000129903702022030157470000012104971671717443200_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000039849567400039351280000016069965416484141727_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000039849567400039351280000016069965416484141727_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -21238,20 +14901,12 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #99a9ba"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="1" style="stop-color: #99a9ba" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000142854263507191165450000010854113409101689530_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000178922705282739618710000011139704050229276572_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000178922705282739618710000011139704050229276572_)"
           d="
             M32.12,242.89V135.36l0.93-0.22v106.82"
         />
@@ -21263,20 +14918,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99a9ba"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4b6e79"
-          />
+          <stop offset="0" style="stop-color: #99a9ba" />
+          <stop offset="1" style="stop-color: #4b6e79" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000000212358679661935830000012904257525025670549_"
-          style="
-            fill: url(#Health_Frame_00000021089160017491570770000004207102911874846355_);
-          "
+          style="fill: url(#Health_Frame_00000021089160017491570770000004207102911874846355_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -21288,19 +14935,11 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b7c6e1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6c8897"
-          />
+          <stop offset="0" style="stop-color: #b7c6e1" />
+          <stop offset="1" style="stop-color: #6c8897" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000105404156566304196040000004967859688044667015_);
-          "
+          style="fill: url(#SVGID_00000105404156566304196040000004967859688044667015_)"
           d="M166.22,134.36v85.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V134.36l-1.5,0.62v84.26v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-84.26L166.22,134.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -21313,19 +14952,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bccfec"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #bccfec" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000165192895882959674280000018103429602062891915_);
-          "
+          style="fill: url(#SVGID_00000165192895882959674280000018103429602062891915_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -21337,19 +14968,11 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e8a99"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #6e8a99" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000067200201378226707530000000108058454441487495_);
-          "
+          style="fill: url(#SVGID_00000067200201378226707530000000108058454441487495_)"
           points="171.2,132.83 172.7,133.75
             99.12,170.88 99.12,169.2 		"
         />
@@ -21361,19 +14984,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #98acc3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bbceeb"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #98acc3" />
+          <stop offset="1" style="stop-color: #bbceeb" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000158713800552698259890000009249671064338508209_);
-          "
+          style="fill: url(#SVGID_00000158713800552698259890000009249671064338508209_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -21385,19 +15000,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #95aac0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b3c3dd"
-          />
+          <stop offset="0" style="stop-color: #95aac0" />
+          <stop offset="1" style="stop-color: #b3c3dd" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000000908522148204460150000016908174121520872071_);
-          "
+          style="fill: url(#SVGID_00000000908522148204460150000016908174121520872071_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -21409,19 +15016,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #547986"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7694a4"
-          />
+          <stop offset="0" style="stop-color: #547986" />
+          <stop offset="1" style="stop-color: #7694a4" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000116914224438750125730000002262419705123285681_);
-          "
+          style="fill: url(#SVGID_00000116914224438750125730000002262419705123285681_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -21433,19 +15032,11 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bacdea"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f8a9a"
-          />
+          <stop offset="0" style="stop-color: #bacdea" />
+          <stop offset="1" style="stop-color: #6f8a9a" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000140696745285526041870000000103884691618334911_);
-          "
+          style="fill: url(#SVGID_00000140696745285526041870000000103884691618334911_)"
           points="25.54,133.75 27.04,132.83
             99.12,169.2 99.12,170.88 		"
         />
@@ -21457,19 +15048,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #637f8d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e7c88"
-          />
+          <stop offset="0" style="stop-color: #637f8d" />
+          <stop offset="1" style="stop-color: #5e7c88" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000033333142485904120320000004116210819259101852_);
-          "
+          style="fill: url(#SVGID_00000033333142485904120320000004116210819259101852_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -21481,19 +15064,11 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4b6e79"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #93a9be"
-          />
+          <stop offset="0" style="stop-color: #4b6e79" />
+          <stop offset="0.9987" style="stop-color: #93a9be" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000067198000752366423620000001367478161036584347_);
-          "
+          style="fill: url(#SVGID_00000067198000752366423620000001367478161036584347_)"
           points="171.2,132.83 169.95,132.2
             99.12,167.94 99.12,169.2 		"
         />
@@ -21505,23 +15080,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #577884"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a5bad3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #597985"
-          />
+          <stop offset="0" style="stop-color: #577884" />
+          <stop offset="0.484" style="stop-color: #a5bad3" />
+          <stop offset="1" style="stop-color: #597985" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000096049221329604236370000011085369620933613973_);
-          "
+          style="fill: url(#SVGID_00000096049221329604236370000011085369620933613973_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -21533,19 +15097,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8997"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #6d8997" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000092446133051216316880000003608316225831548037_);
-          "
+          style="fill: url(#SVGID_00000092446133051216316880000003608316225831548037_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -21557,23 +15113,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #496973"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #7691a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #426069"
-          />
+          <stop offset="0" style="stop-color: #496973" />
+          <stop offset="0.4796" style="stop-color: #7691a2" />
+          <stop offset="1" style="stop-color: #426069" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000170250374039880312400000014033858287716807096_);
-          "
+          style="fill: url(#SVGID_00000170250374039880312400000014033858287716807096_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -21585,20 +15130,12 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f717c"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #9eb4cd"
-          />
+          <stop offset="0" style="stop-color: #4f717c" />
+          <stop offset="0.9987" style="stop-color: #9eb4cd" />
         </linearGradient>
         <polygon
           id="Place_00000010994320649568768270000015531950012291223206_"
-          style="
-            fill: url(#Place_00000178895482991799215150000014058120344773140884_);
-          "
+          style="fill: url(#Place_00000178895482991799215150000014058120344773140884_)"
           points="
             99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 		"
         />
@@ -21611,20 +15148,12 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #839daf"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e717c"
-          />
+          <stop offset="0" style="stop-color: #839daf" />
+          <stop offset="1" style="stop-color: #4e717c" />
         </linearGradient>
         <polygon
           id="Deco_00000000188720029277810710000007807612710641764282_"
-          style="
-            fill: url(#Deco_00000050632367343059989140000009177204643268649913_);
-          "
+          style="fill: url(#Deco_00000050632367343059989140000009177204643268649913_)"
           points="
             165.02,144.99 165.02,146.67 146.84,155.84 145.73,154.73 		"
         />
@@ -21637,20 +15166,12 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5b7b87"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #9db3cc"
-          />
+          <stop offset="0" style="stop-color: #5b7b87" />
+          <stop offset="0.9965" style="stop-color: #9db3cc" />
         </linearGradient>
         <polygon
           id="Deco_00000047750289375126390090000016823649208183515831_"
-          style="
-            fill: url(#Deco_00000088101724380429474590000003159012034601524104_);
-          "
+          style="fill: url(#Deco_00000088101724380429474590000003159012034601524104_)"
           points="
             165.02,143.73 165.02,144.99 145.73,154.73 144.89,153.89 		"
         />
@@ -21663,20 +15184,12 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #859db0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #859db0" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polyline
           id="Deco_00000017485203835945652050000000338780919748007069_"
-          style="
-            fill: url(#Deco_00000123437079269701427170000004545030442821090689_);
-          "
+          style="fill: url(#Deco_00000123437079269701427170000004545030442821090689_)"
           points="
             149.58,154.46 165.02,169.9 165.02,172.02 147.14,154.02 		"
         />
@@ -21689,20 +15202,12 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819bad"
-          />
+          <stop offset="0" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #819bad" />
         </linearGradient>
         <polyline
           id="Deco_00000137134045197107804470000016511776426129048751_"
-          style="
-            fill: url(#Deco_00000092422252363471878120000006329873081928109993_);
-          "
+          style="fill: url(#Deco_00000092422252363471878120000006329873081928109993_)"
           points="
             147.14,154.02 165.02,171.9 165.02,174.02 144.89,153.89 		"
         />
@@ -21715,20 +15220,12 @@
           y2="155.8836"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #839daf"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4e717c"
-          />
+          <stop offset="0" style="stop-color: #839daf" />
+          <stop offset="1" style="stop-color: #4e717c" />
         </linearGradient>
         <polygon
           id="Deco_00000016779215143978676580000010940363538006153115_"
-          style="
-            fill: url(#Deco_00000145038126182533684810000015340083803094765470_);
-          "
+          style="fill: url(#Deco_00000145038126182533684810000015340083803094765470_)"
           points="
             33.31,144.99 33.31,146.67 51.48,155.84 52.6,154.73 		"
         />
@@ -21741,20 +15238,12 @@
           y2="154.9115"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5b7b87"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #9db3cc"
-          />
+          <stop offset="0" style="stop-color: #5b7b87" />
+          <stop offset="0.9965" style="stop-color: #9db3cc" />
         </linearGradient>
         <polygon
           id="Deco_00000029043672485740034350000014883194864198769794_"
-          style="
-            fill: url(#Deco_00000158006440800140678440000013721030116610170002_);
-          "
+          style="fill: url(#Deco_00000158006440800140678440000013721030116610170002_)"
           points="
             33.31,143.73 33.31,144.99 52.6,154.73 53.44,153.89 		"
         />
@@ -21767,20 +15256,12 @@
           y2="153.5465"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #859db0"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d707b"
-          />
+          <stop offset="0" style="stop-color: #859db0" />
+          <stop offset="1" style="stop-color: #4d707b" />
         </linearGradient>
         <polyline
           id="Deco_00000092453678009983913300000013605273009258520728_"
-          style="
-            fill: url(#Deco_00000109734665940612946570000011474907258210239637_);
-          "
+          style="fill: url(#Deco_00000109734665940612946570000011474907258210239637_)"
           points="
             48.75,154.46 33.31,169.9 33.31,172.02 51.19,154.02 		"
         />
@@ -21793,28 +15274,17 @@
           y2="153.3598"
           gradientTransform="matrix(1 0 0 1 446.3181 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f727d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #819bad"
-          />
+          <stop offset="0" style="stop-color: #4f727d" />
+          <stop offset="1" style="stop-color: #819bad" />
         </linearGradient>
         <polyline
           id="Deco_1"
-          style="
-            fill: url(#Deco_1_00000150085537198678962580000013701313411603297960_);
-          "
+          style="fill: url(#Deco_1_00000150085537198678962580000013701313411603297960_)"
           points="51.19,154.02
             33.31,171.9 33.31,174.02 53.44,153.89 		"
         />
       </g>
-      <g
-        v-if="framed.Nature"
-        id="Nature_Frame_00000134948619186395238400000001762173976215478943_"
-      >
+      <g v-if="framed.Nature" id="Nature_Frame_00000134948619186395238400000001762173976215478943_">
         <linearGradient
           id="Health_Frame_00000096043563053262286850000011089146726063533473_"
           gradientUnits="userSpaceOnUse"
@@ -21823,26 +15293,16 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9ebb9a"
-          />
+          <stop offset="0" style="stop-color: #adcaa9" />
+          <stop offset="1" style="stop-color: #9ebb9a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000178906997360510472500000000181308257033855165_"
-          style="
-            fill: url(#Health_Frame_00000096043563053262286850000011089146726063533473_);
-          "
+          style="fill: url(#Health_Frame_00000096043563053262286850000011089146726063533473_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
-        <g
-          id="Health_Frame_00000068661600152615745830000015243208809616257695_"
-        >
+        <g id="Health_Frame_00000068661600152615745830000015243208809616257695_">
           <linearGradient
             id="SVGID_00000026866771749797310680000015788790722961293744_"
             gradientUnits="userSpaceOnUse"
@@ -21851,23 +15311,12 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000026866771749797310680000015788790722961293744_);
-            "
+            style="fill: url(#SVGID_00000026866771749797310680000015788790722961293744_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -21879,23 +15328,12 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #4c6847"
-            />
-            <stop
-              offset="0.7569"
-              style="stop-color: #759271"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #83a07f"
-            />
+            <stop offset="0" style="stop-color: #4c6847" />
+            <stop offset="0.7569" style="stop-color: #759271" />
+            <stop offset="1" style="stop-color: #83a07f" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000014611272209008697230000008330058553414959784_);
-            "
+            style="fill: url(#SVGID_00000014611272209008697230000008330058553414959784_)"
             d="M135.19,244.47"
           />
         </g>
@@ -21907,20 +15345,12 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #526e4d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e8a69"
-          />
+          <stop offset="0" style="stop-color: #526e4d" />
+          <stop offset="1" style="stop-color: #6e8a69" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000132774273429547039950000004298199019798249864_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000005957696961649309280000009754932082609860014_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000005957696961649309280000009754932082609860014_)"
           d="
             M165.29,241.96V135.14l0.93,0.22v107.53"
         />
@@ -21932,20 +15362,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #769372"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #769372" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000080193506667940439210000007627277774109584014_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000130605605235726804410000001999109328396256667_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000130605605235726804410000001999109328396256667_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -21957,20 +15379,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53704e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d6948" />
+          <stop offset="1" style="stop-color: #53704e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000040536808757169663940000012798360847748974771_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000177455672084593489310000010938128804907185794_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000177455672084593489310000010938128804907185794_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -21982,20 +15396,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #476342"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #708c6b"
-          />
+          <stop offset="0" style="stop-color: #476342" />
+          <stop offset="1" style="stop-color: #708c6b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000136377646536877469620000011330526570239404710_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000023992629771445101710000010902059639131564976_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000023992629771445101710000010902059639131564976_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -22007,20 +15413,12 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6a49"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d8968"
-          />
+          <stop offset="0" style="stop-color: #4d6a49" />
+          <stop offset="1" style="stop-color: #6d8968" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000034786924543039244280000016278775802605277601_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000120552264136445673740000004914547088514066600_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000120552264136445673740000004914547088514066600_)"
           d="
             M32.12,242.89V135.36l0.93-0.22v106.82"
         />
@@ -22032,20 +15430,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #8ca785"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #466241"
-          />
+          <stop offset="0" style="stop-color: #8ca785" />
+          <stop offset="1" style="stop-color: #466241" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000008869006962177311210000017608576465885262978_"
-          style="
-            fill: url(#Health_Frame_00000018218672498827055810000007064705270717360768_);
-          "
+          style="fill: url(#Health_Frame_00000018218672498827055810000007064705270717360768_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -22057,19 +15447,11 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1efcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96b391"
-          />
+          <stop offset="0" style="stop-color: #d1efcc" />
+          <stop offset="1" style="stop-color: #96b391" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000145761260522456834890000012357782100373208961_);
-          "
+          style="fill: url(#SVGID_00000145761260522456834890000012357782100373208961_)"
           d="M166.22,134.36v85.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V134.36l-1.5,0.62v84.26v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-84.26L166.22,134.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -22082,19 +15464,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9dba98"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1efcc"
-          />
+          <stop offset="0" style="stop-color: #9dba98" />
+          <stop offset="1" style="stop-color: #d1efcc" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000089561930551406787540000007184243872946123936_);
-          "
+          style="fill: url(#SVGID_00000089561930551406787540000007184243872946123936_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -22106,19 +15480,11 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #708b6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #526f4d"
-          />
+          <stop offset="0" style="stop-color: #708b6a" />
+          <stop offset="1" style="stop-color: #526f4d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000027582195723495677900000005618528151117794494_);
-          "
+          style="fill: url(#SVGID_00000027582195723495677900000005618528151117794494_)"
           points="171.2,132.83 172.7,133.75
             99.12,170.88 99.12,169.2 		"
         />
@@ -22130,19 +15496,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a2bf9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #adcba8"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a2bf9d" />
+          <stop offset="1" style="stop-color: #adcba8" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000160161495651771046100000013101457173646935952_);
-          "
+          style="fill: url(#SVGID_00000160161495651771046100000013101457173646935952_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -22154,19 +15512,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #adcaa8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c8e5c3"
-          />
+          <stop offset="0" style="stop-color: #adcaa8" />
+          <stop offset="1" style="stop-color: #c8e5c3" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000078028679939680293080000004892606896141129401_);
-          "
+          style="fill: url(#SVGID_00000078028679939680293080000004892606896141129401_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -22178,19 +15528,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #597554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6b8766"
-          />
+          <stop offset="0" style="stop-color: #597554" />
+          <stop offset="1" style="stop-color: #6b8766" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000130644904792467263700000004600335585096276896_);
-          "
+          style="fill: url(#SVGID_00000130644904792467263700000004600335585096276896_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -22202,19 +15544,11 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6e4c1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #516d4c"
-          />
+          <stop offset="0" style="stop-color: #c6e4c1" />
+          <stop offset="1" style="stop-color: #516d4c" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000118386595697504060380000001636746739749619871_);
-          "
+          style="fill: url(#SVGID_00000118386595697504060380000001636746739749619871_)"
           points="25.54,133.75 27.04,132.83
             99.12,169.2 99.12,170.88 		"
         />
@@ -22226,19 +15560,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #88a381"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4c6847"
-          />
+          <stop offset="0" style="stop-color: #88a381" />
+          <stop offset="1" style="stop-color: #4c6847" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000121972741694649959000000015812035003363196094_);
-          "
+          style="fill: url(#SVGID_00000121972741694649959000000015812035003363196094_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -22250,19 +15576,11 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a2bf9d"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="0.9987" style="stop-color: #a2bf9d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000062910123032779093080000015270804352531289495_);
-          "
+          style="fill: url(#SVGID_00000062910123032779093080000015270804352531289495_)"
           points="171.2,132.83 169.95,132.2
             99.12,167.94 99.12,169.2 		"
         />
@@ -22274,23 +15592,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #728f6d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.484" style="stop-color: #728f6d" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000141444596706425917740000014297114692142555570_);
-          "
+          style="fill: url(#SVGID_00000141444596706425917740000014297114692142555570_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -22302,19 +15609,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #4b6746"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88a382"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #4b6746" />
+          <stop offset="1" style="stop-color: #88a382" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000133492111626059615270000001701622908633187243_);
-          "
+          style="fill: url(#SVGID_00000133492111626059615270000001701622908633187243_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -22326,23 +15625,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d6948"
-          />
-          <stop
-            offset="0.4796"
-            style="stop-color: #73926e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #4d6948"
-          />
+          <stop offset="0" style="stop-color: #4d6948" />
+          <stop offset="0.4796" style="stop-color: #73926e" />
+          <stop offset="1" style="stop-color: #4d6948" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000021809017679347571120000005726134919942029461_);
-          "
+          style="fill: url(#SVGID_00000021809017679347571120000005726134919942029461_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -22354,20 +15642,12 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #445c3f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a4c19f"
-          />
+          <stop offset="0" style="stop-color: #445c3f" />
+          <stop offset="0.9987" style="stop-color: #a4c19f" />
         </linearGradient>
         <polygon
           id="Place_00000175302877419546214460000011926300175919344557_"
-          style="
-            fill: url(#Place_00000067916306861845008260000008030692286748757431_);
-          "
+          style="fill: url(#Place_00000067916306861845008260000008030692286748757431_)"
           points="
             99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 		"
         />
@@ -22380,20 +15660,12 @@
           y2="155.8836"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f8c6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #587153"
-          />
+          <stop offset="0" style="stop-color: #6f8c6a" />
+          <stop offset="1" style="stop-color: #587153" />
         </linearGradient>
         <polygon
           id="Deco_00000013872354552217250510000018348589191528282545_"
-          style="
-            fill: url(#Deco_00000013913801197370366680000003044140400671199393_);
-          "
+          style="fill: url(#Deco_00000013913801197370366680000003044140400671199393_)"
           points="
             33.31,144.99 33.31,146.67 51.48,155.84 52.6,154.73 		"
         />
@@ -22406,20 +15678,12 @@
           y2="154.9115"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #546d4f"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #bddbb8"
-          />
+          <stop offset="0" style="stop-color: #546d4f" />
+          <stop offset="0.9965" style="stop-color: #bddbb8" />
         </linearGradient>
         <polygon
           id="Deco_00000040545652176924929300000003866784855127749031_"
-          style="
-            fill: url(#Deco_00000022552740396381993470000000980283056813924769_);
-          "
+          style="fill: url(#Deco_00000022552740396381993470000000980283056813924769_)"
           points="
             33.31,143.73 33.31,144.99 52.6,154.73 53.44,153.89 		"
         />
@@ -22432,20 +15696,12 @@
           y2="153.5465"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a6c3a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #465e41"
-          />
+          <stop offset="0" style="stop-color: #a6c3a1" />
+          <stop offset="1" style="stop-color: #465e41" />
         </linearGradient>
         <polyline
           id="Deco_00000054983252928532636220000002945076752391891086_"
-          style="
-            fill: url(#Deco_00000150786968740120214620000003096578937884741537_);
-          "
+          style="fill: url(#Deco_00000150786968740120214620000003096578937884741537_)"
           points="
             48.75,154.46 33.31,169.9 33.31,172.02 51.19,154.02 		"
         />
@@ -22458,20 +15714,12 @@
           y2="153.3598"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8daa88"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="1" style="stop-color: #8daa88" />
         </linearGradient>
         <polyline
           id="Deco_00000021085426817186397610000013801468854857139874_"
-          style="
-            fill: url(#Deco_00000114780879552360959410000000753503594252223126_);
-          "
+          style="fill: url(#Deco_00000114780879552360959410000000753503594252223126_)"
           points="
             51.19,154.02 33.31,171.9 33.31,174.02 53.44,153.89 		"
         />
@@ -22484,20 +15732,12 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f8c6a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #587153"
-          />
+          <stop offset="0" style="stop-color: #6f8c6a" />
+          <stop offset="1" style="stop-color: #587153" />
         </linearGradient>
         <polygon
           id="Deco_00000042014470493220804470000012184543432313035180_"
-          style="
-            fill: url(#Deco_00000097467873979632279910000002145918844319158943_);
-          "
+          style="fill: url(#Deco_00000097467873979632279910000002145918844319158943_)"
           points="
             165.02,144.99 165.02,146.67 146.84,155.84 145.73,154.73 		"
         />
@@ -22510,20 +15750,12 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #546d4f"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #bddbb8"
-          />
+          <stop offset="0" style="stop-color: #546d4f" />
+          <stop offset="0.9965" style="stop-color: #bddbb8" />
         </linearGradient>
         <polygon
           id="Deco_00000152943013131880936140000011875251971192012166_"
-          style="
-            fill: url(#Deco_00000145740185909762169070000017175053016736221604_);
-          "
+          style="fill: url(#Deco_00000145740185909762169070000017175053016736221604_)"
           points="
             165.02,143.73 165.02,144.99 145.73,154.73 144.89,153.89 		"
         />
@@ -22536,20 +15768,12 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a6c3a1"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #465e41"
-          />
+          <stop offset="0" style="stop-color: #a6c3a1" />
+          <stop offset="1" style="stop-color: #465e41" />
         </linearGradient>
         <polyline
           id="Deco_00000121259480530772648660000006180281321483360165_"
-          style="
-            fill: url(#Deco_00000003077655766423012070000016263427573125957292_);
-          "
+          style="fill: url(#Deco_00000003077655766423012070000016263427573125957292_)"
           points="
             149.58,154.46 165.02,169.9 165.02,172.02 147.14,154.02 		"
         />
@@ -22562,28 +15786,17 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 -136.4097 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #465e41"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8daa88"
-          />
+          <stop offset="0" style="stop-color: #465e41" />
+          <stop offset="1" style="stop-color: #8daa88" />
         </linearGradient>
         <polyline
           id="Deco_00000129888433554442816680000007440442748737543575_"
-          style="
-            fill: url(#Deco_00000087386027710897120800000014361755745612352669_);
-          "
+          style="fill: url(#Deco_00000087386027710897120800000014361755745612352669_)"
           points="
             147.14,154.02 165.02,171.9 165.02,174.02 144.89,153.89 		"
         />
       </g>
-      <g
-        v-if="framed.Myth"
-        id="Myth_Frame_00000015316345563332537140000004185291603791039668_"
-      >
+      <g v-if="framed.Myth" id="Myth_Frame_00000015316345563332537140000004185291603791039668_">
         <linearGradient
           id="Health_Frame_00000011020397548716994370000003717157936937006523_"
           gradientUnits="userSpaceOnUse"
@@ -22592,20 +15805,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad81a9"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9e869a"
-          />
+          <stop offset="0" style="stop-color: #ad81a9" />
+          <stop offset="1" style="stop-color: #9e869a" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000098927875737694761890000001372449181691745697_"
-          style="
-            fill: url(#Health_Frame_00000011020397548716994370000003717157936937006523_);
-          "
+          style="fill: url(#Health_Frame_00000011020397548716994370000003717157936937006523_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -22617,20 +15822,12 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #52264d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e4869"
-          />
+          <stop offset="0" style="stop-color: #52264d" />
+          <stop offset="1" style="stop-color: #6e4869" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000032615839140377081420000018187298848139353521_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000027602488051701323050000018081275509119785632_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000027602488051701323050000018081275509119785632_)"
           d="
             M165.29,241.96V135.14l0.93,0.22v107.53"
         />
@@ -22642,20 +15839,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #472942"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765272"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #472942" />
+          <stop offset="1" style="stop-color: #765272" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000135692635553007181650000004780611766492425658_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000033346511541643231450000012448703850687764134_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000033346511541643231450000012448703850687764134_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -22667,20 +15856,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2348"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #53304e"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2348" />
+          <stop offset="1" style="stop-color: #53304e" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000023259141174593482870000006884531959218288525_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000108295384902247394050000011364433919094441628_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000108295384902247394050000011364433919094441628_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -22692,20 +15873,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #472842"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #70486b"
-          />
+          <stop offset="0" style="stop-color: #472842" />
+          <stop offset="1" style="stop-color: #70486b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000042724267342669450450000007939184474319245711_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000182514106019430615570000017399511922222007977_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000182514106019430615570000017399511922222007977_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -22717,20 +15890,12 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4d1949"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d4068"
-          />
+          <stop offset="0" style="stop-color: #4d1949" />
+          <stop offset="1" style="stop-color: #6d4068" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000125586208455551242740000014738286136834973327_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000050645767074611674220000010133258296746132613_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000050645767074611674220000010133258296746132613_)"
           d="
             M32.12,242.89V135.36l0.93-0.22v106.82"
         />
@@ -22742,19 +15907,11 @@
           x2="99.1671"
           y2="134.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000024713591594633674480000004590860098160717711_);
-          "
+          style="fill: url(#SVGID_00000024713591594633674480000004590860098160717711_)"
           d="M166.22,134.36v85.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V134.36l-1.5,0.62v84.26v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-84.26L166.22,134.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -22767,23 +15924,12 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4c2f47"
-          />
-          <stop
-            offset="0.7569"
-            style="stop-color: #755671"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #83647f"
-          />
+          <stop offset="0" style="stop-color: #4c2f47" />
+          <stop offset="0.7569" style="stop-color: #755671" />
+          <stop offset="1" style="stop-color: #83647f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000104691473313585643850000011172431930404715199_);
-          "
+          style="fill: url(#SVGID_00000104691473313585643850000011172431930404715199_)"
           points="137.33,232.62 135.19,244.47
             136.05,245.28 138.17,233.48 		"
         />
@@ -22795,20 +15941,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7185"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #463041"
-          />
+          <stop offset="0" style="stop-color: #9c7185" />
+          <stop offset="1" style="stop-color: #463041" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000085229748090011180890000012596661874235237294_"
-          style="
-            fill: url(#Health_Frame_00000125568505498365185840000013014873914751696315_);
-          "
+          style="fill: url(#Health_Frame_00000125568505498365185840000013014873914751696315_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -22820,19 +15958,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c7697"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cda5c8"
-          />
+          <stop offset="0" style="stop-color: #9c7697" />
+          <stop offset="1" style="stop-color: #cda5c8" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000142886650123764649920000013193147531360948402_);
-          "
+          style="fill: url(#SVGID_00000142886650123764649920000013193147531360948402_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -22844,19 +15974,11 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #966c80"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #966c80" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000165951018096908983880000013239391839767302569_);
-          "
+          style="fill: url(#SVGID_00000165951018096908983880000013239391839767302569_)"
           points="171.2,132.83 172.7,133.75
             99.12,170.88 99.12,169.2 		"
         />
@@ -22868,19 +15990,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="2.149471e-03"
-            style="stop-color: #a27c9d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bb93b6"
-          />
+          <stop offset="2.149471e-03" style="stop-color: #a27c9d" />
+          <stop offset="1" style="stop-color: #bb93b6" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000131339235520075046170000003142612384705702313_);
-          "
+          style="fill: url(#SVGID_00000131339235520075046170000003142612384705702313_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -22892,19 +16006,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #987293"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d1a9cc"
-          />
+          <stop offset="0" style="stop-color: #987293" />
+          <stop offset="1" style="stop-color: #d1a9cc" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000086652333041813163340000002775251795974787761_);
-          "
+          style="fill: url(#SVGID_00000086652333041813163340000002775251795974787761_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -22916,19 +16022,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37d9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bd96b8"
-          />
+          <stop offset="0" style="stop-color: #a37d9e" />
+          <stop offset="1" style="stop-color: #bd96b8" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000001643032390198414360000008248105995663504028_);
-          "
+          style="fill: url(#SVGID_00000001643032390198414360000008248105995663504028_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -22940,19 +16038,11 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d1a9cc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #644659"
-          />
+          <stop offset="0" style="stop-color: #d1a9cc" />
+          <stop offset="1" style="stop-color: #644659" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000062152630522281914350000010577455892701533099_);
-          "
+          style="fill: url(#SVGID_00000062152630522281914350000010577455892701533099_)"
           points="25.54,133.75 27.04,132.83
             99.12,169.2 99.12,170.88 		"
         />
@@ -22964,19 +16054,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bb93b6"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5a3155"
-          />
+          <stop offset="0" style="stop-color: #bb93b6" />
+          <stop offset="1" style="stop-color: #5a3155" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000157304638083607322400000007950817717192477824_);
-          "
+          style="fill: url(#SVGID_00000157304638083607322400000007950817717192477824_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -22988,19 +16070,11 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c59dc0"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #c59dc0" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000144309181636766335300000013188294740119829888_);
-          "
+          style="fill: url(#SVGID_00000144309181636766335300000013188294740119829888_)"
           points="171.2,132.83 169.95,132.2
             99.12,167.94 99.12,169.2 		"
         />
@@ -23012,23 +16086,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #553c4c"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #aa83a5"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #553c4d"
-          />
+          <stop offset="0" style="stop-color: #553c4c" />
+          <stop offset="0.484" style="stop-color: #aa83a5" />
+          <stop offset="1" style="stop-color: #553c4d" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000148647617791280102290000017715107984577055903_);
-          "
+          style="fill: url(#SVGID_00000148647617791280102290000017715107984577055903_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -23040,19 +16103,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #5c3257"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #967091"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #5c3257" />
+          <stop offset="1" style="stop-color: #967091" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000155119246522164605100000009222779774315948987_);
-          "
+          style="fill: url(#SVGID_00000155119246522164605100000009222779774315948987_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -23064,23 +16119,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a780a2"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #592e54"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.484" style="stop-color: #a780a2" />
+          <stop offset="1" style="stop-color: #592e54" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000101795473242053905040000017923066923011844791_);
-          "
+          style="fill: url(#SVGID_00000101795473242053905040000017923066923011844791_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -23092,20 +16136,12 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #582e53"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #a781a2"
-          />
+          <stop offset="0" style="stop-color: #582e53" />
+          <stop offset="0.9987" style="stop-color: #a781a2" />
         </linearGradient>
         <polygon
           id="Place_00000129913965676235019880000004080765305362936213_"
-          style="
-            fill: url(#Place_00000023971661842217290330000004597038472550524329_);
-          "
+          style="fill: url(#Place_00000023971661842217290330000004597038472550524329_)"
           points="
             99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 		"
         />
@@ -23118,20 +16154,12 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37a9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64385c"
-          />
+          <stop offset="0" style="stop-color: #a37a9e" />
+          <stop offset="1" style="stop-color: #64385c" />
         </linearGradient>
         <polygon
           id="Deco_00000026857526364751004150000014790635410335456924_"
-          style="
-            fill: url(#Deco_00000107585786676836070570000017995426596106843550_);
-          "
+          style="fill: url(#Deco_00000107585786676836070570000017995426596106843550_)"
           points="
             165.02,144.99 165.02,146.67 146.84,155.84 145.73,154.73 		"
         />
@@ -23144,20 +16172,12 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5d3258"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #c29abd"
-          />
+          <stop offset="0" style="stop-color: #5d3258" />
+          <stop offset="0.9965" style="stop-color: #c29abd" />
         </linearGradient>
         <polygon
           id="Deco_00000103976567609835653910000012661189523402689437_"
-          style="
-            fill: url(#Deco_00000074403965538250735790000015027214358445050768_);
-          "
+          style="fill: url(#Deco_00000074403965538250735790000015027214358445050768_)"
           points="
             165.02,143.73 165.02,144.99 145.73,154.73 144.89,153.89 		"
         />
@@ -23170,20 +16190,12 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a0789b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b3055"
-          />
+          <stop offset="0" style="stop-color: #a0789b" />
+          <stop offset="1" style="stop-color: #5b3055" />
         </linearGradient>
         <polyline
           id="Deco_00000163765729169088758900000004432662085440912777_"
-          style="
-            fill: url(#Deco_00000041976381468657946590000007579223879769696393_);
-          "
+          style="fill: url(#Deco_00000041976381468657946590000007579223879769696393_)"
           points="
             149.58,154.46 165.02,169.9 165.02,172.02 147.14,154.02 		"
         />
@@ -23196,20 +16208,12 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5a3155"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a2819e"
-          />
+          <stop offset="0" style="stop-color: #5a3155" />
+          <stop offset="1" style="stop-color: #a2819e" />
         </linearGradient>
         <polyline
           id="Deco_00000084530756261151249780000001527447416315813055_"
-          style="
-            fill: url(#Deco_00000161624619386644922920000016601655701332645285_);
-          "
+          style="fill: url(#Deco_00000161624619386644922920000016601655701332645285_)"
           points="
             147.14,154.02 165.02,171.9 165.02,174.02 144.89,153.89 		"
         />
@@ -23222,20 +16226,12 @@
           y2="155.8836"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a37a9e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #64385c"
-          />
+          <stop offset="0" style="stop-color: #a37a9e" />
+          <stop offset="1" style="stop-color: #64385c" />
         </linearGradient>
         <polygon
           id="Deco_00000111893537566829964680000007092046202048292523_"
-          style="
-            fill: url(#Deco_00000113311571487247464610000016960260510415578795_);
-          "
+          style="fill: url(#Deco_00000113311571487247464610000016960260510415578795_)"
           points="
             33.31,144.99 33.31,146.67 51.48,155.84 52.6,154.73 		"
         />
@@ -23248,20 +16244,12 @@
           y2="154.9115"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5d3258"
-          />
-          <stop
-            offset="0.9965"
-            style="stop-color: #c29abd"
-          />
+          <stop offset="0" style="stop-color: #5d3258" />
+          <stop offset="0.9965" style="stop-color: #c29abd" />
         </linearGradient>
         <polygon
           id="Deco_00000070088925918147467990000016953218104449193358_"
-          style="
-            fill: url(#Deco_00000050651033914191792480000016117243671017576075_);
-          "
+          style="fill: url(#Deco_00000050651033914191792480000016117243671017576075_)"
           points="
             33.31,143.73 33.31,144.99 52.6,154.73 53.44,153.89 		"
         />
@@ -23274,20 +16262,12 @@
           y2="153.5465"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #a0789b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5b3055"
-          />
+          <stop offset="0" style="stop-color: #a0789b" />
+          <stop offset="1" style="stop-color: #5b3055" />
         </linearGradient>
         <polyline
           id="Deco_00000028322276981960371260000018262117645213490342_"
-          style="
-            fill: url(#Deco_00000006671132737561139010000013815739014409364362_);
-          "
+          style="fill: url(#Deco_00000006671132737561139010000013815739014409364362_)"
           points="
             48.75,154.46 33.31,169.9 33.31,172.02 51.19,154.02 		"
         />
@@ -23300,20 +16280,12 @@
           y2="153.3598"
           gradientTransform="matrix(1 0 0 1 223.1591 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #5a3155"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #a2819e"
-          />
+          <stop offset="0" style="stop-color: #5a3155" />
+          <stop offset="1" style="stop-color: #a2819e" />
         </linearGradient>
         <polyline
           id="Deco_00000181054988152524552170000002457073721324613528_"
-          style="
-            fill: url(#Deco_00000161592011809617827780000013277620160267999150_);
-          "
+          style="fill: url(#Deco_00000161592011809617827780000013277620160267999150_)"
           points="
             51.19,154.02 33.31,171.9 33.31,174.02 53.44,153.89 		"
         />
@@ -23330,20 +16302,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c0816b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b1866b"
-          />
+          <stop offset="0" style="stop-color: #c0816b" />
+          <stop offset="1" style="stop-color: #b1866b" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000036943608956515729130000005247780678349352618_"
-          style="
-            fill: url(#Health_Frame_00000057861699742947054930000007126966110103646901_);
-          "
+          style="fill: url(#Health_Frame_00000057861699742947054930000007126966110103646901_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -23355,20 +16319,12 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #522629"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #84482f"
-          />
+          <stop offset="0" style="stop-color: #522629" />
+          <stop offset="1" style="stop-color: #84482f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000044858931947853571870000014597175107910336146_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000076568424876147891390000003749717040600813734_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000076568424876147891390000003749717040600813734_)"
           d="
             M165.29,241.96V135.14l0.93,0.22v107.53"
         />
@@ -23380,20 +16336,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.302083e-03"
-            style="stop-color: #552921"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #88523f"
-          />
+          <stop offset="1.302083e-03" style="stop-color: #552921" />
+          <stop offset="1" style="stop-color: #88523f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052086084029063930550000017497171910011210124_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000083770791856916856060000001961333539971384978_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000083770791856916856060000001961333539971384978_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -23405,20 +16353,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="1.219411e-03"
-            style="stop-color: #4d2327"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #5e302a"
-          />
+          <stop offset="1.219411e-03" style="stop-color: #4d2327" />
+          <stop offset="1" style="stop-color: #5e302a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000060031221694209974770000007924330165325902523_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000087372148455361190620000011362829463141241504_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000087372148455361190620000011362829463141241504_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -23430,20 +16370,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #4f1a24"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #76483d"
-          />
+          <stop offset="0" style="stop-color: #4f1a24" />
+          <stop offset="1" style="stop-color: #76483d" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000120549074271258082320000004600097796314291377_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000176022971955709417730000005452438940680272258_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000176022971955709417730000005452438940680272258_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -23455,20 +16387,12 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #711a20"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e333b"
-          />
+          <stop offset="0" style="stop-color: #711a20" />
+          <stop offset="1" style="stop-color: #6e333b" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000052089561305240852630000007341509027555066011_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000117674352615630636600000010609249965498007967_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000117674352615630636600000010609249965498007967_)"
           d="
             M32.12,242.89V135.36l0.93-0.22v106.82"
         />
@@ -23480,20 +16404,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ae714e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #54301b"
-          />
+          <stop offset="0" style="stop-color: #ae714e" />
+          <stop offset="1" style="stop-color: #54301b" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000087382610325207647910000002644976751360811393_"
-          style="
-            fill: url(#Health_Frame_00000057858475206240873310000007066338517794113926_);
-          "
+          style="fill: url(#Health_Frame_00000057858475206240873310000007066338517794113926_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -23505,19 +16421,11 @@
           x2="99.1671"
           y2="135.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e3a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #96404d"
-          />
+          <stop offset="0" style="stop-color: #e3a983" />
+          <stop offset="1" style="stop-color: #96404d" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000131353926302773498740000007759910445848023725_);
-          "
+          style="fill: url(#SVGID_00000131353926302773498740000007759910445848023725_)"
           d="M166.22,135.36v84.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V135.36l-1.5,0.62v83.26v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-83.26L166.22,135.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -23530,23 +16438,12 @@
           x2="136.6834"
           y2="232.6223"
         >
-          <stop
-            offset="0"
-            style="stop-color: #562f29"
-          />
-          <stop
-            offset="0.6487"
-            style="stop-color: #80503b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #986446"
-          />
+          <stop offset="0" style="stop-color: #562f29" />
+          <stop offset="0.6487" style="stop-color: #80503b" />
+          <stop offset="1" style="stop-color: #986446" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000049915477832071042670000011090327073404931714_);
-          "
+          style="fill: url(#SVGID_00000049915477832071042670000011090327073404931714_)"
           points="137.33,232.62 135.19,244.47
             136.05,245.28 138.17,233.48 		"
         />
@@ -23558,19 +16455,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ce8c73"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #ce8e74"
-          />
+          <stop offset="0" style="stop-color: #ce8c73" />
+          <stop offset="1" style="stop-color: #ce8e74" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000181775294962544774590000011330991553563141302_);
-          "
+          style="fill: url(#SVGID_00000181775294962544774590000011330991553563141302_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -23582,19 +16471,11 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d08f74"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9a4650"
-          />
+          <stop offset="0" style="stop-color: #d08f74" />
+          <stop offset="1" style="stop-color: #9a4650" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000131339386440805344910000008973743961177646268_);
-          "
+          style="fill: url(#SVGID_00000131339386440805344910000008973743961177646268_)"
           points="171.2,132.83 172.7,133.75
             99.12,170.88 99.12,169.2 		"
         />
@@ -23606,19 +16487,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ca8871"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #dda480"
-          />
+          <stop offset="0" style="stop-color: #ca8871" />
+          <stop offset="1" style="stop-color: #dda480" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000130628124593443107470000005788062215680849086_);
-          "
+          style="fill: url(#SVGID_00000130628124593443107470000005788062215680849086_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -23630,19 +16503,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c6836f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e2a983"
-          />
+          <stop offset="0" style="stop-color: #c6836f" />
+          <stop offset="1" style="stop-color: #e2a983" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000157266128077429077980000011146284267254904760_);
-          "
+          style="fill: url(#SVGID_00000157266128077429077980000011146284267254904760_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -23654,19 +16519,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c78470"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d19175"
-          />
+          <stop offset="0" style="stop-color: #c78470" />
+          <stop offset="1" style="stop-color: #d19175" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000071552604618556012360000008263958273249388956_);
-          "
+          style="fill: url(#SVGID_00000071552604618556012360000008263958273249388956_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -23678,19 +16535,11 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e2a983"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98434f"
-          />
+          <stop offset="0" style="stop-color: #e2a983" />
+          <stop offset="1" style="stop-color: #98434f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000038399701243236563320000007563310153878994820_);
-          "
+          style="fill: url(#SVGID_00000038399701243236563320000007563310153878994820_)"
           points="25.54,133.75 27.04,132.83
             99.12,169.2 99.12,170.88 		"
         />
@@ -23702,19 +16551,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #ad605d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #ad605d" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000034087502749763826910000015026697838858089109_);
-          "
+          style="fill: url(#SVGID_00000034087502749763826910000015026697838858089109_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -23726,19 +16567,11 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f2a30"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #6f2a30" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000055674941177132367300000009514316555926660749_);
-          "
+          style="fill: url(#SVGID_00000055674941177132367300000009514316555926660749_)"
           points="171.2,132.83 169.95,132.2
             99.12,167.94 99.12,169.2 		"
         />
@@ -23750,23 +16583,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #76363e"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #9f5554"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #77373f"
-          />
+          <stop offset="0" style="stop-color: #76363e" />
+          <stop offset="0.484" style="stop-color: #9f5554" />
+          <stop offset="1" style="stop-color: #77373f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000065787641408318360110000018399522159789713044_);
-          "
+          style="fill: url(#SVGID_00000065787641408318360110000018399522159789713044_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -23778,19 +16600,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #bf796a"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #99444f" />
+          <stop offset="1" style="stop-color: #bf796a" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000078766795612243051020000009285192761992765324_);
-          "
+          style="fill: url(#SVGID_00000078766795612243051020000009285192761992765324_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -23802,23 +16616,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #793a40"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #a15756"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #71333b"
-          />
+          <stop offset="0" style="stop-color: #793a40" />
+          <stop offset="0.484" style="stop-color: #a15756" />
+          <stop offset="1" style="stop-color: #71333b" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000058573786305068449800000012975843763758166436_);
-          "
+          style="fill: url(#SVGID_00000058573786305068449800000012975843763758166436_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -23830,20 +16633,12 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #e0a781"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #e0a781" />
         </linearGradient>
         <polygon
           id="Place_00000143580526987184229300000007392414084636638372_"
-          style="
-            fill: url(#Place_00000026842789127817128130000004277965199893928598_);
-          "
+          style="fill: url(#Place_00000026842789127817128130000004277965199893928598_)"
           points="
             99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 		"
         />
@@ -23855,20 +16650,12 @@
           x2="51.9331"
           y2="155.8836"
         >
-          <stop
-            offset="0"
-            style="stop-color: #be776a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #be776a" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
           id="Deco_00000063598539987002213500000011875977388809403309_"
-          style="
-            fill: url(#Deco_00000014601104361429972130000011884511341588377781_);
-          "
+          style="fill: url(#Deco_00000014601104361429972130000011884511341588377781_)"
           points="
             33.31,144.99 33.31,146.67 51.48,155.84 52.6,154.73 		"
         />
@@ -23880,20 +16667,12 @@
           x2="52.8483"
           y2="154.9115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #dfa481"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #dfa481" />
         </linearGradient>
         <polygon
           id="Deco_00000102504505355790921230000015022891448936271537_"
-          style="
-            fill: url(#Deco_00000124876020387187115960000011151482963118060193_);
-          "
+          style="fill: url(#Deco_00000124876020387187115960000011151482963118060193_)"
           points="
             33.31,143.73 33.31,144.99 52.6,154.73 53.44,153.89 		"
         />
@@ -23905,20 +16684,12 @@
           x2="50.7211"
           y2="153.5465"
         >
-          <stop
-            offset="0"
-            style="stop-color: #da9d7d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98424e"
-          />
+          <stop offset="0" style="stop-color: #da9d7d" />
+          <stop offset="1" style="stop-color: #98424e" />
         </linearGradient>
         <polyline
           id="Deco_00000115510287241790448460000001989863108429593476_"
-          style="
-            fill: url(#Deco_00000010289737884152735850000018193371022028182704_);
-          "
+          style="fill: url(#Deco_00000010289737884152735850000018193371022028182704_)"
           points="
             48.75,154.46 33.31,169.9 33.31,172.02 51.19,154.02 		"
         />
@@ -23930,20 +16701,12 @@
           x2="52.9078"
           y2="153.3598"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e3038"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c17d6d"
-          />
+          <stop offset="0" style="stop-color: #6e3038" />
+          <stop offset="1" style="stop-color: #c17d6d" />
         </linearGradient>
         <polyline
           id="Deco_00000029761303790698074110000012920281467349066655_"
-          style="
-            fill: url(#Deco_00000084514500476205680730000015275171974846218113_);
-          "
+          style="fill: url(#Deco_00000084514500476205680730000015275171974846218113_)"
           points="
             51.19,154.02 33.31,171.9 33.31,174.02 53.44,153.89 		"
         />
@@ -23956,20 +16719,12 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #be776a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6f323a"
-          />
+          <stop offset="0" style="stop-color: #be776a" />
+          <stop offset="1" style="stop-color: #6f323a" />
         </linearGradient>
         <polygon
           id="Deco_00000020358959888224658730000010412685415601635718_"
-          style="
-            fill: url(#Deco_00000165219332976625309950000010058650702469476258_);
-          "
+          style="fill: url(#Deco_00000165219332976625309950000010058650702469476258_)"
           points="
             165.02,144.99 165.02,146.67 146.84,155.84 145.73,154.73 		"
         />
@@ -23982,20 +16737,12 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #99444f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #dfa481"
-          />
+          <stop offset="0" style="stop-color: #99444f" />
+          <stop offset="0.9987" style="stop-color: #dfa481" />
         </linearGradient>
         <polygon
           id="Deco_00000008840575291834732430000000729052320287104679_"
-          style="
-            fill: url(#Deco_00000168836921622756240090000015915479111743985560_);
-          "
+          style="fill: url(#Deco_00000168836921622756240090000015915479111743985560_)"
           points="
             165.02,143.73 165.02,144.99 145.73,154.73 144.89,153.89 		"
         />
@@ -24008,20 +16755,12 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #da9d7d"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #98424e"
-          />
+          <stop offset="0" style="stop-color: #da9d7d" />
+          <stop offset="1" style="stop-color: #98424e" />
         </linearGradient>
         <polyline
           id="Deco_00000033337437830604465660000014221064325929054899_"
-          style="
-            fill: url(#Deco_00000181082434518927855730000011552040109393976241_);
-          "
+          style="fill: url(#Deco_00000181082434518927855730000011552040109393976241_)"
           points="
             149.58,154.46 165.02,169.9 165.02,172.02 147.14,154.02 		"
         />
@@ -24034,20 +16773,12 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e3038"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c17d6d"
-          />
+          <stop offset="0" style="stop-color: #6e3038" />
+          <stop offset="1" style="stop-color: #c17d6d" />
         </linearGradient>
         <polyline
           id="Deco_00000062193085232817135700000014950175404673918091_"
-          style="
-            fill: url(#Deco_00000108301430304433984860000006769007028747667587_);
-          "
+          style="fill: url(#Deco_00000108301430304433984860000006769007028747667587_)"
           points="
             147.14,154.02 165.02,171.9 165.02,174.02 144.89,153.89 		"
         />
@@ -24064,20 +16795,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bda99c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b6a496"
-          />
+          <stop offset="0" style="stop-color: #bda99c" />
+          <stop offset="1" style="stop-color: #b6a496" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000117640624930303037280000010088833211525905795_"
-          style="
-            fill: url(#Health_Frame_00000179639163211216857400000000795771721814996634_);
-          "
+          style="fill: url(#Health_Frame_00000179639163211216857400000000795771721814996634_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -24089,20 +16812,12 @@
           x2="165.752"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #725852"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6b3a6"
-          />
+          <stop offset="0" style="stop-color: #725852" />
+          <stop offset="1" style="stop-color: #c6b3a6" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000150067111159303190390000000679545145018589873_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000012466268577879992830000016932696954925472385_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000012466268577879992830000016932696954925472385_)"
           d="
             M165.29,241.96V135.14l0.93,0.22v107.53"
         />
@@ -24114,20 +16829,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6f564b"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755145"
-          />
+          <stop offset="0" style="stop-color: #6f564b" />
+          <stop offset="1" style="stop-color: #755145" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000058586797863120395960000003573378584560854961_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000042698513670134147770000011586578949750481290_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000042698513670134147770000011586578949750481290_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -24139,20 +16846,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #755d52"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7e655a"
-          />
+          <stop offset="0" style="stop-color: #755d52" />
+          <stop offset="1" style="stop-color: #7e655a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000084508363985064822620000016965840122271844507_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000181047600025318571550000007590554891448423080_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000181047600025318571550000007590554891448423080_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -24164,20 +16863,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6d5449"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6d554c"
-          />
+          <stop offset="0" style="stop-color: #6d5449" />
+          <stop offset="1" style="stop-color: #6d554c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000008120801731563323600000016282492628965116307_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000106849931272313798480000004602329002737491594_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000106849931272313798480000004602329002737491594_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -24189,20 +16880,12 @@
           x2="32.5823"
           y2="135.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9c877a"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #755c52"
-          />
+          <stop offset="0" style="stop-color: #9c877a" />
+          <stop offset="1" style="stop-color: #755c52" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000064331874895770712780000014811130377773181328_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000034767887165914337890000013653031633223959467_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000034767887165914337890000013653031633223959467_)"
           d="
             M32.12,242.89V135.36l0.93-0.22v106.82"
         />
@@ -24214,20 +16897,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #b9a798"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #745c51"
-          />
+          <stop offset="0" style="stop-color: #b9a798" />
+          <stop offset="1" style="stop-color: #745c51" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000181080274017655132310000014482073173125777830_"
-          style="
-            fill: url(#Health_Frame_00000141429798358518141440000007167593901828574369_);
-          "
+          style="fill: url(#Health_Frame_00000141429798358518141440000007167593901828574369_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -24239,26 +16914,16 @@
           x2="99.1671"
           y2="135.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #edddcc"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #9f8a7d"
-          />
+          <stop offset="0" style="stop-color: #edddcc" />
+          <stop offset="1" style="stop-color: #9f8a7d" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000119817164179293219180000016965074988617488279_);
-          "
+          style="fill: url(#SVGID_00000119817164179293219180000016965074988617488279_)"
           d="M166.22,135.36v84.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V135.36l-1.5,0.62v83.26v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-83.26L166.22,135.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
         />
-        <g
-          id="Health_Frame_00000127722387389131619440000000917839343500196266_"
-        >
+        <g id="Health_Frame_00000127722387389131619440000000917839343500196266_">
           <linearGradient
             id="SVGID_00000154393116573787889820000013880649857231490462_"
             gradientUnits="userSpaceOnUse"
@@ -24267,19 +16932,11 @@
             x2="136.6834"
             y2="232.6223"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <polygon
-            style="
-              fill: url(#SVGID_00000154393116573787889820000013880649857231490462_);
-            "
+            style="fill: url(#SVGID_00000154393116573787889820000013880649857231490462_)"
             points="137.33,232.62 135.19,244.47
               136.05,245.28 138.17,233.48 			"
           />
@@ -24291,19 +16948,11 @@
             x2="135.1923"
             y2="244.4732"
           >
-            <stop
-              offset="0"
-              style="stop-color: #755c51"
-            />
-            <stop
-              offset="1"
-              style="stop-color: #80675e"
-            />
+            <stop offset="0" style="stop-color: #755c51" />
+            <stop offset="1" style="stop-color: #80675e" />
           </linearGradient>
           <path
-            style="
-              fill: url(#SVGID_00000069375495220551176510000009936511226602928810_);
-            "
+            style="fill: url(#SVGID_00000069375495220551176510000009936511226602928810_)"
             d="M135.19,244.47"
           />
         </g>
@@ -24315,19 +16964,11 @@
           x2="99.9162"
           y2="20.8194"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #cebcae"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #cebcae" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000102533054989430726320000017759070078007255472_);
-          "
+          style="fill: url(#SVGID_00000102533054989430726320000017759070078007255472_)"
           points="99.12,22.2 172.7,59.33
             171.2,60.25 99.12,23.88 		"
         />
@@ -24339,19 +16980,11 @@
           x2="99.9162"
           y2="172.2596"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2b5a7"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #765d52"
-          />
+          <stop offset="0" style="stop-color: #c2b5a7" />
+          <stop offset="1" style="stop-color: #765d52" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000018222858385800873380000017226775045321777809_);
-          "
+          style="fill: url(#SVGID_00000018222858385800873380000017226775045321777809_)"
           points="171.2,132.83 172.7,133.75
             99.12,170.88 99.12,169.2 		"
         />
@@ -24363,19 +16996,11 @@
           x2="26.2911"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #e0cfbe"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #e0cfbe" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000113320428854853048060000017397860212565809592_);
-          "
+          style="fill: url(#SVGID_00000113320428854853048060000017397860212565809592_)"
           points="27.04,132.83 25.54,133.75
             25.54,59.33 27.04,60.25 		"
         />
@@ -24387,19 +17012,11 @@
           x2="98.3262"
           y2="20.8195"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c2afa3"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #efdfcf"
-          />
+          <stop offset="0" style="stop-color: #c2afa3" />
+          <stop offset="1" style="stop-color: #efdfcf" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000046308866126367147680000013871301882771948961_);
-          "
+          style="fill: url(#SVGID_00000046308866126367147680000013871301882771948961_)"
           points="25.54,59.33 99.12,22.2
             99.12,23.88 27.04,60.25 		"
         />
@@ -24411,19 +17028,11 @@
           x2="171.9517"
           y2="59.3264"
         >
-          <stop
-            offset="0"
-            style="stop-color: #bfb1a4"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c6baae"
-          />
+          <stop offset="0" style="stop-color: #bfb1a4" />
+          <stop offset="1" style="stop-color: #c6baae" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000023998236340497784450000008066939699119960220_);
-          "
+          style="fill: url(#SVGID_00000023998236340497784450000008066939699119960220_)"
           points="171.2,60.25 172.7,59.33
             172.7,133.75 171.2,132.83 		"
         />
@@ -24435,19 +17044,11 @@
           x2="98.3262"
           y2="172.2595"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000020397212731992756670000001276016767468661920_);
-          "
+          style="fill: url(#SVGID_00000020397212731992756670000001276016767468661920_)"
           points="25.54,133.75 27.04,132.83
             99.12,169.2 99.12,170.88 		"
         />
@@ -24459,19 +17060,11 @@
           x2="171.2017"
           y2="42.3776"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c1aea8"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #746058"
-          />
+          <stop offset="0" style="stop-color: #c1aea8" />
+          <stop offset="1" style="stop-color: #746058" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000114036093882032072560000011030471940502156174_);
-          "
+          style="fill: url(#SVGID_00000114036093882032072560000011030471940502156174_)"
           points="99.12,23.88 99.12,25.14
             169.95,60.88 171.2,60.25 		"
         />
@@ -24483,19 +17076,11 @@
           x2="135.1615"
           y2="169.2028"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #d6c9c3"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #d6c9c3" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000037651368655663588740000005069227075397844130_);
-          "
+          style="fill: url(#SVGID_00000037651368655663588740000005069227075397844130_)"
           points="171.2,132.83 169.95,132.2
             99.12,167.94 99.12,169.2 		"
         />
@@ -24507,23 +17092,12 @@
           x2="27.6651"
           y2="60.2492"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000075138423478086331050000012827880554704496819_);
-          "
+          style="fill: url(#SVGID_00000075138423478086331050000012827880554704496819_)"
           points="27.04,132.83 28.29,132.2
             28.29,60.88 27.04,60.25 		"
         />
@@ -24535,19 +17109,11 @@
           x2="99.1212"
           y2="42.3776"
         >
-          <stop
-            offset="2.066799e-05"
-            style="stop-color: #746058"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #b5a49e"
-          />
+          <stop offset="2.066799e-05" style="stop-color: #746058" />
+          <stop offset="1" style="stop-color: #b5a49e" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000036946832989881818470000006536499254671141560_);
-          "
+          style="fill: url(#SVGID_00000036946832989881818470000006536499254671141560_)"
           points="27.04,60.25 28.29,60.88
             99.12,25.14 99.12,23.88 		"
         />
@@ -24559,23 +17125,12 @@
           x2="170.5775"
           y2="132.8298"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.484"
-            style="stop-color: #b5a49e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #816c63"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.484" style="stop-color: #b5a49e" />
+          <stop offset="1" style="stop-color: #816c63" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000049211275105922481240000004119797859450623408_);
-          "
+          style="fill: url(#SVGID_00000049211275105922481240000004119797859450623408_)"
           points="169.95,60.88 171.2,60.25
             171.2,132.83 169.95,132.2 		"
         />
@@ -24587,20 +17142,12 @@
           x2="98.259"
           y2="170.6961"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           id="Place_00000181062841924679048170000009221002507746949517_"
-          style="
-            fill: url(#Place_00000145741869989806168000000002779489402582312620_);
-          "
+          style="fill: url(#Place_00000145741869989806168000000002779489402582312620_)"
           points="
             99.12,167.94 99.12,169.2 27.04,132.83 28.29,132.2 		"
         />
@@ -24612,20 +17159,12 @@
           x2="51.9331"
           y2="155.8836"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
           id="Deco_00000122685743275630300170000006960116675883505843_"
-          style="
-            fill: url(#Deco_00000165946086560017974460000007917502088767300019_);
-          "
+          style="fill: url(#Deco_00000165946086560017974460000007917502088767300019_)"
           points="
             33.31,144.99 33.31,146.67 51.48,155.84 52.6,154.73 		"
         />
@@ -24637,20 +17176,12 @@
           x2="52.8483"
           y2="154.9115"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           id="Deco_00000174576358021356166930000013158887975670318725_"
-          style="
-            fill: url(#Deco_00000018948261823567949810000017654248363398247041_);
-          "
+          style="fill: url(#Deco_00000018948261823567949810000017654248363398247041_)"
           points="
             33.31,143.73 33.31,144.99 52.6,154.73 53.44,153.89 		"
         />
@@ -24662,20 +17193,12 @@
           x2="50.7211"
           y2="153.5465"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4e"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #725a4e" />
         </linearGradient>
         <polyline
           id="Deco_00000079459725084747787650000006730647020378264767_"
-          style="
-            fill: url(#Deco_00000138534188973805553460000012742807330161157773_);
-          "
+          style="fill: url(#Deco_00000138534188973805553460000012742807330161157773_)"
           points="
             48.75,154.46 33.31,169.9 33.31,172.02 51.19,154.02 		"
         />
@@ -24687,20 +17210,12 @@
           x2="52.9078"
           y2="153.3598"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b8477"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #eedece"
-          />
+          <stop offset="0" style="stop-color: #9b8477" />
+          <stop offset="1" style="stop-color: #eedece" />
         </linearGradient>
         <polyline
           id="Deco_00000114070110305941153430000006722346482967094404_"
-          style="
-            fill: url(#Deco_00000181796324206083846970000001658122237899991203_);
-          "
+          style="fill: url(#Deco_00000181796324206083846970000001658122237899991203_)"
           points="
             51.19,154.02 33.31,171.9 33.31,174.02 53.44,153.89 		"
         />
@@ -24713,20 +17228,12 @@
           y2="155.8836"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #e0cfbe"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #846e65"
-          />
+          <stop offset="0" style="stop-color: #e0cfbe" />
+          <stop offset="1" style="stop-color: #846e65" />
         </linearGradient>
         <polygon
           id="Deco_00000045592858775121208460000014893325250918551708_"
-          style="
-            fill: url(#Deco_00000116195191308865970470000003217674137232275114_);
-          "
+          style="fill: url(#Deco_00000116195191308865970470000003217674137232275114_)"
           points="
             165.02,144.99 165.02,146.67 146.84,155.84 145.73,154.73 		"
         />
@@ -24739,20 +17246,12 @@
           y2="154.9115"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7e685f"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #c8bcaf"
-          />
+          <stop offset="0" style="stop-color: #7e685f" />
+          <stop offset="0.9987" style="stop-color: #c8bcaf" />
         </linearGradient>
         <polygon
           id="Deco_00000110437103161388700850000008177304382129644680_"
-          style="
-            fill: url(#Deco_00000003078735323229225180000004508159392585833346_);
-          "
+          style="fill: url(#Deco_00000003078735323229225180000004508159392585833346_)"
           points="
             165.02,143.73 165.02,144.99 145.73,154.73 144.89,153.89 		"
         />
@@ -24765,20 +17264,12 @@
           y2="153.5465"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #eedece"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #725a4e"
-          />
+          <stop offset="0" style="stop-color: #eedece" />
+          <stop offset="1" style="stop-color: #725a4e" />
         </linearGradient>
         <polyline
           id="Deco_00000100379871047068480210000007680539227041888424_"
-          style="
-            fill: url(#Deco_00000104673878774459146800000014611478318204810144_);
-          "
+          style="fill: url(#Deco_00000104673878774459146800000014611478318204810144_)"
           points="
             149.58,154.46 165.02,169.9 165.02,172.02 147.14,154.02 		"
         />
@@ -24791,32 +17282,19 @@
           y2="153.3598"
           gradientTransform="matrix(-1 0 0 1 86.7494 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b8477"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #eedece"
-          />
+          <stop offset="0" style="stop-color: #9b8477" />
+          <stop offset="1" style="stop-color: #eedece" />
         </linearGradient>
         <polyline
           id="Deco_1_00000078738899116670892650000005228829813409601414_"
-          style="
-            fill: url(#Deco_1_00000068649477499804968620000011111884559927747259_);
-          "
+          style="fill: url(#Deco_1_00000068649477499804968620000011111884559927747259_)"
           points="
             147.14,154.02 165.02,171.9 165.02,174.02 144.89,153.89 		"
         />
       </g>
     </g>
-    <g
-      v-if="FramedAddition.HQ"
-      id="HQ_Framed_Addition"
-    >
-      <g
-        id="Multi_Class_Frame_00000013893546042885296050000001931460204239677355_"
-      >
+    <g v-if="FramedAddition.HQ" id="HQ_Framed_Addition">
+      <g id="Multi_Class_Frame_00000013893546042885296050000001931460204239677355_">
         <linearGradient
           id="Health_Frame_00000075840980901923713870000013389165539440775052_"
           gradientUnits="userSpaceOnUse"
@@ -24825,20 +17303,12 @@
           x2="144.7306"
           y2="221.6462"
         >
-          <stop
-            offset="0"
-            style="stop-color: #d5b076"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d0ac72"
-          />
+          <stop offset="0" style="stop-color: #d5b076" />
+          <stop offset="1" style="stop-color: #d0ac72" />
         </linearGradient>
         <polyline
           id="Health_Frame_00000178169520596023096840000005484027244850778047_"
-          style="
-            fill: url(#Health_Frame_00000075840980901923713870000013389165539440775052_);
-          "
+          style="fill: url(#Health_Frame_00000075840980901923713870000013389165539440775052_)"
           points="
             144.52,221.53 137.33,232.62 138.17,233.48 145.37,222.39 		"
         />
@@ -24850,20 +17320,12 @@
           x2="165.752"
           y2="121.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #7f5a1f"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c0a578"
-          />
+          <stop offset="0" style="stop-color: #7f5a1f" />
+          <stop offset="1" style="stop-color: #c0a578" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000074420955878871479730000014373430093897481902_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000003822992196855315100000010470944758797793192_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000003822992196855315100000010470944758797793192_)"
           d="
             M165.29,241.96V121.14l0.93,0.22v121.53"
         />
@@ -24875,20 +17337,12 @@
           x2="165.7366"
           y2="242.3979"
         >
-          <stop
-            offset="1.260747e-03"
-            style="stop-color: #70552c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #75502c"
-          />
+          <stop offset="1.260747e-03" style="stop-color: #70552c" />
+          <stop offset="1" style="stop-color: #75502c" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000066505126100032638340000009846052409498300056_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000077317200748054508910000018283094972833160071_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000077317200748054508910000018283094972833160071_)"
           d="
             M162.69,244.47c1.12-1.03,1.71-1.61,2.61-2.51l0.92,0.93l-2.39,2.39"
         />
@@ -24900,20 +17354,12 @@
           x2="163.8297"
           y2="244.8762"
         >
-          <stop
-            offset="0"
-            style="stop-color: #765c35"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7f6441"
-          />
+          <stop offset="0" style="stop-color: #765c35" />
+          <stop offset="1" style="stop-color: #7f6441" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000105423989015296387630000010282599795379494540_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000180340156720979990550000005891005180185860250_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000180340156720979990550000005891005180185860250_)"
           d="
             M35.66,244.47h127.03l1.14,0.81H34.5"
         />
@@ -24925,20 +17371,12 @@
           x2="35.1685"
           y2="244.9631"
         >
-          <stop
-            offset="0"
-            style="stop-color: #6e532c"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #6e542f"
-          />
+          <stop offset="0" style="stop-color: #6e532c" />
+          <stop offset="1" style="stop-color: #6e542f" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000114755131157181684920000005690074729921036681_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000129204299990076225860000014683622993066850228_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000129204299990076225860000014683622993066850228_)"
           d="
             M34.5,245.28l-2.39-2.39l0.93-0.93c0.9,0.9,1.49,1.48,2.61,2.51"
         />
@@ -24950,20 +17388,12 @@
           x2="32.5823"
           y2="121.1393"
         >
-          <stop
-            offset="0"
-            style="stop-color: #815c21"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #c9a56a"
-          />
+          <stop offset="0" style="stop-color: #815c21" />
+          <stop offset="1" style="stop-color: #c9a56a" />
         </linearGradient>
         <path
           id="FullArt_Inside_BG_00000025404930196023058330000014835754114974799524_"
-          style="
-            fill: url(#FullArt_Inside_BG_00000091733564175930923600000015243557131956205982_);
-          "
+          style="fill: url(#FullArt_Inside_BG_00000091733564175930923600000015243557131956205982_)"
           d="
             M32.12,242.89V121.36l0.93-0.22v120.82"
         />
@@ -24975,20 +17405,12 @@
           x2="166.7624"
           y2="220.4952"
         >
-          <stop
-            offset="0"
-            style="stop-color: #c7a56e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7d5e2a"
-          />
+          <stop offset="0" style="stop-color: #c7a56e" />
+          <stop offset="1" style="stop-color: #7d5e2a" />
         </linearGradient>
         <polygon
           id="Health_Frame_00000079470475486596229310000011056813820892018325_"
-          style="
-            fill: url(#Health_Frame_00000021802260854136810400000017501058384477571766_);
-          "
+          style="fill: url(#Health_Frame_00000021802260854136810400000017501058384477571766_)"
           points="
             165.29,218.6 144.52,221.53 145.37,222.39 166.76,219.96 		"
         />
@@ -25000,19 +17422,11 @@
           x2="99.1671"
           y2="121.3635"
         >
-          <stop
-            offset="0"
-            style="stop-color: #f5d095"
-          />
-          <stop
-            offset="0.9987"
-            style="stop-color: #96743b"
-          />
+          <stop offset="0" style="stop-color: #f5d095" />
+          <stop offset="0.9987" style="stop-color: #96743b" />
         </linearGradient>
         <path
-          style="
-            fill: url(#SVGID_00000171001591546552004340000004733925981989607613_);
-          "
+          style="fill: url(#SVGID_00000171001591546552004340000004733925981989607613_)"
           d="M166.22,121.36v98.09l-20.85,2.93
             l-7.19,11.1l-2.12,11.79h-18.13H34.5l-2.39-2.39V121.36l-1.5,0.62v97.26v24.27l3.27,3.27h28.67h73.23h28.67l3.27-3.27v-24.27
             v-97.26L166.22,121.36z M166.22,242.89l-2.39,2.39h-26.26l2.02-11.23l6.66-10.27l19.96-2.81V242.89z"
@@ -25025,19 +17439,11 @@
           x2="50.2802"
           y2="154.5438"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b712e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d2af77"
-          />
+          <stop offset="0" style="stop-color: #9b712e" />
+          <stop offset="1" style="stop-color: #d2af77" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000110431852485668671340000008223462670672240304_);
-          "
+          style="fill: url(#SVGID_00000110431852485668671340000008223462670672240304_)"
           points="33.31,150.57 33.31,152.58
             48.81,158.52 50.28,157.05 		"
         />
@@ -25049,19 +17455,11 @@
           x2="47.705"
           y2="160.4429"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfab70"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8f6a2f"
-          />
+          <stop offset="0" style="stop-color: #cfab70" />
+          <stop offset="1" style="stop-color: #8f6a2f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000108290994149569102970000007344761059231500991_);
-          "
+          style="fill: url(#SVGID_00000108290994149569102970000007344761059231500991_)"
           points="33.31,152.58 33.31,154.72
             47.28,160.05 48.82,158.5 		"
         />
@@ -25073,20 +17471,12 @@
           x2="46.8202"
           y2="157.4474"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cea96e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b5b27"
-          />
+          <stop offset="0" style="stop-color: #cea96e" />
+          <stop offset="1" style="stop-color: #7b5b27" />
         </linearGradient>
         <polyline
           id="Deco_00000093163261877010449090000013009687061483964861_"
-          style="
-            fill: url(#Deco_00000160156564805489058500000005750027287146810542_);
-          "
+          style="fill: url(#Deco_00000160156564805489058500000005750027287146810542_)"
           points="
             44.53,159 33.31,169.9 33.31,172.02 47.29,157.92 		"
         />
@@ -25098,20 +17488,12 @@
           x2="49.75"
           y2="156.5176"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e7431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4cf93"
-          />
+          <stop offset="0" style="stop-color: #9e7431" />
+          <stop offset="1" style="stop-color: #f4cf93" />
         </linearGradient>
         <polyline
           id="Deco_00000023276579840489676990000001450105564802185919_"
-          style="
-            fill: url(#Deco_00000057846085217036937670000008372527099601057204_);
-          "
+          style="fill: url(#Deco_00000057846085217036937670000008372527099601057204_)"
           points="
             47.29,157.92 33.31,171.9 33.31,174.02 50.28,157.05 		"
         />
@@ -25124,19 +17506,11 @@
           y2="154.5438"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9b712e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #d2af77"
-          />
+          <stop offset="0" style="stop-color: #9b712e" />
+          <stop offset="1" style="stop-color: #d2af77" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000054242524895635787350000012432707671844095119_);
-          "
+          style="fill: url(#SVGID_00000054242524895635787350000012432707671844095119_)"
           points="165.04,150.57 165.04,152.58
             149.54,158.52 148.07,157.05 		"
         />
@@ -25149,19 +17523,11 @@
           y2="160.4429"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cfab70"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #8f6a2f"
-          />
+          <stop offset="0" style="stop-color: #cfab70" />
+          <stop offset="1" style="stop-color: #8f6a2f" />
         </linearGradient>
         <polygon
-          style="
-            fill: url(#SVGID_00000049940450189023403700000000308808964781310848_);
-          "
+          style="fill: url(#SVGID_00000049940450189023403700000000308808964781310848_)"
           points="165.04,152.58 165.04,154.72
             151.07,160.05 149.52,158.5 		"
         />
@@ -25174,20 +17540,12 @@
           y2="157.4474"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #cea96e"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #7b5b27"
-          />
+          <stop offset="0" style="stop-color: #cea96e" />
+          <stop offset="1" style="stop-color: #7b5b27" />
         </linearGradient>
         <polyline
           id="Deco_00000013882440371261698300000006528337510720245420_"
-          style="
-            fill: url(#Deco_00000138547250073664145440000014984912406488420243_);
-          "
+          style="fill: url(#Deco_00000138547250073664145440000014984912406488420243_)"
           points="
             153.82,159 165.04,169.9 165.04,172.02 151.06,157.92 		"
         />
@@ -25200,20 +17558,12 @@
           y2="156.5176"
           gradientTransform="matrix(-1 0 0 1 83.5915 0)"
         >
-          <stop
-            offset="0"
-            style="stop-color: #9e7431"
-          />
-          <stop
-            offset="1"
-            style="stop-color: #f4cf93"
-          />
+          <stop offset="0" style="stop-color: #9e7431" />
+          <stop offset="1" style="stop-color: #f4cf93" />
         </linearGradient>
         <polyline
           id="Deco_00000115478231656471819120000000529684408426804632_"
-          style="
-            fill: url(#Deco_00000166668066458018629100000012921516222270234500_);
-          "
+          style="fill: url(#Deco_00000166668066458018629100000012921516222270234500_)"
           points="
             151.06,157.92 165.04,171.9 165.04,174.02 148.07,157.05 		"
         />
@@ -25226,23 +17576,12 @@
         x2="39.0296"
         y2="108.9721"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="0.5273"
-          style="stop-color: #ac905f"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="0.5273" style="stop-color: #ac905f" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000101802188710573059050000005688150522347324807_);
-        "
+        style="fill: url(#SVGID_00000101802188710573059050000005688150522347324807_)"
         d="M31.61,75.25l-2.98-0.58l-1.01,3.18
           c-0.12,6.87-0.11,24.32,2.48,38.38c3.09,16.74,7.19,27.05,7.19,27.05l1.74-1.35c-0.62-2.09-3.31-11.44-6.01-26.06
           C29.99,99.48,31.61,75.25,31.61,75.25z"
@@ -25255,19 +17594,11 @@
         x2="101.4576"
         y2="27.8373"
       >
-        <stop
-          offset="0"
-          style="stop-color: #7a5a23"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #74573c"
-        />
+        <stop offset="0" style="stop-color: #7a5a23" />
+        <stop offset="1" style="stop-color: #74573c" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000152974470462710601990000016243807890482426789_);
-        "
+        style="fill: url(#SVGID_00000152974470462710601990000016243807890482426789_)"
         d="M99.06,23.82
           c-0.31,0.02-7.91,0.74-32.05,17.77c-24,16.93-38.9,32.45-39.05,32.6l-0.27,0.28l0,0.39c0,0.05-0.04,1.14-0.07,2.98l1.01-3.18
           l2.98,0.58c0,0,14.45-13.57,36.52-29.13c22.24-15.68,30.18-16.31,31-16.43c0,0,0,0,0,0v-5.87L99.06,23.82z"
@@ -25280,23 +17611,12 @@
         x2="170.6789"
         y2="108.9721"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="0.5273"
-          style="stop-color: #ac905f"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9c7c45"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="0.5273" style="stop-color: #ac905f" />
+        <stop offset="1" style="stop-color: #9c7c45" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000062151967957113815110000011171313463804783780_);
-        "
+        style="fill: url(#SVGID_00000062151967957113815110000011171313463804783780_)"
         d="M166.65,75.25l2.98-0.58l1.01,3.18
           c0.12,6.87,0.11,24.32-2.48,38.38c-3.09,16.74-7.19,27.05-7.19,27.05l-1.74-1.35c0.62-2.09,3.31-11.44,6.01-26.06
           C168.28,99.48,166.65,75.25,166.65,75.25z"
@@ -25309,19 +17629,11 @@
         x2="160.9723"
         y2="154.4496"
       >
-        <stop
-          offset="0"
-          style="stop-color: #cdab76"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #9b712e"
-        />
+        <stop offset="0" style="stop-color: #cdab76" />
+        <stop offset="1" style="stop-color: #9b712e" />
       </linearGradient>
       <polygon
-        style="
-          fill: url(#SVGID_00000056419793867358735450000010392778992775644606_);
-        "
+        style="fill: url(#SVGID_00000056419793867358735450000010392778992775644606_)"
         points="160.97,143.28 99.13,166.97
           99.13,164.89 159.23,141.93 	"
       />
@@ -25333,19 +17645,11 @@
         x2="170.6423"
         y2="50.8271"
       >
-        <stop
-          offset="0"
-          style="stop-color: #8c672a"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #ac905f"
-        />
+        <stop offset="0" style="stop-color: #8c672a" />
+        <stop offset="1" style="stop-color: #ac905f" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000041284488450390002350000016660146432716814485_);
-        "
+        style="fill: url(#SVGID_00000041284488450390002350000016660146432716814485_)"
         d="M99.2,23.82
           c0.31,0.02,7.91,0.74,32.05,17.77c24,16.93,38.9,32.45,39.05,32.6l0.27,0.28l0,0.39c0,0.05,0.04,1.14,0.07,2.98l-1.01-3.18
           l-2.98,0.58c0,0-14.45-13.57-36.52-29.13c-22.24-15.68-30.18-16.31-31-16.43c0,0,0,0,0,0v-5.87L99.2,23.82z"
@@ -25358,19 +17662,11 @@
         x2="99.1332"
         y2="154.4496"
       >
-        <stop
-          offset="0"
-          style="stop-color: #9b712e"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #d2af77"
-        />
+        <stop offset="0" style="stop-color: #9b712e" />
+        <stop offset="1" style="stop-color: #d2af77" />
       </linearGradient>
       <polygon
-        style="
-          fill: url(#SVGID_00000118378011462822399630000010627476045888874165_);
-        "
+        style="fill: url(#SVGID_00000118378011462822399630000010627476045888874165_)"
         points="37.29,143.28 99.13,166.97
           99.13,164.89 39.03,141.93 	"
       />
@@ -25382,19 +17678,11 @@
         x2="96.9116"
         y2="172.8874"
       >
-        <stop
-          offset="0"
-          style="stop-color: #cfab70"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #8f6a2f"
-        />
+        <stop offset="0" style="stop-color: #cfab70" />
+        <stop offset="1" style="stop-color: #8f6a2f" />
       </linearGradient>
       <polygon
-        style="
-          fill: url(#SVGID_00000018935204823998215220000014686577092726140294_);
-        "
+        style="fill: url(#SVGID_00000018935204823998215220000014686577092726140294_)"
         points="99.13,166.9 37.29,143.28
           35.67,144.8 99.13,169.04 	"
       />
@@ -25406,19 +17694,11 @@
         x2="31.4556"
         y2="144.799"
       >
-        <stop
-          offset="0"
-          style="stop-color: #f6d195"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c8a877"
-        />
+        <stop offset="0" style="stop-color: #f6d195" />
+        <stop offset="1" style="stop-color: #c8a877" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000036211566505600054350000007892137616521069960_);
-        "
+        style="fill: url(#SVGID_00000036211566505600054350000007892137616521069960_)"
         d="M31.1,116.46
           c-3.12-16.87-2.48-41.8-2.48-41.8l-3-0.8l0,0.4c0,0.24,0.12,24.21,3.51,42.56c3.18,17.22,6.35,27.41,6.39,27.51l0.15,0.46
           l1.62-1.52C36.65,141.12,33.88,131.51,31.1,116.46z"
@@ -25431,19 +17711,11 @@
         x2="101.3314"
         y2="25.5472"
       >
-        <stop
-          offset="0"
-          style="stop-color: #c5a575"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #d5b176"
-        />
+        <stop offset="0" style="stop-color: #c5a575" />
+        <stop offset="1" style="stop-color: #d5b176" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000040563844660023947860000001833125571959550390_);
-        "
+        style="fill: url(#SVGID_00000040563844660023947860000001833125571959550390_)"
         d="M99.13,21.74l-0.07,0
           c-0.32,0.02-8.14,0.76-32.98,18.28C41.38,57.44,26.05,73.41,25.9,73.57l-0.28,0.29l3,0.8c0,0,15.9-14.99,38.61-31.01
           c22.88-16.14,31.06-17.78,31.9-17.91c0,0,0,0,0,0V21.74z"
@@ -25456,19 +17728,11 @@
         x2="162.6011"
         y2="156.1589"
       >
-        <stop
-          offset="0"
-          style="stop-color: #7b5b27"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #ac905f"
-        />
+        <stop offset="0" style="stop-color: #7b5b27" />
+        <stop offset="1" style="stop-color: #ac905f" />
       </linearGradient>
       <polygon
-        style="
-          fill: url(#SVGID_00000039116232966615017540000012687190724071460525_);
-        "
+        style="fill: url(#SVGID_00000039116232966615017540000012687190724071460525_)"
         points="99.13,166.9 160.98,143.28
           162.6,144.8 99.13,169.04 	"
       />
@@ -25480,19 +17744,11 @@
         x2="166.812"
         y2="144.799"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000051380911288451150440000003735602508257523842_);
-        "
+        style="fill: url(#SVGID_00000051380911288451150440000003735602508257523842_)"
         d="M167.17,116.46
           c3.12-16.87,2.48-41.8,2.48-41.8l3-0.8l0,0.4c0,0.24-0.12,24.21-3.51,42.56c-3.18,17.22-6.35,27.41-6.39,27.51l-0.15,0.46
           l-1.62-1.52C161.62,141.12,164.39,131.51,167.17,116.46z"
@@ -25505,19 +17761,11 @@
         x2="174.6409"
         y2="70.41"
       >
-        <stop
-          offset="1.302083e-03"
-          style="stop-color: #f6d196"
-        />
-        <stop
-          offset="1"
-          style="stop-color: #c5a575"
-        />
+        <stop offset="1.302083e-03" style="stop-color: #f6d196" />
+        <stop offset="1" style="stop-color: #c5a575" />
       </linearGradient>
       <path
-        style="
-          fill: url(#SVGID_00000163773807040629945760000009452325884013626533_);
-        "
+        style="fill: url(#SVGID_00000163773807040629945760000009452325884013626533_)"
         d="M99.13,21.74l0.07,0
           c0.32,0.02,8.14,0.76,32.98,18.28c24.7,17.42,40.03,33.39,40.18,33.55l0.28,0.29l-3,0.8c0,0-15.9-14.99-38.61-31.01
           c-22.88-16.14-31.06-17.78-31.9-17.91c0,0,0,0,0,0V21.74z"
@@ -25526,33 +17774,11 @@
 
     <g>
       <defs>
-        <filter
-          id="dropshadow"
-          x="-1.8em"
-          y="-1em"
-          height="4em"
-          width="4.8em"
-        >
-          <feDropShadow
-            dx="2"
-            dy="2"
-            stdDeviation="1.5"
-            flood-opacity="0.60"
-          />
+        <filter id="dropshadow" x="-1.8em" y="-1em" height="4em" width="4.8em">
+          <feDropShadow dx="2" dy="2" stdDeviation="1.5" flood-opacity="0.60" />
         </filter>
-        <filter
-          id="dropshadow_straight"
-          x="-1.8em"
-          y="-1em"
-          height="2em"
-          width="4.2em"
-        >
-          <feDropShadow
-            dx="1"
-            dy="1"
-            stdDeviation="1"
-            flood-opacity="1.0"
-          />
+        <filter id="dropshadow_straight" x="-1.8em" y="-1em" height="2em" width="4.2em">
+          <feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="1.0" />
         </filter>
       </defs>
 
@@ -25617,14 +17843,8 @@
       </text>
       <!-- Human readable text of the abilities -->
       <g v-if="textVisible">
-        <g
-          v-for="(ability, ability_index) in getAbilityText()"
-          :key="'ability#' + ability_index"
-        >
-          <text
-            v-for="(text, line_index) in textToSvg(ability)"
-            :key="'abilityText' + line_index"
-          >
+        <g v-for="(ability, ability_index) in getAbilityText()" :key="'ability#' + ability_index">
+          <text v-for="(text, line_index) in textToSvg(ability)" :key="'abilityText' + line_index">
             <tspan
               id="tspan2430"
               x="99"
@@ -25654,8 +17874,8 @@
 
 <script lang="ts">
 import * as R from "ramda";
-import {Card} from "@/model/Card";
-import {useCardsRules} from "@/def-composables/useCardRules";
+import { Card } from "@/model/Card";
+import { useCardsRules } from "@/def-composables/useCardRules";
 
 export default {
   name: "CardComponent",
@@ -25678,7 +17898,7 @@ export default {
     },
   },
   setup() {
-    const {rules} = useCardsRules();
+    const { rules } = useCardsRules();
 
     return {
       cardRules: rules,
@@ -25732,51 +17952,51 @@ export default {
   watch: {
     model: {
       handler() {
-        this.rulesText = this.generateRulesText()
-        this.update()
+        this.rulesText = this.generateRulesText();
+        this.update();
       },
       deep: true,
     },
   },
   created() {
-    this.rulesText = this.generateRulesText()
-    this.update()
-    this.textVisible = false
+    this.rulesText = this.generateRulesText();
+    this.update();
+    this.textVisible = false;
   },
   mounted() {
     this.textVisible = true;
   },
   methods: {
     update() {
-      this.FullArt = this.model.fullArt
+      this.FullArt = this.model.fullArt;
 
-      let FullArtfilter = (x) => (this.FullArt ? x : R.map(() => false, x));
-      let EntityFullArtfilter = (x) =>
+      const FullArtfilter = (x) => (this.FullArt ? x : R.map(() => false, x));
+      const EntityFullArtfilter = (x) =>
         this.FullArt || cardType.Entity ? x : R.map(() => false, x);
-      let Framedfilter = (x) => (!this.FullArt ? x : R.map(() => false, x));
-      let NonActionFilter = (x) => (!cardType.Action ? x : false);
+      const Framedfilter = (x) => (!this.FullArt ? x : R.map(() => false, x));
+      const NonActionFilter = (x) => (!cardType.Action ? x : false);
 
-      let trueAt = (x, key) => {
+      const trueAt = (x, key) => {
         x[key] = true;
         return x;
       };
 
-      let tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type;
+      const tempType = this.model.type === "Headquarter" ? "HQ" : this.model.type;
 
-      let cardClass = {
+      const cardClass = {
         Tech: this.model.Class.Technology,
         Myth: this.model.Class.Mysticism,
         Culture: this.model.Class.Culture,
         Nature: this.model.Class.Nature,
       };
-      let Colors = {
+      const Colors = {
         Tech: false,
         Myth: false,
         Culture: false,
         Nature: false,
       };
 
-      let cardType = {
+      const cardType = {
         HQ: false,
         Action: false,
         Entity: false,
@@ -25784,8 +18004,8 @@ export default {
       };
       cardType[tempType] = true;
 
-      let frameType = R.mergeAll(cardClass, {HQ: false, MultiClass: false});
-      let colorType = R.mergeAll(cardClass, {MultiClass: false});
+      let frameType = R.mergeAll(cardClass, { HQ: false, MultiClass: false });
+      let colorType = R.mergeAll(cardClass, { MultiClass: false });
 
       if (R.countBy((x) => x === true)(R.values(this.model.Class)).true > 1) {
         frameType = {
@@ -25817,36 +18037,36 @@ export default {
 
       // here begins the part where the components are activated
       this.Class = cardClass;
-      this.Classes = R.countBy((x) => x === true)(
-        R.values(this.model.Class),
-      ).true;
+      this.Classes = R.countBy((x) => x === true)(R.values(this.model.Class)).true;
       this.Type = cardType;
-      let classTrueKeys = R.invert(cardClass).true;
+      const classTrueKeys = R.invert(cardClass).true;
       this.SecondaryColor = R.last(classTrueKeys ? classTrueKeys : []);
       this.PrimaryColor = R.head(classTrueKeys ? classTrueKeys : []);
 
-      this.OBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : frameType
-      this.GoldSquare = true
-      this.Border = frameType
-      this.IBG = (this.Classes === 2 && !cardType.HQ) ? cardClass : false
-      this.BGGoldLines = true
-      this.BGShadow = cardType
-      this.ClassShadow = true
-      this.ManaBall = frameType
-      this.FullArtIllustrationMask = FullArtfilter(cardType)
-      this.ShadowFullArt = FullArtfilter(cardType)
-      this.FramedIllustrationMask = Framedfilter(cardType)
-      this.FullArtGradients = FullArtfilter(this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType)
-      this.FramedTextBox = Framedfilter(colorType)
-      this.HQFramedTextBox = cardType.HQ && !this.FullArt
-      this.ShadowTextBox = cardType
-      this.Tagsbar = this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType
-      this.ShadowFramed = Framedfilter(cardType)
-      this.FullArtFrames = EntityFullArtfilter(cardType)
-      this.FramedAddition = Framedfilter(cardType)
-      this.framed = colorType
-      this.attackFrame = cardType.Entity
-      this.healthFrame = NonActionFilter(frameType)
+      this.OBG = this.Classes === 2 && !cardType.HQ ? cardClass : frameType;
+      this.GoldSquare = true;
+      this.Border = frameType;
+      this.IBG = this.Classes === 2 && !cardType.HQ ? cardClass : false;
+      this.BGGoldLines = true;
+      this.BGShadow = cardType;
+      this.ClassShadow = true;
+      this.ManaBall = frameType;
+      this.FullArtIllustrationMask = FullArtfilter(cardType);
+      this.ShadowFullArt = FullArtfilter(cardType);
+      this.FramedIllustrationMask = Framedfilter(cardType);
+      this.FullArtGradients = FullArtfilter(
+        this.Classes === 2 ? trueAt(Colors, this.PrimaryColor) : colorType
+      );
+      this.FramedTextBox = Framedfilter(colorType);
+      this.HQFramedTextBox = cardType.HQ && !this.FullArt;
+      this.ShadowTextBox = cardType;
+      this.Tagsbar = this.Classes <= 2 ? trueAt(Colors, this.PrimaryColor) : frameType;
+      this.ShadowFramed = Framedfilter(cardType);
+      this.FullArtFrames = EntityFullArtfilter(cardType);
+      this.FramedAddition = Framedfilter(cardType);
+      this.framed = colorType;
+      this.attackFrame = cardType.Entity;
+      this.healthFrame = NonActionFilter(frameType);
     },
     cardmouseleave() {
       if (this.hoverBehavior === "none") return;
@@ -25877,15 +18097,15 @@ export default {
       if (R.toLower(this.model.type) === "no type" || !this.model.type) {
         return "";
       } else {
-        let type = this.model.type === "Headquarter" ? "HQ" : this.model.type;
+        const type = this.model.type === "Headquarter" ? "HQ" : this.model.type;
         if (type) {
           return type.toUpperCase();
         } else {
           console.error(
             "Invalid card type. Must be one of the following: " +
-            R.values(R.pluck("name", this.$cardRules.children)) +
-            ". Instead is: " +
-            type,
+              R.values(R.pluck("name", this.$cardRules.children)) +
+              ". Instead is: " +
+              type
           );
         }
       }
@@ -25895,9 +18115,7 @@ export default {
         return "-";
       }
       if (this.model.type === "Headquarter") {
-        return this.model.Delay || this.model.Delay === 0
-          ? this.model.Delay
-          : "?";
+        return this.model.Delay || this.model.Delay === 0 ? this.model.Delay : "?";
       }
       if (R.isNil(this.model.CastingCost) || this.model.CastingCost < 0) {
         return "-";
@@ -25906,11 +18124,7 @@ export default {
       return this.model.CastingCost;
     },
     getManaCostColor() {
-      return this.model.isNerfed
-        ? "red"
-        : this.model.isBuffed
-          ? "mediumseagreen"
-          : "#FFF5E1";
+      return this.model.isNerfed ? "red" : this.model.isBuffed ? "mediumseagreen" : "#FFF5E1";
     },
     tagLength() {
       if (this.model.Tags) {
@@ -25923,37 +18137,35 @@ export default {
       return this.model.Tags.join(" - ").toUpperCase() || "";
     },
     generateRulesText() {
-      let deeper = (element) => {
+      const deeper = (element) => {
         if (typeof element === "object") return element[R.keys(element)[0]];
         else return false;
       };
-      let decapital = (x) => {
+      const decapital = (x) => {
         return R.join("", R.over(R.lensIndex(0), R.toLower, x));
       };
-      let effectsToText = (Effects) => {
-        if (!Effects)
-          return []
+      const effectsToText = (Effects) => {
+        if (!Effects) return [];
 
-        let effectText = [];
+        const effectText = [];
         Effects.forEach((effect) => {
-          let effectKeyword = R.keys(effect)[0];
-          let interaction = getInteractionText(effectKeyword);
+          const effectKeyword = R.keys(effect)[0];
+          const interaction = getInteractionText(effectKeyword);
 
-          let interactionBlock = [];
+          const interactionBlock = [];
           interaction.forEach((element) => {
             if (R.includes("§", element)) {
-              let pure = R.join("", R.without(["§", "."], element));
+              const pure = R.join("", R.without(["§", "."], element));
 
-              let interactionNode = effect[effectKeyword][pure];
+              const interactionNode = effect[effectKeyword][pure];
 
               if (getRule(pure)) {
                 if (getRule(pure).type == "interface") {
-                  let picked = R.keys(interactionNode)[0];
+                  const picked = R.keys(interactionNode)[0];
                   interactionBlock.push(getRule(picked).interactionText);
-                } else
-                  console.log("pure interaction?", getInteractionText(pure));
+                } else console.log("pure interaction?", getInteractionText(pure));
               } else {
-                let nextNode = deeper(interactionNode);
+                const nextNode = deeper(interactionNode);
 
                 if (nextNode) {
                   interactionBlock.push(nextNode);
@@ -25968,69 +18180,60 @@ export default {
         return effectText;
       };
 
-      let rules = this.cardRules.definitions;
-      let getRule = (key) => this.cardRules.definitions[decapital(key)];
-      let getInteractionText = (key) =>
-        R.split(" ", rules[decapital(key)].interactionText);
+      const rules = this.cardRules.definitions;
+      const getRule = (key) => this.cardRules.definitions[decapital(key)];
+      const getInteractionText = (key) => R.split(" ", rules[decapital(key)].interactionText);
 
-      let rulesText = []
+      let rulesText = [];
       if (this.model.AdditionalCost && !R.isEmpty(this.model.AdditionalCost)) {
-        let costType = R.keys(this.model.AdditionalCost)
-        let amount = this.model.AdditionalCost[costType].Amount
+        const costType = R.keys(this.model.AdditionalCost);
+        const amount = this.model.AdditionalCost[costType].Amount;
         if (amount > 0) {
-          let costText = "Extra Cost - "
-          costText += R.replace("§Amount", amount, rules.AdditionalCost.children[costType].interactionText)
+          let costText = "Extra Cost - ";
+          costText += R.replace(
+            "§Amount",
+            amount,
+            rules.AdditionalCost.children[costType].interactionText
+          );
           if (costType === "SacrificeCost")
-            costText = R.replace(
-              "card",
-              amount > 1 ? "Entities." : "Entity.",
-              costText,
-            );
+            costText = R.replace("card", amount > 1 ? "Entities." : "Entity.", costText);
           else costText += amount > 1 ? "s." : ".";
 
           rulesText = R.append(costText, rulesText);
         }
       }
       if (this.model.Abilities && !R.isEmpty(this.model.Abilities)) {
-        this.model.Abilities.forEach(ability => {
-          let keyword = R.keys(ability)[0]
-          let abilityText = getInteractionText(keyword)
+        this.model.Abilities.forEach((ability) => {
+          const keyword = R.keys(ability)[0];
+          const abilityText = getInteractionText(keyword);
 
           abilityText.forEach((block, index) => {
             // Effects can be nested a bit, so this needs more handling
             if (R.includes("§Effects", block)) {
-              let effectText = effectsToText(ability[keyword].Effects);
+              const effectText = effectsToText(ability[keyword].Effects);
               abilityText[index] = R.replace(
                 "§Effects",
                 R.join(". ", effectText),
-                abilityText[index],
+                abilityText[index]
               );
             }
             // Not effects, but something else that needs to be replaced with variable.
             else if (R.includes("§", block)) {
-              let pure = R.join("", R.without(["§", ".", ":"], block));
-              let node = ability[keyword][pure];
+              const pure = R.join("", R.without(["§", ".", ":"], block));
+              const node = ability[keyword][pure];
               if (deeper(node)) {
-                abilityText[index] = R.replace(
-                  "§" + pure,
-                  deeper(node),
-                  abilityText[index],
-                );
+                abilityText[index] = R.replace("§" + pure, deeper(node), abilityText[index]);
               } else {
-                abilityText[index] = R.replace(
-                  "§" + pure,
-                  node,
-                  abilityText[index],
-                );
+                abilityText[index] = R.replace("§" + pure, node, abilityText[index]);
               }
             }
           });
           rulesText = R.append(R.join(" ", abilityText), rulesText);
         });
       } else if (this.model.Effects && !R.isEmpty(this.model.Effects)) {
-        let effecttext = effectsToText(this.model.Effects);
+        const effecttext = effectsToText(this.model.Effects);
         rulesText = R.append(R.join(". ", effecttext), rulesText);
-      } 
+      }
       return rulesText;
     },
     abilitiesLength() {
@@ -26053,7 +18256,7 @@ export default {
       const lineSpacing = 8;
       const abilitySpacing = 2;
 
-      let abilityText = this.getAbilityText();
+      const abilityText = this.getAbilityText();
 
       let summedLength = 0;
       for (let i = 0; i < abilityIndex; i++) {
@@ -26068,8 +18271,8 @@ export default {
       );
     },
     getAbilityText() {
-      let additionalCostText = [];
-      return this.rulesText ? R.concat(additionalCostText, this.rulesText) : []
+      const additionalCostText = [];
+      return this.rulesText ? R.concat(additionalCostText, this.rulesText) : [];
     },
     textToSvg(text) {
       if (!text) return text;
@@ -26078,8 +18281,8 @@ export default {
       if (text.length < 100) maxLength = 32;
       else if (text.length < 200) maxLength = 39;
 
-      let lines = [""];
-      let words = text.split(" ");
+      const lines = [""];
+      const words = text.split(" ");
 
       words.forEach(function (word) {
         if (R.last(lines).length + word.length > maxLength) {
@@ -26091,17 +18294,14 @@ export default {
             lines.push(" ");
           } else {
             // concat to existing line
-            lines[lines.length - 1] = R.concat(
-              lines[lines.length - 1],
-              word + " ",
-            );
+            lines[lines.length - 1] = R.concat(lines[lines.length - 1], word + " ");
           }
         }
       });
       return lines;
     },
     getTitleStrokeColor() {
-      let colors = {
+      const colors = {
         Culture: "#760000",
         Nature: "#294400",
         Myth: "#48005F",
@@ -26118,19 +18318,19 @@ export default {
       }
     },
     fontSize(rawText) {
-      let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText);
+      const text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText);
       if (text.length < 100) return 7.5;
       else if (text.length < 200) return 6.5;
       else return 5.5;
     },
     fontSpacing(rawText) {
-      let text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText);
+      const text = R.type(rawText) === "String" ? rawText : R.join(" ", rawText);
       if (text.length < 100) return 12;
       else if (text.length < 200) return 10;
       else return 8;
     },
     saveSingleCard() {
-      let clickedCard = document.getElementById("theCardSvg");
+      const clickedCard = document.getElementById("theCardSvg");
       console.error("SAVE CARD AS PNG SHOULD BE DEACTIVATED");
       //svg1.saveSvgAsPng(clickedCard, this.model.CardName + '.png', {scale: 5})
     },

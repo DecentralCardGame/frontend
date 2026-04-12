@@ -1,9 +1,5 @@
 <template>
-  <BaseCCButton
-    :size-class="['w-48', 'h-12']"
-    :type="type"
-    @click="emit('click')"
-  >
+  <BaseCCButton :size-class="['w-48', 'h-12']" :type="type" @click="emit('click')">
     <slot />
   </BaseCCButton>
 </template>
@@ -19,6 +15,6 @@ const props = withDefaults(
   }>(),
   {
     type: Color.YELLOW,
-  },
+  }
 );
 </script>

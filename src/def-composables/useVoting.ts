@@ -1,21 +1,23 @@
 import { useTx } from "@/def-composables/useTx";
-import { ref, watch, type Ref, computed } from "vue";
+import { ref, watch, type Ref, computed, type ComputedRef } from "vue";
 import * as R from "ramda";
-import type { SingleVote } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain";
-import type { VoteType } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/voting";
+import type {
+  VoteType,
+  SingleVote,
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/voting";
 import { useUser } from "./useUser";
 
 const KEY = "votingList";
 const { multiVoteCard } = useTx();
-const { user, queryUser } = useUser();
+const { user, getUser } = useUser();
 
-let stored = window.localStorage.getItem(KEY);
-const votes: Ref<SingleVote[]> = ref(
-  stored ? Object.assign([], JSON.parse(stored)) : []
+const stored = window.localStorage.getItem(KEY);
+const votes: Ref<SingleVote[]> = ref(stored ? Object.assign([], JSON.parse(stored)) : []);
+const votableCards: ComputedRef<number[]> = computed(() =>
+  user.value.votableCards.map((v) => Number(v))
 );
-const votableCards = computed(() => user.value.votableCards.map(v => Number(v)));
 const cardsLeft = computed(() => {
-  let taken = votes.value.map((v) => v.cardId);
+  const taken = votes.value.map((v) => v.cardId);
   return votableCards.value.filter((v) => !taken.includes(v));
 });
 const current = computed(() => cardsLeft.value.at(0));
@@ -34,7 +36,7 @@ const send = (then: (res: any) => void, err: (res: any) => void) => {
   multiVoteCard(
     votes.value,
     (res: any) => {
-      queryUser().then(() => {
+      getUser().then(() => {
         votes.value = [];
       });
       then(res);

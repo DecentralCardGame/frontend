@@ -1,32 +1,19 @@
 <template>
   <div class="flex flex-col">
-    <div
-      id="AbilityComponentInside"
-      class="flex flex-row"
-    > 
-      <div
-        v-if="ability"
-        class="flex flex-row"
-      >
+    <div id="AbilityComponentInside" class="flex flex-row">
+      <div v-if="ability" class="flex flex-row">
         <div
           v-for="(entry, index) in ability.interaction"
           id="interaction"
           :key="index"
           class="text-[16px] flex flex-row justify-start items-center"
         >
-          <div
-            
-            id="pre"
-            class="whitespace-nowrap font-normal"
-          >
+          <div id="pre" class="whitespace-nowrap font-normal">
             {{ entry.pre }}
           </div>
 
           <!-- pick one entry of an enum via dropdown -->
-          <div
-            v-if="entry.btn.type === 'enum'"
-            id="enum dropdown"
-          >
+          <div v-if="entry.btn.type === 'enum'" id="enum dropdown">
             <Dropdown
               v-model="entry.btn.label"
               :options="enumOptions(entry)"
@@ -35,10 +22,7 @@
           </div>
 
           <!-- pick an int from a dropdown case -->
-          <div
-            v-else-if="entry.btn.type === 'int'"
-            id="int"
-          >
+          <div v-else-if="entry.btn.type === 'int'" id="int">
             <Dropdown
               v-model="entry.btn.label"
               :options="intRange(entry)"
@@ -47,10 +31,7 @@
           </div>
 
           <!-- pick an int or a variable (X) from dropdown case -->
-          <div
-            v-else-if="entry.btn.type === 'intX'"
-            id="intX"
-          >
+          <div v-else-if="entry.btn.type === 'intX'" id="intX">
             <Dropdown
               v-model="entry.btn.label"
               :options="intXRange(entry)"
@@ -86,10 +67,7 @@
         X
       </div>
     </div>
-    <div
-      v-if="isAbilityModalVisible"
-      class=""
-    >
+    <div v-if="isAbilityModalVisible" class="">
       <AbilityModal
         :dialog-prop="dialog"
         :ability-prop="ability"
@@ -105,12 +83,7 @@
 import * as R from "ramda";
 import AbilityModal from "@/components//modals/AbilityModal.vue";
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
-import {
-  createInteraction,
-  updateInteraction,
-  shallowClone,
-  atPath,
-} from "../utils/utils.js";
+import { createInteraction, updateInteraction, shallowClone, atPath } from "../utils/utils.js";
 import { useCardsRules } from "@/def-composables/useCardRules";
 
 const unrequiredLabel = "[ANY]";
@@ -166,24 +139,20 @@ export default {
       return R.concat(
         R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable.enum,
         R.range(
-        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
-          .min || 0,
-        R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue
-          .max + 1
+          R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue.min || 0,
+          R.path(entry.btn.rulesPath, this.cardRules.Card).children.SimpleIntValue.max + 1
         )
-      )
-      
+      );
     },
     enumRange(entry) {
-      return R.path(entry.btn.rulesPath, this.cardRules.Card).children
-        .IntVariable.enum;
+      return R.path(entry.btn.rulesPath, this.cardRules.Card).children.IntVariable.enum;
     },
     showAbilityModal(ability, btn) {
-      let atRules = R.curry(atPath)(this.cardRules.Card);
-      let atAbility = R.curry(atPath)(ability);
-      
+      const atRules = R.curry(atPath)(this.cardRules.Card);
+      const atAbility = R.curry(atPath)(ability);
+
       this.ability.clickedBtn = btn;
-      let node = atRules(btn.rulesPath);
+      const node = atRules(btn.rulesPath);
       let thereWillBeModal = true;
 
       // depending on type, create dialog
@@ -192,21 +161,16 @@ export default {
           case "array": {
             // In this case there is no modal to be displayed just update the interaction, this interaction is only for adding more items
             thereWillBeModal = false;
-            let copyButton = R.clone(this.ability.clickedBtn.template);
+            const copyButton = R.clone(this.ability.clickedBtn.template);
             copyButton.pre = " ";
 
             // adjust the effect array id in the abilityPath
-            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] =
-              R.path(
-                R.dropLast(1, copyButton.btn.abilityPath),
-                this.ability
-              ).length;
+            copyButton.btn.abilityPath[copyButton.btn.abilityPath.length - 1] = R.path(
+              R.dropLast(1, copyButton.btn.abilityPath),
+              this.ability
+            ).length;
 
-            this.ability.interaction = R.insert(
-              btn.id,
-              copyButton,
-              this.ability.interaction
-            );
+            this.ability.interaction = R.insert(btn.id, copyButton, this.ability.interaction);
 
             // update all btn ids
             this.ability.interaction.forEach((item, idx) => {
@@ -225,14 +189,9 @@ export default {
             ) {
               thereWillBeModal = false;
 
-              console.log(
-                "attaching:",
-                btn.label,
-                "to",
-                this.ability.clickedBtn.abilityPath
-              );
+              console.log("attaching:", btn.label, "to", this.ability.clickedBtn.abilityPath);
 
-              let intX = {};
+              const intX = {};
 
               // variable case
               if (isNaN(btn.label)) {
@@ -250,9 +209,9 @@ export default {
             // default case
             else {
               // check singleUse case  // TODO check if this is still relevant
-              let prevElements = atAbility(R.dropLast(1, btn.abilityPath));
+              const prevElements = atAbility(R.dropLast(1, btn.abilityPath));
               if (prevElements) {
-                let singleUseHappened = R.pluck("singleUse", prevElements);
+                const singleUseHappened = R.pluck("singleUse", prevElements);
                 if (!singleUseHappened.isEmpty) {
                   options = R.dissoc(singleUseHappened, options);
                 }
@@ -274,23 +233,16 @@ export default {
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false;
 
-            let interactionText = atRules(btn.rulesPath).interactionText;
-            let newInteraction = createInteraction(
+            const interactionText = atRules(btn.rulesPath).interactionText;
+            const newInteraction = createInteraction(
               interactionText,
               btn.abilityPath,
               R.append("children", btn.rulesPath),
               this.$cardRules
             );
 
-            updateInteraction(
-              this.ability,
-              this.ability.clickedBtn.id,
-              newInteraction
-            );
-            this.attachToAbility(
-              btn.abilityPath,
-              shallowClone(atRules(btn.rulesPath).children)
-            );
+            updateInteraction(this.ability, this.ability.clickedBtn.id, newInteraction);
+            this.attachToAbility(btn.abilityPath, shallowClone(atRules(btn.rulesPath).children));
             break;
           }
           // this is a terminal case, specify an integer
@@ -298,10 +250,7 @@ export default {
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false;
 
-            this.attachToAbility(
-              this.ability.clickedBtn.abilityPath,
-              btn.label
-            );
+            this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label);
             break;
           // this is a terminal case, pick one string from enum
           case "enum": {
@@ -310,15 +259,8 @@ export default {
 
             if (btn.label === unrequiredLabel) {
               btn.label = "";
-              this.attachToAbility(
-                R.dropLast(1, this.ability.clickedBtn.abilityPath),
-                {}
-              );
-            } else
-              this.attachToAbility(
-                this.ability.clickedBtn.abilityPath,
-                btn.label
-              );
+              this.attachToAbility(R.dropLast(1, this.ability.clickedBtn.abilityPath), {});
+            } else this.attachToAbility(this.ability.clickedBtn.abilityPath, btn.label);
 
             break;
           }
@@ -347,10 +289,9 @@ export default {
             // In this case there is no modal to be displayed just update the interaction
             thereWillBeModal = false;
 
-            let negated = R.takeLast(1, this.ability.clickedBtn.label) !== "!";
+            const negated = R.takeLast(1, this.ability.clickedBtn.label) !== "!";
             this.ability.clickedBtn.label =
-              R.dropLast(1, this.ability.clickedBtn.label) +
-              (negated ? "!" : "-");
+              R.dropLast(1, this.ability.clickedBtn.label) + (negated ? "!" : "-");
 
             this.attachToAbility(this.ability.clickedBtn.abilityPath, negated);
             break;
@@ -371,7 +312,7 @@ export default {
       this.isAbilityModalVisible = thereWillBeModal;
     },
     attachToAbility(path, object) {
-      let ability = R.assocPath(path, object, this.ability);
+      const ability = R.assocPath(path, object, this.ability);
 
       this.ability = ability;
       this.$emit("update:ability", ability);
@@ -388,18 +329,12 @@ export default {
       this.isAbilityModalVisible = false;
     },
     enumOptions(entry) {
-      let required = R.path(
-        R.dropLast(2, entry.btn.rulesPath),
-        this.cardRules.Card
-      ).required;
-      let name = R.last(entry.btn.rulesPath);
+      const required = R.path(R.dropLast(2, entry.btn.rulesPath), this.cardRules.Card).required;
+      const name = R.last(entry.btn.rulesPath);
       if (required && R.includes(name, required)) {
         return R.path(entry.btn.rulesPath, this.cardRules.Card).enum;
       } else {
-        return R.prepend(
-          unrequiredLabel,
-          R.path(entry.btn.rulesPath, this.cardRules.Card).enum
-        );
+        return R.prepend(unrequiredLabel, R.path(entry.btn.rulesPath, this.cardRules.Card).enum);
       }
     },
   },

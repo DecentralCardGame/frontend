@@ -10,7 +10,7 @@
         :src="galleryFilters[option.name] ? option.active : option.inactive"
         class="w-12"
         :alt="option.name + ' classbutton'"
-      >
+      />
       {{ option.label }}
     </button>
   </div>

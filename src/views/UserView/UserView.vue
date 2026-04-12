@@ -1,50 +1,36 @@
 <template>
-  <div
-    class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16"
-  >
+  <div class="md:flex bg-black text-white md:space-x-24 justify-center md:px-16 py-16">
     <div class="text-center">
       <h1 class="md:hidden text-5xl font-bold pb-12">
         {{ heading }}
       </h1>
       <div class="py-24">
         <div class="mx-auto h-64 w-64 relative group">
-          <ProfilePicComponent
-            :src="state.img"
-            size="64"
-            alt="Profile pic"
-          />
+          <ProfilePicComponent :src="state.img" size="64" alt="Profile pic" />
           <button
             v-if="state.userIsUser"
             class="absolute top-0 left-0 right-0 bottom-0 m-auto w-10 invisible group-hover:visible"
             @click="showChooseModal"
           >
-            <img
-              :src="editImg"
-              alt="edit"
-              class="hover:drop-shadow-md"
-            >
+            <img :src="editImg" alt="edit" class="hover:drop-shadow-md" />
           </button>
         </div>
       </div>
       <UserViewHeadingContainer>
-        <template #heading>
-          Council status
-        </template>
+        <template #heading> Council status </template>
         <template #body>
-          <p>{{ user.CouncilStatus }}</p>
+          <p>{{ user.councilStatus }}</p>
           <BaseCCButton
             v-if="state.userIsUser"
             :type="Color.YELLOW"
             @click="
-              CouncilStatus[state.user.CouncilStatus] ==
-                CouncilStatus.unavailable
+              CouncilStatus[state.user.councilStatus] == CouncilStatus.unavailable.toString()
                 ? register()
                 : deRegister()
             "
           >
             {{
-              CouncilStatus[state.user.CouncilStatus] ==
-                CouncilStatus.unavailable
+              CouncilStatus[state.user.councilStatus] == CouncilStatus.unavailable.toString()
                 ? "Register for"
                 : "Deregister from"
             }}
@@ -69,14 +55,12 @@
       </h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <UserViewHeadingContainer>
-          <template #heading>
-            Wallet
-          </template>
+          <template #heading> Wallet </template>
           <template #body>
-            <b>Address</b> <br>{{ state.addr }}<br>
-            <br>
-            <b>Alias</b> <br>{{ state.user.alias }}<br>
-            <br>
+            <b>Address</b> <br />{{ state.addr }}<br />
+            <br />
+            <b>Alias</b> <br />{{ state.user.alias }}<br />
+            <br />
             <RouterCCButton
               v-if="state.user.earlyAccess?.active"
               :type="Color.YELLOW"
@@ -86,37 +70,33 @@
             >
               Early Access
             </RouterCCButton>
-            <b v-else>
-              No Early Access
-            </b>
+            <b v-else> No Early Access </b>
             <template v-if="state.user.earlyAccess?.active">
               <p v-if="state.user.earlyAccess?.invitedByUser">
                 Inviter:
-                <CompactAddressComponent
-                  :addr="state.user.earlyAccess?.invitedByUser"
-                />
+                <CompactAddressComponent :addr="state.user.earlyAccess?.invitedByUser" />
               </p>
               <p v-else-if="state.user.earlyAccess?.invitedUser">
                 Invited:
-                <CompactAddressComponent
-                  :addr="state.user.earlyAccess?.invitedUser"
-                />
+                <CompactAddressComponent :addr="state.user.earlyAccess?.invitedUser" />
               </p>
             </template>
           </template>
         </UserViewHeadingContainer>
         <UserViewHeadingContainer>
-          <template #heading>
-            My Cards
-          </template>
+          <template #heading> My Cards </template>
           <template #body>
-            <b>{{ state.user.ownedCardSchemes.length }} Card Frame{{
-              state.user.ownedCardSchemes.length == 1 ? "" : "s"
-            }}</b>
+            <b
+              >{{ state.user.ownedCardSchemes.length }} Card Frame{{
+                state.user.ownedCardSchemes.length == 1 ? "" : "s"
+              }}</b
+            >
             <div class="pb-6">
               <p class="pb-3">
-                <b>{{ state.user.ownedPrototypes.length }} {{ "Master Card"
-                }}{{ state.user.ownedPrototypes.length == 1 ? "" : "s" }}</b>
+                <b
+                  >{{ state.user.ownedPrototypes.length }} {{ "Master Card"
+                  }}{{ state.user.ownedPrototypes.length == 1 ? "" : "s" }}</b
+                >
               </p>
               <RouterCCButton
                 :type="Color.YELLOW"
@@ -130,8 +110,10 @@
             </div>
             <div class="pb-6">
               <p class="pb-3">
-                <b>{{ state.user.cards.length }} {{ "Card"
-                }}{{ state.user.cards.length == 1 ? "" : "s" }}</b>
+                <b
+                  >{{ state.user.cards.length }} {{ "Card"
+                  }}{{ state.user.cards.length == 1 ? "" : "s" }}</b
+                >
               </p>
               <RouterCCButton
                 :type="Color.YELLOW"
@@ -147,16 +129,11 @@
         </UserViewHeadingContainer>
 
         <UserViewHeadingContainer>
-          <template #heading>
-            Encounters
-          </template>
+          <template #heading> Encounters </template>
           <template #body>
             <div class="py-6">
-              <div class="py-1"
-                v-for="(encounter, key) in state.ownEncounters"
-                :key="key">
-                  <RouterCCButton
-
+              <div v-for="(encounter, key) in state.ownEncounters" :key="key" class="py-1">
+                <RouterCCButton
                   :type="Color.YELLOW"
                   :to="{
                     name: 'EncounterCreator',
@@ -182,37 +159,24 @@
         </UserViewHeadingContainer>
 
         <UserViewHeadingContainer>
-          <template #heading>
-            Recent Activity
-          </template>
+          <template #heading> Recent Activity </template>
           <template #body>
-            <RouterCCButton
-              :type="Color.YELLOW"
-              :to="{ name: 'Vote' }"
-            >
+            <RouterCCButton :type="Color.YELLOW" :to="{ name: 'EncounterVoting' }">
               Go to Voting
             </RouterCCButton>
           </template>
         </UserViewHeadingContainer>
       </div>
       <UserViewHeadingContainer class="pt-8">
-        <template #heading>
-          Play History
-        </template>
+        <template #heading> Play History </template>
         <template #body>
           <div class="grid gap-8 md:grid-cols-4">
-            <UserViewHeadingContainer
-              v-for="(match, key) in state.matches"
-              :key="key"
-            >
-              <template #heading>
-                Match {{ key }}
-              </template>
+            <UserViewHeadingContainer v-for="(match, key) in state.matches" :key="key">
+              <template #heading> Match {{ key }} </template>
               <template #body>
                 {{
-                  (match.playerA.addr == state.addr &&
-                    match.outcome == "AWon") ||
-                    (match.playerB.addr == state.addr && match.outcome == "BWon")
+                  (match.playerA?.addr == state.addr && match.outcome.toString() == "AWon") ||
+                  (match.playerB?.addr == state.addr && match.outcome.toString() == "BWon")
                     ? "WIN"
                     : "LOSE"
                 }}
@@ -244,8 +208,8 @@ import { normalizeCoins } from "@/utils/utils";
 import { computed, type ComputedRef, onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUser } from "@/def-composables/useUser";
-import { User } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
-import { Match } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/match";
+import { User } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
+import { Match } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/match";
 import UserViewHeadingContainer from "@/views/UserView/UserViewHeadingContainer.vue";
 import RouterCCButton from "@/components/elements/CCButton/RouterCCButton.vue";
 import BaseCCButton from "@/components/elements/CCButton/BaseCCButton.vue";
@@ -253,16 +217,21 @@ import ProfilePicComponent from "@/components/elements/ProfilePicComponent.vue";
 import editImg from "@/assets/figma/edit.png";
 import ChoosePBModal from "@/components/modals/ChoosePBModal.vue";
 import { Color } from "@/components/utils/color";
-import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/DecentralCardGame.cardchain.cardchain/types/cardchain/cardchain/user";
+import { CouncilStatus } from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/user";
 import CompactAddressComponent from "@/components/elements/CompactAddressComponent.vue";
+import type {
+  QueryEncountersResponse,
+  QueryMatchesResponse,
+} from "decentralcardgame-cardchain-client-ts/lib/types/cardchain/cardchain/query";
+import type { Encounter } from "decentralcardgame-cardchain-client-ts/lib/cardchain.cardchain";
 
-const { queryQUser, queryAllBalances, queryQMatches } = useQuery();
-const { queryQEncounters, queryQEncountersWithImage } = useQuery();
+const { queryUser, queryAllBalances, queryMatches } = useQuery();
+const { queryEncounters, queryEncountersWithImage } = useQuery();
 const { registerForCouncil, rewokeCouncilRegistration } = useTx();
 const { address } = useAddress();
 const { loggedIn } = useLoggedIn();
 const { getImg } = useProfilePic();
-const { user, coins, queryCoins, queryUser } = useUser();
+const { user, coins, queryCoins, getUser } = useUser();
 const { loggedInProfilePic } = useProfilePic();
 const route = useRoute();
 const router = useRouter();
@@ -275,7 +244,7 @@ const initialState: {
   userIsUser: ComputedRef<boolean>;
   img: string;
   matches: { [key: string]: Match };
-  ownEncounters: Array<{ id: number, name: string }>;
+  ownEncounters: Array<{ id: number; name: string }>;
 } = {
   isChooseModalVisible: false,
   addr: "",
@@ -316,7 +285,7 @@ const init = () => {
     router.push({ name: "NotFound" });
   }
 
-  getUser();
+  getShownUser();
   getCoins();
   getMatches();
   getEncounters();
@@ -327,11 +296,11 @@ watch(() => route.params.id, init);
 
 onMounted(init);
 
-const getUser = () => {
+const getShownUser = () => {
   if (state.userIsUser) {
-    queryUser();
+    getUser();
   } else {
-    queryQUser(state.addr).then((user) => {
+    queryUser(state.addr).then((user) => {
       state.user = user;
       getImg(state.user, state.addr).then((img) => {
         state.img = img;
@@ -351,32 +320,31 @@ const getCoins = () => {
 };
 
 const getMatches = () => {
-  queryQMatches({ containsUsers: state.addr, "ignore.outcome": true }).then(
-    (res) => {
-      state.matches = {};
-      res.matches.forEach((value: Match, idx: number) => {
-        state.matches[res.matchesList[idx]] = value;
-      });
-    },
-  );
+  queryMatches({ containsUsers: state.addr }).then((res: QueryMatchesResponse) => {
+    state.matches = {};
+    res.matches.forEach((value: Match, idx: number) => {
+      state.matches[res.matchIds[idx]] = value;
+    });
+  });
 };
 
 const getEncounters = () => {
-  queryQEncounters()
-  .then((res) => {
-    state.ownEncounters = R.map(y => ({id: y.Id, name: y.name}), R.filter(x => x.owner == state.addr, res.encounters))
-  })
-  console.log("ownEncounters", state.ownEncounters)
-}
+  queryEncounters().then((res: QueryEncountersResponse) => {
+    state.ownEncounters = R.map(
+      (y: Encounter) => ({ id: y.id, name: y.name }),
+      R.filter((x) => x.owner == state.addr, res.encounters)
+    );
+  });
+};
 
-const register = () => registerForCouncil(getUser, console.log);
-const deRegister = () => rewokeCouncilRegistration(getUser, console.log);
+const register = () => registerForCouncil(getShownUser, console.log);
+const deRegister = () => rewokeCouncilRegistration(getShownUser, console.log);
 
 const showChooseModal = () => {
   state.isChooseModalVisible = true;
 };
 const closeChooseModal = () => {
   state.isChooseModalVisible = false;
-  getUser();
+  getShownUser();
 };
 </script>

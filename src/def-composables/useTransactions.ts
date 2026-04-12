@@ -5,22 +5,12 @@ import { useAddress } from "./useAddress";
 export const useTransactions = () => {
   const { address } = useAddress();
   const { ServiceGetTxsEvent } = useCosmosTxV1Beta1();
-  const SENT_EVENT = computed<string>(
-    () => `transfer.sender='${address.value}'`
-  );
-  const RECEIVED_EVENT = computed<string>(
-    () => `transfer.recipient='${address.value}'`
-  );
+  const SENT_EVENT = computed<string>(() => `transfer.sender='${address.value}'`);
+  const RECEIVED_EVENT = computed<string>(() => `transfer.recipient='${address.value}'`);
   const sentQuery = ServiceGetTxsEvent({ events: SENT_EVENT.value }, {}, 100);
-  const receivedQuery = ServiceGetTxsEvent(
-    { events: RECEIVED_EVENT.value },
-    {},
-    100
-  );
+  const receivedQuery = ServiceGetTxsEvent({ events: RECEIVED_EVENT.value }, {}, 100);
   type HelperTxs = NonNullable<
-    NonNullable<
-      Required<typeof sentQuery.data>["value"]
-    >["pages"][0]["tx_responses"]
+    NonNullable<Required<typeof sentQuery.data>["value"]>["pages"][0]["tx_responses"]
   >;
   const allSent = computed(() => {
     return (

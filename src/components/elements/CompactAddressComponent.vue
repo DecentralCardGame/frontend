@@ -4,9 +4,7 @@
     class="hover:underline relative group"
   >
     {{ shortenedAddr }}
-    <div
-      class="absolute z-10 invisible group-hover:visible bg-black rounded p-2"
-    >
+    <div class="absolute z-10 invisible group-hover:visible bg-black rounded p-2">
       {{ safeAddr }}
     </div>
   </router-link>

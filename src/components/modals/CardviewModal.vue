@@ -1,56 +1,39 @@
 <template>
-  <ModalFrame
-    :heading="state.card.CardName"
-    class="max-w-[100rem]"
-    @close="emit('close')"
-  >
-    <div
-      class="lg:flex justify-center text-white space-y-20 lg:space-y-0 lg:space-x-20 p-6"
-    >
+  <ModalFrame :heading="state.card.CardName" class="max-w-[100rem]" @close="emit('close')">
+    <div class="lg:flex justify-center text-white space-y-20 lg:space-y-0 lg:space-x-20 p-6">
       <div>
-        <p
-          v-if="state.card.FlavourText"
-          class="text-center max-w-xs pb-8 mx-auto"
-        >
+        <p v-if="state.card.FlavourText" class="text-center max-w-xs pb-8 mx-auto">
           <i>"{{ state.card.FlavourText }}"</i>
         </p>
         <div>
-          <CardComponent
-            class="block"
-            :model="state.card"
-            :image-u-r-l="state.card.image"
-          />
+          <CardComponent class="block" :model="state.card" :image-u-r-l="state.card.image" />
         </div>
       </div>
 
       <div v-show="!state.isTransferModalVisible">
-        <p class="font-bold text-2xl">
-          Advanced Card Information
-        </p>
-        <br>
+        <p class="font-bold text-2xl">Advanced Card Information</p>
+        <br />
         <p>
-          Card id: {{ id }}<br>
-          Votepool: {{ state.card.votePool.normalize().pretty() }} <br>
-          Status: {{ state.card.status }} <br>
-          Notes: {{ state.card.notes }} <br>
+          Card id: {{ id }}<br />
+          Votepool: {{ state.card.votePool.normalize().pretty() }} <br />
+          Status: {{ state.card.status }} <br />
+          Notes: {{ state.card.notes }} <br />
           Owner:
           <CompactAddressComponent :addr="state.card.owner" />
-          <br>
+          <br />
           Artist:
           <CompactAddressComponent :addr="state.card.artist" />
         </p>
-        <br>
-        <p class="font-bold text-2xl">
-          Latest Voting Results
-        </p>
+        <br />
+        <p class="font-bold text-2xl">Latest Voting Results</p>
         <p>
-          Inappropriate Votes: {{ state.card.inappropriateVotes }} <br>
-          Underpowered Votes: {{ state.card.underpoweredVotes }} <br>
-          Overpowered Votes: {{ state.card.overpoweredVotes }} <br>
-          Fair Enough Votes: {{ state.card.fairEnoughVotes }} <br>
-          Nerflevel: {{ state.card.nerflevel }} <br>
+          Inappropriate Votes: {{ state.card.inappropriateVotes }} <br />
+          Underpowered Votes: {{ state.card.underpoweredVotes }} <br />
+          Overpowered Votes: {{ state.card.overpoweredVotes }} <br />
+          Fair Enough Votes: {{ state.card.fairEnoughVotes }} <br />
+          Nerflevel: {{ state.card.nerflevel }} <br />
         </p>
-        <br>
+        <br />
       </div>
 
       <div v-show="!state.isTransferModalVisible">
@@ -62,31 +45,17 @@
         :card="String(props.id)"
         @close="closeModal"
       />
-
-
     </div>
     <div
       class="flex flex-col lg:flex-row justify-center lg:justify-end space-y-6 lg:space-x-6 lg:space-y-0"
     >
       <router-link :to="{ path: '/cardview/' + props.id }">
-        <BaseCCButton
-          :type="Color.RED"
-        >
-          Card URL
-        </BaseCCButton>
+        <BaseCCButton :type="Color.RED"> Card URL </BaseCCButton>
       </router-link>
-      <BaseCCButton
-        v-if="isOwner || isArtist"
-        :type="Color.RED"
-        @click="edit()"
-      >
+      <BaseCCButton v-if="isOwner || isArtist" :type="Color.RED" @click="edit()">
         Edit card
       </BaseCCButton>
-      <BaseCCButton
-        v-if="isOwner"
-        :type="Color.RED"
-        @click="showTransferModal()"
-      >
+      <BaseCCButton v-if="isOwner" :type="Color.RED" @click="showTransferModal()">
         Transfer card
       </BaseCCButton>
     </div>
@@ -127,12 +96,8 @@ const initialState: {
 const props = withDefaults(defineProps<{ id: number }>(), { id: -1 });
 
 const state = reactive(initialState);
-const isOwner = computed(
-  () => state.card.owner === address.value && loggedIn.value,
-);
-const isArtist = computed(
-  () => state.card.artist === address.value && loggedIn.value,
-);
+const isOwner = computed(() => state.card.owner === address.value && loggedIn.value);
+const isArtist = computed(() => state.card.artist === address.value && loggedIn.value);
 
 const checkAndLoadCard = () => {
   if (props.id != -1) {
@@ -145,7 +110,7 @@ onMounted(checkAndLoadCard);
 watch(() => props.id, checkAndLoadCard);
 
 const loadCard = async () => {
-  state.card = await getCard(props.id)
+  state.card = await getCard(props.id);
 };
 
 const edit = () => {
@@ -155,8 +120,8 @@ const edit = () => {
 };
 const showTransferModal = () => {
   state.isTransferModalVisible = true;
-  console.log("modal?", state.isTransferModalVisible)
-}
+  console.log("modal?", state.isTransferModalVisible);
+};
 const closeModal = () => {
   state.isTransferModalVisible = false;
   loadCard();
