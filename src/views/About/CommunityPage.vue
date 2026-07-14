@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center text-center flex-col m-16 uppercase text-xl">
+  <div class="flex justify-center text-center flex-col m-16 uppercase text-xl text-white">
     <img
       :src="logo"
       alt="logo"
