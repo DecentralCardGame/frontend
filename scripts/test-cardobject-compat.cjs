@@ -37,6 +37,10 @@ const { Card, createInteraction, resolveCardRules } = loaded.exports;
       assert.ok(!definitions[name].interactionText.includes('§'));
     }
     assert.deepEqual(Object.keys(definitions.cleanse.children), ['Amount']);
+    assert.equal(definitions.countDust.interactionText, 'Count §CardType Dust -> X.');
+    assert.equal(definitions.avatar.interactionText, 'X/X Avatar');
+    assert.equal(definitions.beast.interactionText, '3/3 Beast');
+    assert.equal(definitions.spirit.interactionText, '1/1 Spirit');
     for (const name of ['criticality', 'onDestruction', 'onDiscard', 'requiem', 'incrementX', 'resetX']) {
       assert.ok(definitions[name], name);
     }
