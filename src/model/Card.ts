@@ -213,18 +213,18 @@ export class CardClass {
 }
 
 class CardContent {
-  Abilities: Array<any> = [];
+  // Only serialize fields belonging to the selected Cardobject card type.
+  Abilities?: Array<any>;
   CardName: string = "";
   FlavourText: string = "";
   Tags: Array<string> = [];
   Class: CardClass = new CardClass();
-  CastingCost: number = -1;
+  CastingCost?: number;
   AdditionalCost: any = undefined;
-  Health: number = 0;
-  Attack: number = 0;
-  Delay: number = 0;
-  RulesTexts: Array<string> = [];
-  Effects: Array<any> = [];
+  Health?: number;
+  Attack?: number;
+  Delay?: number;
+  Effects?: Array<any>;
 }
 
 export enum NerfStatus {

@@ -80,7 +80,9 @@ const init = () => {
   state.keywordDescriptions = R.prepend(state.keywordDescriptions, R.map(
     (keyword) => [
       keyword,
-      rules.value.definitions[decapital(keyword)].description,
+      rules.value.definitions[decapital(keyword)].description.replace(
+        /\bCHOSEN(?:ENTITY|ACTION|PLACE)\b/g, "CHOSEN"
+      ),
     ],
     keywords))
 };

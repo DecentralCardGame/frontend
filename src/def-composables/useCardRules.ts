@@ -1,16 +1,9 @@
 import cardRules from "@/def-composables/cardRules.json";
-import { ref, type Ref } from "vue";
-import { Resolver } from "@stoplight/json-ref-resolver";
+import { ref } from "vue";
+import { resolveCardRules } from "./resolveCardRules";
 
 const useCardRulesInstance = () => {
-  const resolver = new Resolver();
-  let rules: Ref = ref();
-  resolver.resolve(cardRules).then(schema => {
-    rules.value = schema.result;
-    console.log("loaded definitions", schema.result.definitions);
-  }).catch(err => {
-    console.error(err);
-  })
+  const rules = ref(resolveCardRules(cardRules));
 
   return { rules };
 };

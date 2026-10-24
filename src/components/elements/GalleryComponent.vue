@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import * as R from "ramda";
-import { computed, onBeforeUnmount, onMounted, reactive, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue";
 import { useCards } from "@/def-composables/useCards";
 import { Card } from "@/model/Card";
 import CardComponent from "@/components/elements/CardComponent.vue";
@@ -88,16 +88,18 @@ onMounted(() => {
   state.cardsOnPage = props.cardsPerPage;
 });
 
-let loadButtonVisible = true;
+const loadButtonVisible = ref(true);
+let pendingBatches = 0;
 
 const load = () => {
-  state.cardsOnPage += 10;
-  loadButtonVisible = false;
-  window.addEventListener("scroll", onScroll);
+  state.cardsOnPage = Math.min(state.cardsOnPage + 10, props.allCardIds.length);
+  loadButtonVisible.value = false;
+  window.addEventListener("scroll", onScroll, true);
 };
 
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", onScroll);
+  loadButtonVisible.value = true;
+  window.removeEventListener("scroll", onScroll, true);
 });
 
 watch(cardIdsOnPage, loadCards);
@@ -111,23 +113,38 @@ watch(
   },
 );
 
-function loadCards(cardIds: number[], oldCardIds: number[]) {
+async function loadCards(cardIds: number[], oldCardIds: number[]) {
   const changed = state.cardIdsChanged;
   state.cardIdsChanged = false;
-  cardIds
-    .filter((cardId) => !oldCardIds.includes(cardId) || changed)
-    .forEach(loadCard);
+  pendingBatches++;
+  try {
+    await Promise.allSettled(cardIds
+      .filter((cardId) => !oldCardIds.includes(cardId) || changed)
+      .map(loadCard));
+  } finally {
+    pendingBatches--;
+    await nextTick();
+    // A short batch may leave the end visible without another scroll event.
+    if (!loadButtonVisible.value) onScroll();
+  }
 }
 
 const onScroll = () => {
-  const galleryWrapperElement = document.getElementById("galleryWrapper")!;
+  const galleryWrapperElement = document.getElementById("galleryWrapper");
+  let viewportBottom = window.innerHeight;
+  // The gallery page scrolls inside its own overflow-y-auto panel.
+  for (let parent = galleryWrapperElement?.parentElement; parent; parent = parent.parentElement) {
+    if (/(auto|scroll)/.test(getComputedStyle(parent).overflowY)) {
+      viewportBottom = Math.min(viewportBottom, parent.getBoundingClientRect().bottom);
+      break;
+    }
+  }
   if (
-    window.top!.scrollY + window.innerHeight + 200 >=
-      galleryWrapperElement.offsetTop + galleryWrapperElement.offsetHeight &&
+    !loadButtonVisible.value && pendingBatches === 0 && galleryWrapperElement &&
+    galleryWrapperElement.getBoundingClientRect().bottom <= viewportBottom + 200 &&
     state.cardsOnPage < props.allCardIds.length
   ) {
-    state.cardsOnPage += 10;
-    console.log(state.cardsOnPage);
+    state.cardsOnPage = Math.min(state.cardsOnPage + 10, props.allCardIds.length);
   }
 };
 

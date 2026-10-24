@@ -26031,7 +26031,10 @@ export default {
         let effecttext = effectsToText(this.model.Effects);
         rulesText = R.append(R.join(". ", effecttext), rulesText);
       } 
-      return rulesText;
+      // Shorten labels only after rendering; stored target enums remain typed.
+      return rulesText.map((text) =>
+        text.replace(/\bCHOSEN(?:ENTITY|ACTION|PLACE)\b/g, "CHOSEN"),
+      );
     },
     abilitiesLength() {
       if (this.model.abilities) {
