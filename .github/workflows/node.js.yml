@@ -29,4 +29,8 @@ jobs:
     - run: npm i
     - run: node scripts/test-keyword-icons.cjs
     - run: node scripts/test-chain-environments.cjs
+    - run: node scripts/test-cardobject-compat.cjs
+    - run: node scripts/test-current-transactions.cjs
+    - run: node scripts/test-transaction-client-isolation.cjs
     - run: npm run build --if-present
+    - run: npm run build:dev

@@ -7,12 +7,12 @@ const schema = JSON.parse(fs.readFileSync(path.join(root, 'src/def-composables/c
 
 // Exercise the actual editor helpers and outgoing model without a wallet or transaction.
 const compiled = buildSync({
-  stdin: { contents: `export { Card } from './src/model/Card'; export { createInteraction } from './src/components/utils/utils'; export { resolveCardRules } from './src/def-composables/resolveCardRules';`, resolveDir: root, loader: 'ts' },
+  stdin: { contents: `export { Card, ChainCard } from './src/model/Card'; export { createInteraction } from './src/components/utils/utils'; export { resolveCardRules } from './src/def-composables/resolveCardRules';`, resolveDir: root, loader: 'ts' },
   bundle: true, write: false, platform: 'node', format: 'cjs',
 }).outputFiles[0].text;
 const loaded = { exports: {} };
 new Function('module', 'exports', 'require', compiled)(loaded, loaded.exports, require);
-const { Card, createInteraction, resolveCardRules } = loaded.exports;
+const { Card, ChainCard, createInteraction, resolveCardRules } = loaded.exports;
 
 (async () => {
   const result = resolveCardRules(schema);
@@ -36,6 +36,18 @@ const { Card, createInteraction, resolveCardRules } = loaded.exports;
       assert.deepEqual(definitions[name].children, {});
       assert.ok(!definitions[name].interactionText.includes('§'));
     }
+    for (const [name, description] of Object.entries(require('../docs/approved-keyword-descriptions.json'))) {
+      assert.equal(definitions[name].description, description, name);
+    }
+    assert.deepEqual(definitions.bodyCount.classes, ['MYSTICISM']);
+    assert.deepEqual(definitions.autopsy.classes, ['TECHNOLOGY']);
+    const original = new Card();
+    original.parameters = [{key:'keep', value:'17'}];
+    original.CastingCost = 1;
+    const chainCard = original.toChainCard();
+    const restored = ChainCard.from({...chainCard, content:JSON.stringify(chainCard.content)}).toCard().toChainCard();
+    assert.deepEqual(restored.parameters, original.parameters);
+    assert.notEqual(restored.parameters, original.parameters);
     assert.deepEqual(Object.keys(definitions.cleanse.children), ['Amount']);
     assert.equal(definitions.countDust.interactionText, 'Count §CardType Dust -> X.');
     assert.equal(definitions.avatar.interactionText, 'X/X Avatar');

@@ -1,0 +1,11 @@
+{
+  "cardchain/cardchain/tx.proto": "26d6a1c82c13dca8dba3c3db53ea556e4ccdfda46bc974333eef0599d04f8414",
+  "cardchain/cardchain/card.proto": "5eacb260659f4dd193390aec34c6bcf618f6312303d6aa09488692ac62155d2b",
+  "cardchain/cardchain/parameter.proto": "f775bab7e47b21570eaa574b76d173f3a4b132e2066d3cb88220d966b3b3525d",
+  "cosmos/base/v1beta1/coin.proto": "408b074f81f3dafb440cd61921bf244eab2ff20cb1f2a9f247265d031481c9ec",
+  "cardchain/cardchain/council.proto": "5ac492eb900e92c5174d89c154f63610ed9863891ddd5193fcaa4dfe5b90b2ca",
+  "cardchain/cardchain/encounter.proto": "662b52e98d28c34a46a7c0e3b16cb67d52f47ccef9f6274d6bb7821d948429c7",
+  "cardchain/cardchain/match.proto": "9aa49235737711b43acf56f7006434b0dec8b4213f268442bb2bc472e1006243",
+  "cardchain/cardchain/voting.proto": "ac9f8bdeec03da1b48d3b0aa63dfd21d19f22c16a284041dfd87adae0a11dc08",
+  "cardchain/cardchain/params.proto": "236eb4be45a0cfae8de812f32ba3444593f4c49bca7431c97c64fab51a7dcff2"
+}

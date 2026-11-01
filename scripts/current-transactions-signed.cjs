@@ -1,0 +1,46 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const {EventEmitter} = require('node:events');
+const {DirectSecp256k1HdWallet} = require('@cosmjs/proto-signing-current');
+const {installCurrentChainTransactions} = require('./load-current-transactions.cjs');
+(async()=>{
+ const input=JSON.parse(fs.readFileSync(0,'utf8'));
+ assert.equal(input.rpc,'http://127.0.0.1:27657');
+ const signer=await DirectSecp256k1HdWallet.fromMnemonic(input.mnemonic,{prefix:'cc'});
+ const address=(await signer.getAccounts())[0].address;
+ assert.equal(address,input.address);
+ const client=new EventEmitter();
+ client.registry=[];client.env={rpcURL:input.rpc,chainId:input.chainId};
+ client.signer=signer;client.DecentralCardGameCardchainCardchain={tx:{}};
+ installCurrentChainTransactions(client);
+ const tx=client.DecentralCardGameCardchainCardchain.tx;
+ const content={Action:{CardName:'Äther 世界',CastingCost:1,Class:{Mysticism:true,Technology:false,Nature:false,Culture:false},Effects:[{Sacrifice:{}}],FlavourText:'Grüße',Tags:[]}};
+ const fee={amount:[],gas:'1000000'};
+ const saved=await tx.sendMsgSaveCardContent({value:{creator:address,cardId:0,content:new TextEncoder().encode(JSON.stringify(content)),notes:'Unicode ✓',artist:address,balanceAnchor:true,parameters:[{key:'kept',value:'17'}]},fee});
+ assert.equal(saved.code,0,saved.rawLog);
+ const image='data:image/png;base64,iVBORw0KGgo=';
+ const artwork=await tx.sendMsgAddArtwork({value:{creator:address,cardId:0,image:btoa(image),fullArt:true},fee});
+ assert.equal(artwork.code,0,artwork.rawLog);
+ const get=async()=>{const r=await fetch('http://127.0.0.1:1417/DecentralCardGame/cardchain/cardchain/card/0');assert(r.ok);return (await r.json()).card;};
+ const actual=await get();
+ assert.deepEqual(JSON.parse(Buffer.from(actual.card.content,'base64').toString('utf8')),content);
+ assert.equal(actual.card.notes,'Unicode ✓');assert.equal(actual.card.artist,address);
+ assert.equal(actual.card.fullArt,true);assert.equal(actual.card.balanceAnchor,true);
+ assert.deepEqual(actual.card.parameters,[{key:'kept',value:'17'}]);
+ assert.equal(actual.image,image);
+ const other=await DirectSecp256k1HdWallet.fromMnemonic(input.otherMnemonic,{prefix:'cc'});
+ client.signer=other;client.emit('signer-changed');
+ const otherAddress=(await other.getAccounts())[0].address;
+ let denied=false;
+ try {
+  const r=await client.DecentralCardGameCardchainCardchain.tx.sendMsgAddArtwork({value:{creator:otherAddress,cardId:0,image:btoa('not allowed'),fullArt:false},fee});
+  denied=r.code!==0;
+  if (denied) assert.match(r.rawLog || '',/Incorrect Artist|unauthorized/i);
+ }catch(e){assert.match(e.message,/Incorrect Artist|unauthorized/i);denied=true;}
+ assert(denied);assert.deepEqual(await get(),actual);
+ client.env.chainId='wrong-chain';
+ await assert.rejects(()=>client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard({value:{creator:otherAddress,cardId:0},fee}),/chain ID/);
+ client.signer=undefined;client.emit('signer-changed');
+ await assert.rejects(()=>client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard({value:{creator:otherAddress,cardId:0},fee}),/direct signing/);
+ console.log('PASS: real signed card save and artwork upload, Unicode and parameter preservation, ownership rejection, signer changes, chain-ID and disconnected-wallet guards.');
+})().catch(e=>{console.error(e);process.exitCode=1});

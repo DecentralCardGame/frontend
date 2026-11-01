@@ -1,0 +1,2099 @@
+{
+  "nested": {
+    "cardchain": {
+      "nested": {
+        "cardchain": {
+          "options": {
+            "go_package": "github.com/DecentralCardGame/cardchain/x/cardchain/types"
+          },
+          "nested": {
+            "Msg": {
+              "options": {
+                "(cosmos.msg.v1.service)": true
+              },
+              "methods": {
+                "UpdateParams": {
+                  "requestType": "MsgUpdateParams",
+                  "responseType": "MsgUpdateParamsResponse"
+                },
+                "UserCreate": {
+                  "requestType": "MsgUserCreate",
+                  "responseType": "MsgUserCreateResponse"
+                },
+                "CardSchemeBuy": {
+                  "requestType": "MsgCardSchemeBuy",
+                  "responseType": "MsgCardSchemeBuyResponse"
+                },
+                "CardSaveContent": {
+                  "requestType": "MsgCardSaveContent",
+                  "responseType": "MsgCardSaveContentResponse"
+                },
+                "CardVote": {
+                  "requestType": "MsgCardVote",
+                  "responseType": "MsgCardVoteResponse"
+                },
+                "CardTransfer": {
+                  "requestType": "MsgCardTransfer",
+                  "responseType": "MsgCardTransferResponse"
+                },
+                "CardDonate": {
+                  "requestType": "MsgCardDonate",
+                  "responseType": "MsgCardDonateResponse"
+                },
+                "CardArtworkAdd": {
+                  "requestType": "MsgCardArtworkAdd",
+                  "responseType": "MsgCardArtworkAddResponse"
+                },
+                "CardArtistChange": {
+                  "requestType": "MsgCardArtistChange",
+                  "responseType": "MsgCardArtistChangeResponse"
+                },
+                "CouncilRegister": {
+                  "requestType": "MsgCouncilRegister",
+                  "responseType": "MsgCouncilRegisterResponse"
+                },
+                "CouncilDeregister": {
+                  "requestType": "MsgCouncilDeregister",
+                  "responseType": "MsgCouncilDeregisterResponse"
+                },
+                "MatchReport": {
+                  "requestType": "MsgMatchReport",
+                  "responseType": "MsgMatchReportResponse"
+                },
+                "CouncilCreate": {
+                  "requestType": "MsgCouncilCreate",
+                  "responseType": "MsgCouncilCreateResponse"
+                },
+                "MatchReporterAppoint": {
+                  "requestType": "MsgMatchReporterAppoint",
+                  "responseType": "MsgMatchReporterAppointResponse"
+                },
+                "SetCreate": {
+                  "requestType": "MsgSetCreate",
+                  "responseType": "MsgSetCreateResponse"
+                },
+                "SetCardAdd": {
+                  "requestType": "MsgSetCardAdd",
+                  "responseType": "MsgSetCardAddResponse"
+                },
+                "SetCardRemove": {
+                  "requestType": "MsgSetCardRemove",
+                  "responseType": "MsgSetCardRemoveResponse"
+                },
+                "SetContributorAdd": {
+                  "requestType": "MsgSetContributorAdd",
+                  "responseType": "MsgSetContributorAddResponse"
+                },
+                "SetContributorRemove": {
+                  "requestType": "MsgSetContributorRemove",
+                  "responseType": "MsgSetContributorRemoveResponse"
+                },
+                "SetFinalize": {
+                  "requestType": "MsgSetFinalize",
+                  "responseType": "MsgSetFinalizeResponse"
+                },
+                "SetArtworkAdd": {
+                  "requestType": "MsgSetArtworkAdd",
+                  "responseType": "MsgSetArtworkAddResponse"
+                },
+                "SetStoryAdd": {
+                  "requestType": "MsgSetStoryAdd",
+                  "responseType": "MsgSetStoryAddResponse"
+                },
+                "BoosterPackBuy": {
+                  "requestType": "MsgBoosterPackBuy",
+                  "responseType": "MsgBoosterPackBuyResponse"
+                },
+                "SellOfferCreate": {
+                  "requestType": "MsgSellOfferCreate",
+                  "responseType": "MsgSellOfferCreateResponse"
+                },
+                "SellOfferBuy": {
+                  "requestType": "MsgSellOfferBuy",
+                  "responseType": "MsgSellOfferBuyResponse"
+                },
+                "SellOfferRemove": {
+                  "requestType": "MsgSellOfferRemove",
+                  "responseType": "MsgSellOfferRemoveResponse"
+                },
+                "CardRaritySet": {
+                  "requestType": "MsgCardRaritySet",
+                  "responseType": "MsgCardRaritySetResponse"
+                },
+                "CouncilResponseCommit": {
+                  "requestType": "MsgCouncilResponseCommit",
+                  "responseType": "MsgCouncilResponseCommitResponse"
+                },
+                "CouncilResponseReveal": {
+                  "requestType": "MsgCouncilResponseReveal",
+                  "responseType": "MsgCouncilResponseRevealResponse"
+                },
+                "CouncilRestart": {
+                  "requestType": "MsgCouncilRestart",
+                  "responseType": "MsgCouncilRestartResponse"
+                },
+                "MatchConfirm": {
+                  "requestType": "MsgMatchConfirm",
+                  "responseType": "MsgMatchConfirmResponse"
+                },
+                "ProfileCardSet": {
+                  "requestType": "MsgProfileCardSet",
+                  "responseType": "MsgProfileCardSetResponse"
+                },
+                "ProfileWebsiteSet": {
+                  "requestType": "MsgProfileWebsiteSet",
+                  "responseType": "MsgProfileWebsiteSetResponse"
+                },
+                "ProfileBioSet": {
+                  "requestType": "MsgProfileBioSet",
+                  "responseType": "MsgProfileBioSetResponse"
+                },
+                "BoosterPackOpen": {
+                  "requestType": "MsgBoosterPackOpen",
+                  "responseType": "MsgBoosterPackOpenResponse"
+                },
+                "BoosterPackTransfer": {
+                  "requestType": "MsgBoosterPackTransfer",
+                  "responseType": "MsgBoosterPackTransferResponse"
+                },
+                "SetStoryWriterSet": {
+                  "requestType": "MsgSetStoryWriterSet",
+                  "responseType": "MsgSetStoryWriterSetResponse"
+                },
+                "SetArtistSet": {
+                  "requestType": "MsgSetArtistSet",
+                  "responseType": "MsgSetArtistSetResponse"
+                },
+                "CardVoteMulti": {
+                  "requestType": "MsgCardVoteMulti",
+                  "responseType": "MsgCardVoteMultiResponse"
+                },
+                "MatchOpen": {
+                  "requestType": "MsgMatchOpen",
+                  "responseType": "MsgMatchOpenResponse"
+                },
+                "SetNameSet": {
+                  "requestType": "MsgSetNameSet",
+                  "responseType": "MsgSetNameSetResponse"
+                },
+                "ProfileAliasSet": {
+                  "requestType": "MsgProfileAliasSet",
+                  "responseType": "MsgProfileAliasSetResponse"
+                },
+                "EarlyAccessInvite": {
+                  "requestType": "MsgEarlyAccessInvite",
+                  "responseType": "MsgEarlyAccessInviteResponse"
+                },
+                "ZealyConnect": {
+                  "requestType": "MsgZealyConnect",
+                  "responseType": "MsgZealyConnectResponse"
+                },
+                "EncounterCreate": {
+                  "requestType": "MsgEncounterCreate",
+                  "responseType": "MsgEncounterCreateResponse"
+                },
+                "EncounterEdit": {
+                  "requestType": "MsgEncounterEdit",
+                  "responseType": "MsgEncounterEditResponse"
+                },
+                "EncounterDo": {
+                  "requestType": "MsgEncounterDo",
+                  "responseType": "MsgEncounterDoResponse"
+                },
+                "EncounterClose": {
+                  "requestType": "MsgEncounterClose",
+                  "responseType": "MsgEncounterCloseResponse"
+                },
+                "EncounterDelete": {
+                  "requestType": "MsgEncounterDelete",
+                  "responseType": "MsgEncounterDeleteResponse"
+                },
+                "EarlyAccessDisinvite": {
+                  "requestType": "MsgEarlyAccessDisinvite",
+                  "responseType": "MsgEarlyAccessDisinviteResponse"
+                },
+                "CardBan": {
+                  "requestType": "MsgCardBan",
+                  "responseType": "MsgCardBanResponse"
+                },
+                "EarlyAccessGrant": {
+                  "requestType": "MsgEarlyAccessGrant",
+                  "responseType": "MsgEarlyAccessGrantResponse"
+                },
+                "SetActivate": {
+                  "requestType": "MsgSetActivate",
+                  "responseType": "MsgSetActivateResponse"
+                },
+                "CardCopyrightClaim": {
+                  "requestType": "MsgCardCopyrightClaim",
+                  "responseType": "MsgCardCopyrightClaimResponse"
+                },
+                "UpgradePicksReport": {
+                  "requestType": "MsgUpgradePicksReport",
+                  "responseType": "MsgUpgradePicksReportResponse"
+                }
+              }
+            },
+            "MsgUpdateParams": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "authority",
+                "(amino.name)": "cardchain/x/cardchain/MsgUpdateParams"
+              },
+              "fields": {
+                "authority": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "params": {
+                  "type": "Params",
+                  "id": 2,
+                  "options": {
+                    "(gogoproto.nullable)": false,
+                    "(amino.dont_omitempty)": true
+                  }
+                }
+              }
+            },
+            "MsgUpdateParamsResponse": {
+              "fields": {}
+            },
+            "MsgUserCreate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "newUser": {
+                  "type": "string",
+                  "id": 2
+                },
+                "alias": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgUserCreateResponse": {
+              "fields": {}
+            },
+            "MsgCardSchemeBuy": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "bid": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 2,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                }
+              }
+            },
+            "MsgCardSchemeBuyResponse": {
+              "fields": {
+                "cardId": {
+                  "type": "uint64",
+                  "id": 1
+                }
+              }
+            },
+            "MsgCardSaveContent": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "content": {
+                  "type": "bytes",
+                  "id": 3
+                },
+                "notes": {
+                  "type": "string",
+                  "id": 4
+                },
+                "artist": {
+                  "type": "string",
+                  "id": 5
+                },
+                "balanceAnchor": {
+                  "type": "bool",
+                  "id": 6
+                },
+                "parameters": {
+                  "rule": "repeated",
+                  "type": "Parameter",
+                  "id": 7
+                }
+              }
+            },
+            "MsgCardSaveContentResponse": {
+              "fields": {
+                "airdropClaimed": {
+                  "type": "bool",
+                  "id": 1
+                }
+              }
+            },
+            "MsgCardVote": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "vote": {
+                  "type": "SingleVote",
+                  "id": 2
+                }
+              }
+            },
+            "MsgCardVoteResponse": {
+              "fields": {
+                "airdropClaimed": {
+                  "type": "bool",
+                  "id": 1
+                }
+              }
+            },
+            "MsgCardTransfer": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "receiver": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgCardTransferResponse": {
+              "fields": {}
+            },
+            "MsgCardDonate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "amount": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 3,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                }
+              }
+            },
+            "MsgCardDonateResponse": {
+              "fields": {}
+            },
+            "MsgCardArtworkAdd": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "image": {
+                  "type": "bytes",
+                  "id": 3
+                },
+                "fullArt": {
+                  "type": "bool",
+                  "id": 4
+                }
+              }
+            },
+            "MsgCardArtworkAddResponse": {
+              "fields": {}
+            },
+            "MsgCardArtistChange": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "artist": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgCardArtistChangeResponse": {
+              "fields": {}
+            },
+            "MsgCouncilRegister": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                }
+              }
+            },
+            "MsgCouncilRegisterResponse": {
+              "fields": {}
+            },
+            "MsgCouncilDeregister": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                }
+              }
+            },
+            "MsgCouncilDeregisterResponse": {
+              "fields": {}
+            },
+            "MsgMatchReport": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "matchId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "playedCardsA": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 3
+                },
+                "playedCardsB": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 4
+                },
+                "outcome": {
+                  "type": "Outcome",
+                  "id": 5
+                }
+              }
+            },
+            "MsgMatchReportResponse": {
+              "fields": {}
+            },
+            "MsgCouncilCreate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgCouncilCreateResponse": {
+              "fields": {}
+            },
+            "MsgMatchReporterAppoint": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "authority"
+              },
+              "fields": {
+                "authority": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "reporter": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgMatchReporterAppointResponse": {
+              "fields": {}
+            },
+            "MsgSetCreate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "name": {
+                  "type": "string",
+                  "id": 2
+                },
+                "artist": {
+                  "type": "string",
+                  "id": 3
+                },
+                "storyWriter": {
+                  "type": "string",
+                  "id": 4
+                },
+                "contributors": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 5
+                }
+              }
+            },
+            "MsgSetCreateResponse": {
+              "fields": {}
+            },
+            "MsgSetCardAdd": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetCardAddResponse": {
+              "fields": {}
+            },
+            "MsgSetCardRemove": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetCardRemoveResponse": {
+              "fields": {}
+            },
+            "MsgSetContributorAdd": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "user": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetContributorAddResponse": {
+              "fields": {}
+            },
+            "MsgSetContributorRemove": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "user": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetContributorRemoveResponse": {
+              "fields": {}
+            },
+            "MsgSetFinalize": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgSetFinalizeResponse": {
+              "fields": {}
+            },
+            "MsgSetArtworkAdd": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "image": {
+                  "type": "bytes",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetArtworkAddResponse": {
+              "fields": {}
+            },
+            "MsgSetStoryAdd": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "story": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetStoryAddResponse": {
+              "fields": {}
+            },
+            "MsgBoosterPackBuy": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgBoosterPackBuyResponse": {
+              "fields": {
+                "airdropClaimed": {
+                  "type": "bool",
+                  "id": 1
+                }
+              }
+            },
+            "MsgSellOfferCreate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "price": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 3,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                }
+              }
+            },
+            "MsgSellOfferCreateResponse": {
+              "fields": {}
+            },
+            "MsgSellOfferBuy": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "sellOfferId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgSellOfferBuyResponse": {
+              "fields": {}
+            },
+            "MsgSellOfferRemove": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "sellOfferId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgSellOfferRemoveResponse": {
+              "fields": {}
+            },
+            "MsgCardRaritySet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 3
+                },
+                "rarity": {
+                  "type": "CardRarity",
+                  "id": 4
+                }
+              }
+            },
+            "MsgCardRaritySetResponse": {
+              "fields": {}
+            },
+            "MsgCouncilResponseCommit": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "councilId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "response": {
+                  "type": "string",
+                  "id": 3
+                },
+                "suggestion": {
+                  "type": "string",
+                  "id": 4
+                }
+              }
+            },
+            "MsgCouncilResponseCommitResponse": {
+              "fields": {}
+            },
+            "MsgCouncilResponseReveal": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "councilId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "response": {
+                  "type": "Response",
+                  "id": 3
+                },
+                "secret": {
+                  "type": "string",
+                  "id": 4
+                }
+              }
+            },
+            "MsgCouncilResponseRevealResponse": {
+              "fields": {}
+            },
+            "MsgCouncilRestart": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "councilId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgCouncilRestartResponse": {
+              "fields": {}
+            },
+            "MsgMatchConfirm": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "matchId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "outcome": {
+                  "type": "Outcome",
+                  "id": 3
+                },
+                "votedCards": {
+                  "rule": "repeated",
+                  "type": "SingleVote",
+                  "id": 4
+                }
+              }
+            },
+            "MsgMatchConfirmResponse": {
+              "fields": {}
+            },
+            "MsgProfileCardSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgProfileCardSetResponse": {
+              "fields": {}
+            },
+            "MsgProfileWebsiteSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "website": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgProfileWebsiteSetResponse": {
+              "fields": {}
+            },
+            "MsgProfileBioSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "bio": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgProfileBioSetResponse": {
+              "fields": {}
+            },
+            "MsgBoosterPackOpen": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "boosterPackId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgBoosterPackOpenResponse": {
+              "fields": {
+                "cardIds": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 1
+                }
+              }
+            },
+            "MsgBoosterPackTransfer": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "boosterPackId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "receiver": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgBoosterPackTransferResponse": {
+              "fields": {}
+            },
+            "MsgSetStoryWriterSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "storyWriter": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetStoryWriterSetResponse": {
+              "fields": {}
+            },
+            "MsgSetArtistSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "artist": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetArtistSetResponse": {
+              "fields": {}
+            },
+            "MsgCardVoteMulti": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "votes": {
+                  "rule": "repeated",
+                  "type": "SingleVote",
+                  "id": 2
+                }
+              }
+            },
+            "MsgCardVoteMultiResponse": {
+              "fields": {
+                "airdropClaimed": {
+                  "type": "bool",
+                  "id": 1
+                }
+              }
+            },
+            "MsgMatchOpen": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "playerA": {
+                  "type": "string",
+                  "id": 2
+                },
+                "playerB": {
+                  "type": "string",
+                  "id": 3
+                },
+                "playerADeck": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 4
+                },
+                "playerBDeck": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 5
+                }
+              }
+            },
+            "MsgMatchOpenResponse": {
+              "fields": {
+                "matchId": {
+                  "type": "uint64",
+                  "id": 1
+                }
+              }
+            },
+            "MsgSetNameSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "name": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgSetNameSetResponse": {
+              "fields": {}
+            },
+            "MsgProfileAliasSet": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "alias": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgProfileAliasSetResponse": {
+              "fields": {}
+            },
+            "MsgEarlyAccessInvite": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "user": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgEarlyAccessInviteResponse": {
+              "fields": {}
+            },
+            "MsgZealyConnect": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "zealyId": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgZealyConnectResponse": {
+              "fields": {}
+            },
+            "MsgEncounterCreate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "name": {
+                  "type": "string",
+                  "id": 2
+                },
+                "drawlist": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 3
+                },
+                "parameters": {
+                  "rule": "repeated",
+                  "type": "Parameter",
+                  "id": 4
+                },
+                "image": {
+                  "type": "bytes",
+                  "id": 5
+                }
+              }
+            },
+            "MsgEncounterCreateResponse": {
+              "fields": {}
+            },
+            "MsgEncounterEdit": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "id": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "name": {
+                  "type": "string",
+                  "id": 3
+                },
+                "drawlist": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 4
+                },
+                "parameters": {
+                  "rule": "repeated",
+                  "type": "Parameter",
+                  "id": 5
+                },
+                "image": {
+                  "type": "bytes",
+                  "id": 6
+                }
+              }
+            },
+            "MsgEncounterEditResponse": {
+              "fields": {}
+            },
+            "MsgEncounterDo": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "encounterId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "user": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgEncounterDoResponse": {
+              "fields": {}
+            },
+            "MsgEncounterClose": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "encounterId": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "user": {
+                  "type": "string",
+                  "id": 3
+                },
+                "won": {
+                  "type": "bool",
+                  "id": 4
+                }
+              }
+            },
+            "MsgEncounterCloseResponse": {
+              "fields": {}
+            },
+            "MsgEarlyAccessDisinvite": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1
+                },
+                "user": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgEarlyAccessDisinviteResponse": {
+              "fields": {}
+            },
+            "MsgCardBan": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "authority"
+              },
+              "fields": {
+                "authority": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgCardBanResponse": {
+              "fields": {}
+            },
+            "MsgEarlyAccessGrant": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "authority"
+              },
+              "fields": {
+                "authority": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "users": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "MsgEarlyAccessGrantResponse": {
+              "fields": {}
+            },
+            "MsgSetActivate": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "authority"
+              },
+              "fields": {
+                "authority": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "setId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgSetActivateResponse": {
+              "fields": {}
+            },
+            "MsgCardCopyrightClaim": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "authority"
+              },
+              "fields": {
+                "authority": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "cardId": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgCardCopyrightClaimResponse": {
+              "fields": {}
+            },
+            "MsgEncounterDelete": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "id": {
+                  "type": "uint64",
+                  "id": 2
+                }
+              }
+            },
+            "MsgEncounterDeleteResponse": {
+              "fields": {}
+            },
+            "MsgUpgradePicksReport": {
+              "options": {
+                "(cosmos.msg.v1.signer)": "creator"
+              },
+              "fields": {
+                "creator": {
+                  "type": "string",
+                  "id": 1,
+                  "options": {
+                    "(cosmos_proto.scalar)": "cosmos.AddressString"
+                  }
+                },
+                "picked": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 2
+                },
+                "dismissed": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "MsgUpgradePicksReportResponse": {
+              "fields": {}
+            },
+            "Card": {
+              "fields": {
+                "owner": {
+                  "type": "string",
+                  "id": 1
+                },
+                "artist": {
+                  "type": "string",
+                  "id": 2
+                },
+                "content": {
+                  "type": "bytes",
+                  "id": 3
+                },
+                "imageId": {
+                  "type": "uint64",
+                  "id": 4
+                },
+                "fullArt": {
+                  "type": "bool",
+                  "id": 5
+                },
+                "notes": {
+                  "type": "string",
+                  "id": 6
+                },
+                "status": {
+                  "type": "CardStatus",
+                  "id": 7
+                },
+                "votePool": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 8,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "voters": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 14
+                },
+                "fairEnoughVotes": {
+                  "type": "uint64",
+                  "id": 9
+                },
+                "overpoweredVotes": {
+                  "type": "uint64",
+                  "id": 10
+                },
+                "underpoweredVotes": {
+                  "type": "uint64",
+                  "id": 11
+                },
+                "inappropriateVotes": {
+                  "type": "uint64",
+                  "id": 12
+                },
+                "nerflevel": {
+                  "type": "int64",
+                  "id": 13
+                },
+                "balanceAnchor": {
+                  "type": "bool",
+                  "id": 15
+                },
+                "starterCard": {
+                  "type": "bool",
+                  "id": 16
+                },
+                "rarity": {
+                  "type": "CardRarity",
+                  "id": 17
+                },
+                "parameters": {
+                  "rule": "repeated",
+                  "type": "Parameter",
+                  "id": 18
+                }
+              }
+            },
+            "CardStatus": {
+              "values": {
+                "none": 0,
+                "scheme": 1,
+                "prototype": 2,
+                "trial": 3,
+                "permanent": 4,
+                "suspended": 5,
+                "banned": 6,
+                "bannedSoon": 7,
+                "bannedVerySoon": 8,
+                "adventureItem": 9
+              }
+            },
+            "CardRarity": {
+              "values": {
+                "common": 0,
+                "uncommon": 1,
+                "rare": 2,
+                "exceptional": 3,
+                "unique": 4
+              }
+            },
+            "CardClass": {
+              "values": {
+                "nature": 0,
+                "culture": 1,
+                "mysticism": 2,
+                "technology": 3
+              }
+            },
+            "CardType": {
+              "values": {
+                "place": 0,
+                "action": 1,
+                "entity": 2,
+                "headquarter": 3
+              }
+            },
+            "TimeStamp": {
+              "fields": {
+                "timeStamp": {
+                  "type": "uint64",
+                  "id": 1
+                }
+              }
+            },
+            "Parameter": {
+              "fields": {
+                "key": {
+                  "type": "string",
+                  "id": 1
+                },
+                "value": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "Council": {
+              "fields": {
+                "cardId": {
+                  "type": "uint64",
+                  "id": 1
+                },
+                "voters": {
+                  "rule": "repeated",
+                  "type": "string",
+                  "id": 2
+                },
+                "hashResponses": {
+                  "rule": "repeated",
+                  "type": "WrapHashResponse",
+                  "id": 3
+                },
+                "clearResponses": {
+                  "rule": "repeated",
+                  "type": "WrapClearResponse",
+                  "id": 4
+                },
+                "treasury": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 8,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "status": {
+                  "type": "CouncelingStatus",
+                  "id": 6
+                },
+                "trialStart": {
+                  "type": "uint64",
+                  "id": 7
+                }
+              }
+            },
+            "WrapClearResponse": {
+              "fields": {
+                "user": {
+                  "type": "string",
+                  "id": 1
+                },
+                "response": {
+                  "type": "Response",
+                  "id": 2
+                },
+                "suggestion": {
+                  "type": "string",
+                  "id": 3
+                }
+              }
+            },
+            "WrapHashResponse": {
+              "fields": {
+                "user": {
+                  "type": "string",
+                  "id": 1
+                },
+                "hash": {
+                  "type": "string",
+                  "id": 2
+                }
+              }
+            },
+            "Response": {
+              "values": {
+                "Yes": 0,
+                "No": 1,
+                "Suggestion": 2
+              }
+            },
+            "CouncelingStatus": {
+              "values": {
+                "councilOpen": 0,
+                "councilCreated": 1,
+                "councilClosed": 2,
+                "commited": 3,
+                "revealed": 4,
+                "suggestionsMade": 5
+              }
+            },
+            "Encounter": {
+              "fields": {
+                "id": {
+                  "type": "uint64",
+                  "id": 1
+                },
+                "drawlist": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 2
+                },
+                "proven": {
+                  "type": "bool",
+                  "id": 3
+                },
+                "owner": {
+                  "type": "string",
+                  "id": 4
+                },
+                "parameters": {
+                  "rule": "repeated",
+                  "type": "Parameter",
+                  "id": 5
+                },
+                "imageId": {
+                  "type": "uint64",
+                  "id": 6
+                },
+                "name": {
+                  "type": "string",
+                  "id": 7
+                }
+              }
+            },
+            "Match": {
+              "fields": {
+                "timestamp": {
+                  "type": "uint64",
+                  "id": 1
+                },
+                "reporter": {
+                  "type": "string",
+                  "id": 2
+                },
+                "playerA": {
+                  "type": "MatchPlayer",
+                  "id": 3
+                },
+                "playerB": {
+                  "type": "MatchPlayer",
+                  "id": 4
+                },
+                "outcome": {
+                  "type": "Outcome",
+                  "id": 7
+                },
+                "coinsDistributed": {
+                  "type": "bool",
+                  "id": 10
+                },
+                "serverConfirmed": {
+                  "type": "bool",
+                  "id": 8
+                }
+              }
+            },
+            "MatchPlayer": {
+              "fields": {
+                "addr": {
+                  "type": "string",
+                  "id": 1
+                },
+                "playedCards": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 2
+                },
+                "confirmed": {
+                  "type": "bool",
+                  "id": 3
+                },
+                "outcome": {
+                  "type": "Outcome",
+                  "id": 4
+                },
+                "deck": {
+                  "rule": "repeated",
+                  "type": "uint64",
+                  "id": 5
+                },
+                "votedCards": {
+                  "rule": "repeated",
+                  "type": "SingleVote",
+                  "id": 6
+                }
+              }
+            },
+            "Outcome": {
+              "values": {
+                "Undefined": 0,
+                "AWon": 1,
+                "BWon": 2,
+                "Draw": 3,
+                "Aborted": 4
+              }
+            },
+            "VotingResult": {
+              "fields": {
+                "cardId": {
+                  "type": "uint64",
+                  "id": 1
+                },
+                "fairEnoughVotes": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "overpoweredVotes": {
+                  "type": "uint64",
+                  "id": 3
+                },
+                "underpoweredVotes": {
+                  "type": "uint64",
+                  "id": 4
+                },
+                "inappropriateVotes": {
+                  "type": "uint64",
+                  "id": 5
+                },
+                "result": {
+                  "type": "string",
+                  "id": 6
+                }
+              }
+            },
+            "SingleVote": {
+              "fields": {
+                "cardId": {
+                  "type": "uint64",
+                  "id": 1
+                },
+                "voteType": {
+                  "type": "VoteType",
+                  "id": 2
+                }
+              }
+            },
+            "VoteType": {
+              "values": {
+                "fairEnough": 0,
+                "inappropriate": 1,
+                "overpowered": 2,
+                "underpowered": 3
+              }
+            },
+            "Params": {
+              "options": {
+                "(amino.name)": "cardchain/x/cardchain/Params",
+                "(gogoproto.equal)": true
+              },
+              "fields": {
+                "votingRightsExpirationTime": {
+                  "type": "int64",
+                  "id": 1
+                },
+                "setSize": {
+                  "type": "uint64",
+                  "id": 2
+                },
+                "setPrice": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 3,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "activeSetsAmount": {
+                  "type": "uint64",
+                  "id": 4
+                },
+                "setCreationFee": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 5,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "collateralDeposit": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 6,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "winnerReward": {
+                  "type": "int64",
+                  "id": 7
+                },
+                "hourlyFaucet": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 9,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "inflationRate": {
+                  "type": "string",
+                  "id": 10
+                },
+                "raresPerPack": {
+                  "type": "uint64",
+                  "id": 11
+                },
+                "commonsPerPack": {
+                  "type": "uint64",
+                  "id": 12
+                },
+                "unCommonsPerPack": {
+                  "type": "uint64",
+                  "id": 13
+                },
+                "trialPeriod": {
+                  "type": "uint64",
+                  "id": 14
+                },
+                "gameVoteRatio": {
+                  "type": "int64",
+                  "id": 15
+                },
+                "cardAuctionPriceReductionPeriod": {
+                  "type": "int64",
+                  "id": 16
+                },
+                "airDropValue": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 17,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "airDropMaxBlockHeight": {
+                  "type": "int64",
+                  "id": 18
+                },
+                "trialVoteReward": {
+                  "type": "cosmos.base.v1beta1.Coin",
+                  "id": 19,
+                  "options": {
+                    "(gogoproto.nullable)": false
+                  }
+                },
+                "votePoolFraction": {
+                  "type": "int64",
+                  "id": 20
+                },
+                "votingRewardCap": {
+                  "type": "int64",
+                  "id": 8
+                },
+                "matchWorkerDelay": {
+                  "type": "uint64",
+                  "id": 21
+                },
+                "rareDropRatio": {
+                  "type": "uint64",
+                  "id": 22
+                },
+                "exceptionalDropRatio": {
+                  "type": "uint64",
+                  "id": 23
+                },
+                "uniqueDropRatio": {
+                  "type": "uint64",
+                  "id": 24
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "cosmos": {
+      "nested": {
+        "base": {
+          "nested": {
+            "v1beta1": {
+              "options": {
+                "go_package": "github.com/cosmos/cosmos-sdk/types",
+                "(gogoproto.goproto_stringer_all)": false,
+                "(gogoproto.stringer_all)": false
+              },
+              "nested": {
+                "Coin": {
+                  "options": {
+                    "(gogoproto.equal)": true
+                  },
+                  "fields": {
+                    "denom": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "amount": {
+                      "type": "string",
+                      "id": 2,
+                      "options": {
+                        "(cosmos_proto.scalar)": "cosmos.Int",
+                        "(gogoproto.customtype)": "cosmossdk.io/math.Int",
+                        "(gogoproto.nullable)": false,
+                        "(amino.dont_omitempty)": true
+                      }
+                    }
+                  }
+                },
+                "DecCoin": {
+                  "options": {
+                    "(gogoproto.equal)": true
+                  },
+                  "fields": {
+                    "denom": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "amount": {
+                      "type": "string",
+                      "id": 2,
+                      "options": {
+                        "(cosmos_proto.scalar)": "cosmos.Dec",
+                        "(gogoproto.customtype)": "cosmossdk.io/math.LegacyDec",
+                        "(gogoproto.nullable)": false
+                      }
+                    }
+                  }
+                },
+                "IntProto": {
+                  "fields": {
+                    "int": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(cosmos_proto.scalar)": "cosmos.Int",
+                        "(gogoproto.customtype)": "cosmossdk.io/math.Int",
+                        "(gogoproto.nullable)": false
+                      }
+                    }
+                  }
+                },
+                "DecProto": {
+                  "fields": {
+                    "dec": {
+                      "type": "string",
+                      "id": 1,
+                      "options": {
+                        "(cosmos_proto.scalar)": "cosmos.Dec",
+                        "(gogoproto.customtype)": "cosmossdk.io/math.LegacyDec",
+                        "(gogoproto.nullable)": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

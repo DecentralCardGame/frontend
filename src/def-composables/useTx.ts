@@ -3,7 +3,9 @@ import {useAddress} from "@/def-composables/useAddress";
 import type {ChainCard} from "@/model/Card";
 import {Coin, type CompatCoin} from "@/model/Coin";
 import type {StdFee} from "@cosmjs/launchpad";
-import type {DeliverTxResponse} from "@cosmjs/stargate/build/stargateclient";
+import { SigningStargateClient as CurrentSigningClient } from '@cosmjs/stargate-current';
+import { Registry as CurrentRegistry } from '@cosmjs/proto-signing-current';
+type DeliverTxResponse = {code: number; rawLog?: string; transactionHash: string};
 import {
   GenericAuthorization
 } from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/types/cosmos/authz/v1beta1/authz";
@@ -26,6 +28,9 @@ import {msgTypes as BankMsgTypes} from "decentralcardgame-cardchain-client-ts/co
 import {msgTypes as AuthzMsgTypes} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1";
 import {MsgSend} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/module";
 import {MsgGrant} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/module";
+
+import { currentTypeUrl } from '@/composables/currentChainTransactions';
+const currentChain = import.meta.env.VITE_APP_DEVELOPMENT_CHAIN_API === 'true';
 
 export const registry: Registry = new Registry(
   CCMsgTypes.concat(BankMsgTypes).concat(AuthzMsgTypes),
@@ -138,12 +143,15 @@ const stdHandler = (res: DeliverTxResponse) => {
     );
     throw new Error("Message Failed: " + res.rawLog);
   }
-  let messageName = res.rawLog
-    ? JSON.parse(res.rawLog)[0]
-      .events[0].attributes[0].value.split(".")
-      .at(-1)
-      .replace("Msg", "")
-    : "";
+  let messageName = "";
+  if (res.rawLog) {
+    try {
+      const action = JSON.parse(res.rawLog)?.[0]?.events?.[0]?.attributes?.[0]?.value;
+      if (typeof action === 'string') messageName = action.split('.').at(-1)?.replace('Msg', '') || '';
+    } catch {
+      // Successful transactions need not include the legacy JSON log structure.
+    }
+  }
   notifySuccess("EPIC WIN", messageName + " was successfull");
   return res;
 };
@@ -190,12 +198,15 @@ export const useTxInstance: () => {
       }
       try {
         const {address} = (await client.signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          env.rpcURL,
-          client.signer,
-          {registry, prefix: env.prefix},
-        );
-        return await signingClient.signAndBroadcast(address, msgs, FEE, "");
+        const signingClient = currentChain
+          ? await CurrentSigningClient.connectWithSigner(env.rpcURL, client.signer, {registry: new CurrentRegistry(client.registry)})
+          : await SigningStargateClient.connectWithSigner(env.rpcURL, client.signer, {registry, prefix: env.prefix});
+        try {
+          if (currentChain && await signingClient.getChainId() !== env.chainId) {
+            throw new Error('RPC chain ID does not match the configured chain');
+          }
+          return await signingClient.signAndBroadcast(address, msgs, FEE, "");
+        } finally { signingClient.disconnect(); }
       } catch (e: any) {
         throw new Error("MultiBroadCast: Could not broadcast Tx: " + e.message);
       }
@@ -236,7 +247,7 @@ export const useTxInstance: () => {
                 typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization",
                 value: GenericAuthorization.encode(
                   GenericAuthorization.fromPartial({
-                    msg: msgPath,
+                    msg: currentChain ? currentTypeUrl(msgPath.split('.Msg')[1]) : msgPath,
                   }),
                 ).finish(),
               },
@@ -431,10 +442,11 @@ export const useTxInstance: () => {
       client.DecentralCardGameCardchainCardchain.tx.sendMsgSaveCardContent,
       new Content({
         cardId,
-        content: btoa(JSON.stringify(card.content)),
+        content: currentChain ? new TextEncoder().encode(JSON.stringify(card.content)) : btoa(JSON.stringify(card.content)),
         notes: card.notes,
         artist: card.artist,
         balanceAnchor: card.balanceAnchor,
+        ...(currentChain ? {parameters: card.parameters} : {}),
       }),
       then,
       err,
@@ -600,7 +612,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      currentChain ? client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterClose : client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         encounterId,
         user,
@@ -618,7 +630,7 @@ export const useTxInstance: () => {
     err: (res: any) => void,
   ) => {
     messageScheduler.schedule(
-      client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
+      currentChain ? client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterDo : client.DecentralCardGameCardchainCardchain.tx.sendMsgEncounterCreate,
       new Content({
         encounterId,
         user

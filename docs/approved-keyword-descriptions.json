@@ -1,0 +1,22 @@
+{
+  "toxicGrowth": "Deal X damage and give +X attack permanently to a friendly Entity.",
+  "sacrifice": "Select a friendly Entity, it dies. Set X to its mana cost.",
+  "ravage": "Select a friendly Entity to deal its attack as damage to a random opposing Place or HQ.",
+  "miraculousHealing": "Heal a friendly Entity and increase the attack of this Entity by the amount healed.",
+  "harden": "Deal X damage and give +X health permanently to a friendly Entity.",
+  "grow": "Grow your HQ, 4 Growth increases your HQ's mana production each turn by 1 permanently.",
+  "cleanse": "N random cards from the opposing Dustpile are moved into the Void.",
+  "bloodlust": "Deal X damage to a friendly Entity and X damage to a random opposing Entity.",
+  "ascension": "Move a friendly Entity from the Dustpile into the Void and create an X/X Avatar with X being the voided card's mana cost.",
+  "ambush": "A friendly Entity deals its attack damage to an opposing Entity.",
+  "fight": "A friendly Entity and the selected opposing Entities deal their attack damage to each other simultaneously.",
+  "onDiscard": "Whenever you discard a card, activate Effects.",
+  "requiem": "If at least N Entities in your Dustpile share a tag with this card, activate Effects.",
+  "criticality": "At the beginning of your turn, if X is at least N, activate Effects.",
+  "onDestruction": "Whenever another friendly Place is destroyed, activate Effects.",
+  "rally": "Set X to the number of friendly Entities on the Field that share a tag with this card.",
+  "reprogram": "Replace a random effect on an Action card in your hand with a specified Effect.",
+  "corpseExplosion": "Move a friendly Entity from your Dustpile into the Void and deal X damage to the selected opposing Entities.",
+  "autopsy": "Move a friendly Entity from your Dustpile into the Void and set X to its health.",
+  "salvage": "Deal X damage to a friendly Place and produce X mana."
+}
