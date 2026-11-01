@@ -28,4 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: node scripts/test-keyword-icons.cjs
+    - run: node scripts/test-chain-environments.cjs
     - run: npm run build --if-present
