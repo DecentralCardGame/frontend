@@ -32,6 +32,24 @@ const context=(mode,designateArtist)=>({mode,designateArtist,address:'cc1test',m
   assert.equal(ctx.cardUpdatePending,false);assert.equal(ctx.successes,1);assert.equal(ctx.errors.length,0);
   assert.equal(queries,mode===1?1:0);
  }
+ const validator=component.properties.find(p=>p.key.name==='methods').value.properties.find(p=>p.key.name==='validateCreatedCard');
+ const artistCode=transformSync(`module.exports = ({${script.slice(validator.start,validator.end)}}).validateCreatedCard`,{loader:'ts',format:'cjs'}).code;
+ for(const fail of [false,true]){
+  const artCalls=[],m={exports:{}};
+  new Function('module','addArtwork','console',artistCode)(m,(...a)=>artCalls.push(a),{error(){}});
+  const artist=context(0,false);artist.artistMode=true;artist.model={id:42,image:'fixture',fullArt:true};artist.validateCreatedCard=m.exports;
+  const submitArtist=build(()=>{throw new Error('Artist must not update content');},()=>{});
+  submitArtist.call(artist);submitArtist.call(artist);
+  assert.equal(artCalls.length,1);assert.equal(artCalls[0].length,5,'Artwork error callback must be the fifth argument');
+  assert.equal(artist.cardUpdatePending,true);
+  await runTransactionTask(async()=>({code:fail?4:0}),artCalls[0][3],artCalls[0][4],()=>{});
+  assert.equal(artist.cardUpdatePending,false);assert.equal(artist.successes,fail?0:1);assert.equal(artist.errors.length,fail?1:0);
+ }
+ const rejectedArtist=context(0,false),artistModule={exports:{}};
+ new Function('module','addArtwork','console',artistCode)(artistModule,()=>{throw new Error('Invalid artwork input');},{error(){}});
+ rejectedArtist.artistMode=true;rejectedArtist.model.image='fixture';rejectedArtist.validateCreatedCard=artistModule.exports;
+ build(()=>{},()=>{}).call(rejectedArtist);
+ assert.equal(rejectedArtist.cardUpdatePending,false);assert.equal(rejectedArtist.errors.length,1);
  const empty=context(1,false);
  build(()=>{throw new Error('No transaction expected without a frame');},async()=>({ownedCardSchemes:[]})).call(empty);
  await new Promise(setImmediate);
@@ -45,5 +63,5 @@ const context=(mode,designateArtist)=>({mode,designateArtist,address:'cc1test',m
  await runTransactionTask(async()=>({code:0}),calls[1][3],calls[1][4],()=>{warnings++;});
  assert.equal(confirmed.errors.length,0,'Confirmed transaction must not report Update Card failed');
  assert.equal(confirmed.cardUpdatePending,false);assert.equal(warnings,1);
- console.log('PASS: actual Card Creator submit method queues one atomic update, blocks duplicate clicks and separates wallet rejection from confirmed-transaction UI failures.');
+ console.log('PASS: actual Card Creator submit method queues one atomic update (or artist-only artwork), blocks duplicate clicks and separates wallet rejection from confirmed-transaction UI failures.');
 })().catch(e=>{console.error(e);process.exitCode=1});

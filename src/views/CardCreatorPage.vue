@@ -1476,6 +1476,7 @@ export default {
         });
     },
     validateCreatedCard() {
+      if (this.cardUpdatePending) return;
       // if the artist is just uploading a new image, this is easy:
       if (this.artistMode) {
         if (!this.model.image) {
@@ -1485,17 +1486,25 @@ export default {
           );
           return;
         }
-        addArtwork(
-          this.model.id,
-          this.model.image,
-          this.model.fullArt,
-          this.resetCard,
-          () => {},
-          (err) => {
-            this.notifyFail("Update Artwork failed", err);
-            console.error(err);
-          },
-        );
+        this.cardUpdatePending = true;
+        const failed = (err) => {
+          this.cardUpdatePending = false;
+          this.notifyFail("Update Artwork failed", err);
+          console.error(err);
+        };
+        try {
+          addArtwork(
+            this.model.id,
+            this.model.image,
+            this.model.fullArt,
+            () => {
+              this.cardUpdatePending = false;
+              this.resetCard();
+              this.successScreen();
+            },
+            failed,
+          );
+        } catch (err) { failed(err); }
         return;
       }
 
