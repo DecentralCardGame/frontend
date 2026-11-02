@@ -2,6 +2,7 @@ import * as R from "ramda";
 import { Coin } from "./Coin";
 
 export class ChainCard {
+  parameters: Array<{key: string; value: string}> = [];
   owner: string = "";
   status: string = "";
   artist: string = "";
@@ -60,6 +61,7 @@ export class ChainCard {
       card.votePool = Object.assign(new Coin(), this.votePool);
       card.voters = this.voters;
       card.balanceAnchor = this.balanceAnchor;
+      card.parameters = this.parameters.map(parameter => ({...parameter}));
       card.hash = this.hash;
 
       console.log("parsed card: ", card.CardName, card);
@@ -69,6 +71,7 @@ export class ChainCard {
 }
 
 export class Card {
+  parameters: Array<{key: string; value: string}> = [];
   notes: string = "";
   type: string = "Entity";
   owner: string = "";
@@ -170,6 +173,7 @@ export class Card {
     cc.fullArt = this.fullArt;
     cc.notes = this.notes;
     cc.balanceAnchor = this.balanceAnchor;
+    cc.parameters = this.parameters.map(parameter => ({...parameter}));
     console.log("parsed into:", cc);
     return cc;
   }

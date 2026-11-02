@@ -794,9 +794,10 @@
                       />
                       <BaseCCButton
                         :type="Color.RED"
+                        :diabled="cardUpdatePending"
                         @click="saveSubmit()"
                       >
-                        Update your Card
+                        {{ cardUpdatePending ? 'Waiting for confirmation…' : 'Update your Card' }}
                       </BaseCCButton>
                     </div>
                   </div>
@@ -827,9 +828,10 @@
                       />
                       <BaseCCButton
                         :type="Color.RED"
+                        :diabled="cardUpdatePending"
                         @click="saveSubmit()"
                       >
-                        Mint Card
+                        {{ cardUpdatePending ? 'Waiting for confirmation…' : 'Mint Card' }}
                       </BaseCCButton>
                     </div>
                   </div>
@@ -966,7 +968,7 @@ import NavigateCCButtons from "@/components/elements/NavigateButtons/NavigateCCB
 import Dropdown from "@/components/elements/Dropdown/Dropdown.vue";
 
 const [DefineNavigationButtons, NavigationButtons] = createReusableTemplate();
-const { saveCardContent, addArtwork, buyCardScheme } = useTx();
+const { saveCardUpdate, addArtwork, buyCardScheme } = useTx();
 const { queryQUser, queryQCardchainInfo } = useQuery();
 const { user, coins, queryUser, queryCoins } = useUser();
 
@@ -1050,6 +1052,7 @@ export default {
       isAbilityModalVisible: false,
       isBuyFrameModalVisible: false,
       successScreenVisible: false,
+      cardUpdatePending: false,
       clearAbilities: false,
       activeStep: 0,
       ability: {},
@@ -1473,6 +1476,7 @@ export default {
         });
     },
     validateCreatedCard() {
+      if (this.cardUpdatePending) return;
       // if the artist is just uploading a new image, this is easy:
       if (this.artistMode) {
         if (!this.model.image) {
@@ -1482,17 +1486,25 @@ export default {
           );
           return;
         }
-        addArtwork(
-          this.model.id,
-          this.model.image,
-          this.model.fullArt,
-          this.resetCard,
-          () => {},
-          (err) => {
-            this.notifyFail("Update Artwork failed", err);
-            console.error(err);
-          },
-        );
+        this.cardUpdatePending = true;
+        const failed = (err) => {
+          this.cardUpdatePending = false;
+          this.notifyFail("Update Artwork failed", err);
+          console.error(err);
+        };
+        try {
+          addArtwork(
+            this.model.id,
+            this.model.image,
+            this.model.fullArt,
+            () => {
+              this.cardUpdatePending = false;
+              this.resetCard();
+              this.successScreen();
+            },
+            failed,
+          );
+        } catch (err) { failed(err); }
         return;
       }
 
@@ -1688,27 +1700,26 @@ export default {
       );
     },
     saveSubmit() {
+      if (this.cardUpdatePending) return;
       let newCard = this.validateCreatedCard();
       if (!newCard) return;
+      this.cardUpdatePending = true;
 
       // check if a card is edited with pre-existing ID
       if (this.mode == Mode.EDIT) {
         let handleErr = (err) => {
+          this.cardUpdatePending = false;
           this.notifyFail("Update Card failed", err);
           console.log(err);
         };
 
-        saveCardContent(this.model.id, newCard, this.resetCard, handleErr);
-        if (!this.designateArtist)
-          addArtwork(
-            this.model.id,
-            newCard.image,
-            newCard.fullArt,
-            this.successScreen,
-            () => {},
-            handleErr,
-          );
+        saveCardUpdate(this.model.id, newCard, !this.designateArtist, () => {
+          this.cardUpdatePending = false;
+          this.resetCard();
+          this.successScreen();
+        }, handleErr);
       } else if (!this.address) {
+        this.cardUpdatePending = false;
         this.notifyFail(
           "Unable publish Card",
           "You must be logged in with an activated account!",
@@ -1717,32 +1728,28 @@ export default {
         queryQUser(this.address)
           .then((res: User) => {
             if (R.isEmpty(res.ownedCardSchemes)) {
+              this.cardUpdatePending = false;
               this.notifyFail(
                 "YOU MUST CONSTRUCT ADDITIONAL PYLONS",
                 "You don't own any Card Frames. Please buy one before publishing.",
               );
-              throw new Error(
-                "account " + this.address + " does not own Card Frames",
-              );
+              return;
             } else {
               let id = +res.ownedCardSchemes[0];
               let handleErr = (err) => {
+                this.cardUpdatePending = false;
                 this.notifyFail("Publish Card failed", err);
                 console.error(err);
               };
 
-              saveCardContent(id, newCard, this.successScreen, handleErr);
-              if (!this.designateArtist)
-                addArtwork(
-                  id,
-                  newCard.image,
-                  newCard.fullArt,
-                  this.successScreen,
-                  handleErr,
-                );
+              saveCardUpdate(id, newCard, !this.designateArtist, () => {
+                this.cardUpdatePending = false;
+                this.successScreen();
+              }, handleErr);
             }
           })
           .catch((err) => {
+            this.cardUpdatePending = false;
             console.error(err);
             this.notifyFail("Publish Card failed", err);
           });

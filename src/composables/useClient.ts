@@ -1,11 +1,13 @@
 import { Client } from 'decentralcardgame-cardchain-client-ts'
 import { env } from "@/env";
 import { adaptDevelopmentChainApi } from "./developmentChainApi";
+import { installCurrentChainTransactions } from "./currentChainTransactions";
 
 const useClientInstance = () => {
   const client = new Client(env);
   if (import.meta.env.VITE_APP_DEVELOPMENT_CHAIN_API === "true") {
     adaptDevelopmentChainApi(client.DecentralCardGameCardchainCardchain.query.instance);
+    installCurrentChainTransactions(client);
   }
   return client;
 };
