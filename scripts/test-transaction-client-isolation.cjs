@@ -4,7 +4,7 @@ const {buildSync}=require('esbuild');
 const root=path.resolve(__dirname,'..');
 for(const enabled of [false,true]){
  const env={VITE_APP_DEVELOPMENT_CHAIN_API:String(enabled),VITE_API_COSMOS:'http://127.0.0.1:1',VITE_WS_TENDERMINT:'http://127.0.0.1:1',VITE_APP_CHAIN_ID:'isolated-test',VITE_APP_ADDRESS_PREFIX:'cc'};
- const code=buildSync({stdin:{contents:"export {useClient} from './src/composables/useClient';",resolveDir:root,loader:'ts'},bundle:true,write:false,alias:{'@':path.join(root,'src')},platform:'node',format:'cjs',define:{'import.meta.env':JSON.stringify(env)},logLevel:'silent'}).outputFiles[0].text;
+ const code=buildSync({stdin:{contents:"export {useClient} from './src/composables/useClient'; export {cardUpdateMessages} from './src/composables/cardUpdateMessages';",resolveDir:root,loader:'ts'},bundle:true,write:false,alias:{'@':path.join(root,'src')},platform:'node',format:'cjs',define:{'import.meta.env':JSON.stringify(env)},logLevel:'silent'}).outputFiles[0].text;
  const loaded={exports:{}};new Function('module','exports','require','__dirname','__filename',code)(loaded,loaded.exports,require,__dirname,__filename);
  const client=loaded.exports.useClient();
  const value={creator:'cc1test',cardId:0,content:new Uint8Array([123,125]),notes:'',artist:'cc1test',balanceAnchor:false};
@@ -12,6 +12,12 @@ for(const enabled of [false,true]){
   change();
   const msg=client.DecentralCardGameCardchainCardchain.tx.msgSaveCardContent({value});
   assert.equal(msg.typeUrl,enabled?'/cardchain.cardchain.MsgCardSaveContent':'/DecentralCardGame.cardchain.cardchain.MsgSaveCardContent');
+  const card={content:{Action:{CardName:'Combined'}},notes:'note',artist:'cc1test',balanceAnchor:false,parameters:[{key:'keep',value:'17'}],image:'data:image/png;base64,iVBORw0KGgo=',fullArt:true};
+  const messages=loaded.exports.cardUpdateMessages(client.DecentralCardGameCardchainCardchain.tx,'cc1test',0,card,true,enabled);
+  assert.equal(messages.length,2);
+  assert.equal(messages[0].typeUrl,msg.typeUrl);
+  assert.equal(messages[1].typeUrl,enabled?'/cardchain.cardchain.MsgCardArtworkAdd':'/DecentralCardGame.cardchain.cardchain.MsgAddArtwork');
+  assert.equal(loaded.exports.cardUpdateMessages(client.DecentralCardGameCardchainCardchain.tx,'cc1test',0,card,false,enabled).length,1);
   assert.equal(client.CosmosBankV1Beta1.tx.msgSend({value:{fromAddress:'cc1test',toAddress:'cc1other',amount:[]}}).typeUrl,'/cosmos.bank.v1beta1.MsgSend');
  }
 }

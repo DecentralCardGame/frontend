@@ -32,6 +32,15 @@ Notable differences:
 - EncounterCreate uses drawlist and repeated key/value Parameter messages.
 - EncounterDo/Close use their own methods on the current chain, not EncounterCreate.
 - Card parameters survive the editor model roundtrip and saving.
+- The editor sends content and optional artwork in one atomic transaction, with one
+  signature request. If the artwork message fails, the content update rolls back too.
+  Repeated clicks are blocked while a submission is pending; designated artists still
+  receive content-only updates. This batching also retains the legacy message types
+  when the production client is selected.
+- Transaction confirmation is separated from completion/UI callbacks. A UI refresh
+  exception after code 0 is reported as a refresh issue, never as an update failure.
+  Wallet browser-extension errors (including sidePanel user-gesture restrictions)
+  cannot be bypassed by the website; batching avoids an automatic second prompt.
 
 CosmJS 0.39.0 is installed under `*-current` aliases so the legacy production imports
 remain at their existing versions. Current-chain signing requires an offline direct
@@ -46,6 +55,8 @@ its module. No private keys or production transactions are used by the tests.
 ```sh
 node scripts/test-current-transactions.cjs
 node scripts/test-transaction-client-isolation.cjs
+node scripts/test-transaction-task.cjs
+node scripts/test-card-creator-submit.cjs
 node scripts/test-cardobject-compat.cjs
 node scripts/test-chain-environments.cjs
 npm run build
@@ -66,9 +77,11 @@ python3 scripts/test-current-transactions-e2e.py --binary /path/to/cardchaind
 ```
 
 It starts its own fresh chain on loopback ports 27656/27657/1417/9190, using only newly
-created test accounts. It sends actual signed save-content and artwork transactions,
-queries the resulting content/image/Unicode/parameters, checks an unauthorized artist
-attempt, and verifies signer and chain-ID guards. It stops its own node on completion.
+created test accounts. It sends an actual signed transaction containing both save-content
+and artwork messages and checks that signing is requested exactly once. It queries the
+resulting content/image/Unicode/parameters, proves rollback of both changes when the
+second message is rejected, checks an unauthorized artist attempt, and verifies signer
+and chain-ID guards. It stops its own node on completion.
 Temporary test homes contain disposable private keys and must not be published.
 
 The codec tests independently cover all 22 mapped message types; the signed integration

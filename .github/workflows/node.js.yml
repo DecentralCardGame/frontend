@@ -32,5 +32,7 @@ jobs:
     - run: node scripts/test-cardobject-compat.cjs
     - run: node scripts/test-current-transactions.cjs
     - run: node scripts/test-transaction-client-isolation.cjs
+    - run: node scripts/test-transaction-task.cjs
+    - run: node scripts/test-card-creator-submit.cjs
     - run: npm run build --if-present
     - run: npm run build:dev

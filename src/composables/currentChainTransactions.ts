@@ -84,6 +84,19 @@ export function currentMessage(name: string, input: Record<string, any>): Encode
   return { typeUrl, value: message };
 }
 
+export async function sendCurrentMessages(client: any, messages: EncodeObject[], fee: any, memo: string, creator: string) {
+  const signer = client.signer;
+  const customMessages = messages.some(message => message.typeUrl.startsWith('/cardchain.cardchain.'));
+  if (!signer || (customMessages && typeof signer.signDirect !== 'function')) throw new Error('This chain requires a wallet supporting protobuf direct signing.');
+  const accounts = await signer.getAccounts();
+  if (!accounts.some((account: any) => account.address === creator)) throw new Error('Creator does not match the connected wallet');
+  const connection = await SigningStargateClient.connectWithSigner(client.env.rpcURL, signer, { registry: new Registry(client.registry) });
+  try {
+    if (await connection.getChainId() !== client.env.chainId) throw new Error('RPC chain ID does not match the configured chain');
+    return await connection.signAndBroadcast(creator, messages, fee, memo);
+  } finally { connection.disconnect(); }
+}
+
 export function installCurrentChainTransactions(client: any) {
   client.registry.push(...currentMessageTypes);
   const install = () => {
@@ -92,15 +105,7 @@ export function installCurrentChainTransactions(client: any) {
       methods[`msg${name}`] = ({value}: any) => currentMessage(name, value);
       methods[`sendMsg${name}`] = async ({value, fee, memo = ''}: any) => {
         const message = currentMessage(name, value);
-        const signer = client.signer;
-        if (!signer || typeof signer.signDirect !== 'function') throw new Error('This chain requires a wallet supporting protobuf direct signing.');
-        const accounts = await signer.getAccounts();
-        if (!accounts.some((account: any) => account.address === value.creator)) throw new Error('Creator does not match the connected wallet');
-        const connection = await SigningStargateClient.connectWithSigner(client.env.rpcURL, signer, { registry: new Registry(client.registry) });
-        try {
-          if (await connection.getChainId() !== client.env.chainId) throw new Error('RPC chain ID does not match the configured chain');
-          return await connection.signAndBroadcast(value.creator, [message], fee, memo);
-        } finally { connection.disconnect(); }
+        return await sendCurrentMessages(client, [message], fee, memo, value.creator);
       };
     }
     client.DecentralCardGameCardchainCardchain.tx = new Proxy(methods, {

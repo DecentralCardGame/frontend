@@ -3,8 +3,8 @@ import {useAddress} from "@/def-composables/useAddress";
 import type {ChainCard} from "@/model/Card";
 import {Coin, type CompatCoin} from "@/model/Coin";
 import type {StdFee} from "@cosmjs/launchpad";
-import { SigningStargateClient as CurrentSigningClient } from '@cosmjs/stargate-current';
-import { Registry as CurrentRegistry } from '@cosmjs/proto-signing-current';
+import { cardUpdateMessages } from '@/composables/cardUpdateMessages';
+import { runTransactionTask } from './transactionTask';
 type DeliverTxResponse = {code: number; rawLog?: string; transactionHash: string};
 import {
   GenericAuthorization
@@ -29,7 +29,7 @@ import {msgTypes as AuthzMsgTypes} from "decentralcardgame-cardchain-client-ts/c
 import {MsgSend} from "decentralcardgame-cardchain-client-ts/cosmos.bank.v1beta1/module";
 import {MsgGrant} from "decentralcardgame-cardchain-client-ts/cosmos.authz.v1beta1/module";
 
-import { currentTypeUrl } from '@/composables/currentChainTransactions';
+import { currentTypeUrl, sendCurrentMessages } from '@/composables/currentChainTransactions';
 const currentChain = import.meta.env.VITE_APP_DEVELOPMENT_CHAIN_API === 'true';
 
 export const registry: Registry = new Registry(
@@ -86,22 +86,20 @@ class MessageScheduler {
     watch(this.blocked, checkExec);
   }
 
-  executeMessage(msg: UnEvaledMessage) {
+  async executeMessage(msg: UnEvaledMessage) {
     notifyInfo("Sending", "Sending request to the blockchain.");
     this.blocked.value = true;
-    msg
-      .execute()
-      .then((res) => {
-        this.blocked.value = false;
-        return res;
-      })
-      .catch((err) => {
-        this.blocked.value = false;
-        throw err;
-      })
-      .then(stdHandler)
-      .then(msg.then)
-      .catch(msg.err);
+    try {
+      await runTransactionTask(
+        () => msg.execute(),
+        async (res) => { stdHandler(res); await msg.then(res); },
+        (error) => msg.err(error),
+        (error) => {
+          console.error('Transaction confirmed, but updating the page failed:', error);
+          notifyInfo('Transaction confirmed – refresh needed', 'The transaction succeeded. Reload the page to refresh its display.');
+        },
+      );
+    } finally { this.blocked.value = false; }
   }
 
   schedule(
@@ -152,7 +150,7 @@ const stdHandler = (res: DeliverTxResponse) => {
       // Successful transactions need not include the legacy JSON log structure.
     }
   }
-  notifySuccess("EPIC WIN", messageName + " was successfull");
+  notifySuccess("EPIC WIN", (messageName || "Transaction") + " was successful");
   return res;
 };
 
@@ -164,6 +162,7 @@ export const useTxInstance: () => {
   buyCardScheme: (coin: CompatCoin, then: (res: any) => void, err: (res: any) => void) => void;
   disinviteEarlyAccess: (invitee: string, then: (res: any) => void, err: (res: any) => void) => void;
   saveCardContent: (cardId: number, card: ChainCard, then: (res: any) => void, err: (res: any) => void) => void;
+  saveCardUpdate: (cardId: number, card: ChainCard, includeArtwork: boolean, then: (res: any) => void, err: (res: any) => void) => void;
   addArtwork: (cardId: number, image: string, fullArt: boolean, then: (res: any) => void, err: (res: any) => void) => void;
   transferCard: (cardId: number, receiver: string, then: (res: any) => void, err: (res: any) => void) => void;
   revokeAuthz: (granter: string, grantee: string, msgTypeUrl: string, then: (res: any) => void, err: (res: any) => void) => void;
@@ -190,7 +189,9 @@ export const useTxInstance: () => {
     then: (res: any) => void,
     err: (res: any) => void,
   ) => {
+    const queuedSigner = address.value;
     const b = async (): Promise<DeliverTxResponse> => {
+      if (currentChain) return await sendCurrentMessages(client, msgs, FEE, '', queuedSigner);
       if (!client.signer) {
         throw new Error(
           "MultiBroadCast: Unable to sign Tx. Signer is not present.",
@@ -198,13 +199,8 @@ export const useTxInstance: () => {
       }
       try {
         const {address} = (await client.signer.getAccounts())[0];
-        const signingClient = currentChain
-          ? await CurrentSigningClient.connectWithSigner(env.rpcURL, client.signer, {registry: new CurrentRegistry(client.registry)})
-          : await SigningStargateClient.connectWithSigner(env.rpcURL, client.signer, {registry, prefix: env.prefix});
+        const signingClient = await SigningStargateClient.connectWithSigner(env.rpcURL, client.signer, {registry, prefix: env.prefix});
         try {
-          if (currentChain && await signingClient.getChainId() !== env.chainId) {
-            throw new Error('RPC chain ID does not match the configured chain');
-          }
           return await signingClient.signAndBroadcast(address, msgs, FEE, "");
         } finally { signingClient.disconnect(); }
       } catch (e: any) {
@@ -213,6 +209,13 @@ export const useTxInstance: () => {
     };
 
     messageScheduler.schedule(b, new Content({}), then, err);
+  };
+
+  const saveCardUpdate = (cardId: number, card: ChainCard, includeArtwork: boolean, then: (res: any) => void, err: (res: any) => void) => {
+    try {
+      const messages = cardUpdateMessages(client.DecentralCardGameCardchainCardchain.tx, address.value, cardId, card, includeArtwork, currentChain);
+      multiBroadCast(messages, then, err);
+    } catch (error) { err(error); }
   };
 
   const authzGameclient = (
@@ -644,6 +647,7 @@ export const useTxInstance: () => {
     send,
     buyCardScheme,
     saveCardContent,
+    saveCardUpdate,
     addArtwork,
     voteCard,
     transferCard,

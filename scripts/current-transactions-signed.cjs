@@ -2,7 +2,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {EventEmitter} = require('node:events');
 const {DirectSecp256k1HdWallet} = require('@cosmjs/proto-signing-current');
-const {installCurrentChainTransactions} = require('./load-current-transactions.cjs');
+const {installCurrentChainTransactions,sendCurrentMessages} = require('./load-current-transactions.cjs');
+const path=require('node:path');
+const {cardUpdateMessages}=require('./load-typescript-module.cjs')(path.resolve(__dirname,'../src/composables/cardUpdateMessages.ts'));
 (async()=>{
  const input=JSON.parse(fs.readFileSync(0,'utf8'));
  assert.equal(input.rpc,'http://127.0.0.1:27657');
@@ -11,16 +13,18 @@ const {installCurrentChainTransactions} = require('./load-current-transactions.c
  assert.equal(address,input.address);
  const client=new EventEmitter();
  client.registry=[];client.env={rpcURL:input.rpc,chainId:input.chainId};
- client.signer=signer;client.DecentralCardGameCardchainCardchain={tx:{}};
+ let signatures=0;
+ client.signer={getAccounts:()=>signer.getAccounts(),signDirect:async(...args)=>{signatures++;return signer.signDirect(...args);}};
+ client.DecentralCardGameCardchainCardchain={tx:{}};
  installCurrentChainTransactions(client);
  const tx=client.DecentralCardGameCardchainCardchain.tx;
  const content={Action:{CardName:'Äther 世界',CastingCost:1,Class:{Mysticism:true,Technology:false,Nature:false,Culture:false},Effects:[{Sacrifice:{}}],FlavourText:'Grüße',Tags:[]}};
  const fee={amount:[],gas:'1000000'};
- const saved=await tx.sendMsgSaveCardContent({value:{creator:address,cardId:0,content:new TextEncoder().encode(JSON.stringify(content)),notes:'Unicode ✓',artist:address,balanceAnchor:true,parameters:[{key:'kept',value:'17'}]},fee});
- assert.equal(saved.code,0,saved.rawLog);
  const image='data:image/png;base64,iVBORw0KGgo=';
- const artwork=await tx.sendMsgAddArtwork({value:{creator:address,cardId:0,image:btoa(image),fullArt:true},fee});
- assert.equal(artwork.code,0,artwork.rawLog);
+ const card={content,notes:'Unicode ✓',artist:address,balanceAnchor:true,parameters:[{key:'kept',value:'17'}],image,fullArt:true};
+ const saved=await sendCurrentMessages(client,cardUpdateMessages(tx,address,0,card,true,true),fee,'',address);
+ assert.equal(saved.code,0,saved.rawLog);
+ assert.equal(signatures,1,'Content and artwork must share one wallet signature');
  const get=async()=>{const r=await fetch('http://127.0.0.1:1417/DecentralCardGame/cardchain/cardchain/card/0');assert(r.ok);return (await r.json()).card;};
  const actual=await get();
  assert.deepEqual(JSON.parse(Buffer.from(actual.card.content,'base64').toString('utf8')),content);
@@ -29,8 +33,13 @@ const {installCurrentChainTransactions} = require('./load-current-transactions.c
  assert.deepEqual(actual.card.parameters,[{key:'kept',value:'17'}]);
  assert.equal(actual.image,image);
  const other=await DirectSecp256k1HdWallet.fromMnemonic(input.otherMnemonic,{prefix:'cc'});
- client.signer=other;client.emit('signer-changed');
  const otherAddress=(await other.getAccounts())[0].address;
+ const invalidUpdate={...card,artist:otherAddress,notes:'must roll back'};
+ const failed=await sendCurrentMessages(client,cardUpdateMessages(tx,address,0,invalidUpdate,true,true),fee,'',address);
+ assert.notEqual(failed.code,0);
+ assert.match(failed.rawLog || '',/Incorrect Artist|unauthorized/i);
+ assert.deepEqual(await get(),actual,'Failure of the artwork message must roll back the content/artist update');
+ client.signer=other;client.emit('signer-changed');
  let denied=false;
  try {
   const r=await client.DecentralCardGameCardchainCardchain.tx.sendMsgAddArtwork({value:{creator:otherAddress,cardId:0,image:btoa('not allowed'),fullArt:false},fee});
@@ -42,5 +51,5 @@ const {installCurrentChainTransactions} = require('./load-current-transactions.c
  await assert.rejects(()=>client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard({value:{creator:otherAddress,cardId:0},fee}),/chain ID/);
  client.signer=undefined;client.emit('signer-changed');
  await assert.rejects(()=>client.DecentralCardGameCardchainCardchain.tx.sendMsgSetProfileCard({value:{creator:otherAddress,cardId:0},fee}),/direct signing/);
- console.log('PASS: real signed card save and artwork upload, Unicode and parameter preservation, ownership rejection, signer changes, chain-ID and disconnected-wallet guards.');
+ console.log('PASS: content and artwork saved atomically with one signature; second-message failure rolls both back; Unicode/parameters, ownership, signer changes and chain-ID guards verified.');
 })().catch(e=>{console.error(e);process.exitCode=1});
